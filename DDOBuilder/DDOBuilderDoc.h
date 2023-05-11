@@ -1,0 +1,31 @@
+// DDOBuilderDoc.h : interface of the CDDOBuilderDoc class
+//
+#pragma once
+#include "Character.h"
+
+class CDDOBuilderDoc :
+    public CDocument,
+    public XmlLib::SaxContentElement
+{
+public:
+    virtual BOOL OnNewDocument() override;
+    virtual BOOL OnOpenDocument(LPCTSTR lpszPathName) override;
+    virtual BOOL OnSaveDocument(LPCTSTR lpszPathName) override;
+    virtual void Serialize(CArchive& ar) override;
+    virtual ~CDDOBuilderDoc();
+
+    Character * GetCharacter() { return &m_character;}
+
+protected: // create from serialization only
+    CDDOBuilderDoc();
+    DECLARE_DYNCREATE(CDDOBuilderDoc)
+    DECLARE_MESSAGE_MAP()
+
+    // XML support
+    XmlLib::SaxContentElementInterface * StartElement(
+            const XmlLib::SaxString & name,
+            const XmlLib::SaxAttributes & attributes);
+    void EndElement();
+private:
+    Character m_character;
+};

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Races>
+  <Race>
+    <Name>Tabaxi Trailblazer</Name>
+    <Description>?
+
+Starts with 1 level of: Monk</Description>
+    <BuildPoints size="4">28 32 34 36</BuildPoints>
+    <IconicClass>Monk</IconicClass>
+    <Dexterity>+2</Dexterity>
+    <Feat>
+      <Name>Feline Agility</Name>
+      <Description>After standing still for 6 seconds, when you move again you gain a +30%
+Action Boost bonus to Movement Speed for 6 seconds.</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Tabaxi</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>FelineAgility</Icon>
+    </Feat>
+    <Feat>
+      <Name>Tabaxi Traits</Name>
+      <Description>TBD</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Tabaxi</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>TabaxiTraits</Icon>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Tabaxi Trailblazer</Name>
+      <Description>Iconic Past Life Stance: Iconic Past Life Stance: +1 to Trip DCs per stack of this Past Life.
+Passive Bonus: +1 to Saving Throws vs. Traps per stack of this Past Life</Description>
+      <Stance>
+        <Name>Tabaxi Trailblazer </Name>
+        <Icon>IconicPastLifeTabaxi</Icon>
+        <Description>Iconic Past Life Stance: Iconic Past Life Stance: +1 to Trip DCs per stack of this Past Life.</Description>
+        <Group>Iconic</Group>
+      </Stance>
+       <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>IconicPastLifeTabaxi</Icon>
+       <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Feat</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Item>Traps</Item>
+       </Effect>
+       <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Trip</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tabaxi Trailblazer </Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+  </Race>
+</Races>

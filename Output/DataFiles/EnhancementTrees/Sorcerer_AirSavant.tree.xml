@@ -1,0 +1,1621 @@
+<Enhancements>
+   <EnhancementTree>
+      <Name>Air Savant</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Type>Class</Type>
+            <Item>Sorcerer</Item>
+         </Requirement>
+      </Requirements>
+      <Icon>Sorcerer</Icon>
+      <Background>SorcererBackground</Background>
+      <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Air Savant</Name>
+         <InternalName>ASCore1</InternalName>
+         <Description>Every point you spend in the Air Savant enhancement tree provides +0.75 Universal Spell Power.
+Passive: +10 Electric and Sonic Spell Power 
++1 Caster Level when casting Electric, Sonic, and Air spells. 
+-10 Acid Spell Power 
+-1 Caster Level when casting Acid and Earth spells 
+Selecting this enhancement will prevent you from spending points in the Earth Savant enhancement tree.</Description>
+         <Icon>ASAirSavant</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>1</Value>
+            </Requirement>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>ESCore1</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Effect>
+            <DisplayName>Air Savant: Spell power per action point</DisplayName>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>APCount</AType>
+            <Amount size="1">0.75</Amount>
+            <StackSource>Air Savant</StackSource>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-10</Amount>
+            <Item>Acid</Item>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <AType>Simple</AType>
+            <Amount size="1">-1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Air Affinity</Name>
+         <InternalName>ASCore2</InternalName>
+         <Description>Passive: 
++10 Electric and Sonic Spell Power 
++1 Caster Level when casting Electric, Sonic, and Air spells. 
+-10 Acid Spell Power 
+-1 Caster Level when casting Acid and Earth spells</Description>
+         <Icon>ASAirAffinity</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASCore1</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-10</Amount>
+            <Item>Acid</Item>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <AType>Simple</AType>
+            <Amount size="1">-1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Greater Air Affinity</Name>
+         <InternalName>ASCore3</InternalName>
+         <Description>Passive: 
++10 Electric and Sonic Spell Power 
++1 Caster Level when casting Electric, Sonic, and Air spells. 
++1 Maximum Caster Level when casting Electric, Sonic, and Air spells. 
+-10 Acid Spell Power 
+-1 Caster Level when casting Acid and Earth spells</Description>
+         <Icon>ASGreaterAirAffinity</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASCore2</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>6</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-10</Amount>
+            <Item>Acid</Item>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <AType>Simple</AType>
+            <Amount size="1">-1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <Item>Air</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Conduction</Name>
+         <InternalName>ASCore4</InternalName>
+         <Description>Passive: On Electric or Sonic Spell Cast: Your target randomly gains zero, one,
+or two stacks of Vulnerable (Target takes 1% more damage for 3 seconds.
+This effect stacks up to 20 times, and loses one stack on expiration.)
++10 Electric and Sonic Spell Power 
++1 Caster Level when casting Electric, Sonic, and Air spells. 
++1 Maximum Caster Level when casting Electric, Sonic, and Air spells. 
+-10 Acid Spell Power 
+-1 Caster Level when casting Acid and Earth spells</Description>
+         <Icon>ASConduction</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASCore3</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-10</Amount>
+            <Item>Acid</Item>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <AType>Simple</AType>
+            <Amount size="1">-1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <Item>Air</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Light on Your Feet</Name>
+         <InternalName>ASCore5</InternalName>
+         <Description>Passive:  Immunity to most knockdown effects 
++10 Electric and Sonic Spell Power 
++1 Caster Level when casting Electric, Sonic, and Air spells. 
++1 Maximum Caster Level when casting Electric, Sonic, and Air spells. 
+-10 Acid Spell Power 
+-1 Caster Level when casting Acid and Earth spells</Description>
+         <Icon>ASLightOnYourFeet</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASCore4</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>18</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-10</Amount>
+            <Item>Acid</Item>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Most knockdown effects</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <AType>Simple</AType>
+            <Amount size="1">-1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <Item>Air</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Elemental Apotheosis: Air</Name>
+         <InternalName>ASCore6</InternalName>
+         <Description>Activate this ability to transform into an Air Elemental.
+While in elemental form, you gain +100% fortification.
+If you are a Warforged, you are no longer considered a Living Construct, and so are
+immune to Repair spells, but can be healed normally by Positive Energy spells.
+
+While in Air Elemental form, you also gain an additional +20 Electric and Sonic Spell Power,
++2% Electric and Sonic Spell Critical Chance, and a +1 bonus to caster level and max
+caster level for Air, electrical, and sonic spells, but your water, earth, and fire
+spells have a -3 penalty to caster level and max caster level.
+You also gain a +10 racial bonus to electrical resistance, +20 Physical Resistance Rating,
++3% dodge chance, and a -10 penalty to acid resistance.
+While in Elemental Form, your spells also cost an additional 10% Spell Points to cast.
+
+You also gain the following passive benefits, even while not in elemental form:  +2 Charisma 
++10 Electric and Sonic Spell Power 
++1 Caster Level when casting Electric, Sonic, and Air spells. 
++1 Maximum Caster Level when casting Electric, Sonic, and Air spells. 
+-10 Acid Spell Power 
+-1 Caster Level when casting Acid and Earth spells</Description>
+         <Icon>ASElementalApotheosisAir</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Clickie/>
+         <Stance>
+            <Name>Air Elemental</Name>
+            <Icon>ASElementalApotheosisAir</Icon>
+            <Description>While in elemental form, you gain +100% fortification.
+If you are a Warforged, you are no longer considered a Living Construct, and so are
+immune to Repair spells, but can be healed normally by Positive Energy spells.
+While in Air Elemental form, you also gain an additional +20 Electric and Sonic Spell Power,
++2% Electric and Sonic Spell Critical Chance, and a +1 bonus to caster level and max
+caster level for Air, electrical, and sonic spells, but your water, earth, and fire
+spells have a -3 penalty to caster level and max caster level.
+You also gain a +10 racial bonus to electrical resistance, +20 Physical Resistance Rating,
++3% dodge chance, and a -10 penalty to acid resistance.</Description>
+            <Group>Major Form</Group>
+         </Stance>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASCore5</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>20</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <DisplayName>Air Elemental Form</DisplayName>
+            <Type>CasterLevel</Type>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Air Elemental Form</DisplayName>
+            <Type>CasterLevel</Type>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Electric</Item>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Air Elemental</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Acid</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-10</Amount>
+            <Item>Acid</Item>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Charisma</Item>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <AType>Simple</AType>
+            <Amount size="1">-1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <Item>Air</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Air Savant: Shocking Grasp</Name>
+         <InternalName>ASShockingGrasp</InternalName>
+         <Description>Spell Like Ability: Shocking Grasp
+Activation Cost: [4/3/2] Spell Points.
+Cooldown: [12/8/4] seconds.</Description>
+         <Icon>ASShockingGrasp</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ExtraLongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Shocking Grasp</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>Sorcerer</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Acrobatic</Name>
+         <InternalName>ASAcrobatic</InternalName>
+         <Description>You gain +[2/4/6] to your Tumble, Jump and Balance skills.
+Rank 3: In Addition, your chance to Dodge enemy attacks is increased by 1%.</Description>
+         <Icon>ASAcrobatic</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+            <Item>Balance</Item>
+            <Item>Jump</Item>
+            <Item>Tumble</Item>
+         </Effect>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Rank>3</Rank>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: One with the Storm</Name>
+         <InternalName>ASOneWithTheStorm</InternalName>
+         <Description>You gain a +[3/6/10] bonus to your Electricity Resistance.</Description>
+         <Icon>ASOneWithTheStorm</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">3 6 10</Amount>
+            <Item>Electric</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Spell Critical: Electric I</Name>
+         <InternalName>ASSpellCriticalElectricI</InternalName>
+         <Description>Your Electric and Sonic damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalElectric</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Electrocution</Name>
+         <InternalName>ASElectrocution</InternalName>
+         <Description>Whenever you cast an Electric or Sonic damage spell, you gain +5 to your
+Electric and Sonic Spell Power for 6 seconds. This stacks up to [1/3/5] times.</Description>
+         <Icon>ASElectrocution</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electrocution</Item>
+            <AType>Slider</AType>
+            <Amount size="3">0 0 5</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">5</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+            <AType>SliderValue</AType>
+            <StackSource>Electrocution</StackSource>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Air Savant: Efficient Metamagic I</Name>
+         <InternalName>ASEfficientMetamagicI</InternalName>
+         <Description>Choose one of the following Metamagic feats. Reduce the spell point cost
+of using that Metamagic.</Description>
+         <Icon>EfficientMetamagic</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points.</Description>
+               <Icon>EfficientEmpower</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicI</Item>
+                     <Item>Efficient Empower Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Empower Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicI</Item>
+                  <Item>Efficient Empower Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-2 -4 -6</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Empower</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+               <Icon>EfficientEnlarge</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicI</Item>
+                     <Item>Efficient Enlarge Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Enlarge Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicI</Item>
+                  <Item>Efficient Enlarge Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-1 -2 -4</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Enlarge</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points</Description>
+               <Icon>EfficientMaximize</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicI</Item>
+                     <Item>Efficient Maximize Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Maximize Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicI</Item>
+                  <Item>Efficient Maximize Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-3 -6 -9</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Maximize</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicI</Item>
+                     <Item>Efficient Quicken Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Quicken Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicI</Item>
+                  <Item>Efficient Quicken Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-1 -2 -4</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Quicken</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Pierce Electric Resistance</Name>
+         <InternalName>ASPierceElectricResistance</InternalName>
+         <Description>Your Electric and Sonic damage spells now bypass [5/10/15] points of your
+target's resistance to those damage types, if any.</Description>
+         <Icon>ASPierceElectricResistance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASOneWithTheStorm</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Spell Critical: Electric II</Name>
+         <InternalName>ASSpellCriticalElectricII</InternalName>
+         <Description>Your Electric and Sonic damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalElectric</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASSpellCriticalElectricI</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Alternating Current</Name>
+         <InternalName>ASAlternatingCurrent</InternalName>
+         <Description>Whenever you cast an Electric or Sonic damage spell, you have a [10/20/30]%
+chance to gain 3 Temporary Spell Points.</Description>
+         <Icon>ASAlternatingCurrent</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASElectrocution</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Air Savant: Efficient Metamagic II</Name>
+         <InternalName>ASEfficientMetamagicII</InternalName>
+         <Description>Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic.
+(You can't choose the same one you chose at Tier 2)</Description>
+         <Icon>EfficientMetamagic</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASEfficientMetamagicI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points.</Description>
+               <Icon>EfficientEmpower</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicII</Item>
+                     <Item>Efficient Empower Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Empower Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicII</Item>
+                  <Item>Efficient Empower Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-2 -4 -6</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Empower</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+               <Icon>EfficientEnlarge</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicII</Item>
+                     <Item>Efficient Enlarge Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Enlarge Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicII</Item>
+                  <Item>Efficient Enlarge Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-1 -2 -4</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Enlarge</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points</Description>
+               <Icon>EfficientMaximize</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicII</Item>
+                     <Item>Efficient Maximize Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Maximize Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicII</Item>
+                  <Item>Efficient Maximize Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-3 -6 -9</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Maximize</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Exclusive</Type>
+                     <Item>ASEfficientMetamagicII</Item>
+                     <Item>Efficient Quicken Spell</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Quicken Spell</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>ExclusionGroup</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>ASEfficientMetamagicII</Item>
+                  <Item>Efficient Quicken Spell</Item>
+               </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-1 -2 -4</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Quicken</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Spell Penetration</Name>
+         <InternalName>ASSpellPenetration</InternalName>
+         <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
+         <Icon>SpellPenetration</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Spell Critical: Electric III</Name>
+         <InternalName>ASSpellCriticalElectricIII</InternalName>
+         <Description>Your Electric and Sonic damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalElectric</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASSpellCriticalElectricII</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Ability I</Name>
+         <InternalName>ASAbilityScoreI</InternalName>
+         <Description>Choose either Charisma or Dexterity</Description>
+         <Icon>ChaDex</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Charisma</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Air Savant: Electric Loop</Name>
+         <InternalName>ASElectricLoop</InternalName>
+         <Description>Spell Like Ability: Electric Loop.
+Activation Cost: [8/6/4] Spell Points.
+Cooldown: [15/10/5] seconds.</Description>
+         <Icon>ASElectricLoop</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASShockingGrasp</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric Loop</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>Sorcerer</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Efficient Heighten</Name>
+         <InternalName>ASEfficientHeighten</InternalName>
+         <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened level.</Description>
+         <Icon>EfficientHeighten</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>2</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>ASEfficientHeighten</Item>
+               <Item>Efficient Heighten Spell</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Heighten Spell</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASEfficientMetamagicII</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>ASEfficientHeighten</Item>
+            <Item>Efficient Heighten Spell</Item>
+         </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="2">-1 -2</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Heighten</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Feather Fall</Name>
+         <InternalName>ASFeatherFall</InternalName>
+         <Description>You gain Feather Falling, and may toggle it on or off at will.
+(Cooldown: 3 seconds)</Description>
+         <Icon>ASFeatherFall</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Spell Critical: Electric IV</Name>
+         <InternalName>ASSpellCriticalElectricIV</InternalName>
+         <Description>Your Electric and Sonic damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalElectric</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASSpellCriticalElectricIII</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Electric</Item>
+            <Item>Sonic</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Ability II</Name>
+         <InternalName>ASAbilityScoreII</InternalName>
+         <Description>Choose either Charisma or Dexterity</Description>
+         <Icon>ChaDex</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASAbilityScoreI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Charisma</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Air Savant: Lightning Bolt</Name>
+         <InternalName>ASLightningBolt</InternalName>
+         <Description>Spell Like Ability: Lightning Bolt.
+Activation Cost: [12/8/6] Spell Points.
+Cooldown: [18/12/6] seconds.</Description>
+         <Icon>ASLightningBolt</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASElectricLoop</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Lightning Bolt</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>Sorcerer</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Awaken Elemental Weakness: Electric</Name>
+         <InternalName>ASAwakenElementalWeaknessElectric</InternalName>
+         <Description>You are able to curse an enemy, increasing Electric damage they take by 15%.
+Activation Cost: 5 Spell Points.
+Cooldown: 20 seconds.</Description>
+         <Icon>ASAwakenElementalWeaknessElectric</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Wind Dance</Name>
+         <InternalName>ASWindDance</InternalName>
+         <Description>You leap through the air, propelled by a gust of wind. Uses of this ability
+recharge at a rate of one every 15 seconds in private areas, and 3 seconds in town.
+Activation Cost: 10 Spell Points.
+Cooldown: 3 seconds.</Description>
+         <Icon>ASWindDance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ASFeatherFall</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wind Dance</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>Sorcerer</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Evocation Focus</Name>
+         <InternalName>ASEvocationFocus</InternalName>
+         <Description>You have trained extensively in Evocation magic, granting a +1 bonus
+to your spell DCs of that school.</Description>
+         <Icon>ASEvocationFocus</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Evocation</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Air Savant: Elemental Diversification</Name>
+         <InternalName>ASElementalDiversification</InternalName>
+         <Description>Choose one</Description>
+         <Icon>ASElementalDiversification</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Sorcerer</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Power of Flame</Name>
+               <Description>You have extensively practiced with Fire magic,
+granting an additional +15 Fire Spell Power. </Description>
+               <Icon>ASPowerOfFlame</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">15</Amount>
+                  <Item>Fire</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Power of Force</Name>
+               <Description>You have extensively practiced with Force magic,
+granting an additional +10 Force Spell Power. </Description>
+               <Icon>ASPowerOfForce</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">10</Amount>
+                  <Item>Force/Untyped</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Power of Frost</Name>
+               <Description>You have extensively practiced with Cold magic,
+granting an additional +15 Cold Spell Power.</Description>
+               <Icon>ASPowerOfFrost</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">15</Amount>
+                  <Item>Cold</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

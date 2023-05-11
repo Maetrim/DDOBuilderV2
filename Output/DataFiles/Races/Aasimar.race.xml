@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Races>
+  <Race>
+    <Name>Aasimar</Name>
+    <Description>Carrying the blood of a celestial, an Aasimar is usually good-aligned and fights
+against evil in the world.</Description>
+    <BuildPoints size="4">28 32 34 36</BuildPoints>
+    <FeatSlot>
+      <Level>1</Level>
+      <FeatType>Aasimar Bond</FeatType>
+    </FeatSlot>
+    <Wisdom>+2</Wisdom>
+    <Feat>
+      <Name>Aasimar: Protector Bond</Name>
+      <Description>While protector stance is active you gain +1 Charisma and +1 to Will saving throws.</Description>
+      <Group>Aasimar Bond</Group>
+      <Acquire>Train</Acquire>
+      <Icon>AasimarProtector</Icon>
+      <Stance>
+        <Name>Aasimar: Protector Bond</Name>
+        <Icon>AasimarProtector</Icon>
+        <Description>While this stance is active you gain +1 Charisma and +1 to Will saving throws.
+You also gain access to your Healing Hands ability, plus any additional
+enhancements trained dependent on this stance being active</Description>
+      </Stance>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Charisma</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Protector Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Will</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Protector Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Aasimar: Fallen Bond</Name>
+      <Description>While fallen stance is active you gain +1 Strength and +1 to Reflex saving throws.</Description>
+      <Group>Aasimar Bond</Group>
+      <Acquire>Train</Acquire>
+      <Icon>AasimarFallen</Icon>
+      <Stance>
+        <Name>Aasimar: Fallen Bond</Name>
+        <Icon>AasimarFallen</Icon>
+        <Description>While this stance is active you gain +1 Strength and +1 to Reflex saving throws.
+You also gain access to your Healing Hands ability, plus any additional
+enhancements trained dependent on this stance being active</Description>
+      </Stance>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Strength</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Fallen Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Reflex</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Fallen Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Aasimar Racial Traits</Name>
+      <Description>You gain a racial lay on hands SLA which heals for 10 + Character Level * Wisdom Modifier.
++2 Racial bonus to Heal, Listen and Spot.
++5 Resistance to Cold, Acid and Electricity</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Aasimar</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>AasimarRacialTraits</Icon>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Racial</Bonus>
+        <Item>Healing Hands</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>None</Item>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Heal</Item>
+        <Item>Listen</Item>
+        <Item>Spot</Item>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Aasimar</Name>
+      <Description>You were Aasimar in a previous life
+Tier1: +1 Heal
+Tier2: +1 Wisdom
+Tier3: +1 Racial Tree Action point</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeAasimar</Icon>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Heal</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 1 1</Amount>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Wisdom</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">0 1 1</Amount>
+      </Effect>
+      <Effect>
+        <Type>RAPBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 0 1</Amount>
+      </Effect>
+    </Feat>
+  </Race>
+</Races>

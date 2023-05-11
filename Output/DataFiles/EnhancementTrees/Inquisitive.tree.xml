@@ -1,0 +1,1281 @@
+<Enhancements>
+   <EnhancementTree>
+      <Name>Inquisitive</Name>
+      <Version>1</Version>
+      <IsUniversalTree/>
+      <Requirements>
+         <Requirement>
+            <Type>Feat</Type>
+            <Item>Inquisitive Tree</Item>
+         </Requirement>
+      </Requirements>
+      <Icon>Inquisitive</Icon>
+      <Background>Universal</Background>
+      <!--Inquisitive tree core items-->
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Inquisitive</Name>
+         <InternalName>InquisitiveCore1</InternalName>
+         <Description>+1 to Attack with all weapons. +1 to Diplomacy, Intimidate and Bluff</Description>
+         <Icon>Inquisitive</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Diplomacy</Item>
+            <Item>Intimidate</Item>
+            <Item>Bluff</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Hit the Streets</Name>
+         <InternalName>InquisitiveCore2</InternalName>
+         <Description>You gain an additional copy of Diplomacy on a separate cooldown timer.
+This timer is shared with Half-Elven Social Grace's Diplomacy.
+Diplomacy allows you to attempt to encourage enemies to find targets other
+than yourself.
+
+Passive: +2% Dodge, +3 Diplomacy skill.
+If you are a Half-Elf, this Diplomacy bonus is instead +10.
+Cooldown: 1 Minute</Description>
+         <Icon>HitTheStreets</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveCore1</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <!--Two stacks-->
+            <Type>SkillBonus</Type>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 3 10</Amount>
+            <Item>Diplomacy</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Mind Like Iron</Name>
+         <InternalName>InquisitiveCore3</InternalName>
+         <Description>+3 to Will Saving Throws.
+You no longer automatically fail Saving Throws for Fear, Enchantment or
+Illusion effects on a Natutal 1.
+You will automatically perform a Search check to locate traps and secret
+doors when you are in range to Spot them, although this Search check
+operates at a -4 penalty.
+In addition, you gain +2 Damage dice with Law on you Side.</Description>
+         <Icon>MindLikeIron</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>6</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveCore2</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Will</Item>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fear</Item>
+            <Item>Illusion</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: True Seeing</Name>
+         <InternalName>InquisitiveCore4</InternalName>
+         <Description>You permanently gain the effects of the True Seeing spell.
+You gain +1 Competence Bonus to Critical Threat Range and Multiplier with
+Light and Heavy (non-repeating) Crossbows.
+Gain +1 Imbue Dice.</Description>
+         <Icon>TrueSeeing</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveCore3</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+         </Effect>
+         <Effect>
+            <Type>TrueSeeing</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Undaunted</Name>
+         <InternalName>InquisitiveCore5</InternalName>
+         <Description>+10 Ranged Power, +3 to all Saving Throws, +4 to the Max Dex Bonus of equipped armor.
+You gain the Slippery Mind feat (you can wriggle free from magical effects
+that would otherwise control or compel you. You gain a second saving throw
+versus enchantments).
+Gain +1 Imbue Dice.</Description>
+         <Icon>Undaunted</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>18</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveCore4</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Slippery Mind</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Master Inquisitive</Name>
+         <InternalName>InquisitiveCore6</InternalName>
+         <Description>+2 to all Ability Scores. +10 Ranged Power.
+While wielding a Light or Heavy (non-repeating) Crossbow, your Vorpal hits
+will knock down targets hit on a natural 20 + confirmation for 6 seconds
+without a saving throw, as a Great Crossbow.
+Gain +1 Imbue Dice.</Description>
+         <Icon>MasterInquisitive</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>20</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveCore5</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Inquisitive Tier 1 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Dual Shooter</Name>
+         <InternalName>InquisitiveDualShooter</InternalName>
+         <Description>While you have a Light or Heavy (non-repeating) Crossbow equipped, you instead fight
+with a Hand Crossbow in each hand, with each mimicking the damage and effects
+of your equipped Crossbow. +1 to Attack and Damage with Light and Heavy
+(non-repeating) crossbows.(also works with runearm)</Description>
+         <Icon>DualShooter</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Stance>
+            <Name>Dual Shooter</Name>
+            <Icon>DualShooter</Icon>
+            <Description>While you have a Light or Heavy (non-repeating) Crossbow equipped, you instead fight
+with a Hand Crossbow in each hand, with each mimicking the damage and effects
+of your equipped Crossbow. +1 to Attack and Damage with Light and Heavy
+(non-repeating) crossbows.(also works with runearm)</Description>
+         </Stance>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Eye for Accuracy</Name>
+         <InternalName>InquisitiveEyeForAccuracy</InternalName>
+         <Description>+[1/2/3] to Attack with weapons.</Description>
+         <Icon>EyeForAccuracy</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Conjure Bolts</Name>
+         <InternalName>InquisitiveConjureBolts</InternalName>
+         <Description>Conjures a stack of 1000 bolts for use with a crossbow.
+These bolts have a +1 enhancement bonus. These bolts dissolve into nothingness
+after logout.
+Spell Point Cost: [30/20/10]</Description>
+         <Icon>ConjureBolts</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>InquisitiveConjureBolts</Item>
+               <Item>Conjure Bolts</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>InquisitiveConjureBolts</Item>
+            <Item>Conjure Bolts</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Law on your side</Name>
+         <InternalName>InquisitiveLawOnYourSide</InternalName>
+         <Description>Imbue Toggle: Your Light and Heavy (non-repeating) Crossbow attacks
+deal 1d8 Law damage per Imbue Dice on hit to non-Lawful creatures, scaling with
+200% Ranged Power. Lawful creatures take 1d4 Law damage per Imbue Dice, scaling
+with 200% Ranged Power.</Description>
+         <Icon>LawOnYourSide</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Stance>
+            <Name>Law on your side</Name>
+            <Icon>LawOnYourSide</Icon>
+            <Description>Your Light and Heavy (non-repeating) Crossbow attacks deal 1d8 Law damage
+on hit to non-Lawful creatures, scaling with 200% Ranged Power. Lawful creatures
+take 1d4 Law damage, scaling with 200% Ranged Power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Inquisitive Skills</Name>
+         <InternalName>InquisitiveSkills</InternalName>
+         <Description>+[1/2/3] to Diplomacy, Intimidate and Bluff.
+Rank 3: +1 to Will Saving Throws.</Description>
+         <Icon>InquisitiveSkills</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Diplomacy</Item>
+            <Item>Intimidate</Item>
+            <Item>Bluff</Item>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Rank>3</Rank>
+            <Amount size="1">1</Amount>
+            <Item>Will</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Inquisitive Tier 2 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Crossbow Adept I</Name>
+         <InternalName>InquisitiveCrossbowAdept</InternalName>
+         <Description>+1 to Attack and +2 to Damage with Light and Heavy (non-repeating) Crossbows.</Description>
+         <Icon>CrossbowAdept</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <ArrowUp/>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Wand and Scroll Mastery</Name>
+         <InternalName>InquisitiveWandAndScrollMastery</InternalName>
+         <Description>+[25/50/75]% damage and healing of your wands, scrolls and other items that
+cast spells. Adds +[1/2/3] to the save DC's of your offensive wands. Taking Wand
+and Scroll Mastery in one enhancement tree will block its availability in other
+enhancement trees.</Description>
+         <Icon>WandAndScrollMastery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+             <Requirement>
+                 <Type>Exclusive</Type>
+                 <Item>InquisitiveWandAndScrollMastery</Item>
+                 <Item>Wand and Scroll Mastery</Item>
+             </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>InquisitiveWandAndScrollMastery</Item>
+            <Item>Wand and Scroll Mastery</Item>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wands</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Observation</Name>
+         <InternalName>InquisitiveObservation</InternalName>
+         <Description>When you use Diplomacy on an enemy, you gain one stack of Observation
+(+2 to Armor Class, +2 to PRR, +2 to MRR). Each stack lasts 20 seconds before
+being removed. This stacks up to 5 times.</Description>
+         <Icon>Observation</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Observation</Item>
+            <AType>Slider</AType>
+            <Amount size="3">0 0 5</Amount>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">2</Amount>
+            <AType>SliderValue</AType>
+            <StackSource>Observation</StackSource>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Improved Law</Name>
+         <InternalName>InquisitiveImprovedLaw</InternalName>
+         <Description>+1 Imbue Dice.</Description>
+         <Icon>ImprovedLaw</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveLawOnYourSide</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Action Boost: Skills</Name>
+         <InternalName>InquisitiveActionBoostSkills</InternalName>
+         <Description>Active to gain a +[2/4/6] Action Boost bonus to all skills for 20 seconds.
+Cooldown: 30 seconds.</Description>
+         <Icon>ActionBoostSkills</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Inquisitive Tier 3 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Crossbow Adept II</Name>
+         <InternalName>InquisitiveCrossbowAdeptII</InternalName>
+         <Description>+1 to Attack and Damage with Light and Heavy (non-repeating) Crossbows.</Description>
+         <Icon>CrossbowAdeptII</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveCrossbowAdept</Item>
+            </Requirement>
+         </Requirements>
+         <ArrowUp/>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: First Things First</Name>
+         <InternalName>InquisitiveWhatFirst</InternalName>
+         <Description>Pick a skill that you'd use to enter a room.</Description>
+         <Icon>WhatFirst</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Ask Questions First</Name>
+               <Description>Active this skill to gain +20 to Diplomacy and a 10% reduction in the cooldown time of
+Social Skills for 60 seconds. When you use Diplomacy on an enemy while this
+is active, you gain a stack of Preparation (+2% Dodge that ignores Dodge Cap).
+Each stack of Preparation lasts 12 seconds, and acquiring a new stack rests
+the duration. Preparation can stack up to 5 times.
+Cooldown: 2 Minutes</Description>
+               <Icon>AskQuestionsFirst</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shoot First</Name>
+               <Description>Shoot First: Bow or Crossbow Attack: +3[W] damage.
+On successful damage, this causes your opponent to take "Shot Wound".
+(Cooldown: 6 seconds) Note: Shot Wound deals 1d6 damage per Character Level
+every 2 seconds for 12 seconds. This damage scales with 200% Ranged Power.</Description>
+               <Icon>WhatFirst</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Improved Observation</Name>
+         <InternalName>InquisitiveImprovedObservation</InternalName>
+         <Description>Each stack of Observation now also grants you 5% Fortification bypass.</Description>
+         <Icon>ImprovedObservation</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveObservation</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>FortificationBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">5</Amount>
+            <AType>SliderValue</AType>
+            <StackSource>Observation</StackSource>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Stop in the Name</Name>
+         <InternalName>InquisitiveStopInTheName</InternalName>
+         <Description>Active: Targeted enemy must save (DC Diplomacy + d20 vs. Will) or be Dazed for 10 seconds.
+Daze is removed on hit. Bosses are immune to Daze.
+Cooldown: 18 seconds</Description>
+         <Icon>StopInTheName</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Ability Score I</Name>
+         <InternalName>InquisitiveAbilityI</InternalName>
+         <Description>Choose an Ability Score.</Description>
+         <Icon>Wisdom</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Intelligence</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Charisma</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Inquisitive Tier 4 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Crossbow Adept III</Name>
+         <InternalName>InquisitiveCrossbowAdeptIII</InternalName>
+         <Description>+1 to Attack and +2 to Damage with Light and Heavy (non-repeating) Crossbows.</Description>
+         <Icon>CrossbowAdeptIII</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveCrossbowAdeptII</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: What Later?</Name>
+         <InternalName>InquisitiveWhatLater</InternalName>
+         <Description>Take a followup skill to handle the situation.</Description>
+         <Icon>WhatLater</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveWhatFirst</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Ask Questions Later</Name>
+               <Description>Requires Shoot First. When you use Diplomacy on enemies who have at least one
+stack of Shot Wound, they take a Crushing Despair effect for 30 seconds.</Description>
+               <Icon>WhatLater</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Enhancement</Type>
+                     <Item>InquisitiveWhatFirst</Item>
+                     <Item>Shoot First</Item>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shoot Later</Name>
+               <Description>Bow or Crossbow Attack: +5[W]. This attack has +2 Critical Threat Range and Multiplier.
+Cooldown: 15 seconds.</Description>
+               <Icon>ShootLater</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Enhancement</Type>
+                     <Item>InquisitiveWhatFirst</Item>
+                     <Item>Ask Questions First</Item>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Inquisition Style</Name>
+         <InternalName>InquisitiveInquisitionStyle</InternalName>
+         <Description>How do you interrogate?</Description>
+         <Icon>InquisitionStyle</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Arcane Inquisition</Name>
+               <Description>You gain +15 Universal Spell Power while you have a Light or Heavy (non-repeating) Crossbow equipped.</Description>
+               <Icon>ArcaneInquisition</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>UniversalSpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">15</Amount>
+                  <Requirements>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Light Crossbow</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Crossbow</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dashing Inquisition</Name>
+               <Description>You can Swashbuckle while wielding a Light (non-repeating) Crossbow.</Description>
+               <Icon>DashingInquisition</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Divine Inquisition</Name>
+               <Description>You count Light and Heavy (non-repeating) Crossbows as Favored Weapons, regardless of your Deity.</Description>
+               <Icon>DivineInquisition</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AddGroupWeapon</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>Favored Weapon</Item>
+                  <Item>Light Crossbow</Item>
+                  <Item>Heavy Crossbow</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Martial Inquisition</Name>
+               <Description>+5% Doubleshot with Light and Heavy (non-repeating) Crossbows.</Description>
+               <Icon>MartialInquisition</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>Doubleshot</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">5</Amount>
+                  <Requirements>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Light Crossbow</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Crossbow</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Greater Law</Name>
+         <InternalName>InquisitiveGreaterLaw</InternalName>
+         <Description>+2 Damage dice with Law on your Side.</Description>
+         <Icon>GreaterLaw</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveLawOnYourSide</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Ability Score II</Name>
+         <InternalName>InquisitiveAbilityII</InternalName>
+         <Description>Choose an Ability Score.</Description>
+         <Icon>Wisdom</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Intelligence</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Charisma</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Inquisitive Tier 5 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Inquisitive: No Holds Barred</Name>
+         <InternalName>InquisitiveNoHoldsBarred</InternalName>
+         <Description>Action Boost: You may activate this ability to enchant your crossbow to instantly
+reload itself for 18 seconds. You must have a crossbow equipped to use this skill.
+This shares charges and a cooldown with Endless Fusilade. If you also have Endless
+Fusilade, you gain +10 Ranged Power while No Holds Barred is active.
+Passive: +5 Ranged Power, +10% Doubleshot.
+Cooldown: 30 seconds</Description>
+         <Icon>NoHoldsBarred</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Arresting Assault</Name>
+         <InternalName>InquisitiveArrestingAssault</InternalName>
+         <Description>Activate Ability: All nearby enemies take -10 Melee, Ranged, and Spell Power
+for 20 seconds and 5 stacks of Vulnerability. In addition, nearby enemies
+must save (DC Diplomacy + d20 vs. Will) or be subjected to a 10-second Daze.
+(Bosses are immune to Daze, but not the Power reduction or Vulnerability).
+Daze is removed on hit.
+Cooldown: 1 minute</Description>
+         <Icon>ArrestingAssault</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Improved Uncanny Dodge</Name>
+         <InternalName>InquisitiveImprovedUncannyDodge</InternalName>
+         <Description>Activate this ability to gain a temporary 50% Dodge bonus and a +6 reflex save bonus.
+This feat also grants you a 1% passive bonus to Dodge at levels 4, 6, 8, 12, 16 and 20.
+This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
+         <Icon>UncannyDodge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Improved Uncanny Dodge</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Inquisitor's Path</Name>
+         <InternalName>InquisitiveInquisitorsPath</InternalName>
+         <Description>Which path will you follow?</Description>
+         <Icon>InquisitorsPath</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>InquisitiveGreaterLaw</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Jaded</Name>
+               <Description>You gain +1 Imbue Dice and all enemies take 1d8 per Imbue dice.
++10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
+               <Icon>Jaded</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ImbueDice</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Optimistic</Name>
+               <Description>+2 Imbue Dice.
++10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
+               <Icon>InquisitorsPath</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ImbueDice</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">2</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Vigilante</Name>
+               <Description>+1 Imbue Dice.
+Damage from Law on your Side is now Chaos damage, with non-Chaotic creatures
+taking d8s of damage, and Chaotic creatures taking d4s of damage.
++10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
+               <Icon>Vigilante</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ImbueDice</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Weapon_Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">30</Amount>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Great Crossbow</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Inquisitive: Diplomatic Immunity</Name>
+         <InternalName>InquisitiveDiplomaticImmunity</InternalName>
+         <Description>Toggle: While active, your attacks with Light and Heavy (non-repeating)
+Crossbows have a chance to automatically trigger Diplomacy around you.</Description>
+         <Icon>DiplomaticImmunity</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,1084 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Classes>
+  <Class>
+    <Name>Legendary</Name>
+    <Description>Standard Legendary level</Description>
+    <SmallIcon>Legendary_Small</SmallIcon>
+    <LargeIcon>Legendary</LargeIcon>
+    <SkillPoints>0</SkillPoints>
+    <HitPoints>10</HitPoints>
+    <Alignment>Legendary</Alignment>
+    <Fortitude>None</Fortitude>
+    <Reflex>None</Reflex>
+    <Will>None</Will>
+    <SpellPointsPerLevel size="20">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
+    <BAB size="20">0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0</BAB>
+    <NotHeroic />
+    <FeatSlot>
+      <Level>1</Level>
+      <FeatType>Epic Destiny Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>3</Level>
+      <FeatType>Epic Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>4</Level>
+      <FeatType>Epic Destiny Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>6</Level>
+      <FeatType>Epic Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>7</Level>
+      <FeatType>Epic Destiny Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>9</Level>
+      <FeatType>Epic Feat</FeatType>
+    </FeatSlot>
+    <!--Legendary Feats-->
+    <Feat>
+      <Name>Legendary Power</Name>
+      <Description>+6 Melee Power, +6 Ranged Power, +6 Universal Spell Power.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>LegendaryPower</Icon>
+      <Effect>
+        <!--4 destiny points per legendary level-->
+        <DisplayName>Legendary Level Destiny Points</DisplayName>
+        <Type>DestinyAPBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+      </Effect>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Item>All</Item>
+      </Effect>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Legendary</Item>
+          <Value>1</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+    </Feat>
+    <Feat>
+      <Name>Legendary Knowledge</Name>
+      <Description>+1 caster level and max caster level with all spells.</Description>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>LegendaryPower</Icon>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Alchemist</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Artificer</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Bard</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Stormsinger</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Cleric</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Dark Apostate</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Druid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Favored Soul</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Paladin</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sacred Fist</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Ranger</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sorcerer</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Warlock</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Wizard</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>2</Value>
+            <Item>Legendary</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>4</Value>
+            <Item>Legendary</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>6</Value>
+            <Item>Legendary</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>8</Value>
+            <Item>Legendary</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>10</Value>
+            <Item>Legendary</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+    </Feat>
+    <!--Legendary Epic Destiny feats-->
+    <Feat>
+      <Name>Enhanced Elemental Dice</Name>
+      <Description>+1 Imbue Dice.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EnhancedElementalDice</Icon>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Legendary Aim</Name>
+      <Description>While using a Ranged Weapon, +10 to Attack, +5% Dodge Bypass</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>LegendaryAim</Icon>
+      <Effect>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>WeaponClassMainHand</Type>
+            <Item>Ranged</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>DodgeBypass</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>WeaponClassMainHand</Type>
+            <Item>Ranged</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Legendary Toughness</Name>
+      <Description>+100 Maximum Hit Points. This can be taken multiple times.</Description>
+      <MaxTimesAcquire>99</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Ability</Type>
+          <Item>Constitution</Item>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>LegendaryToughness</Icon>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Shield Mastery Specialty</Name>
+      <Description>While wielding a Shield, you gain +10% Doublestrike and a +9 Combat Style Bonus
+to Melee Power. You gain +10 Physical Resistance rating while using a Buckler or
+Small Shield. If you are using a Large Shield, this bonus increases to +15.
+If you are using a Tower Shield, this bonus increases to +20. This does not work
+in Animal Form. This does not count as a Combat Fighting Style feat.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Single Weapon Fighting</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Two Weapon Fighting</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Two Handed Fighting</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ShieldMasterySpecialty</Icon>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Combat Style</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Sword and Board</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Combat Style</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">9</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Sword and Board</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Shield Mastery Specialty: Buckler</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>PRR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Buckler</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Shield Mastery Specialty: Small Shield</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>PRR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Small Shield</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Shield Mastery Specialty: Large Shield</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>PRR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Large Shield</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Shield Mastery Specialty: Tower Shield</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>PRR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tower Shield</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Single Weapon Specialty</Name>
+      <Description>While Single Weapon Fighting (fighting with a single one-handed weapon,
+and wielding only an Orb, Runearm, or nothing in your offhand) you gain a +30%
+Combat Style Bonus to attack speed, +6 Combat Style Bonus to Melee Power, and
++50% more of your appropriate ability score to your damage. For Bastard Sword and
+Dwarven Waraxe, this adds to their existing 10% bonus. This does not work in
+Animal Form. This does not count as a Combat Fighting Style feat.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Shield Mastery</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Two Weapon Fighting</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Two Handed Fighting</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SingleWeaponSpecialty</Icon>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Combat Style</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Single Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>WeaponAlacrityClass</Type>
+        <Bonus>Combat Style</Bonus>
+        <Item>OneHanded</Item>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Single Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>DamageAbilityMultiplier</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Single Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spell Specialty: Abjuration</Name>
+      <Description>You gain a secondary Spell Focus: +3 to the DC of your Abjuration spells.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <DisplayDescription>Epic Spell Focus: From a Different School</DisplayDescription>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Conjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Enchantment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Evocation</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Illusion</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Necromancy</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Transmutation</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Spell Focus: Abjuration</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpellSpecialty</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Abjuration</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spell Specialty: Conjuration</Name>
+      <Description>You gain a secondary Spell Focus: +3 to the DC of your Conjuration spells.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <DisplayDescription>Epic Spell Focus: From a Different School</DisplayDescription>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Abjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Enchantment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Evocation</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Illusion</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Necromancy</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Transmutation</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Spell Focus: Conjuration</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpellSpecialty</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Conjuration</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spell Specialty: Enchantment</Name>
+      <Description>You gain a secondary Spell Focus: +3 to the DC of your Enchantment spells.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <DisplayDescription>Epic Spell Focus: From a Different School</DisplayDescription>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Abjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Conjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Evocation</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Illusion</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Necromancy</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Transmutation</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Spell Focus: Enchantment</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpellSpecialty</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Enchantment</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spell Specialty: Evocation</Name>
+      <Description>You gain a secondary Spell Focus: +3 to the DC of your Evocation spells.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <DisplayDescription>Epic Spell Focus: From a Different School</DisplayDescription>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Abjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Conjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Enchantment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Illusion</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Necromancy</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Transmutation</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Spell Focus: Evocation</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpellSpecialty</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Evocation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spell Specialty: Illusion</Name>
+      <Description>You gain a secondary Spell Focus: +3 to the DC of your Illusion spells.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <DisplayDescription>Epic Spell Focus: From a Different School</DisplayDescription>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Abjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Conjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Enchantment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Evocation</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Necromancy</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Transmutation</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Spell Focus: Illusion</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpellSpecialty</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Illusion</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spell Specialty: Necromancy</Name>
+      <Description>You gain a secondary Spell Focus: +3 to the DC of your Necromancy spells.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <DisplayDescription>Epic Spell Focus: From a Different School</DisplayDescription>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Abjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Conjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Enchantment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Evocation</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Illusion</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Transmutation</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Spell Focus: Necromancy</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpellSpecialty</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Necromancy</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spell Specialty: Transmutation</Name>
+      <Description>You gain a secondary Spell Focus: +3 to the DC of your Transmutation spells.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <DisplayDescription>Epic Spell Focus: From a Different School</DisplayDescription>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Abjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Conjuration</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Enchantment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Evocation</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Illusion</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus: Necromancy</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Spell Focus: Transmutation</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpellSpecialty</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Transmutation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Two Handed Specialty</Name>
+      <Description>While Two-Handed Fighting: +140% Strikethrough Chance.
+You also gain a +6 Combat Style bonus to Melee Power while Two-Handed Fighting.
+
+For the purposes of this feat, you are considered to be Two-Handed Fighting while
+using a Two-Handed Melee Weapon (not including Handwraps). You are also considered
+to be Two-Handed Fighting while wielding a Bastard Sword or Dwarven Waraxe in your
+main hand and a Shield, Orb, Rune Arm, or Nothing in your off-hand. You are not
+considered to be Two-Handed Fighting while in Druid Animal Forms.
+
+In addition, While using a Two-Handed Weapon, your Ability Score bonus to damage
+improves to 2.25x the Ability Score Modifier you use for damage. When using a
+Bastard Sword or Dwarven Waraxe, your Ability Score bonus to damage improves to
+1.6x the Ability Score Modifier you use for damage. Neither bonus applies in Animal
+Form. This does not count as a Combat Fighting Style feat.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Single Weapon Fighting</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Two Weapon Fighting</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Shield Mastery</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>TwoHandedSpecialty</Icon>
+      <Effect>
+        <Type>Strikethrough</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Two Handed Fighting</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Bastard Sword</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Dwarven Axe</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>DamageAbilityMultiplier</Type>
+        <Bonus>Base</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.75</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Handed Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Two Handed Specialty: Hand and a Half</DisplayName>
+        <Type>DamageAbilityMultiplier</Type>
+        <Bonus>Base</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1.6</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Bastard Sword</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Dwarven Axe</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Combat Style</Bonus>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Handed Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Two Weapon Specialty</Name>
+      <Description>Reduces the penalty for fighting with two weapons.
+You gain +60% offhand strike chance. This does not work in Animal Form.
+This does not count as a Combat Fighting Style feat.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Single Weapon Fighting</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Two Handed Fighting</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Greater Shield Mastery</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>TwoWeaponSpecialty</Icon>
+      <Effect>
+        <Type>OffHandAttackBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">60</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Wild Force</Name>
+      <Description>While in Druid Wild Shape, you gain some of the aspects of the form you aren't in.
+While in wolf or winter wolf form, you gain bear form's +10% exceptional bonus
+to Armor Class. While in bear or dire bear form, you gain wolf form's
++10% movement speed.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildForce</Icon>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Percent />
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Winter Wolf</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Bear</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Dire Bear</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Elemental Form Specialty</Name>
+      <Description>Your elemental forms grant you mastery over the other three elements as well.
+Excluding the element of your current form, you gain the following bonuses to
+air, earth, fire, and water as long as you are in a Sorcerer's Elemental
+Apotheosis or Druid Elemental Wild Shape form: +3 Caster Levels with those elements,
++3 to Max Caster Level with those elements, +20 to Spell Power of those elements,
++2% Spell Critical Chance with those elements.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>31</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ElementalFormSpecialty</Icon>
+    </Feat>
+  </Class>
+</Classes>

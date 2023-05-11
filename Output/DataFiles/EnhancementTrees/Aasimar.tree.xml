@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Aasimar</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Race</Type>
+        <Item>Aasimar</Item>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree />
+    <Icon>Aasimar</Icon>
+    <Background>HumanBackground</Background>
+    <!---Core Items-->
+    <EnhancementTreeItem>
+      <Name>Aasimar: Stronger Bonds I</Name>
+      <InternalName>AasimarCore1</InternalName>
+      <Description>+1 use of Healing Hands per rest.</Description>
+      <Icon>StrongerBondsI</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Effect>
+        <Type>SLACharge</Type>
+        <Bonus>Racial</Bonus>
+        <Item>Healing Hands</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Ability I</Name>
+      <InternalName>AasimarCore2</InternalName>
+      <Description>Choose either Strength, Wisdom or Charisma</Description>
+      <Icon>StrWisCha</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>AasimarCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Wisdom</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Stronger Bonds II</Name>
+      <InternalName>AasimarCore3</InternalName>
+         <Description>Protector Bond now grants +2% Dodge.
+Fallen Bond now grants +2 to Tactics DCs.</Description>
+      <Icon>StrongerBondsII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>7</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>AasimarCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Protector Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Fallen Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Ability II</Name>
+      <InternalName>AasimarCore4</InternalName>
+      <Description>Choose either Strength, Wisdom or Charisma</Description>
+      <Icon>StrWisCha</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>11</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>AasimarCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Wisdom</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Stronger Bonds III</Name>
+      <InternalName>AasimarCore5</InternalName>
+       <Description>+2 more uses of Healing Hands per rest.</Description>
+       <Icon>StrongerBondsIII</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>16</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>AasimarCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SLACharge</Type>
+        <Bonus>Racial</Bonus>
+        <Item>Healing Hands</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!---Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Aasimar: Fight the Wicked I</Name>
+      <InternalName>FightTheWickedI</InternalName>
+      <Description>+1 to hit and damage vs. Evil creatures.</Description>
+      <Icon>FightTheWickedI</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Evil Enemy</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Counsel</Name>
+      <InternalName>Counsel</InternalName>
+      <Description>+[1/2/3] to the Heal, Listen, and Spot skills</Description>
+      <Icon>Counsel</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Heal</Item>
+        <Item>Listen</Item>
+        <Item>Spot</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: True Resilience</Name>
+      <InternalName>TrueResilience</InternalName>
+      <Description>+[1/2/3] to your Will or Reflex Saving Throws</Description>
+      <Icon>TrueResilience</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Protector</Name>
+          <Description>+[1/2/3] to your Will Saving Throw</Description>
+          <Icon>TrueResilience</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Aasimar: Protector Bond</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Will</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Fallen</Name>
+          <Description>+[1/2/3] to your Reflex Saving Throw</Description>
+          <Icon>TrueResilience</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Aasimar: Fallen Bond</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Reflex</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Bold</Name>
+      <InternalName>Bold</InternalName>
+      <Description>You overcome fear quickly.
+Fear and shaken effects are removed from you after [12/6/3] seconds.</Description>
+      <Icon>Bold</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Improved Recovery I</Name>
+      <InternalName>ImprovedRecoveryI</InternalName>
+      <Description>+20 Healing Amplification</Description>
+      <Icon>HumanImprovedRecovery</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <LongArrowUp />
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!---Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Aasimar: Fight the Wicked II</Name>
+      <InternalName>FightTheWickedII</InternalName>
+      <Description>+1 to hit and damage vs. Evil creatures.</Description>
+      <Icon>FightTheWickedII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FightTheWickedI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Evil Enemy</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Arcanum</Name>
+      <InternalName>AasimarArcanum</InternalName>
+      <Description>+[25/50/100] spell points and +[1/2/3] spell penetration.</Description>
+      <Icon>Arcanum</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">25 50 100</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Divine Purpose</Name>
+      <InternalName>DivinePurpose</InternalName>
+      <Description>Gain an active ability with one charge per rest.
+Must have your Bond Feat active to use.</Description>
+      <Icon>DivinePurpose</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Selector>
+        <EnhancementSelection>
+          <Name>Divine Purpose: Protector</Name>
+          <Description>You sprout ethereal wings, the marks of the Protector.
+For one minute, you gain a Determination Bonus to Healing Amplification and
+Positive Spell Power equal to your Character Level.</Description>
+          <Icon>DivinePurpose</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Aasimar: Protector Bond</Item>
+            </Requirement>
+          </Requirements>
+          <Stance>
+            <Name>Aasimar: Divine Purpose</Name>
+            <Icon>DivinePurpose</Icon>
+            <Description>You sprout ethereal wings, the marks of the Protector.
+For one minute, you gain a Determination Bonus to Healing Amplification and
+Positive Spell Power equal to your Character Level.</Description>
+          </Stance>
+          <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Determination</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Divine Purpose</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Determination</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Divine Purpose</Item>
+              </Requirement>
+            </Requirements>
+            <Item>Positive</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Purpose: Fallen</Name>
+          <Description>You sprout weird wings of a Fallen Aasimar.
+For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Doublestrike.</Description>
+          <Icon>Fallen</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Aasimar: Fallen Bond</Item>
+            </Requirement>
+          </Requirements>
+          <Stance>
+            <Name>Aasimar: Divine Purpose</Name>
+            <Icon>Fallen</Icon>
+            <Description>You sprout weird wings of a Fallen Aasimar.
+For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Doublestrike.</Description>
+          </Stance>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Primal</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Divine Purpose</Item>
+              </Requirement>
+            </Requirements>
+            <Item>Strength</Item>
+          </Effect>
+          <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Primal</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Divine Purpose</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Divine Resolve</Name>
+      <InternalName>DivineResolve</InternalName>
+      <Description>Select between Charisma and Strength while your Divine Purpose is active.</Description>
+      <Icon>DivineResolve</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+[1/2/3] Charisma while your Divine Purpose is active.</Description>
+          <Icon>DivineResolve</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Charisma</Item>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Divine Purpose</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Strength</Name>
+          <Description>+[1/2/3] Strength while your Divine Purpose is active.</Description>
+          <Icon>DivineResolveStr</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Strength</Item>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Divine Purpose</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!---Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Aasimar: Fight The Wicked III</Name>
+      <InternalName>FightTheWickedIII</InternalName>
+      <Description>+1 to hit and damage vs. Evil creatures.</Description>
+      <Icon>FightTheWickedIII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FightTheWickedII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Evil Enemy</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Divine Charge</Name>
+      <InternalName>DivineCharge</InternalName>
+      <Description>+[1/2/3] Purpose Charges</Description>
+      <Icon>DivineCharge</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Blessing</Name>
+      <InternalName>Blessing</InternalName>
+      <Description>+[10/20/30] Positive Spellpower</Description>
+      <Icon>Blessing</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">10 20 30</Amount>
+        <Item>Positive</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Improved Recovery II</Name>
+      <InternalName>ImprovedRecoveryII</InternalName>
+      <Description>+20 Healing Amplification</Description>
+      <Icon>HumanImprovedRecovery</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ImprovedRecoveryI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!---Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Aasimar: Celestial Tutelage</Name>
+      <InternalName>CelestialTutelage</InternalName>
+      <Description>Choose one of the following.</Description>
+      <Icon>CelestialTutelage</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Tower Shield Proficiency</Name>
+          <Description>You are proficient with Tower Shields</Description>
+          <Icon>TowerShield</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Tower Shield Proficiency</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Bastard Sword Proficiency</Name>
+          <Description>You are proficient with Bastard Swords</Description>
+          <Icon>CelestialTutelage</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Exotic Weapon Proficiency: Bastard Sword</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Magical Training</Name>
+          <Description>You gain the benefits of the Magical Training feat</Description>
+          <Icon>MagicalTraining</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Magical Training</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Quick Draw</Name>
+          <Description>You gain the Quick Draw feat</Description>
+          <Icon>QuickDraw</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Quick Draw</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Ascendant Bond</Name>
+      <InternalName>DivineForm</InternalName>
+      <Description>Toggle: 30sp, toggles off on rest.
+Must have your Bond Feat active to use. Mutually exclusive with Form feats (PM, Druid, etc).</Description>
+      <Icon>DivineFormProtector</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Clickie />
+      <Selector>
+        <EnhancementSelection>
+          <Name>Protector</Name>
+          <Description>You gain +3 stacking bonus to all Saving Throws,
+5% Sacred Bonus to Max HP, and a +10 Determination Bonus to PRR and MRR.</Description>
+          <Icon>DivineFormProtector</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Aasimar: Protector Bond</Item>
+            </Requirement>
+          </Requirements>
+          <Stance>
+            <Name>Aasimar: Ascendant Bond: Protector</Name>
+            <Icon>DivineFormProtector</Icon>
+            <Description>You gain +3 stacking bonus to all Saving Throws,
+5% Sacred Bonus to Max HP, and a +10 Determination Bonus to PRR and MRR.</Description>
+            <Group>Major Form</Group>
+          </Stance>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>All</Item>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Ascendant Bond: Protector</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Sacred</Bonus>
+            <Percent />
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Ascendant Bond: Protector</Item>
+              </Requirement>
+            </Requirements>
+            <ApplyAsItemEffect />
+          </Effect>
+          <Effect>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Determination</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Ascendant Bond: Protector</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Fallen</Name>
+          <Description>You gain immunity to Fear, a +10 Determination bonus to Melee Power,
+and your melee weapon attacks add a stack of Vulnerability once per second.</Description>
+          <Icon>DivineFormFallen</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Aasimar: Fallen Bond</Item>
+            </Requirement>
+          </Requirements>
+          <Stance>
+            <Name>Aasimar: Ascendant Bond: Fallen</Name>
+            <Icon>DivineFormFallen</Icon>
+            <Description>You gain immunity to Fear, a +10 Determination bonus to Melee Power,
+and your melee weapon attacks add a stack of Vulnerability once per second.</Description>
+            <Group>Major Form</Group>
+          </Stance>
+          <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fear</Item>
+            <AType>NotNeeded</AType>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Ascendant Bond: Fallen</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+          <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Determination</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Aasimar: Ascendant Bond: Fallen</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Aasimar: Improved Recovery III</Name>
+      <InternalName>ImprovedRecoveryIII</InternalName>
+      <Description>+20 Healing Amplification</Description>
+      <Icon>HumanImprovedRecovery</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ImprovedRecoveryII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

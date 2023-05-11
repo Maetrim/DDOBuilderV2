@@ -1,0 +1,2168 @@
+<Enhancements>
+   <EnhancementTree>
+      <Name>Nature's Protector</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Type>Class</Type>
+            <Item>Druid</Item>
+         </Requirement>
+      </Requirements>
+      <Icon>Druid</Icon>
+      <Background>DruidBackground</Background>
+      <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Nature's Protector</Name>
+         <InternalName>NPCore1</InternalName>
+         <Description>Gain +8 hit points and 3 MRR.
+For every additional core in the tree gain 16 hit points and 3 more MRR.</Description>
+         <Icon>NPNaturesProtector</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">8</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Nature's Defense</Name>
+         <InternalName>NPCore2</InternalName>
+         <Description>Defensive Combat Stance: +8 PRR and MRR.
+Cannot be used with other defensive stances, but can be used while raging.
+Cooldown: 6 seconds.</Description>
+         <Icon>NPNaturesDefense</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPCore1</Item>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Nature's Defense</Name>
+            <Icon>NPNaturesDefense</Icon>
+            <Description>Defensive Combat Stance: +8 PRR and MRR.
+Cannot be used with other defensive stances, but can be used while raging.
+Cooldown: 6 seconds.</Description>
+            <Group>Combat Stance</Group>
+         </Stance>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">16</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Nature's Defense Stance</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">8</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Nature's Defense</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Nature's Defense Stance</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">8</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Nature's Defense</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Magical Beast</Name>
+         <InternalName>NPCore3</InternalName>
+         <Description>While in animal form the penalty on your spell cooldowns is reduced
+from 2.5 to 2.0. This benefit does not stack with the Nature's Warrior
+versions of this ability.
+Grants Heavy Armor Proficiency</Description>
+         <Icon>NPMagicalBeast</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>6</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPCore2</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">16</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Heavy Armor Proficiency</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Big Claws</Name>
+         <InternalName>NPCore4</InternalName>
+         <Description>Adds Great Maul to your spell book: Requires Bear form: Activate
+to do an Innate Attack: Deals 3[W] with +1 bonus to critical threat
+and damage, and the target you strike must make a Fortitude save or
+be stunned for 6 seconds, DC: 13 + Max(Str, Wis) mod + Tactical bonuses.
+SP Cost: 3
+Cooldown: 12 seconds. Shares a cooldown with Maul.</Description>
+         <Icon>NPBigClaws</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPCore3</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">16</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+         <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Great Maul</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">1 3 -1</Amount>
+            <Item>Druid</Item>
+         </Effect>
+         <DC>
+            <Name>Nature's Protector: Big Claws</Name>
+            <Description>Innate Attack: Deals 3[W] with +1 bonus to critical threat
+and damage, and the target you strike must make a Fortitude save or be stunned for 6 seconds</Description>
+            <Icon>NPBigClaws</Icon>
+            <DCType>Stun</DCType>
+            <DCVersus>Fortitude</DCVersus>
+            <Amount size="1">13</Amount>
+            <HalfClassLevel>All</HalfClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Big Bear</Name>
+         <InternalName>NPCore5</InternalName>
+         <Description>The Tremor spell now has a 20% chance to restore 1 charge of Barbarian Rage.
+Grants a 5% combat style attack speed bonus in Bear forms.</Description>
+         <Icon>NPBigBear</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>18</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPCore4</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_Alacrity</Type>
+            <Bonus>Combat Style</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>All</Item>
+            <ApplyAsItemEffect/>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">16</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: The Great Bear</Name>
+         <InternalName>NPCore6</InternalName>
+         <Description>Grants a 10% combat style attack speed bonus in Bear forms.
++2 Strength and Constitution.
+While in animal form your spell cooldowns are only increased by 1.5 down from 2.
+This effect does not stack with Nature's Warrior.</Description>
+         <Icon>NPTheGreatBear</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>20</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPCore5</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_Alacrity</Type>
+            <Bonus>Combat Style</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>All</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Strength</Item>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Constitution</Item>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">16</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Rage of the Beast</Name>
+         <InternalName>NPRageOfTheBeast</InternalName>
+         <Description>Grants you the ability to rage like a barbarian.
+Activate to rage, gaining +4 Strength and Constitution, +2 Will Saves and
+-2 Armor Class. Lasts 30 + (6 x Con Modifier) seconds.
+You are fatigued when this effect ends. You cannot cast spells while raging.
+1/2 Charges per rest. Effects that modify Barbarian rage apply to this enhancement.
+Also grants the Dismiss Rage Feat.</Description>
+         <Icon>NPRageOfTheBeast</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>2</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Rage</Name>
+            <Icon>NPRageOfTheBeast</Icon>
+            <Description>Grants you the ability to rage like a barbarian.
+Activate to rage, gaining +4 Strength and Constitution, +2 Will Saves and
+-2 Armor Class. Lasts 30 + (6 x Con Modifier) seconds.
+You are fatigued when this effect ends. You cannot cast spells while raging.
+1/2 Charges per rest. Effects that modify Barbarian rage apply to this enhancement.
+Also grants the Dismiss Rage Feat.</Description>
+            <Group>Combat Stance</Group>
+         </Stance>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dismiss Rage</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>Strength</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>Constitution</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Will</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-2</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Bloody Claws I</Name>
+         <InternalName>NPBloodyClawsI</InternalName>
+         <Description>Every time you use Maul you gain one stack of Killer Instincts:
++1 to damage for 15 seconds. Max stack size: 1/2/3</Description>
+         <Icon>NPBloodyClawsI</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Improved Nature's Defense I</Name>
+         <InternalName>NPImprovedNaturesDefenseI</InternalName>
+         <Description>Choose between: Enchanted Defense, Fierce Defense and Grizzled Defense.</Description>
+         <Icon>NPFierceDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Enchanted Defense</Name>
+               <Description>While in the Nature's Defense stance you gain a +[4/8/12] competence
+bonus to PRR and MRR.</Description>
+               <Icon>NPEnchantedDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Type>MRR</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">4 8 12</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Fierce Defense</Name>
+               <Description>While in Nature's Defense stance you gain a +[150/300/450]% competence
+bonus to melee threat.</Description>
+               <Icon>NPFierceDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ThreatBonusMelee</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">150 300 450</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Grizzled Defense</Name>
+               <Description>While in Nature's Defense stance you gain a +[1/2/3] sacred bonus to
+all saving throws.</Description>
+               <Icon>NPGrizzledDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Sacred</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+                  <Item>All</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Fey's Blessing</Name>
+         <InternalName>NPFeysBlessing</InternalName>
+         <Description>Gain a +[2/4/6] bonus to MRR.</Description>
+         <Icon>NPFeysBlessing</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Animal Brutality</Name>
+         <InternalName>NPAnimalBrutality</InternalName>
+         <Description>Gain a +[1/2/3] skill bonus to Intimidate, Swim and Jump.
+Rank 3 grants +1 to hit and damage.</Description>
+         <Icon>NPAnimalBrutality</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Intimidate</Item>
+            <Item>Swim</Item>
+            <Item>Jump</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Rank>3</Rank>
+            <Amount size="1">1</Amount>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Primal Beast</Name>
+         <InternalName>NPPrimalBeast</InternalName>
+         <Description>While using Barbarian Rage in animal form you gain +[5/10] melee power.</Description>
+         <Icon>NPPrimalBeast</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>2</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPRageOfTheBeast</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="2">5 10</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Winter Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Bloody Claws II</Name>
+         <InternalName>NPBloodyClawsII</InternalName>
+         <Description>Your Shred attack now grants you one stack of Killer Instinct:
++1 to damage for 15 seconds.</Description>
+         <Icon>NPBloodyClawsII</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPBloodyClawsI</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Improved Nature's Defense II</Name>
+         <InternalName>NPImprovedNaturesDefenseII</InternalName>
+         <Description>Choose a different stance to that chosen in tier1, between:
+Enchanted Defense, Fierce Defense and Grizzled Defense.</Description>
+         <Icon>NPFierceDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPImprovedNaturesDefenseI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>NPImprovedNaturesDefenseI</Exclusions>
+            <EnhancementSelection>
+               <Name>Enchanted Defense</Name>
+               <Description>While in the Nature's Defense stance you gain a +[4/8/12] competence
+bonus to PRR and MRR.</Description>
+               <Icon>NPEnchantedDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">4 8 12</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">4 8 12</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Fierce Defense</Name>
+               <Description>While in Nature's Defense stance you gain a +[150/300/450]% competence
+bonus to melee threat.</Description>
+               <Icon>NPFierceDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ThreatBonusMelee</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">150 300 450</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Grizzled Defense</Name>
+               <Description>While in Nature's Defense stance you gain a +[1/2/3] sacred bonus to
+all saving throws.</Description>
+               <Icon>NPGrizzledDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Sacred</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+                  <Item>All</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Thick Hide</Name>
+         <InternalName>NPThickHide</InternalName>
+         <Description>+[2/4/6] Natural Armor Bonus</Description>
+         <Icon>NPThickHide</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>NaturalArmor</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Action Boost: Beast at Bay</Name>
+         <InternalName>NPBeastAtBay</InternalName>
+         <Description>Activate to gain an action boost for [5/10/15] Armor Class and [7/14/21] MRR
+for 20 seconds. Consumes one action boost.</Description>
+         <Icon>NPBeastAtBay</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Enduring Beast</Name>
+         <InternalName>NPEnduringBeast</InternalName>
+         <Description>While using Barbarian Rage in animal form you gain +[10/20] positive
+healing amplification and +[1/2] Strength.
+Grants [1/2] additional uses of Rage per rest.</Description>
+         <Icon>NPEnduringBeast</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>2</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPPrimalBeast</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="2">10 20</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Winter Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="2">1 2</Amount>
+            <Item>Strength</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Winter Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Savage Roar</Name>
+         <InternalName>NPSavageRoar</InternalName>
+         <Description>Using the Roar spell with 1 stack of Killer Instincts active now triggers
+a burst of 1..3 Sonic damage per Druid level you have. Scales with melee power.
+If you have 2 stacks it also stuns. At 3 stacks the damage is increased to 5..10
+per Druid level and also applies the stun. Fortitude save negatives stun.
+DC: 10 + 1/2 Druid Level + Max(Str, Wis) mod + Stun bonuses.
+Casting Roar clears all stacks of Killer Instinct.</Description>
+         <Icon>NPSavageRoar</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Nature's Protector: Savage Roar</Name>
+            <Description>Using the Roar spell with 1 stack of Killer Instincts active now triggers
+a burst of 1..3 Sonic damage per Druid level you have. Scales with melee power.
+If you have 2 stacks it also stuns. At 3 stacks the damage is increased to 5..10
+per Druid level and also applies the stun.</Description>
+            <Icon>NPSavageRoar</Icon>
+            <DCType>Half Damage/Stun</DCType>
+            <DCVersus>Fortitude</DCVersus>
+            <Amount size="1">10</Amount>
+            <HalfClassLevel>Druid</HalfClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Improved Nature's Defense III</Name>
+         <InternalName>NPImprovedNaturesDefenseIII</InternalName>
+         <Description>Choose the final stance not chosen at tiers 1 and 2, between:
+Enchanted Defense, Fierce Defense and Grizzled Defense.</Description>
+         <Icon>NPFierceDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPImprovedNaturesDefenseII</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>NPImprovedNaturesDefenseI</Exclusions>
+            <Exclusions>NPImprovedNaturesDefenseII</Exclusions>
+            <EnhancementSelection>
+               <Name>Enchanted Defense</Name>
+               <Description>While in the Nature's Defense stance you gain a +[4/8/12] competence
+bonus to PRR and MRR.</Description>
+               <Icon>NPEnchantedDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">4 8 12</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">4 8 12</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Fierce Defense</Name>
+               <Description>While in Nature's Defense stance you gain a +[150/300%/450]% competence
+bonus to melee threat.</Description>
+               <Icon>NPFierceDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ThreatBonusMelee</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">150 300 450</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Grizzled Defense</Name>
+               <Description>While in Nature's Defense stance you gain a +[1/2/3] sacred bonus to
+all saving throws.</Description>
+               <Icon>NPGrizzledDefense</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Sacred</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+                  <Item>All</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Greater Nature's Defense I</Name>
+         <InternalName>NPGreaterNaturesDefenseI</InternalName>
+         <Description>Choose between: Ursa's Heart, Ursa's Spirit and Ursa's Will.</Description>
+         <Icon>NPUrsasHeart</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Ursa's Heart</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[15/20/25]% competence bonus to max hit points.</Description>
+               <Icon>NPUrsasHeart</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Competence</Bonus>
+                  <Percent/>
+                  <AType>Stacks</AType>
+                  <Amount size="3">15 20 25</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ursa's Spirit</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[2/4/6] competence bonus to Constitution.</Description>
+               <Icon>NPUrsasSpirit</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">2 4 6</Amount>
+                  <Item>Constitution</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ursa's Will</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[3/6/9] sacred bonus to MRR.</Description>
+               <Icon>NPUrsasWill</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Sacred</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">2 4 6</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Ability I</Name>
+         <InternalName>NPAbilityI</InternalName>
+         <Description>Choose between Constitution and Strength</Description>
+         <Icon>StrCon</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Undying Beast</Name>
+         <InternalName>NPUndyingBeast</InternalName>
+         <Description>While using Barbarian Rage in animal form you gain immunity to
+energy drain and death effects.</Description>
+         <Icon>NPUndyingBeast</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPEnduringBeast</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Energy Drain</Item>
+            <AType>NotNeeded</AType>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Winter Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Death Effects</Item>
+            <AType>NotNeeded</AType>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Winter Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Beast Awakened</Name>
+         <InternalName>NPBeastAwakened</InternalName>
+         <Description>You can now cast Druidic magic while raging.</Description>
+         <Icon>NPBeastAwakened</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPUndyingBeast</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Greater Nature's Defense II</Name>
+         <InternalName>NPGreaterNaturesDefenseII</InternalName>
+         <Description>Choose a different stance to that chosen in tier1, between:
+Ursa's Heart, Ursa's Spirit and Ursa's Will.</Description>
+         <Icon>NPUrsasHeart</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPGreaterNaturesDefenseI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>NPGreaterNaturesDefenseI</Exclusions>
+            <EnhancementSelection>
+               <Name>Ursa's Heart</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[15/20/25]% competence bonus to max hit points.</Description>
+               <Icon>NPUrsasHeart</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Competence</Bonus>
+                  <Percent/>
+                  <AType>Stacks</AType>
+                  <Amount size="3">15 20 25</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ursa's Spirit</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[2/4/6] competence bonus to Constitution.</Description>
+               <Icon>NPUrsasSpirit</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">2 4 6</Amount>
+                  <Item>Constitution</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ursa's Will</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[3/6/9] sacred bonus to MRR.</Description>
+               <Icon>NPUrsasWill</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Sacred</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">2 4 6</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Ability II</Name>
+         <InternalName>NPAbilityII</InternalName>
+         <Description>Choose between wither Constitution or Strength.</Description>
+         <Icon>StrCon</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPAbilityI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Beast Unleashed</Name>
+         <InternalName>NPBeastUnleashed</InternalName>
+         <Description>While using Barbarian Rage in animal form, you gain an additional 25 melee power.
+In addition, if the Druid is in Bear form they gain a +15% bonus to armor class
+and 50% increase to melee threat.</Description>
+         <Icon>NPBeastUnleashed</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPUndyingBeast</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">25</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Winter Wolf</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Percent/>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">50</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Bear</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Dire Bear</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Bear Charge</Name>
+         <InternalName>NPBearCharge</InternalName>
+         <Description>Bear Form Melee Attack: Charge forward dealing +2[W] with a +1 critical threat
+and damage multiplier to all targets before you, knocking down enemies.
+A successful Balance check negates the knockdown.
+Trip DC vs Balance: 10 + Druid Level + Max(Str, Wis) mod + Trip bonuses.
+Cooldown: 15 seconds.</Description>
+         <Icon>NPBearCharge</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Nature's Protector: Bear Charge</Name>
+            <Description>Bear Form Melee Attack: Charge forward dealing +2[W] with a +1 critical threat
+and damage multiplier to all targets before you, knocking down enemies.</Description>
+            <Icon>NPBearCharge</Icon>
+            <DCType>Knockdown</DCType>
+            <DCVersus>Balance</DCVersus>
+            <Amount size="1">10</Amount>
+            <ClassLevel>Druid</ClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Trip</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Lightning Strikes the Mountain</Name>
+         <InternalName>NPLightningStrikesTheMountain</InternalName>
+         <Description>Bear form Melee Attack: Activate to call down a bolt of lightning as you
+launch an attack. On Hit: +3[W] and 5..8 Lightning damage per character level,
+scales with melee power. You are also granted a 100% bonus to melee threat
+and 20 MRR for 15 seconds. Bonuses are doubled if Nature's Protector stance is active.</Description>
+         <Icon>NPLightningStrikesTheMountain</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Lightning Strikes the Mountain</Name>
+            <Icon>NPLightningStrikesTheMountain</Icon>
+            <Description>You are also granted a 100% bonus to melee threat and 20 MRR for 15 seconds.
+Bonuses are doubled if Nature's Protector stance is active.</Description>
+         </Stance>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">100</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Lightning Strikes the Mountain</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Lightning Strikes the Mountain</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Nature's Protector: Lightning Strikes the Mountain (with Nature's Defense)</DisplayName>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">100</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Lightning Strikes the Mountain</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Nature's Defense</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Nature's Protector: Lightning Strikes the Mountain (with Nature's Defense)</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Lightning Strikes the Mountain</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Nature's Defense</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Greater Nature's Defense III</Name>
+         <InternalName>NPGreaterNaturesDefenseIII</InternalName>
+         <Description>Choose the final stance not chosen at tiers 1 and 2, between:
+Ursa's Heart, Ursa's Spirit and Ursa's Will.</Description>
+         <Icon>NPUrsasHeart</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>NPGreaterNaturesDefenseII</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>NPGreaterNaturesDefenseI</Exclusions>
+            <Exclusions>NPGreaterNaturesDefenseII</Exclusions>
+            <EnhancementSelection>
+               <Name>Ursa's Heart</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[15/20/25]% competence bonus to max hit points.</Description>
+               <Icon>NPUrsasHeart</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Competence</Bonus>
+                  <Percent/>
+                  <AType>Stacks</AType>
+                  <Amount size="3">15 20 25</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ursa's Spirit</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[2/4/6] competence bonus to Constitution.</Description>
+               <Icon>NPUrsasSpirit</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">2 4 6</Amount>
+                  <Item>Constitution</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ursa's Will</Name>
+               <Description>Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[3/6/9] sacred bonus to MRR.</Description>
+               <Icon>NPUrsasWill</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Sacred</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">2 4 6</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Nature's Defense</Item>
+                     </Requirement>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Shield</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Medium Armor</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Heavy Armor</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                     <RequiresOneOf>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Bear</Item>
+                        </Requirement>
+                        <Requirement>
+                           <Type>Stance</Type>
+                           <Item>Dire Bear</Item>
+                        </Requirement>
+                     </RequiresOneOf>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Nature's Protector: Force of Nature</Name>
+         <InternalName>NPForceOfNature</InternalName>
+         <Description>You gain [10/15/20]% resistance against Force damage and +[1/2/3] Constitution.
+Your attunement to Nature is emboldened - Your Druidic Oath is no longer broken
+by wearing metal armor or shields.</Description>
+         <Icon>NPForceOfNature</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Druid</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">10 15 20</Amount>
+            <Item>Force</Item>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Constitution</Item>
+         </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

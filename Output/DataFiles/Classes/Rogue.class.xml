@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Classes>
+  <Class>
+    <Name>Rogue</Name>
+    <Description>Rogues get the most skill points in the game. They are capable of
+finding and disarming traps and opening locks. The rogue can also
+deal devastating sneak attack damage when they are beneath the
+notice of their enemies and are the best at stealth and sneaking
+around. Their defenses are quite low, even though they have
+Evasion and a fairly high Dodge, and so must rely on their wits
+and cunning to survive tough battles. Rogues can do well as either
+a melee or ranged character, and their primary attributes are
+Dexterity and Intelligence.</Description>
+    <SmallIcon>Rogue_Small</SmallIcon>
+    <LargeIcon>Rogue</LargeIcon>
+    <ClassSpecificFeatType>Special Ability</ClassSpecificFeatType>
+    <SkillPoints>8</SkillPoints>
+    <HitPoints>8</HitPoints>
+    <ClassSkill>Balance</ClassSkill>
+    <ClassSkill>Bluff</ClassSkill>
+    <ClassSkill>Diplomacy</ClassSkill>
+    <ClassSkill>Disable Device</ClassSkill>
+    <ClassSkill>Haggle</ClassSkill>
+    <ClassSkill>Hide</ClassSkill>
+    <ClassSkill>Intimidate</ClassSkill>
+    <ClassSkill>Jump</ClassSkill>
+    <ClassSkill>Listen</ClassSkill>
+    <ClassSkill>Move Silently</ClassSkill>
+    <ClassSkill>Open Lock</ClassSkill>
+    <ClassSkill>Repair</ClassSkill>
+    <ClassSkill>Search</ClassSkill>
+    <ClassSkill>Spot</ClassSkill>
+    <ClassSkill>Swim</ClassSkill>
+    <ClassSkill>Tumble</ClassSkill>
+    <ClassSkill>Use Magic Device</ClassSkill>
+    <Alignment>Any</Alignment>
+    <Fortitude>Type1</Fortitude>
+    <Reflex>Type2</Reflex>
+    <Will>Type1</Will>
+    <SpellPointsPerLevel size="20">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
+    <AutoBuySkill>Disable Device</AutoBuySkill>
+    <AutoBuySkill>Search</AutoBuySkill>
+    <AutoBuySkill>Open Lock</AutoBuySkill>
+    <AutoBuySkill>Spot</AutoBuySkill>
+    <AutoBuySkill>Use Magic Device</AutoBuySkill>
+    <AutoBuySkill>Hide</AutoBuySkill>
+    <AutoBuySkill>Move Silently</AutoBuySkill>
+    <BAB size="20">0.75 1.50 2.25 3.00 3.75 4.50 5.25 6.00 6.75 7.50 8.25 9.0 9.75 10.50 11.25 12.00 12.75 13.50 14.25 15.00</BAB>
+    <FeatSlot>
+      <Level>10</Level>
+      <FeatType>Rogue Special Ability</FeatType>
+      <FeatUpdateList>Improved Evasion</FeatUpdateList>
+      <FeatUpdateList>Skill Mastery</FeatUpdateList>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>13</Level>
+      <FeatType>Rogue Special Ability</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>16</Level>
+      <FeatType>Rogue Special Ability</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>19</Level>
+      <FeatType>Rogue Special Ability</FeatType>
+    </FeatSlot>
+    <Feat>
+      <Name>Crippling Strike</Name>
+      <Description>A Rogue with this ability can sneak attack opponents with such precision
+that his or her blows weaken and hamper them. An opponent damaged by a sneak
+attack also takes 2 points of Strength damage.</Description>
+      <Group>Rogue Special Ability</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Rogue</Item>
+          <Value>10</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>CripplingStrike</Icon>
+      <Effect>
+        <Type>WeaponDamageBonusStat</Type>
+        <Type>WeaponDamageBonusCriticalStat</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Strength</Item>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Sneak Attack</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Sneak Attack</Name>
+      <Description>Allows you to deal additional damage when a monster is unaware of your
+presence or targeting another character.
++1d6 Damage per time acquired scaling with +150% Melee or Ranged power.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>SneakAttack</Icon>
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>1</Value>
+          </Requirement>
+           <Requirement>
+              <Type>ClassAtLevel</Type>
+              <Item>Dark Hunter</Item>
+              <Value>1</Value>
+           </Requirement>
+           <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>3</Value>
+          </Requirement>
+           <Requirement>
+              <Type>ClassAtLevel</Type>
+              <Item>Dark Hunter</Item>
+              <Value>5</Value>
+           </Requirement>
+           <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>5</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>7</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>9</Value>
+          </Requirement>
+           <Requirement>
+              <Type>ClassAtLevel</Type>
+              <Item>Dark Hunter</Item>
+              <Value>10</Value>
+           </Requirement>
+           <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>13</Value>
+          </Requirement>
+           <Requirement>
+              <Type>ClassAtLevel</Type>
+              <Item>Dark Hunter</Item>
+              <Value>15</Value>
+           </Requirement>
+           <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>17</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Rogue</Item>
+            <Value>19</Value>
+          </Requirement>
+           <Requirement>
+              <Type>ClassAtLevel</Type>
+              <Item>Dark Hunter</Item>
+              <Value>20</Value>
+           </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Trap Sense (Rogue)</Name>
+      <Description>Rogues receive a +1 bonus to saves against traps.
+This bonus increases every three Rogue levels thereafter.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>TrapSense</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Rogue</Item>
+          <Value>3</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Traps</Item>
+        <Amount size="20">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
+        <AType>ClassLevel</AType>
+        <StackSource>Rogue</StackSource>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Trapmaking</Name>
+      <Description>You have learned enough about traps to be able to scavenge parts from them,
+and with the help of the Free Agents, can craft your own.</Description>
+      <Group>Standard</Group>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Rogue</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Trapfinding</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Least Dragonmark of Making</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Nimble Fingers</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Skill Focus: Disable Device</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>TrapMaking</Icon>
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Artificer</Item>
+            <Value>4</Value>
+          </Requirement>
+           <Requirement>
+              <Type>Class</Type>
+              <Item>Dark Hunter</Item>
+              <Value>3</Value>
+           </Requirement>
+           <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>4</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+    </Feat>
+    <Feat>
+      <Name>Defensive Roll</Name>
+      <Description>Grants the Rogue a chance to cheat death when critically injured.
+When below 20% health, a Rogue with Defensive Roll has a chance equal to their
+total Reflex Save Modifier of taking half damage from melee or ranged weapon attacks
+and negating any special effects associated with the attack as if the Rogue were blocking.
+Defensive Roll is subject to the same armor and encumbrance restrictions as the
+Evasion class skill.</Description>
+      <Group>Rogue Special Ability</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Rogue</Item>
+          <Value>10</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>DefensiveRoll</Icon>
+    </Feat>
+    <Feat>
+      <Name>Opportunist</Name>
+      <Description>A rogue with this ability gains a 3% chance to double strike with
+melee weapons and bypasses 10% fortification.</Description>
+      <Group>Rogue Special Ability</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Rogue</Item>
+          <Value>10</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WeaponFinesse</Icon>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>FortificationBypass</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Skill Mastery</Name>
+      <Description>This ability gains +1 to all skills. A Rogue may take this ability multiple times.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Group>Rogue Special Ability</Group>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Artificer</Item>
+            <Value>10</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>10</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SkillFocus</Icon>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Slippery Mind</Name>
+      <Description>Grants the rogue a second chance to avoid harmful enchantments.
+Upon failure of a Will Save vs. Enchantments, the rogue immediately receives a
+second attempt at the saving throw.</Description>
+      <Group>Rogue Special Ability</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Rogue</Item>
+          <Value>10</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SlipperyMind</Icon>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Rogue</Name>
+      <Description>You were a Rogue in a past life.
+You occasionally find yourself looking over your shoulder.
+Each time you acquire this feat you gain +2 to saves vs. traps and deal +1 damage when sneak attacking.
+This feat can be stacked up to three times.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeRogue</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Traps</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Sneak of Shadows</Name>
+      <Description>You recall more about your past life as a rogue.
+You have +1 to all skills and three times per rest you can skulk with the skill
+of your past life, gaining bonuses equal to your level to your hide and move
+silently skills, a +1 bonus to sneak attack damage plus an additional +1 per
+two character levels after first and a +1 bonus to hit with sneak attacks
+for every four levels.</Description>
+      <Group>Standard</Group>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Past Life: Rogue</Item>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PastLifeRogue</Icon>
+      <Stance>
+        <Name>Sneak of Shadows</Name>
+        <Icon>PastLifeRogue</Icon>
+        <Description>Three times per rest you can skulk with the skill of your past life,
+gaining bonuses equal to your level to your hide and move silently skills,
+a +1 bonus to sneak attack damage plus an additional +1 per two character
+levels after first and a +1 bonus to hit with sneak attacks for every four levels.</Description>
+      </Stance>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">7</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Sneak of Shadows</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Sneak of Shadows</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Hide</Item>
+        <Item>Move Silently</Item>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Sneak of Shadows</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+  </Class>
+</Classes>

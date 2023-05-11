@@ -1,0 +1,4824 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Classes>
+  <Class>
+    <Name>Epic</Name>
+    <Description>Standard Epic level</Description>
+    <SmallIcon>Epic_Small</SmallIcon>
+    <LargeIcon>Epic</LargeIcon>
+    <SkillPoints>0</SkillPoints>
+    <HitPoints>10</HitPoints>
+    <Alignment>Epic</Alignment>
+    <Fortitude>None</Fortitude>
+    <Reflex>None</Reflex>
+    <Will>None</Will>
+    <SpellPointsPerLevel size="20">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
+    <BAB size="20">1.0 1.0 2.0 2.0 3.0 3.0 4.0 4.0 5.0 5.0 6.0 6.0 7.0 7.0 8.0 8.0 9.0 9.0 10.0 10.0</BAB>
+    <NotHeroic />
+    <FeatSlot>
+      <Level>1</Level>
+      <FeatType>Epic Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>2</Level>
+      <FeatType>Epic Destiny Feat</FeatType>
+      <FeatUpdateList>Toughness</FeatUpdateList>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>4</Level>
+      <FeatType>Epic Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>5</Level>
+      <FeatType>Epic Destiny Feat</FeatType>
+      <FeatUpdateList>Toughness</FeatUpdateList>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>7</Level>
+      <FeatType>Epic Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>8</Level>
+      <FeatType>Epic Destiny Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>10</Level>
+      <FeatType>Epic Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>10</Level>
+      <FeatType>Legendary Feat</FeatType>
+    </FeatSlot>
+    <!--Epic Destiny feats-->
+    <Feat>
+      <Name>Arcane Pulse</Name>
+      <Description>Spell: A magical pulse of force reverberates through the target's body,
+dealing 3d6+6 force damage every 2 seconds for a duration of 16 seconds.
+This spell can stack on the target up to 5 times, increasing the damage with each stack.
+Cooldown: 3 Seconds</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ArcanePulse</Icon>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SpellInfo</AType>
+        <Item>Arcane Pulse</Item>
+        <Amount size="3">0 0 0</Amount>
+        <Item>None</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Pact Dice</Name>
+      <Description>Grants +1 Pact dice, +1 per 2 Epic/Legendary Levels, for a max +7d4 Pact Dice at level 32</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Warlock</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicArcaneEldritchBlast</Icon>
+      <Effect>
+        <Type>EldritchBlast</Type>
+        <Bonus>Feat</Bonus>
+        <Amount size="20">1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</Amount>
+        <AType>ClassLevel</AType>
+        <StackSource>Epic</StackSource>
+      </Effect>
+      <Effect>
+        <Type>EldritchBlast</Type>
+        <Bonus>Feat</Bonus>
+        <Amount size="20">0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10</Amount>
+        <AType>ClassLevel</AType>
+        <StackSource>Legendary</StackSource>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Mage Armor</Name>
+      <Description>+20 Armor bonus to AC. Spell Point Cost: 5. Target: Friend, Self.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicMageArmor</Icon>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SpellInfo</AType>
+        <Item>Epic Mage Armor</Item>
+        <Amount size="3">0 0 0</Amount>
+        <Item>None</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Hellball</Name>
+      <Description>Deal 10d6 acid, electric, fire and sonic damage to enemies in an area.
+Successful Reflex saving throws may negate each type of damage.
+Taking this feat provides two versions, one based on Charisma and another based
+on Intelligence. Spell Point Cost: 50</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>25</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Hellball</Icon>
+      <DC>
+        <Name>Hellball</Name>
+        <Description>Deal 10d6 acid, electric, fire and sonic damage to enemies in an area.
+Successful Reflex saving throws may negate each type of damage.</Description>
+        <Icon>Hellball</Icon>
+        <DCType>Negate Damage</DCType>
+        <DCVersus>Reflex</DCVersus>
+        <Amount size="1">20</Amount>
+        <ModAbility>Intelligence</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <School>Evocation</School>
+      </DC>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SpellInfo</AType>
+        <Item>Hellball</Item>
+        <Amount size="3">0 0 0</Amount>
+        <Item>None</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Lasting Inspiration</Name>
+      <Description>+3 Bard Songs per rest. Bard songs last 90 seconds longer.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>LastingInspiration</Icon>
+      <Effect>
+        <Type>SongCount</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">90</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Deific Warding</Name>
+      <Description>+10 PRR and MRR. When you take damage from an enemy's attack or spell,
+add one stack of Deific Warding (+2 to PRR and MRR). This effect can stack
+up to 10 times. One stack is removed every 3 seconds.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>DeificWarding</Icon>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Deific Warding</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 10</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Deific Warding: Stacks from being hit</DisplayName>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">2</Amount>
+        <Item>Deific Warding</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Light</Name>
+      <Description>+20 Light Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerLight</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Light/Alignment</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Light/Alignment</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Negative</Name>
+      <Description>+20 Negative Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerNegative</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Negative</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Negative</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Poison</Name>
+      <Description>+20 Poison Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerPoison</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Poison</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Poison</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Fire</Name>
+      <Description>+20 Fire Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerFire</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Forced Escape</Name>
+      <Description>You radiate destruction, dealing 20d20 sonic damage to enemies around you.
+Enemies succeeding a Fortitude saving throw vs. (20 + Wisdom modifier) take half damage.
+Spell Point Cost: 30  Target: Self, Foe Directional, Breakable
+This dispells crowd control effects such as stuns on you and can be used when
+stunned or otherwise incapacitated (but still conscious).</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>25</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ForcedEscape</Icon>
+    </Feat>
+    <Feat>
+      <Name>Guardian Angel</Name>
+      <Description>When you drop below 50% HP, for thirty seconds you gain Physical Resistance
+equal to your Wisdom and saving throws equal to your epic level. This won't
+trigger again for three minutes.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GuardianAngel</Icon>
+    </Feat>
+    <Feat>
+      <Name>Holy Strike</Name>
+      <Description>Your weapons gain Ghost Touch. Your vorpal strikes deal 10d6 untyped damage
+vs. Evil enemies. (This bonus damage works with melee, unarmed and ranged attacks.)</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>HolyStrike</Icon>
+      <Effect>
+        <Type>GhostTouch</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <DisplayName>Shiradi Champion: Vision</DisplayName>
+        <Type>DodgeBypass</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 5 10</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Shiradi Champion: Vision</DisplayName>
+        <Type>FortificationBypass</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 5 10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Elusive Target</Name>
+      <Description>Each time you would be physically damaged, you have a +5% chance to
+completely ignore the damage.
+(This applies to physical attacks and spells that deal physical damage.)</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>25</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ElusiveTarget</Icon>
+    </Feat>
+    <Feat>
+      <Name>First Blood</Name>
+      <Description>Melee weapons and unarmed attacks deal 5d20 extra untyped damage against enemies
+with 90% or more HP. This extra damage won't trigger twice within three seconds.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>25</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>FirstBlood</Icon>
+    </Feat>
+    <Feat>
+      <Name>Perfect Single Weapon Fighting</Name>
+      <Description>While Single Weapon Fighting, your vorpal threat range is increased by +1.
+(Instead of scoring Vorpal hits only on 20, you score them in 19-20, assuming you
+confirm the critical hit afterwards.)
+Increases your base ability damage modifier by 25% and you gain a +10 Combat style bonus
+to Melee power.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PerfectSingleWeaponFighting</Icon>
+      <Effect>
+        <Type>Weapon_VorpalRange</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Single Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>DamageAbilityMultiplier</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.25</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Single Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Combat Style</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Single Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>HitpointsStyleBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Pierce Adamantine</Name>
+      <Description>Your equipped weapons are considered Adamantine allowing them bypassing
+the form of damage reduction.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PierceAdamantine</Icon>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Adamantine</Item>
+        <Item>All</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Pierce Byeshk</Name>
+      <Description>Your equipped weapons are considered Byeshk allowing them bypassing the
+form of damage reduction.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PierceByeshk</Icon>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Byeshk</Item>
+        <Item>All</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Pierce Cold Iron</Name>
+      <Description>Your equipped weapons are considered Cold Iron allowing them bypassing the
+form of damage reduction.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PierceColdIron</Icon>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Cold Iron</Item>
+        <Item>All</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Pierce Silver</Name>
+      <Description>Your equipped weapons are considered Silver allowing them bypassing the
+form of damage reduction.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PierceSilver</Icon>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Silver</Item>
+        <Item>All</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Tactician</Name>
+      <Description>+2 Tactical feat DCs.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Tactician</Icon>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Backstab</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">2 4 6 0 4 8 12</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Flanking</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Backstab</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">2 4 6 0 4 8 12</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Flanking</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Backstab</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">2 4 6 0 4 8 12</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Flanking</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Backstab</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">2 4 6 0 4 8 12</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Flanking</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Honor</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">1 2 3 0 2 4 6</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Honor</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">1 2 3 0 2 4 6</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Honor</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">1 2 3 0 2 4 6</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Legendary Dreadnought: Honor</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="7">1 2 3 0 2 4 6</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Doubleshot</Name>
+      <Description>+10% Doubleshot.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>25</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Doubleshot</Icon>
+      <Effect>
+        <Type>Doubleshot</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Acid</Name>
+      <Description>+20 Acid Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerAcid</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Cold</Name>
+      <Description>+20 Cold Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerCold</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Electric</Name>
+      <Description>+20 Electric Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerElectric</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Electric</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Electric</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Sonic</Name>
+      <Description>+20 Sonic Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerSonic</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Positive</Name>
+      <Description>+20 Positive Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerPositive</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Positive</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Positive</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Force</Name>
+      <Description>+20 Force/Untyped Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerForce</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Force/Untyped</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Force/Untyped</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Power: Repair</Name>
+      <Description>+20 Repair Spell Power. +10% spell critical damage.
++5% spell critical damage with all other spell damage types.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerRepair</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Repair</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Repair</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Perfect Shield Mastery</Name>
+      <Description>You are a paragon of shield usage, able to effectively leverage all types of shields
+in close combat. Your shield gains +1[W], and you gain +20% Shield Armor Class
+and +5 Physical Resistance Rating.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Shield Mastery</Item>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PerfectShieldMastery</Icon>
+      <Effect>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Buckler</Item>
+        <Item>Small Shield</Item>
+        <Item>Large Shield</Item>
+        <Item>Tower Shield</Item>
+      </Effect>
+      <Effect>
+        <Type>ACBonusShield</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Shield</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>HitpointsStyleBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Perfect Two Handed Fighting</Name>
+      <Description>While Two Handed Fighting: You gain +30% Strikethrough Chance,
+and a +10 Combat Style bonus to Melee Power. Two Handed weapons add 25% more of your
+ability score modifier to their base damage.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PerfectTwoHandedFighting</Icon>
+      <Effect>
+        <Type>Strikethrough</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Combat Style</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Handed Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>DamageAbilityMultiplier</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.25</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Handed Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>HitpointsStyleBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Perfect Two Weapon Fighting</Name>
+      <Description>+5% Doublestrike.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PerfectTwoWeaponFighting</Icon>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>HitpointsStyleBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Perfect Natural Fighting</Name>
+      <Description>If in any Bear form, Two-Handed weapons add 25% more of your ability score modifier
+to their base damage, and your Bear form's bonus to Armor Class is increased by 5%.
+
+If in any Wolf form, you gain +20% competence bonus to maximum hit points and +2d6 sneak attack dice.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>22</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Natural Fighting</Item>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PerfectNaturalFighting</Icon>
+      <Effect>
+        <Type>DamageAbilityMultiplier</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.25</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Handed Fighting</Item>
+          </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Bear</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Dire Bear</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Percent />
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Bear</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Dire Bear</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <ApplyAsItemEffect />
+        <Percent />
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Winter Wolf</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Winter Wolf</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>HitpointsStyleBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Arcane Warrior</Name>
+      <Description>Your weapon and unarmed attacks grant you a stack of Arcane Warrior:
+Magical (+2 Universal Spell Power). Your offensive spells grant you a stack of
+Arcane Warrior: Physical (+1 Melee and Ranged Power). Each of these stacks to
+20 times and each stack lasts for 12 seconds. You may gain a stack of each no
+more than once per second.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ArcaneWarrior</Icon>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>AW: Magical</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 20</Amount>
+      </Effect>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>AW: Physical</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 20</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">2</Amount>
+        <Item>AW: Magical</Item>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">1</Amount>
+        <Item>AW: Physical</Item>
+      </Effect>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">1</Amount>
+        <Item>AW: Physical</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Dreamscape</Name>
+      <Description>You are invulnerable and invisible for five seconds, then return with a random
+30-second buff. Cooldown: 1 minute
+Activate to pop off to the land of dreams.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Dreamscape</Icon>
+    </Feat>
+    <Feat>
+      <Name>Embodiment of Law</Name>
+      <Description>+3 PRR and MRR, If you are Lawful you also gain +2 Imbue dice</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EmbodimentOfLaw</Icon>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Lawful</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Fount of Life</Name>
+      <Description>+20 Healing Amp and Positive Spell Power</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>FountOfLife</Icon>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Positive</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Exalted Angel: Blessed Water</DisplayName>
+        <Type>PRR</Type>
+        <Type>ACBonus</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="6">0 0 0 15 15 15</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Exalted Angel: Blessed Water</DisplayName>
+        <Type>PRR</Type>
+        <Type>ACBonus</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="6">0 0 0 15 15 15</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Exalted Angel: Blessed Water</DisplayName>
+        <Type>PRR</Type>
+        <Type>ACBonus</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="6">0 0 0 15 15 15</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Harbinger of Chaos</Name>
+      <Description>+2% Doublestrike and doubleshot. If you are Chaotic, you gain +2 Imbue dice.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>HarbingerOfChaos</Icon>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Chaotic</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+        <Type>Hitpoints</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">0 50</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+        <Type>PRR</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">0 10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Spirit Blades</Name>
+      <Description>Spell: Create a series of spectral blades which fly at a nearby opponent.
+Each of the five blades does 2d20 Piercing and 1d20 Force damage.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpiritBlades</Icon>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SpellInfo</AType>
+        <Item>Spirit Blades</Item>
+        <Amount size="3">0 0 0</Amount>
+        <Item>None</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Wind through the Trees</Name>
+      <Description>When enemies hit or miss you, they have a 5% chance to be knocked down
+with no save. This may only trigger once every 12 seconds.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>28</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WindThroughTheTrees</Icon>
+    </Feat>
+    <!--Epic feats-->
+    <Feat>
+      <Name>Arcane Insight</Name>
+      <Description>Activate to gain +6 to all spell DCs and +6 to Spell Penetration for 30 seconds.
+Duration 30 seconds, 3 minute cooldown
+Passive: +110 Maximum Spell Point</Description>
+      <Stance>
+        <Name>Arcane Insight</Name>
+        <Icon>ArcaneInsight</Icon>
+        <Description>Activate to gain +6 to all spell DCs and +6 to Spell Penetration for 30 seconds.
+Duration 30 seconds, 3 minute cooldown</Description>
+      </Stance>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ArcaneInsight</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Arcane Insight</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Arcane Insight</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">110</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Blinding Speed</Name>
+      <Description>You are permanently hasted. You gain:
+32% Enhancement Bonus to Movement Speed.
+15% Enhancement Bonus to Melee Attack Speed.
+15% Enhancement Bonus to Ranged Attack Speed.
++1 Enhancement Bonus to Attack Rolls.
++1% Dodge Bonus.
++1 to Reflex Saving Throws.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BlindingSpeed</Icon>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">32</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>WeaponAlacrityClass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Melee</Item>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <Type>WeaponAlacrityClass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Ranged</Item>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Reflex</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Bulwark of Defense</Name>
+      <Description>Epic Feat: When in a defensive stance, you gain an additional +2 to
+all saving throws and +4 Armor Class.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BulwarkOfDefense</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Defensive Fighting</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Combat Expertise</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Resilience</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Stalwart Defense</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Sacred Defense</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Defensive Fighting</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Combat Expertise</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Resilience</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Stalwart Defense</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Sacred Defense</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Epic Defensive Fighting</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Unyielding Sentinel: Divine Bulwark</DisplayName>
+        <!--2 stacks-->
+        <Type>PRR</Type>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 0 15</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Burst of Glacial Wrath</Name>
+      <Description>Cone spell, deals 300d6 Cold Damage and freezes creatures within the cone.
+Spell Point Cost: 35  Target: Foe, Directional, Breakable  Spell Point Cost: 35
+Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
+(20 + the highest of your INT/WIS/CHA modifiers + Evocation bonuses) negate the freeze.
+Passive: +140 Maximum Spell Points.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BurstOfGlacialWrath</Icon>
+      <DC>
+        <Name>Burst of Glacial Wrath</Name>
+        <Description>Cone spell, deals 300d6 Cold Damage and freezes creatures within the cone.
+Spell Point Cost: 35  Target: Foe, Directional, Breakable  Spell Point Cost: 35
+Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
+(20 + the highest of your INT/WIS/CHA modifiers + Evocation bonuses) negate the freeze.</Description>
+        <Icon>BurstOfGlacialWrath</Icon>
+        <DCType>Frozen</DCType>
+        <DCVersus>Fortitude</DCVersus>
+        <Amount size="1">20</Amount>
+        <ModAbility>Intelligence</ModAbility>
+        <ModAbility>Wisdom</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <School>Evocation</School>
+      </DC>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Combat Archery</Name>
+      <Description>Your ranged damage is increased by +1[W].
+You gain a 2% Dodge bonus while using a ranged weapon.
+In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Point Blank Shot</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Ability</Type>
+          <Item>Dexterity</Item>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>CombatArchery</Icon>
+      <Effect>
+        <Bonus>Feat</Bonus>
+        <Type>DodgeBonus</Type>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Ranged Combat</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>WeaponBaseDamageBonusClass</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Ranged</Item>
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <ApplyAsItemEffect />
+        <Item>Shortbow</Item>
+        <Item>Longbow</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Construct Exemplar</Name>
+      <Description>You gain +20 Repair Amplification and 10 MRR</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Warforged</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Bladeforged</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Improved Construct Essence</Item>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ConstructExemplar</Icon>
+      <Effect>
+        <Type>RepairAmplification</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Embolden Spell</Name>
+      <Description>While this metamagic feat is active, you gain +2 to the DC of spells
+affected by Embolden Spell, but they consume 10 additional spell points.
+Passive: +140 Maximum Spell Points</Description>
+      <Stance>
+        <Name>Embolden Spell</Name>
+        <Icon>EmboldenSpell</Icon>
+        <Description>While this metamagic feat is active, you gain +2 to the DC of spells
+affected by Embolden Spell, but they consume 10 additional spell points.</Description>
+      </Stance>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EmboldenSpell</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Embolden Spell</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Embolden Spell</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Damage Reduction</Name>
+      <Description>+10 Physical Resistance.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicDamageReduction</Icon>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Eldritch Blast</Name>
+      <Description>+2d6 Eldritch Blast dice, +1 per 2 Epic levels, max +7d6 dice at level 30.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Warlock</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicEldritchBlast</Icon>
+      <Effect>
+        <Type>EldritchBlast</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Fortitude</Name>
+      <Description>+2 Fortitude Saving Throws. You don't automatically fail Fortitude
+saving throws on a roll of 1.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicFortitude</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fortitude</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveNoFailOn1</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fortitude</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Mental Toughness</Name>
+      <Description>Increases your maximum spell points by 200 and your spell critical chance by 1%</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Improved Mental Toughness</Item>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicMentalToughness</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">200</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Power</Name>
+      <Description>+6 Melee Power, +6 Ranged Power, +6 Universal Spell Power and -1% to the Spell
+Point cost of all spells. This feat can be acquired multiple times and is granted
+every epic level.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>EpicPower</Icon>
+      <Effect>
+        <!--4 destiny points per epic level-->
+        <DisplayName>Epic Level Destiny Points</DisplayName>
+        <Type>DestinyAPBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+      </Effect>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+        <Percent />
+      </Effect>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Epic</Item>
+          <Value>1</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+    </Feat>
+    <Feat>
+      <Name>Epic Knowledge</Name>
+      <Description>+1 caster level and max caster level with all spells.
+For a total of +5 to all casting classes at level 30.</Description>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>EpicPower</Icon>
+      <Effect>
+        <DisplayName>Epic Knowledge: Alchemist</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Alchemist</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Artificer</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Artificer</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Bard</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Bard</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Stormsinger</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Stormsinger</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Cleric</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Cleric</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Dark Apostate</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Dark Apostate</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Druid</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Druid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Favored Soul</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Favored Soul</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Paladin</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Paladin</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Sacred Fist</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sacred Fist</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Ranger</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Ranger</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Sorcerer</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sorcerer</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Warlock</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Warlock</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Epic Knowledge: Wizard</DisplayName>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Wizard</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>2</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>4</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>6</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>8</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>10</Value>
+            <Item>Epic</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+    </Feat>
+    <Feat>
+      <Name>Epic Reflexes</Name>
+      <Description>+2 Reflex Saving Throws. You don't automatically fail Reflex saving throws
+on a roll of 1.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicReflexes</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Reflex</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveNoFailOn1</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Reflex</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Reputation</Name>
+      <Description>+3 Bluff, Diplomacy, Haggle, Intimidate and Perform.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicReputation</Icon>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Bluff</Item>
+        <Item>Diplomacy</Item>
+        <Item>Haggle</Item>
+        <Item>Intimidate</Item>
+        <Item>Perform</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Saves</Name>
+      <Description>As part of your epic training, you gain +1 to all saves.
+This feat can be acquired multiple times and is granted every other epic level.</Description>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>EpicSaves</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <!--Granted every other epic level-->
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>2</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>4</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>6</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>8</Value>
+            <Item>Epic</Item>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Value>10</Value>
+            <Item>Epic</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+    </Feat>
+    <Feat>
+      <Name>Epic Skills</Name>
+      <Description>As part of your epic training, you gain +1 to all skills.
+This feat can be acquired multiple times and is granted every epic level.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>EpicSkills</Icon>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <!--Granted every epic level-->
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Epic</Item>
+          <Value>1</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+    </Feat>
+    <Feat>
+      <Name>Expanded Clip</Name>
+      <Description>Your repeating crossbows have 1 extra shot in their clips.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ExpandedClip</Icon>
+    </Feat>
+    <Feat>
+      <Name>Epic Barbarian Damage Reduction</Name>
+      <Description>Your Barbarian Damage Reduction is increased by 1%.
+You also gain +5 Physical and Magical Resistance Rating.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicBarbarianDamageReduction</Icon>
+      <Effect>
+        <DisplayName>Barbarian DR</DisplayName>
+        <Type>DR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>%</Item>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Focus: Abjuration</Name>
+      <Description>Your spells from the Abjuration school of magic are harder to resist,
+receiving an additional +1 bonus on save DCs.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Focus: Abjuration</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Alchemist</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Artificer</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Bard</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Druid</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Favored Soul</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Sorcerer</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Warlock</Item>
+            <Value>1</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Wizard</Item>
+            <Value>11</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellFocus</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Abjuration</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Focus: Conjuration</Name>
+      <Description>Your spells from the Conjuration school of magic are harder to resist,
+receiving an additional +1 bonus on save DCs.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Focus: Conjuration</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Alchemist</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Artificer</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Bard</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Druid</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Favored Soul</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Sorcerer</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Warlock</Item>
+            <Value>1</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Wizard</Item>
+            <Value>11</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellFocus</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Conjuration</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Focus: Enchantment</Name>
+      <Description>Your spells from the Enchantment school of magic are harder to resist,
+receiving an additional +1 bonus on save DCs.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Focus: Enchantment</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Alchemist</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Artificer</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Bard</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Druid</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Favored Soul</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Sorcerer</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Warlock</Item>
+            <Value>1</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Wizard</Item>
+            <Value>11</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellFocus</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Enchantment</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Focus: Evocation</Name>
+      <Description>Your spells from the Evocation school of magic are harder to resist,
+receiving an additional +1 bonus on save DCs.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Focus: Evocation</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Alchemist</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Artificer</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Bard</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Druid</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Favored Soul</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Sorcerer</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Warlock</Item>
+            <Value>1</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Wizard</Item>
+            <Value>11</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellFocus</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Evocation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Focus: Illusion</Name>
+      <Description>Your spells from the Illusion school of magic are harder to resist,
+receiving an additional +1 bonus on save DCs.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Focus: Illusion</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Alchemist</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Artificer</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Bard</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Druid</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Favored Soul</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Sorcerer</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Warlock</Item>
+            <Value>1</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Wizard</Item>
+            <Value>11</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellFocus</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Illusion</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Focus: Necromancy</Name>
+      <Description>Your spells from the Necromancy school of magic are harder to resist,
+receiving an additional +1 bonus on save DCs.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Focus: Necromancy</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Alchemist</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Artificer</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Bard</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Druid</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Favored Soul</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Sorcerer</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Warlock</Item>
+            <Value>1</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Wizard</Item>
+            <Value>11</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellFocus</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Necromancy</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Focus: Transmutation</Name>
+      <Description>Your spells from the Transmutation school of magic are harder to resist,
+receiving an additional +1 bonus on save DCs.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Focus: Transmutation</Item>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Alchemist</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Artificer</Item>
+            <Value>15</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Bard</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Druid</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Favored Soul</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Sorcerer</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Warlock</Item>
+            <Value>1</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassMinLevel</Type>
+            <Item>Wizard</Item>
+            <Value>11</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellFocus</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Transmutation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Spell Penetration</Name>
+      <Description>Adds +4 to your caster level check for defeating spell resistance
+(in addition to the +4 from the Spell Penetration and Greater Spell Penetration feats).</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Spell Penetration</Item>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPenetration</Icon>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Toughness</Name>
+      <Description>Increases your maximum hit points by 50.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Toughness</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Ability</Type>
+          <Item>Constitution</Item>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicToughness</Icon>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">50</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Epic Will</Name>
+      <Description>+2 Will Saving Throws. You don't automatically fail Will saving throws on a roll of 1.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicWill</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Will</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveNoFailOn1</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Will</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Fate Point</Name>
+      <Description>You have 1 additional fate point</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Group>Epic Feat</Group>
+      <Acquire>Automatic</Acquire>
+      <Icon>EpicWill</Icon>
+      <Effect>
+        <Type>FatePoint</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Epic</Item>
+            <Value>8</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Epic</Item>
+            <Value>9</Value>
+          </Requirement>
+          <Requirement>
+            <Type>ClassAtLevel</Type>
+            <Item>Epic</Item>
+            <Value>10</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+    </Feat>
+    <Feat>
+      <Name>Great Charisma</Name>
+      <Description>Your powers of persuasion and leadership are greater than normal.
+Your charisma increases by 1. This feat can be taken multiple times.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreatCharisma</Icon>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Charisma</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Great Constitution</Name>
+      <Description>Your health and endurance are greater than normal.
+Your constitution increases by 1. This feat can be taken multiple times.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreatConstitution</Icon>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Constitution</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Great Dexterity</Name>
+      <Description>Your agility and coordination are greater than normal.
+Your dexterity increases by 1. This feat can be taken multiple times.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreatDexterity</Icon>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Dexterity</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Great Intelligence</Name>
+      <Description>Your powers of reason and learning are greater than normal.
+Your intelligence increases by 1. This feat can be taken multiple times.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreatIntelligence</Icon>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Intelligence</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Great Strength</Name>
+      <Description>Your muscle and physical power are greater than normal.
+Your strength increases by 1. This feat can be taken multiple times.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreatStrength</Icon>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Strength</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Great Wisdom</Name>
+      <Description>Your willpower and insight are greater than normal.
+Your wisdom increases by 1. This feat can be taken multiple times.</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreatWisdom</Icon>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Wisdom</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Greater Ruin</Name>
+      <Description>Deal 1000 untyped damage to a single enemy. Spell Point Cost: 150, No saving throw.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Ruin</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreaterRuin</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Greater Ruin</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>None</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Improved Augment Summoning</Name>
+      <Description>Your summoned creature, charmed minions, pets and hirelings have +8 to all
+ability scores, +10% Dodge and +100 Maximum Hit Points
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Augment Summoning</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ImprovedAugmentSummoning</Icon>
+      <Effect>
+        <Type>HirelingAbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">8</Amount>
+      </Effect>
+      <Effect>
+        <Type>HirelingHitpoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+      </Effect>
+      <Effect>
+        <Type>HirelingDodge</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Force/Untyped</Item>
+        <AType>Stacks</AType>
+        <Amount size="2">0 5</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Illusion</Item>
+        <AType>Stacks</AType>
+        <Amount size="2">0 1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Improved Martial Arts</Name>
+      <Description>You deal +1[W] when fighting with Handwraps, and +0.5[W] with using other Ki weapons
+such as Kamas, Quarterstaves, and Shuriken.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ImprovedMartialArts</Icon>
+      <Effect>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.5</Amount>
+        <Item>Handwraps</Item>
+        <Item>Unarmed</Item>
+      </Effect>
+      <Effect>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.5</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Improved Sneak Attack</Name>
+      <Description>Your sneak attacks are more deadly than normal.
+You gain +3d6 sneak attack damage.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Ability</Type>
+          <Item>Dexterity</Item>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ImprovedSneakAttack</Icon>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Inspire Excellence</Name>
+      <Description>You can improve the abilities of your comrades through your performance.
+This song grants a +2 competence bonus to all ability scores to yourself and
+all allies near you. Requires 20 trained ranks (not total mod) of the Perform
+skill to use.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Skill</Type>
+          <Item>Perform</Item>
+          <Value>20</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>InspireExcellence</Icon>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Intensify Spell</Name>
+      <Description>While this metamagic feat is active, you gain 75 Spell Power while casting
+spells affected by Intensify Spell, but they cost 15 additional spell points.
+This bonus stacks with Empower.
+Passive: +140 Maximum Spell Points</Description>
+      <Stance>
+        <Name>Intensify Spell</Name>
+        <Icon>IntensifySpell</Icon>
+        <Description>While this metamagic feat is active, you gain 75 Spell Power while casting
+spells affected by Intensify Spell, but they cost 15 additional spell points.
+This bonus stacks with Empower.</Description>
+      </Stance>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>IntensifySpell</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">75</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Intensify Spell</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Intensify Spell</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Air</Name>
+      <Description>Your Shocking Grasp, Electric Loop and Lightning Bolt spells gain +10 to
+their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfAir</Icon>
+      <!--Bonus spell level effects here-->
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Lightning Bolt</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Alignment</Name>
+      <Description>Your Holy Smite, Deific Vengeance, Unholy Blight, Chaos Hammer and Order's
+Wrath spells gain +10 to their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfAlignment</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Holy Smite</Item>
+        <Item>Deific Vengeance</Item>
+        <Item>Unholy Blight</Item>
+        <Item>Chaos Hammer</Item>
+        <Item>Order's Wrath</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Artifice</Name>
+      <Description>Your Static Shock, Lightning Sphere, Blast Rod and Lightning Motes spells
+gain +10 to their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfArtifice</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Motes</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Earth</Name>
+      <Description>Your Acid Spray, Acid Arrow and Acid Blast spells gain +10 to their
+maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfEarth</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Acid Spray</Item>
+        <Item>Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Fire</Name>
+      <Description>Your Burning Hands, Scorch and Fireball spells gain +10 to their maximum
+caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfFire</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Burning Hands</Item>
+        <Item>Scorch</Item>
+        <Item>Fireball</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Knowledge</Name>
+      <Description>Your Arcane Bolt and Arcane Blast spells now grant you one stack of Mental
+Honing (+3 Universal Spell Power, +2% Spell Critical Damage) when cast. This effect
+can stack up to 30 times. One stack is removed every 6 seconds.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfKnowledge</Icon>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Mental Honing</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 30</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Master of Knowledge: Mental Honing stacks</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">3</Amount>
+        <StackSource>Mental Honing</StackSource>
+      </Effect>
+      <Effect>
+        <DisplayName>Master of Knowledge: Mental Honing stacks</DisplayName>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">2</Amount>
+        <StackSource>Mental Honing</StackSource>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Light</Name>
+      <Description>Your Sun Bolt, Searing Light and Divine Punishment spells gain +10
+to their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfLight</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Sun Bolt</Item>
+        <Item>Searing Light</Item>
+        <Item>Divine Punishment</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Music</Name>
+      <Description>Your Shout, Greater Shout, Sonic Blast and Reverberate gain +10 to
+their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfMusic</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Reverberate</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Poisons</Name>
+      <Description>Your Wave of Poison and Greater Wave of Poison spells gain +10 to
+their maximum caster level.
+
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfPoisons</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Wave of Poison</Item>
+        <Item>Greater Wave of Poison</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Shadowblades</Name>
+      <Description>Your Shadowblade spells gain +10 to their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfShadowblades</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Shadowblade</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Spell Vials</Name>
+      <Description>Your Spell Vial, Multivial, and Elemental Obliteration spells gain
++10 to their maximum caster level.
+
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfSpellvials</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Spellvial</Item>
+        <Item>Multivial</Item>
+        <Item>Elemental Obliteration</Item>
+      </Effect>
+    </Feat>
+     <Feat>
+        <Name>Master of Thorns</Name>
+        <Description>Your Thorn Strike, Splinter Bolt, and Thorn Bloom spells gain +10 to
+their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+        <Group>Epic Feat</Group>
+        <Requirements>
+           <Requirement>
+              <Type>Level</Type>
+              <Value>24</Value>
+           </Requirement>
+        </Requirements>
+        <Acquire>Train</Acquire>
+        <Icon>MasterOfThorns</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Thorn Strike</Item>
+        <Item>Splinter Bolt</Item>
+        <Item>Thorn Bloom</Item>
+      </Effect>
+     </Feat>
+     <Feat>
+      <Name>Master of Water</Name>
+      <Description>Your Cold Ray, Snowball Swarm and Niac's Biting Cold spells gain +10 to
+their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfWater</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Cold Ray</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Niac's Biting Cold</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of the Dead</Name>
+      <Description>Your Chill Touch, Death Aura and Negative Energy Burst spells gain +10 to
+their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfTheDead</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Chill Touch</Item>
+        <Item>Death Aura</Item>
+        <Item>Negative Energy Burst</Item>
+        <Item>Greater Negative Energy Burst</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of the Wilds</Name>
+      <Description>Your Produce Flame, Creeping Cold, Call Lightning and Word of Balance spells
+gain +10 to their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfTheWilds</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Produce Flame</Item>
+        <Item>Creeping Cold</Item>
+        <Item>Call LIghtning</Item>
+        <Item>Word of Balance</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Overwhelming Critical</Name>
+      <Description>When rolling a 19 or 20 on an attack with any weapons used by the character,
+your critical damage multiplier is increased by +1.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Improved Critical: Bludgeoning Weapons</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Improved Critical: Piercing Weapons</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Improved Critical: Ranged Weapons</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Improved Critical: Slashing Weapons</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Improved Critical: Thrown Weapons</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>OverwhelmingCritical</Icon>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Ruin</Name>
+      <Description>Deal 500 untyped damage to a single enemy. (No saving throw.)
+Cooldown: 15 seconds</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Ruin</Icon>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Ruin</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>None</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Vorpal Strikes</Name>
+      <Description>Your unarmed strikes are now considered vorpal and slashing.
+Note: Vorpal Strikes is a stance, similar to power attack. It can be turned on
+and off and is off when you first log in.</Description>
+      <Stance>
+        <Name>Vorpal Strikes</Name>
+        <Icon>VorpalStrikes</Icon>
+        <Description>Your unarmed strikes are now considered vorpal and slashing.</Description>
+      </Stance>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Ability</Type>
+          <Item>Wisdom</Item>
+          <Value>23</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Improved Critical: Bludgeoning Weapons</Item>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>VorpalStrikes</Icon>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Slash</Item>
+        <Item>Handwraps</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Vorpal Strikes</Item>
+          </Requirement>
+        </Requirements>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Watchful Eye</Name>
+      <Description>If you pass withing 5 feet of a trap, you make a Search check to notice
+it as if actively Searching. (You still need the Trapfinding feat to successfully
+Search for difficult traps.)</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WatchfulEye</Icon>
+      <Effect>
+        <DisplayName>Shiradi Champion: Pierce Deception</DisplayName>
+        <Type>Doubleshot</Type>
+        <AType>Stacks</AType>
+        <Bonus>Destiny</Bonus>
+        <Amount size="3">0 0 5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Wellspring of Power</Name>
+      <Description>Activate to gain +150 Universal Spell Power and +20% Spell Critical Damage
+for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.
+Passive: +110 Maximum Spell Points</Description>
+      <Stance>
+        <Name>Wellspring of Power</Name>
+        <Icon>WellspringOfPower</Icon>
+        <Description>Activate to gain +150 Universal Spell Power and +20% Spell Critical Damage
+for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Description>
+      </Stance>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WellspringOfPower</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">150</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Wellspring of Power</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Wellspring of Power</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">110</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Crush Weakness</Name>
+      <Description>+15% damage versus the Helpless</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>25</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>CrushWeakness</Icon>
+      <Effect>
+        <Type>HelplessDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+    </Feat>
+    <!--Scion feats-->
+    <Feat>
+      <Name>Scion of Arborea</Name>
+      <Description>+20 Melee and Ranged Power
++20 Force Spell Power and +20 Universal Spell Power
++2 to the Enhancement Bonus of your weapon
++4 to Fortitude Saves
++1 Imbue dice</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfArborea</Icon>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Force/Untyped</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Enchantment</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fortitude</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of Celestia</Name>
+      <Description>+4 to the DCs of Evocation spells, +2 to the DCs of other spells
++20 Positive, Light, &amp; Alignment Spell Power, +20 Universal Spell Power
++15% Positive, Light, and Alignment Spell Critical Damage, +10% all other spell critical damage
++150 Maximum Hit Points
++4 to Will Saves</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfCelestia</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Evocation</Item>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Item>Positive</Item>
+        <Item>Light/Alignment</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Positive</Item>
+        <Item>Light/Alignment</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">150</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Will</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of Elysium</Name>
+      <Description>Summoned creatures gain +25 PRR and MRR
+Your summoned creatures, pets and hirelings gain +20 Melee Power, Ranged Power,
+and Universal Spell Power
+Your summoned creatures, pets and hirelings gain +100% Fortification
+Each time one of your summoned creatures, pets, or hirelings would be damaged,
+it has a +5% chance to completely ignore the damage.
+(Untyped/Bane damage bypass this defense).</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfElysium</Icon>
+      <Effect>
+        <Type>HirelingPRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+      </Effect>
+      <Effect>
+        <Type>HirelingMRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+      </Effect>
+      <Effect>
+        <Type>HirelingMeleePower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>HirelingRangedPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>HirelingSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>HirelingFortification</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of Limbo</Name>
+      <Description>+2 Determination Bonus to all Saves  In addition, every minute, you will
+receive a powerful beneficial effect that lasts for one minute. There are several
+possibilities, determined via the chaos of Limbo.</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfLimbo</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Determination</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of Mechanus</Name>
+      <Description>+20 Repair &amp; Rust Spell Power, +20 Universal Spell Power,
++15% Repair and Rust Spell Critical Damage, +10% all other spell critical damage
++20 Repair Amplification (assuming you take healing from Repair)
++10% Fortification Bypass on weapon and unarmed attacks
+Gain: Master Reconstruction, shares cooldown with Communion of Scribing</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfMechanus</Icon>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Repair</Item>
+        <Item>Rust</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Item>Repair</Item>
+        <Item>Rust</Item>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>RepairAmplification</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>FortificationBypass</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Astral Plane</Name>
+      <Description>+4 to Tactical Feat and Assassinate DCs, +4% Doublestrike and Doubleshot.
+An additional +4 if you are centered.
++4% Dodge and Dodge Cap, +4 to Reflex Saves.</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfTheAstralPlane</Icon>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+        <Item>Quivering Palm</Item>
+        <Item>Assassinate</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Doubleshot</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doubleshot</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Reflex</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Ethereal Plane</Name>
+      <Description>You have Lesser Displacement and Ghost Touch, along with +6d6 Sneak Attack Dice,
++5 Melee and Ranged Power, +4 to all Skills, and a permanent Invisible Guard
+as per the effect.</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfTheEtherealPlane</Icon>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+      </Effect>
+      <Effect>
+        <Type>Displacement</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>GhostTouch</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Feywild</Name>
+      <Description>+10 Sonic and Force Spell Power, +30 Universal Spell Power,
++15% Sonic and Force Spell Critical Damage, +10% all other spell critical damage
++4 to the DCs of Enchantment and Illusion spells, +2 to DCs of other spells
+Gain +3 Imbue Dice
++20 Healing Amplification</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfTheFeywild</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sonic</Item>
+        <Item>Force/Untyped</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Enchantment</Item>
+        <Item>Illusion</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Plane of Air</Name>
+      <Description>+4 to the DCs of Evocation spells, +2 to the DCs of other spells
++4% Dodge, +4 to Dodge Cap
++10 Electric Spell Power, +30 Universal Spell Power
++15% Electric Spell Critical Damage, +10% all other spell critical damage
++3 Imbue Dice</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfThePlaneOfAir</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Evocation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Electric</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Electric</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Plane of Earth</Name>
+      <Description>+4 to the DCs of Conjuration and Transmutation spells, +2 to the DCs of other spells
++20 Physical Resistance Rating
++10 Acid and Poison Spell Power, +30 Universal Spell Power
++15% Acid and Poison Spell Critical Damage, +10% all other spell critical damage
+Gain +3 Imbue Dice</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfThePlaneOfEarth</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Conjuration</Item>
+        <Item>Transmutation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Acid</Item>
+        <Item>Poison</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Acid</Item>
+        <Item>Poison</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Plane of Fire</Name>
+      <Description>+4 to the DCs of Evocation spells, +2 to the DCs of other spells
++10 Physical Resistance Rating, +10 Magical Resistance Rating
++10 Fire Spell Power, +30 Universal Spell Power, +15% Fire Spell Critical Damage, +10% all other spell critical damage
++3 Imbue Dice</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfThePlaneOfFire</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Evocation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Plane of Water</Name>
+      <Description>+4 to the DCs of Evocation spells, +2 to the DCs of other spells
++20 Magical Resistance Rating, +200 Maximum Spell Points
++10 Cold Spell Power, +30 Universal Spell Power
++15% Cold Spell Critical Damage, +10% all other spell critical damage
++3 Imbue Dice</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfThePlaneOfWater</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Evocation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">200</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Scion of the Shadowfell</Name>
+      <Description>+4 to the DCs of Necromancy spells, +2 to DCs of other spells
++10 Negative Spell Power, +30 Universal Spell Power
++15% Negative Spell Critical Damage, +10% all other spell critical damage.
++20 Negative Amp (assuming you take healing from Negative)
+Weapon and Unarmed attacks heal you for 1d6 Positive damage, or 1d6 Negative damage if you are Undead.</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfTheShadowfell</Icon>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Necromancy</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Negative</Item>
+        <AType>Simple</AType>
+        <Amount size="1">40</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Negative</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+  </Class>
+</Classes>

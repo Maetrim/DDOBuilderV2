@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EAD652DD-6637-4E05-A92E-1A862BE8D81E}</ProjectGuid>
+    <RootNamespace>DDOBuilder</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir);$(SolutionDir)3rdPartyLibraries\boost_1_45_0;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Output;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Output\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir);$(SolutionDir)3rdPartyLibraries\boost_1_45_0;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Output;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Output\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\Output\DataFiles\Feats.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\Output\DataFiles\SetBonuses.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\Output\DataFiles\WeaponGroupings.xml" />
+    <None Include="DDOBuilder.reg" />
+    <None Include="hlp\afx_hidd_color.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidd_fileopen.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidd_filesave.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidd_find.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidd_font.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidd_newtypedlg.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidd_replace.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidp_default.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidw_dockbar_top.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidw_status_bar.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\afx_hidw_toolbar.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\DDOBuilder.hhc" />
+    <None Include="hlp\DDOBuilder.hhk" />
+    <CustomBuild Include="hlp\DDOBuilder.hhp">
+      <FileType>Document</FileType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)DDOBuilder.chm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">hlp\HTMLDefines.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">start /wait hhc "hlp\DDOBuilder.hhp"
+if not exist "hlp\DDOBuilder.chm" goto :HelpError
+copy "hlp\DDOBuilder.chm" "$(OutDir)DDOBuilder.chm"
+goto :HelpDone
+:HelpError
+echo hlp\DDOBuilder.hhp(1) : error:Problem encountered creating help file
+echo.
+:HelpDone
+echo.
+</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Making help file...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)DDOBuilder.chm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">hlp\HTMLDefines.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">start /wait hhc "hlp\DDOBuilder.hhp"
+if not exist "hlp\DDOBuilder.chm" goto :HelpError
+copy "hlp\DDOBuilder.chm" "$(OutDir)DDOBuilder.chm"
+goto :HelpDone
+:HelpError
+echo hlp\DDOBuilder.hhp(1) : error:Problem encountered creating help file
+echo.
+:HelpDone
+echo.
+</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Making help file...</Message>
+    </CustomBuild>
+    <None Include="hlp\hidr_doc1type.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_app_about.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_app_exit.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_context_help.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_clear.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_clear_all.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_copy.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_cut.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_find.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_paste.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_redo.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_repeat.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_replace.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_edit_undo.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_file_close.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_file_mru_file1.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_file_new.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_file_open.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_file_save.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_file_save_as.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_file_send_mail.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_help_index.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_help_using.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_ht_caption.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_ht_nowhere.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_next_pane.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_prev_pane.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_close.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_maximize.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_minimize.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_move.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_nextwindow.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_prevwindow.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_restore.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_size.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_sc_tasklist.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_view_ruler.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_view_status_bar.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_view_toolbar.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_all.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_arrange.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_cascade.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_new.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_split.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_tile.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_tile_horz.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_window_tile_vert.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\Images\Bullet.gif" />
+    <None Include="hlp\main_index.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_edit.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_file.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_help.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_view.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_window.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\scrollbars.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="ReadMe.txt" />
+    <None Include="res\DDOBuilder.ico" />
+    <None Include="res\DDOBuilder.rc2" />
+    <None Include="res\DDOBuilderDoc.ico" />
+    <None Include="res\nav_large.bmp" />
+    <None Include="res\nav_large_hc.bmp" />
+    <None Include="res\output_wnd.ico" />
+    <None Include="res\output_wnd_hc.ico" />
+    <None Include="res\pages.bmp" />
+    <None Include="res\pages_hc.bmp" />
+    <None Include="res\pages_small.bmp" />
+    <None Include="res\pages_small_hc.bmp" />
+    <None Include="res\Toolbar256.bmp" />
+    <None Include="UserImages.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\BuildInfo.h" />
+    <ClInclude Include="AbilitySpend.h" />
+    <ClInclude Include="AbilityTypes.h" />
+    <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="ActiveStances.h" />
+    <ClInclude Include="AlignmentTypes.h" />
+    <ClInclude Include="ArmorTypes.h" />
+    <ClInclude Include="ArtifactFiligree.h" />
+    <ClInclude Include="Augment.h" />
+    <ClInclude Include="AutomaticFeatListControl.h" />
+    <ClInclude Include="AutomaticFeatsPane.h" />
+    <ClInclude Include="AutomaticAcquisition.h" />
+    <ClInclude Include="BaseDice.h" />
+    <ClInclude Include="BasicDice.h" />
+    <ClInclude Include="Bonus.h" />
+    <ClInclude Include="BonusDice.h" />
+    <ClInclude Include="BonusTypesFile.h" />
+    <ClInclude Include="BreakdownItem.h" />
+    <ClInclude Include="BreakdownItemAbility.h" />
+    <ClInclude Include="BreakdownItemAC.h" />
+    <ClInclude Include="BreakdownItemBAB.h" />
+    <ClInclude Include="BreakdownItemCasterLevel.h" />
+    <ClInclude Include="BreakdownItemDestinyAps.h" />
+    <ClInclude Include="BreakdownItemDice.h" />
+    <ClInclude Include="BreakdownItemDodge.h" />
+    <ClInclude Include="BreakdownItemDR.h" />
+    <ClInclude Include="BreakdownItemDuration.h" />
+    <ClInclude Include="BreakdownItemEnergyAbsorption.h" />
+    <ClInclude Include="BreakdownItemEnergyCasterLevel.h" />
+    <ClInclude Include="BreakdownItemEnergyResistance.h" />
+    <ClInclude Include="BreakdownItemHitpoints.h" />
+    <ClInclude Include="BreakdownItemImmunities.h" />
+    <ClInclude Include="BreakdownItemMaximumKi.h" />
+    <ClInclude Include="BreakdownItemMDB.h" />
+    <ClInclude Include="BreakdownItemMRR.h" />
+    <ClInclude Include="BreakdownItemMRRCap.h" />
+    <ClInclude Include="BreakdownItemPRR.h" />
+    <ClInclude Include="BreakdownItemSave.h" />
+    <ClInclude Include="BreakdownItemSchoolCasterLevel.h" />
+    <ClInclude Include="BreakdownItemSimple.h" />
+    <ClInclude Include="BreakdownItemSkill.h" />
+    <ClInclude Include="BreakdownItemSneakAttackDice.h" />
+    <ClInclude Include="BreakdownItemSpellPoints.h" />
+    <ClInclude Include="BreakdownItemSpellPower.h" />
+    <ClInclude Include="BreakdownItemSpellSchool.h" />
+    <ClInclude Include="BreakdownItemTactical.h" />
+    <ClInclude Include="BreakdownItemTurnUndeadHitDice.h" />
+    <ClInclude Include="BreakdownItemTurnUndeadLevel.h" />
+    <ClInclude Include="BreakdownItemUniversalSpellPower.h" />
+    <ClInclude Include="BreakdownItemWeapon.h" />
+    <ClInclude Include="BreakdownItemWeaponAttackBonus.h" />
+    <ClInclude Include="BreakdownItemWeaponDamageBonus.h" />
+    <ClInclude Include="BreakdownItemWeaponEffects.h" />
+    <ClInclude Include="BreakdownsPane.h" />
+    <ClInclude Include="BreakdownTypes.h" />
+    <ClInclude Include="Buff.h" />
+    <ClInclude Include="BuffFile.h" />
+    <ClInclude Include="Build.h" />
+    <ClInclude Include="BuildsPane.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="CItemImageDialog.h" />
+    <ClInclude Include="Class.h" />
+    <ClInclude Include="ClassAndFeatPane.h" />
+    <ClInclude Include="ClassSpell.h" />
+    <ClInclude Include="ComboBoxTooltip.h" />
+    <ClInclude Include="CriticalSection.h" />
+    <ClInclude Include="CustomContextMenuManager.h" />
+    <ClInclude Include="CustomDockablePane.h" />
+    <ClInclude Include="CWeaponImageDialog.h" />
+    <ClInclude Include="DamageReductionTypes.h" />
+    <ClInclude Include="DamageTypes.h" />
+    <ClInclude Include="DC.h" />
+    <ClInclude Include="DCButton.h" />
+    <ClInclude Include="DCPane.h" />
+    <ClInclude Include="DDOBuilder.h" />
+    <ClInclude Include="DDOBuilderDoc.h" />
+    <ClInclude Include="DDOBuilderView.h" />
+    <ClInclude Include="DestinyPane.h" />
+    <ClInclude Include="DestinySpendInTree.h" />
+    <ClInclude Include="Destiny_SelectedTrees.h" />
+    <ClInclude Include="Dice.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectCallbackItem.h" />
+    <ClInclude Include="EnergyTypes.h" />
+    <ClInclude Include="EnhancementItemParams.h" />
+    <ClInclude Include="EnhancementSelection.h" />
+    <ClInclude Include="EnhancementSelectionButton.h" />
+    <ClInclude Include="EnhancementsPane.h" />
+    <ClInclude Include="EnhancementSpendInTree.h" />
+    <ClInclude Include="EnhancementTree.h" />
+    <ClInclude Include="EnhancementTreeDialog.h" />
+    <ClInclude Include="EnhancementTreeItem.h" />
+    <ClInclude Include="Enhancement_SelectedTrees.h" />
+    <ClInclude Include="EquipmentSlot.h" />
+    <ClInclude Include="EquipmentPane.h" />
+    <ClInclude Include="EquippedGear.h" />
+    <ClInclude Include="ExclusionGroup.h" />
+    <ClInclude Include="FavoredEnemyTypes.h" />
+    <ClInclude Include="Feat.h" />
+    <ClInclude Include="FeatAcquisitionTypes.h" />
+    <ClInclude Include="FeatsClassControl.h" />
+    <ClInclude Include="FeatSelectionDialog.h" />
+    <ClInclude Include="FeatsFile.h" />
+    <ClInclude Include="FeatsListObject.h" />
+    <ClInclude Include="FeatSlot.h" />
+    <ClInclude Include="Filigree.h" />
+    <ClInclude Include="GearSetNameDialog.h" />
+    <ClInclude Include="Gem.h" />
+    <ClInclude Include="GlobalSupportFunctions.h" />
+    <ClInclude Include="GrantedFeatListControl.h" />
+    <ClInclude Include="GrantedFeatsPane.h" />
+    <ClInclude Include="GroupLine.h" />
+    <ClInclude Include="IconButton.h" />
+    <ClInclude Include="InfoTip.h" />
+    <ClInclude Include="InfoTipItem.h" />
+    <ClInclude Include="InventoryDialog.h" />
+    <ClInclude Include="InventorySlotTypes.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemAugment.h" />
+    <ClInclude Include="ItemBuff.h" />
+    <ClInclude Include="ItemSelectDialog.h" />
+    <ClInclude Include="LevelTraining.h" />
+    <ClInclude Include="Life.h" />
+    <ClInclude Include="LocalSettingsStore.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MemoryDC.h" />
+    <ClInclude Include="MFCButtonMMRelay.h" />
+    <ClInclude Include="MouseHook.h" />
+    <ClInclude Include="MultiFileObjectLoader.h" />
+    <ClInclude Include="ObserverSubject.h" />
+    <ClInclude Include="LogPane.h" />
+    <ClInclude Include="Race.h" />
+    <ClInclude Include="ReaperEnhancementsPane.h" />
+    <ClInclude Include="ReaperSpendInTree.h" />
+    <ClInclude Include="Reaper_SelectedTrees.h" />
+    <ClInclude Include="Requirement.h" />
+    <ClInclude Include="Requirements.h" />
+    <ClInclude Include="RequirementsBase.h" />
+    <ClInclude Include="RequirementTypes.h" />
+    <ClInclude Include="RequiresNoneOf.h" />
+    <ClInclude Include="RequiresOneOf.h" />
+    <ClInclude Include="SelectedTrees.h" />
+    <ClInclude Include="SelectionSelectDialog.h" />
+    <ClInclude Include="Selector.h" />
+    <ClInclude Include="SentientGemsFile.h" />
+    <ClInclude Include="SetBonus.h" />
+    <ClInclude Include="SetBonusBuff.h" />
+    <ClInclude Include="SetBonusButton.h" />
+    <ClInclude Include="SetBonusFile.h" />
+    <ClInclude Include="SkillsPane.h" />
+    <ClInclude Include="SkillSpendControl.h" />
+    <ClInclude Include="SkillTomes.h" />
+    <ClInclude Include="SLAControl.h" />
+    <ClInclude Include="SlotUpgrade.h" />
+    <ClInclude Include="SortHeaderCtrl.h" />
+    <ClInclude Include="SpecialFeatsPane.h" />
+    <ClInclude Include="Spell.h" />
+    <ClInclude Include="SpellDamage.h" />
+    <ClInclude Include="SpellDice.h" />
+    <ClInclude Include="SpellLikeAbilityPage.h" />
+    <ClInclude Include="SpellPowerTypes.h" />
+    <ClInclude Include="SpellSchoolTypes.h" />
+    <ClInclude Include="SpellsControl.h" />
+    <ClInclude Include="SpellsFile.h" />
+    <ClInclude Include="SpellsPage.h" />
+    <ClInclude Include="SpellsPane.h" />
+    <ClInclude Include="SpendInTree.h" />
+    <ClInclude Include="StackTracking.h" />
+    <ClInclude Include="Stance.h" />
+    <ClInclude Include="StanceButton.h" />
+    <ClInclude Include="StanceGroup.h" />
+    <ClInclude Include="StancesFile.h" />
+    <ClInclude Include="StancesPane.h" />
+    <ClInclude Include="TacticalTypes.h" />
+    <ClInclude Include="TrainedEnhancement.h" />
+    <ClInclude Include="TrainedFeat.h" />
+    <ClInclude Include="TrainedFiligree.h" />
+    <ClInclude Include="TrainedSkill.h" />
+    <ClInclude Include="TrainedSpell.h" />
+    <ClInclude Include="TreeListCtrl.h" />
+    <ClInclude Include="TreeListHeaderCtrl.h" />
+    <ClInclude Include="WeaponClassTypes.h" />
+    <ClInclude Include="WeaponDamageTypes.h" />
+    <ClInclude Include="WeaponFiligree.h" />
+    <ClInclude Include="WeaponGroup.h" />
+    <ClInclude Include="WeaponGroupFile.h" />
+    <ClInclude Include="WeaponGroupRequirements.h" />
+    <ClInclude Include="WeaponTypes.h" />
+    <ClInclude Include="WikiDownloader.h" />
+    <ClInclude Include="WikiItemFileProcessor.h" />
+    <CustomBuild Include="Resource.h">
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">hlp\HTMLDefines.h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">echo // Generated Help Map file.  Used by DDOBuilder.HHP. &gt; "hlp\HTMLDefines.h"
+echo. &gt; "hlp\HTMLDefines.h"
+echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Prompts (IDP_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDP_,HIDP_,0x30000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Resources (IDR_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDR_,HIDR_,0x20000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Dialogs (IDD_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD_,0x20000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Frame Controls (IDW_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating map file for help compiler...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">hlp\HTMLDefines.h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">echo // Generated Help Map file.  Used by DDOBuilder.HHP. &gt; "hlp\HTMLDefines.h"
+echo. &gt; "hlp\HTMLDefines.h"
+echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Prompts (IDP_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDP_,HIDP_,0x30000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Resources (IDR_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDR_,HIDR_,0x20000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Dialogs (IDD_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD_,0x20000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+echo. &gt;&gt; "hlp\HTMLDefines.h"
+echo // Frame Controls (IDW_*) &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating map file for help compiler...</Message>
+    </CustomBuild>
+    <ClInclude Include="SaveTypes.h" />
+    <ClInclude Include="SkillTypes.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AbilitySpend.cpp" />
+    <ClCompile Include="AboutDlg.cpp" />
+    <ClCompile Include="ActiveStances.cpp" />
+    <ClCompile Include="ArtifactFiligree.cpp" />
+    <ClCompile Include="Augment.cpp" />
+    <ClCompile Include="AutomaticFeatListControl.cpp" />
+    <ClCompile Include="AutomaticFeatsPane.cpp" />
+    <ClCompile Include="AutomaticAcquisition.cpp" />
+    <ClCompile Include="BaseDice.cpp" />
+    <ClCompile Include="BasicDice.cpp" />
+    <ClCompile Include="Bonus.cpp" />
+    <ClCompile Include="BonusDice.cpp" />
+    <ClCompile Include="BonusTypesFile.cpp" />
+    <ClCompile Include="BreakdownItem.cpp" />
+    <ClCompile Include="BreakdownItemAbility.cpp" />
+    <ClCompile Include="BreakdownItemAC.cpp" />
+    <ClCompile Include="BreakdownItemBAB.cpp" />
+    <ClCompile Include="BreakdownItemCasterLevel.cpp" />
+    <ClCompile Include="BreakdownItemDestinyAps.cpp" />
+    <ClCompile Include="BreakdownItemDice.cpp" />
+    <ClCompile Include="BreakdownItemDodge.cpp" />
+    <ClCompile Include="BreakdownItemDR.cpp" />
+    <ClCompile Include="BreakdownItemDuration.cpp" />
+    <ClCompile Include="BreakdownItemEnergyAbsorption.cpp" />
+    <ClCompile Include="BreakdownItemEnergyCasterLevel.cpp" />
+    <ClCompile Include="BreakdownItemEnergyResistance.cpp" />
+    <ClCompile Include="BreakdownItemHitpoints.cpp" />
+    <ClCompile Include="BreakdownItemImmunities.cpp" />
+    <ClCompile Include="BreakdownItemMaximumKi.cpp" />
+    <ClCompile Include="BreakdownItemMDB.cpp" />
+    <ClCompile Include="BreakdownItemMRR.cpp" />
+    <ClCompile Include="BreakdownItemMRRCap.cpp" />
+    <ClCompile Include="BreakdownItemPRR.cpp" />
+    <ClCompile Include="BreakdownItemSave.cpp" />
+    <ClCompile Include="BreakdownItemSchoolCasterLevel.cpp" />
+    <ClCompile Include="BreakdownItemSimple.cpp" />
+    <ClCompile Include="BreakdownItemSkill.cpp" />
+    <ClCompile Include="BreakdownItemSneakAttackDice.cpp" />
+    <ClCompile Include="BreakdownItemSpellPoints.cpp" />
+    <ClCompile Include="BreakdownItemSpellPower.cpp" />
+    <ClCompile Include="BreakdownItemSpellSchool.cpp" />
+    <ClCompile Include="BreakdownItemTactical.cpp" />
+    <ClCompile Include="BreakdownItemTurnUndeadHitDice.cpp" />
+    <ClCompile Include="BreakdownItemTurnUndeadLevel.cpp" />
+    <ClCompile Include="BreakdownItemUniversalSpellPower.cpp" />
+    <ClCompile Include="BreakdownItemWeapon.cpp" />
+    <ClCompile Include="BreakdownItemWeaponAttackBonus.cpp" />
+    <ClCompile Include="BreakdownItemWeaponDamageBonus.cpp" />
+    <ClCompile Include="BreakdownItemWeaponEffects.cpp" />
+    <ClCompile Include="BreakdownsPane.cpp" />
+    <ClCompile Include="Buff.cpp" />
+    <ClCompile Include="BuffFile.cpp" />
+    <ClCompile Include="Build.cpp" />
+    <ClCompile Include="BuildsPane.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CItemImageDialog.cpp" />
+    <ClCompile Include="Class.cpp" />
+    <ClCompile Include="ClassAndFeatPane.cpp" />
+    <ClCompile Include="ClassSpell.cpp" />
+    <ClCompile Include="ComboBoxTooltip.cpp" />
+    <ClCompile Include="CriticalSection.cpp" />
+    <ClCompile Include="CustomContextMenuManager.cpp" />
+    <ClCompile Include="CustomDockablePane.cpp" />
+    <ClCompile Include="CWeaponImageDialog.cpp" />
+    <ClCompile Include="DC.cpp" />
+    <ClCompile Include="DCButton.cpp" />
+    <ClCompile Include="DCPane.cpp" />
+    <ClCompile Include="DDOBuilder.cpp" />
+    <ClCompile Include="DDOBuilderDoc.cpp" />
+    <ClCompile Include="DDOBuilderView.cpp" />
+    <ClCompile Include="DestinyPane.cpp" />
+    <ClCompile Include="DestinySpendInTree.cpp" />
+    <ClCompile Include="Destiny_SelectedTrees.cpp" />
+    <ClCompile Include="Dice.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EnhancementSelection.cpp" />
+    <ClCompile Include="EnhancementSelectionButton.cpp" />
+    <ClCompile Include="EnhancementsPane.cpp" />
+    <ClCompile Include="EnhancementSpendInTree.cpp" />
+    <ClCompile Include="EnhancementTree.cpp" />
+    <ClCompile Include="EnhancementTreeDialog.cpp" />
+    <ClCompile Include="EnhancementTreeItem.cpp" />
+    <ClCompile Include="Enhancement_SelectedTrees.cpp" />
+    <ClCompile Include="EquipmentSlot.cpp" />
+    <ClCompile Include="EquipmentPane.cpp" />
+    <ClCompile Include="EquippedGear.cpp" />
+    <ClCompile Include="ExclusionGroup.cpp" />
+    <ClCompile Include="Feat.cpp" />
+    <ClCompile Include="FeatsClassControl.cpp" />
+    <ClCompile Include="FeatSelectionDialog.cpp" />
+    <ClCompile Include="FeatsFile.cpp" />
+    <ClCompile Include="FeatsListObject.cpp" />
+    <ClCompile Include="FeatSlot.cpp" />
+    <ClCompile Include="Filigree.cpp" />
+    <ClCompile Include="GearSetNameDialog.cpp" />
+    <ClCompile Include="Gem.cpp" />
+    <ClCompile Include="GlobalSupportFunctions.cpp" />
+    <ClCompile Include="GrantedFeatListControl.cpp" />
+    <ClCompile Include="GrantedFeatsPane.cpp" />
+    <ClCompile Include="GroupLine.cpp" />
+    <ClCompile Include="IconButton.cpp" />
+    <ClCompile Include="InfoTip.cpp" />
+    <ClCompile Include="InfoTipItem.cpp" />
+    <ClCompile Include="InventoryDialog.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemAugment.cpp" />
+    <ClCompile Include="ItemBuff.cpp" />
+    <ClCompile Include="ItemSelectDialog.cpp" />
+    <ClCompile Include="LevelTraining.cpp" />
+    <ClCompile Include="Life.cpp" />
+    <ClCompile Include="LocalSettingsStore.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MemoryDC.cpp" />
+    <ClCompile Include="MFCButtonMMRelay.cpp" />
+    <ClCompile Include="MouseHook.cpp" />
+    <ClCompile Include="ObserverSubject.cpp" />
+    <ClCompile Include="LogPane.cpp" />
+    <ClCompile Include="Race.cpp" />
+    <ClCompile Include="ReaperEnhancementsPane.cpp" />
+    <ClCompile Include="ReaperSpendInTree.cpp" />
+    <ClCompile Include="Reaper_SelectedTrees.cpp" />
+    <ClCompile Include="Requirement.cpp" />
+    <ClCompile Include="Requirements.cpp" />
+    <ClCompile Include="RequirementsBase.cpp" />
+    <ClCompile Include="RequiresNoneOf.cpp" />
+    <ClCompile Include="RequiresOneOf.cpp" />
+    <ClCompile Include="SelectedTrees.cpp" />
+    <ClCompile Include="SelectionSelectDialog.cpp" />
+    <ClCompile Include="Selector.cpp" />
+    <ClCompile Include="SentientGemsFile.cpp" />
+    <ClCompile Include="SetBonus.cpp" />
+    <ClCompile Include="SetBonusBuff.cpp" />
+    <ClCompile Include="SetBonusButton.cpp" />
+    <ClCompile Include="SetBonusFile.cpp" />
+    <ClCompile Include="SkillsPane.cpp" />
+    <ClCompile Include="SkillSpendControl.cpp" />
+    <ClCompile Include="SkillTomes.cpp" />
+    <ClCompile Include="SLAControl.cpp" />
+    <ClCompile Include="SlotUpgrade.cpp" />
+    <ClCompile Include="SortHeaderCtrl.cpp" />
+    <ClCompile Include="SpecialFeatsPane.cpp" />
+    <ClCompile Include="Spell.cpp" />
+    <ClCompile Include="SpellDamage.cpp" />
+    <ClCompile Include="SpellDice.cpp" />
+    <ClCompile Include="SpellLikeAbilityPage.cpp" />
+    <ClCompile Include="SpellsControl.cpp" />
+    <ClCompile Include="SpellsFile.cpp" />
+    <ClCompile Include="SpellsPage.cpp" />
+    <ClCompile Include="SpellsPane.cpp" />
+    <ClCompile Include="SpendInTree.cpp" />
+    <ClCompile Include="StackTracking.cpp" />
+    <ClCompile Include="Stance.cpp" />
+    <ClCompile Include="StanceButton.cpp" />
+    <ClCompile Include="StanceGroup.cpp" />
+    <ClCompile Include="StancesFile.cpp" />
+    <ClCompile Include="StancesPane.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TrainedEnhancement.cpp" />
+    <ClCompile Include="TrainedFeat.cpp" />
+    <ClCompile Include="TrainedFiligree.cpp" />
+    <ClCompile Include="TrainedSkill.cpp" />
+    <ClCompile Include="TrainedSpell.cpp" />
+    <ClCompile Include="TreeListCtrl.cpp" />
+    <ClCompile Include="TreeListHeaderCtrl.cpp" />
+    <ClCompile Include="WeaponFiligree.cpp" />
+    <ClCompile Include="WeaponGroup.cpp" />
+    <ClCompile Include="WeaponGroupFile.cpp" />
+    <ClCompile Include="WeaponGroupRequirements.cpp" />
+    <ClCompile Include="WikiDownloader.cpp" />
+    <ClCompile Include="WikiItemFileProcessor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DDOBuilder.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\FiligreesToBeConverted.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Alchemical.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Greensteel_Legendary.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Mythic.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Reaper.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Sapphire.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\CannithAndRandomItem.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Diamond.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\DinosaurBone.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Named.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Ruby.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Slavelords_Legendary.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Other.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Topaz.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Blank Trees\BlankClassTree.tree.xml" />
+    <Xml Include="..\Output\DataFiles\Blank Trees\BlankRaceTree.tree.xml" />
+    <Xml Include="..\Output\DataFiles\Blank Trees\BlankUniversalTree.tree.xml" />
+    <Xml Include="..\Output\DataFiles\BonusTypes.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\AcolyteOfTheSkin.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Alchemist.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Artificer.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Barbarian.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Bard.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Blightcaster.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Cleric.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\DarkApostate.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\DarkHunter.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Druid.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Epic.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\FavoredSoul.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Fighter.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Legendary.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Monk.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Paladin.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Ranger.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Rogue.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\SacredFist.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Sorcerer.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Stormsinger.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Unknown.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Warlock.class.xml" />
+    <Xml Include="..\Output\DataFiles\Classes\Wizard.class.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Aasimar.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\AasimarScourgeOfTheUndead.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Warlock_AcolyteOfTheSkin.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Alchemist_Apothecary.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Alchemist_Bombardier.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Alchemist_VileChemist.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Artificer_Arcanotechnician.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Artificer_BattleEngineer.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Artificer_RenegadeMastermaker.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Barbarian_FrenziedBerserker.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Barbarian_OccultSlayer.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Barbarian_Ravager.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Bard_Spellsinger.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Bard_Stormsinger.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Bard_Swashbuckler.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Bard_Warchanter.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Bladeforged.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Cleric_DarkApostate.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Cleric_DivineDisciple.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Cleric_RadiantServant.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Cleric_Warpriest.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\DeepGnome.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\DivineCrusader.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\DraconicIncarnation.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Dragonborn.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Drow.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Druid_BlightCaster.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Druid_NaturesProtector.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Druid_NaturesWarrior.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Druid_SeasonsHerald.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Dwarf.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Elf.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Elf_ArcaneArcher.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\ExaltedAngel.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Falconry.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Fatesinger.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\FavoredSoul_AngelOfVengeance.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\FavoredSoul_BeaconOfHope.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\FavoredSoul_WarSoul.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\FeydarkIllusionist.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Fighter_Kensei.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Fighter_StalwartDefender.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\FuryOfTheWild.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Gnome.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\GrandmasterOfFlowers.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Half-Elf.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Half-Orc.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Halfling.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Harper_Agent.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\HorizonWalker.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Human.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Inquisitive.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\LegendaryDreadnought.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\MagusOfTheEclipse.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Monk_HenshinMystic.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Monk_NinjaSpy.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Monk_Shintao.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Morninglord.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Paladin_KnightOfTheChalice.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Paladin_RadiantServant.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Paladin_SacredDefender.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Paladin_SacredFist.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\PrimalAvatar.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\PurpleDragonKnight.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Ranger_ArcaneArcher.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Ranger_DarkHunter.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Ranger_DeepwoodStalker.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Ranger_Tempest.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\RazorclawShifter.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Reaper_DireThaumaturge.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Reaper_DreadAdversary.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Reaper_GrimBarricade.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Rogue_Assassin.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Rogue_Mechanic.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Rogue_ThiefAcrobat.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\ShadarKai.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Shadowdancer.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Shifter.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\ShiradiChampion.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Sorcerer_AirSavant.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Sorcerer_EarthSavant.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Sorcerer_EldritchKnight.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Sorcerer_FireSavant.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Sorcerer_WaterSavant.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Tabaxi.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\TabaxiTrailblazer.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Tiefling.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\TieflingScoundrel.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\UnyieldingSentinel.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Vanguard.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Vistani.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Warforged.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Warlock_EnlightenedSpirit.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Warlock_SoulEater.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Warlock_TaintedScholar.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Wizard_ArchMage.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Wizard_EldritchKnight.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\Wizard_PaleMaster.tree.xml" />
+    <Xml Include="..\Output\DataFiles\EnhancementTrees\WoodElf.tree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\AngelicWings.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\BendFate.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\BraveryThroughout.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Celerity.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\CoalescedMagic.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\CrackshotNegotiator.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\DanceOfTheWind.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\DarkHallow.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\DeadlyRain.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Divinity.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Dragonsoul.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Dreadbringer.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Electrocution.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\ElementalAvatar.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\EmbracedByLight.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\EyeOfTheBeholder.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\FinalBurial.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\FrozenWanderer.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\GrandfathersShield.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\KeeperOfTheCurse.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\LunarMagic.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\MelonysMelody.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\NextFall.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\NystulsMysticalDefense.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\OneAgainstMany.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\OttosIrrevocablePower.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Prowess.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Purity.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\RadiantShield.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Raid.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Reverberation.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\SanctifiedFervor.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Shadowstrike.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\ShardsOfMechanus.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\ShatteredDevice.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\SnakeBite.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\SnowpeaksGifts.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Soulweaver.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\SpinesOfTheManticore.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\SplendidCacophony.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\SuckerPunch.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Technomage.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheAbidingPath.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheBeastsMantle.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheBloodFeast.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheCitysBeacon.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheCryOfBattle.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheEnlightenedStep.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheInevitableGrave.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheLongShadow.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheSerpent.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TheWreathOfFlame.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\ThroughTheMists.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\ToHellAndBack.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TouchOfGrace.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TrappersDelight.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Treachery.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\TwilightsCloak.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\UltimateFury.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Unbreakable.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Vigilance.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\VoltaicExperiment.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Wildhunter.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\ZarigansArcaneEnlightment.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\FiligreeSets\Zephyr.Filigree.xml" />
+    <Xml Include="..\Output\DataFiles\ItemBuffs.xml" />
+    <Xml Include="..\Output\DataFiles\ItemClickies.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Aasimar.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\AasimarScourge.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Bladeforged.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\DeepGnome.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Dragonborn.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Drow.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Dwarf.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Elf.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Gnome.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\HalfElf.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Halfling.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\HalfOrc.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Human.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Morninglord.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\PurpleDragonKnight.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\RazorclawShifter.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\ShadarKai.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Shifter.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Tabaxi.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\TabaxiTrailblazer.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Tiefling.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\TieflingScoundrel.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\Warforged.race.xml" />
+    <Xml Include="..\Output\DataFiles\Races\WoodElf.race.xml" />
+    <Xml Include="..\Output\DataFiles\Sentient.gems.xml" />
+    <Xml Include="..\Output\DataFiles\Spells.xml" />
+    <Xml Include="..\Output\DataFiles\Stances.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\bitmapCopy.bmp" />
+    <Image Include="res\bitmapDelete.bmp" />
+    <Image Include="res\bitmapNew.bmp" />
+    <Image Include="res\BitmapPaste.bmp" />
+    <Image Include="res\CopyToClipboard.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\InProgressNotes.txt" />
+    <Text Include="..\Issues.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="DDOBuilder.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

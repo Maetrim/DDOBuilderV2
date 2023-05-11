@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Vistani Knife Fighter</Name>
+      <Version>1</Version>
+      <IsUniversalTree/>
+      <Requirements>
+         <RequiresOneOf>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Vistani Knife Fighter Tree</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Keepers of a Feather Favor Rewards</Item>
+               <Value>3</Value>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <Icon>Vistani</Icon>
+      <Background>Universal</Background>
+      <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Vistani: Knife Expertise</Name>
+         <InternalName>VistaniCore1</InternalName>
+         <Description>You gain +1 to hit and damage with daggers and throwing daggers.</Description>
+         <Icon>KnifeExpertise</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Knife Juggler</Name>
+         <InternalName>VistaniCore2</InternalName>
+         <Description>You gain +5% to speed with throwing daggers.
+You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds.</Description>
+         <Icon>KnifeJuggler</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniCore1</Item>
+            </Requirement>
+               <Requirement>
+                  <Type>Exclusive</Type>
+                  <Item>VistaniCore2</Item>
+                  <Item>Deflect Arrows</Item>
+               </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>VistaniCore2</Item>
+            <Item>Deflect Arrows</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Deflect Arrows</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Quick Reflexes</Name>
+         <InternalName>VistaniCore3</InternalName>
+         <Description>You gain Quickdraw as a bonus feat.
+You gain +5% Doublestrike and Doubleshot.</Description>
+         <Icon>KnifeSpecialist</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>6</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniCore2</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Quick Draw</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: One With Blades</Name>
+         <InternalName>VistaniCore4</InternalName>
+         <Description>You gain a +1 Competence bonus to Critical Threat Range and
++1 to Critical Damage Multiplier with daggers and throwing daggers.</Description>
+         <Icon>OneWithBlades</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniCore3</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Vistani Fortune</Name>
+         <InternalName>VistaniCore5</InternalName>
+         <Description>Passive: You gain +10 Physical Resistance Rating and Magical Resistance Rating.
+Activate to gain one random Vistani fortune. Cooldown 60 seconds.
+Coins:  You gain 10% Doublestrike and 10% Doubleshot for 60 seconds.
+Glyphs: You gain 10 PRR and 20 MRR for 60 seconds.
+Stars:  You gain +2 to all ability scores for 60 seconds.
+Swords: You gain 15 Melee Power and Ranged Power for 60 seconds.</Description>
+         <Icon>VistaniFortune</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>18</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniCore4</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Knife Master</Name>
+         <InternalName>VistaniCore6</InternalName>
+         <Description>You gain +2 to all ability scores.
+You gain +5% attack speed when using melee and throwing weapons.
+You gain 20 Melee Power and 20 Ranged Power.</Description>
+         <Icon>KnifeMaster</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>20</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniCore5</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>WeaponAlacrityClass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Melee</Item>
+         </Effect>
+         <Effect>
+            <Type>WeaponAlacrityClass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Thrown</Item>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Vistani: Vistani Knife Training I</Name>
+         <InternalName>VistaniKnifeTrainingI</InternalName>
+         <Description>When using a dagger in each hand, you now fight in melee using the Vistani style,
+with both daggers held point down. You gain +1 to hit and damage with
+daggers and throwing daggers.</Description>
+         <Icon>VistaniKnifeTrainingI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Undead Hunter</Name>
+         <InternalName>UndeadHunter</InternalName>
+         <Description>You resist evil influences particularly well, gaining a +2 bonus to
+saves against spells and effects produced by evil creatures.
+Undead are automatically considered as a Favored Enemy for you.</Description>
+         <Icon>UndeadHunter</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Favored Enemy: Undead</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Mist Stalker I</Name>
+         <InternalName>MistStalkerI</InternalName>
+         <Description>You gain +25% negative energy absorption.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Description>
+         <Icon>MistStalkerI</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">25</Amount>
+            <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Acrobatic</Name>
+         <InternalName>VistaniAcrobatic</InternalName>
+         <Description>+[1/2/3] Balance, Jump, and Tumble.
+Rank 3: +1 to Reflex Saving Throws.</Description>
+         <Icon>VistaniAcrobatic</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Balance</Item>
+            <Item>Jump</Item>
+            <Item>Tumble</Item>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Rank>3</Rank>
+            <Amount size="1">1</Amount>
+            <Item>Reflex</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Rapid Attack</Name>
+         <InternalName>RapidAttack</InternalName>
+         <Description>You gain both of the following:
+Rapid Slash: Requires dagger. Melee Attack: Deals +3[W] damage.
+   You gain a 20% Morale bonus to (main hand) doublestrike for 10 seconds.
+   Cooldown: 10 seconds. 
+Rapid Throw: Requires throwing knife. Missile Attack: Deals +3[W] damage.
+   You gain a 20% Morale bonus to doubleshot for 10 seconds.
+   Cooldown: 10 seconds.
+This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
+         <Icon>RapidAttack</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Effect>
+            <DisplayName>Vistani: Rapid Attack - Can be kept up 100%</DisplayName>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Morale</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Vistani: Vistani Knife Training II</Name>
+         <InternalName>VistaniKnifeTrainingII</InternalName>
+         <Description>You gain +1 to hit and +2 damage with daggers and throwing daggers.</Description>
+         <Icon>VistaniKnifeTrainingII</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Bleeding Cuts</Name>
+         <InternalName>BleedingCuts</InternalName>
+         <Description>When you score a Vorpal hit with a dagger or throwing knife you add a
+stack of Blood of Vengeance to your opponent.
+Blood of Vengeance: You deal 1d6 damage per two seconds for 30 seconds.
+This damage scales with 200% Melee Power. This stacks up to 10 times, with new
+stacks refreshing the duration.</Description>
+         <Icon>BleedingCuts</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Mist Stalker II</Name>
+         <InternalName>MistStalkerII</InternalName>
+         <Description>You gain +2 to Will saving throws.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Description>
+         <Icon>MistStalkerII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>MistStalkerI</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Will</Item>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Weapon Versatility</Name>
+         <InternalName>WeaponVersatility</InternalName>
+         <Description>While using daggers and throwing daggers, your melee and missile attacks use the higher of Melee Power or Ranged Power.</Description>
+         <Icon>WeaponVersatility</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Haste Boost</Name>
+         <InternalName>VistaniHasteBoost</InternalName>
+         <Description>Activate to gain a [10/20/30]% Action Boost bonus to attack speed for 20 seconds.
+Cooldown: 30 seconds</Description>
+         <Icon>HasteBoost</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Vistani: Vistani Knife Training III</Name>
+         <InternalName>VistaniKnifeTrainingIII</InternalName>
+         <Description>You gain +1 to hit and +2 damage with daggers and throwing knives.</Description>
+         <Icon>VistaniKnifeTrainingIII</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniKnifeTrainingII</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Fan of Knives</Name>
+         <InternalName>FanOfKnives</InternalName>
+         <Description>On activation: You throw a hail of throwing knives in a cone in front of you.
+Enemies caught in the cone take 5 to 8 per character level of damage and take
+1 stack of Blood of Vengeance. This damage scales with 100% Ranged Power.
+Cooldown: 15 seconds</Description>
+         <Icon>FanOfKnives</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Mist Stalker III</Name>
+         <InternalName>MistStalkerIII</InternalName>
+         <Description>You are immune to Fear effects.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Description>
+         <Icon>MistStalkerIII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>MistStalkerII</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fear</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Deadly Blades</Name>
+         <InternalName>DeadlyBlades</InternalName>
+         <Description>Your daggers and throwing daggers do an additional +1[W] of damage.
+You are centered when fighting with daggers.
+(Note: not centered with throwing daggers).</Description>
+         <Icon>DeadlyBlades</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_BaseDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+         <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Centered</Item>
+            <Item>Dagger</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Gifted I</Name>
+         <InternalName>GiftedI</InternalName>
+         <Description>Choose an ability to increase.</Description>
+         <Icon>Gifted</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Intelligence</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Charisma</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Vistani: Vistani Knife Training IV</Name>
+         <InternalName>VistaniKnifeTrainingIV</InternalName>
+         <Description>You gain +1 to hit and +2 damage with daggers and throwing knives.</Description>
+         <Icon>VistaniKnifeTrainingIV</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniKnifeTrainingIII</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Celerity</Name>
+         <InternalName>Celerity</InternalName>
+         <Description>You gain +5% Doublestrike and Doubleshot.</Description>
+         <Icon>VistaniCelerity</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Mist Stalker IV</Name>
+         <InternalName>MistStalkerIV</InternalName>
+         <Description>You gain immunity to Energy Drain.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Description>
+         <Icon>MistStalkerIV</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>MistStalkerIII</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Level Drain</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Double Daggers</Name>
+         <InternalName>DoubleDaggers</InternalName>
+         <Description>Choose one</Description>
+         <Icon>DoubleDaggers</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Single Dagger</Name>
+               <Description>When fighting single weapon style with a dagger: +20 Melee Power </Description>
+               <Icon>SingleDagger</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Single Weapon Fighting</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>MeleePower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">20</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Single Weapon Fighting</Item>
+                     </Requirement>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Dagger</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Double Daggers</Name>
+               <Description>When fighting with a dagger in each hand: +20% stacking chance to make
+off-hand attacks when dual wielding weapons.</Description>
+               <Icon>DoubleDaggers</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>OffHandAttackBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">20</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>WeaponTypesEquipped</Type>
+                        <Item>Dagger</Item>
+                        <Item>Dagger</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Gifted II</Name>
+         <InternalName>GiftedII</InternalName>
+         <Description>Choose an ability of your choice.</Description>
+         <Icon>Gifted</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Intelligence</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Charisma</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Vistani: Vistani Knife Training V</Name>
+         <InternalName>VistaniKnifeTrainingV</InternalName>
+         <Description>You gain +3 to hit and damage with daggers and throwing knives.</Description>
+         <Icon>VistaniKnifeTrainingV</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>VistaniKnifeTrainingIV</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Throw or Hold the Grudge</Name>
+         <InternalName>WhirlingBlades</InternalName>
+         <Description>Gain a powerful throw ability or increase your hit points by holding a grudge.</Description>
+         <Icon>WhirlingBlades</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Grudge Bearer</Name>
+               <Description>You gain a +25% Competence bonus to Maximum Hitpoints</Description>
+               <Icon>GrudgeBearer</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>Hitpoints</Type>
+                    <Bonus>Competence</Bonus>
+                   <AType>Simple</AType>
+                    <Amount size="1">25</Amount>
+                    <Percent/>
+                    <ApplyAsItemEffect/>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Whirling Blades</Name>
+               <Description>Requires throwing knife. Missile Attack: +5[W] damage.
+Your throwing knife gains 100 doubleshot for 15 seconds. Cooldown one minute.
+(Shares cooldown with 10K Stars.)</Description>
+               <Icon>WhirlingBlades</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Mist Stalker V</Name>
+         <InternalName>MistStalkerV</InternalName>
+         <Description>Activate to gain +20% Dodge and Maximum Dodge, +30 PRR, and +30 MRR for 20 seconds.
+Cooldown: 60 seconds.</Description>
+         <Icon>MistStalkerV</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>MistStalkerIV</Item>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Vistani: Mist Stalker</Name>
+            <Icon>MistStalkerV</Icon>
+            <Description>Activate to gain +20% Dodge and Maximum Dodge, +30 PRR, and +30 MRR for 20 seconds.
+Cooldown: 60 seconds.</Description>
+         </Stance>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mist Stalker</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">30</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mist Stalker</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Blessed Blades</Name>
+         <InternalName>VistaniBlessedBlades</InternalName>
+         <Description>You gain both of the following:
+Blessed Blades: Requires dagger. Melee attack. +5[W] damage, plus one stack of Blood of Vengeance.
+   Your equipped daggers gain a +10 Enhancement bonus for 10 seconds.
+   They also gain Silver, Good, and Ghost Touch. 10 second cooldown. 
+Blessed Knives: Requires throwing knife. Missile attack. +5[W] damage, plus one stack of Blood of Vengeance.
+   Your throwing knife gains a +10 Enhancement bonus for 10 seconds.
+   It also gains Silver, Good, and Ghost touch. 10 second cooldown.</Description>
+         <Icon>VistaniBlessedBlades</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Vistani: Vendetta</Name>
+         <InternalName>Vendetta</InternalName>
+         <Description>Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
+multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second cooldown.</Description>
+         <Icon>Vendetta</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Vendetta</Name>
+            <Icon>Vendetta</Icon>
+            <Description>Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
+multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second cooldown.</Description>
+         </Stance>
+         <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Unique</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Vendetta</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Dagger</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

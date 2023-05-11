@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Tabaxi Trailblazer</Name>
+    <Version>1</Version>
+    <Icon>TabaxiTrailblazer</Icon>
+    <Background>HumanBackground</Background>
+    <Requirements>
+      <Requirement>
+        <Type>Race</Type>
+        <Item>Tabaxi Trailblazer</Item>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree/>
+    <!--tree Core items-->
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Instinct I</Name>
+      <InternalName>TabTrailCore1</InternalName>
+         <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor.
+You gain Dexterity to Hit with Quarterstaff, Dagger, Handaxe, Handwraps, Kama,
+Light Hammer, Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while
+Unarmed or in a Druid animal form.</Description>
+      <Icon>TabInstinct</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>DodgeBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+       </Effect>
+       <Effect>
+          <Type>MaxDexBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Requirements>
+             <Requirement>
+                <Type>Stance</Type>
+                <Item>Light Armor</Item>
+             </Requirement>
+          </Requirements>
+       </Effect>
+       <Effect>
+          <Type>Weapon_AttackAbility</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>Dexterity</Item>
+          <Item>Dagger</Item>
+          <Item>Hand Axe</Item>
+          <Item>Handwraps</Item>
+          <Item>Kama</Item>
+          <Item>Light Hammer</Item>
+          <Item>Light Mace</Item>
+          <Item>Light Pick</Item>
+          <Item>Quarterstaff</Item>
+          <Item>Rapier</Item>
+          <Item>Shortsword</Item>
+          <Item>Sickle</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Ability I</Name>
+      <InternalName>TabTrailCore2</InternalName>
+      <Description>+1 Dexterity or Wisdom</Description>
+      <Icon>DexWis</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabTrailCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Wisdom</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Instinct II</Name>
+      <InternalName>TabTrailCore3</InternalName>
+      <Description>+1% Dodge, +2% Dodge Bypass</Description>
+      <Icon>TabInstinct</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>2</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>7</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabTrailCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+      <Effect>
+        <Type>DodgeBypass</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">2</Amount>
+        <AType>Simple</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Ability II</Name>
+      <InternalName>TabTrailCore4</InternalName>
+      <Description>+1 Dexterity or Wisdom</Description>
+      <Icon>DexWis</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>3</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>11</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabTrailCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Wisdom</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Instinct III</Name>
+      <InternalName>TabTrailCore5</InternalName>
+      <Description>+1% Dodge and Dodge Cap, +2% Dodge Bypass</Description>
+      <Icon>TabInstinct</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>4</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>16</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabTrailCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+         <Type>DodgeCapBonus</Type>
+         <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+      <Effect>
+        <Type>DodgeBypass</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">2</Amount>
+        <AType>Simple</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Sharp Claws</Name>
+      <InternalName>TabTrailSharpClaws</InternalName>
+      <Description>+[1/2/3] to Attack</Description>
+      <Icon>TabSharpClaws</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">1 2 3</Amount>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Low Blows</Name>
+      <InternalName>TabTrailLowBlows</InternalName>
+      <Description>+[1/2/3] Trip DCs. Doubled if you have a Quarterstaff equipped.</Description>
+      <Icon>TabLowBlows</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Trip</Item>
+        <Amount size="3">1 2 3</Amount>
+        <AType>Stacks</AType>
+      </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Trip</Item>
+        <Amount size="3">1 2 3</Amount>
+         <AType>Stacks</AType>
+        <Requirements>
+          <Requirement>
+            <Type>WeaponTypesEquipped</Type>
+            <Item>Quarterstaff</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Acrobatic</Name>
+      <InternalName>TabTrailAcrobatic</InternalName>
+      <Description>+[1/2/3] Balance, Jump, and Tumble. +[2/4/6] Armor Class while Tumbling.</Description>
+      <Icon>TabAcrobatic</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Balance</Item>
+        <Item>Jump</Item>
+        <Item>Tumble</Item>
+        <AType>Stacks</AType>
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">2 4 6</Amount>
+        <AType>Stacks</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tumbling</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Land on Your Feet</Name>
+      <InternalName>TabTrailLandOnYouFeet</InternalName>
+      <Description>You don't take falling damage.</Description>
+      <Icon>TabLandOnYourFeet</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Falling Damage</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Sneaky Strikes I</Name>
+      <InternalName>TabTrailSneakyStrikesI</InternalName>
+      <Description>+1 Sneak Attack Die.</Description>
+      <Icon>TabSneakyStrikes</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2 Enhancements-->
+    <EnhancementTreeItem>
+         <Name>Tabaxi Trailblazer: Staff Deflection</Name>
+         <InternalName>TabTrailStaffDeflection</InternalName>
+         <Description>Staff Deflection: While holding a Quarterstaff, when Deflect Arrows triggers
+you gain a +10% Action Boost bonus to Doublestrike for 6 seconds.</Description>
+         <Icon>TabStaffDeflection</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Wayfinder's Weapons</Name>
+      <InternalName>TabTrailWayfindersWeapons</InternalName>
+      <Description>Wooden Weapons you are wielding are immune to damage.</Description>
+      <Icon>TabWayfindersWeapons</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: High Places</Name>
+      <InternalName>TabTrailHighPlaces</InternalName>
+      <Description>After falling for at least 1.5 seconds, when you land you gain +2 Critical
+Hit Confirmation, +2 Critical Hit Damage, and +25% Armor Piercing for 20 seconds.</Description>
+      <Icon>TabHighPlaces</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Honed reflexes</Name>
+      <InternalName>TabTrailHonedReflexes</InternalName>
+      <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds.</Description>
+      <Icon>TabHonedReflexes</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+       <Requirements>
+          <Requirement>
+             <Type>Exclusive</Type>
+             <Item>TabTrailHonedReflexes</Item>
+             <Item>Deflect Arrows</Item>
+          </Requirement>
+       </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>TabTrailHonedReflexes</Item>
+          <Item>Deflect Arrows</Item>
+       </Effect>
+       <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Deflect Arrows</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Slip Out of Danger</Name>
+      <InternalName>TabTrailSlipOutOfDanger</InternalName>
+      <Description>+[2/4/6] Saves vs. Traps.
+Rank 3: You gain +1 to Reflex Saves.</Description>
+      <Icon>TabSlipOutOfDanger</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">2 4 6</Amount>
+        <Item>Traps</Item>
+        <AType>Stacks</AType>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <Item>Reflex</Item>
+        <AType>Stacks</AType>
+        <Rank>3</Rank>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 3 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Attune</Name>
+      <InternalName>TabTrailAttune</InternalName>
+      <Description>+1 Ki Regeneration on melee attacks, +1 Passive Ki Regeneration</Description>
+      <Icon>TabAttune</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Effect>
+        <Type>KiPassive</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+      <Effect>
+        <Type>KiHit</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Great Weapon Aptitude</Name>
+      <InternalName>TabTrailGreatWeaponAptitude</InternalName>
+      <Description>+[5/10/20]% Strikethrough</Description>
+      <Icon>TabGreatWeaponAptitude</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+         <RequiresOneOf>
+           <Requirement>
+             <Type>Feat</Type>
+             <Item>Two Handed Fighting</Item>
+           </Requirement>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Natural Fighting</Item>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>Strikethrough</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">5 10 20</Amount>
+         <AType>Stacks</AType>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Two Handed Fighting</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Bastard Sword</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Dwarven Axe</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+         <Name>Tabaxi Trailblazer: Improved Instincts</Name>
+         <InternalName>TabTrailStealthy</InternalName>
+         <Description>You gain Dexterity to Damage with Quarterstaff, Dagger, Handaxe, Handwraps,
+Kama, Light Hammer, Light Mace, Light Pick, Rapier, Short Sword, Sickle, or
+while Unarmed or in a Druid animal form.</Description>
+         <Icon>TabStealthy</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+       <Effect>
+          <Type>Weapon_DamageAbility</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>Dexterity</Item>
+          <Item>Dagger</Item>
+          <Item>Hand Axe</Item>
+          <Item>Handwraps</Item>
+          <Item>Kama</Item>
+          <Item>Light Hammer</Item>
+          <Item>Light Mace</Item>
+          <Item>Light Pick</Item>
+          <Item>Quarterstaff</Item>
+          <Item>Rapier</Item>
+          <Item>Shortsword</Item>
+          <Item>Sickle</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Focused Agility</Name>
+      <InternalName>TabTrailFocusedAgility</InternalName>
+      <Description>Your Feline Agility now only requires you to stand still for 3 seconds,
+and lasts for 9 seconds.</Description>
+      <Icon>TabFocusedAgility</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi Trailblazer: Sneaky Strikes II</Name>
+      <InternalName>TabTrailSneakyStrikesII</InternalName>
+      <Description>+1 Sneak Attack Die.</Description>
+      <Icon>TabSneakyStrikes</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 4 Enhancements-->
+    <EnhancementTreeItem>
+      <InternalName>TabTrailWideSweep</InternalName>
+      <Name>Tabaxi Trailblazer: Wide Sweep</Name>
+      <Description>Quarterstaff Melee Attack: Swing wide, dealing +[1/3/5][W] to all nearby enemies.
+Enemies who are hit must make a Balance check (DC 14 + Max(DEX,WIS) Mod + Trip bonuses)
+or be Tripped for 20. Shares cooldown with Great Cleave.</Description>
+      <Icon>TabTrailWideSweep</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>15</MinSpent>
+      <Clickie/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+         <InternalName>TabTrailSpringingPounce</InternalName>
+         <Name>Tabaxi Trailblazer: Springing Pounce</Name>
+         <Description>You gain the Spring Attack feat. When you use it while holding a Quarterstaff,
+you gain Feline Agility and deal bludgeoning damage equal to your Jump score to
+all enemies Spring Attack hits. This damage scales with 200% Melee Power.</Description>
+         <Icon>TabTrailSpringingPounce</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+       <Effect>
+          <Type>GrantFeat</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>Spring Attack</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+       <InternalName>TabTrailCatsEye</InternalName>
+       <Name>Tabaxi Trailblazer: Cat's Eye</Name>
+       <Description>You have True Seeing, which cannot be dispelled from you.</Description>
+       <Icon>TabTrailCatsEye</Icon>
+       <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+       <Effect>
+          <Type>TrueSeeing</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Item>All</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+       <InternalName>TabTrailFastSprinter</InternalName>
+       <Name>Tabaxi Trailblazer: Fast Sprinter</Name>
+       <Description>Your Feline Agility now grants 30% Action Boost Bonus to Movement Speed and lasts for 18 seconds.</Description>
+       <Icon>TabTrailFastSprinter</Icon>
+       <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+       <Requirements>
+          <Requirement>
+             <Type>Enhancement</Type>
+             <Item>TabTrailFocusedAgility</Item>
+          </Requirement>
+       </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>TabTrailEscapeArtist</InternalName>
+      <Name>Tabaxi Trailblazer: Escape Artist</Name>
+      <Description>When you tumble, you gain 25% Incorporeality and 25% Concealment for 20 seconds.
+This can only trigger once per minute.</Description>
+      <Icon>TabTrailEscapeArtist</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Effect>
+        <Type>Concealment</Type>
+        <Type>Incorporeality</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tumbling</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

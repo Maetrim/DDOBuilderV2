@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Horizon Walker</Name>
+      <Version>1</Version>
+      <Requirements>
+         <RequiresOneOf>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Horizon Walker Tree</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Gate Keepers Favor Rewards</Item>
+               <Value>3</Value>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <IsUniversalTree/>
+      <Icon>HorizonWalker</Icon>
+      <Background>Universal</Background>
+      <!--tree core items-->
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Mark Target</Name>
+         <InternalName>HWCore1</InternalName>
+         <Description>+1 to Spot and Listen. You gain the ability to Mark one target at a time.
+Targets you Mark have -2 AC. (Debuffs to Marked Targets from these Core abilites
+do not stack with other players' Marks - Only the highest set of debuffs will apply.)
+Cooldown: 4 Seconds.</Description>
+         <Icon>HWMarkTarget</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Spot</Item>
+            <Item>Listen</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Improved Marking</Name>
+         <InternalName>HWCore2</InternalName>
+         <Description>Your Marked Targets get -10% Fortification.
+The AC penalty your Marked Targets take increases to -4.
+You also gain +3 to Maximum Dexterity Bonus while wearing Light armor.</Description>
+         <Icon>HWImprovedMarking</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>HWCore1</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Light Armor</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Greater Marking</Name>
+         <InternalName>HWCore3</InternalName>
+         <Description>Your Marked Targets get -2 to Saving Throws.
+Their Fortification penalty increases to -20%, and AC penalty increases to -6.
+
+In addition you gain Haste SLA: 0 SP cost, 2 minute cooldown</Description>
+         <Icon>HWHaste</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>6</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>HWCore2</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Haste</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>None</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Dauntless Marking</Name>
+         <InternalName>HWCore4</InternalName>
+         <Description>Your Marked Target's Saving Throw penalty increases to -4, Fortification penalty 
+increases to -25%, and AC penalty increases to -10.
+You gain +3 Maximum Dodge.</Description>
+         <Icon>HWDauntlessMarking</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>HWCore3</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Dimension Door</Name>
+         <InternalName>HWCore5</InternalName>
+         <Description>Once per rest, you can cast Dimension Door.
+Activation Cost: 0 Spell Points.
+Cooldown: 10 Minutes.
+Passive: Your Marked Targets get -20% to movement speed.</Description>
+         <Icon>HWDimensionDoor</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>18</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>HWCore4</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dimension Door</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>None</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Horizon</Name>
+         <InternalName>HWCore6</InternalName>
+         <Description>+2 to all Ability Scores. You gain +2 Maximum Manyshot charges.
+You gain Favored Enemy: Marked Target: You always consider Marked Targets to be
+Favored Enemies, and deal extra damage against them.
+(Note: If your Marked target is also a Favored Enemy type you have from another
+Feat, you get Favored Enemy bonuses twice.)</Description>
+         <Icon>HWHorizon</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>20</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>HWCore5</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Eye for Accuracy</Name>
+         <InternalName>HWEyeForAccuracy</InternalName>
+         <Description>+[1/2/3] to Attack with Weapons.</Description>
+         <Icon>HWEyeForAccuracy</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Opening Shot</Name>
+         <InternalName>HWOpeningShot</InternalName>
+         <Description>+[1/2/3][W] Bow Attack. Adds [1/2/3]d6 Force damage on hit.
+This damage scales with Ranged Power.
+Cooldown: 6 seconds.</Description>
+         <Icon>HWOpeningShot</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Planar Dodge</Name>
+         <InternalName>HWPlanarDodge</InternalName>
+         <Description>+[1/2/3]% Dodge.</Description>
+         <Icon>HWPlanarDodge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Skills</Name>
+         <InternalName>HWSkills</InternalName>
+         <Description>+[1/2/3] to Tumble, Spot and Listen.</Description>
+         <Icon>HWSkills</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Spot</Item>
+            <Item>Listen</Item>
+            <Item>Tumble</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Conjure Arrow</Name>
+         <InternalName>HWConjureArrow</InternalName>
+         <Description>Activate to create a stack of returning +1 arrows.
+These arrows are destroyed when you log out for an extended period of time.
+
+Antirequisite: This enhancement cannot be taken at the same time as Conjure
+Arrows in other trees.</Description>
+         <Icon>HWConjureArrow</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>HWConjureArrow</Item>
+               <Item>Conjure Arrows</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>HWConjureArrow</Item>
+            <Item>Conjure Arrows</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Walker Training I</Name>
+         <InternalName>HWWalkerTrainingI</InternalName>
+         <Description>+1 to Attack and Damage with Longbows and Shortbows.</Description>
+         <Icon>HWWalkerTrainingI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Longbow</Item>
+            <Item>Shortbow</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Take the Opening</Name>
+         <InternalName>HWTakeTheOpening</InternalName>
+         <Description>If Opening Shot hits a creature that is at 100% of their hitpoints, it deals
+an extra 1d10 Force damage per Character level. This damage scales with 200%
+Ranged Power. Additionally, your Force damage from Opening Shot is now applied
+twice when used against Marked Targets.</Description>
+         <Icon>HWTakeTheOpening</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>HWOpeningShot</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Protection from Evil and Good</Name>
+         <InternalName>HWProtectionFromEvilAndGood</InternalName>
+         <Description>Rank 1: You permanently gain +2 deflection bonus to Armor Class and a +2 resistance
+bonus to saves versus attacks from Evil creatures.
+Rank 2: You permanently gain this for Good creatures as well.
+Rank 3 You are also warded from magical mental control and compulsions from both
+Evil and Good creatures.</Description>
+         <Icon>HWProtectionFromEvilAndGood</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="3">1 1 2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Skilled Navigator</Name>
+         <InternalName>HWSkilledNavigator</InternalName>
+         <Description>+[2/4/6] to Saving Throws vs. Traps</Description>
+         <Icon>HWSkilledNavigator</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+            <Item>Traps</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Favored Enemy: Evil Outsider</Name>
+         <InternalName>HWFavoredEnemy</InternalName>
+         <Description>Gain the Feat: Favored Enemy: Evil Outsider</Description>
+         <Icon>HWFavoredEnemy</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+             <AType>NotNeeded</AType>
+            <Item>Favored Enemy: Evil Outsider</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: No Step Missed</Name>
+         <InternalName>HWNoStepMissed</InternalName>
+         <Description>Battle Trance. Cooldown: 20 Seconds. Antirequisite: Other Trances. Charges: 5.
+Expend 1 Charge: You gain an Insight bonus to damage and the DC of tactical feats
+equal to 1/2 of your Dexterity modifier for [30/60/120] seconds.
+On a Vorpal weapon hit, have a chance to restore 1 Charge.</Description>
+         <Icon>HWNoStepMissed</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Stance>
+            <Name>No Missed Step</Name>
+            <Icon>ActiveStub</Icon>
+            <Description>Trance: You gain an Insight bonus to damage and the DC of tactical feats
+equal to 1/2 of your Dexterity modifier for [30/60/120] seconds.</Description>
+         </Stance>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+               <Requirement>
+                  <Type>Exclusive</Type>
+                  <Item>HWNoStepMissed</Item>
+                  <Item>Battle Trance</Item>
+               </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>HWNoStepMissed</Item>
+            <Item>Battle Trance</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Horizon Walker: No Step Missed (Dex Mod / 2)</DisplayName>
+            <Type>TacticalDC</Type>
+            <Bonus>Insightful</Bonus>
+            <AType>HalfAbilityMod</AType>
+            <StackSource>Dexterity</StackSource>
+            <Item>Trip</Item>
+            <Item>Sunder</Item>
+            <Item>Stun</Item>
+            <Item>General</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>No Missed Step</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Horizon Walker: No Step Missed (Dex Mod / 2)</DisplayName>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Insightful</Bonus>
+            <Item>All</Item>
+            <AType>HalfAbilityMod</AType>
+            <StackSource>Dexterity</StackSource>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>No Missed Step</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Two Places At Once</Name>
+         <InternalName>HWTwoPlacesAtOnce</InternalName>
+         <Description>When you use Manyshot or Scattershot, you gain Displacement for 12 seconds.</Description>
+         <Icon>HWTwoPlacesAtOnce</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Hunter's Focus</Name>
+         <InternalName>HWHuntersFocus</InternalName>
+         <Description>If Archer's Focus is enabled, remaining stationary for 6 seconds grants
+you 1d4+4 stacks of Archer's Focus. This can trigger once per time you remain
+stationary.</Description>
+         <Icon>HWHuntersFocus</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Tenacious Hunter</Name>
+         <InternalName>HWTenaciousHunter</InternalName>
+         <Description>Against Extraplanar creatures and Marked Targets (regardless of whether or not
+they are extraplanar), you deal an additional +[2/4/6] damage with Longbows and
+Shortbows</Description>
+         <Icon>HWTenaciousHunter</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+            <Item>Longbow</Item>
+            <Item>Shortbow</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Marked Target</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Extraplanar</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Ability I</Name>
+         <InternalName>HWAbilityI</InternalName>
+         <Description>Choose between Dexterity or Wisdom</Description>
+         <Icon>DexWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Walker Training II</Name>
+         <InternalName>HWWalkerTrainingII</InternalName>
+         <Description>+2 to Attack and Damage with Longbows and Shortbows.</Description>
+         <Icon>HWWalkerTrainingII</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Longbow</Item>
+            <Item>Shortbow</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Corner the Quarry</Name>
+         <InternalName>HWCornerTheQuarry</InternalName>
+         <Description>+[2/3/4][W] Bow Attack. If this is used against your Marked Target, they must
+make a Reflex Save (d20+your Listen skill) or be immobilized for 12 seconds.
+On a Vorpal hit, the target is also Stunned with no save (20sec cooldown).
+On bosses, this does not immobilize or stun.</Description>
+         <Icon>HWCornerTheQuarry</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Walker's Guidance</Name>
+         <InternalName>HWWalkersGuidance</InternalName>
+         <Description>You and targeted ally gain Evasion, Improved Evasion, and +5 to Saving Throws vs.
+Traps for 12 seconds. 60 second cooldown.</Description>
+         <Icon>HWWalkersGuidance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Scattershot</Name>
+         <InternalName>HWScattershot</InternalName>
+         <Description>Ranged Bow Attack: Expend one charge to randomly select up to three different
+enemies at close range and shoot one arrow at each of them. Each of these shots
+can Doubleshot and have +1 Critical Threat Range and Multiplier. 2 second cooldown.
+This feat gives 3 charges, you regain 1 charge every 12 seconds you don't use
+Scattershot or Manyshot. (Requires a Longbow or Shortbow to use).
+Shares Charges and a Cooldown with Manyshot.</Description>
+         <Icon>HWScattershot</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Ability II</Name>
+         <InternalName>HWAbilityII</InternalName>
+         <Description>Choose between Dexterity or Wisdom</Description>
+         <Icon>DexWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Feywild Attunement</Name>
+         <InternalName>HWFeywildAttunement</InternalName>
+         <Description>+1 Competence Bonus to Threat Range and Multiplier with Longbows and Shortbows.
+You have Base Attack Bonus equal to your Character Level while using Longbows
+and Shortbows. </Description>
+         <Icon>HWFeywildAttunement</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Longbow</Item>
+            <Item>Shortbow</Item>
+         </Effect>
+         <Effect>
+            <Type>OverrideBAB</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <AType>Simple</AType>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Longbow</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Shortbow</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Banish the Quarry</Name>
+         <InternalName>HWBanishTheQuarry</InternalName>
+         <Description>If Corner the Quarry is used against a Marked Target, they take an additional
+1d10 Force Damage per Character Level. This damage scales with 200% Ranged Power.
+If the creature is Extraplanar, it must make a Will Save (d20+your Listen skill)
+or be Banished. (Bosses cannot be banished).</Description>
+         <Icon>HWBanishTheQuarry</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>HWCornerTheQuarry</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Misty Step</Name>
+         <InternalName>HWMistyStep</InternalName>
+         <Description>Rush forward. You have +5 to Reflex Saves and 20% stacking incorporeality while Stepping.
+(Shares a cooldown with other abundant steps). 12 second cooldown.
+Additionally, when you tumble or use Misty Step, you gain Ranged Power equal to
+your Character Level for 12 seconds. 12 second cooldown.</Description>
+         <Icon>HWMistyStep</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Misty Step</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>None</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Powershot</Name>
+         <InternalName>HWPowershot</InternalName>
+         <Description>Whenever you Critically Hit an enemy with Manyshot or Scattershot, that enemy
+takes 1d10 Force Damage per Character Level that scales with 200% Ranged Power.</Description>
+         <Icon>HWPowershot</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Horizon Walker: Improved Archer's Focus</Name>
+         <InternalName>HWImprovedArchersFocus</InternalName>
+         <Description>Your Archer's Focus stance can now stack up to 25 times instead of 15.
+Passive: +10% Doubleshot.</Description>
+         <Icon>HWImprovedArchersFocus</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Tabaxi</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Race</Type>
+        <Item>Tabaxi</Item>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree/>
+    <Icon>Tabaxi</Icon>
+    <Background>HumanBackground</Background>
+    <!--tree Core items-->
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Nimble Cat I</Name>
+      <InternalName>TabCore1</InternalName>
+      <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor</Description>
+      <Icon>TabNimbleCat</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+      <Effect>
+        <Type>MaxDexBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Ability I</Name>
+      <InternalName>TabCore2</InternalName>
+      <Description>+1 Dexterity or Charisma</Description>
+      <Icon>DexCha</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>TabaxI: Nimble Cat II</Name>
+      <InternalName>TabCore3</InternalName>
+      <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor</Description>
+      <Icon>TabNimbleCat</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>2</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>7</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+      <Effect>
+        <Type>MaxDexBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Ability II</Name>
+      <InternalName>TabCore4</InternalName>
+      <Description>+1 Dexterity or Charisma</Description>
+      <Icon>DexCha</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>3</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>11</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+            <AType>Simple</AType>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Nimble Cat III</Name>
+      <InternalName>TabCore5</InternalName>
+      <Description>+1% Dodge and Dodge Cap, +1 Maximum Dexterity Bonus in Light Armor</Description>
+      <Icon>TabNimbleCat</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>4</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>16</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+         <Type>DodgeCapBonus</Type>
+         <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+      <Effect>
+        <Type>MaxDexBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1 Enhancements-->
+    <EnhancementTreeItem>
+       <Name>Tabaxi: Sharp Claws</Name>
+       <InternalName>TabSharpClaws</InternalName>
+       <Description>+[1/2/3] to Attack</Description>
+       <Icon>TabSharpClaws</Icon>
+       <XPosition>0</XPosition>
+       <YPosition>1</YPosition>
+       <CostPerRank size="1">1</CostPerRank>
+       <Ranks>3</Ranks>
+       <MinSpent>1</MinSpent>
+      <ArrowUp/>
+       <Effect>
+          <Type>Weapon_AttackBonus</Type>
+          <Type>Weapon_AttackBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Amount size="3">1 2 3</Amount>
+          <AType>Stacks</AType>
+          <Item>All</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+         <Name>Tabaxi: Cat Scratch</Name>
+         <InternalName>TabCatScratch</InternalName>
+         <Description>Active: +2[W] Melee Attack: Strike all nearby foes in front of you.
+6 second cooldown.</Description>
+         <Icon>TabCatScratch</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="3">1 1 1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+       <Clickie/>
+       <ArrowUp/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Acrobatic</Name>
+      <InternalName>TabAcrobatic</InternalName>
+      <Description>+[1/2/3] Balance, Jump, and Tumble. +[2/4/6] Armor Class while Tumbling.</Description>
+      <Icon>TabAcrobatic</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="3">1 1 1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">1 2 3</Amount>
+        <AType>Stacks</AType>
+        <Item>Balance</Item>
+        <Item>Jump</Item>
+        <Item>Tumble</Item>
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">2 4 6</Amount>
+        <AType>Stacks</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tumbling</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Land on Your Feet</Name>
+      <InternalName>TabLandOnYouFeet</InternalName>
+      <Description>You don't take falling damage.</Description>
+      <Icon>TabLandOnYourFeet</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Falling Damage</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Sneaky Strikes I</Name>
+      <InternalName>TabSneakyStrikesI</InternalName>
+      <Description>+1 Sneak Attack Die.</Description>
+      <Icon>TabSneakyStrikes</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2 Enhancements-->
+     <EnhancementTreeItem>
+        <Name>Tabaxi: Surprise Claws</Name>
+        <InternalName>TabSurpriseClaws</InternalName>
+        <Description>+[1/2/3] to Attack while Flanking.</Description>
+        <Icon>TabSurpriseClaws</Icon>
+        <XPosition>0</XPosition>
+        <YPosition>2</YPosition>
+        <CostPerRank size="3">1 1 1</CostPerRank>
+        <Ranks>3</Ranks>
+        <MinSpent>5</MinSpent>
+        <Effect>
+           <Type>Weapon_AttackBonus</Type>
+           <Type>Weapon_AttackBonusCritical</Type>
+           <Bonus>Enhancement</Bonus>
+           <Amount size="3">1 2 3</Amount>
+           <AType>Stacks</AType>
+           <Requirements>
+              <Requirement>
+                 <Type>Stance</Type>
+                 <Item>Flanking</Item>
+              </Requirement>
+           </Requirements>
+           <Item>All</Item>
+        </Effect>
+     </EnhancementTreeItem>
+     <EnhancementTreeItem>
+      <Name>Tabaxi: Hunt Down</Name>
+      <InternalName>TabHuntDown</InternalName>
+      <Description>Your Cat Scratch now Hamstrings opponents for 3 seconds, reducing their
+movement rate by 50%. Some creatures are immune to the Hamstring effect.</Description>
+      <Icon>TabHuntDown</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabCatScratch</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: High Places</Name>
+      <InternalName>TabHighPlaces</InternalName>
+      <Description>After falling for at least 1.5 seconds, when you land you gain +2 Critical
+Hit Confirmation, +2 Critical Hit Damage, and +25% Armor Piercing for 20 seconds.</Description>
+      <Icon>TabHighPlaces</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Honed reflexes</Name>
+      <InternalName>TabHonedReflexes</InternalName>
+      <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds.</Description>
+      <Icon>TabHonedReflexes</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+       <Requirements>
+       <Requirement>
+          <Type>Exclusive</Type>
+          <Item>TabHonedReflexes</Item>
+          <Item>Deflect Arrows</Item>
+       </Requirement>
+       </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>TabHonedReflexes</Item>
+          <Item>Deflect Arrows</Item>
+       </Effect>
+       <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Deflect Arrows</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Slip Out of Danger</Name>
+      <InternalName>TabSlipOutOfDanger</InternalName>
+      <Description>+[2/4/6] Saves vs. Traps.
+Rank 3: You gain +1 to Reflex Saves.</Description>
+      <Icon>TabSlipOutOfDanger</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="3">1 1 1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">2 4 6</Amount>
+        <Item>Traps</Item>
+        <AType>Stacks</AType>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Rank>3</Rank>
+         <Amount size="1">1</Amount>
+         <Item>Reflex</Item>
+     </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 3 Enhancements-->
+     <EnhancementTreeItem>
+        <Name>Tabaxi: Corner</Name>
+        <InternalName>TabCorner</InternalName>
+        <Description>+[1/2/3]% Dodge Bypass</Description>
+        <Icon>TabCorner</Icon>
+        <XPosition>0</XPosition>
+        <YPosition>3</YPosition>
+        <CostPerRank size="3">1 1 1</CostPerRank>
+        <Ranks>3</Ranks>
+        <MinSpent>10</MinSpent>
+        <Effect>
+           <Type>DodgeBypass</Type>
+           <Bonus>Enhancement</Bonus>
+           <Amount size="3">1 2 3</Amount>
+           <AType>Stacks</AType>
+        </Effect>
+     </EnhancementTreeItem>
+     <EnhancementTreeItem>
+      <Name>Tabaxi: Sharp Claws II</Name>
+      <InternalName>TabSharpClawsII</InternalName>
+      <Description>+[1/2/3] to Melee Damage.</Description>
+      <Icon>TabSharpClawsII</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Effect>
+        <Type>WeaponDamageBonusDamageType</Type>
+        <Type>WeaponDamageBonusCriticalDamageType</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="3">1 2 3</Amount>
+        <AType>Stacks</AType>
+        <Item>Melee</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+         <Name>Tabaxi: Improved Nimble Cat</Name>
+         <InternalName>TabImprovedNimbleCat</InternalName>
+         <Description>You gain Dexterity to Damage with Dagger, Handaxe, Handwraps, Kama, Light Hammer,
+Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while Unarmed or in a
+Druid animal form.</Description>
+       <Icon>TabStealthy</Icon>
+       <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+       <Effect>
+          <Type>Weapon_DamageAbility</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>Dexterity</Item>
+          <Item>Dagger</Item>
+          <Item>Hand Axe</Item>
+          <Item>Handwraps</Item>
+          <Item>Kama</Item>
+          <Item>Light Hammer</Item>
+          <Item>Light Mace</Item>
+          <Item>Light Pick</Item>
+          <Item>Rapier</Item>
+          <Item>Shortsword</Item>
+          <Item>Sickle</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Focused Agility</Name>
+      <InternalName>TabFocusedAgility</InternalName>
+      <Description>Your Feline Agility now only requires you to stand still for 3 seconds,
+and lasts for 9 seconds.</Description>
+      <Icon>TabFocusedAgility</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Sneaky Strikes II</Name>
+      <InternalName>TabSneakyStrikesII</InternalName>
+      <Description>+1 Sneak Attack Die.</Description>
+      <Icon>TabSneakyStrikes</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">1</Amount>
+        <AType>Simple</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 4 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Lash Out</Name>
+      <InternalName>TabLashOut</InternalName>
+      <Description>Choose an ability.</Description>
+      <Icon>TabLashOut</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Lash Out</Name>
+          <Description>+5% Offhand Strike Chance if using a Light Melee Weapon or Rapier in both hands.</Description>
+          <Icon>TabLashOut</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">5</Amount>
+            <AType>Simple</AType>
+            <Requirements>
+              <RequiresOneOf>
+                <Requirement>
+                  <Type>WeaponClassMainHand</Type>
+                  <Item>Light</Item>
+                </Requirement>
+              </RequiresOneOf>
+              <RequiresOneOf>
+                <Requirement>
+                  <Type>WeaponTypesEquipped</Type>
+                  <Item>Rapier</Item>
+                  <Item>Rapier</Item>
+                </Requirement>
+              </RequiresOneOf>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Quick Paw</Name>
+          <Description>+3% Doubleshot with Thrown Weapons</Description>
+          <Icon>TabQuickPaw</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">3</Amount>
+             <AType>Simple</AType>
+             <Requirements>
+                <Requirement>
+                     <Type>WeaponClassMainHand</Type>
+                     <Item>Thrown</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Rapid Scratch</Name>
+          <Description>+3% Doublestrike while Single Weapon Fighting</Description>
+          <Icon>TabRapidScratch</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">3</Amount>
+            <AType>Simple</AType>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Single Weapon Fighting</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Vigor</Name>
+          <Description>You gain Vigor as a SLA</Description>
+          <Icon>TabVigor</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+           <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Vigor</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>None</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Deep Scratches</Name>
+      <InternalName>TabDeepScratches</InternalName>
+      <Description>Your Cat Scratch now deals Bane damage to targets it hits that are vulnerable
+to Bleed. This damage is equal to 1d8 damage +1 damage per Character Level,
+and scales with Melee Power.</Description>
+      <Icon>TabDeepScratches</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TabCatScratch</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+         <Name>Tabaxi: Nine Lives</Name>
+         <InternalName>TabNineLives</InternalName>
+         <Description>You gain Rogue's Defensive Roll feat.
+While below 20% HP, there's a chance equal to your Reflex save that attacks do
+half damage and have their effects negated.</Description>
+         <Icon>TabNineLives</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+       <Effect>
+          <Type>GrantFeat</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>Defensive Roll</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+         <Name>Tabaxi: Fast Sprinter</Name>
+         <InternalName>TabFastSprinter</InternalName>
+         <Description>Your Feline Agility now grants 30% Action Boost Bonus to Movement Speed
+and lasts for 18 seconds.</Description>
+         <Icon>TabFastSprinter</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+       <Requirements>
+          <Requirement>
+             <Type>Enhancement</Type>
+             <Item>TabFocusedAgility</Item>
+          </Requirement>
+       </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tabaxi: Lucky Cat</Name>
+      <InternalName>TabLuckyCat</InternalName>
+      <Description>You gain Evasion.</Description>
+      <Icon>TabLuckyCat</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Evasion</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

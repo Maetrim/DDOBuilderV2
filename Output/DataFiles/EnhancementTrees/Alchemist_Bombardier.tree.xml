@@ -1,0 +1,1823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Bombardier</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Alchemist</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Alchemist</Icon>
+    <Background>ArtificerBackground</Background>
+    <!--tree core items-->
+    <EnhancementTreeItem>
+      <Name>Bombardier: Alchemical Resistance</Name>
+      <InternalName>BomCore1</InternalName>
+      <Description>+2 Magical Resistance Rating</Description>
+      <Icon>BomAlchemicalResistance</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Arcane Oil</Name>
+      <InternalName>BomCore2</InternalName>
+      <Description>All equipped weapons are considered Spellcasting Implements.
+
+While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power.</Description>
+      <Icon>BomArcaneOil</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Fire</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Acid</Item>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Pyrite</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+       <Effect>
+          <Type>ImplementInYourHands</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Liquid Power I</Name>
+      <InternalName>BomCore3</InternalName>
+      <Description>Select an Element to specialize in.</Description>
+      <Icon>BomLiquidPowerI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Liquid Power: Acid</Name>
+          <Description>You gain +1 Caster Level with Acid Spells.
+
+While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+          <Icon>BomLiquidPowerAcid</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Acid</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Cold</Name>
+          <Description>You gain +1 Caster Level with Cold Spells.
+
+While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+          <Icon>BomLiquidPowerCold</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Cold</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Electric</Name>
+          <Description>You gain +1 Caster Level with Electric Spells.
+
+While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+          <Icon>BomLiquidPowerElectric</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Electric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Fire</Name>
+          <Description>You gain +1 Caster Level with Fire Spells.
+
+While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+          <Icon>BomLiquidPowerFire</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Fire</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Poison</Name>
+          <Description>You gain +1 Caster Level with Poison Spells.
+
+While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+          <Icon>BomLiquidPowerPoison</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Poison</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Fire</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Acid</Item>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Pyrite</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Liquid Power II</Name>
+      <InternalName>BomCore4</InternalName>
+      <Description>Select an Element to specialize in.</Description>
+      <Icon>BomLiquidPowerII</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Liquid Power: Acid</Name>
+          <Description>You gain +1 Caster Level with Acid Spells.
+
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+          <Icon>BomLiquidPowerAcidII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Acid</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Cold</Name>
+          <Description>You gain +1 Caster Level with Cold Spells.
+
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+          <Icon>BomLiquidPowerColdII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Cold</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Electric</Name>
+          <Description>You gain +1 Caster Level with Electric Spells.
+
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+          <Icon>BomLIquidPowerElectricII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Electric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Fire</Name>
+          <Description>You gain +1 Caster Level with Fire Spells.
+
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+          <Icon>BomLiquidPowerFireII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Fire</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Poison</Name>
+          <Description>You gain +1 Caster Level with Poison Spells.
+
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+          <Icon>BomLiquidPowerPoisonII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Poison</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Fire</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Acid</Item>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Pyrite</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Liquid Power III</Name>
+      <InternalName>BomCore5</InternalName>
+      <Description>Select an Element to specialize in.</Description>
+      <Icon>BomLiquidPowerIII</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>18</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Liquid Power: Acid</Name>
+          <Description>You gain +1 Caster Level with Acid Spells, and 1 extra Burning Ambition Dice.
+
+While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+          <Icon>BomLiquidPowerAcidIII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Acid</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Cold</Name>
+          <Description>You gain +1 Caster Level with Cold Spells, and 1 extra Burning Ambition Dice.
+
+While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+          <Icon>BomLiquidPowerColdIII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Cold</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Electric</Name>
+          <Description>You gain +1 Caster Level with Electric Spells, and 1 extra Burning Ambition Dice.
+
+While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+          <Icon>BomLiquidPowerElectricIII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Electric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Fire</Name>
+          <Description>You gain +1 Caster Level with Fire Spells, and 1 extra Burning Ambition Dice.
+
+While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+          <Icon>BomLiquidPowerFireIII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Fire</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Liquid Power: Poison</Name>
+          <Description>You gain +1 Caster Level with Poison Spells, and 1 extra Burning Ambition Dice.
+
+While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+          <Icon>BomLiquidPowerPoisonIII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Poison</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Conjuration</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Pyrite</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Multivial</Name>
+      <InternalName>BomCore6</InternalName>
+      <Description>Select an Element to specialize in.</Description>
+      <Icon>BomMultivial</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomCore5</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>SLA: Multivial of Acid</Name>
+          <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
+While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+
+SLA: Multivial of Acid
+Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
+Spell Point Cost: 15
+Cooldown 12 seconds</Description>
+          <Icon>BomMultivialAcid</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Multivial of Acid</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 15 -1</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Multivial of Flame</Name>
+          <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
+While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+
+SLA: Multivial of Flame
+Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
+Spell Point Cost: 15
+Cooldown 12 seconds</Description>
+          <Icon>BomMultivialFlame</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Multivial of Flame</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 15 -1</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Multivial of Frost</Name>
+          <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
+While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+
+SLA: Multivial of Frost
+Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
+Spell Point Cost: 15
+Cooldown 12 seconds</Description>
+          <Icon>BomMultivialFrost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Multivial of Frost</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 15 -1</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Multivial of Sparks</Name>
+          <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
+While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+
+SLA: Multivial of Sparks
+Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
+Spell Point Cost: 15
+Cooldown 12 seconds</Description>
+          <Icon>BomMultivialSparks</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Multivial of Sparks</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 15 -1</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Multivial of Poison</Name>
+          <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
+While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+
+SLA: Multivial of Poison
+Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
+Spell Point Cost: 15
+Cooldown 12 seconds</Description>
+          <Icon>BomMultivialPoison</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Multivial of Poison</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 15 -1</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Intelligence</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Conjuration</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Pyrite</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Bombardier: Spell Vial Selection</Name>
+      <InternalName>BomSpellVialSelection</InternalName>
+      <Description>Select an Element to specialize in.</Description>
+      <Icon>BomSpellvialSelection</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>SLA: Venom Vial</Name>
+          <Description>SLA: Vial of Venom
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 3 to 8 Poison damage per caster level, max caster level 10.
+This poison will leave the enemy Contaminated.
+
+DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20</Description>
+          <Icon>BomVenomVial</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Venom Vial</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 4 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Acid</Name>
+          <Description>SLA: Vial of Acid
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
+that deals 3 to 8 Acid damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfAcid</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Vial of Acid</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 4 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Flame</Name>
+          <Description>SLA: Vial of Flame
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of burning liquid, you throw a projectile at a single foe
+that deals 3 to 8 Fire damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfFlame</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Vial of Flame</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 4 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Frost</Name>
+          <Description>SLA: Vial of Frost
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
+that deals 3 to 8 Cold damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfFrost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Vial of Frost</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 4 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Sparks</Name>
+          <Description>SLA: Vial of Sparks
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of reactive material, you throw a projectile at a single foe
+that deals 3 to 8 Electric damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfSparks</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Vial of Sparks</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 4 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Arcane Knowledge</Name>
+      <InternalName>BomArcaneKnowledge</InternalName>
+      <Description>+[1/2/3] to Spellcraft and Use Magic Device</Description>
+      <Icon>BomArcaneKnowledge</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Spellcraft</Item>
+        <Item>Use Magic Device</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Magical Subtlety</Name>
+      <InternalName>BomMagicalSubtlety</InternalName>
+      <Description>-[20/40/60]% Threat with Spells</Description>
+      <Icon>BomMagicalSubtlety</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>1</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Exclusive</Type>
+            <Item>BomMagicalSubtlety</Item>
+            <Item>Magical Subtlety</Item>
+         </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>BomMagicalSubtlety</Item>
+          <Item>Magical Subtlety</Item>
+       </Effect>
+       <Effect>
+        <Type>ThreatBonusSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-20 -40 -60</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Spell Critical: Elemental and Poison I</Name>
+      <InternalName>BomSpellCriticalI</InternalName>
+      <Description>Your Acid, Cold, Electric, Fire, and Poison damage spells have an additional
+1% chance to critically hit.</Description>
+      <Icon>BomSpellCriticalI</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Poison</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Wand and Scroll Mastery</Name>
+      <InternalName>BomWandAndScrollMastery</InternalName>
+      <Description>+[25/50/75]% damage and healing from your wands, scrolls, and other items
+that cast spells, and +[1/3/6] to the save DCs of your offensive wands.</Description>
+      <Icon>BomWandAndScrollMastery</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>BomWandAndScrollMastery</Item>
+          <Item>Wand and Scroll Mastery</Item>
+        </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>BomWandAndScrollMastery</Item>
+          <Item>Wand and Scroll Mastery</Item>
+       </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Wands</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 3 6</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Bombardier: SLA: Rapid Condensation</Name>
+      <InternalName>BomRapidCondensation</InternalName>
+      <Description>SLA: Rapid Condensation
+Metamagic: Quicken, Accelerate
+Spell Point Cost: 4/3/2
+Cooldown 12/8/4 seconds
+Primer Element: Gildleaf
+
+Throw a bottle that explodes on impact, rapidly condensing water in the air
+with a magical reaction that forms a cloud of obscuring mist. This cloud
+obscures all friends within the area, granting them 20% Concealment.
+Fire spells will burn this chemical reaction out of the air, dispelling it.</Description>
+      <Icon>BomRapidCondensation</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Rapid Condensation</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 4 -1</Amount>
+        <Item>Alchemist</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Efficient Metamagics I</Name>
+      <InternalName>BomEfficientMetamagicI</InternalName>
+      <Description>Select a Metamagic Feat to enhance.</Description>
+      <Icon>BomEfficientMetamagicI</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BomEfficientMetamagicI</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BomEfficientMetamagicI</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BomEfficientMetamagicI</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BomEfficientMetamagicI</Item>
+              <Item>Efficient Maximize Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BomEfficientMetamagicI</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BomEfficientMetamagicI</Item>
+              <Item>Efficient Quicken Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Stone of the Savant</Name>
+      <InternalName>BomStoneOfTheSavant</InternalName>
+      <Description>Alchemist's Stone Toggle: While wielding an Orb in your off-hand,
+you gain +1 Magical Resistance Rating and Magical Resistance Rating Cap per
+Alchemist Level. You can only have one Alchemist's Stone Toggle active at a time.</Description>
+      <Icon>BomStoneOfTheSavant</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Stance>
+        <Name>Stone of the Savant</Name>
+        <Icon>VileStoneOfTheSubliminal</Icon>
+        <Description>While wielding an Orb in your off-hand, you gain +1 Magical Resistance
+Rating and Magical Resistance Rating Cap per Alchemist Level.</Description>
+        <Group>Alchemist's Stone</Group>
+      </Stance>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>ClassLevel</AType>
+        <Amount size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+        <StackSource>Alchemist</StackSource>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Stone of the Savant</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Orb</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MRRCap</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>ClassLevel</AType>
+        <Amount size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+        <StackSource>Alchemist</StackSource>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Stone of the Savant</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Orb</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Spell Critical: Elemental and Poison II</Name>
+      <InternalName>BomSpellCriticalII</InternalName>
+      <Description>Your Acid, Cold, Electric, Fire, and Poison damage spells have an additional
+1% chance to critically hit.</Description>
+      <Icon>BomSpellCriticalII</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomSpellCriticalI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Poison</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Elemental Defenses</Name>
+      <InternalName>BomElementalDefenses</InternalName>
+      <Description>When enemy spells deal elemental damage against you, there's a 25% chance you'll
+gain [10/20/30] temporary hit points for 30 seconds.
+This can trigger up to once every 12 seconds.
+
+(Elemental Damage includes Acid, Cold, Electric, Fire, Sonic.)</Description>
+      <Icon>BomElementalDefenses</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 3 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Bombardier: Efficient Metamagics II</Name>
+      <InternalName>BomEfficientMetamagicII</InternalName>
+      <Description>Select a second Metamagic Feat to enhance.</Description>
+      <Icon>BomEfficientMetamagicI</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomEfficientMetamagicI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points.</Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BomEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BomEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points.</Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BomEfficientMetamagicII</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BomEfficientMetamagicII</Item>
+              <Item>Efficient Maximize Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BomEfficientMetamagicII</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BomEfficientMetamagicII</Item>
+              <Item>Efficient Quicken Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Swift Ambition</Name>
+      <InternalName>BomSwiftAmbition</InternalName>
+      <Description>While your Reaction is Pyrite, you gain +1 Reflex Save, +1 for every 5 Alchemist levels you have.</Description>
+      <Icon>BomSwiftAmbition</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</Amount>
+        <AType>ClassLevel</AType>
+        <StackSource>Alchemist</StackSource>
+        <Item>Reflex</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Pyrite</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Spell Critical: Elemental and Poison III</Name>
+      <InternalName>BomSpellCriticalIII</InternalName>
+      <Description>Your Acid, Cold, Electric, Fire, and Poison damage spells have an additional
+1% chance to critically hit.</Description>
+      <Icon>BomSpellCriticalIII</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomSpellCriticalII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Poison</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Intelligence I</Name>
+      <InternalName>BomAbilityI</InternalName>
+      <Description>+1 Intelligence</Description>
+      <Icon>Intelligence</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Intelligence</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 4 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Bombardier: SLA: Smoke Bomb</Name>
+      <InternalName>BomSmokeBomb</InternalName>
+      <Description>SLA: Smoke Bomb
+Metamagic: Extend, Quicken, Eschew Materials
+Spell Point Cost: 25/20/15
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Throw a bottle beneath you  that explodes into a cloud of smoke and leaves
+you Invisible and Displaced for 12 seconds.</Description>
+      <Icon>BomSmokeBomb</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Smoke Bomb</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 25 -1</Amount>
+        <Item>Alchemist</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Efficient Heighten</Name>
+      <InternalName>BomEfficientHeighten</InternalName>
+      <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Point per heightened level.</Description>
+      <Icon>BomEfficientHeighten</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>BomEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomEfficientMetamagicII</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Heighten Spell</Item>
+        </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>BomEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+       </Effect>
+       <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">-1 -2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Heighten</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Burning Ambition</Name>
+      <InternalName>BomBurningAmbition</InternalName>
+      <Description>When your Reaction is Pyrite, your offensive Crimsonite and Gildleaf Alchemist
+spells will ignite you enemies magic, dealing additional damage. This damage
+determines its element based on the element of the spell cast.
+This ability begins at 1d4 damage, adding another 1d4 for each Burning Ambition
+die you get from other abilities. This damage scales with Spell Power.</Description>
+      <Icon>BomBurningAmbition</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Spell Critical: Elemental and Poison IV</Name>
+      <InternalName>BomSpellCriticalIV</InternalName>
+      <Description>Your Acid, Cold, Electric, Fire, and Poison damage spells have an additional
+1% chance to critically hit.</Description>
+      <Icon>BomSpellCriticalIV</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomSpellCriticalIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Poison</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Intelligence II</Name>
+      <InternalName>BomAbilityII</InternalName>
+      <Description>+1 Intelligence</Description>
+      <Icon>Intelligence</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomAbilityI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Intelligence</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 5 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Bombardier: Elemental Obliteration</Name>
+      <InternalName>BomElementalObliteration</InternalName>
+      <Description>Select an Element for an explosive spell.</Description>
+      <Icon>BomElementalObliteration</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>5</Value>
+        </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>SLA: Caustic Obliteration</Name>
+          <Description>SLA: Elemental Obliteration
+Metamagic: Empower, Maximize, Quicken, Heighten
+Spell Point Cost: 12
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Throw a vial that explodes with acid on impact, dealing 1d6+3 Acid damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+          <Icon>BomCausticObliteration</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Caustic Obliteration</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 12 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Fiery Obliteration</Name>
+          <Description>SLA: Elemental Obliteration
+Metamagic: Empower, Maximize, Quicken, Heighten
+Spell Point Cost: 12
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Throw a vial that explodes with fire on impact, dealing 1d6+3 Fire damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+          <Icon>BomFieryObliteration</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fiery Obliteration</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 12 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Frost Obliteration</Name>
+          <Description>SLA: Elemental Obliteration
+Metamagic: Empower, Maximize, Quicken, Heighten
+Spell Point Cost: 12
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Throw a vial that explodes with frost on impact, dealing 1d6+3 Cold damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+          <Icon>BomFrostObliteration</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Frost Obliteration</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 12 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Poison Obliteration</Name>
+          <Description>SLA: Elemental Obliteration
+Metamagic: Empower, Maximize, Quicken, Heighten
+Spell Point Cost: 12
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Throw a vial that explodes with poison on impact, dealing 1d6+3 Poison damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+          <Icon>BomPoisonObliteration</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Poison Obliteration</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 12 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Voltaic Obliteration</Name>
+          <Description>SLA: Elemental Obliteration
+Metamagic: Empower, Maximize, Quicken, Heighten
+Spell Point Cost: 12
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Throw a vial that explodes with electricity on impact, dealing 1d6+3 Electric
+damage per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+          <Icon>BomVoltaicObliteration</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Voltaic Obliteration</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 12 10</Amount>
+            <Item>Alchemist</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Augmentation</Name>
+      <InternalName>BomAugmentation</InternalName>
+      <Description>+2 Caster Levels with Crimsonite and Gildleaf spells.</Description>
+      <Icon>BomAugmentation</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Crimsonite</Item>
+        <Item>Gildleaf</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Inferno of Creation</Name>
+      <InternalName>BomInfernoOfCreation</InternalName>
+      <Description>While your Reaction is Pyrite, you gain +1 Burning Ambition die,
+and your harmful Crimsonite spells will apply a stack of Vulnerable to enemies
+that have been affected by at least 3 different elements of Burning Ambition.
+
+Vulnerable: You take 1% more damage for 3 seconds.
+This effect stacks up to 20 times, and loses one stack on expiration.</Description>
+      <Icon>BomInfernoOfCreation</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BomBurningAmbition</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Conjuration Focus</Name>
+      <InternalName>BomDCBoosts</InternalName>
+      <Description>+2 to Conjuration DCs</Description>
+      <Icon>BomDCBoosts</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Conjuration</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Bombardier: Weakening Mixture</Name>
+      <InternalName>BomWeakeningMixture</InternalName>
+      <Description>Select an Element to specialize in.</Description>
+      <Icon>BomWeakeningMixture</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Weakening Mixture: Acid</Name>
+          <Description>When you damage an enemy with a Acid spell that is immune to Acid, it makes them vulnerable to Acid for a short period of time.</Description>
+          <Icon>BomWekeningMixtureAcid</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Weakening Mixture: Cold</Name>
+          <Description>When you damage an enemy with a Cold spell that is immune to Cold, it makes them vulnerable to Cold for a short period of time.</Description>
+          <Icon>BomWeakeningMixtureCold</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Weakening Mixture: Electric</Name>
+          <Description>When you damage an enemy with a Electric spell that is immune to Electric, it makes them vulnerable to Electric for a short period of time.</Description>
+          <Icon>BomWeakeningMixtureElectric</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Weakening Mixture: Fire</Name>
+          <Description>When you damage an enemy with a Fire spell that is immune to Fire, it makes them vulnerable to Fire for a short period of time.</Description>
+          <Icon>BomWeakeningMixtureFire</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Weakening Mixture: Poison</Name>
+          <Description>When you damage an enemy with a Poison spell that is immune to Poison, it makes them vulnerable to Poison for a short period of time.</Description>
+          <Icon>BomWekeningMixturePoison</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

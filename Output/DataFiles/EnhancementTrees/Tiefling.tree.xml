@@ -1,0 +1,737 @@
+<Enhancements>
+   <EnhancementTree>
+      <Name>Tiefling</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Type>Race</Type>
+            <Item>Tiefling</Item>
+         </Requirement>
+      </Requirements>
+      <IsRacialTree/>
+      <Icon>Tiefling</Icon>
+      <Background>HumanBackground</Background>
+       <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Tiefling: Bloodhunt I</Name>
+         <InternalName>TieflingCore1</InternalName>
+         <Description>Imbue Toggle: Your weapon attacks deal an additional 1d4 Fire damage per Imbue Dice to enemies
+under 75% HP. This damage scales with 100% Spell Power.
+
+Passive: +5 Fire Spell Power</Description>
+         <Icon>Bloodhunt</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Fire</Item>
+         </Effect>
+         <Stance>
+            <Name>Tiefling: Bloodhunt</Name>
+            <Icon>Bloodhunt</Icon>
+            <Description>Your weapon attacks deal an additional 1d[4/6/8] Fire damage per Imbue Dice to enemies
+under [75/50/25]% HP. This damage scales with 100% Spell Power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Charisma I</Name>
+         <InternalName>TieflingCore2</InternalName>
+         <Description>+1 Charisma</Description>
+         <Icon>Charisma</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingCore1</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Bloodhunt II</Name>
+         <InternalName>TieflingCore3</InternalName>
+         <Description>Your Bloodhunt Imbue Toggle is increased to 1d6 Fire damage to enemies under 50% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +10 Fire Spell Power</Description>
+         <Icon>BloodhuntII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>7</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingCore2</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Fire</Item>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Charisma II</Name>
+         <InternalName>TieflingCore4</InternalName>
+         <Description>+1 Charisma</Description>
+         <Icon>Charisma</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>11</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingCore3</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Bloodhunt III</Name>
+         <InternalName>TieflingCore5</InternalName>
+         <Description>Your Bloodhunt Imbue Toggle is increased to 1d8 Fire damage to enemies under 50% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +20 Fire Spell Power</Description>
+         <Icon>BloodhuntIII</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>16</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingCore4</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Item>Fire</Item>
+         </Effect>
+      </EnhancementTreeItem>
+       <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Tiefling: Hellish Rebuke</Name>
+         <InternalName>TieflingHellishRebuke</InternalName>
+         <Description>Enveloped in a cloak of infernal flame, you have a chance to deal fire damage
+to foes that strike you in melee range. Enemies have a chance to take 1d10
+Fire Damage +1 per Character Level, max 30. This damage scales with Fire Spell Power.
+5 Minutes + 1 Minute per character level duration.
+Cooldown: 12 seconds</Description>
+         <Icon>HellishRebuke</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Infernal Nature</Name>
+         <InternalName>TieflingInfernalNature</InternalName>
+         <Description>+[1/2/3] Bluff, Spellcraft and Balance</Description>
+         <Icon>InfernalNature</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Balance</Item>
+            <Item>Bluff</Item>
+            <Item>Spellcraft</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Innate Protection</Name>
+         <InternalName>TieflingInnateProtection</InternalName>
+         <Description>+[1/2/3] to Saves vs Spells</Description>
+         <Icon>InnateProtection</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Spell</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Wand and Scroll Mastery</Name>
+         <InternalName>TieflingWandAndScrollMastery</InternalName>
+         <Description>+[25/50/75]% damage and healing of your wands, scrolls and other items that cast
+spells. Adds +[1/2/3] to the save DCs of your offensive wands.</Description>
+         <Icon>TieflingWandAndScrollMastery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+             <Requirement>
+                 <Type>Exclusive</Type>
+                 <Item>TieflingWandAndScrollMastery</Item>
+                 <Item>Wand and Scroll Mastery</Item>
+             </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>TieflingWandAndScrollMastery</Item>
+            <Item>Wand and Scroll Mastery</Item>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wands</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Obscuring Darkness</Name>
+         <InternalName>TieflingObscuringDarkness</InternalName>
+         <Description>You can channel your fiendish nature to manifest a zone of Obscuring Darkness at will.
+Foes inside the darkness suffer a 20% chance of missing any attack they make
+due to concealment. This does not apply to attacking misted targets from
+outside. Further Enhancements can modify how Obscuring Darkness can affect
+both you and your enemies. Lasts 30 seconds, Activation cost: 10 Spell Points
+Cooldown: 30 Seconds</Description>
+         <Icon>ObscuringDarkness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Obscuring Darkness</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>None</Item>
+         </Effect>
+      </EnhancementTreeItem>
+       <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Tiefling: Ferocious Rebuke</Name>
+         <InternalName>TieflingFerociousRebuke</InternalName>
+         <Description>While Hellish Rebuke is active, enemies that strike you have a chance to be
+tripped with no save.</Description>
+         <Icon>FerociousRebuke</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingHellishRebuke</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Infernal Resistance I</Name>
+         <InternalName>TieflingInfernalResistanceI</InternalName>
+         <Description>Tieflings are naturally immune to certain elements.</Description>
+         <Icon>InfernalResistanceCold</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Infernal Resistance (Acid)</Name>
+               <Description>You gain Acid Resistance equal to your Character Level.</Description>
+               <Icon>InfernalResistanceAcid</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>EnergyResistance</Type>
+                  <Bonus>Feat</Bonus>
+                  <AType>TotalLevel</AType>
+                  <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
+                  <Item>Acid</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Infernal Resistance (Cold)</Name>
+               <Description>You gain Cold Resistance equal to your Character Level.</Description>
+               <Icon>InfernalResistanceCold</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>EnergyResistance</Type>
+                  <Bonus>Feat</Bonus>
+                  <AType>TotalLevel</AType>
+                  <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
+                  <Item>Cold</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Infernal Defense</Name>
+         <InternalName>TieflingInfernalDefense</InternalName>
+         <Description>+[2/4/6] Magical Resistance Rating</Description>
+         <Icon>InfernalDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Traditionalist Caster</Name>
+         <InternalName>TieflingTraditionalistCaster</InternalName>
+         <Description>+[3/6/10] Universal Spell Power while wielding an Orb or Staff.</Description>
+         <Icon>TraditionalistCaster</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Magical Training</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">3 6 10</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                   <Requirement>
+                      <Type>Stance</Type>
+                      <Item>Orb</Item>
+                   </Requirement>
+                   <Requirement>
+                      <Type>Stance</Type>
+                      <Item>Quarterstaff</Item>
+                   </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Lasting Darkness</Name>
+         <InternalName>TieflingLastingDarkness</InternalName>
+         <Description>Enemies that enter your Obscuring Darkness have a chance to be blinded with no save.</Description>
+         <Icon>LastingDarkness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingObscuringDarkness</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+       <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Tiefling: Ash</Name>
+         <InternalName>TieflingScorch</InternalName>
+         <Description>You can cast the spell Scorch as a Spell Like Ability, with its Caster Level based on
+your Character Level. Subsequent ranks in this ability reduce the cooldown and Spell Point cost.
+Activation cost: [8/6/4] Spell Points
+Cooldown: [20/15/10] seconds</Description>
+         <Icon>TieflingScorch</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Scorch</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>None</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Infernal Resistance II</Name>
+         <InternalName>TieflingInfernalResistanceII</InternalName>
+         <Description>Tieflings are naturally immune to certain elements.</Description>
+         <Icon>InfernalResistanceCold</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingInfernalResistanceI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>TieflingInfernalResistanceI</Exclusions>
+            <EnhancementSelection>
+               <Name>Infernal Resistance (Acid)</Name>
+               <Description>You gain Acid Resistance equal to your Character Level.</Description>
+               <Icon>InfernalResistanceAcid</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>EnergyResistance</Type>
+                  <Bonus>Feat</Bonus>
+                  <AType>TotalLevel</AType>
+                  <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
+                  <Item>Acid</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Infernal Resistance (Cold)</Name>
+               <Description>You gain Cold Resistance equal to your Character Level.</Description>
+               <Icon>InfernalResistanceCold</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>EnergyResistance</Type>
+                  <Bonus>Feat</Bonus>
+                  <AType>TotalLevel</AType>
+                  <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
+                  <Item>Cold</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Incineration I</Name>
+         <InternalName>TieflingInceneration</InternalName>
+         <Description>+2% Spell Critical Damage with Fire Spells</Description>
+         <Icon>Inceneration</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Fire</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Student of Darkness</Name>
+         <InternalName>TieflingStudentOfDarkness</InternalName>
+         <Description>While in Obscuring Darkness, you gain +3 Saving Throws,
++3 Magical Resistance Rating and +15 Magical Resistance Cap.</Description>
+         <Icon>StudentOfDarkness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingLastingDarkness</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>ObscuringDarkness</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>ObscuringDarkness</Item>
+               </Requirement>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>MRRCap</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>ObscuringDarkness</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+       <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Tiefling: Improved Scorch</Name>
+         <InternalName>TieflingImprovedScorch</InternalName>
+         <Description>Enemies affected by you Scorch spell increase Fire damage that take by 5%.
+When cast on a creature that is immune to Fire, it makes them vulnerable to
+that element for a short period of time.</Description>
+         <Icon>ImprovedScorch</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingScorch</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Infernal Sovereign</Name>
+         <InternalName>TieflingInfernalSovereign</InternalName>
+         <Description>Your Fire mastery conquers other elements.</Description>
+         <Icon>InfernalSovereign</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingInfernalResistanceII</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Infernal Sovereign (Acid)</Name>
+               <Description>You use your Fire Spell Power in place of your Acid Spell Power if it is higher, and vice versa.</Description>
+               <Icon>InfernalSovereignAcid</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+                 <Effect>
+                    <Type>SpellPowerReplacement</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <AType>NotNeeded</AType>
+                    <Item>Acid</Item>
+                    <Item>Fire</Item>
+                 </Effect>
+               <Effect>
+                  <Type>SpellPowerReplacement</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>Fire</Item>
+                  <Item>Acid</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Infernal Sovereign (Cold)</Name>
+               <Description>You use your Fire Spell Power in place of your Cold Spell Power if it is higher, and vice versa.</Description>
+               <Icon>InfernalSovereign</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+                 <Effect>
+                    <Type>SpellPowerReplacement</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <AType>NotNeeded</AType>
+                    <Item>Cold</Item>
+                    <Item>Fire</Item>
+                 </Effect>
+               <Effect>
+                  <Type>SpellPowerReplacement</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>Fire</Item>
+                  <Item>Cold</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Infernal Sovereign (Electric)</Name>
+               <Description>You use your Fire Spell Power in place of your Electric Spell Power if it is higher, and vice versa.</Description>
+               <Icon>InfernalSovereignElectric</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+                 <Effect>
+                    <Type>SpellPowerReplacement</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <AType>NotNeeded</AType>
+                    <Item>Electric</Item>
+                    <Item>Fire</Item>
+                 </Effect>
+               <Effect>
+                  <Type>SpellPowerReplacement</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>NotNeeded</AType>
+                  <Item>Fire</Item>
+                  <Item>Electric</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Incineration II</Name>
+         <InternalName>TieflingIncineration</InternalName>
+         <Description>+3% Spell Critical Damage with Fire Spells</Description>
+         <Icon>TieflingIncineration</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>TieflingInceneration</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>Fire</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Fire</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tiefling: Servant of Darkness</Name>
+         <InternalName>TieflingServantOfDarkness</InternalName>
+         <Description>While in Obscuring Darkness, you gain +[10/20/30] Universal Spell Power
+and +[1/2/2] Evocation and Conjuration DCs</Description>
+         <Icon>ServantOfDarkness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>15</MinSpent>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">10 20 30</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 2</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>ObscuringDarkness</Item>
+               </Requirement>
+            </Requirements>
+            <Item>Conjuration</Item>
+            <Item>Evocation</Item>
+         </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

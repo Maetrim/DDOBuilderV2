@@ -1,0 +1,2419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Divine Disciple</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Cleric</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Cleric</Icon>
+    <Background>ClericBackground</Background>
+    <!---Core Items-->
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Emissary</Name>
+      <InternalName>DDDACore1</InternalName>
+      <Description>Follow the path of Light or Dark</Description>
+      <Icon>DDEmissary</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClass</Type>
+          <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Deacon of Endless Darkness</Name>
+          <Description>Your mastery over Darkness has granted you impossible power.
++4 Wisdom, +2 to all Saving Throws, and +10 Negative spell power and Negative Healing amp.
+You gain +1 caster level and max caster level with Negative Energy spells and +1 Necromancy DCs.</Description>
+          <Icon>DeaconOfEndlessDarkness</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore2</Item>
+              <Item>Dark Spell book III: Power Word: Stun</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>20</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>40</MinSpent>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>Wisdom</Item>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
+          <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
+          <Effect>
+            <Type>CasterLevel</Type>
+             <Type>MaxCasterLevel</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Negative</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Necromancy</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Emissary of Light</Name>
+          <Description>You have chosen to follow the path of Light.
+For each Light Core Ability you take in this tree, you gain +5 Light, Alignment, and Universal Spell Power.</Description>
+          <Icon>DDDivineEmissaryOfLight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Emissary</Name>
+      <InternalName>DDDACore2</InternalName>
+      <Description>Follow the path of Light or Dark</Description>
+      <Icon>DDEmissary</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore1</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore3</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <Requirement>
+          <Type>BaseClass</Type>
+          <Item>Cleric</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Dark Spell book III: Power Word: Stun</Name>
+          <Description>Your Cleric spell book gains Power Word: Stun as a level 8 spell.
+You also gain +1 Caster Level and Max Caster Level with Negative Spells.
+
+Power Word: Stun A single word of power is uttered, causing your target to become stunned.
+Creatures with 150 or fewer current HP are stunned to 4 to 32 seconds, creatures with 151
+to 300 HP are stunned for 2 to 16 seconds, and creatures with 301 HPs or more are stunned
+for 8 seconds.</Description>
+          <Icon>DarkSpellbookIII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore3</Item>
+              <Item>Dark Spell book II: Necrotic Ray</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>18</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>30</MinSpent>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Power Word: Stun</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">8 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Power Word: Stun</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">8 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Negative</Item>
+          </Effect>
+          <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Negative</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Empowered by Light</Name>
+          <Description>+2 to all saving throws and +3 Magical Resistance Rating.</Description>
+          <Icon>EmpoweredByLight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>3</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>5</MinSpent>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Emissary</Name>
+      <InternalName>DDDACore3</InternalName>
+      <Description>Follow the path of Light or Dark</Description>
+      <Icon>DDEmissary</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore2</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore4</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Dark Spell book II: Necrotic Ray</Name>
+          <Description>Your Cleric spell book gains Necrotic Ray as a level 6 spell.
+
+Necrotic Ray: Blasts a target with a negative energy ray that does 5 to 8 negative energy
+damage per caster level to a living enemy. A successful Fortitude save reduces the damage
+by half. The ray also suppresses the life force of any living creature it strikes, granting
+it a negative level.
+
+D&amp;D Dice: Deals 1d4+4 negative energy damage per caster level and bestows one negative level.</Description>
+          <Icon>DDNecroticRay</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore4</Item>
+              <Item>Dark Spell book I: Enervation</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>12</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>20</MinSpent>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Necrotic Ray</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">6 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Necrotic Ray</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">6 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Light Spell book I: Sun Bolt</Name>
+          <Description>Your Cleric spell book gains Sun Bolt as a level 3 spell.
+
+Sun Bolt: Powerful line of light deals 4 to 9 light damage per caster level (up to a max
+of 60 to 135 damage at caster level 15) to targets in its path. A successful Reflex save
+reduces the damage by half.
+
+D&amp;D Dice: Deals 1d6+3 light damage per caster (max 15d6+45)</Description>
+          <Icon>DDSunBolt</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore2</Item>
+              <Item>Empowered by Light</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>6</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>10</MinSpent>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sun Bolt</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">3 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sun Bolt</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">3 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Emissary</Name>
+      <InternalName>DDDACore4</InternalName>
+      <Description>Follow the path of Light or Dark</Description>
+      <Icon>DDEmissary</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore3</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore5</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Dark Spell book I: Enervation</Name>
+          <Description>Your Cleric spell book gains Enervation as a level 4 spell.
+
+Enervation: A black ray of crackling negative energy suppresses the life force of any living
+creature it strikes, giving an enemy 1 to 4 negative levels. If the target has as many negative
+levels as its hit dice or levels, it dies. Each negative level gives a creature a -2 penalty on
+attack rolls, saves, skill checks, ability checks, and effective level. Negative levels stack.
+As a ray this spell has double range.
+
+D&amp;D Dice: Gives enemies 1d4 negative levels.</Description>
+          <Icon>DDEnervation</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore5</Item>
+              <Item>Empowered by Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>6</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>10</MinSpent>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Enervation</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">4 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Enervation</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">4 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Light Spell book II: Sunbeam</Name>
+          <Description>Your Cleric spell book gains Sunbeam as a level 6 spell.
+
+Sunbeam: Deals 8 to 13 light damage per caster level with a mighty beam of sunlight, and
+temporarily blinds the target. Against Undead or Oozes, it does double damage. A successful
+Reflex save halves the damage and negates the blind effect. This spell has double range.
+
+D&amp;D Dice: Deals 1d6+7 light damage per caster level.</Description>
+          <Icon>DDSunbeam</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore3</Item>
+              <Item>Light Spell book I: Sun Bolt</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>12</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>20</MinSpent>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sunbeam</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">6 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sunbeam</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">6 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Emissary</Name>
+      <InternalName>DDDACore5</InternalName>
+      <Description>Follow the path of Light or Dark</Description>
+      <Icon>DDEmissary</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore4</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DDDACore6</Item>
+          </Requirement>
+        </RequiresOneOf>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Empowered by Darkness</Name>
+          <Description>+2 to all saving throws and +3 Magical Resistance Rating.</Description>
+          <Icon>EmpoweredByDarkness</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>3</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>5</MinSpent>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Light Spell book III: Sunburst</Name>
+          <Description>Your Cleric spell book gains Sunburst as a level 8 spell.
+You also gain +1 Caster Level and +1 Max Caster level with Light and Alignment Spells.
+
+Sunburst: A globe of searing radiance explodes to blast targets for 5 to 10 light damage
+per caster level in addition to blinding them. Oozes and Undead take double this damage.
+A successful Reflex save reduces the damage by half and negates the blindness. Light
+fearing undead may be instantly destroyed by this spell.
+
+D&amp;D Dice: Deals 1d6+4 light damage per caster level, double tun Undead and Oozes.</Description>
+          <Icon>DDSunburst</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore4</Item>
+              <Item>Light Spell book II: Sunbeam</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>18</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>30</MinSpent>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sunburst</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">8 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light</Item>
+            <Item>Alignment</Item>
+          </Effect>
+          <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light</Item>
+            <Item>Alignment</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sunburst</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">8 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Emissary</Name>
+      <InternalName>DDDACore6</InternalName>
+      <Description>Follow the path of Light or Dark</Description>
+      <Icon>DDEmissary</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Divine Emissary of Darkness</Name>
+          <Description>You have chosen to follow the path of Darkness. For each Dark Core Ability
+you take in this tree, you gain +5 Negative, and Universal Spell Power.</Description>
+          <Icon>DDTranscendDarkness</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Priest of Endless Light</Name>
+          <Description>Your mastery over Light has granted you impossible power.
++4 Wisdom, +2 to all Saving Throws, and +10 Light/Alignment spell power and Positive Healing amp.
+You gain +1 caster level and max caster level with Light/Alignment spells and +1 Evocation DCs.</Description>
+          <Icon>DDTranscendLight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore5</Item>
+              <Item>Light Spell book III: Sunburst</Item>
+            </Requirement>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Cleric</Item>
+              <Value>20</Value>
+            </Requirement>
+          </Requirements>
+          <MinSpent>40</MinSpent>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>Wisdom</Item>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>All</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Light/Alignment</Item>
+          </Effect>
+          <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
+          <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light</Item>
+            <Item>Alignment</Item>
+          </Effect>
+          <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light</Item>
+            <Item>Alignment</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Evocation</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!---Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Prophetic Zenith I</Name>
+      <InternalName>DDDAPropheticZenith</InternalName>
+      <Description>You are the voice of your chosen path. You gain a new level 1 Spell-like ability.</Description>
+      <Icon>DDDAPropheticZenith</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Inflict Light Wounds</Name>
+          <Description />
+          <Icon>InflictLightWounds</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Inflict Light Wounds</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Nimbus of Light</Name>
+          <Description>(Activation Cost: 4/3/2 spell points. Cooldown: 6/5/4 seconds.)
+Requires Divine Emissary of Light</Description>
+          <Icon>DDNimbusOfLight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Nimbus of Light</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Defense of the Heart</Name>
+      <InternalName>DDDADefenseOfTheHeart</InternalName>
+      <Description>+[2/4/6] Physical Resistance Rating.</Description>
+      <Icon>DDDADefenseOfTheHeart</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Divine Smiting I</Name>
+      <InternalName>DDDADivineSmitingI</InternalName>
+       <Description>Choose:</Description>
+      <Icon>DDDADivineSmiting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Smiting I</Name>
+          <Description>+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells.</Description>
+          <Icon>ArcaneSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Smiting I</Name>
+          <Description>+2% Critical Chance with Light, Negative, and Alignment spells.</Description>
+          <Icon>DDDADivineSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Defense of the Soul</Name>
+      <InternalName>DDDADefenseOfTheSoul</InternalName>
+      <Description>+[2/4/6] Magical Resistance Rating</Description>
+      <Icon>DDDADefenseOfTheSoul</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Energy of the Disciple</Name>
+      <InternalName>DDDASpellPoints</InternalName>
+      <Description>+[30/60/90] Spell Points</Description>
+      <Icon>DDSpellPoints</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">30 60 90</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!---Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Spell Penetration</Name>
+      <InternalName>DDDASpellPenetration</InternalName>
+      <Description>+[1/2/3] to your Caster Level check to overcome enemy Spell Resistance.</Description>
+      <Icon>SpellPenetration</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Efficient Metamagic I</Name>
+      <InternalName>DDDAEfficientMetamagicI</InternalName>
+      <Description>Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic. </Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points</Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicI</Item>
+                <Item>Efficient Empower Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicI</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Empower</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points</Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicI</Item>
+                <Item>Efficient Enlarge Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicI</Item>
+              <Item>Efficient Enlarge Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Enlarge</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicI</Item>
+                <Item>Efficient Maximize Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicI</Item>
+              <Item>Efficient Maximize Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Maximize</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicI</Item>
+                <Item>Efficient Quicken Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicI</Item>
+              <Item>Efficient Quicken Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Quicken</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Divine Smiting II</Name>
+      <InternalName>DDDADivineSmitingII</InternalName>
+       <Description>Choose:</Description>
+      <Icon>DDDADivineSmiting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DDDADivineSmitingI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Smiting II</Name>
+          <Description>+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells.</Description>
+          <Icon>ArcaneSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingI</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Smiting II</Name>
+          <Description>+2% Critical Chance with Light, Negative, and Alignment spells.</Description>
+          <Icon>DDDADivineSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingI</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Shield of Dawn</Name>
+      <InternalName>DDDAShieldOfDawn</InternalName>
+      <Description>When struck, attackers are dealt [1/2/3]d6 Light damage, scaling with your spell power.
+Rank 3: They have a small chance to be blinded for 12 seconds.</Description>
+      <Icon>DDDAShieldOfDawn</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Light and Dark</Name>
+      <InternalName>DDDALightAndDark</InternalName>
+      <Description>Whenever you cast a Light, Alignment or Negative spell, you gain +3 to your
+Negative, Light, and Alignment Spell power for 6 seconds. This stacks up to 3 times.</Description>
+      <Icon>DDDALightAndDark</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!---Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Prophetic Zenith II</Name>
+      <InternalName>DDDAPropheticZenithII</InternalName>
+      <Description>You are the voice of your chosen path. You gain a new level 3 spell-like ability</Description>
+      <Icon>DDDAPropheticZenith</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Necrotic Bolt</Name>
+          <Description>(Activation Cost: [12/9/6] spell points. Cooldown: [10/8/6] seconds.)
+Requires Divine Emissary of Darkness</Description>
+          <Icon>DDNecroticBolt</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Necrotic Bolt</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Searing Light</Name>
+          <Description>(Activation Cost: [12/9/6] spell points. Cooldown: [10/8/6] seconds.)
+Requires Divine Emissary of Light</Description>
+          <Icon>DDSearingLight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Searing Light</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Efficient Metamagic II</Name>
+      <InternalName>DDDAEfficientMetamagicII</InternalName>
+      <Description>Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic. </Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points</Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicII</Item>
+                <Item>Efficient Empower Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Empower</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points</Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicII</Item>
+                <Item>Efficient Enlarge Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicII</Item>
+              <Item>Efficient Enlarge Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Enlarge</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicII</Item>
+                <Item>Efficient Maximize Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicII</Item>
+              <Item>Efficient Maximize Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Maximize</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>DDDAEfficientMetamagicII</Item>
+                <Item>Efficient Quicken Spell</Item>
+             </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>DDDAEfficientMetamagicII</Item>
+              <Item>Efficient Quicken Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Quicken</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Divine Smiting III</Name>
+      <InternalName>DDDADivineSmitingIII</InternalName>
+       <Description>Choose:</Description>
+      <Icon>DDDADivineSmiting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DDDADivineSmitingII</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Smiting III</Name>
+          <Description>+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells.</Description>
+          <Icon>ArcaneSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingII</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Smiting III</Name>
+          <Description>+2% Critical Chance with Light, Negative, and Alignment spells.</Description>
+          <Icon>DDDADivineSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingII</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Disciple of Dusk or Dawn I</Name>
+      <InternalName>DDDiscipleOfDuskOrDawnI</InternalName>
+      <Description>Select which Healing Amplification you would like.</Description>
+      <Icon>DDDiscipleOfDuskOrDawn</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Disciple of Dawn</Name>
+          <Description>+[5/10/15] Positive Healing Amplification</Description>
+          <Icon>DiscipleOfDawn</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 15</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Disciple of Dusk</Name>
+          <Description>+[5/10/15] Negative Healing Amplification</Description>
+          <Icon>DiscipleOfDusk</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 15</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Wisdom I</Name>
+      <InternalName>DDDAWisdomI</InternalName>
+      <Description>+1 to Wisdom</Description>
+      <Icon>Wisdom</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Wisdom</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!---Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Prophetic Zenith III</Name>
+      <InternalName>DDDAPropheticZenithIII</InternalName>
+      <Description>You are the voice of your chosen path. You gain a new level 4 Spell-like ability</Description>
+      <Icon>DDDAPropheticZenith</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Chaos Hammer</Name>
+          <Description />
+          <Icon>DDChaosHammer</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Chaos Hammer</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Holy Smite</Name>
+          <Description>(Activation Cost: [13/10/7] spell points. Cooldown: [10/8/6] seconds.)
+Requires Divine Emissary of Light</Description>
+          <Icon>DDHolySmite</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Holy Smite</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Order's Wrath</Name>
+          <Description />
+          <Icon>DDOrdersWrath</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Order's Wrath</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Unholy Blight</Name>
+          <Description />
+          <Icon>DDDAUnholyBlight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Unholy Blight</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Efficient Heighten</Name>
+      <InternalName>DDDAEfficientHeighten</InternalName>
+      <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Point per heightened level</Description>
+      <Icon>EfficientHeighten</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DDDAEfficientMetamagicII</Item>
+        </Requirement>
+         <Requirement>
+            <Type>Feat</Type>
+            <Item>Heighten Spell</Item>
+         </Requirement>
+         <Requirement>
+            <Type>Exclusive</Type>
+            <Item>DDDAEfficientHeighten</Item>
+            <Item>Efficient Heighten Spell</Item>
+         </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>DDDAEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+       </Effect>
+       <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">-1 -2</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Heighten</Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Divine Smiting IV</Name>
+      <InternalName>DDDADivineSmitingIV</InternalName>
+      <Description>Choose:</Description>
+      <Icon>DDDADivineSmiting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DDDADivineSmitingIII</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Smiting IV</Name>
+          <Description>+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells.</Description>
+          <Icon>ArcaneSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingIII</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Smiting IV</Name>
+          <Description>+2% Critical Chance with Light, Negative, and Alignment spells.</Description>
+          <Icon>DDDADivineSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingIII</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Disciple of Dusk or Dawn II</Name>
+      <InternalName>DDDiscipleOfDuskOrDawnII</InternalName>
+      <Description>Select which Healing Amplification you would like.</Description>
+      <Icon>DDDiscipleOfDuskOrDawn</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DDDiscipleOfDuskOrDawnI</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Disciple of Dawn</Name>
+          <Description>+[5/10/15] Positive Healing Amplification</Description>
+          <Icon>DiscipleOfDawn</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 15</Amount>
+          </Effect>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>Enhancement</Type>
+                <Item>DDDiscipleOfDuskOrDawnI</Item>
+                <Item>Disciple of Dawn</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Disciple of Dusk</Name>
+          <Description>+[5/10/15] Negative Healing Amplification</Description>
+          <Icon>DiscipleOfDusk</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 15</Amount>
+          </Effect>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>Enhancement</Type>
+                <Item>DDDiscipleOfDuskOrDawnI</Item>
+                <Item>Disciple of Dusk</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Wisdom II</Name>
+      <InternalName>DDDAWisdomII</InternalName>
+      <Description>+1 to Wisdom</Description>
+      <Icon>Wisdom</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DDDAWisdomI</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Wisdom</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!---Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Power Balance</Name>
+      <InternalName>DDDAPowerBalance</InternalName>
+      <Description>Enhance your Alignment spells.</Description>
+      <Icon>DDDAPowerBalance</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Balance of Power</Name>
+          <Description>The spells Order's Wrath and Chaos Hammer now deal their increased damage to
+all enemies, regardless of alignment.</Description>
+          <Icon>DDDABalanceOfPower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Holy Power</Name>
+          <Description>The spell Holy Smite now deals its increased damage to all enemies,
+regardless of alignment.</Description>
+          <Icon>DDDAHolyPower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Unholy Power</Name>
+          <Description>The spell unholy Blight now deals its increased damage to all enemies,
+regardless of alignment.</Description>
+          <Icon>DDDAUnholyPower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Transcendence</Name>
+      <InternalName>DDDATranscendence</InternalName>
+      <Description>Transcend your choices.</Description>
+      <Icon>DDDATranscendence</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Cleric</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Smiting I</Name>
+          <Description>+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells.</Description>
+          <Icon>ArcaneSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Bring Balance</Name>
+          <Description>The Word of Balance spell is added to your Spell book at level 7.</Description>
+          <Icon>DDDATranscendence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Word of Balance</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">7 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Word of Balance</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">7 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Transcend Light</Name>
+          <Description>You gain the spells you would have gained from the Path of Darkness core abilities.</Description>
+          <Icon>DDDATranscendLight</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Power Word: Stun</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">8 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Necrotic Ray</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">6 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Enervation</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">4 40 15</Amount>
+             <Item>Dark Apostate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Power Word: Stun</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">8 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Necrotic Ray</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">6 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellListAddition</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Enervation</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">4 40 15</Amount>
+             <Item>Cleric</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Divine Smiting V</Name>
+      <InternalName>DDDADivineSmitingV</InternalName>
+      <Description />
+      <Icon>DDDADivineSmiting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+         <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>5</Value>
+         </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DDDADivineSmitingIV</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Smiting V</Name>
+          <Description>+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells.</Description>
+          <Icon>ArcaneSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingIV</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore6</Item>
+              <Item>Divine Emissary of Darkness</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDACore1</Item>
+              <Item>Divine Emissary of Light</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Smiting V</Name>
+          <Description>+2% Critical Chance with Light, Negative, and Alignment spells.</Description>
+          <Icon>DDDADivineSmiting</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DDDADivineSmitingIV</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light/Alignment</Item>
+            <Item>Negative</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Condemnation or Acceptance</Name>
+      <InternalName>DDDACondemnationOrAcceptance</InternalName>
+      <Description>Condemn the unusual or accept it as your own.</Description>
+      <Icon>DDDACondemnationOrAcceptance</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+         <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>5</Value>
+         </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Acceptance</Name>
+          <Description>+5% Spell Critical Damage with Fire, Cold, Electric, Acid and Force spells.
++2 Caster Level and Maximum Caster level with Fire, Cold, Acid, Electric, and Force spells.</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>CasterLevel</Type>
+             <Type>MaxCasterLevel</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Fire</Item>
+            <Item>Force</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Condemnation</Name>
+          <Description>+5% Spell Critical Damage with Light, Negative, and Alignment Spells.</Description>
+          <Icon>DDDACondemnationOrAcceptance</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Negative</Item>
+            <Item>Light/Alignment</Item>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Divine Disciple: Divine Empowerment</Name>
+      <InternalName>DDDADivineEmpowerment</InternalName>
+      <Description>+1 DC to your Necromancy and Evocation spells.</Description>
+      <Icon>DDDADivineEmpowerment</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+         <Requirement>
+            <Type>BaseClassMinLevel</Type>
+            <Item>Cleric</Item>
+            <Value>5</Value>
+         </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Necromancy</Item>
+         <Item>Evocation</Item>
+         <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

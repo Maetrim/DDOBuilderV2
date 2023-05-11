@@ -1,0 +1,1500 @@
+<Enhancements>
+   <EnhancementTree>
+      <Name>Eldritch Knight (Wiz)</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Type>Class</Type>
+            <Item>Wizard</Item>
+         </Requirement>
+      </Requirements>
+      <Icon>Wizard</Icon>
+      <Background>WizardBackground</Background>
+      <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Eldritch Strike</Name>
+         <InternalName>EKWizCore1</InternalName>
+         <Description>Melee Cleave Attack: Sheathe your weapon in eldritch energies, striking foes in front
+of you for +1[W] damage. If this attack hits, your weapon also releases a blast of magical energy,
+dealing an additional 1 to 2 Force Damage per character level to all nearby foes.
+This additional Force damage is affected by your Force Spell Power.
+Cooldown: 12 seconds
+Passive:  You gain proficiency with Simple Weapons. Every Core Ability in this tree,
+including this one, grants +10 Maximum Hit Points.</Description>
+         <Icon>EKEldritchStrike</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>1</Value>
+            </Requirement>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>EKSorcCore1</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>Proficiency</Item>
+            <Item>Club</Item>
+            <Item>Dagger</Item>
+            <Item>Quarterstaff</Item>
+            <Item>Light Mace</Item>
+            <Item>Heavy Mace</Item>
+            <Item>Morningstar</Item>
+            <Item>Sickle</Item>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Throwing Dagger</Item>
+            <Item>Dart</Item>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Spellsword</Name>
+         <InternalName>EKWizCore2</InternalName>
+         <Description>You gain four elemental toggles that each imbue your weapon with
+elemental power. Only one may be active at a time, causing them to deal an additional
+1d6 (element) damage on hit. You gain an additional Imbue Dice every 3 Wizard levels
+(at 6, 9, 12, 15 and 18). This damage scales with Spell Power. While active,
+your Eldritch Strike deals 1-2 additional (element) damage per Character Level which
+scales with Spell Power. While this is enabled, your weapon and shield attacks have Ghost Touch.
+Passive: +2% Doublestrike, +10 Universal Spell Power. You also gain proficiency
+in Light Armor and Martial weapons.</Description>
+         <Icon>EKSpellsword</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizCore1</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Spellsword: Acid</Name>
+            <Icon>AACorrosiveArrows</Icon>
+            <Description>Imbue your weapon with elemental power: Acid
+Causing them to deal an additional 1d6 Acid damage per Imbue Dice that scales
+with Acid Spell power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Stance>
+            <Name>Spellsword: Cold</Name>
+            <Icon>AAFrostArrows</Icon>
+            <Description>Imbue your weapon with elemental power: Cold
+Causing them to deal an additional 1d6 Cold damage per Imbue Dice that scales
+with Cold Spell power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Stance>
+            <Name>Spellsword: Electric</Name>
+            <Icon>AAShockArrows</Icon>
+            <Description>Imbue your weapon with elemental power: Electric
+Causing them to deal an additional 1d6 Electric damage per Imbue Dice that scales
+with Electric Spell power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Stance>
+            <Name>Spellsword: Fire</Name>
+            <Icon>AAFlamingArrows</Icon>
+            <Description>Imbue your weapon with elemental power: Fire
+Causing them to deal an additional 1d6 Fire damage per Imbue Dice that scales
+with Fire Spell power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>All</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Spellsword: Acid</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Spellsword: Cold</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Spellsword: Electric</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Spellsword: Fire</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>ClassLevel</AType>
+            <StackSource>Wizard</StackSource>
+            <Amount size="20">1 1 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
+         </Effect>
+         <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>Proficiency</Item>
+            <Item>Hand Axe</Item>
+            <Item>Kukri</Item>
+            <Item>Light Hammer</Item>
+            <Item>Light Pick</Item>
+            <Item>Shortsword</Item>
+            <Item>Battle Axe</Item>
+            <Item>Heavy Pick</Item>
+            <Item>Longsword</Item>
+            <Item>Rapier</Item>
+            <Item>Scimitar</Item>
+            <Item>Warhammer</Item>
+            <Item>Falchion</Item>
+            <Item>Great Axe</Item>
+            <Item>Great Club</Item>
+            <Item>Maul</Item>
+            <Item>Great Sword</Item>
+            <Item>Shortbow</Item>
+            <Item>Longbow</Item>
+            <Item>Throwing Axe</Item>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Light Armor Proficiency</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Imbue the Blade</Name>
+         <InternalName>EKWizCore3</InternalName>
+         <Description>Melee weapons are considered Spellcasting Implements in your hands.
+You gain the Quick Draw feat, reducing the time between spellcasting and weapon use.
+-15% Arcane Spell Failure from equipped Armor, Shields, and Warforged Body feats.
++2% Doublestrike, +10 Universal Spell Power.</Description>
+         <Icon>EKImbueTheBlade</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizCore2</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>6</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Quick Draw</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>ArcaneSpellFailure</Type>
+            <Type>ArcaneSpellFailureShields</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-15</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Subtle Force I</Name>
+         <InternalName>EKWizCore4</InternalName>
+         <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one
+incoming projectile that would have struck you every 6 seconds.
+You gain +1 Imbue Dice
+-20% Arcane Spell Failure from equipped Armor, Shields, and Warforged Body feats.
++6 Resistance to Acid, Cold, Electric, Fire and Sonic damage.
++2% Doublestrike and +10 Universal Spell Power.</Description>
+         <Icon>EKSubtleForceI</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizCore3</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>EKWizCore4</Item>
+               <Item>Deflect Arrows</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>EKWizCore4</Item>
+            <Item>Deflect Arrows</Item>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Deflect Arrows</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>ArcaneSpellFailure</Type>
+            <Type>ArcaneSpellFailureShields</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-20</Amount>
+         </Effect>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">6</Amount>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Electric</Item>
+            <Item>Fire</Item>
+            <Item>Sonic</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Subtle Force II</Name>
+         <InternalName>EKWizCore5</InternalName>
+         <Description>+5% Stacking Incorporeality.
+Your Deflect Arrows now triggers every 2 seconds.
+You gain +1 Imbue Dice
++2% Doublestrike.
++10 Universal Spell Power.</Description>
+         <Icon>EKSubtleForceII</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizCore4</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>18</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Incorporeality</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Eldritch Blade</Name>
+         <InternalName>EKWizCore6</InternalName>
+         <Description>Your Eldritch Strike now grants you a Power Charge. When you have 5
+Power Charges, they are removed, and you gain Eldritch Power.
+Eldritch Power: +10% to your damage with weapon attacks, +4 Imbue Dice,
++25 Universal spell power. Duration: 30 seconds.
+Passive:
+You gain +2 Imbue Dice
++2 Intelligence, +2 Constitution
++2% Doublestrike
++10 Universal Spell Power</Description>
+         <Icon>EKEldritchBlade</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizCore5</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>20</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Intelligence</Item>
+            <Item>Constitution</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Improved Mage Armor</Name>
+         <InternalName>EKWizImprovedMageArmor</InternalName>
+         <Description>Spell Like Ability: Mage Armor.
+You gain Mage Armor as a spell-like ability. In addition, while you are under the
+effect of the Mage Armor spell, you gain a +[3/6/10]% exceptional bonus to your
+total Armor Class.
+Activation Cost: [8/6/4] Spell Points</Description>
+         <Icon>EKImprovedMageArmor</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Mage Armor</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>Wizard</Item>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Exceptional</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">3 6 10</Amount>
+            <Percent/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Arcane Siphon</Name>
+         <InternalName>EKWizArcaneSiphon</InternalName>
+         <Description>Melee Attack: +[1/2/3][W]
+On Hit: Gain +[10/20/30] Competence bonus to Universal Spell Power for 20 seconds.</Description>
+         <Icon>EKArcaneSiphon</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">10 20 30</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Arcane Siphon</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Item Defense</Name>
+         <InternalName>EKWizItemDefense</InternalName>
+         <Description>You have a [25/50/75]% chance to negate potential item wear.</Description>
+         <Icon>EKItemDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Toughness</Name>
+         <InternalName>EKWizToughness</InternalName>
+         <Description>+[5/10/15] maximum Hit Points.</Description>
+         <Icon>Toughness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 15</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Battlemage</Name>
+         <InternalName>EKWizBattleMage</InternalName>
+         <Description>+[1/2/3] Concentration, Intimidate, and Spellcraft.</Description>
+         <Icon>EKBattleMage</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Concentration</Item>
+            <Item>Intimidate</Item>
+            <Item>Spellcraft</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Improved Shield</Name>
+         <InternalName>EKWizImprovedShield</InternalName>
+         <Description>Spell Like Ability: Shield
+You gain the Shield spell as a spell-like ability. In addition, while you are under
+the effect of the Shield spell, you gain +[3/6/10] Physical Resistance Rating.
+Shield: +4 Shield bonus to Armor Class and Immunity to Magic Missiles.
+Activation Cost: [8/6/4] Spell points</Description>
+         <Icon>EKImprovedShield</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizImprovedMageArmor</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Shield</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>Wizard</Item>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">3 6 10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Mystic Wards</Name>
+         <InternalName>EKWizMysticWards</InternalName>
+         <Description>+[3/6/10] Magical Resistance Rating</Description>
+         <Icon>EKMysticWards</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">3 6 10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Action Boost Spell Power</Name>
+         <InternalName>EKWizActionBoost</InternalName>
+         <Description>You gain a +[10/20/30] Action Boost bonus to Universal Spell Power for 20 seconds.</Description>
+         <Icon>EKActionBoostSpellpower</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Shield Training</Name>
+         <InternalName>EKWizShieldTraining</InternalName>
+         <Description>Passive: You gain proficiency with all shields except Tower Shields, and your
+Arcane Spell Failure chance from equipped shields is reduced by 5%.
+This enhancement does not count as a prerequisite for Feats which require
+shield proficiency.</Description>
+         <Icon>EKShieldTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Shield Proficiency (General)</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>ArcaneSpellFailureShields</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-5</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Wand and Scroll Mastery</Name>
+         <InternalName>EKWizWandAndScrollMastery</InternalName>
+         <Description>+[25/50/75]% effectiveness from your wands, scrolls, and other items that cast spells,
+and +[1/2/3] to the save DC of your offensive wands.</Description>
+         <Icon>EKWandAndScrollMastery</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>2</Value>
+            </Requirement>
+             <Requirement>
+                 <Type>Exclusive</Type>
+                 <Item>EKWizWandAndScrollMastery</Item>
+                 <Item>Wand and Scroll Mastery</Item>
+             </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>EKWizWandAndScrollMastery</Item>
+            <Item>Wand and Scroll Mastery</Item>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wands</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Arcane Barrier</Name>
+         <InternalName>EKWizArcaneBarrier</InternalName>
+         <Description>Passive: When your HP drop below 50% of maximum, you are immediately protected by
+an Arcane Barrier that reduces all incoming damage by 25% for the next 20 seconds.
+This effect may only trigger once every 90 seconds.</Description>
+         <Icon>EKArcaneBarrier</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Eldritch Accuracy</Name>
+         <InternalName>EKWizEldritchAccuracy</InternalName>
+         <Description>You get Intelligence to hit with weapons and shield bashes.</Description>
+         <Icon>EKEldritchAccuracy</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Intelligence</Item>
+            <Item>All</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Synergetic Magic</Name>
+         <InternalName>EKWizSynergeticMagic</InternalName>
+         <Description>When you activate Action Boost: Spell Power, you also gain an equal
+Action Boost bonus to Melee and Ranged Power for 20 seconds.</Description>
+         <Icon>EKSynergeticMagic</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizActionBoost</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Critical Mastery</Name>
+         <InternalName>EKWizCriticalMastery</InternalName>
+         <Description> +[1/2/3] to confirm critical hits and critical hit damage (before weapon multipliers)</Description>
+         <Icon>EKCriticalMastery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Ability I</Name>
+         <InternalName>EKWizAbilityScoreI</InternalName>
+         <Description>Choose either Strength, Dexterity or Intelligence</Description>
+         <Icon>StrDexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Intelligence</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Knight's Transformation</Name>
+         <InternalName>EKWizKnightsTransformation</InternalName>
+         <Description>Toggle: While this toggle is active your base attack bonus is increased to equal
+your character level. When you successfully hit with an Eldritch Strike you gain
+Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 seconds.
+
+Exclusive from the Enlarge Metamagic and any Eldritch Blast shape stance.
+This stance works with other offensive and defensive stances, as well as Rages.</Description>
+         <Icon>EKKnightsTransformation</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Stance>
+            <Name>Knight's Transformation</Name>
+            <Icon>EKKnightsTransformation</Icon>
+            <Description>Toggle: While this toggle is active your base attack bonus is increased to equal
+your character level. When you successfully hit with an Eldritch Strike you gain
+Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 seconds.</Description>
+         </Stance>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">30</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Knight's Transformation</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Knight's Transformation</Item>
+               </Requirement>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>OverrideBAB</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">1</Amount>
+            <AType>Simple</AType>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Knight's Transformation</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Offhand Defenses</Name>
+         <InternalName>EKWizOffhandDefenses</InternalName>
+         <Description>Pick between Shield and Orb bonuses.</Description>
+         <Icon>EKOffhandDefenses</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Orb Saves</Name>
+               <Description>+[1/2/3] to saving throws and +[3/6/10] Universal Spell Power while holding an Orb</Description>
+               <Icon>EKOrbSaves</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Orb</Item>
+                     </Requirement>
+                  </Requirements>
+                  <Item>All</Item>
+               </Effect>
+               <Effect>
+                  <Type>UniversalSpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">3 6 10</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Orb</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shield Striking</Name>
+               <Description>On Hit: +[5/10/15]% chance to proc an immediate Shield Bash attack with an equipped shield.</Description>
+               <Icon>EKOffhandDefenses</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SecondaryShieldBash</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">5 10 15</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Force's Point</Name>
+         <InternalName>EKWizForcesPoint</InternalName>
+         <Description>When you cast an offensive spell, you gain a stack of Force's Point:
+Martial (+1 to Hit and Damage). This stacks up to 5 times. When you hit with a
+melee weapon, you gain a stack of Force's Point: Magical (+2 Universal Spell Power).
+This stacks up to 10 times. Stacks last 12 seconds each.
+You may only gain each effect once per second.</Description>
+         <Icon>EKForcesPoint</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force's Point: Melee</Item>
+            <AType>Slider</AType>
+            <Amount size="3">0 0 5</Amount>
+         </Effect>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <Amount size="1">1</Amount>
+            <AType>SliderValue</AType>
+            <StackSource>Force's Point: Melee</StackSource>
+         </Effect>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force's Point: Magical</Item>
+            <AType>Slider</AType>
+            <Amount size="3">0 0 10</Amount>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">2</Amount>
+            <AType>SliderValue</AType>
+            <StackSource>Force's Point: Magical</StackSource>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Armored Arcana</Name>
+         <InternalName>EKWizArmoredArcana</InternalName>
+         <Description>Passive: You gain proficiency in Medium Armor, and you no longer
+suffer Arcane Spell Failure from Light Armor, Medium Armor or Mithral Body.</Description>
+         <Icon>EKArmoredArcana</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Medium Armor Proficiency</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>ArcaneSpellFailure</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-100</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Light Armor</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Medium Armor</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Ability II</Name>
+         <InternalName>EKWizAbilityScoreII</InternalName>
+         <Description>Choose either Strength, Dexterity or Intelligence</Description>
+         <Icon>StrDexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizAbilityScoreI</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Strength</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dexterity</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Intelligence</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Improved Knight's Transformation</Name>
+         <InternalName>EKWizImprovedKnightsTransformation</InternalName>
+         <Description>While Knight's transformation is active you gain a +1 Competence bonus to your
+weapons critical multiplier. When your Eldritch Strike hits you gain the
+additional bonuses to your Knight's Strike of +3 to Hit, Damage and 3% doublestrike.
+Passive Bonus: You gain 15% competence bonus to Max Hit Points (regardless if the toggle is on or not)</Description>
+         <Icon>EKImprovedKnightsTransformation</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizKnightsTransformation</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>All</Item>
+            <ApplyAsItemEffect/>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Knight's Transformation</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Knight's Arcanum</Name>
+         <InternalName>EKWizKnightsArcanum</InternalName>
+         <Description>Pick a focus for your spells while in Knight's Transformation</Description>
+         <Icon>EKKnightsArcanum</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>EKWizImprovedKnightsTransformation</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Knight's Controller</Name>
+               <Description>If you have Knight's Transformation active, you also gain:
++2 Enchantment DCs, +2 Illusion DCs, +4 Spell Penetration and +20 Melee Power
+Passive: You gain mobile spell casting.</Description>
+               <Icon>EKKnightsController</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">2</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Knight's Transformation</Item>
+                     </Requirement>
+                  </Requirements>
+                  <Item>Enchantment</Item>
+                  <Item>Illusion</Item>
+               </Effect>
+               <Effect>
+                  <Type>SpellPenetrationBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">4</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Knight's Transformation</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Knight's Striker</Name>
+               <Description>If you have Knight's Transformation active, you also gain:
++2 Evocation and Conjuration DCs and +20 Melee power.
+Passive: You gain mobile spell casting.</Description>
+               <Icon>EKKnightsController</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">2</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Knight's Transformation</Item>
+                     </Requirement>
+                  </Requirements>
+                  <Item>Evocation</Item>
+                  <Item>Conjuration</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Knight's Transformation</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Mobile Spellcasting</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Force's Edge</Name>
+         <InternalName>EKWizForcesEdge</InternalName>
+         <Description>When you cast an offensive spell, you gain +1 Competence Bonus to Critical Threat
+Range for 12 seconds. When you make a Melee Attack, you gain +5% Spell Critical
+Chance for 12 seconds.</Description>
+         <Icon>EKForcesEdge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Spell Cast</Item>
+               </Requirement>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Melee Attack</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Radiant Forcefield</Name>
+         <InternalName>EKWizRadiantForcefield</InternalName>
+         <Description>Spell Like Ability: Radiant Forcefield
+Activation Cost: 30 Spell Points.
+Cooldown: 3 Minutes</Description>
+         <Icon>EKRadiantForcefield</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Radiant Forcefield</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>Wizard</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Eldritch Knight: Eldritch Tempest</Name>
+         <InternalName>EKWizEldritchTempest</InternalName>
+         <Description>Activate: Perform a spinning melee attack, dealing weapon damage +5[W] to all
+nearby enemies and knocking them prone for 1 second. This attack has +10 to Critical
+Threat Range and +3 to Critical Multiplier. Enemies affected are knocked prone for
+one second and Slowed by 50% for 6 seconds.
+If any foes are struck by Eldritch Tempest, your weapon also releases an explosion
+of magical force, dealing an additional 1d6 Force damage per character level to
+all nearby enemies. This additional force damage is affected by your spell power.
+Activation Cost: [25/20/15] Spell points.
+Cooldown: [60/45/30] seconds</Description>
+         <Icon>EKEldritchTempest</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Wizard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

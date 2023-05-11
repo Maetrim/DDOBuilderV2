@@ -1,0 +1,1143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Arcanotechnician</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Artificer</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Artificer</Icon>
+    <Background>ArtificerBackground</Background>
+     <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician</Name>
+      <InternalName>ATCore1</InternalName>
+      <Description>+10 Electric Spell Power.
+Every point spent in the Arcanotechnician tree provides you with +1 Universal Spell Power.</Description>
+      <Icon>ATArcanotechnician</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Electric</Item>
+      </Effect>
+      <Effect>
+        <DisplayName>Arcanotechnician: Spell power per action point</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>APCount</AType>
+        <Amount size="1">1</Amount>
+        <StackSource>Arcanotechnician</StackSource>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Palliative Admixture</Name>
+      <InternalName>ATCore2</InternalName>
+      <Description>Creating an infused potion of magical energy, you hurl it towards your target in an arc.
+The potion explodes in a small area that provides nearby allies with 20 Temporary
+Hit Point + 1 per Artificer level and 10 Temporary Spell Points +1 per two
+Artificer levels.
+These last one minute, or until affected creatures rest.
+(Activation Cost: 5 Spell Points. Cooldown: 30 seconds.)</Description>
+      <Icon>ATPalliativeAdmixture</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATCore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Palliative Admixture</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 5 0</Amount>
+        <Item>Artificer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Thaumaturgical Battery</Name>
+      <InternalName>ATCore3</InternalName>
+      <Description>Whenever you cast an infusion or spell, you capture a portion of that infusion
+or spells' energy as 1 Temporary Spell Point.
+These Temporary Spell Points last for one minute, until consumed by another
+infusion or spell, or until you rest.</Description>
+      <Icon>ATThaumaturgicalBattery</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATCore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Lightning Bolt</Name>
+      <InternalName>ATCore4</InternalName>
+      <Description>Spell Like Ability: Lightning Bolt
+Activation Cost: 6 Spell Points.
+Cooldown: 7 seconds.</Description>
+      <Icon>ATLightningBolt</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATCore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Lightning Bolt</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 6 -1</Amount>
+        <Item>Artificer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Runic Efficacy</Name>
+      <InternalName>ATCore5</InternalName>
+      <Description>Passive: +1 Evocation DC, +2 to Caster Level and Max Caster Level of electric spells,
++2 to Rune Arm DCs.</Description>
+      <Icon>ATRunicEfficacy</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATCore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Evocation</Item>
+      </Effect>
+       <Effect>
+          <Type>CasterLevel</Type>
+          <Type>MaxCasterLevel</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+          <Item>Electric</Item>
+       </Effect>
+       <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Rune Arm</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Arcane Empowerment</Name>
+      <InternalName>ATCore6</InternalName>
+      <Description>The patterns of the most complex magical formulae are like children's
+drawings to you. You gain +4 Intelligence and +5 Spellcraft.
+You treat any non-scroll activated equipped item that casts spells (such as wands,
+rods, armor, or other activated items) as if they were staves, increasing their
+caster level to equal yours as well as increasing Save DCs to
+(10 + your Intelligence bonus + level of spell) if it would be an improvement.
+These increases are applied after Artificer Knowledge, so do not stack.</Description>
+      <Icon>ATArcaneEmpowerment</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>20</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Intelligence</Item>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Spellcraft</Item>
+      </Effect>
+    </EnhancementTreeItem>
+     <!--Tier 1-->
+     <EnhancementTreeItem>
+      <Name>Arcanotechnician: Static Shock</Name>
+      <InternalName>ATStaticShock</InternalName>
+      <Description>Spell Like Ability: Static Shock
+Cost: 4/3/2 spell points.
+Cooldown: 12/8/4 seconds</Description>
+      <Icon>ATStaticShock</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <LongArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Static Shock</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 4 -1</Amount>
+        <Item>Artificer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Energy of Creation</Name>
+      <InternalName>ATEnergyOfCreation</InternalName>
+      <Description>Your studies have increased your maximum Spell Points by +[30/60/90].</Description>
+      <Icon>ATEnergyOfCreation</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">30 60 90</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Arcane Skills</Name>
+      <InternalName>ATArcaneSkills</InternalName>
+      <Description>+[1/2/3] Spellcraft and Use Magic Device</Description>
+      <Icon>ATArcaneSkills</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Spellcraft</Item>
+        <Item>Use Magic Device</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical I</Name>
+      <InternalName>ATSpellCriticalI</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Force/Untyped</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Wand and Scroll Mastery</Name>
+      <InternalName>ATWandAndScrollMastery</InternalName>
+      <Description>+[25/50/75] to the effectiveness of your wands, scrolls, and other items that cast spells.</Description>
+      <Icon>ATWandAndScrollMastery</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>ATWandAndScrollMastery</Item>
+          <Item>Wand and Scroll Mastery</Item>
+        </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>ATWandAndScrollMastery</Item>
+          <Item>Wand and Scroll Mastery</Item>
+       </Effect>
+    </EnhancementTreeItem>
+     <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Efficient Metamagic</Name>
+      <InternalName>ATEfficientMetamagic</InternalName>
+      <Description>Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic. </Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ATEfficientMetamagic</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>ATEfficientMetamagic</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ATEfficientMetamagic</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>ATEfficientMetamagic</Item>
+              <Item>Efficient Quicken Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Imbue Defender</Name>
+      <InternalName>ATImbueDefender</InternalName>
+      <Description>Your Iron Defender gains +[5/10/15] PRR and [5/10/15]% doublestrike.
+Your experience imbuing your Iron Defender grants you a passive +[5/10/15] Electric
+Spell Power and +[2/4/6] Universal Spell Power.</Description>
+      <Icon>ATImbueDefender</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Item>Electric</Item>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical II</Name>
+      <InternalName>ATSpellCriticalII</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATSpellCriticalI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Force/Untyped</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Shocking Vulnerability</Name>
+      <InternalName>ATShockingVulnerability</InternalName>
+      <Description>Each Electric spell you cast has a 5% chance of applying 1d[1/2/3] stack[s]
+of Vulnerable to each affected enemy.
+Vulnerable - Target takes 1% more damage for 3 seconds.
+This effect stacks up to 20 times and loses one stack on expiration.</Description>
+      <Icon>ATShockingVulnerability</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+     <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Lightning Sphere</Name>
+      <InternalName>ATLightningSphere</InternalName>
+      <Description>Spell Like Ability: Lightning Sphere
+Activation Cost: 8/6/4 spell points.
+Cooldown: 15/10/5 seconds.</Description>
+      <Icon>ATLightningSphere</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATStaticShock</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Lightning Sphere</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 8 0</Amount>
+        <Item>Artificer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Efficient Metamagic</Name>
+      <InternalName>ATEfficientMetamagicII</InternalName>
+      <Description>Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic. </Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATEfficientMetamagic</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ATEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>ATEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ATEfficientMetamagicII</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>ATEfficientMetamagicII</Item>
+              <Item>Efficient Quicken Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Automated Repairs</Name>
+      <InternalName>ATAutomatedRepairs</InternalName>
+      <Description>You have installed automated repair systems in your Iron Defender.
+It repairs 4d4+1 hit points of damage to itself every [18/12/6] seconds,
+to you every [-/6/6] seconds, and to nearby allies every [-/-/6] seconds.
+NOTE: Recipients must be Warforged, Bladeforged or possess the Construct Essence
+feat to benefit. Giving your pet Repair boosting gear does not appear to increase
+the repair done by this ability. It is affected by Repair Amplification.</Description>
+      <Icon>ATAutomatedRepairs</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical III</Name>
+      <InternalName>ATSpellCriticalIII</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATSpellCriticalII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Force/Untyped</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Intelligence I</Name>
+      <InternalName>ATIntelligence</InternalName>
+      <Description>+1 Intelligence</Description>
+      <Icon>Intelligence</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Intelligence</Item>
+      </Effect>
+    </EnhancementTreeItem>
+     <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Blast Rod</Name>
+      <InternalName>ATBlastRod</InternalName>
+      <Description>Spell Like Ability: Blast Rod
+Activation Cost: [12/8/6] spell points.
+Cooldown: [18/12/6] seconds.</Description>
+      <Icon>ATBlastRod</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATLightningSphere</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Blast Rod</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 12 0</Amount>
+        <Item>Artificer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Efficient Heighten</Name>
+      <InternalName>ATEfficientHeighten</InternalName>
+      <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Point(s) per heightened level.</Description>
+      <Icon>EfficientHeighten</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>ATEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATEfficientMetamagicII</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Heighten Spell</Item>
+        </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>ATEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+       </Effect>
+       <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">-1 -2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Heighten</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Arcane Engine</Name>
+      <InternalName>ATArcaneEngine</InternalName>
+      <Description>You have carved arcane symbols on the core engine of your Iron Defender,
+allowing you to channel Arcane energies through him. As long as you remain near
+your Iron Defender, he will provide you with [3/6/10] Universal Spell Power.
+Your experience imbuing your Iron Defender grants you a passive +[5/10/15] Electric
+Spell Power and +[2/4/6] Universal Spell Power.</Description>
+      <Icon>ATArcaneEngine</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Item>Electric</Item>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Arcanotechnician: Near Iron Defender</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">3 6 10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Near Iron Defender</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical IV</Name>
+      <InternalName>ATSpellCriticalIV</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATSpellCriticalIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Force/Untyped</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Intelligence II</Name>
+      <InternalName>ATIntelligenceII</InternalName>
+      <Description>+1 Intelligence</Description>
+      <Icon>Intelligence</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATIntelligence</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Intelligence</Item>
+      </Effect>
+    </EnhancementTreeItem>
+     <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Lightning Motes</Name>
+      <InternalName>ATLightningMotes</InternalName>
+      <Description>Spell Like Ability: Lightning Motes
+Activation Cost: [12/8/6] spell points.
+Cooldown: [18/12/6] seconds.</Description>
+      <Icon>ATLightningMotes</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATBlastRod</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Lightning Motes</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 12 0</Amount>
+        <Item>Artificer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+     <EnhancementTreeItem>
+        <Name>Arcanotechnician: Charged Recoil</Name>
+        <InternalName>ATChargedRecoil</InternalName>
+        <Description>Your Runearm shots now strip Electric Immunity from enemies, rendering them
+vulnerable to Electric spells if they were immune for 10 seconds.</Description>
+        <Icon>ATChargedRecoil</Icon>
+        <XPosition>1</XPosition>
+        <YPosition>5</YPosition>
+        <CostPerRank size="1">2</CostPerRank>
+        <Ranks>1</Ranks>
+        <MinSpent>30</MinSpent>
+        <Tier5/>
+        <Requirements>
+           <Requirement>
+              <Type>ClassMinLevel</Type>
+              <Item>Artificer</Item>
+              <Value>5</Value>
+           </Requirement>
+           <Requirement>
+              <Type>Level</Type>
+              <Value>12</Value>
+           </Requirement>
+        </Requirements>
+     </EnhancementTreeItem>
+     <EnhancementTreeItem>
+      <Name>Arcanotechnician: Master Defender</Name>
+      <InternalName>ATMasterDefender</InternalName>
+      <Description>Your Iron Defender gain +[2/4/6] to Strength, Dexterity, and Constitution.
+In addition, as long as you remain near your Iron Defender, he will provide you with [1/2/3]% Dodge.</Description>
+      <Icon>ATMasterDefender</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Near Iron Defender</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Evocation Focus</Name>
+      <InternalName>ATEvocationFocus</InternalName>
+      <Description>You have trained extensively in Evocation magic, granting a +[1/2/3] bonus to
+your spell DCs of that school.</Description>
+      <Icon>ATEvocationFocus</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Evocation</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Arcane Mechanism</Name>
+      <InternalName>ATArcaneMechanism</InternalName>
+      <Description>While wielding a Rune Arm, +[10/15/20] Electric Spell Power,
++[5/10/15] Universal Spell Power.</Description>
+      <Icon>ATArcaneMechanism</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">10 15 20</Amount>
+        <Item>Electric</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

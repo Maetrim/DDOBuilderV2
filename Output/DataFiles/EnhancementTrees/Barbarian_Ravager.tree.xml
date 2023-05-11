@@ -1,0 +1,932 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Ravager</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Barbarian</Item>
+      </Requirement>
+    </Requirements>
+    <Background>BarbarianBackground</Background>
+    <Icon>Barbarian</Icon>
+     <!--Core items-->
+    <EnhancementTreeItem>
+      <Name>Ravager: Furious Rage</Name>
+      <InternalName>RavCore1</InternalName>
+      <Description>When you are raging and miss your attack by rolling 1, you gain Fury for six seconds.
+Fury: +1 Rage bonus to attack and damage.
+This effect stacks and one stack fades every six seconds.</Description>
+      <Icon>RavFuriousrage</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fury</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 100</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Rage</Bonus>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+        <AType>SliderValue</AType>
+        <StackSource>Fury</StackSource>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Pain Touch I</Name>
+      <InternalName>RavCore2</InternalName>
+       <Description>Passive: +5 Melee power and +10 Healing Amplification</Description>
+       <Icon>RavPainTouch</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavCore1</Item>
+        </Requirement>
+      </Requirements>
+       <Effect>
+          <Type>MeleePower</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+       </Effect>
+       <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Demoralizing Success</Name>
+      <InternalName>RavCore3</InternalName>
+      <Description>You gain +30 hit points and +10 healing amplification. When you score a vorpal
+hit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on
+a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
+15 seconds, regardless of the Crushing Despair saving throw.</Description>
+      <Icon>RavDemoralizingSuccess</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <DC>
+        <Name>Ravager: Demoralizing Success</Name>
+        <Description>When you score a vorpal
+hit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on
+a failed DC 20 Will saving throw.</Description>
+        <Icon>RavDemoralizingSuccess</Icon>
+        <DCType>Crushing Despair</DCType>
+        <DCVersus>Will</DCVersus>
+        <Amount size="1">20</Amount>
+      </DC>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Pain Touch II</Name>
+      <InternalName>RavCore4</InternalName>
+       <Description>Passive: You gain +60 hit points, +5 Melee power and +20 healing amplification</Description>
+       <Icon>RavPainTouch</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">60</Amount>
+      </Effect>
+       <Effect>
+          <Type>MeleePower</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+       </Effect>
+       <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Subsiding Fury</Name>
+      <InternalName>RavCore5</InternalName>
+      <Description>When you use Barbarian Rage, you gain 3 stacks of Fury.
+Passive: You gain +100 hit points and +20 healing amplification</Description>
+      <Icon>RavSubsidingFury</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>18</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+      </Effect>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Visage of Terror</Name>
+      <InternalName>RavCore6</InternalName>
+      <Description>Terrorize up to six enemies, killing them with fear if they fail a Will
+save vs 10 + Constitution modifier + half barbarian level. Enemies who make their
+saving throw are paralyzed with Fear for six seconds instead.
+Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)
+Passive:  +4 Constitution , +150 hit points and  +40 healing amplification</Description>
+      <Icon>RavVisageOfTerror</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavCore5</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Constitution</Item>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">150</Amount>
+      </Effect>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">40</Amount>
+      </Effect>
+      <DC>
+        <Name>Visage of Terror</Name>
+        <Description>Terrorize up to six enemies, killing them with fear if they fail a Will
+save. Enemies who make their saving throw are paralyzed with Fear for six seconds instead.
+Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
+        <Icon>RavVisageOfTerror</Icon>
+        <DCType>Death</DCType>
+        <DCVersus>Will</DCVersus>
+        <Amount size="1">10</Amount>
+        <ModAbility>Constitution</ModAbility>
+        <HalfClassLevel>Barbarian</HalfClassLevel>
+      </DC>
+    </EnhancementTreeItem>
+     <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Ravager: Ritual Scarring</Name>
+      <InternalName>RavRitualScarring</InternalName>
+      <Description>+[1/2/3] Intimidate, Haggle and Physical Resistance.</Description>
+      <Icon>RavRitualScarring</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Intimidate</Item>
+        <Item>Haggle</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Hate</Name>
+      <InternalName>RavHate</InternalName>
+      <Description>Melee Attack: Deals +[1/2/3][W] damage and generate extra threat.
+Cooldown: 6 seconds</Description>
+      <Icon>RavHate</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Do You Like Pain?</Name>
+      <InternalName>RavDoYouLikePain</InternalName>
+      <Description>When you are hit: [20/40/60]% chance attacker loses 10 AC.</Description>
+      <Icon>RavDoYouLikePain</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Barbarian Power Attack</Name>
+      <InternalName>RavBarbarianPowerAttack</InternalName>
+      <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
+Damage is doubled when Two Handed Fighting.</Description>
+      <Icon>RavBarbarianPowerAttack</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Power Attack</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_DamageBonus</Type>
+         <Type>Weapon_DamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Power Attack</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>WeaponDamageBonusClass</Type>
+         <Type>WeaponDamageBonusCriticalClass</Type>
+         <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Power Attack</Item>
+          </Requirement>
+        </Requirements>
+        <Item>TwoHanded</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Hardy Rage</Name>
+      <InternalName>RavHardyRage</InternalName>
+      <Description>+[1/2/3] Constitution when raging.</Description>
+      <Icon>RavHardyRage</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+           <RequiresOneOf>
+              <Requirement>
+                 <Type>Stance</Type>
+                 <Item>Rage</Item>
+              </Requirement>
+              <Requirement>
+                 <Type>Stance</Type>
+                 <Item>Beasthide Shifter: Shifted Form</Item>
+              </Requirement>
+              <Requirement>
+                 <Type>Stance</Type>
+                 <Item>Wildhunt Shifter: Shifted Form</Item>
+              </Requirement>
+              <Requirement>
+                 <Type>Stance</Type>
+                 <Item>Razorclaw Shifter: Shifted Form</Item>
+              </Requirement>
+           </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+     <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Ravager: Fear me!</Name>
+      <InternalName>RavFearMe</InternalName>
+      <Description>When you intimidate, affected enemies are Shaken for 6 seconds.</Description>
+      <Icon>RavFearMe</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavRitualScarring</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Mutilate</Name>
+      <InternalName>RavMutilate</InternalName>
+         <Description>Hate additionally deals 1d[4/6/8] Charisma damage and 1d[4/6/8] Bane damage.
+The bane damage scales with 200% Melee Power.
+Cooldown: 10 seconds per monster on proccing its Charisma damage.</Description>
+      <Icon>RavMutilate</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavHate</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: I Like Pain</Name>
+      <InternalName>RavILikePain</InternalName>
+      <Description>When you are hit: Small chance to gain [50/100/150] Temporary HP.
+This gain scales with 100% Melee Power</Description>
+      <Icon>RavILikePain</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <LongArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavDoYouLikePain</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Cruel Cut</Name>
+      <InternalName>RavCruelCut</InternalName>
+      <Description>Melee Attack: Deals [1/2/3]d6 extra constitution damage as long as you
+damage your target. (30 second cooldown)</Description>
+      <Icon>RavCruelCut</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Action Boost: Melee Power</Name>
+      <InternalName>RavActionBoostMeleePower</InternalName>
+      <Description>Activate this ability to receive a +[10/20/30] Action Boost bonus to Melee
+and Ranged Power for 20 seconds.
+Cooldown: 30 seconds</Description>
+      <Icon>RavActionBoostMeleePower</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+     <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Ravager: Aura of Fear</Name>
+      <InternalName>RavAuraOfFear</InternalName>
+      <Description>Nearby enemies receive a -2 penalty to Strength and Charisma.
+Rank 2: Nearby enemies receive a -2 penalty to Strength, Charisma, Dexterity and Wisdom.
+Rank 3: Nearby enemies receive a -2 penalty to all ability scores.</Description>
+      <Icon>RavAuraOfFear</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Slaughter</Name>
+      <InternalName>RavSlaughter</InternalName>
+      <Description>Melee Attack: Deals +[5/7.5/10][W] damage.
+Cooldown: 12 seconds</Description>
+      <Icon>RavSlaughter</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Festering Wound</Name>
+      <InternalName>RavFesteringWound</InternalName>
+      <Description>Cruel Cut additionally inflicts [1/2/3] 5-second stacks of 1d6 Poison damage
+every 2 seconds and that monster's positive energy healing is reduced by 50%
+for [5/10/15] seconds. Damage stacks fade one at a time.</Description>
+      <Icon>RavFesteringWound</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavCruelCut</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Ability I</Name>
+      <InternalName>RavAbilityScoreI</InternalName>
+      <Description>Choose either Constitution or Strength</Description>
+      <Icon>Constitution</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Constitution</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+     <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Ravager: Laughter</Name>
+      <InternalName>RavLaughter</InternalName>
+      <Description>When Slaughter damages an enemy, you gain three stacks of Fury.
+When Slaughter scores a critical hit on an enemy, you gain three more Fury
+(for a total of six) and gain 10 Melee Power for 15 seconds. </Description>
+      <Icon>RavLaughter</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavSlaughter</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: I Hit Back!</Name>
+      <InternalName>RavIHitBack</InternalName>
+      <Description>When you are hit: 20% chance to deal [2/4/6]d8 bane damage to attacker.
+This damage scales with 100% Melee Power.</Description>
+      <Icon>RavIHitBack</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavILikePain</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Dismember</Name>
+      <InternalName>RavDismember</InternalName>
+      <Description>Cruel Cut increases Melee Power by 5 for 10 seconds.
+Cruel Cut additionally slows enemy movement speed, or slows attack speed,
+or deals 2d[4/6/8] bane damage, or deals 6d[4/6/8] bane damage.
+This bane damage scales with 200% Melee Power</Description>
+      <Icon>RavDismember</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavFesteringWound</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Ability II</Name>
+      <InternalName>RavAbilityScoreII</InternalName>
+      <Description>Choose either Constitution or Strength</Description>
+      <Icon>Constitution</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavAbilityScoreI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Constitution</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+     <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Ravager: Blood Strength</Name>
+      <InternalName>RavBloodStrength</InternalName>
+      <Description>Each time you land a hit there is a 12% chance you heal positive damage equal
+to half your Barbarian level. Each time you kill an opponent you are healed for
+20 hit points. This healing scales with 100% Melee Power.
+Blood Strength has a one-second cooldown when you kill an enemy.</Description>
+      <Icon>RavBloodStrength</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Bully</Name>
+      <InternalName>RavBully</InternalName>
+      <Description>You deal +[5/10/15]% damage to helpless enemies.</Description>
+      <Icon>RavBully</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>RavIHitBack</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>HelplessDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Uncanny Balance</Name>
+      <InternalName>RavUncannyBalance</InternalName>
+      <Description>You are immune to most knockdowns and slippery surfaces.
++25% Competence bonus to Maximum Hit Points.</Description>
+      <Icon>RavUncannyBalance</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Knockdown</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Slippery Surfaces</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+       <Effect>
+          <Type>Hitpoints</Type>
+          <Bonus>Competence</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">25</Amount>
+          <Percent/>
+          <ApplyAsItemEffect/>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ravager: Critical Rage</Name>
+      <InternalName>RavCriticalRage</InternalName>
+      <Description>Increases your critical threat range by [1/2] when raging (competence bonus).</Description>
+      <Icon>RavCriticalRage</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_CriticalRange</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">1 2</Amount>
+        <Item>All</Item>
+         <Requirements>
+            <RequiresOneOf>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Rage</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Beasthide Shifter: Shifted Form</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wildhunt Shifter: Shifted Form</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Razorclaw Shifter: Shifted Form</Item>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,1553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Swashbuckler</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Type>Class</Type>
+            <Item>Bard</Item>
+         </Requirement>
+      </Requirements>
+      <Background>BardBackground</Background>
+      <Icon>Bard</Icon>
+      <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Confidence</Name>
+         <InternalName>SBCore1</InternalName>
+         <Description>Passive: +1% Dodge, +1 Reflex Save, and +1 to the Max Dex Bonus of your
+Armor per Swashbuckler Core Ability you have.</Description>
+         <Icon>SBConfidence</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Swashbuckling</Name>
+         <InternalName>SBCore2</InternalName>
+         <Description>Swashbuckling: Stance: You gain 1% Doublestrike and Doubleshot as well as
++1 to the Enhancement Bonus of the weapon in your main hand. Swashbuckling
+requires wielding a Finesseable or Thrown weapon in your main hand, wielding
+a Buckler or nothing in your off hand, and wearing Light Armor or no armor.
+(Druids cannot Swashbuckle while in animal forms.) (For Warforged and Bladeforged,
+you must be using either the Composite Plating or Mithral Body feats).
+
+Passive: While Swashbuckling, the following weapons receive Competence bonuses
+to their critical profiles (critical threat range bonuses doubled with the
+appropriate Improved Critical feat, but not with keen or impact): 
+
+Dagger, Shortsword, Throwing Dagger: +1 Threat Range, +1 Multiplier
+Light Mace, Light Hammer, Kama, Sickle, Dart, Shuriken, Throwing Axe,
+    Throwing Hammer: +2 Threat Range, +1 Multiplier
+Kukri, Rapier: +1 Multiplier
+Handaxe: +2 Range
+Light Pick: +1 Range</Description>
+         <Icon>SBSwashbuckling</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>SBCore1</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_Enchantment</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>Weapon_CriticalRange</Type>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 1 2</Amount>
+            <Item>Dagger</Item>
+            <Item>Shortsword</Item>
+            <Item>Throwing Dagger</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 2 4</Amount>
+            <Item>Light Mace</Item>
+            <Item>Light Hammer</Item>
+            <Item>Hand Axe</Item>
+            <Item>Kama</Item>
+            <Item>Sickle</Item>
+            <Item>Dart</Item>
+            <Item>Shuriken</Item>
+            <Item>Throwing Axe</Item>
+            <Item>Throwing Hammer</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 1 2</Amount>
+            <Item>Light Pick</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 1 2</Amount>
+            <Item>Kukri</Item>
+            <Item>Rapier</Item>
+            <Item>Light Mace</Item>
+            <Item>Light Hammer</Item>
+            <Item>Kama</Item>
+            <Item>Sickle</Item>
+            <Item>Dart</Item>
+            <Item>Shuriken</Item>
+            <Item>Throwing Axe</Item>
+            <Item>Throwing Hammer</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 2 4</Amount>
+            <Item>Light Mace</Item>
+            <Item>Light Hammer</Item>
+            <Item>Hand Axe</Item>
+            <Item>Kama</Item>
+            <Item>Sickle</Item>
+            <Item>Dart</Item>
+            <Item>Shuriken</Item>
+            <Item>Throwing Axe</Item>
+            <Item>Throwing Hammer</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 1 2</Amount>
+            <Item>Light Pick</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 1 2</Amount>
+            <Item>Kukri</Item>
+            <Item>Rapier</Item>
+            <Item>Light Mace</Item>
+            <Item>Light Hammer</Item>
+            <Item>Kama</Item>
+            <Item>Sickle</Item>
+            <Item>Dart</Item>
+            <Item>Shuriken</Item>
+            <Item>Throwing Axe</Item>
+            <Item>Throwing Hammer</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Uncanny Dodge</Name>
+         <InternalName>SBCore3</InternalName>
+         <Description>Uncanny Dodge: You gain the Uncanny Dodge feat.
+Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and +1 Attack Damage.</Description>
+         <Icon>SBUncannyDodge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>SBCore2</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>6</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Uncanny Dodge</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Panache</Name>
+         <InternalName>SBCore4</InternalName>
+         <Description>Panache: While Swashbuckling, you have an additional 1% Doublestrike,
+1% Doubleshot, +1 Attack Damage, +1 Reflex Saving Throw, and the weapon in your
+main hand gains an additional +1 to its Enhancement bonus.</Description>
+         <Icon>SBPanache</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>SBCore3</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_Enchantment</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Roll with the Punches</Name>
+         <InternalName>SBCore5</InternalName>
+         <Description>Roll with the Punches: While Swashbuckling, you gain +5 Insight Bonus to
+Character Dodge Cap, the Slippery Mind feat, +1% Doublestrike, 1% Doubleshot
+and +1 Attack Damage</Description>
+         <Icon>SBRollWithThePunches</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>SBCore4</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>18</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Slippery Mind</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Evasive Maneuvers</Name>
+         <InternalName>SBCore6</InternalName>
+         <Description>Evasive Maneuvers: +2 Charisma, +2 Dexterity.
+While Swashbuckling, you gain the Evasion feat, +1% Doublestrike, 1% Doubleshot,
++1 Attack Damage, and the weapon in your main hand gains an additional +1 to its
+Enhancement bonus.</Description>
+         <Icon>SBEvasiveManeuvers</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>SBCore5</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>20</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Charisma</Item>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>Weapon_Enchantment</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Evasion</Item>
+            <AType>NotNeeded</AType>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: On Your Toes</Name>
+         <InternalName>SBOnYourToes</InternalName>
+         <Description>+[1/2/3]% Dodge</Description>
+         <Icon>SBOnYourToes</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Blow By Blow</Name>
+         <InternalName>SBBlowByBlow</InternalName>
+         <Description>Choose either a Melee or Ranged attack:</Description>
+         <Icon>SBBlowByBlow</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Blow By Blow</Name>
+               <Description>Make a Melee attack with +[1/2/3] critical threat range that deals
++[1/2/3]d6 extra Sonic damage, and reduces your threat with nearby enemies by
+[100/200/300]. This Sonic damage scales with spell power. </Description>
+               <Icon>SBBlowByBlow</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Blow By Blow (Ranged)</Name>
+               <Description>Make a Ranged attack with +[1/2/3] critical threat range that deals
++[1/2/3]d6 extra Sonic damage, and reduces your threat with nearby enemies by
+[100/200/300]. This Sonic damage scales with spell power. </Description>
+               <Icon>SBBlowByBlowRanged</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Insults</Name>
+         <InternalName>SBInsults</InternalName>
+         <Description>Select an Insult that debuffs the saves of nearby enemies.</Description>
+         <Icon>SBInsults</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Appalling Diatribe</Name>
+               <Description>Activate to reduce the Reflex saves of nearby enemies by 3.
+Costs: [16/12/8] SP
+Cooldown: [20/15/10] seconds</Description>
+               <Icon>SBAppallingDiatribe</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Cutting Jibes</Name>
+               <Description>Activate to reduce the Will saves of nearby enemies by 3.
+Costs: [16/12/8] SP
+Cooldown: [20/15/10] seconds</Description>
+               <Icon>SBCuttingJibes</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Scathing Words</Name>
+               <Description>Activate to reduce the Fortitude saves of nearby enemies by 3.
+Costs: [16/12/8] SP
+Cooldown: [20/15/10] seconds</Description>
+               <Icon>SBScathingWords</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Tavern Shanties</Name>
+         <InternalName>SBTavernShanties</InternalName>
+         <Description>+[1/2/3] Bard Songs</Description>
+         <Icon>SBTavernShanties</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SongCount</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Limber Up</Name>
+         <InternalName>SBLimberUp</InternalName>
+         <Description>+[1/2/3] to Balance, Swim, and Tumble.
+Rank 3: When you Tumble, you gain +3 to saves against traps for 6 seconds.
+12 second cooldown.</Description>
+         <Icon>SBLimberUp</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Balance</Item>
+            <Item>Swim</Item>
+            <Item>Tumble</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Traps</Item>
+            <AType>Simple</AType>
+            <Rank>3</Rank>
+            <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Tumble</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: En Pointe</Name>
+         <InternalName>SBEnPointe</InternalName>
+         <Description>Melee Attack: Make two attacks with +[1/1.5/2][W], +[4/8/12] critical threat range,
+but -1 Critical Multiplier. Costs 10 Spell Points to activate.</Description>
+         <Icon>SBEnPointe</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Deflect Arrows</Name>
+         <InternalName>SBDeflectArrows</InternalName>
+         <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one
+incoming projectile that would have struck you every 6 seconds.
+(Anti-requisite Deflect Arrows)</Description>
+         <Icon>SBDeflectArrows</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>SBDeflectArrows</Item>
+               <Item>Deflect Arrows</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SBDeflectArrows</Item>
+            <Item>Deflect Arrows</Item>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Deflect Arrows</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Fast Movement</Name>
+         <InternalName>SBFastMovement</InternalName>
+         <Description>You run 1% faster for each of your Bard levels.</Description>
+         <Icon>SBFastMovement</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Class</Bonus>
+            <AType>ClassLevel</AType>
+            <Amount size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+            <StackSource>Bard</StackSource>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Sword Dance</Name>
+         <InternalName>SBSwordDance</InternalName>
+         <Description>While Swashbuckling, when enemies miss you in combat, you deal 1d[10/12/20]
+Sonic Damage. This Sonic damage scales with spell power.</Description>
+         <Icon>SBSwordDance</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Action Boost</Name>
+         <InternalName>SBActionBoost</InternalName>
+         <Description>Choose between a Doubleshot or a Doublestrike action boost bonus: (Cooldown: 30 Seconds)</Description>
+         <Icon>SBActionBoost</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Double Shot Boost</Name>
+               <Description>Activate to gain +[10/20/30]% Action Boost bonus to Doubleshot for 20 seconds.
+Usable 5 times per rest. </Description>
+               <Icon>SBDoubleshotboost</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Double Strike Boost</Name>
+               <Description>Activate to gain +[10/20/30]% Action Boost bonus to Doublestrike for 20 seconds.
+Usable 5 times per rest.</Description>
+               <Icon>SBDoublestrikeBoost</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Elegant Footwork</Name>
+         <InternalName>SBElegantFootwork</InternalName>
+         <Description>When enemies miss you while Swashbuckling, they have a 20% chance to be knocked
+down with no save. Cooldown: 12 seconds.</Description>
+         <Icon>SBElegantFootwork</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Swashbuckling Style</Name>
+         <InternalName>SBSwashbucklingStyle</InternalName>
+         <Description>Select your Swashbuckling style: Open Hand, Buckler, Orb or Rune Arm.</Description>
+         <Icon>SBSwashbucklingStyle</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Arcane Marauder</Name>
+               <Description>Passive: You can now Swashbuckle with an Orb in your off hand.
+(Does not count as a Buckler for Buckler-specific abilities).
+Requires Magical Training (or the Enhancement equivalent)</Description>
+               <Icon>SBArcaneMarauder</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>FeatAnySource</Type>
+                     <Item>Magical Training</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AddGroupWeapon</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Item>SwashbucklingOffhand</Item>
+                  <Item>Orb</Item>
+                  <AType>NotNeeded</AType>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Cannoneer</Name>
+               <Description>Passive: You can now Swashbuckle with a Rune Arm in your off hand.
+(Does not count as a Buckler for Buckler-specific abilities). </Description>
+               <Icon>SBCannoneer</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Artificer Rune Arm Use</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AddGroupWeapon</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Item>SwashbucklingOffhand</Item>
+                  <Item>RuneArm</Item>
+                  <AType>NotNeeded</AType>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dashing Scoundrel</Name>
+               <Description>Passive: While Swashbuckling with nothing in your off hand, you gain
++1 Attack Damage per 5 Character levels and 10% Doublestrike/Doubleshot. </Description>
+               <Icon>SBDashingScoundrel</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Bonus>Enhancement</Bonus>
+                  <Type>Weapon_DamageBonus</Type>
+                  <Type>Weapon_DamageBonusCritical</Type>
+                  <AType>TotalLevel</AType>
+                  <Amount size="40">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9</Amount>
+                  <Item>All</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Swashbuckling</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+               <Effect>
+                  <Bonus>Enhancement</Bonus>
+                  <Type>Doublestrike</Type>
+                  <Type>Doubleshot</Type>
+                  <AType>Simple</AType>
+                  <Amount size="1">10</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Swashbuckling</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Skirmisher</Name>
+               <Description>Passive: While Swashbuckling with a Buckler in your off hand, you gain
+10% Dodge, and you may use a Buckler and still benefit from the Single Weapon
+Fighting line of feats.</Description>
+               <Icon>SBSkirmisher</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>DodgeBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">10</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Buckler</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Resonant Arms</Name>
+         <InternalName>SBResonantArms</InternalName>
+         <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
+         <Icon>SBResonantArms</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Swashbuckler: Resonant Arms</Name>
+            <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
+            <Icon>SBResonantArms</Icon>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Different Tack</Name>
+         <InternalName>SBDifferentTack</InternalName>
+         <Description>Choose to use either Charisma, Dexterity or Intelligence modifier for damage when single weapon fighting:</Description>
+         <Icon>SBDifferentTack</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Smooth Flourishes</Name>
+               <Description>You get Charisma to Damage with weapon attacks while Single Weapon Fighting</Description>
+               <Icon>SBSmoothFlourishes</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>Weapon_DamageAbility</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Single Weapon Fighting</Item>
+                     </Requirement>
+                  </Requirements>
+                  <Item>Charisma</Item>
+                  <Item>All</Item>
+                  <AType>NotNeeded</AType>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Swift Strikes</Name>
+               <Description>You get Dexterity to Damage with weapon attacks while Single Weapon Fighting.</Description>
+               <Icon>SBSwiftStrikes</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>Weapon_DamageAbility</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Single Weapon Fighting</Item>
+                     </Requirement>
+                  </Requirements>
+                  <Item>Dexterity</Item>
+                  <Item>All</Item>
+                  <AType>NotNeeded</AType>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Two Steps Ahead</Name>
+               <Description>You get Intelligence to Damage with weapon attacks Single Weapon Fighting</Description>
+               <Icon>SBTwoStepsAhead</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>Weapon_DamageAbility</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Single Weapon Fighting</Item>
+                     </Requirement>
+                  </Requirements>
+                  <Item>Intelligence</Item>
+                  <Item>All</Item>
+                  <AType>NotNeeded</AType>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Ability I</Name>
+         <InternalName>SBAbilityScoreI</InternalName>
+         <Description>Choose either Charisma or Dexterity</Description>
+         <Icon>ChaDex</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: On the Mark</Name>
+         <InternalName>SBOnTheMark</InternalName>
+         <Description>Passive +[1/2/3] to attack rolls to confirm critical hits and damage on
+critical hits (before weapon multipliers)</Description>
+         <Icon>SBOnTheMark</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Swashbuckling Style II</Name>
+         <InternalName>SBSwashbucklingStyleII</InternalName>
+         <Description>Improve your Swashbuckling Style</Description>
+         <Icon>SBSwashbucklingStyleII</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>SBSwashbucklingStyle</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Loud and Clear</Name>
+               <Description>Passive: While Swashbuckling with an Orb in your off hand, +20 Sonic Spell Power</Description>
+               <Icon>SBLoudAndClear</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+               <Effect>
+                  <Bonus>Enhancement</Bonus>
+                  <Type>SpellPower</Type>
+                  <Item>Sonic</Item>
+                  <AType>Simple</AType>
+                  <Amount size="1">20</Amount>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Swashbuckling</Item>
+                     </Requirement>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Orb</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Low Blow</Name>
+               <Description>While Swashbuckling and wielding a Buckler in your off hand, activate to
+perform a shield bash with +2 Critical Threat Range and Multiplier. On hit,
+knock down affected enemy for three seconds (Perform + d20 saves for the
+Knockdown). Costs 10 Spell Points. </Description>
+               <Icon>SBLowBlow</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Music Box</Name>
+               <Description>Passive: While Swashbuckling with a Rune Arm in your off hand, your Rune
+Arm Weapon Imbue deals an additional 1d6 Sonic damage. </Description>
+               <Icon>SBMusicBox</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+               <Effect>
+                  <Type>WeaponOtherDamageBonusCritical</Type>
+                  <Type>WeaponOtherDamageBonusCritical</Type>
+                  <AType>NotNeeded</AType>
+                  <Bonus>Enhancement</Bonus>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">6</Sides>
+                     <Damage>Sonic</Damage>
+                  </Dice>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Swashbuckling</Item>
+                     </Requirement>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Rune Arm</Item>
+                     </Requirement>
+                  </Requirements>
+                  <Item>All</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Slap in the Face</Name>
+               <Description>While Swashbuckling and wielding nothing in your off hand, activate to
+deal 1 Bludgeon damage. Damaged enemies can't cast spells for 6 seconds and are
+stunned for three seconds (Perform + d20 saves for the Stun).
+18 second cooldown. Costs 10 Spell Points.</Description>
+               <Icon>SBSlapIntheFace</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Battering Barrage</Name>
+         <InternalName>SBBatteringBarrage</InternalName>
+         <Description>While Swashbuckling, hits inflict Destruction/Improved Destruction.</Description>
+         <Icon>SBBatteringBarrage</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>2</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Wind at my Back</Name>
+         <InternalName>SBWindAtMyBack</InternalName>
+         <Description>+1 to the Enhancement Bonus of your equipped Throwing Weapons, plus an
+additional +1 for every five Bard levels.</Description>
+         <Icon>SBWindAtMyBack</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>4</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_EnchantmentClass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Thrown</Item>
+            <Amount size="20">1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Bard</StackSource>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Ability II</Name>
+         <InternalName>SBAbilityScoreII</InternalName>
+         <Description>Choose either Charisma or Dexterity</Description>
+         <Icon>ChaDex</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>SBAbilityScoreI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Thread the Needle</Name>
+         <InternalName>SBThreadTheNeedle</InternalName>
+         <Description>While Swashbuckling, +5 Damage while the Precision feat is active.</Description>
+         <Icon>SBThreadTheNeedle</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Precision</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Precision</Item>
+               </Requirement>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Coup de Grace</Name>
+         <InternalName>SBCoupDeGrace</InternalName>
+         <Description>Multi-selector, Melee or Ranged Attack: Make an attack with +3[W].
+If it strikes any Fascinated, Sleeping, Dancing, Dazed, Tripped, Mesmerized,
+Paralyzed, Petrified, or Stunned enemy, it must make a Fortitude save
+(d20 + your Perform skill) or die instantly. (20 second cooldown)</Description>
+         <Icon>SBCoupDeGrace</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Second Skin</Name>
+         <InternalName>SBSecondSkin</InternalName>
+         <Description>While Swashbuckling, +[1/2/3] to your Reflex Saves and +[2/4/6] to the Max Dex Bonus of your Armor.
+Rank 3: +20% competence bonus to hit points.</Description>
+         <Icon>SBSecondSkin</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reflex</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Rank>3</Rank>
+            <Amount size="1">20</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Exploit Weaknesses</Name>
+         <InternalName>SBExploitWeaknesses</InternalName>
+         <Description>While Swashbuckling, every time you damage an enemy but do not critically hit,
+you gain a stacking +1 Insight Bonus to Critical Threat Range until you
+successfully critically hit.</Description>
+         <Icon>SBExploitWeaknesses</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

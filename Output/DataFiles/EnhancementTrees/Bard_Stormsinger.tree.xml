@@ -1,0 +1,1169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Stormsinger</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Stormsinger</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Bard</Icon>
+    <Background>BardBackground</Background>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormsinger</Name>
+      <InternalName>StormCore1</InternalName>
+      <Description>Each core ability you take in this tree, including this one, grants you
++5 Electric, Cold, and Sonic Spell Power.</Description>
+      <Icon>BSStormsinger</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Lightning Strike</Name>
+      <InternalName>StormCore2</InternalName>
+      <Description>Your Sonic and Cold spells have a 20% chance to cause a massive Lightning Strike
+whenever they hit an enemy. This lightning strike deals an extra 1d6 Electric
+damage per caster level.</Description>
+      <Icon>BSLightningStrike</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>StormCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Enhanced Bolt I</Name>
+      <InternalName>StormCore3</InternalName>
+      <Description>Your Lightning Strike damage is upgraded to deal 1d6+2 Electric damage per caster level.</Description>
+      <Icon>BSEnhancedBoltI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>StormCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Enhanced Bolt II</Name>
+      <InternalName>StormCore4</InternalName>
+      <Description>Your Lightning Strike is upgraded to add 1d3 stacks of Vulnerability when it goes off.
+The damage is upgraded to 1d6+4.</Description>
+      <Icon>BSEnhancedBoltII</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>StormCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Enhanced Bolt III</Name>
+      <InternalName>StormCore5</InternalName>
+      <Description>Whenever your Lightning Strike goes off, the enemy is Frozen with no save for 3 seconds.
++1 Caster Level and Max Caster Level with Sonic and Electric spells.</Description>
+      <Icon>BSEnhancedBoltIII</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>18</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>StormCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+         <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Master of Storms</Name>
+      <InternalName>StormCore6</InternalName>
+      <Description>+4 Charisma, +1 Evocation DCs. Your Lightning Strike now deals 1d6+6 damage
+per caster level. The freeze is upgraded to 5 seconds. +1 Caster Level and Max
+Caster Level with Sonic and Electric spells.</Description>
+      <Icon>BSMasterOfStorms</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>StormCore5</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Charisma</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Evocation</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Spell Like Ability I</Name>
+      <InternalName>BSSpellLikeAbilityI</InternalName>
+      <Description>Select a Spell-Like Ability.</Description>
+      <Icon>BSSpellLikeAbilityI</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Niac's Cold Ray</Name>
+          <Description />
+          <Icon>NiacsColdRay</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Niac's Cold Ray</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+             <Item>Stormsinger</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Sonic Blast</Name>
+          <Description />
+          <Icon>BSSpellLikeAbilityI</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+           <Requirements>
+              <Requirement>
+                 <Type>Exclusive</Type>
+                 <Item>BSSpellLikeAbilityI</Item>
+                 <Item>Sonic Blast</Item>
+              </Requirement>
+           </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BSSpellLikeAbilityI</Item>
+              <Item>Sonic Blast</Item>
+           </Effect>
+           <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sonic Blast</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+             <Item>Stormsinger</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Tavern Shanties</Name>
+      <InternalName>BSTavernShanties</InternalName>
+      <Description>+[1/2/3] Bard Songs.</Description>
+      <Icon>BSEfficientEmpower</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SongCount</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormsong I</Name>
+      <InternalName>BSStormsongI</InternalName>
+      <Description>+2% Spell Critical Chance with Electric and Cold spells.</Description>
+      <Icon>BSStormsongI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Electrocution</Name>
+      <InternalName>BSElectrocution</InternalName>
+      <Description>Whenever you cast an Electric, Cold, or Sonic damage spell, you gain
++5 to your Electric and Sonic Spell Power for 6 seconds.
+This stacks up to [1/3/5] times.</Description>
+      <Icon>BSElectrocution</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: On Your Toes</Name>
+      <InternalName>BSOnYourToes</InternalName>
+      <Description>+[1/2/3]% Dodge</Description>
+      <Icon>BSOnYourToes</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Spell Like Ability II</Name>
+      <InternalName>BSSpellLikeAbilityII</InternalName>
+      <Description>Select a Spell-Like Ability.</Description>
+      <Icon>BSSpellLikeAbilityII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Niac's Biting Cold</Name>
+          <Description />
+          <Icon>NiacsBitingCold</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Niac's Biting Cold</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+             <Item>Stormsinger</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Reverberate</Name>
+          <Description>Gain SLA "Reverberate" - Wrack the target's body with internal sonic booms,
+dealing 1 to 10 sonic damage +1 per three caster levels (up to caster level 18)
+every 2 seconds for a duration of 16 seconds. This spell can stack on the target
+up to three times, increasing the damage with each stack.
+Activation cost: 20/15/10 SP
+Cooldown: 9 seconds.</Description>
+          <Icon>SSReverberate</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+           <Requirements>
+              <Requirement>
+                 <Type>Exclusive</Type>
+                 <Item>BSSpellLikeAbilityII</Item>
+                 <Item>Reverberate</Item>
+              </Requirement>
+           </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BSSpellLikeAbilityII</Item>
+              <Item>Reverberate</Item>
+           </Effect>
+           <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Reverberate</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+             <Item>Stormsinger</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Efficient Metamagic I</Name>
+      <InternalName>BSEfficientMetamagicI</InternalName>
+      <Description>Enhance a Metamagic by reducing its cost.</Description>
+      <Icon>EfficientMaximize</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+               <Requirement>
+                  <Type>Exclusive</Type>
+                  <Item>BSEfficientMetamagicI</Item>
+                  <Item>Efficient Empower Spell</Item>
+               </Requirement>
+             <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BSEfficientMetamagicI</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Empower</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>BSEfficientMetamagicI</Item>
+                <Item>Efficient Maximize Spell</Item>
+             </Requirement>
+             <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BSEfficientMetamagicI</Item>
+              <Item>Efficient Maximize Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Maximize</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormsong II</Name>
+      <InternalName>BSStormsongII</InternalName>
+      <Description>+2% Spell Critical Chance with Electric and Cold spells.</Description>
+      <Icon>BSStormsongI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BSStormsongI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Pierce Electric Resistance</Name>
+      <InternalName>BSPierceElectricResistance</InternalName>
+      <Description>Your Electric, Cold, and Sonic damage spells now bypass [5/10/15] points
+of your target's resistance to those damage types, if any.</Description>
+      <Icon>BSPierceElectricResistance</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Fast Movement</Name>
+      <InternalName>BSFastMovement</InternalName>
+      <Description>You run 1% faster for each of your Stormsinger levels.</Description>
+      <Icon>BSFastMovement</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Class</Bonus>
+         <AType>ClassLevel</AType>
+         <Amount size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+         <StackSource>Stormsinger</StackSource>
+         <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Spell Like Ability III</Name>
+      <InternalName>BSSpellLikeAbilityIII</InternalName>
+      <Description>Select a Spell-Like Ability.</Description>
+      <Icon>BSSpellLikeAbilityIII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Shout</Name>
+          <Description>Spell-Like Ability: Shout.
+Activation cost: [15/12/9] SP
+Cooldown: [12/9/6] seconds
+Metamagic Feats can be used at no additional cost.</Description>
+          <Icon>SSShout</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+           <Requirements>
+              <Requirement>
+                 <Type>Exclusive</Type>
+                 <Item>BSSpellLikeAbilityIII</Item>
+                 <Item>Shout</Item>
+              </Requirement>
+           </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BSSpellLikeAbilityIII</Item>
+              <Item>Shout</Item>
+           </Effect>
+           <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Shout</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+             <Item>Stormsinger</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Snowball Swarm</Name>
+          <Description />
+          <Icon>SnowballSwarm</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Snowball Swarm</Item>
+             <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+             <Item>Stormsinger</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Efficient Metamagic II</Name>
+      <InternalName>BSEfficientMetamagicII</InternalName>
+      <Description>Enhance a Metamagic by reducing its cost.</Description>
+      <Icon>EfficientMaximize</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BSEfficientMetamagicI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>BSEfficientMetamagicII</Item>
+                <Item>Efficient Empower Spell</Item>
+             </Requirement>
+             <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BSEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Empower</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+             <Requirement>
+                <Type>Exclusive</Type>
+                <Item>BSEfficientMetamagicII</Item>
+                <Item>Efficient Maximize Spell</Item>
+             </Requirement>
+             <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+           <Effect>
+              <Type>ExclusionGroup</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>NotNeeded</AType>
+              <Item>BSEfficientMetamagicII</Item>
+              <Item>Efficient Maximize Spell</Item>
+           </Effect>
+           <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+             <Requirements>
+                <Requirement>
+                   <Type>Stance</Type>
+                   <Item>Maximize</Item>
+                </Requirement>
+             </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormsong III</Name>
+      <InternalName>BSStormsongIII</InternalName>
+      <Description>+2% Spell Critical Chance with Electric and Cold spells.</Description>
+      <Icon>BSStormsongI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BSStormsongII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormcaller's Aria</Name>
+      <InternalName>BSStormcallersAria</InternalName>
+      <Description>Your Inspire Courage grants nearby allies +[3/6/9] more Universal Spell Power and +[1/2/3] to hit.</Description>
+      <Icon>BSStormcallersAria</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Charisma I</Name>
+      <InternalName>BSAbiltyI</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Charisma</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormsinger's Inspiration</Name>
+      <InternalName>BSStormsingersInspiration</InternalName>
+      <Description>Your Bardic Inspiration now grants allies a chance to have your Lightning Strike
+when they make a melee or ranged attack.</Description>
+      <Icon>BSStormsingersInspiration</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormsong IV</Name>
+      <InternalName>BSStormsongIV</InternalName>
+      <Description>+2% Spell Critical Chance with Electric and Cold spells.</Description>
+      <Icon>BSStormsongI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BSStormsongIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Ride the Lightning</Name>
+      <InternalName>BSRideTheLightning</InternalName>
+      <Description>Your main hand weapon is now considered an Implement.
+When you critically hit with a Sonic, Cold, or Lightning Spell, you gain
++3% Dodge, +3 Reflex saving throws, and your spell point costs are reduced
+by 3% for 10 seconds.</Description>
+      <Icon>BSRideTheLightning</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ImplementInYourHands</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Charisma II</Name>
+      <InternalName>BSAbiltyII</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BSAbiltyI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Charisma</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Horn of Thunder</Name>
+      <InternalName>BSHornOfThunder</InternalName>
+      <Description>Spell-Like Ability: Horn of Thunder.
+Activation cost: [30/25/20] SP
+Cooldown: [20/16/12] seconds.
+Blast your foes with 1d4 Sonic and 1d4 Electric damage per caster level.
+Sonic damage is doubled vs. Oozes, as the thunderous pressure disrupts
+their amorphous structure. Creatures making a Reflex save take half damage.
+Max caster level: 25. Affects liches. </Description>
+      <Icon>SSHornOfThunder</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Horn of Thunder</Item>
+         <AType>SpellInfo</AType>
+         <Amount size="3">0 0 0</Amount>
+         <Item>Stormsinger</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Eye of the Storm</Name>
+      <InternalName>BSEyeOfTheStorm</InternalName>
+      <Description>You are no longer negatively affected by Sleet storm, and while in
+any Sleet storm spells, you gain an additional Lightning Strike proc chance.</Description>
+      <Icon>BSEyeOfTheStorm</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormsong V</Name>
+      <InternalName>BSStormsongV</InternalName>
+      <Description>+2% Spell Critical Chance with Electric and Cold spells.</Description>
+      <Icon>BSStormsongI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BSStormsongIV</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Stormcaller</Name>
+      <InternalName>BSStormcaller</InternalName>
+      <Description>+[5/10/15] Electric, Cold, and Sonic Spell Power.
+Rank 3: The spell Iceberg is added to your Spell book at level 6.</Description>
+      <Icon>BSStormcaller</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+      </Effect>
+       <Effect>
+          <Type>GrantSpell</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Iceberg</Item>
+          <AType>SpellInfo</AType>
+          <Rank>3</Rank>
+          <Amount size="3">6 40 15</Amount>
+          <Item>Stormsinger</Item>
+       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Stormsinger: Storm Studies</Name>
+      <InternalName>BSStormStudies</InternalName>
+      <Description>+1 Evocation DCs.</Description>
+      <Icon>BSStormStudies</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Stormsinger</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Evocation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

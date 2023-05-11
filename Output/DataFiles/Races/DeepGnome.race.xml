@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Races>
+   <Race>
+      <Name>Deep Gnome</Name>
+      <Description>Also called deep gnomes, svirfneblin are said to dwell in great cities deep
+underground. A svirfneblin has wiry, rock-colored skin usually medium brown to
+brownish gray. Only males are bald; females have stringy gray hair. The average
+svirfneblin lifespan is 250 years.
+
+Starts with 1 level of: Wizard</Description>
+      <BuildPoints size="4">28 32 34 36</BuildPoints>
+      <IconicClass>Wizard</IconicClass>
+      <Strength>-2</Strength>
+      <Intelligence>+2</Intelligence>
+      <Wisdom>+2</Wisdom>
+      <Charisma>-2</Charisma>
+      <Feat>
+         <Name>Racial Spell Resistance</Name>
+         <Description>You are naturally resistance to spells and magical effects.
+You have a base Spell Resistance of 6, protecting you from many non-damaging spells
+and effects.</Description>
+         <Acquire>Automatic</Acquire>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Deep Gnome</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Icon>RacialSpellResistance</Icon>
+         <Effect>
+            <Type>SpellResistance</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">6</Amount>
+         </Effect>
+      </Feat>
+   <Feat>
+      <Name>Past Life: Deep Gnome</Name>
+      <Description>Iconic Past Life Stance: +1 Illusion DC to spells you cast and +5 Acid
+Spell Power per stack of this Past Life.
+Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
+      <Stance>
+         <Name>Deep Gnome </Name>
+         <Icon>IconicPastLifeDeepGnome</Icon>
+         <Description>Iconic Past Life Stance: +[1/2/3] Illusion DC and +[5/10/15] Acid Spell Power</Description>
+          <Group>Iconic</Group>
+      </Stance>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>IconicPastLifeDeepGnome</Icon>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Illusion</Item>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Deep Gnome </Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Acid</Item>
+         <AType>Simple</AType>
+         <Amount size="1">5</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Deep Gnome </Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+   </Feat>
+   </Race>
+</Races>

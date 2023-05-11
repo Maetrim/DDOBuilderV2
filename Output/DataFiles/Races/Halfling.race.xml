@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Races>
+   <Race>
+      <Name>Halfling</Name>
+      <Description>Halflings are clever, capable, and resourceful survivors.
+They are notoriously curious and show a daring that many larger Races can’t
+match.</Description>
+      <BuildPoints size="4">28 32 34 36</BuildPoints>
+      <Strength>-2</Strength>
+      <Dexterity>+2</Dexterity>
+      <Feat>
+         <Name>Halfling Agility</Name>
+         <Description>Halflings are agile and gain a +2 bonus to Jump and Move Silently checks.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>Halfling</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Halfling</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Jump</Item>
+            <Item>Move Silently</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Halfling Bravery</Name>
+         <Description>Halflings are naturally resistant to fear and gain a +2 morale bonus
+to saves against fear.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>Halfling</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Halfling</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Item>Fear</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Halfling Keen Ears</Name>
+         <Description>Halflings have keen ears and gain a +2 bonus to Listen checks.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>Halfling</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Halfling</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Listen</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Halfling Luck</Name>
+         <Description>Halflings are surprisingly lucky and gain a +1 bonus to all saves.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>Halfling</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Halfling</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Halfling Thrown Weapon Focus</Name>
+         <Description>Halflings develop their throwing skill starting at a very young age.
+As a result, halflings get a +1 bonus to attack rolls when using any thrown weapon.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>Halfling</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Halfling</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>WeaponAttackBonusClass</Type>
+            <Type>WeaponAttackBonusCriticalClass</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Thrown</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </Feat>
+   <Feat>
+      <Name>Past Life: Halfling</Name>
+      <Description>You were a Halfling in a previous life
+Tier1: +1 Move Silently
+Tier2: +1 Dexterity
+Tier3: +1 Racial Tree Action point</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeHalfling</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Move Silently</Item>
+         <AType>Stacks</AType>
+         <Amount size="3">1 1 1</Amount>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Dexterity</Item>
+         <AType>Stacks</AType>
+         <Amount size="3">0 1 1</Amount>
+      </Effect>
+      <Effect>
+         <Type>RAPBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="3">0 0 1</Amount>
+      </Effect>
+   </Feat>
+   </Race>
+</Races>

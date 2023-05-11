@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Warforged</Name>
+      <Version>1</Version>
+      <IsRacialTree/>
+      <Requirements>
+         <Requirement>
+            <Type>Race</Type>
+            <Item>Warforged</Item>
+         </Requirement>
+      </Requirements>
+      <Background>WarforgedBackground</Background>
+      <Icon>Warforged</Icon>
+       <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Warforged: Improved Fortification I</Name>
+         <InternalName>WarforgedCore1</InternalName>
+         <Description>Your base fortification is increased to 50%.</Description>
+         <Icon>WarforgedImprovedFortification</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">25</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Constitution I</Name>
+         <InternalName>WarforgedCore2</InternalName>
+         <Description>+1 Constitution</Description>
+         <Icon>Constitution</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedCore1</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Constitution</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Improved Fortification II</Name>
+         <InternalName>WarforgedCore3</InternalName>
+         <Description>Your base fortification is increased to 75%.</Description>
+         <Icon>WarforgedImprovedFortification</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>7</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedCore2</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">25</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Constitution II</Name>
+         <InternalName>WarforgedCore4</InternalName>
+         <Description>+1 Constitution</Description>
+         <Icon>Constitution</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>11</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedCore3</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Constitution</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Improved Fortification III</Name>
+         <InternalName>WarforgedCore5</InternalName>
+         <Description>Your base fortification is increased to 100%.</Description>
+         <Icon>WarforgedImprovedFortification</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>16</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedCore4</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">25</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+       <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Warforged: Construct Nature I</Name>
+         <InternalName>WarforgedConstructNatureI</InternalName>
+         <Description>Choose one</Description>
+         <Icon>WarforgedConstructNature</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Construct Hardiness</Name>
+               <Description>Grants +[1/2/3] to Fortitude saving throws.</Description>
+               <Icon>WarforgedConstructHardiness</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Item>Fortitude</Item>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Construct Thinking</Name>
+               <Description>Grants +[1/2/3] to Will saving throws.</Description>
+               <Icon>WarforgedConstructThinking</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Item>Will</Item>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Repair Systems</Name>
+         <InternalName>WarforgedRepairSystems</InternalName>
+         <Description>Choose whether to embrace your construct nature, or strive for humanity.</Description>
+         <Icon>WarforgedRepairSystems</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Healer's Friend</Name>
+               <Description>Your penalty to Positive Energy Healing is reduced from 50% to [40/30/20]%.</Description>
+               <Icon>WarforgedHealersFriend</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>HealingAmplification</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">10 20 30</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Mechanist</Name>
+               <Description>You gain +[1/2/3] Repair skill and +[20/30/40] Repair amplification.</Description>
+               <Icon>WarforgedMechanist</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>RepairAmplification</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">20 30 40</Amount>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Item>Repair</Item>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Inscribed Armor</Name>
+         <InternalName>WarforgedInscribedArmor</InternalName>
+         <Description>Reduces your body's inherent arcane spell failure by [5/10/15]%.</Description>
+         <Icon>WarforgedInscribedArmor</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>ArcaneSpellFailure</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-5 -10 -15</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Construct Toughness I</Name>
+         <InternalName>WarforgedConstructToughnessI</InternalName>
+         <Description>You gain 10 hit points.</Description>
+         <Icon>WarforgedConstructToughness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Construct Stability</Name>
+         <InternalName>WarforgedConstructStability</InternalName>
+         <Description>You gain +[1/2/3] to the Repair skill and +[2/4/6] to the Balance skill.</Description>
+         <Icon>WarforgedConstructStability</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Repair</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Balance</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+       <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Warforged: Construct Nature II</Name>
+         <InternalName>WarforgedConstructNatureII</InternalName>
+         <Description>Choose one (cannot take the same as tier 1)</Description>
+         <Icon>WarforgedConstructNature</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedConstructNatureI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>WarforgedConstructNatureI</Exclusions>
+            <EnhancementSelection>
+               <Name>Construct Hardiness</Name>
+               <Description>Grants +[1/2/3] to Fortitude saving throws.</Description>
+               <Icon>WarforgedConstructHardiness</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Item>Fortitude</Item>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Construct Thinking</Name>
+               <Description>Grants +[1/2/3] to Will saving throws.</Description>
+               <Icon>WarforgedConstructThinking</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Item>Will</Item>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Tactics</Name>
+         <InternalName>WarforgedTactics</InternalName>
+         <Description>+[1/2/3] to the DC's of your Tactical abilities.</Description>
+         <Icon>WarforgedTactics</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Trip</Item>
+            <Item>Sunder</Item>
+            <Item>Stun</Item>
+            <Item>General</Item>
+            <Item>Quivering Palm</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Great Weapon Aptitude</Name>
+         <InternalName>WarforgedGreateWeaponAptitude</InternalName>
+         <Description>+[5/10/20]% Strikethrough</Description>
+         <Icon>WarforgedGreatWeaponAptitude</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Two Handed Fighting</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Natural Fighting</Item>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
+         <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 20</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Construct Toughness II</Name>
+         <InternalName>WarforgedConstructToughnessII</InternalName>
+         <Description>You gain 10 hit points.</Description>
+         <Icon>WarforgedConstructToughness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedConstructToughnessI</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Damage Reduction</Name>
+         <InternalName>WarforgedDamageReduction</InternalName>
+         <Description>You gain damage reduction [1/2/3]/Adamantine, or improve your existing damage
+reduction by [1/2/3]/Adamantine.</Description>
+         <Icon>WarforgedDamageReduction</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <!--Note that the Adamantine body feat gives 4 stacks of this enhancement-->
+          <Effect>
+             <DisplayName>Adamantine Body Damage Reduction</DisplayName>
+             <Type>DR</Type>
+             <Bonus>Feat</Bonus>
+             <AType>Stacks</AType>
+             <Amount size="7">1 2 3 2 3 4 5</Amount>
+             <Item>Adamantine</Item>
+          </Effect>
+      </EnhancementTreeItem>
+       <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Warforged: Improved Body</Name>
+         <InternalName>WarforgedImprovedBody</InternalName>
+         <Description>Improves Mithral or Adamantine Body feats.</Description>
+         <Icon>WarforgedImprovedBody</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Adamantine Durability</Name>
+               <Description>Grants +[3/6/10] Physical Resistance Rating.</Description>
+               <Icon>WarforgedAdamantineDurability</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Adamantine Body</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">3 6 10</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Mithral Fluidity</Name>
+               <Description>Increases the maximum dexterity bonus and reduces the armor check penalty
+of your mithral body plating by [1/2/3].</Description>
+               <Icon>WarforgedMithralFluidity</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Mithral Body</Item>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>MaxDexBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">1 2 3</Amount>
+               </Effect>
+               <Effect>
+                  <Type>ArmorCheckPenalty</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Stacks</AType>
+                  <Amount size="3">-1 -2 -3</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Brute Fighting</Name>
+         <InternalName>WarforgedBruteFighting</InternalName>
+         <Description>Activate this ability to cause your melee attacks to generate [25/50/75]% more hate,
+making enemies more likely to attack you. (Cooldown: 2 seconds)</Description>
+         <Icon>WarforgedBruteFighting</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Stance>
+            <Name>Brute Fighting</Name>
+            <Icon>WarforgedBruteFighting</Icon>
+            <Description>Activate this ability to cause your melee attacks to generate [25/50/75]% more hate,
+making enemies more likely to attack you. (Cooldown: 2 seconds)</Description>
+         </Stance>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">25 50 75</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Brute Fighting</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Improved Power Attack</Name>
+         <InternalName>WarforgedImprovedPowerAttack</InternalName>
+         <Description>Your Power Attack feat does [1/2/3] additional point of bonus damage but also has
+an additional -[1/2/3] to your attack bonus.</Description>
+         <Icon>WarforgedImprovedPowerAttack</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Power Attack</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WeaponDamageBonusClass</Type>
+            <Type>WeaponDamageBonusCriticalClass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Melee</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Power Attack</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>WeaponAttackBonusClass</Type>
+            <Type>WeaponAttackBonusCriticalClass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -3</Amount>
+            <Item>Melee</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Power Attack</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Construct Toughness III</Name>
+         <InternalName>WarforgedConstructToughnessIII</InternalName>
+         <Description>You gain 10 hit points.</Description>
+         <Icon>WarforgedConstructToughness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedConstructToughnessII</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Memories of the Last War I</Name>
+         <InternalName>WarforgedMemoriesOfTheLastWarI</InternalName>
+         <Description>You recall distant memories of the War.</Description>
+         <Icon>WarforgedFinalWitness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Arcane Slinger</Name>
+               <Description>+25 Determination bonus to Universal Spell Power.</Description>
+               <Icon>WarforgedArcaneSlinger</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>UniversalSpellPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">25</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Final Witness</Name>
+               <Description>+3 Determination bonus to all Saving Throws.</Description>
+               <Icon>WarforgedFinalWitness</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Determination</Bonus>
+                  <Item>All</Item>
+                  <AType>Simple</AType>
+                  <Amount size="1">3</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Front Lines</Name>
+               <Description>+15 Determination bonus to Melee Power and Ranged Power.</Description>
+               <Icon>WarforgedFrontLines</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>MeleePower</Type>
+                  <Type>RangedPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">15</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Spellcarved Soldier</Name>
+               <Description>+8 Determination bonus to Armor Class and Physical Resistance Rating.</Description>
+               <Icon>WarforgedSpellcarvedSoldier</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ACBonus</Type>
+                  <Type>PRR</Type>
+                  <Bonus>Determination</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">8</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+       <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Warforged: Weapon Attachment</Name>
+         <InternalName>WarforgedWeaponAttachment</InternalName>
+         <Description>Activate to attach your currently equipped weapons to yourself, giving you superior
+control over them. Until you unequip these items or rest, they deal +0.5[W] damage.
+Cooldown: 3 minutes</Description>
+         <Icon>WarforgedWeaponAttachment</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>BEWeaponAttachment</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>BladeforgedWeaponAttachment</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Stance>
+            <Name>Weapon Attachment</Name>
+            <Icon>WarforgedWeaponAttachment</Icon>
+            <Description>You current weapon is attached to you giving better control.
+You deal +0.5[W] damage.</Description>
+         </Stance>
+         <Effect>
+            <Type>Weapon_BaseDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">0.5</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Weapon Attachment</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Resolve</Name>
+         <InternalName>WarforgedResolve</InternalName>
+         <Description>Action Boost: You gain temporary hit points equal to your Repair Skill.
+If you are below half health, you gain a +2 bonus to all saving throws while these
+temporary hit points last.
+Cooldown: 3 minutes.</Description>
+         <Icon>WarforgedResolve</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Clickie/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Construct Toughness IV</Name>
+         <InternalName>WarforgedConstructToughnessIV</InternalName>
+         <Description>You gain 10 hit points.</Description>
+         <Icon>WarforgedConstructToughness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedConstructToughnessIII</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Memories of the Last War II</Name>
+         <InternalName>WarforgedMemoriesOfTheLastWarII</InternalName>
+         <Description>You recall distant memories of the War.</Description>
+         <Icon>WarforgedFinalWitness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>WarforgedMemoriesOfTheLastWarI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>WarforgedMemoriesOfTheLastWarI</Exclusions>
+            <EnhancementSelection>
+               <Name>Arcane Slinger</Name>
+               <Description>+25 Determination bonus to Universal Spell Power.</Description>
+               <Icon>WarforgedArcaneSlinger</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>UniversalSpellPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">25</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Final Witness</Name>
+               <Description>+3 Determination bonus to all Saving Throws.</Description>
+               <Icon>WarforgedFinalWitness</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Determination</Bonus>
+                  <Item>All</Item>
+                  <AType>Simple</AType>
+                  <Amount size="1">3</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Front Lines</Name>
+               <Description>+15 Determination bonus to Melee Power and Ranged Power.</Description>
+               <Icon>WarforgedFrontLines</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>MeleePower</Type>
+                  <Type>RangedPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">15</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Spellcarved Soldier</Name>
+               <Description>+8 Determination bonus to Armor Class and Physical Resistance Rating.</Description>
+               <Icon>WarforgedSpellcarvedSoldier</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>ACBonus</Type>
+                  <Type>PRR</Type>
+                  <Bonus>Determination</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">8</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

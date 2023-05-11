@@ -1,0 +1,1609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Battle Engineer</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Artificer</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Artificer</Icon>
+    <Background>ArtificerBackground</Background>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Battle Engineer</Name>
+      <InternalName>BECore1</InternalName>
+      <Description>Your equipped rune arm grants you +8 Universal Spell Power when it is charged to Charge Tier 1.</Description>
+      <Icon>BEBattleEngineer</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">8</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Infused Weapons I</Name>
+      <InternalName>BECore2</InternalName>
+      <Description>Your equipped weapon in your main hand gains +1 to its Enhancement bonus.
+Additionally, you gain +1 bonus to your attack roll to confirm a critical hit,
+and a +1 bonus to the damage of your critical hits (before multipliers).
+Your equipped rune arm gains +1 stable charge tier. In addition, it grants you an
+additional +8 Universal Spell Power when it is charged to Charge Tier 2,
+for a total of +16.</Description>
+      <Icon>BEInfusedWeapons</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BECore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Enchantment</Type>
+         <Type>Weapon_AttackBonusCritical</Type>
+         <Type>Weapon_DamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">8</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Infused Armor I</Name>
+      <InternalName>BECore3</InternalName>
+      <Description>Your equipped armor gains +1 to its Enhancement bonus.
+Additionally, your equipped armor or docent grants you +5 PRR and -10% ASF.
+(Artificer Infusions are not affected by ASF, but this assists with scroll use.)
+Your equipped rune arm grants you an additional +8 Universal Spell Power when it
+is charged to Charge Tier 3, for a total of +24.</Description>
+      <Icon>BEInfusedArmor</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BECore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnchantArmor</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailure</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">8</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Infused Weapons II</Name>
+      <InternalName>BECore4</InternalName>
+      <Description>Your equipped weapon in your main hand gains an additional +1 to its
+Enhancement bonus, for a total of +2. You also gain an additional +1 bonus to
+your attack roll to confirm a critical hit, and a +1 bonus to the damage of
+your critical hits (before multipliers), for a total of +2.
+Your equipped rune arm gains +1 stable charge tier. In addition, it grants you
+an additional +8 Universal Spell Power when it is charged to Charge Tier 4,
+for a total of +32.</Description>
+      <Icon>BEInfusedWeaponsII</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BECore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Enchantment</Type>
+         <Type>Weapon_AttackBonusCritical</Type>
+         <Type>Weapon_DamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">8</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Infused Armor II</Name>
+      <InternalName>BECore5</InternalName>
+      <Description>Your equipped armor gains an additional +1 to its Enhancement bonus, for a total of +2.
+Your equipped armor or docent also grants you an additional +5 PRR for a total
+of +10 and an additional -10% ASF for a total of -20%.
+(Artificer Infusions are not affected by ASF, but this assists with scroll use.)
+You gain an additional +15 PRR and MRR innately, regardless of your Armor.
+Your equipped rune arm grants you an additional +8 Universal Spell Power when
+it is charged to Charge Tier 5, for a total of +40.</Description>
+      <Icon>BEInfusedArmorII</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BECore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnchantArmor</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+         <Type>MRR</Type>
+         <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailure</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">8</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Master Engineer</Name>
+      <InternalName>BECore6</InternalName>
+      <Description>You gain +4 Intelligence.
+The Enhancement bonus of your armor and your equipped weapon in your main hand
+are each increased by an additional +1, for a total of +3.
+You gain a +1 Competence bonus to Critical Multiplier with Crossbows,
+Bastard Swords, Dwarven Axes, Light Hammers, Warhammers, and Morningstars.
+Your equipped weapon in your main hand is now a Spellcasting Implement,
+providing a +3 Implement bonus to Universal Spell Power for every +1
+Enhancement bonus on the weapon.</Description>
+      <Icon>BEMasterEngineer</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BECore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>20</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Intelligence</Item>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Enchantment</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>EnchantArmor</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>WeaponCriticalMultiplierClass</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Crossbows</Item>
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Bastard Sword</Item>
+        <Item>Dwarven Axe</Item>
+        <Item>Light Hammer</Item>
+        <Item>Warhammer</Item>
+        <Item>Morningstar</Item>
+      </Effect>
+       <Effect>
+          <Type>ImplementInYourHands</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+       </Effect>
+    </EnhancementTreeItem>
+     <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Weapon Training I</Name>
+      <InternalName>BEWeaponTrainingI</InternalName>
+      <Description>Select either Crossbows or Hand and a Half Weapons.
+Gain bonuses to Attack and Damage Rolls with the selected weapon types.</Description>
+      <Icon>BEWeaponTraining</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Crossbow Training I</Name>
+          <Description>+1 to attack rolls with all crossbows. +1 to damage with non-repeating crossbows.</Description>
+          <Icon>BECrossbowTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+            <Item>Repeating Heavy Crossbow</Item>
+            <Item>Repeating Light Crossbow</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hand and a Half Training I</Name>
+          <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
++5% Strikethrough</Description>
+          <Icon>BEHandAndAHalfTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Bastard Sword</Item>
+            <Item>Dwarven Axe</Item>
+          </Effect>
+           <Effect>
+              <Type>Strikethrough</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">5</Amount>
+           </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hammer and Morningstar Training I</Name>
+          <Description>+1 to attack rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Icon>BEHammerAndMorningstar</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackBonus</Type>
+             <Type>Weapon_AttackBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <Item>Morningstar</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Field Engineer</Name>
+      <InternalName>BEFieldEngineer</InternalName>
+      <Description>+[1/2/3] Concentration, Disable Device and Open Locks.
+Rank 3: +1 to Reflex Saves vs. Traps.</Description>
+      <Icon>BEFieldEngineer</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Concentration</Item>
+        <Item>Disable Device</Item>
+        <Item>Open Lock</Item>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+         <Rank>3</Rank>
+        <Amount size="1">1</Amount>
+        <Item>Traps</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Field Scrapper</Name>
+      <InternalName>BEFieldScrapper</InternalName>
+      <Description>+[1/2/3] to your Sunder DCs</Description>
+      <Icon>BEFieldScrapper</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Sunder</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Thaumaturgical Conduits</Name>
+      <InternalName>BEThaumaturgicalConduits</InternalName>
+      <Description>You have made improvements to the efficiency of your rune arms.
+Your rune arms build charge [10/20/33]% faster.</Description>
+      <Icon>BEThaumaturgicalConduits</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Item Defense</Name>
+      <InternalName>BEItemDefense</InternalName>
+      <Description>You have a [25/50/75]% chance to negate potential item wear.</Description>
+      <Icon>BEItemDefense</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+     <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Weapon Training II</Name>
+      <InternalName>BEWeaponTrainingII</InternalName>
+      <Description>Select either Crossbows or Hand and a Half Weapons.
+Gain bonuses to Attack and Damage Rolls with the selected weapon types. </Description>
+      <Icon>BEWeaponTraining</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEWeaponTrainingI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Crossbow Training II</Name>
+          <Description>+1 to attack rolls with all crossbows.
++1 to damage rolls with all repeating crossbows, +2 to damage rolls with non-repeating crossbows. </Description>
+          <Icon>BECrossbowTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackBonus</Type>
+             <Type>Weapon_AttackBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+            <Item>Repeating Heavy Crossbow</Item>
+            <Item>Repeating Light Crossbow</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+             <Type>Weapon_DamageBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+             <Type>Weapon_DamageBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Repeating Heavy Crossbow</Item>
+            <Item>Repeating Light Crossbow</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hand and a Half Training II</Name>
+          <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
++5% Strikethrough</Description>
+          <Icon>BEHandAndAHalfTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Bastard Sword</Item>
+            <Item>Dwarven Axe</Item>
+          </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hammer and Morningstar Training</Name>
+          <Description>+1 to attack rolls and +2 damage rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Icon>BEHammerAndMorningstar</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackBonus</Type>
+             <Type>Weapon_AttackBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <Item>Morningstar</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+             <Type>Weapon_DamageBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <Item>Morningstar</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Wrack Construct</Name>
+      <InternalName>BEWrackConstruct</InternalName>
+      <Description>Choose one either a Melee or Ranged attack. (Cooldown: [12/8/4] seconds): </Description>
+      <Icon>BEWrackConstruct</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Wracking Strike</Name>
+          <Description>Wracking Strike: Melee Attack: +1[W].
+On Damage: Deals [3/6/9]d6 extra damage (scales with 200% Melee Power)
+to constructs and living constructs, and -25% fortification and loses
+immunity to sneak attack for 20 seconds.</Description>
+          <Icon>BEWrackingStrike</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wracking Shot</Name>
+          <Description>Wracking Shot: Ranged Attack: +1[W].
+On Damage: Deals [3/6/9]d6 extra damage (scales with 200% Ranged Power)
+to constructs and living constructs, and -25% fortification and loses
+immunity to sneak attack for 20 seconds.</Description>
+          <Icon>BEWrackingShot</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Caustic Strike</Name>
+      <InternalName>BECausticShot</InternalName>
+      <Description>Perform either a melee or ranged attack that does extra acid and rust damage.</Description>
+      <Icon>BECausticShot</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Caustic Shot</Name>
+          <Description>Ranged Crossbow Attack +[0.5/1/1.5][W]:
+On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
+Damage scales with 200% ranged power.</Description>
+          <Icon>BECausticShot</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Caustic Strike</Name>
+          <Description>Melee Attack +[1/2/3][W]:
+On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
+Damage scales with 200% melee power.</Description>
+          <Icon>BECausticStrike</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Extra Action Boost</Name>
+      <InternalName>BEExtraActionBoost</InternalName>
+      <Description>You can use each of your action boost [1/2/3] additional times per rest.</Description>
+      <Icon>BEExtraActionBoost</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Action Boost Selector</Name>
+      <InternalName>BEActionBoostSelector</InternalName>
+      <Description>Choose an action boost type</Description>
+      <Icon>BEDamageBoost</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Action Boost: Power</Name>
+          <Description>Activate to gain a +[10/20/30] Action Boost bonus to Melee
+and Ranged power for 20 seconds.</Description>
+          <Icon>BEActionBoostPower</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Action Boost: Attack</Name>
+          <Description>Activate this ability to gain a +[4/6/8] Action Boost bonus
+to your attack rolls for 20 seconds.</Description>
+          <Icon>BEActionBoostAttack</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+     <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Weapon Training III</Name>
+      <InternalName>BEWeaponTrainingIII</InternalName>
+      <Description>Select either Crossbows or Hand and a Half Weapons.
+Gain bonuses to Attack and Damage Rolls with the selected weapon types</Description>
+      <Icon>BEWeaponTraining</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEWeaponTrainingII</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Crossbow Training III</Name>
+          <Description>+1 to attack rolls with crossbows. +1 to damage with non-repeating crossbows</Description>
+          <Icon>BECrossbowTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackBonus</Type>
+             <Type>Weapon_AttackBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+            <Item>Repeating Heavy Crossbow</Item>
+            <Item>Repeating Light Crossbow</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+             <Type>Weapon_DamageBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hand and a Half Training III</Name>
+          <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
++5% Strikethrough</Description>
+          <Icon>BEHandAndAHalfTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Bastard Sword</Item>
+            <Item>Dwarven Axe</Item>
+          </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hammer and Morningstar Training III</Name>
+          <Description>+1 to attack and damage rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Icon>BEHammerAndMorningstar</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <Item>Morningstar</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Disable Construct</Name>
+      <InternalName>BEDisableConstruct</InternalName>
+      <Description>Activate: Target construct or living construct is dazed for [10/20/30] seconds.
+This effect is removed on damage. Using this ability on a target already affected
+by it will extend the duration. (Cooldown: 25 seconds)</Description>
+      <Icon>BEDisableConstruct</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Shatter Defenses</Name>
+      <InternalName>BEShatterDefenses</InternalName>
+      <Description>Choose a Melee or Ranged attack that also applies a Trauma effect.</Description>
+      <Icon>BEShatterDefensesMelee</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <LongArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BECausticShot</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Shatter Defenses (Crossbow)</Name>
+          <Description>Tactical Ranges Crossbow Attack +0.5[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect. (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
+Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
+to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
+This ability shares a cooldown with sunder.</Description>
+          <Icon>BEShatterDefensesCrossbow</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <DC>
+            <Name>Battle Engineer: Shatter Defenses (Crossbow)</Name>
+            <Description>Tactical Ranges Crossbow Attack +0.5[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect.</Description>
+            <Icon>BEShatterDefensesCrossbow</Icon>
+            <DCType>Armor Destruction</DCType>
+            <DCVersus>Fortitude</DCVersus>
+            <Amount size="1">10</Amount>
+            <HalfClassLevel>Artificer</HalfClassLevel>
+            <FullAbility>Intelligence</FullAbility>
+            <Tactical>Sunder</Tactical>
+          </DC>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shatter Defenses (Melee)</Name>
+          <Description>Tactical Melee Attack +1[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect. (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
+Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
+to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
+This ability shares a cooldown with sunder.</Description>
+          <Icon>BEShatterDefensesMelee</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <DC>
+            <Name>Battle Engineer: Shatter Defenses (Melee)</Name>
+            <Description>Tactical Melee Attack +1[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect.</Description>
+            <Icon>BEShatterDefensesMelee</Icon>
+            <DCType>Armor Destruction</DCType>
+            <DCVersus>Fortitude</DCVersus>
+            <Amount size="1">10</Amount>
+            <HalfClassLevel>Artificer</HalfClassLevel>
+            <FullAbility>Intelligence</FullAbility>
+            <Tactical>Sunder</Tactical>
+          </DC>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+     <EnhancementTreeItem>
+        <Name>Battle Engineer: Thundershock Imbue</Name>
+        <InternalName>BEImbue</InternalName>
+        <Description>Imbue Toggle: Your weapons hum with Electricity, dealing an extra 1d6 Electric
+damage on each hit, scaling with electric spell power.</Description>
+        <Icon>BEThundershock</Icon>
+        <XPosition>3</XPosition>
+        <YPosition>3</YPosition>
+        <CostPerRank size="1">2</CostPerRank>
+        <Ranks>1</Ranks>
+        <MinSpent>10</MinSpent>
+        <Clickie/>
+        <Requirements>
+           <Requirement>
+              <Type>ClassMinLevel</Type>
+              <Item>Artificer</Item>
+              <Value>3</Value>
+           </Requirement>
+        </Requirements>
+        <Stance>
+           <Name>Battle Engineer: Imbue</Name>
+           <Icon>BEThundershock</Icon>
+        <Description>Imbue Toggle: Your weapons hum with Electricity, dealing an extra 1d6 Electric
+damage on each hit, scaling with electric spell power.</Description>
+           <Group>Imbue</Group>
+        </Stance>
+        <Effect>
+           <Type>ImbueDice</Type>
+           <Bonus>Enhancement</Bonus>
+           <AType>Simple</AType>
+           <Amount size="1">1</Amount>
+        </Effect>
+     </EnhancementTreeItem>
+     <EnhancementTreeItem>
+      <Name>Battle Engineer: Ability I</Name>
+      <InternalName>BEAbilityScoreI</InternalName>
+      <Description>Choose one of Strength, Dexterity or Intelligence</Description>
+      <Icon>StrDexInt</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Intelligence</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+     <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Weapon Training IV</Name>
+      <InternalName>BEWeaponTrainingIV</InternalName>
+      <Description>Select either Crossbows or Hand and a Half Weapons.
+Gain bonuses to Attack and Damage Rolls with the selected weapon types.</Description>
+      <Icon>BEWeaponTraining</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEWeaponTrainingIII</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Crossbow Training IV</Name>
+          <Description>+1 to attack rolls with all crossbows.
++1 to damage rolls with all repeating crossbows, +2 to damage rolls with non-repeating crossbows.</Description>
+          <Icon>BECrossbowTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackBonus</Type>
+             <Type>Weapon_AttackBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+            <Item>Repeating Heavy Crossbow</Item>
+            <Item>Repeating Light Crossbow</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+             <Type>Weapon_DamageBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Great Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Light Crossbow</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Repeating Heavy Crossbow</Item>
+            <Item>Repeating Light Crossbow</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hand and a Half Training IV</Name>
+               <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
++2% Strikethrough</Description>
+          <Icon>BEHandAndAHalfTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Bastard Sword</Item>
+            <Item>Dwarven Axe</Item>
+          </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Hammer and Morningstar Training IV</Name>
+          <Description>+1 to attack rolls and +2 to damage rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Icon>BEHammerAndMorningstar</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackBonus</Type>
+             <Type>Weapon_AttackBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <Item>Morningstar</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_DamageBonus</Type>
+             <Type>Weapon_DamageBonusCritical</Type>
+             <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <Item>Morningstar</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Battle Mastery</Name>
+      <InternalName>BEBattleMastery</InternalName>
+      <Description>Choose one</Description>
+      <Icon>BEBattleMastery</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEWeaponTrainingIV</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Endless Fusillade</Name>
+          <Description>Action Boost: You may activate this ability to enchant your crossbow to
+instantly reload itself for 18 seconds. (Cooldown: 30 seconds.) </Description>
+          <Icon>BEEndlessFusilade</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Haste Boost</Name>
+          <Description>Activate this ability to receive a 30% Action Boost attack speed
+bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
+          <Icon>BEHasteBoost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Agility Engine</Name>
+      <InternalName>BEAbilityEngine</InternalName>
+       <Description>+[1/2/3] Imbue Dice while wearing a Rune Arm.</Description>
+       <Icon>BEAgilityEngine</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Ability II</Name>
+      <InternalName>BEAbilityScoreII</InternalName>
+      <Description>Choose one of Strength, Dexterity or Intelligence</Description>
+      <Icon>StrDexInt</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEAbilityScoreI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Intelligence</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+     <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Reconstructed Armaments</Name>
+      <InternalName>BEReconstructedArmaments</InternalName>
+      <Description>Gain Critical Threat Range with your chosen set of weapons.</Description>
+      <Icon>BEReconstructedArmaments</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEWeaponTrainingIV</Item>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>WarforgedWeaponAttachment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>BladeforgedWeaponAttachment</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Reconstructed Crossbows</Name>
+          <Description>+1 Competence Bonus to Critical Threat Range with crossbows.</Description>
+          <Icon>BEReconstructedCrossbows</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>WeaponCriticalRangeClass</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Crossbows</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Reconstructed Edges</Name>
+               <Description>+1 Competence Bonus to Critical Threat Range with Bastard Swords and Dwarven Axes.
++20% Competence bonus to Maximum Hit Points.</Description>
+          <Icon>BEReconstructedEdges</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Bastard Sword</Item>
+            <Item>Dwarven Axe</Item>
+          </Effect>
+           <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Competence</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">20</Amount>
+              <Percent/>
+              <ApplyAsItemEffect/>
+           </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Reconstructed Arms</Name>
+          <Description>+1 Competence Bonus to Critical Threat Range with Light Hammers, Warhammers
+and Morningstars.</Description>
+          <Icon>BEReconstructedArms</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <Item>Morningstar</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Weapon Attachment</Name>
+      <InternalName>BEWeaponAttachment</InternalName>
+      <Description>Activate to attach your currently equipped weapons to yourself, giving you
+superior control over them. Until you unequip these items or rest, they
+deal +0.5[W] damage. (Cooldown: 15 seconds; Induction time: 2 seconds.)
+(Note: Selecting this locks out Warforged/Bladeforged Weapon Attachment)</Description>
+      <Icon>BEWeaponAttachment</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Stance>
+        <Name>Weapon Attachment</Name>
+        <Icon>BEWeaponAttachment</Icon>
+        <Description>You current weapon is attached to you giving better control.
+You deal +0.5[W] damage.</Description>
+      </Stance>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <RequiresNoneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>WarforgedWeaponAttachment</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>BladeforgedWeaponAttachment</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Weapon Attachment</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Thunder Shock Weapon</Name>
+      <InternalName>BEthunderShockWeapon</InternalName>
+      <Description>Choose between a Melee or Ranged attack that also deals additional
+electric damage.</Description>
+      <Icon>BEThunderShockWeaponCrossbow</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEShatterDefenses</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Thunder-Shock Weapon (Crossbow)</Name>
+          <Description>Tactical Ranged Crossbow Attack +1.5[W]
+On Damage: Deals 6d6 extra Electric damage that scales with 200% Ranged Power and
+Trips the target. A successful Strength check negates the Trip effect.
+(DC 14 + 1/2 Artificer Level + INT mod + Sunder bonuses)</Description>
+          <Icon>BEthunderShockWeaponCrossbow</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <DC>
+            <Name>Battle Engineer: Thunder-Shock Weapon (Crossbow)</Name>
+            <Description>Tactical Ranged Crossbow Attack +1.5[W]
+On Damage: Deals 6d6 extra Electric damage that scales with 200% Ranged Power and
+Trips the target. A successful Strength check negates the Trip effect.</Description>
+            <Icon>BEthunderShockWeaponCrossbow</Icon>
+            <DCType>Half Damage</DCType>
+            <DCVersus>Strength</DCVersus>
+            <Amount size="1">14</Amount>
+            <HalfClassLevel>Artificer</HalfClassLevel>
+            <FullAbility>Intelligence</FullAbility>
+            <Tactical>Sunder</Tactical>
+          </DC>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Thunder-Shock Weapon (Melee)</Name>
+          <Description>Tactical Melee Attack +3[W]
+On Damage: Deals 6d6 extra Electric damage that scales with 200% Melee Power and
+Trips the target. A successful Strength check negates the Trip effect.
+(DC 14 + 1/2 Artificer Level + INT mod + Sunder bonuses)</Description>
+          <Icon>BEthunderShockWeaponMelee</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <DC>
+            <Name>Battle Engineer: Thunder-Shock Weapon (Melee)</Name>
+            <Description>Tactical Melee Attack +3[W]
+On Damage: Deals 6d6 extra Electric damage that scales with 200% Melee Power and
+Trips the target. A successful Strength check negates the Trip effect.</Description>
+            <Icon>BEthunderShockWeaponMelee</Icon>
+            <DCType>Half Damage</DCType>
+            <DCVersus>Strength</DCVersus>
+            <Amount size="1">14</Amount>
+            <HalfClassLevel>Artificer</HalfClassLevel>
+            <FullAbility>Intelligence</FullAbility>
+            <Tactical>Sunder</Tactical>
+          </DC>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Unlock Potential</Name>
+      <InternalName>BEUnlockPotential</InternalName>
+         <Description>+20 Ranged and Melee power while wielding a Rune Arm.
++1 Imbue Dice</Description>
+      <Icon>BEUnlockPotential</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+         <Requirement>
+          <Type>Enhancement</Type>
+          <Item>BEAbilityEngine</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MeleePower</Type>
+         <Type>RangedPower</Type>
+         <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Battle Engineer: Tactical Mobility</Name>
+      <InternalName>BETacticalMobility</InternalName>
+      <Description>10% Action Boost bonus to Movement Speed while wearing a Rune Arm.</Description>
+      <Icon>BETacticalMobility</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Action Boost</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

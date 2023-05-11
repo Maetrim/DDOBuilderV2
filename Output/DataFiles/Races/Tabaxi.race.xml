@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Races>
+  <Race>
+    <Name>Tabaxi</Name>
+    <Description></Description>
+    <BuildPoints size="4">28 32 34 36</BuildPoints>
+    <Dexterity>+2</Dexterity>
+    <Feat>
+      <Name>Past Life: Tabaxi</Name>
+      <Description>You were Tabaxi in a previous life
+Tier1: +1 Tumble
+Tier2: +1 Dexterity
+Tier3: +1 Racial Tree Action point</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeTabaxi</Icon>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Tumble</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 1 1</Amount>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Dexterity</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">0 1 1</Amount>
+      </Effect>
+      <Effect>
+        <Type>RAPBonus</Type>
+        <Bonus>Feat</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="3">0 0 1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Feline Agility</Name>
+      <Description>After standing still for 6 seconds, when you move again you gain a +30%
+Action Boost bonus to Movement Speed for 6 seconds.</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Tabaxi</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>FelineAgility</Icon>
+    </Feat>
+    <Feat>
+      <Name>Tabaxi Traits</Name>
+      <Description>TBD</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Tabaxi</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>TabaxiTraits</Icon>
+    </Feat>
+  </Race>
+</Races>

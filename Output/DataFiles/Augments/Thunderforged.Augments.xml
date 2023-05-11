@@ -1,0 +1,3174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+  <!--Thundeforged Armor Variants-->
+  <Augment>
+    <Name>Shadow Caster - +3 Profane Concentration, +1 Profane Spell DCs</Name>
+    <Description>+3 Profane bonus to Concentration
++1 Profane bonus to Spell DCs</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Shadow Cloth Variant</Type>
+    <Type>Shadow Light Variant</Type>
+    <Type>Shadow Medium Variant</Type>
+    <Type>Shadow Heavy Variant</Type>
+    <Type>Shadow Docent Variant</Type>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Concentration</Item>
+    </Effect>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Shadow Disciple - +3 Profane Concentration, +1 Profane tactics DCs</Name>
+    <Description>+3 Profane bonus to Concentration
++1 Profane bonus to tactics DCs</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Shadow Cloth Variant</Type>
+    <Type>Shadow Light Variant</Type>
+    <Type>Shadow Medium Variant</Type>
+    <Type>Shadow Heavy Variant</Type>
+    <Type>Shadow Docent Variant</Type>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Concentration</Item>
+    </Effect>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Trip</Item>
+      <Item>Sunder</Item>
+      <Item>Stun</Item>
+      <Item>General</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Shadow Killer - +2d6 Profane Sneak Attack, +1 Profane Reflex save</Name>
+    <Description>+2d6 Profane bonus to Sneak Attack
++1 Profane bonus to Reflex saving throws</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Shadow Light Variant</Type>
+    <Type>Shadow Medium Variant</Type>
+    <Type>Shadow Heavy Variant</Type>
+    <Type>Shadow Docent Variant</Type>
+    <Effect>
+      <Type>SneakAttackDice</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Reflex</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Shadow Striker - +3% Profane bonus to Doublestrike, Melee Alacrity 15%, Ranged Alacrity 20%</Name>
+    <Description>+3% Profane bonus to Doublestrike
+Melee Alacrity 15%
+Ranged Alacrity 20%</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Shadow Medium Variant</Type>
+    <Type>Shadow Heavy Variant</Type>
+    <Type>Shadow Docent Variant</Type>
+    <Effect>
+      <Type>Doublestrike</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+    </Effect>
+    <Effect>
+      <Type>WeaponAlacrityClass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Melee</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponAlacrityClass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Ranged</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Shadow Guardian - DR 30/Epic, DR 60/Epic while below 75% health</Name>
+    <Description>DR 30/Epic
+DR 60/Epic while below 75% health</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Shadow Heavy Variant</Type>
+    <Type>Shadow Docent Variant</Type>
+    <Effect>
+      <Type>CreateSlider</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Hitpoints</Item>
+      <Amount size="3">0 100 100</Amount>
+      <AType>Slider</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Shadow Guardian - DR 30/Epic</DisplayName>
+      <Type>DR</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>Epic</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Shadow Guardian - DR 60/Epic while below 75% health</DisplayName>
+      <Type>DR</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">60</Amount>
+      <Item>Epic</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>-75% Hitpoints</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Shadow Construct - Repair Amplification 10%</Name>
+    <Description>Repair Amplification 10%</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Shadow Docent Variant</Type>
+    <Effect>
+      <Type>RepairAmplification</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+    </Effect>
+  </Augment>
+  <!--Thundeforged Weapon Variants Tier 1-->
+  <Augment>
+    <Name>Blinding Fear</Name>
+    <Description>Blinding Fear: On Hit: Blinds and Shakens foe for 6 sec, 12 sec cool down.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Damage>Acid</Damage>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Item>Sonic</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>1st Degree Burns</Name>
+    <Description>1st Degree Burns: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.) This effect may only occur on-hit once every two seconds. Also 5 to 30 Fire Damage.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>1st Degree Burns</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Touch of Flames</Name>
+    <Description>Touch of Flames: On Hit: 10 to 60 Fire Damage.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Touch of Flames</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">10</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Touch of Shadows</Name>
+    <Description>Touch of Shadows: On Hit: 8 to 48 Negative Energy Damage.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Touch of Shadows</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Negative</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Touch of Shadows</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Negative</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Potency</Name>
+    <Description>Passive: +100 Equipment Bonus to all Spell Powers.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Potency</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">100</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus: +1 Spell DC</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Combustion</Name>
+    <Description>Passive: +150 Equipment Bonus to Fire Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Combustion</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Fire</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Corrosion</Name>
+    <Description>Passive: +150 Equipment Bonus to Acid Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Corrosion</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Acid</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Devotion</Name>
+    <Description>Passive: +150 Equipment Bonus to Positive Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Devotion</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Positive</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Glaciation</Name>
+    <Description>Passive: +150 Equipment Bonus to Cold Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Glaciation</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Cold</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Impulse</Name>
+    <Description>Passive: +150 Equipment Bonus to Impulse Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Impulse</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Force/Untyped</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Magnetism</Name>
+    <Description>Passive: +150 Equipment Bonus to Electric Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Magnetism</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Electric</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Nullification</Name>
+    <Description>Passive: +150 Equipment Bonus to Negative/Poison Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Nullification</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Radiance</Name>
+    <Description>Passive: +150 Equipment Bonus to Light Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Radiance</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Light/Alignment</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Reconstruction</Name>
+    <Description>Passive: +150 Equipment Bonus to Repair Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Reconstruction</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Repair</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Resonance</Name>
+    <Description>Passive: +150 Equipment Bonus to Sonic Spell Power.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <DisplayName>Dwarvencraft Resonance</DisplayName>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">150</Amount>
+      <Item>Sonic</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Focus</DisplayName>
+      <Type>SpellDC</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <!--Thundeforged Weapon Variants Tier 2-->
+  <Augment>
+    <Name>Dragon's Blessing</Name>
+    <Description>Dragon's Blessing: On Friend-Targeted Spell Cast: 5% chance of AOE Healing Effect (~100HP) centered on target (AOE is size of Mass Cure spells).</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dragon's Edge</Name>
+    <Description>Dragon's Edge: Passive: Armor-Piercing 35%. On Crit: 33 to 105 Bleeding Damage.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <DisplayName>Dragon's Edge</DisplayName>
+      <Type>FortificationBypass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">35</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Dragon's Edge</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">9</Number>
+        <Sides size="1">8</Sides>
+        <Bonus size="1">25</Bonus>
+        <Damage>Bleeding</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Fracturing</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+      </Dice>
+      <Item>All</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>2nd Degree Burns</Name>
+    <Description>2nd Degree Burns: On Hit: 10% chance to slow 50% (No Save) for 10 sec (non-bosses only).</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Wrath of Flames</Name>
+    <Description>Wrath of Flames: On Hit: 5% Chance AOE 228 to 380 fire damage (DC 50 Reflex Save for half).</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Paralyzing Fear</Name>
+    <Description>Paralyzing Fear: On Hit: 5% chance to Paralyze for 5 sec. (No save)</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Wrath of Shadows</Name>
+    <Description>Wrath of Shadows: On Hit: 5% Chance AOE 228 to 380 negative energy damage (DC 50 Fortitude Save for half).</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Focus</Name>
+    <Description>Dwarvencraft Focus: Passive: +3 Equipment Bonus to all Spell DCs.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Abjuration Focus</Name>
+    <Description>Dwarvencraft Abjuration Focus:2 Passive: +6 Equipment Bonus to the DC to resist your Abjuration spells.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Abjuration</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Conjuration Focus</Name>
+    <Description>Dwarvencraft Conjuration Focus:2 Passive: +6 Equipment Bonus to the DC to resist your Conjuration spells.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Conjuration</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Enchantment Focus</Name>
+    <Description>Dwarvencraft Enchantment Focus:2 Passive: +6 Equipment Bonus to the DC to resist your Enchantment spells.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Enchantment</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Evocation Focus</Name>
+    <Description>Dwarvencraft Evocation Focus:2 Passive: +6 Equipment Bonus to the DC to resist your Evocation spells.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Evocation</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Illusion Focus</Name>
+    <Description>Dwarvencraft Illusion Focus:2 Passive: +6 Equipment Bonus to the DC to resist your Illusion spells.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Illusion</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Necromancy Focus</Name>
+    <Description>Dwarvencraft Necromancy Focus:2 Passive: +6 Equipment Bonus to the DC to resist your Necromancy spells.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Necromancy</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Transmutation Focus</Name>
+    <Description>Dwarvencraft Transmutation Focus:2 Passive: +6 Equipment Bonus to the DC to resist your Transmutation spells.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Transmutation</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Spell Penetration</Name>
+    <Description>Dwarvencraft Spell Penetration: Passive: +7 Bonus to Spell Penetration.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellPenetrationBonus</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">7</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Green Augment Slot</Name>
+    <Description>Adds a Green Augment Slot to this item</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <GrantAugment>Green</GrantAugment>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <Augment>
+    <Name>Purple Augment Slot</Name>
+    <Description>Adds a Purple Augment Slot to this item</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <GrantAugment>Purple</GrantAugment>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>TwoHanded</WeaponClass>
+  </Augment>
+  <!--Thundeforged Weapon Variants Tier 3-->
+  <Augment>
+    <Name>Acid Storm</Name>
+    <Description>Acid Storm: Black Dragon Breath (3 uses per rest): Like a black dragon, you can breathe a powerful stream of acid that deals 1d15 + 15 acid damage per caster level (Reflex save for half) to enemies within its area of effect. You can use this ability 5 times per rest. (Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLikeAbility</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Acid Storm: Black Dragon Breath</Item>
+      <AType>SpellInfo</AType>
+      <Amount size="3">0 0 0</Amount>
+      <Item>None</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Ice Storm</Name>
+    <Description>Ice Storm: White Dragon Breath (3 uses per rest): Like a white dragon, you can breathe a powerful cone of intense cold that deals 1d15 + 15 cold damage per caster level (Reflex save for half) to enemies within its area of effect. You can use this ability 5 times per rest. (Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLikeAbility</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Ice Storm: White Dragon Breath</Item>
+      <AType>SpellInfo</AType>
+      <Amount size="3">0 0 0</Amount>
+      <Item>None</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Fire Storm</Name>
+    <Description>Fire Storm: Red Dragon Breath (3 uses per rest): Like a red dragon, you can breathe a powerful cone of intense flames that deals 1d15 + 15 fire damage per caster level (Reflex save for half) to enemies within its area of effect. You can use this ability 5 times per rest. (Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLikeAbility</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Fire Storm: Red Dragon Breath</Item>
+      <AType>SpellInfo</AType>
+      <Amount size="3">0 0 0</Amount>
+      <Item>None</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Lightning Storm</Name>
+    <Description>Lightning Storm: Blue Dragon Breath (3 uses per rest): Like a blue dragon, you can breathe a powerful bolt of lightning that deals 1d15 + 15 electric damage per caster level (Reflex save for half) to enemies within its area of effect. You can use this ability 5 times per rest. (Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLikeAbility</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Lightning Storm: Blue Dragon Breath</Item>
+      <AType>SpellInfo</AType>
+      <Amount size="3">0 0 0</Amount>
+      <Item>None</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>3rd Degree Burns</Name>
+    <Description>3rd Degree Burns: On Vorpal: 85 to 195 Fire Damage every 2 seconds for 10 seconds, and adds 1-5 stacks of Vulnerability.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Crippling Flames</Name>
+    <Description>Crippling Flames: On Crit: 135 to 325 Fire Damage. On Hit: 5% chance to apply 2 Negative Levels.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Crippling Flames</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">19</Number>
+        <Sides size="1">10</Sides>
+        <Bonus size="1">116</Bonus>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Leg Breaker</Name>
+    <Description>Leg Breaker: On Hit: 5% Chance Reflex Save -5, Trip Attempt.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Mind Breaker</Name>
+    <Description>Mind Breaker: On Hit: 5% Chance Will Save -5, Hold Monster Attempt.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Eternal Chilling Darkness</Name>
+    <Description>Eternal Chilling Darkness: On Negative / Cold Spell Damage: +50 temp SP 30 seconds (triggers once per 45 seconds).</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Mortal Fear</Name>
+    <Description>Mortal Fear: On Hit: 8 to 64 Force Damage. In addition, 5% chance to cut non-boss foe's current health in half.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Mortal Fear</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Body Breaker</Name>
+    <Description>Body Breaker: On Hit: 5% Chance Fortitude Save -5, Sunder Attempt.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Eternal Scorching Light</Name>
+    <Description>Eternal Scorching Light: On Light / Fire Spell Damage: +50 temp SP 30 seconds (triggers once per 45 seconds).</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Burning Emptiness</Name>
+    <Description>Burning Emptiness: On Vorpal: 55 to 110 Fire Damage every 2 seconds for 10 seconds. On Crit: 108 to 260 Negative Energy Damage.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Burning Emptiness</DisplayName>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">19</Number>
+        <Sides size="1">8</Sides>
+        <Bonus size="1">89</Bonus>
+        <Damage>Negative</Damage>
+      </Dice>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Draconic Reinvigoration</Name>
+    <Description>Draconic Reinvigoration: Passive: +1 use/rest to Action Boost, Rallying Cry, Smite Evil, Turn Undead and Bard Songs. On Damage or Spell Damage: 2% chance to generate 1 Action Boost, Rallying Cry, Smite Evil, Turn Undead, and Bard Songs (triggers once per 100 seconds).</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Lore</Name>
+    <Description>Dwarvencraft Lore: Passive: All your spells gain a +17% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">17</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Acid Lore</Name>
+    <Description>Dwarvencraft Acid Lore: Passive: Your Acid spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Damage>Acid</Damage>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Healing Lore</Name>
+    <Description>Dwarvencraft Healing Lore: Passive: Your Healing spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Positive</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Void Lore</Name>
+    <Description>Dwarvencraft Void Lore: Passive: Your Negative/Poison Energy spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Ice Lore</Name>
+    <Description>Dwarvencraft Ice Lore: Passive: Your Cold spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Cold</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Kinetic Lore</Name>
+    <Description>Dwarvencraft Kinetic Lore: Passive: Your Force spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Force/Untyped</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Fire Lore</Name>
+    <Description>Dwarvencraft Fire Lore: Passive: Your Fire spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Fire</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Radiance Lore</Name>
+    <Description>Dwarvencraft Radiance Lore: Passive: Your Light and Alignment spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Light/Alignment</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Sonic Lore</Name>
+    <Description>Dwarvencraft Sonic Lore: Passive: Your Sonic spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Sonic</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Lightning Lore</Name>
+    <Description>Dwarvencraft Lightning Lore: Passive: Your Electric spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Electric</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Dwarvencraft Repair Lore</Name>
+    <Description>Dwarvencraft Repair Lore: Passive: Your Repair spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Repair</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+</Augments>

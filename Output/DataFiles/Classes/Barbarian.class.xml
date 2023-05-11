@@ -1,0 +1,835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Classes>
+  <Class>
+    <Name>Barbarian</Name>
+    <Description>A Barbarian is a warrior who has special powers when enraged and
+specializes in dealing heavy damage. Barbarians wear less armor than
+fighters or paladins, but have more hit points and some innate damage
+reduction. Uncanny Dodge allows them to have a high dodge chance and
+excellent reflex saves in short bursts. While many Barbarian abilities
+are geared towards melee combat, they can also make passable ranged
+combatants should the need arise. A Barbarian's primary attributes are
+Strength and Constitution.</Description>
+    <SmallIcon>Barbarian_Small</SmallIcon>
+    <LargeIcon>Barbarian</LargeIcon>
+    <SkillPoints>4</SkillPoints>
+    <HitPoints>12</HitPoints>
+    <ClassSkill>Intimidate</ClassSkill>
+    <ClassSkill>Jump</ClassSkill>
+    <ClassSkill>Listen</ClassSkill>
+    <ClassSkill>Swim</ClassSkill>
+    <Alignment>True Neutral</Alignment>
+    <Alignment>Chaotic Neutral</Alignment>
+    <Alignment>Chaotic Good</Alignment>
+    <Fortitude>Type2</Fortitude>
+    <Reflex>Type1</Reflex>
+    <Will>Type1</Will>
+    <SpellPointsPerLevel size="20">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
+    <AutoBuySkill>Intimidate</AutoBuySkill>
+    <AutoBuySkill>Balance</AutoBuySkill>
+    <BAB size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</BAB>
+    <Feat>
+      <Name>Damage Reduction 3%</Name>
+      <Description>A Barbarian can resist physical damage, shrugging off 3% of non bane
+damage from each physical attack. This increases by 1% at 5th level and
+every three Barbarian levels thereafter.</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>DamageReduction</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <DisplayName>Barbarian DR</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>DR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian DR</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>DR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian DR</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>DR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Damage Reduction 1% Increase</Name>
+      <Description>A Barbarian can resist physical damage, shrugging off 3% of non bane
+damage from each physical attack. This increases by 1% at 5th level and
+every three Barbarian levels thereafter.</Description>
+      <MaxTimesAcquire>6</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>DamageReduction</Icon>
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>5</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>8</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>11</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>14</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>17</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>20</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+      <Effect>
+        <DisplayName>Barbarian DR</DisplayName>
+        <Bonus>Feat</Bonus>
+        <Type>DR</Type>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Fast Movement (Barbarian)</Name>
+      <Description>The Fast Movement class feat allows a Barbarian to move 10% faster.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>FastMovementBarbarian</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10.0</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Greater Rage</Name>
+      <Description>The bonuses of the Barbarian's rage increase to a total of +6 strength,
++6 constitution and +3 to will saving throws but the barbarian still incurs a
+reduction of its Armor Class by 2. Fatigue penalties remain the same as regular
+Rage. Enhances the regular Barbarian Rage feat. +10 Physical Resistance Rating
+when wearing Medium armor. +10 Melee Power while the rage is active.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>GreaterRage</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>11</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Strength</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>SaveBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Will</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">2 3 4 5</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Rage</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Medium Armor</Item>
+          </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Rage</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Indomitable Will</Name>
+      <Description>While in a rage, the Barbarian receives a +4 bonus on Will saves to
+resist enchantment spells. This bonus stacks with all other modifiers, including
+the morale bonus on Will saves he also receives during his rage.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>IndomitableWill</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>14</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Enchantment</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Mighty Rage</Name>
+      <Description>Upon reaching level 20, a Barbarian's rage grows stronger.
+When raging, your base bonus to Strength and Constitution are increased to +8
+and your morale bonus to Will saves is increased to +4.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>Rage</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>20</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Strength</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>SaveBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Will</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">2 3 4 5</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Rage</Name>
+      <Description>Activate this Barbarian ability to enter a bloodthirsty frenzy, granting you
+a +4 bonus to Strength and Constitution, a +2 Morale bonus to Will saves and
+a -2 penalty to AC. When the rage ends, however, you will lose the hit points
+granted to you by increased Constitution and become fatigued. Your rage will
+list for 30 seconds plus an additional amount of time based on your constitution.
+You can prematurely end your rage by using the Dismiss Rage feat.</Description>
+      <Stance>
+        <Name>Rage</Name>
+        <Icon>Rage</Icon>
+        <Description>Enter a bloodthirsty frenzy, granting you a +4 bonus to Strength and
+Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Description>
+        <Group>Combat Stance</Group>
+      </Stance>
+      <Acquire>Automatic</Acquire>
+      <Icon>Rage</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Strength</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>SaveBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Will</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">2 3 4 5</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>ACBonus</Type>
+        <Bonus>Rage</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="1">-2</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Tireless Rage</Name>
+      <Description>Upon reaching level 17, a barbarian is no longer fatigued after raging.
+Also, gain a stacking +2 Strength and Constitution Bonus along with a +1 Morale
+Bonus to Will Saving Throws while raging.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>TirelessRage</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>17</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Strength</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">4 6 8 10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Barbarian Rage</DisplayName>
+        <Type>SaveBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Will</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">2 3 4 5</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wildhunt Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Trap Sense (Barbarian)</Name>
+      <Description>Barbarians receive a +1 bonus to saves against traps.
+This bonus increases every three Barbarian levels thereafter.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>TrapSense</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Barbarian</Item>
+          <Value>3</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Traps</Item>
+        <Amount size="20">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
+        <AType>ClassLevel</AType>
+        <StackSource>Barbarian</StackSource>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Uncanny Dodge</Name>
+      <Description>Activate this ability to gain a temporary 25% Dodge bonus and a +4 reflex
+save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4,
+6, 8, 12, 16 and 20.</Description>
+      <MaxTimesAcquire>6</MaxTimesAcquire>
+      <Acquire>Automatic</Acquire>
+      <Icon>UncannyDodge</Icon>
+      <AutomaticAcquisition>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>4</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>6</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>8</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Barbarian</Item>
+            <Value>20</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>4</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>6</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>8</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>12</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>16</Value>
+          </Requirement>
+          <Requirement>
+            <Type>Class</Type>
+            <Item>Rogue</Item>
+            <Value>20</Value>
+          </Requirement>
+        </RequiresOneOf>
+      </AutomaticAcquisition>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Barbarian</Name>
+      <Description>You were a Barbarian in a past life.
+You occasionally find yourself filled with a nearly irresistible urge to smash boxes.
+With your head. Each time you acquire this feat you gain 10 additional hit points.
+This feat can be stacked up to three times.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeBarbarian</Icon>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Berserker's Fury</Name>
+      <Description>You recall more about your past life as a Barbarian.
+You gain +20 hit points, have +2 to your Intimidate skill and can enter a
+Barbarian rage one additional time per rest and enter a basic rage once per
+rest even if you do not have any other rage abilities. (Activate this Barbarian
+ability to enter a bloodthirsty frenzy, granting you a +4 bonus to Strength and
+Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC. When the
+rage ends, however, you will lose the hit points granted to you by increased
+Constitution and become fatigued. Your rage will last for 30 seconds).
+This feat grants access to Racial and Class Toughness enhancements.</Description>
+      <Group>Standard</Group>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Past Life: Barbarian</Item>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PastLifeBarbarian</Icon>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Intimidate</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Rage</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Barbarian</Item>
+      </Effect>
+    </Feat>
+  </Class>
+</Classes>

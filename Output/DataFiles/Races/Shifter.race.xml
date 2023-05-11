@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Races>
+   <Race>
+      <Name>Shifter</Name>
+      <Description>Shifters are a basic Eberron race with notable Lycanthropic ancestry.
+They cannot transform entirely into animals, but can shift parts of their bodies
+to be animal-like for short periods of time. In DDO, this Shifting has
+similarities (and statistical connections to) Raging.
+
+Depending on subrace selection, Shifters excel at Defense/Tanking or WIS-based
+casting.</Description>
+      <BuildPoints size="4">28 32 34 36</BuildPoints>
+      <FeatSlot>
+         <Level>1</Level>
+         <FeatType>Animalistic Aspect</FeatType>
+      </FeatSlot>
+      <Dexterity>+2</Dexterity>
+      <Intelligence>-2</Intelligence>
+      <Feat>
+         <Name>Beasthide Shifter</Name>
+      <Description>Passive: +1 Constitution
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Armor Class and Constitution, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will lose the hit points granted by increased Constitution
+and become fatigued. Your form will last for 30 seconds plus an additional amount of time
+based on your Constitution. You can prematurely end your form by using the Dismiss Rage
+feat. This shares charges with Barbarian's Rage feat, and anything that grants bonuses while
+Raging will grant bonuses with this. Shifting your form in this way prevents Spellcasting,
+and prevents use of other abilities that cannot be used while Raging.</Description>
+         <Group>Animalistic Aspect</Group>
+         <Acquire>Train</Acquire>
+         <Icon>BeasthideShifter</Icon>
+         <Stance>
+            <Name>Beasthide Shifter: Shifted Form</Name>
+            <Icon>BeasthideShifter</Icon>
+         <Description>Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Armor Class and Constitution, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will lose the hit points granted by increased Constitution
+and become fatigued.</Description>
+            <Group>Combat Stance</Group>
+         </Stance>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Constitution</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+            <Type>ACBonus</Type>
+            <Bonus>Rage</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Rage</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Razorclaw Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+            <Type>AbilityBonus</Type>
+            <Bonus>Rage</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>Constitution</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Beasthide Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Morale</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Fortitude</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Beasthide Shifter: Shifted Form</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+            <Type>AbilityBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-2</Amount>
+            <Item>Wisdom</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Beasthide Shifter: Shifted Form</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Wildhunt Shifter</Name>
+      <Description>Passive: +1 Wisdom
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Wisdom and Dexterity, a +2 Morale bonus to Will saves, and a -2 penalty to Strength.
+When the form ends, however, you will become fatigued. Your form will last for 30 seconds
+plus an additional amount of time based on your Wisdom. You can prematurely end your form by
+using the Dismiss Rage feat. This shares charges with Barbarian's Rage feat, and anything
+that grants bonuses while Raging will grant bonuses with this, with the exception of abilities
+that add Strength while Raging. Shifting your form in this way prevents Spellcasting,
+and prevents use of other abilities that cannot be used while Raging.</Description>
+         <Group>Animalistic Aspect</Group>
+         <Acquire>Train</Acquire>
+         <Icon>WildhuntShifter</Icon>
+         <Stance>
+            <Name>Wildhunt Shifter: Shifted Form</Name>
+            <Icon>WildhuntShifter</Icon>
+         <Description>Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Wisdom and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Strength.
+When the form ends, however, you will become fatigued.</Description>
+            <Group>Combat Stance</Group>
+         </Stance>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Wisdom</Item>
+         </Effect>
+         <Effect>
+            <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+            <Type>AbilityBonus</Type>
+            <Bonus>Rage</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>Wisdom</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+            <Type>AbilityBonus</Type>
+            <Bonus>Rage</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>Dexterity</Item>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Wildhunt Shifter: Shifted Form</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Morale</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>Fortitude</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wildhunt Shifter: Shifted Form</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+            <Type>AbilityBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">-2</Amount>
+            <Item>Strength</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wildhunt Shifter: Shifted Form</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Shifter Traits</Name>
+         <Description>You are considered both a Humanoid and an Animal for the purpose of most spells and effects, such as the Magic Fang spell.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>ShifterTraits</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Shifter</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+      </Feat>
+   <Feat>
+      <Name>Past Life: Shifter</Name>
+      <Description>You were Shifter in a previous life
+Tier1: +1 Spot
+Tier2: +1 Dexterity
+Tier3: +1 Racial Tree Action point</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeShifter</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Spot</Item>
+         <AType>Stacks</AType>
+         <Amount size="3">1 1 1</Amount>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Dexterity</Item>
+         <AType>Stacks</AType>
+         <Amount size="3">0 1 1</Amount>
+      </Effect>
+      <Effect>
+         <Type>RAPBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="3">0 0 1</Amount>
+      </Effect>
+   </Feat>
+   </Race>
+</Races>

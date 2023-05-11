@@ -1,0 +1,1598 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Shintao</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Type>Class</Type>
+            <Item>Monk</Item>
+         </Requirement>
+      </Requirements>
+      <Icon>Monk</Icon>
+      <Background>MonkBackground</Background>
+      <!--Core Items-->
+      <EnhancementTreeItem>
+         <Name>Shintao: Bastion of Purity</Name>
+         <InternalName>ShintaoCore1</InternalName>
+         <Description>For each Core Ability you claim in this tree, you gain 10 Positive Energy Spell Power,
+which affects your monk finishing moves and spell-like abilities.
+Your Positive Healing Amplification is also increased by 10% for each
+Shintao Monk Core Ability you possess.</Description>
+         <Icon>ShintaoBastionOfPurity</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Positive</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Protection from Tainted Creatures</Name>
+         <InternalName>ShintaoCore2</InternalName>
+         <Description>You gain a +1 bonus to Armor Class and a +1 bonus to saving throws against attacks
+from tainted creatures (aberrations, extra-planar creatures that are not Lawful
+Outsiders, and undead). These bonuses stack with all other bonuses to armor
+class and saving throws. Your unarmed attacks now bypass Byeshk damage reduction.</Description>
+         <Icon>ShintaoProtectionFromTaintedCreatures</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoCore1</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Byeshk</Item>
+            <Item>Handwraps</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Positive</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Iron Hand</Name>
+         <InternalName>ShintaoCore3</InternalName>
+         <Description>Your unarmed attacks now bypass Cold Iron damage reduction.</Description>
+         <Icon>ShintaoIronHand</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoCore2</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>6</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Cold Iron</Item>
+            <Item>Handwraps</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Positive</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Argent Fist</Name>
+         <InternalName>ShintaoCore4</InternalName>
+         <Description>You gain an additional +1 bonus to Armor Class and a +1 bonus to saving
+throws. Your unarmed attacks and attacks with Handwraps now bypass Silver
+damage reduction.</Description>
+         <Icon>ShintaoArgentFist</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoCore3</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Silver</Item>
+            <Item>Handwraps</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Positive</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Touch the Void Dragon</Name>
+         <InternalName>ShintaoCore5</InternalName>
+         <Description>Ki Activate: Spend 30 Ki to gain a 1d4+1 bonus to all ability scores
+for one minute (Cooldown: 3 minute).
+Passive: +5 Melee Power, +1[W] with handwraps or while unarmed</Description>
+         <Icon>ShintaoTouchOfTheVoidDragon</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoCore4</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>18</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Positive</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>Weapon_BaseDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: To Seek Perfection</Name>
+         <InternalName>ShintaoCore6</InternalName>
+         <Description>You continually seek physical and spiritual betterment, reaping many
+benefits. You gain +4 Wisdom. +15 Melee Power, +2[W] with handwraps or
+while unarmed. You gain an additional +1 bonus to Armor Class and a +1 bonus
+to saving throws. You no longer suffer penalties from Meditation of War.</Description>
+         <Icon>ShintaoToSeekPerfection</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoCore5</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>20</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wisdom</Item>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Positive</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Weapon_BaseDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <!--lose penalties from meditation of war if its trained-->
+         <Effect>
+            <DisplayName>Meditation of War: Sun Stance</DisplayName>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 -5 0</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Sun Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Meditation of War: Earth Stance</DisplayName>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 -5 0</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mountain Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Meditation of War: Ocean Stance</DisplayName>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 -10 0</Amount>
+            <Percent/>
+            <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Ocean Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Shintao: Elemental Curatives I</Name>
+         <InternalName>ShintaoElementalCurativesI</InternalName>
+         <Description>Select one of four toggles that modify your Healing Ki finisher: </Description>
+         <Icon>ShintaoElementalCuratives</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Difficulty at the Beginning</Name>
+               <Description>Your Healing Ki finishing move also applies a Lesser Restoration effect.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoDifficultyAtTheBeginning</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Lifting the Veil</Name>
+               <Description>Your Healing Ki finishing move also removes blindness.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoLiftingTheVeil</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Restoring the Balance</Name>
+               <Description>Your Healing Ki finishing move also removes curses.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoRestoringTheBalance</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>The Receptive Earth</Name>
+               <Description>Your Healing Ki finishing move also removes disease.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoTheReceptiveEarth</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Reed in the Wind</Name>
+         <InternalName>ShintaoReedInTheWind</InternalName>
+         <Description>Ki Melee Attack: Deals +[1/2/3][W] damage.
+If you successfully damage your target you gain a +[3/6/9]% Insight bonus
+to Dodge for 6 seconds. (Cooldown: 15 seconds)</Description>
+         <Icon>ShintaoReedInTheWind</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>1</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Feat</Type>
+               <Item>Dodge</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Deft Strikes</Name>
+         <InternalName>ShintaoDeftStrikes</InternalName>
+         <Description>You gain +[3/6/10]% chance to make offhand attacks while centered
+and wielding two weapons or fighting unarmed.</Description>
+         <Icon>ShintaoDeftStrikes</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">3 6 10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Ki Shout</Name>
+         <InternalName>ShintaoKiShout</InternalName>
+         <Description>Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
+This ability uses your Concentration skill, and shares a cooldown with the
+Intimidate skill. (Activation Cost: 15 Ki. Cooldown: 15 seconds)</Description>
+         <Icon>ShintaoKiShout</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+      <DC>
+         <Name>Ki Shout</Name>
+         <Description>Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
+This ability uses your Concentration skill, and shares a cooldown with the
+Intimidate skill. (Activation Cost: 15 Ki. Cooldown: 15 seconds)</Description>
+         <Icon>ShintaoKiShout</Icon>
+         <DCType>Intimidate</DCType>
+         <DCVersus>10+HD+Wis Mod</DCVersus>
+         <Other>d20</Other>
+         <Skill>Concentration</Skill>
+      </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Exemplar</Name>
+         <InternalName>ShintaoExemplar</InternalName>
+         <Description>+[1/2/3] Heal and Intimidate.
+Rank 3: You also gain +10% threat generation.</Description>
+         <Icon>ShintaoExemplar</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>1</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Heal</Item>
+            <Item>Intimidate</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Rank>3</Rank>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Shintao: Elemental Curatives II</Name>
+         <InternalName>ShintaoElementalCurativesII</InternalName>
+         <Description>Select one of four toggles (not previously selected) that modify your Healing Ki finisher.</Description>
+         <Icon>ShintaoElementalCuratives</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>2</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoElementalCurativesI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>ShintaoElementalCurativesI</Exclusions>
+            <EnhancementSelection>
+               <Name>Difficulty at the Beginning</Name>
+               <Description>Your Healing Ki finishing move also applies a Lesser Restoration effect.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoDifficultyAtTheBeginning</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Lifting the Veil</Name>
+               <Description>Your Healing Ki finishing move also removes blindness.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoLiftingTheVeil</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Restoring the Balance</Name>
+               <Description>Your Healing Ki finishing move also removes curses.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoRestoringTheBalance</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>The Receptive Earth</Name>
+               <Description>Your Healing Ki finishing move also removes disease.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoTheReceptiveEarth</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Smite Tainted Creature</Name>
+         <InternalName>ShintaoSmiteTaintedCreature</InternalName>
+         <Description>Ki Melee Attack: You have the ability to expend Ki to deal devastating blows in
+melee against tainted creatures. You gain twice your Wisdom modifier to your
+attack roll and a damage bonus based on your monk level. A tainted target will
+be locked in a tomb of jade on vorpal attacks (attack roll of 20 followed by
+critical confirmation) on a failed Will save 
+DC = 10 + Wisdom modifier + your monk level + stun bonuses.
+Extra-planar Aberrations or Undead must succeed at two consecutive Will saves to
+avoid their fate. (Activation Cost: 15 Ki. Cooldown: 15 seconds)</Description>
+         <Icon>ShintaoSmiteTaintedCreature</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Shintao: Smite Tainted Creature</Name>
+            <Description>Ki Melee Attack: You have the ability to expend Ki to deal devastating blows in
+melee against tainted creatures. A tainted target will be locked in a tomb of jade
+on vorpal attacks on a failed Will save.
+Extra-planar Aberrations or Undead must succeed at two consecutive Will saves to
+avoid their fate.</Description>
+            <Icon>ShintaoSmiteTaintedCreature</Icon>
+            <DCType>Tomb of Jade</DCType>
+            <DCVersus>Will</DCVersus>
+            <Amount size="1">10</Amount>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Iron Skin</Name>
+         <InternalName>ShintaoIronSkin</InternalName>
+         <Description>While centered, you gain an additional [5/10/20] PRR.</Description>
+         <Icon>ShintaoIronSkin</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 20</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Elemental Ki Strikes</Name>
+         <InternalName>ShintaoElementalKiStrikes</InternalName>
+         <Description>Select one of four attacks that have secondary after effects:
+(Activation Cost: 5 Ki. Cooldown: 3 seconds) </Description>
+         <Icon>HMElementalKiStrikes</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Eagle Claw Attack</Name>
+               <Description>Fire Ki Melee Attack: Your attacks can shatter objects.
+You strike at weak points in your opponents armor or hide, dealing +2[W] damage
+and apply two stacks of the Armor Destruction effect. (Each stack reduces Armor
+Class by 1 and Fortification by 1% for 20 seconds. This effect can stack up to 15 times.) </Description>
+               <Icon>HMEagleClawAttack</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Fists of Iron</Name>
+               <Description>Earth Ki Melee Attack: You have imbued your attacks with extra force.
+Performs a melee attack with +3[W] damage, +1 critical threat range, and +1 Critical Damage Multiplier.</Description>
+               <Icon>ShintaoFistsOfIron</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Knock on the Sky</Name>
+               <Description>Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
+Performs a melee attack with +1[W] damage, and your enemy deals 2% less physical
+damage for 30 seconds. This effect can stack up to 5 times. </Description>
+               <Icon>HMKnockOnTheSky</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Unbalancing Strike</Name>
+               <Description>Water Ki Melee Attack: You have learned several joint strikes.
+You can attack these weak points of your opponent, dealing +3[w] and throwing
+them off balance for a short period of time. This reduces their armor class by 2,
+applies a -10 penalty to their Balance skill, and renders them vulnerable to sneak attacks.
+A successful Reflex save negates this effect
+(DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+The target receives periodic saves to attempt to break free of this effect.</Description>
+               <Icon>HMUnbalancingStrike</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Clickie/>
+               <DC>
+                  <Name>Shintao: Unbalancing Strike</Name>
+                  <Description>Water Ki Melee Attack: You have learned several joint strikes.
+You can attack these weak points of your opponent, dealing +3[w] and throwing
+them off balance for a short period of time. This reduces their armor class by 2,
+applies a -10 penalty to their Balance skill, and renders them vulnerable to sneak attacks.</Description>
+                  <Icon>HMUnbalancingStrike</Icon>
+                  <DCType>Sneak Attack Vulnerability</DCType>
+                  <DCVersus>Reflex</DCVersus>
+                  <Amount size="1">10</Amount>
+                  <HalfClassLevel>Monk</HalfClassLevel>
+                  <ModAbility>Wisdom</ModAbility>
+                  <Tactical>Trip</Tactical>
+               </DC>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Conditioning</Name>
+         <InternalName>ShintaoConditioning</InternalName>
+         <Description>+[1/2/3] Concentration and Fortitude Saves, +[5/10/15] HP.</Description>
+         <Icon>ShintaoConditioning</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>2</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Concentration</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fortitude</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 15</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Shintao: Elemental Curatives III</Name>
+         <InternalName>ShintaoElementalCurativesIII</InternalName>
+         <Description>Select one of four toggles (not previously selected) that modify your Healing Ki finisher:</Description>
+         <Icon>ShintaoElementalCuratives</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoElementalCurativesII</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>ShintaoElementalCurativesI</Exclusions>
+            <Exclusions>ShintaoElementalCurativesII</Exclusions>
+            <EnhancementSelection>
+               <Name>Difficulty at the Beginning</Name>
+               <Description>Your Healing Ki finishing move also applies a Lesser Restoration effect.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoDifficultyAtTheBeginning</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Lifting the Veil</Name>
+               <Description>Your Healing Ki finishing move also removes blindness.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoLiftingTheVeil</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Restoring the Balance</Name>
+               <Description>Your Healing Ki finishing move also removes curses.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoRestoringTheBalance</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>The Receptive Earth</Name>
+               <Description>Your Healing Ki finishing move also removes disease.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoTheReceptiveEarth</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Jade Strike</Name>
+         <InternalName>ShintaoJadeStrike</InternalName>
+         <Description>Ki Melee Attack: You perform a melee attack that is anathema to tainted creatures,
+that increases their physical damage vulnerability by 10% and reduces their
+fortification by 25%. A successful Will save negates this effect
+(DC = 10 + Wisdom modifier + your monk level).
+This ability only functions on aberrations, extra-planar creatures that are not
+classified as 'Lawful Outsiders', and undead. Creatures that are both extra-planar
+and either aberrations or undead receive double this effect. On critical hits,
+a tainted target will be locked in a tomb of jade on a failed Will save
+(DC = 10 + Wisdom modifier + monk level + stun bonuses). Extra-planar Aberrations or
+Undead must succeed at two consecutive Will saves to avoid their fate.
+(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+         <Icon>ShintaoJadeStrike</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>3</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoSmiteTaintedCreature</Item>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Shintao: Jade Strike</Name>
+            <Description>Ki Melee Attack: You perform a melee attack that is anathema to tainted creatures,
+that increases their physical damage vulnerability by 10% and reduces their
+fortification by 25%. A successful Will save negates this effect.</Description>
+            <Icon>ShintaoJadeStrike</Icon>
+            <DCType>Damage Vulnerability</DCType>
+            <DCVersus>Will</DCVersus>
+            <Amount size="1">10</Amount>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Dismissing Strike</Name>
+         <InternalName>ShintaoDismissingStrike</InternalName>
+         <Description>Ki Melee Attack: You perform a melee attack that attempts to force an extra-planar
+enemy back to its proper plane. A successful Will save negates this effect
+(DC = 10 + Wisdom modifier + your monk level).
+(Activation Cost: 25 Ki. Cooldown: 15 seconds)</Description>
+         <Icon>ShintaoDismissingStrike</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Shintao: Dismissing Strike</Name>
+            <Description>Ki Melee Attack: You perform a melee attack that attempts to force an extra-planar
+enemy back to its proper plane. A successful Will save negates this effect.</Description>
+            <Icon>ShintaoDismissingStrike</Icon>
+            <DCType>Banish</DCType>
+            <DCVersus>Will</DCVersus>
+            <Amount size="1">10</Amount>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Ability I</Name>
+         <InternalName>ShintaoAbilityScoreI</InternalName>
+         <Description>Choose either Constitution or Wisdom</Description>
+         <Icon>ConWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>3</Value>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Shintao: Elemental Curatives IV</Name>
+         <InternalName>ShintaoElementalCurativesIV</InternalName>
+         <Description>Select one of four toggles (not previously selected) that modify your Healing Ki finisher:</Description>
+         <Icon>ShintaoElementalCuratives</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoElementalCurativesIII</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <Exclusions>ShintaoElementalCurativesI</Exclusions>
+            <Exclusions>ShintaoElementalCurativesII</Exclusions>
+            <Exclusions>ShintaoElementalCurativesIII</Exclusions>
+            <EnhancementSelection>
+               <Name>Difficulty at the Beginning</Name>
+               <Description>Your Healing Ki finishing move also applies a Lesser Restoration effect.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoDifficultyAtTheBeginning</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Lifting the Veil</Name>
+               <Description>Your Healing Ki finishing move also removes blindness.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoLiftingTheVeil</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Restoring the Balance</Name>
+               <Description>Your Healing Ki finishing move also removes curses.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoRestoringTheBalance</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>The Receptive Earth</Name>
+               <Description>Your Healing Ki finishing move also removes disease.
+Passive: +1 to hit and damage with handwraps while centered.</Description>
+               <Icon>ShintaoTheReceptiveEarth</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Tomb of Jade</Name>
+         <InternalName>ShintaoTombOfJade</InternalName>
+         <Description>Ki Melee Attack: You perform an attack that encases a tainted target in a tomb
+of jade on a failed Will save (DC = 10 + Wisdom modifier + monk level + stun bonuses).
+Extra-planar Aberrations or Undead must succeed at two consecutive Will saves to
+avoid this fate. (Activation Cost: 25 Ki. Cooldown: 1 minute)</Description>
+         <Icon>ShintaoTombOfJade</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoJadeStrike</Item>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Shintao: Tomb of Jade</Name>
+            <Description>Ki Melee Attack: You perform an attack that encases a tainted target in a tomb
+of jade on a failed Will save.
+Extra-planar Aberrations or Undead must succeed at two consecutive Will saves to
+avoid this fate.</Description>
+            <Icon>ShintaoTombOfJade</Icon>
+            <DCType>Tomb of Jade</DCType>
+            <DCVersus>Will</DCVersus>
+            <Amount size="1">10</Amount>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Instinctive Defense</Name>
+         <InternalName>ShintaoInstinctiveDefense</InternalName>
+         <Description>You take [5/10/15]% less extra damage when struck while helpless.
+(Additional damage while helpless varies by difficulty setting from 5% to 25%.)</Description>
+         <Icon>ShintaoInstinctiveDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoIronSkin</Item>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>HelplessDamageReduction</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 15</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Ability II</Name>
+         <InternalName>ShintaoAbilityScoreII</InternalName>
+         <Description>Choose either Constitution or Wisdom</Description>
+         <Icon>ConWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>4</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoAbilityScoreI</Item>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Constitution</Item>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Wisdom</Item>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Shintao: Empty Hand Mastery</Name>
+         <InternalName>ShintaoEmptyHandMastery</InternalName>
+         <Description>While you are centered and wielding Handwraps, you gain a +1 Competence
+bonus to Critical Threat Range and Multiplier.</Description>
+         <Icon>ShintaoEmptyHandMastery</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Handwraps</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Centered</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Kukan-Do</Name>
+         <InternalName>ShintaoKukanDo</InternalName>
+         <Description>Ki Activate: You lock gazes with an enemy, stunning them for a short period
+of time on a failed Will save (DC 10 + Wisdom modifier + Monk level).
+Any effects that modify your Stunning Blow or Stunning Fist DC's also affect this
+ability. Sightless creatures are unaffected by this ability.
+(Activation Cost: 25 Ki. Cooldown: 15 seconds)</Description>
+         <Icon>ShintaoKukanDo</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoTombOfJade</Item>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Shintao: Kukan-Do</Name>
+            <Description>Ki Activate: You lock gazes with an enemy, stunning them for a short period
+of time on a failed Will save. Any effects that modify your Stunning Blow or
+Stunning Fist DC's also affect this ability. Sightless creatures are unaffected
+by this ability.</Description>
+            <Icon>ShintaoKukanDo</Icon>
+            <DCType>Stun</DCType>
+            <DCVersus>Will</DCVersus>
+            <Amount size="1">10</Amount>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Violence Begets Violence</Name>
+         <InternalName>ShintaoViolenceBegetsViolence</InternalName>
+         <Description>While Centered, when an opponent misses you in melee, you gain +1
+critical threat range for 6 seconds. This stacks up to 5 times and is reset if
+you critically hit.</Description>
+         <Icon>ShintaoViolenceBegetsViolence</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoInstinctiveDefense</Item>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Meditation of War</Name>
+         <InternalName>ShintaoMeditationOFWar</InternalName>
+         <Description>Air Stance:
+    +2 to hit
+    +10% bonus to off-hand attack chance
+    You take 10% more physical and elemental damage.
+Fire Stance:
+    +2 bonus to damage and to the DC's of your Stun, Sunder, and Trip abilities
+    -5 Armor Class
+Earth Stance:
+    +10 to Physical Resistance
+    +3% to Maximum Hit Points
+    -5% Dodge Cap. 
+Water Stance:
+    +5 Maximum Dodge Bonus
+    You deal 10% less damage with attacks. 
+Note: Mutually exclusive with Stalwart stance and Sacred stance.</Description>
+         <Icon>ShintaoMeditationOFWar</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Stance>
+            <Name>Meditation of War</Name>
+            <Icon>ShintaoMeditationOFWar</Icon>
+            <Description>Air Stance:
+    +2 to hit
+    +10% bonus to off-hand attack chance
+    You take 10% more physical and elemental damage. 
+Fire Stance:
+    +2 bonus to damage and to the DC's of your Stun, Sunder, and Trip abilities
+    -5 Armor Class
+Earth Stance:
+    +10 to Physical Resistance
+    +3% to Maximum Hit Points
+    -5% Dodge Cap. 
+Water Stance:
+    +5 Maximum Dodge Bonus
+    You deal 10% less damage with attacks.</Description>
+         </Stance>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wind Stance</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Meditation of War</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wind Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Trip</Item>
+            <Item>Sunder</Item>
+            <Item>Stun</Item>
+            <Item>General</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Sun Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Sun Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mountain Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Percent/>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mountain Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Ocean Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <!--Note that duplicate Types below are not an error-->
+         <Effect>
+            <DisplayName>Meditation of War: Sun Stance</DisplayName>
+            <Type>ACBonus</Type>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 -5 0</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Sun Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Meditation of War: Earth Stance</DisplayName>
+            <Type>DodgeCapBonus</Type>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 -5 0</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mountain Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <DisplayName>Meditation of War: Ocean Stance</DisplayName>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">0 -10 0</Amount>
+            <Percent/>
+            <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Ocean Stance</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shintao: Rise of the Phoenix</Name>
+         <InternalName>ShintaoRiseOfThePhoenix</InternalName>
+         <Description>Activate While Dead: The spirit of a phoenix burns within you.
+You may bring yourself back from death's door, as if affected by the Resurrection spell.
+This ability may only be used once per rest. (Cooldown: 15 minutes)</Description>
+         <Icon>ShintaoRiseOfThePhoenix</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Races>
+   <Race>
+      <Name>Dwarf</Name>
+      <Description>Dwarves are known for their skill in warfare, their ability to withstand physical
+and magical punishment and their hard work.</Description>
+      <BuildPoints size="4">28 32 34 36</BuildPoints>
+      <Constitution>+2</Constitution>
+      <Charisma>-2</Charisma>
+      <Feat>
+         <Name>Dwarven Stability</Name>
+         <Description>Dwarves naturally are able to keep their balance, receiving a +4 on
+their Balance skill.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>DwarvenFeats</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Dwarf</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Balance</Item>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Dwarven Stonecutting</Name>
+         <Description>Dwarves naturally are able to find secret doors more often, receiving
+a +2 bonus on their Search skill.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>DwarvenFeats</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Dwarf</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Search</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Orc and Goblin Bonus</Name>
+         <Description>Dwarves get a +1 bonus to attack against orcs and goblins.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>DwarvenFeats</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Dwarf</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
+            <Bonus>Feat</Bonus>
+            <StackSource>Ranger</StackSource>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>EnemyType</Type>
+                  <Item>Goblinoid</Item>
+                  <Item>Orc</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Poison Save Bonus</Name>
+         <Description>Dwarves are naturally resistant to poison, receiving a +2 bonus to saves against poisons.</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>DwarvenFeats</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Dwarf</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Poison</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+      </Feat>
+       <Feat>
+          <Name>Past Life: Dwarf</Name>
+          <Description>You were a Dwarf in a previous life
+Tier1: +1 Balance
+Tier2: +1 Constitution
+Tier3: +1 Racial Tree Action point</Description>
+          <MaxTimesAcquire>3</MaxTimesAcquire>
+          <Acquire>RacialPastLife</Acquire>
+          <Icon>PastLifeDwarf</Icon>
+          <Effect>
+             <Type>SkillBonus</Type>
+             <Bonus>Feat</Bonus>
+             <Item>Balance</Item>
+             <AType>Stacks</AType>
+             <Amount size="3">1 1 1</Amount>
+          </Effect>
+          <Effect>
+             <Type>AbilityBonus</Type>
+             <Bonus>Feat</Bonus>
+             <Item>Constitution</Item>
+             <AType>Stacks</AType>
+             <Amount size="3">0 1 1</Amount>
+          </Effect>
+          <Effect>
+             <Type>RAPBonus</Type>
+             <Bonus>Feat</Bonus>
+             <AType>Stacks</AType>
+             <Amount size="3">0 0 1</Amount>
+          </Effect>
+       </Feat>
+   </Race>
+</Races>

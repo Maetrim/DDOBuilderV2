@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Races>
+  <Race>
+    <Name>Aasimar Scourge</Name>
+    <Description>Aasimar Scourge are imbued with a divine energy that blazes intensely within them.
+It feeds a powerful desire to destroy evil-a desire that is, at its best,
+unflinching and, at its worst, all-consuming.
+
+Starts with 1 level of: Ranger</Description>
+    <BuildPoints size="4">28 32 34 36</BuildPoints>
+    <IconicClass>Ranger</IconicClass>
+    <Wisdom>+2</Wisdom>
+    <Feat>
+      <Name>Aasimar: Scourge Bond</Name>
+      <Description>While Scourge stance is active you gain +1 Constitution and +1 to Fortitude saving throws.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>BondOfTheScourge</Icon>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Aasimar Scourge</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Stance>
+        <Name>Aasimar: Scourge Bond</Name>
+        <Icon>BondOfTheScourge</Icon>
+        <Description>While this stance is active you gain +1 Constitution and +1 to Fortitude saving throws.
+You also gain access to your Healing Hands ability, plus any additional
+enhancements trained dependant on this stance being active</Description>
+        <Group>Major Form</Group>
+      </Stance>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Constitution</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Scourge Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Fortitude</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar: Scourge Bond</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Aasimar Scourge Racial Traits</Name>
+      <Description>You gain a racial lay on hands SLA which heals for 10 + Character Level * Wisdom Modifier.
++2 Racial bonus to Heal, Listen and Spot.
++5 Resistance to Cold, Acid and Electricity</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Aasimar Scourge</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>AasimarRacialTraits</Icon>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Racial</Bonus>
+        <Item>Healing Hands</Item>
+        <Item>None</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Heal</Item>
+        <Item>Listen</Item>
+        <Item>Spot</Item>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Aasimar Scourge</Name>
+      <Description>Iconic Past Life Stance: +1% Doublestrike and +2% Offhand Doublestrike per stack of this past life.
+Passive Bonus: +1 Fortitude Save per stack of this Past Life.</Description>
+      <Stance>
+        <Name>Aasimar Scourge </Name>
+        <Icon>IconicPastLifeAasimar</Icon>
+        <Description>Iconic Past Life Stance: +[2/4/6]% Doublestrike.</Description>
+        <Group>Iconic</Group>
+      </Stance>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>IconicPastLifeAasimar</Icon>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Aasimar Scourge </Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Fortitude</Item>
+      </Effect>
+    </Feat>
+  </Race>
+</Races>

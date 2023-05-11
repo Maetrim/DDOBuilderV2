@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Races>
+   <Race>
+      <Name>Tiefling Scoundrel</Name>
+      <Description>Tiefling Scoundrels are melee focused Bards with an emphasis on Sonic and Fire
+damage. They gain special powers while in their racial darkness SLA.
+
+Starts with 1 level of: Bard</Description>
+      <BuildPoints size="4">28 32 34 36</BuildPoints>
+      <IconicClass>Bard</IconicClass>
+      <Charisma>+2</Charisma>
+      <Feat>
+         <Name>Fiendish Arpeggio</Name>
+         <Description>Enchant your fiddle to cast this spell, dealing 2d4 Fire damage, plus 1 fire
+damage per 2 caster levels (max 2d4+10), to a target. The damage repeats itself
+every 2 seconds for 12 seconds.
+
+Passive: +18 Spell Points</Description>
+         <Acquire>Automatic</Acquire>
+         <Icon>FiendishArpeggio</Icon>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Tiefling Scoundrel</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Feat</Bonus>
+            <Item>Fiendish Arpeggio</Item>
+            <AType>SpellInfo</AType>
+             <Amount size="3">0 0 0</Amount>
+            <Item>None</Item>
+         </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">18</Amount>
+         </Effect>
+      </Feat>
+   <Feat>
+      <Name>Past Life: Tiefling Scoundrel</Name>
+      <Description>Inconic Past Life Stance: +10% Striding per stack of this past life.
+Passive Bonus: +1 Reflex Saving throws per stack of this Past Life Feat.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>IconicPastLifeTieflingScoundrel</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>Reflex</Item>
+      </Effect>
+      <Stance>
+         <Name>Tiefling Scoundrel </Name>
+         <Icon>IconicPastLifeTieflingScoundrel</Icon>
+         <Description>Iconic Past Life Stance: +10% Striding per stack of this past life.</Description>
+         <Group>Iconic</Group>
+      </Stance>
+   </Feat>
+   </Race>
+</Races>

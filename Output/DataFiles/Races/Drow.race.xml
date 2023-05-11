@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Races>
+   <Race>
+      <Name>Drow</Name>
+      <Description>Drow elves are basically similar to all other elves (Aerenal, Valenar, or
+Khorvaire). DDO has released them as a separate race, although they share
+several racial traits and enhancements with elves.</Description>
+      <BuildPoints size="4">28 28 30 32</BuildPoints>
+      <Dexterity>+2</Dexterity>
+      <Constitution>-2</Constitution>
+      <Intelligence>+2</Intelligence>
+      <Charisma>+2</Charisma>
+      <Feat>
+         <Name>Drow Spell Resistance</Name>
+         <Description>Drow are naturally resistant to spells and magical effects.
+You have a base Spell Resistance of 6 protecting you from many non-damaging spells
+and effects.</Description>
+         <Acquire>Automatic</Acquire>
+         <AutomaticAcquisition>
+            <Requirement>
+               <Type>Race</Type>
+               <Item>Drow</Item>
+            </Requirement>
+         </AutomaticAcquisition>
+         <Icon>RacialSpellResistance</Icon>
+         <Effect>
+            <Type>SpellResistance</Type>
+            <Bonus>Racial</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">6</Amount>
+         </Effect>
+      </Feat>
+   <Feat>
+      <Name>Past Life: Drow</Name>
+      <Description>You were Drow in a previous life
+Tier1: +1 Search
+Tier2: +1 Intelligence
+Tier3: +1 Racial Tree Action point</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeDrowElf</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Search</Item>
+         <AType>Stacks</AType>
+         <Amount size="3">1 1 1</Amount>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Item>Intelligence</Item>
+         <AType>Stacks</AType>
+         <Amount size="3">0 1 1</Amount>
+      </Effect>
+      <Effect>
+         <Type>RAPBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="3">0 0 1</Amount>
+      </Effect>
+   </Feat>
+   </Race>
+</Races>
