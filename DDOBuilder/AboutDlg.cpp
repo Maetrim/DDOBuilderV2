@@ -19,19 +19,27 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     text.Format("DDOBuilder, Version %s", BUILDINFO_VERSION);
     m_staticVersion.SetWindowText(text);
 
-    int count = -1;// AllFeats().size();
+    int count = StandardFeats().size()
+                + HeroicPastLifeFeats().size()
+                + RacialPastLifeFeats().size()
+                + IconicPastLifeFeats().size()
+                + EpicPastLifeFeats().size()
+                + SpecialFeats().size()
+                + UniversalTreeFeats().size()
+                + DestinyTreeFeats().size()
+                + FavorFeats().size();
     text.Format("Feat Count: %d", count);
     SetDlgItemText(IDC_STATIC_FEATCOUNT, text);
 
-    count = -2;//Augments().size();
+    count = Augments().size();
     text.Format("Augment Count: %d", count);
     SetDlgItemText(IDC_STATIC_AUGMENTCOUNT, text);
 
-    count = -3;//Items().size();
+    count = Items().size();
     text.Format("Item Count: %d", count);
     SetDlgItemText(IDC_STATIC_ITEMCOUNT, text);
 
-    count = -4;//Spells().size();
+    count = Spells().size();
     text.Format("Spell Count: %d", count);
     SetDlgItemText(IDC_STATIC_SPELLCOUNT, text);
 

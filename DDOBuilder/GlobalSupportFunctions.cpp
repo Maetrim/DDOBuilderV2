@@ -1304,9 +1304,29 @@ BreakdownType DamageTypeToBreakdown(DamageType dt)
     return bt;
 }
 
-const Augment& FindAugmentByName(const std::string& name)
+const Augment& FindAugmentByName(const std::string& name, const Item* pItem)
 {
     static Augment badAugment;
+    // items can have custom augments, check those first for any augments slots
+    // this item may have
+    bool bFound = false;
+    if (pItem != NULL)
+    {
+        const std::vector<ItemAugment>& itemAugments = pItem->Augments();
+        for (size_t i = 0; !bFound && i < itemAugments.size(); ++i)
+        {
+            const std::list<Augment>& augments = itemAugments[i].ItemSpecificAugments();
+            for (auto&& it : augments)
+            {
+                if (it.Name() == name)
+                {
+                    bFound = true;
+                    return it;
+                }
+            }
+        }
+    }
+    // if its not an item specific augment, look through the general augment list
     const std::list<Augment> & augments = Augments();
     std::list<Augment>::const_iterator it = augments.begin();
     while (it != augments.end())

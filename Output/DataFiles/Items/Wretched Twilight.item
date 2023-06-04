@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Wretched Twilight</Name>
     <Icon>Cloak_28</Icon>
     <Description>Nerezza's shadow is made of a material completely foreign to you; it flows with
@@ -23,5 +24,40 @@ your body yet feels like you are wearing nothing.</Description>
       <Type>StealthStrike</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <Buff>
+      <Type>Sneak Attack</Type>
+      <Value1>4</Value1>
+      <Value2>6</Value2>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <ItemAugment>
+        <Type>Upgradeable Item</Type>
+        <Augment>
+           <Name>Void Lore V and Sneak Attack Bonus +5</Name>
+           <Description>Upgrades Sneak Attack from 4/6 to 5/8
+Adds Void Lore V: Passive: Your Negative Energy and Poison spells gain a 15% Equipment
+bonus to their chance to critical hit.</Description>
+           <MinLevel>13</MinLevel>
+            <Effect>
+               <Type>SneakAttackAttack</Type>
+               <Bonus>Enhancement</Bonus>
+               <AType>Simple</AType>
+               <Amount size="1">5</Amount>
+            </Effect>
+            <Effect>
+               <Type>SneakAttackDamage</Type>
+               <Bonus>Enhancement</Bonus>
+               <Amount size="1">8</Amount>
+            </Effect>
+           <Effect>
+               <Type>SpellLore</Type>
+               <Bonus>Equipment</Bonus>
+               <AType>Simple</AType>
+               <Amount size="1">15</Amount>
+               <Item>Negative</Item>
+               <Item>Poison</Item>
+            </Effect>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

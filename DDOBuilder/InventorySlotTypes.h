@@ -25,13 +25,13 @@ enum InventorySlotType
     Inventory_Ring1,
     Inventory_Ring2,
     Inventory_Trinket,
-    Inventory_Weapon1,
-    Inventory_Weapon2,
     Inventory_CosmeticArmor,
     Inventory_CosmeticCloak,
     Inventory_CosmeticHelm,
     Inventory_CosmeticWeapon1,
     Inventory_CosmeticWeapon2,
+    Inventory_Weapon1,
+    Inventory_Weapon2,
 
     Inventory_Count,
     // internal use only
@@ -59,12 +59,12 @@ const XmlLib::enumMapEntry<InventorySlotType> InventorySlotTypeMap[] =
     {Inventory_Ring1, L"Ring1"},
     {Inventory_Ring2, L"Ring2"},
     {Inventory_Trinket, L"Trinket"},
-    {Inventory_Weapon1, L"Weapon1"},
-    {Inventory_Weapon2, L"Weapon2"},
     {Inventory_CosmeticArmor, L"CosmeticArmor"},
     {Inventory_CosmeticCloak, L"CosmeticCloak"},
     {Inventory_CosmeticHelm, L"CosmeticHelm"},
     {Inventory_CosmeticWeapon1, L"CosmeticWeapon1"},
     {Inventory_CosmeticWeapon2, L"CosmeticWeapon2"},
+    {Inventory_Weapon1, L"Weapon1"},
+    {Inventory_Weapon2, L"Weapon2"},
     {InventorySlotType(0), NULL}
 };

@@ -6,6 +6,7 @@
 #include "Build.h"
 #include "GlobalSupportFunctions.h"
 #include "TrainedEnhancement.h"
+#include "EnhancementTree.h"
 
 #define DL_ELEMENT EnhancementTreeItem
 
@@ -131,13 +132,7 @@ bool EnhancementTreeItem::MeetRequirements(
     }
     // cannot train this enhancement if its tier5 and not from the same tier 5
     // tree if one has already been trained
-    if (HasTier5()                  // are we a tier 5 enhancement?
-            && build.EnhancementSelectedTrees().HasTier5Tree()
-            && treeName != build.EnhancementSelectedTrees().Tier5Tree())
-    {
-        // not allowed this tier 5 enhancement
-        met = false;
-    }
+    met = !IsTier5Blocked(build, treeName);
     if (met && selection != "")
     {
         // check if we can train this selection
@@ -224,14 +219,28 @@ bool EnhancementTreeItem::IsTier5Blocked(
     const std::string& treeName) const
 {
     bool bTier5Blocked = false;
-    // cannot train this enhancement if its tier5 and not from the same tier 5
-    // tree if one has already been trained
-    if (HasTier5()                  // are we a tier 5 enhancement?
-            && build.EnhancementSelectedTrees().HasTier5Tree()
-            && treeName != build.EnhancementSelectedTrees().Tier5Tree())
+    if (HasTier5())                  // are we a tier 5 enhancement?
     {
-        // not allowed this tier 5 enhancement
-        bTier5Blocked = true;
+        const EnhancementTree& tree = GetEnhancementTree(treeName);
+        if (tree.HasIsEpicDestiny())
+        {
+            if (build.DestinySelectedTrees().HasTier5Tree()
+                && treeName != build.DestinySelectedTrees().Tier5Tree())
+            {
+                // not allowed this tier 5 enhancement
+                bTier5Blocked = true;
+            }
+        }
+        else if (!tree.HasIsRacialTree() && !tree.HasIsReaperTree())
+        {
+            // must be a universal or an enhancement tree
+            if (build.EnhancementSelectedTrees().HasTier5Tree()
+                && treeName != build.EnhancementSelectedTrees().Tier5Tree())
+            {
+                // not allowed this tier 5 enhancement
+                bTier5Blocked = true;
+            }
+        }
     }
     return bTier5Blocked;
 }
@@ -323,12 +332,12 @@ bool EnhancementTreeItem::CanRevoke(
             // 2. Revoking a rank of this enhancement would reduce the APs spent in the tree
             // below those required for a higher tier enhancement to be trained
 
-            // sum how many Aps have been spent in this min Ap tier
+            // sum how many Action points have been spent in this min AP tier
             canRevoke = pTreeSpend->CanRevokeAtTier(MinSpent(selection), Cost(selection, ranks));
 
             if (canRevoke)
             {
-                // 3. Another enhancement that is dependant on this enhancement being trained has
+                // 3. Another enhancement that is dependent on this enhancement being trained has
                 // equal or more ranks than this enhancement
                 canRevoke = !pTreeSpend->HasTrainedDependants(InternalName(), ranks);
             }

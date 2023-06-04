@@ -53,12 +53,11 @@ void BreakdownItemWeaponCriticalMultiplier::CreateOtherEffects()
             double base = m_pBaseTotal->Total();
             if (base != 0)
             {
-                ActiveEffect keenEffect(
-                        Bonus_base,
+                Effect keenEffect(
+                        Effect_Weapon_CriticalMultiplier,
                         "Standard Multiplier",
-                        1,
-                        base,
-                        "");        // no tree
+                        "Base",
+                        base);
                 AddOtherEffect(keenEffect);
             }
         }
@@ -68,14 +67,14 @@ void BreakdownItemWeaponCriticalMultiplier::CreateOtherEffects()
 bool BreakdownItemWeaponCriticalMultiplier::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
-    if (effect.Type() == Effect_CriticalMultiplier
+    if (effect.IsType(Effect_Weapon_CriticalMultiplier)
             && Type() == Breakdown_WeaponCriticalMultiplier)
     {
         // if its the right effect its for us as our holder class determines whether
         // it is the right weapon target type
         isUs = true;
     }
-    if (effect.Type() == Effect_CriticalMultiplier19To20
+    if (effect.IsType(Effect_Weapon_CriticalMultiplier19To20)
             && Type() == Breakdown_WeaponCriticalMultiplier19To20)
     {
         // if its the right effect its for us as our holder class determines whether

@@ -27,5 +27,9 @@ class BreakdownItemWeaponCriticalThreatRange :
         virtual void EnhancementEffectApplied(Build*, const Effect& effect) override;
         virtual void EnhancementEffectRevoked(Build*, const Effect& effect) override;
     private:
+        void HandleAddSpecialEffects(const Effect& effect);
+        void HandleRevokeSpecialEffects(const Effect& effect);
+        size_t WeaponBaseCriticalRange() const;
         size_t m_keenCount;
+        size_t m_improvedCriticalCount;
 };

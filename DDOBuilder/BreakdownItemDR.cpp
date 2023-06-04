@@ -72,6 +72,5 @@ void BreakdownItemDR::AddEffectToString(
     {
         (*value) += "   ";
     }
-    (*value) += "NYI";
-    //(*value) += effect.Item();
+    (*value) += effect.Item().front().c_str();
 }

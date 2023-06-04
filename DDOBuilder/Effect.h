@@ -480,6 +480,7 @@ class Effect :
         void SetAmount(double value);
         void SetBonus(const std::string& bonus);
         void SetItem(const std::list<std::string>& items);
+        void AddItem(const std::string& item);
 
         bool operator==(const Effect & other) const;
 

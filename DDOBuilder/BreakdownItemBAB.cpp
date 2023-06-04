@@ -68,17 +68,17 @@ void BreakdownItemBAB::CreateOtherEffects()
                 }
             }
 
-            //if (m_overrideBabCount > 0)
-            //{
-            //    // have at least 1 enhancement that boosts BAB to Character level
-            //    size_t currentBab = pBuild->BaseAttackBonus(pBuild->Level()-1);
-            //    Effect amountTrained(
-            //            Effect_Unknown,
-            //            "BAB boost to character level",
-            //            "BAB boost to character level",
-            //            MAX_LEVEL - currentBab - 5);
-            //    AddOtherEffect(amountTrained);
-            //}
+            if (m_overrideBabCount > 0)
+            {
+                // have at least 1 enhancement that boosts BAB to Character level
+                size_t currentBab = pBuild->BaseAttackBonus(pBuild->Level()-1);
+                Effect amountTrained(
+                        Effect_Unknown,
+                        "BAB boost to character level (max 25)",
+                        "BAB boost to character level (max 25)",
+                        min(25, pBuild->Level()) - currentBab);
+                AddOtherEffect(amountTrained);
+            }
         }
     }
 }

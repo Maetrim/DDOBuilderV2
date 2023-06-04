@@ -132,7 +132,7 @@ void CWeaponImageDialog::OnLvnItemchangedList1(NMHDR* pNMHDR, LRESULT* pResult)
 void CWeaponImageDialog::PopulateAvailableIcons()
 {
     m_availableIcons.DeleteAllItems();
-    // first load all the icons availabel associated with this item type
+    // first load all the icons available associated with this item type
     int sel = m_comboItemType.GetCurSel();
     WeaponType wt = static_cast<WeaponType>(m_comboItemType.GetItemData(sel));
     std::string directory;

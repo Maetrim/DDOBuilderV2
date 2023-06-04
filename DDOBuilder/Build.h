@@ -372,6 +372,10 @@ class Build :
         void RevokeSetBonus(const std::string& set, const std::string& name);
         void ApplyItem(const Item& item, InventorySlotType ist);
         void RevokeItem(const Item& item, InventorySlotType ist);
+        void ApplyWeaponEffects(const Item& item);
+        void RevokeWeaponEffects(const Item& item);
+        void ApplyArmorEffects(const Item& item);
+        void RevokeArmorEffects(const Item& item);
         void ApplyAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel);
         void RevokeAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel);
         size_t AddSetBonusStack(const std::string& set);

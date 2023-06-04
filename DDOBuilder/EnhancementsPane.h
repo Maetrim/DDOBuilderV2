@@ -35,6 +35,7 @@ public:
     afx_msg void OnUniversalTree(UINT nID);
     afx_msg void OnMouseMove(UINT nFlags, CPoint point);
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
 
     DECLARE_DYNCREATE(CEnhancementsPane)
     DECLARE_MESSAGE_MAP()

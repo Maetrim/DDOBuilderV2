@@ -10,13 +10,13 @@ namespace
 }
 
 ReaperSpendInTree::ReaperSpendInTree() :
-    SpendInTree(f_saxElementName)
+    SpendInTree(f_saxElementName, TT_reaper)
 {
 }
 
 ReaperSpendInTree::ReaperSpendInTree(
         const std::string& treeName,
         size_t version) :
-        SpendInTree(f_saxElementName, treeName, version)
+        SpendInTree(f_saxElementName, treeName, TT_reaper, version)
 {
 }

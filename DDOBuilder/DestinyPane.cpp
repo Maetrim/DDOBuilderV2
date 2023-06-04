@@ -621,7 +621,6 @@ void CDestinyPane::UpdateTrees()
 void CDestinyPane::UpdateActionPointsChanged(Life*)
 {
     UpdateWindowTitle();
-    EnableDisableComboboxes();
 }
 
 void CDestinyPane::UpdateWindowTitle()
@@ -647,6 +646,7 @@ void CDestinyPane::UpdateWindowTitle()
         }
     }
     GetParent()->SetWindowText(title);
+    EnableDisableComboboxes();
 }
 
 void CDestinyPane::OnTreeSelect(UINT nID)

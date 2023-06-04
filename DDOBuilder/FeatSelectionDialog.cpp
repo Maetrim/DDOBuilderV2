@@ -211,6 +211,14 @@ void CFeatSelectionDialog::OnMouseMove(UINT nFlags, CPoint point)
             ScreenToClient(&itemRect);
             ShowTip(itemRect);
         }
+        // track the mouse so we know when it leaves our window
+        // (us when disabled, our button when enabled)
+        TRACKMOUSEEVENT tme;
+        tme.cbSize = sizeof(tme);
+        tme.hwndTrack = GetSafeHwnd(); // (m_pCharacter != NULL) ? m_featButton.GetSafeHwnd() : m_hWnd;
+        tme.dwFlags = TME_LEAVE;
+        tme.dwHoverTime = 1;
+        _TrackMouseEvent(&tme);
     }
     else
     {
@@ -219,16 +227,20 @@ void CFeatSelectionDialog::OnMouseMove(UINT nFlags, CPoint point)
             HideTip();
         }
     }
-    //GetMainFrame()->SetStatusBarPromptText("Left click to train this feat, right click to revoke.");
 }
 
 LRESULT CFeatSelectionDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
     UNREFERENCED_PARAMETER(lParam);
-    // hide any tooltip when the mouse leaves the area its being shown for
-    HideTip();
-    //GetMainFrame()->SetStatusBarPromptText("Ready.");
+    CPoint point;
+    GetCursorPos(&point);
+    CWnd* pWnd = WindowFromPoint(point);
+    if (pWnd != &m_featButton)
+    {
+        // hide any tooltip when the mouse leaves the area its being shown for
+        HideTip();
+    }
     return 0;
 }
 
@@ -243,14 +255,6 @@ void CFeatSelectionDialog::ShowTip(CRect itemRect)
     CPoint tipAlternate(itemRect.left, itemRect.top - 2);
     SetTooltipText(tipTopLeft, tipAlternate);
     m_showingTip = true;
-    // track the mouse so we know when it leaves our window
-    // (us when disabled, our button when enabled)
-    TRACKMOUSEEVENT tme;
-    tme.cbSize = sizeof(tme);
-    tme.hwndTrack = (m_pCharacter != NULL) ? m_featButton.GetSafeHwnd() : m_hWnd;
-    tme.dwFlags = TME_LEAVE;
-    tme.dwHoverTime = 1;
-    _TrackMouseEvent(&tme);
 }
 
 void CFeatSelectionDialog::HideTip()

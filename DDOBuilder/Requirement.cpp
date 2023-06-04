@@ -739,6 +739,14 @@ bool Requirement::EvaluateItemInSlot(const Build& build) const
             throw "NYI";
         }
     }
+    else
+    {
+        // special case, may be looking for an empty slot
+        if (m_Item.back() == "Empty")
+        {
+            met = true;
+        }
+    }
     return met;
 }
 

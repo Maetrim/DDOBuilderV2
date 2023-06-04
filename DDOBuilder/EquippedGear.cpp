@@ -34,7 +34,12 @@ EquippedGear::EquippedGear(const std::string& name) :
     m_Quiver(L"Quiver"),
     m_Arrow(L"Arrow"),
     m_Ring1(L"Ring1"),
-    m_Ring2(L"Ring2")
+    m_Ring2(L"Ring2"),
+    m_CosmeticArmor(L"CosmeticArmor"),
+    m_CosmeticCloak(L"CosmeticCloak"),
+    m_CosmeticHelm(L"CosmeticHelm"),
+    m_CosmeticWeapon1(L"CosmeticWeapon1"),
+    m_CosmeticWeapon2(L"CosmeticWeapon2")
 {
     DL_INIT(EquippedGear_PROPERTIES)
     m_Name = name;
@@ -90,22 +95,27 @@ bool EquippedGear::HasItemInSlot(InventorySlotType slot) const
 {
     switch (slot)
     {
-    case Inventory_Arrows:  return HasArrow();
-    case Inventory_Armor:   return HasArmor();
-    case Inventory_Belt:    return HasBelt();
-    case Inventory_Boots:   return HasBoots();
-    case Inventory_Bracers: return HasBracers();
-    case Inventory_Cloak:   return HasCloak();
-    case Inventory_Gloves:  return HasGloves();
-    case Inventory_Goggles: return HasGoggles();
-    case Inventory_Helmet:  return HasHelmet();
-    case Inventory_Necklace:return HasNecklace();
-    case Inventory_Quiver:  return HasQuiver();
-    case Inventory_Ring1:   return HasRing1();
-    case Inventory_Ring2:   return HasRing2();
-    case Inventory_Trinket: return HasTrinket();
-    case Inventory_Weapon1: return HasMainHand();
-    case Inventory_Weapon2: return HasOffHand();
+    case Inventory_Arrows:          return HasArrow();
+    case Inventory_Armor:           return HasArmor();
+    case Inventory_Belt:            return HasBelt();
+    case Inventory_Boots:           return HasBoots();
+    case Inventory_Bracers:         return HasBracers();
+    case Inventory_Cloak:           return HasCloak();
+    case Inventory_Gloves:          return HasGloves();
+    case Inventory_Goggles:         return HasGoggles();
+    case Inventory_Helmet:          return HasHelmet();
+    case Inventory_Necklace:        return HasNecklace();
+    case Inventory_Quiver:          return HasQuiver();
+    case Inventory_Ring1:           return HasRing1();
+    case Inventory_Ring2:           return HasRing2();
+    case Inventory_Trinket:         return HasTrinket();
+    case Inventory_Weapon1:         return HasMainHand();
+    case Inventory_Weapon2:         return HasOffHand();
+    case Inventory_CosmeticArmor:   return HasCosmeticArmor();
+    case Inventory_CosmeticCloak:   return HasCosmeticCloak();
+    case Inventory_CosmeticHelm:    return HasCosmeticHelm();
+    case Inventory_CosmeticWeapon1: return HasCosmeticWeapon1();
+    case Inventory_CosmeticWeapon2: return HasCosmeticWeapon2();
     }
     return false;
 }
@@ -211,6 +221,36 @@ Item EquippedGear::ItemInSlot(InventorySlotType slot) const
             return OffHand();
         }
         break;
+    case Inventory_CosmeticArmor:
+        if (HasCosmeticArmor())
+        {
+            return CosmeticArmor();
+        }
+        break;
+    case Inventory_CosmeticCloak:
+        if (HasCosmeticCloak())
+        {
+            return CosmeticCloak();
+        }
+        break;
+    case Inventory_CosmeticHelm:
+        if (HasCosmeticHelm())
+        {
+            return CosmeticHelm();
+        }
+        break;
+    case Inventory_CosmeticWeapon1:
+        if (HasCosmeticWeapon1())
+        {
+            return CosmeticWeapon1();
+        }
+        break;
+    case Inventory_CosmeticWeapon2:
+        if (HasCosmeticWeapon2())
+        {
+            return CosmeticWeapon2();
+        }
+        break;
     }
     return noItem;
 }
@@ -272,6 +312,11 @@ void EquippedGear::SetItem(
     case Inventory_Trinket: Set_Trinket(item); break;
     case Inventory_Weapon1: Set_MainHand(item); break;
     case Inventory_Weapon2: Set_OffHand(item); break;
+    case Inventory_CosmeticArmor:   Set_CosmeticArmor(item); break;
+    case Inventory_CosmeticCloak:   Set_CosmeticCloak(item); break;
+    case Inventory_CosmeticHelm:    Set_CosmeticHelm(item); break;
+    case Inventory_CosmeticWeapon1: Set_CosmeticWeapon1(item); break;
+    case Inventory_CosmeticWeapon2: Set_CosmeticWeapon2(item); break;
     default: ASSERT(FALSE); break;
     }
      // if the item just equipped is a Minor Artifact, make sure
@@ -335,6 +380,11 @@ void EquippedGear::ClearItem(InventorySlotType slot)
     case Inventory_Trinket: Clear_Trinket(); break;
     case Inventory_Weapon1: Clear_MainHand(); break;
     case Inventory_Weapon2: Clear_OffHand(); break;
+    case Inventory_CosmeticArmor:   Clear_CosmeticArmor(); break;
+    case Inventory_CosmeticCloak:   Clear_CosmeticCloak(); break;
+    case Inventory_CosmeticHelm:    Clear_CosmeticHelm(); break;
+    case Inventory_CosmeticWeapon1: Clear_CosmeticWeapon1(); break;
+    case Inventory_CosmeticWeapon2: Clear_CosmeticWeapon2(); break;
     default: ASSERT(FALSE); break;
     }
 }

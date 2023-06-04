@@ -14,6 +14,27 @@ This blade is Celestia, the Brightest Star of Day.</Description>
       <Weapon1/>
       <Weapon2/>
     </EquipmentSlot>
+    <Requirements>
+      <RequiresOneOf>
+        <Requirement>
+          <Type>Alignment</Type>
+          <Item>Lawful Good</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Alignment</Type>
+          <Item>Neutral Good</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Alignment</Type>
+          <Item>Chaotic Good</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Skill</Type>
+          <Item>Use Magic Device</Item>
+          <Value>32</Value>
+        </Requirement>
+      </RequiresOneOf>
+    </Requirements>
     <Weapon>Shortsword</Weapon>
     <AttackModifier>Strength</AttackModifier>
     <DamageModifier>Strength</DamageModifier>
@@ -31,6 +52,10 @@ This blade is Celestia, the Brightest Star of Day.</Description>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
+      <Type>Supreme Good</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
       <Type>Radiance</Type>
       <BonusType>Enhancement</BonusType>
       <Item>Radiance</Item>
@@ -39,6 +64,75 @@ This blade is Celestia, the Brightest Star of Day.</Description>
       <Type>GreaterSunburst</Type>
       <BonusType/>
     </Buff>
+    <Buff>
+      <Type>Fiery Detonation</Type>
+      <BonusType/>
+    </Buff>
     <IsAcceptsSentience/>
+    <NoAutoUpdate/>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Adds Banishing</Name>
+        <Description>Banishing: On Hit: 4 to 24 Bane damage to Outsiders. On Vorpal Hit: If an outsider struck by this weapon has fewer than 1000 Hit Points, it is instantly slain. If the outsider has above 1000 Hit Points, it takes 100 damage.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Dice>
+            <Number size="1">4</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+          <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Outsider</Item>
+        </Requirement>
+      </Requirements>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Green augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Green</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

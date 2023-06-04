@@ -24,7 +24,7 @@ better protection may benefit from it.</Description>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
-    <Armor>Heavy</Armor>
+    <Armor>Medium</Armor>
     <ArmorBonus>20</ArmorBonus>
     <MaximumDexterityBonus>3</MaximumDexterityBonus>
     <ArmorCheckPenalty>-2</ArmorCheckPenalty>
@@ -35,7 +35,15 @@ better protection may benefit from it.</Description>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
+      <Type>Demonic Shield</Type>
+      <BonusType/>
+    </Buff>
+    <Buff>
       <Type>GreaterFalseLife</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>DR 2/Chaotic</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
@@ -47,5 +55,36 @@ better protection may benefit from it.</Description>
       <Type>MithralArmor</Type>
       <BonusType/>
     </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 2</Type>
+        <Augment>
+           <Name>+4 Enhancement Bonus -> +5 Enhancement Bonus</Name>
+           <Description>+5 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +5 Enhancement bonus to AC.</Description>
+           <MinLevel>16</MinLevel>
+          <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 3</Type>
+        <Augment>
+           <Name>DR 2/Chaotic -> DR 3/Chaotic</Name>
+          <Description>DR Damage Reduction 3/Chaotic: Reduces physical damage by 3, except from Chaotic attacks.</Description>
+           <MinLevel>16</MinLevel>
+          <Ignore>Enhancement</Ignore>
+          <Effect>
+            <Type>DR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>Chaotic</Item>
+          </Effect>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

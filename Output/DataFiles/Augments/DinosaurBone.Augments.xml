@@ -227,7 +227,7 @@ on Hide checks.</Description>
     <Type>Green</Type>
     <Icon>Emerald</Icon>
     <Effect>
-      <Type>SkillBonus</Type>
+      <Type>SkillBonusAbility</Type>
       <Bonus>Insightful</Bonus>
       <AType>Simple</AType>
       <Amount size="1">5</Amount>
@@ -308,6 +308,7 @@ on Hide checks.</Description>
       <DisplayName>IoD: Armor: Bronzescale</DisplayName>
       <Type>Immunity</Type>
       <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
       <Item>Deathblock</Item>
     </Effect>
     <Effect>
@@ -826,15 +827,8 @@ on Hide checks.</Description>
     <Icon>Fang</Icon>
     <Effect>
       <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>AttackBonus</Type>
-      <Bonus>Competence</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">21</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>CriticalAttackBonus</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">21</Amount>
@@ -849,15 +843,8 @@ on Hide checks.</Description>
     <Icon>Fang</Icon>
     <Effect>
       <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>AttackBonus</Type>
-      <Bonus>Competence</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">23</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>CriticalAttackBonus</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">23</Amount>
@@ -872,15 +859,8 @@ on Hide checks.</Description>
     <Icon>Fang</Icon>
     <Effect>
       <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>DamageBonus</Type>
-      <Bonus>Competence</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">11</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>Seeker</Type>
+      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_DamageBonusCritical</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">11</Amount>
@@ -895,15 +875,8 @@ on Hide checks.</Description>
     <Icon>Fang</Icon>
     <Effect>
       <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>DamageBonus</Type>
-      <Bonus>Competence</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">12</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Accessory: Accuracy</DisplayName>
-      <Type>Seeker</Type>
+      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_DamageBonusCritical</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">12</Amount>
@@ -960,7 +933,7 @@ on Hide checks.</Description>
     <Icon>Fang</Icon>
     <Effect>
       <DisplayName>IoD: Accessory: Seeker</DisplayName>
-      <Type>Seeker</Type>
+      <Type>Weapon_DamageBonusCritical</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">14</Amount>
@@ -975,7 +948,7 @@ on Hide checks.</Description>
     <Icon>Fang</Icon>
     <Effect>
       <DisplayName>IoD: Accessory: Seeker</DisplayName>
-      <Type>Seeker</Type>
+      <Type>Weapon_DamageBonusCritical</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">15</Amount>
@@ -1731,42 +1704,34 @@ On Hit: +15d6 Acid Damage</Description>
     <Effect>
       <DisplayName>IoD: Weapon: Meltscale</DisplayName>
       <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">15</Number>
         <Sides size="1">6</Sides>
         <Item>Acid</Item>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific />
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Weapon: Meltscale</DisplayName>
-      <Type>WeaponOtherCriticalDamageBonus</Type>
-      <Bonus>Stacking</Bonus>
-      <Dice>
-        <Number size="1">15</Number>
-        <Sides size="1">6</Sides>
-        <Item>Acid</Item>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
+      <IsItemSpecific/>
     </Effect>
     <Effect>
       <DisplayName>IoD: Weapon: Meltscale</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Crystal</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
     <Effect>
       <DisplayName>IoD: Weapon: Meltscale</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Byeshk</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <Augment>
@@ -1863,34 +1828,25 @@ On Hit: +15d6 Cold Damage</Description>
     <Effect>
       <DisplayName>IoD: Weapon: Icescale</DisplayName>
       <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">15</Number>
         <Sides size="1">6</Sides>
         <Item>Cold</Item>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific />
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Weapon: Icescale</DisplayName>
-      <Type>WeaponOtherCriticalDamageBonus</Type>
-      <Bonus>Stacking</Bonus>
-      <Dice>
-        <Number size="1">15</Number>
-        <Sides size="1">6</Sides>
-        <Item>Cold</Item>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
+      <IsItemSpecific/>
     </Effect>
     <Effect>
       <DisplayName>IoD: Weapon: Icescale</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Cold Iron</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <Augment>
@@ -1903,34 +1859,25 @@ On Hit: +15d6 Electric Damage</Description>
     <Effect>
       <DisplayName>IoD: Weapon: Sparkscale</DisplayName>
       <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">15</Number>
         <Sides size="1">6</Sides>
         <Item>Electric</Item>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific />
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Weapon: Sparkscale</DisplayName>
-      <Type>WeaponOtherCriticalDamageBonus</Type>
-      <Bonus>Stacking</Bonus>
-      <Dice>
-        <Number size="1">15</Number>
-        <Sides size="1">6</Sides>
-        <Item>Electric</Item>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
+      <IsItemSpecific/>
     </Effect>
     <Effect>
       <DisplayName>IoD: Weapon: Sparkscale</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Silver</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <Augment>
@@ -1943,34 +1890,25 @@ On Hit: +15d6 Fire Damage</Description>
     <Effect>
       <DisplayName>IoD: Weapon: Flamescale</DisplayName>
       <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">15</Number>
         <Sides size="1">6</Sides>
         <Item>Fire</Item>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific />
-    </Effect>
-    <Effect>
-      <DisplayName>IoD: Weapon: Flamescale</DisplayName>
-      <Type>WeaponOtherCriticalDamageBonus</Type>
-      <Bonus>Stacking</Bonus>
-      <Dice>
-        <Number size="1">15</Number>
-        <Sides size="1">6</Sides>
-        <Item>Fire</Item>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
+      <IsItemSpecific/>
     </Effect>
     <Effect>
       <DisplayName>IoD: Weapon: Flamescale</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Adamantine</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <!--Weapon Fang Augments-->
@@ -1992,9 +1930,10 @@ Your attacks and spells have a small chance to deal a large amount of Fire damag
       <DisplayName>IoD: Weapon: Flamefang</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Good</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <Augment>
@@ -2008,9 +1947,10 @@ Attacks and spells have a chance to inflict 10 stacks of Cold damage over time.<
       <DisplayName>IoD: Weapon: Icefang</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Chaotic</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <Augment>
@@ -2054,9 +1994,10 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
       <DisplayName>IoD: Weapon: Meltfang</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Evil</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <Augment>
@@ -2076,9 +2017,10 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
       <DisplayName>IoD: Weapon: Sparkfang</DisplayName>
       <Type>DRBypass</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
+      <AType>NotNeeded</AType>
       <Item>Lawful</Item>
-      <IsItemSpecific />
+      <Item>All</Item>
+      <IsItemSpecific/>
     </Effect>
   </Augment>
   <!--Weapon Claw Augments-->

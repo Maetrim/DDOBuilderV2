@@ -37,6 +37,7 @@ public:
     bool LoadIcon(const std::string& path, const std::string& filename, bool bReportError);
     void IconFromImageList(CImageList& il, int index);
     void SetTitle(const CString& strTitle);
+    void SetTitle2(const CString& strTitle2);
     void SetCost(const CString& strCost);
     void SetRank(const CString& strRank);
 
@@ -45,6 +46,7 @@ public:
 private:
     CImage m_image;
     CString m_title;
+    CString m_title2;
     CString m_cost;
     CString m_ranks;
 };

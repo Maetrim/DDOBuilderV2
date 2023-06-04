@@ -76,13 +76,13 @@ class BreakdownItemWeapon :
         BreakdownItemWeaponAttackBonus m_attackBonus;       // Basic +Hit
         BreakdownItemWeaponDamageBonus m_damageBonus;       // Basic +Damage
         //BreakdownItemWeaponOtherDamageEffects m_otherDamageEffects; // e.g. +2d6 Light Damage
-        //BreakdownItemWeaponCriticalThreatRange m_criticalThreatRange;
+        BreakdownItemWeaponCriticalThreatRange m_criticalThreatRange;
         ////////BreakdownItemWeaponVorpalRange m_vorpalRange;       // typically 20, can be extended
         BreakdownItemWeaponAttackBonus m_criticalAttackBonus;
         BreakdownItemWeaponDamageBonus m_criticalDamageBonus;
         //BreakdownItemWeaponOtherDamageEffects m_otherCriticalDamageEffects; // e.g. +2d6 Light Damage
-        //BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;
-        //BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier19To20;
+        BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;
+        BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier19To20;
         //BreakdownItemWeaponDRBypass m_drBypass;
         BreakdownItemSimple m_attackSpeed;
         BreakdownItemSimple m_ghostTouch;

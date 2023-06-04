@@ -76,13 +76,13 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticHelm, CRect(53, 294, 85, 326)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticArmor, CRect(93, 294, 125, 326)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticCloak, CRect(133, 294, 155, 326)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticHelm, CRect(53, 294, 85, 326)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticWeapon1, CRect(73, 332, 105, 354)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticWeapon2, CRect(113, 332, 145, 354)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_FindItems, CRect(99, 96, 128, 124)));
 
     // fixed hit boxes for Filigree items

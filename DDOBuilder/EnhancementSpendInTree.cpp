@@ -10,13 +10,13 @@ namespace
 }
 
 EnhancementSpendInTree::EnhancementSpendInTree() :
-    SpendInTree(f_saxElementName)
+    SpendInTree(f_saxElementName, TT_enhancement)
 {
 }
 
 EnhancementSpendInTree::EnhancementSpendInTree(
         const std::string& treeName,
         size_t version) :
-    SpendInTree(f_saxElementName, treeName, version)
+    SpendInTree(f_saxElementName, treeName, TT_enhancement, version)
 {
 }

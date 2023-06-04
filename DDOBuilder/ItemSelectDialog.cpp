@@ -1160,7 +1160,7 @@ LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
                 // tip is shown to the left or the right of the combo box
                 CPoint tipTopLeft(rctWindow.left, rctWindow.top);
                 CPoint tipAlternate(rctWindow.right, rctWindow.top);
-                Augment augment = FindAugmentByName((LPCTSTR)augmentName);
+                Augment augment = FindAugmentByName((LPCTSTR)augmentName, &m_item);
                 SetTooltipText(augment, tipTopLeft, tipAlternate, true);
                 m_showingTip = true;
             }
@@ -1189,7 +1189,7 @@ LRESULT CItemSelectDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
                 {
                     CRect itemRect;
                     m_comboAugmentDropList[i].GetWindowRect(&itemRect);
-                    Augment augment = FindAugmentByName((LPCTSTR)augmentName);
+                    Augment augment = FindAugmentByName((LPCTSTR)augmentName, &m_item);
                     CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
                     CPoint tipAlternate(itemRect.left, itemRect.top - 2);
                     SetTooltipText(augment, tipTopLeft, tipAlternate, false);

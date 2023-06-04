@@ -3310,6 +3310,7 @@ with item effects that double threat range like keen and impact.</Description>
          <Bonus>Feat</Bonus>
          <Item>Bludgeoning</Item>
          <AType>NotNeeded</AType>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
@@ -3342,6 +3343,7 @@ and impact.</Description>
          <Bonus>Feat</Bonus>
          <Item>Piercing</Item>
          <AType>NotNeeded</AType>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
@@ -3384,6 +3386,7 @@ This feat does not stack with item effects that double threat range like keen an
          <Bonus>Feat</Bonus>
          <Item>Ranged</Item>
          <AType>NotNeeded</AType>
+         <ApplyAsItemEffect/>
       </Effect>
    </Feat>
    <Feat>
@@ -3405,6 +3408,7 @@ This feat does not stack with item effects that double threat range like keen an
          <Bonus>Feat</Bonus>
          <Item>Slashing</Item>
          <AType>NotNeeded</AType>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <!--additional stack for critical range for battle axes, has no effect if Knight's training not selected-->
@@ -3526,6 +3530,20 @@ reduction by 1/Adamantine.</Description>
             <Value>9</Value>
          </Requirement>
       </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Reflex no fail on a 1</Name>
+      <Description>You no longer fail Reflex Saves automatically by rolling a 1.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>ImprovedEvasion</Icon>
+      <Effect>
+         <Type>SaveNoFailOn1</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>Reflex</Item>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Feint</Name>
@@ -13732,7 +13750,7 @@ Quarterstaves you wield gain a +2 Morale bonus to Critical Threat Range.</Descri
       <Description>Rank 1: +2 saves versus Fey creatures
 Rank 2: +5 HP.
 Rank 3: Access to the Feydark Illusionist Tree</Description>
-      <MaxTimesAcquire>2</MaxTimesAcquire>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
       <Acquire>Favor</Acquire>
       <Icon>SummerCourt</Icon>
       <Effect>
@@ -14438,22 +14456,6 @@ Also grants 3 Fate points when claimed</Description>
          <Bonus>Destiny</Bonus>
          <AType>Simple</AType>
          <Amount size="1">3</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Prescient Curve</Name>
-      <Description>No details available - probably something to do with sickles.
-You can now use Sickles as if they were Ki weapons</Description>
-      <Group>Standard</Group>
-      <Group>Epic Feat</Group>
-      <Acquire>Train</Acquire>
-      <Icon>Unknown</Icon>
-      <Effect>
-         <Type>AddGroupWeapon</Type>
-         <Bonus>Feat</Bonus>
-         <Item>Centered</Item>
-         <Item>Sickle</Item>
-         <AType>NotNeeded</AType>
       </Effect>
    </Feat>
 </Feats>

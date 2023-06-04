@@ -109,7 +109,7 @@ void Build::EndElement()
     SaxContentElement::EndElement();
     DL_END(Build_PROPERTIES)
     // as a build has a default number of LevelTraining objects setup in the constructor
-    // we need to make sure at the end of th eload procedure that only Level()
+    // we need to make sure at the end of the load procedure that only Level()
     // number of them still exists as the loaded ones were appended to the original
     // list of MAX_CLASS_LEVEL items
     while (m_Levels.size() > Level())
@@ -1178,7 +1178,7 @@ void Build::TrainFeat(
         NotifyFeatTrained(featName);
         // some automatic feats may have changed due to the trained feat
         UpdateFeats();
-        // a feat change can invalidate a feat selection at at later level
+        // a feat change can invalidate a feat selection at a later level
         VerifyTrainedFeats();
         SetModifiedFlag(TRUE);
         if (!autoTrained)
@@ -2070,7 +2070,7 @@ void Build::ApplyFeatEffects(const Feat & feat)
 
 void Build::RevokeFeatEffects(const Feat & feat)
 {
-    // apply the feats effects
+    // revoke the feats effects
     const std::list<Effect>& effects = feat.Effects();
     for (auto&& eit : effects)
     {
@@ -2082,7 +2082,7 @@ void Build::RevokeFeatEffects(const Feat & feat)
     {
         NotifyRevokeStance(sit);
     }
-    //// if we have any DC objects notify about them
+    // if we have any DC objects notify about them
     const std::list<DC> & dcs = feat.DCs();
     for (auto&& dcit: dcs)
     {
@@ -2484,7 +2484,7 @@ size_t Build::DetermineBuildPoints()
     {
         // add the log entry
         std::stringstream ss;
-        ss << "Build pointd changed from " << m_BuildPoints.AvailableSpend() << " to " << buildPoints;
+        ss << "Build points changed from " << m_BuildPoints.AvailableSpend() << " to " << buildPoints;
         GetLog().AddLogEntry(ss.str().c_str());
         // we have had a change in the number of available build points
         m_BuildPoints.SetAvailableSpend(buildPoints);
@@ -2507,7 +2507,7 @@ void Build::SetBuildPoints(size_t buildPoints)
     }
     // add the log entry
     std::stringstream ss;
-    ss << "Build pointd changed from " << m_BuildPoints.AvailableSpend() << " to " << buildPoints;
+    ss << "Build points changed from " << m_BuildPoints.AvailableSpend() << " to " << buildPoints;
     GetLog().AddLogEntry(ss.str().c_str());
     m_BuildPoints.SetAvailableSpend(buildPoints);
     SetModifiedFlag(TRUE);
@@ -2634,6 +2634,7 @@ void Build::Enhancement_TrainEnhancement(
             m_classTreeSpend += spent;
         }
     }
+    // track whether this is a tier 5 enhancement
     ASSERT(pTreeItem != NULL);
     if (m_EnhancementSelectedTrees.HasTier5Tree() && pTreeItem->HasTier5())
     {
@@ -2648,7 +2649,6 @@ void Build::Enhancement_TrainEnhancement(
             m_EnhancementSelectedTrees.SetTier5Tree(treeName);
         }
     }
-    // track whether this is a tier 5 enhancement
     // now notify all and sundry about the enhancement effects
     ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
     EnhancementItemParams item;
@@ -2760,7 +2760,7 @@ bool Build::IsExclusiveEnhancement(
         const std::string& enhancementId,
         const std::string& group) const
 {
-    // looko through the list of ExclusionGroup objects to see if this exists
+    // look through the list of ExclusionGroup objects to see if this exists
     // returns true if it matches or is not found
     bool found = false;
     bool isUs = false;
@@ -3020,23 +3020,36 @@ void Build::Destiny_TrainEnhancement(
             selection,
             cost,
             pTreeItem->MinSpent(),
-            false,
+            pItem->HasTier5(),
             &ranks);
     m_destinyTreeSpend += spent;
-    // now notify all and sundry about the enhancement effects
     // track whether this is a tier 5 enhancement
+    ASSERT(pTreeItem != NULL);
+    if (m_DestinySelectedTrees.HasTier5Tree() && pTreeItem->HasTier5())
+    {
+        ASSERT(m_DestinySelectedTrees.Tier5Tree() == treeName);    // should only be able to train other tier 5's in the same tree
+    }
+    else
+    {
+        // no tier 5 enhancement yet selected
+        if (pTreeItem->HasTier5())
+        {
+            // this is a tier 5, lockout all other tree's tier 5 enhancements
+            m_DestinySelectedTrees.SetTier5Tree(treeName);
+        }
+    }
     // now notify all and sundry about the enhancement effects
     ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
     EnhancementItemParams p;
     p.enhancementName = enhancementName;
     p.selection = selection;
-    p.isTier5 = false;
+    p.isTier5 = pItem->HasTier5();
     NotifyEnhancementTrained(p);
 
     //??NotifyAPSpentInTreeChanged(treeName);
     SetModifiedFlag(TRUE);
     std::stringstream ss;
-    ss << "Trained destiny ehancement from tree \""
+    ss << "Trained destiny enhancement from tree \""
             << treeName
             << "\": Rank "
             << ranks
@@ -3054,6 +3067,7 @@ void Build::Destiny_RevokeEnhancement(
     if (pItem != NULL
             && pItem->Enhancements().size() > 0)
     {
+        bool wasTier5 = pItem->HasTier5();
         // return points available to spend also
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
@@ -3067,14 +3081,25 @@ void Build::Destiny_RevokeEnhancement(
         EnhancementItemParams p;
         p.enhancementName = enhancementName;
         p.selection = revokedEnhancementSelection;
-        p.isTier5 = false;
+        p.isTier5 = wasTier5;
         NotifyEnhancementRevoked(p);
 
+        // determine whether we still have a tier 5 enhancement trained if the tree just had one
+        // revoked in it
+        if (m_DestinySelectedTrees.HasTier5Tree()
+            && m_DestinySelectedTrees.Tier5Tree() == treeName)
+        {
+            // may have lost the tier 5 status, check the tree to see if any tier 5 are still trained
+            if (!pItem->HasTier5())
+            {
+                m_DestinySelectedTrees.ClearTier5Tree();  // no longer a tier 5 trained
+            }
+        }
         const EnhancementTreeItem * pTreeItem = FindEnhancement(enhancementName);
         //??NotifyAPSpentInTreeChanged(treeName);
         SetModifiedFlag(TRUE);
         std::stringstream ss;
-        ss << "Revoked destiny ehancement from tree \""
+        ss << "Revoked destiny enhancement from tree \""
                 << treeName
                 << "\": Rank "
                 << ranks
@@ -3246,7 +3271,7 @@ void Build::AddGearSet(const EquippedGear & gear)
     m_GearSetups.push_back(gear);
     SetModifiedFlag(TRUE);
     std::stringstream ss;
-    ss << "Geat set \"" << gear.Name() << "\" created.";
+    ss << "Gear set \"" << gear.Name() << "\" created.";
     GetLog().AddLogEntry(ss.str().c_str());
 }
 
@@ -3254,7 +3279,7 @@ void Build::DeleteGearSet(const std::string& name)
 {
     RevokeGearEffects();        // always for active gear (one being deleted)
     std::stringstream ss;
-    ss << "Geat set \"" << name << "\" deleted.";
+    ss << "Gear set \"" << name << "\" deleted.";
     // find the gear set and delete it
     std::list<EquippedGear>::const_iterator it = m_GearSetups.begin();
     while (it != m_GearSetups.end())
@@ -3647,6 +3672,16 @@ void Build::ApplyGearEffects()
 void Build::ApplyItem(const Item& item, InventorySlotType ist)
 {
     bool bSuppressSetBonuses = false;
+    switch (ist)
+    {
+        case Inventory_Weapon1:
+        case Inventory_Weapon2:
+            ApplyWeaponEffects(item);
+            break;
+        case Inventory_Armor:
+            ApplyArmorEffects(item);
+            break;
+    }
     // apply the items effects
     for (auto&& ibit : item.Buffs())
     {
@@ -3774,6 +3809,16 @@ void Build::ApplyAugment(
 void Build::RevokeItem(const Item& item, InventorySlotType ist)
 {
     bool bSuppressSetBonuses = false;
+    switch (ist)
+    {
+        case Inventory_Weapon1:
+        case Inventory_Weapon2:
+            RevokeWeaponEffects(item);
+            break;
+        case Inventory_Armor:
+            RevokeArmorEffects(item);
+            break;
+    }
     // revoke the items effects
     for (auto&& ibit : item.Buffs())
     {
@@ -4007,7 +4052,7 @@ size_t Build::AddSetBonusStack(const std::string& set)
     {
         m_setBonusStacks.push_back(StackTracking(set));
         m_setBonusStacks.back().AddStack();
-        stacks = 1;         // awlays 1 stack when created new
+        stacks = 1;         // always 1 stack when created new
     }
     return stacks;
 }
@@ -4195,3 +4240,105 @@ void Build::DumpWeaponGroups() const
     }
 }
 
+void Build::ApplyWeaponEffects(const Item& item)
+{
+    std::string wt = (LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap);
+    if (item.HasWeaponDamage())
+    {
+        Effect effect(
+            Effect_Weapon_BaseDamage,
+            "Base Weapon Damage",
+            "Base",
+            item.WeaponDamage());
+        // need to add the weapon type
+        effect.AddItem(wt);
+        NotifyItemEffect(item.Name(), effect);
+    }
+    if (item.HasCriticalThreatRange())
+    {
+        Effect effect(
+                Effect_Weapon_CriticalRange,
+                "Base Weapon Range",
+                "Base",
+                item.CriticalThreatRange());
+        effect.AddItem(wt);
+        NotifyItemEffect(item.Name(), effect);
+    }
+    if (item.HasCriticalMultiplier())
+    {
+        Effect effect(
+            Effect_Weapon_CriticalMultiplier,
+            "Base Weapon Multiplier",
+            "Base",
+            item.CriticalMultiplier());
+        effect.AddItem(wt);
+        NotifyItemEffect(item.Name(), effect);
+    }
+    //for (auto&& itDr: item.DRBypass())
+    //{
+    //    Effect effect(
+    //        Effect_Weapon_CriticalRange,
+    //        "Standard Bypass",
+    //        "Base",
+    //        item.CriticalThreatRange());
+    //    effect.AddItem(wt);
+    //    effect.AddItem(itDR);
+    //    NotifyItemEffect(item.Name(), effect);
+    //}
+}
+
+void Build::RevokeWeaponEffects(const Item& item)
+{
+    std::string wt = (LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap);
+    if (item.HasWeaponDamage())
+    {
+        Effect effect(
+                Effect_DRBypass,
+                "Standard Bypass",
+                "Base",
+                item.WeaponDamage());
+        effect.AddItem(wt);
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
+    if (item.HasCriticalThreatRange())
+    {
+        Effect effect(
+                Effect_Weapon_CriticalRange,
+                "Base Weapon Range",
+                "Base",
+                item.CriticalThreatRange());
+        effect.AddItem(wt);
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
+    if (item.HasCriticalMultiplier())
+    {
+        Effect effect(
+                Effect_Weapon_CriticalMultiplier,
+                "Base Weapon Multiplier",
+                "Base",
+                item.CriticalMultiplier());
+        effect.AddItem(wt);
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
+    //for (auto&& itDr : item.DRBypass())
+    //{
+    //    Effect effect(
+    //        Effect_Weapon_CriticalRange,
+    //        "Standard Bypass",
+    //        "Base",
+    //        item.CriticalThreatRange());
+    //    effect.AddItem(itDR);
+    //    effect.AddItem(wt);
+    //    NotifyItemEffectRevoked(item.Name(), effect);
+    //}
+}
+
+void Build::ApplyArmorEffects(const Item& item)
+{
+
+}
+
+void Build::RevokeArmorEffects(const Item& item)
+{
+
+}

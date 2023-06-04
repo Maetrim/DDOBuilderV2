@@ -1077,7 +1077,7 @@ void CEnhancementTreeDialog::UpdateActionPointsChanged(Life*)
     Build* pBuild = m_pCharacter->ActiveBuild();
     if (pBuild->AvailableActionPoints(pBuild->Level(), m_type) <= 4)
     {
-        // avoid un necessary redraws when there will be no visual change
+        // avoid unnecessary redraws when there will be no visual change
         Invalidate();
     }
 }
@@ -1114,7 +1114,7 @@ void CEnhancementTreeDialog::ValidateTreeSelections()
     // review all trained enhancements in this tree
     // if they are no longer valid, revoke enhancements in the tree
     // 
-    //  we try an inplace revoke first, else we revoke the last item
+    //  we try an in place revoke first, else we revoke the last item
     //  trained in the tree until we can do an in place revoke and
     // all items are valid.
     bool bTreeHasInvalidItems = false;
@@ -1193,7 +1193,7 @@ void CEnhancementTreeDialog::UpdateActionPointsChanged(Build* pBuild)
     // (Note that 4 AP is the maximum cost of any specific enhancement - arcane archer tree)
     if (pBuild->AvailableActionPoints(pBuild->Level(), m_type) <= 4)
     {
-        // avoid un necessary redraws when there will be no visual change
+        // avoid unnecessary redraws when there will be no visual change
         Invalidate();
     }
 }

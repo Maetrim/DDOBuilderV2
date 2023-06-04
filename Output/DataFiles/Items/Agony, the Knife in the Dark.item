@@ -1,13 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
+    <NoAutoUpdate />
     <Name>Agony, the Knife in the Dark</Name>
     <Icon>Dagger_1c</Icon>
     <Description>A blade such as this will always find a black heart to sheathe itself.</Description>
     <DropLocation>Caught in the Web, End Chest</DropLocation>
     <MinLevel>23</MinLevel>
     <EquipmentSlot>
-      <Weapon1/>
-      <Weapon2/>
+      <Weapon1 />
+      <Weapon2 />
     </EquipmentSlot>
     <Weapon>Dagger</Weapon>
     <AttackModifier>Strength</AttackModifier>
@@ -20,7 +22,7 @@
       <Sides>4</Sides>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
-    <CriticalThreatRange>4</CriticalThreatRange>
+    <CriticalThreatRange>2</CriticalThreatRange>
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>7</Value1>
@@ -40,12 +42,73 @@
     </Buff>
     <Buff>
       <Type>Disintegration</Type>
-      <BonusType/>
+      <BonusType />
     </Buff>
     <Buff>
       <Type>Improved Deception</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <IsAcceptsSentience/>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Phlebotomizing</Name>
+        <Description>Phlebotomizing: This weapon is wickedly sharp and will do an additional 3d8 damage
+to targets that are vulnerable to bleeding.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <!---Only an additional 1d8 here as 2d8 already added by Hemorrhaging-->
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Bleed</Damage>
+          </Dice>
+          <Item>All</Item>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Icon>Heroism</Icon>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Red augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <IsAcceptsSentience />
   </Item>
 </Items>

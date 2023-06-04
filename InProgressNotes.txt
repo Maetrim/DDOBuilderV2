@@ -1,6 +1,8 @@
+6566 items currently
+
 To do:
----Past life tooltips when leaves control onto another window leave tooltip displayed
 ---User enabled stances not restored on load
+---Feat "Reflex no fail on 1" does not apply its effects for an unknown reason
 
 Missing Views:
 ---Notes
@@ -9,8 +11,6 @@ Missing Views:
 ---Bank
 
 From U51 spells
-
-https://www.youtube.com/watch?v=eRDwzrmi3pc&list=PL3_aU3BBZtakHFJOXqL3z0-Dk89cT4_ah&index=25
 
 
     <NoAutoUpdate/>
@@ -23,6 +23,7 @@ https://www.youtube.com/watch?v=eRDwzrmi3pc&list=PL3_aU3BBZtakHFJOXqL3z0-Dk89cT4
     </Effect>
     Amount = caster level, count, recharge
 
+    <NoAutoUpdate/>
     <ItemAugment>
         <Type>Nearly Finished</Type>
         <Augment>
@@ -37,64 +38,92 @@ https://www.youtube.com/watch?v=eRDwzrmi3pc&list=PL3_aU3BBZtakHFJOXqL3z0-Dk89cT4
               <Item>Strength</Item>
            </Effect>
         </Augment>
-        <Augment>
-           <Name>+8 Dexterity</Name>
-           <Description>+8 Enhancement bonus to Dexterity</Description>
-           <MinLevel>15</MinLevel>
-           <Effect>
-              <Type>AbilityBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">8</Amount>
-              <Item>Dexterity</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>+8 Constitution</Name>
-           <Description>+8 Enhancement bonus to Constitution</Description>
-           <MinLevel>15</MinLevel>
-           <Effect>
-              <Type>AbilityBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">8</Amount>
-              <Item>Constitution</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>+8 Intelligence</Name>
-           <Description>+8 Enhancement bonus to Intelligence</Description>
-           <MinLevel>15</MinLevel>
-           <Effect>
-              <Type>AbilityBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">8</Amount>
-              <Item>Intelligence</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>+8 Wisdom</Name>
-           <Description>+8 Enhancement bonus to Wisdom</Description>
-           <MinLevel>15</MinLevel>
-           <Effect>
-              <Type>AbilityBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">8</Amount>
-              <Item>Wisdom</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>+8 Charisma</Name>
-           <Description>+8 Enhancement bonus to Charisma</Description>
-           <MinLevel>15</MinLevel>
-           <Effect>
-              <Type>AbilityBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">8</Amount>
-              <Item>Charisma</Item>
-           </Effect>
-        </Augment>
      </ItemAugment>
+
+ --- attuned to heroism example
+    <NoAutoUpdate/>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Phlebotomizing</Name>
+        <Description>Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <!---Only an additional 1d8 here as 2d8 already added by Hemorrhaging-->
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Bleed</Damage>
+          </Dice>
+          <Item>All</Item>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Red augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
+
+
+-----rune arm example
+    <NoAutoUpdate/>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Exploding Fire Shot</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+      </Effect>
+    <Buff>
+      <Type>Rune Arm Imbue - Fire IV</Type>
+      <BonusType/>
+    </Buff>
+
+
+    <ItemAugment>
+        <Type>Cannith Rune Arm Prefix</Type>
+    </ItemAugment>
+    <ItemAugment>
+        <Type>Cannith Rune Arm Suffix</Type>
+    </ItemAugment>
+    <ItemAugment>
+        <Type>Cannith Rune Arm Extra</Type>
+    </ItemAugment>

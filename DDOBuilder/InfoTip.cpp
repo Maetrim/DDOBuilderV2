@@ -661,12 +661,6 @@ void CInfoTip::SetItem(
         m_tipItems.push_back(pDescription);
     }
 
-    std::vector<CString> buffDescriptions = pItem->BuffDescriptions();
-    for (auto&& bdit : buffDescriptions)
-    {
-        InfoTipItem_BuffDescription* pBuff = new InfoTipItem_BuffDescription(bdit);
-        m_tipItems.push_back(pBuff);
-    }
     for (auto&& eit : pItem->Effects())
     {
         if (eit.IsType(Effect_ItemClickie))
@@ -678,6 +672,21 @@ void CInfoTip::SetItem(
                 static_cast<int>(eit.Amount()[1]),
                 static_cast<int>(eit.Amount()[2]));
         }
+        if (eit.IsType(Effect_SpellLikeAbility))
+        {
+            std::string slaName = eit.Item().front();
+            Spell spell = FindItemClickieByName(slaName);
+            AppendSLA(spell,
+                static_cast<int>(eit.Amount()[0]),
+                static_cast<int>(eit.Amount()[1]),
+                static_cast<int>(eit.Amount()[2]));
+        }
+    }
+    std::vector<CString> buffDescriptions = pItem->BuffDescriptions();
+    for (auto&& bdit : buffDescriptions)
+    {
+        InfoTipItem_BuffDescription* pBuff = new InfoTipItem_BuffDescription(bdit);
+        m_tipItems.push_back(pBuff);
     }
     if (pItem->Augments().size() > 0)
     {
@@ -689,36 +698,14 @@ void CInfoTip::SetItem(
             {
                 CString augmentName(ait.SelectedAugment().c_str());
                 // augment name may need to be updated to include the actual bonus value
-                const Augment& augment = FindAugmentByName((LPCTSTR)augmentName);
-                if (augment.HasEnterValue())
-                {
-                    CString txt;
-                    txt.Format(" %+.0f", ait.Value());
-                    augmentName += txt;
-                    if (augment.HasDualValues())
-                    {
-                        txt.Format("/%+.0f", ait.Value2());
-                        augmentName += txt;
-                    }
-                }
-                if (augment.HasChooseLevel())
-                {
-                    CString txt;
-                    txt.Format(" %+.0f", augment.LevelValue()[pItem->MinLevel() - 1]);
-                    augmentName += txt;
-                    if (augment.HasDualValues())
-                    {
-                        txt.Format("/%+.0f", augment.LevelValue2()[pItem->MinLevel() - 1]);
-                        augmentName += txt;
-                    }
-                }
-                text.Format("%s Slot: %s", ait.Type().c_str(), (LPCTSTR)augmentName);
+                const Augment& augment = FindAugmentByName((LPCTSTR)augmentName, pItem);
+                AppendFilledAugment(pItem->MinLevel(), ait, &augment);
             }
             else
             {
                 text.Format("%s Slot: Empty", ait.Type().c_str());
+                pRequirements->AddRequirement(text, true);
             }
-            pRequirements->AddRequirement(text, true);
         }
         m_tipItems.push_back(pRequirements);
     }
@@ -754,25 +741,79 @@ void CInfoTip::SetFiligree(
 }
 
 void CInfoTip::SetAugment(
-        const Augment * /*pAugment*/)
+    const Augment* pAugment)
 {
     ClearOldTipItems();
-    //m_effectDescriptions.clear();
-    //m_image.Destroy();
-    //if (S_OK != LoadImageFile("DataFiles\\AugmentImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", &m_image, CSize(32, 32), false))
-    //{
-    //    // see if its a feat icon we need to use
-    //    LoadImageFile("DataFiles\\FeatImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", &m_image, CSize(32, 32));
-    //}
-    //m_image.SetTransparentColor(c_transparentColour);
-    //m_title = pAugment->Name().c_str();
-    //m_description = pAugment->Description().c_str();
-    //// actual carriage return are actual \n in text, convert to correct character
-    //GenerateLineBreaks(&m_title);
-    //GenerateLineBreaks(&m_description);
-    //m_requirements.clear();
-    //m_bRequirementMet.clear();
-    //m_cost = "";
+    AppendAugment(pAugment);
+}
+
+void CInfoTip::AppendFilledAugment(
+    int itemLevel,
+    const ItemAugment& slot,
+    const Augment* pAugment)
+{
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->Icon(), true);
+    pHeader->SetTitle(slot.Type().c_str());
+
+    CString augmentName = pAugment->Name().c_str();
+    if (pAugment->HasEnterValue())
+    {
+        CString txt;
+        txt.Format(" %+.0f", slot.Value());
+        augmentName += txt;
+        if (pAugment->HasDualValues())
+        {
+            txt.Format("/%+.0f", slot.Value2());
+            augmentName += txt;
+        }
+    }
+    if (pAugment->HasChooseLevel())
+    {
+        CString txt;
+        txt.Format(" %+.0f", pAugment->LevelValue()[itemLevel - 1]);
+        augmentName += txt;
+        if (pAugment->HasDualValues())
+        {
+            txt.Format("/%+.0f", pAugment->LevelValue2()[itemLevel - 1]);
+            augmentName += txt;
+        }
+    }
+    pHeader->SetTitle2(augmentName);
+    if (pAugment->HasMinLevel())
+    {
+        CString text;
+        text.Format("Augment Level: %d", pAugment->MinLevel());
+        pHeader->SetCost(text);
+    }
+    m_tipItems.push_back(pHeader);
+
+    InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
+    pDescription->SetText(pAugment->Description().c_str());
+    m_tipItems.push_back(pDescription);
+
+    for (auto&& sbit : pAugment->SetBonus())
+    {
+        AppendSetBonusDescription(sbit, 0);
+    }
+}
+
+void CInfoTip::AppendAugment(
+    const Augment* pAugment)
+{
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->Icon(), true);
+    pHeader->SetTitle(pAugment->Name().c_str());
+    m_tipItems.push_back(pHeader);
+
+    InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
+    pDescription->SetText(pAugment->Description().c_str());
+    m_tipItems.push_back(pDescription);
+
+    for (auto&& sbit : pAugment->SetBonus())
+    {
+        AppendSetBonusDescription(sbit, 0);
+    }
 }
 
 void CInfoTip::SetSentientGem(
@@ -852,8 +893,13 @@ void CInfoTip::AppendSLA(const Spell& spell, int nCasterLevel, int nCharges, int
     pDescription->SetText(spell.Description().c_str());
     m_tipItems.push_back(pDescription);
 
-    InfoTipItem_SLAHeader* pSLAHeader = new InfoTipItem_SLAHeader(nCasterLevel, nCharges, nRecharge);
-    m_tipItems.push_back(pSLAHeader);
+    if (nCasterLevel != 0
+        || nCharges != 0
+        || nRecharge != 0)
+    {
+        InfoTipItem_SLAHeader* pSLAHeader = new InfoTipItem_SLAHeader(nCasterLevel, nCharges, nRecharge);
+        m_tipItems.push_back(pSLAHeader);
+    }
 }
 
 void CInfoTip::AppendSpellDamageEffect(

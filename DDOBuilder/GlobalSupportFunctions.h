@@ -165,7 +165,7 @@ BreakdownType MaxDamageTypeToBreakdown(DamageType dt);
 BreakdownType SpellPowerToBreakdown(SpellPowerType sp);
 BreakdownType SpellPowerToCriticalChanceBreakdown(SpellPowerType sp);
 BreakdownType SpellPowerToCriticalMultiplierBreakdown(SpellPowerType sp);
-const Augment & FindAugmentByName(const std::string& name);
+const Augment & FindAugmentByName(const std::string& name, const Item* pItem);
 const Filigree & FindFiligreeByName(const std::string& name);
 const Gem& FindSentientGemByName(const std::string& name);
 std::list<Augment> CompatibleAugments(const std::string& name);

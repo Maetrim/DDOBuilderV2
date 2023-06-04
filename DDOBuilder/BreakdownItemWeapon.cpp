@@ -26,9 +26,9 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalAttackBonus(Breakdown_WeaponCriticalAttackBonus, Effect_Weapon_AttackBonusCritical, "Critical Attack Bonus", treeList, NULL, slot == Inventory_Weapon2, true),
     m_criticalDamageBonus(Breakdown_WeaponCriticalDamageBonus, Effect_Weapon_DamageBonusCritical, "Critical Damage Bonus", treeList, NULL, slot == Inventory_Weapon2, true),
     //m_otherCriticalDamageEffects(pPane, Breakdown_WeaponCriticalOtherDamageEffects, treeList, NULL, false),
-    //m_criticalThreatRange(pPane, Breakdown_WeaponCriticalThreatRange, treeList, NULL, false),
-    //m_criticalMultiplier(pPane, Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL, false),
-    //m_criticalMultiplier19To20(pPane, Breakdown_WeaponCriticalMultiplier19To20, treeList, NULL, &m_criticalMultiplier),
+    m_criticalThreatRange(Breakdown_WeaponCriticalThreatRange, treeList, NULL),
+    m_criticalMultiplier(Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL),
+    m_criticalMultiplier19To20(Breakdown_WeaponCriticalMultiplier19To20, treeList, NULL, &m_criticalMultiplier),
     m_attackSpeed(pPane, Breakdown_WeaponAttackSpeed, Effect_Weapon_Alacrity, "Attack Speed", treeList, NULL, false),
     m_ghostTouch(pPane, Breakdown_WeaponGhostTouch, Effect_GhostTouch, "Ghost Touch", treeList, NULL, false),
     m_trueSeeing(pPane, Breakdown_WeaponTrueSeeing, Effect_TrueSeeing, "True Seeing", treeList, NULL, false),
@@ -41,12 +41,12 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_damageBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
     //m_otherDamageEffects.SetWeapon(weaponType, weaponCriticalMultiplier);
     ////////m_vorpalRange.SetWeapon(weaponType, weaponCriticalMultiplier);
-    //m_criticalThreatRange.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalThreatRange.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_criticalAttackBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_criticalDamageBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
     //m_otherCriticalDamageEffects.SetWeapon(weaponType, weaponCriticalMultiplier);
-    //m_criticalMultiplier.SetWeapon(weaponType, weaponCriticalMultiplier);
-    //m_criticalMultiplier19To20.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalMultiplier.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalMultiplier19To20.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_attackSpeed.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_ghostTouch.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_trueSeeing.SetWeapon(weaponType, weaponCriticalMultiplier);
@@ -58,12 +58,12 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_damageBonus.AttachObserver(this);
     //m_otherDamageEffects.AttachObserver(this);
     ////////m_vorpalRange.AttachObserver(this);
-    //m_criticalThreatRange.AttachObserver(this);
+    m_criticalThreatRange.AttachObserver(this);
     m_criticalAttackBonus.AttachObserver(this);
     m_criticalDamageBonus.AttachObserver(this);
     //m_otherCriticalDamageEffects.AttachObserver(this);
-    //m_criticalMultiplier.AttachObserver(this);
-    //m_criticalMultiplier19To20.AttachObserver(this);
+    m_criticalMultiplier.AttachObserver(this);
+    m_criticalMultiplier19To20.AttachObserver(this);
     m_attackSpeed.AttachObserver(this);
     m_ghostTouch.AttachObserver(this);
     m_trueSeeing.AttachObserver(this);
@@ -79,9 +79,9 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     AddTreeItem("Critical Attack Bonus", "", &m_criticalAttackBonus);
     AddTreeItem("Critical Damage Bonus", "", &m_criticalDamageBonus);
     //AddTreeItem("Other Critical Damage Effects", "", &m_otherCriticalDamageEffects);
-    //AddTreeItem("Critical Threat Range", "", &m_criticalThreatRange);
-    //AddTreeItem("Critical Multiplier", "", &m_criticalMultiplier);
-    //AddTreeItem("Critical Multiplier (19-20)", "", &m_criticalMultiplier19To20);
+    AddTreeItem("Critical Threat Range", "", &m_criticalThreatRange);
+    AddTreeItem("Critical Multiplier", "", &m_criticalMultiplier);
+    AddTreeItem("Critical Multiplier (19-20)", "", &m_criticalMultiplier19To20);
     AddTreeItem("Attack Speed", "", &m_attackSpeed);
     AddTreeItem("Ghost Touch", "", &m_ghostTouch);
     AddTreeItem("True Seeing", "", &m_trueSeeing);
@@ -100,12 +100,12 @@ void BreakdownItemWeapon::BuildChanged(Character* charData)
     m_damageBonus.BuildChanged(charData);
     //m_otherDamageEffects.BuildChanged(charData);
     ////////m_vorpalRange.BuildChanged(charData);
-    //m_criticalThreatRange.BuildChanged(charData);
+    m_criticalThreatRange.BuildChanged(charData);
     m_criticalAttackBonus.BuildChanged(charData);
     m_criticalDamageBonus.BuildChanged(charData);
     //m_otherCriticalDamageEffects.BuildChanged(charData);
-    //m_criticalMultiplier.BuildChanged(charData);
-    //m_criticalMultiplier19To20.BuildChanged(charData);
+    m_criticalMultiplier.BuildChanged(charData);
+    m_criticalMultiplier19To20.BuildChanged(charData);
     m_attackSpeed.BuildChanged(charData);
     m_ghostTouch.BuildChanged(charData);
     m_trueSeeing.BuildChanged(charData);
@@ -147,12 +147,12 @@ void BreakdownItemWeapon::SetCharacter(Character * pCharacter)
     m_damageBonus.BuildChanged(pCharacter);        // we handle this for them
     //m_otherDamageEffects.BuildChanged(pCharacter);
     ///////m_vorpalRange.BuildChanged(pCharacter);        // we handle this for them
-    //m_criticalThreatRange.BuildChanged(pCharacter);        // we handle this for them
+    m_criticalThreatRange.BuildChanged(pCharacter);        // we handle this for them
     m_criticalAttackBonus.BuildChanged(pCharacter);        // we handle this for them
     m_criticalDamageBonus.BuildChanged(pCharacter);        // we handle this for them
     //m_otherCriticalDamageEffects.BuildChanged(pCharacter);        // we handle this for them
-    //m_criticalMultiplier.BuildChanged(pCharacter);        // we handle this for them
-    //m_criticalMultiplier19To20.BuildChanged(pCharacter);        // we handle this for them
+    m_criticalMultiplier.BuildChanged(pCharacter);        // we handle this for them
+    m_criticalMultiplier19To20.BuildChanged(pCharacter);        // we handle this for them
     m_attackSpeed.BuildChanged(pCharacter);
     m_ghostTouch.BuildChanged(pCharacter);
     m_trueSeeing.BuildChanged(pCharacter);
@@ -228,12 +228,12 @@ void BreakdownItemWeapon::FeatEffectApplied(
         m_damageBonus.FeatEffectApplied(pBuild, effect);
         //m_otherDamageEffects.FeatEffectApplied(pBuild, effect);
         ///////m_vorpalRange.FeatEffectApplied(pBuild, effect);
-        //m_criticalThreatRange.FeatEffectApplied(pBuild, effect);
+        m_criticalThreatRange.FeatEffectApplied(pBuild, effect);
         m_criticalAttackBonus.FeatEffectApplied(pBuild, effect);
         m_criticalDamageBonus.FeatEffectApplied(pBuild, effect);
         //m_otherCriticalDamageEffects.FeatEffectApplied(pBuild, effect);
-        //m_criticalMultiplier.FeatEffectApplied(pBuild, effect);
-        //m_criticalMultiplier19To20.FeatEffectApplied(pBuild, effect);
+        m_criticalMultiplier.FeatEffectApplied(pBuild, effect);
+        m_criticalMultiplier19To20.FeatEffectApplied(pBuild, effect);
         m_attackSpeed.FeatEffectApplied(pBuild, effect);
         m_ghostTouch.FeatEffectApplied(pBuild, effect);
         m_trueSeeing.FeatEffectApplied(pBuild, effect);
@@ -254,12 +254,12 @@ void BreakdownItemWeapon::FeatEffectRevoked(
         m_damageBonus.FeatEffectRevoked(pBuild, effect);
         //m_otherDamageEffects.FeatEffectRevoked(pBuild, effect);
         ///////m_vorpalRange.FeatEffectRevoked(pBuild, effect);
-        //m_criticalThreatRange.FeatEffectRevoked(pBuild, effect);
+        m_criticalThreatRange.FeatEffectRevoked(pBuild, effect);
         m_criticalAttackBonus.FeatEffectRevoked(pBuild, effect);
         m_criticalDamageBonus.FeatEffectRevoked(pBuild, effect);
         //m_otherCriticalDamageEffects.FeatEffectRevoked(pBuild, effect);
-        //m_criticalMultiplier.FeatEffectRevoked(pBuild, effect);
-        //m_criticalMultiplier19To20.FeatEffectRevoked(pBuild, effect);
+        m_criticalMultiplier.FeatEffectRevoked(pBuild, effect);
+        m_criticalMultiplier19To20.FeatEffectRevoked(pBuild, effect);
         m_attackSpeed.FeatEffectRevoked(pBuild, effect);
         m_ghostTouch.FeatEffectRevoked(pBuild, effect);
         m_trueSeeing.FeatEffectRevoked(pBuild, effect);
@@ -280,12 +280,12 @@ void BreakdownItemWeapon::ItemEffectApplied(
         m_damageBonus.ItemEffectApplied(pBuild, effect);
         //m_otherDamageEffects.ItemEffectApplied(pBuild, effect);
         ///////m_vorpalRange.ItemEffectApplied(pBuild, effect);
-        //m_criticalThreatRange.ItemEffectApplied(pBuild, effect);
+        m_criticalThreatRange.ItemEffectApplied(pBuild, effect);
         m_criticalAttackBonus.ItemEffectApplied(pBuild, effect);
         m_criticalDamageBonus.ItemEffectApplied(pBuild, effect);
         //m_otherCriticalDamageEffects.ItemEffectApplied(pBuild, effect);
-        //m_criticalMultiplier.ItemEffectApplied(pBuild, effect);
-        //m_criticalMultiplier19To20.ItemEffectApplied(pBuild, effect);
+        m_criticalMultiplier.ItemEffectApplied(pBuild, effect);
+        m_criticalMultiplier19To20.ItemEffectApplied(pBuild, effect);
         m_attackSpeed.ItemEffectApplied(pBuild, effect);
         m_ghostTouch.ItemEffectApplied(pBuild, effect);
         m_trueSeeing.ItemEffectApplied(pBuild, effect);
@@ -306,12 +306,12 @@ void BreakdownItemWeapon::ItemEffectRevoked(
         m_damageBonus.ItemEffectRevoked(pBuild, effect);
         //m_otherDamageEffects.ItemEffectRevoked(pBuild, effect);
         ////////m_vorpalRange.ItemEffectRevoked(pBuild, effect);
-        //m_criticalThreatRange.ItemEffectRevoked(pBuild, effect);
+        m_criticalThreatRange.ItemEffectRevoked(pBuild, effect);
         m_criticalAttackBonus.ItemEffectRevoked(pBuild, effect);
         m_criticalDamageBonus.ItemEffectRevoked(pBuild, effect);
         //m_otherCriticalDamageEffects.ItemEffectRevoked(pBuild, effect);
-        //m_criticalMultiplier.ItemEffectRevoked(pBuild, effect);
-        //m_criticalMultiplier19To20.ItemEffectRevoked(pBuild, effect);
+        m_criticalMultiplier.ItemEffectRevoked(pBuild, effect);
+        m_criticalMultiplier19To20.ItemEffectRevoked(pBuild, effect);
         m_attackSpeed.ItemEffectRevoked(pBuild, effect);
         m_ghostTouch.ItemEffectRevoked(pBuild, effect);
         m_trueSeeing.ItemEffectRevoked(pBuild, effect);
@@ -332,12 +332,12 @@ void BreakdownItemWeapon::EnhancementEffectApplied(
         m_damageBonus.EnhancementEffectApplied(pBuild, effect);
         //m_otherDamageEffects.EnhancementEffectApplied(pBuild, effect);
         ////////m_vorpalRange.EnhancementEffectApplied(pBuild, effect);
-        //m_criticalThreatRange.EnhancementEffectApplied(pBuild, effect);
+        m_criticalThreatRange.EnhancementEffectApplied(pBuild, effect);
         m_criticalAttackBonus.EnhancementEffectApplied(pBuild, effect);
         m_criticalDamageBonus.EnhancementEffectApplied(pBuild, effect);
         //m_otherCriticalDamageEffects.EnhancementEffectApplied(pBuild, effect);
-        //m_criticalMultiplier.EnhancementEffectApplied(pBuild, effect);
-        //m_criticalMultiplier19To20.EnhancementEffectApplied(pBuild, effect);
+        m_criticalMultiplier.EnhancementEffectApplied(pBuild, effect);
+        m_criticalMultiplier19To20.EnhancementEffectApplied(pBuild, effect);
         m_attackSpeed.EnhancementEffectApplied(pBuild, effect);
         m_ghostTouch.EnhancementEffectApplied(pBuild, effect);
         m_trueSeeing.EnhancementEffectApplied(pBuild, effect);
@@ -358,12 +358,12 @@ void BreakdownItemWeapon::EnhancementEffectRevoked(
         m_damageBonus.EnhancementEffectRevoked(pBuild, effect);
         //m_otherDamageEffects.EnhancementEffectRevoked(pBuild, effect);
         ////////m_vorpalRange.EnhancementEffectRevoked(pBuild, effect);
-        //m_criticalThreatRange.EnhancementEffectRevoked(pBuild, effect);
+        m_criticalThreatRange.EnhancementEffectRevoked(pBuild, effect);
         m_criticalAttackBonus.EnhancementEffectRevoked(pBuild, effect);
         m_criticalDamageBonus.EnhancementEffectRevoked(pBuild, effect);
         //m_otherCriticalDamageEffects.EnhancementEffectRevoked(pBuild, effect);
-        //m_criticalMultiplier.EnhancementEffectRevoked(pBuild, effect);
-        //m_criticalMultiplier19To20.EnhancementEffectRevoked(pBuild, effect);
+        m_criticalMultiplier.EnhancementEffectRevoked(pBuild, effect);
+        m_criticalMultiplier19To20.EnhancementEffectRevoked(pBuild, effect);
         m_attackSpeed.EnhancementEffectRevoked(pBuild, effect);
         m_ghostTouch.EnhancementEffectRevoked(pBuild, effect);
         m_trueSeeing.EnhancementEffectRevoked(pBuild, effect);
@@ -390,12 +390,12 @@ void BreakdownItemWeapon::ClassChanged(
     m_damageBonus.ClassChanged(pBuild, classFrom, classTo, level);
     //m_otherDamageEffects.ClassChanged(pBuild, classFrom, classTo, level);
     /////////m_vorpalRange.ClassChanged(pBuild, classFrom, classTo, level);
-    //m_criticalThreatRange.ClassChanged(pBuild, classFrom, classTo, level);
+    m_criticalThreatRange.ClassChanged(pBuild, classFrom, classTo, level);
     m_criticalAttackBonus.ClassChanged(pBuild, classFrom, classTo, level);
     m_criticalDamageBonus.ClassChanged(pBuild, classFrom, classTo, level);
     //m_otherCriticalDamageEffects.ClassChanged(pBuild, classFrom, classTo, level);
-    //m_criticalMultiplier.ClassChanged(pBuild, classFrom, classTo, level);
-    //m_criticalMultiplier19To20.ClassChanged(pBuild, classFrom, classTo, level);
+    m_criticalMultiplier.ClassChanged(pBuild, classFrom, classTo, level);
+    m_criticalMultiplier19To20.ClassChanged(pBuild, classFrom, classTo, level);
     m_attackSpeed.ClassChanged(pBuild, classFrom, classTo, level);
     m_ghostTouch.ClassChanged(pBuild, classFrom, classTo, level);
     m_trueSeeing.ClassChanged(pBuild, classFrom, classTo, level);
@@ -502,8 +502,8 @@ void BreakdownItemWeapon::FeatTrained(
     m_criticalAttackBonus.FeatTrained(pBuild, featName);
     m_criticalDamageBonus.FeatTrained(pBuild, featName);
     //m_otherCriticalDamageEffects.FeatTrained(pBuild, featName);
-    //m_criticalMultiplier.FeatTrained(pBuild, featName);
-    //m_criticalMultiplier19To20.FeatTrained(pBuild, featName);
+    m_criticalMultiplier.FeatTrained(pBuild, featName);
+    m_criticalMultiplier19To20.FeatTrained(pBuild, featName);
     m_attackSpeed.FeatTrained(pBuild, featName);
     m_ghostTouch.FeatTrained(pBuild, featName);
     m_trueSeeing.FeatTrained(pBuild, featName);
@@ -521,12 +521,12 @@ void BreakdownItemWeapon::FeatRevoked(
     m_damageBonus.FeatRevoked(pBuild, featName);
     //m_otherDamageEffects.FeatRevoked(pBuild, featName);
     /////////m_vorpalRange.FeatRevoked(pBuild, featName);
-    //m_criticalThreatRange.FeatRevoked(pBuild, featName);
+    m_criticalThreatRange.FeatRevoked(pBuild, featName);
     m_criticalAttackBonus.FeatRevoked(pBuild, featName);
     m_criticalDamageBonus.FeatRevoked(pBuild, featName);
     //m_otherCriticalDamageEffects.FeatRevoked(pBuild, featName);
-    //m_criticalMultiplier.FeatRevoked(pBuild, featName);
-    //m_criticalMultiplier19To20.FeatRevoked(pBuild, featName);
+    m_criticalMultiplier.FeatRevoked(pBuild, featName);
+    m_criticalMultiplier19To20.FeatRevoked(pBuild, featName);
     m_attackSpeed.FeatRevoked(pBuild, featName);
     m_ghostTouch.FeatRevoked(pBuild, featName);
     m_trueSeeing.FeatRevoked(pBuild, featName);

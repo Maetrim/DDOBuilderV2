@@ -244,14 +244,14 @@ void CGrantedFeatsPane::StanceActivated(Build* charData, const std::string& stan
 {
     UNREFERENCED_PARAMETER(charData);
     UNREFERENCED_PARAMETER(stanceName);
-    PopulateGrantedFeatsList(); // granted feats may be stance dependant
+    PopulateGrantedFeatsList(); // granted feats may be stance dependent
 }
 
 void CGrantedFeatsPane::StanceDeactivated(Build* charData, const std::string& stanceName)
 {
     UNREFERENCED_PARAMETER(charData);
     UNREFERENCED_PARAMETER(stanceName);
-    PopulateGrantedFeatsList(); // granted feats may be stance dependant
+    PopulateGrantedFeatsList(); // granted feats may be stance dependent
 }
 
 void CGrantedFeatsPane::SliderChanged(Build*, const std::string&, int)

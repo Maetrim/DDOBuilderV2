@@ -149,11 +149,10 @@ void WikiDownloader::ParseDownloadedFile(
     // first we need to find the file that has just been downloaded
     // which is based off the url we used
     std::string fullFilename = MakeUrlFilename(url);
-    ParseFile(url, fullFilename, goodUrlContent);
+    ParseFile(fullFilename, goodUrlContent);
 }
 
 void WikiDownloader::ParseFile(
-        const std::string& originalurl,
         const std::string& filename,
         const std::string& goodUrlContent)
 {
@@ -177,7 +176,8 @@ void WikiDownloader::ParseFile(
             std::string url = fileContent.substr(pos + 6, hrefEnd - pos - 6);
             pos = fileContent.find("href=\"/", hrefEnd);
             // we throw out any urls which don't have good content
-            if (url.find(goodUrlContent) != std::string::npos)
+            if (url.find(goodUrlContent) != std::string::npos
+                    && url.find("page/Item_talk") == std::string::npos)
             {
                 // we want this url
                 std::string fullUrl("https://www.ddowiki.com");

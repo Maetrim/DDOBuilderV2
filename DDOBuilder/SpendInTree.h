@@ -9,8 +9,8 @@ class SpendInTree :
     public XmlLib::SaxContentElement
 {
     public:
-        SpendInTree(const XmlLib::SaxString & elementName);
-        SpendInTree(const XmlLib::SaxString & elementName, const std::string& treeName, size_t version);
+        SpendInTree(const XmlLib::SaxString & elementName, TreeType type);
+        SpendInTree(const XmlLib::SaxString & elementName, const std::string& treeName, TreeType type, size_t version);
         void Write(XmlLib::SaxWriter * writer) const;
 
         void SetTree(const std::string& treeName, size_t treeVersion);
@@ -34,6 +34,7 @@ class SpendInTree :
         bool HasTier5() const;
         void SetSpent(size_t apsSpent);
         size_t Spent() const;
+        TreeType Type() const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -52,4 +53,5 @@ class SpendInTree :
         bool EnoughPointsSpentAtLowerTiers(size_t minSpent, size_t cost) const;
 
         size_t m_pointsSpent;       // run time only as prices can change between runs on enhancement updates
+        TreeType m_type;
 };

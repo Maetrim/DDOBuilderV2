@@ -22,16 +22,22 @@ namespace
     }
 }
 
-SpendInTree::SpendInTree(const XmlLib::SaxString & elementName) :
+SpendInTree::SpendInTree(const XmlLib::SaxString & elementName, TreeType type) :
     XmlLib::SaxContentElement(elementName, f_verCurrent),
-    m_pointsSpent(0)
+    m_pointsSpent(0),
+    m_type(type)
 {
     DL_INIT(SpendInTree_PROPERTIES)
 }
 
-SpendInTree::SpendInTree(const XmlLib::SaxString & elementName, const std::string& treeName, size_t version) :
+SpendInTree::SpendInTree(
+        const XmlLib::SaxString & elementName,
+        const std::string& treeName,
+        TreeType type,
+        size_t version) :
     XmlLib::SaxContentElement(elementName, version),
-    m_pointsSpent(0)
+    m_pointsSpent(0),
+    m_type(type)
 {
     DL_INIT(SpendInTree_PROPERTIES)
     m_TreeName = treeName;
@@ -312,6 +318,11 @@ bool SpendInTree::HasTier5() const
 size_t SpendInTree::Spent() const
 {
     return m_pointsSpent;
+}
+
+TreeType SpendInTree::Type() const
+{
+    return m_type;
 }
 
 void SpendInTree::SetSpent(size_t apsSpent)

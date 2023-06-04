@@ -328,6 +328,18 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Alchemical Air Attunement: Attacks and offensive spells have a small chance to deal massive electric damage.</DisplayText>
   </Buff>
   <Buff>
+    <Type>AlchemicalEarthAttunement</Type>
+    <DisplayText>Alchemical Earth Attunement: Attacks and offensive spells deal stacking acid damage over time.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>AlchemicalFireAttunement</Type>
+    <DisplayText>Alchemical Fire Attunement: Attacks and offensive spells have a small chance to deal massive fire damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>AlchemicalWaterAttunement</Type>
+    <DisplayText>Alchemical Water Attunement: Attacks and offensive spells have a chance to inflict ten stacks of cold damage over time, fading one stack at a time. This effect has an internal cooldown.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Alchemical Conservation</Type>
     <DisplayText>Alchemical Conservation: This item modifies the user's energy expenditure in such a way that many abilities can be used more frequently than normal. You will gain +1 Ki on every successful attack, and you will increase the number of Action Boosts, Turn Undead attempts, and Bard Songs you can use per rest by 1 each.</DisplayText>
       <Effect>
@@ -336,6 +348,210 @@ acid damage by two seconds.</DisplayText>
          <AType>Simple</AType>
          <Amount size="1">1</Amount>
       </Effect>
+  </Buff>
+  <Buff>
+    <Type>Aligned</Type>
+    <DisplayText>Aligned: This weapon transmutes into a form that is able to bypass any alignment based Damage Reduction. (Chaotic, Good, Evil, Lawful)</DisplayText>
+    <ApplyToWeaponOnly/>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Chaotic</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Good</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Evil</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Alluring Skills Bonus</Type>
+    <DisplayText>%b1 Alluring Skills Bonus %v1: %v1 %b1 bonus to Bluff, Diplomacy, Haggle, Intimidate, and Perform .</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Bluff</Item>
+      <Item>Diplomacy</Item>
+      <Item>Haggle</Item>
+      <Item>Intimidate</Item>
+      <Item>Perform</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Anarchic Blast 3</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Anarchic Blast 3: This weapon is a chaotic conduit, dealing 3d6 Chaos damage on a successful hit, and an additional 3d6 Chaos damage on a critical hit. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaotic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaotic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Chaos</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Anarchic Blast 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Anarchic Blast 4: This weapon is a chaotic conduit, dealing 4d6 Chaos damage on a successful hit, and an additional 4d6 Chaos damage on a critical hit. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaotic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaotic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Chaos</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Anarchic Blast 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Anarchic Blast 6: This weapon is a chaotic conduit, dealing 6d6 Chaos damage on a successful hit, and an additional 6d6 Chaos damage on a critical hit. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaotic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">12</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaotic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Chaos</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Anarchic</Type>
@@ -612,6 +828,154 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Anchoring</Type>
+    <DisplayText>Anchoring: This item grants its wearer immunity to effects that are time based or involve planar displacement. You are also immune to Haste and Banishment.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Haste</Item>
+    </Effect>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Banishment</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Animal Bane</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Animal Bane: A bane weapon excels at attacking one type or subtype of creature. Against Animals, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.Upgradeable - Tier 2 +2 Enhancement Bonus +2 Enhancement Bonus : +2 enhancement bonus to attack and damage rolls . -> +3 Enhancement Bonus +3 Enhancement Bonus : +3 enhancement bonus to attack and damage rolls.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Animal</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Animal Bane 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Animal Bane 2: This weapon is attuned specifically to disrupt the natural, dealing an additional 2d10 bane damage vs. Animals.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Animal</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Animal Bane 3</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Animal Bane 3: This weapon is attuned specifically to disrupt the natural, dealing an additional 3d10 bane damage vs. Animals.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Animal</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Animal Bane 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Animal Bane 4: This weapon is attuned specifically to disrupt the natural, dealing an additional 4d10 bane damage vs. Animals.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Animal</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Animal Bane 5</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Animal Bane 5: This weapon is attuned specifically to disrupt the natural, dealing an additional 5d10 bane damage vs. Animals.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">5</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Animal</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Animal Bane 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Animal Bane 6: This weapon is attuned specifically to disrupt the natural, dealing an additional 6d10 bane damage vs. Animals.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Animal</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>AngelicGrace</Type>
     <DisplayText>Angelic Grace: When you are hit, 5% chance to gain 150 Temporary Hitpoints. This can only proc once every 10 seconds. These Temporary Hitpoints last for 10 minutes or until used up, whichever is first.</DisplayText>
   </Buff>
@@ -696,6 +1060,42 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Arcane Augmentation I</Type>
+    <DisplayText>Arcane Augmentation I: Increases the wearer's caster level when casting first level sorcerer or wizard spells by two. (BUG APPLIES TO ALL SPELLS)</DisplayText>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Sorcerer</Item>
+    </Effect>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Wizard</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Arcane Augmentation IX</Type>
+    <DisplayText>Arcane Augmentation IX: Increases the wearer's caster level when casting ninth level or lower sorcerer or wizard spells by two.</DisplayText>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Sorcerer</Item>
+    </Effect>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Wizard</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Arcane Casting Dexterity</Type>
     <DisplayText>Arcane Casting Dexterity: This ability reduces the arcane spell failure chance by -10%.</DisplayText>
     <Effect>
@@ -706,8 +1106,18 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Archmagi</Type>
+    <DisplayText>Archmagi:This item grants the wearer +200 maximum spell points . Sorcerers and Favored Souls gain up to double spell points from items.</DisplayText>
+    <Effect>
+      <Type>SpellPoints</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">200</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>ArmorBonus</Type>
-    <DisplayText>Armor Bonus %b1: This item surrounds the wearer with an invisible but tangible field of force, granting %b1 armor bonus to AC, just as though he were wearing armor.</DisplayText>
+    <DisplayText>Armor Bonus %v1: This item surrounds the wearer with an invisible but tangible field of force, granting %b1 armor bonus to AC, just as though he were wearing armor.</DisplayText>
     <Effect>
       <Type>ACBonus</Type>
       <Bonus>Not Set</Bonus>
@@ -722,6 +1132,17 @@ acid damage by two seconds.</DisplayText>
     <Effect>
       <Type>ACBonus</Type>
       <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ArmorMastery</Type>
+    <DisplayText>%b1 Armor Mastery %v1: Passive: %v1 %b1 bonus to the Max Dex Bonus of your equipped light, medium, or heavy armor. This benefit does not apply to the Max Dex Bonus of a Tower Shield.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>MaxDexBonus</Type>
+      <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
     </Effect>
@@ -750,6 +1171,20 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Astute Skills Bonus</Type>
+    <DisplayText>%b1 Alluring Skills Bonus %v1: %v1 %b1 bonus to  Disable Device, Repair and Search.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Disable Device</Item>
+      <Item>Repair</Item>
+      <Item>Search</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>AttackBonus</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>%b1 Attack Bonus %v1: Provides a %v1 %b1 bonus to your attack rolls.</DisplayText>
@@ -761,6 +1196,71 @@ acid damage by two seconds.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axeblock II</Type>
+    <DisplayText>Axeblock II: Passive: Reduces physical damage taken by 4, except from Bludgeoning or Piercing weapons. (Damage Reduction: 4/Pierce, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Pierce</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axeblock III</Type>
+    <DisplayText>Axeblock III: Passive: Reduces physical damage taken by 6, except from Bludgeoning or Piercing weapons. (Damage Reduction: 6/Pierce, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Pierce</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axeblock V</Type>
+    <DisplayText>Axeblock V: Passive: Reduces physical damage taken by 10, except from Bludgeoning or Piercing weapons. (Damage Reduction: 10/Pierce, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>Pierce</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axeblock VI</Type>
+    <DisplayText>Axeblock VI: Passive: Reduces physical damage taken by 12, except from Bludgeoning or Piercing weapons. (Damage Reduction: 12/Pierce, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">12</Amount>
+      <Item>Pierce</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axeblock X</Type>
+    <DisplayText>Axeblock X: Passive: Reduces physical damage taken by 20, except from Bludgeoning or Piercing weapons. (Damage Reduction: 20/Pierce, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Pierce</Item>
+      <Item>Bludgeon</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -1622,6 +2122,23 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Bloodrage Defense</Type>
+    <DisplayText>Bloodrage Defense: When you are holding a two-handed weapon, you gain a +10 Profane bonus to Physical and Magical Resistance Rating.</DisplayText>
+    <Effect>
+      <Type>PRR</Type>
+      <Type>MRR</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Bloodletter VII</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Bloodletter VII: On Critical Hit: 15 to 90 Slashing damage from weapons with a x2 Critical Multiplier, 15 to 120 Slashing damage from weapons with a x3 Critical Multiplier, and 15 to 150 Slashing damage from weapons with a x4 or greater Critical Multiplier.</DisplayText>
@@ -1634,6 +2151,19 @@ acid damage by two seconds.</DisplayText>
         <Damage>Slash</Damage>
       </Dice>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Bloody Thorns</Type>
+    <DisplayText>Bloody Thorns: This powerful item is a dangerous weapon to those well-versed in Nature. You receive a Primal bonus to Damage for every four of your Wilderness Lore feats.</DisplayText>
+    <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Primal</Bonus>
+         <Amount size="1">1</Amount>
+         <AType>FeatCount</AType>
+         <StackSource>Wilderness Lore</StackSource>
+         <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -1728,6 +2258,18 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Blunt Trauma</Type>
+    <DisplayText>Blunt Trauma: This weapon is incredibly dense and delivers especially powerful blows. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1.</DisplayText>
+    <ApplyToWeaponOnly/>
+      <Effect>
+         <Type>Weapon_CriticalMultiplier19To20</Type>
+         <Bonus>Destiny</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>All</Item>
+      </Effect>
+  </Buff>
+  <Buff>
     <Type>Blurry</Type>
     <DisplayText>Blurry: Equipping this item causes you to become slightly blurry. Attacks from enemies have a 20% chance to miss you due to concealment.</DisplayText>
     <Effect>
@@ -1820,6 +2362,21 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Bonesplitter</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Bonesplitter: This weapon is powerful enough to shatter the bones of those it strikes. On an attack roll of 20 which is confirmed as a critical hit, the weapon breaks multiple bones in the target's body, causing significant impairment. Creatures with skeletons take 40d6 damage and will have their movement and attacks slowed by 25% and their attack damage reduced by 25% when their bones are shattered.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">40</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Brilliance</Type>
     <DisplayText>Brilliance: This weapon glows with the Light of Irian. This weapon deals an extra 1 to 6 points of Light damage on a successful hit. In addition, critical hits deal an additional 1 to 10 Light damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.</DisplayText>
     <Effect>
@@ -1860,8 +2417,23 @@ acid damage by two seconds.</DisplayText>
   <!--C-->
   <Buff>
     <Type>Cacophony</Type>
-    <ApplyToWeaponOnly/>
     <DisplayText>Cacophony: This weapon stores the power of a hundred blasts of sound within. Occasionally, this resonating power comes to the surface, devastating enemies with massive sonic damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Calamitous Blows</Type>
+    <DisplayText>Calamitous Blows: When you are holding a two-handed weapon, you gain a +3% Profane bonus to doublestrike.</DisplayText>
+    <Effect>
+      <Type>Doublestrike</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>CannithCombatInfusion</Type>
@@ -1905,6 +2477,32 @@ acid damage by two seconds.</DisplayText>
         </Requirement>
       </Requirements>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Chaosguard</Type>
+    <DisplayText>Chaosguard: The bearer of this item gains +2 Deflection bonus to AC and +2 Resistance bonus to saving throws from Chaotic Enemies.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Resistance</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Chaotic</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Chaotic Curse</Type>
+    <DisplayText>Chaotic Curse: The curse on this item is so powerful it can be transferred to any creature that dares touch the wearer. The rents in the fabric of the underlying cloth has made the curse unstable and it can reverse itself. Note especially that while the wearer is partially shielded he is not entirely immune to this effect.</DisplayText>
   </Buff>
   <Buff>
     <Type>Chilling 2</Type>
@@ -1989,6 +2587,10 @@ acid damage by two seconds.</DisplayText>
   <Buff>
     <Type>ChimerasVitality</Type>
     <DisplayText>Chimera's Vitality : This item grants extra bonuses if the wearer has been bestowed with Dragonmarks. You gain +1 use of Greater Dragonmark and +5 Quality PRR per Dragonmark you have.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Cloudburst</Type>
+    <DisplayText>Cloudburst: On Vorpal, this weapon triggers a Cloudburst, striking its target with lightning and dealing sonic damage to surrounding enemies through a powerful thunderclap.</DisplayText>
   </Buff>
   <Buff>
     <Type>ColdIron</Type>
@@ -2078,28 +2680,6 @@ acid damage by two seconds.</DisplayText>
         <Damage>Fire</Damage>
       </Dice>
       <Item>All</Item>
-    </Effect>
-  </Buff>
-  <Buff>
-    <Type>ConstructBane1</Type>
-    <ApplyToWeaponOnly/>
-    <DisplayText>Construct Bane 1: This weapon is attuned specifically to disrupt creations, dealing an additional 1d10 bane damage vs. Constructs.</DisplayText>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Not Set</Bonus>
-      <Dice>
-        <Number size="1">1</Number>
-        <Sides size="1">10</Sides>
-        <Damage>Bane</Damage>
-      </Dice>
-      <Item>All</Item>
-      <Requirements>
-        <Requirement>
-          <Type>EnemyType</Type>
-          <Item>Construct</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Buff>
   <Buff>
@@ -2354,6 +2934,22 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Crippling: A crippling weapon is infused with binding power so that when a target is critically hit their movement is slowed by half. (Bug: Actually only a 25% decrease)</DisplayText>
   </Buff>
   <Buff>
+    <Type>Crippling Flames</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Crippling Flames: On Hit: 5% chance to apply 2 Negative Levels. On Critical: 135 to 325 Fire Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">191</Sides>
+         <Bonus size="1">134</Bonus>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Critical Befouling 1</Type>
     <DisplayText>Critical Befouling 1: This deadly weapon saps the charm from your enemies, dealing 1 Charisma damage on each critical hit.</DisplayText>
     <Effect>
@@ -2601,6 +3197,10 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Crushing Wave</Type>
+    <DisplayText>Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep within. When this weapon is used, this power occasionally comes to the surface, crushing enemies beneath a torrent of frigid water.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Cursed Level Drain</Type>
     <DisplayText>Cursed Level Drain: Each time the player equipping this item is hit there is a small chance it will drain 1 level (no save, almost nothing wards).</DisplayText>
   </Buff>
@@ -2703,6 +3303,134 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Deathblock II</Type>
+    <DisplayText>Deathblock II: Passive: 6% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deathblock III</Type>
+    <DisplayText>Deathblock III: Passive: 9% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">9</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deathblock IV</Type>
+    <DisplayText>Deathblock IV: Passive: 12% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">12</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deathblock V</Type>
+    <DisplayText>Deathblock V: Passive: 15% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deathblock VI</Type>
+    <DisplayText>Deathblock VI: Passive: 18% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">18</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deathblock VII</Type>
+    <DisplayText>Deathblock VII: Passive: 21% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">21</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deathblock VIII</Type>
+    <DisplayText>Deathblock VIII: Passive: 24% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">24</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Deathblock IX</Type>
+    <DisplayText>Deathblock IX: Passive: 27% Enhancement Bonus to Negative Energy Absorption . In addition, you are immune to magical effects that can cause instant death.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Death Effects</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">27</Amount>
+      <Item>Negative</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Deception</Type>
     <DisplayText>%b1 Deception %v1: %v1 %b1 bonus to hit and %v2 Damage for Sneak Attacks.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -2723,6 +3451,10 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Demon Fever: This weapon is infected with a night hag's Demon Fever disease. On critical hits it will transfer the disease to enemies, dealing 1d8 Constitution damage. A successful Fortitude save (DC 22) negates this effect.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Demonic Curse</Type>
+    <DisplayText>Demonic Curse: Each time you are hit in melee combat there is a chance that your attacker will be Cursed.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Demonic Might</Type>
     <DisplayText>Demonic Might: This item gives the wearer the power of a demon, granting a +2 Profane bonus to Strength.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -2733,6 +3465,14 @@ acid damage by two seconds.</DisplayText>
       <Amount size="1">2</Amount>
       <Item>Strength</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Demonic Retribution</Type>
+    <DisplayText>Demonic Retribution: Each time you are hit in melee combat there is a chance that a demonic force will strike back at your attacker hitting them with an Inflict Moderate Wounds spell.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Demonic Shield</Type>
+    <DisplayText>Demonic Shield: Each time you are hit in melee combat there is a chance that a shield of demonic energy will grant you a +30 Profane bonus to temporary hit points.</DisplayText>
   </Buff>
   <Buff>
     <Type>Destruction</Type>
@@ -2860,6 +3600,430 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>DR 1/-</Type>
+    <DisplayText>DR Damage Reduction 1/-: Reduces all physical damage by 1.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>-</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 2/-</Type>
+    <DisplayText>DR Damage Reduction 2/-: Reduces all physical damage by 2.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>-</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 3/-</Type>
+    <DisplayText>DR Damage Reduction 3/-: Reduces all physical damage by 3.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>-</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 5/-</Type>
+    <DisplayText>DR Damage Reduction 5/-: Reduces all physical damage by 5.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>-</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 15/-</Type>
+    <DisplayText>DR Damage Reduction 15/-: Reduces all physical damage by 15.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>-</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 5/Adamantine</Type>
+    <DisplayText>DR Damage Reduction 5/Adamantine: Reduces physical damage by 5, except from Adamantine attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Adamantine</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 15/Adamantine</Type>
+    <DisplayText>DR Damage Reduction 15/Adamantine: Reduces physical damage by 15, except from Adamantine attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Adamantine</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 30/Adamantine</Type>
+    <DisplayText>DR Damage Reduction 30/Adamantine: Reduces physical damage by 30, except from Adamantine attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>Adamantine</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 3/Bludgeoning</Type>
+    <DisplayText>DR Damage Reduction 15/Bludgeoning: Reduces physical damage by 3, except from Bludgeoning attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Bludgeoning</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 1/Chaotic</Type>
+    <DisplayText>DR Damage Reduction 1/Chaotic: Reduces physical damage by 1, except from Chaotic attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Chaotic</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 2/Chaotic</Type>
+    <DisplayText>DR Damage Reduction 2/Chaotic: Reduces physical damage by 2, except from Chaotic attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Chaotic</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 3/Chaotic</Type>
+    <DisplayText>DR Damage Reduction 3/Chaotic: Reduces physical damage by 3, except from Chaotic attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Chaotic</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 13/Chaotic</Type>
+    <DisplayText>DR Damage Reduction 13/Chaotic: Reduces physical damage by 13, except from Chaotic attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">13</Amount>
+      <Item>Chaotic</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 30/Chaotic</Type>
+    <DisplayText>DR Damage Reduction 30/Chaotic: Reduces physical damage by 30, except from Chaotic attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>Chaotic</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 15/Epic</Type>
+    <DisplayText>DR Damage Reduction 15/Epic: Reduces physical damage by 15, except from Epic attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 5/Evil</Type>
+    <DisplayText>DR Damage Reduction 5/Evil: Reduces physical damage by 5, except from Evil attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 10/Evil</Type>
+    <DisplayText>DR Damage Reduction 10/Evil: Reduces physical damage by 10, except from Evil attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 15/Evil</Type>
+    <DisplayText>DR Damage Reduction 15/Evil: Reduces physical damage by 15, except from Evil attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 50/Evil</Type>
+    <DisplayText>DR Damage Reduction 50/Evil: Reduces physical damage by 50, except from Evil attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">50</Amount>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 5/Good</Type>
+    <DisplayText>DR Damage Reduction 5/Good: Reduces physical damage by 5, except from Good attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Good</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 10/Good</Type>
+    <DisplayText>DR Damage Reduction 10/Good: Reduces physical damage by 10, except from Good attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>Good</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 15/Good</Type>
+    <DisplayText>DR Damage Reduction 15/Good: Reduces physical damage by 15, except from Good attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Good</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 30/Good</Type>
+    <DisplayText>DR Damage Reduction 15/Good: Reduces physical damage by 30, except from Good attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>Good</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 3/Lawful</Type>
+    <DisplayText>DR Damage Reduction 3/Lawful: Reduces physical damage by 3, except from Lawful attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 5/Lawful</Type>
+    <DisplayText>DR Damage Reduction 5/Lawful: Reduces physical damage by 5, except from Lawful attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 10/Lawful</Type>
+    <DisplayText>DR Damage Reduction 10/Lawful: Reduces physical damage by 10, except from Lawful attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 15/Lawful</Type>
+    <DisplayText>DR Damage Reduction 15/Lawful: Reduces physical damage by 15, except from Lawful attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>DR 30/Lawful</Type>
+    <DisplayText>DR Damage Reduction 30/Lawful: Reduces physical damage by 30, except from Lawful attacks.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Dragon Bane</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Dragon Bane: A bane weapon excels at attacking one type or subtype of creature. Against Dragons, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Dragon Bane 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Dragon Bane 2: This weapon is attuned specifically to disrupt those with draconic blood, dealing an additional 2d10 bane damage vs. Dragons.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Dragon Bane 3</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Dragon Bane 3: This weapon is attuned specifically to disrupt those with draconic blood, dealing an additional 3d10 bane damage vs. Dragons.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Dragon Bane 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Dragon Bane 4: This weapon is attuned specifically to disrupt those with draconic blood, dealing an additional 4d10 bane damage vs. Dragons.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>DreamVision</Type>
     <DisplayText>Dream Vision %v1: Passive: %v1 %b1 bonus to Attack and Damage rolls. Your melee and ranged attacks are also able to bypass the miss chance for attacking Incorporeal enemies as if they had Ghost Touch.</DisplayText>
     <Ignore>Equipment</Ignore>
@@ -2879,6 +4043,10 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Dripping with Magma</Type>
+    <DisplayText>Dripping with Magma: This Obsidian weapon drips with magma on every swing. Your attacks have a high chance to deal very strong fire damage over time.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Dusk</Type>
     <DisplayText>Dusk: Equipping this item engulfs you in twilight shadows. Attacks from enemies have a 10% chance to miss you due to concealment.</DisplayText>
     <Effect>
@@ -2892,6 +4060,94 @@ acid damage by two seconds.</DisplayText>
   <Buff>
     <Type>EarthgrabGuard</Type>
     <DisplayText>Earthgrab Guard: This item stores the implacable strength of the earth deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, calling on the earth to erupt from the ground and hold an enemy in place.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Echoes of Angdrelve 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Echoes of Angdrelve 4: Eager to taste the flesh of your enemies, this wicked sword drips burning acid at your command. Each strike from this devastating weapon deals an additional 4d6 Acid damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Chaos</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Echoes of Angdrelve 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Echoes of Angdrelve 6: Eager to taste the flesh of your enemies, this wicked sword drips burning acid at your command. Each strike from this devastating weapon deals an additional 6d6 Acid damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Chaos</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>EfficientEmboldenII</Type>
@@ -3055,6 +4311,22 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Electrifying</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Electrifying: This weapon is sheathed in sparking electricity. An electrifying weapon deals an extra 3 to 18 points of electricity damage on a successful hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>%i1</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Electrifying1</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Electrifying 1: This effect causes the edges of this weapon to arc with electricity, dealing 1d6 Lightning damage on each hit.</DisplayText>
@@ -3170,6 +4442,21 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Elemental Absorption</Type>
+    <DisplayText>Elemental Absorption +%v1%: Passive: %v1% Enhancement Bonus to Acid, Cold, Fire, and Electrical Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Elemental Resistance</Type>
     <DisplayText>%b1 Elemental Resistance %v1: Passive: %v1 %b1 bonus to your Acid, Cold, Electricity, Fire, and Sonic Resistances.</DisplayText>
      <Ignore>Enhancement</Ignore>
@@ -3258,6 +4545,25 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Enhanced Ghostly</Type>
+    <DisplayText>Enhanced Ghostly: Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 15% chance to miss you due to incorporeality . You receive a +5 enhancement bonus to your Hide and Move Silently skills.</DisplayText>
+    <Effect>
+      <Type>GhostTouch</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Hide</Item>
+      <Item>Move Silently</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Enhanced Ki</Type>
     <DisplayText>Enhanced Ki %v1: Increases the rate at which the user gains Ki with each successful attack.</DisplayText>
     <Effect>
@@ -3281,6 +4587,94 @@ acid damage by two seconds.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Entropic 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Entropic 2: This weapon is intensely powerful, and crackles with destructive, unpredictable magic. It deals an additional 2d6 untyped damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Entropic 3</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Entropic 3: This weapon is intensely powerful, and crackles with destructive, unpredictable magic. It deals an additional 3d6 untyped damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Entropic 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Entropic 4: This weapon is intensely powerful, and crackles with destructive, unpredictable magic. It deals an additional 4d6 untyped damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Entropic 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Entropic 6: This weapon is intensely powerful, and crackles with destructive, unpredictable magic. It deals an additional 6d6 untyped damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Eternal Faith</Type>
+    <DisplayText>Eternal Faith: An item with this quality assists only wearers who have the ability to turn undead. Eternal Faith increase the owner's effective level for the turning check by +2, his maximum Hit Dice turned by +2, and his total Hit Dice turned by +4.</DisplayText>
+    <Effect>
+      <Type>TurnLevelBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>TurnDiceBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Everbright</Type>
+    <DisplayText>Everbright: Flecks of marble and pearl shimmer across this shield, set within images of bursting stars and beaming suns. An everbright shield will never take damage from rust or acid and can emit a Blinding Flash 3/rest.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Evil Characters</Type>
+    <DisplayText>Evil characters wielding this weapon will suffer one negative level.</DisplayText>
   </Buff>
   <Buff>
     <Type>EvilOutsiderBane</Type>
@@ -3435,6 +4829,17 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Favored Weapon</Type>
+    <DisplayText>Favored Weapon: This weapon has a divine attunement and gains bonuses as if it were a Favored Weapon regardless of your Deity.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Destiny</Bonus>
+         <Item>Favored Weapon</Item>
+         <AType>NotNeeded</AType>
+      </Effect>
+  </Buff>
+  <Buff>
     <Type>FeatherFalling</Type>
     <DisplayText>Feather Falling: This item is engraved with feathers and bestows a powerful magical effect. Whenever the wearer begins to fall from any height, this effect slows the descent dramatically, causing the wearer to fall like a feather.</DisplayText>
     <Effect>
@@ -3445,12 +4850,52 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>FeatBowStrength</Type>
+    <DisplayText>Feat - Bow Strength: While equipped this item grants the feat Bow Strength, allowing you to apply your Strength bonus to ranged attacks made with bows.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Bow Strength</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>FeatMobility</Type>
-    <DisplayText>Feat: Mobility: While equipped this armor grants the wielder the Mobility feat: increases the maximum dexterity bonus permitted by armor and tower shields by 2, adds a +4 bonus to Armor Class while tumbling, and gain a 2% dodge bonus.</DisplayText>
+    <DisplayText>Feat - Mobility: While equipped this armor grants the wielder the Mobility feat: increases the maximum dexterity bonus permitted by armor and tower shields by 2, adds a +4 bonus to Armor Class while tumbling, and gain a 2% dodge bonus.</DisplayText>
     <Effect>
       <Type>GrantFeat</Type>
       <Bonus>Enhancement</Bonus>
       <Item>Mobility</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FeatPreciseShot</Type>
+    <DisplayText>Feat - Precise Shot: While equipped this item grants the feat Precise Shot, allowing your ranged attacks to pass through other characters and monsters to strike your target.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Precise Shot</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FeatWeaponFocusThrown</Type>
+    <DisplayText>Feat - Weapon Focus - Thrown: While equipped this item grants the feat Weapon Focus: Thrown.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Weapon Focus: Thrown Weapons</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FeatWindThroughTheTrees</Type>
+    <DisplayText>Feat - Wind through the Trees: While equipped, this item grants the feat Wind through the Trees.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Wind through the Trees</Item>
       <AType>NotNeeded</AType>
     </Effect>
   </Buff>
@@ -3473,6 +4918,14 @@ acid damage by two seconds.</DisplayText>
       <AType>NotNeeded</AType>
       <Item>Falling Damage</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Fetters of Unreality</Type>
+    <DisplayText>Fetters of Unreality: This weapon is cruel and deadly, and leaves behind wounds that affect both the body and the soul. This weapon has a chance to inflict multiple stacks of Vulnerable.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Fiery Detonation</Type>
+    <DisplayText>Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll of 20 which is confirmed as a critical hit this burning power will be released, dealing damage to the target and all enemies near it for 15d6 fire damage.A successful Fortitude save (DC 39) reduces this by half.</DisplayText>
   </Buff>
   <Buff>
     <Type>Fiery</Type>
@@ -3588,8 +5041,20 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Fire Guard I</Type>
+    <DisplayText>Fire Guard I: When Hit in Melee: Deals 1 to 4 Fire damage to your attacker.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Fire Guard II</Type>
     <DisplayText>Fire Guard II: When Hit in Melee: Deals 2 to 8 Fire damage to your attacker.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Fire Guard VIII</Type>
+    <DisplayText>Fire Guard II: When Hit in Melee: Deals 8 to 32 Fire damage to your attacker.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Fire Guard X</Type>
+    <DisplayText>Fire Guard X: When Hit in Melee: Deals 10 to 40 Fire damage to your attacker.</DisplayText>
   </Buff>
   <Buff>
     <Type>FireLore</Type>
@@ -3604,6 +5069,10 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Fire Shield (Cold)</Type>
+    <DisplayText>Fire Shield (Cold): When you are successfully attacked, there is a 10% chance that a Fire Shield (Cold) will be cast on you. If this effect activates while you have an active Fire Shield (Hot) from another item source, they will nullify each-other.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>FireTouch</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Fire Touch: This weapon gives off a faint aura of warmth. A fire touch weapon deals an additional +1 Fire damage on a successful hit.</DisplayText>
@@ -3615,6 +5084,23 @@ acid damage by two seconds.</DisplayText>
         <Bonus size="1">1</Bonus>
         <Damage>Fire</Damage>
       </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FireVulnerability</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Fire Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.). This effect may only occur on-hit once every second.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Flameblade</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Flameblade: This blade is made of pure fire and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately.</DisplayText>
+    <Effect>
+      <Type>GhostTouch</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
       <Item>All</Item>
     </Effect>
   </Buff>
@@ -3879,6 +5365,22 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Fracturing</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Fracturing: This weapon is ideal for breaking bones and deals 2 to 12 damage to targets that have skeletons or are made of bone.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Freedom of Movement</Type>
     <DisplayText>Freedom of Movement: This item grants its wearer the ability to move and attack normally while under the influence of magic that impedes movement, such as paralysis, solid fog, slow and web.</DisplayText>
     <Effect>
@@ -3907,6 +5409,11 @@ acid damage by two seconds.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Frostbite</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Frostbite: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.). This effect may only occur on-hit once every two seconds.</DisplayText>
   </Buff>
   <Buff>
     <Type>FrostI</Type>
@@ -4049,6 +5556,10 @@ acid damage by two seconds.</DisplayText>
       <Item>Negative</Item>
       <Item>Poison</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Fusible</Type>
+    <DisplayText>Fusible: Something about this item looks incomplete. Perhaps in the future it will be compatible with another item to create a brand-new fusion of the two. (DDOBuilder Note: The Fusible versions of these items are separate items)</DisplayText>
   </Buff>
   <!--G-->
   <Buff>
@@ -4208,7 +5719,7 @@ acid damage by two seconds.</DisplayText>
       <Type>GhostTouch</Type>
       <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">1</Amount>
+      <Amount size="1">10</Amount>
       <Item>All</Item>
     </Effect>
     <Effect>
@@ -4229,6 +5740,132 @@ acid damage by two seconds.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ghostbane I</Type>
+    <DisplayText>Ghostbane I: On Hit: 1 to 6 Bane Damage vs Undead. (Bane damage cannot be resisted.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ghostbane II</Type>
+    <DisplayText>Ghostbane II: On Hit: 2 to 8 Bane Damage vs Undead. (Bane damage cannot be resisted.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ghostbane IV</Type>
+    <DisplayText>Ghostbane IV: On Hit: 4 to 16 Bane Damage vs Undead. (Bane damage cannot be resisted.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ghostbane V</Type>
+    <DisplayText>Ghostbane V: On Hit: 5 to 20 Bane Damage vs Undead. (Bane damage cannot be resisted.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">5</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ghostbane VI</Type>
+    <DisplayText>Ghostbane VI: On Hit: 6 to 24 Bane Damage vs Undead. (Bane damage cannot be resisted.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ghostbane VIII</Type>
+    <DisplayText>Ghostbane VIII: On Hit: 8 to 32 Bane Damage vs Undead. (Bane damage cannot be resisted.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
     </Effect>
   </Buff>
   <Buff>
@@ -4649,9 +6286,13 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Greater Sunburst: This item blazes with the eternal fury at the heart of a sun. Occasionally, this power comes to the surface, unleashing a nova of light which will blind the struck enemy, dealing severe light damage to it and any other nearby foes.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Greater Thorn Guard</Type>
+    <DisplayText>Greater Thorn Guard: This armor stings those that attack the wearer, causing 2d6 piercing damage on a successful melee attack.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>GreaterUndeadBane</Type>
     <ApplyToWeaponOnly/>
-    <DisplayText>Greater Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</DisplayText>
+    <DisplayText>Greater Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undead, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -4670,6 +6311,26 @@ acid damage by two seconds.</DisplayText>
       </Requirements>
     </Effect>
   </Buff>
+  <Buff>
+    <Type>Greater Vorpal</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vorpal: Passive: +0.5[W] damage dice. On a Vorpal Strike: If your target has fewer than 2000 hit points, it is instantly slain. If your target has above 2000 hit points, it takes 200 damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <Amount size="1">0.5</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Grounded</Type>
+    <DisplayText>Grounded: You are grounded. You cannot jump.</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Penalty</Bonus>
+      <Amount size="1">-999</Amount>
+      <Item>Jump</Item>
+    </Effect>
+  </Buff>
   <!--H-->
   <Buff>
     <Type>Hallowed</Type>
@@ -4679,6 +6340,22 @@ acid damage by two seconds.</DisplayText>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Hardened Spikes</Type>
+    <DisplayText>Hardened Spikes: The sharp, hardened spikes on this item deal an additional 4d6 Piercing damage when used to strike an enemy.</DisplayText>
+    <ApplyToWeaponOnly/>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -4746,6 +6423,201 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Holy Burst</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Holy Burst: A holy weapon is imbued with holy power. This power makes the weapon good-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2 to 12 points of damage against all of evil alignment and an extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier, and 5 to 30 for a x4 multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+       <Requirements>
+          <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Evil</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+       <Requirements>
+          <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Evil</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Good</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Neutral Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Holy Burst 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Holy Burst 6: This weapon sings of virtue, dealing 6d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+       <Requirements>
+          <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Evil</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+       <Requirements>
+          <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Evil</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Good</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Neutral Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Holy Burst 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Holy Burst 4: This weapon sings of virtue, dealing 4d6 Good damage on a successful hit to Evil enemies, and 9d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+       <Requirements>
+          <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Evil</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">9</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+       <Requirements>
+          <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Evil</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Good</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Neutral Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Holy</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Holy: This weapon is wielded by the pure to smite the wicked, dealing an additional 2d6 good damage on each hit. This effect makes the weapon good aligned. Evil characters wielding this weapon will suffer one negative level.</DisplayText>
@@ -4755,6 +6627,56 @@ acid damage by two seconds.</DisplayText>
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Good</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Neutral Evil</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Holy 1</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Holy 1: This weapon is wielded by the pure to smite the wicked, dealing an additional 1d6 good damage on each hit. This effect makes the weapon good aligned. Evil characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
         <Sides size="1">6</Sides>
         <Damage>Good</Damage>
       </Dice>
@@ -5046,6 +6968,116 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Human Bane</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Human Bane: A bane weapon excels at attacking one type or subtype of creature. Against Humans, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Human</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Human Bane 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Human Bane 2: This weapon is attuned specifically to hunt those with diversity and ambition, dealing an additional 2d10 bane damage vs. Humans.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Human</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Human Bane 3</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Human Bane 3: This weapon is attuned specifically to hunt those with diversity and ambition, dealing an additional 3d10 bane damage vs. Humans.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Human</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Human Bane 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Human Bane 4: This weapon is attuned specifically to hunt those with diversity and ambition, dealing an additional 4d10 bane damage vs. Humans.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Human</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Human Bane 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Human Bane 6: This weapon is attuned specifically to hunt those with diversity and ambition, dealing an additional 6d10 bane damage vs. Humans.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Human</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Humanoid Bane 2</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Humanoid Bane 2: This weapon is attuned specifically to those that walk among us, dealing an additional 2d10 bane damage vs. Humanoids.</DisplayText>
@@ -5157,6 +7189,10 @@ acid damage by two seconds.</DisplayText>
   </Buff>
   <!--I-->
   <Buff>
+    <Type>Ice Barrier</Type>
+    <DisplayText>Ice Barrier: When struck in combat, there is a small chance you will be shielded by conjured ice, preventing the next 15 Damage unless that damage is Fire. This lasts for 1 minute or until depleted.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Ice Guard II</Type>
     <DisplayText>Ice Guard II: When Hit in Melee: Deals 2 to 8 Cold damage to your attacker.</DisplayText>
   </Buff>
@@ -5170,6 +7206,106 @@ acid damage by two seconds.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>Cold</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Icy Blast 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Icy Blast 2: This weapon is sheathed in icy cold, dealing 2d6 Cold damage on a successful hit, and an additional 2d6 Cold damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Icy Blast 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Icy Blast 4: This weapon is sheathed in icy cold, dealing 4d6 Cold damage on a successful hit, and an additional 4d6 Cold damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Icy Blast 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Icy Blast 6: This weapon is sheathed in icy cold, dealing 6d6 Cold damage on a successful hit, and an additional 6d6 Cold damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">12</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Icy Burst</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Icy Burst: This weapon is sheathed in icy cold, and deals 1 to 6 cold damage each hit. Critical hits deal an additional 1 to 10 cold damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -5298,6 +7434,10 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Improved Auto-Repair</Type>
+    <DisplayText>Improved Auto-Repair: This item has a small percentage chance to cast a Repair Serious Damage spell on you when you take damage.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>ImprovedColdResistance</Type>
     <DisplayText>Improved Cold Resistance: This property absorbs the first 20 points of cold damage per attack that the wearer would normally take.</DisplayText>
     <Effect>
@@ -5323,6 +7463,14 @@ acid damage by two seconds.</DisplayText>
             <Amount size="1">5</Amount>
             <Item>Bluff</Item>
         </Effect>
+  </Buff>
+  <Buff>
+    <Type>Improved Demonic Shield</Type>
+    <DisplayText>Improved Demonic Shield: Each time you are hit in melee combat there is a chance that a shield of demonic energy will grant you a +120 Profane bonus to temporary hit points.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Improved Destruction</Type>
+    <DisplayText>Improved Destruction: On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification . 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second.</DisplayText>
   </Buff>
   <Buff>
     <Type>Improved Earthen Guard</Type>
@@ -5377,6 +7525,24 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Improved Paralyzing</Type>
+    <DisplayText>Improved Paralyzing: Any creature struck by this weapon must succeed on a DC 28 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Improved Vorpal</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vorpal: Passive: +0.5[W] damage dice. On a Vorpal Strike: If your target has fewer than 1500 hit points, it is instantly slain. If your target has above 1500 hit points, it takes 150 damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <Amount size="1">0.5</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Improved Quelling Strikes</Type>
+    <DisplayText>Improved Quelling Strikes: On Vorpal Melee: applies a Quell effect to target enemy for six seconds, rendering them unable to cast divine spells. This has a 50% chance of preventing the target from casting all spells for three seconds (12 second cooldown).</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Impulse</Type>
     <DisplayText>%b1 Impulse %v1: %v1 %b1 bonus to Force/Untyped spell power.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -5420,6 +7586,10 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Incineration: This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with massive fire damage.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Incineration Guard</Type>
+    <DisplayText>Incineration Guard: This item stores the power of a raging inferno deep within. When the wearer of this item is successfully attacked in melee, this destructive power occasionally comes to the surface, devastating enemies with massive fire damage.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Incite</Type>
     <DisplayText>%b1 Incite %v1%: %v1% %b1 bonus to increased threat generation from melee damage</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -5447,6 +7617,18 @@ acid damage by two seconds.</DisplayText>
   <Buff>
     <Type>Invisibility Guard</Type>
     <DisplayText>Invisibility Guard: This item has a chance of granting you temporary invisibility when you are hit by foes. The invisibility will not be removed when you attack or take damage, but it will wear off after 10 seconds.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Invulnerability</Type>
+    <DisplayText>Invulnerability: Reduces physical damage by 5, except from attacks from magic weapons. DR 5/magic.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Magic</Item>
+    </Effect>
   </Buff>
    <!--J-->
   <Buff>
@@ -5580,16 +7762,42 @@ acid damage by two seconds.</DisplayText>
   </Buff>
   <!--L-->
   <Buff>
+    <Type>Legendary Blinding Embers</Type>
+    <DisplayText>Legendary Blinding Embers: This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Earthgrab Guard</Type>
     <DisplayText>Legendary Earthgrab Guard: This item stores the implacable strength of the earth deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, calling on the earth to erupt from the ground and hold an enemy in place.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Elemental Energy</Type>
+    <DisplayText>Legendary Elemental Energy: Harnessing a small amount of power and potential of the raw elements, this item gives you a +150 bonus to your maximum spell points. This stacks with all bonuses except for Legendary Elemental Energy.</DisplayText>
+    <Effect>
+      <Type>Hitpoints</Type>
+      <Bonus>Legendary Elemental Energy</Bonus>
+       <AType>Simple</AType>
+       <Amount size="1">150</Amount>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Legendary Nightmare Guard</Type>
     <DisplayText>Legendary Nightmare Guard: On being hit or missed, this item has a chance to attempt to fear your enemy, ripping the life from them as if they were struck with a Phantasmal Killer spell. Enemies must make a DC 100 Will save versus the Fear or a DC 100 Fortitude save versus Death or be slain. Even if they make their save versus Death, they may still be feared.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Paralysis</Type>
+    <DisplayText>Legendary Paralysis: On hit, this has a chance of paralyzing your enemies. Struck enemies must make a DC 100 Fortitude save or be paralyzed.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Sirocco</Type>
+    <DisplayText>Legendary Sirocco: On hit, this has a chance of blinding your enemies with whirling sand. Struck enemies must make a DC 100 Fortitude save or be blinded.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Slicing Winds</Type>
     <DisplayText>Legendary Slicing Winds: This weapon whistles with the wind. On hit, this mysterious power has a chance of coming to the surface, slicing at the struck enemy for a significant amount of Slashing damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Telekinetic</Type>
+    <DisplayText>Legendary Telekinetic: On hit, this has a chance of knocking your enemies off their feet. Struck enemies must make a DC 100 Reflex save or be knocked down.</DisplayText>
   </Buff>
   <Buff>
     <Type>LesserActionBoostEnhancement</Type>
@@ -5689,6 +7897,17 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>LesserFireResistance</Type>
+    <DisplayText>Lesser Fire Resistance: This property absorbs the first 3 points of fire damage per attack that the wearer would normally take.</DisplayText>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>LesserHalflingBane</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Lesser Halfling Bane: A bane weapon excels at attacking one type or subtype of creature. Against Halflings, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
@@ -5706,6 +7925,28 @@ acid damage by two seconds.</DisplayText>
         <Requirement>
           <Type>EnemyType</Type>
           <Item>Halfling</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Lesser Monstrous Humanoid Bane</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Lesser Monstrous Humanoid Bane: A bane weapon excels at attacking one type or subtype of creature. Against Monstrous Humanoids, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Monstrous Humanoid</Item>
         </Requirement>
       </Requirements>
     </Effect>
@@ -5751,9 +7992,19 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Lesser Turning</Type>
+    <DisplayText>Lesser Turning: Increases total number of Turn Undead uses by 2, once wielder rests. If you unequip the item you will lose these turns.</DisplayText>
+    <Effect>
+      <Type>ExtraTurns</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>LesserUndeadBane</Type>
     <ApplyToWeaponOnly/>
-    <DisplayText>Lesser Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
+    <DisplayText>Lesser Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undead, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -5823,8 +8074,16 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
-    <Type>Limb Chopper</Type>
-    <DisplayText>Limb Chopper: This potent and feared ability allows the weapon to sever the limbs of those it strikes. On an attack roll of 20 which is confirmed as a critical hit, the weapon severs an opponent's limb from its body. Some creatures, including many aberrations and all oozes, have no limbs. Others, such as golems and undead creatures, are not affected by the loss of their limbs. Most other creatures, however, have their movement slowed 75% and attacks slowed by 50% when a limb is cut off.</DisplayText>
+    <Type>Lightning Strike</Type>
+    <DisplayText>Lightning Strike: This weapon stores the power of a volatile thunderstorm deep within. Occasionally, this dynamic power comes to the surface, devastating enemies with a massive lightning strike.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Linguistics</Type>
+    <DisplayText>Linguistics %v1%: This item reduced the cooldowns of your Social skills (Diplomacy, Bluff, Intimidate) by %v1%. This does not stack with the Negotiator ability.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Blinding Embers</Type>
+    <DisplayText>Legendary Blinding Embers: This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks.</DisplayText>
   </Buff>
   <!--M-->
   <Buff>
@@ -5965,6 +8224,32 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Maker's Touch: Casting a Repair spell on yourself or allies leaves a lingering defensive buff that increases the AC and Physical Resistance Rating of your target by +3 for 12 seconds.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Malleable</Type>
+    <DisplayText>Malleable : This item has a magical aura of malleability and can be combined with any item that has the Fusible property to create a new, more powerful fusion of the two items. (DDOBuilder Note: The Malleable versions of these items are separate items)</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Marksmanship</Type>
+    <DisplayText>Marksmanship: This item is enchanted to enhance your skill with ranged weapons. When using ranged weapons you gain +2 to your attack rolls and +1 to your damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_AttackClass</Type>
+      <Type>Weapon_AttackCriticalClass</Type>
+      <Type>Enhancement</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Ranged</Item>
+    </Effect>
+    <Effect>
+      <Type>Weapon_DamageClass</Type>
+      <Type>Weapon_DamageCriticalClass</Type>
+      <Type>Enhancement</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Ranged</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>MasterworkArmor</Type>
     <DisplayText>Masterwork: This armor is more finely crafted than normal, reducing the Armor Check Penalty by 1.</DisplayText>
     <Effect>
@@ -5996,7 +8281,7 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Maximum Charge Tier II: The maximum charge tier of this rune arm is tier 2.</DisplayText>
   </Buff>
   <Buff>
-    <Type>MaximumChargeTierIV</Type>
+    <Type>MaximumChargeTierIII</Type>
     <DisplayText>Maximum Charge Tier III: The maximum charge tier of this rune arm is tier 3.</DisplayText>
   </Buff>
   <Buff>
@@ -6074,6 +8359,17 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Mind Drain</Type>
+    <DisplayText>Mind Drain: This item reduces your maximum spell points by 5% while equipped.</DisplayText>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Penalty</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Percent/>
+      </Effect>
+  </Buff>
+  <Buff>
     <Type>MinorActionBoostEnhancement</Type>
     <DisplayText>Minor Action Boost Enhancement: This will increase the total number of Action Boosts you can use by 1. However, these additional Action Boosts will only take effect after the wielder rests.</DisplayText>
     <Effect>
@@ -6090,6 +8386,21 @@ acid damage by two seconds.</DisplayText>
   <Buff>
     <Type>MithralArmor</Type>
     <DisplayText>Mithral: Mithral armor is one type lighter then normal. Arcane Spell Failure decreased by 10%. Maximum dexterity bonus increased by 2. Armor check penalty reduced by 3.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Mother Night's Embrace</Type>
+    <DisplayText>Mother Night's Embrace: This weapon is unholy and imbued by one of the two deities of Barovia - the Mother Night. This weapon is evil, dealing an additional 3d6 evil damage on hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Evil</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Monstrous Humanoid Bane 2</Type>
@@ -6264,6 +8575,89 @@ acid damage by two seconds.</DisplayText>
       <Item>Poison</Item>
     </Effect>
   </Buff>
+  <!--O-->
+  <Buff>
+    <Type>Ooze Bane</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ooze Bane: A bane weapon excels at attacking one type or subtype of creature. Against Oozes, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Ooze</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ooze Bane 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ooze Bane 2: This weapon is attuned specifically to disrupt Oozes, dealing an additional 2d10 bane damage vs. Oozes.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Ooze</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ooze Bane 5</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ooze Bane 5: This weapon is attuned specifically to disrupt Oozes, dealing an additional 5d10 bane damage vs. Oozes.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">5</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Ooze</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Overfocus</Type>
+    <DisplayText>Overfocus: This item helps you focus your attention, but it makes you somewhat oblivious to your surroundings, causing a -10 penalty to Search and Spot .</DisplayText>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">-10</Amount>
+         <Item>Search</Item>
+         <Item>Spot</Item>
+      </Effect>
+  </Buff>
+  <Buff>
+    <Type>Overwhelming Incineration</Type>
+    <DisplayText>Overwhelming Incineration: This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with overwhelming fire damage.</DisplayText>
+  </Buff>
   <!--P-->
   <Buff>
     <Type>Paralyzing</Type>
@@ -6272,6 +8666,33 @@ acid damage by two seconds.</DisplayText>
   <Buff>
     <Type>Path of the Guarding Stone</Type>
     <DisplayText>Path of the Guarding Stone: While wearing this item and in mountain stance, there is a chance you will be protected by a Stoneskin spell when enemies strike you.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Penalty Lawful</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Penalty: If equipped by a Lawful user, they receive 1 Negative Level for as long as this item is equipped.</DisplayText>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Persuasion</Type>
@@ -6283,6 +8704,16 @@ acid damage by two seconds.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">3</Amount>
       <Item>Charisma</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Petrification Immunity</Type>
+    <DisplayText>Petrification Immunity: This items gives immunity to Petrification.</DisplayText>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Petrification</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -6343,6 +8774,86 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Piercing 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Piercing 2: The edges of this weapon have serrated edges, dealing an additional 2d6 piercing damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Piercing 3</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Piercing 3: The edges of this weapon have serrated edges, dealing an additional 3d6 piercing damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Piercing 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Piercing 4: The edges of this weapon have serrated edges, dealing an additional 4d6 piercing damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Piercing 5</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Piercing 5: The edges of this weapon have serrated edges, dealing an additional 5d6 piercing damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">5</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Piercing 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Piercing 6: The edges of this weapon have serrated edges, dealing an additional 6d6 piercing damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>PirateVitality</Type>
     <DisplayText>Pirate Vitality: You gain the toughness of a pirate, which bestows a +10 bonus to your maximum hit points. This stacks with all bonuses except itself.</DisplayText>
     <Effect>
@@ -6350,6 +8861,22 @@ acid damage by two seconds.</DisplayText>
       <Bonus>Pirate</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Poison</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Poison: This weapon is dripping with poison. It deals an additional 1 to 6 poison damage on a successful hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Poison</Damage>
+      </Dice>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -6686,6 +9213,19 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>PowerOfTheFrozenStorm</Type>
+    <DisplayText>%b1 Power of the Frozen Storm %v1: Passive: %v1 %b1 bonus to Cold and Electric Spell Power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>PowerOfTheSacredGround</Type>
     <DisplayText>%b1 Power of the Sacred Ground %v1: Passive: %v1 %b1 bonus to Acid, Light, and Alignment Spell Power.</DisplayText>
     <Ignore>Equipment</Ignore>
@@ -6722,7 +9262,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>ProficiencyBastardSword</Type>
-    <DisplayText>Proficiency: Bastard Sword: While equipped this item grants the wielder all required knowledge to wield a Bastard Sword without proficiency penalties.</DisplayText>
+    <DisplayText>Proficiency - Bastard Sword: While equipped this item grants the wielder all required knowledge to wield a Bastard Sword without proficiency penalties.</DisplayText>
     <Effect>
       <Type>GrantFeat</Type>
       <Bonus>Enhancement</Bonus>
@@ -6732,7 +9272,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>ProficiencyGreatClub</Type>
-    <DisplayText>Proficiency: Greatclub: While equipped this item grants the wielder all required knowledge to wield a Greatclub without proficiency penalties.</DisplayText>
+    <DisplayText>Proficiency - Greatclub: While equipped this item grants the wielder all required knowledge to wield a Greatclub without proficiency penalties.</DisplayText>
     <Effect>
       <Type>GrantFeat</Type>
       <Bonus>Enhancement</Bonus>
@@ -6742,7 +9282,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>ProficiencyKhopesh</Type>
-    <DisplayText>Proficiency: Khopesh: While equipped this item grants the wielder all required knowledge to wield a Khopesh without proficiency penalties.</DisplayText>
+    <DisplayText>Proficiency - Khopesh: While equipped this item grants the wielder all required knowledge to wield a Khopesh without proficiency penalties.</DisplayText>
     <Effect>
       <Type>GrantFeat</Type>
       <Bonus>Enhancement</Bonus>
@@ -6752,7 +9292,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>ProficiencyLongbow</Type>
-    <DisplayText>Feat: Proficiency: Longbow: While equipped this item grants the feat Proficiency: Longbow.</DisplayText>
+    <DisplayText>Feat - Proficiency: Longbow: While equipped this item grants the feat Proficiency: Longbow.</DisplayText>
     <Effect>
       <Type>GrantFeat</Type>
       <Bonus>Enhancement</Bonus>
@@ -6762,7 +9302,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>ProficiencyShortbow</Type>
-    <DisplayText>Feat: Proficiency: Shortbow: While equipped this item grants the feat Proficiency: Shortbow.</DisplayText>
+    <DisplayText>Feat - Proficiency: Shortbow: While equipped this item grants the feat Proficiency: Shortbow.</DisplayText>
     <Effect>
       <Type>GrantFeat</Type>
       <Bonus>Enhancement</Bonus>
@@ -6816,7 +9356,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>PowerStore</Type>
-    <DisplayText>Power Store: This item collects and stores magical energy. Any spellcaster can use this energy to partially power their spells. All spells cast while using this item receive an enhancement bonus of -10% to their spell point costs.</DisplayText>
+    <DisplayText>Power Store: This item collects and stores magical energy. Any spell caster can use this energy to partially power their spells. All spells cast while using this item receive an enhancement bonus of -10% to their spell point costs.</DisplayText>
   </Buff>
   <Buff>
     <Type>Puncturing</Type>
@@ -6831,6 +9371,11 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+   <!--Q-->
+  <Buff>
+    <Type>Quenched</Type>
+    <DisplayText>Quenched: Your Cold and Lightning spells apply the debuff portion of Quench with no save.</DisplayText>
   </Buff>
   <!--R-->
   <Buff>
@@ -6862,6 +9407,23 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">4</Amount>
       <Item>Enchantments</Item>
+       <Requirements>
+          <Requirement>
+             <Type>Stance</Type>
+             <Item>Rage</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Raging Resilience</Type>
+    <DisplayText>Raging Resilience: While Raged, +4 Rage Bonus to Fortitude Saves .</DisplayText>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Fortitude</Item>
        <Requirements>
           <Requirement>
              <Type>Stance</Type>
@@ -6965,7 +9527,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
-    <Type>RefinforcedFists</Type>
+    <Type>ReinforcedFists</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one half die.</DisplayText>
     <Effect>
@@ -7090,6 +9652,81 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Ribcracker III</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ribcracker III: On Critical Hit: 7 to 42 Bludgeoning damage from weapons with a x2 Critical Multiplier, 7 to 56 Bludgeoning damage from weapons with a x3 Critical Multiplier, and 7 to 70 Bludgeoning damage from weapons with a x4 or greater Critical Multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bludgeon</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ribcracker IV</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ribcracker IV: On Critical Hit: 9 to 54 Bludgeoning damage from weapons with a x2 Critical Multiplier, 9 to 72 Bludgeoning damage from weapons with a x3 Critical Multiplier, and 9 to 90 Bludgeoning damage from weapons with a x4 or greater Critical Multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">9</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bludgeon</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ribcracker V</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ribcracker V: On Critical Hit: 11 to 66 Bludgeoning damage from weapons with a x2 Critical Multiplier, 11 to 88 Bludgeoning damage from weapons with a x3 Critical Multiplier, and 11 to 110 Bludgeoning damage from weapons with a x4 or greater Critical Multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">11</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bludgeon</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ribcracker VI</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ribcracker VI: On Critical Hit: 13 to 78 Bludgeoning damage from weapons with a x2 Critical Multiplier, 13 to 104 Bludgeoning damage from weapons with a x3 Critical Multiplier, and 13 to 130 Bludgeoning damage from weapons with a x4 or greater Critical Multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">13</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bludgeon</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Ribcracker VIII</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Ribcracker VIII: On Critical Hit: 17 to 102 Bludgeoning damage from weapons with a x2 Critical Multiplier, 17 to 136 Bludgeoning damage from weapons with a x3 Critical Multiplier, and 17 to 170 Bludgeoning damage from weapons with a x4 or greater Critical Multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">17</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bludgeon</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Righteous</Type>
     <DisplayText>Righteous: This weapon is imbued with holy power, giving it an additional +2 to attack bonus and damage against any evil creature. This power makes the weapon good-aligned.</DisplayText>
     <Effect>
@@ -7129,6 +9766,25 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Roar: This item emits a frightening roar when melee attackers score a critical hit on the wearer, causing them to resist or be shaken with fear.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Roaring</Type>
+    <DisplayText>Roaring: This weapon causes targets to become shaken (DC 25 Will save negates) and, on a critical hit, does 2 to 12 sonic damage to the target.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Rockslide</Type>
+    <DisplayText>Rockslide: This weapon stores the power of a volatile rockslide deep within. On hit, there is a chance to do massive bludgeoning damage to your enemy.</DisplayText>
+    <ApplyToWeaponOnly/>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Sonic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>RoughHide</Type>
     <DisplayText>%b1 Rough Hide %v1: This item fuses with your body and toughens your skin, providing a %v1 %b1 bonus to your natural armor.</DisplayText>
     <Ignore>Primal</Ignore>
@@ -7137,6 +9793,207 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Royalty's Frigid Response</Type>
+    <DisplayText>Royalty's Frigid Response: The Prince of Frost sends his regards... Your attacks and offensive spells have a chance to freeze an enemy in a block of ice.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Acid II</Type>
+    <DisplayText>Rune Arm Imbue - Acid II: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d4 points of Acid damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Cold I</Type>
+    <DisplayText>Rune Arm Imbue - Cold I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of cold damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Cold III</Type>
+    <DisplayText>Rune Arm Imbue - Cold III: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of cold damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Cold IV</Type>
+    <DisplayText>Rune Arm Imbue - Cold IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d8 points of cold damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Cold V</Type>
+    <DisplayText>Rune Arm Imbue - Cold V: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of cold damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Electrical II</Type>
+    <DisplayText>Rune Arm Imbue - Electrical II: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d4 points of electrical damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Electrical III</Type>
+    <DisplayText>Rune Arm Imbue - Electrical III: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of electrical damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Electrical IV</Type>
+    <DisplayText>Rune Arm Imbue - Electrical IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d8 points of electrical damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Electrical V</Type>
+    <DisplayText>Rune Arm Imbue - Electrical V: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of electrical damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Force IV</Type>
+    <DisplayText>Rune Arm Imbue - Force IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Fire III</Type>
+    <DisplayText>Rune Arm Imbue - Fire III: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of Fire damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Fire IV</Type>
+    <DisplayText>Rune Arm Imbue - Fire IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d8 points of Fire damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune-fueled Warding</Type>
+    <DisplayText>Rune-fueled Warding : When you are holding a two-handed weapon, you have a DR of 30/-.</DisplayText>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>-</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
     </Effect>
   </Buff>
   <!--S-->
@@ -7162,6 +10019,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Item>Acid</Item>
       <Item>Light/Alignment</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Scallywag's Luck V</Type>
+    <DisplayText>Scallywag's Luck V: While in Smuggler's Rest, you gain 30% additional doubloons when fighting pirates.</DisplayText>
   </Buff>
   <Buff>
     <Type>SchoolFocus</Type>
@@ -7239,6 +10100,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Shrieking Bolt</Type>
+    <DisplayText>Shrieking Bolt: This item resonates with sonic energy. On ranged attacks, on an attack roll of 20 which is confirmed as a critical hit it will punish the target with a blast of sound (10 to 60 sonic damage). A successful Fortitude save (DC 22) reduces this damage by half.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Shield</Type>
     <DisplayText>Shield %v1: While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a %v1 Shield bonus to Armor Class. It does not stack with an equipped shield.</DisplayText>
     <Effect>
@@ -7247,6 +10112,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shockwave</Type>
+    <DisplayText>Shockwave: On Vorpal, this weapon triggers a Shockwave, striking its target with bludgeoning damage and dealing damage to surrounding enemies.</DisplayText>
   </Buff>
   <Buff>
     <Type>Single-Mindedness</Type>
@@ -7401,6 +10270,46 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
         <Damage>Electric</Damage>
       </Dice>
       <Item>%i1</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shocking Burst</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Shocking Burst: This weapon is sheathed in crackling electricity, and deals 1 to 6 electric damage each hit. Critical hits deal an additional 1 to 10 electric damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>%i1</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>%i1</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ShockingTouch</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Shocking Touch: This weapon tingles when held. A shocking touch weapon deals an extra +1 electric damage on a successful hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Bonus size="1">1</Bonus>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -7628,6 +10537,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Shocking Blow</Type>
+    <DisplayText>Shocking Blow: This item is charged with electricity. When in melee, on an attack roll of 20 which is confirmed as a critical hit it will punish the target with a large electric shock (10 to 60 electric damage). A successful Reflex save (DC 22) reduces this damage by half.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Silver</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Silver, Alchemical: A complex process involving metallurgy and alchemy can bond silver to a weapon made of steel so that it bypasses the damage reduction of creatures such as lycanthropes and vampires.</DisplayText>
@@ -7636,6 +10549,18 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Bonus>Equipment</Bonus>
       <AType>NotNeeded</AType>
       <Item>Silver</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Silver Threaded</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Silver Threaded: A complex process involving metallurgy and alchemy can weave silver into cloth so that it bypasses the protective damage reduction of creatures such as lycanthropes and vampires.</DisplayText>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Silver</Item>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -7729,6 +10654,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Slay Living</Type>
+    <DisplayText>Slay Living: This weapon stores a dark and sinister power deep within. When the weapon is used, this power occasionally comes to the surface, attempting to instantly snuff out the life force of the enemy.</DisplayText>
   </Buff>
   <Buff>
     <Type>Slicing</Type>
@@ -7916,6 +10845,16 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Smoke Screen</Type>
+    <DisplayText>Smoke Screen: You are surrounded by wisps of concealing smoke, giving opponents a 20% concealment chance to miss you.</DisplayText>
+    <Effect>
+      <Type>Displacement</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Sneak Attack</Type>
     <DisplayText>%b1 Sneak Attack Bonus %v1: Provides a %v1 %b1 modifier to your attack bonus and a %v2 %b1 bonus to damage for any attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -7929,6 +10868,22 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Type>SneakAttackDamage</Type>
       <Bonus>Not Set</Bonus>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Solar I</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Solar I: On Hit: 1 to 6 Light Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Light</Damage>
+      </Dice>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -8076,6 +11031,18 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Sonic Guard</Type>
+    <DisplayText>Sonic Guard: This item blasts those that attack the wearer, causing 1d6 sonic damage on a successful melee attack.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Sonic Guard +2</Type>
+    <DisplayText>Sonic Guard +2: Chance to deal 2d8 Sonic damage when hit.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Sonic Guard +3</Type>
+    <DisplayText>Sonic Guard +3: Chance to deal 3d8 Sonic damage when hit.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>StaggeringBlow</Type>
     <DisplayText>Staggering Blow: This item is enchanted to make your attacks send enemies reeling. When you roll a 20 on an attack with a melee weapon you will knock the target down unless it makes a DC 17 Balance check.</DisplayText>
   </Buff>
@@ -8145,6 +11112,94 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">50</Amount>
       <Item>Electric</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sovereign Vorpal</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vorpal: Passive: +0.5[W] damage dice. On a Vorpal Strike: If your target has fewer than 3000 hit points, it is instantly slain. If your target has above 3000 hit points, it takes 300 damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <Amount size="1">0.5</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Spearblock II</Type>
+    <DisplayText>Spearblock II: Passive: Reduces physical damage taken by 4, except from Bludgeoning or Slashing weapons. (Damage Reduction: 4/Slash, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Slash</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Spearblock III</Type>
+    <DisplayText>Spearblock III: Passive: Reduces physical damage taken by 6, except from Bludgeoning or Slashing weapons. (Damage Reduction: 6/Slash, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Slash</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Spearblock V</Type>
+    <DisplayText>Spearblock V: Passive: Reduces physical damage taken by 10, except from Bludgeoning or Slashing weapons. (Damage Reduction: 10/Slash, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>Slash</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Spearblock VI</Type>
+    <DisplayText>Spearblock VI: Passive: Reduces physical damage taken by 12, except from Bludgeoning or Slashing weapons. (Damage Reduction: 12/Slash, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">12</Amount>
+      <Item>Slash</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Spearblock VIII</Type>
+    <DisplayText>Spearblock VIII: Passive: Reduces physical damage taken by 16, except from Bludgeoning or Slashing weapons. (Damage Reduction: 16/Slash, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">16</Amount>
+      <Item>Slash</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Spearblock X</Type>
+    <DisplayText>Spearblock X: Passive: Reduces physical damage taken by 20, except from Bludgeoning or Slashing weapons. (Damage Reduction: 20/Slash, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Slash</Item>
+      <Item>Bludgeon</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -8273,6 +11328,22 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>SpellSave</Type>
+    <DisplayText>%b1 Spell Save %v1: This item gives a %v1 %b1 bonus to your saves versus spells.</DisplayText>
+    <Ignore>Resistance</Ignore>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Spell</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Spell Turmoil</Type>
+    <DisplayText>Spell Turmoil: When casting any damaging Fire, Cold, Acid or Electric spells, there is a chance that you will gain a +20 Alchemical bonus to Spell Power to one of those energy types for 30 seconds.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>SpikeGuard</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Spike Guard: On Being Hit in Melee: 5% chance to do 510 to 700 Piercing Damage to the Attacker.</DisplayText>
@@ -8334,6 +11405,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sticky Goo Guard</Type>
+    <DisplayText>Sticky Goo Guard: This item has a chance of encasing a creature in sticky goo, much like an attack of a mimic. It reduces the creatures move speed and attack speed.</DisplayText>
   </Buff>
   <Buff>
     <Type>Stone Prison</Type>
@@ -8432,7 +11507,64 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Item>Unarmed</Item>
     </Effect>
   </Buff>
+  <Buff>
+    <Type>Superior Vorpal</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vorpal: Passive: +0.5[W] damage dice. On a Vorpal Strike: If your target has fewer than 2500 hit points, it is instantly slain. If your target has above 2500 hit points, it takes 250 damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <Amount size="1">0.5</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Supreme Good</Type>
+    <DisplayText>Supreme Good: This weapon is infused with the supreme Power of Good. It does an additional 3 to 18 damage to non-good targets and can only be wielded by Good-aligned characters.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+         <Requirement>
+         <Type>EnemyType</Type>
+         <Item>Non-Good</Item>
+         </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
   <!--T-->
+  <Buff>
+    <Type>Taint of Chaos</Type>
+    <DisplayText>Taint of Chaos: Lawful aligned characters equipping this item suffer a temporary negative level until the item is removed.</DisplayText>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
   <Buff>
     <Type>TaintOfEvil</Type>
     <DisplayText>Taint of Evil: Good aligned characters equipping this item suffer a temporary negative level until the item is removed.</DisplayText>
@@ -8497,8 +11629,61 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Tidal Burst</Type>
+    <DisplayText>Tidal Burst: This weapon is sheathed in water. The weapon deals an additional 1 to 4 damage each hit. In addition, critical hits deal an additional 1 to 8 damage for weapons with a x2 critical multiplier, 2 to 16 for a x3 critical multiplier and 3 to 24 for a x4 multiplier. Creatures with the Fire trait take double this damage instead.</DisplayText>
+    <ApplyToWeaponOnly/>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Tira's Splendor</Type>
+    <DisplayText>Tira's Splendor: Any weapon you wield becomes able to bypass silver damage reduction.</DisplayText>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Silver</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Trace of Madness</Type>
     <DisplayText>Trace of Madness: You can almost hear faint, panicked voices when this item is close to you. Perhaps the latent power of this item's hint of madness could be brought out by some catalyst.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Transform Kinetic Energy</Type>
+    <DisplayText>Transform Kinetic Energy: Each time you are hit in melee combat there is a chance that the energy of the blow will be converted into Spell Points.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Transmuted Platinum</Type>
+    <DisplayText>Transmuted Platinum: This weapon, made of transmuted platinum, is slightly magically unstable, and has a chance to transfer its magic to those it strikes. Struck enemies have a small chance to turn into transmuted platinum, preventing all movement, with a DC of 35 negating this effect.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Treason</Type>
+    <DisplayText>Treason: This item reduces the threat generated by melee damage by 20%.</DisplayText>
+    <Effect>
+      <Type>ThreatBonusMelee</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-20</Amount>
+    </Effect>
   </Buff>
   <Buff>
     <Type>TrueChaos</Type>
@@ -8534,6 +11719,16 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Turning</Type>
+    <DisplayText>Turning: This will increase the total number of Turn Undead attempts you can use by 3. However, these additional Turn Undead attempts will only take effect after the wielder rests.</DisplayText>
+    <Effect>
+      <Type>ExtraTurns</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Twining Hemlock</Type>
     <DisplayText>Twining Hemlock: This weapon is poisoned with a deadly strain of flowering plant. Hits by this weapon have a chance of putting your foe to sleep.</DisplayText>
   </Buff>
@@ -8541,7 +11736,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>UndeadBane</Type>
     <ApplyToWeaponOnly/>
-    <DisplayText>Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <DisplayText>Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undead, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -8701,6 +11896,70 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Unnatural Bane 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Unnatural Bane 4 : This weapon is attuned specifically to hunt beings that should not exist, dealing an additional 4d10 bane damage vs. Aberrations, Monstrous Humanoids, and Undead.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+         <RequiresOneOf>
+           <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Aberrations</Item>
+           </Requirement>
+           <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Monstrous Humanoid</Item>
+           </Requirement>
+           <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Undead</Item>
+           </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Unnatural Bane 5</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Unnatural Bane 5 : This weapon is attuned specifically to hunt beings that should not exist, dealing an additional 5d10 bane damage vs. Aberrations, Monstrous Humanoids, and Undead.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">5</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+         <RequiresOneOf>
+           <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Aberrations</Item>
+           </Requirement>
+           <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Monstrous Humanoid</Item>
+           </Requirement>
+           <Requirement>
+             <Type>EnemyType</Type>
+             <Item>Undead</Item>
+           </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Utter Disintegration</Type>
     <DisplayText>Utter Disintegration: This weapon has a dark, insidious power deep within. Occasionally, this power lashes out violently at enemies and attempts to disintegrate them. This disintegrate is incredibly powerful, and will utterly destroy weaker foes.</DisplayText>
   </Buff>
@@ -8718,12 +11977,148 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Vampirism 2: This weapon thirsts for the blood of your enemies, healing you for +2d2 hit points with each hit. (Note: Internal cooldown of 1 second.)</DisplayText>
   </Buff>
   <Buff>
+    <Type>Vampirism 3</Type>
+    <DisplayText>Vampirism 3: This weapon thirsts for the blood of your enemies, healing you for +3d2 hit points with each hit. (Note: Internal cooldown of 1 second.)</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Vengeful</Type>
     <DisplayText>Vengeful: When its wielder is hit in battle, this item has a 10% chance to cause him or her to become full of anger and go into a Rage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Vengeful Fury</Type>
     <DisplayText>Vengeful Fury: On Taking Damage: Gain a 12% Enhancement Bonus to Doublestrike and a +4 Rage Bonus to your Attack Bonus.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Vermin Bane</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vermin Bane: A bane weapon excels at attacking one type or subtype of creature. Against Vermin, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Vermin</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vermin Bane 2</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vermin Bane 2: This weapon is ideal for cleaning out rats and other annoying beasts. It deals an additional 2d10 bane damage vs. Vermin.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Vermin</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vermin Bane 3</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vermin Bane 3: This weapon is ideal for cleaning out rats and other annoying beasts. It deals an additional 3d10 bane damage vs. Vermin.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Vermin</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vermin Bane 4</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vermin Bane 4: This weapon is ideal for cleaning out rats and other annoying beasts. It deals an additional 4d10 bane damage vs. Vermin.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Vermin</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vermin Bane 5</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vermin Bane 5: This weapon is ideal for cleaning out rats and other annoying beasts. It deals an additional 5d10 bane damage vs. Vermin.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">5</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Vermin</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vermin Bane 6</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Vermin Bane 6: This weapon is ideal for cleaning out rats and other annoying beasts. It deals an additional 6d10 bane damage vs. Vermin.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Vermin</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Vertigo</Type>
@@ -8761,6 +12156,22 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Voltaic</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Voltaic: This weapon is sheathed in Powerful electricity. A voltaic weapon deals an extra 2 to 12 points of electricity damage on a successful hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>%i1</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Vorpal</Type>
     <ApplyToWeaponOnly/>
     <DisplayText>Vorpal: Passive: +0.5[W] damage dice. On Vorpal Hit: If your target has fewer than 1000 Hit Points, they are instantly slain. If your target has above 1000 Hit Points, they take 100 damage.</DisplayText>
@@ -8769,6 +12180,15 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Bonus>Enhancement</Bonus>
       <Amount size="1">0.5</Amount>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vorpal Lethargy</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>On Vorpal: Applies a stack of Lethargy (-1 to all Saving Throws. Non-bosses also move and attack 5% slower. This effect stacks up to 5 times.)</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Vulnerable</Type>
+    <DisplayText>Vulnerable: You take 1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.</DisplayText>
   </Buff>
   <!--W-->
   <Buff>
@@ -8787,7 +12207,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
-    <Type>Weakening</Type>
+    <Type>Weaken Construct</Type>
     <DisplayText>Weakening: This weapon drains the enemies' melee power. -1 Strength on a successful hit.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
@@ -8799,6 +12219,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Weakening</Type>
+    <DisplayText>Weaken Construct: While wearing this item, your attacks cause constructs to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</DisplayText>
   </Buff>
   <Buff>
     <Type>Weakening 1</Type>
@@ -8937,6 +12361,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Wondrous Craftsmanship</Type>
+    <DisplayText>Wondrous Craftsmanship: This item's enchantments are more Powerful than is normal for an item of this level. (+2 Total Enhancement Value.)</DisplayText>
   </Buff>
   <Buff>
     <Type>Wounding</Type>

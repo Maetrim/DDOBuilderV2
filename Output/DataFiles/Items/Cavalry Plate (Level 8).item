@@ -47,5 +47,36 @@ better protection may benefit from it.</Description>
       <Value1>2</Value1>
       <BonusType>Resistance</BonusType>
     </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 2</Type>
+        <Augment>
+           <Name>+2 Enhancement Bonus -> +3 Enhancement Bonus</Name>
+           <Description>+3 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +3 Enhancement bonus to AC.</Description>
+           <MinLevel>8</MinLevel>
+          <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 3</Type>
+        <Augment>
+           <Name>Adds DR 1/Chaotic</Name>
+           <Description>DR Damage Reduction 1/Chaotic: Reduces physical damage by 1, except from Chaotic attacks.</Description>
+           <MinLevel>8</MinLevel>
+          <Ignore>Enhancement</Ignore>
+          <Effect>
+            <Type>DR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">30</Amount>
+            <Item>Chaotic</Item>
+          </Effect>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

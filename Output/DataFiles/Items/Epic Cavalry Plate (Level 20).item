@@ -24,7 +24,7 @@ better protection may benefit from it.</Description>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
-    <Armor>Heavy</Armor>
+    <Armor>Medium</Armor>
     <ArmorBonus>26</ArmorBonus>
     <MaximumDexterityBonus>3</MaximumDexterityBonus>
     <ArmorCheckPenalty>-2</ArmorCheckPenalty>
@@ -35,7 +35,15 @@ better protection may benefit from it.</Description>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
+      <Type>Demonic Shield</Type>
+      <BonusType/>
+    </Buff>
+    <Buff>
       <Type>GreaterFalseLife</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>DR 3/Chaotic</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
@@ -47,5 +55,37 @@ better protection may benefit from it.</Description>
       <Type>MithralArmor</Type>
       <BonusType/>
     </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 2</Type>
+        <Augment>
+           <Name>Greater False Life -> Superior False life</Name>
+           <Description>Superior False Life: This item grants the wearer +40 maximum health.</Description>
+           <MinLevel>20</MinLevel>
+          <Effect>
+            <Type>FalseLife</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">40</Amount>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 3</Type>
+        <Augment>
+           <Name>DR 3/Chaotic -> DR 5/Chaotic, Adds a Blue Augment Slot</Name>
+          <Description>DR Damage Reduction 5/Chaotic: Reduces physical damage by 5, except from Chaotic attacks.</Description>
+           <MinLevel>20</MinLevel>
+          <Ignore>Enhancement</Ignore>
+          <Effect>
+            <Type>DR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Chaotic</Item>
+          </Effect>
+          <GrantAugment>Blue</GrantAugment>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

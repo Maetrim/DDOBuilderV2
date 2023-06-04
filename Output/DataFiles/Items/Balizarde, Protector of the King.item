@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Balizarde, Protector of the King</Name>
     <Icon>Rapier_2</Icon>
     <Description>When hope is lost, only courage remains.</Description>
@@ -20,7 +21,7 @@
       <Sides>8</Sides>
     </BaseDice>
     <CriticalMultiplier>3</CriticalMultiplier>
-    <CriticalThreatRange>6</CriticalThreatRange>
+    <CriticalThreatRange>3</CriticalThreatRange>
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>7</Value1>
@@ -36,7 +37,7 @@
     </Buff>
     <Buff>
       <Type>Parrying</Type>
-      <Value1>80</Value1>
+      <Value1>4</Value1>
       <BonusType>Insightful</BonusType>
       <Item>VIII</Item>
     </Buff>
@@ -51,5 +52,64 @@
       <BonusType>Luck</BonusType>
     </Buff>
     <IsAcceptsSentience/>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Phlebotomizing</Name>
+        <Description>Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <!---Only an additional 1d8 here as 2d8 already added by Hemorrhaging-->
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Bleed</Damage>
+          </Dice>
+          <Item>All</Item>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Red augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -26,6 +26,14 @@
          <RequiresNoneOf>
             <Requirement>
                <Type>Stance</Type>
+               <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blight Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
                <Item>Wolf</Item>
             </Requirement>
             <Requirement>
@@ -54,32 +62,6 @@
             <Item>Weapon1</Item>
             <Item>Handwraps</Item>
          </Requirement>
-         <RequiresNoneOf>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Wolf</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Bear</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Winter Wolf</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Dire Bear</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Fire Elemental</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Water Elemental</Item>
-            </Requirement>
-         </RequiresNoneOf>
       </Requirements>
    </Stance>
    <Stance>
@@ -125,6 +107,14 @@
             </Requirement>
          </RequiresOneOf>
          <RequiresNoneOf>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blight Wolf</Item>
+            </Requirement>
             <Requirement>
                <Type>Stance</Type>
                <Item>Wolf</Item>
@@ -175,6 +165,14 @@
          <RequiresNoneOf>
             <Requirement>
                <Type>Stance</Type>
+               <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blight Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
                <Item>Wolf</Item>
             </Requirement>
             <Requirement>
@@ -212,6 +210,14 @@
                <Type>ItemTypeInSlot</Type>
                <Item>Weapon1</Item>
                <Item>Handwraps</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blight Wolf</Item>
             </Requirement>
             <Requirement>
                <Type>Stance</Type>
@@ -342,6 +348,14 @@
             </Requirement>
             <Requirement>
                <Type>Stance</Type>
+               <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blight Wolf</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
                <Item>Wolf</Item>
             </Requirement>
             <Requirement>
@@ -388,16 +402,18 @@ If you are a construct you have the Composite Plating feat.</Description>
       <Group>Auto</Group>
       <AutoControlled/>
       <Requirements>
-         <Requirement>
-            <Type>ItemTypeInSlot</Type>
-            <Item>Armor</Item>
-            <Item>Cloth</Item>
-         </Requirement>
-         <Requirement>
-            <Type>ItemTypeInSlot</Type>
-            <Item>Armor</Item>
-            <Item>Empty</Item>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Type>ItemTypeInSlot</Type>
+               <Item>Armor</Item>
+               <Item>Cloth</Item>
+            </Requirement>
+            <Requirement>
+               <Type>ItemTypeInSlot</Type>
+               <Item>Armor</Item>
+               <Item>Empty</Item>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
    </Stance>
    <Stance>
@@ -448,19 +464,19 @@ If you are a construct you have the Adamantine Body feat.</Description>
       <Name>Centered</Name>
       <Icon>Centered</Icon>
       <Description>Enabled if you are in a centered state of:
-In cloth armor (or composite plating only),
+In cloth/no armor (or composite plating only),
 You have light encumbrance or less weight,
-Weilding weapons that are centering such as a staff.</Description>
+Wielding weapons that are centering such as a staff.</Description>
       <Group>Auto</Group>
       <AutoControlled/>
       <Requirements>
          <Requirement>
             <Type>Stance</Type>
-            <Item>Cloth</Item>
+            <Item>Cloth Armor</Item>
          </Requirement>
          <Requirement>
             <Type>GroupMember</Type>
-            <Item>Centering</Item>
+            <Item>Centered</Item>
          </Requirement>
       </Requirements>
    </Stance>

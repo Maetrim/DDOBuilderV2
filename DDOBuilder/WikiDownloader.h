@@ -15,7 +15,7 @@ class WikiDownloader
     private:
         bool DownloadUrl(const std::string& url);
         void ParseDownloadedFile(const std::string& url, const std::string& goodUrlContent);
-        void ParseFile(const std::string& url, const std::string& filename, const std::string& goodUrlContent);
+        void ParseFile(const std::string& filename, const std::string& goodUrlContent);
         std::string MakeUrlFilename(const std::string& url);
         bool DirectoryExists(const std::string& dir);
 

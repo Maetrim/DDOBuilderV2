@@ -24,7 +24,7 @@ better protection may benefit from it.</Description>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
-    <Armor>Heavy</Armor>
+    <Armor>Medium</Armor>
     <ArmorBonus>30</ArmorBonus>
     <MaximumDexterityBonus>3</MaximumDexterityBonus>
     <ArmorCheckPenalty>-2</ArmorCheckPenalty>
@@ -35,7 +35,15 @@ better protection may benefit from it.</Description>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
+      <Type>Demonic Shield</Type>
+      <BonusType/>
+    </Buff>
+    <Buff>
       <Type>GreaterFalseLife</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>DR 13/Chaotic</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
@@ -51,5 +59,31 @@ better protection may benefit from it.</Description>
       <Type>GreaterFalseLife</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 2</Type>
+        <Augment>
+           <Name>+6 Enhancement Bonus -> +7 Enhancement Bonus, Greater False Life -> Superior False Life, DR 13/Chaotic -> DR 14/Chaotic</Name>
+           <Description>+7 Enhancement Bonus: +7 Enhancement bonus to Armor Class.
+Superior False Life: This item grants the wearer +40 maximum health.
+DR Damage Reduction 14/Chaotic: Reduces physical damage by 14, except from Chaotic attacks.</Description>
+           <MinLevel>24</MinLevel>
+          <Effect>
+            <Type>FalseLife</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">40</Amount>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Upgradeable - Tier 3</Type>
+        <Augment>
+           <Name>Adds a Blue Augment Slot</Name>
+          <Description>Adds a Blue Augment Slot</Description>
+          <MinLevel>24</MinLevel>
+          <GrantAugment>Blue</GrantAugment>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

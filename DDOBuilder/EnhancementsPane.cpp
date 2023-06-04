@@ -78,8 +78,9 @@ BEGIN_MESSAGE_MAP(CEnhancementsPane, CFormView)
     ON_REGISTERED_MESSAGE(UWM_UPDATE_TREES, OnUpdateTrees)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT2, IDC_TREE_SELECT7, OnTreeSelect)
     ON_CONTROL_RANGE(BN_CLICKED, IDC_BUTTON_UNIVERSAL_TREE1, IDC_BUTTON_UNIVERSAL_TREE16, OnUniversalTree)
-    ON_WM_MOUSEMOVE()
     ON_WM_LBUTTONDOWN()
+    ON_WM_MOUSEMOVE()
+    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -162,6 +163,11 @@ void CEnhancementsPane::OnSize(UINT nType, int cx, int cy)
 
 LRESULT CEnhancementsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
+    if (m_pCharacter != NULL)
+    {
+        m_pCharacter->DetachObserver(this);
+    }
+
     // wParam is the document pointer
     CDDOBuilderDoc* pDoc = (CDDOBuilderDoc*)(wParam);
     m_pDoc = pDoc;
@@ -669,7 +675,6 @@ void CEnhancementsPane::UpdateTrees()
 void CEnhancementsPane::UpdateActionPointsChanged(Life*)
 {
     UpdateWindowTitle();
-    EnableDisableComboboxes();
 }
 
 void CEnhancementsPane::UpdateWindowTitle()
@@ -702,6 +707,7 @@ void CEnhancementsPane::UpdateWindowTitle()
         }
     }
     GetParent()->SetWindowText(text);
+    EnableDisableComboboxes();
 }
 
 void CEnhancementsPane::OnTreeSelect(UINT nID)
@@ -861,6 +867,33 @@ void CEnhancementsPane::OnMouseMove(UINT nFlags, CPoint point)
             HideTip();
         }
     }
+}
+
+LRESULT CEnhancementsPane::OnMouseLeave(WPARAM, LPARAM)
+{
+    // hide any tooltip when the mouse leaves the area its being shown for
+    CPoint point;
+    GetCursorPos(&point);
+    ScreenToClient(&point);
+    CWnd* pWnd = ChildWindowFromPoint(point);
+    CIconButton* pIconButton = dynamic_cast<CIconButton*>(pWnd);
+    if (pIconButton == NULL)
+    {
+        if (m_showingTip)
+        {
+            HideTip();
+        }
+    }
+    else
+    {
+        TRACKMOUSEEVENT tme;
+        tme.cbSize = sizeof(tme);
+        tme.hwndTrack = m_hWnd;
+        tme.dwFlags = TME_LEAVE;
+        tme.dwHoverTime = 1;
+        _TrackMouseEvent(&tme);
+    }
+    return 0;
 }
 
 void CEnhancementsPane::OnLButtonDown(UINT nFlags, CPoint point)

@@ -71,6 +71,11 @@ class EquippedGear :
                 DL_OPTIONAL_OBJECT(_, Item, Arrow) \
                 DL_OPTIONAL_OBJECT(_, Item, Ring1) \
                 DL_OPTIONAL_OBJECT(_, Item, Ring2) \
+                DL_OPTIONAL_OBJECT(_, Item, CosmeticArmor) \
+                DL_OPTIONAL_OBJECT(_, Item, CosmeticCloak) \
+                DL_OPTIONAL_OBJECT(_, Item, CosmeticHelm) \
+                DL_OPTIONAL_OBJECT(_, Item, CosmeticWeapon1) \
+                DL_OPTIONAL_OBJECT(_, Item, CosmeticWeapon2) \
                 DL_OPTIONAL_STRING(_, Personality) \
                 DL_SIMPLE(_, size_t, NumFiligrees, 0) \
                 DL_OBJECT_LIST(_, WeaponFiligree, Filigrees) \

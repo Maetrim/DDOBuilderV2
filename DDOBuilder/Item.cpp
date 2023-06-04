@@ -70,6 +70,9 @@ bool Item::CanEquipToSlot(InventorySlotType slot) const
     case Inventory_Arrows:
         canEquipToSlot = m_Slots.HasArrow();
         break;
+    case Inventory_CosmeticArmor:
+        canEquipToSlot = m_Slots.HasCosmeticArmor();
+        break;
     case Inventory_Armor:
         canEquipToSlot = m_Slots.HasArmor();
         break;
@@ -97,6 +100,9 @@ bool Item::CanEquipToSlot(InventorySlotType slot) const
     case Inventory_Bracers:
         canEquipToSlot = m_Slots.HasBracers();
         break;
+    case Inventory_CosmeticCloak:
+        canEquipToSlot = m_Slots.HasCosmeticCloak();
+        break;
     case Inventory_Cloak:
         canEquipToSlot = m_Slots.HasCloak();
         break;
@@ -105,6 +111,9 @@ bool Item::CanEquipToSlot(InventorySlotType slot) const
         break;
     case Inventory_Goggles:
         canEquipToSlot = m_Slots.HasGoggles();
+        break;
+    case Inventory_CosmeticHelm:
+        canEquipToSlot = m_Slots.HasCosmeticHelm();
         break;
     case Inventory_Helmet:
         canEquipToSlot = m_Slots.HasHelmet();
@@ -127,6 +136,10 @@ bool Item::CanEquipToSlot(InventorySlotType slot) const
         break;
     case Inventory_Weapon2:
         canEquipToSlot = m_Slots.HasWeapon2();
+        break;
+    case Inventory_CosmeticWeapon1:
+    case Inventory_CosmeticWeapon2:
+        //canEquipToSlot = m_Slots.HasCosmeticWeapon();
         break;
     }
     return canEquipToSlot;

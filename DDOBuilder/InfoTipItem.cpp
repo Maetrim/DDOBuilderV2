@@ -116,6 +116,11 @@ void InfoTipItem_Header::SetTitle(const CString& strTitle)
     m_title = strTitle;
 }
 
+void InfoTipItem_Header::SetTitle2(const CString& strTitle2)
+{
+    m_title2 = strTitle2;
+}
+
 void InfoTipItem_Header::SetCost(const CString& strCost)
 {
     m_cost = strCost;
@@ -129,8 +134,8 @@ void InfoTipItem_Header::SetRank(const CString& strRank)
 CSize InfoTipItem_Header::Measure(CDC* pDC)
 {
     // +---------------------------------------------------+
-    // | +----+                                     Cost x |
-    // | |icon| Enhancement name                   Ranks n |
+    // | +----+ Title Line 1                        Cost x |
+    // | |icon| Title Line 2                       Ranks n |
     // | +----+                                            |
     // +---------------------------------------------------+
     pDC->SaveDC();
@@ -140,9 +145,11 @@ CSize InfoTipItem_Header::Measure(CDC* pDC)
     rctRequiredSize.InflateRect(c_controlSpacing, 0, c_controlSpacing, 0);
     // Calculate the area for the tip text
     CRect rctTitle;
+    CRect rctTitle2;
     pDC->DrawText(m_title, &rctTitle, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+    pDC->DrawText(m_title2, &rctTitle2, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
     rctRequiredSize.bottom += max(rctTitle.Height() * 2, 32);      // 2 lines or icon height
-    rctRequiredSize.bottom += c_controlSpacing;                     // also needs a border
+    rctRequiredSize.bottom += c_controlSpacing;                    // also needs a border
     // cost and ranks could be empty (optional)
     CRect rctCost;
     CRect rctRanks;
@@ -151,12 +158,12 @@ CSize InfoTipItem_Header::Measure(CDC* pDC)
     if (rctCost.Width() == 0 && rctRanks.Width() == 0)
     {
         // no text to right, just icon and title for the total width
-        rctRequiredSize.right += 32 + c_controlSpacing + rctTitle.Width();
+        rctRequiredSize.right += 32 + c_controlSpacing + max(rctTitle.Width(), rctTitle2.Width());
     }
     else
     {
         // use largest of text to right + set gap and icon + title for total width
-        rctRequiredSize.right += 32 + c_controlSpacing + rctTitle.Width();
+        rctRequiredSize.right += 32 + c_controlSpacing + max(rctTitle.Width(), rctTitle2.Width());
         rctRequiredSize.right += max(rctCost.Width(), rctRanks.Width());
         CRect rctGap;
         pDC->DrawText("Gap Size", &rctGap, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
@@ -182,6 +189,9 @@ void InfoTipItem_Header::Draw(CDC* pDC, const CRect& rect)
     pDC->SelectObject(s_boldFont);
     CRect rcTitle(rect.left + c_controlSpacing + 32 + c_controlSpacing, rect.top + c_controlSpacing, rect.right, rect.bottom);
     pDC->DrawText(m_title, rcTitle, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+    CSize sizeTitle = pDC->GetTextExtent(m_title);
+    rcTitle += CPoint(0, sizeTitle.cy);
+    pDC->DrawText(m_title2, rcTitle, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
     CSize sizeCost = pDC->GetTextExtent(m_cost);
     CSize sizeRanks = pDC->GetTextExtent(m_ranks);
     pDC->TextOut(rect.right - c_controlSpacing - sizeCost.cx, rect.top + c_controlSpacing, m_cost);

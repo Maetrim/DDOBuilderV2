@@ -1123,3 +1123,9 @@ void Effect::SetItem(const std::list<std::string>& items)
 {
     m_Item = items;
 }
+
+void Effect::AddItem(const std::string& item)
+{
+    m_Item.push_back(item);
+}
+

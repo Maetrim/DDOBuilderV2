@@ -1,14 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
     <Name>Circle of Hatred</Name>
     <Icon>Ring_17</Icon>
     <Description>The ring off the dead finger of the Abbot. This was a family heirloom from his
-days worshipping Vol, and still channels some of her deep necromantic power.</Description>
+days worshiping Vol, and still channels some of her deep necromantic power.</Description>
     <DropLocation>Ascension Chamber, Raid Warded chest</DropLocation>
     <MinLevel>13</MinLevel>
     <EquipmentSlot>
-      <Ring/>
+      <Ring />
     </EquipmentSlot>
+    <NoAutoUpdate />
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>SLA</AType>
+      <Amount size="3">11 3 3</Amount>
+      <Item>Harm</Item>
+    </Effect>
     <Buff>
       <Type>SkillBonus</Type>
       <Value1>15</Value1>
@@ -30,5 +39,20 @@ days worshipping Vol, and still channels some of her deep necromantic power.</De
       <Value1>20</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item</Type>
+      <Augment>
+        <Name>Harm - 5 Charges per day, Incite 30%</Name>
+        <Description>Harm upgrades to 5 charges per day.
+Incite +30: +30% Enhancement bonus to increased threat generation from melee damage</Description>
+        <MinLevel>13</MinLevel>
+        <Effect>
+          <Type>ThreatBonusMelee</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

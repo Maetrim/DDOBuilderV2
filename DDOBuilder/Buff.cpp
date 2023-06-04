@@ -128,6 +128,16 @@ void Buff::UpdatedEffects(std::list<Effect>* effects) const
             eit.SetItem(items);
         }
     }
+    if (HasItem2())
+    {
+        // set the Item type field for all the effects that have them
+        for (auto&& eit : *effects)
+        {
+            std::list<std::string> items = eit.Item();
+            items.push_back(Item2());
+            eit.SetItem(items);
+        }
+    }
     if (HasValue1() && HasValue2())
     {
         // v1 applies to first effect, value 2 to second (if there is one)

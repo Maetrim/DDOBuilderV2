@@ -9,13 +9,13 @@ namespace
 }
 
 DestinySpendInTree::DestinySpendInTree() :
-    SpendInTree(f_saxElementName)
+    SpendInTree(f_saxElementName, TT_epicDestiny)
 {
 }
 
 DestinySpendInTree::DestinySpendInTree(
         const std::string& treeName,
         size_t version) :
-    SpendInTree(f_saxElementName, treeName, version)
+    SpendInTree(f_saxElementName, treeName, TT_epicDestiny, version)
 {
 }

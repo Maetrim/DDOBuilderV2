@@ -61,6 +61,8 @@ BOOL CItemImageDialog::OnInitDialog()
     m_comboItemType.SetItemData(index, Inventory_ArmorHeavy);
     index = m_comboItemType.AddString("Docent");
     m_comboItemType.SetItemData(index, Inventory_ArmorDocent);
+    index = m_comboItemType.AddString("Cosmetic Armor");
+    m_comboItemType.SetItemData(index, Inventory_CosmeticArmor);
 
     m_comboItemType.SetCurSel(0);
 
@@ -143,12 +145,13 @@ void CItemImageDialog::OnLvnItemchangedList1(NMHDR* pNMHDR, LRESULT* pResult)
 void CItemImageDialog::PopulateAvailableIcons()
 {
     m_availableIcons.DeleteAllItems();
-    // first load all the icons availabel associated with this item type
+    // first load all the icons available associated with this item type
     int sel = m_comboItemType.GetCurSel();
     InventorySlotType ist = static_cast<InventorySlotType>(m_comboItemType.GetItemData(sel));
     std::string directory;
     switch (ist)
     {
+    case Inventory_CosmeticArmor:directory = "Armor_Cosmetic\\"; break;
     case Inventory_ArmorCloth:   directory = "Armor_Cloth\\"; break;
     case Inventory_ArmorDocent:   directory = "Armor_Docent\\"; break;
     case Inventory_ArmorHeavy:   directory = "Armor_Heavy\\"; break;
@@ -157,9 +160,11 @@ void CItemImageDialog::PopulateAvailableIcons()
     case Inventory_Belt:    directory = "Belts\\"; break;
     case Inventory_Boots:   directory = "Boots\\"; break;
     case Inventory_Bracers: directory = "Bracers\\"; break;
+    case Inventory_CosmeticCloak:
     case Inventory_Cloak:   directory = "Cloaks\\"; break;
     case Inventory_Gloves:  directory = "Gloves\\"; break;
     case Inventory_Goggles: directory = "Goggles\\"; break;
+    case Inventory_CosmeticHelm:
     case Inventory_Helmet:  directory = "Helmets\\"; break;
     case Inventory_Necklace:directory = "Necklace\\"; break;
     case Inventory_Quiver:  directory = "Quiver\\"; break;

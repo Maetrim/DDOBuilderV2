@@ -27,7 +27,7 @@ private:
     void RemoveLinks(std::string& field);
     void ExtractEnchantmentsText(std::map<std::string, std::string>& itemFields, const std::string& fileData);
     void CreateItem(const std::map<std::string, std::string>& itemFields, bool bMinorArtifact);
-    void SetItemSlot(const std::map<std::string, std::string>& itemFields);
+    bool SetItemSlot(const std::map<std::string, std::string>& itemFields);
     void AddArmorFields(const std::map<std::string, std::string>& itemFields);
     void AddAttackMods(const std::map<std::string, std::string>& itemFields);
     void AddDamageMods(const std::map<std::string, std::string>& itemFields);
@@ -50,10 +50,13 @@ private:
     bool ProcessMagicalSheltering(const std::string& line, const std::string& bonus);
     bool ProcessSheltering(const std::string& line, const std::string& bonus);
     bool ProcessCombatMastery(const std::string& line, const std::string& bonus);
+    bool ProcessArmorMastery(const std::string& line, const std::string& bonus);
     bool ProcessSpellResistance(const std::string& line, const std::string& bonus);
     bool ProcessSpellPower(const std::string& line, const std::string& bonus);
     bool ProcessSpellLore(const std::string& line, const std::string& bonus);
     bool ProcessSkill(const std::string& line, const std::string& bonus);
+    bool ProcessAlluringSkills(const std::string& line, const std::string& bonus);
+    bool ProcessAstuteSkills(const std::string& line, const std::string& bonus);
     bool ProcessIncite(const std::string& line, const std::string& bonus);
     bool ProcessWizardryNumeric(const std::string& line, const std::string& bonus);
     bool ProcessWizardryRomanNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value);
@@ -69,6 +72,7 @@ private:
     bool ProcessWillSave(const std::string& line, const std::string& bonus);
     bool ProcessFortitudeSave(const std::string& line, const std::string& bonus);
     bool ProcessReflexSave(const std::string& line, const std::string& bonus);
+    bool ProcessSpellSave(const std::string& line, const std::string& bonus);
     bool ProcessCurseSave(const std::string& line, const std::string& bonus);
     bool ProcessResistance(const std::string& line, const std::string& bonus);
     bool ProcessAbsorption(const std::string& line, const std::string& bonus);
@@ -89,9 +93,11 @@ private:
     bool ProcessRepairAmplification(const std::string& line, const std::string& bonus);
     bool ProcessNegativeHealingAmplification(const std::string& line, const std::string& bonus);
     bool ProcessSpeed(const std::string& line);
+    bool AddFavoredWeapon(const std::string& line);
     bool ProcessDeception(const std::string& line, const std::string& bonus);
     bool ProcessSneakAttack(const std::string& line, const std::string& bonus);
     bool ProcessCombatAction(const std::string& line, const std::string& bonus, const std::string& type);
+    bool ProcessKeen(const std::string& line);
 
     bool AddCommonEffect(const std::string& line, const std::string& buffName, const std::string& searchText, const std::string& bonus, const std::string& item, size_t minStartPos = 5);
 

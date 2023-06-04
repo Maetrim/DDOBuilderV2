@@ -34,6 +34,7 @@ class Buff :
                 DL_OPTIONAL_SIMPLE(_, double, Value2, 0.0) \
                 DL_OPTIONAL_STRING(_, BonusType) \
                 DL_OPTIONAL_STRING(_, Item) \
+                DL_OPTIONAL_STRING(_, Item2) \
                 DL_OBJECT_LIST(_, Effect, Effects)
 
         DL_DECLARE_ACCESS(Buff_PROPERTIES)

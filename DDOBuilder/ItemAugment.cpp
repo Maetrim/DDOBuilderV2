@@ -78,7 +78,7 @@ const Augment& ItemAugment::GetSelectedAugment() const
                 }
             }
         }
-        return FindAugmentByName(SelectedAugment());
+        return FindAugmentByName(SelectedAugment(), NULL);
     }
     return badAugment;
 }

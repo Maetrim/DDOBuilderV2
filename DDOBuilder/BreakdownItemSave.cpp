@@ -301,7 +301,7 @@ bool BreakdownItemSave::AddDivineGrace()
     {
         // character has divine grace feat trained. Add charisma bonus for this save
         // Divine Grace is capped at 2+(3 x paladin level).
-        // For multiclassing, this means 2 levels of Paladin would at best
+        // For multi-classing, this means 2 levels of Paladin would at best
         // grant a max of +8 to saves (2 + {3x2}). 
         int maxBonus = pBuild->ClassLevels("Paladin", pBuild->Level()-1) * 3 + 2;
         BreakdownItem* pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));

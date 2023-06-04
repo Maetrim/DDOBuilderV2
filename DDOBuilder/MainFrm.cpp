@@ -100,7 +100,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     if (!m_wndMenuBar.Create(this))
     {
-        TRACE0("Failed to create menubar\n");
+        TRACE0("Failed to create menu bar\n");
         return -1;      // fail to create
     }
 
@@ -112,7 +112,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
         !m_wndToolBar.LoadToolBar(theApp.m_bHiColorIcons ? IDR_MAINFRAME_256 : IDR_MAINFRAME))
     {
-        TRACE0("Failed to create toolbar\n");
+        TRACE0("Failed to create tool bar\n");
         return -1;      // fail to create
     }
 
@@ -126,7 +126,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     ASSERT(bNameValid);
     m_wndToolBar.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 
-    // Allow user-defined toolbars operations:
+    // Allow user-defined tool bars operations:
     InitUserToolbars(NULL, uiFirstUserToolBarId, uiLastUserToolBarId);
 
     if (!m_wndStatusBar.Create(this))
@@ -136,7 +136,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     }
     m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 
-    // TODO: Delete these five lines if you don't want the toolbar and menubar to be dockable
+    // TODO: Delete these five lines if you don't want the tool bar and menu bar to be dockable
     m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
     m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
     EnableDocking(CBRS_ALIGN_ANY);
@@ -162,15 +162,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
         return -1;
     }
 
-    // Enable toolbar and docking window menu replacement
+    // Enable tool bar and docking window menu replacement
     EnablePaneMenu(TRUE, ID_VIEW_CUSTOMIZE, strCustomize, ID_VIEW_TOOLBAR);
 
-    // enable quick (Alt+drag) toolbar customization
+    // enable quick (Alt+drag) tool bar customization
     CMFCToolBar::EnableQuickCustomization();
 
     if (CMFCToolBar::GetUserImages() == NULL)
     {
-        // load user-defined toolbar toolbarImages
+        // load user-defined tool bar toolbarImages
         if (m_UserImages.Load(_T(".\\UserImages.bmp")))
         {
             CMFCToolBar::SetUserImages(&m_UserImages);
@@ -178,7 +178,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     }
 
     // enable menu personalization (most-recently used commands)
-    // TODO: define your own basic commands, ensuring that each pulldown menu has at least one basic command.
+    // TODO: define your own basic commands, ensuring that each pull down menu has at least one basic command.
     CList<UINT, UINT> lstBasicCommands;
 
     lstBasicCommands.AddTail(ID_FILE_NEW);
@@ -440,7 +440,7 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
         return FALSE;
     }
 
-    // enable customization button for all user toolbars
+    // enable customization button for all user tool bars
     BOOL bNameValid;
     CString strCustomize;
     bNameValid = strCustomize.LoadString(IDS_TOOLBAR_CUSTOMIZE);
@@ -472,7 +472,7 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 void CMainFrame::NewDocument(CDDOBuilderDoc * pDoc)
 {
     // make sure all the windows know who is the active document
-    // there is always a document as this is an SDI app
+    // there is always a document as this is an SDI application
     POSITION pos = pDoc->GetFirstViewPosition();
     while (pos != NULL)
     {
@@ -596,8 +596,8 @@ void CMainFrame::OnDockPane(UINT nID)
 
 void CMainFrame::AddSmallClassImageMenuIcons()
 {
-    // make sure the images in the toolbar match the lookups for the menus
-    // as we add the class images dynamically later, we end up replacing the toolbar
+    // make sure the images in the tool bar match the lookups for the menus
+    // as we add the class images dynamically later, we end up replacing the tool bar
     // menu commands images as they use the same index otherwise
     // TBD: Sort out the transparent background colour for these images
     CMFCToolBarImages * toolbarImages = CMFCToolBar::GetMenuImages();
@@ -607,7 +607,7 @@ void CMainFrame::AddSmallClassImageMenuIcons()
         toolbarImages->AddImage((HBITMAP)bitmap, FALSE);
     }
 
-    // add all the class images to the available toolbar toolbarImages
+    // add all the class images to the available tool bar toolbarImages
     // so they show correctly in drop menus
     const std::list<Class> & classes = Classes();
     // load all the small images for each class
@@ -752,7 +752,7 @@ void CMainFrame::OnDevelopmentRunwWikiItemCrawler()
 {
     UINT ret = AfxMessageBox(
         "This will start a process that will crawl the DDO Wiki and enumerate all the pages with item data.\r\n"
-        "The downloaded files can later be processed usinf other Development command options.\r\n"
+        "The downloaded files can later be processed using other Development command options.\r\n"
         "\r\n"
         "Are you sure you wish to do this?", MB_ICONEXCLAMATION | MB_YESNO);
     if (ret == IDYES)

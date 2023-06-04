@@ -236,6 +236,7 @@ int Life::TomeAtLevel(
     case 28:
     case 29:
     case 30:
+    default:
         maxAtLevel = 999;   // no upper limit
         break;
 

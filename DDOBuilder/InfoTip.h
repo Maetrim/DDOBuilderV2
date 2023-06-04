@@ -12,6 +12,7 @@ class Feat;
 class Filigree;
 class Gem;
 class Item;
+class ItemAugment;
 class InfoTipItem;
 class Requirements;
 class SetBonus;
@@ -57,7 +58,7 @@ class CInfoTip :
                 const Filigree * pFiligree);
         void SetAugment(
                 const Augment * pAugment);
-        void SetSentientGem(
+            void SetSentientGem(
                 const Gem* pGem);
         void SetLevelItem(
                 const Build & build,
@@ -91,6 +92,8 @@ class CInfoTip :
         void AppendSpellItem(const Build& build, const Spell& spell);
         void AppendSpellDamageEffect(const Build& build, const Spell& spell, const SpellDamage& sd);
         void AppendSLA(const Spell& spell, int nSpellLevel, int nCharges, int nRecharge);
+        void AppendAugment(const Augment* pAugment);
+        void AppendFilledAugment(int itemLevel, const ItemAugment& slot, const Augment* pAugment);
         CPoint m_origin;
         CPoint m_alternate;
         bool m_bRightAlign;
