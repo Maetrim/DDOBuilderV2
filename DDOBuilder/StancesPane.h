@@ -116,6 +116,7 @@ class CStancesPane :
         StanceGroup* CreateStanceGroup(const std::string& strName, bool singleSelection);
         void PositionStanceGroup(StanceGroup& sg, CRect* pRect, int maxX);
         StanceGroup* GetStanceGroup(CStanceButton* pButton);
+        StanceGroup* GetStanceGroup(const std::string& name);
 
         CDocument * m_pDocument;
         Character * m_pCharacter;

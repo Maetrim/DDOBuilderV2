@@ -53,6 +53,7 @@ namespace
 
 Build::Build(Life * pParentLife) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_FavorFeats(L"FavorFeats"),
     m_pLife(pParentLife),
     m_racialTreeSpend(0),
     m_universalTreeSpend(0),
@@ -192,6 +193,7 @@ void Build::BuildNowActive()
     m_universalTreeSpend = 0;
     m_classTreeSpend = 0;
     m_destinyTreeSpend = 0;
+    m_exclusiveEnhancements.clear();
     for (auto&& tit : m_EnhancementTreeSpend)
     {
         const EnhancementTree& eTree = EnhancementTree::GetTree(tit.TreeName());
@@ -785,7 +787,7 @@ size_t Build::BaseAttackBonus(size_t level) const
         double classBab = 0.0;
         if (classLevels > 0)
         {
-            classBab = (*cci).BAB()[classLevels-1];
+            classBab = (*cci).BAB()[classLevels];
         }
         bab += (size_t)(classBab); // fractions dropped
         ++cci;
@@ -1107,7 +1109,10 @@ bool Build::IsFeatTrainable(
 
 std::list<TrainedFeat> Build::SpecialFeats() const
 {
-    return m_pLife->SpecialFeats().Feats();
+    std::list<TrainedFeat> allSpecialFeats = m_pLife->SpecialFeats().Feats();
+    std::list<TrainedFeat> allFavorFeats = FavorFeats().Feats();
+    allSpecialFeats.insert(allSpecialFeats.end(), allFavorFeats.begin(), allFavorFeats.end());
+    return allSpecialFeats;
 }
 
 void Build::TrainFeat(
@@ -2522,9 +2527,34 @@ size_t Build::GetSpecialFeatTrainedCount(const std::string& featName) const
 
 void Build::TrainSpecialFeat(const std::string& featName)
 {
-    // this is handled at the life level, pass through
-    m_pLife->TrainSpecialFeat(featName);
-    const Feat & feat = FindFeat(featName);
+    // this is handled at the life level, pass through for all  but favor feats
+    const Feat& feat = FindFeat(featName);
+    if (feat.Acquire() == FeatAcquisition_Favor)
+    {
+        // just add a copy of the feat name to the current list
+        std::list<TrainedFeat> trainedFeats = FavorFeats().Feats();
+        TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
+        trainedFeats.push_back(tf);
+
+        FeatsListObject flo(L"FavorFeats", trainedFeats);
+        Set_FavorFeats(flo);
+
+        // notify about the feat effects
+        ApplyFeatEffects(feat);
+
+        m_pLife->NotifyLifeFeatTrained(featName);
+        m_pLife->m_pCharacter->SetModifiedFlag(TRUE);
+
+        // add log entry
+        std::stringstream ss;
+        ss << "Trained the favor feat \"" << featName.c_str() << "\"";
+        GetLog().AddLogEntry(ss.str().c_str());
+        SetModifiedFlag(TRUE);
+    }
+    else
+    {
+        m_pLife->TrainSpecialFeat(featName);
+    }
     if (feat.Acquire() == FeatAcquisition_RacialPastLife
         || feat.Acquire() == FeatAcquisition_HeroicPastLife)
     {
@@ -2540,9 +2570,45 @@ void Build::TrainSpecialFeat(const std::string& featName)
 
 void Build::RevokeSpecialFeat(const std::string& featName)
 {
-    // this is handled at the life level, pass through
-    m_pLife->RevokeSpecialFeat(featName);
-    const Feat & feat = FindFeat(featName);
+    // this is handled at the life level, pass through for all but favor feats
+    const Feat& feat = FindFeat(featName);
+    if (feat.Acquire() == FeatAcquisition_Favor)
+    {
+        // just remove the first copy of the feat name from the current list
+        std::list<TrainedFeat> trainedFeats = FavorFeats().Feats();
+        std::list<TrainedFeat>::iterator it = trainedFeats.begin();
+        bool found = false;
+        while (!found && it != trainedFeats.end())
+        {
+            if ((*it).FeatName() == featName)
+            {
+                // this is the first occurrence, remove it
+                it = trainedFeats.erase(it);
+                found = true;
+            }
+            else
+            {
+                ++it;
+            }
+        }
+        if (found)
+        {
+            FeatsListObject flo(L"FavorFeats", trainedFeats);
+            Set_FavorFeats(flo);
+            // notify about the feat effects
+            RevokeFeatEffects(feat);
+            m_pLife->NotifyLifeFeatRevoked(featName);
+            // add log entry
+            std::stringstream ss;
+            ss << "Revoked the favor feat \"" << featName.c_str() << "\"";
+            GetLog().AddLogEntry(ss.str().c_str());
+            SetModifiedFlag(TRUE);
+        }
+    }
+    else
+    {
+        m_pLife->RevokeSpecialFeat(featName);
+    }
     if (feat.Acquire() == FeatAcquisition_RacialPastLife
         || feat.Acquire() == FeatAcquisition_HeroicPastLife)
     {
@@ -4274,17 +4340,18 @@ void Build::ApplyWeaponEffects(const Item& item)
         effect.AddItem(wt);
         NotifyItemEffect(item.Name(), effect);
     }
-    //for (auto&& itDr: item.DRBypass())
-    //{
-    //    Effect effect(
-    //        Effect_Weapon_CriticalRange,
-    //        "Standard Bypass",
-    //        "Base",
-    //        item.CriticalThreatRange());
-    //    effect.AddItem(wt);
-    //    effect.AddItem(itDR);
-    //    NotifyItemEffect(item.Name(), effect);
-    //}
+    for (auto&& itDr: item.DRBypass())
+    {
+        Effect effect(
+            Effect_DRBypass,
+            "Weapon",
+            "Unique",
+            0);
+        //effect.SetAType(Amount_NotNeeded);
+        effect.AddItem(wt);
+        effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
+        NotifyItemEffect(item.Name(), effect);
+    }
 }
 
 void Build::RevokeWeaponEffects(const Item& item)
@@ -4293,8 +4360,8 @@ void Build::RevokeWeaponEffects(const Item& item)
     if (item.HasWeaponDamage())
     {
         Effect effect(
-                Effect_DRBypass,
-                "Standard Bypass",
+                Effect_Weapon_BaseDamage,
+                "Base Weapon Damage",
                 "Base",
                 item.WeaponDamage());
         effect.AddItem(wt);
@@ -4320,25 +4387,26 @@ void Build::RevokeWeaponEffects(const Item& item)
         effect.AddItem(wt);
         NotifyItemEffectRevoked(item.Name(), effect);
     }
-    //for (auto&& itDr : item.DRBypass())
-    //{
-    //    Effect effect(
-    //        Effect_Weapon_CriticalRange,
-    //        "Standard Bypass",
-    //        "Base",
-    //        item.CriticalThreatRange());
-    //    effect.AddItem(itDR);
-    //    effect.AddItem(wt);
-    //    NotifyItemEffectRevoked(item.Name(), effect);
-    //}
+    for (auto&& itDr : item.DRBypass())
+    {
+        Effect effect(
+            Effect_DRBypass,
+            "Weapon",
+            "Unique",
+            0);
+        //effect.SetAType(Amount_NotNeeded);
+        effect.AddItem(wt);
+        effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
 }
 
 void Build::ApplyArmorEffects(const Item& item)
 {
-
+    UNREFERENCED_PARAMETER(item);
 }
 
 void Build::RevokeArmorEffects(const Item& item)
 {
-
+    UNREFERENCED_PARAMETER(item);
 }

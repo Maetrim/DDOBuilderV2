@@ -17,8 +17,8 @@ namespace
 Character::Character(CDDOBuilderDoc * pDoc) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_pDocument(pDoc),
-    m_activeLifeIndex(0),
-    m_activeBuildIndex(0)
+    m_activeLifeIndex(10000), // large number that will never occur naturally
+    m_activeBuildIndex(10000) // large number that will never occur naturally
 {
     DL_INIT(Character_PROPERTIES)
 }
@@ -55,9 +55,8 @@ void Character::AboutToLoad()
     // if we are about to load, we reset all our contained data
     DL_INIT(Character_PROPERTIES)
     m_Lives.clear();
-    // 1st build in 1st life is the default (may still not exist)
-    m_activeLifeIndex = 0;
-    m_activeBuildIndex = 0;
+    m_activeLifeIndex = 10000;    // large number that will never occur naturally
+    m_activeBuildIndex = 10000;   // large number that will never occur naturally
 }
 
 void Character::NotifyNumBuildsChanged()
@@ -94,6 +93,8 @@ void Character::SetLifeName(
 
 size_t Character::AddLife()
 {
+    m_activeLifeIndex = 10000;    // large number that will never occur naturally
+    m_activeBuildIndex = 10000;   // large number that will never occur naturally
     // all new lives start with a default build
     Life life(this);
     m_Lives.push_back(life);
@@ -108,10 +109,14 @@ void Character::DeleteLife(size_t lifeIndex)
     std::advance(lit, lifeIndex);
     m_Lives.erase(lit);
     m_pDocument->SetModifiedFlag(TRUE);
+    m_activeLifeIndex = 10000;    // large number that will never occur naturally
+    m_activeBuildIndex = 10000;   // large number that will never occur naturally
 }
 
 size_t Character::AddBuild(size_t lifeIndex)
 {
+    m_activeLifeIndex = 10000;    // large number that will never occur naturally
+    m_activeBuildIndex = 10000;   // large number that will never occur naturally
     std::list<Life>::iterator lit = m_Lives.begin();
     std::advance(lit, lifeIndex);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -126,6 +131,8 @@ void Character::DeleteBuild(
     std::advance(lit, lifeIndex);
     (*lit).DeleteBuild(buildIndex);
     m_pDocument->SetModifiedFlag(TRUE);
+    m_activeLifeIndex = 10000;    // large number that will never occur naturally
+    m_activeBuildIndex = 10000;   // large number that will never occur naturally
 }
 
 size_t Character::GetBuildLevel(
@@ -150,13 +157,26 @@ void Character::SetBuildLevel(
 
 void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex)
 {
-    m_activeLifeIndex = lifeIndex;
-    m_activeBuildIndex = buildIndex;
-    NotifyActiveLifeChanged();
-    NotifyActiveBuildChanged();
-    if (ActiveBuild() != NULL)
+    if (m_activeLifeIndex != lifeIndex
+            || m_activeBuildIndex != buildIndex)
     {
-        ActiveBuild()->BuildNowActive();
+        CWaitCursor longOperation;
+        m_activeLifeIndex = lifeIndex;
+        m_activeBuildIndex = buildIndex;
+        NotifyActiveLifeChanged();
+        NotifyActiveBuildChanged();
+        if (ActiveBuild() != NULL)
+        {
+            ActiveBuild()->BuildNowActive();
+        }
+    }
+    else
+    {
+        if (ActiveBuild() == NULL)
+        {
+            NotifyActiveLifeChanged();
+            NotifyActiveBuildChanged();
+        }
     }
 }
 

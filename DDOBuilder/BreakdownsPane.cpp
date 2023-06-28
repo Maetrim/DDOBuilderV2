@@ -608,7 +608,7 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "U51 Destiny APs",
+                "Destiny APs",
                 hParent,
                 TVI_LAST);
         BreakdownItem * pDestinyAps = new BreakdownItemDestinyAps(
@@ -1069,6 +1069,8 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
     // Missile Deflection Bypass
     // Strikethrough
     // Helpless Damage
+    // Rune arm charge rate
+    // rune arm stable charge
     HTREEITEM hOffensiveParent = m_itemBreakdownTree.InsertItem(
             "Offensive Breakdowns", 
             hParent,
@@ -1424,6 +1426,36 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
                 hHelpless);
         m_itemBreakdownTree.SetItemData(hHelpless, (DWORD)(void*)pHelpless);
         m_items.push_back(pHelpless);
+    }
+    {
+        HTREEITEM hRuneArmChargeRate= m_itemBreakdownTree.InsertItem(
+                "Rune Arm Charge Rate",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem* pRACR = new BreakdownItemSimple(
+                this,
+                Breakdown_RuneArmChargeRate,
+                Effect_RuneArmChargeRate,
+                "Rune Arm Charge rate",
+                &m_itemBreakdownTree,
+                hRuneArmChargeRate);
+        m_itemBreakdownTree.SetItemData(hRuneArmChargeRate, (DWORD)(void*)pRACR);
+        m_items.push_back(pRACR);
+    }
+    {
+        HTREEITEM hRuneArmStableCharge = m_itemBreakdownTree.InsertItem(
+            "Rune Arm Stable Charge",
+            hOffensiveParent,
+            TVI_LAST);
+        BreakdownItem* pRACR = new BreakdownItemSimple(
+                this,
+                Breakdown_RuneArmStableCharge,
+                Effect_RuneArmStableCharge,
+                "Rune Arm Stable Charge",
+                &m_itemBreakdownTree,
+                hRuneArmStableCharge);
+        m_itemBreakdownTree.SetItemData(hRuneArmStableCharge, (DWORD)(void*)pRACR);
+        m_items.push_back(pRACR);
     }
 
     HTREEITEM hTacticalParent = m_itemBreakdownTree.InsertItem(

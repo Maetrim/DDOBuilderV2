@@ -23,11 +23,11 @@
 // Fortitude     - The type of fortitude save for this class (type 1 or 2)
 // Reflex        - The type of reflex save for this class (type 1 or 2)
 // Will          - The type of will save for this class (type 1 or 2)
-// SpellPointsPerLevel - Vector of actual spell points for that many levels in this class (size 20)
+// SpellPointsPerLevel - Vector of actual spell points for that many levels in this class (size 21)
 // CastingStat   - The main state used for DC calculation (list if use highest)
 // AutoBuySkill  - List of skills to prioritize in the an auto buy action for this class
 // Level1..Level20 - Number of spell slots at each level for spell casting classes
-// BAB           - The amount of BAB awarded for each level in this class
+// BAB           - The amount of BAB awarded for each level in this class (size 21)
 // ClassSpells   - The spells this class has at each spell level (-ve are auto assigned spells)
 // FeatSlots     - List of trainable feats slots and types for this class
 
@@ -129,7 +129,7 @@ void Class::VerifyObject() const
     std::stringstream ss;
     ss << "=====" << m_Name << "=====\n";
 
-    if (BAB().size() != MAX_CLASS_LEVEL)
+    if (BAB().size() != MAX_CLASS_LEVEL + 1)
     {
         ss << "Has incorrect BAB vector size\n";
         ok = false;

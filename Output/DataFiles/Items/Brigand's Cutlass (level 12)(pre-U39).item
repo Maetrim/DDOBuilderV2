@@ -45,5 +45,47 @@ lawful opponents.</Description>
       <Type>MortalStrike</Type>
       <BonusType/>
     </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+4 Enhancement Bonus</Name>
+        <Description>+4 Enhancement Bonus: +4 Enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>12</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds True Chaos</Name>
+        <Description>True Chaos: This weapon is infused with the power of True Chaos. It does an additional 1 to 6 damage to non-chaotic targets and can only be wielded by Chaotic-aligned characters.</Description>
+        <MinLevel>12</MinLevel>
+        <Icon>Heroism</Icon>
+         <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Equipment</Bonus>
+         <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Untyped</Damage>
+         </Dice>
+         <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>EnemyType</Type>
+               <Item>Non-Chaotic</Item>
+            </Requirement>
+         </Requirements>
+         </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

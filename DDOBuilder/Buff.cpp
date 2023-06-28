@@ -73,37 +73,48 @@ void Buff::VerifyObject() const
 
 CString Buff::MakeDescription() const
 {
-    CString description(m_DisplayText.c_str());
-    if (HasValue1())
+    CString description;
+    size_t count = DisplayText().size();
+    for (auto&& it: DisplayText())
     {
-        CString value;
-        value.Format("%+d", static_cast<int>(Value1()));
-        description.Replace("%v1", value);
-    }
-    if (HasValue2())
-    {
-        CString value;
-        value.Format("%+d", static_cast<int>(Value2()));
-        description.Replace("%v2", value);
-    }
-    if (HasBonusType())
-    {
-        description.Replace("%b1", BonusType().c_str());
-    }
-    if (HasItem())
-    {
-        description.Replace("%i1", Item().c_str());
-    }
-    if (HasIgnore())
-    {
-        // only remove the ignore if it is at the start of the description
-        int pos = description.Find(Ignore().c_str());
-        if (pos == 0)
+        CString str = it.c_str();
+        if (HasValue1())
         {
-            description = description.Right(description.GetLength() - (Ignore().size() + 1));
+            CString value;
+            value.Format("%+d", static_cast<int>(Value1()));
+            str.Replace("%v1", value);
+        }
+        if (HasValue2())
+        {
+            CString value;
+            value.Format("%+d", static_cast<int>(Value2()));
+            str.Replace("%v2", value);
+        }
+        if (HasBonusType())
+        {
+            str.Replace("%b1", BonusType().c_str());
+        }
+        if (HasItem())
+        {
+            str.Replace("%i1", Item().c_str());
+        }
+        if (HasIgnore())
+        {
+            // only remove the ignore if it is at the start of the description
+            int pos = str.Find(Ignore().c_str());
+            if (pos == 0)
+            {
+                str = description.Right(str.GetLength() - (Ignore().size() + 1));
+            }
+        }
+        BreakUpLongLines(str);
+        description += str;
+        count--;
+        if (count > 0)
+        {
+            description += "\r\n";
         }
     }
-    BreakUpLongLines(description);
 
     return description;
 }

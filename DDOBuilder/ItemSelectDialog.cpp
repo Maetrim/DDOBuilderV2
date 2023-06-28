@@ -1074,7 +1074,8 @@ void CItemSelectDialog::SetupFilterCombobox()
                 if ((m_pBuild->IsWeaponInGroup("One Handed", (WeaponType)i)
                         || m_pBuild->IsWeaponInGroup("Shield", (WeaponType)i)
                         || i == Weapon_Orb
-                        || (i == Weapon_RuneArm && m_pBuild->IsFeatTrained("Artificer Rune Arm Use"))))
+                        || (i == Weapon_RuneArm && m_pBuild->IsFeatTrained("Artificer Rune Arm Use"))
+                        || (i == Weapon_RuneArm && m_pBuild->IsGrantedFeat("Artificer Rune Arm Use"))))
                 {
                     // we can add this one
                     int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));

@@ -35,8 +35,6 @@ void CStancesPane::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_HIDDEN_SIZER, m_staticHiddenSizer);
-    CreateStanceGroup("User", false);
-    CreateStanceGroup("Auto", false);
 }
 
 #pragma warning(push)
@@ -68,7 +66,6 @@ void CStancesPane::Dump(CDumpContext& dc) const
 
 void CStancesPane::OnInitialUpdate()
 {
-    CFormView::OnInitialUpdate();
     if (!m_bHadInitialUpdate)
     {
         m_bHadInitialUpdate = true;
@@ -193,6 +190,19 @@ StanceGroup* CStancesPane::GetStanceGroup(CStanceButton* pButton)
     return pGroup;
 }
 
+StanceGroup* CStancesPane::GetStanceGroup(const std::string& name)
+{
+    StanceGroup* pGroup = nullptr;
+    for (auto&& sgit : m_stanceGroups)
+    {
+        if (sgit->GroupName() == name)
+        {
+            pGroup = sgit;
+        }
+    }
+    return pGroup;
+}
+
 LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
     if (m_pCharacter != NULL)
@@ -215,6 +225,9 @@ LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
+        CreateStanceGroup("User", false);
+        CreateStanceGroup("Auto", false);
+
         m_pCharacter->AttachObserver(this);
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
@@ -642,6 +655,13 @@ void CStancesPane::DestroyAllStances()
         (*it).m_slider->DestroyWindow();
         it = m_sliders.erase(it);
     }
+    if (IsWindow(GetSafeHwnd()))
+    {
+        // now force an on size event to position everything
+        CRect rctWnd;
+        GetClientRect(&rctWnd);
+        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+    }
 }
 
 const std::vector<CStanceButton *> & CStancesPane::UserStances() const
@@ -931,5 +951,28 @@ StanceGroup* CStancesPane::CreateStanceGroup(
         GetClientRect(&rctWnd);
         OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
     }
+    // make sure the "User" group is at the start of the list and "Auto"
+    // at the end
+    StanceGroup* pUser = GetStanceGroup("User");
+    StanceGroup* pAuto = GetStanceGroup("Auto");
+    std::list<StanceGroup*> orderedStanceGroups;
+    if (pUser != NULL)
+    {
+        orderedStanceGroups.push_back(pUser);
+    }
+    for (auto&& sgit: m_stanceGroups)
+    {
+        if (sgit->GroupName() != "User"
+            && sgit->GroupName() != "Auto")
+        {
+            orderedStanceGroups.push_back(sgit);
+        }
+    }
+    if (pAuto != NULL)
+    {
+        orderedStanceGroups.push_back(pAuto);
+    }
+    // now assign the ordered group list
+    m_stanceGroups = orderedStanceGroups;
     return sg;
 }

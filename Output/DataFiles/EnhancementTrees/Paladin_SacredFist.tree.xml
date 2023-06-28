@@ -51,12 +51,6 @@ grants you +5 Healing Amplification and +5 Positive Spell Power.</Description>
         <Description>Your melee attacks while centered deal an extra 1d6 Fire damage per Imbue dice, scaling with 200% Melee Power.</Description>
         <Group>Imbue</Group>
       </Stance>
-      <Effect>
-        <Type>ImbueDice</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Sacred Fist: Strike Evil</Name>
@@ -97,7 +91,7 @@ now bypass Lawful and Good DR.</Description>
         <Type>DRBypass</Type>
         <Bonus>Enhancement</Bonus>
          <AType>NotNeeded</AType>
-         <Item>Lawful</Item>
+         <Value>Lawful</Value>
         <Item>All</Item>
          <Requirements>
             <Requirement>
@@ -110,7 +104,7 @@ now bypass Lawful and Good DR.</Description>
         <Type>DRBypass</Type>
         <Bonus>Enhancement</Bonus>
          <AType>NotNeeded</AType>
-         <Item>Good</Item>
+         <Value>Good</Value>
         <Item>All</Item>
          <Requirements>
             <Requirement>
@@ -343,7 +337,19 @@ and nearby allies gain +1 Ki on hit and +3 Ki on critical for 20 seconds.</Descr
           <Type>Enhancement</Type>
           <Item>SFCore5</Item>
         </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>SFCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
       </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>SFCore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
       <Effect>
         <Type>AbilityBonus</Type>
         <Bonus>Enhancement</Bonus>
@@ -678,7 +684,7 @@ Cooldown: 5 seconds.</Description>
           <Type>MovementSpeed</Type>
           <Bonus>Class</Bonus>
           <AType>ClassLevel</AType>
-          <Amount size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+          <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
           <StackSource>Sacred Fist</StackSource>
           <ApplyAsItemEffect />
        </Effect>

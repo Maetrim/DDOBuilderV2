@@ -83,7 +83,7 @@ class BreakdownItemWeapon :
         //BreakdownItemWeaponOtherDamageEffects m_otherCriticalDamageEffects; // e.g. +2d6 Light Damage
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier19To20;
-        //BreakdownItemWeaponDRBypass m_drBypass;
+        BreakdownItemWeaponDRBypass m_drBypass;
         BreakdownItemSimple m_attackSpeed;
         BreakdownItemSimple m_ghostTouch;
         BreakdownItemSimple m_trueSeeing;

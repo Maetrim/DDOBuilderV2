@@ -11,6 +11,7 @@
 #include "EnhancementSpendInTree.h"
 #include "EquippedGear.h"
 #include "ExclusionGroup.h"
+#include "FeatsListObject.h"
 #include "FeatSlot.h"
 #include "InventorySlotTypes.h"
 #include "LevelTraining.h"
@@ -312,7 +313,8 @@ class Build :
                 DL_OBJECT_LIST(_, ReaperSpendInTree, ReaperTreeSpend) \
                 DL_OBJECT_LIST(_, DestinySpendInTree, DestinyTreeSpend) \
                 DL_STRING(_, ActiveGear) \
-                DL_OBJECT_LIST(_, EquippedGear, GearSetups)
+                DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
+                DL_OBJECT(_, FeatsListObject, FavorFeats)
 
         DL_DECLARE_ACCESS(Build_PROPERTIES)
         DL_DECLARE_VARIABLES(Build_PROPERTIES)

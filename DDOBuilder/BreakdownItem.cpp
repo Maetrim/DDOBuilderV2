@@ -102,9 +102,12 @@ void BreakdownItem::BuildChanged(Character * pCharacter)
     if (m_pCharacter != NULL)
     {
         CreateOtherEffects();
+        if (m_pCharacter->ActiveBuild() != NULL)
+        {
+            // now add the standard items
+            Populate();
+        }
     }
-    // now add the standard items
-    Populate();
 }
 
 BreakdownType BreakdownItem::Type() const
@@ -189,7 +192,8 @@ void BreakdownItem::AddActiveItems(
         {
             // only list it if its non-zero
             double total = it.TotalAmount(false);
-            if (total != 0)
+            if (total != 0
+                    || it.AType() == Amount_NotNeeded)
             {
                 // put the effect name into the control
                 CString effectName = it.DisplayName().c_str();
@@ -204,8 +208,15 @@ void BreakdownItem::AddActiveItems(
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                amount.Format("%.2f", total); //= it.AmountAsText(bShowMultiplier ? Multiplier() : 1.0);
-                amount.Replace(".00", "");
+                if (it.HasValue())
+                {
+                    amount = it.Value().c_str();
+                }
+                else
+                {
+                    amount.Format("%.2f", total); //= it.AmountAsText(bShowMultiplier ? Multiplier() : 1.0);
+                    amount.Replace(".00", "");
+                }
                 pControl->SetItemText(index, CO_Value, amount);
 
                 // add the bonus type
@@ -229,7 +240,8 @@ void BreakdownItem::AddActivePercentageItems(
         {
             // only list it if its non-zero
             double total = it.TotalAmount(false);
-            if (total != 0)
+            if (total != 0
+                || it.AType() == Amount_NotNeeded)
             {
                 // put the effect name into the control
                 CString effectName = it.DisplayName().c_str();
@@ -244,8 +256,15 @@ void BreakdownItem::AddActivePercentageItems(
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                amount.Format("%.2f(%.2f%%)", it.GetPercentValue(), total);
-                amount.Replace(".00", "");
+                if (it.HasValue())
+                {
+                    amount = it.Value().c_str();
+                }
+                else
+                {
+                    amount.Format("%.2f(%.2f%%)", it.GetPercentValue(), total);
+                    amount.Replace(".00", "");
+                }
                 pControl->SetItemText(index, CO_Value, amount);
 
                 // add the bonus type
@@ -270,7 +289,8 @@ void BreakdownItem::AddDeactiveItems(
         {
             // only list it if its non-zero
             double total = it.TotalAmount(false);
-            if (total != 0)
+            if (total != 0
+                || it.AType() == Amount_NotNeeded)
             {
                 // put the effect name into the control
                 CString effectName = it.DisplayName().c_str();
@@ -285,9 +305,16 @@ void BreakdownItem::AddDeactiveItems(
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                amount.Format("%.2f", total); //= it.AmountAsText(bShowMultiplier ? Multiplier() : 1.0);
-                if (it.HasPercent()) amount += "%";
-                amount.Replace(".00", "");
+                if (it.HasValue())
+                {
+                    amount = it.Value().c_str();
+                }
+                else
+                {
+                    amount.Format("%.2f", total); //= it.AmountAsText(bShowMultiplier ? Multiplier() : 1.0);
+                    if (it.HasPercent()) amount += "%";
+                    amount.Replace(".00", "");
+                }
                 pControl->SetItemText(index, CO_Value, amount);
 
                 // add the bonus type

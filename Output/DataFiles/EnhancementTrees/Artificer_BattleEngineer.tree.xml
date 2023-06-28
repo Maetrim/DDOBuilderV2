@@ -91,6 +91,12 @@ for a total of +16.</Description>
           </Requirement>
         </Requirements>
       </Effect>
+      <Effect>
+        <Type>RuneArmStableCharge</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Battle Engineer: Infused Armor I</Name>
@@ -198,6 +204,12 @@ for a total of +32.</Description>
           </Requirement>
         </Requirements>
       </Effect>
+      <Effect>
+        <Type>RuneArmStableCharge</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Battle Engineer: Infused Armor II</Name>
@@ -286,7 +298,19 @@ Enhancement bonus on the weapon.</Description>
           <Item>Artificer</Item>
           <Value>20</Value>
         </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>BECore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
       </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>BECore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
       <Effect>
         <Type>AbilityBonus</Type>
         <Bonus>Enhancement</Bonus>
@@ -497,6 +521,12 @@ Your rune arms build charge [10/20/33]% faster.</Description>
           <Value>1</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>RuneArmChargeRate</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">10 20 33</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Battle Engineer: Item Defense</Name>
@@ -978,12 +1008,6 @@ damage on each hit, scaling with electric spell power.</Description>
 damage on each hit, scaling with electric spell power.</Description>
            <Group>Imbue</Group>
         </Stance>
-        <Effect>
-           <Type>ImbueDice</Type>
-           <Bonus>Enhancement</Bonus>
-           <AType>Simple</AType>
-           <Amount size="1">1</Amount>
-        </Effect>
      </EnhancementTreeItem>
      <EnhancementTreeItem>
       <Name>Battle Engineer: Ability I</Name>

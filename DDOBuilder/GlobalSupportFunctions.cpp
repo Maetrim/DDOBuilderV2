@@ -1572,7 +1572,8 @@ bool LimitToRuneArm(Build* pBuild)
 {
     bool bLimitToRuneArm = false;
     if (pBuild != NULL
-        && pBuild->IsFeatTrained("Artificer Rune Arm Use"))
+        && (pBuild->IsFeatTrained("Artificer Rune Arm Use")
+            || pBuild->IsGrantedFeat("Artificer Rune Arm Use")))
     {
         Item item = pBuild->ActiveGearSet().MainHand();
         switch (item.Weapon())
@@ -1595,7 +1596,8 @@ bool CanEquipTo2ndWeapon(
 {
     bool bAllowRuneArm = false;
     if (pBuild != NULL
-        && pBuild->IsFeatTrained("Artificer Rune Arm Use"))
+        && (pBuild->IsFeatTrained("Artificer Rune Arm Use")
+            || pBuild->IsGrantedFeat("Artificer Rune Arm Use")))
     {
         bAllowRuneArm = true;
     }

@@ -7,7 +7,6 @@
 #include "AlignmentTypes.h"
 #include "Build.h"
 #include "Feat.h"
-#include "FeatsListObject.h"
 #include "SkillTomes.h"
 
 class Character;
@@ -126,4 +125,6 @@ class Life :
         int m_bonusRacialActionPoints;
         int m_bonusUniversalActionPoints;
         int m_bonusDestinyActionPoints;
+
+        friend class Build;
 };

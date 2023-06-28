@@ -41,5 +41,47 @@ lawful opponents.</Description>
       <Value1>15</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+5 Enhancement Bonus</Name>
+        <Description>+5 Enhancement Bonus: +5 Enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>16</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds Absolute Chaos</Name>
+        <Description>Absolute Chaos: This weapon is infused with the ultimate power of Chaos. It does an additional 2 to 12 damage to non-chaotic targets and can only be wielded by Chaotic-aligned characters.</Description>
+        <MinLevel>8</MinLevel>
+        <Icon>Heroism</Icon>
+         <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Equipment</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Untyped</Damage>
+         </Dice>
+         <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>EnemyType</Type>
+               <Item>Non-Chaotic</Item>
+            </Requirement>
+         </Requirements>
+         </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

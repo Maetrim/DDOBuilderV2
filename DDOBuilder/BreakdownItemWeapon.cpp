@@ -32,7 +32,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackSpeed(pPane, Breakdown_WeaponAttackSpeed, Effect_Weapon_Alacrity, "Attack Speed", treeList, NULL, false),
     m_ghostTouch(pPane, Breakdown_WeaponGhostTouch, Effect_GhostTouch, "Ghost Touch", treeList, NULL, false),
     m_trueSeeing(pPane, Breakdown_WeaponTrueSeeing, Effect_TrueSeeing, "True Seeing", treeList, NULL, false),
-    //m_drBypass(pPane, Breakdown_DRBypass, treeList, NULL),
+    m_drBypass(pPane, Breakdown_DRBypass, treeList, NULL),
     m_weaponCriticalMuliplier(weaponCriticalMultiplier)
 {
     SetWeapon(weaponType, weaponCriticalMultiplier);
@@ -50,7 +50,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackSpeed.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_ghostTouch.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_trueSeeing.SetWeapon(weaponType, weaponCriticalMultiplier);
-    //m_drBypass.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_drBypass.SetWeapon(weaponType, weaponCriticalMultiplier);
 
     // we need to update if any of our sub-items update also
     m_baseDamage.AttachObserver(this);
@@ -67,7 +67,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackSpeed.AttachObserver(this);
     m_ghostTouch.AttachObserver(this);
     m_trueSeeing.AttachObserver(this);
-    //m_drBypass.AttachObserver(this);
+    m_drBypass.AttachObserver(this);
 
     std::string strDamageDice = (LPCTSTR)m_damageDice.DiceAsText();
 
@@ -85,7 +85,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     AddTreeItem("Attack Speed", "", &m_attackSpeed);
     AddTreeItem("Ghost Touch", "", &m_ghostTouch);
     AddTreeItem("True Seeing", "", &m_trueSeeing);
-    //AddTreeItem("DR Bypass", "", &m_drBypass);
+    AddTreeItem("DR Bypass", "", &m_drBypass);
 }
 
 BreakdownItemWeapon::~BreakdownItemWeapon()
@@ -109,7 +109,7 @@ void BreakdownItemWeapon::BuildChanged(Character* charData)
     m_attackSpeed.BuildChanged(charData);
     m_ghostTouch.BuildChanged(charData);
     m_trueSeeing.BuildChanged(charData);
-    //m_drBypass.BuildChanged(charData);
+    m_drBypass.BuildChanged(charData);
 }
 
 void BreakdownItemWeapon::AddTreeItem(
@@ -156,7 +156,7 @@ void BreakdownItemWeapon::SetCharacter(Character * pCharacter)
     m_attackSpeed.BuildChanged(pCharacter);
     m_ghostTouch.BuildChanged(pCharacter);
     m_trueSeeing.BuildChanged(pCharacter);
-    //m_drBypass.BuildChanged(pCharacter);
+    m_drBypass.BuildChanged(pCharacter);
 }
 
 // required overrides
@@ -237,7 +237,7 @@ void BreakdownItemWeapon::FeatEffectApplied(
         m_attackSpeed.FeatEffectApplied(pBuild, effect);
         m_ghostTouch.FeatEffectApplied(pBuild, effect);
         m_trueSeeing.FeatEffectApplied(pBuild, effect);
-        //m_drBypass.FeatEffectApplied(pBuild, effect);
+        m_drBypass.FeatEffectApplied(pBuild, effect);
     }
 }
 
@@ -263,7 +263,7 @@ void BreakdownItemWeapon::FeatEffectRevoked(
         m_attackSpeed.FeatEffectRevoked(pBuild, effect);
         m_ghostTouch.FeatEffectRevoked(pBuild, effect);
         m_trueSeeing.FeatEffectRevoked(pBuild, effect);
-        //m_drBypass.FeatEffectRevoked(pBuild, effect);
+        m_drBypass.FeatEffectRevoked(pBuild, effect);
     }
 }
 
@@ -289,7 +289,7 @@ void BreakdownItemWeapon::ItemEffectApplied(
         m_attackSpeed.ItemEffectApplied(pBuild, effect);
         m_ghostTouch.ItemEffectApplied(pBuild, effect);
         m_trueSeeing.ItemEffectApplied(pBuild, effect);
-        //m_drBypass.ItemEffectApplied(pBuild, effect);
+        m_drBypass.ItemEffectApplied(pBuild, effect);
     }
 }
 
@@ -315,7 +315,7 @@ void BreakdownItemWeapon::ItemEffectRevoked(
         m_attackSpeed.ItemEffectRevoked(pBuild, effect);
         m_ghostTouch.ItemEffectRevoked(pBuild, effect);
         m_trueSeeing.ItemEffectRevoked(pBuild, effect);
-        //m_drBypass.ItemEffectRevoked(pBuild, effect);
+        m_drBypass.ItemEffectRevoked(pBuild, effect);
     }
 }
 
@@ -341,7 +341,7 @@ void BreakdownItemWeapon::EnhancementEffectApplied(
         m_attackSpeed.EnhancementEffectApplied(pBuild, effect);
         m_ghostTouch.EnhancementEffectApplied(pBuild, effect);
         m_trueSeeing.EnhancementEffectApplied(pBuild, effect);
-        //m_drBypass.EnhancementEffectApplied(pBuild, effect);
+        m_drBypass.EnhancementEffectApplied(pBuild, effect);
     }
 }
 
@@ -367,7 +367,7 @@ void BreakdownItemWeapon::EnhancementEffectRevoked(
         m_attackSpeed.EnhancementEffectRevoked(pBuild, effect);
         m_ghostTouch.EnhancementEffectRevoked(pBuild, effect);
         m_trueSeeing.EnhancementEffectRevoked(pBuild, effect);
-        //m_drBypass.EnhancementEffectRevoked(pBuild, effect);
+        m_drBypass.EnhancementEffectRevoked(pBuild, effect);
     }
 }
 
@@ -399,7 +399,7 @@ void BreakdownItemWeapon::ClassChanged(
     m_attackSpeed.ClassChanged(pBuild, classFrom, classTo, level);
     m_ghostTouch.ClassChanged(pBuild, classFrom, classTo, level);
     m_trueSeeing.ClassChanged(pBuild, classFrom, classTo, level);
-    //m_drBypass.ClassChanged(pBuild, classFrom, classTo, level);
+    m_drBypass.ClassChanged(pBuild, classFrom, classTo, level);
 }
 
 //void BreakdownItemWeapon::UpdateAPSpentInTreeChanged(
@@ -507,7 +507,7 @@ void BreakdownItemWeapon::FeatTrained(
     m_attackSpeed.FeatTrained(pBuild, featName);
     m_ghostTouch.FeatTrained(pBuild, featName);
     m_trueSeeing.FeatTrained(pBuild, featName);
-    //m_drBypass.FeatTrained(pBuild, featName);
+    m_drBypass.FeatTrained(pBuild, featName);
 }
 
 void BreakdownItemWeapon::FeatRevoked(
@@ -530,7 +530,7 @@ void BreakdownItemWeapon::FeatRevoked(
     m_attackSpeed.FeatRevoked(pBuild, featName);
     m_ghostTouch.FeatRevoked(pBuild, featName);
     m_trueSeeing.FeatRevoked(pBuild, featName);
-    //m_drBypass.FeatRevoked(pBuild, featName);
+    m_drBypass.FeatRevoked(pBuild, featName);
 }
 
 //void BreakdownItemWeapon::UpdateStanceActivated(

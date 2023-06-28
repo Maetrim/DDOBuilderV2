@@ -28,7 +28,7 @@ class Buff :
         #define Buff_PROPERTIES(_) \
                 DL_STRING(_, Type) \
                 DL_FLAG(_, ApplyToWeaponOnly) \
-                DL_OPTIONAL_STRING(_, DisplayText) \
+                DL_STRING_LIST(_, DisplayText) \
                 DL_OPTIONAL_STRING(_, Ignore) \
                 DL_OPTIONAL_SIMPLE(_, double, Value1, 0.0) \
                 DL_OPTIONAL_SIMPLE(_, double, Value2, 0.0) \

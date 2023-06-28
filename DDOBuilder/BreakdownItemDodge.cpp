@@ -86,20 +86,24 @@ CString BreakdownItemDodge::Value() const
         capped = true;
     }
     // MDB cap applies when not in cloth armor
-    if (m_pCharacter != NULL
-            && !m_pCharacter->ActiveBuild()->IsStanceActive("Cloth Armor")
+    if (m_pCharacter != NULL)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL
+            && !pBuild->IsStanceActive("Cloth Armor")
             && dodge > maxDodgeBonusArmor)
-    {
-        displayDodge = min(displayDodge, maxDodgeBonusArmor);
-        capped = true;
-    }
-    // max dex tower shield applies when a tower shield is equipped
-    if (m_pCharacter != NULL
-            && m_pCharacter->ActiveBuild()->IsStanceActive("Tower Shield")
-            && dodge > maxDodgeBonusTowerShields)
-    {
-        displayDodge = min(displayDodge, maxDodgeBonusTowerShields);
-        capped = true;
+        {
+            displayDodge = min(displayDodge, maxDodgeBonusArmor);
+            capped = true;
+        }
+        // max dex tower shield applies when a tower shield is equipped
+        if (pBuild != NULL
+                && pBuild->IsStanceActive("Tower Shield")
+                && dodge > maxDodgeBonusTowerShields)
+        {
+            displayDodge = min(displayDodge, maxDodgeBonusTowerShields);
+            capped = true;
+        }
     }
     CString value;
     if (capped)

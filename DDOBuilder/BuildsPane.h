@@ -32,10 +32,14 @@ protected:
     afx_msg void OnBeginlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult);
     afx_msg void OnEndlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult);
     afx_msg void OnDblclkTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg void OnClickTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnUpdateBuildLevel(CCmdUI* pCmdUI);
+    afx_msg LRESULT OnStartLabelEdit(WPARAM, LPARAM);
 
     virtual void DoDataExchange(CDataExchange* pDX) override;
     virtual void OnInitialUpdate() override;
+    virtual BOOL PreTranslateMessage(MSG* pMsg) override;
+
     // CharacterObserver
     virtual void UpdateNumBuildsChanged(Character * charData) override;
 
@@ -58,6 +62,7 @@ private:
     CDDOBuilderDoc * m_pDoc;
     Character * m_pCharacter;
     HTREEITEM m_hPopupMenuItem;
+    bool m_bEscape;
 };
 
 

@@ -105,7 +105,7 @@ and slashing damage. Activation Cost: 20 spell points. Cooldown: 10 seconds.</De
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Bludgeon</Item>
+            <Value>Bludgeon</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
             <Requirements>
@@ -122,7 +122,7 @@ and slashing damage. Activation Cost: 20 spell points. Cooldown: 10 seconds.</De
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Pierce</Item>
+            <Value>Pierce</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
             <Requirements>
@@ -139,7 +139,7 @@ and slashing damage. Activation Cost: 20 spell points. Cooldown: 10 seconds.</De
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Slash</Item>
+            <Value>Slash</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
             <Requirements>
@@ -194,7 +194,7 @@ Activation Cost: 20 spell points. Cooldown: 10 seconds.</Description>
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Metalline</Item>
+            <Value>Metalline</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
             <Requirements>
@@ -249,7 +249,7 @@ damage reduction. Activation Cost: 20 spell points. Cooldown: 10 seconds.</Descr
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Alignment</Item>
+            <Value>Alignment</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
             <Requirements>
@@ -343,7 +343,19 @@ Passive: Equipped bows gains a +1 Competence bonus to Critical Damage Multiplier
                <Item>Ranger</Item>
                <Value>20</Value>
             </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>AACore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
          </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>AACore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
          <Effect>
             <Type>Weapon_EnchantmentClass</Type>
             <Bonus>Enhancement</Bonus>
@@ -548,12 +560,6 @@ Passive: +5 Universal Spell Power</Description>
             </EnhancementSelection>
          </Selector>
          <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
             <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
@@ -647,12 +653,6 @@ Force Arrows dice. This damage also scales with Spell Power.</Description>
 Your arrows gain On Hit: 1d8 force damage per Imbue Dice and scales with Spell power.</Description>
             <Group>Imbue</Group>
          </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
          <Effect>
             <Type>GhostTouch</Type>
             <Bonus>Enhancement</Bonus>

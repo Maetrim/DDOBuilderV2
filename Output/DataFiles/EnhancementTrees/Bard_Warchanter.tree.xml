@@ -317,7 +317,19 @@ slowed for 6 seconds.
                <Item>Bard</Item>
                <Value>20</Value>
             </Requirement>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>WCCore6</Item>
+              <Item>Capstone Enhancement</Item>
+            </Requirement>
          </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>WCCore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Enhancement</Bonus>
@@ -613,12 +625,6 @@ Cooldown: 8 seconds.</Description>
             <Description>+1d6 cold damage per Imbue dice with attacks.</Description>
             <Group>Imbue</Group>
          </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter Action Boost: Sprint</Name>
@@ -849,12 +855,6 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
             <Description>1d6 Cold damage for each Imbue dice that scales with Cold spell power.</Description>
             <Group>Imbue</Group>
          </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Ability I</Name>

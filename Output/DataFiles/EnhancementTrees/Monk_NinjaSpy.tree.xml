@@ -233,7 +233,19 @@ of melee weapon, then those weapons will also gain these effects.</Description>
                <Item>Monk</Item>
                <Value>20</Value>
             </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>NSCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
          </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>NSCore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -1299,12 +1311,6 @@ if they are normally Piercing or Slashing weapons. Cooldown: 3 seconds.</Descrip
 You do 1d6 Poison damage per Imbue Dice scaling with either Melee or Ranged power.</Description>
             <Group>Imbue</Group>
          </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ability I</Name>

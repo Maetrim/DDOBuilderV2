@@ -11,6 +11,11 @@ power of your electric spells.</Description>
       <Bracers/>
     </EquipmentSlot>
     <Buff>
+      <Type>Magnetism</Type>
+      <Value1>96</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
       <Type>LightningLore</Type>
       <Value1>14</Value1>
       <BonusType>Equipment</BonusType>
@@ -28,20 +33,62 @@ power of your electric spells.</Description>
       <Type>AirGuard</Type>
       <BonusType/>
     </Buff>
-    <Buff>
-      <Type>LightningLore</Type>
-      <Value1>14</Value1>
-      <BonusType>Equipment</BonusType>
-    </Buff>
-    <Buff>
-      <Type>LightningLore</Type>
-      <Value1>15</Value1>
-      <BonusType>Equipment</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Dodge</Type>
-      <Value1>8</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Tier 2</Type>
+        <Augment>
+           <Name>Magnetism +102, Lightning Lore +15%</Name>
+           <Description>Magnetism +102: Passive: +102 Equipment bonus to Electricity Spell Power.
+Lightning Lore +15: Passive: Your Electricity spells gain a 15% Equipment bonus to their chance to critical hit.</Description>
+           <MinLevel>15</MinLevel>
+           <Effect>
+              <Type>SpellPower</Type>
+              <Bonus>Equipment</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">102</Amount>
+              <Item>Electric</Item>
+           </Effect>
+           <Effect>
+              <Type>SpellLore</Type>
+              <Bonus>Equipment</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">15</Amount>
+              <Item>Electric</Item>
+           </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Tier 3</Type>
+        <Augment>
+           <Name>Magnetism +108, Lightning Lore +16%, Dodge 9% and a Green augment slot</Name>
+           <Description>Magnetism +108: Passive: +108 Equipment bonus to Electricity Spell Power.
+Lightning Lore +16: Passive: Your Electricity spells gain a 16% Equipment bonus to their chance to critical hit.
+Dodge +9%: +9% Enhancement bonus to Dodge.
+Adds a Green augment slot.</Description>
+           <MinLevel>11</MinLevel>
+           <Effect>
+              <Type>SpellPower</Type>
+              <Bonus>Equipment</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">108</Amount>
+              <Item>Electric</Item>
+           </Effect>
+           <Effect>
+              <Type>SpellLore</Type>
+              <Bonus>Equipment</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">16</Amount>
+              <Item>Electric</Item>
+           </Effect>
+           <Effect>
+              <Type>DodgeBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">9</Amount>
+              <Item>Electric</Item>
+           </Effect>
+           <GrantAugment>Green</GrantAugment>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

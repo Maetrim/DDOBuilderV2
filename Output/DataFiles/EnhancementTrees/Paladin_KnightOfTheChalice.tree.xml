@@ -40,12 +40,6 @@ spells and effects produced by evil creatures.</Description>
             <Group>Imbue</Group>
          </Stance>
          <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
@@ -297,7 +291,19 @@ considered Good aligned for purposes of bypassing damage reduction.</Description
                <Item>Paladin</Item>
                <Value>20</Value>
             </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>KotCCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
          </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>KotCCore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -329,7 +335,7 @@ considered Good aligned for purposes of bypassing damage reduction.</Description
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Good</Item>
+            <Value>Good</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
          </Effect>

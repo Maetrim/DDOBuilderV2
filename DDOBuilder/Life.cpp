@@ -488,15 +488,26 @@ size_t Life::GetSpecialFeatTrainedCount(
     // return the count of how many times this particular feat has
     // been trained.
     size_t count = 0;
-    const std::list<TrainedFeat> & feats = SpecialFeats().Feats();
-    std::list<TrainedFeat>::const_iterator it = feats.begin();
-    while (it != feats.end())
+    const std::list<TrainedFeat> & specialFeats = SpecialFeats().Feats();
+    for (auto&& sfit: specialFeats)
     {
-        if ((*it).FeatName() == featName)
+        if (sfit.FeatName() == featName)
         {
             ++count;    // it is present, count it
         }
-        ++it;
+    }
+    // also need to check the builds favor feats
+    const Build* pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
+    {
+        const std::list<TrainedFeat>& favorFeats = pBuild->FavorFeats().Feats();
+        for (auto&& ffit : favorFeats)
+        {
+            if (ffit.FeatName() == featName)
+            {
+                ++count;    // it is present, count it
+            }
+        }
     }
     return count;
 }

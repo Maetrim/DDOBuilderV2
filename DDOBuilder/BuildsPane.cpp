@@ -44,14 +44,17 @@ BEGIN_MESSAGE_MAP(CBuildsPane, CFormView)
     ON_NOTIFY(TVN_BEGINLABELEDIT, IDC_TREE_BUILDS, &CBuildsPane::OnBeginlabeleditTreeBuilds)
     ON_NOTIFY(TVN_ENDLABELEDIT, IDC_TREE_BUILDS, &CBuildsPane::OnEndlabeleditTreeBuilds)
     ON_NOTIFY(NM_DBLCLK, IDC_TREE_BUILDS, &CBuildsPane::OnDblclkTreeBuilds)
+    ON_NOTIFY(NM_CLICK, IDC_TREE_BUILDS, &CBuildsPane::OnClickTreeBuilds)
     ON_UPDATE_COMMAND_UI_RANGE(ID_LEVELSELECT_1, ID_LEVELSELECT_40, &CBuildsPane::OnUpdateBuildLevel)
+    ON_MESSAGE(WM_USER, OnStartLabelEdit)
 END_MESSAGE_MAP()
 
 CBuildsPane::CBuildsPane() :
     CFormView(CBuildsPane::IDD),
     m_pDoc(NULL),
     m_pCharacter(NULL),
-    m_hPopupMenuItem(NULL)
+    m_hPopupMenuItem(NULL),
+    m_bEscape(false)
 {
 }
 
@@ -178,6 +181,27 @@ void CBuildsPane::OnInitialUpdate()
 {
     __super::OnInitialUpdate();
     PopulateBuildsList();
+}
+
+BOOL CBuildsPane::PreTranslateMessage(MSG* pMsg)
+{
+    // If edit control is visible in tree view control, when you send a
+    // WM_KEYDOWN message to the edit control it will dismiss the edit
+    // control. When the ENTER key was sent to the edit control, the
+    // parent window of the tree view control is responsible for updating
+    // the item's label in TVN_ENDLABELEDIT notification code.
+    if (pMsg->message == WM_KEYDOWN &&
+        (pMsg->wParam == VK_RETURN || pMsg->wParam == VK_ESCAPE))
+    {
+        CEdit* edit = m_treeBuilds.GetEditControl();
+        if (edit != NULL)
+        {
+            m_bEscape = (pMsg->wParam == VK_ESCAPE);
+            edit->SendMessage(WM_KEYDOWN, pMsg->wParam, pMsg->lParam);
+            return TRUE;
+        }
+    }
+    return CFormView::PreTranslateMessage(pMsg);
 }
 
 void CBuildsPane::UpdateNumBuildsChanged(Character *)
@@ -392,28 +416,33 @@ void CBuildsPane::OnBeginlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CBuildsPane::OnEndlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
 {
-    // the user has renamed a life or build
-    LPNMTVDISPINFO pTVDispInfo = reinterpret_cast<LPNMTVDISPINFO>(pNMHDR);
-    DWORD itemData = m_treeBuilds.GetItemData(pTVDispInfo->item.hItem);
-    CString strText = pTVDispInfo->item.pszText;
-    CString strOldName = m_treeBuilds.GetItemText(pTVDispInfo->item.hItem);
-    m_treeBuilds.SetItemText(pTVDispInfo->item.hItem, strText);
-    // update the item
-    TreeEntryItem type = ExtractType(itemData);
-    size_t lifeIndex = ExtractLifeIndex(itemData);
-    switch (type)
+    if (!m_bEscape)
     {
-        case TEI_Life:
-            m_pCharacter->SetLifeName(lifeIndex, strText);
-            break;
-        default:
-            // fail!
-            break;
+        // the user has renamed a life or build
+        LPNMTVDISPINFO pTVDispInfo = reinterpret_cast<LPNMTVDISPINFO>(pNMHDR);
+        DWORD itemData = m_treeBuilds.GetItemData(pTVDispInfo->item.hItem);
+        CString strText = pTVDispInfo->item.pszText;
+        CString strOldName = m_treeBuilds.GetItemText(pTVDispInfo->item.hItem);
+        m_treeBuilds.SetItemText(pTVDispInfo->item.hItem, strText);
+        // update the item
+        TreeEntryItem type = ExtractType(itemData);
+        size_t lifeIndex = ExtractLifeIndex(itemData);
+        CString strLogText;
+        switch (type)
+        {
+            case TEI_Life:
+                m_pCharacter->SetLifeName(lifeIndex, strText);
+                strLogText.Format("Life renamed from \"%s\" to \"%s\"", (LPCSTR)strOldName, (LPCSTR)strText);
+                GetLog().AddLogEntry(strLogText);
+                PopulateBuildsList();
+                break;
+            default:
+                // fail!
+                break;
+        }
+        m_bEscape = false;
     }
     *pResult = 0;
-    CString strLogText;
-    strLogText.Format("Life renamed from \"%s\" to \"%s\"", (LPCSTR)strOldName, (LPCSTR)strText);
-    GetLog().AddLogEntry(strLogText);
 }
 
 void CBuildsPane::SelectTreeItem(
@@ -426,6 +455,7 @@ void CBuildsPane::SelectTreeItem(
 
 void CBuildsPane::SelectTreeItem(DWORD itemData)
 {
+    HTREEITEM hCurrent = m_treeBuilds.GetSelectedItem();
     // iterate the tree and find the item with this item data
     // if not found, select the default item
     bool found = false;
@@ -444,10 +474,24 @@ void CBuildsPane::SelectTreeItem(DWORD itemData)
             hItem = GetNextTreeItem(m_treeBuilds, hItem);
         }
     }
-    if (hItem != NULL)
+    if (hItem != NULL
+            && hItem != hCurrent)
     {
         m_treeBuilds.Select(hItem, TVGN_CARET);
         m_treeBuilds.EnsureVisible(hItem);
+    }
+}
+
+void CBuildsPane::OnClickTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    CPoint mouse;
+    GetCursorPos(&mouse);
+    m_treeBuilds.ScreenToClient(&mouse);
+    UINT uFlags = 0;
+    HTREEITEM hItem = m_treeBuilds.HitTest(mouse, &uFlags);
+    if (hItem == m_treeBuilds.GetSelectedItem())
+    {
+        OnDblclkTreeBuilds(pNMHDR, pResult);
     }
 }
 
@@ -464,48 +508,63 @@ void CBuildsPane::OnDblclkTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
     if (hItem != NULL)
     {
         DWORD itemData = m_treeBuilds.GetItemData(hItem);
-        size_t lifeIndex = ExtractLifeIndex(itemData);
-        size_t buildIndex = ExtractBuildIndex(itemData);
-        // display a popup menu to allow the user to select the level they want
-        // this build to be at
-        CMenu menuLevelSelect;
-        menuLevelSelect.LoadMenu(IDR_LEVEL_SELECT_MENU);
-        CMenu * pMenu = menuLevelSelect.GetSubMenu(0);
-        // find where to display it
-        CRect rectItem;
-        m_treeBuilds.GetItemRect(hItem, &rectItem, FALSE);
-        m_treeBuilds.ClientToScreen(&rectItem);
-        int x = rectItem.left;
-        int y = rectItem.bottom + 1;
-        CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
-        m_hPopupMenuItem = hItem;
-        UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
-                pMenu->GetSafeHmenu(),
-                x,
-                y,
-                this);
-        if (sel != 0)
+        TreeEntryItem type = ExtractType(itemData);
+        if (type == TEI_Build)
         {
-            // only update if the level selected is different
-            int selectedLevel = (sel - ID_LEVELSELECT_1) + 1; // 1 based
-            int buildLevel = m_pCharacter->GetBuildLevel(lifeIndex, buildIndex);
-            if (selectedLevel != buildLevel)
+            size_t lifeIndex = ExtractLifeIndex(itemData);
+            size_t buildIndex = ExtractBuildIndex(itemData);
+            // display a popup menu to allow the user to select the level they want
+            // this build to be at
+            CMenu menuLevelSelect;
+            menuLevelSelect.LoadMenu(IDR_LEVEL_SELECT_MENU);
+            CMenu * pMenu = menuLevelSelect.GetSubMenu(0);
+            // find where to display it
+            CRect rectItem;
+            m_treeBuilds.GetItemRect(hItem, &rectItem, FALSE);
+            m_treeBuilds.ClientToScreen(&rectItem);
+            int x = rectItem.left;
+            int y = rectItem.bottom + 1;
+            CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+            m_hPopupMenuItem = hItem;
+            UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
+                    pMenu->GetSafeHmenu(),
+                    x,
+                    y,
+                    this);
+            if (sel != 0)
             {
-                CString logEntry;
-                logEntry.Format("Build changed from level %d to level %d", buildLevel, selectedLevel);
-                GetLog().AddLogEntry(logEntry);
-                // update the build
-                m_pCharacter->SetBuildLevel(lifeIndex, buildIndex, selectedLevel);
-                // update our UI element
-                CString name = m_pCharacter->GetLife(lifeIndex).GetBuild(buildIndex).UIDescription(buildIndex);
-                m_treeBuilds.SetItemText(
-                        m_hPopupMenuItem,
-                        name);
+                // only update if the level selected is different
+                int selectedLevel = (sel - ID_LEVELSELECT_1) + 1; // 1 based
+                int buildLevel = m_pCharacter->GetBuildLevel(lifeIndex, buildIndex);
+                if (selectedLevel != buildLevel)
+                {
+                    CString logEntry;
+                    logEntry.Format("Build changed from level %d to level %d", buildLevel, selectedLevel);
+                    GetLog().AddLogEntry(logEntry);
+                    // update the build
+                    m_pCharacter->SetBuildLevel(lifeIndex, buildIndex, selectedLevel);
+                    // update our UI element
+                    CString name = m_pCharacter->GetLife(lifeIndex).GetBuild(buildIndex).UIDescription(buildIndex);
+                    PopulateBuildsList();
+                }
             }
+            m_hPopupMenuItem = NULL;
         }
-        m_hPopupMenuItem = NULL;
+        else
+        {
+            // post a message to ourself to cause label edit start
+            PostMessage(WM_USER, 0, 0L);
+        }
+        *pResult = 0;
     }
-    *pResult = 0;
+}
+
+LRESULT CBuildsPane::OnStartLabelEdit(WPARAM, LPARAM)
+{
+    // start a label edit
+    HTREEITEM hItem = m_treeBuilds.GetSelectedItem();
+    m_treeBuilds.EditLabel(hItem);
+    return 0;
 }
 
 void CBuildsPane::OnUpdateBuildLevel(CCmdUI* pCmdUI)

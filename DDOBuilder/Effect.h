@@ -117,6 +117,8 @@ enum EffectType
     Effect_RAPBonus,
     Effect_Regeneration,
     Effect_RepairAmplification,
+    Effect_RuneArmChargeRate,
+    Effect_RuneArmStableCharge,
     Effect_RustSusceptability,
     Effect_SaveBonus,
     Effect_SaveBonusAbility,
@@ -310,6 +312,8 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_RAPBonus, L"RAPBonus"},
     {Effect_Regeneration, L"Regeneration"},
     {Effect_RepairAmplification, L"RepairAmplification"},
+    {Effect_RuneArmChargeRate, L"RuneArmChargeRate"},
+    {Effect_RuneArmStableCharge, L"RuneArmStableCharge"},
     {Effect_RustSusceptability, L"RustSusceptability"},
     {Effect_SaveBonus, L"SaveBonus"},
     {Effect_SaveBonusAbility, L"SaveBonusAbility"},
@@ -481,6 +485,7 @@ class Effect :
         void SetBonus(const std::string& bonus);
         void SetItem(const std::list<std::string>& items);
         void AddItem(const std::string& item);
+        void AddValue(const std::string& str);
 
         bool operator==(const Effect & other) const;
 
@@ -500,6 +505,7 @@ class Effect :
                 DL_STRING_LIST(_, Item) \
                 DL_OPTIONAL_ENUM(_, AmountType, AType, Amount_Unknown, amountTypeMap) \
                 DL_OPTIONAL_VECTOR(_, double, Amount) \
+                DL_OPTIONAL_STRING(_, Value) \
                 DL_OPTIONAL_STRING(_, StackSource) \
                 DL_FLAG(_, IsItemSpecific) \
                 DL_FLAG(_, Percent) \

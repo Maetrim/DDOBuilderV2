@@ -189,26 +189,35 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             case Effect_DRBypass:
                 if (m_Item.size() == 0)
                 {
-                    (*ss) << "DRBypass effect missing DR type Item\n";
+                    (*ss) << "DRBypass effect missing weapon type Item\n";
                     ok = false;
+                    if (!HasValue())
+                    {
+                        (*ss) << "DRBypass effect missing Value DR field\n";
+                    }
                 }
                 else
                 {
-                    auto it = m_Item.begin();
-                    if (TextToEnumEntry((*it), drTypeMap, false) == DR_Unknown)
+                    if (!HasValue())
                     {
-                        (*ss) << "DRBypass effect has bad DR type enum value\n";
+                        (*ss) << "DRBypass effect missing Value DR field\n";
                         ok = false;
                     }
-                    it++;
-                    while (it != m_Item.end())
+                    else
                     {
-                        if (TextToEnumEntry((*it), weaponTypeMap, false) == Weapon_Unknown)
+                        if (TextToEnumEntry(Value(), drTypeMap, false) == DR_Unknown)
                         {
-                            (*ss) << "DRBypass effect has bad enum value\n";
+                            (*ss) << "DRBypass effect missing Value DR field\n";
                             ok = false;
                         }
-                        ++it;
+                    }
+                    for (auto&& it: m_Item)
+                    {
+                        if (TextToEnumEntry(it, weaponTypeMap, false) == Weapon_Unknown)
+                        {
+                            (*ss) << "DRBypass effect has bad enum Item value\n";
+                            ok = false;
+                        }
                     }
                 }
                 break;
@@ -713,7 +722,7 @@ bool Effect::CheckAType(
     case Amount_ClassLevel:
         // expect a single Item thats a class and 20 Amount Items
         *bRequiresAmount = true;                    // Amount specifies amount at each class level
-        *requiredAmountElements = MAX_CLASS_LEVEL; // 20 elements expected
+        *requiredAmountElements = MAX_CLASS_LEVEL + 1; // 20 elements expected
         if (!HasStackSource())
         {
             (*ss) << "ClassLevel effect missing StackSource field\n";
@@ -845,7 +854,8 @@ bool Effect::operator==(const Effect & other) const
             && (m_hasDamageDice == other.m_hasDamageDice)
             && (m_DamageDice == other.m_DamageDice)
             && (m_hasDamage == other.m_hasDamage)
-            && (m_Damage == other.m_Damage);
+            && (m_Damage == other.m_Damage)
+            && (m_Bonus != "Unique");
 }
 
 bool Effect::IsActive(const Character& c, WeaponType wt) const
@@ -915,7 +925,7 @@ double Effect::TotalAmount(bool allowTruncate) const
 {
     UNREFERENCED_PARAMETER(allowTruncate);
     double total = 0.0;
-    // the way the total amount is calcualted depends on the type
+    // the way the total amount is calculated depends on the type
     switch (m_AType)
     {
         case Amount_Simple:
@@ -973,7 +983,7 @@ double Effect::TotalAmount(bool allowTruncate) const
                 }
                 size_t level = m_pBuild->ClassLevels(StackSource(), m_pBuild->Level()-1);
                 // vector lookup
-                int vi = min(level - 1, m_Amount.size() - 1);
+                int vi = min(level, m_Amount.size() - 1);
                 if (vi < 0
                     || level > m_Amount.size())
                 {
@@ -1129,3 +1139,8 @@ void Effect::AddItem(const std::string& item)
     m_Item.push_back(item);
 }
 
+void Effect::AddValue(const std::string& str)
+{
+    m_hasValue = true;
+    m_Value = str;
+}

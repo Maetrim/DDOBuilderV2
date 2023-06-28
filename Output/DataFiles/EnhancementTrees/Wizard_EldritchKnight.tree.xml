@@ -160,7 +160,7 @@ with Fire Spell power.</Description>
             <Bonus>Enhancement</Bonus>
             <AType>ClassLevel</AType>
             <StackSource>Wizard</StackSource>
-            <Amount size="20">1 1 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
+            <Amount size="21">0 1 1 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
          </Effect>
          <Effect>
             <Type>AddGroupWeapon</Type>
@@ -442,7 +442,19 @@ You gain +2 Imbue Dice
                <Item>Wizard</Item>
                <Value>20</Value>
             </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>EKWizCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
          </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>EKWizCore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Enhancement</Bonus>

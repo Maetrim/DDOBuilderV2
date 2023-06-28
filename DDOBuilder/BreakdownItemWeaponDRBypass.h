@@ -3,11 +3,14 @@
 #pragma once
 #include "BreakdownItem.h"
 
+class CBreakdownsPane;
+
 class BreakdownItemWeaponDRBypass :
         public BreakdownItem
 {
     public:
         BreakdownItemWeaponDRBypass(
+                CBreakdownsPane* pPane,
                 BreakdownType type,
                 MfcControls::CTreeListCtrl * treeList,
                 HTREEITEM hItem);
@@ -21,5 +24,5 @@ class BreakdownItemWeaponDRBypass :
     private:
         void AddEffectToVector(
                 std::vector<std::string> * value,
-                const ActiveEffect & effect) const;
+                const Effect & effect) const;
 };

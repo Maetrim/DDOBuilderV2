@@ -83,25 +83,28 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                 }
             }
 
-            // hp bonus due to fate points
-            BreakdownItem* pBD = FindBreakdown(Breakdown_FatePoints);
-            if (pBD != NULL)
+            // hp bonus due to fate points (active at level 20+)
+            if (pBuild->Level() >= MAX_CLASS_LEVEL)
             {
-                pBD->AttachObserver(this); // need to know about changes
-                int fatePoints = static_cast<int>(pBD->Total());
-                if (fatePoints != 0)
+                BreakdownItem* pBD = FindBreakdown(Breakdown_FatePoints);
+                if (pBD != NULL)
                 {
-                    Effect fateBonus(
-                        Effect_Unknown,
-                        "Fate Points bonus",
-                        "Fate Points bonus",
-                        static_cast<double>(2 * fatePoints));          // 2hp per fate point
-                    AddOtherEffect(fateBonus);
+                    pBD->AttachObserver(this); // need to know about changes
+                    int fatePoints = static_cast<int>(pBD->Total());
+                    if (fatePoints != 0)
+                    {
+                        Effect fateBonus(
+                            Effect_Unknown,
+                            "Fate Points bonus",
+                            "Fate Points bonus",
+                            static_cast<double>(2 * fatePoints));          // 2hp per fate point
+                        AddOtherEffect(fateBonus);
+                    }
                 }
             }
 
             // hp penalty due to negative levels
-            pBD = FindBreakdown(Breakdown_NegativeLevels);
+            BreakdownItem* pBD = FindBreakdown(Breakdown_NegativeLevels);
             if (pBD != NULL)
             {
                 pBD->AttachObserver(this); // need to know about changes

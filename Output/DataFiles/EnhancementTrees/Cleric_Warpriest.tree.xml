@@ -329,7 +329,19 @@ Passive:
                <Item>Cleric</Item>
                <Value>20</Value>
             </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>WPCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
          </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>WPCore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
          <Selector>
             <EnhancementSelection>
                <Name>Implacable Foe (Strength)</Name>
@@ -989,15 +1001,9 @@ Positive Spell Power)</Description>
          <Stance>
             <Name>War Priest: Silence the Wicked</Name>
             <Description>1d6 Fire damage per Imbue dice scaling with Fire spell power.</Description>
-            <Icon>SBResonantArms</Icon>
+            <Icon>WPSilenceTheWicked</Icon>
             <Group>Imbue</Group>
          </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warpriest: Righteous Weapons IV</Name>

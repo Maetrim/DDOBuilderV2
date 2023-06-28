@@ -11,8 +11,8 @@
     <Fortitude>None</Fortitude>
     <Reflex>None</Reflex>
     <Will>None</Will>
-    <SpellPointsPerLevel size="20">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
-    <BAB size="20">1.0 1.0 2.0 2.0 3.0 3.0 4.0 4.0 5.0 5.0 6.0 6.0 7.0 7.0 8.0 8.0 9.0 9.0 10.0 10.0</BAB>
+    <SpellPointsPerLevel size="21">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
+    <BAB size="21">0 1.0 1.0 2.0 2.0 3.0 3.0 4.0 4.0 5.0 5.0 6.0 6.0 7.0 7.0 8.0 8.0 9.0 9.0 10.0 10.0</BAB>
     <NotHeroic />
     <FeatSlot>
       <Level>1</Level>
@@ -93,14 +93,14 @@ Cooldown: 3 Seconds</Description>
       <Effect>
         <Type>EldritchBlast</Type>
         <Bonus>Feat</Bonus>
-        <Amount size="20">1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</Amount>
+        <Amount size="21">0 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</Amount>
         <AType>ClassLevel</AType>
         <StackSource>Epic</StackSource>
       </Effect>
       <Effect>
         <Type>EldritchBlast</Type>
         <Bonus>Feat</Bonus>
-        <Amount size="20">0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10</Amount>
+        <Amount size="21">0 0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10</Amount>
         <AType>ClassLevel</AType>
         <StackSource>Legendary</StackSource>
       </Effect>
@@ -543,8 +543,8 @@ the form of damage reduction.</Description>
       <Effect>
         <Type>DRBypass</Type>
         <Bonus>Feat</Bonus>
-        <Item>Adamantine</Item>
         <Item>All</Item>
+        <Value>Adamantine</Value>
         <AType>NotNeeded</AType>
       </Effect>
     </Feat>
@@ -564,8 +564,8 @@ form of damage reduction.</Description>
       <Effect>
         <Type>DRBypass</Type>
         <Bonus>Feat</Bonus>
-        <Item>Byeshk</Item>
         <Item>All</Item>
+        <Value>Byeshk</Value>
         <AType>NotNeeded</AType>
       </Effect>
     </Feat>
@@ -585,8 +585,8 @@ form of damage reduction.</Description>
       <Effect>
         <Type>DRBypass</Type>
         <Bonus>Feat</Bonus>
-        <Item>Cold Iron</Item>
         <Item>All</Item>
+        <Value>Cold Iron</Value>
         <AType>NotNeeded</AType>
       </Effect>
     </Feat>
@@ -606,8 +606,8 @@ form of damage reduction.</Description>
       <Effect>
         <Type>DRBypass</Type>
         <Bonus>Feat</Bonus>
-        <Item>Silver</Item>
         <Item>All</Item>
+        <Value>Silver</Value>
         <AType>NotNeeded</AType>
       </Effect>
     </Feat>
@@ -1790,6 +1790,14 @@ In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
       </Effect>
+         <Effect>
+            <DisplayName>Machrotechnic: Sprockets + Construct Exemplar</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <Item>Fortitude</Item>
+            <AType>Stacks</AType>
+            <Amount size="4">0 0 0 10</Amount>
+         </Effect>
     </Feat>
     <Feat>
       <Name>Embolden Spell</Name>
@@ -3880,7 +3888,7 @@ and off and is off when you first log in.</Description>
       <Effect>
         <Type>DRBypass</Type>
         <Bonus>Feat</Bonus>
-        <Item>Slash</Item>
+        <Value>Slash</Value>
         <Item>Handwraps</Item>
         <Requirements>
           <Requirement>

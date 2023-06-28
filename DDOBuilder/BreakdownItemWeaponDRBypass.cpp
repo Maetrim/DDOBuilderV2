@@ -5,11 +5,13 @@
 #include <algorithm>
 
 BreakdownItemWeaponDRBypass::BreakdownItemWeaponDRBypass(
+        CBreakdownsPane* pPane,
         BreakdownType type,
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem) :
     BreakdownItem(type, treeList, hItem)
 {
+    UNREFERENCED_PARAMETER(pPane);
 }
 
 BreakdownItemWeaponDRBypass::~BreakdownItemWeaponDRBypass()
@@ -27,7 +29,7 @@ CString BreakdownItemWeaponDRBypass::Value() const
     std::vector<std::string> effects;
 
     // just append all the items together
-    std::list<ActiveEffect>::const_iterator it = m_otherEffects.begin();
+    std::list<Effect>::const_iterator it = m_otherEffects.begin();
     while (it != m_otherEffects.end())
     {
         AddEffectToVector(&effects, (*it));
@@ -79,7 +81,7 @@ void BreakdownItemWeaponDRBypass::CreateOtherEffects()
 bool BreakdownItemWeaponDRBypass::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
-    if (effect.Type() == Effect_DRBypass)
+    if (effect.IsType(Effect_DRBypass))
     {
         isUs = true;
     }
@@ -88,11 +90,11 @@ bool BreakdownItemWeaponDRBypass::AffectsUs(const Effect & effect) const
 
 void BreakdownItemWeaponDRBypass::AddEffectToVector(
         std::vector<std::string> * value,
-        const ActiveEffect & effect) const
+        const Effect & effect) const
 {
     // only add if its active
-    if (effect.IsActive(m_pCharacter, m_weapon))
+    if (effect.IsActive(*m_pCharacter, m_weapon))
     {
-        value->push_back(effect.Description());
+        value->push_back(effect.Value());
     }
 }

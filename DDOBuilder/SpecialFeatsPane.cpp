@@ -222,17 +222,14 @@ LRESULT CSpecialFeatPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     CDDOBuilderDoc * pDoc = (CDDOBuilderDoc*)(wParam);
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
-    if (pDoc != m_pDoc)
-    {
-        m_pDoc = pDoc;
-        m_pCharacter = pCharacter;
-        UpdateDocumentPointers(m_heroicSelectionViews);
-        UpdateDocumentPointers(m_racialSelectionViews);
-        UpdateDocumentPointers(m_iconicSelectionViews);
-        UpdateDocumentPointers(m_epicSelectionViews);
-        UpdateDocumentPointers(m_specialSelectionViews);
-        UpdateDocumentPointers(m_favorSelectionViews);
-    }
+    m_pDoc = pDoc;
+    m_pCharacter = pCharacter;
+    UpdateDocumentPointers(m_heroicSelectionViews);
+    UpdateDocumentPointers(m_racialSelectionViews);
+    UpdateDocumentPointers(m_iconicSelectionViews);
+    UpdateDocumentPointers(m_epicSelectionViews);
+    UpdateDocumentPointers(m_specialSelectionViews);
+    UpdateDocumentPointers(m_favorSelectionViews);
     return 0L;
 }
 
@@ -263,7 +260,7 @@ BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
             if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
             {
                 // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the the height of the selection combo
+                // limit to the height of the selection combo
                 controlClip.bottom = controlClip.top
                         + GetSystemMetrics(SM_CYHSCROLL)
                         + GetSystemMetrics(SM_CYEDGE) * 2;
@@ -282,7 +279,7 @@ BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
             if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
             {
                 // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the the height of the selection combo
+                // limit to the height of the selection combo
                 controlClip.bottom = controlClip.top
                         + GetSystemMetrics(SM_CYHSCROLL)
                         + GetSystemMetrics(SM_CYEDGE) * 2;
@@ -301,7 +298,7 @@ BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
             if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
             {
                 // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the the height of the selection combo
+                // limit to the height of the selection combo
                 controlClip.bottom = controlClip.top
                         + GetSystemMetrics(SM_CYHSCROLL)
                         + GetSystemMetrics(SM_CYEDGE) * 2;
@@ -320,7 +317,7 @@ BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
             if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
             {
                 // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the the height of the selection combo
+                // limit to the height of the selection combo
                 controlClip.bottom = controlClip.top
                         + GetSystemMetrics(SM_CYHSCROLL)
                         + GetSystemMetrics(SM_CYEDGE) * 2;
@@ -339,7 +336,7 @@ BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
             if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
             {
                 // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the the height of the selection combo
+                // limit to the height of the selection combo
                 controlClip.bottom = controlClip.top
                         + GetSystemMetrics(SM_CYHSCROLL)
                         + GetSystemMetrics(SM_CYEDGE) * 2;
@@ -358,7 +355,7 @@ BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
             if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
             {
                 // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the the height of the selection combo
+                // limit to the height of the selection combo
                 controlClip.bottom = controlClip.top
                         + GetSystemMetrics(SM_CYHSCROLL)
                         + GetSystemMetrics(SM_CYEDGE) * 2;

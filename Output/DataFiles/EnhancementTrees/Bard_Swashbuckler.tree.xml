@@ -510,7 +510,19 @@ Enhancement bonus.</Description>
                <Item>Bard</Item>
                <Value>20</Value>
             </Requirement>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SBCore6</Item>
+              <Item>Capstone Enhancement</Item>
+            </Requirement>
          </Requirements>
+       <Effect>
+          <Type>ExclusionGroup</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>NotNeeded</AType>
+          <Item>SBCore6</Item>
+          <Item>Capstone Enhancement</Item>
+       </Effect>
          <Effect>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -849,7 +861,7 @@ incoming projectile that would have struck you every 6 seconds.
             <Type>MovementSpeed</Type>
             <Bonus>Class</Bonus>
             <AType>ClassLevel</AType>
-            <Amount size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+            <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
             <StackSource>Bard</StackSource>
             <ApplyAsItemEffect/>
          </Effect>
@@ -1049,7 +1061,8 @@ Fighting line of feats.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Resonant Arms</Name>
          <InternalName>SBResonantArms</InternalName>
-         <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
+         <Description>Imbue Toggle: While Swashbuckling, the Finesseable or thrown Weapon in your main
+hand deals an additional 1d6 Sonic Damage. This Sonic damage scales with Spell Power.</Description>
          <Icon>SBResonantArms</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -1063,18 +1076,14 @@ Fighting line of feats.</Description>
                <Value>3</Value>
             </Requirement>
          </Requirements>
+         <Clickie/>
          <Stance>
             <Name>Swashbuckler: Resonant Arms</Name>
-            <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
+         <Description>Imbue Toggle: While Swashbuckling, the Finesseable or thrown Weapon in your main
+hand deals an additional 1d6 Sonic Damage. This Sonic damage scales with Spell Power.</Description>
             <Icon>SBResonantArms</Icon>
             <Group>Imbue</Group>
          </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Different Tack</Name>
@@ -1353,7 +1362,7 @@ additional +1 for every five Bard levels.</Description>
             <Type>Weapon_EnchantmentClass</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Thrown</Item>
-            <Amount size="20">1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4</Amount>
+            <Amount size="21">0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4</Amount>
             <AType>ClassLevel</AType>
             <StackSource>Bard</StackSource>
          </Effect>

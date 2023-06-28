@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "StanceGroup.h"
 #include "Build.h"
+#include "Character.h"
 
 CFont StanceGroup::sm_smallFont;
 
@@ -94,7 +95,13 @@ void StanceGroup::AddStance(
         CStanceButton* stanceButton = new CStanceButton(pCharacter, stance);
         m_stanceButtons.push_back(stanceButton);
         m_stanceButtons.back()->CreateStanceWindow(pParent, nextControlId++);
-        stanceButton->SetSelected(false);
+        bool bActive = false;
+        Build* pBuild = pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            bActive = pBuild->IsStanceActive(stance.Name());
+        }
+        stanceButton->SetSelected(bActive);
         bFound = true;
     }
 }

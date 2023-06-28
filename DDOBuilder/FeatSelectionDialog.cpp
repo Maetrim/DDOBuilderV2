@@ -94,8 +94,8 @@ LRESULT CFeatSelectionDialog::OnNewDocument(WPARAM wParam, LPARAM lParam)
         {
             m_pCharacter->AttachObserver(this);
         }
-        SetupControls();
     }
+    SetupControls();
     return 0L;
 }
 

@@ -227,7 +227,23 @@ BOOL CMainFrame::CreateDockingWindows()
             ID_DOCK_LOG);
     pLogPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    CCustomDockablePane * pBuildsPane = CreateDockablePane(
+    // has to be created before builds bane for correct operation
+    // on build switch/load
+    CCustomDockablePane* pBreakdownsPane = CreateDockablePane(
+            "Breakdowns",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CBreakdownsPane),
+            ID_DOCK_BREAKDOWNS);
+    pBreakdownsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    CCustomDockablePane* pStancesPane = CreateDockablePane(
+        "Stances",
+        GetActiveDocument(),
+        RUNTIME_CLASS(CStancesPane),
+        ID_DOCK_STANCES);
+    pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    CCustomDockablePane* pBuildsPane = CreateDockablePane(
             "Builds",
             GetActiveDocument(),
             RUNTIME_CLASS(CBuildsPane),
@@ -261,20 +277,6 @@ BOOL CMainFrame::CreateDockingWindows()
             RUNTIME_CLASS(CEnhancementsPane),
             ID_DOCK_ENHANCEMENTS);
     pEnhancementsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
-
-    CCustomDockablePane* pBreakdownsPane = CreateDockablePane(
-            "Breakdowns",
-            GetActiveDocument(),
-            RUNTIME_CLASS(CBreakdownsPane),
-            ID_DOCK_BREAKDOWNS);
-    pBreakdownsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
-
-    CCustomDockablePane* pStancesPane = CreateDockablePane(
-            "Stances",
-            GetActiveDocument(),
-            RUNTIME_CLASS(CStancesPane),
-            ID_DOCK_STANCES);
-    pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     CCustomDockablePane* pDestinyPane = CreateDockablePane(
             "Epic Destinies",

@@ -50,8 +50,11 @@ void BreakdownItemMDB::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        //const Character & charData = *m_pCharacter;
-        m_bNoLimit = m_pCharacter->ActiveBuild()->IsStanceActive("Cloth Armor");
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            m_bNoLimit = pBuild->IsStanceActive("Cloth Armor");
+        }
     }
 }
 

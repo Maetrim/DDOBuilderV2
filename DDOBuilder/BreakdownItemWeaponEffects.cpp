@@ -23,6 +23,10 @@ BreakdownItemWeaponEffects::BreakdownItemWeaponEffects(
     m_weaponItemEffects.resize(Weapon_Count);
     m_weaponEnhancementEffects.resize(Weapon_Count);
     // we need to register ourselves as observers of all the Weapon effects
+    m_pPane->RegisterBuildCallbackEffect(Effect_GhostTouch, this);
+    m_pPane->RegisterBuildCallbackEffect(Effect_TrueSeeing, this);
+    m_pPane->RegisterBuildCallbackEffect(Effect_DRBypass, this);
+
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Alacrity, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackAbility, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackBonus, this);
@@ -119,7 +123,7 @@ void BreakdownItemWeaponEffects::CreateOtherEffects()
 
 bool BreakdownItemWeaponEffects::AffectsUs(const Effect&) const
 {
-    // always affects us, as we are registerd with weapon effects only
+    // always affects us, as we are registered with weapon effects only
     return true;
 }
 
@@ -271,6 +275,7 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         case Effect_Weapon_OtherDamageBonusCritical:
         case Effect_WeaponDamageBonusCriticalStat:
         case Effect_WeaponDamageBonusStat:
+        case Effect_DRBypass:
             // look for the individual weapon type
             for (auto&& iit : effect.Item())
             {
@@ -323,6 +328,10 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
                     isUs = true;
                 }
             }
+            break;
+        case Effect_GhostTouch:
+        case Effect_TrueSeeing:
+            isUs = true;
             break;
         }
     }

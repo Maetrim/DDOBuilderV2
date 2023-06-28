@@ -58,7 +58,7 @@ void BreakdownItemBAB::CreateOtherEffects()
                 {
                     const ::Class& c = ClassFromIndex(ci);
                     std::string className = c.Name() + " Levels";
-                    double classBab = (int)(c.BAB()[classLevels[ci]-1]); // round down
+                    double classBab = (int)(c.BAB()[classLevels[ci]]); // round down
                     Effect classBonus(
                             Effect_Unknown,
                             className,
