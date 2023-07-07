@@ -28,10 +28,11 @@ protected:
     afx_msg void OnButtonAddBuild();
     afx_msg void OnButtonDeleteBuild();
     afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
-    afx_msg void OnSelchangedTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg void OnBeginlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg void OnEndlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg void OnDblclkTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
+    afx_msg void OnSelchangedTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnBeginlabeleditTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnEndlabeleditTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblclkTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnClickTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnUpdateBuildLevel(CCmdUI* pCmdUI);
     afx_msg LRESULT OnStartLabelEdit(WPARAM, LPARAM);
@@ -41,7 +42,7 @@ protected:
     virtual BOOL PreTranslateMessage(MSG* pMsg) override;
 
     // CharacterObserver
-    virtual void UpdateNumBuildsChanged(Character * charData) override;
+    virtual void UpdateNumBuildsChanged(Character* charData) override;
 
     DECLARE_DYNCREATE(CBuildsPane)
     DECLARE_MESSAGE_MAP()
@@ -49,9 +50,9 @@ protected:
 private:
     void PopulateBuildsList();
     void SelectTreeItem(
-            TreeEntryItem type,
-            size_t lifeIndex,
-            size_t buildIndex);
+        TreeEntryItem type,
+        size_t lifeIndex,
+        size_t buildIndex);
     void SelectTreeItem(DWORD itemData);
 
     CButton m_buttonNewLife;
@@ -59,10 +60,11 @@ private:
     CButton m_buttonAddBuild;
     CButton m_buttonDeleteBuild;
     CTreeCtrl m_treeBuilds;
-    CDDOBuilderDoc * m_pDoc;
-    Character * m_pCharacter;
+    CDDOBuilderDoc* m_pDoc;
+    Character* m_pCharacter;
     HTREEITEM m_hPopupMenuItem;
     bool m_bEscape;
+    bool m_bLoadComplete;
 };
 
 

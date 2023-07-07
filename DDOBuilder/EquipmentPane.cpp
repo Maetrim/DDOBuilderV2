@@ -28,7 +28,8 @@ CEquipmentPane::CEquipmentPane() :
     m_tipCreated(false),
     m_pTooltipItem(NULL),
     m_showingTip(false),
-    m_nextSetId(IDC_SPECIALFEAT_0)
+    m_nextSetId(IDC_SPECIALFEAT_0),
+    m_bLoadComplete(false)
 {
 }
 
@@ -69,6 +70,7 @@ BEGIN_MESSAGE_MAP(CEquipmentPane, CFormView)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
+    ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
     ON_COMMAND(ID_GEAR_NEW, OnGearNew)
     ON_COMMAND(ID_GEAR_COPY, OnGearCopy)
     ON_COMMAND(ID_GEAR_PASTE, OnGearPaste)
@@ -279,6 +281,13 @@ LRESULT CEquipmentPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     PopulateGear();
     EnableControls();
     return 0L;
+}
+
+LRESULT CEquipmentPane::OnLoadComplete(WPARAM, LPARAM)
+{
+    m_bLoadComplete = true;
+    // buttons should update on the next OnIdle
+    return 0;
 }
 
 BOOL CEquipmentPane::OnEraseBkgnd(CDC* pDC)
@@ -495,7 +504,7 @@ void CEquipmentPane::UpdateSlotRightClicked(
 void CEquipmentPane::OnUpdateGearNew(CCmdUI * pCmdUi)
 {
     // can always create a new gear set if a document is open
-    pCmdUi->Enable(m_pCharacter != NULL);
+    pCmdUi->Enable(m_bLoadComplete && m_pCharacter != NULL);
 }
 
 void CEquipmentPane::OnUpdateGearCopy(CCmdUI * pCmdUi)
@@ -505,7 +514,7 @@ void CEquipmentPane::OnUpdateGearCopy(CCmdUI * pCmdUi)
     {
         // can copy a gear set if we have an active one
         const std::list<EquippedGear> & setups = pBuild->GearSetups();
-        pCmdUi->Enable(setups.size() > 0);
+        pCmdUi->Enable(m_bLoadComplete && setups.size() > 0);
     }
     else
     {
@@ -518,8 +527,8 @@ void CEquipmentPane::OnUpdateGearPaste(CCmdUI * pCmdUi)
     // can paste if we have data of the correct format available on the clipboard
     bool enable = m_pCharacter != NULL
             && ::IsClipboardFormatAvailable(CF_PRIVATEFIRST);
-    pCmdUi->Enable(enable);
-    m_buttonPaste.EnableWindow(enable);
+    pCmdUi->Enable(m_bLoadComplete && enable);
+    m_buttonPaste.EnableWindow(m_bLoadComplete && enable);
 }
 
 void CEquipmentPane::OnUpdateGearDelete(CCmdUI * pCmdUi)
@@ -529,7 +538,7 @@ void CEquipmentPane::OnUpdateGearDelete(CCmdUI * pCmdUi)
     {
         // can delete a gear set if we have an active one
         const std::list<EquippedGear> & setups = pBuild->GearSetups();
-        pCmdUi->Enable(setups.size() > 0);
+        pCmdUi->Enable(m_bLoadComplete && setups.size() > 0);
     }
     else
     {

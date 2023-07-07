@@ -1,14 +1,5 @@
 6566 items currently
 
-To do:
----User enabled stances not restored on load
----Feat "Reflex no fail on 1" does not apply its effects for an unknown reason
-
-Missing Views:
----Notes
----Self and party buffs
----Favor/Saga tracking
----Bank
 
 From U51 spells
 
@@ -22,6 +13,37 @@ From U51 spells
       <Item>Rage</Item>
     </Effect>
     Amount = caster level, count, recharge
+
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>1</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Tier 2</Type>
+        <Augment>
+           <Name>+5 Enhancement Bonus</Name>
+           <Description>+5 Enhancement Bonus: +5 enhancement bonus to attack and damage rolls.</Description>
+           <MinLevel>16</MinLevel>
+          <Effect>
+            <Type>Weapon_Enchantment</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Tier 3</Type>
+        <Augment>
+           <Name>Adds a Purple augment slot</Name>
+           <Description>Adds a Purple augment slot to this item</Description>
+           <MinLevel>16</MinLevel>
+           <GrantAugment>Purple</GrantAugment>
+        </Augment>
+     </ItemAugment>
 
     <NoAutoUpdate/>
     <ItemAugment>

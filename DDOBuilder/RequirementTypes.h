@@ -34,6 +34,7 @@ enum RequirementType
     Requirement_Skill,                      // must have at least the listed skill points
     Requirement_SpecificLevel,              // must be this level
     Requirement_Stance,                     // the specified stance must be active
+    Requirement_StartingWorld,              // world the race starts in (e.g. Eberron/Forgotten Realms)
     Requirement_WeaponTypesEquipped,        // the specified weapon types must be equipped in weapon1/2
     Requirement_WeaponClassMainHand,        // Main hand weapon is a "type" e.g. Light weapon
     Requirement_WeaponClassOffHand,         // off hand weapon is a "type" e.g. Heavy weapon
@@ -64,6 +65,7 @@ const XmlLib::enumMapEntry<RequirementType> requirementTypeMap[] =
     {Requirement_Skill,                     L"Skill"},
     {Requirement_SpecificLevel,             L"SpecificLevel"},
     {Requirement_Stance,                    L"Stance"},
+    {Requirement_StartingWorld,             L"StartingWorld"},
     {Requirement_WeaponTypesEquipped,       L"WeaponTypesEquipped"},
     {Requirement_WeaponClassMainHand,       L"WeaponClassMainHand"},
     {Requirement_WeaponClassOffHand,        L"WeaponClassOffHand"},

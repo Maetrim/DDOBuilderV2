@@ -9,6 +9,7 @@
 #include "Effect.h"
 #include "FeatAcquisitionTypes.h"
 #include "Requirements.h"
+#include "SubItem.h"
 #include "Stance.h"
 
 class Build;
@@ -51,6 +52,7 @@ class Feat :
         #define Feat_PROPERTIES(_) \
                 DL_STRING(_, Name) \
                 DL_STRING(_, Description) \
+                DL_OBJECT_LIST(_, SubItem, SubItems) \
                 DL_STRING(_, Icon) \
                 DL_STRING_LIST(_, Group) \
                 DL_OPTIONAL_STRING(_, Sphere) \

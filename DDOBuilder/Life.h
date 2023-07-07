@@ -49,7 +49,7 @@ class Life :
         const Build & GetBuild(size_t buildIndex) const;
         Build * GetBuildPointer(size_t buildIndex);
         const Build* GetBuildPointer(size_t buildIndex) const;
-        size_t AddBuild();
+        size_t AddBuild(size_t buildIndex);
         void DeleteBuild(size_t buildIndex);
         void SetBuildLevel(size_t buildIndex, size_t level);
         int LevelUpsAtLevel(AbilityType ability, size_t level) const;

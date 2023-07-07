@@ -34,6 +34,7 @@ Feat::Feat(const Feat& other) :
     m_hasName = other.m_hasName;
     m_Description = other.m_Description;
     m_hasDescription = other.m_hasDescription;
+    m_SubItems= other.m_SubItems;
     m_Icon = other.m_Icon;
     m_hasIcon = other.m_hasIcon;
     m_Group = other.m_Group;
@@ -89,7 +90,7 @@ void Feat::EndElement()
     DL_END(Feat_PROPERTIES)
     // the default value is 1 if not present is ok
     m_hasMaxTimesAcquire = true;
-    // all Efefcts must have a DisplayName field
+    // all Effects must have a DisplayName field
     // if it does not have one, it gets set to the name of this Feat
     for (auto&& eit : m_Effects)
     {
@@ -179,6 +180,10 @@ void Feat::VerifyObject() const
     if (HasRequirementsToTrain())
     {
         ok &= m_RequirementsToTrain.VerifyObject(&ss);
+    }
+    for (auto&& siit: m_SubItems)
+    {
+        ok &= siit.VerifyObject(&ss);
     }
     for (auto&& aait: m_AutomaticAssignment)
     {

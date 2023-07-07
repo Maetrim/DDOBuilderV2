@@ -77,6 +77,7 @@ class Requirement :
         bool EvaluateSkill(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateSpecificLevel(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateStance(const Build& build, size_t level, bool includeTomes) const;
+        bool EvaluateStartingWorld(const Build& build) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

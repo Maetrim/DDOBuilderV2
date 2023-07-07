@@ -15,6 +15,7 @@
 #include "Item.h"
 #include "LevelTraining.h"
 #include "SetBonus.h"
+#include "SubItem.h"
 #include "InfoTipItem.h"
 #include "BreakdownItem.h"
 #include <map>
@@ -440,7 +441,7 @@ void CInfoTip::SetEnhancementSelectionItem(
     pHeader->SetRank(str);
     m_tipItems.push_back(pHeader);
 
-    // add the requiresments for this enhancement item next
+    // add the requirements for this enhancement item next
     InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
     pRequirements->CreateRequirementsStrings(build, pItem, pSelection, spentInTree);
     m_tipItems.push_back(pRequirements);
@@ -533,11 +534,28 @@ void CInfoTip::SetFeatItem(
     pDescription->SetText(pItem->Description().c_str());
     m_tipItems.push_back(pDescription);
 
+    for (auto&& siit : pItem->SubItems())
+    {
+        AppendSubItem(siit);
+    }
+
     // check to see if any DCs are being defined
     for (auto&& dcit : pItem->DCs())
     {
         AppendDCInfo(build, dcit);
     }
+}
+
+void CInfoTip::AppendSubItem(const SubItem& item)
+{
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    pHeader->LoadIcon("DataFiles\\FeatImages\\", item.Icon(), true);
+    pHeader->SetTitle(item.Name().c_str());
+    m_tipItems.push_back(pHeader);
+
+    InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
+    pDescription->SetText(item.Description().c_str());
+    m_tipItems.push_back(pDescription);
 }
 
 void CInfoTip::SetStanceItem(const Stance& item)
@@ -570,7 +588,10 @@ void CInfoTip::SetSetBonusItem(
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", item.Icon(), false))
     {
-        pHeader->LoadIcon("DataFiles\\FiligreeImages\\", item.Icon(), true);
+        if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", item.Icon(), false))
+        {
+            pHeader->LoadIcon("DataFiles\\AugmentImages\\", item.Icon(), true);
+        }
     }
     pHeader->SetTitle(item.Type().c_str());
     CString str;
@@ -726,7 +747,10 @@ void CInfoTip::SetFiligree(
 {
     ClearOldTipItems();
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
-    pHeader->LoadIcon("DataFiles\\FiligreeImages\\", pFiligree->Icon(), true);
+    if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", pFiligree->Icon(), false))
+    {
+        pHeader->LoadIcon("DataFiles\\AugmentImages\\", pFiligree->Icon(), true);
+    }
     pHeader->SetTitle(pFiligree->Name().c_str());
     m_tipItems.push_back(pHeader);
 
@@ -1160,6 +1184,17 @@ void CInfoTip::AppendFeatInfo(
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
     pDescription->SetText(feat.Description().c_str());
     m_tipItems.push_back(pDescription);
+
+    for (auto&& siit : feat.SubItems())
+    {
+        AppendSubItem(siit);
+    }
+
+    // check to see if any DCs are being defined
+    for (auto&& dcit : feat.DCs())
+    {
+        AppendDCInfo(build, dcit);
+    }
 }
 
 void CInfoTip::AppendDCInfo(

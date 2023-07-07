@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP(CBuildsPane, CFormView)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
+    ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
     ON_BN_CLICKED(IDC_BUTTON_NEW_LIFE, OnButtonNewLife)
     ON_BN_CLICKED(IDC_BUTTON_DELETE_LIFE, OnButtonDeleteLife)
     ON_BN_CLICKED(IDC_BUTTON_ADD_BUILD, OnButtonAddBuild)
@@ -54,7 +55,8 @@ CBuildsPane::CBuildsPane() :
     m_pDoc(NULL),
     m_pCharacter(NULL),
     m_hPopupMenuItem(NULL),
-    m_bEscape(false)
+    m_bEscape(false),
+    m_bLoadComplete(false)
 {
 }
 
@@ -86,6 +88,13 @@ LRESULT CBuildsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
         PopulateBuildsList();
     }
     return 0L;
+}
+
+LRESULT CBuildsPane::OnLoadComplete(WPARAM, LPARAM)
+{
+    m_bLoadComplete = true;
+    PopulateBuildsList();
+    return 0;
 }
 
 void CBuildsPane::DoDataExchange(CDataExchange* pDX)
@@ -269,6 +278,9 @@ void CBuildsPane::PopulateBuildsList()
         SelectTreeItem(selItemData);
         m_treeBuilds.UnlockWindowUpdate();
     }
+    NMHDR hdrNotUsed;
+    LRESULT lNotUsed;
+    OnSelchangedTreeBuilds(&hdrNotUsed, &lNotUsed);
 }
 
 void CBuildsPane::OnButtonNewLife()
@@ -361,7 +373,7 @@ void CBuildsPane::OnButtonDeleteBuild()
 void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
 {
     // new life is always available
-    m_buttonNewLife.EnableWindow(true);
+    m_buttonNewLife.EnableWindow(m_bLoadComplete);
     // enable the button states based on what item is selected in the tree
     HTREEITEM hSelItem = m_treeBuilds.GetSelectedItem();
     if (hSelItem != NULL)
@@ -373,22 +385,22 @@ void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
         size_t buildIndex = ExtractBuildIndex(itemData);
         switch (type)
         {
-        case TEI_Life:
-            m_buttonDeleteLife.EnableWindow(true);
-            m_buttonAddBuild.EnableWindow(true);
-            m_buttonDeleteBuild.EnableWindow(false);
-            break;
-        case TEI_Build:
-            m_buttonDeleteLife.EnableWindow(false);
-            m_buttonAddBuild.EnableWindow(true);
-            m_buttonDeleteBuild.EnableWindow(true);
-            break;
-        default:
-            // fail!
-            m_buttonDeleteLife.EnableWindow(false);
-            m_buttonAddBuild.EnableWindow(false);
-            m_buttonDeleteBuild.EnableWindow(false);
-            break;
+            case TEI_Life:
+                m_buttonDeleteLife.EnableWindow(m_bLoadComplete);
+                m_buttonAddBuild.EnableWindow(m_bLoadComplete);
+                m_buttonDeleteBuild.EnableWindow(false);
+                break;
+            case TEI_Build:
+                m_buttonDeleteLife.EnableWindow(false);
+                m_buttonAddBuild.EnableWindow(m_bLoadComplete);
+                m_buttonDeleteBuild.EnableWindow(m_bLoadComplete);
+                break;
+            default:
+                // fail!
+                m_buttonDeleteLife.EnableWindow(false);
+                m_buttonAddBuild.EnableWindow(false);
+                m_buttonDeleteBuild.EnableWindow(false);
+                break;
         }
         m_pCharacter->SetActiveBuild(lifeIndex, buildIndex);
     }
@@ -398,7 +410,10 @@ void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
         m_buttonDeleteLife.EnableWindow(false);
         m_buttonAddBuild.EnableWindow(false);
         m_buttonDeleteBuild.EnableWindow(false);
-        m_pCharacter->SetActiveBuild(0, 0);
+        if (m_pCharacter != NULL)
+        {
+            m_pCharacter->SetActiveBuild(0, 0);
+        }
     }
     *pResult = 0;
 }
@@ -544,7 +559,6 @@ void CBuildsPane::OnDblclkTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
                     // update the build
                     m_pCharacter->SetBuildLevel(lifeIndex, buildIndex, selectedLevel);
                     // update our UI element
-                    CString name = m_pCharacter->GetLife(lifeIndex).GetBuild(buildIndex).UIDescription(buildIndex);
                     PopulateBuildsList();
                 }
             }

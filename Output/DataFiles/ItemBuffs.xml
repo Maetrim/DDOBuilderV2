@@ -4684,6 +4684,32 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Embodiment of Law</Type>
+    <DisplayText>Embodiment of Law : Chaotic aligned characters equipping this item suffer a temporary negative level until the item is removed.</DisplayText>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Neutral</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Evil</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>EnchantmentSave</Type>
     <DisplayText>%b1 Enchantment Save %v1: %v1 %b1 bonus to your saves versus enchantments</DisplayText>
     <Ignore>Resistance</Ignore>
@@ -11235,6 +11261,21 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
         <Number size="1">2</Number>
         <Sides size="1">8</Sides>
         <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Light I</Type>
+    <DisplayText>Rune Arm Imbue - Light I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1 to 2 points of light damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">2</Sides>
+        <Damage>Light</Damage>
       </Dice>
       <Item>All</Item>
     </Effect>

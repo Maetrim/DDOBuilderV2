@@ -94,7 +94,7 @@ void CGrantedFeatsPane::OnInitialUpdate()
         m_bHadInitialUpdate = true;
         CFormView::OnInitialUpdate();
 
-        CWnd* pWnd = AfxGetMainWnd();
+        CWnd* pWnd = AfxGetApp()->m_pMainWnd;
         CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
         CBreakdownsPane* pBreakdownsPane = dynamic_cast<CBreakdownsPane*>(
                 pMainWnd->GetPane(RUNTIME_CLASS(CBreakdownsPane)));

@@ -133,8 +133,9 @@ void Build::Write(XmlLib::SaxWriter * writer) const
 CString Build::UIDescription(size_t buildIndex) const
 {
     // Ui description is based on class levels
+    std::string complexDescription = ComplexUIDescription();
     CString strDescription;
-    strDescription.Format("Build %d: Level %d", buildIndex + 1, m_Level);
+    strDescription.Format("Build %d: Level %d - %s", buildIndex + 1, m_Level, complexDescription.c_str());
     return strDescription;
 }
 
@@ -3086,7 +3087,7 @@ void Build::Destiny_TrainEnhancement(
             selection,
             cost,
             pTreeItem->MinSpent(),
-            pItem->HasTier5(),
+            pTreeItem->HasTier5(),
             &ranks);
     m_destinyTreeSpend += spent;
     // track whether this is a tier 5 enhancement
@@ -3109,7 +3110,7 @@ void Build::Destiny_TrainEnhancement(
     EnhancementItemParams p;
     p.enhancementName = enhancementName;
     p.selection = selection;
-    p.isTier5 = pItem->HasTier5();
+    p.isTier5 = pTreeItem->HasTier5();
     NotifyEnhancementTrained(p);
 
     //??NotifyAPSpentInTreeChanged(treeName);
@@ -3142,13 +3143,6 @@ void Build::Destiny_RevokeEnhancement(
                 &revokedEnhancementSelection,
                 &ranks);
         m_destinyTreeSpend -= spent;
-        // now notify all and sundry about the enhancement effects
-        RevokeEnhancementEffects(treeName, enhancementName, revokedEnhancementSelection, ranks);
-        EnhancementItemParams p;
-        p.enhancementName = enhancementName;
-        p.selection = revokedEnhancementSelection;
-        p.isTier5 = wasTier5;
-        NotifyEnhancementRevoked(p);
 
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
@@ -3161,6 +3155,15 @@ void Build::Destiny_RevokeEnhancement(
                 m_DestinySelectedTrees.ClearTier5Tree();  // no longer a tier 5 trained
             }
         }
+
+        // now notify all and sundry about the enhancement effects
+        RevokeEnhancementEffects(treeName, enhancementName, revokedEnhancementSelection, ranks);
+        EnhancementItemParams p;
+        p.enhancementName = enhancementName;
+        p.selection = revokedEnhancementSelection;
+        p.isTier5 = wasTier5;
+        NotifyEnhancementRevoked(p);
+
         const EnhancementTreeItem * pTreeItem = FindEnhancement(enhancementName);
         //??NotifyAPSpentInTreeChanged(treeName);
         SetModifiedFlag(TRUE);
@@ -3758,7 +3761,14 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
         {
             if (buff.HasApplyToWeaponOnly())
             {
-                NotifyItemWeaponEffect(item.Name(), eit, item.Weapon(), ist);
+                if (item.HasWeapon())
+                {
+                    NotifyItemWeaponEffect(item.Name(), eit, item.Weapon(), ist);
+                }
+                else
+                {
+                    NotifyItemWeaponEffect(item.Name(), eit, Weapon_All, ist);
+                }
             }
             else
             {

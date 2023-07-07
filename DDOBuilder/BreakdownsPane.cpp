@@ -168,6 +168,10 @@ void CBreakdownsPane::UpdateActiveLifeChanged(Character*)
         {
             iit->BuildChanged(m_pCharacter);
         }
+        for (auto&& iit : m_items)
+        {
+            iit->BuildChangeComplete();
+        }
     }
 }
 
@@ -183,6 +187,10 @@ void CBreakdownsPane::UpdateActiveBuildChanged(Character* pCharacter)
         for (auto&& iit : m_items)
         {
             iit->BuildChanged(m_pCharacter);
+        }
+        for (auto&& iit : m_items)
+        {
+            iit->BuildChangeComplete();
         }
     }
     if (m_pWeaponEffects != NULL)

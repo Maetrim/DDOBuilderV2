@@ -287,6 +287,23 @@ bool Requirement::VerifyObject(
                 ok = false;
             }
             break;
+        case Requirement_StartingWorld:
+            if (m_Item.size() == 0)
+            {
+                (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " missing item field\n";
+                ok = false;
+            }
+            else
+            {
+                for (auto&& iit : m_Item)
+                {
+                    if (TextToEnumEntry(iit, startingWorldTypeMap) == StartingWorld_Unknown)
+                    {
+                        (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad StartingWorld item field\n";
+                    }
+                }
+            }
+            break;
         case Requirement_EnemyType:
             // must have at least 1 item
             if (m_Item.size() == 0)
@@ -388,6 +405,7 @@ bool Requirement::Met(
     case Requirement_Skill:             met = EvaluateSkill(build, level, includeTomes); break;
     case Requirement_SpecificLevel:     met = EvaluateSpecificLevel(build, level, includeTomes); break;
     case Requirement_Stance:            met = EvaluateStance(build, level, includeTomes); break;
+    case Requirement_StartingWorld:     met = EvaluateStartingWorld(build); break;
     default:                            met = false; break;
     }
     return met;
@@ -425,6 +443,7 @@ bool Requirement::CanTrainEnhancement(
     case Requirement_Skill:             met = EvaluateSkill(build, level, includeTomes); break;
     case Requirement_SpecificLevel:     met = EvaluateSpecificLevel(build, level, includeTomes); break;
     case Requirement_Stance:            met = EvaluateStance(build, level, includeTomes); break;
+    case Requirement_StartingWorld:     met = EvaluateStartingWorld(build); break;
     default:                            met = false; break;
     }
     return met;
@@ -461,6 +480,7 @@ bool Requirement::MetHardRequirements(
     //case Requirement_Skill:         met = EvaluateSkill(build, level, includeTomes); break;
     case Requirement_SpecificLevel: met = EvaluateSpecificLevel(build, level, includeTomes); break;
     //case Requirement_Stance:        met = EvaluateStance(build, level, includeTomes); break;
+    case Requirement_StartingWorld:     met = EvaluateStartingWorld(build); break;
     //default:                        met = false; break;
     }
     return met;
@@ -811,6 +831,15 @@ bool Requirement::EvaluateStance(
     UNREFERENCED_PARAMETER(level);
     UNREFERENCED_PARAMETER(includeTomes);
     bool met = build.IsStanceActive(m_Item.front(), Weapon_Unknown);
+    return met;
+}
+
+bool Requirement::EvaluateStartingWorld(
+    const Build& build) const
+{
+    const Race& race = FindRace(build.Race());
+    StartingWorldType swt = TextToEnumEntry(m_Item.front(), startingWorldTypeMap);
+    bool met = (swt == race.StartingWorld());
     return met;
 }
 

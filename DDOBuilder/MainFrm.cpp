@@ -19,6 +19,7 @@
 #include "DestinyPane.h"
 #include "EquipmentPane.h"
 #include "EnhancementsPane.h"
+#include "FavorPane.h"
 #include "GrantedFeatsPane.h"
 #include "LogPane.h"
 #include "ReaperEnhancementsPane.h"
@@ -60,6 +61,10 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnDevelopmentUpdateItemImages)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
     //ON_COMMAND(ID_DEVELOPMENT_UPDATEARMORITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateItemImages)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateWeaponImages)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -72,7 +77,9 @@ static UINT indicators[] =
 
 // CMainFrame construction/destruction
 
-CMainFrame::CMainFrame()
+CMainFrame::CMainFrame() :
+    m_bLoadComplete(false),
+    m_bWikiProcessing(false)
 {
     CopyDefaultIniToDDOBuilderIni();
     theApp.m_nAppLook = theApp.GetInt(
@@ -93,6 +100,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CFrameWndEx::OnCreate(lpCreateStruct) == -1)
         return -1;
+
+    AfxGetApp()->m_pMainWnd = this;
 
     BOOL bNameValid;
     // set the visual manager and style based on persisted value
@@ -237,10 +246,10 @@ BOOL CMainFrame::CreateDockingWindows()
     pBreakdownsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     CCustomDockablePane* pStancesPane = CreateDockablePane(
-        "Stances",
-        GetActiveDocument(),
-        RUNTIME_CLASS(CStancesPane),
-        ID_DOCK_STANCES);
+            "Stances",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CStancesPane),
+            ID_DOCK_STANCES);
     pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     CCustomDockablePane* pBuildsPane = CreateDockablePane(
@@ -326,6 +335,13 @@ BOOL CMainFrame::CreateDockingWindows()
             RUNTIME_CLASS(CSpellsPane),
             ID_DOCK_SPELLS);
     pSpellsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    CCustomDockablePane* pFavorPane = CreateDockablePane(
+            "Quests and Favor",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CFavorPane),
+            ID_DOCK_FAVOR);
+    pFavorPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     return TRUE;
 }
@@ -466,8 +482,8 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
     // do the same for all docked windows also
     for (size_t i = 0; i < m_dockablePanes.size(); ++i)
     {
-        //??CView * pView = m_dockablePanes[i]->GetView();
-        //??pView->SendMessage(WM_SETTINGCHANGE, uFlags, lpszSection);
+        //CView * pView = m_dockablePanes[i]->GetView();
+        //pView->SendMessage(WM_SETTINGCHANGE, uFlags, lpszSection);
     }
 }
 
@@ -500,7 +516,7 @@ CCustomDockablePane* CMainFrame::CreateDockablePane(
     createContext.m_pCurrentDoc = doc;
     createContext.m_pNewViewClass = runtimeClass;
 
-    CCustomDockablePane* pane = new CCustomDockablePane;
+    CCustomDockablePane* pane = new CCustomDockablePane(viewID);
     // Assorted functionality is applied to all panes
     m_dockablePanes.push_back(pane);
 
@@ -509,7 +525,7 @@ CCustomDockablePane* CMainFrame::CreateDockablePane(
             this,
             CRect(0,0,400,400),
             TRUE,
-            viewID, 
+            viewID,
             WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI, 
             32UL,
             15UL,
@@ -701,11 +717,14 @@ void CMainFrame::LoadComplete()
 
     // do the documents views (usually only 1)
     CDocument * pDoc = GetActiveDocument();
-    POSITION pos = pDoc->GetFirstViewPosition();
-    while (pos != NULL)
+    if (pDoc != NULL)
     {
-        CView * pView = pDoc->GetNextView(pos);
-        pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
+        POSITION pos = pDoc->GetFirstViewPosition();
+        while (pos != NULL)
+        {
+            CView * pView = pDoc->GetNextView(pos);
+            pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
+        }
     }
     // do the same for all docked windows also
     for (size_t i = 0; i < m_dockablePanes.size(); ++i)
@@ -713,6 +732,7 @@ void CMainFrame::LoadComplete()
         CView * pView = m_dockablePanes[i]->GetView();
         pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
     }
+    m_bLoadComplete = true;
 }
 
 MouseHook* CMainFrame::GetMouseHook()
@@ -790,3 +810,24 @@ void CMainFrame::OnDevelopmentUpdateWeaponImages()
     CWeaponImageDialog dlg(this);
     dlg.DoModal();
 }
+
+void CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}
+
+void CMainFrame::OnUpdateDevelopmentProcessWikiFiles(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}
+
+void CMainFrame::OnUpdateDevelopmentUpdateItemImages(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}
+
+void CMainFrame::OnUpdateDevelopmentUpdateWeaponImages(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}
+

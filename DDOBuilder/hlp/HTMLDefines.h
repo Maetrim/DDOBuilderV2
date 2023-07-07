@@ -22,13 +22,13 @@
 #define HID_VIEW_APPLOOK_WINDOWS_7              0x100DB
 #define HID_DOCKING_WINDOWS_START               0x10BB8
 #define HID_DOCK_LOG                            0x10BB8
-#define HID_DOCK_BUILDS                         0x10BB9
-#define HID_DOCK_CLASSFEATS                     0x10BBA
-#define HID_DOCK_SKILLS                         0x10BBB
-#define HID_DOCK_SPECIALFEATS                   0x10BBC
-#define HID_DOCK_ENHANCEMENTS                   0x10BBD
-#define HID_DOCK_BREAKDOWNS                     0x10BBE
-#define HID_DOCK_STANCES                        0x10BBF
+#define HID_DOCK_BREAKDOWNS                     0x10BB9
+#define HID_DOCK_STANCES                        0x10BBA
+#define HID_DOCK_BUILDS                         0x10BBB
+#define HID_DOCK_CLASSFEATS                     0x10BBC
+#define HID_DOCK_SKILLS                         0x10BBD
+#define HID_DOCK_SPECIALFEATS                   0x10BBE
+#define HID_DOCK_ENHANCEMENTS                   0x10BBF
 #define HID_DOCK_DESTINY                        0x10BC0
 #define HID_DOCK_AUTOMATICFEATS                 0x10BC1
 #define HID_DOCK_GRANTEDFEATS                   0x10BC2
@@ -36,7 +36,7 @@
 #define HID_DOCK_DCS                            0x10BC4
 #define HID_DOCK_EQUIPMENT                      0x10BC5
 #define HID_DOCK_SPELLS                         0x10BC6
-#define HID_DOCK_UNUSED14                       0x10BC7
+#define HID_DOCK_FAVOR                          0x10BC7
 #define HID_DOCK_UNUSED15                       0x10BC8
 #define HID_DOCK_UNUSED16                       0x10BC9
 #define HID_DOCK_UNUSED17                       0x10BCA
@@ -128,12 +128,14 @@
 #define HID_DEVELOPMENT_PROCESSWIKIFILES        0x1802C
 #define HID_LEVELSELECT_SELECTMAXLEVELFORTHISBUILD	0x1802D
 #define HID_DEVELOPMENT_UPDATEITEMIMAGES        0x1802E
-#define HID_DOCK                                0x1802F
 #define HID_EDIT_COPYLOGTOCLIPBOARD             0x18030
 #define HID_DEVELOPMENT_DUMPWEAPONGROUPSTOLOG   0x18031
 #define HID_EDIT_CLEARLOG                       0x18032
 #define HID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES  0x18033
 #define HID_DEVELOPMENT_UPDATEARMORITEMIMAGES   0x18034
+#define HID_EDIT_FEATS_EPICONLY                 0x18036
+#define HID_EDIT_FEATS_SHOWUNAVAILABLE          0x18037
+#define HID_EDIT_IGNORELIST_ACTIVE              0x18038
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064
@@ -176,6 +178,7 @@
 #define HIDD_SLA_PAGE                           0x2008E
 #define HIDD_ITEM_SELECT                        0x200DC
 #define HIDD_DIALOG_SETITEMIMAGES               0x20141
+#define HIDD_FAVOR_PANE                         0x20142
  
 // Frame Controls (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.

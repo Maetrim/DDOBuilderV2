@@ -52,6 +52,10 @@ protected:
     afx_msg void OnDevelopmentProcessWikiFiles();
     afx_msg void OnDevelopmentUpdateItemImages();
     afx_msg void OnDevelopmentUpdateWeaponImages();
+    afx_msg void OnUpdateDevelopmentRunwWikiItemCrawler(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateDevelopmentProcessWikiFiles(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateDevelopmentUpdateItemImages(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateDevelopmentUpdateWeaponImages(CCmdUI* pCmdUI);
     DECLARE_MESSAGE_MAP()
 
     BOOL CreateDockingWindows();
@@ -69,6 +73,8 @@ protected:
     CMFCToolBarImages m_UserImages;
     std::vector<CCustomDockablePane*> m_dockablePanes;
     MouseHook m_mouseHook;
+    bool m_bLoadComplete;
+    bool m_bWikiProcessing;
 
     friend class WikiDownloader;
 };

@@ -9,6 +9,11 @@ dissipate the absorbed energy.</Description>
     <School>Evocation</School>
   </Spell>
   <Spell>
+    <Name>Absorbs Magic Missiles</Name>
+    <Description>This effect absorbs magic missile spells targeted at the wearer.</Description>
+    <Icon>MagicMissile</Icon>
+  </Spell>
+  <Spell>
     <Name>Acid Shot</Name>
     <Description>Target: Foe, Directional, Breakable
 School: Evocation
@@ -345,6 +350,25 @@ negates this effect.</Description>
     <School>Abjuration</School>
   </Spell>
   <Spell>
+    <Name>Greater Spark</Name>
+    <Description>Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When Activated, this effect provides a +20 Alchemical bonus to your Electric
+Spell Power for three minutes.</Description>
+    <Icon>GreaterSpark</Icon>
+    <School>Abjuration</School>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+       <Item>Electric</Item>
+      <ApplyAsItemEffect/>
+    </Effect>
+  </Spell>
+  <Spell>
     <Name>Gust of Wind</Name>
     <Description>Target: Foe, Directional, Breakable
 Duration: 10 seconds
@@ -428,6 +452,23 @@ she attacks a target, the effect is removed.</Description>
     <School>Illusion</School>
   </Spell>
   <Spell>
+    <Name>Light Spirals</Name>
+    <Description>Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires chaotic bolts of light that damage your enemies. At higher charge levels
+multiple bolts are rapidly fired. opponents struck by these bolts receive a Will
+save for half damage.
+
+Charge Tier 1: 3 to 6 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 11 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 16 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 21 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 26 + 1 to 10 per Artificer Level</Description>
+    <Icon>NimbusOfLight</Icon>
+    <School>Evocation</School>
+  </Spell>
+  <Spell>
     <Name>Mage Armor</Name>
     <Description>Target: Self
 Duration: 6 minutes
@@ -476,9 +517,9 @@ Duration: Instantaneous
 School: Illusion
 Spell Resistance: Yes
 You create a phantasmal image of the most fearsome creature imaginable to the
-subject simply by forming the fears of the subject’s subconscious mind into
+subject simply by forming the fears of the subject's subconscious mind into
 something that its conscious mind can visualize: this most horrible beast.
-Only the spell’s Foe can see the Phantasmal Killer. You see only a vague shape.
+Only the spell's Foe can see the Phantasmal Killer. You see only a vague shape.
 The target first gets a Will save to recognize the image as unreal to disbelieve
 the spell and suffer no ill effects. If that save fails, the phantasm touches
 the subject, and the subject must succeed on a Fortitude save or die from fear.

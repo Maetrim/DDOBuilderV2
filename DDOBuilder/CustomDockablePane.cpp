@@ -2,6 +2,8 @@
 //
 #include "stdafx.h"
 #include "CustomDockablePane.h"
+#include "CustomTabbedPane.h"
+#include "CustomMultiPaneFrameWnd.h"
 #include "CustomContextMenuManager.h"
 
 //---------------------------------------------------------------------------
@@ -17,18 +19,35 @@ END_MESSAGE_MAP()
 #pragma warning(pop)
 
 //---------------------------------------------------------------------------
-CCustomDockablePane::CCustomDockablePane() :
+CCustomDockablePane::CCustomDockablePane(UINT uViewId) :
     CDockablePane(),
     m_view(NULL),
     m_resizeViewWithPane(false),
     m_pCharacter(NULL),
-    m_document(NULL)
+    m_document(NULL),
+    m_viewId(uViewId),
+    m_hIcon(0)
 {
+    m_hIcon = (HICON) ::LoadImage(
+            ::AfxGetResourceHandle(),
+            MAKEINTRESOURCE(m_viewId),
+            IMAGE_ICON,
+            ::GetSystemMetrics(SM_CXSMICON),
+            ::GetSystemMetrics(SM_CYSMICON), 0);
+    m_pTabbedControlBarRTC = RUNTIME_CLASS(CCustomTabbedPane);
+    //m_pMiniFrameRTC = RUNTIME_CLASS(CCustomMultiPaneFrameWnd);
+}
+
+CCustomDockablePane::~CCustomDockablePane()
+{
+    DestroyIcon(m_hIcon);
 }
 
 //---------------------------------------------------------------------------
 int CCustomDockablePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
+    m_pTabbedControlBarRTC = RUNTIME_CLASS(CCustomTabbedPane);
+    //m_pMiniFrameRTC = RUNTIME_CLASS(CCustomMultiPaneFrameWnd);
     if (CDockablePane::OnCreate(lpCreateStruct) == -1)
     {
         return -1;
@@ -53,6 +72,7 @@ int CCustomDockablePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
     theView->SendMessage(WM_INITIALUPDATE, 0, 0);
 
     SetMinSize(CSize(30, 30));
+    SetIcon(m_hIcon, FALSE);
 
     return 0;
 }
@@ -126,6 +146,53 @@ BOOL CCustomDockablePane::OnCmdMsg(
     }
 
     return handled;
+}
+
+void CCustomDockablePane::DrawCaption(CDC* pDC, CRect rectCaption)
+{
+    ::DrawIconEx(
+            pDC->GetSafeHdc(),
+            rectCaption.left+2,
+            rectCaption.top+2,
+            m_hIcon,
+            ::GetSystemMetrics(SM_CXSMICON),
+            ::GetSystemMetrics(SM_CYSMICON),
+            0,
+            NULL,
+            DI_NORMAL);
+    CRect rctIcon(rectCaption);
+    rctIcon.bottom += 2;
+    rctIcon.right = rctIcon.bottom;
+    pDC->Draw3dRect(rctIcon,
+                ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                ::GetSysColor(COLOR_BTNSHADOW));
+    //pDC->DrawEdge()
+    // make sure we don't over draw the icon we just drew
+    rectCaption.left += ::GetSystemMetrics(SM_CXSMICON) + 4;
+    // let the base class draw the rest
+    CDockablePane::DrawCaption(pDC, rectCaption);
+}
+
+CTabbedPane* CCustomDockablePane::CreateTabbedPane()
+{
+    m_pTabbedControlBarRTC = RUNTIME_CLASS(CCustomTabbedPane);
+    CTabbedPane* pPane = CDockablePane::CreateTabbedPane();
+    CCustomTabbedPane* pCustomPane = dynamic_cast<CCustomTabbedPane*>(pPane);
+    if (pCustomPane != NULL)
+    {
+        pCustomPane->m_hIcon = m_hIcon;
+    }
+    return pPane;
+}
+
+void CCustomDockablePane::OnAfterChangeParent(CWnd* pWndOldParent)
+{
+    CDockablePane::OnAfterChangeParent(pWndOldParent);
+    //CWnd *pWnd = GetParent();
+    //if (pWnd->GetRuntimeClass() == RUNTIME_CLASS(CCustomMultiPaneFrameWnd))
+    //{
+    //    pWnd->SetIcon(m_hIcon, FALSE);
+    //}
 }
 
 void CCustomDockablePane::OnContextMenu(CWnd* pWnd, CPoint point)

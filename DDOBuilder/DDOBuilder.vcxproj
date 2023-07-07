@@ -23,6 +23,7 @@
     <RootNamespace>DDOBuilder</RootNamespace>
     <Keyword>MFCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>DDOBuilder</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -540,6 +541,8 @@ echo.
     <ClInclude Include="CriticalSection.h" />
     <ClInclude Include="CustomContextMenuManager.h" />
     <ClInclude Include="CustomDockablePane.h" />
+    <ClInclude Include="CustomMultiPaneFrameWnd.h" />
+    <ClInclude Include="CustomTabbedPane.h" />
     <ClInclude Include="CWeaponImageDialog.h" />
     <ClInclude Include="DamageReductionTypes.h" />
     <ClInclude Include="DamageTypes.h" />
@@ -570,6 +573,8 @@ echo.
     <ClInclude Include="EquippedGear.h" />
     <ClInclude Include="ExclusionGroup.h" />
     <ClInclude Include="FavoredEnemyTypes.h" />
+    <ClInclude Include="FavorPane.h" />
+    <ClInclude Include="FavorTypes.h" />
     <ClInclude Include="Feat.h" />
     <ClInclude Include="FeatAcquisitionTypes.h" />
     <ClInclude Include="FeatsClassControl.h" />
@@ -603,6 +608,9 @@ echo.
     <ClInclude Include="MultiFileObjectLoader.h" />
     <ClInclude Include="ObserverSubject.h" />
     <ClInclude Include="LogPane.h" />
+    <ClInclude Include="PatronTypes.h" />
+    <ClInclude Include="Quest.h" />
+    <ClInclude Include="QuestsFile.h" />
     <ClInclude Include="Race.h" />
     <ClInclude Include="ReaperEnhancementsPane.h" />
     <ClInclude Include="ReaperSpendInTree.h" />
@@ -645,6 +653,8 @@ echo.
     <ClInclude Include="StanceGroup.h" />
     <ClInclude Include="StancesFile.h" />
     <ClInclude Include="StancesPane.h" />
+    <ClInclude Include="StartingWorldTypes.h" />
+    <ClInclude Include="SubItem.h" />
     <ClInclude Include="TacticalTypes.h" />
     <ClInclude Include="TrainedEnhancement.h" />
     <ClInclude Include="TrainedFeat.h" />
@@ -812,6 +822,8 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="CriticalSection.cpp" />
     <ClCompile Include="CustomContextMenuManager.cpp" />
     <ClCompile Include="CustomDockablePane.cpp" />
+    <ClCompile Include="CustomMultiPaneFrameWnd.cpp" />
+    <ClCompile Include="CustomTabbedPane.cpp" />
     <ClCompile Include="CWeaponImageDialog.cpp" />
     <ClCompile Include="DC.cpp" />
     <ClCompile Include="DCButton.cpp" />
@@ -836,6 +848,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="EquipmentPane.cpp" />
     <ClCompile Include="EquippedGear.cpp" />
     <ClCompile Include="ExclusionGroup.cpp" />
+    <ClCompile Include="FavorPane.cpp" />
     <ClCompile Include="Feat.cpp" />
     <ClCompile Include="FeatsClassControl.cpp" />
     <ClCompile Include="FeatSelectionDialog.cpp" />
@@ -866,6 +879,8 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="ObserverSubject.cpp" />
     <ClCompile Include="LogPane.cpp" />
+    <ClCompile Include="Quest.cpp" />
+    <ClCompile Include="QuestsFile.cpp" />
     <ClCompile Include="Race.cpp" />
     <ClCompile Include="ReaperEnhancementsPane.cpp" />
     <ClCompile Include="ReaperSpendInTree.cpp" />
@@ -911,6 +926,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SubItem.cpp" />
     <ClCompile Include="TrainedEnhancement.cpp" />
     <ClCompile Include="TrainedFeat.cpp" />
     <ClCompile Include="TrainedFiligree.cpp" />
@@ -1139,6 +1155,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Xml Include="..\Output\DataFiles\FiligreeSets\Zephyr.Filigree.xml" />
     <Xml Include="..\Output\DataFiles\ItemBuffs.xml" />
     <Xml Include="..\Output\DataFiles\ItemClickies.xml" />
+    <Xml Include="..\Output\DataFiles\Quests.xml" />
     <Xml Include="..\Output\DataFiles\Races\Aasimar.race.xml" />
     <Xml Include="..\Output\DataFiles\Races\AasimarScourge.race.xml" />
     <Xml Include="..\Output\DataFiles\Races\Bladeforged.race.xml" />
@@ -1173,8 +1190,26 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Image Include="res\bitmapNew.bmp" />
     <Image Include="res\BitmapPaste.bmp" />
     <Image Include="res\CopyToClipboard.bmp" />
+    <Image Include="res\icon_automaticfeats.ico" />
+    <Image Include="res\icon_breakdowns.ico" />
+    <Image Include="res\icon_breakdowns_.ico" />
+    <Image Include="res\icon_builds.ico" />
+    <Image Include="res\icon_classfeats.ico" />
+    <Image Include="res\icon_dcs.ico" />
+    <Image Include="res\icon_destiny.ico" />
+    <Image Include="res\icon_enhancements.ico" />
+    <Image Include="res\icon_equipment.ico" />
+    <Image Include="res\icon_favor.ico" />
+    <Image Include="res\icon_grantedfeats.ico" />
+    <Image Include="res\icon_log.ico" />
+    <Image Include="res\icon_reaper.ico" />
+    <Image Include="res\icon_skills.ico" />
+    <Image Include="res\icon_specialfeats.ico" />
+    <Image Include="res\icon_spells.ico" />
+    <Image Include="res\icon_stances.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\ChangeHistory.txt" />
     <Text Include="..\InProgressNotes.txt" />
     <Text Include="..\Issues.txt" />
     <Text Include="..\KnownBugs.txt" />

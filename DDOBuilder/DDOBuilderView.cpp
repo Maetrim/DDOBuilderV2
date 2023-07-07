@@ -446,7 +446,7 @@ void CDDOBuilderView::RestoreControls()
     {
         EnableToolTips(TRUE);
         m_editName.EnableWindow(TRUE);
-        m_editName.SetWindowText(m_pCharacter->Name().c_str());
+        m_editName.SetWindowText(pBuild->Name().c_str());
         // Race
         m_comboRace.EnableWindow(TRUE);
         SelectComboboxEntry(pBuild->Race(), &m_comboRace);
@@ -1005,7 +1005,7 @@ void CDDOBuilderView::OnChangeName()
     {
         CString name;
         m_editName.GetWindowText(name);
-        if (name != m_pCharacter->Name().c_str())
+        if (name != pBuild->Name().c_str())
         {
             // name has changed
             pBuild->SetName((LPCTSTR)name);

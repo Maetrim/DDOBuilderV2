@@ -99,6 +99,10 @@ void BreakdownItem::BuildChanged(Character * pCharacter)
     m_otherEffects.clear();
     m_effects.clear();
     m_itemEffects.clear();
+}
+
+void BreakdownItem::BuildChangeComplete()
+{
     if (m_pCharacter != NULL)
     {
         CreateOtherEffects();

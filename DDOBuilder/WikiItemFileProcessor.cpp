@@ -1126,6 +1126,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Transform Kinetic Energy", "Transform Kinetic Energy", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Minor Lesser Dragonmark Enhancement", "Minor Lesser Dragonmark Enhancement", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dragonshard Focus: Sentinel", "Dragonshard Focus: Sentinel", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Embodiment of Law", "Embodiment of Law Embodiment of Law", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Paragon Evil Guard", "Paragon Evil Guard Paragon", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Paragon Good Guard", "Paragon Good Guard Paragon", "", "", 5);

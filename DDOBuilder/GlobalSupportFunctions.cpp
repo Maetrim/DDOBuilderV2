@@ -489,7 +489,7 @@ HTREEITEM GetNextTreeItem(const CTreeCtrl& treeCtrl, HTREEITEM hItem)
 
 CLogPane & GetLog()
 {
-    CWnd * pWnd = AfxGetMainWnd();
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame * pMainFrame = dynamic_cast<CMainFrame*>(pWnd);
     return pMainFrame->GetLog();
 }
@@ -810,7 +810,7 @@ std::string DataFolder()
 
 MouseHook* GetMouseHook()
 {
-    CWnd* pWnd = AfxGetMainWnd();
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
     return pMainWnd->GetMouseHook();
 }
@@ -818,7 +818,7 @@ MouseHook* GetMouseHook()
 BreakdownItem* FindBreakdown(BreakdownType type)
 {
     // we have to get the relevant view from the main frame class
-    CWnd* pWnd = AfxGetMainWnd();
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
     return pMainWnd->FindBreakdown(type);
 }

@@ -8,8 +8,8 @@ class CCustomDockablePane :
         public CDockablePane
 {
     public:
-        CCustomDockablePane();
-        virtual ~CCustomDockablePane() {}
+        CCustomDockablePane(UINT uViewId);
+        virtual ~CCustomDockablePane();
 
         //MFC
         DECLARE_MESSAGE_MAP()
@@ -19,7 +19,10 @@ class CCustomDockablePane :
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
         afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
         afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
-        virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
+        virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo) override;
+        virtual void DrawCaption(CDC* pDC, CRect rectCaption) override;
+        virtual CTabbedPane* CreateTabbedPane() override;
+        virtual void OnAfterChangeParent(CWnd* pWndOldParent) override;
 
     public:
         // If derived classes have a contained view they can get free auto resize
@@ -38,4 +41,6 @@ class CCustomDockablePane :
         // Members
         CView * m_view;
         bool m_resizeViewWithPane;
+        UINT m_viewId;
+        HICON m_hIcon;
 };

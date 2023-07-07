@@ -13,6 +13,7 @@
 #include "BuffFile.h"
 #include "FeatsFile.h"
 #include "MultiFileObjectLoader.h"
+#include "QuestsFile.h"
 #include "SentientGemsFile.h"
 #include "SetBonusFile.h"
 #include "StancesFile.h"
@@ -31,11 +32,19 @@ BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     // Standard file based document commands
     ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
     ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
+    // UI options disabled during start up
+    ON_UPDATE_COMMAND_UI(ID_APP_ABOUT, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_UPDATE_COMMAND_UI(ID_FILE_NEW, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
 END_MESSAGE_MAP()
 
 // CDDOBuilderApp construction
 CDDOBuilderApp::CDDOBuilderApp() :
-    m_nAppLook(0)
+    m_nAppLook(0),
+    m_bLoadComplete(false)
 {
     EnableHtmlHelp();
 
@@ -134,6 +143,7 @@ BOOL CDDOBuilderApp::InitInstance()
     if (!ProcessShellCommand(cmdInfo))
         return FALSE;
 
+    AfxGetApp()->m_pMainWnd = m_pMainWnd;
     // The one and only window has been initialized, so show and update it
     m_pMainWnd->ShowWindow(SW_SHOWMAXIMIZED);
     m_pMainWnd->UpdateWindow();
@@ -151,6 +161,7 @@ BOOL CDDOBuilderApp::InitInstance()
     }
 
     NotifyLoadComplete();
+    GetLog().AddLogEntry("Ready");
 
     return TRUE;
 }
@@ -224,6 +235,7 @@ void CDDOBuilderApp::LoadData()
     LoadWeaponGroups(folderPath);
     LoadItemBuffs(folderPath);
     LoadItemClickies(folderPath);
+    LoadQuests(folderPath);
     LoadItems(folderPath);
 
     // all loaded feats need to be consolidated into a single map
@@ -319,7 +331,7 @@ void CDDOBuilderApp::LoadFeats(const std::string& path)
     if (fit != m_allFeats.end())
     {
         Feat* completionist = &fit->second;
-        // we need to build arrays or architypes so we can build the requirements correctly
+        // we need to build arrays or archetypes so we can build the requirements correctly
         Requirements req;
         std::vector<bool> bDone;                // true if this class has had its entry done
         bDone.resize(m_classes.size(), false);
@@ -338,7 +350,7 @@ void CDDOBuilderApp::LoadFeats(const std::string& path)
                 ss << "Past Life: " << cit.Name();
                 Requirement classRequirement(Requirement_Feat, ss.str(), 1);
                 roo.AddRequirement(classRequirement);
-                // see if any of the following classes are the same architype base class
+                // see if any of the following classes are the same archetype base class
                 size_t aci = 0;
                 for (auto&& acit : m_classes)
                 {
@@ -518,6 +530,11 @@ const std::list<Filigree>& CDDOBuilderApp::Filigrees() const
 const std::list<Item>& CDDOBuilderApp::Items() const
 {
     return m_items;
+}
+
+const std::list<Quest>& CDDOBuilderApp::Quests() const
+{
+    return m_quests;
 }
 
 CImageList& CDDOBuilderApp::ItemImageList()
@@ -759,6 +776,8 @@ void CDDOBuilderApp::LoadItems(const std::string& path)
             "Weapon_Warhammer\\"
         };
         size_t numFolders = sizeof(folders) / sizeof(std::string);
+        int imageCount = 0;
+        GetLog().AddLogEntry("Loading Item Images...");
         for (size_t fi = 0; fi < numFolders; ++fi)
         {
             std::string fileFilter(path);
@@ -772,6 +791,10 @@ void CDDOBuilderApp::LoadItems(const std::string& path)
                 CDDOBuilderApp::LoadImage(folders[fi], findFileData.cFileName);
                 while (FindNextFile(hFind, &findFileData))
                 {
+                    ++imageCount;
+                    CString text;
+                    text.Format("Loading Item Images...%d", imageCount);
+                    GetLog().UpdateLastLogEntry(text);
                     CDDOBuilderApp::LoadImage(folders[fi], findFileData.cFileName);
                 }
                 FindClose(hFind);
@@ -869,9 +892,21 @@ void CDDOBuilderApp::LoadItemClickies(const std::string& path)
     m_itemClickies = file.Spells();
 }
 
+void CDDOBuilderApp::LoadQuests(const std::string& path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "Quests.xml";
+
+    GetLog().AddLogEntry("Loading Quest List...");
+    QuestsFile file(filename);
+    file.Read();
+    m_quests = file.Quests();
+}
+
 void CDDOBuilderApp::UpdateFeats()
 {
-    // got theough every class and race loaded and update
+    // go through every class and race loaded and update
     // all feats that they define
     for (auto&& rit : m_races)
     {
@@ -1017,4 +1052,10 @@ void CDDOBuilderApp::NotifyLoadComplete()
     // has completed, so they can initialise correctly
     CMainFrame * pMainFrame = dynamic_cast<CMainFrame*>(m_pMainWnd);
     pMainFrame->LoadComplete();
+    m_bLoadComplete = true;
+}
+
+void CDDOBuilderApp::OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete);
 }

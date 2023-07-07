@@ -98,7 +98,7 @@ size_t Character::AddLife()
     // all new lives start with a default build
     Life life(this);
     m_Lives.push_back(life);
-    m_Lives.back().AddBuild();
+    m_Lives.back().AddBuild(0);
     m_pDocument->SetModifiedFlag(TRUE);
     return m_Lives.size()-1;    // 0 based
 }
@@ -115,12 +115,13 @@ void Character::DeleteLife(size_t lifeIndex)
 
 size_t Character::AddBuild(size_t lifeIndex)
 {
+    size_t buildIndex = m_activeBuildIndex;
     m_activeLifeIndex = 10000;    // large number that will never occur naturally
     m_activeBuildIndex = 10000;   // large number that will never occur naturally
     std::list<Life>::iterator lit = m_Lives.begin();
     std::advance(lit, lifeIndex);
     m_pDocument->SetModifiedFlag(TRUE);
-    return (*lit).AddBuild();
+    return (*lit).AddBuild(buildIndex);
 }
 
 void Character::DeleteBuild(

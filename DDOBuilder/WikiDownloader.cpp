@@ -61,7 +61,8 @@ void WikiDownloader::Start()
         {
             AfxGetThread()->PumpMessage();
         }
-        CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
+        CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+        CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(pWnd);
         if (pMainFrame != NULL)
         {
             CString strProgress;

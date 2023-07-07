@@ -55,7 +55,6 @@ class Character :
         virtual void EndElement();
 
         #define Character_PROPERTIES(_) \
-                DL_STRING(_, Name) \
                 DL_THIS_OBJECT_LIST(_, Life, Lives)
 
         DL_DECLARE_ACCESS(Character_PROPERTIES)

@@ -11,6 +11,7 @@
 #include "Filigree.h"
 #include "Gem.h"
 #include "Item.h"
+#include "Quest.h"
 #include "Race.h"
 #include "SetBonus.h"
 #include "Stance.h"
@@ -62,6 +63,7 @@ public:
     const std::list<WeaponGroup>& WeaponGroups() const;
     const std::list<Buff>& ItemBuffs() const;
     const std::list<Spell>& ItemClickies() const;
+    const std::list<Quest>& Quests() const;
 
     virtual BOOL InitInstance();
     virtual int ExitInstance();
@@ -70,6 +72,7 @@ public:
     virtual void SaveCustomState();
 
     afx_msg void OnAppAbout();
+    afx_msg void OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI);
     DECLARE_MESSAGE_MAP()
 private:
     void LoadData();
@@ -85,6 +88,7 @@ private:
     void LoadStances(const std::string& path);
     void LoadSpells(const std::string& path);
     void LoadItems(const std::string& path);
+    void LoadQuests(const std::string& path);
     void LoadSentientGems(const std::string& path);
     void LoadWeaponGroups(const std::string& path);
     void LoadItemBuffs(const std::string& path);
@@ -130,8 +134,10 @@ private:
     std::list<WeaponGroup> m_weaponGroups;
     std::list<Buff> m_itemBuffs;
     std::list<Spell> m_itemClickies;
+    std::list<Quest> m_quests;
     CImageList m_itemImages;
     std::map<std::string, int> m_imagesMap;
+    bool m_bLoadComplete;
 };
 
 extern CDDOBuilderApp theApp;

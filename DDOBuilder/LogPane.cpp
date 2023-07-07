@@ -50,6 +50,11 @@ void CLogPane::OnSize(UINT nType, int cx, int cy)
         m_wndOutputLog.MoveWindow(0, 0, cx, cy, TRUE);
     }
     SetScaleToFitSize(CSize(cx, cy));
+    CWnd *pWnd = this;
+    while (pWnd != NULL)
+    {
+        pWnd = pWnd->GetParent();
+    }
 }
 
 void CLogPane::UpdateFonts()
@@ -91,6 +96,12 @@ void CLogPane::UpdateLastLogEntry(const CString & strText)
     m_wndOutputLog.SetTopIndex(index);
     m_wndOutputLog.UnlockWindowUpdate();
     m_wndOutputLog.RedrawWindow();
+    // allow UI to function
+    MSG msg;
+    while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
+    {
+        AfxGetThread()->PumpMessage();
+    }
 }
 
 
@@ -131,14 +142,15 @@ void COutputList::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
     CMenu* pSumMenu = menu.GetSubMenu(0);
 
-    if (AfxGetMainWnd()->IsKindOf(RUNTIME_CLASS(CMDIFrameWndEx)))
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+    if (pWnd->IsKindOf(RUNTIME_CLASS(CMDIFrameWndEx)))
     {
         CMFCPopupMenu* pPopupMenu = new CMFCPopupMenu;
 
         if (!pPopupMenu->Create(this, point.x, point.y, (HMENU)pSumMenu->m_hMenu, FALSE, TRUE))
             return;
 
-        ((CMDIFrameWndEx*)AfxGetMainWnd())->OnShowPopupMenu(pPopupMenu);
+        ((CMDIFrameWndEx*)pWnd)->OnShowPopupMenu(pPopupMenu);
         UpdateDialogControls(this, FALSE);
     }
 

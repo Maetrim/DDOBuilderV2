@@ -32,6 +32,7 @@ class CEquipmentPane :
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
+        afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
         afx_msg void OnGearNew();
         afx_msg void OnGearCopy();
         afx_msg void OnGearPaste();
@@ -94,4 +95,5 @@ class CEquipmentPane :
 
         CDDOBuilderDoc* m_pDocument;
         Character* m_pCharacter;
+        bool m_bLoadComplete;
 };

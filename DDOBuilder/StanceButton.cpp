@@ -5,6 +5,8 @@
 #include "StanceButton.h"
 #include "Character.h"
 #include "GlobalSupportFunctions.h"
+#include "StancesPane.h"
+#include "MainFrm.h"
 
 namespace
 {
@@ -69,7 +71,7 @@ bool CStanceButton::Evaluate(Character* charData)
     Build* pBuild = charData->ActiveBuild();
     if (pBuild != NULL)
     {
-        WeaponType wtMainHand = Weapon_Unknown;
+        WeaponType wtMainHand = Weapon_Empty;
         WeaponType wtOffHand = Weapon_Empty;
         if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
         {
@@ -83,10 +85,14 @@ bool CStanceButton::Evaluate(Character* charData)
         bChanged = (oldState != m_bSelected);
         if (bChanged)
         {
+            CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+            CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+            CStancesPane* pStancesPane = dynamic_cast<CStancesPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CStancesPane)));
+            StanceGroup* pSG = pStancesPane->GetStanceGroup("Auto");
             if (m_bSelected)
-                pBuild->m_Stances.AddActiveStance(m_stance.Name());
+                pBuild->ActivateStance(m_stance, pSG);
             else
-                pBuild->m_Stances.RevokeStance(m_stance.Name());
+                pBuild->DeactivateStance(m_stance, pSG);
         }
     }
     return bChanged;

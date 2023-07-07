@@ -325,11 +325,22 @@ void InfoTipItem_Requirements::CreateRequirementsStrings(
         text.Format("Requires: %d AP spent in tree", pItem->MinSpent(pSelection->Name()));
         AddRequirement(text, spentInTree >= pItem->MinSpent(pSelection->Name()));
     }
-    pSelection->CreateRequirementStrings(
-            build,
-            &m_requirements,
-            &m_bRequirementMet,
-            build.Level()-1);
+    if (pSelection->HasRequirementsToTrain())
+    {
+        pSelection->CreateRequirementStrings(
+                build,
+                &m_requirements,
+                &m_bRequirementMet,
+                build.Level()-1);
+    }
+    else
+    {
+        pItem->CreateRequirementStrings(
+                build,
+                &m_requirements,
+                &m_bRequirementMet,
+                build.Level() - 1);
+    }
 }
 
 void InfoTipItem_Requirements::CreateRequirementsStrings(

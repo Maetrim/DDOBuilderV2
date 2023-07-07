@@ -19,6 +19,7 @@ class SetBonus;
 class Stance;
 class Spell;
 class SpellDamage;
+class SubItem;
 class LevelTraining;
 
 class CInfoTip :
@@ -86,6 +87,7 @@ class CInfoTip :
 
     private:
         void ClearOldTipItems();
+        void AppendSubItem(const SubItem& item);
         void AppendFeatInfo(const Build& build, const std::string& feat, const Requirements& req);
         void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks);
         void AppendDCInfo(const Build& build, const DC& dc);

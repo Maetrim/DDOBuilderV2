@@ -112,18 +112,25 @@ const Build * Life::GetBuildPointer(size_t buildIndex) const
     return pBuild;
 }
 
-size_t Life::AddBuild()
+size_t Life::AddBuild(size_t buildIndex)
 {
-    // copy the last build if there is one, else add a blank one
-    if (m_Builds.size() > 0)
+    size_t newIndex = 0;
+    // copy the build if there is one, else add a blank one
+    if (m_Builds.size() > buildIndex)
     {
-        m_Builds.push_back(m_Builds.back());
+        std::list<Build>::const_iterator bit = m_Builds.begin();
+        std::advance(bit, buildIndex);
+        Build newBuild = *bit;
+        bit++;
+        // insert it immediately after the current build
+        m_Builds.insert(bit, newBuild);
+        newIndex = buildIndex+1;
     }
     else
     {
         m_Builds.push_back(Build(this));
     }
-    return m_Builds.size()-1;       // 0 based
+    return newIndex;
 }
 
 void Life::DeleteBuild(size_t buildIndex)

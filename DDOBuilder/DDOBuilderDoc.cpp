@@ -39,7 +39,7 @@ BOOL CDDOBuilderDoc::OnNewDocument()
     m_character = Character(this);
 
     // (SDI documents will reuse this document)
-    CWnd * pWnd = AfxGetMainWnd();
+    CWnd * pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
     pMF->NewDocument(this);
 
@@ -70,7 +70,7 @@ BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
         AfxMessageBox(text, MB_ICONERROR);
     }
 
-    CWnd * pWnd = AfxGetMainWnd();
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
     pMF->NewDocument(this);
 

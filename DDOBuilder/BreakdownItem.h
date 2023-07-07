@@ -51,6 +51,7 @@ class BreakdownItem :
         virtual ~BreakdownItem();
 
         virtual void BuildChanged(Character * charData);
+        virtual void BuildChangeComplete();
 
         // EffectCallbackItem
         virtual void AbilityTomeChanged(Life*, AbilityType) override {};

@@ -620,7 +620,7 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
         {
             m_lastNotifiedLevelLine = m_highlightedLevelLine;
             // let the automatic feats view know about the selection change
-            CWnd* pWnd = AfxGetMainWnd();
+            CWnd* pWnd = AfxGetApp()->m_pMainWnd;
             CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
             CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
                     pMainWnd->GetPane(RUNTIME_CLASS(CAutomaticFeatsPane)));
@@ -1063,7 +1063,7 @@ void CFeatsClassControl::UpdateBuildAutomaticFeatsChanged(Build*, size_t level)
     if (level == m_lastNotifiedLevelLine)
     {
         // let the automatic feats view know about the selection change
-        CWnd* pWnd = AfxGetMainWnd();
+        CWnd* pWnd = AfxGetApp()->m_pMainWnd;
         CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
         CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
                 pMainWnd->GetPane(RUNTIME_CLASS(CAutomaticFeatsPane)));

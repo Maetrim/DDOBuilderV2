@@ -7,6 +7,7 @@
 #include "SkillTypes.h"
 #include "FeatSlot.h"
 #include "Feat.h"
+#include "StartingWorldTypes.h"
 
 class Feat;
 
@@ -35,6 +36,7 @@ class Race :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Description) \
                 DL_FLAG(_, IsConstruct) \
+                DL_ENUM(_, StartingWorldType, StartingWorld, StartingWorld_Unknown, startingWorldTypeMap) \
                 DL_FLAG(_, NoPastLife) \
                 DL_VECTOR(_, size_t, BuildPoints) \
                 DL_OPTIONAL_STRING(_, IconicClass) \

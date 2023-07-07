@@ -32,7 +32,10 @@ CSetBonusButton::CSetBonusButton(Character * charData, const SetBonus& setBonus)
     {
         if (S_OK != LoadImageFile("DataFiles\\SetBonusImages\\", m_setBonus.Icon(), &m_image, CSize(32, 32), false))
         {
-            LoadImageFile("DataFiles\\UIImages\\", "Unknown", &m_image, CSize(32, 32));
+            if (S_OK != LoadImageFile("DataFiles\\AugmentImages\\", m_setBonus.Icon(), &m_image, CSize(32, 32), false))
+            {
+                LoadImageFile("DataFiles\\UIImages\\", "Unknown", &m_image, CSize(32, 32));
+            }
         }
     }
     m_image.SetTransparentColor(c_transparentColour);

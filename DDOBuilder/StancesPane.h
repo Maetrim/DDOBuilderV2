@@ -59,6 +59,8 @@ class CStancesPane :
         virtual void OnInitialUpdate();
         const std::vector<CStanceButton *> & UserStances() const;
         const std::vector<CStanceButton *> & AutoStances() const;
+        StanceGroup* GetStanceGroup(CStanceButton* pButton);
+        StanceGroup* GetStanceGroup(const std::string& name);
         const CStanceButton * GetStance(const std::string& stanceName);
         bool IsStanceActive(const std::string& name, WeaponType wt) const;
         const SliderItem * GetSlider(const std::string& name) const;
@@ -115,8 +117,6 @@ class CStancesPane :
 
         StanceGroup* CreateStanceGroup(const std::string& strName, bool singleSelection);
         void PositionStanceGroup(StanceGroup& sg, CRect* pRect, int maxX);
-        StanceGroup* GetStanceGroup(CStanceButton* pButton);
-        StanceGroup* GetStanceGroup(const std::string& name);
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
