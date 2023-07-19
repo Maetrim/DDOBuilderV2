@@ -37,10 +37,12 @@ class CEquipmentPane :
         afx_msg void OnGearCopy();
         afx_msg void OnGearPaste();
         afx_msg void OnGearDelete();
+        afx_msg void OnGearImport();
         afx_msg void OnUpdateGearNew(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearCopy(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearPaste(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearDelete(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateGearImport(CCmdUI * pCmdUi);
         afx_msg void OnGearSelectionSelEndOk();
         afx_msg void OnGearNumFiligreesSelEndOk();
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
@@ -82,6 +84,7 @@ class CEquipmentPane :
         CMFCButton m_buttonCopy;
         CMFCButton m_buttonPaste;
         CMFCButton m_buttonDelete;
+        CMFCButton m_buttonImport;
         CStatic m_staticNumFiligrees;
         CComboBox m_comboNumFiligrees;
         CInventoryDialog * m_inventoryView;

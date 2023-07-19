@@ -11,6 +11,7 @@
 #include "Filigree.h"
 #include "Gem.h"
 #include "Item.h"
+#include "Patron.h"
 #include "Quest.h"
 #include "Race.h"
 #include "SetBonus.h"
@@ -63,7 +64,10 @@ public:
     const std::list<WeaponGroup>& WeaponGroups() const;
     const std::list<Buff>& ItemBuffs() const;
     const std::list<Spell>& ItemClickies() const;
+    const std::list<Patron>& Patrons() const;
     const std::list<Quest>& Quests() const;
+    const std::list<std::string>& IgnoreList() const;
+    void UpdateIgnoreList(const std::list<std::string>& itemList);
 
     virtual BOOL InitInstance();
     virtual int ExitInstance();
@@ -88,11 +92,13 @@ private:
     void LoadStances(const std::string& path);
     void LoadSpells(const std::string& path);
     void LoadItems(const std::string& path);
+    void LoadPatrons(const std::string& path);
     void LoadQuests(const std::string& path);
     void LoadSentientGems(const std::string& path);
     void LoadWeaponGroups(const std::string& path);
     void LoadItemBuffs(const std::string& path);
     void LoadItemClickies(const std::string& path);
+    void LoadIgnoreList(const std::string& path);
     void UpdateFeats();
     void VerifyLoadedData();
     void VerifyClasses();
@@ -107,6 +113,7 @@ private:
     void VerifySentientGems();
     void VerifyWeaponGroups();
     void VerifyItemClickies();
+    void VerifyQuests();
     void NotifyLoadComplete();
     void LoadImage(const std::string& localPath, std::string filename);
 
@@ -135,6 +142,8 @@ private:
     std::list<Buff> m_itemBuffs;
     std::list<Spell> m_itemClickies;
     std::list<Quest> m_quests;
+    std::list<Patron> m_patrons;
+    std::list<std::string> m_ignoreList;
     CImageList m_itemImages;
     std::map<std::string, int> m_imagesMap;
     bool m_bLoadComplete;

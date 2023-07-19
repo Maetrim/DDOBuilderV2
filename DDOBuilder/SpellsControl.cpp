@@ -18,7 +18,6 @@ namespace
         SI_count
     };
     const int c_spellSlotImageSize = 36; // 36 * 36 pixels
-    const UINT UWM_TOGGLE_INCLUDED = ::RegisterWindowMessage(_T("ToggleIgnoreItem"));
 }
 
 // global image data used for drawing all enhancements trees.

@@ -13,12 +13,14 @@
 #include "BuffFile.h"
 #include "FeatsFile.h"
 #include "MultiFileObjectLoader.h"
+#include "PatronsFile.h"
 #include "QuestsFile.h"
 #include "SentientGemsFile.h"
 #include "SetBonusFile.h"
 #include "StancesFile.h"
 #include "SpellsFile.h"
 #include "WeaponGroupFile.h"
+#include "IgnoredListFile.h"
 
 #include "DDOBuilderDoc.h"
 #include "DDOBuilderView.h"
@@ -57,6 +59,7 @@ CDDOBuilderApp::CDDOBuilderApp() :
         ILC_COLOR32,
         2000,
         0);
+    g_bShowIgnoredItems = false;
 }
 
 // The one and only CDDOBuilderApp object
@@ -152,6 +155,7 @@ BOOL CDDOBuilderApp::InitInstance()
     // Enable drag/drop open
     m_pMainWnd->DragAcceptFiles();
 
+    OnIdle(0);  // get UI to update
     // only verify the loaded data in our debug sessions
     LoadData();
     CString commandLine = m_lpCmdLine;
@@ -235,8 +239,10 @@ void CDDOBuilderApp::LoadData()
     LoadWeaponGroups(folderPath);
     LoadItemBuffs(folderPath);
     LoadItemClickies(folderPath);
+    LoadPatrons(folderPath);
     LoadQuests(folderPath);
     LoadItems(folderPath);
+    LoadIgnoreList(folderPath);
 
     // all loaded feats need to be consolidated into a single map
     // and also have their groups updated so they match any additional
@@ -532,6 +538,11 @@ const std::list<Item>& CDDOBuilderApp::Items() const
     return m_items;
 }
 
+const std::list<Patron>& CDDOBuilderApp::Patrons() const
+{
+    return m_patrons;
+}
+
 const std::list<Quest>& CDDOBuilderApp::Quests() const
 {
     return m_quests;
@@ -592,6 +603,7 @@ void CDDOBuilderApp::VerifyLoadedData()
     VerifySentientGems();
     VerifyWeaponGroups();
     VerifyItemClickies();
+    VerifyQuests();
 }
 
 void CDDOBuilderApp::VerifyClasses()
@@ -892,6 +904,18 @@ void CDDOBuilderApp::LoadItemClickies(const std::string& path)
     m_itemClickies = file.Spells();
 }
 
+void CDDOBuilderApp::LoadPatrons(const std::string& path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "Patrons.xml";
+
+    GetLog().AddLogEntry("Loading Patron List...");
+    PatronsFile file(filename);
+    file.Read();
+    m_patrons = file.Patrons();
+}
+
 void CDDOBuilderApp::LoadQuests(const std::string& path)
 {
     // create the filename to load from
@@ -902,6 +926,21 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
     QuestsFile file(filename);
     file.Read();
     m_quests = file.Quests();
+
+    // update the loaded patrons with the max favor for each
+    int patronMaxFavor[Patron_Count];
+    memset(patronMaxFavor, 0, sizeof(patronMaxFavor[0]) * Patron_Count);
+    for (auto&& qit: m_quests)
+    {
+        PatronType ePatron = qit.Patron();
+        patronMaxFavor[ePatron] += qit.MaxFavor();
+    }
+    std::list<Patron>::iterator pit = m_patrons.begin();
+    for (size_t i = 0; i < Patron_Count; ++i)
+    {
+        pit->SetMaxFavor(patronMaxFavor[i]);
+        ++pit;
+    }
 }
 
 void CDDOBuilderApp::UpdateFeats()
@@ -1046,6 +1085,14 @@ void CDDOBuilderApp::VerifyItemClickies()
     }
 }
 
+void CDDOBuilderApp::VerifyQuests()
+{
+    for (auto&& qit : m_quests)
+    {
+        qit.VerifyObject();
+    }
+}
+
 void CDDOBuilderApp::NotifyLoadComplete()
 {
     // let all dock views and open documents know that the load of program data
@@ -1058,4 +1105,37 @@ void CDDOBuilderApp::NotifyLoadComplete()
 void CDDOBuilderApp::OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(m_bLoadComplete);
+}
+
+void CDDOBuilderApp::UpdateIgnoreList(const std::list<std::string>& itemList)
+{
+    m_ignoreList = itemList;
+}
+
+const std::list<std::string>& CDDOBuilderApp::IgnoreList() const
+{
+    return m_ignoreList;
+}
+
+void CDDOBuilderApp::LoadIgnoreList(const std::string& path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "IgnoredList.xml";
+
+    bool exists = false;
+    WIN32_FIND_DATA findFileData;
+    HANDLE hFind = FindFirstFile(filename.c_str(), &findFileData);
+    if (hFind != INVALID_HANDLE_VALUE)
+    {
+        FindClose(hFind);
+        exists = true;
+    }
+
+    if (exists)
+    {
+        IgnoredListFile file(filename);
+        file.Read();
+        m_ignoreList = file.IgnoredItems();
+    }
 }

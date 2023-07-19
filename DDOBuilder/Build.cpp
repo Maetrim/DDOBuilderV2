@@ -998,7 +998,13 @@ std::vector<Feat> Build::TrainableFeats(
                 ||  fit.first == includeThisFeat)
         {
             // they can select this one, add it to the available list
-            trainable.push_back(fit.second);
+            // unless it is in the ignore list
+            if (fit.first == includeThisFeat
+                || g_bShowIgnoredItems
+                || !IsInIgnoreList(fit.first))
+            {
+                trainable.push_back(fit.second);
+            }
         }
     }
 
@@ -3850,21 +3856,42 @@ void Build::ApplyAugment(
         }
         if (augment.HasChooseLevel())
         {
-            // use the item level to choose the effect value
-            if (augment.HasDualValues())
+            if (itemAugment.HasSelectedLevelIndex())
             {
-                if (effectIndex == 0)
+                if (augment.HasDualValues())
                 {
-                    eit.SetAmount(augment.LevelValue()[itemLevel]);
+                    if (effectIndex == 0)
+                    {
+                        eit.SetAmount(augment.LevelValue()[itemAugment.SelectedLevelIndex()]);
+                    }
+                    else
+                    {
+                        eit.SetAmount(augment.LevelValue2()[itemAugment.SelectedLevelIndex()]);
+                    }
                 }
                 else
                 {
-                    eit.SetAmount(augment.LevelValue2()[itemLevel]);
+                    eit.SetAmount(augment.LevelValue()[itemAugment.SelectedLevelIndex()]);
                 }
             }
             else
             {
-                eit.SetAmount(augment.LevelValue()[itemLevel]);
+                // use the item level to choose the effect value
+                if (augment.HasDualValues())
+                {
+                    if (effectIndex == 0)
+                    {
+                        eit.SetAmount(augment.LevelValue()[itemLevel]);
+                    }
+                    else
+                    {
+                        eit.SetAmount(augment.LevelValue2()[itemLevel]);
+                    }
+                }
+                else
+                {
+                    eit.SetAmount(augment.LevelValue()[itemLevel]);
+                }
             }
         }
         NotifyItemEffect(name, eit);
@@ -3987,21 +4014,42 @@ void Build::RevokeAugment(
         }
         if (augment.HasChooseLevel())
         {
-            // use the item level to choose the effect value
-            if (augment.HasDualValues())
+            if (itemAugment.HasSelectedLevelIndex())
             {
-                if (effectIndex == 0)
+                if (augment.HasDualValues())
                 {
-                    eit.SetAmount(augment.LevelValue()[itemLevel]);
+                    if (effectIndex == 0)
+                    {
+                        eit.SetAmount(augment.LevelValue()[itemAugment.SelectedLevelIndex()]);
+                    }
+                    else
+                    {
+                        eit.SetAmount(augment.LevelValue2()[itemAugment.SelectedLevelIndex()]);
+                    }
                 }
                 else
                 {
-                    eit.SetAmount(augment.LevelValue2()[itemLevel]);
+                    eit.SetAmount(augment.LevelValue()[itemAugment.SelectedLevelIndex()]);
                 }
             }
             else
             {
-                eit.SetAmount(augment.LevelValue()[itemLevel]);
+                // use the item level to choose the effect value
+                if (augment.HasDualValues())
+                {
+                    if (effectIndex == 0)
+                    {
+                        eit.SetAmount(augment.LevelValue()[itemLevel]);
+                    }
+                    else
+                    {
+                        eit.SetAmount(augment.LevelValue2()[itemLevel]);
+                    }
+                }
+                else
+                {
+                    eit.SetAmount(augment.LevelValue()[itemLevel]);
+                }
             }
         }
         NotifyItemEffectRevoked(name, eit);

@@ -66,6 +66,7 @@ const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
 const UINT UWM_LOAD_COMPLETE = ::RegisterWindowMessage(_T("LoadComplete"));
 const UINT UWM_UPDATE_TREES = ::RegisterWindowMessage(_T("UpdateTrees"));
 const UINT UWM_UPDATE = ::RegisterWindowMessage(_T("Update"));
+const UINT UWM_TOGGLE_INCLUDED = ::RegisterWindowMessage(_T("ToggleIgnoreItem"));
 const COLORREF c_transparentColour = RGB(255, 128, 255);
 const std::string Class_Unknown = "Unknown";
 const std::string Class_Epic = "Epic";
@@ -73,6 +74,7 @@ const std::string Class_Legendary = "Legendary";
 const std::string Feat_Automatic = "Automatic";
 const std::string Feat_Granted = "Granted Feat";
 const std::string Race_All = "All";
+extern bool g_bShowIgnoredItems;
 
 enum TreeType
 {

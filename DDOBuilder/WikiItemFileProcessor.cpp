@@ -640,107 +640,147 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
     else if (itemFields.find("Armor Type") != itemFields.end())
     {
         bool bAddNonConstructReq = false;
-        std::string armorType = itemFields.at("Armor Type");
-        if (armorType == "Clothing"
-            || armorType == "Outfit"
-            || armorType == "Rags"
-            || armorType == "Starter Rags"
-            || armorType == "Robe")
+        bool bDone = false;
+        if (itemFields.find("Proficiency") != itemFields.end())
         {
-            slot.SetValue_Armor(true);
-            m_item.Set_Armor(Armor_Cloth);
-            bAddNonConstructReq = true;
-            bRealItem = true;
-        }
-        else if (armorType == "Light Armor"
-            || armorType == "Leather Armor"
-            || armorType == "Studded Leather"
-            || armorType == "Leather"
-            || armorType == "Light"
-            || armorType == "Light Armor/Collar"
-            || armorType == "Chainmail"
-            || armorType == "Padded"
-            || armorType == "Chain Shirt")
-        {
-            slot.SetValue_Armor(true);
-            m_item.Set_Armor(Armor_Light);
-            bAddNonConstructReq = true;
-            bRealItem = true;
-        }
-        else if (armorType == "Medium Armor"
-            || armorType == "Medium"
-            || armorType == "Hide"
-            || armorType == "Scalemail"
-            || armorType == "Breastplate"
-            || armorType == "Brigandine"
-            || armorType == "Breastplate / Scalemail")
-        {
-            slot.SetValue_Armor(true);
-            m_item.Set_Armor(Armor_Medium);
-            bAddNonConstructReq = true;
-            bRealItem = true;
-        }
-        else if (armorType == "Heavy Armor"
-            || armorType == "Heavy"
-            || armorType == "Plate"
-            || armorType == "Splint Mail"
-            || armorType == "Banded Mail"
-            || armorType == "Half Plate"
-            || armorType == "Platemail"
-            || armorType == "Fullplate"
-            || armorType == "Full Plate")
-        {
-            slot.SetValue_Armor(true);
-            m_item.Set_Armor(Armor_Heavy);
-            bAddNonConstructReq = true;
-            bRealItem = true;
-        }
-        else if (armorType == "Docent")
-        {
-            slot.SetValue_Armor(true);
-            m_item.Set_Armor(Armor_Docent);
-            RequiresOneOf roo;
-            const std::list<Race>& races = Races();
-            for (auto&& rit : races)
+            std::string proficiencyType = itemFields.at("Proficiency");
+            if (proficiencyType == "Cloth Armor Proficiency")
             {
-                if (rit.HasIsConstruct())
-                {
-                    Requirement raceRequirement(Requirement_Race, rit.Name(), 1);
-                    roo.AddRequirement(raceRequirement);
-                }
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Cloth);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+                bDone = true;
             }
-            Requirements req;
-            req.AddRequiresOneOf(roo);
-            m_item.Set_RequirementsToUse(req);
-            bRealItem = true;
-        }
-        else if (armorType == "Cosmetic Armor")
-        {
-            slot.SetValue_CosmeticArmor(true);
-            bRealItem = true;
-            m_item.Set_MinLevel(0);
-        }
-        else
-        {
-            CString text;
-            text.Format("...Armor type \"%s\" not recognised", armorType.c_str());
-            GetLog().AddLogEntry(text);
-        }
-        if (bAddNonConstructReq)
-        {
-            RequiresNoneOf rno;
-            const std::list<Race>& races = Races();
-            for (auto&& rit : races)
+            else if (proficiencyType == "Light Armor Proficiency")
             {
-                if (rit.HasIsConstruct())
-                {
-                    Requirement raceRequirement(Requirement_Race, rit.Name(), 1);
-                    rno.AddRequirement(raceRequirement);
-                }
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Light);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+                bDone = true;
             }
-            Requirements req;
-            req.AddRequiresNoneOf(rno);
-            m_item.Set_RequirementsToUse(req);
+            else if (proficiencyType == "Medium Armor Proficiency")
+            {
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Medium);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+                bDone = true;
+            }
+            else if (proficiencyType == "Heavy Armor Proficiency")
+            {
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Heavy);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+                bDone = true;
+            }
+        }
+        if (!bDone)
+        {
+            std::string armorType = itemFields.at("Armor Type");
+            if (armorType == "Clothing"
+                || armorType == "Outfit"
+                || armorType == "Rags"
+                || armorType == "Starter Rags"
+                || armorType == "Robe")
+            {
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Cloth);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+            }
+            else if (armorType == "Light Armor"
+                || armorType == "Leather Armor"
+                || armorType == "Studded Leather"
+                || armorType == "Leather"
+                || armorType == "Light"
+                || armorType == "Light Armor/Collar"
+                || armorType == "Chainmail"
+                || armorType == "Padded"
+                || armorType == "Chain Shirt")
+            {
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Light);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+            }
+            else if (armorType == "Medium Armor"
+                || armorType == "Medium"
+                || armorType == "Hide"
+                || armorType == "Scalemail"
+                || armorType == "Breastplate"
+                || armorType == "Brigandine"
+                || armorType == "Breastplate / Scalemail")
+            {
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Medium);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+            }
+            else if (armorType == "Heavy Armor"
+                || armorType == "Heavy"
+                || armorType == "Plate"
+                || armorType == "Splint Mail"
+                || armorType == "Banded Mail"
+                || armorType == "Half Plate"
+                || armorType == "Platemail"
+                || armorType == "Fullplate"
+                || armorType == "Full Plate")
+            {
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Heavy);
+                bAddNonConstructReq = true;
+                bRealItem = true;
+            }
+            else if (armorType == "Docent")
+            {
+                slot.SetValue_Armor(true);
+                m_item.Set_Armor(Armor_Docent);
+                RequiresOneOf roo;
+                const std::list<Race>& races = Races();
+                for (auto&& rit : races)
+                {
+                    if (rit.HasIsConstruct())
+                    {
+                        Requirement raceRequirement(Requirement_Race, rit.Name(), 1);
+                        roo.AddRequirement(raceRequirement);
+                    }
+                }
+                Requirements req;
+                req.AddRequiresOneOf(roo);
+                m_item.Set_RequirementsToUse(req);
+                bRealItem = true;
+            }
+            else if (armorType == "Cosmetic Armor")
+            {
+                slot.SetValue_CosmeticArmor(true);
+                bRealItem = true;
+                m_item.Set_MinLevel(0);
+            }
+            else
+            {
+                CString text;
+                text.Format("...Armor type \"%s\" not recognised", armorType.c_str());
+                GetLog().AddLogEntry(text);
+            }
+            if (bAddNonConstructReq)
+            {
+                RequiresNoneOf rno;
+                const std::list<Race>& races = Races();
+                for (auto&& rit : races)
+                {
+                    if (rit.HasIsConstruct())
+                    {
+                        Requirement raceRequirement(Requirement_Race, rit.Name(), 1);
+                        rno.AddRequirement(raceRequirement);
+                    }
+                }
+                Requirements req;
+                req.AddRequiresNoneOf(rno);
+                m_item.Set_RequirementsToUse(req);
+            }
         }
     }
     else if (itemFields.find("Shield Type") != itemFields.end())

@@ -94,4 +94,5 @@ class Item :
         friend class CItemImageDialog;
         friend class CWeaponImageDialog;
         friend class Build;
+        friend class EquippedGear;
 };

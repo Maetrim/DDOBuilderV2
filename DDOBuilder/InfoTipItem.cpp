@@ -407,9 +407,19 @@ void InfoTipItem_Requirements::Draw(CDC* pDC, const CRect& rect)
         CString text = m_requirements[ri];
         // text drawn in green or red depending on whether the requirement is met or not
         pDC->SetTextColor(m_bRequirementMet[ri] ? RGB(0, 128, 0) : RGB(255, 0, 0));
-        pDC->TextOut(c_controlSpacing, top, m_requirements[ri]);
-        text += "A";            // ensure blank lines are correct height
-        top += pDC->GetTextExtent(text).cy;
+        CString copy(text);
+        copy += "A";            // ensure blank lines are correct height
+        CRect rctRequirement;
+        pDC->DrawText(
+            copy,
+            &rctRequirement,
+            DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        rctRequirement += CPoint(c_controlSpacing, top);
+        pDC->DrawText(
+                text,
+                &rctRequirement,
+                DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        top += rctRequirement.Height();
     }
     pDC->SetTextColor(old);
     pDC->RestoreDC(-1);

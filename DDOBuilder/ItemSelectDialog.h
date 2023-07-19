@@ -36,6 +36,8 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnUpgradeSelect(UINT nID);
         afx_msg void OnUpgradeCancel(UINT nID);
         afx_msg void OnKillFocusAugmentEdit(UINT nID);
+        afx_msg void OnAugmentLevelSelect(UINT nID);
+        afx_msg void OnAugmentLevelCancel(UINT nID);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
@@ -59,6 +61,7 @@ class CItemSelectDialog : public CDialog
                 CComboBox * combo,
                 CEdit * edit1,
                 CEdit * edit2,
+                CComboBox* comboLevel,
                 const ItemAugment & augment);
         void PopulateSlotUpgradeList(size_t controlIndex, const SlotUpgrade & upgrade);
         void PopulateDropList(size_t controlIndex, const std::list<std::string> & types);
@@ -95,6 +98,7 @@ class CItemSelectDialog : public CDialog
         CComboBoxTooltip m_comboAugmentDropList[MAX_Augments];
         CEdit m_augmentValues[MAX_Augments];
         CEdit m_augmentValues2[MAX_Augments];
+        CComboBox m_comboAugmentLevel[MAX_Augments];
         CStatic m_staticUpgrades;
         CStatic m_upgradeType[MAX_Upgrades];
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];

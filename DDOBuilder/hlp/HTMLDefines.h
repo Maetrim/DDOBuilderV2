@@ -7,6 +7,7 @@
 #define HID_GEAR_COPY                           0x100A2
 #define HID_GEAR_PASTE                          0x100A3
 #define HID_GEAR_DELETE                         0x100A4
+#define HID_GEAR_IMPORT                         0x100A5
 #define HID_VIEW_NAVIGATION                     0x100B9
 #define HID_SET_STYLE                           0x100C9
 #define HID_VIEW_APPLOOK_WIN_2000               0x100CD

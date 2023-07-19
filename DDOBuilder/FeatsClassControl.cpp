@@ -79,6 +79,7 @@ BEGIN_MESSAGE_MAP(CFeatsClassControl, CWnd)
     ON_CBN_SELENDOK(IDC_COMBO_FEATSELECT, OnFeatSelectOk)
     ON_CBN_SELENDCANCEL(IDC_COMBO_FEATSELECT, OnFeatSelectCancel)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
+    ON_REGISTERED_MESSAGE(UWM_TOGGLE_INCLUDED, OnToggleFeatIgnore)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -809,6 +810,7 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
             }
             m_featSelector.SetCurSel(sel);
             m_featSelector.UnlockWindowUpdate();
+            m_featSelector.SetCanRemoveItems();
             // position the drop list combo over the feat selection position
             CRect comboRect(ht.Rect());
             comboRect.bottom = comboRect.top + 960;   // 20 items visible in drop list
@@ -1212,5 +1214,27 @@ void CFeatsClassControl::UpdateClassChanged(
         size_t)
 {
     SetupControl();
+}
+
+LRESULT CFeatsClassControl::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
+{
+    // wParam = index of clicked item
+    // lParam = (CString*)name of feat
+    int selection = static_cast<int>(wParam);
+    CString* pFeatName = static_cast<CString*>((void*)lParam);
+    std::string featName = (LPCTSTR)(*pFeatName);
+    if (!g_bShowIgnoredItems)
+    {
+        m_featSelector.DeleteString(selection);
+    }
+    if (IsInIgnoreList(featName))
+    {
+        RemoveFromIgnoreList(featName);
+    }
+    else
+    {
+        AddToIgnoreList(featName);
+    }
+    return 0;
 }
 

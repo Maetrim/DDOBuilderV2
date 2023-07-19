@@ -3,6 +3,8 @@
 #include "StdAfx.h"
 #include "Quest.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
+#include "LogPane.h"
 
 #define DL_ELEMENT Quest
 
@@ -47,8 +49,29 @@ void Quest::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-bool Quest::VerifyObject(std::stringstream * ss) const
+bool Quest::VerifyObject() const
 {
     bool ok = true;
+    std::stringstream ss;
+    if (Favor().size() != FI_count)
+    {
+        ss << "Quest \"" << Name() << "\" has incorrect favor size vector\n";
+        ok = false;
+    }
+    if (!ok)
+    {
+        GetLog().AddLogEntry(ss.str().c_str());
+    }
     return ok;
 }
+
+int Quest::MaxFavor() const
+{
+    int maxFavor = 0;
+    for (size_t i = 0; i < FI_count; ++i)
+    {
+        maxFavor = max(maxFavor, Favor()[i]);
+    }
+    return maxFavor;
+}
+

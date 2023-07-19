@@ -56,6 +56,8 @@ LRESULT CGrantedFeatsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
             pCharacter->AttachObserver(this);
         }
         m_listGrantedFeats.SetCharacter(m_pCharacter);
+        m_grantedNotifyState.clear();
+        m_grantedFeats.clear();
         PopulateGrantedFeatsList();
     }
     return 0L;

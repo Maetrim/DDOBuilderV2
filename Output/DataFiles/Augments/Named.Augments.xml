@@ -225,77 +225,6 @@ This can stack up to three times (up to Psionic Potency +24) and each stack last
     </Effect>
   </Augment>
   <Augment>
-    <Name>Ruby of the Crushing Wave</Name>
-    <Description>Adds crushing wave to your weapon attacks</Description>
-    <MinLevel>20</MinLevel>
-    <Type>Red</Type>
-    <Type>Orange</Type>
-    <Type>Purple</Type>
-    <Icon>RubyOfTheCrushingWave</Icon>
-  </Augment>
-  <Augment>
-    <Name>Ruby of the Endless Night</Name>
-    <Description>Your weapon now inflicts a Negative Level on a vorpal hit</Description>
-    <MinLevel>1</MinLevel>
-    <Type>Red</Type>
-    <Type>Orange</Type>
-    <Type>Purple</Type>
-    <Icon>RubyOfTheEndlessNight</Icon>
-  </Augment>
-  <Augment>
-    <Name>Ruby of the Vampire Slayer</Name>
-    <Description>Your weapon gains DR Silver and does 1 to 4 Light damage</Description>
-    <MinLevel>1</MinLevel>
-    <Type>Red</Type>
-    <Type>Orange</Type>
-    <Type>Purple</Type>
-    <Icon>RubyOfTheVampireSlayer</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Silver</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">1</Number>
-        <Sides size="1">4</Sides>
-        <Damage>Light</Damage>
-      </Dice>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Undead</Item>
-        </Requirement>
-      </Requirements>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">1</Number>
-        <Sides size="1">4</Sides>
-        <Damage>Light</Damage>
-      </Dice>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Undead</Item>
-        </Requirement>
-      </Requirements>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
     <Name>Sapphire of Crushing Wave Guard</Name>
     <Description>The item gains Crushing Wave Guard</Description>
     <MinLevel>20</MinLevel>
@@ -478,23 +407,6 @@ and Shattered Hilt of Constellation or Constellation, Cursed Blade (Too Hot to H
     <Icon>OrangeRaidItemEssence</Icon>
   </Augment>
   <Augment>
-    <Name>Essence of The Masque</Name>
-    <Description>Soundproof: Protects against stunning, dazing and disorientation from
-sound-based spells such as Soundburst and Greater Shout.
-Requires: 50 Threads of Fate, Empty Soul Vessel and The Masque (The Curse of Strahd)</Description>
-    <MinLevel>30</MinLevel>
-    <Type>Blue</Type>
-    <Type>Purple</Type>
-    <Type>Green</Type>
-    <Icon>BlueRaidItemEssence</Icon>
-    <Effect>
-      <Type>Immunity</Type>
-      <Bonus>Equipment</Bonus>
-      <AType>NotNeeded</AType>
-      <Item>Stunning, dazing and disorientation from sound based spells</Item>
-    </Effect>
-  </Augment>
-  <Augment>
     <Name>Essence of the Cobalt Guard</Name>
     <Description>Improved Quelling Strikes: On Vorpal Melee: applies Quell to target enemies for six
 seconds, rendering them unable to cast divine spells. 50% chance of preventing
@@ -563,17 +475,6 @@ Requires: 50 Threads of Fate, Empty Soul Vessel and Spear of the Mournlands (Leg
     <MinLevel>30</MinLevel>
     <Type>Orange</Type>
     <Icon>OrangeRaidItemEssence</Icon>
-  </Augment>
-  <Augment>
-    <Name>Essence of the Champion of the Twins</Name>
-    <Description>Healer's Bounty: This item has a small percentage chance to cast a heal spell
-on you when you take damage.
-Requires: 50 Threads of Fate, Empty Soul Vessel and Champion of the Twins (Legendary Vision of Destruction)</Description>
-    <MinLevel>30</MinLevel>
-    <Type>Blue</Type>
-    <Type>Purple</Type>
-    <Type>Green</Type>
-    <Icon>BlueRaidItemEssence</Icon>
   </Augment>
   <Augment>
     <Name>Essence of Ultimatum</Name>
@@ -899,13 +800,53 @@ Drops in U48 Quest: Witch Hunt</Description>
     <Type>Purple</Type>
     <Icon>PurpleRuby</Icon>
   </Augment>
-  <Augment>
-    <Name>Meteoric Star Ruby</Name>
-    <Description>2% chance On Hit to cause a falling star to strike your target, dealing 3 to 18 Fire Damage and 1 to 6 Bludgeoning Damage per Minimum Level of the weapon to all nearby enemies, with a chance to knock them prone.</Description>
-    <MinLevel>1</MinLevel>
-    <Icon>MeteoricStarRuby</Icon>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-  </Augment>
+   <Augment>
+      <Name>Crystallized Unicorn Tear</Name>
+      <Description>Provides a 5% chance to gain 150 Temporary Hitpoints when you are hit. This can only proc once every 10 seconds. These Hitpoints last for 10 minutes or until used up, whichever is first.</Description>
+      <MinLevel>28</MinLevel>
+      <Icon>BlueAugment</Icon>
+      <Type>Blue</Type>
+      <Type>Green</Type>
+      <Type>Purple</Type>
+   </Augment>
+   <Augment>
+      <Name>Crystallized Drop of Tea</Name>
+      <Description>Provides a -4 SP Cost to Empowered spells. Additionally, once every 3 seconds when you
+take physical damage, you get +8 Psionic Bonus to Universal Spell Power.
+This can stack up to 3 times and each stack lasts for 20 seconds.</Description>
+      <MinLevel>28</MinLevel>
+      <Icon>YellowAugment</Icon>
+      <Type>Yellow</Type>
+      <Type>Green</Type>
+      <Type>Orange</Type>
+      <Effect>
+         <Type>CreateSlider</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>Drop of Tea</Item>
+         <Amount size="3">0 0 3</Amount>
+      </Effect>
+      <Effect>
+         <Type>UniversalSpellPower</Type>
+         <Bonus>Psionic</Bonus>
+         <Amount size="1">8</Amount>
+         <AType>SliderValue</AType>
+         <StackSource>Drop of Tea</StackSource>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Essence of Pomura's Memento</Name>
+      <Description>This emerald carries the soul of Pomura's Memento.
++5% Insightful Spell Critical Chance
+Requires: 50 Threads of Fate, Empty Soul Vessel and Pomura's Memento (Hunt or be Hunted)</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Green</Type>
+      <Icon>GreenRaidItemEssence</Icon>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Insightful</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">5</Amount>
+         <Item>All</Item>
+      </Effect>
+   </Augment>
 </Augments>

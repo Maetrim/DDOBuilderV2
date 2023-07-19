@@ -85,6 +85,7 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
         DDX_Control(pDX, IDC_COMBO_AUGMENT1 + i, m_comboAugmentDropList[i]);
         DDX_Control(pDX, IDC_EDIT_AUGMENT1 + i, m_augmentValues[i]);
         DDX_Control(pDX, IDC_EDIT2_AUGMENT1 + i, m_augmentValues2[i]);
+        DDX_Control(pDX, IDC_COMBO_LEVELAUGMENT1 + i, m_comboAugmentLevel[i]);
     }
     DDX_Control(pDX, IDC_STATIC_UPGRADES, m_staticUpgrades);
     for (size_t i = 0; i < MAX_Upgrades; ++i)
@@ -103,6 +104,8 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades - 1, OnUpgradeCancel)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments - 1, OnKillFocusAugmentEdit)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT2_AUGMENT1, IDC_EDIT2_AUGMENT1 + MAX_Augments - 1, OnKillFocusAugmentEdit)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_LEVELAUGMENT1, IDC_COMBO_LEVELAUGMENT1 + MAX_Augments - 1, OnAugmentLevelSelect)
+    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_LEVELAUGMENT1, IDC_COMBO_LEVELAUGMENT1 + MAX_Augments - 1, OnAugmentLevelCancel)
     ON_CBN_SELENDOK(IDC_COMBO_FILTER, OnSelEndOkFilter)
     ON_WM_SIZE()
     ON_WM_WINDOWPOSCHANGING()
@@ -364,6 +367,7 @@ void CItemSelectDialog::EnableControls()
                     &m_comboAugmentDropList[i],
                     &m_augmentValues[i],
                     &m_augmentValues2[i],
+                    &m_comboAugmentLevel[i],
                     augments[i]);
             m_augmentType[i].ShowWindow(SW_SHOW);
             m_comboAugmentDropList[i].ShowWindow(SW_SHOW);
@@ -375,6 +379,7 @@ void CItemSelectDialog::EnableControls()
             m_comboAugmentDropList[i].ShowWindow(SW_HIDE);
             m_augmentValues[i].ShowWindow(SW_HIDE);
             m_augmentValues2[i].ShowWindow(SW_HIDE);
+            m_comboAugmentLevel[i].ShowWindow(SW_HIDE);
         }
     }
     // now show any upgrade slots
@@ -422,6 +427,7 @@ void CItemSelectDialog::PopulateAugmentList(
         CComboBox * combo,
         CEdit * edit1,
         CEdit * edit2,
+        CComboBox* comboLevel,
         const ItemAugment & augment)
 {
     combo->LockWindowUpdate();
@@ -434,7 +440,7 @@ void CItemSelectDialog::PopulateAugmentList(
     }
     else
     {
-        augments = CompatibleAugments(augment.Type());
+        augments = CompatibleAugments(augment.Type(), m_pBuild->Level());
     }
     std::list<Augment>::const_iterator it = augments.begin();
     std::string selectedAugment = augment.HasSelectedAugment()
@@ -442,13 +448,15 @@ void CItemSelectDialog::PopulateAugmentList(
             : "";
 
     // note that this list can be sorted
-    int index = 0;
-    while (it != augments.end())
     {
-        int itemIndex = combo->AddString((*it).Name().c_str());
-        combo->SetItemData(itemIndex, index);
-        ++it;
-        ++index;
+        int index = 0;
+        while (it != augments.end())
+        {
+            int itemIndex = combo->AddString((*it).Name().c_str());
+            combo->SetItemData(itemIndex, index);
+            ++it;
+            ++index;
+        }
     }
 
     if (selectedAugment != "")
@@ -476,28 +484,74 @@ void CItemSelectDialog::PopulateAugmentList(
             {
                 edit2->ShowWindow(SW_HIDE);
             }
+            comboLevel->ShowWindow(SW_HIDE);
         }
         else
         {
             if (selAugment.HasLevelValue())
             {
-                // value is set by the level of the item we are in
-                CString text;
-                text.Format("%+.0f", selAugment.LevelValue()[m_item.MinLevel()-1]);
-                edit1->SetWindowText(text);
-                edit1->ShowWindow(SW_SHOW);
-                edit1->EnableWindow(false);     // read only
-                if (selAugment.HasDualValues())
+                // does it come from the augment level combo or the item level one?
+                if (selAugment.HasLevels())
                 {
-                    edit2->ShowWindow(SW_SHOW);
-                    edit1->EnableWindow(false); // read only
-                    // show the value of this augment in the control
-                    text.Format("%+.0f", selAugment.LevelValue2()[m_item.MinLevel()-1]);
-                    edit2->SetWindowText(text);
+                    int selIndex = 0;
+                    if (augment.HasSelectedLevelIndex())
+                    {
+                        selIndex = augment.SelectedLevelIndex();
+                    }
+                    comboLevel->ResetContent();
+                    std::vector<int> levels = selAugment.Levels();
+                    for (auto&& lit: levels)
+                    {
+                        if (lit <= static_cast<int>(m_pBuild->Level()))
+                        {
+                            // only show selectable levels that are <= build level
+                            CString text;
+                            text.Format("%d", lit);
+                            int index = comboLevel->AddString(text);
+                            comboLevel->SetItemData(index, lit);
+                        }
+                    }
+                    comboLevel->SetCurSel(selIndex);
+                    comboLevel->ShowWindow(SW_SHOW);
+                    CString text;
+                    text.Format("%+.0f", selAugment.LevelValue()[selIndex]);
+                    edit1->SetWindowText(text);
+                    edit1->ShowWindow(SW_SHOW);
+                    edit1->EnableWindow(false);     // read only
+                    if (selAugment.HasDualValues())
+                    {
+                        edit2->ShowWindow(SW_SHOW);
+                        edit1->EnableWindow(false); // read only
+                        // show the value of this augment in the control
+                        text.Format("%+.0f", selAugment.LevelValue2()[selIndex]);
+                        edit2->SetWindowText(text);
+                    }
+                    else
+                    {
+                        edit2->ShowWindow(SW_HIDE);
+                    }
                 }
                 else
                 {
-                    edit2->ShowWindow(SW_HIDE);
+                    // value is set by the level of the item we are in
+                    CString text;
+                    text.Format("%+.0f", selAugment.LevelValue()[m_item.MinLevel()-1]);
+                    edit1->SetWindowText(text);
+                    edit1->ShowWindow(SW_SHOW);
+                    edit1->EnableWindow(false);     // read only
+                    if (selAugment.HasDualValues())
+                    {
+                        edit2->ShowWindow(SW_SHOW);
+                        edit1->EnableWindow(false); // read only
+                        // show the value of this augment in the control
+                        text.Format("%+.0f", selAugment.LevelValue2()[m_item.MinLevel()-1]);
+                        edit2->SetWindowText(text);
+                    }
+                    else
+                    {
+                        edit2->ShowWindow(SW_HIDE);
+                    }
+                    comboLevel->ShowWindow(SW_HIDE);
                 }
             }
             else
@@ -505,6 +559,7 @@ void CItemSelectDialog::PopulateAugmentList(
                 // augment has a fixed bonus
                 edit1->ShowWindow(SW_HIDE);
                 edit2->ShowWindow(SW_HIDE);
+                comboLevel->ShowWindow(SW_HIDE);
             }
         }
     }
@@ -513,6 +568,7 @@ void CItemSelectDialog::PopulateAugmentList(
         // no augment selected
         edit1->ShowWindow(SW_HIDE);
         edit2->ShowWindow(SW_HIDE);
+        comboLevel->ShowWindow(SW_HIDE);
     }
     combo->UnlockWindowUpdate();
 }
@@ -638,6 +694,7 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
                 &m_comboAugmentDropList[augmentIndex],
                 &m_augmentValues[augmentIndex],
                 &m_augmentValues2[augmentIndex],
+                &m_comboAugmentLevel[augmentIndex],
                 augments[augmentIndex]);
         }
         m_item.Set_Augments(augments);
@@ -653,6 +710,29 @@ void CItemSelectDialog::OnAugmentCancel(UINT nID)
     UNREFERENCED_PARAMETER(nID);
     HideTip();
     m_bIgnoreNextMessage = true;
+}
+
+void CItemSelectDialog::OnAugmentLevelSelect(UINT nID)
+{
+    int augmentIndex = nID - IDC_COMBO_LEVELAUGMENT1;
+    ASSERT(augmentIndex >= 0 && augmentIndex < (int)m_item.Augments().size());
+    int sel = m_comboAugmentLevel[augmentIndex].GetCurSel();
+    if (sel != CB_ERR)
+    {
+        std::vector<ItemAugment> augments = m_item.Augments();
+        augments[augmentIndex].Set_SelectedLevelIndex(sel);
+        m_item.Set_Augments(augments);
+        PopulateAugmentList(
+            &m_comboAugmentDropList[augmentIndex],
+            &m_augmentValues[augmentIndex],
+            &m_augmentValues2[augmentIndex],
+            &m_comboAugmentLevel[augmentIndex],
+            augments[augmentIndex]);
+    }
+}
+
+void CItemSelectDialog::OnAugmentLevelCancel(UINT nID)
+{
 }
 
 void CItemSelectDialog::PopulateSlotUpgradeList(
@@ -1105,7 +1185,41 @@ void CItemSelectDialog::AddSpecialSlots()
     {
         std::vector<ItemAugment> currentAugments = m_item.Augments();
         AddAugment(&currentAugments, "Mythic", true);
-        AddAugment(&currentAugments, "Reaper", true);
+        std::string reaperSlot;
+        switch (m_slot)
+        {
+            case Inventory_Arrows:  break;
+            case Inventory_Armor:   reaperSlot = "Reaper Armor"; break;
+            case Inventory_Belt:    reaperSlot = "Reaper Belt"; break;
+            case Inventory_Boots:   reaperSlot = "Reaper Boot"; break;
+            case Inventory_Bracers: reaperSlot = "Reaper Bracers"; break;
+            case Inventory_Cloak:   reaperSlot = "Reaper Cloak"; break;
+            case Inventory_Gloves:  reaperSlot = "Reaper Gloves"; break;
+            case Inventory_Goggles: reaperSlot = "Reaper Goggles"; break;
+            case Inventory_Helmet:  reaperSlot = "Reaper Helmet"; break;
+            case Inventory_Necklace:reaperSlot = "Reaper Necklace"; break;
+            case Inventory_Quiver:  break;
+            case Inventory_Ring1:   
+            case Inventory_Ring2:   reaperSlot = "Reaper Ring"; break;
+            case Inventory_Trinket: reaperSlot = "Reaper Trinket"; break;
+            case Inventory_Weapon1: 
+            case Inventory_Weapon2: if (m_item.Weapon() == Weapon_ShieldBuckler
+                                        || m_item.Weapon() == Weapon_ShieldSmall
+                                        || m_item.Weapon() == Weapon_ShieldLarge
+                                        || m_item.Weapon() == Weapon_ShieldTower)
+                                    {
+                                        reaperSlot = "Reaper Shield";
+                                    }
+                                    else
+                                    {
+                                        reaperSlot = "Reaper Weapon";
+                                    }
+                                    break;
+        }
+        if (reaperSlot != "")
+        {
+            AddAugment(&currentAugments, reaperSlot, true);
+        }
         if (m_item.CanEquipToSlot(Inventory_Ring1))
         {
             AddAugment(&currentAugments, "Reaper Ring", true);

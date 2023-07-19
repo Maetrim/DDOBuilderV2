@@ -522,6 +522,13 @@ void CInfoTip::SetFeatItem(
     }
     m_tipItems.push_back(pHeader);
 
+    if (IsInIgnoreList(pItem->Name()))
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement("This Feat is in your ignore list (Right click to restore it).", false);
+        m_tipItems.push_back(pRequirements);
+    }
+
     // add the requirements for this granted feat next
     if (pItem->HasRequirementsToTrain())
     {
@@ -622,6 +629,7 @@ void CInfoTip::SetItem(
         InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
         CString dropLoc;
         dropLoc.Format("Drop Location: %s", pItem->DropLocation().c_str());
+        BreakUpLongLines(dropLoc);
         pRequirements->AddRequirement(dropLoc, false);  // red highlighted line
         m_tipItems.push_back(pRequirements);
     }
@@ -776,6 +784,11 @@ void CInfoTip::AppendFilledAugment(
     const ItemAugment& slot,
     const Augment* pAugment)
 {
+    size_t minLevel = 0;
+    if (pAugment->HasMinLevel())
+    {
+        minLevel = pAugment->MinLevel();
+    }
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->Icon(), true);
     pHeader->SetTitle(slot.Type().c_str());
@@ -794,20 +807,35 @@ void CInfoTip::AppendFilledAugment(
     }
     if (pAugment->HasChooseLevel())
     {
-        CString txt;
-        txt.Format(" %+.0f", pAugment->LevelValue()[itemLevel - 1]);
-        augmentName += txt;
-        if (pAugment->HasDualValues())
+        if (slot.HasSelectedLevelIndex())
         {
-            txt.Format("/%+.0f", pAugment->LevelValue2()[itemLevel - 1]);
+            minLevel = pAugment->Levels()[slot.SelectedLevelIndex()];
+            CString txt;
+            txt.Format(" %+.0f", pAugment->LevelValue()[slot.SelectedLevelIndex()]);
             augmentName += txt;
+            if (pAugment->HasDualValues())
+            {
+                txt.Format("/%+.0f", pAugment->LevelValue2()[slot.SelectedLevelIndex()]);
+                augmentName += txt;
+            }
+        }
+        else
+        {
+            CString txt;
+            txt.Format(" %+.0f", pAugment->LevelValue()[itemLevel - 1]);
+            augmentName += txt;
+            if (pAugment->HasDualValues())
+            {
+                txt.Format("/%+.0f", pAugment->LevelValue2()[itemLevel - 1]);
+                augmentName += txt;
+            }
         }
     }
     pHeader->SetTitle2(augmentName);
-    if (pAugment->HasMinLevel())
+    if (minLevel > 0)
     {
         CString text;
-        text.Format("Augment Level: %d", pAugment->MinLevel());
+        text.Format("Augment Level: %d", minLevel);
         pHeader->SetCost(text);
     }
     m_tipItems.push_back(pHeader);
@@ -828,6 +856,34 @@ void CInfoTip::AppendAugment(
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->Icon(), true);
     pHeader->SetTitle(pAugment->Name().c_str());
+    if (pAugment->HasMinLevel())
+    {
+        CString text;
+        text.Format("Augment Level: %d", pAugment->HasMinLevel());
+        pHeader->SetCost(text);
+    }
+    else if (pAugment->HasChooseLevel())
+    {
+        if (pAugment->HasLevels())
+        {
+            std::vector<int> levels = pAugment->Levels();
+            CString text("Augment Level: ");
+            for (auto&& lit : levels)
+            {
+                CString lvl;
+                lvl.Format("%d, ", lit);
+                text += lvl;
+            }
+            text.TrimRight(" ,");
+            pHeader->SetCost(text);
+        }
+        else
+        {
+            CString text;
+            text.Format("Augment Levels: Any");
+            pHeader->SetCost(text);
+        }
+    }
     m_tipItems.push_back(pHeader);
 
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
@@ -1175,6 +1231,13 @@ void CInfoTip::AppendFeatInfo(
     pHeader->LoadIcon("DataFiles\\FeatImages\\", feat.Icon(), true);
     pHeader->SetTitle(feat.Name().c_str());
     m_tipItems.push_back(pHeader);
+
+    if (IsInIgnoreList(feat.Name()))
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement("This Feat is in your ignore list (Right click to restore it).", false);
+        m_tipItems.push_back(pRequirements);
+    }
 
     // add the requirements for this granted feat next
     InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;

@@ -13707,8 +13707,9 @@ Quarterstaves you wield gain a +2 Morale bonus to Critical Threat Range.</Descri
       <Name>Summer Court Favor Rewards</Name>
       <Description>Rank 1: +2 saves versus Fey creatures
 Rank 2: +5 HP.
-Rank 3: Access to the Feydark Illusionist Tree</Description>
-      <MaxTimesAcquire>3</MaxTimesAcquire>
+Rank 3: Access to the Feydark Illusionist Tree
+Rank 4: +2 Diplomacy and Perform</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
       <Acquire>Favor</Acquire>
       <Icon>SummerCourt</Icon>
       <Effect>
@@ -13730,12 +13731,21 @@ Rank 3: Access to the Feydark Illusionist Tree</Description>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
          <AType>Stacks</AType>
-         <Amount size="3">0 5 5</Amount>
+         <Amount size="4">0 5 5 5</Amount>
       </Effect>
       <Effect>
          <Type>EnhancementTree</Type>
          <Bonus>Enhancement</Bonus>
          <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <DisplayName>Summer Court: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="4">0 0 0 2</Amount>
+         <Item>Diplomacy</Item>
+         <Item>Perform</Item>
       </Effect>
    </Feat>
    <Feat>
@@ -13793,11 +13803,12 @@ Rank 3: Favor 225 - Access to the Inquisitive tree</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Gate Keepers Favor Rewards</Name>
+      <Name>Gatekeepers Favor Rewards</Name>
       <Description>Rank 1: Favor 75 - "Gatekeepers: Skill Bonus" - "This feat grants you +2 bonus to Concentration and Spot skills."
 Rank 2: Favor 150 - "Gatekeepers: Hit Point Bonus" - "This feat grants you +5 HP."
-Rank 3: favor 400 - Access to the Horizon Walker enhancement tree</Description>
-      <MaxTimesAcquire>3</MaxTimesAcquire>
+Rank 3: favor 400 - Access to the Horizon Walker enhancement tree
+Rank 4: +2 Saves versus Extraplanar Creatures</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
       <Acquire>Favor</Acquire>
       <Icon>Gatekeepers</Icon>
       <Effect>
@@ -13805,7 +13816,7 @@ Rank 3: favor 400 - Access to the Horizon Walker enhancement tree</Description>
          <Type>SkillBonus</Type>
          <Bonus>Feat</Bonus>
          <AType>Stacks</AType>
-         <Amount size="3">2 2 2</Amount>
+         <Amount size="4">2 2 2 2</Amount>
          <Item>Concentration</Item>
          <Item>Spot</Item>
       </Effect>
@@ -13814,12 +13825,26 @@ Rank 3: favor 400 - Access to the Horizon Walker enhancement tree</Description>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
          <AType>Stacks</AType>
-         <Amount size="3">0 5 5</Amount>
+         <Amount size="4">0 5 5 5</Amount>
       </Effect>
       <Effect>
          <Type>EnhancementTree</Type>
          <Bonus>Enhancement</Bonus>
          <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <DisplayName>Gatekeepers: Save Bonus vs Extraplanar</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="4">0 0 0 2</Amount>
+         <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>Enemy</Type>
+               <Item>Extraplanar</Item>
+            </Requirement>
+         </Requirements>
       </Effect>
    </Feat>
    <Feat>
@@ -13968,17 +13993,27 @@ Rank 3: Access to the Harper Agent Enhancement Tree.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Keepers of a Feather Favor Rewards</Name>
+      <Name>Keepers of the Feather Favor Rewards</Name>
       <Description>Rank 1: Grants a +2 saves bonus versus Undead
 Rank 2: Small Augment Bag
-Rank 3: Access to the Vistani Enhancement Tree</Description>
-      <MaxTimesAcquire>3</MaxTimesAcquire>
+Rank 3: Access to the Vistani Enhancement Tree
+Rank 4: +2 to Listen and Hide Skills</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
       <Acquire>Favor</Acquire>
       <Icon>BlessingsOfAFeather</Icon>
       <Effect>
          <Type>EnhancementTree</Type>
          <Bonus>Enhancement</Bonus>
          <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <DisplayName>Keepers of a Feather: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="4">0 0 0 2</Amount>
+         <Item>Listen</Item>
+         <Item>Hide</Item>
       </Effect>
    </Feat>
    <Feat>

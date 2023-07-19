@@ -79,6 +79,7 @@ void CAutomaticFeatsPane::UpdateActiveBuildChanged(Character*)
     if (pLife != NULL
             && pBuild != NULL)
     {
+        SetAutofeats(0);    // show automatic feats for level 1 after build change
     }
 }
 

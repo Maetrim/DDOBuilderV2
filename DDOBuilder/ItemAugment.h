@@ -27,6 +27,7 @@ class ItemAugment :
         #define ItemAugment_PROPERTIES(_) \
                 DL_STRING(_, Type) \
                 DL_OPTIONAL_STRING(_, SelectedAugment) \
+                DL_OPTIONAL_SIMPLE(_, int, SelectedLevelIndex, 0) \
                 DL_OPTIONAL_SIMPLE(_, double, Value, 0.0) \
                 DL_OPTIONAL_SIMPLE(_, double, Value2, 0.0) \
                 DL_OBJECT_LIST(_, Augment, ItemSpecificAugments)
@@ -37,4 +38,5 @@ class ItemAugment :
         friend class CItemSelectDialog;
         friend class WikiItemFileProcessor;
         friend class Build;
+        friend class EquippedGear;
 };

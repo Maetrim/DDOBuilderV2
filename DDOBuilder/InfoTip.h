@@ -59,7 +59,7 @@ class CInfoTip :
                 const Filigree * pFiligree);
         void SetAugment(
                 const Augment * pAugment);
-            void SetSentientGem(
+        void SetSentientGem(
                 const Gem* pGem);
         void SetLevelItem(
                 const Build & build,

@@ -178,7 +178,7 @@ bool BreakdownItemSave::AffectsUs(const Effect & effect) const
         // all or specific save type
         for (auto&& iit : effect.Item())
         {
-            SaveType st = TextToEnumEntry(iit, saveTypeMap);
+            SaveType st = TextToEnumEntry(iit, saveTypeMap, false);
             if (st == Save_All
                     || st == m_saveType)
             {
@@ -191,7 +191,7 @@ bool BreakdownItemSave::AffectsUs(const Effect & effect) const
         // for a sub-type, it must be the specific save type only
         for (auto&& iit : effect.Item())
         {
-            SaveType st = TextToEnumEntry(iit, saveTypeMap);
+            SaveType st = TextToEnumEntry(iit, saveTypeMap, false);
             if (st == m_saveType)
             {
                 isUs |= true;

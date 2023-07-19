@@ -65,6 +65,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateItemImages)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateWeaponImages)
+    ON_COMMAND(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnEditIgnorelistActive)
+    ON_UPDATE_COMMAND_UI(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnUpdateEditIgnorelistActive)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -186,30 +188,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
         }
     }
 
-    // enable menu personalization (most-recently used commands)
-    // TODO: define your own basic commands, ensuring that each pull down menu has at least one basic command.
-    CList<UINT, UINT> lstBasicCommands;
-
-    lstBasicCommands.AddTail(ID_FILE_NEW);
-    lstBasicCommands.AddTail(ID_FILE_OPEN);
-    lstBasicCommands.AddTail(ID_FILE_SAVE);
-    lstBasicCommands.AddTail(ID_FILE_PRINT);
-    lstBasicCommands.AddTail(ID_APP_EXIT);
-    lstBasicCommands.AddTail(ID_EDIT_CUT);
-    lstBasicCommands.AddTail(ID_EDIT_PASTE);
-    lstBasicCommands.AddTail(ID_EDIT_UNDO);
-    lstBasicCommands.AddTail(ID_APP_ABOUT);
-    lstBasicCommands.AddTail(ID_VIEW_STATUS_BAR);
-    lstBasicCommands.AddTail(ID_VIEW_TOOLBAR);
-    lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2003);
-    lstBasicCommands.AddTail(ID_VIEW_APPLOOK_VS_2005);
-    lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_BLUE);
-    lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_SILVER);
-    lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_BLACK);
-    lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_AQUA);
-    lstBasicCommands.AddTail(ID_VIEW_APPLOOK_WINDOWS_7);
-
-    CMFCToolBar::SetBasicCommands(lstBasicCommands);
     return 0;
 }
 
@@ -473,6 +451,10 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
         }
     }
 
+    // ensure log window is visible
+    int logIndex = ID_DOCK_LOG - ID_DOCKING_WINDOWS_START;
+    m_dockablePanes[logIndex]->ShowPane(TRUE, FALSE, TRUE);
+
     return TRUE;
 }
 
@@ -733,6 +715,7 @@ void CMainFrame::LoadComplete()
         pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
     }
     m_bLoadComplete = true;
+    //m_menuToolbar.LoadToolBar(IDR_MENUICONS_TOOLBAR);
 }
 
 MouseHook* CMainFrame::GetMouseHook()
@@ -831,3 +814,14 @@ void CMainFrame::OnUpdateDevelopmentUpdateWeaponImages(CCmdUI* pCmdUI)
     pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
 }
 
+void CMainFrame::OnEditIgnorelistActive()
+{
+    g_bShowIgnoredItems = !g_bShowIgnoredItems;
+}
+
+
+void CMainFrame::OnUpdateEditIgnorelistActive(CCmdUI* pCmdUI)
+{
+    pCmdUI->SetCheck(g_bShowIgnoredItems);
+    pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}

@@ -11,6 +11,7 @@
 #include "Feat.h"
 #include "SetBonus.h"
 #include "Spell.h"
+#include "IgnoredListFile.h"
 
 const std::list<Bonus>& BonusTypes()
 {
@@ -130,6 +131,16 @@ const std::list<Buff>& ItemBuffs()
 const std::list<Spell>& ItemClickies()
 {
     return theApp.ItemClickies();
+}
+
+const std::list<Quest>& Quests()
+{
+    return theApp.Quests();
+}
+
+const std::list<Patron>& Patrons()
+{
+    return theApp.Patrons();
 }
 
 const Item& FindItem(const std::string& itemName)
@@ -1373,7 +1384,7 @@ const Gem& FindSentientGemByName(const std::string& name)
 }
 
 
-std::list<Augment> CompatibleAugments(const std::string& name)
+std::list<Augment> CompatibleAugments(const std::string& name, size_t maxLevel)
 {
     std::list<Augment> compatibleAugments;
     const std::list<Augment> & augments = Augments();
@@ -1383,7 +1394,26 @@ std::list<Augment> CompatibleAugments(const std::string& name)
         if ((*it).IsCompatibleWithSlot(name)
                 || ((*it).Name() == " No Augment"))
         {
-            compatibleAugments.push_back((*it));
+            // must be the right level or lower
+            if ((*it).HasMinLevel() && (*it).MinLevel() <= maxLevel)
+            {
+                compatibleAugments.push_back((*it));
+            }
+            // or it must have a selectable level <= max level
+            if ((*it).HasChooseLevel()
+                && (*it).HasLevels())
+            {
+                std::vector<int> levels = (*it).Levels();
+                bool bInclude = false;
+                for (auto&& lit : levels)
+                {
+                    bInclude |= (lit <= static_cast<int>(maxLevel));
+                }
+                if (bInclude)
+                {
+                    compatibleAugments.push_back((*it));
+                }
+            }
         }
         ++it;
     }
@@ -1651,4 +1681,58 @@ void BreakUpLongLines(CString& line)
         }
         line.Replace("\n", "\r\n");
     }
+}
+
+void AddToIgnoreList(const std::string& name)
+{
+    CDDOBuilderApp* pApp = dynamic_cast<CDDOBuilderApp*>(AfxGetApp());
+    if (pApp != NULL)
+    {
+        std::list<std::string> ignoredItems = pApp->IgnoreList();
+        ignoredItems.push_back(name);
+        IgnoredListFile file("");
+        file.Save(ignoredItems);
+        pApp->UpdateIgnoreList(ignoredItems);
+    }
+}
+
+void RemoveFromIgnoreList(const std::string& name)
+{
+    CDDOBuilderApp* pApp = dynamic_cast<CDDOBuilderApp*>(AfxGetApp());
+    if (pApp != NULL)
+    {
+        std::list<std::string> ignoredItems = pApp->IgnoreList();
+        std::list<std::string>::iterator it = ignoredItems.begin();
+        while (it != ignoredItems.end())
+        {
+            if ((*it) == name)
+            {
+                it = ignoredItems.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+        IgnoredListFile file("");
+        file.Save(ignoredItems);
+        pApp->UpdateIgnoreList(ignoredItems);
+    }
+}
+
+bool IsInIgnoreList(const std::string& name)
+{
+    bool found = false;
+    CDDOBuilderApp* pApp = dynamic_cast<CDDOBuilderApp*>(AfxGetApp());
+    if (pApp != NULL)
+    {
+        std::list<std::string> ignoredItems = pApp->IgnoreList();
+        std::list<std::string>::iterator it = ignoredItems.begin();
+        while (!found && it != ignoredItems.end())
+        {
+            found = ((*it) == name);
+            ++it;
+        }
+    }
+    return found;
 }

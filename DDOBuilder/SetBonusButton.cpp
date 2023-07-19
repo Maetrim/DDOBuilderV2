@@ -60,15 +60,32 @@ void CSetBonusButton::OnPaint()
     pdc.FillSolidRect(rect, GetSysColor(COLOR_BTNFACE));
     m_image.TransparentBlt(
             pdc.GetSafeHdc(),
-            (rect.Width() - 32) / 2,
-            (rect.Height() - 32) / 2,
+            3,
+            3,
             32,
             32);
     pdc.RestoreDC(-1);
+
+    // shown in a small font
+    LOGFONT lf;
+    ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
+    strcpy_s(lf.lfFaceName, "Consolas");
+    lf.lfHeight = 11;
+    CFont smallFont;
+    smallFont.CreateFontIndirect(&lf);
+    pdc.SelectObject(&smallFont);
+
     // set bonuses debug
     CString stacks;
-    stacks.Format("%d", m_stacks);
-    pdc.TextOut(0, 0, stacks);
+    stacks.Format("Count %d", m_stacks);
+    // measure the text so its centered horizontally
+    CSize textSize = pdc.GetTextExtent(stacks);
+    pdc.SetBkMode(TRANSPARENT); // don't erase the text background
+    pdc.TextOut(
+            rect.left + (rect.Width() - textSize.cx) / 2,
+            rect.bottom - 12,
+            stacks);
+    pdc.RestoreDC(-1);
 }
 
 const SetBonus& CSetBonusButton::GetSetBonus() const

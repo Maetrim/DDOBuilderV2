@@ -12,10 +12,12 @@
 #include "MouseHook.h"
 #include "XmlLib\SaxReader.h"
 #include "MainFrm.h"
+#include "LogPane.h"
 
 namespace
 {
-    const int c_windowSize = 38;
+    const int c_windowSizeX = 38;
+    const int c_windowSizeY = 48;
 }
 
 IMPLEMENT_DYNCREATE(CEquipmentPane, CFormView)
@@ -60,6 +62,7 @@ void CEquipmentPane::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_BUTTON_COPY, m_buttonCopy);
     DDX_Control(pDX, IDC_BUTTON_PASTE, m_buttonPaste);
     DDX_Control(pDX, IDC_BUTTON_DELETE, m_buttonDelete);
+    DDX_Control(pDX, IDC_BUTTON_IMPORT, m_buttonImport);
     DDX_Control(pDX, IDC_STATIC_NUM_FILIGREES, m_staticNumFiligrees);
     DDX_Control(pDX, IDC_COMBO_NUM_FILLIGREES, m_comboNumFiligrees);
 }
@@ -75,14 +78,17 @@ BEGIN_MESSAGE_MAP(CEquipmentPane, CFormView)
     ON_COMMAND(ID_GEAR_COPY, OnGearCopy)
     ON_COMMAND(ID_GEAR_PASTE, OnGearPaste)
     ON_COMMAND(ID_GEAR_DELETE, OnGearDelete)
+    ON_COMMAND(ID_GEAR_IMPORT, OnGearImport)
     ON_UPDATE_COMMAND_UI(ID_GEAR_NEW, OnUpdateGearNew)
     ON_UPDATE_COMMAND_UI(ID_GEAR_COPY, OnUpdateGearCopy)
     ON_UPDATE_COMMAND_UI(ID_GEAR_PASTE, OnUpdateGearPaste)
     ON_UPDATE_COMMAND_UI(ID_GEAR_DELETE, OnUpdateGearDelete)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_IMPORT, OnUpdateGearImport)
     ON_BN_CLICKED(IDC_BUTTON_NEW, OnGearNew)
     ON_BN_CLICKED(IDC_BUTTON_COPY, OnGearCopy)
     ON_BN_CLICKED(IDC_BUTTON_PASTE, OnGearPaste)
     ON_BN_CLICKED(IDC_BUTTON_DELETE, OnGearDelete)
+    ON_BN_CLICKED(IDC_BUTTON_IMPORT, OnGearImport)
     ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
     ON_CBN_SELENDOK(IDC_COMBO_NUM_FILLIGREES, OnGearNumFiligreesSelEndOk)
     ON_WM_MOUSEMOVE()
@@ -136,6 +142,7 @@ void CEquipmentPane::OnInitialUpdate()
         m_buttonCopy.SetImage(IDB_BITMAP_COPY);
         m_buttonPaste.SetImage(IDB_BITMAP_PASTE);
         m_buttonDelete.SetImage(IDB_BITMAP_DELETE);
+        m_buttonImport.SetImage(IDB_BITMAP_IMPORT);
 
         EnableControls();
         EnableToolTips(TRUE);
@@ -148,20 +155,20 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
     if (m_inventoryView != NULL)
     {
         // position all the windows
-        // +---------------------------------------------------------------------+
-        // | [Drop List Combo] [N][C][P][D] [Num Filigrees][List]     +-+ +-+ +-+|
-        // | +----------------------------+ +-----------------------+ +-+ +-+ +-+|
-        // | |                            | |                       |(set icons) |
-        // | | Inventory Bitmap           | | Filigrees Bitmap      | +-+ +-+ +-+|
-        // | |                            | |                       | +-+ +-+ +-+|
-        // | |                            | |                       |            |
-        // | |                            | |                       | +-+ +-+ +-+|
-        // | |                            | |                       | +-+ +-+ +-+|
-        // | |                            | |                       |            |
-        // | |                            | |                       |            |
-        // | |                            | |                       |            |
-        // | +---------------------   ----+ +-----------------------+            |
-        // +---------------------------------------------------------------------+
+        // +------------------------------------------------------------------------+
+        // | [Drop List Combo] [N][C][P][D][I] [Num Filigrees][List]     +-+ +-+ +-+|
+        // | +-------------------------------+ +-----------------------+ +-+ +-+ +-+|
+        // | |                               | |                       |(set icons) |
+        // | | Inventory Bitmap              | | Filigrees Bitmap      | +-+ +-+ +-+|
+        // | |                               | |                       | +-+ +-+ +-+|
+        // | |                               | |                       |            |
+        // | |                               | |                       | +-+ +-+ +-+|
+        // | |                               | |                       | +-+ +-+ +-+|
+        // | |                               | |                       |            |
+        // | |                               | |                       |            |
+        // | |                               | |                       |            |
+        // | +-------------------------------+ +-----------------------+            |
+        // +------------------------------------------------------------------------+
         CRect rctCombo;
         m_comboGearSelections.GetWindowRect(&rctCombo);
         rctCombo -= rctCombo.TopLeft();
@@ -170,15 +177,19 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         CRect rctCopy;
         CRect rctPaste;
         CRect rctDelete;
+        CRect rctImport;
         CRect rctNumFiligrees;
         CRect rctNumFiligreesCombo;
         m_buttonNew.GetWindowRect(&rctNew);
         m_buttonCopy.GetWindowRect(&rctCopy);
         m_buttonPaste.GetWindowRect(&rctPaste);
         m_buttonDelete.GetWindowRect(&rctDelete);
+        m_buttonImport.GetWindowRect(&rctImport);
 
+        rctImport -= rctImport.TopLeft();
+        rctImport += CSize(223 + c_controlSpacing - rctImport.Width(), c_controlSpacing);
         rctDelete -= rctDelete.TopLeft();
-        rctDelete += CSize(223 + c_controlSpacing - rctDelete.Width(), c_controlSpacing);
+        rctDelete += CSize(rctImport.left - c_controlSpacing - rctDelete.Width(), c_controlSpacing);
         rctPaste -= rctPaste.TopLeft();
         rctPaste += CSize(rctDelete.left - c_controlSpacing - rctPaste.Width(), c_controlSpacing);
         rctCopy -= rctCopy.TopLeft();
@@ -188,7 +199,7 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         rctCombo.right = rctNew.left - c_controlSpacing;
         m_staticNumFiligrees.GetWindowRect(rctNumFiligrees);
         rctNumFiligrees -= rctNumFiligrees.TopLeft();
-        rctNumFiligrees += CPoint(rctDelete.right + c_controlSpacing, c_controlSpacing);
+        rctNumFiligrees += CPoint(rctImport.right + c_controlSpacing, c_controlSpacing);
         m_comboNumFiligrees.GetWindowRect(rctNumFiligreesCombo);
         rctNumFiligreesCombo -= rctNumFiligreesCombo.TopLeft();
         rctNumFiligreesCombo += CPoint(rctNumFiligrees.right + c_controlSpacing, c_controlSpacing);
@@ -204,6 +215,7 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         m_buttonCopy.MoveWindow(rctCopy);
         m_buttonPaste.MoveWindow(rctPaste);
         m_buttonDelete.MoveWindow(rctDelete);
+        m_buttonImport.MoveWindow(rctImport);
         m_inventoryView->MoveWindow(rctInventory);
         m_staticNumFiligrees.MoveWindow(rctNumFiligrees);
         m_comboNumFiligrees.MoveWindow(rctNumFiligreesCombo);
@@ -211,7 +223,7 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         if (m_setbuttons.size() > 0)
         {
             CRect itemRect(rctInventory.right + c_controlSpacing, rctInventory.top,
-                rctInventory.right + c_controlSpacing + c_windowSize, rctInventory.top + c_controlSpacing + c_windowSize);
+                rctInventory.right + c_controlSpacing + c_windowSizeX, rctInventory.top + c_controlSpacing + c_windowSizeY);
             // Sets are always shown if they exist
             for (size_t i = 0; i < m_setbuttons.size(); ++i)
             {
@@ -396,6 +408,7 @@ void CEquipmentPane::EnableControls()
         m_buttonCopy.EnableWindow(FALSE);
         m_buttonPaste.EnableWindow(FALSE);
         m_buttonDelete.EnableWindow(FALSE);
+        m_buttonImport.EnableWindow(FALSE);
         m_staticNumFiligrees.EnableWindow(FALSE);
         m_comboNumFiligrees.EnableWindow(FALSE);
     }
@@ -408,6 +421,7 @@ void CEquipmentPane::EnableControls()
         m_buttonCopy.EnableWindow(setups.size() > 0);
         m_buttonPaste.EnableWindow(IsClipboardFormatAvailable(CF_PRIVATEFIRST));
         m_buttonDelete.EnableWindow(setups.size() > 0);
+        m_buttonImport.EnableWindow(TRUE);
         m_staticNumFiligrees.EnableWindow(TRUE);
         m_comboNumFiligrees.EnableWindow(TRUE);
     }
@@ -503,8 +517,9 @@ void CEquipmentPane::UpdateSlotRightClicked(
 
 void CEquipmentPane::OnUpdateGearNew(CCmdUI * pCmdUi)
 {
-    // can always create a new gear set if a document is open
-    pCmdUi->Enable(m_bLoadComplete && m_pCharacter != NULL);
+    // can always create a new gear set if a document is open and has a build
+    Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
+    pCmdUi->Enable(m_bLoadComplete && pBuild != NULL);
 }
 
 void CEquipmentPane::OnUpdateGearCopy(CCmdUI * pCmdUi)
@@ -525,7 +540,8 @@ void CEquipmentPane::OnUpdateGearCopy(CCmdUI * pCmdUi)
 void CEquipmentPane::OnUpdateGearPaste(CCmdUI * pCmdUi)
 {
     // can paste if we have data of the correct format available on the clipboard
-    bool enable = m_pCharacter != NULL
+    Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
+    bool enable = pBuild != NULL
             && ::IsClipboardFormatAvailable(CF_PRIVATEFIRST);
     pCmdUi->Enable(m_bLoadComplete && enable);
     m_buttonPaste.EnableWindow(m_bLoadComplete && enable);
@@ -544,6 +560,13 @@ void CEquipmentPane::OnUpdateGearDelete(CCmdUI * pCmdUi)
     {
         pCmdUi->Enable(FALSE);
     }
+}
+
+void CEquipmentPane::OnUpdateGearImport(CCmdUI* pCmdUi)
+{
+    Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
+    pCmdUi->Enable(m_bLoadComplete && pBuild != NULL);
+    m_buttonImport.EnableWindow(m_bLoadComplete && pBuild != NULL);
 }
 
 void CEquipmentPane::OnGearNew()
@@ -594,7 +617,7 @@ void CEquipmentPane::OnGearCopy()
     {
         // get the current gear
         EquippedGear gear = pBuild->GetGearSet(SelectedGearSet());
-        // write the gear as xml text
+        // write the gear as XML text
         XmlLib::SaxWriter writer;
         gear.Write(&writer);
         std::string xmlText = writer.Text();
@@ -640,7 +663,7 @@ void CEquipmentPane::OnGearPaste()
                 GlobalUnlock(hGlobal);
                 ::CloseClipboard();
 
-                // parse the xml text and read into a local object
+                // parse the XML text and read into a local object
                 EquippedGear gear;
                 XmlLib::SaxReader reader(&gear, gear.ElementName());
                 bool ok = reader.ParseText(xmlText);
@@ -720,6 +743,66 @@ void CEquipmentPane::OnGearDelete()
     }
 }
 
+void CEquipmentPane::OnGearImport()
+{
+    // display the file select dialog
+    CFileDialog filedlg(
+            TRUE,
+            NULL,
+            NULL,
+            OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_HIDEREADONLY,
+            "Gear Planner Files (*.gearset)|*.gearset|All files (*.*)|*.*||",
+            this);
+    if (filedlg.DoModal() == IDOK)
+    {
+        // update the filename
+        CString name = filedlg.GetPathName();
+        // we try and parse the data first before allowing the user to name the gear set
+        EquippedGear newGear("");
+        if (newGear.ImportFromFile(name))
+        {
+            // we successfully imported the item data
+            // now allow the user to name the gear set
+            // no tooltips while a dialog is displayed
+            GetMouseHook()->SaveState();
+            // create a new gear set that they must name
+            CGearSetNameDialog dlg(this, m_pCharacter);
+            if (dlg.DoModal() == IDOK)
+            {
+                // ensure the gear set name is unique
+                Build* pBuild = m_pCharacter->ActiveBuild();
+                if (!pBuild->DoesGearSetExist(dlg.Name()))
+                {
+                    newGear.Set_Name(dlg.Name());
+                    pBuild->AddGearSet(newGear);
+                    // once added the new gear set automatically becomes active
+                    pBuild->SetActiveGearSet(dlg.Name());
+                    // add it to the combo box
+                    // index is the count of gear items
+                    int index = m_comboGearSelections.AddString(dlg.Name().c_str());
+                    // new entry starts selected
+                    m_comboGearSelections.SetCurSel(index);
+                    PopulateGear();
+                    // have the correct enable state
+                    EnableControls();
+                    CString text;
+                    text.Format("Gear set imported as \"%s\"", dlg.Name().c_str());
+                    GetLog().AddLogEntry(text);
+                }
+                else
+                {
+                    AfxMessageBox(
+                            "Error: A gear set must have a unique name.\n"
+                            "A gear set with the name you selected already exists.\n"
+                            "Try again but use a different name.",
+                            MB_ICONERROR);
+                }
+            }
+            GetMouseHook()->RestoreState();
+        }
+    }
+}
+
 void CEquipmentPane::OnGearSelectionSelEndOk()
 {
     Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
@@ -767,8 +850,8 @@ void CEquipmentPane::AddSetBonusStack(const SetBonus& setBonus)
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_windowSize + c_controlSpacing,
-                c_windowSize + c_controlSpacing);
+                c_windowSizeX + c_controlSpacing,
+                c_windowSizeY + c_controlSpacing);
 
         // now create the new auto stance control
         m_setbuttons.push_back(new CSetBonusButton(m_pCharacter, setBonus));
@@ -929,6 +1012,7 @@ void CEquipmentPane::UpdateActiveLifeChanged(Character*)
 
 void CEquipmentPane::UpdateActiveBuildChanged(Character*)
 {
+    DestroyAllSets();
     if (m_pCharacter != NULL)
     {
         Life *pLife = m_pCharacter->ActiveLife();
@@ -991,6 +1075,9 @@ BOOL CEquipmentPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
     case IDC_BUTTON_DELETE:
         m_tipText = "Delete the active gear set from this build.";
         break;
+    case IDC_BUTTON_IMPORT:
+        m_tipText = "Import a .gearset file from the Gear Planner application.";
+        break;
     case IDC_COMBO_NUM_FILLIGREES:
         m_tipText = "Set how many Weapon filigree slots you have for this gear set.";
         break;
@@ -998,7 +1085,7 @@ BOOL CEquipmentPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
         m_tipText = "";
         break;
     }
-    // ensure multiline tooltips
+    // ensure multi line tooltips
     ::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 800);
     TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
     pTTTA->lpszText = m_tipText.GetBuffer();

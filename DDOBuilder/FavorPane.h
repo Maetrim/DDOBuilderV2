@@ -14,6 +14,7 @@ public:
     virtual ~CFavorPane();
     enum { IDD = IDD_FAVOR_PANE };
 
+    virtual void UpdateActiveBuildChanged(Character*) override;
 protected:
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
@@ -27,9 +28,12 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
+    void PopulateQuestList();
+
     CDDOBuilderDoc* m_pDoc;
     Character* m_pCharacter;
     bool m_bLoadComplete;
+    CListCtrl m_listQuests;
 };
 
 

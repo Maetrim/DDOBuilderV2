@@ -43,6 +43,7 @@ class Augment :
                 DL_FLAG(_, DualValues) \
                 DL_FLAG(_, EnterValue) \
                 DL_FLAG(_, ChooseLevel) \
+                DL_OPTIONAL_VECTOR(_, int, Levels) \
                 DL_OPTIONAL_VECTOR(_, double, LevelValue) \
                 DL_OPTIONAL_VECTOR(_, double, LevelValue2) \
                 DL_STRING_LIST(_, SetBonus) \

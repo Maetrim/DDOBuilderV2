@@ -552,12 +552,14 @@ echo.
     <ClInclude Include="DDOBuilder.h" />
     <ClInclude Include="DDOBuilderDoc.h" />
     <ClInclude Include="DDOBuilderView.h" />
+    <ClInclude Include="DelayedListBox.h" />
     <ClInclude Include="DestinyPane.h" />
     <ClInclude Include="DestinySpendInTree.h" />
     <ClInclude Include="Destiny_SelectedTrees.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectCallbackItem.h" />
+    <ClInclude Include="ElapsedTimer.h" />
     <ClInclude Include="EnergyTypes.h" />
     <ClInclude Include="EnhancementItemParams.h" />
     <ClInclude Include="EnhancementSelection.h" />
@@ -590,6 +592,7 @@ echo.
     <ClInclude Include="GrantedFeatsPane.h" />
     <ClInclude Include="GroupLine.h" />
     <ClInclude Include="IconButton.h" />
+    <ClInclude Include="IgnoredListFile.h" />
     <ClInclude Include="InfoTip.h" />
     <ClInclude Include="InfoTipItem.h" />
     <ClInclude Include="InventoryDialog.h" />
@@ -608,6 +611,8 @@ echo.
     <ClInclude Include="MultiFileObjectLoader.h" />
     <ClInclude Include="ObserverSubject.h" />
     <ClInclude Include="LogPane.h" />
+    <ClInclude Include="Patron.h" />
+    <ClInclude Include="PatronsFile.h" />
     <ClInclude Include="PatronTypes.h" />
     <ClInclude Include="Quest.h" />
     <ClInclude Include="QuestsFile.h" />
@@ -831,11 +836,13 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="DDOBuilder.cpp" />
     <ClCompile Include="DDOBuilderDoc.cpp" />
     <ClCompile Include="DDOBuilderView.cpp" />
+    <ClCompile Include="DelayedListBox.cpp" />
     <ClCompile Include="DestinyPane.cpp" />
     <ClCompile Include="DestinySpendInTree.cpp" />
     <ClCompile Include="Destiny_SelectedTrees.cpp" />
     <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="ElapsedTimer.cpp" />
     <ClCompile Include="EnhancementSelection.cpp" />
     <ClCompile Include="EnhancementSelectionButton.cpp" />
     <ClCompile Include="EnhancementsPane.cpp" />
@@ -863,6 +870,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="GrantedFeatsPane.cpp" />
     <ClCompile Include="GroupLine.cpp" />
     <ClCompile Include="IconButton.cpp" />
+    <ClCompile Include="IgnoredListFile.cpp" />
     <ClCompile Include="InfoTip.cpp" />
     <ClCompile Include="InfoTipItem.cpp" />
     <ClCompile Include="InventoryDialog.cpp" />
@@ -879,6 +887,8 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="ObserverSubject.cpp" />
     <ClCompile Include="LogPane.cpp" />
+    <ClCompile Include="Patron.cpp" />
+    <ClCompile Include="PatronsFile.cpp" />
     <ClCompile Include="Quest.cpp" />
     <ClCompile Include="QuestsFile.cpp" />
     <ClCompile Include="Race.cpp" />
@@ -946,6 +956,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Output\DataFiles\Augments\Alchemical.Augments.xml" />
+    <Xml Include="..\Output\DataFiles\Augments\Emerald.Augments.xml" />
     <Xml Include="..\Output\DataFiles\Augments\Greensteel_Legendary.Augments.xml" />
     <Xml Include="..\Output\DataFiles\Augments\Mythic.Augments.xml" />
     <Xml Include="..\Output\DataFiles\Augments\Reaper.Augments.xml" />
@@ -1155,6 +1166,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Xml Include="..\Output\DataFiles\FiligreeSets\Zephyr.Filigree.xml" />
     <Xml Include="..\Output\DataFiles\ItemBuffs.xml" />
     <Xml Include="..\Output\DataFiles\ItemClickies.xml" />
+    <Xml Include="..\Output\DataFiles\Patrons.xml" />
     <Xml Include="..\Output\DataFiles\Quests.xml" />
     <Xml Include="..\Output\DataFiles\Races\Aasimar.race.xml" />
     <Xml Include="..\Output\DataFiles\Races\AasimarScourge.race.xml" />
@@ -1187,6 +1199,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
   <ItemGroup>
     <Image Include="res\bitmapCopy.bmp" />
     <Image Include="res\bitmapDelete.bmp" />
+    <Image Include="res\BitmapImport.bmp" />
     <Image Include="res\bitmapNew.bmp" />
     <Image Include="res\BitmapPaste.bmp" />
     <Image Include="res\CopyToClipboard.bmp" />
@@ -1207,6 +1220,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Image Include="res\icon_specialfeats.ico" />
     <Image Include="res\icon_spells.ico" />
     <Image Include="res\icon_stances.ico" />
+    <Image Include="res\toolbar2.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\ChangeHistory.txt" />

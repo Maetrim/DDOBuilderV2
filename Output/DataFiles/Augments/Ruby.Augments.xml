@@ -1,1577 +1,1056 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Augments>
-  <Augment>
-    <Name>Ruby of Fey Bane</Name>
-    <Description>Additional 2d8 Bane Damage to Fey creatures on hit.
+   <Augment>
+      <Name>Ruby of Acid Damage</Name>
+      <Description>You deal an extra [value]d6 Acid damage on attacks</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">1 2 3 4 5 6 7 8 9</LevelValue>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Acid</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Acid</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Cold Damage</Name>
+      <Description>You deal an extra [value]d6 cold damage on attacks</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">1 2 3 4 5 6 7 8 9</LevelValue>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Cold</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Cold</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Electric Damage</Name>
+      <Description>You deal an extra [value]d6 electric damage on attacks</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">1 2 3 4 5 6 7 8 9</LevelValue>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Electric</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Electric</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Fire Damage</Name>
+      <Description>You deal an extra [value]d6 fire damage on attacks</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">1 2 3 4 5 6 7 8 9</LevelValue>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Fire</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Fire</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Sonic Damage</Name>
+      <Description>You deal an extra [value]d6 sonic damage on attacks</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">1 2 3 4 5 6 7 8 9</LevelValue>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Sonic</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Sonic</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Corrosion Spell Power</Name>
+      <Description>Your acid based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Acid</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Glaciation Spell Power</Name>
+      <Description>Your cold based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Cold</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Magnetism Spell Power</Name>
+      <Description>Your electric based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Electric</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Force/Untyped Spell Power</Name>
+      <Description>Your force/Untyped based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+         <Item>Force/Untyped</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Combustion Spell Power</Name>
+      <Description>Your fire based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Fire</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Light/Alignment Spell Power</Name>
+      <Description>Your light/alignment based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+         <Item>Light/Alignment</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Positive Spell Power</Name>
+      <Description>Your positive based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Positive</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Repair/Rust Spell Power</Name>
+      <Description>Your Repair and Rust based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+         <Item>Repair</Item>
+         <Item>Rust</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Resonance Spell Power</Name>
+      <Description>Your sonic based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Sonic</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Negative Spell Power</Name>
+      <Description>Your negative/poison based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="9">1 4 8 12 16 20 24 28 32</Levels>
+      <LevelValue size="9">38 55 70 84 97 111 125 139 153</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Negative</Item>
+         <Item>Poison</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Byeshk DR Bypass</Name>
+      <Description>Your weapons now bypass Byeshk damage reduction type</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Byeshk</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Law DR Bypass</Name>
+      <Description>Your weapons now bypass Law damage reduction type</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Lawful</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Chaos DR Bypass</Name>
+      <Description>Your weapons now bypass Chaos damage reduction type</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Chaotic</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Evil DR Bypass</Name>
+      <Description>Your weapons now bypass Evil damage reduction type</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Evil</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Good DR Bypass</Name>
+      <Description>Your weapons now bypass Good damage reduction type</Description>
+      <MinLevel>12</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Good</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Adamantine DR Bypass</Name>
+      <Description>Your weapons now bypass Adamantine damage reduction type</Description>
+      <MinLevel>12</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Adamantine</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Cold Iron DR Bypass</Name>
+      <Description>Your weapons now bypass Cold Iron damage reduction type</Description>
+      <MinLevel>16</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Cold Iron</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Silver DR Bypass</Name>
+      <Description>Your weapons now bypass Silver damage reduction type</Description>
+      <MinLevel>16</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Silver</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <!--Named Rubys-->
+   <Augment>
+      <Name>Ruby of Fey Bane</Name>
+      <Description>Additional 2d8 Bane Damage to Fey creatures on hit.
 Drops in U48 Quest: Wake me up Inside</Description>
-    <MinLevel>6</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">8</Sides>
-        <Damage>Bane</Damage>
-      </Dice>
-      <Item>All</Item>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Fey</Item>
-        </Requirement>
-      </Requirements>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">8</Sides>
-        <Damage>Bane</Damage>
-      </Dice>
-      <Item>All</Item>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Fey</Item>
-        </Requirement>
-      </Requirements>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Disintegration</Name>
-    <Description>Upgrades a weapon with a dark, insidious power deep within.
+      <MinLevel>6</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Bane</Damage>
+         </Dice>
+         <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Fey</Item>
+            </Requirement>
+         </Requirements>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Bane</Damage>
+         </Dice>
+         <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Fey</Item>
+            </Requirement>
+         </Requirements>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Disintegration</Name>
+      <Description>Upgrades a weapon with a dark, insidious power deep within.
 Occasionally, this power lashes out violently at enemies and attempts to disintegrate them.
 Drops in U48 Quest: Wake me up Inside</Description>
-    <MinLevel>6</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +2d6 Acid Damage</Name>
-    <Description>You deal an extra 2d6 acid damage on attacks</Description>
-    <MinLevel>4</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +2d6 Cold Damage</Name>
-    <Description>You deal an extra 2d6 cold damage on attacks</Description>
-    <MinLevel>4</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +2d6 Electric Damage</Name>
-    <Description>You deal an extra 2d6 electric damage on attacks</Description>
-    <MinLevel>4</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +2d6 Fire Damage</Name>
-    <Description>You deal an extra 2d6 fire damage on attacks</Description>
-    <MinLevel>4</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +2d6 Sonic Damage</Name>
-    <Description>You deal an extra 2d6 sonic damage on attacks</Description>
-    <MinLevel>4</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">2</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +3d6 Acid Damage</Name>
-    <Description>You deal an extra 3d6 acid damage on attacks</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +3d6 Cold Damage</Name>
-    <Description>You deal an extra 3d6 cold damage on attacks</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +3d6 Electric Damage</Name>
-    <Description>You deal an extra 3d6 electric damage on attacks</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +3d6 Fire Damage</Name>
-    <Description>You deal an extra 3d6 fire damage on attacks</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +3d6 Sonic Damage</Name>
-    <Description>You deal an extra 3d6 sonic damage on attacks</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +4d6 Acid Damage</Name>
-    <Description>You deal an extra 4d6 acid damage on attacks</Description>
-    <MinLevel>12</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +4d6 Cold Damage</Name>
-    <Description>You deal an extra 4d6 cold damage on attacks</Description>
-    <MinLevel>12</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +4d6 Electric Damage</Name>
-    <Description>You deal an extra 4d6 electric damage on attacks</Description>
-    <MinLevel>12</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +4d6 Fire Damage</Name>
-    <Description>You deal an extra 4d6 fire damage on attacks</Description>
-    <MinLevel>12</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +4d6 Sonic Damage</Name>
-    <Description>You deal an extra 4d6 sonic damage on attacks</Description>
-    <MinLevel>12</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">4</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +5d6 Acid Damage</Name>
-    <Description>You deal an extra 5d6 acid damage on attacks</Description>
-    <MinLevel>16</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +5d6 Cold Damage</Name>
-    <Description>You deal an extra 5d6 cold damage on attacks</Description>
-    <MinLevel>16</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +5d6 Electric Damage</Name>
-    <Description>You deal an extra 5d6 electric damage on attacks</Description>
-    <MinLevel>16</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +5d6 Fire Damage</Name>
-    <Description>You deal an extra 5d6 fire damage on attacks</Description>
-    <MinLevel>16</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +5d6 Sonic Damage</Name>
-    <Description>You deal an extra 5d6 sonic damage on attacks</Description>
-    <MinLevel>16</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">5</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +6d6 Acid Damage</Name>
-    <Description>You deal an extra 6d6 acid damage on attacks</Description>
-    <MinLevel>20</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +6d6 Cold Damage</Name>
-    <Description>You deal an extra 6d6 cold damage on attacks</Description>
-    <MinLevel>20</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +6d6 Electric Damage</Name>
-    <Description>You deal an extra 6d6 electric damage on attacks</Description>
-    <MinLevel>20</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +6d6 Fire Damage</Name>
-    <Description>You deal an extra 6d6 fire damage on attacks</Description>
-    <MinLevel>20</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +6d6 Sonic Damage</Name>
-    <Description>You deal an extra 6d6 sonic damage on attacks</Description>
-    <MinLevel>20</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">6</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +7d6 Acid Damage</Name>
-    <Description>You deal an extra 7d6 acid damage on attacks</Description>
-    <MinLevel>24</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +7d6 Cold Damage</Name>
-    <Description>You deal an extra 7d6 cold damage on attacks</Description>
-    <MinLevel>24</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +7d6 Electric Damage</Name>
-    <Description>You deal an extra 7d6 electric damage on attacks</Description>
-    <MinLevel>24</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +7d6 Fire Damage</Name>
-    <Description>You deal an extra 7d6 fire damage on attacks</Description>
-    <MinLevel>24</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +7d6 Sonic Damage</Name>
-    <Description>You deal an extra 7d6 sonic damage on attacks</Description>
-    <MinLevel>24</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">7</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +8d6 Acid Damage</Name>
-    <Description>You deal an extra 8d6 acid damage on attacks</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Acid</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +8d6 Cold Damage</Name>
-    <Description>You deal an extra 8d6 cold damage on attacks</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Cold</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +8d6 Electric Damage</Name>
-    <Description>You deal an extra 8d6 electric damage on attacks</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Electric</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +8d6 Fire Damage</Name>
-    <Description>You deal an extra 8d6 fire damage on attacks</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of +8d6 Sonic Damage</Name>
-    <Description>You deal an extra 8d6 sonic damage on attacks</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-    <Effect>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Enhancement</Bonus>
-      <Dice>
-        <Number size="1">8</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
-      </Dice>
-      <Item>All</Item>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Corrosion Spell Power</Name>
-    <Description>Your acid based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <Item>Acid</Item>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Glaciation Spell Power</Name>
-    <Description>Your cold based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <Item>Cold</Item>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Magnetism Spell Power</Name>
-    <Description>Your electric based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <Item>Electric</Item>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Force/Untyped Spell Power</Name>
-    <Description>Your force/Untyped based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-      <Item>Force/Untyped</Item>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Combustion Spell Power</Name>
-    <Description>Your fire based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <Item>Fire</Item>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Light/Alignment Spell Power</Name>
-    <Description>Your light/alignment based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-      <Item>Light/Alignment</Item>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Positive Spell Power</Name>
-    <Description>Your positive based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <Item>Positive</Item>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Repair/Rust Spell Power</Name>
-    <Description>Your Repair and Rust based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-      <Item>Repair</Item>
-      <Item>Rust</Item>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Resonance Spell Power</Name>
-    <Description>Your sonic based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <Item>Sonic</Item>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Negative Spell Power</Name>
-    <Description>Your negative/poison based spells have better effect</Description>
-    <MinLevel>28</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <EnterValue />
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Equipment</Bonus>
-      <Item>Negative</Item>
-      <Item>Poison</Item>
-      <AType>Simple</AType>
-      <Amount size="1">138</Amount>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Byeshk DR Bypass</Name>
-    <Description>Your weapons now bypass Byeshk damage reduction type</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Byeshk</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Law DR Bypass</Name>
-    <Description>Your weapons now bypass Law damage reduction type</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Lawful</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Chaos DR Bypass</Name>
-    <Description>Your weapons now bypass Chaos damage reduction type</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Chaotic</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Evil DR Bypass</Name>
-    <Description>Your weapons now bypass Evil damage reduction type</Description>
-    <MinLevel>8</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Evil</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Good DR Bypass</Name>
-    <Description>Your weapons now bypass Good damage reduction type</Description>
-    <MinLevel>12</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Good</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Adamantine DR Bypass</Name>
-    <Description>Your weapons now bypass Adamantine damage reduction type</Description>
-    <MinLevel>12</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Adamantine</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Cold Iron DR Bypass</Name>
-    <Description>Your weapons now bypass Cold Iron damage reduction type</Description>
-    <MinLevel>16</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Cold Iron</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby of Silver DR Bypass</Name>
-    <Description>Your weapons now bypass Silver damage reduction type</Description>
-    <MinLevel>16</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>Ruby</Icon>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Enhancement</Bonus>
-      <Item>All</Item>
-      <Value>Silver</Value>
-      <IsItemSpecific />
-      <AType>NotNeeded</AType>
-    </Effect>
-  </Augment>
-  <Augment>
-    <Name>Ruby Eye of Erosion</Name>
-    <Description>2% Chance On-Hit to cause a blast of acid that deals 3 to 18 points of acid damage per Minimum Level of the upgraded weapon to all nearby enemies.</Description>
-    <MinLevel>1</MinLevel>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-    <Icon>RubyEye</Icon>
-  </Augment>
-  <Augment>
-    <Name>Ruby Eye of the Inferno</Name>
-    <Description>2% Chance On-Hit to cause a blast of flame that deals 4 to 16 points of fire damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
-    <MinLevel>1</MinLevel>
-    <Icon>RubyEye</Icon>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-  </Augment>
-  <Augment>
-    <Name>Ruby Eye of the Glacier</Name>
-    <Description>2% Chance On-Hit to cause a blast of cold that deals 7 to 14 points of cold damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
-    <MinLevel>1</MinLevel>
-    <Icon>RubyEye</Icon>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-  </Augment>
-  <Augment>
-    <Name>Ruby Eye of the Tempest</Name>
-    <Description>2% Chance On-Hit to cause a bolt of lightning that deals 1 to 20 points of electrical damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
-    <MinLevel>1</MinLevel>
-    <Icon>RubyEye</Icon>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-  </Augment>
-  <Augment>
-    <Name>Ruby Eye of Righteousness</Name>
-    <Description>2% Chance On-Hit to cause a blast of holy energy that deals 3 to 12 points of holy damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
-    <MinLevel>1</MinLevel>
-    <Icon>RubyEye</Icon>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-  </Augment>
-  <Augment>
-    <Name>Ruby Eye of Force</Name>
-    <Description>2% Chance On-Hit to cause a burst of magical force that deals 3 to 12 points of force damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
-    <MinLevel>1</MinLevel>
-    <Icon>RubyEye</Icon>
-    <Type>Red</Type>
-    <Type>Purple</Type>
-    <Type>Orange</Type>
-  </Augment>
+      <MinLevel>6</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby Eye of Erosion</Name>
+      <Description>2% Chance On-Hit to cause a blast of acid that deals 3 to 18 points of acid damage per Minimum Level of the upgraded weapon to all nearby enemies.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>RubyEye</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby Eye of the Inferno</Name>
+      <Description>2% Chance On-Hit to cause a blast of flame that deals 4 to 16 points of fire damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
+      <MinLevel>1</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+   </Augment>
+   <Augment>
+      <Name>Ruby Eye of the Glacier</Name>
+      <Description>2% Chance On-Hit to cause a blast of cold that deals 7 to 14 points of cold damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
+      <MinLevel>1</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+   </Augment>
+   <Augment>
+      <Name>Ruby Eye of the Tempest</Name>
+      <Description>2% Chance On-Hit to cause a bolt of lightning that deals 1 to 20 points of electrical damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
+      <MinLevel>1</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+   </Augment>
+   <Augment>
+      <Name>Ruby Eye of Righteousness</Name>
+      <Description>2% Chance On-Hit to cause a blast of holy energy that deals 3 to 12 points of holy damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
+      <MinLevel>1</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+   </Augment>
+   <Augment>
+      <Name>Ruby Eye of Force</Name>
+      <Description>2% Chance On-Hit to cause a burst of magical force that deals 3 to 12 points of force damage per minimum level of the upgraded weapon to all nearby enemies.</Description>
+      <MinLevel>1</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+   </Augment>
+   <Augment>
+      <Name>Coalescent Ruby</Name>
+      <Description>+41 Equipment Bonus to each individual Spell Power.
+Drops in: Isle of Dread, any chest</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Deconstructor</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">41</Amount>
+         <Item>All</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Legendary Coalescent Ruby</Name>
+      <Description>+100 Equipment Bonus to each individual Spell Power.
+Drops in: Isle of Dread, any chest</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Deconstructor</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">100</Amount>
+         <Item>All</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Acid Blast</Name>
+      <Description>Critical hits with this weapon deal additional Acid Damage:
+x2: 1d10, x3 - 2d10, x3 - 3d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 4d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Icy Blast</Name>
+      <Description>Critical hits with this weapon deal additional Cold Damage:
+x2: 1d10, x3 - 2d10, x3 - 3d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 4d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Flaming Blast</Name>
+      <Description>Critical hits with this weapon deal additional Fire Damage:
+x2: 1d10, x3 - 2d10, x3 - 3d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 4d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Shocking Blast</Name>
+      <Description>Critical hits with this weapon deal additional Electric Damage:
+x2: 1d10, x3 - 2d10, x3 - 3d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 4d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Legendary Ruby of Acid Blast</Name>
+      <Description>Critical hits with this weapon deal additional Acid Damage:
+x2: 4d10, x3 - 6d10, x3 - 8d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 6d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Legendary Ruby of Icy Blast</Name>
+      <Description>Critical hits with this weapon deal additional Cold Damage:
+x2: 4d10, x3 - 6d10, x3 - 8d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 6d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Legendary Ruby of Flaming Blast</Name>
+      <Description>Critical hits with this weapon deal additional Fire Damage:
+x2: 4d10, x3 - 6d10, x3 - 8d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 6d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Legendary Ruby of Shocking Blast</Name>
+      <Description>Critical hits with this weapon deal additional Electric Damage:
+x2: 4d10, x3 - 6d10, x3 - 8d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 6d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Implements's Acid</Name>
+      <Description>Provides a +70 Equipment bonus to acid spell power and turns this item into a
+spellcasting implement.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Acid</Item>
+         <AType>Simple</AType>
+         <Amount size="1">70</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Implements's Flame</Name>
+      <Description>Provides a +70 Equipment bonus to fire spell power and turns this item into a
+spellcasting implement.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Fire</Item>
+         <AType>Simple</AType>
+         <Amount size="1">70</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Implements's Frost</Name>
+      <Description>Provides a +70 Equipment bonus to cold spell power and turns this item into a
+spellcasting implement.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Cold</Item>
+         <AType>Simple</AType>
+         <Amount size="1">70</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Legendary Ruby of Implements's Acid</Name>
+      <Description>Provides a +146 Equipment bonus to acid spell power and turns this item into a
+spellcasting implement.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Acid</Item>
+         <AType>Simple</AType>
+         <Amount size="1">146</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Legendary Ruby of Implements's Flame</Name>
+      <Description>Provides a +146 Equipment bonus to fire spell power and turns this item into a
+spellcasting implement.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Fire</Item>
+         <AType>Simple</AType>
+         <Amount size="1">146</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Legendary Ruby of Implements's Frost</Name>
+      <Description>Provides a +146 Equipment bonus to cold spell power and turns this item into a
+spellcasting implement.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Cold</Item>
+         <AType>Simple</AType>
+         <Amount size="1">146</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Meteoric Star Ruby</Name>
+      <Description>2% chance On Hit to cause a falling star to strike your target, dealing 3 to 18
+Fire Damage and 1 to 6 Bludgeoning Damage per Minimum Level of the weapon to
+all nearby enemies, with a chance to knock them prone.
+DC to resist knockdown: 20 + Item's ML vs Reflex
+Drops in: The Haunted Halls of Eveningstar, End Chest and optional dragon chest</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>MeteoricStarRuby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Ghostbane</Name>
+      <Description>Ghost Touch: An incorporeal creature's 50% chance to avoid damage does not apply
+to attacks with ghost touch weapons. 1 to 6 Bane damage on hit vs Undead
+Drops in: Joe Candymaker: The Night Revels Trader</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>GhostTouch</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>All</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of Maiming</Name>
+      <Description>Maiming: This weapon has a twisted haft or grip and spikes along its blade, head,
+or point. Whenever you score a critical hit with this weapon it deals an amount
+of extra untyped damage depending on its critical multiplier: x2 - 1 to 6,
+x3 - 2 to 12, x4 - 3 to 18.
+Drops in: ToEE: First Level and Earth Temple, and ToEE: Lower Temple Complex,
+rare encounter chests</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of the Adamantine Blessing</Name>
+      <Description>Adamantine: Adamantine weapons may bypass the damage reduction of certain items and creatures.
+Drops in: Euphonia's Barter Box</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Adamantine</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of the Crushing Wave</Name>
+      <Description>Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep
+within. When this weapon is used, this power occasionally comes to the surface,
+crushing enemies beneath a torrent of frigid water.
+Drop Location: Ghost of a Chance (epic), puzzle chest</Description>
+      <MinLevel>20</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of the Endless Night</Name>
+      <Description>Inflicts a Negative Level on vorpal hits.
+Drop Location: Joe Candymaker: The Night Revels Trader</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of the Iron Hand</Name>
+      <Description>Cold Iron: This iron mined deep underground, known for its effectiveness against
+fey creatures, is forged at a lower temperature to preserve its delicate properties.
+When combined with Good damage types, Cold Iron weapons are able to overcome the
+damage reduction of most Demons like Fire Reavers or Flesh Renders. See Monster
+DR and weaknesses for specifics.
+Drops in: Flurry: Snowpeaks Festival Trader</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Cold Iron</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Ruby of the Snowpeaks</Name>
+      <Description>1 to 8 Cold Damage
+Freezing Ice: This Weapon stores the pitiless immovable power of the ice deep within.
+When this weapon is used, this power occasionally comes to the surface, attempting
+to freeze an enemy solid and encase them in ice. 5% chance of Freezing Ice encasement.
+Fortitude save DC of 35, Freedom of movement blocks it; doesn't work on bosses,
+incorporeal, elementals, or oozes.
+Has a duration of 9 seconds, no recurring saves.
+Target is immobilized, and helpless (monsters take +25% damage from all sources.)
+Drop Location: Flurry: Snowpeaks Festival Trader</Description>
+      <MinLevel>4</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of the Surging Tide</Name>
+      <Description>Tidal Burst: This weapon is sheathed in water. The weapon deals an additional
+1 to 4 damage each hit. In addition, critical hits deal an additional 1 to 8
+damage for weapons with a x2 critical multiplier, 2 to 16 for a x3 critical
+multiplier and 3 to 24 for a x4 multiplier. Creatures with the Fire trait take
+double this damage instead.
+Drops in: Euphonia's Barter Box</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+   </Augment>
+   <Augment>
+      <Name>Ruby of the Vampire Slayer</Name>
+      <Description>1 to 4 Light Damage
+Silver: A complex process involving metallurgy and alchemy can bond silver to
+a weapon made of steel so that it bypasses the damage reduction of creatures
+such as devils and vampires. Silver weapons have 2 points lower hardness then
+equivalent steel weapons, and as such aren't quite as durable.
+Drops in: Joe Candymaker: The Night Revels Trader</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Silver</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
 </Augments>

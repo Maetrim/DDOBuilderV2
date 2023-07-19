@@ -12,7 +12,9 @@ IMPLEMENT_DYNAMIC(CComboBoxTooltip, CComboBox)
 
 CComboBoxTooltip::CComboBoxTooltip() :
     m_bHasImageList(false),
-    m_selection(CB_ERR)
+    m_selection(CB_ERR),
+    m_bSubclassedListbox(false),
+    m_bCanRemoveItems(false)
 {
 }
 
@@ -20,10 +22,17 @@ CComboBoxTooltip::~CComboBoxTooltip()
 {
 }
 
+void CComboBoxTooltip::SetCanRemoveItems()
+{
+    m_bCanRemoveItems = true;
+}
+
 BEGIN_MESSAGE_MAP(CComboBoxTooltip, CComboBox)
+    //ON_WM_SETFOCUS()
+    //ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
-void CComboBoxTooltip::SetImageList(CImageList * il)
+void CComboBoxTooltip::SetImageList(CImageList* il)
 {
     m_bHasImageList = false;
     m_imageList.DeleteImageList();  // clear any previous image list
@@ -43,31 +52,41 @@ void CComboBoxTooltip::SetImageList(CImageList * il)
 void CComboBoxTooltip::DrawItem(LPDRAWITEMSTRUCT lpDis)
 {
     bool isDropped = (GetDroppedState() != 0);
+    if (!m_bSubclassedListbox)
+    {
+        COMBOBOXINFO cbInfo;
+        memset(&cbInfo, 0, sizeof(COMBOBOXINFO));
+        cbInfo.cbSize = sizeof(COMBOBOXINFO);
+        GetComboBoxInfo(&cbInfo);
+        m_delayedListBox.SetOwner(this);
+        m_delayedListBox.SubclassWindow(cbInfo.hwndList);
+        m_bSubclassedListbox = true;
+    }
     if (lpDis->itemID != CB_ERR)
     {
-        CDC *pDC = CDC::FromHandle(lpDis->hDC);
+        CDC* pDC = CDC::FromHandle(lpDis->hDC);
         CRect rcItem = lpDis->rcItem;
         int nState = lpDis->itemState;
         int nItem = lpDis->itemID;
         int nIndexDC = pDC->SaveDC();
 
         // highlight the background if selected.
-        if (nState & ODS_SELECTED) 
+        if (nState & ODS_SELECTED)
         {
             pDC->FillSolidRect(rcItem, ::GetSysColor(COLOR_HIGHLIGHT));
             pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
             if (isDropped
-                    && lpDis->itemID != (UINT)m_selection
-                    && lpDis->itemAction == ODA_SELECT
-                    && (nState & 0x1000) == 0)  // Cancel operation
+                && lpDis->itemID != m_selection
+                && lpDis->itemAction == ODA_SELECT
+                && (nState & 0x1000) == 0)  // Cancel operation
             {
                 m_selection = lpDis->itemID;
                 // this is the item we need to notify a hover about
                 ::SendMessage(
-                        GetParent()->GetSafeHwnd(),
-                        WM_MOUSEHOVER,
-                        lpDis->itemID,
-                        GetDlgCtrlID());
+                    GetParent()->GetSafeHwnd(),
+                    WM_MOUSEHOVER,
+                    lpDis->itemID,
+                    GetDlgCtrlID());
             }
         }
         else
@@ -109,13 +128,13 @@ void CComboBoxTooltip::MeasureItem(LPMEASUREITEMSTRUCT lpMis)
         m_imageList.GetImageInfo(0, &imageInfo);
         CRect iconRect(imageInfo.rcImage);
         lpMis->itemHeight = max(::GetSystemMetrics(SM_CYVTHUMB), iconRect.Height());
-        lpMis->itemWidth  = 0;
+        lpMis->itemWidth = 0;
     }
     else
     {
         // default control height
         lpMis->itemHeight = ::GetSystemMetrics(SM_CYVTHUMB);
-        lpMis->itemWidth  = 0;
+        lpMis->itemWidth = 0;
     }
 }
 
@@ -138,6 +157,37 @@ int CComboBoxTooltip::CompareItem(LPCOMPAREITEMSTRUCT lpCis)
 
 void CComboBoxTooltip::DeleteItem(LPDELETEITEMSTRUCT lpDis)
 {
-    UNREFERENCED_PARAMETER(lpDis);
-    ASSERT(lpDis->CtlType == ODT_COMBOBOX);
+}
+
+void CComboBoxTooltip::OnSetFocus(CWnd* pWnd)
+{
+    m_delayedListBox.ResetTimer();
+    CComboBox::OnSetFocus(pWnd);
+}
+
+void CComboBoxTooltip::OnRButtonDown(int selection)
+{
+    if (m_bCanRemoveItems)
+    {
+        CString strItem;
+        GetLBText(selection, strItem);
+        GetParent()->SendMessage(UWM_TOGGLE_INCLUDED, selection, (LPARAM)(&strItem));
+        // force a mouse move after click to get a new selection in the control
+        // as an item may have been deleted
+        CPoint p;
+        GetCursorPos(&p);
+        p.x += 1;
+        SetCursorPos(p.x, p.y);
+        if (selection >= GetCount())
+        {
+            selection = GetCount() - 1;
+        }
+        // ensure any tooltip updates
+        // this is the item we need to notify a hover about
+        ::SendMessage(
+            GetParent()->GetSafeHwnd(),
+            WM_MOUSEHOVER,
+            selection,
+            GetDlgCtrlID());
+    }
 }

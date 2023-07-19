@@ -71,10 +71,14 @@ protected:
     CMFCToolBar       m_wndToolBar;
     CMFCStatusBar     m_wndStatusBar;
     CMFCToolBarImages m_UserImages;
+    CMFCToolBar       m_menuToolbar;
     std::vector<CCustomDockablePane*> m_dockablePanes;
     MouseHook m_mouseHook;
     bool m_bLoadComplete;
     bool m_bWikiProcessing;
 
     friend class WikiDownloader;
+public:
+    afx_msg void OnEditIgnorelistActive();
+    afx_msg void OnUpdateEditIgnorelistActive(CCmdUI* pCmdUI);
 };
