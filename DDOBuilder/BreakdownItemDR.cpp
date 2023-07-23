@@ -72,5 +72,8 @@ void BreakdownItemDR::AddEffectToString(
     {
         (*value) += "   ";
     }
-    (*value) += effect.Item().front().c_str();
+    int amount = static_cast<int>(effect.TotalAmount(true));
+    CString txt;
+    txt.Format("%d/%s", amount, effect.Item().front().c_str());
+    (*value) += txt;
 }

@@ -21,7 +21,8 @@ class CBreakdownsPane :
     public CFormView,
     public CharacterObserver,
     public LifeObserver,
-    public BuildObserver
+    public BuildObserver,
+    BreakdownObserver
 {
     public:
         enum { IDD = IDD_BREAKDOWNS_PANE };
@@ -60,7 +61,7 @@ class CBreakdownsPane :
         // BuildObserver overrides
         virtual void UpdateBuildLevelChanged(Build*) override;
         virtual void UpdateClassChanged(Build*, const std::string& classFrom, const std::string& classTo, size_t level) override;
-        virtual void UpdateAbilityValueChanged(Build*, AbilityType ability) override;
+        virtual void UpdateAbilityValueChanged(Build*, AbilityType) override;
         virtual void UpdateFeatEffectApplied(Build*, const Effect& effect) override;
         virtual void UpdateFeatEffectRevoked(Build*, const Effect& effect) override;
         virtual void UpdateEnhancementTrained(Build*, const EnhancementItemParams& item) override;
@@ -78,6 +79,9 @@ class CBreakdownsPane :
         virtual void UpdateItemWeaponEffectApplied(Build*, const Effect& effect, WeaponType wt, InventorySlotType ist) override;
         virtual void UpdateItemWeaponEffectRevoked(Build*, const Effect& effect, WeaponType wt, InventorySlotType ist) override;
         virtual void UpdateGearChanged(Build*, InventorySlotType slot) override;
+
+        // BreakdownObserver overrides
+        virtual void UpdateTotalChanged(BreakdownItem *, BreakdownType) override;
 
         void CreateBreakdowns();
         void CreateAbilityBreakdowns();

@@ -16,6 +16,7 @@ class BreakdownItemClassCasterLevel :
                 CBreakdownsPane* pPane,
                 const std::string& classType,
                 BreakdownType type,
+                EffectType effect,
                 MfcControls::CTreeListCtrl * treeList,
                 HTREEITEM hItem);
         virtual ~BreakdownItemClassCasterLevel();
@@ -30,4 +31,5 @@ class BreakdownItemClassCasterLevel :
         virtual void BuildLevelChanged(Build*) override;
 private:
         std::string m_class;
+        EffectType m_effectType;
 };

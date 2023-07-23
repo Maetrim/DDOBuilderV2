@@ -52,7 +52,7 @@ void BreakdownItemAbility::CreateOtherEffects()
         if (pLife != NULL
                 && pBuild != NULL)
         {
-            const AbilitySpend & as = pBuild->BuildPoints();
+            const AbilitySpend& as = pBuild->BuildPoints();
             // basic build point spend
             int amount = 8 + as.GetAbilitySpend(m_ability);
             if (amount != 0)
@@ -61,7 +61,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                 AddOtherEffect(base);
             }
             // racial
-            const Race & r = FindRace(pLife->Race());
+            const Race& r = FindRace(pLife->Race());
             amount = r.RacialModifier(m_ability);
             if (amount != 0)
             {
@@ -76,7 +76,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                 AddOtherEffect(tome);
             }
             // level ups
-            amount = pLife->LevelUpsAtLevel(m_ability, pBuild->Level());
+            amount = pLife->LevelUpsAtLevel(m_ability, pBuild->Level()-1);
             if (amount > 0)
             {
                 Effect levelUps(Effect_AbilityBonus, "Level Up", "Level Up", static_cast<double>(amount));

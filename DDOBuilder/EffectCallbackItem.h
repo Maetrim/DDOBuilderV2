@@ -20,6 +20,7 @@ class EffectCallbackItem
 
         virtual void AbilityTomeChanged(Life*, AbilityType) = 0;
         virtual void AbilityValueChanged(Build*, AbilityType) = 0;
+        virtual void AbilityTotalChanged(Build*, AbilityType) = 0;
         virtual void BuildLevelChanged(Build*) = 0;
         virtual void ClassChanged(Build *, const std::string& classFrom, const std::string& classTo, size_t level) = 0;
         virtual void FeatTrained(Build *, const std::string&) = 0;

@@ -25,10 +25,9 @@ class BreakdownItemMDB :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
     private:
-        // Character overrides
-        //virtual void UpdateGearChanged(Character * charData, InventorySlotType slot);
-        //virtual void UpdateFeatTrained(Character * charData, const std::string& featName);
-        //virtual void UpdateFeatRevoked(Character * charData, const std::string& featName);
+        // EffectCallbackItem
+        virtual void StanceActivated(Build* pBuild, const std::string& stanceName) override;
+        virtual void StanceDeactivated(Build* pBuild, const std::string& stanceName) override;
 
         bool m_bNoLimit;
 };

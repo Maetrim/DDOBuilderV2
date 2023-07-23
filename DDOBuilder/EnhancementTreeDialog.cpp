@@ -345,7 +345,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
         const EnhancementTreeItem & item,
         CDC * pDC)
 {
-    bool isCore = (item.InternalName().find("Core") != std::string::npos);
+    bool isCore = (item.YPosition() == 0);
 
     if (isCore)
     {

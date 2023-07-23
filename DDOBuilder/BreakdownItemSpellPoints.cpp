@@ -51,6 +51,22 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
         if (pLife != NULL
             && pBuild != NULL)
         {
+            // sp bonus due to fate points
+            BreakdownItem* pBD = FindBreakdown(Breakdown_FatePoints);
+            if (pBD != NULL)
+            {
+                pBD->AttachObserver(this); // need to know about changes
+                int fatePoints = static_cast<int>(pBD->Total());
+                if (fatePoints != 0)
+                {
+                    Effect fateBonus(
+                        Effect_FatePoint,
+                        "Fate Points bonus",
+                        "Fate Points bonus",
+                        fatePoints);
+                    AddOtherEffect(fateBonus);
+                }
+            }
             std::vector<size_t> classLevels = pBuild->ClassLevels(pBuild->Level()-1);
             for (size_t ci = 0; ci < classLevels.size(); ++ci)
             {
@@ -138,7 +154,7 @@ double BreakdownItemSpellPoints::Multiplier() const
     {
         size_t fvsLevels = pBuild->ClassLevels("Favored Soul", pBuild->Level()-1);
         size_t sorcLevels = pBuild->ClassLevels("Sorcerer", pBuild->Level()-1);
-        factor = 1.0 + (double)(fvsLevels + sorcLevels) / (double)pBuild->Level();
+        factor = 1.0 + (double)(fvsLevels + sorcLevels) / min((double)pBuild->Level(), MAX_CLASS_LEVEL);
     }
     return factor;
 }

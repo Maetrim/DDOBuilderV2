@@ -649,6 +649,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Cloth);
                 bAddNonConstructReq = true;
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bRealItem = true;
                 bDone = true;
             }
@@ -657,6 +661,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Light);
                 bAddNonConstructReq = true;
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bRealItem = true;
                 bDone = true;
             }
@@ -665,6 +673,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Medium);
                 bAddNonConstructReq = true;
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bRealItem = true;
                 bDone = true;
             }
@@ -673,6 +685,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Heavy);
                 bAddNonConstructReq = true;
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bRealItem = true;
                 bDone = true;
             }
@@ -688,6 +704,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
             {
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Cloth);
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bAddNonConstructReq = true;
                 bRealItem = true;
             }
@@ -703,6 +723,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
             {
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Light);
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bAddNonConstructReq = true;
                 bRealItem = true;
             }
@@ -716,6 +740,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
             {
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Medium);
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bAddNonConstructReq = true;
                 bRealItem = true;
             }
@@ -732,24 +760,19 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Heavy);
                 bAddNonConstructReq = true;
+                Requirement raceRequirement(Requirement_NotConstruct);
+                Requirements req;
+                req.AddRequirement(raceRequirement);
+                m_item.Set_RequirementsToUse(req);
                 bRealItem = true;
             }
             else if (armorType == "Docent")
             {
                 slot.SetValue_Armor(true);
                 m_item.Set_Armor(Armor_Docent);
-                RequiresOneOf roo;
-                const std::list<Race>& races = Races();
-                for (auto&& rit : races)
-                {
-                    if (rit.HasIsConstruct())
-                    {
-                        Requirement raceRequirement(Requirement_Race, rit.Name(), 1);
-                        roo.AddRequirement(raceRequirement);
-                    }
-                }
+                Requirement raceRequirement(Requirement_RaceConstruct);
                 Requirements req;
-                req.AddRequiresOneOf(roo);
+                req.AddRequirement(raceRequirement);
                 m_item.Set_RequirementsToUse(req);
                 bRealItem = true;
             }

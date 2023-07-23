@@ -30,7 +30,6 @@
     <FeatSlot>
       <Level>5</Level>
       <FeatType>Epic Destiny Feat</FeatType>
-      <FeatUpdateList>Toughness</FeatUpdateList>
     </FeatSlot>
     <FeatSlot>
       <Level>7</Level>
@@ -226,8 +225,8 @@ up to 10 times. One stack is removed every 3 seconds.</Description>
         <Type>MRR</Type>
         <Bonus>Destiny</Bonus>
         <AType>SliderValue</AType>
+        <StackSource>Deific Warding</StackSource>
         <Amount size="1">2</Amount>
-        <Item>Deific Warding</Item>
       </Effect>
     </Feat>
     <Feat>
@@ -1120,7 +1119,8 @@ ability score modifier to their base damage.</Description>
     </Feat>
     <Feat>
       <Name>Perfect Two Weapon Fighting</Name>
-      <Description>+5% Doublestrike.</Description>
+      <Description>Your offhand attacks now doublestrike at 65% of the rate of your main hand,
+versus the base 50%, up to a maximum of 65%.</Description>
       <Group>Epic Destiny Feat</Group>
       <Requirements>
         <Requirement>
@@ -1131,10 +1131,10 @@ ability score modifier to their base damage.</Description>
       <Acquire>Train</Acquire>
       <Icon>PerfectTwoWeaponFighting</Icon>
       <Effect>
-        <Type>Doublestrike</Type>
+        <Type>OffhandDoublestrike</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">5</Amount>
+        <Amount size="1">15</Amount>
       </Effect>
       <Effect>
         <Type>HitpointsStyleBonus</Type>
@@ -1283,21 +1283,21 @@ more than once per second.</Description>
         <Bonus>Feat</Bonus>
         <AType>SliderValue</AType>
         <Amount size="1">2</Amount>
-        <Item>AW: Magical</Item>
+        <StackSource>AW: Magical</StackSource>
       </Effect>
       <Effect>
         <Type>MeleePower</Type>
         <Bonus>Feat</Bonus>
         <AType>SliderValue</AType>
         <Amount size="1">1</Amount>
-        <Item>AW: Physical</Item>
+        <StackSource>AW: Physical</StackSource>
       </Effect>
       <Effect>
         <Type>RangedPower</Type>
         <Bonus>Feat</Bonus>
         <AType>SliderValue</AType>
         <Amount size="1">1</Amount>
-        <Item>AW: Physical</Item>
+        <StackSource>AW: Physical</StackSource>
       </Effect>
     </Feat>
     <Feat>
@@ -1780,20 +1780,20 @@ In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.
           <Type>Level</Type>
           <Value>21</Value>
         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Type>Race</Type>
-               <Item>Warforged</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Race</Type>
-               <Item>Bladeforged</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Feat</Type>
-               <Item>Improved Construct Essence</Item>
-            </Requirement>
-         </RequiresOneOf>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Race</Type>
+            <Item>Warforged</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Race</Type>
+            <Item>Bladeforged</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Improved Construct Essence</Item>
+          </Requirement>
+        </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ConstructExemplar</Icon>
@@ -1809,14 +1809,14 @@ In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
       </Effect>
-         <Effect>
-            <DisplayName>Machrotechnic: Sprockets + Construct Exemplar</DisplayName>
-            <Type>PRR</Type>
-            <Bonus>Destiny</Bonus>
-            <Item>Fortitude</Item>
-            <AType>Stacks</AType>
-            <Amount size="4">0 0 0 10</Amount>
-         </Effect>
+      <Effect>
+        <DisplayName>Machrotechnic: Sprockets + Construct Exemplar</DisplayName>
+        <Type>PRR</Type>
+        <Bonus>Destiny</Bonus>
+        <Item>Fortitude</Item>
+        <AType>Stacks</AType>
+        <Amount size="4">0 0 0 10</Amount>
+      </Effect>
     </Feat>
     <Feat>
       <Name>Embolden Spell</Name>
@@ -2000,11 +2000,10 @@ every epic level.</Description>
         <Amount size="1">6</Amount>
       </Effect>
       <Effect>
-        <Type>SpellPower</Type>
+        <Type>UniversalSpellPower</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">6</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>AdditionalSpellPointCost</Type>
@@ -2029,8 +2028,18 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Acquire>Automatic</Acquire>
       <Icon>EpicPower</Icon>
       <Effect>
+        <DisplayName>Epic Knowledge: Acolyte of the Skin</DisplayName>
+        <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Acolyte of the Skin</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
         <DisplayName>Epic Knowledge: Alchemist</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Alchemist</Item>
         <AType>Simple</AType>
@@ -2039,6 +2048,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Artificer</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Artificer</Item>
         <AType>Simple</AType>
@@ -2047,14 +2057,25 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Bard</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Bard</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
       </Effect>
       <Effect>
+        <DisplayName>Epic Knowledge: Blight Caster</DisplayName>
+        <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Blight Caster</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
         <DisplayName>Epic Knowledge: Stormsinger</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Stormsinger</Item>
         <AType>Simple</AType>
@@ -2063,6 +2084,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Cleric</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Cleric</Item>
         <AType>Simple</AType>
@@ -2071,14 +2093,25 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Dark Apostate</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Dark Apostate</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
       </Effect>
       <Effect>
+        <DisplayName>Epic Knowledge: Dark Hunter</DisplayName>
+        <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Dark Hunter</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
         <DisplayName>Epic Knowledge: Druid</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Druid</Item>
         <AType>Simple</AType>
@@ -2087,6 +2120,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Favored Soul</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Favored Soul</Item>
         <AType>Simple</AType>
@@ -2095,6 +2129,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Paladin</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Paladin</Item>
         <AType>Simple</AType>
@@ -2103,6 +2138,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Sacred Fist</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Sacred Fist</Item>
         <AType>Simple</AType>
@@ -2111,6 +2147,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Ranger</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Ranger</Item>
         <AType>Simple</AType>
@@ -2119,6 +2156,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Sorcerer</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Sorcerer</Item>
         <AType>Simple</AType>
@@ -2127,6 +2165,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Warlock</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Warlock</Item>
         <AType>Simple</AType>
@@ -2135,6 +2174,7 @@ For a total of +5 to all casting classes at level 30.</Description>
       <Effect>
         <DisplayName>Epic Knowledge: Wizard</DisplayName>
         <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
         <Item>Wizard</Item>
         <AType>Simple</AType>
@@ -3304,9 +3344,8 @@ This bonus stacks with Empower.</Description>
       <Acquire>Train</Acquire>
       <Icon>IntensifySpell</Icon>
       <Effect>
-        <Type>SpellPower</Type>
+        <Type>UniversalSpellPower</Type>
         <Bonus>Feat</Bonus>
-        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">75</Amount>
         <Requirements>
@@ -3684,20 +3723,20 @@ Passive: +140 Maximum Spell Points</Description>
         <Item>Elemental Obliteration</Item>
       </Effect>
     </Feat>
-     <Feat>
-        <Name>Master of Thorns</Name>
-        <Description>Your Thorn Strike, Splinter Bolt, and Thorn Bloom spells gain +10 to
+    <Feat>
+      <Name>Master of Thorns</Name>
+      <Description>Your Thorn Strike, Splinter Bolt, and Thorn Bloom spells gain +10 to
 their maximum caster level.
 Passive: +140 Maximum Spell Points</Description>
-        <Group>Epic Feat</Group>
-        <Requirements>
-           <Requirement>
-              <Type>Level</Type>
-              <Value>24</Value>
-           </Requirement>
-        </Requirements>
-        <Acquire>Train</Acquire>
-        <Icon>MasterOfThorns</Icon>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfThorns</Icon>
       <Effect>
         <Type>SpellPoints</Type>
         <Bonus>Feat</Bonus>
@@ -3713,8 +3752,8 @@ Passive: +140 Maximum Spell Points</Description>
         <Item>Splinter Bolt</Item>
         <Item>Thorn Bloom</Item>
       </Effect>
-     </Feat>
-     <Feat>
+    </Feat>
+    <Feat>
       <Name>Master of Water</Name>
       <Description>Your Cold Ray, Snowball Swarm and Niac's Biting Cold spells gain +10 to
 their maximum caster level.
@@ -3933,12 +3972,27 @@ Search for difficult traps.)</Description>
       <Acquire>Train</Acquire>
       <Icon>WatchfulEye</Icon>
       <Effect>
-        <DisplayName>Shiradi Champion: Pierce Deception</DisplayName>
+        <DisplayName>Shiradi Champion: Pierce Deception + Watchful Eye</DisplayName>
         <Type>Doubleshot</Type>
         <AType>Stacks</AType>
         <Bonus>Destiny</Bonus>
-        <Amount size="3">0 0 5</Amount>
+        <Amount size="2">0 5</Amount>
       </Effect>
+    </Feat>
+    <Feat>
+      <!--This is a fake feat required to get the stacking for Shiradi to work correctly-->
+      <Name>Watchful Eye </Name>
+      <Description>If you pass withing 5 feet of a trap, you make a Search check to notice
+it as if actively Searching. (You still need the Trapfinding feat to successfully
+Search for difficult traps.)</Description>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>27</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WatchfulEye</Icon>
     </Feat>
     <Feat>
       <Name>Wellspring of Power</Name>
@@ -3961,9 +4015,8 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
       <Acquire>Train</Acquire>
       <Icon>WellspringOfPower</Icon>
       <Effect>
-        <Type>SpellPower</Type>
+        <Type>UniversalSpellPower</Type>
         <Bonus>Feat</Bonus>
-        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">150</Amount>
         <Requirements>
@@ -3974,9 +4027,8 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
         </Requirements>
       </Effect>
       <Effect>
-        <Type>SpellCriticalDamage</Type>
+        <Type>UniversalSpellCriticalDamage</Type>
         <Bonus>Feat</Bonus>
-        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">20</Amount>
         <Requirements>
@@ -4821,6 +4873,7 @@ Weapon and Unarmed attacks heal you for 1d6 Positive damage, or 1d6 Negative dam
         <Amount size="1">30</Amount>
       </Effect>
       <Effect>
+        <Name>Scion of the Shadowfell (General)</Name>
         <Type>SpellCriticalDamage</Type>
         <Bonus>Feat</Bonus>
         <Item>Negative</Item>

@@ -10,13 +10,15 @@ BreakdownItemClassCasterLevel::BreakdownItemClassCasterLevel(
         CBreakdownsPane* pPane,
         const std::string& classType,
         BreakdownType type,
+        EffectType effectType,
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem) :
     BreakdownItem(type, treeList, hItem),
-    m_class(classType)
+    m_class(classType),
+    m_effectType(effectType)
 {
     // register ourselves for effects that affect us
-    pPane->RegisterBuildCallbackEffect(Effect_CasterLevel, this);
+    pPane->RegisterBuildCallbackEffect(effectType, this);
 }
 
 BreakdownItemClassCasterLevel::~BreakdownItemClassCasterLevel()
@@ -26,7 +28,15 @@ BreakdownItemClassCasterLevel::~BreakdownItemClassCasterLevel()
 // required overrides
 CString BreakdownItemClassCasterLevel::Title() const
 {
-    CString text = m_class.c_str();
+    CString text;
+    if (m_effectType == Effect_CasterLevel)
+    {
+        text.Format("%s Caster level", m_class.c_str());
+    }
+    else
+    {
+        text.Format("Max %s Caster level", m_class.c_str());
+    }
     return text;
 }
 

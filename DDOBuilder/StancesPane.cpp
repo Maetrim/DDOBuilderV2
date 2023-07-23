@@ -383,15 +383,12 @@ void CStancesPane::RevokeStance(const Stance & stance)
         }
         ++sgit;
     }
-    if (!found)
+    if (IsWindow(GetSafeHwnd()))
     {
-        if (IsWindow(GetSafeHwnd()))
-        {
-            // now force an on size event to position everything
-            CRect rctWnd;
-            GetClientRect(&rctWnd);
-            OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
-        }
+        // now force an on size event to position everything
+        CRect rctWnd;
+        GetClientRect(&rctWnd);
+        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
     }
 }
 

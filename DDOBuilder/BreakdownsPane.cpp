@@ -313,6 +313,8 @@ void CBreakdownsPane::CreateAbilityBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAbility);
         m_items.push_back(pAbility);
+        // we need to monitor changes of ability breakdowns
+        pAbility->AttachObserver(this);
     }
 }
 
@@ -1920,10 +1922,27 @@ void CBreakdownsPane::AddClassCasterLevels(HTREEITEM hParent)
                     this,
                     cit.Name(),
                     static_cast<BreakdownType>(Breakdown_CasterLevel_First + cit.Index()),
+                    Effect_CasterLevel,
                     &m_itemBreakdownTree,
                     hItem);
             m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pClassCasterLevel);
             m_items.push_back(pClassCasterLevel);
+            // also add the max caster level option as a child of the item just added
+            std::stringstream maxss;
+            maxss << "Max " << cit.Name() << " Caster Level";
+            HTREEITEM hMaxItem = m_itemBreakdownTree.InsertItem(
+                    maxss.str().c_str(),
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem* pMaxClassCasterLevel = new BreakdownItemClassCasterLevel(
+                    this,
+                    cit.Name(),
+                    static_cast<BreakdownType>(Breakdown_MaxCasterLevel_First + cit.Index()),
+                    Effect_MaxCasterLevel,
+                    &m_itemBreakdownTree,
+                    hMaxItem);
+            m_itemBreakdownTree.SetItemData(hMaxItem, (DWORD)(void*)pMaxClassCasterLevel);
+            m_items.push_back(pMaxClassCasterLevel);
         }
     }
 }
@@ -2660,7 +2679,32 @@ void CBreakdownsPane::UpdateGearChanged(
     }
 }
 
-// To avoid observer callback bloat on all effects, nly the breakdowns pane
+void CBreakdownsPane::UpdateTotalChanged(
+    BreakdownItem *,
+    BreakdownType bt)
+{
+    AbilityType at = Ability_Unknown;
+    switch (bt)
+    {
+        case Breakdown_Strength:        at = Ability_Strength; break;
+        case Breakdown_Intelligence:    at = Ability_Intelligence; break;
+        case Breakdown_Wisdom:          at = Ability_Wisdom; break;
+        case Breakdown_Dexterity:       at = Ability_Dexterity; break;
+        case Breakdown_Constitution:    at = Ability_Constitution; break;
+        case Breakdown_Charisma:        at = Ability_Charisma; break;
+    }
+    // need to notify all breakdowns
+    for (auto&& bcit: m_mapBuildCallbacks)
+    {
+        std::list<EffectCallbackItem*> callbacks = bcit.second;
+        for (auto&& cit : callbacks)
+        {
+            cit->AbilityTotalChanged(m_pCharacter->ActiveBuild(), at);
+        }
+    }
+}
+
+// To avoid observer callback bloat on all effects, only the breakdowns pane
 // observes for feat and enhancement effects. This pane maintains a map of
 // Effect_<type> to and array of <BreakdownItem*>. It can then use a quick
 // look up for the effect type and only apply the update action on the affected
@@ -2692,19 +2736,6 @@ void CBreakdownsPane::UpdateClassChanged(
         for (auto&& cit : callbacks)
         {
             cit->ClassChanged(pBuild, classFrom, classTo, level);
-        }
-    }
-}
-
-void CBreakdownsPane::UpdateAbilityValueChanged(Build* pBuild, AbilityType ability)
-{
-    // this needs to be passed through to all breakdowns
-    for (auto&& bcit: m_mapBuildCallbacks)
-    {
-        std::list<EffectCallbackItem*> callbacks = bcit.second;
-        for (auto&& cit : callbacks)
-        {
-            cit->AbilityValueChanged(pBuild, ability);
         }
     }
 }
@@ -2753,6 +2784,19 @@ void CBreakdownsPane::UpdateFeatEffectRevoked(
             {
                 cit->FeatEffectRevoked(pBuild, copy);
             }
+        }
+    }
+}
+
+void CBreakdownsPane::UpdateAbilityValueChanged(Build*, AbilityType ability)
+{
+    // need to notify all breakdowns
+    for (auto&& bcit: m_mapBuildCallbacks)
+    {
+        std::list<EffectCallbackItem*> callbacks = bcit.second;
+        for (auto&& cit : callbacks)
+        {
+            cit->AbilityValueChanged(m_pCharacter->ActiveBuild(), ability);
         }
     }
 }

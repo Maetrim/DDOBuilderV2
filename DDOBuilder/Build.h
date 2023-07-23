@@ -109,6 +109,8 @@ class Build :
         const std::string& Class(size_t index) const;
         std::vector<size_t> ClassLevels(size_t level) const;
         size_t ClassLevels(const std::string& ct, size_t level) const;
+        std::string ClassAtLevel(size_t level) const;
+        std::string BaseClassAtLevel(size_t level) const;
 
         // ability tome support
         void SetAbilityTome(AbilityType ability, size_t value);
@@ -223,6 +225,7 @@ class Build :
         void AutoTrainSingleSelectionFeats();
         void VerifyTrainedFeats();
         bool IsGrantedFeat(const std::string& featName) const;
+        size_t FeatTrainedCount(const std::string& featName) const;
 
         void UpdateSpells();
         std::list<TrainedSpell> TrainedSpells(const std::string& ct, size_t level) const;

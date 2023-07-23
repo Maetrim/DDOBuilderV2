@@ -128,6 +128,8 @@ enum BreakdownType
     Breakdown_SpellResistance,
     Breakdown_CasterLevel_First,    // Breakdown_CasterLevel_First + class index
     Breakdown_CasterLevel_Last = Breakdown_CasterLevel_First + 50,
+    Breakdown_MaxCasterLevel_First,
+    Breakdown_MaxCasterLevel_Last = Breakdown_MaxCasterLevel_First + 50,
     Breakdown_CasterLevel_Spell_Acid,
     Breakdown_CasterLevel_Spell_Cold,
     Breakdown_CasterLevel_Spell_Electric,

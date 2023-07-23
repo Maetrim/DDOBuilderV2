@@ -9,6 +9,7 @@
 
 //#include "Feat.h"
 #include "Bonus.h"
+#include "BreakdownItem.h"
 #include "Class.h"
 #include "GlobalSupportFunctions.h"
 //#include "Spell.h"
@@ -849,8 +850,8 @@ bool Effect::operator==(const Effect & other) const
             && (m_hasUpdateAutomaticEffects == other.m_hasUpdateAutomaticEffects)
             && (m_hasRare == other.m_hasRare)
             && (m_RequirementsToBeActive == other.m_RequirementsToBeActive)
-            && (m_hasRank == other.m_hasRank)
-            && (m_Rank == other.m_Rank)
+            //&& (m_hasRank == other.m_hasRank)
+            //&& (m_Rank == other.m_Rank)
             && (m_hasDamageDice == other.m_hasDamageDice)
             && (m_DamageDice == other.m_DamageDice)
             && (m_hasDamage == other.m_hasDamage)
@@ -884,7 +885,15 @@ void Effect::AddEffectStack()
 
 bool Effect::RevokeEffectStack()
 {
-    --m_stacks;
+    if (m_AType == Amount_SliderValue)
+    {
+    // have to clear all stack for this effect type
+        m_stacks = 0;
+    }
+    else
+    {
+        --m_stacks;
+    }
     return (m_stacks == 0);     // true if last stack gone
 }
 
@@ -919,6 +928,11 @@ std::string Effect::StacksAsString() const
         break;
     }
     return ss.str();
+}
+
+void Effect::SetEffectStacks(size_t count)
+{
+    m_stacks = count;
 }
 
 double Effect::TotalAmount(bool allowTruncate) const
@@ -1012,7 +1026,8 @@ double Effect::TotalAmount(bool allowTruncate) const
             // stack source is the ability mod value
             {
                 AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap);
-                total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
+                BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
+                total = pBreakdown->Total();
                 total = BaseStatToBonus(total);
                 break;
             }
@@ -1020,7 +1035,8 @@ double Effect::TotalAmount(bool allowTruncate) const
             // stack source is half the ability mod value
             {
                 AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap);
-                total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
+                BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
+                total = pBreakdown->Total();
                 total = (int)(BaseStatToBonus(total) / 2.0);
                 break;
             }
@@ -1028,13 +1044,14 @@ double Effect::TotalAmount(bool allowTruncate) const
             // stack source is third the ability mod value
             {
                 AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap);
-                total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
+                BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
+                total = pBreakdown->Total();
                 total = (int)(BaseStatToBonus(total) / 3.0);
                 break;
             }
         case Amount_FeatCount:
             {
-                size_t count = m_pBuild->GetSpecialFeatTrainedCount(StackSource());
+                size_t count = m_pBuild->FeatTrainedCount(StackSource());
                 if (count > m_Amount.size())
                 {
                     std::stringstream ss;
@@ -1083,6 +1100,46 @@ void Effect::SetPercentValue(double value) const
 double Effect::GetPercentValue() const
 {
     return m_percentValue;
+}
+
+bool Effect::UpdateAbilityEffects(AbilityType at)
+{
+    bool bUpdate = false;
+    if (m_AType == Amount_AbilityValue
+            || m_AType == Amount_AbilityMod
+            || m_AType == Amount_HalfAbilityMod
+            || m_AType == Amount_ThirdAbilityMod)
+    {
+        AbilityType eat = TextToEnumEntry(StackSource(), abilityTypeMap, false);
+        if (eat == at)
+        {
+            //BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(at));
+            //if (pBreakdown != NULL)
+            //{
+            //    double value = 0;
+            //    switch (m_AType)
+            //    {
+            //        case Amount_AbilityValue:
+            //            value = pBreakdown->Total();
+            //            break;
+            //        case Amount_AbilityMod:
+            //            value = pBreakdown->Total();
+            //            value = (int)(BaseStatToBonus(total));
+            //            break;
+            //        case Amount_HalfAbilityMod:
+            //            value = pBreakdown->Total();
+            //            value = (int)(BaseStatToBonus(total) / 2.0);
+            //            break;
+            //        case Amount_ThirdAbilityMod:
+            //            value = pBreakdown->Total();
+            //            value = (int)(BaseStatToBonus(total) / 3.0);
+            //            break;
+            //    }
+                bUpdate = true;
+            //}
+        }
+    }
+    return bUpdate;
 }
 
 bool Effect::UpdateTreeEffects(const std::string& treeName)
@@ -1143,4 +1200,10 @@ void Effect::AddValue(const std::string& str)
 {
     m_hasValue = true;
     m_Value = str;
+}
+
+void Effect::SetRequirements(const Requirements& req)
+{
+    m_RequirementsToBeActive = req;
+    m_hasRequirementsToBeActive = true;
 }

@@ -51,7 +51,6 @@ LRESULT CAutomaticFeatsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     {
         m_pCharacter = pCharacter;
         m_automaticFeats.SetCharacter(m_pCharacter);
-        SetAutofeats(0);        // default to level 1 automatic feats
 
         if (pCharacter != NULL)
         {
@@ -59,6 +58,7 @@ LRESULT CAutomaticFeatsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
             pCharacter->AttachObserver(this);
         }
     }
+    SetAutofeats(0);        // default to level 1 automatic feats
     return 0L;
 }
 

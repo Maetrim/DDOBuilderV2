@@ -8,6 +8,7 @@
 #include "Resource.h"
 #include "Class.h"
 #include "Race.h"
+#include "BreakdownItem.h"
 
 namespace
 {
@@ -65,6 +66,7 @@ CSkillSpendControl::CSkillSpendControl() :
     m_rctLevels(0, 0, 0, 0),
     m_rctTomeTitle(0, 0, 0, 0),
     m_rctTomes(0, 0, 0, 0),
+    m_rctTotal(0, 0, 0, 0),
     m_rctAutoBuy(0, 0, 0, 0),
     m_rctClearSkills(0, 0, 0, 0),
     m_maxSkillTome(MAX_SKILL_TOME)
@@ -150,13 +152,15 @@ CSize CSkillSpendControl::RequiredSize()
 
         // calculate the width of the control required
         m_skillColumnSize = screenDC.GetTextExtent("  30  ");
-        m_skillTotalSize = screenDC.GetTextExtent("  Total  ");
+        m_skillRanksSize = screenDC.GetTextExtent("  Ranks  ");
         m_skillTomeSize = screenDC.GetTextExtent("  Tome  ");
+        m_skillTotalSize = screenDC.GetTextExtent("  Total  ");
 
         // buffer around text
         m_skillColumnSize.cy += 2;
-        m_skillTotalSize.cy += 2;
+        m_skillRanksSize.cy += 2;
         m_skillTomeSize.cy += 2;
+        m_skillTotalSize.cy += 2;
 
         CSize maxSkillSize(0, m_skillColumnSize.cy);
         for (size_t i = Skill_Unknown + 1; i < Skill_Count; ++i)
@@ -168,8 +172,9 @@ CSize CSkillSpendControl::RequiredSize()
         m_skillNameSize = maxSkillSize;
         requiredSize.cx = m_skillNameSize.cx
                 + (m_skillColumnSize.cx * level)
-                + m_skillTotalSize.cx
+                + m_skillRanksSize.cx
                 + m_skillTomeSize.cx
+                + m_skillTotalSize.cx
                 + 2;        // right border
         requiredSize.cy = maxSkillSize.cy * 26;
         screenDC.RestoreDC(-1);
@@ -355,7 +360,7 @@ size_t CSkillSpendControl::DrawClassImages(CDC* pDC, size_t top)
     }
 
     // finally draw the tome icon
-    rctLevelItem += CPoint(m_skillTotalSize.cx, 0); // skip total column
+    rctLevelItem += CPoint(m_skillRanksSize.cx, 0); // skip Ranks column
     rctLevelItem.right = rctLevelItem.left + m_skillTomeSize.cx;
     if (m_selectedColumn == c_tomeColumn)
     {
@@ -411,16 +416,16 @@ size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
     m_rctLevels.left = m_skillNameSize.cx + 1;
     m_rctLevels.right = rctLevel.right;
 
-    // next comes the total column
-    rctLevel.right = rctLevel.left + m_skillTotalSize.cx;
+    // next comes the Ranks column
+    rctLevel.right = rctLevel.left + m_skillRanksSize.cx;
     pDC->Draw3dRect(
             rctLevel,
             ::GetSysColor(COLOR_BTNHIGHLIGHT),
             ::GetSysColor(COLOR_BTNSHADOW));
-    pDC->TextOut(rctLevel.left, rctLevel.top + 1, "  Total  ");
-    rctLevel += CPoint(m_skillTotalSize.cx, 0);
+    pDC->TextOut(rctLevel.left, rctLevel.top + 1, "  Ranks  ");
+    rctLevel += CPoint(m_skillRanksSize.cx, 0);
 
-    // last comes the Tome column
+    // then the Tome column
     rctLevel.right = rctLevel.left + m_skillTomeSize.cx;
     pDC->Draw3dRect(
             rctLevel,
@@ -436,7 +441,18 @@ size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
     pDC->TextOut(rctLevel.left, rctLevel.top + 1, "  Tome  ");
     pDC->SetTextColor(f_black);
     m_rctTomeTitle = rctLevel;
-    return (top + m_skillTomeSize.cy);
+    rctLevel += CPoint(m_skillTomeSize.cx, 0);
+
+    // last comes the Total column
+    rctLevel.right = rctLevel.left + m_skillTotalSize.cx;
+    pDC->Draw3dRect(
+        rctLevel,
+        ::GetSysColor(COLOR_BTNHIGHLIGHT),
+        ::GetSysColor(COLOR_BTNSHADOW));
+    pDC->TextOut(rctLevel.left, rctLevel.top + 1, "  Total  ");
+    pDC->SetTextColor(f_black);
+    m_rctTotal = rctLevel;
+    return (top + m_skillTotalSize.cy);
 }
 
 size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
@@ -477,15 +493,16 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
     Build* pBuild = m_pCharacter->ActiveBuild();
     size_t maxLevel = min(m_pCharacter->ActiveBuild()->Level(), MAX_CLASS_LEVEL);
 
-    // the background colour of a skil line alternates between
+    // the background colour of a skill line alternates between
     // white and gray for non-class skills
     bool bGrey = ((skill % 2) != 0);
     if (!bGrey) // default background colour is grey
     {
         rctSkillItem.right = rctSkillItem.left
                 + (m_skillColumnSize.cx * maxLevel)
-                + m_skillTotalSize.cx
-                + m_skillTomeSize.cx;
+                + m_skillRanksSize.cx
+                + m_skillTomeSize.cx
+                + m_skillTotalSize.cx;
         pDC->FillSolidRect(rctSkillItem, f_white);
     }
     // do we have a highlighted column?
@@ -518,7 +535,7 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
                 : Class_Unknown;
         const Class& c = FindClass(cn);
 
-        // get the number of skill pouints spent in all skills at this level
+        // get the number of skill points spent in all skills at this level
         const std::list<TrainedSkill> & ts = lt.TrainedSkills();
         std::vector<size_t> skillRanks(Skill_Count, 0);
         for (auto&& it: ts)
@@ -601,7 +618,7 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
             skill,
             maxLevel - 1,       // 0 based
             false);
-    rctSkillItem.right = rctSkillItem.left + m_skillTotalSize.cx;
+    rctSkillItem.right = rctSkillItem.left + m_skillRanksSize.cx;
     pDC->FillSolidRect(rctSkillItem, f_totalSkillColour);
     str = "";
     if (skillTotal >= 1)
@@ -641,7 +658,34 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
         m_rctTomes.right = rctSkillItem.right;
         m_rctTomes.bottom = rctSkillItem.bottom;
     }
+    rctSkillItem += CPoint(rctSkillItem.Width(), 0);
 
+    // show the skill buffed total
+    // show the total ranks at max heroic class level
+    BreakdownItem* pSkillBreakdown = FindBreakdown(SkillToBreakdown(skill));
+    skillTotal = 0;
+    if (pSkillBreakdown != NULL)
+    {
+        skillTotal = pSkillBreakdown->Total();
+    }
+    rctSkillItem.right = rctSkillItem.left + m_skillTotalSize.cx;
+    pDC->FillSolidRect(rctSkillItem, f_totalSkillColour);
+    double maxSkill = pBuild->MaxSkillForLevel(
+            skill,
+            m_pCharacter->ActiveBuild()->Level());
+    if (maxSkill != 0)
+    {
+        str.Format("%d", static_cast<int>(skillTotal));
+    }
+    else
+    {
+        str = "N/A";
+    }
+    strSize = pDC->GetTextExtent(str);
+    pDC->TextOut(
+        rctSkillItem.left + (rctSkillItem.Width() - strSize.cx) / 2,
+        rctSkillItem.top + 1,
+        str);
     return (top + m_skillNameSize.cy);
 }
 
@@ -691,10 +735,10 @@ void CSkillSpendControl::DrawSelection(CDC* pDC)
     {
         // show horizontal bars for this skill selection
         pDC->MoveTo(m_rctSkills.left, m_rctSkills.top + m_skillColumnSize.cy * m_selectedRow);
-        pDC->LineTo(m_rctTomes.right, m_rctSkills.top + m_skillColumnSize.cy * m_selectedRow);
+        pDC->LineTo(m_rctTotal.right, m_rctSkills.top + m_skillColumnSize.cy * m_selectedRow);
 
         pDC->MoveTo(m_rctSkills.left, m_rctSkills.top + m_skillColumnSize.cy * (m_selectedRow + 1) - 1);
-        pDC->LineTo(m_rctTomes.right, m_rctSkills.top + m_skillColumnSize.cy * (m_selectedRow + 1) - 1);
+        pDC->LineTo(m_rctTotal.right, m_rctSkills.top + m_skillColumnSize.cy * (m_selectedRow + 1) - 1);
     }
     if (m_selectedColumn != c_noSelection)
     {

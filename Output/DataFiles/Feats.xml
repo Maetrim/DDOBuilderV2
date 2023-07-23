@@ -527,6 +527,19 @@ attack repeatedly until your target is defeated, or activated once by right-clic
          <AType>Simple</AType>
          <Amount size="1">0.5</Amount>
       </Effect>
+        <Effect>
+            <DisplayName>No limit to Max Dex Bonus</DisplayName>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">999</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Cloth Armor</Item>
+            </Requirement>
+         </Requirements>
+        </Effect>
       <Stance>
          <Name>Reaper</Name>
          <Icon>ReaperTree</Icon>
@@ -1503,9 +1516,8 @@ casting spells affected by Empower Spell, but they consume 15 additional spell p
       <Acquire>Train</Acquire>
       <Icon>EmpowerSpell</Icon>
       <Effect>
-         <Type>SpellPower</Type>
+         <Type>UniversalSpellPower</Type>
          <Bonus>Feat</Bonus>
-         <Item>All</Item>
          <AType>Simple</AType>
          <Amount size="1">75</Amount>
          <Requirements>
@@ -3747,7 +3759,7 @@ Also reduces Ranged Damage by 20% while active.</Description>
          <Description>Your ranged attacks will now pass through friends and foes to damage
 all foes in your path, until they strike your intended target.
 Also reduces Ranged Damage by 20% while active.</Description>
-         <Group>Combat Stance</Group>
+         <Group>Ranged Stance</Group>
       </Stance>
       <Group>Standard</Group>
       <Group>Epic Feat</Group>
@@ -6315,9 +6327,8 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
       <Acquire>Train</Acquire>
       <Icon>MaximizeSpell</Icon>
       <Effect>
-         <Type>SpellPower</Type>
+         <Type>UniversalSpellPower</Type>
          <Bonus>Feat</Bonus>
-         <Item>All</Item>
          <AType>Simple</AType>
          <Amount size="1">150</Amount>
          <Requirements>
@@ -6991,14 +7002,14 @@ or 25 with Deepwood Stalker enhancement</Description>
          <Description>Archer's Focus lets you deal progressively more damage with ranged
 attacks while standing still. +5 Ranged Power per stack, Max stacks: 15
 or 25 with Deepwood Stalker enhancement</Description>
-         <Group>Combat Stance</Group>
+         <Group>Ranged Stance</Group>
       </Stance>
       <Effect>
          <Type>RangedPower</Type>
          <Bonus>Destiny</Bonus>
          <Amount size="1">5</Amount>
          <AType>SliderValue</AType>
-         <Item>Archer's Focus </Item>
+         <StackSource>Archer's Focus </StackSource>
       </Effect>
    </Feat>
    <Feat>
@@ -11745,64 +11756,64 @@ in the form of a free Feat.</Description>
       <AutomaticAcquisition>
          <RequiresOneOf>
             <Requirement>
-               <Type>Class</Type>
+               <Type>ClassAtLevel</Type>
                <Item>Barbarian</Item>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Druid</Item>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Ranger</Item>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>1</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>3</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>5</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>7</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>9</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>11</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>13</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>15</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>17</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>19</Value>
             </Requirement>
@@ -11818,23 +11829,23 @@ in the form of a free Feat.</Description>
       <AutomaticAcquisition>
          <RequiresOneOf>
             <Requirement>
-               <Type>Class</Type>
+               <Type>ClassAtLevel</Type>
                <Item>Alchemist</Item>
             </Requirement>
             <Requirement>
-               <Type>Class</Type>
+               <Type>ClassAtLevel</Type>
                <Item>Artificer</Item>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
             </Requirement>
             <Requirement>
-               <Type>Class</Type>
+               <Type>ClassAtLevel</Type>
                <Item>Sorcerer</Item>
             </Requirement>
             <Requirement>
-               <Type>Class</Type>
+               <Type>ClassAtLevel</Type>
                <Item>Wizard</Item>
             </Requirement>
          </RequiresOneOf>
@@ -11849,64 +11860,64 @@ in the form of a free Feat.</Description>
       <AutomaticAcquisition>
          <RequiresOneOf>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Cleric</Item>
             </Requirement>
             <Requirement>
-               <Type>Class</Type>
+               <Type>ClassAtLevel</Type>
                <Item>Favored Soul</Item>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Paladin</Item>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>1</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>3</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>5</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>7</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>9</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>11</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>13</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>15</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>17</Value>
             </Requirement>
             <Requirement>
-               <Type>BaseClass</Type>
+               <Type>BaseClassAtLevel</Type>
                <Item>Bard</Item>
                <Value>19</Value>
             </Requirement>

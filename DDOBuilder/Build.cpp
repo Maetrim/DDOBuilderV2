@@ -350,6 +350,7 @@ void Build::SetRace(const std::string& race)
     ss << "Race changed from \"" << m_pLife->Race() << "\" to \"" << race << "\"";
     GetLog().AddLogEntry(ss.str().c_str());
     m_pLife->SetRace(race);
+    VerifyGear();
 }
 
 AlignmentType Build::Alignment() const
@@ -895,6 +896,38 @@ size_t Build::ClassLevels(
     return classLevels;
 }
 
+std::string Build::ClassAtLevel(size_t level) const
+{
+    std::string c = Class_Unknown;
+    if (level < m_Levels.size())
+    {
+        std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
+        std::advance(clit, level);
+        c = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
+    }
+    return c;
+}
+
+std::string Build::BaseClassAtLevel(size_t level) const
+{
+    std::string c = Class_Unknown;
+    if (level < m_Levels.size())
+    {
+        std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
+        std::advance(clit, level);
+        if ((*clit).HasClass())
+        {
+            c = (*clit).Class();
+            const ::Class& cl = FindClass(c);
+            if (cl.HasBaseClass())
+            {
+                c = cl.BaseClass();
+            }
+        }
+    }
+    return c;
+}
+
 int Build::LevelUpsAtLevel(AbilityType ability, size_t level) const
 {
     return m_pLife->LevelUpsAtLevel(ability, level);
@@ -954,6 +987,15 @@ bool Build::IsGrantedFeat(const std::string& featName) const
         isGranted = pGrantedFeatsPane->IsGrantedFeat(featName);
     }
     return isGranted;
+}
+
+size_t Build::FeatTrainedCount(const std::string& featName) const
+{
+    std::list<TrainedFeat> currentFeats = CurrentFeats(Level());
+    size_t count = TrainedCount(
+            currentFeats,
+            featName);
+    return count;
 }
 
 TrainedFeat Build::GetTrainedFeat(
@@ -3612,18 +3654,6 @@ void Build::RevokeGearEffects()
             Item item = gear.ItemInSlot(ist);
             RevokeItem(item, ist);
         }
-        else if (ist == Inventory_Armor)
-        {
-            // need to remove the no armor effects
-            //Item noArmor = FindItem("No Armor Effects");
-            //const std::vector<Effect> & effects = noArmor.Effects();
-            //std::vector<Effect>::const_iterator it = effects.begin();
-            //while (it != effects.end())
-            //{
-            //    NotifyItemEffectRevoked(noArmor.Name(), (*it));
-            //    ++it;
-            //}
-        }
     }
     // revoke this gears sentient weapon Filigrees
     for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
@@ -3691,41 +3721,14 @@ void Build::RevokeFiligree(
 void Build::ApplyGearEffects()
 {
     EquippedGear gear = ActiveGearSet();
-    //const Item& noArmor = FindItem("No Armor Effects");
     // iterate the items
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
         InventorySlotType ist = (InventorySlotType)i;
         if (gear.HasItemInSlot(ist))
         {
-            //if (ist == Inventory_Armor)
-            //{
-            //    // need to remove the no armor effects
-            //    const std::vector<Effect> & effects = noArmor.Effects();
-            //    std::vector<Effect>::const_iterator it = effects.begin();
-            //    while (it != effects.end())
-            //    {
-            //        NotifyItemEffectRevoked(noArmor.Name(), (*it));
-            //        ++it;
-            //    }
-            //}
             Item item = gear.ItemInSlot(ist);
             ApplyItem(item, ist);
-        }
-        else
-        {
-            // if the armor slot is empty, notify some default effects equivalent to no armor
-            //if (ist == Inventory_Armor)
-            //{
-            //    // apply the items effects
-            //    const std::vector<Effect> & effects = noArmor.Effects();
-            //    std::vector<Effect>::const_iterator it = effects.begin();
-            //    while (it != effects.end())
-            //    {
-            //        NotifyItemEffect(noArmor.Name(), (*it));
-            //        ++it;
-            //    }
-            //}
         }
     }
     // apply this gears weapon and artifact Filigrees
@@ -4461,10 +4464,166 @@ void Build::RevokeWeaponEffects(const Item& item)
 
 void Build::ApplyArmorEffects(const Item& item)
 {
-    UNREFERENCED_PARAMETER(item);
+    if (item.HasMithralBody())
+    {
+        if (item.HasArmorBonus())
+        {
+            Effect effect(
+                Effect_ACBonus,
+                "Armor Bonus (Composite Plating)",
+                "Armor",
+                item.ArmorBonus());
+            Requirements req;
+            Requirement featRequirement(Requirement_Feat, "Composite Plating");
+            req.AddRequirement(featRequirement);
+            effect.SetRequirements(req);
+            NotifyItemEffect(item.Name(), effect);
+        }
+        Effect effect(
+            Effect_ACBonus,
+            "Armor Bonus (Mithral Body)",
+            "Armor",
+            item.MithralBody());
+        Requirements req;
+        Requirement featRequirement(Requirement_Feat, "Mithral Body");
+        req.AddRequirement(featRequirement);
+        effect.SetRequirements(req);
+        NotifyItemEffect(item.Name(), effect);
+    }
+    else
+    {
+        // non-war/bladeforged item
+        if (item.HasArmorBonus())
+        {
+            Effect effect(
+                Effect_ACBonus,
+                "Armor Bonus",
+                "Armor",
+                item.ArmorBonus());
+            NotifyItemEffect(item.Name(), effect);
+        }
+    }
+    if (item.HasAdamantineBody())
+    {
+        Effect effect(
+            Effect_ACBonus,
+            "Armor Bonus (Adamantine Body)",
+            "Armor",
+            item.AdamantineBody());
+        Requirements req;
+        Requirement featRequirement(Requirement_Feat, "Adamantine Body");
+        req.AddRequirement(featRequirement);
+        effect.SetRequirements(req);
+        NotifyItemEffect(item.Name(), effect);
+    }
+    if (item.HasMaximumDexterityBonus())
+    {
+        Effect effect(
+            Effect_MaxDexBonus,
+            "Armor Max Dex Bonus",
+            "Armor",
+            item.MaximumDexterityBonus());
+        NotifyItemEffect(item.Name(), effect);
+    }
+    if (item.HasArmorCheckPenalty())
+    {
+        Effect effect(
+            Effect_ArmorCheckPenalty,
+            "Armor Check Penalty",
+            "Armor",
+            item.ArmorCheckPenalty());
+        NotifyItemEffect(item.Name(), effect);
+    }
+    if (item.HasArcaneSpellFailure())
+    {
+        Effect effect(
+            Effect_ArcaneSpellFailure,
+            "Armor Arcane Spell Failure",
+            "Armor",
+            item.ArcaneSpellFailure());
+        NotifyItemEffect(item.Name(), effect);
+    }
 }
 
 void Build::RevokeArmorEffects(const Item& item)
 {
-    UNREFERENCED_PARAMETER(item);
+    if (item.HasMithralBody())
+    {
+        if (item.HasArmorBonus())
+        {
+            Effect effect(
+                Effect_ACBonus,
+                "Armor Bonus (Composite Plating)",
+                "Armor",
+                item.ArmorBonus());
+            Requirements req;
+            Requirement featRequirement(Requirement_Feat, "Composite Plating");
+            req.AddRequirement(featRequirement);
+            effect.SetRequirements(req);
+            NotifyItemEffectRevoked(item.Name(), effect);
+        }
+        Effect effect(
+            Effect_ACBonus,
+            "Armor Bonus (Mithral Body)",
+            "Armor",
+            item.MithralBody());
+        Requirements req;
+        Requirement featRequirement(Requirement_Feat, "Mithral Body");
+        req.AddRequirement(featRequirement);
+        effect.SetRequirements(req);
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
+    else
+    {
+        // non-war/bladeforged item
+        if (item.HasArmorBonus())
+        {
+            Effect effect(
+                Effect_ACBonus,
+                "Armor Bonus",
+                "Armor",
+                item.ArmorBonus());
+            NotifyItemEffectRevoked(item.Name(), effect);
+        }
+    }
+    if (item.HasAdamantineBody())
+    {
+        Effect effect(
+            Effect_ACBonus,
+            "Armor Bonus (Adamantine Body)",
+            "Armor",
+            item.AdamantineBody());
+        Requirements req;
+        Requirement featRequirement(Requirement_Feat, "Adamantine Body");
+        req.AddRequirement(featRequirement);
+        effect.SetRequirements(req);
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
+    if (item.HasMaximumDexterityBonus())
+    {
+        Effect effect(
+            Effect_MaxDexBonus,
+            "Armor Max Dex Bonus",
+            "Armor",
+            item.MaximumDexterityBonus());
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
+    if (item.HasArmorCheckPenalty())
+    {
+        Effect effect(
+            Effect_ArmorCheckPenalty,
+            "Armor Check Penalty",
+            "Armor",
+            item.ArmorCheckPenalty());
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
+    if (item.HasArcaneSpellFailure())
+    {
+        Effect effect(
+            Effect_ArcaneSpellFailure,
+            "Armor Arcane Spell Failure",
+            "Armor",
+            item.ArcaneSpellFailure());
+        NotifyItemEffectRevoked(item.Name(), effect);
+    }
 }

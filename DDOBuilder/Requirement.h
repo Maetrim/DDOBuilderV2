@@ -18,6 +18,7 @@ class Requirement :
 {
     public:
         Requirement(void);
+        Requirement(RequirementType type);
         Requirement(RequirementType type, const std::string& item);
         Requirement(RequirementType type, const std::string& item, size_t value);
         Requirement(RequirementType type, const std::string& item1, const std::string& item2);
@@ -73,7 +74,9 @@ class Requirement :
         bool EvaluateWeaponGroupMember(const Build& build, WeaponType wt) const;
         bool EvaluateItemInSlot(const Build& build) const;
         bool EvaluateLevel(const Build& build, size_t level, bool includeTomes) const;
+        bool EvaluateNotConstruct(const Build& build) const;
         bool EvaluateRace(const Build& build, size_t level, bool includeTomes) const;
+        bool EvaluateRaceConstruct(const Build& build) const;
         bool EvaluateSkill(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateSpecificLevel(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateStance(const Build& build, size_t level, bool includeTomes) const;

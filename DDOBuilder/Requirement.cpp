@@ -32,6 +32,15 @@ Requirement::Requirement() :
 }
 
 Requirement::Requirement(
+    RequirementType type) :
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+{
+    DL_INIT(Requirement_PROPERTIES)
+    m_Type = type;
+    m_hasType = true;
+}
+
+Requirement::Requirement(
         RequirementType type,
         const std::string& item) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
@@ -208,7 +217,7 @@ bool Requirement::VerifyObject(
             break;
         case Requirement_GroupMember:
         case Requirement_GroupMember2:
-            if (m_Item.size() != 1)
+            if (m_Item.size() != 1 && m_Item.size() != 2)
             {
                 (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " missing group field\n";
                 ok = false;
@@ -260,6 +269,14 @@ bool Requirement::VerifyObject(
                         (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad Race item field\n";
                     }
                 }
+            }
+            break;
+        case Requirement_NotConstruct:
+        case Requirement_RaceConstruct:
+            if (m_Item.size() != 0)
+            {
+                (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " has erroneous item field\n";
+                ok = false;
             }
             break;
         case Requirement_Skill:
@@ -401,7 +418,9 @@ bool Requirement::Met(
     case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, wtOffHand); break;
     case Requirement_ItemTypeInSlot:    met = EvaluateItemInSlot(build); break;
     case Requirement_Level:             met = EvaluateLevel(build, level, includeTomes); break;
+    case Requirement_NotConstruct:      met = EvaluateNotConstruct(build); break;
     case Requirement_Race:              met = EvaluateRace(build, level, includeTomes); break;
+    case Requirement_RaceConstruct:     met = EvaluateRaceConstruct(build); break;
     case Requirement_Skill:             met = EvaluateSkill(build, level, includeTomes); break;
     case Requirement_SpecificLevel:     met = EvaluateSpecificLevel(build, level, includeTomes); break;
     case Requirement_Stance:            met = EvaluateStance(build, level, includeTomes); break;
@@ -439,7 +458,9 @@ bool Requirement::CanTrainEnhancement(
     case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, Weapon_Unknown); break;
     case Requirement_ItemTypeInSlot:    met = false; break;
     case Requirement_Level:             met = EvaluateLevel(build, level, includeTomes); break;
+    case Requirement_NotConstruct:      met = EvaluateNotConstruct(build); break;
     case Requirement_Race:              met = EvaluateRace(build, level, includeTomes); break;
+    case Requirement_RaceConstruct:     met = EvaluateRaceConstruct(build); break;
     case Requirement_Skill:             met = EvaluateSkill(build, level, includeTomes); break;
     case Requirement_SpecificLevel:     met = EvaluateSpecificLevel(build, level, includeTomes); break;
     case Requirement_Stance:            met = EvaluateStance(build, level, includeTomes); break;
@@ -476,7 +497,9 @@ bool Requirement::MetHardRequirements(
     //case Requirement_GroupMember2:  met = false; break;
     //case Requirement_ItemTypeInSlot:met = false; break;
     case Requirement_Level:         met = EvaluateLevel(build, level, includeTomes); break;
+    case Requirement_NotConstruct:  met = EvaluateNotConstruct(build); break;
     case Requirement_Race:          met = EvaluateRace(build, level, includeTomes); break;
+    case Requirement_RaceConstruct: met = EvaluateRaceConstruct(build); break;
     //case Requirement_Skill:         met = EvaluateSkill(build, level, includeTomes); break;
     case Requirement_SpecificLevel: met = EvaluateSpecificLevel(build, level, includeTomes); break;
     //case Requirement_Stance:        met = EvaluateStance(build, level, includeTomes); break;
@@ -600,9 +623,18 @@ bool Requirement::EvaluateBaseClassAtLevel(
     bool includeTomes) const
 {
     UNREFERENCED_PARAMETER(includeTomes);
+    bool met = false;
     std::string c = m_Item.front();
-    size_t classLevel = build.BaseClassLevels(c, level);
-    bool met = (classLevel == Value());
+    if (HasValue())
+    {
+        size_t classLevel = build.BaseClassLevels(c, level);
+        met = (classLevel == Value());
+    }
+    else
+    {
+        // must have this class at the level in question
+        met = (c == build.BaseClassAtLevel(level));
+    }
     return met;
 }
 
@@ -638,9 +670,18 @@ bool Requirement::EvaluateClassAtLevel(
     bool includeTomes) const
 {
     UNREFERENCED_PARAMETER(includeTomes);
+    bool met = false;
     std::string c = m_Item.front();
-    size_t classLevel = build.ClassLevels(c, level);
-    bool met = (classLevel == Value());
+    if (HasValue())
+    {
+        size_t classLevel = build.ClassLevels(c, level);
+        met = (classLevel == Value());
+    }
+    else
+    {
+        // must have this class at the level in question
+        met = (c == build.ClassAtLevel(level));
+    }
     return met;
 }
 
@@ -782,6 +823,15 @@ bool Requirement::EvaluateLevel(
     return met;
 }
 
+bool Requirement::EvaluateNotConstruct(
+    const Build& build) const
+{
+    std::string raceName = build.Race();
+    const Race& race = FindRace(raceName);
+    bool met = !race.HasIsConstruct();
+    return met;
+}
+
 bool Requirement::EvaluateRace(
     const Build& build,
     size_t level,  // this is 0 based
@@ -797,6 +847,15 @@ bool Requirement::EvaluateRace(
         met = ((*it) == race);
         ++it;
     }
+    return met;
+}
+
+bool Requirement::EvaluateRaceConstruct(
+    const Build& build) const
+{
+    std::string raceName = build.Race();
+    const Race& race = FindRace(raceName);
+    bool met = race.HasIsConstruct();
     return met;
 }
 

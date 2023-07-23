@@ -179,6 +179,18 @@ int Life::LevelUpsAtLevel(AbilityType ability, size_t level) const
     {
         ++levelUps;
     }
+    if (Level32() == ability && level >= 31)
+    {
+        ++levelUps;
+    }
+    if (Level36() == ability && level >= 35)
+    {
+        ++levelUps;
+    }
+    if (Level40() == ability && level >= 39)
+    {
+        ++levelUps;
+    }
     return levelUps;
 }
 

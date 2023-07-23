@@ -76,6 +76,7 @@ public:
     virtual void SaveCustomState();
 
     afx_msg void OnAppAbout();
+    afx_msg void OnFileNew();
     afx_msg void OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI);
     DECLARE_MESSAGE_MAP()
 private:

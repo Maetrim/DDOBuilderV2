@@ -59,8 +59,9 @@ private:
     Character * m_pCharacter;
     CSize m_skillNameSize;
     CSize m_skillColumnSize;
-    CSize m_skillTotalSize;
+    CSize m_skillRanksSize;
     CSize m_skillTomeSize;
+    CSize m_skillTotalSize;
     int m_selectedRow;
     int m_selectedColumn;
     int m_highlightedColumn;
@@ -73,6 +74,7 @@ private:
     CRect m_rctLevels;
     CRect m_rctTomeTitle;
     CRect m_rctTomes;
+    CRect m_rctTotal;
     CRect m_rctAutoBuy;
     CRect m_rctClearSkills;
     size_t m_maxSkillTome;

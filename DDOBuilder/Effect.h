@@ -473,10 +473,12 @@ class Effect :
         void AddEffectStack();
         bool RevokeEffectStack();
         std::string StacksAsString() const;
+        void SetEffectStacks(size_t count);
 
         void SetPercentValue(double value) const;
         double GetPercentValue() const;
 
+        bool UpdateAbilityEffects(AbilityType at);
         bool UpdateTreeEffects(const std::string& treeName);
         bool UpdateSliderEffects(const std::string& sliderName, int newValue);
 
@@ -486,6 +488,8 @@ class Effect :
         void SetItem(const std::list<std::string>& items);
         void AddItem(const std::string& item);
         void AddValue(const std::string& str);
+
+        void SetRequirements(const Requirements& req);
 
         bool operator==(const Effect & other) const;
 

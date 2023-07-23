@@ -63,39 +63,18 @@ bool BreakdownItemMDB::AffectsUs(const Effect &) const
     return true;
 }
 
-//void BreakdownItemMDB::UpdateGearChanged(
-//        Character * charData,
-//        InventorySlotType slot)
-//{
-//    // update if equipped armor changes
-//    if (slot == Inventory_Armor)
-//    {
-//        CreateOtherEffects();
-//        Populate();
-//    }
-//}
-//
-//void BreakdownItemMDB::UpdateFeatTrained(
-//        Character * charData,
-//        const std::string& featName)
-//{
-//    // Warforged Adamantine body can effect MDB
-//    if (featName == "Adamantine Body")
-//    {
-//        CreateOtherEffects();
-//        Populate();
-//    }
-//}
-//
-//void BreakdownItemMDB::UpdateFeatRevoked(
-//        Character * charData,
-//        const std::string& featName)
-//{
-//    // Warforged Adamantine body can effect MDB
-//    if (featName == "Adamantine Body")
-//    {
-//        CreateOtherEffects();
-//        Populate();
-//    }
-//}
-//
+void BreakdownItemMDB::StanceActivated(
+    Build* pBuild,
+    const std::string& stanceName)
+{
+    CreateOtherEffects();
+    BreakdownItem::StanceActivated(pBuild, stanceName);
+}
+
+void BreakdownItemMDB::StanceDeactivated(
+    Build* pBuild,
+    const std::string& stanceName)
+{
+    CreateOtherEffects();
+    BreakdownItem::StanceDeactivated(pBuild, stanceName);
+}

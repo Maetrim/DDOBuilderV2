@@ -290,6 +290,10 @@ void CBuildsPane::OnButtonNewLife()
     // new life, 1st build starts selected
     SelectTreeItem(TEI_Build, lifeIndex, 0);
     GetLog().AddLogEntry("New life added");
+    if (lifeIndex == 0)
+    {
+        m_pCharacter->SetModifiedFlag(FALSE);
+    }
 }
 
 void CBuildsPane::OnButtonDeleteLife()

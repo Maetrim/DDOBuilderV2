@@ -759,23 +759,12 @@ bool EquippedGear::ProcessLine(CString line)
 
         // the remaining text is the item name up to the first '{' character
         CString itemName(line);
-        itemName.Replace("(level ", "(Level ");
         int pos = line.Find('{', 0);
         if (pos >= 0)
         {
             itemName = line.Left(pos);
         }
         Item i = FindItem((LPCSTR)itemName);
-        if (i.Name() != (LPCSTR)itemName)
-        {
-            // could be a possible level field in the name " (Level xx)"
-            pos = itemName.Find(" (Level");
-            if (pos >= 0)
-            {
-                itemName = itemName.Left(pos); // strip " (Level xx)"
-                i = FindItem((LPCSTR)itemName);
-            }
-        }
         if (i.Name() == (LPCSTR)itemName)
         {
             CString text;
@@ -822,10 +811,19 @@ void EquippedGear::ApplyItemAugment(Item* pItem, CString augmentText)
     std::vector<CString> augmentComponents;
     augmentComponents.reserve(10);
     int pis = 0;    // position in string
+    int start = pis;
     while (pis >= 0)
     {
-        int start = pis;
-        pis = augmentText.Find(' ', pis);
+        int space = augmentText.Find(' ', pis);
+        int bracket = augmentText.Find('}', pis);
+        if (space != -1 && space < bracket)
+        {
+            pis = space;
+        }
+        else
+        {
+            pis = bracket;
+        }
         if (pis >= 0)
         {
             CString element = augmentText.Mid(start, pis - start);
@@ -833,9 +831,11 @@ void EquippedGear::ApplyItemAugment(Item* pItem, CString augmentText)
             augmentComponents.push_back(element);
             ++pis;      // skip the ' ' we found last
         }
+        start = pis;
     }
     // now we have the elements, search all augment slots in order on this item
     // to see if we can assign the selection to it, if it does not already have one
+    int levelIndex = 0;
     bool bPlaced = false;
     std::vector<ItemAugment> augments = pItem->Augments();
     for (size_t i = 0; !bPlaced && i < augments.size(); ++i)
@@ -862,12 +862,42 @@ void EquippedGear::ApplyItemAugment(Item* pItem, CString augmentText)
                 for (size_t j = 0; bPlaced && j < augmentComponents.size(); ++j)
                 {
                     // all text augments component items must be found in the description text
-                    bPlaced = (description.Find(augmentComponents[j]) >= 0);
+                    int value = atoi(augmentComponents[j]);
+                    if ((*it).HasChooseLevel()
+                        && value != 0)
+                    {
+                        // need to match by value here
+                        std::vector<double> values = (*it).LevelValue();
+                        for (auto&& vit : values)
+                        {
+                            if (vit == value)
+                            {
+                                bPlaced = true;
+                            }
+                            else
+                            {
+                                ++levelIndex;
+                            }
+                        }
+                        if (levelIndex == static_cast<int>(values.size()))
+                        {
+                            bPlaced = false;
+                        }
+                    }
+                    else
+                    {
+                        // match by text
+                        bPlaced = (description.Find(augmentComponents[j]) >= 0);
+                    }
                 }
                 if (bPlaced)
                 {
                     // this augment goes in this slot. Place it
                     augments[i].Set_SelectedAugment((*it).Name());
+                    if ((*it).HasChooseLevel())
+                    {
+                        augments[i].Set_SelectedLevelIndex(levelIndex);
+                    }
                 }
                 ++it;
             }
@@ -875,13 +905,14 @@ void EquippedGear::ApplyItemAugment(Item* pItem, CString augmentText)
     }
     pItem->Set_Augments(augments);
     CString text;
+    augmentText.Replace("}", "");
     if (bPlaced)
     {
-        text.Format("   Recognised augment \"%s\"", (LPCTSTR)augmentText);
+        text.Format("      Recognised augment \"%s\"", (LPCTSTR)augmentText);
     }
     else
     {
-        text.Format("   Augment not recognised \"%s\"", (LPCTSTR)augmentText);
+        text.Format("      Augment not recognised \"%s\"", (LPCTSTR)augmentText);
     }
     GetLog().AddLogEntry(text);
 }

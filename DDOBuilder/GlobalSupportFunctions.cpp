@@ -1399,6 +1399,12 @@ std::list<Augment> CompatibleAugments(const std::string& name, size_t maxLevel)
             {
                 compatibleAugments.push_back((*it));
             }
+            if ((*it).HasChooseLevel()
+                && (*it).HasLevelValue())
+            {
+                // cannith selection item
+                compatibleAugments.push_back((*it));
+            }
             // or it must have a selectable level <= max level
             if ((*it).HasChooseLevel()
                 && (*it).HasLevels())

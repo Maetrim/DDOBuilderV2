@@ -446,16 +446,11 @@ Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 2
                <Item>Favored Soul</Item>
                <Value>1</Value>
             </Requirement>
-            <RequiresNoneOf>
-               <Requirement>
-                  <Type>Enhancement</Type>
-                  <Item>HarperKnowTheAngles</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>Enhancement</Type>
-                  <Item>BoHMightsReward</Item>
-               </Requirement>
-            </RequiresNoneOf>
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>WSDivineMight</Item>
+               <Item>Battle Trance</Item>
+            </Requirement>
          </Requirements>
          <Selector>
             <EnhancementSelection>
@@ -467,23 +462,12 @@ Cooldown: 20 seconds</Description>
                <Icon>WPDivineMight</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>WPDivineMight</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>KotCDivineMight</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Divine Might</Name>
                   <Icon>WPDivineMight</Icon>
                   <Description>You gain an Insight bonus to Strength equal to your Charisma Modifier for
 [30/60/120] seconds.</Description>
+                  <Group>Battle Trance</Group>
                </Stance>
                <Effect>
                   <DisplayName>War Soul: Divine Might (Cha Mod / 2)</DisplayName>
@@ -515,6 +499,7 @@ Cooldown: 20 seconds</Description>
                   <Icon>WPDivineMight</Icon>
                   <Description>You gain an Insight bonus to melee damage and the DC of tactical
 feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.</Description>
+                  <Group>Battle Trance</Group>
                </Stance>
                <Effect>
                   <DisplayName>War Soul: Divine Presence (Cha Mod / 2)</DisplayName>
@@ -566,6 +551,7 @@ Cooldown: 20 seconds</Description>
                   <Icon>WPDivineMight</Icon>
                   <Description>You gain an Insight bonus to melee damage and the DC of tactical
 feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.</Description>
+                  <Group>Battle Trance</Group>
                </Stance>
                <Effect>
                   <DisplayName>War Soul: Divine Will (Wis Mod / 2)</DisplayName>
@@ -584,7 +570,7 @@ feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.</Description
                   </Requirements>
                </Effect>
                <Effect>
-                  <DisplayName>War Soul: Divine Will (Cha Mod / 2)</DisplayName>
+                  <DisplayName>War Soul: Divine Will (Wis Mod / 2)</DisplayName>
                   <Type>TacticalDC</Type>
                   <Bonus>Insightful</Bonus>
                   <AType>HalfAbilityMod</AType>
@@ -604,6 +590,13 @@ feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.</Description
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>WSDivineMight</Item>
+            <Item>Battle Trance</Item>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Soul: Toughness</Name>

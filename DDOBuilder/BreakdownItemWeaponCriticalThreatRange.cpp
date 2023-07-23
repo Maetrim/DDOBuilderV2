@@ -87,8 +87,8 @@ void BreakdownItemWeaponCriticalThreatRange::FeatEffectRevoked(
         const Effect & effect)
 {
     // pass through to the base class
-    BreakdownItem::FeatEffectRevoked(pBuild, effect);
     HandleRevokeSpecialEffects(effect);
+    BreakdownItem::FeatEffectRevoked(pBuild, effect);
 }
 
 void BreakdownItemWeaponCriticalThreatRange::ItemEffectApplied(
@@ -96,8 +96,8 @@ void BreakdownItemWeaponCriticalThreatRange::ItemEffectApplied(
         const Effect & effect)
 {
     // pass through to the base class
-    BreakdownItem::ItemEffectApplied(pBuild, effect);
     HandleAddSpecialEffects(effect);
+    BreakdownItem::ItemEffectApplied(pBuild, effect);
 }
 
 void BreakdownItemWeaponCriticalThreatRange::ItemEffectRevoked(
@@ -105,8 +105,8 @@ void BreakdownItemWeaponCriticalThreatRange::ItemEffectRevoked(
         const Effect & effect)
 {
     // pass through to the base class
-    BreakdownItem::ItemEffectRevoked(pBuild, effect);
     HandleRevokeSpecialEffects(effect);
+    BreakdownItem::ItemEffectRevoked(pBuild, effect);
 }
 
 void BreakdownItemWeaponCriticalThreatRange::EnhancementEffectApplied(
@@ -114,8 +114,8 @@ void BreakdownItemWeaponCriticalThreatRange::EnhancementEffectApplied(
         const Effect & effect)
 {
     // pass through to the base class
-    BreakdownItem::EnhancementEffectApplied(pBuild, effect);
     HandleAddSpecialEffects(effect);
+    BreakdownItem::EnhancementEffectApplied(pBuild, effect);
 }
 
 void BreakdownItemWeaponCriticalThreatRange::EnhancementEffectRevoked(
@@ -123,8 +123,8 @@ void BreakdownItemWeaponCriticalThreatRange::EnhancementEffectRevoked(
         const Effect & effect)
 {
     // pass through to the base class
-    BreakdownItem::EnhancementEffectRevoked(pBuild, effect);
     HandleRevokeSpecialEffects(effect);
+    BreakdownItem::EnhancementEffectRevoked(pBuild, effect);
 }
 
 void BreakdownItemWeaponCriticalThreatRange::HandleAddSpecialEffects(
@@ -159,7 +159,7 @@ void BreakdownItemWeaponCriticalThreatRange::HandleAddSpecialEffects(
                 // we have an effect that doubles this weapons base critical range
                 Effect icEffect(
                     Effect_Weapon_Keen,
-                    "Improved Critical Feat",
+                    effect.DisplayName(),
                     "Keen",     // keen/improved critical do not stack
                     baseRange);
                 AddItemEffect(icEffect);    // stacking rules only apply to Item effects
@@ -200,7 +200,7 @@ void BreakdownItemWeaponCriticalThreatRange::HandleRevokeSpecialEffects(
                 // we have an effect that doubles this weapons base critical range
                 Effect icEffect(
                     Effect_Weapon_Keen,
-                    "Improved Critical Feat",
+                    effect.DisplayName(),
                     "Keen",     // keen/improved critical do not stack
                     baseRange);
                 RevokeItemEffect(icEffect);    // stacking rules only apply to Item effects

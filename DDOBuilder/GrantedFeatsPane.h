@@ -38,6 +38,7 @@ class CGrantedFeatsPane :
         // EffectCallbackItem
         virtual void AbilityTomeChanged(Life*, AbilityType) override {};
         virtual void AbilityValueChanged(Build*, AbilityType) override {};
+        virtual void AbilityTotalChanged(Build*, AbilityType) override {};
         virtual void BuildLevelChanged(Build*) override;
         virtual void ClassChanged(Build*, const std::string&, const std::string&, size_t) override;
         virtual void FeatTrained(Build*, const std::string&) override;

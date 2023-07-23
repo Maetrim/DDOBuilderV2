@@ -32,7 +32,7 @@
 BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     ON_COMMAND(ID_APP_ABOUT, &CDDOBuilderApp::OnAppAbout)
     // Standard file based document commands
-    ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
+    ON_COMMAND(ID_FILE_NEW, &CDDOBuilderApp::OnFileNew)
     ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
     // UI options disabled during start up
     ON_UPDATE_COMMAND_UI(ID_APP_ABOUT, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
@@ -185,6 +185,21 @@ void CDDOBuilderApp::OnAppAbout()
 {
     CAboutDlg aboutDlg;
     aboutDlg.DoModal();
+}
+
+void CDDOBuilderApp::OnFileNew()
+{
+    CWinAppEx::OnFileNew();
+    if (m_bLoadComplete)
+    {
+        CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+        CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+        CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CBuildsPane)));
+        if (pBuildsPane != NULL)
+        {
+            pBuildsPane->OnButtonNewLife();
+        }
+    }
 }
 
 // CDDOBuilderApp customization load/save methods
@@ -1100,6 +1115,14 @@ void CDDOBuilderApp::NotifyLoadComplete()
     CMainFrame * pMainFrame = dynamic_cast<CMainFrame*>(m_pMainWnd);
     pMainFrame->LoadComplete();
     m_bLoadComplete = true;
+    // create a default life
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CBuildsPane)));
+    if (pBuildsPane != NULL)
+    {
+        pBuildsPane->OnButtonNewLife();
+    }
 }
 
 void CDDOBuilderApp::OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI)

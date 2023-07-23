@@ -8,6 +8,8 @@
 #include "Character.h"
 #include "GlobalSupportFunctions.h"
 #include "TreeListCtrl.h"
+#include "StancesPane.h"
+#include "MainFrm.h"
 
 BreakdownItem::BreakdownItem(
         BreakdownType type,
@@ -701,7 +703,24 @@ void BreakdownItem::AddEffect(
     if (!found)
     {
         // it is a new effect, just add it to the list
-        effectList->push_back(effect);
+        if (effect.AType() == Amount_SliderValue)
+        {
+            Effect effectCopy(effect);
+            // make sure we start with the correct number of starting stacks
+            CWnd* pWnd = AfxGetMainWnd();
+            CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+            const CStancesPane* pStancesPane = dynamic_cast<const CStancesPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CStancesPane)));
+            if (pStancesPane != NULL)
+            {
+                const SliderItem* pSlider = pStancesPane->GetSlider(effect.StackSource());
+                effectCopy.SetEffectStacks(pSlider->m_position);
+            }
+            effectList->push_back(effectCopy);
+        }
+        else
+        {
+            effectList->push_back(effect);
+        }
         effectList->back().SetBuild(m_pCharacter->ActiveBuild());
     }
     if (effect.HasUpdateAutomaticEffects())
@@ -865,9 +884,30 @@ bool BreakdownItem::UpdateEffectAmounts(std::list<Effect> * list, const std::str
     return itemChanged;
 }
 
+void BreakdownItem::AbilityTotalChanged(Build*, AbilityType at)
+{
+    bool bChangeMade = false;
+    for (auto&& it : m_otherEffects)
+    {
+        bChangeMade |= it.UpdateAbilityEffects(at);
+    }
+    for (auto&& it : m_effects)
+    {
+        bChangeMade |= it.UpdateAbilityEffects(at);
+    }
+    for (auto&& it : m_itemEffects)
+    {
+        bChangeMade |= it.UpdateAbilityEffects(at);
+    }
+    if (bChangeMade)
+    {
+        Populate();
+    }
+}
+
 void BreakdownItem::BuildLevelChanged(Build*)
 {
-    // level change can cause som effect values to change
+    // level change can cause some effect values to change
     Populate();
 }
 

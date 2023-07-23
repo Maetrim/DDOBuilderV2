@@ -30,7 +30,9 @@ enum RequirementType
     Requirement_GroupMember2,               // off hand weapon has to be a member of this named group type (group does not have to exist)
     Requirement_ItemTypeInSlot,             // specific item type needs to be in a specified slot
     Requirement_Level,                      // must be at least this level
-    Requirement_Race,                       // must have at leats one of listed Races
+    Requirement_NotConstruct,               // Race must NOT be a construct
+    Requirement_Race,                       // must have at least one of listed Races
+    Requirement_RaceConstruct,              // Race must be a construct
     Requirement_Skill,                      // must have at least the listed skill points
     Requirement_SpecificLevel,              // must be this level
     Requirement_Stance,                     // the specified stance must be active
@@ -61,7 +63,9 @@ const XmlLib::enumMapEntry<RequirementType> requirementTypeMap[] =
     {Requirement_GroupMember2,              L"GroupMember2"},
     {Requirement_ItemTypeInSlot,            L"ItemTypeInSlot"},
     {Requirement_Level,                     L"Level"},
+    {Requirement_NotConstruct,              L"NotConstruct"},
     {Requirement_Race,                      L"Race"},
+    {Requirement_RaceConstruct,             L"RaceConstruct"},
     {Requirement_Skill,                     L"Skill"},
     {Requirement_SpecificLevel,             L"SpecificLevel"},
     {Requirement_Stance,                    L"Stance"},

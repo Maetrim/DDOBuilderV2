@@ -79,6 +79,7 @@ CSize CGrantedFeatListControl::RequiredSize()
 void CGrantedFeatListControl::Clear()
 {
     m_sections.clear();
+    m_headerItemSize = CSize(0, 0);
     Invalidate(FALSE);
 }
 
