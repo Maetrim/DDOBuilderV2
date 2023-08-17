@@ -293,14 +293,14 @@ You have +20 hit points, and a Base Attack Bonus equal to your character level.
          <Name>Warchanter: Skaldic Scream</Name>
          <InternalName>WCCore6</InternalName>
          <Description>You inspire martial combat above and beyond.
-+2 Charisma, and +2 Constitution, +25 hit points.
++2 Charisma, and +2 Constitution, +25 hit points and +1 Imbue Dice.
+
 Activate this ability to scream the songs of your frozen ancestors,
 expending a Bard Song to force enemies in an area to make a Fortitude saving
 throw versus being frozen solid in frigid ice for 6 seconds.
-(DC 14 + Charisma Mod + 1/2 Bard Level + Stunning Modifiers).
+(DC 14 + Max[Dex/Cha] Mod + Bard Level + Stunning Modifiers).
 Even if they make the save, they take 20d20 Cold Damage and are significantly
-slowed for 6 seconds.
-+1 Imbue Dice</Description>
+slowed for 6 seconds.</Description>
          <Icon>WCWarmaster</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -829,7 +829,10 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
       <EnhancementTreeItem>
          <Name>Warchanter: Frozen Fury</Name>
          <InternalName>WCTheFrozenFury</InternalName>
-         <Description>1d6 Cold Damage on hit, cold spell power</Description>
+         <Description>Make a melee attack with +[1/2/3][W] damage. Affected enemies must make a Fortitude
+save (10 + Max[Str/Dex/Cha] modifier + stunning modifiers) or become frozen solid
+for a number of seconds equal to your Bard level.
+Bosses cannot be frozen.</Description>
          <Icon>WCTheFrozenFury</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -849,12 +852,6 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
                <Item>WCIcedEdges</Item>
             </Requirement>
          </Requirements>
-         <Stance>
-            <Name>Warchanter: Frozen Fury</Name>
-            <Icon>Toughness</Icon>
-            <Description>1d6 Cold damage for each Imbue dice that scales with Cold spell power.</Description>
-            <Group>Imbue</Group>
-         </Stance>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Ability I</Name>
@@ -985,7 +982,7 @@ Bosses cannot be frozen.</Description>
          <Icon>WCNorthwind</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
          <ArrowUp/>
@@ -1213,9 +1210,9 @@ ranged damage, and spell critical chance.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Spinning Ice</Name>
          <InternalName>WCSpinningIce</InternalName>
-         <Description>Attack all enemies around you for +2[W] damage.
+         <Description>Attack all enemies around you for +[3/4/5][W] damage.
 Each affected enemy is frozen solid if they fail a Fortitude save
-([10/12/14] + Charisma modifier + [0/¼/½] Bard Level + Stunning modifiers)
+([10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/1] Bard Level + Stunning modifiers)
 for a number of seconds equal to your half your Bard level.
 Bosses cannot be frozen.
 Activation cost: [6/4/2] SP. Cooldown [45/35/25] seconds.</Description>

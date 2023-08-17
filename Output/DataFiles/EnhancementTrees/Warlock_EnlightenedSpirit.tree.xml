@@ -16,9 +16,10 @@
          <Name>Enlightened Spirit: Eldritch Aura</Name>
          <InternalName>WESCore1</InternalName>
          <Description>Stance: While this is active, your Eldritch Blast changes into an aura that
-deals the same damage as your Eldritch Blast to all foes in range every 5 seconds,
-and scales with 130% spell power. You cannot fire Eldritch Blasts while in this stance,
-but may attack normally with weapons and cast spells. Stance cooldown: 8 seconds.</Description>
+deals the same damage as your Eldritch Blast to all foes in range every 5
+seconds, and scales with 130% spell power. You cannot fire Eldritch Blasts
+while in this stance, but may attack normally with weapons and cast spells.
+Stance cooldown: 8 seconds.</Description>
          <Icon>WESEldritchAura</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -39,13 +40,14 @@ but may attack normally with weapons and cast spells. Stance cooldown: 8 seconds
             <Icon>WESEldritchAura</Icon>
             <Description>While this is active, your Eldritch Blast changes into an aura that
 deals the same damage as your Eldritch Blast to all foes in range every few seconds</Description>
+            <Group>Blast Shape</Group>
          </Stance>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Aura of Courage</Name>
          <InternalName>WESCore2</InternalName>
-         <Description>You gain immunity to Fear, and all allies around you gain a +4 morale bonus
-to saving throws against fear. Cooldown: 2 seconds.
+         <Description>You gain immunity to Fear, and all allies around you gain a +4 morale bonus to
+saving throws against fear. Cooldown: 2 seconds.
 Passive: +5 Healing Amplification.</Description>
          <Icon>WESAuraOfCourage</Icon>
          <XPosition>1</XPosition>
@@ -82,8 +84,9 @@ Passive: +5 Healing Amplification.</Description>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Shape Vestments</Name>
          <InternalName>WESCore3</InternalName>
-         <Description>Passive: While wearing Light Armor, you gain +10 Maximum HP and +5 Magical Resistance Rating.
-While wearing Medium Armor you are proficient with, you gain +20 Maximum HP and +10 MRR.
+         <Description>Passive: While wearing Light Armor, you gain +10 Maximum HP and +5 Magical
+Resistance Rating. While wearing Medium Armor you are proficient with, you
+gain +20 Maximum HP and +10 MRR.
 Passive: Your Eldritch Aura now affects enemies every 4 seconds.</Description>
          <Icon>WESShapeVestments</Icon>
          <XPosition>2</XPosition>
@@ -137,6 +140,10 @@ Passive: Your Eldritch Aura now affects enemies every 4 seconds.</Description>
                   <Type>Stance</Type>
                   <Item>Medium Armor</Item>
                </Requirement>
+               <Requirement>
+                  <Type>FeatAnySource</Type>
+                  <Item>Medium Armor Proficiency</Item>
+               </Requirement>
             </Requirements>
          </Effect>
          <Effect>
@@ -149,16 +156,20 @@ Passive: Your Eldritch Aura now affects enemies every 4 seconds.</Description>
                   <Type>Stance</Type>
                   <Item>Medium Armor</Item>
                </Requirement>
+               <Requirement>
+                  <Type>FeatAnySource</Type>
+                  <Item>Medium Armor Proficiency</Item>
+               </Requirement>
             </Requirements>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Aura of Menace</Name>
          <InternalName>WESCore4</InternalName>
-         <Description>Toggle: You project a 15 meter Aura of Menace, decreasing the saving throws, attack
-and armor class of nearby enemies by 2. Toggle cooldown: 2 seconds.
-Passive: Your Eldritch Aura now affects enemies every 3 seconds and you gain proficiency
-with all Martial weapons.</Description>
+         <Description>Toggle: You project a 15 meter Aura of Menace, decreasing the saving throws,
+attack, and armor class of nearby enemies by 2. Toggle cooldown: 2 seconds.
+Passive: Your Eldritch Aura now affects enemies every 3 seconds and you gain
+proficiency with all Martial weapons.</Description>
          <Icon>WESAuraOfMenace</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -209,7 +220,8 @@ with all Martial weapons.</Description>
          <InternalName>WESCore5</InternalName>
          <Description>Major Form Toggle: When enabled, you float above the ground, gain Feather Falling,
 are immune to most knockdown effects, and you gain +3 Imbue Dice.
-Passive: Your Eldritch Aura now affects enemies every 2 seconds.</Description>
+Passive: Your Eldritch Aura now affects enemies every 2 seconds.
+Stance cooldown: 8 seconds.</Description>
          <Icon>WESCelestialSpirit</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -264,9 +276,9 @@ When enabled, you Gain +3 Imbue Dice.</Description>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Ultimate Enlightenment</Name>
          <InternalName>WESCore6</InternalName>
-         <Description>+2 Constitution, +2 Charisma, +20% Competence bonus to Maximum HP,
-+10 Universal Spell Power, +20 Light Spell Power. While your Eldritch Aura is enabled,
-you gain full Base Attack Bonus, +10 Melee Power, and +10 Ranged Power.</Description>
+         <Description>+2 Constitution, +2 Charisma, +20% Competence bonus to Maximum HP, +10 Universal
+Spell Power, +20 Light Spell Power. While your Eldritch Aura is enabled, you
+gain full Base Attack Bonus, +10 Melee Power, and +10 Ranged Power.</Description>
          <Icon>WESUltimateEnlightenment</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -283,19 +295,19 @@ you gain full Base Attack Bonus, +10 Melee Power, and +10 Ranged Power.</Descrip
                <Item>Warlock</Item>
                <Value>20</Value>
             </Requirement>
-        <Requirement>
-          <Type>Exclusive</Type>
-          <Item>WESCore6</Item>
-          <Item>Capstone Enhancement</Item>
-        </Requirement>
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>WESCore6</Item>
+               <Item>Capstone Enhancement</Item>
+            </Requirement>
          </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>WESCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>WESCore6</Item>
+            <Item>Capstone Enhancement</Item>
+         </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -355,7 +367,7 @@ you gain full Base Attack Bonus, +10 Melee Power, and +10 Ranged Power.</Descrip
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Resilience of Body</Name>
          <InternalName>WESResilienceOfBody</InternalName>
-         <Description>+[2/4/6] PRR</Description>
+         <Description>+[2/4/6] Physical Resistance Rating</Description>
          <Icon>WESResilienceOfBody</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -423,7 +435,7 @@ You personally receive +[5/10/15] Maximum Hit Points (while Aura is active).</De
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Resilience of Soul</Name>
          <InternalName>WESResilienceOfSoul</InternalName>
-         <Description>+[2/4/6] MRR</Description>
+         <Description>+[2/4/6] Magical Resistance Rating</Description>
          <Icon>WESResilienceOfSoul</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -465,7 +477,8 @@ You personally receive +[5/10/15] Maximum Hit Points (while Aura is active).</De
          <Selector>
             <EnhancementSelection>
                <Name>Brutal Spellcasting</Name>
-               <Description>Your damaging spells generate [25/50/75]% more hate than they normally would, making enemies more likely to attack you.</Description>
+               <Description>Your damaging spells generate [25/50/75]% more hate than they normally would,
+making enemies more likely to attack you.</Description>
                <Icon>WESBrutalSpellcasting</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -478,7 +491,8 @@ You personally receive +[5/10/15] Maximum Hit Points (while Aura is active).</De
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Brute Fighting</Name>
-               <Description>Your melee attacks generate [25/50/75]% more hate than they normally would, making enemies more likely to attack you.</Description>
+               <Description>Your melee attacks generate [25/50/75]% more hate than they normally would,
+making enemies more likely to attack you.</Description>
                <Icon>WESBruteFighting</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -531,9 +545,9 @@ Rank 3: +1 Fortitude Save</Description>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Resist Energies</Name>
          <InternalName>WESResistEnergies</InternalName>
-         <Description>Gives an ally an Enhancement bonus against Fire, Cold, Electric, Acid, and Sonic damage,
-reducing that type of damage taken by 10. The bonus increases to 20 at caster level 7
-and 30 at caster level 11.
+         <Description>Gives an ally [or self] an Enhancement bonus against Fire, Cold, Electric, Acid,
+and Sonic damage, reducing that type of damage taken by 10.
+The bonus increases to 20 at caster level 7 and 30 at caster level 11.
 Activation Cost: [60/50/40] Spell Points.
 Cooldown: 2 seconds.
 Metamagic: Extend, Quicken, Enlarge. Spell Resistance: No.</Description>
@@ -556,15 +570,15 @@ Metamagic: Extend, Quicken, Enlarge. Spell Resistance: No.</Description>
             <Bonus>Enhancement</Bonus>
             <Item>Resist Energies</Item>
             <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
+            <Amount size="3">0 0 0</Amount>
             <Item>Warlock</Item>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Spiritual Bastion</Name>
          <InternalName>WESSpiritualBastion</InternalName>
-         <Description>While your Eldritch Aura is active, you get +[3/6/10] PRR, and in addition you and nearby allies
-get a +[1/2/3] Determination Bonus to PRR.</Description>
+         <Description>While your Eldritch Aura is active, you get +[3/6/10] PRR, and in addition you
+and nearby allies get a +[1/2/3] Determination Bonus to PRR.</Description>
          <Icon>WESSpiritualBastion</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -695,9 +709,9 @@ Cooldown: 30 seconds.</Description>
          <Name>Enlightened Spirit: Eldritch Burst</Name>
          <InternalName>WESEldritchBurst</InternalName>
          <Description>Fire your Eldritch Blast in an AOE centered on you.
-All enemies caught in the burst take 1d6 Light Damage, plus any other effects and damage
-your Eldritch Blasts produce. This ability shares a cooldown with Cleave, and the damage
-scales with 100% spell power.
+All enemies caught in the burst take 1d6 Light Damage, plus any other effects
+and damage your Eldritch Blasts produce. This ability shares a cooldown with
+Cleave, and the damage scales with 100% spell power.
 Cooldown: [8/6/5] seconds.
 Metamagic: Empower, Maximize, Quicken, Intensify. Spell Resistance: No.</Description>
          <Icon>WESEldritchBurst</Icon>
@@ -801,7 +815,7 @@ In addition you and nearby allies get a +[1/2/3] Determination Bonus to MRR.</De
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Fortify Summons</Name>
          <InternalName>WESFortifySummons</InternalName>
-         <Description>Your summoned creatures, hirelings, and pets get [25/50/100]% fortification,
+         <Description>Your summoned creatures, hirelings, and pets get [25/50/100]% Fortification,
 +[5/10/20] PRR, and +[5/10/20] MRR.</Description>
          <Icon>WESFortifySummons</Icon>
          <XPosition>3</XPosition>
@@ -887,8 +901,9 @@ In addition you and nearby allies get a +[1/2/3] Determination Bonus to MRR.</De
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Medium Armor Proficiency</Name>
          <InternalName>WESMediumArmorProficiency</InternalName>
-         <Description>Passive: You gain proficiency in Medium Armor, and the ability to cast arcane spells
-in medium armor without arcane spell failure.</Description>
+         <Description>Passive: You gain proficiency in Medium Armor, and the ability to cast arcane
+spells in medium armor without arcane spell failure. (Note: applies to arcane
+spells cast by all classes)</Description>
          <Icon>WESMediumArmorProficiency</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -925,7 +940,7 @@ in medium armor without arcane spell failure.</Description>
          <Name>Enlightened Spirit: Spiritual Retribution</Name>
          <InternalName>WESSpiritualRetribution</InternalName>
          <Description>Your Eldritch Blasts, Melee Attacks, and Ranged Attacks gain 1d6 Light damage
-that scales with Spell Power.</Description>
+Imbue Dice that scales with Spell Power.</Description>
          <Icon>WESSpiritualRetribution</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -954,8 +969,9 @@ per Imbue Dice that scales with Spell Power.</Description>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Brilliance</Name>
          <InternalName>WESBrilliance</InternalName>
-         <Description>Your Aura provides you and nearby allies with a Determination bonus to Temporary Hit points
-equal to your Constitution score. Level 20+ characters receive twice as many hit points.</Description>
+         <Description>Your Eldritch Aura provides you and nearby allies with a Determination bonus to
+Temporary Hit points equal to your Constitution score. Level 20+ characters
+receive twice as many hit points.</Description>
          <Icon>WESBrilliance</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1057,9 +1073,9 @@ and Universal Spell Power.</Description>
          <Name>Enlightened Spirit: Spirit Blast</Name>
          <InternalName>WESSpiritBlast</InternalName>
          <Description>Fire your Eldritch Blast in an AOE centered on you.
-All enemies caught in the burst take 4d6 Light Damage, plus any other effects and damage
-your Eldritch Blasts produce. This ability shares a cooldown with Great Cleave, and the
-damage scales with 100% spell power.
+All enemies caught in the burst take 4d6 Light Damage, plus any other effects
+and damage your Eldritch Blasts produce. This ability shares a cooldown with
+Great Cleave, and the damage scales with 100% spell power.
 Cooldown [8/6/5] seconds.
 Metamagic: Empower, Maximize, Quicken, Intensify. Spell Resistance: No.</Description>
          <Icon>WESSpiritBlast</Icon>
@@ -1086,7 +1102,8 @@ Metamagic: Empower, Maximize, Quicken, Intensify. Spell Resistance: No.</Descrip
          <Name>Enlightened Spirit: Beacon</Name>
          <InternalName>WESBeacon</InternalName>
          <Description>While your Eldritch Aura is active, you gain +10 Healing Amplification.
-In addition, you and nearby allies get a +10 Determination bonus to Healing Amplification.</Description>
+In addition, you and nearby allies get a +10 Determination bonus to Healing
+Amplification.</Description>
          <Icon>WESBeacon</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1133,8 +1150,12 @@ In addition, you and nearby allies get a +10 Determination bonus to Healing Ampl
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Shining Through</Name>
          <InternalName>WESShiningThrough</InternalName>
-         <Description>Gain a Sacred bonus to Temporary Hit points equal to 8x your Constitution Score that lasts
-for up to 10 minutes. For 20 seconds, you gain +25 Sacred bonus to Healing Amplification.
+         <Description>Gain a Sacred bonus to Temporary Hit points equal to 8x your Constitution Score
+that lasts for up to 10 minutes, which also stacks with Feigned Health and is
+affected by all damage reduction abilities such as MRR or the Resist Energies
+spell. The two health barriers are "layered" on top of each other; the first
+one to get drained is the last one to have been cast.
+For 20 seconds, you gain +25 Sacred bonus to Healing Amplification.
 Cooldown: 30 sec. SP Cost: 8.</Description>
          <Icon>WESShiningThrough</Icon>
          <XPosition>2</XPosition>
@@ -1185,6 +1206,12 @@ as per the item effect "Lesser Displacement", and 10% Dodge.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>HirelingConcealment</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">25</Amount>
+         </Effect>
+         <Effect>
             <Type>HirelingDodge</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
@@ -1221,7 +1248,7 @@ Cooldown: 3 seconds.</Description>
             <Bonus>Enhancement</Bonus>
             <Item>Displacement</Item>
             <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
+            <Amount size="3">0 0 0</Amount>
             <Item>Warlock</Item>
          </Effect>
       </EnhancementTreeItem>

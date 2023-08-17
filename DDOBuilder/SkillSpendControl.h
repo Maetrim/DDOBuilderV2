@@ -1,12 +1,14 @@
 #pragma once
 #include "Character.h"
 #include "InfoTip.h"
+#include "BreakdownItem.h"
 
 class CSkillSpendControl :
     public CWnd,
     public CharacterObserver,
     public LifeObserver,
-    public BuildObserver
+    public BuildObserver,
+    public BreakdownObserver
 {
     DECLARE_DYNAMIC(CSkillSpendControl)
 
@@ -16,6 +18,7 @@ public:
 
     void SetCharacter(Character * pCharacter);
     CSize RequiredSize();
+    void LoadComplete();
 
 protected:
     afx_msg void OnPaint();
@@ -55,6 +58,9 @@ private:
             const std::string& classFrom,
             const std::string& classTo,
             size_t level) override;
+
+    // BreakdownObserver
+    virtual void UpdateTotalChanged(BreakdownItem *, BreakdownType);
 
     Character * m_pCharacter;
     CSize m_skillNameSize;

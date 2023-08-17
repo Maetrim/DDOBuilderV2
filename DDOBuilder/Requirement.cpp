@@ -530,8 +530,16 @@ bool Requirement::MetEnhancements(
             size_t ranksTrained = te->Ranks();
             if (maxRanks != 1)
             {
-                // must have lower trained ranks
-                met = (trainedRanks < ranksTrained);
+                if (HasValue())
+                {
+                    // must have at least this many ranks
+                    met = (te->Ranks() >= Value());
+                }
+                else
+                {
+                    // must have lower trained ranks
+                    met = (trainedRanks < ranksTrained);
+                }
             }
             else
             {
@@ -1022,9 +1030,19 @@ void Requirement::CreateRequirementStrings(
             }
             else
             {
-                description.Format(
+                if (HasValue())
+                {
+                    description.Format(
+                        "Requires: %s (%d Ranks)",
+                        name.c_str(),
+                        Value());
+                }
+                else
+                {
+                    description.Format(
                         "Requires: %s",
                         name.c_str());
+                }
             }
             break;
         }

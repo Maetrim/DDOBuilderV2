@@ -230,13 +230,6 @@ BOOL CMainFrame::CreateDockingWindows()
             ID_DOCK_STANCES);
     pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    CCustomDockablePane* pBuildsPane = CreateDockablePane(
-            "Builds",
-            GetActiveDocument(),
-            RUNTIME_CLASS(CBuildsPane),
-            ID_DOCK_BUILDS);
-    pBuildsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
-
     CCustomDockablePane * pClassAndLevel = CreateDockablePane(
             "Class and Levels",
             GetActiveDocument(),
@@ -320,6 +313,15 @@ BOOL CMainFrame::CreateDockingWindows()
             RUNTIME_CLASS(CFavorPane),
             ID_DOCK_FAVOR);
     pFavorPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    // Builds pane must be created last, so that panes are initialised
+    // correctly in order after a file load event
+    CCustomDockablePane* pBuildsPane = CreateDockablePane(
+            "Builds",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CBuildsPane),
+            ID_DOCK_BUILDS);
+    pBuildsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     return TRUE;
 }

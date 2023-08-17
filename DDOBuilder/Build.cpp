@@ -185,6 +185,7 @@ std::string Build::ComplexUIDescription() const
 void Build::BuildNowActive()
 {
     SetupDefaultWeaponGroups();
+    VerifySpecialFeats();
     // needs to be before Notify to avoid multiple feat notifications
     UpdateFeats();
     m_pLife->NotifyActiveBuildChanged();
@@ -4627,3 +4628,21 @@ void Build::RevokeArmorEffects(const Item& item)
         NotifyItemEffectRevoked(item.Name(), effect);
     }
 }
+
+void Build::VerifySpecialFeats()
+{
+    std::list<TrainedFeat> feats = SpecialFeats();
+    std::list<TrainedFeat>::iterator fit = feats.begin();
+    while (fit != feats.end())
+    {
+        const Feat& feat = FindFeat(fit->FeatName());
+        if (fit->FeatName() != feat.Name())
+        {
+            // this special feat no longer exists, remove it
+            RevokeSpecialFeat(fit->FeatName());
+            GetLog().AddLogEntry("Legacy feat removed from build");
+        }
+        ++fit;
+    }
+}
+

@@ -389,7 +389,7 @@ std::string DC::DCBreakdown(const Build * build) const
         }
         first = false;
         int classLevels = (int)(build->ClassLevels(m_HalfClassLevel, build->Level()-1) / 2);
-        std::string name = m_ClassLevel;
+        std::string name = m_HalfClassLevel;
         if (name == "All")
         {
             name = "Character Level";

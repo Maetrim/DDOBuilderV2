@@ -44,6 +44,7 @@ void CSkillsPane::OnInitialUpdate()
 
 LRESULT CSkillsPane::OnLoadComplete(WPARAM, LPARAM)
 {
+    m_skillCtrl.LoadComplete();
     return 0;
 }
 

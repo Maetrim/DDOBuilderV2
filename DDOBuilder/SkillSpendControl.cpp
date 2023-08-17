@@ -114,6 +114,20 @@ void CSkillSpendControl::SetCharacter(Character * pCharacter)
     SetupControl();
 }
 
+void CSkillSpendControl::LoadComplete()
+{
+    // start observing skills so we can update the total value column
+    for (size_t i = Skill_Unknown + 1; i < Skill_Count; ++i)
+    {
+        BreakdownType bt = SkillToBreakdown(static_cast<SkillType>(i));
+        BreakdownItem* pBreakdown = FindBreakdown(bt);
+        if (pBreakdown != NULL)
+        {
+            pBreakdown->AttachObserver(this);
+        }
+    }
+}
+
 #pragma warning(push)
 #pragma warning(disable: 4407) // warning C4407: cast between different pointer to member representations, compiler may generate incorrect code
 BEGIN_MESSAGE_MAP(CSkillSpendControl, CWnd)
@@ -1059,6 +1073,11 @@ void CSkillSpendControl::UpdateClassChanged(
         const std::string&,
         const std::string&,
         size_t)
+{
+    SetupControl();
+}
+
+void CSkillSpendControl::UpdateTotalChanged(BreakdownItem*, BreakdownType)
 {
     SetupControl();
 }

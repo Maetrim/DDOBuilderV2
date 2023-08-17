@@ -38,7 +38,6 @@ class BreakdownItemWeaponEffects :
 
         BreakdownItem * GetWeaponBreakdown(bool bMainhand, BreakdownType bt);
 
-    protected:
         // EffectCallbackItem
         virtual void FeatEffectApplied(Build*, const Effect& effect) override;
         virtual void FeatEffectRevoked(Build*, const Effect& effect) override;
@@ -48,6 +47,8 @@ class BreakdownItemWeaponEffects :
         virtual void ItemEffectRevoked(Build*, const Effect& effect, WeaponType wt) override;
         virtual void EnhancementEffectApplied(Build*, const Effect& effect) override;
         virtual void EnhancementEffectRevoked(Build*, const Effect& effect) override;
+        virtual void SliderChanged(Build*, const std::string& sliderName, int newValue) override;
+
     private:
         enum NotificationType
         {

@@ -43,6 +43,7 @@ LRESULT CGrantedFeatsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     if (m_pCharacter != NULL)
     {
         m_pCharacter->DetachObserver(this);
+        m_pCharacter = NULL;
     }
     // wParam is the document pointer
     // lParam is the character pointer

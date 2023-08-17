@@ -592,19 +592,6 @@ void CInfoTip::SetSetBonusItem(
     size_t numStacks)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
-    if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", item.Icon(), false))
-    {
-        if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", item.Icon(), false))
-        {
-            pHeader->LoadIcon("DataFiles\\AugmentImages\\", item.Icon(), true);
-        }
-    }
-    pHeader->SetTitle(item.Type().c_str());
-    CString str;
-    str.Format("Ranks %d", numStacks);
-    pHeader->SetCost(str);
-    m_tipItems.push_back(pHeader);
     AppendSetBonusDescription(item.Type(), numStacks);
 }
 
@@ -1210,11 +1197,24 @@ void CInfoTip::SetDCItem(
 
 void CInfoTip::AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks)
 {
-    InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
-    pDescription->SetText(setBonusName.c_str());
-    m_tipItems.push_back(pDescription);
-
     const SetBonus& setBonus = FindSetBonus(setBonusName);
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", setBonus.Icon(), false))
+    {
+        if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", setBonus.Icon(), false))
+        {
+            pHeader->LoadIcon("DataFiles\\AugmentImages\\", setBonus.Icon(), true);
+        }
+    }
+    pHeader->SetTitle(setBonusName.c_str());
+    if (numStacks > 0)
+    {
+        CString str;
+        str.Format("Ranks %d", numStacks);
+        pHeader->SetCost(str);
+    }
+    m_tipItems.push_back(pHeader);
+
     InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
     pRequirements->CreateSetBonusStrings(setBonus, numStacks);
     m_tipItems.push_back(pRequirements);

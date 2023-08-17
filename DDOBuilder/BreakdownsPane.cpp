@@ -12,7 +12,6 @@
 #include "BreakdownItemEnergyCasterLevel.h"
 #include "BreakdownItemSchoolCasterLevel.h"
 #include "BreakdownItemDestinyAps.h"
-#include "BreakdownItemDice.h"
 #include "BreakdownItemDodge.h"
 #include "BreakdownItemDuration.h"
 #include "BreakdownItemDR.h"
@@ -24,6 +23,7 @@
 #include "BreakdownItemMDB.h"
 #include "BreakdownItemMRR.h"
 #include "BreakdownItemMRRCap.h"
+#include "BreakdownItemPactDice.h"
 #include "BreakdownItemPRR.h"
 #include "BreakdownItemSave.h"
 #include "BreakdownItemSkill.h"
@@ -1522,18 +1522,35 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
     // Warlock Eldritch blast
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Eldritch Blast",
+                "Eldritch Blast Dice",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pEB = new BreakdownItemDice(
+        BreakdownItem * pEB = new BreakdownItemPactDice(
                 this,
-                Breakdown_EldritchBlast,
+                Breakdown_EldritchBlastDice,
                 Effect_EldritchBlast,
-                "Eldritch Blast",
+                "Eldritch Blast Dice",
                 &m_itemBreakdownTree,
-                hItem);
+                hItem,
+                8);         // d8's
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEB);
         m_items.push_back(pEB);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Eldritch Pact Blast Pact Dice",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pPD = new BreakdownItemPactDice(
+                this,
+                Breakdown_EldritchBlastPactDice,
+                Effect_PactDice,
+                "Eldritch Blast Pact Dice",
+                &m_itemBreakdownTree,
+                hItem,
+                6);         // d6's
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pPD);
+        m_items.push_back(pPD);
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
@@ -2677,6 +2694,7 @@ void CBreakdownsPane::UpdateGearChanged(
     {
         it->GearChanged(pBuild, slot);
     }
+    m_pWeaponEffects->GearChanged(pBuild, slot);
 }
 
 void CBreakdownsPane::UpdateTotalChanged(
@@ -2916,6 +2934,7 @@ void CBreakdownsPane::UpdateEnhancementTrained(Build* pBuild, const EnhancementI
     {
         it->EnhancementTrained(pBuild, item);
     }
+    m_pWeaponEffects->EnhancementTrained(pBuild, item);
 }
 
 void CBreakdownsPane::UpdateEnhancementRevoked(Build* pBuild, const EnhancementItemParams& item)
@@ -2925,6 +2944,7 @@ void CBreakdownsPane::UpdateEnhancementRevoked(Build* pBuild, const EnhancementI
     {
         it->EnhancementRevoked(pBuild, item);
     }
+    m_pWeaponEffects->EnhancementRevoked(pBuild, item);
 }
 
 void CBreakdownsPane::UpdateEnhancementEffectApplied(
@@ -3083,13 +3103,10 @@ void CBreakdownsPane::UpdateStanceDeactivated(Build* pBuild, const std::string& 
 void CBreakdownsPane::UpdateSliderChanged(Build* pBuild, const std::string& sliderName, int newValue)
 {
     // this needs to be passed through to all breakdowns
-    for (auto&& bcit : m_mapBuildCallbacks)
+    for (auto&& it : m_items)
     {
-        std::list<EffectCallbackItem*> callbacks = bcit.second;
-        for (auto&& cit : callbacks)
-        {
-            cit->SliderChanged(pBuild, sliderName, newValue);
-        }
+        it->SliderChanged(pBuild, sliderName, newValue);
     }
+    m_pWeaponEffects->SliderChanged(pBuild, sliderName, newValue);
 }
 

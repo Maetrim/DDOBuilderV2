@@ -60,6 +60,7 @@ const int c_controlSpacing = 3;
 #define MAX_FILIGREE            20
 #define MAX_ARTIFACT_FILIGREE   10
 #define MAX_SKILL_TOME          5
+#define MAX_FAVOR_ITEMS         25
 
 #include <string>
 const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));

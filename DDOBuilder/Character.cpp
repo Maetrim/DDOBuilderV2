@@ -4,6 +4,8 @@
 #include "Character.h"
 #include "XmlLib\SaxWriter.h"
 #include "DDOBuilderDoc.h"
+#include "LogPane.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT Character
 
@@ -17,8 +19,8 @@ namespace
 Character::Character(CDDOBuilderDoc * pDoc) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_pDocument(pDoc),
-    m_activeLifeIndex(10000), // large number that will never occur naturally
-    m_activeBuildIndex(10000) // large number that will never occur naturally
+    m_uiActiveLifeIndex(10000), // large number that will never occur naturally
+    m_uiActiveBuildIndex(10000) // large number that will never occur naturally
 {
     DL_INIT(Character_PROPERTIES)
 }
@@ -55,8 +57,8 @@ void Character::AboutToLoad()
     // if we are about to load, we reset all our contained data
     DL_INIT(Character_PROPERTIES)
     m_Lives.clear();
-    m_activeLifeIndex = 10000;    // large number that will never occur naturally
-    m_activeBuildIndex = 10000;   // large number that will never occur naturally
+    m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
+    m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
 }
 
 void Character::NotifyNumBuildsChanged()
@@ -93,8 +95,8 @@ void Character::SetLifeName(
 
 size_t Character::AddLife()
 {
-    m_activeLifeIndex = 10000;    // large number that will never occur naturally
-    m_activeBuildIndex = 10000;   // large number that will never occur naturally
+    m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
+    m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
     // all new lives start with a default build
     Life life(this);
     m_Lives.push_back(life);
@@ -109,15 +111,15 @@ void Character::DeleteLife(size_t lifeIndex)
     std::advance(lit, lifeIndex);
     m_Lives.erase(lit);
     m_pDocument->SetModifiedFlag(TRUE);
-    m_activeLifeIndex = 10000;    // large number that will never occur naturally
-    m_activeBuildIndex = 10000;   // large number that will never occur naturally
+    m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
+    m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
 }
 
 size_t Character::AddBuild(size_t lifeIndex)
 {
-    size_t buildIndex = m_activeBuildIndex;
-    m_activeLifeIndex = 10000;    // large number that will never occur naturally
-    m_activeBuildIndex = 10000;   // large number that will never occur naturally
+    size_t buildIndex = m_uiActiveBuildIndex;
+    m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
+    m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
     std::list<Life>::iterator lit = m_Lives.begin();
     std::advance(lit, lifeIndex);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -132,8 +134,8 @@ void Character::DeleteBuild(
     std::advance(lit, lifeIndex);
     (*lit).DeleteBuild(buildIndex);
     m_pDocument->SetModifiedFlag(TRUE);
-    m_activeLifeIndex = 10000;    // large number that will never occur naturally
-    m_activeBuildIndex = 10000;   // large number that will never occur naturally
+    m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
+    m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
 }
 
 size_t Character::GetBuildLevel(
@@ -158,12 +160,23 @@ void Character::SetBuildLevel(
 
 void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex)
 {
-    if (m_activeLifeIndex != lifeIndex
-            || m_activeBuildIndex != buildIndex)
+    if (m_uiActiveLifeIndex != lifeIndex
+            || m_uiActiveBuildIndex != buildIndex)
     {
         CWaitCursor longOperation;
-        m_activeLifeIndex = lifeIndex;
-        m_activeBuildIndex = buildIndex;
+        m_uiActiveLifeIndex = lifeIndex;
+        m_uiActiveBuildIndex = buildIndex;
+        m_ActiveLifeIndex = lifeIndex;
+        m_ActiveBuildIndex = buildIndex;
+
+        if (ActiveBuild() != NULL)
+        {
+            std::stringstream ss;
+            ss << "Selected Life \"" << ActiveLife()->UIDescription(lifeIndex) << "\" build of \"" << ActiveBuild()->ComplexUIDescription() << "\"";
+            SetModifiedFlag(TRUE);
+            GetLog().AddLogEntry(ss.str().c_str());
+        }
+
         NotifyActiveLifeChanged();
         NotifyActiveBuildChanged();
         if (ActiveBuild() != NULL)
@@ -185,10 +198,10 @@ Life* Character::ActiveLife()
 {
     Life* pLife = NULL;
     // find the active life
-    if (m_activeLifeIndex < m_Lives.size())
+    if (m_uiActiveLifeIndex < m_Lives.size())
     {
         std::list<Life>::iterator lit = m_Lives.begin();
-        std::advance(lit, m_activeLifeIndex);
+        std::advance(lit, m_uiActiveLifeIndex);
         pLife = &(*lit);
     }
     return pLife;
@@ -198,11 +211,11 @@ Build * Character::ActiveBuild()
 {
     Build * pBuild = NULL;
     // find the active build
-    if (m_activeLifeIndex < m_Lives.size())
+    if (m_uiActiveLifeIndex < m_Lives.size())
     {
         std::list<Life>::iterator lit = m_Lives.begin();
-        std::advance(lit, m_activeLifeIndex);
-        pBuild = (*lit).GetBuildPointer(m_activeBuildIndex);
+        std::advance(lit, m_uiActiveLifeIndex);
+        pBuild = (*lit).GetBuildPointer(m_uiActiveBuildIndex);
     }
     return pBuild;
 }
@@ -211,10 +224,10 @@ const Life* Character::ActiveLife() const
 {
     const Life* pLife = NULL;
     // find the active life
-    if (m_activeLifeIndex < m_Lives.size())
+    if (m_uiActiveLifeIndex < m_Lives.size())
     {
         std::list<Life>::const_iterator lit = m_Lives.begin();
-        std::advance(lit, m_activeLifeIndex);
+        std::advance(lit, m_uiActiveLifeIndex);
         pLife = &(*lit);
     }
     return pLife;
@@ -224,11 +237,11 @@ const Build * Character::ActiveBuild() const
 {
     const Build * pBuild = NULL;
     // find the active build
-    if (m_activeLifeIndex < m_Lives.size())
+    if (m_uiActiveLifeIndex < m_Lives.size())
     {
         std::list<Life>::const_iterator lit = m_Lives.begin();
-        std::advance(lit, m_activeLifeIndex);
-        pBuild = (*lit).GetBuildPointer(m_activeBuildIndex);
+        std::advance(lit, m_uiActiveLifeIndex);
+        pBuild = (*lit).GetBuildPointer(m_uiActiveBuildIndex);
     }
     return pBuild;
 }

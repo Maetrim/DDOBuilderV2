@@ -60,6 +60,7 @@ class BreakdownItemWeapon :
         virtual void EnhancementEffectRevoked(Build*, const Effect& effect) override;
         virtual void FeatTrained(Build*, const std::string&) override;
         virtual void FeatRevoked(Build*, const std::string&) override;
+        virtual void SliderChanged(Build* charData, const std::string& sliderName, int newValue) override;
         //// Character overrides
         //virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
         //virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;

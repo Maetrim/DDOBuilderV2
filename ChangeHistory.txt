@@ -1,3 +1,85 @@
+Build 2.0.0.6
+
+---Druid Wild Shape feats will now auto-populate where possible
+---Druids/Blightcasters will now prioritise Heal and Spellcraft skills for an Autobuy action
+---Class "Blight Caster" renamed to "Blightcaster" to match game
+---Granted feats will now definitely clear on a New build/Life (attempt 3)
+---Base level 3 quests added to the quest list
+---Eldritch Blast dice (d8's) breakdown now works
+---Pact dice (d6's) are now tracked separately from blast dice
+---New stance group "Blast Shape" added and stances for all shapes added
+---Medium Armor effect in "Enlightened Spirit: Shape Vestments" fixed
+---Tree "Enlightened Spirit" reviewed for text to match wiki and text layout
+---Tree "Tainted Scholar" reviewed for text to match wiki and text layout
+---Tree "Soul Eater" reviewed for text to match wiki and text layout
+---Tree "Archmage" reviewed for text to match wiki and text layout
+---Tree "Eldritch Knight (Wizard)" reviewed for text to match wiki and text layout
+---Fixed base Pale Master core effects
+---Tree "Pale Master" reviewed for text to match wiki and text layout
+---Tree "Vanguard" reviewed for text to match wiki and text layout
+---Skill Tome progression assumed to be +1 every 4 additional levels for tomes beyond +5 (future support)
+---Skill view total will now correctly update on a skill value change
+---Tier 5 Machrotechnic tree items now have the correct DP cost of 1
+---All Archetype past lives will appear next to the Base class in the past lives list
+---Item tooltips with set bonuses will now show the set bonus icon
+---Bonus Racial and Universal APs now get counted again
+---The documents previously selected Life/Build will now be saved/restored on file save/load
+---Half Class Level DCs will now show the correct class name
+---Slider value changes will now correctly update breakdown effects which are dependent on things like "50% Hitpoints"
+---Enhancement that only require (N) ranks of a given enhancement to train will now be correctly trainable (e.g. Fury of the Wild: Sense Weakness only requires 1 rank for Mantle of Fury to take all 3 ranks))
+---Enhancement requirements that require a set number of ranks will now display that as a requirement
+---Life/Build add/remove log entries will now appear in the correct position
+---Life/Build selection will now add a log entry
+---Universal enhancement trees are no longer auto assigned to an enhancement tree selection
+---Soul Vessel augments such as Wild Fortitude now say the correct amount of +3 Artifact bonus to <Ability>, rather than +4
+---Enhancement "Shadar-Kai: Assassin's Mark" now correctly has 1 stack, not 3.
+---Enhancement "Shadar-Kai: Displacement" now correctly costs 1ap not 2.
+---The Favor Pane quests are now full row select
+---The list control column header can now be used to sort the columns
+---Favor entries for each faction are now shown (currently totals a random favor for testing purposes)
+
+U61 Support
+---Harper Agent
+------Cores 1, 6, and 18 now give +1 hit and damage and not just hit/damage vs evil
+------Core 20 now gives +2 to all ability scores, +1 hit/damage, +5 hit/damage vs evil, and +20 universal spell power
+------Weathered Traveler t1 now gives 2/4/6 energy resist
+---Swashbuckler
+------Battering Barrage cost reduced from 2/rank to 1/rank
+------Thread the Needle now gives +5% to-hit (percentage bonus based on precision) while precision is toggled on
+---Warchanter
+------Spinning Ice, Frozen Fury, and Skaldic Scream now use the highest of dex, cha, or str for their DCs
+------Their DCs are now (0x bard level / 1/2 bard level / 1x bard level) and (10/12/14) (Skaldic Scream is 1x bard level and 14)
+------Spinning Ice is now a [3/4/5][W] cleave
+------Northwind cost reduced from 2/rank to 1/rank
+---Sorcerer Savant
+------T5 Actives scale with highest of Cha or Con and not just con
+------Earthen Armor (t4 earth savant) is now +3/+6 AC
+---Ninja Spy
+------Tier 2 and Tier 4 Dark Ki upgrades now grant +1 to hit and +2 to damage to match similar enhancement lines
+------Tier 5 Touch of Despair now grants +3 to hit and +3 to damage to match similar enhancement lines
+---Shintao
+------Tier 2 and Tier 4 Light Ki upgrades now grant +1 to hit and +2 to damage to match similar enhancement lines
+---Henshin Mystic
+------Lighting the Candle now applies the fire portion of its imbue to Ki Spells
+---Class: Monk
+------Quivering Palm has a new DC formula: DC 10 + monk level + highest of Dex or Wis mod + assassinate bonuses
+---Assassin
+------All of the active poison attacks up the line are now +3W, use full rogue level for their DCs instead of half, and now make certain enemies that would be immune to poison, weak to poison.
+---------Ice Chill = Undead
+---------Heartseeker = Elementals
+---------Soulshatter = Outsiders
+---Vistani
+------Kukris now function with this tree, with the exception of the core 12, which only gives +1 multiplier (this keeps them in parity crit-wise with daggers as they naturally have +1 threat range over them)
+---Archmage
+------Master of Magic (Core 20) now also grants +20 Universal Spell Power, and increases from +2 INT to +4 INT
+------Efficient Metamagics have their AP cost reduced from 2 to 1, since AM having metamagics be good seems flavorful
+------Spell Penetration has its AP cost reduced from 2 to 1
+------Energy of the Scholar has its AP cost reduced from 2 to 1, matching other trees
+------Cores 12 and 18 now grant a generic +1 to caster level and max caster level
+---Vanguard
+------Stunning Shield cooldown reduced to 45/30/15 seconds
+------Shield Rush cooldown reduced to 40/30/20 seconds
+
 Build 2.0.0.5
 
 ---The skills view now also shows the buffed total skill at your level (Skill Breakdown values)
@@ -20,17 +102,17 @@ Build 2.0.0.5
 ---"Archer's Focus" and "Improved Precise Shot" moved into their own Stance group (Reported by DODOCung)
 ---All Battle Trances are now placed in the "Battle Trance" group
 ---All Battle trance bonuses should now update dynamically on total ability value changes
----"Shiradi Champion: Feywild Attunement" should now award Dodge based n the number of Wilderness Lore feats you have (Reported by DODOCung)
+---"Shiradi Champion: Feywild Attunement" should now award Dodge based on the number of Wilderness Lore feats you have (Reported by DODOCung)
 ---Wilderness/Arcane/Religious Lore feats will now assign correctly for all levels
----"Tiefling: Bloodhunt II" no longer erroneous grants 1 Imbue dice (Reported by DODOCung)
----Training "Shiradi Champion: Pierce Deception"" and "Watchful Eye" will now award its 5% doubleshot (Reported by DODOCung)
+---"Tiefling: Bloodhunt II" no longer erroneously grants 1 Imbue dice (Reported by DODOCung)
+---Training "Shiradi Champion: Pierce Deception" and "Watchful Eye" will now award its 5% doubleshot (Reported by DODOCung)
 ---"Shiradi Champion: Fey Countenance" now gives the bonus 2 to saving throws vs. Spells. (Reported by DODOCung)
 ---"Scion of the Shadowfell" now grants its correct spell critical damage (Reported by DODOCung)
 ---"Primal Avatar" cores should now correctly award the full SpellPower bonuses (Reported by DODOCung)
----"Wellspring of Power", "Maximize", "Empower", "Intensify", "Epic/Legendary Power"" now award Universal Spell Power (Reported by DODOCung)
+---"Wellspring of Power", "Maximize", "Empower", "Intensify", "Epic/Legendary Power" now award Universal Spell Power (Reported by DODOCung)
 ---"Wellspring of Power" spell critical damage is now Universal (Reported by DODOCung)
 ---"Tiefling: Incineration II" no longer erroneously grants 2% fire lore (Reported by DODOCung)
----Fate Points now correct contribute to your Spell points (Reported by DODOCung)
+---Fate Points now correctly contribute to your Spell points (Reported by DODOCung)
 ---Bad Shiradi images fixed
 ---Arcane Archer: Elemental Arrow III now correctly awards 1 imbue dice, not 2 (Reported by DODOCung)
 ---Bonus spell points should now correctly scale to Favored Soul/Sorcerer levels (Reported by DODOCung)
@@ -46,13 +128,13 @@ Build 2.0.0.5
 ---The Builder will now start with a default life/build on startup/new document (Requested by DODOCung)
 ---Druidic Oath is now awarded to Blightcasters at level 1
 ---Spontaneous Casting is now awarded to Blightcasters at level 1
----Natural Fighting can now be trained by Blight Casters
----Veil the Elements is now awarded to Blight Casters
----Venom Immunity is now awarded to Blight Casters
+---Natural Fighting can now be trained by Blightcasters
+---Veil the Elements is now awarded to Blightcasters
+---Venom Immunity is now awarded to Blightcasters
 ---Thorn-Kin and Hive Master stances now have their effects (Reported by DODOCung)
 ---Plague Wolf and Blighted Wolf now have their effects (Reported by DODOCung)
 ---Epic/Legendary Knowledge feats now correctly grant 1 Max caster Level per acquisition
----Epic/Legendary Knowledge now grants caster levels for Acolyte of the Ski, Blight Caster and Dark Hunter (Reported by DODOCung)
+---Epic/Legendary Knowledge now grants caster levels for Acolyte of the Skin, Blightcaster and Dark Hunter (Reported by DODOCung)
 ---Max Caster Level breakdowns added as sub items of a given class caster level item
 ---"Pale Master: Spell Critical: Negative Energy II" no longer requires "Unknown enhancement" (Reported by nb756)
 ---Granted feats will now definitely clear on a New build/Life

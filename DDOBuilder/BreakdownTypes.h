@@ -122,7 +122,8 @@ enum BreakdownType
     Breakdown_SkillUMD,
     // magical
     Breakdown_Spellpoints,
-    Breakdown_EldritchBlast,
+    Breakdown_EldritchBlastDice,
+    Breakdown_EldritchBlastPactDice,
     Breakdown_ArcaneSpellfailure,
     Breakdown_ArcaneSpellfailureShields,
     Breakdown_SpellResistance,

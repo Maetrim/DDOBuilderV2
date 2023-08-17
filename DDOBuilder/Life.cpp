@@ -419,9 +419,14 @@ size_t Life::SkillTomeValue(SkillType skill, size_t level) const
     // +4 Tomes will be applied at level 7 and higher
     // +5 Tomes will be applied at level 11 and higher
     size_t maxTome = 2;
-    if (level >= 3) maxTome++;
-    if (level >= 7) maxTome++;
-    if (level >= 11) maxTome++;
+    if (level >= 3) ++maxTome;
+    if (level >= 7) ++maxTome;
+    if (level >= 11) ++maxTome;
+    if (level >= 15) ++maxTome;     // assumed progression
+    if (level >= 19) ++maxTome;
+    if (level >= 23) ++maxTome;
+    if (level >= 27) ++maxTome;
+    if (level >= 31) ++maxTome;
     size_t value = m_Tomes.SkillTomeValue(skill);
     value = min(maxTome, value);
     return value;
@@ -733,6 +738,8 @@ void Life::CountBonusUniversalAP()
 
 void Life::NotifyActiveBuildChanged()
 {
+    m_bonusUniversalActionPoints = 0;
+    m_bonusDestinyActionPoints = 0;
     m_pCharacter->NotifyActiveBuildChanged();
     CountBonusRacialAP();
     CountBonusUniversalAP();

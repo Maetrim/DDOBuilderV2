@@ -5,6 +5,8 @@
 #include "DDOBuilderDoc.h"
 #include "XmlLib\SaxReader.h"
 #include "MainFrm.h"
+#include "LogPane.h"
+#include "GlobalSupportFunctions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -56,7 +58,9 @@ BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
     bool ok = reader.Open(lpszPathName);
     if (ok)
     {
-        //m_characterData.JustLoaded();
+        std::stringstream ss;
+        ss << "Document \"" << lpszPathName << "\" loaded.";
+        GetLog().AddLogEntry(ss.str().c_str());
     }
     else
     {

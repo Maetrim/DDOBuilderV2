@@ -404,6 +404,22 @@ void BreakdownItemWeaponEffects::EnhancementEffectRevoked(
     RemoveFromAffectedWeapons(&m_weaponEnhancementEffects, effect, NT_Enhancement);
 }
 
+void BreakdownItemWeaponEffects::SliderChanged(
+    Build* pBuild,
+    const std::string& sliderName,
+    int newValue)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->SliderChanged(pBuild, sliderName, newValue);
+    }
+
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->SliderChanged(pBuild, sliderName, newValue);
+    }
+}
+
 void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
 {
     // first remove any previous weapons breakdowns (if present)

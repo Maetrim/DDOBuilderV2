@@ -533,6 +533,30 @@ void BreakdownItemWeapon::FeatRevoked(
     m_drBypass.FeatRevoked(pBuild, featName);
 }
 
+void BreakdownItemWeapon::SliderChanged(
+    Build* pBuild,
+    const std::string& sliderName,
+    int newValue)
+{
+    BreakdownItem::SliderChanged(pBuild, sliderName, newValue);
+    // pass through to all our sub breakdowns
+    m_baseDamage.SliderChanged(pBuild, sliderName, newValue);
+    m_attackBonus.SliderChanged(pBuild, sliderName, newValue);
+    m_damageBonus.SliderChanged(pBuild, sliderName, newValue);
+    //m_otherDamageEffects.SliderChanged(pBuild, sliderName, newValue);
+    /////////m_vorpalRange.SliderChanged(pBuild, sliderName, newValue);
+    m_criticalThreatRange.SliderChanged(pBuild, sliderName, newValue);
+    m_criticalAttackBonus.SliderChanged(pBuild, sliderName, newValue);
+    m_criticalDamageBonus.SliderChanged(pBuild, sliderName, newValue);
+    //m_otherCriticalDamageEffects.SliderChanged(pBuild, sliderName, newValue);
+    m_criticalMultiplier.SliderChanged(pBuild, sliderName, newValue);
+    m_criticalMultiplier19To20.SliderChanged(pBuild, sliderName, newValue);
+    m_attackSpeed.SliderChanged(pBuild, sliderName, newValue);
+    m_ghostTouch.SliderChanged(pBuild, sliderName, newValue);
+    m_trueSeeing.SliderChanged(pBuild, sliderName, newValue);
+    m_drBypass.SliderChanged(pBuild, sliderName, newValue);
+}
+
 //void BreakdownItemWeapon::UpdateStanceActivated(
 //        Character * pBuild,
 //        const std::string & stanceName)

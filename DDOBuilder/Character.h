@@ -22,18 +22,18 @@ class Character :
     public Subject<CharacterObserver>
 {
     public:
-        Character(CDDOBuilderDoc * pDoc);
-        void Write(XmlLib::SaxWriter * writer) const;
+        Character(CDDOBuilderDoc* pDoc);
+        void Write(XmlLib::SaxWriter* writer) const;
         void AboutToLoad();
 
         void SetActiveBuild(size_t lifeIndex, size_t buildIndex);
-        Build * ActiveBuild();  // can be NULL
+        Build* ActiveBuild();  // can be NULL
         const Build* ActiveBuild() const; // can be NULL
 
         // life support
         Life* ActiveLife(); // can be NULL
         const Life* ActiveLife() const; // can be NULL
-        const Life & GetLife(size_t lifeIndex) const;
+        const Life& GetLife(size_t lifeIndex) const;
         void SetLifeName(size_t lifeIndex, CString name);
         size_t AddLife();
         void DeleteLife(size_t lifeIndex);
@@ -55,7 +55,9 @@ class Character :
         virtual void EndElement();
 
         #define Character_PROPERTIES(_) \
-                DL_THIS_OBJECT_LIST(_, Life, Lives)
+                DL_THIS_OBJECT_LIST(_, Life, Lives) \
+                DL_SIMPLE(_, size_t, ActiveLifeIndex, 0) \
+                DL_SIMPLE(_, size_t, ActiveBuildIndex, 0)
 
         DL_DECLARE_ACCESS(Character_PROPERTIES)
         DL_DECLARE_VARIABLES(Character_PROPERTIES)
@@ -63,7 +65,7 @@ class Character :
         void NotifyNumBuildsChanged();
         void NotifyActiveLifeChanged();
 
-        CDDOBuilderDoc * m_pDocument;
-        size_t m_activeLifeIndex;
-        size_t m_activeBuildIndex;
+        CDDOBuilderDoc* m_pDocument;
+        size_t m_uiActiveLifeIndex;
+        size_t m_uiActiveBuildIndex;
 };

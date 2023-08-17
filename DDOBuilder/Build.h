@@ -385,6 +385,7 @@ class Build :
         void RevokeAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel);
         size_t AddSetBonusStack(const std::string& set);
         size_t RevokeSetBonusStack(const std::string& set);
+        void VerifySpecialFeats();
 
         Life * m_pLife;
         int m_racialTreeSpend;

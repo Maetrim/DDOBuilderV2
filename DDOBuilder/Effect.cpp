@@ -1155,13 +1155,26 @@ bool Effect::UpdateTreeEffects(const std::string& treeName)
 
 bool Effect::UpdateSliderEffects(const std::string& sliderName, int newValue)
 {
+    // slider effects can either be a stack source value or they can affect
+    // a stance requirement
     bool bUpdate = false;
+    // check for slider is the stack count
     if (m_AType == Amount_SliderValue
         && sliderName == StackSource())
     {
         bUpdate = true;
         m_stacks = newValue;
     }
+    else
+    {
+        // check for slider affects stance state
+        if (HasRequirementsToBeActive())
+        {
+            // just assume if we are stance controlled, then we need to update
+            bUpdate = true;
+        }
+    }
+
     return bUpdate;
 }
 

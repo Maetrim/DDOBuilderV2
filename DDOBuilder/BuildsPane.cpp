@@ -85,6 +85,9 @@ LRESULT CBuildsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
         m_buttonDeleteLife.EnableWindow(false);
         m_buttonAddBuild.EnableWindow(false);
         m_buttonDeleteBuild.EnableWindow(false);
+        // need to clear any selection for a load to restore to the previous selection
+        // on start up
+        m_treeBuilds.SelectItem(NULL);
         PopulateBuildsList();
     }
     return 0L;
@@ -224,7 +227,7 @@ void CBuildsPane::PopulateBuildsList()
     {
         // keep the same item selected if there was one
         HTREEITEM hSelItem = m_treeBuilds.GetSelectedItem();
-        DWORD selItemData = MakeItemData(TEI_Build, 0, 0);  // cause life(0, 0) to start selected if no selection
+        DWORD selItemData = MakeItemData(TEI_Build, m_pCharacter->ActiveLifeIndex(), m_pCharacter->ActiveBuildIndex());
         if (hSelItem != NULL)
         {
             selItemData = m_treeBuilds.GetItemData(hSelItem);
@@ -285,11 +288,11 @@ void CBuildsPane::PopulateBuildsList()
 
 void CBuildsPane::OnButtonNewLife()
 {
+    GetLog().AddLogEntry("New life added");
     size_t lifeIndex = m_pCharacter->AddLife();
     PopulateBuildsList();
     // new life, 1st build starts selected
     SelectTreeItem(TEI_Build, lifeIndex, 0);
-    GetLog().AddLogEntry("New life added");
     if (lifeIndex == 0)
     {
         m_pCharacter->SetModifiedFlag(FALSE);
@@ -298,6 +301,7 @@ void CBuildsPane::OnButtonNewLife()
 
 void CBuildsPane::OnButtonDeleteLife()
 {
+    GetLog().AddLogEntry("Life deleted");
     HTREEITEM hItem = m_treeBuilds.GetSelectedItem();
     DWORD itemData = m_treeBuilds.GetItemData(hItem);
     size_t lifeIndex = ExtractLifeIndex(itemData);
@@ -326,11 +330,11 @@ void CBuildsPane::OnButtonDeleteLife()
         LRESULT result;
         OnSelchangedTreeBuilds(NULL, &result);
     }
-    GetLog().AddLogEntry("Life deleted");
 }
 
 void CBuildsPane::OnButtonAddBuild()
 {
+    GetLog().AddLogEntry("Build added to life");
     HTREEITEM hItem = m_treeBuilds.GetSelectedItem();
     DWORD itemData = m_treeBuilds.GetItemData(hItem);
     size_t lifeIndex = ExtractLifeIndex(itemData);
@@ -338,11 +342,13 @@ void CBuildsPane::OnButtonAddBuild()
     PopulateBuildsList();
     // new build starts selected
     SelectTreeItem(TEI_Build, lifeIndex, buildIndex);
-    GetLog().AddLogEntry("Build added to life");
 }
 
 void CBuildsPane::OnButtonDeleteBuild()
 {
+    std::stringstream ss;
+    ss << "Build \"" << m_pCharacter->ActiveBuild()->ComplexUIDescription() << "\" deleted from life.";
+    GetLog().AddLogEntry(ss.str().c_str());
     HTREEITEM hItem = m_treeBuilds.GetSelectedItem();
     DWORD itemData = m_treeBuilds.GetItemData(hItem);
     size_t lifeIndex = ExtractLifeIndex(itemData);
@@ -371,7 +377,6 @@ void CBuildsPane::OnButtonDeleteBuild()
         // no builds left in this life, drop back to the Life element being selected
         SelectTreeItem(TEI_Life, lifeIndex, 0);
     }
-    GetLog().AddLogEntry("Build deleted from life");
 }
 
 void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
@@ -416,7 +421,7 @@ void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
         m_buttonDeleteBuild.EnableWindow(false);
         if (m_pCharacter != NULL)
         {
-            m_pCharacter->SetActiveBuild(0, 0);
+            m_pCharacter->SetActiveBuild(m_pCharacter->ActiveLifeIndex(), m_pCharacter->ActiveBuildIndex());
         }
     }
     *pResult = 0;

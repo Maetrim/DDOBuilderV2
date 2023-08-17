@@ -15,9 +15,8 @@
       <EnhancementTreeItem>
          <Name>Pale Master: Dark Reaping</Name>
          <InternalName>PMCore1</InternalName>
-         <Description>For each point spent in this tree you gain +0.75 Universal Spell Power
-and +0.75 Negative Energy Spell Power
-(for a total of 1.5 Negative Energy SpellPower per point spent).</Description>
+         <Description>For each Core Ability in this tree, including this one, you gain +5 Negative Spell
+Power, +5 Universal Spell Power and +3 Negative Healing Amplification.</Description>
          <Icon>PMDarkReaping</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -33,29 +32,33 @@ and +0.75 Negative Energy Spell Power
             </Requirement>
          </Requirements>
          <Effect>
-            <DisplayName>Pale Master: 0.75 Universal Spell Power per AP</DisplayName>
-            <Type>UniversalSpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <StackSource>Pale Master</StackSource>
-            <AType>APCount</AType>
-            <Amount size="1">0.75</Amount>
-         </Effect>
-         <Effect>
-            <DisplayName>Pale Master: 0.75 Negative Spell Power per AP</DisplayName>
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <StackSource>Pale Master</StackSource>
-            <AType>APCount</AType>
-            <Amount size="1">0.75</Amount>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
             <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Pale Master: Pale Shroud</Name>
          <InternalName>PMCore2</InternalName>
          <Description>Multi-selector: Choose an Undead Shroud.
-All forms grant 100% critical hit resistance and allow you to be healed by Negative Energy.
-You take 50% healing from Positive, and double damage from Light. You are considered undead.</Description>
+All forms grant 100% critical hit resistance and allow you to be healed by
+Negative Energy. You take 50% healing from Positive, and double damage from
+Light. You are considered undead rather than your original type for the
+purposes of most effects.</Description>
          <Icon>PMShroudOfTheZombie</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -78,10 +81,11 @@ You take 50% healing from Positive, and double damage from Light. You are consid
             <EnhancementSelection>
                <Name>Shroud of the Zombie</Name>
                <Description>Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
-traits of a Zombie. While in this form, you hunger for brains and gain +4 Constitution,
-+10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
-+100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
-Energy, and take double damage from Light. You are considered Undead rather than your original
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
 type for the purposes of most effects.</Description>
                <Icon>PMShroudOfTheZombie</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -89,10 +93,12 @@ type for the purposes of most effects.</Description>
                <Stance>
                   <Name>Shroud of the Zombie</Name>
                   <Icon>PMShroudOfTheZombie</Icon>
-                  <Description>While in this form, you hunger for brains and gain +4 Constitution,
-+10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
-+100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
-Energy, and take double damage from Light. You are considered Undead rather than your original
+               <Description>Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
 type for the purposes of most effects.</Description>
                   <Group>Major Form</Group>
                </Stance>
@@ -102,6 +108,19 @@ type for the purposes of most effects.</Description>
                   <AType>Simple</AType>
                   <Amount size="1">4</Amount>
                   <Item>Constitution</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Shroud of the Zombie</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">2</Amount>
+                  <Item>Strength</Item>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
@@ -137,18 +156,18 @@ type for the purposes of most effects.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shroud of the Vampire</Name>
-               <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
-+3 Perform skill, and your melee and unarmed attacks have a chance to heal
-you for 1d3 Negative Energy damage per Wizard Level.</Description>
+               <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level.</Description>
                <Icon>PMShroudOfTheVampire</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
                <Stance>
                   <Name>Shroud of the Vampire</Name>
                   <Icon>PMShroudOfTheVampire</Icon>
-                  <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
-+3 Perform skill, and your melee and unarmed attacks have a chance to heal
-you for 1d3 Negative Energy damage per Wizard Level.</Description>
+                  <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level.</Description>
                   <Group>Major Form</Group>
                </Stance>
                <Effect>
@@ -182,18 +201,18 @@ you for 1d3 Negative Energy damage per Wizard Level.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Pale Master: Shroud of the Wraith</Name>
-               <Description>While in this form, +2 Dexterity, +2 Intelligence.
-Enemy attacks have a 10% chance to miss you due to incorporeality,
-+1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+               <Description>While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice</Description>
                <Icon>PMShroudOfTheWraith</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
                <Stance>
                   <Name>Shroud of the Wraith</Name>
                   <Icon>PMShroudOfTheWraith</Icon>
-                  <Description>While in this form, +2 Dexterity, +2 Intelligence.
-Enemy attacks have a 10% chance to miss you due to incorporeality,
-+1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+                  <Description>While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice</Description>
                   <Group>Major Form</Group>
                </Stance>
                <Effect>
@@ -238,16 +257,16 @@ Enemy attacks have a 10% chance to miss you due to incorporeality,
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shroud of the Lich</Name>
-               <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
-+10 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
+               <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
                <Icon>PMShroudOfTheLich</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
                <Stance>
                   <Name>Shroud of the Lich</Name>
                   <Icon>PMShroudOfTheLich</Icon>
-                  <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
-+10 Negative/Poison Spell Power, and +15 Magical Resistance Rating.</Description>
+                  <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
                   <Group>Major Form</Group>
                </Stance>
                <Effect>
@@ -304,6 +323,25 @@ Enemy attacks have a 10% chance to miss you due to incorporeality,
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
          <Effect>
             <Type>Fortification</Type>
             <Bonus>Enhancement</Bonus>
@@ -692,7 +730,8 @@ If you are in Wraith Form, this increases your total to 20%.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Undead Chill</Name>
-               <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.</Description>
+               <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)</Description>
                <Icon>PMUndeadAugmentation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -725,7 +764,8 @@ If you are in Wraith Form, this increases your total to 20%.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Undead Shock</Name>
-               <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.</Description>
+               <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)</Description>
                <Icon>PMUndeadAugmentation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -798,6 +838,25 @@ If you are in Wraith Form, this increases your total to 20%.</Description>
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
          <Effect>
             <Type>SpellPenetrationBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -1138,7 +1197,8 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Undead Chill</Name>
-               <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.</Description>
+               <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)</Description>
                <Icon>PMUndeadAugmentation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1171,7 +1231,8 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Undead Shock</Name>
-               <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.</Description>
+               <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)</Description>
                <Icon>PMUndeadAugmentation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1244,6 +1305,25 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
          <Effect>
             <Type>SpellPenetrationBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -1575,7 +1655,8 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Undead Chill</Name>
-               <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.</Description>
+               <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)</Description>
                <Icon>PMUndeadAugmentation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1607,7 +1688,8 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Undead Shock</Name>
-               <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.</Description>
+               <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)</Description>
                <Icon>PMUndeadAugmentation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1679,6 +1761,25 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
          
       </Selector>
          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellPenetrationBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType><Amount size="1">1</Amount>
@@ -1710,7 +1811,7 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Pale Master: Embrace the Void</Name>
+         <Name>Pale Master: d the Void</Name>
          <InternalName>PMCore6</InternalName>
          <Description>Active: Greater Death Aura SLA.
 Envelops the caster in a sickly aura of negative energy. Living enemies stepping
@@ -1720,8 +1821,8 @@ Fortitude save reduces the damage by half. Undead are instead healed by the aura
 This aura can affect up to one target per caster level. D&amp;D Dice: Deals 3d4
 negative energy damage plus 1 per caster level every two seconds.
 This can be cast simultaneously with Lesser Death Aura and Death Aura.
-Passive: You gain +4 Intelligence and Deathblock. +10 Negative Healing Amplification.
-+2 Spell Penetration.</Description>
+Passive: You gain +4 Intelligence and Deathblock. +10 Negative Healing
+Amplification. +2 Spell Penetration.</Description>
          <Icon>PMEmbraceTheVoid</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -1752,6 +1853,25 @@ Passive: You gain +4 Intelligence and Deathblock. +10 Negative Healing Amplifica
           <Item>PaleCore6</Item>
           <Item>Capstone Enhancement</Item>
        </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+         </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -1824,8 +1944,8 @@ Cooldown: [12/8/4] seconds.</Description>
          <Name>Pale Master: Negative Energy Conduit</Name>
          <InternalName>PaleNegativeEnergyConduit</InternalName>
          <Description>Your vulnerability to Negative Energy is increased by [6/12/20]%.
-This increases the amount by which you are healed from Negative Energy while you
-have a Shroud toggle active.</Description>
+This increases the amount by which you are healed from Negative Energy while
+you have a Shroud toggle active.</Description>
          <Icon>PMNegativeEnergyConduit</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -1878,10 +1998,10 @@ have a Shroud toggle active.</Description>
          <InternalName>PMSkeletalKnight</InternalName>
          <Description>Summon the reanimated body of an ancient knight to do your bidding once per rest.
 Cooldown: 20 seconds
-The Skeletal Knight is a very strong Fighter with a level equal to your current Wizard
-level plus any Epic levels. You can summon it in addition to any Summon Monster spell
-you might be using. Additional ranks in this enhancement increase your Knight's Damage,
-Attack Speed, Movement Speed, and Fortification.</Description>
+The Skeletal Knight is a very strong Fighter with a level equal to your current
+Wizard level plus any Epic levels. You can summon it in addition to any Summon
+Monster spell you might be using. Additional ranks in this enhancement increase
+your Knight's Damage, Attack Speed, Movement Speed, and Fortification.</Description>
          <Icon>PMSkeletalKnight</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -1901,7 +2021,8 @@ Attack Speed, Movement Speed, and Fortification.</Description>
       <EnhancementTreeItem>
          <Name>Pale Master: Deathless Vigor</Name>
          <InternalName>PaleDeathlessVigor</InternalName>
-         <Description>The power of undeath has toughened your flesh, providing you with an additional +[10/20/30] Hit Points.</Description>
+         <Description>The power of undeath has toughened your flesh, providing you with an additional
++[10/20/30] Hit Points.</Description>
          <Icon>PMDeathlessVigor</Icon>
          <XPosition>4</XPosition>
          <YPosition>1</YPosition>
@@ -1926,8 +2047,9 @@ Attack Speed, Movement Speed, and Fortification.</Description>
       <EnhancementTreeItem>
          <Name>Pale Master: Cloak of Night</Name>
          <InternalName>PaleCloakOfNight</InternalName>
-         <Description>While blocking in a Pale Shroud, you gain invisibility, displacement,
-and do not take extra damage from Light. Passive: +5 Hide.</Description>
+         <Description>While blocking in a Pale Shroud, you gain invisibility, displacement, and do not
+take extra damage from Light. Passive: +5 Hide.
+Note: Works with Channel the Abyss (Abyss Pact) as well.</Description>
          <Icon>PaleCloakOfNight</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -1981,9 +2103,10 @@ and do not take extra damage from Light. Passive: +5 Hide.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Pale Master: Corpse Crafter</Name>
+         <Name>Pale Master: Corpsecrafter</Name>
          <InternalName>PaleCorpsecrafter</InternalName>
-         <Description>Your Skeletal Knight gains a +[2/4/6] Profane Bonus to Strength, Dexterity, and Constitution.
+         <Description>Your Skeletal Knight gains a +[2/4/6] Profane Bonus to Strength, Dexterity, and
+Constitution.
 Rank 3: You gain +1 Strength, Dexterity, and Constitution.</Description>
          <Icon>PMCorpsecrafter</Icon>
          <XPosition>3</XPosition>
@@ -2210,7 +2333,10 @@ Cooldown: [15/10/5] seconds.</Description>
       <EnhancementTreeItem>
          <Name>Pale Master: Negative Energy Adept</Name>
          <InternalName>PaleNegativeEnergyAdept</InternalName>
-         <Description>+[10/20/30] Negative Healing Amplification</Description>
+         <Description>+[10/20/30] Negative Healing Amplification.
+Hidden effect: Dark Furor: The Skeletal Knight benefits from Dark Furor,
+granting it +[15/30/45]% chance to Doublestrike, and causing its attacks to
+bypass [5/10/15]% of enemy Fortification.</Description>
          <Icon>PMNegativeEnergyAdept</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -2265,9 +2391,10 @@ Cooldown: [15/10/5] seconds.</Description>
       <EnhancementTreeItem>
          <Name>Pale Master: Eternal Furor</Name>
          <InternalName>PaleEternalFuror</InternalName>
-         <Description>You (while in a Shroud) AND your Skeleton Knight gain +[5/10/15] Profane
-Bonus to PRR. Your Skeletal Knight gains +[3/6/10] to hit and damage, +[2/4/6] Profane
-Bonus to AC, and its attacks bypass [10/20/50]% of enemy Fortification.</Description>
+         <Description>You (while in a Shroud) AND your Skeleton Knight gain +[5/10/15] Profane Bonus
+to PRR. Your Skeletal Knight gains +[3/6/10] to hit and damage, +[2/4/6] Profane
+Bonus to AC, and its attacks bypass [10/20/50]% of enemy Fortification.
+Note: PRR bonus works with Channel the Abyss (Abyss Pact) as well.</Description>
          <Icon>PMEternalServitude</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -2302,6 +2429,10 @@ Bonus to AC, and its attacks bypass [10/20/50]% of enemy Fortification.</Descrip
                   <Requirement>
                      <Type>Stance</Type>
                      <Item>Shroud of the Lich</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Channel the Abyss</Item>
                   </Requirement>
                </RequiresOneOf>
             </Requirements>
@@ -2358,11 +2489,11 @@ Bonus to AC, and its attacks bypass [10/20/50]% of enemy Fortification.</Descrip
       <EnhancementTreeItem>
          <Name>Pale Master: Unholy Avatar</Name>
          <InternalName>PaleUnholyAvatar</InternalName>
-         <Description>You are cloaked in the darkness itself, and can reach out with your
-Negative Energy Spells to taint the Undead with mortality. When you strike an
-Undead with a damage-dealing Negative Energy Spell, it leaves a lingering weakness
-to Negative Energy that bypasses an Undead's natural resistance to Negative Energy.
-Only works while in a Shroud form.</Description>
+         <Description>You are cloaked in the darkness itself, and can reach out with your Negative
+Energy Spells to taint the Undead with mortality. When you strike an Undead
+with a damage-dealing Negative Energy Spell, it leaves a lingering weakness
+to Negative Energy that bypasses an Undead's natural resistance to Negative
+Energy. Only works while in a Shroud form.</Description>
          <Icon>PMUnholyAvatar</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -2430,10 +2561,11 @@ Only works while in a Shroud form.</Description>
             <EnhancementSelection>
                <Name>Shroud of the Zombie</Name>
                <Description>Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
-traits of a Zombie. While in this form, you hunger for brains and gain +4 Constitution,
-+10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
-+100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
-Energy, and take double damage from Light. You are considered Undead rather than your original
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
 type for the purposes of most effects.</Description>
                <Icon>PMShroudOfTheZombie</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -2441,10 +2573,12 @@ type for the purposes of most effects.</Description>
                <Stance>
                   <Name>Shroud of the Zombie</Name>
                   <Icon>PMShroudOfTheZombie</Icon>
-                  <Description>While in this form, you hunger for brains and gain +4 Constitution,
-+10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
-+100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
-Energy, and take double damage from Light. You are considered Undead rather than your original
+                  <Description>Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
 type for the purposes of most effects.</Description>
                   <Group>Major Form</Group>
                </Stance>
@@ -2454,6 +2588,19 @@ type for the purposes of most effects.</Description>
                   <AType>Simple</AType>
                   <Amount size="1">4</Amount>
                   <Item>Constitution</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Shroud of the Zombie</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">2</Amount>
+                  <Item>Strength</Item>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
@@ -2489,18 +2636,18 @@ type for the purposes of most effects.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shroud of the Vampire</Name>
-               <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
-+3 Perform skill, and your melee and unarmed attacks have a chance to heal
-you for 1d3 Negative Energy damage per Wizard Level.</Description>
+               <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level.</Description>
                <Icon>PMShroudOfTheVampire</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
                <Stance>
                   <Name>Shroud of the Vampire</Name>
                   <Icon>PMShroudOfTheVampire</Icon>
-                  <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
-+3 Perform skill, and your melee and unarmed attacks have a chance to heal
-you for 1d3 Negative Energy damage per Wizard Level.</Description>
+                  <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level.</Description>
                   <Group>Major Form</Group>
                </Stance>
                <Effect>
@@ -2521,18 +2668,18 @@ you for 1d3 Negative Energy damage per Wizard Level.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Pale Master: Shroud of the Wraith</Name>
-               <Description>While in this form, +2 Dexterity, +2 Intelligence.
-Enemy attacks have a 10% chance to miss you due to incorporeality,
-+1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+               <Description>While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice</Description>
                <Icon>PMShroudOfTheWraith</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
                <Stance>
                   <Name>Shroud of the Wraith</Name>
                   <Icon>PMShroudOfTheWraith</Icon>
-                  <Description>While in this form, +2 Dexterity, +2 Intelligence.
-Enemy attacks have a 10% chance to miss you due to incorporeality,
-+1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+                  <Description>While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice</Description>
                   <Group>Major Form</Group>
                </Stance>
                <Effect>
@@ -2577,16 +2724,16 @@ Enemy attacks have a 10% chance to miss you due to incorporeality,
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shroud of the Lich</Name>
-               <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
-+5 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
+               <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
                <Icon>PMShroudOfTheLich</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
                <Stance>
                   <Name>Shroud of the Lich</Name>
                   <Icon>PMShroudOfTheLich</Icon>
-                  <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
-+5 Negative/Poison Spell Power, and +15 Magical Resistance Rating.</Description>
+                  <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
                   <Group>Major Form</Group>
                </Stance>
                <Effect>
@@ -2737,8 +2884,8 @@ Cooldown: [18/12/6] seconds..</Description>
          <Name>Pale Master: Animate Ally</Name>
          <InternalName>PaleAnimateAlly</InternalName>
          <Description>Activate to Animate a dead ally, restoring 100% of the target's hit points.
-Your ally is considered an undead zombie gaining the benefits and drawbacks of Shroud
-of the Zombie. Zombie Form is removed on Rest or Death.
+Your ally is considered an undead zombie gaining the benefits and drawbacks of
+Shroud of the Zombie. Zombie Form is removed on Rest or Death.
 Cooldown: 18 seconds.
 Metamagic: Quicken, Enlarge. Spell Resistance: No</Description>
          <Icon>PMAnimateAlly</Icon>
@@ -2764,7 +2911,8 @@ Metamagic: Quicken, Enlarge. Spell Resistance: No</Description>
       <EnhancementTreeItem>
          <Name>Pale Master: Necromantic Focus</Name>
          <InternalName>PaleNecromanticFocus</InternalName>
-         <Description>You benefit from dark knowledge, granting you a +1 DC to spells from the Necromancy school.</Description>
+         <Description>You benefit from dark knowledge, granting you a +1 DC to spells from the Necromancy
+school.</Description>
          <Icon>PMNecromanticFocus</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -2817,7 +2965,8 @@ Metamagic: Quicken, Enlarge. Spell Resistance: No</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Dark Discorporation</Name>
-               <Description>(as per the Warlock spell... Because Pale Masters should get to turn into bats and float away).</Description>
+               <Description>(as per the Warlock spell... Because Pale Masters should get to turn into bats
+and float away).</Description>
                <Icon>PMDarkDiscorporation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -2832,10 +2981,10 @@ Metamagic: Quicken, Enlarge. Spell Resistance: No</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Reactive Discorporation</Name>
-               <Description>When your HP drops below 50% o your maximum, you automatically cast
-Dark Discorporation on yourself, turning into a swarm of dark fluttering bats for 20 seconds.
-This spell will still end if you attack as per the original version of the spell.
-This may only trigger once every 60 seconds.</Description>
+               <Description>When your HP drops below 50% o your maximum, you automatically cast Dark Discorporation
+on yourself, turning into a swarm of dark fluttering bats for 20 seconds.
+This spell will still end if you attack as per the original version of the
+spell. This may only trigger once every 60 seconds.</Description>
                <Icon>PMReactiveDiscorporation</Icon>
                <CostPerRank size="1">1</CostPerRank>
             </EnhancementSelection>
@@ -2850,10 +2999,13 @@ While in Zombie Form:
     Attacks deal 10% more damage
     +10 PRR
     +10% Profane Bonus to maximum Hit Points.
+    Bug: Unlisted penalty to ranged attack speed for a total of-20% (melee
+    attack speed penalty remains at 10%).
 While in Vampire Form:
     +1 Enchantment DC.
     Your melee attacks have a chance to dominate your adversaries.
-    On Hit: Target has a chance to be Paralyzed (Will save vs. DC 20 + INT Mod + Enchantment Spell Bonuses).
+    On Hit: Target has a chance to be Paralyzed
+        (Will save vs. DC 20 + INT Mod + Enchantment Spell Bonuses).
     On Save: -10% Movement and Attack Speed.
 While in Wraith Form:
     +5% Incorporeality (bringing your total to 20%, or 25% if you have Ghost in the Wind),
