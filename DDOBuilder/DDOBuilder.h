@@ -77,6 +77,7 @@ public:
 
     afx_msg void OnAppAbout();
     afx_msg void OnFileNew();
+    afx_msg void OnVerifyLoadedData();
     afx_msg void OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI);
     DECLARE_MESSAGE_MAP()
 private:
@@ -148,6 +149,8 @@ private:
     CImageList m_itemImages;
     std::map<std::string, int> m_imagesMap;
     bool m_bLoadComplete;
+
+    friend class Item;
 };
 
 extern CDDOBuilderApp theApp;

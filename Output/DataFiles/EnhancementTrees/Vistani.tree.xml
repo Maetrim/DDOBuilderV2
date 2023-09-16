@@ -208,6 +208,94 @@ Swords: You gain 15 Melee Power and Ranged Power for 60 seconds.</Description>
             <AType>Simple</AType>
             <Amount size="1">10</Amount>
          </Effect>
+      <Stance>
+        <Name>Vistani: Coins</Name>
+        <Icon>VistaniFortune</Icon>
+        <Description>You gain 10% Doublestrike and 10% Doubleshot for 60 seconds.</Description>
+        <Group>Vistani Fortune</Group>
+      </Stance>
+      <Stance>
+        <Name>Vistani: Glyphs</Name>
+        <Icon>VistaniFortune</Icon>
+        <Description>You gain 10 PRR and 20 MRR for 60 seconds.</Description>
+        <Group>Vistani Fortune</Group>
+      </Stance>
+      <Stance>
+        <Name>Vistani: Stars</Name>
+        <Icon>VistaniFortune</Icon>
+        <Description>You gain +2 to all ability scores for 60 seconds.</Description>
+        <Group>Vistani Fortune</Group>
+      </Stance>
+      <Stance>
+        <Name>Vistani: Swords</Name>
+        <Icon>VistaniFortune</Icon>
+        <Description>You gain 15 Melee Power and Ranged Power for 60 seconds.</Description>
+        <Group>Vistani Fortune</Group>
+      </Stance>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Vistani: Coins</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Vistani: Glyphs</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Vistani: Glyphs</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Vistani: Stars</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Type>RangedPower</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Vistani: Swords</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vistani: Blade Master</Name>
@@ -291,7 +379,7 @@ You gain +1 to hit and damage with daggers, kukris,  and throwing daggers.</Desc
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
             <Item>Dagger</Item>
-            <Item>Kukro</Item>
+            <Item>Kukri</Item>
             <Item>Throwing Dagger</Item>
          </Effect>
       </EnhancementTreeItem>
@@ -568,8 +656,8 @@ Cooldown: 30 seconds</Description>
          <Name>Vistani: Fan of Knives</Name>
          <InternalName>FanOfKnives</InternalName>
          <Description>On activation: You throw a hail of throwing knives in a cone in front of you.
-Enemies caught in the cone take 5 to 8 per character level of damage and take
-1 stack of Blood of Vengeance. This damage scales with 100% Ranged Power.
+Enemies caught in the cone take 1d8 damage per character level of damage and take
+one stack of Blood of Vengeance. This damage scales with 200% Ranged Power.
 Cooldown: 15 seconds</Description>
          <Icon>FanOfKnives</Icon>
          <XPosition>1</XPosition>

@@ -23,6 +23,16 @@ Patron::Patron() :
     DL_INIT(Patron_PROPERTIES)
 }
 
+Patron::Patron(const std::string& name) :
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_maxFavor(0)
+{
+    UNREFERENCED_PARAMETER(name);
+    DL_INIT(Patron_PROPERTIES)
+    m_hasName = true;
+    m_Name = Patron_Unknown;
+}
+
 DL_DEFINE_ACCESS(Patron_PROPERTIES)
 
 XmlLib::SaxContentElementInterface * Patron::StartElement(

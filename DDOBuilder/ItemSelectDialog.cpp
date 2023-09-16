@@ -294,7 +294,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
             if (canSelect)
             {
                 // user can select this item, add it to the available list
-                m_availableItems.push_back((*it));
+                m_availableItems.push_back(&(*it));
             }
         }
         ++it;
@@ -304,20 +304,20 @@ void CItemSelectDialog::PopulateAvailableItemList()
 
     // now populate the control
     size_t itemIndex = 0;
-    it = m_availableItems.begin();
-    while (it != m_availableItems.end())
+    std::list<const Item*>::const_iterator aiit = m_availableItems.begin();
+    while (aiit != m_availableItems.end())
     {
         int item = m_availableItemsCtrl.InsertItem(
                 m_availableItemsCtrl.GetItemCount(),
-                (*it).Name().c_str(),
-                (*it).IconIndex());
+                (*aiit)->Name().c_str(),
+                (*aiit)->IconIndex());
         CString level;
-        level.Format("%d", (*it).MinLevel());
+        level.Format("%d", (*aiit)->MinLevel());
         m_availableItemsCtrl.SetItemText(item, 1, level);
         m_availableItemsCtrl.SetItemData(item, itemIndex);
 
         ++itemIndex;
-        ++it;
+        ++aiit;
     }
 
     m_availableItemsCtrl.SortItems(
@@ -587,11 +587,11 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
             if (sel >= 0 && sel < (int)m_availableItems.size())
             {
                 // must be a different item to the one already selected
-                std::list<Item>::const_iterator it = m_availableItems.begin();
+                std::list<const Item*>::const_iterator it = m_availableItems.begin();
                 std::advance(it, sel);
-                if ((*it).Name() != m_item.Name())
+                if ((*it)->Name() != m_item.Name())
                 {
-                    m_item = (*it);
+                    m_item = *(*it);
                     AddSpecialSlots();  // adds reaper or mythic slots to the item
                     // update the other controls
                     EnableControls();
@@ -733,6 +733,7 @@ void CItemSelectDialog::OnAugmentLevelSelect(UINT nID)
 
 void CItemSelectDialog::OnAugmentLevelCancel(UINT nID)
 {
+    UNREFERENCED_PARAMETER(nID);
 }
 
 void CItemSelectDialog::PopulateSlotUpgradeList(
@@ -982,9 +983,9 @@ void CItemSelectDialog::OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult)
             m_availableItemsCtrl.ClientToScreen(&rect);
             CPoint tipTopLeft(rect.left, rect.bottom);
             CPoint tipAlternate(rect.left, rect.top);
-            std::list<Item>::const_iterator it = m_availableItems.begin();
+            std::list<const Item*>::const_iterator it = m_availableItems.begin();
             std::advance(it, itemIndex);
-            SetTooltipText((*it), tipTopLeft, tipAlternate);
+            SetTooltipText(*(*it), tipTopLeft, tipAlternate);
             m_showingTip = true;
             // make sure we don't stack multiple monitoring of the same rectangle
             if (m_hoverHandle == 0)

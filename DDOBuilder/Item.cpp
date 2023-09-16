@@ -4,7 +4,10 @@
 #include "Item.h"
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
+#include "LogPane.h"
 #include "Buff.h"
+#include "SetBonus.h"
+#include "DDOBuilder.h"
 #include <algorithm>
 
 #define DL_ELEMENT Item
@@ -150,23 +153,32 @@ void Item::VerifyObject() const
     bool ok = true;
     std::stringstream ss;
     ss << "=====" << m_Name << "=====\n";
-    if (!ImageFileExists("DataFiles\\ItemImages\\", Icon()))
+    if (HasIcon())
     {
-        ss << "Item is missing image file \"" << Icon() << "\"\n";
+        CDDOBuilderApp* pApp = dynamic_cast<CDDOBuilderApp*>(AfxGetApp());
+        if (pApp->m_imagesMap.find(Icon()) == pApp->m_imagesMap.end())
+        {
+            ss << "Item is missing image file \"" << Icon() << "\"\n";
+            ok = false;
+        }
+    }
+    else
+    {
+        ss << "Item is missing Icon field\n";
         ok = false;
     }
     if (m_hasDamageDice)
     {
         //ok &= m_DamageDice.VerifyObject(&ss);
     }
-    //// check the item effects also
-    //std::vector<Effect>::const_iterator it = m_Effects.begin();
-    //while (it != m_Effects.end())
-    //{
-    //    ok &= (*it).VerifyObject(&ss);
-    //    ++it;
-    //}
-    //// verify its DC objects
+    // check the item effects also
+    std::vector<Effect>::const_iterator it = m_Effects.begin();
+    while (it != m_Effects.end())
+    {
+        ok &= (*it).VerifyObject(&ss);
+        ++it;
+    }
+    // verify its DC objects
     //std::list<DC>::const_iterator edcit = m_EffectDC.begin();
     //while (edcit != m_EffectDC.end())
     //{
@@ -181,28 +193,28 @@ void Item::VerifyObject() const
         ++iacit;
     }
     // check any set bonuses exist
-    //const std::list<::SetBonus> & loadedSets = SetBonuses();
-    //std::list<std::string>::const_iterator sbit = m_SetBonus.begin();
-    //while (sbit != m_SetBonus.end())
-    //{
-    //    bool bFound = false;
-    //    std::list<::SetBonus>::const_iterator sit = loadedSets.begin();
-    //    while (!bFound && sit != loadedSets.end())
-    //    {
-    //        bFound = ((*sit).Name() == (*sbit));
-    //        ++sit;
-    //    }
-    //    if (!bFound)
-    //    {
-    //        ok = false;
-    //        ss << "Has unknown set bonus \"" << (*sbit) << "\"\n";
-    //    }
-    //    ++sbit;
-    //}
+    const std::list<::SetBonus> & loadedSets = SetBonuses();
+    std::list<std::string>::const_iterator sbit = m_SetBonus.begin();
+    while (sbit != m_SetBonus.end())
+    {
+        bool bFound = false;
+        std::list<::SetBonus>::const_iterator sit = loadedSets.begin();
+        while (!bFound && sit != loadedSets.end())
+        {
+            bFound = ((*sit).Type() == (*sbit));
+            ++sit;
+        }
+        if (!bFound)
+        {
+            ok = false;
+            ss << "Has unknown set bonus \"" << (*sbit) << "\"\n";
+        }
+        ++sbit;
+    }
 
     if (!ok)
     {
-        ::OutputDebugString(ss.str().c_str());
+        GetLog().AddLogEntry(ss.str().c_str());
     }
 }
 

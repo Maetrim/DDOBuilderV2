@@ -100,7 +100,7 @@ void CGrantedFeatsPane::OnInitialUpdate()
         CWnd* pWnd = AfxGetApp()->m_pMainWnd;
         CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
         CBreakdownsPane* pBreakdownsPane = dynamic_cast<CBreakdownsPane*>(
-                pMainWnd->GetPane(RUNTIME_CLASS(CBreakdownsPane)));
+                pMainWnd->GetPaneView(RUNTIME_CLASS(CBreakdownsPane)));
         pBreakdownsPane->RegisterBuildCallbackEffect(Effect_GrantFeat, this);
 
         m_listGrantedFeats.SetupControl();

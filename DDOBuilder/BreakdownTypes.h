@@ -231,6 +231,7 @@ enum BreakdownType
     Breakdown_SpellSchoolTransmutation,
     Breakdown_SpellSchoolFear,
     Breakdown_SpellSchoolGlobalDC,
+    Breakdown_SpellSchoolRuneArm,
     Breakdown_ImplementInYourHands,
     // songs
     Breakdown_SongCount,
@@ -281,6 +282,7 @@ enum BreakdownType
     Breakdown_HirelingMeleePower,
     Breakdown_HirelingRangedPower,
     Breakdown_HirelingSpellPower,
+    Breakdown_HirelingConcealment,
     // Turn Undead
     Breakdown_TurnUndeadLevel,
     Breakdown_TurnUndeadHitDice,

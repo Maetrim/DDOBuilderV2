@@ -236,7 +236,7 @@ LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
             pBuild->AttachObserver(this);
         }
         CreateStanceWindows();
-        UpdateAutoControlledStances();
+        UpdateStanceStates();
     }
     return 0L;
 }
@@ -398,7 +398,7 @@ void CStancesPane::UpdateClassChanged(
         const std::string& /*classTo*/,
         size_t /*level*/)
 {
-    UpdateAutoControlledStances();
+    UpdateStanceStates();
 }
 
 void CStancesPane::UpdateNewStance(Build*, const Stance& stance)
@@ -439,6 +439,19 @@ void CStancesPane::UpdateStanceDeactivated(
     }
 }
 
+void CStancesPane::UpdateStanceDisabled(
+        Build*,
+        const std::string&)
+{
+    if (IsWindow(GetSafeHwnd()))
+    {
+        // now force an on size event to position everything
+        CRect rctWnd;
+        GetClientRect(&rctWnd);
+        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+    }
+}
+
 void CStancesPane::UpdateFeatEffectApplied(
         Build* pBuild,
         const Effect & effect)
@@ -460,7 +473,7 @@ void CStancesPane::UpdateEnhancementEffectApplied(
 {
     // all handled the same way
     UpdateItemEffectApplied(pBuild, effect);
-    UpdateAutoControlledStances();
+    UpdateStanceStates();
 }
 
 void CStancesPane::UpdateEnhancementEffectRevoked(
@@ -468,7 +481,7 @@ void CStancesPane::UpdateEnhancementEffectRevoked(
         const Effect & effect)
 {
     UpdateSliders(effect, false);
-    UpdateAutoControlledStances();
+    UpdateStanceStates();
 }
 
 void CStancesPane::UpdateItemEffectApplied(
@@ -497,7 +510,7 @@ void CStancesPane::UpdateItemEffectRevoked(
 
 void CStancesPane::UpdateGearChanged(Build*, InventorySlotType)
 {
-    UpdateAutoControlledStances();
+    UpdateStanceStates();
 }
 
 void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
@@ -514,10 +527,16 @@ void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
         {
             StanceGroup* pStanceGroup = GetStanceGroup(pStance);
             // yup, they clicked on a stance, now change its activation state
-            if (pStance->IsSelected())
+            if (pStance->IsDisabled())
+            {
+                // show action is not available
+                ::MessageBeep(0xFFFFFFFF);
+            }
+            else if (pStance->IsSelected())
             {
                 m_pCharacter->ActiveBuild()->DeactivateStance(pStance->GetStance(), pStanceGroup);
                 pStance->SetSelected(false);
+                m_pDocument->SetModifiedFlag(TRUE);
             }
             else
             {
@@ -538,8 +557,8 @@ void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
                         }
                     }
                 }
+                m_pDocument->SetModifiedFlag(TRUE);
             }
-            m_pDocument->SetModifiedFlag(TRUE);
         }
         else
         {
@@ -895,26 +914,40 @@ void CStancesPane::UpdateActiveBuildChanged(Character*)
         m_pCharacter->ActiveLife()->AttachObserver(this);
         pBuild->AttachObserver(this);
         CreateStanceWindows();
-        UpdateAutoControlledStances();
+        UpdateStanceStates();
     }
 }
 
 void CStancesPane::UpdateAlignmentChanged(Life*, AlignmentType)
 {
-    UpdateAutoControlledStances();
+    UpdateStanceStates();
 }
 
 void CStancesPane::UpdateRaceChanged(Life*, const std::string&)
 {
-    UpdateAutoControlledStances();
+    UpdateStanceStates();
 }
 
-void CStancesPane::UpdateAutoControlledStances()
+void CStancesPane::UpdateStanceStates()
 {
     bool bChanged = false;
+    // update auto controlled stances first
     for (auto&& sgi : m_stanceGroups)
     {
         if (sgi->GroupName() == "Auto")
+        {
+            size_t stanceCount = sgi->NumButtons();
+            for (size_t index = 0; index < stanceCount; ++index)
+            {
+                CStanceButton* pStanceButton = sgi->GetStance(index);
+                bChanged |= pStanceButton->Evaluate(m_pCharacter);
+            }
+        }
+    }
+    // now update all the other stances
+    for (auto&& sgi : m_stanceGroups)
+    {
+        if (sgi->GroupName() != "Auto")
         {
             size_t stanceCount = sgi->NumButtons();
             for (size_t index = 0; index < stanceCount; ++index)

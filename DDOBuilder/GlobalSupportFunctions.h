@@ -70,6 +70,7 @@ const Feat& FindFeat(const std::string& featName);
 const Race& FindRace(const std::string& raceName);
 const Class& FindClass(const std::string& className);
 const Buff& FindBuff(const std::string& buffName);
+const Patron& FindPatron(const std::string& patronName);
 const EnhancementTreeItem * FindEnhancement(const std::string& internalName, std::string * treeName);
 const EnhancementTree & GetEnhancementTree(const std::string& treeName);
 size_t ClassIndex(const std::string& className);

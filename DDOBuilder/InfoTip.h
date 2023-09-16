@@ -14,6 +14,7 @@ class Gem;
 class Item;
 class ItemAugment;
 class InfoTipItem;
+class Patron;
 class Requirements;
 class SetBonus;
 class Stance;
@@ -69,6 +70,9 @@ class CInfoTip :
         void SetSpell(
                 const Build& build,
                 const Spell* pSpell);
+        void SetFavorItem(
+                const Patron& patron,
+                int favorTier);
         //void SetSelfBuff(const std::string& name);
         void SetDCItem(
                 const Build& build,

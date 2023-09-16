@@ -50,6 +50,7 @@ class BuildObserver :
         virtual void UpdateFeatEffectRevoked(Build*, const Effect& effect) {UNREFERENCED_PARAMETER(effect);};
         virtual void UpdateStanceActivated(Build *, const std::string& stanceName) {UNREFERENCED_PARAMETER(stanceName);};
         virtual void UpdateStanceDeactivated(Build *, const std::string& stanceName) {UNREFERENCED_PARAMETER(stanceName);};
+        virtual void UpdateStanceDisabled(Build*, const std::string& stanceName) { UNREFERENCED_PARAMETER(stanceName); };
         virtual void UpdateSliderChanged(Build*, const std::string& sliderName, int newValue) { UNREFERENCED_PARAMETER(sliderName); UNREFERENCED_PARAMETER(newValue); };
         virtual void UpdateSkillSpendChanged(Build *, size_t level, SkillType skill) {UNREFERENCED_PARAMETER(level);UNREFERENCED_PARAMETER(skill);};
         virtual void UpdateAbilityValueChanged(Build*, AbilityType ability) {UNREFERENCED_PARAMETER(ability);};
@@ -139,6 +140,7 @@ class Build :
         // stances
         void ActivateStance(const Stance& stance, StanceGroup* pStanceGroup);
         void DeactivateStance(const Stance& stance, StanceGroup* pStanceGroup);
+        void DisableStance(const Stance& stance, StanceGroup* pStanceGroup);
         bool IsStanceActive(const std::string& name, WeaponType wt = Weapon_Unknown) const;
         void StanceSliderChanged(const std::string& sliderName, int newValue);
 
@@ -334,6 +336,7 @@ class Build :
         void NotifyFeatEffectRevoked(const Effect& effect);
         void NotifyStanceActivated(const std::string& name);
         void NotifyStanceDeactivated(const std::string& name);
+        void NotifyStanceDisabled(const std::string& name);
         void NotifySliderChanged(const std::string& sliderName, int newValue);
         void NotifySkillSpendChanged(size_t level, SkillType skill);
         void NotifyAbilityValueChanged(AbilityType ability);

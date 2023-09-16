@@ -1778,6 +1778,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellSchool(Breakdown_SpellSchoolNecromancy, SpellSchool_Necromancy, "Necromancy DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolTransmutation, SpellSchool_Transmutation, "Transmutation DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem);
+        AddSpellSchool(Breakdown_SpellSchoolRuneArm, SpellSchool_RuneArm, "Rune Arm DC Bonus", hItem);
     }
 }
 
@@ -2292,6 +2293,21 @@ void CBreakdownsPane::CreateHirelingBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSpell);
         m_items.push_back(pSpell);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Hireling Concealment",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pConcealment = new BreakdownItemSimple(
+            this,
+            Breakdown_HirelingConcealment,
+            Effect_HirelingConcealment,
+            "Hireling Concealment",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pConcealment);
+        m_items.push_back(pConcealment);
     }
 }
 

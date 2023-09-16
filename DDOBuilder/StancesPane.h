@@ -92,6 +92,7 @@ class CStancesPane :
         virtual void UpdateRevokeStance(Build*, const Stance&) override;
         virtual void UpdateStanceActivated(Build*, const std::string& stanceName) override;
         virtual void UpdateStanceDeactivated(Build*, const std::string& stanceName) override;
+        virtual void UpdateStanceDisabled(Build*, const std::string& stanceName) override;
         virtual void UpdateEnhancementEffectApplied(Build*, const Effect& effect) override;
         virtual void UpdateEnhancementEffectRevoked(Build*, const Effect& effect) override;
         virtual void UpdateFeatEffectApplied(Build*, const Effect& effect) override;
@@ -104,7 +105,7 @@ class CStancesPane :
         void AddStance(const Stance & stance);
         void RevokeStance(const Stance & stance);
         void DestroyAllStances();
-        void UpdateAutoControlledStances();
+        void UpdateStanceStates();
         void DestroyStances(std::vector<CStanceButton*>& items);
 
         void PositionWindow(CWnd * pWnd, CRect * itemRect, int maxX);

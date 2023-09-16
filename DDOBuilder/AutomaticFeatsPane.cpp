@@ -80,7 +80,13 @@ void CAutomaticFeatsPane::UpdateActiveBuildChanged(Character*)
             && pBuild != NULL)
     {
         SetAutofeats(0);    // show automatic feats for level 1 after build change
+        pLife->AttachObserver(this);
     }
+}
+
+void CAutomaticFeatsPane::UpdateRaceChanged(Life*, const std::string&)
+{
+    SetAutofeats(0);    // show automatic feats for level 1 after race change
 }
 
 void CAutomaticFeatsPane::OnInitialUpdate()

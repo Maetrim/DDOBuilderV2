@@ -21,7 +21,6 @@ namespace
     COLORREF f_skillOverspendColour = RGB(0xFF, 0x00, 0x00);    // RED
     COLORREF f_white = RGB(255, 255, 255);                      // white
     COLORREF f_black = RGB(0, 0, 0);                            // black
-    const int c_noSelection = -1;
     const int c_tomeColumn = 999;
 
     class WeightedSkill

@@ -27,6 +27,7 @@ CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
     m_pCharacter(charData),
     m_stance(stance),
     m_bSelected(false),
+    m_bDisabled(false),
     m_stacks(0)         // stack count updated later
 {
     //{{AFX_DATA_INIT(CStanceButton)
@@ -67,32 +68,53 @@ const std::string& CStanceButton::Name() const
 bool CStanceButton::Evaluate(Character* charData)
 {
     bool bChanged = false;
-    bool oldState = m_bSelected;
+    bool bOldState = m_bSelected;
+    bool bOldDisabled = m_bDisabled;
     Build* pBuild = charData->ActiveBuild();
     if (pBuild != NULL)
     {
-        WeaponType wtMainHand = Weapon_Empty;
-        WeaponType wtOffHand = Weapon_Empty;
-        if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
+        if (m_stance.HasActiveRequirements())
         {
-            wtMainHand = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon1).Weapon();
-        }
-        if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon2))
-        {
-            wtOffHand = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon2).Weapon();
-        }
-        m_bSelected = m_stance.ActiveRequirements().Met(*pBuild, pBuild->Level()-1, false, wtMainHand, wtOffHand);
-        bChanged = (oldState != m_bSelected);
-        if (bChanged)
-        {
-            CWnd* pWnd = AfxGetApp()->m_pMainWnd;
-            CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-            CStancesPane* pStancesPane = dynamic_cast<CStancesPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CStancesPane)));
-            StanceGroup* pSG = pStancesPane->GetStanceGroup("Auto");
-            if (m_bSelected)
-                pBuild->ActivateStance(m_stance, pSG);
+            WeaponType wtMainHand = Weapon_Empty;
+            WeaponType wtOffHand = Weapon_Empty;
+            if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
+            {
+                wtMainHand = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon1).Weapon();
+            }
+            if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon2))
+            {
+                wtOffHand = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon2).Weapon();
+            }
+            bool bState = m_stance.ActiveRequirements().Met(*pBuild, pBuild->Level()-1, false, wtMainHand, wtOffHand);
+            if (m_stance.HasGroup()
+                && m_stance.Group() == "Auto")
+            {
+                m_bSelected = bState;
+                m_bDisabled = false;
+            }
             else
-                pBuild->DeactivateStance(m_stance, pSG);
+            {
+                m_bDisabled = !bState;
+                if (m_bDisabled)
+                {
+                    m_bSelected = false;
+                }
+            }
+            bChanged = (bOldState != m_bSelected)
+                    || (bOldDisabled != m_bDisabled);
+            if (bChanged)
+            {
+                CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+                CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+                CStancesPane* pStancesPane = dynamic_cast<CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
+                StanceGroup* pSG = pStancesPane->GetStanceGroup(m_stance.Group());
+                if (m_bSelected)
+                    pBuild->ActivateStance(m_stance, pSG);
+                else if (m_bDisabled)
+                    pBuild->DisableStance(m_stance, pSG);
+                else
+                    pBuild->DeactivateStance(m_stance, pSG);
+            }
         }
     }
     return bChanged;
@@ -114,7 +136,11 @@ void CStanceButton::OnPaint()
     rect -= rect.TopLeft(); // convert to client rectangle
 
     // fill the background
-    if (m_bSelected)
+    if (m_bDisabled)
+    {
+        pdc.FillSolidRect(rect, RGB(255, 0, 0));
+    }
+    else if (m_bSelected)
     {
         pdc.FillSolidRect(rect, GetSysColor(COLOR_HIGHLIGHT));
     }
@@ -147,6 +173,11 @@ void CStanceButton::SetSelected(bool selected)
 bool CStanceButton::IsSelected() const
 {
     return m_bSelected;
+}
+
+bool CStanceButton::IsDisabled() const
+{
+    return m_bDisabled;
 }
 
 const Stance & CStanceButton::GetStance() const

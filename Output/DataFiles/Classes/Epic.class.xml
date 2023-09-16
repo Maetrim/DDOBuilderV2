@@ -1131,7 +1131,7 @@ versus the base 50%, up to a maximum of 65%.</Description>
       <Acquire>Train</Acquire>
       <Icon>PerfectTwoWeaponFighting</Icon>
       <Effect>
-        <Type>OffhandDoublestrike</Type>
+        <Type>OffHandAttackBonus</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
@@ -1148,7 +1148,8 @@ versus the base 50%, up to a maximum of 65%.</Description>
       <Description>If in any Bear form, Two-Handed weapons add 25% more of your ability score modifier
 to their base damage, and your Bear form's bonus to Armor Class is increased by 5%.
 
-If in any Wolf form, you gain +20% competence bonus to maximum hit points and +2d6 sneak attack dice.</Description>
+If in any Wolf form, you gain +20% Competence bonus to maximum hit points and
++2d6 sneak attack dice.</Description>
       <Group>Epic Destiny Feat</Group>
       <Requirements>
         <Requirement>
@@ -1220,6 +1221,14 @@ If in any Wolf form, you gain +20% competence bonus to maximum hit points and +2
               <Type>Stance</Type>
               <Item>Winter Wolf</Item>
             </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blighted Wolf</Item>
+            </Requirement>
           </RequiresOneOf>
         </Requirements>
       </Effect>
@@ -1237,6 +1246,14 @@ If in any Wolf form, you gain +20% competence bonus to maximum hit points and +2
             <Requirement>
               <Type>Stance</Type>
               <Item>Winter Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blighted Wolf</Item>
             </Requirement>
           </RequiresOneOf>
         </Requirements>
@@ -1399,7 +1416,7 @@ Activate to pop off to the land of dreams.</Description>
     </Feat>
     <Feat>
       <Name>Harbinger of Chaos</Name>
-      <Description>+2% Doublestrike and doubleshot. If you are Chaotic, you gain +2 Imbue dice.</Description>
+      <Description>+2% Doublestrike and Doubleshot. If you are Chaotic, you gain +2 Imbue dice.</Description>
       <Group>Epic Destiny Feat</Group>
       <Requirements>
         <Requirement>
@@ -2064,11 +2081,11 @@ For a total of +5 to all casting classes at level 30.</Description>
         <Amount size="1">1</Amount>
       </Effect>
       <Effect>
-        <DisplayName>Epic Knowledge: Blightcaster</DisplayName>
+        <DisplayName>Epic Knowledge: Blight Caster</DisplayName>
         <Type>CasterLevel</Type>
         <Type>MaxCasterLevel</Type>
         <Bonus>Feat</Bonus>
-        <Item>Blightcaster</Item>
+        <Item>Blight Caster</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
       </Effect>
@@ -2368,11 +2385,12 @@ You also gain +5 Physical and Magical Resistance Rating.</Description>
       <Icon>EpicBarbarianDamageReduction</Icon>
       <Effect>
         <DisplayName>Barbarian DR</DisplayName>
+        <Bonus>Class</Bonus>
         <Type>DR</Type>
-        <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Item>%</Item>
+        <ApplyAsItemEffect/>
       </Effect>
       <Effect>
         <Type>PRR</Type>
@@ -4359,29 +4377,13 @@ An additional +4 if you are centered.
       </Effect>
       <Effect>
         <Type>Doublestrike</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">4</Amount>
-      </Effect>
-      <Effect>
-        <Type>Doublestrike</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">4</Amount>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Centered</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
-      <Effect>
         <Type>Doubleshot</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">4</Amount>
       </Effect>
       <Effect>
+        <Type>Doublestrike</Type>
         <Type>Doubleshot</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>

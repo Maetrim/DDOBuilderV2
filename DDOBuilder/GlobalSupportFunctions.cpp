@@ -313,6 +313,22 @@ const Buff& FindBuff(const std::string& buffName)
     return FindBuff("BuffNotFound");
 }
 
+const Patron& FindPatron(const std::string& patronName)
+{
+    const std::list<Patron>& patrons = Patrons();
+    for (auto&& it : patrons)
+    {
+        std::string name = EnumEntryText(it.Name(), patronTypeMap);
+        if (name == patronName)
+        {
+            // this is the patron we are looking for
+            return it;
+        }
+    }
+    static Patron badPatron(std::string("Bad Patron"));
+    return badPatron;
+}
+
 const EnhancementTreeItem * FindEnhancement(
         const std::string& internalName,
         std::string * treeName) // can be NULL
@@ -494,7 +510,14 @@ HTREEITEM GetNextTreeItem(const CTreeCtrl& treeCtrl, HTREEITEM hItem)
             hItem = treeCtrl.GetParentItem(hItem);
         }
         // next item that follows our parent
-        return treeCtrl.GetNextItem(hItem, TVGN_NEXT);
+        if (hItem == NULL)
+        {
+            return NULL;
+        }
+        else
+        {
+            return treeCtrl.GetNextItem(hItem, TVGN_NEXT);
+        }
     }
 }
 

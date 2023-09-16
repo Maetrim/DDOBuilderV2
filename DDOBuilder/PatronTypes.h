@@ -19,7 +19,7 @@ enum PatronType
     Patron_TheHarpers,
     Patron_HouseJorasco,
     Patron_KeepersOfTheFeather,
-    Patron_HouseKunderak,
+    Patron_HouseKundarak,
     Patron_MorgraveUniversity,
     Patron_HousePhiarlan,
     Patron_PurpleDragonKnights,
@@ -28,8 +28,10 @@ enum PatronType
     Patron_TheSummerCourt,
     Patron_TheTwelve,
     Patron_TheYugoloth,
+    Patron_TotalFavor,
 
-    Patron_Count
+    Patron_Count,
+    Patron_None
 };
 
 const XmlLib::enumMapEntry<PatronType> patronTypeMap[] =
@@ -44,7 +46,7 @@ const XmlLib::enumMapEntry<PatronType> patronTypeMap[] =
     {Patron_TheHarpers,             L"The Harpers"},
     {Patron_HouseJorasco,           L"House Jorasco"},
     {Patron_KeepersOfTheFeather,    L"Keepers of the Feather"},
-    {Patron_HouseKunderak,          L"House Kundarak"},
+    {Patron_HouseKundarak,          L"House Kundarak"},
     {Patron_MorgraveUniversity,     L"Morgrave University"},
     {Patron_HousePhiarlan,          L"House Phiarlan"},
     {Patron_PurpleDragonKnights,    L"Purple Dragon Knights"},
@@ -53,6 +55,8 @@ const XmlLib::enumMapEntry<PatronType> patronTypeMap[] =
     {Patron_TheSummerCourt,         L"The Summer Court"},
     {Patron_TheTwelve,              L"The Twelve"},
     {Patron_TheYugoloth,            L"The Yugoloth"},
+    {Patron_TotalFavor,             L"Total Favor"},
+    {Patron_None,                   L"None"},
     {PatronType(0),                 NULL}
 };
 

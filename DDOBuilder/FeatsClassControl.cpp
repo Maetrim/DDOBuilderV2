@@ -75,6 +75,7 @@ BEGIN_MESSAGE_MAP(CFeatsClassControl, CWnd)
     ON_WM_SIZE()
     ON_WM_MOUSEMOVE()
     ON_WM_LBUTTONUP()
+    ON_WM_RBUTTONUP()
     ON_REGISTERED_MESSAGE(UWM_UPDATE, UpdateControl)
     ON_CBN_SELENDOK(IDC_COMBO_FEATSELECT, OnFeatSelectOk)
     ON_CBN_SELENDCANCEL(IDC_COMBO_FEATSELECT, OnFeatSelectCancel)
@@ -624,7 +625,7 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
             CWnd* pWnd = AfxGetApp()->m_pMainWnd;
             CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
             CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
-                    pMainWnd->GetPane(RUNTIME_CLASS(CAutomaticFeatsPane)));
+                    pMainWnd->GetPaneView(RUNTIME_CLASS(CAutomaticFeatsPane)));
             pPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
         }
     }
@@ -823,6 +824,30 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
             m_featSelector.ShowDropDown();
         }
         break;
+    }
+}
+
+void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
+{
+    UNREFERENCED_PARAMETER(nFlags);
+    GetCursorPos(&point);
+    ScreenToClient(&point);
+    HitCheckItem ht = HitCheck(point);
+    if (ht.Type() == HT_Feat)
+    {
+        std::vector<FeatSlot> tfts = m_availableFeats[ht.Level()];
+        TrainedFeat tf = m_pCharacter->ActiveBuild()->GetTrainedFeat(
+                ht.Level(),
+                tfts[ht.Data()].FeatType());
+        if (tf.FeatName() != "")
+        {
+            // Revoke this Feat selection
+            m_pCharacter->ActiveBuild()->TrainFeat(
+                " No Selection",
+                tfts[ht.Data()].FeatType(),
+                ht.Level());
+            HideTip();
+        }
     }
 }
 
@@ -1068,7 +1093,7 @@ void CFeatsClassControl::UpdateBuildAutomaticFeatsChanged(Build*, size_t level)
         CWnd* pWnd = AfxGetApp()->m_pMainWnd;
         CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
         CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
-                pMainWnd->GetPane(RUNTIME_CLASS(CAutomaticFeatsPane)));
+                pMainWnd->GetPaneView(RUNTIME_CLASS(CAutomaticFeatsPane)));
         pPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
     }
 }

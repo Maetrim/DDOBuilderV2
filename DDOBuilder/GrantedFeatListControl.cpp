@@ -12,7 +12,6 @@ namespace
     COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
     COLORREF f_white = RGB(255, 255, 255);                      // white
     COLORREF f_black = RGB(0, 0, 0);                            // black
-    const int c_noSelection = -1;
 }
 
 // CGrantedFeatListControl

@@ -3,11 +3,13 @@
 #pragma once
 #include "Resource.h"
 #include "Character.h"
+#include "Life.h"
 #include "AutomaticFeatListControl.h"
 
 class CAutomaticFeatsPane :
     public CFormView,
-    public CharacterObserver
+    public CharacterObserver,
+    public LifeObserver
 {
     public:
         enum { IDD = IDD_AUTOMATIC_FEATS_PANE };
@@ -30,6 +32,9 @@ class CAutomaticFeatsPane :
         // Character Observer overrides
         virtual void UpdateActiveLifeChanged(Character*) override;
         virtual void UpdateActiveBuildChanged(Character*) override;
+
+        // Life Observer overrides
+        virtual void UpdateRaceChanged(Life*, const std::string&) override;
 
         void SetAutofeats(size_t level);
         CAutomaticFeatListControl m_automaticFeats;

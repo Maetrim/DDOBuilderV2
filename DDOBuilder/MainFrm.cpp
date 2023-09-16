@@ -583,17 +583,15 @@ BOOL CMainFrame::OnCmdMsg(
 
 void CMainFrame::OnUpdateDockPane(CCmdUI* pCmdUI)
 {
-    size_t index = pCmdUI->m_nID - ID_DOCKING_WINDOWS_START;  // now 0...n
-    ASSERT(index < m_dockablePanes.size());
-    pCmdUI->SetCheck(m_dockablePanes[index]->IsVisible());
+    CCustomDockablePane* pPane = GetPane(pCmdUI->m_nID);
+    pCmdUI->SetCheck(pPane->IsVisible());
     pCmdUI->Enable(TRUE);           // always enabled
 }
 
 void CMainFrame::OnDockPane(UINT nID)
 {
-    size_t index = nID - ID_DOCKING_WINDOWS_START;
-    ASSERT(index < m_dockablePanes.size());
-    m_dockablePanes[index]->ShowPane(!m_dockablePanes[index]->IsVisible(), FALSE, TRUE);
+    CCustomDockablePane* pPane = GetPane(nID);
+    pPane->ShowPane(!pPane->IsVisible(), FALSE, TRUE);
 }
 
 void CMainFrame::AddSmallClassImageMenuIcons()
@@ -640,6 +638,48 @@ void CMainFrame::AddSmallClassImageMenuIcons()
         ++it;
     }
 }
+
+CCustomDockablePane* CMainFrame::GetPane(UINT nID)
+{
+    CRuntimeClass* pRTC = NULL;
+    switch (nID)
+    {
+        case ID_DOCK_LOG:               pRTC = RUNTIME_CLASS(CLogPane); break;
+        case ID_DOCK_BREAKDOWNS:        pRTC = RUNTIME_CLASS(CBreakdownsPane); break;
+        case ID_DOCK_STANCES:           pRTC = RUNTIME_CLASS(CStancesPane); break;
+        case ID_DOCK_BUILDS:            pRTC = RUNTIME_CLASS(CBuildsPane); break;
+        case ID_DOCK_CLASSFEATS:        pRTC = RUNTIME_CLASS(CClassAndFeatPane); break;
+        case ID_DOCK_SKILLS:            pRTC = RUNTIME_CLASS(CSkillsPane); break;
+        case ID_DOCK_SPECIALFEATS:      pRTC = RUNTIME_CLASS(CSpecialFeatPane); break;
+        case ID_DOCK_ENHANCEMENTS:      pRTC = RUNTIME_CLASS(CEnhancementsPane); break;
+        case ID_DOCK_DESTINY:           pRTC = RUNTIME_CLASS(CDestinyPane); break;
+        case ID_DOCK_AUTOMATICFEATS:    pRTC = RUNTIME_CLASS(CAutomaticFeatsPane); break;
+        case ID_DOCK_GRANTEDFEATS:      pRTC = RUNTIME_CLASS(CGrantedFeatsPane); break;
+        case ID_DOCK_REAPERENHANCEMENTS:pRTC = RUNTIME_CLASS(CReaperEnhancementsPane); break;
+        case ID_DOCK_DCS:               pRTC = RUNTIME_CLASS(CDCPane); break;
+        case ID_DOCK_EQUIPMENT:         pRTC = RUNTIME_CLASS(CEquipmentPane); break;
+        case ID_DOCK_SPELLS:            pRTC = RUNTIME_CLASS(CSpellsPane); break;
+        case ID_DOCK_FAVOR:             pRTC = RUNTIME_CLASS(CFavorPane); break;
+        case ID_DOCK_UNUSED15:
+        case ID_DOCK_UNUSED16:
+        case ID_DOCK_UNUSED17:
+        case ID_DOCK_UNUSED18:
+        case ID_DOCK_UNUSED19:
+        case ID_DOCK_UNUSED20:          break;
+    }
+    CCustomDockablePane* pPane = NULL;
+    for (size_t i = 0; i < m_dockablePanes.size(); ++i)
+    {
+        const CRuntimeClass* pPaneRTC = m_dockablePanes[i]->GetView()->GetRuntimeClass();
+        if (strcmp(pPaneRTC->m_lpszClassName, pRTC->m_lpszClassName) == 0)
+        {
+            pPane = m_dockablePanes[i];
+            break;
+        }
+    }
+    return pPane;
+}
+
 
 void CMainFrame::CopyDefaultIniToDDOBuilderIni()
 {
@@ -740,7 +780,7 @@ BreakdownItem* CMainFrame::FindBreakdown(BreakdownType type)
     return pItem;
 }
 
-CFormView* CMainFrame::GetPane(const CRuntimeClass* c)
+CFormView* CMainFrame::GetPaneView(const CRuntimeClass* c)
 {
     CFormView* pView = NULL;
     for (size_t i = 0; pView == NULL && i < m_dockablePanes.size(); ++i)

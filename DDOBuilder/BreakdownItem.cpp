@@ -709,7 +709,7 @@ void BreakdownItem::AddEffect(
             // make sure we start with the correct number of starting stacks
             CWnd* pWnd = AfxGetMainWnd();
             CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-            const CStancesPane* pStancesPane = dynamic_cast<const CStancesPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CStancesPane)));
+            const CStancesPane* pStancesPane = dynamic_cast<const CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
             if (pStancesPane != NULL)
             {
                 const SliderItem* pSlider = pStancesPane->GetSlider(effect.StackSource());

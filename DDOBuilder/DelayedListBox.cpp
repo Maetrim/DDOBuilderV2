@@ -42,6 +42,8 @@ void CDelayedListBox::ResetTimer()
 
 void CDelayedListBox::OnShowWindow(BOOL bShow, UINT nStatus)
 {
+    UNREFERENCED_PARAMETER(bShow);
+    UNREFERENCED_PARAMETER(nStatus);
     // this is only called when the window is closed
     // thus we can say for certain we will need a timer reset when
     // the next draw item goes through this window (i.e. being shown again)
@@ -84,6 +86,8 @@ void CDelayedListBox::DeleteItem(LPDELETEITEMSTRUCT lpDIS)
 
 void CDelayedListBox::OnRButtonDown(UINT nFlags, CPoint point)
 {
+    UNREFERENCED_PARAMETER(nFlags);
+    UNREFERENCED_PARAMETER(point);
     int sel = GetCurSel();
     m_pOwner->OnRButtonDown(sel);
 }

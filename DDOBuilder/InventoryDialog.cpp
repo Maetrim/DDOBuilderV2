@@ -25,7 +25,6 @@ namespace
     const int c_filigreeXOffset = 36;
     const int c_filigreeYOffset = 51;
     const int c_sentientGem = -1;
-    const int c_noSelection = -2;
     const int c_noMenuSelection = 0;
     const int c_clearMenuOption = 1;
     const int c_trueItemIndexOffset = 2;

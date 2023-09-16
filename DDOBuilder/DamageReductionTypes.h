@@ -32,7 +32,7 @@ enum DamageReductionType
     DR_Silver,
     DR_Slash,
     DR_All,
-    DR_Percent,     // new for barbarian DR (U39)
+    DR_Percent,     // new for Barbarian DR (U39)
 
     DR_Count
 };

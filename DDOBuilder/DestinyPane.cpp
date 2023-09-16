@@ -15,7 +15,6 @@ namespace
     // destiny window size
     const size_t c_sizeX = 300;
     const size_t c_sizeY = 466;
-    const std::string c_noSelection = "No selection";
 }
 
 IMPLEMENT_DYNCREATE(CDestinyPane, CFormView)
@@ -355,7 +354,7 @@ std::list<EnhancementTree> CDestinyPane::DetermineTrees()
                 {
                     std::string treeName = selTrees.Tree(ti);
                     if (Destiny_SelectedTrees::IsNotSelected(treeName)
-                            || ((ti == 0) && treeName == c_noSelection))    // special case for racial tree
+                            || ((ti == 0) && treeName == c_noTreeSelection))    // special case for racial tree
                     {
                         // no assignment yet for this tree, assign this tree to it
                         selTrees.SetTree(ti, (*tit).Name());
@@ -413,7 +412,7 @@ void CDestinyPane::CreateEnhancementWindows()
                 CEnhancementTreeDialog* dlg = new CEnhancementTreeDialog(
                         this,
                         m_pCharacter,
-                        EnhancementTree::GetTree(c_noSelection),
+                        EnhancementTree::GetTree(c_noTreeSelection),
                         (i != MST_Number - 1) ? TT_epicDestiny : TT_preview);
                 dlg->Create(CEnhancementTreeDialog::IDD, this);
                 dlg->MoveWindow(&itemRect);
@@ -487,7 +486,7 @@ void CDestinyPane::PopulateTreeCombo(
     combo->LockWindowUpdate();
     combo->ResetContent();
     // always add a "No selection" item
-    combo->AddString(c_noSelection.c_str());
+    combo->AddString(c_noTreeSelection.c_str());
     // now add any trees which are not already selected
     int sel = 0;        // assume "No selection"
     Build* pBuild = m_pCharacter->ActiveBuild();

@@ -103,7 +103,7 @@ class CItemSelectDialog : public CDialog
         CStatic m_upgradeType[MAX_Upgrades];
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];
 
-        std::list<Item> m_availableItems;
+        std::list<const Item*> m_availableItems;
         bool m_bInitialising;
         ArmorType m_armorType;
         WeaponType m_weaponType;

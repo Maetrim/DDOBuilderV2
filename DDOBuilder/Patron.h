@@ -9,6 +9,7 @@ class Patron :
 {
     public:
         Patron(void);
+        explicit Patron(const std::string& name);
         void Write(XmlLib::SaxWriter * writer) const;
 
         void SetMaxFavor(int maxfavor);

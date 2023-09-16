@@ -137,6 +137,7 @@
 #define HID_EDIT_FEATS_EPICONLY                 0x18036
 #define HID_EDIT_FEATS_SHOWUNAVAILABLE          0x18037
 #define HID_EDIT_IGNORELIST_ACTIVE              0x18038
+#define HID_DEVELOPMENT_VERIFYLOADEDDATA        0x18039
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064

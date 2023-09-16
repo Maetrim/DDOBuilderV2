@@ -982,7 +982,7 @@ bool Build::IsGrantedFeat(const std::string& featName) const
     CWnd* pWnd = AfxGetMainWnd();
     CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
     const CGrantedFeatsPane* pGrantedFeatsPane =
-            dynamic_cast<const CGrantedFeatsPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CGrantedFeatsPane)));
+            dynamic_cast<const CGrantedFeatsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CGrantedFeatsPane)));
     if (pGrantedFeatsPane != NULL)
     {
         isGranted = pGrantedFeatsPane->IsGrantedFeat(featName);
@@ -2095,6 +2095,11 @@ void Build::NotifyStanceDeactivated(const std::string& name)
     NotifyAll(&BuildObserver::UpdateStanceDeactivated, this, name);
 }
 
+void Build::NotifyStanceDisabled(const std::string& name)
+{
+    NotifyAll(&BuildObserver::UpdateStanceDisabled, this, name);
+}
+
 void Build::NotifySliderChanged(const std::string& sliderName, int newValue)
 {
     NotifyAll(&BuildObserver::UpdateSliderChanged, this, sliderName, newValue);
@@ -3066,6 +3071,28 @@ void Build::DeactivateStance(
         m_Stances.RevokeStance(stance.Name());
         NotifyStanceDeactivated(stance.Name());
     }
+    std::stringstream ss;
+    ss << "Stance \"" << stance.Name() << "\" disabled (Requirements not met)";
+    GetLog().AddLogEntry(ss.str().c_str());
+    NotifyStanceDisabled(stance.Name());
+}
+
+void Build::DisableStance(
+    const Stance& stance,
+    StanceGroup* pStanceGroup)
+{
+    UNREFERENCED_PARAMETER(pStanceGroup);
+    // deactivate the stance if active
+    if (IsStanceActive(stance.Name()))
+    {
+        // add the log entry
+        std::stringstream ss;
+        ss << "Stance \"" << stance.Name() << "\" deactivated";
+        GetLog().AddLogEntry(ss.str().c_str());
+        // deactivation of a stance only affects that stance
+        m_Stances.RevokeStance(stance.Name());
+        NotifyStanceDeactivated(stance.Name());
+    }
 }
 
 bool Build::IsStanceActive(const std::string& name, WeaponType wt) const
@@ -3076,7 +3103,7 @@ bool Build::IsStanceActive(const std::string& name, WeaponType wt) const
     // "<number>% <stance name>"
     CWnd* pWnd = AfxGetMainWnd();
     CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-    const CStancesPane* pStancesPane = dynamic_cast<const CStancesPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CStancesPane)));
+    const CStancesPane* pStancesPane = dynamic_cast<const CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
     if (name.find("%") != std::string::npos)
     {
         ret = pStancesPane->IsStanceActive(name, wt);

@@ -14,6 +14,7 @@
 #include "GlobalSupportFunctions.h"
 #include "Item.h"
 #include "LevelTraining.h"
+#include "Patron.h"
 #include "SetBonus.h"
 #include "SubItem.h"
 #include "InfoTipItem.h"
@@ -903,6 +904,23 @@ void CInfoTip::SetSpell(
 {
     ClearOldTipItems();
     AppendSpellItem(build, *pSpell);
+}
+
+void CInfoTip::SetFavorItem(
+    const Patron& patron,
+    int favorTier)
+{
+    UNREFERENCED_PARAMETER(favorTier);
+    ClearOldTipItems();
+    const Feat& feat = FindFeat(patron.AssociatedFavorFeat());
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    pHeader->LoadIcon("DataFiles\\FeatImages\\", feat.Icon(), true);
+    pHeader->SetTitle(feat.Name().c_str());
+    m_tipItems.push_back(pHeader);
+
+    InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
+    pDescription->SetText(feat.Description().c_str());
+    m_tipItems.push_back(pDescription);
 }
 
 void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)

@@ -167,12 +167,10 @@ bool Requirement::VerifyObject(
         case Requirement_BAB:
             requiresValueField = true;  // just a Value field required
             break;
-        case Requirement_BaseClassAtLevel:
-        case Requirement_BaseClassMinLevel:
         case Requirement_ClassAtLevel:
         case Requirement_ClassMinLevel:
-            requiresValueField = true;  // Value field required
-            // fall through
+        case Requirement_BaseClassAtLevel:
+        case Requirement_BaseClassMinLevel:
         case Requirement_BaseClass:
         case Requirement_Class:
             if (m_Item.size() != 1)
@@ -963,10 +961,19 @@ void Requirement::CreateRequirementStrings(
     case Requirement_BaseClassAtLevel:
         {
             met = EvaluateBaseClassAtLevel(build, level, includeTomes);
-            description.Format(
-                    "Requires: %s(%d)",
-                    m_Item.front().c_str(),
-                    Value());
+            if (HasValue())
+            {
+                description.Format(
+                        "Requires: %s(%d)",
+                        m_Item.front().c_str(),
+                        Value());
+            }
+            else
+            {
+                description.Format(
+                        "Requires: %s(All levels)",
+                        m_Item.front().c_str());
+            }
             break;
         }
     case Requirement_ClassAtLevel:

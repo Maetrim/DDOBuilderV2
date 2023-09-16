@@ -34,7 +34,7 @@ public:
     CLogPane & GetLog();
     void LoadComplete();
     BreakdownItem* FindBreakdown(BreakdownType type);
-    CFormView* GetPane(const CRuntimeClass* c);
+    CFormView* GetPaneView(const CRuntimeClass* c);
 
 protected:
     CMainFrame();
@@ -66,6 +66,7 @@ protected:
             UINT viewID);
     void CopyDefaultIniToDDOBuilderIni();
     void AddSmallClassImageMenuIcons();
+    CCustomDockablePane* GetPane(UINT nID);
 
     CMFCMenuBar       m_wndMenuBar;
     CMFCToolBar       m_wndToolBar;

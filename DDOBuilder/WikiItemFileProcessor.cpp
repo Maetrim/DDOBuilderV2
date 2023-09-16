@@ -1325,6 +1325,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Twilight", "Twilight Twilight", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Twilight", "Greater Twilight", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "High Spirits", "High Spirits", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Elemental Resistance", "Competence Elemental Resistance -", "Competence", "", 5);
 
     if (!bRecognised)
     {
@@ -1978,6 +1979,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Banishing Weapons", "Banishing Weapons", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Antipodal", "Antipodal", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Life Stealing", "Life Stealing", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Vampirism", "Lesser Vampirism Lesser Vampirism", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vampirism", "Vampirism Vampirism", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vampirism 1", "Vampirism 1", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vampirism 2", "Vampirism 2", "", "");
@@ -2066,6 +2068,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= line.find("Spell failure chances for armors and shields made from crystal are also decreased by 10%.") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("Passive: Attacks from this weapon bypass the miss chance of incorporeal") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("Greater: Insightful Fortification +25%") != std::string::npos;
+    if (!bRecognised) bRecognised |= line.find("Note: provides 1 hp of healing per hit.") != std::string::npos;
 
     return bRecognised;
 }
@@ -3502,7 +3505,7 @@ bool WikiItemFileProcessor::AddCommonEffect(
         double value = atoi(text);
         if (value == 0)
         {
-            // bas parse, try for a numeric at the start of the line
+            // bad parse, try for a numeric at the start of the line
             value = atoi(line.c_str());
         }
         // do we have a value?

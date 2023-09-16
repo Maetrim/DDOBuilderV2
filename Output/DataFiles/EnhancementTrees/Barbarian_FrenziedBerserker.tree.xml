@@ -40,8 +40,7 @@
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Frenzied Toughness I</Name>
       <InternalName>FBCore2</InternalName>
-         <Description>+20 hit points and +10 Healing Amplification.
-You deal 1d8 Bane Damage for each Imbue dice which scales with Melee power.</Description>
+      <Description>+20 hit points and +10 Healing Amplification.</Description>
       <Icon>Toughness</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
@@ -72,21 +71,16 @@ You deal 1d8 Bane Damage for each Imbue dice which scales with Melee power.</Des
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
       </Effect>
-       <Stance>
-          <Name>Frenzied Berserker: Imbue</Name>
-          <Icon>Toughness</Icon>
-          <Description>1d8 Bane damage for each Imbue dice that scales with Melee power.</Description>
-          <Group>Imbue</Group>
-       </Stance>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Frenzy</Name>
       <InternalName>FBCore3</InternalName>
-      <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
-melee weapons (+2d6 damage). This damage scales with 100% Melee Power 
+         <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.
 Passive: +5 Melee Power
 Activation Cost: 10 Hit Points.
-Cooldown: 30 seconds.</Description>
+Cooldown: 30 seconds.
+Note: Imbue only works with Melee weapons.</Description>
       <Icon>FBFrenzy</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
@@ -109,8 +103,9 @@ Cooldown: 30 seconds.</Description>
       <Stance>
          <Name>Frenzy</Name>
          <Icon>FBFrenzy</Icon>
-         <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
-melee weapons (+2d6 damage). This damage scales with 100% Melee Power.</Description>
+         <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.</Description>
+         <Group>Imbue</Group>
       </Stance>
       <Effect>
         <Type>MeleePower</Type>
@@ -119,26 +114,13 @@ melee weapons (+2d6 damage). This damage scales with 100% Melee Power.</Descript
         <Amount size="1">5</Amount>
       </Effect>
       <Effect>
-        <Type>AbilityBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">2</Amount>
-        <Item>Strength</Item>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Frenzy</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
-      <Effect>
         <Type>WeaponOtherDamageBonusClass</Type>
         <Type>WeaponOtherDamageBonusCriticalClass</Type>
         <AType>NotNeeded</AType>
         <Bonus>Enhancement</Bonus>
         <Dice>
           <Number size="1">2</Number>
-          <Sides size="1">6</Sides>
+          <Sides size="1">8</Sides>
           <ScalesWithMeleePower />
         </Dice>
         <Item>Melee</Item>
@@ -443,7 +425,7 @@ This can only trigger once every five minutes</Description>
       <Icon>FBPowerRage</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
       <Requirements>
@@ -934,7 +916,7 @@ the AC of enemies by [1/2/3] for six seconds. This stacks up to five times.</Des
       <Selector>
         <EnhancementSelection>
           <Name>Accelerated Metabolism</Name>
-               <Description>While barbarian raging, you gain 20 healing amplification and heal 3d6 hit
+               <Description>While Barbarian raging, you gain 20 healing amplification and heal 3d6 hit
 points every 4 seconds. This healing scales with 100% Melee Power.
 +25% Competence bonus to Maximum Hit Points.</Description>
           <Icon>FBAcceleratedMetabolism</Icon>
@@ -968,7 +950,7 @@ points every 4 seconds. This healing scales with 100% Melee Power.
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Raging Blows</Name>
-          <Description>While barbarian raging, you gain +5 Melee Power and your melee attacks gain +1[W] to damage.
+          <Description>While Barbarian raging, you gain +5 Melee Power and your melee attacks gain +1[W] to damage.
 +25% Competence bonus to Maximum Hit Points.</Description>
           <Icon>FBRagingBlows</Icon>
           <CostPerRank size="1">1</CostPerRank>

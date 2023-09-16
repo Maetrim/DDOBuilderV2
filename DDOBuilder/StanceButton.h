@@ -23,6 +23,7 @@ class CStanceButton :
 
         void SetSelected(bool selected);
         bool IsSelected() const;
+        bool IsDisabled() const;
         const Stance & GetStance() const;
 
         void AddStack();
@@ -51,6 +52,7 @@ class CStanceButton :
         Character * m_pCharacter;
         Stance m_stance;
         bool m_bSelected;
+        bool m_bDisabled;
         CImage m_image;
         size_t m_stacks;
 };

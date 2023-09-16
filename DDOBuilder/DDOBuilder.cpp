@@ -40,7 +40,9 @@ BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_VERIFYLOADEDDATA, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_COMMAND(ID_DEVELOPMENT_VERIFYLOADEDDATA, OnVerifyLoadedData)
 END_MESSAGE_MAP()
 
 // CDDOBuilderApp construction
@@ -156,13 +158,7 @@ BOOL CDDOBuilderApp::InitInstance()
     m_pMainWnd->DragAcceptFiles();
 
     OnIdle(0);  // get UI to update
-    // only verify the loaded data in our debug sessions
     LoadData();
-    CString commandLine = m_lpCmdLine;
-    if (commandLine.Find("/debug") >= 0)
-    {
-        VerifyLoadedData();
-    }
 
     NotifyLoadComplete();
     GetLog().AddLogEntry("Ready");
@@ -194,12 +190,17 @@ void CDDOBuilderApp::OnFileNew()
     {
         CWnd* pWnd = AfxGetApp()->m_pMainWnd;
         CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-        CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CBuildsPane)));
+        CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CBuildsPane)));
         if (pBuildsPane != NULL)
         {
             pBuildsPane->OnButtonNewLife();
         }
     }
+}
+
+void CDDOBuilderApp::OnVerifyLoadedData()
+{
+    VerifyLoadedData();
 }
 
 // CDDOBuilderApp customization load/save methods
@@ -610,7 +611,7 @@ void CDDOBuilderApp::VerifyLoadedData()
     VerifyEnhancements();
     VerifyAugments();
     VerifyFiligrees();
-    //VerifyItems();
+    VerifyItems();
     //VerifyOptionalBuffs();
     VerifySetBonuses();
     VerifyStances();
@@ -1118,7 +1119,7 @@ void CDDOBuilderApp::NotifyLoadComplete()
     // create a default life
     CWnd* pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-    CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPane(RUNTIME_CLASS(CBuildsPane)));
+    CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CBuildsPane)));
     if (pBuildsPane != NULL)
     {
         pBuildsPane->OnButtonNewLife();
