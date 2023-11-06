@@ -24,8 +24,6 @@ namespace
         IBE_CorePassiveDisabled,
         IBE_ItemClickieDisabled,
         IBE_ItemPassiveDisabled,
-        IBE_ItemUnavailableClickie,
-        IBE_ItemUnavailablePassive,
         IBE_ArrowLeft,
         IBE_ArrowRight,
         IBE_ArrowUp,
@@ -33,9 +31,7 @@ namespace
         IBE_ExtraLongArrowUp,
         IBE_PassiveAvailable,
         IBE_ActiveAvailable,
-        IBE_PassiveNotAvailable,
         IBE_PassiveNotAllowed,
-        IBE_ActiveNotAvailable,
         IBE_ActiveNotAllowed,
         IBE_CorePassiveAvailable,
         IBE_CoreActiveAvailable,
@@ -75,8 +71,6 @@ void CDestinyTreeDialog::InitialiseStaticImages()
         LoadImageFile(folderPath, "CorePassive", &s_imageBorders[IBE_CorePassiveDisabled], CSize(38, 38));
         LoadImageFile(folderPath, "ItemClickie", &s_imageBorders[IBE_ItemClickieDisabled], CSize(43, 53));
         LoadImageFile(folderPath, "ItemPassive", &s_imageBorders[IBE_ItemPassiveDisabled], CSize(43, 53));
-        LoadImageFile(folderPath, "ItemUnavailableClickie", &s_imageBorders[IBE_ItemUnavailableClickie], CSize(38, 38));
-        LoadImageFile(folderPath, "ItemUnavailablePassive", &s_imageBorders[IBE_ItemUnavailablePassive], CSize(38, 38));
         LoadImageFile(folderPath, "EnhancementArrowLeft", &s_imageBorders[IBE_ArrowLeft], CSize(13, 14));
         LoadImageFile(folderPath, "EnhancementArrowRight", &s_imageBorders[IBE_ArrowRight], CSize(13, 14));
         LoadImageFile(folderPath, "EnhancementArrowUp", &s_imageBorders[IBE_ArrowUp], CSize(14, 15));
@@ -84,9 +78,7 @@ void CDestinyTreeDialog::InitialiseStaticImages()
         LoadImageFile(folderPath, "EnhancementExtraLongArrowUp", &s_imageBorders[IBE_ExtraLongArrowUp], CSize(14, 157));
         LoadImageFile(folderPath, "PassiveAvailable", &s_imageBorders[IBE_PassiveAvailable], CSize(51, 61));
         LoadImageFile(folderPath, "ActiveAvailable", &s_imageBorders[IBE_ActiveAvailable], CSize(51, 61));
-        LoadImageFile(folderPath, "PassiveNotAvailable", &s_imageBorders[IBE_PassiveNotAvailable], CSize(43, 53));
         LoadImageFile(folderPath, "PassiveNotAllowed", &s_imageBorders[IBE_PassiveNotAllowed], CSize(43, 53));
-        LoadImageFile(folderPath, "ActiveNotAvailable", &s_imageBorders[IBE_ActiveNotAvailable], CSize(43, 53));
         LoadImageFile(folderPath, "ActiveNotAllowed", &s_imageBorders[IBE_ActiveNotAllowed], CSize(43, 53));
         LoadImageFile(folderPath, "CorePassiveAvailable", &s_imageBorders[IBE_CorePassiveAvailable], CSize(50, 50));
         LoadImageFile(folderPath, "CoreActiveAvailable", &s_imageBorders[IBE_CoreActiveAvailable], CSize(48, 48));

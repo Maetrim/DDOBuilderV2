@@ -26,6 +26,11 @@ class Character :
         void Write(XmlLib::SaxWriter* writer) const;
         void AboutToLoad();
 
+        bool ShowUnavailable() const;
+        bool ShowEpicOnly() const;
+        void ToggleShowEpicOnly();
+        void ToggleShowUnavailable();
+
         void SetActiveBuild(size_t lifeIndex, size_t buildIndex);
         Build* ActiveBuild();  // can be NULL
         const Build* ActiveBuild() const; // can be NULL
@@ -68,4 +73,6 @@ class Character :
         CDDOBuilderDoc* m_pDocument;
         size_t m_uiActiveLifeIndex;
         size_t m_uiActiveBuildIndex;
+        bool m_bShowEpicOnly;
+        bool m_bShowUnavailableFeats;
 };

@@ -21,6 +21,7 @@ protected:
     afx_msg void OnBnClickedButtonStart();
     afx_msg void OnBnClickedButtonSetitemimage();
     afx_msg void OnBnClickedButtonSkip();
+    afx_msg void OnBnClickedButtonRefreshImages();
     afx_msg void OnLvnItemchangedList1(NMHDR* pNMHDR, LRESULT* pResult);
     virtual BOOL OnInitDialog();
     DECLARE_MESSAGE_MAP()

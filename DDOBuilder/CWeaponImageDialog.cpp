@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP(CWeaponImageDialog, CDialogEx)
     ON_BN_CLICKED(IDC_BUTTON_START, &CWeaponImageDialog::OnBnClickedButtonStart)
     ON_BN_CLICKED(IDC_BUTTON_SETITEMIMAGE, &CWeaponImageDialog::OnBnClickedButtonSetitemimage)
     ON_BN_CLICKED(IDC_BUTTON_SKIP, &CWeaponImageDialog::OnBnClickedButtonSkip)
+    ON_BN_CLICKED(IDC_BUTTON_REFRESH_IMAGES, &CWeaponImageDialog::OnBnClickedButtonRefreshImages)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_ICONS, &CWeaponImageDialog::OnLvnItemchangedList1)
 END_MESSAGE_MAP()
 
@@ -119,6 +120,11 @@ void CWeaponImageDialog::OnBnClickedButtonSkip()
     m_availableIcons.SetSelectionMark(-1);
     ++m_nextItem;
     FindNextItem();
+}
+
+void CWeaponImageDialog::OnBnClickedButtonRefreshImages()
+{
+    PopulateAvailableIcons();
 }
 
 void CWeaponImageDialog::OnLvnItemchangedList1(NMHDR* pNMHDR, LRESULT* pResult)

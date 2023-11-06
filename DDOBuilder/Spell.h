@@ -51,7 +51,7 @@ class Spell :
         #define Spell_PROPERTIES(_) \
                 DL_STRING(_, Name) \
                 DL_STRING(_, Description) \
-                DL_STRING(_, Icon) \
+                DL_OPTIONAL_STRING(_, Icon) \
                 DL_OPTIONAL_SIMPLE(_, int, Level, 0) \
                 DL_OPTIONAL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_SIMPLE(_, int, Cost, 0) \

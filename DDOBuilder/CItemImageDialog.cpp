@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP(CItemImageDialog, CDialogEx)
     ON_BN_CLICKED(IDC_BUTTON_START, &CItemImageDialog::OnBnClickedButtonStart)
     ON_BN_CLICKED(IDC_BUTTON_SETITEMIMAGE, &CItemImageDialog::OnBnClickedButtonSetitemimage)
     ON_BN_CLICKED(IDC_BUTTON_SKIP, &CItemImageDialog::OnBnClickedButtonSkip)
+    ON_BN_CLICKED(IDC_BUTTON_REFRESH_IMAGES, &CItemImageDialog::OnBnClickedButtonRefreshImages)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_ICONS, &CItemImageDialog::OnLvnItemchangedList1)
 END_MESSAGE_MAP()
 
@@ -132,6 +133,11 @@ void CItemImageDialog::OnBnClickedButtonSkip()
     m_availableIcons.SetSelectionMark(-1);
     ++m_nextItem;
     FindNextItem();
+}
+
+void CItemImageDialog::OnBnClickedButtonRefreshImages()
+{
+    PopulateAvailableIcons();
 }
 
 void CItemImageDialog::OnLvnItemchangedList1(NMHDR* pNMHDR, LRESULT* pResult)

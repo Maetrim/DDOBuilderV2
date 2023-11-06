@@ -265,41 +265,46 @@ void CStancesPane::CreateStanceWindows()
     // add the auto controlled stances for each weapon type. These are added dynamically
     for (size_t wt = Weapon_BastardSword; wt < Weapon_Count; ++wt)
     {
-        CString name = (LPCTSTR)EnumEntryText(static_cast<WeaponType>(wt), weaponTypeMap);
-        CString prompt;
-        if (IsVowel(name.GetAt(0)))
+        if (wt < Weapon_ShieldBuckler || wt > Weapon_ShieldTower)
         {
-            prompt.Format("You are wielding an %s", (LPCTSTR)name);
+            CString name = (LPCTSTR)EnumEntryText(static_cast<WeaponType>(wt), weaponTypeMap);
+            CString prompt;
+            if (IsVowel(name.GetAt(0)))
+            {
+                prompt.Format("You are wielding an %s", (LPCTSTR)name);
+            }
+            else
+            {
+                prompt.Format("You are wielding a %s", (LPCTSTR)name);
+            }
+            Stance weapon(
+                    (LPCTSTR)name,
+                    (LPCTSTR)name,
+                    (LPCTSTR)prompt,
+                    "Auto",
+                    true);
+            // the requirement depends of what type of "weapon" this is
+            if (IsOffHandWeapon(static_cast<WeaponType>(wt)))
+            {
+                Requirement r(Requirement_ItemTypeInSlot, "Weapon2", (LPCTSTR)name);
+                weapon.AddRequirement(r);
+            }
+            else
+            {
+                Requirement r(Requirement_ItemTypeInSlot, "Weapon1", (LPCTSTR)name);
+                weapon.AddRequirement(r);
+            }
+            AddStance(weapon);
         }
-        else
-        {
-            prompt.Format("You are wielding a %s", (LPCTSTR)name);
-        }
-        Stance weapon(
-                (LPCTSTR)name,
-                (LPCTSTR)name,
-                (LPCTSTR)prompt,
-                "Auto",
-                true);
-        // the requirement depends of what type of "weapon" this is
-        if (IsOffHandWeapon(static_cast<WeaponType>(wt)))
-        {
-            Requirement r(Requirement_ItemTypeInSlot, "Weapon2", (LPCTSTR)name);
-            weapon.AddRequirement(r);
-        }
-        else
-        {
-            Requirement r(Requirement_ItemTypeInSlot, "Weapon1", (LPCTSTR)name);
-            weapon.AddRequirement(r);
-        }
-        AddStance(weapon);
     }
     // add the auto controlled stances for each race type. These are added dynamically
     const std::list<Race> & races = Races();
     for (auto&& rit: races)
     {
         CString name = rit.Name().c_str();
+        CString icon = rit.Name().c_str();
         CString prompt;
+        icon.Replace(" ", "");
         if (IsVowel(name.GetAt(0)))
         {
             prompt.Format("You are an %s", (LPCTSTR)name);
@@ -310,7 +315,7 @@ void CStancesPane::CreateStanceWindows()
         }
         Stance race(
                 (LPCTSTR)name,
-                (LPCTSTR)name,
+                (LPCTSTR)icon,
                 (LPCTSTR)prompt,
                 "Auto",
                 true);

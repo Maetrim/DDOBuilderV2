@@ -767,6 +767,7 @@ bool Effect::CheckAType(
         }
         break;
     case Amount_SpellInfo:
+    case Amount_SLA:
         *bRequiresAmount = true;                    // Amount specifies level,cost,mcl
         *requiredAmountElements = 3;                // 3 elements expected
         break;

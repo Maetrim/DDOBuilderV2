@@ -73,10 +73,10 @@ BEGIN_MESSAGE_MAP(CDDOBuilderView, CFormView)
     ON_BN_CLICKED(IDC_RADIO_28PT, &CDDOBuilderView::OnBnClickedRadio28pt)
     ON_BN_CLICKED(IDC_RADIO_32PT, &CDDOBuilderView::OnBnClickedRadio32pt)
     //ON_COMMAND(ID_EDIT_RESETBUILD, &CDDOBuilderView::OnEditResetbuild)
-    //ON_UPDATE_COMMAND_UI(ID_EDIT_FEATS_EPICONLY, &CDDOBuilderView::OnEditFeatsUpdateEpicOnly)
-    //ON_UPDATE_COMMAND_UI(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOBuilderView::OnEditFeatsUpdateShowUnavailable)
-    //ON_COMMAND(ID_EDIT_FEATS_EPICONLY, &CDDOBuilderView::OnEditFeatsEpicOnly)
-    //ON_COMMAND(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOBuilderView::OnEditFeatsShowUnavailable)
+    ON_UPDATE_COMMAND_UI(ID_EDIT_FEATS_EPICONLY, &CDDOBuilderView::OnEditFeatsUpdateEpicOnly)
+    ON_UPDATE_COMMAND_UI(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOBuilderView::OnEditFeatsUpdateShowUnavailable)
+    ON_COMMAND(ID_EDIT_FEATS_EPICONLY, &CDDOBuilderView::OnEditFeatsEpicOnly)
+    ON_COMMAND(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOBuilderView::OnEditFeatsShowUnavailable)
     ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CDDOBuilderView::OnTtnNeedText)
     ON_COMMAND(ID_DEVELOPMENT_DUMPWEAPONGROUPSTOLOG, &CDDOBuilderView::OnDumpWeaponGroups)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_DUMPWEAPONGROUPSTOLOG, &CDDOBuilderView::OnUpdateDumpWeaponGroups)
@@ -1347,24 +1347,24 @@ void CDDOBuilderView::OnEditResetbuild()
 void CDDOBuilderView::OnEditFeatsUpdateEpicOnly(CCmdUI * pCmdUi)
 {
     UNREFERENCED_PARAMETER(pCmdUi);
-    //pCmdUi->Enable(!m_pCharacter->ShowUnavailable());
-    //pCmdUi->SetCheck(m_pCharacter->ShowEpicOnly());
+    pCmdUi->Enable(!m_pCharacter->ShowUnavailable());
+    pCmdUi->SetCheck(m_pCharacter->ShowEpicOnly());
 }
 
 void CDDOBuilderView::OnEditFeatsUpdateShowUnavailable(CCmdUI * pCmdUi)
 {
     UNREFERENCED_PARAMETER(pCmdUi);
-    //pCmdUi->SetCheck(m_pCharacter->ShowUnavailable());
+    pCmdUi->SetCheck(m_pCharacter->ShowUnavailable());
 }
 
 void CDDOBuilderView::OnEditFeatsEpicOnly()
 {
-    //m_pCharacter->ToggleShowEpicOnly();
+    m_pCharacter->ToggleShowEpicOnly();
 }
 
 void CDDOBuilderView::OnEditFeatsShowUnavailable()
 {
-    //m_pCharacter->ToggleShowUnavailable();
+    m_pCharacter->ToggleShowUnavailable();
 }
 
 // Character overrides

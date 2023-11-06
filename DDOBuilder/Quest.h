@@ -36,6 +36,7 @@ class Quest :
 
         #define Quest_PROPERTIES(_) \
                 DL_STRING(_, Name) \
+                DL_OPTIONAL_STRING(_, EpicName) \
                 DL_ENUM(_, PatronType, Patron, Patron_Unknown, patronTypeMap) \
                 DL_STRING(_, AdventurePack) \
                 DL_FLAG(_, Solo) \
@@ -44,7 +45,7 @@ class Quest :
                 DL_FLAG(_, Hard) \
                 DL_FLAG(_, Elite) \
                 DL_FLAG(_, Reaper) \
-                DL_VECTOR(_, int, Favor) \
+                DL_SIMPLE(_, int, Favor, 0) \
                 DL_VECTOR(_, int, Levels)
 
         DL_DECLARE_ACCESS(Quest_PROPERTIES)

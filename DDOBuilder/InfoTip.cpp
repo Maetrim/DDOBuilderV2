@@ -918,8 +918,10 @@ void CInfoTip::SetFavorItem(
     pHeader->SetTitle(feat.Name().c_str());
     m_tipItems.push_back(pHeader);
 
+    CString line = ExtractLine(favorTier, feat.Description().c_str());
+
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
-    pDescription->SetText(feat.Description().c_str());
+    pDescription->SetText(line);
     m_tipItems.push_back(pDescription);
 }
 
@@ -967,12 +969,15 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
 
 void CInfoTip::AppendSLA(const Spell& spell, int nCasterLevel, int nCharges, int nRecharge)
 {
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
-    pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.Icon(), true);
-    CString name = spell.Name().c_str();
-    name.Replace(" SLA", "");
-    pHeader->SetTitle(name);
-    m_tipItems.push_back(pHeader);
+    if (spell.HasIcon())
+    {
+        InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+        pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.Icon(), true);
+        CString name = spell.Name().c_str();
+        name.Replace(" SLA", "");
+        pHeader->SetTitle(name);
+        m_tipItems.push_back(pHeader);
+    }
 
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
     pDescription->SetText(spell.Description().c_str());

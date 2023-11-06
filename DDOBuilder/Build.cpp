@@ -1090,6 +1090,8 @@ bool Build::IsFeatTrainable(
         bool includeTomes,
         bool alreadyTrained) const
 {
+    bool bShowEpicOnly = m_pLife->m_pCharacter->ShowEpicOnly();
+    bool bShowUnavailable = m_pLife->m_pCharacter->ShowUnavailable();
     // function returns true if the given feat can be trained at this level
     // i.e. all required prerequisite feats/skills/abilities are met
 
@@ -1100,26 +1102,45 @@ bool Build::IsFeatTrainable(
     std::list<TrainedFeat> currentFeats = CurrentFeats(level);
 
     // must be a trainable feat first
-    bool canTrain = (feat.Acquire() == FeatAcquisition_Train);
-    if (canTrain)
+    bool bCanTrain = (feat.Acquire() == FeatAcquisition_Train);
+    if (bCanTrain)
     {
+        bool bHasGroupStandard = false;
         // must be a member of this group to be listed
-        canTrain = false;
+        bCanTrain = false;
         const std::list<std::string> & groups = feat.Group();
         std::list<std::string>::const_iterator git = groups.begin();
-        while (!canTrain && git != groups.end())
+        while (git != groups.end())
         {
-            canTrain = ((*git) == type);
+            bCanTrain |= ((*git) == type);
+            bHasGroupStandard |= ((*git) == "Standard");
             ++git;
         }
-
+        if (!bShowUnavailable)
+        {
+            if (type == "Epic Feat"
+                && bShowEpicOnly
+                && bHasGroupStandard)
+            {
+                // user only wants to show epic feats
+                bCanTrain = false;
+            }
+        }
+        else
+        {
+            if (!bShowEpicOnly
+                && type == "Epic Feat")
+            {
+                bCanTrain |= bHasGroupStandard;
+            }
+        }
     }
-    if (canTrain)
+    if (bCanTrain && !bShowUnavailable)
     {
         // do we meet the requirements to train this feat?
         if (feat.HasRequirementsToTrain())
         {
-            canTrain = feat.RequirementsToTrain().Met(
+            bCanTrain = feat.RequirementsToTrain().Met(
                     *this,
                     //classLevels,
                     level,
@@ -1129,7 +1150,7 @@ bool Build::IsFeatTrainable(
                     Weapon_Unknown);
         }
     }
-    if (canTrain)
+    if (bCanTrain)
     {
         // may have trained this feat the max times already
         size_t trainedCount = TrainedCount(currentFeats, feat.Name());
@@ -1138,10 +1159,10 @@ bool Build::IsFeatTrainable(
             // were checking if an already trained feat is still trainable
             --trainedCount;
         }
-        canTrain = (trainedCount < feat.MaxTimesAcquire());
+        bCanTrain = (trainedCount < feat.MaxTimesAcquire());
     }
     // has to be one of the trainable feat types
-    if (canTrain)
+    if (bCanTrain)
     {
         std::vector<FeatSlot> tfts = TrainableFeatTypeAtLevel(level);
         bool found = false;
@@ -1152,9 +1173,9 @@ bool Build::IsFeatTrainable(
                 found = true;
             }
         }
-        canTrain = found;
+        bCanTrain = found;
     }
-    return canTrain;
+    return bCanTrain;
 }
 
 std::list<TrainedFeat> Build::SpecialFeats() const

@@ -9,8 +9,7 @@
 // these enumerations are used across multiple object types
 enum PatronType
 {
-    Patron_Unknown = 0,
-    Patron_AgentsOfArgonnessen,
+    Patron_AgentsOfArgonnessen = 0,
     Patron_HouseCannith,
     Patron_TheCoinLords,
     Patron_HouseDeneith,
@@ -31,6 +30,7 @@ enum PatronType
     Patron_TotalFavor,
 
     Patron_Count,
+    Patron_Unknown,
     Patron_None
 };
 

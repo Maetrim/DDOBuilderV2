@@ -930,9 +930,10 @@ You gain a [5/15/25]% Morale bonus to melee doublestrike for 10 seconds.
          <Selector>
             <EnhancementSelection>
                <Name>Eagle Claw Attack</Name>
-               <Description>Fire Ki Melee Attack: Your attacks can shatter objects.
-You strike at weak points in your opponents armor or hide, dealing +2[W]
-damage and apply four stacks of Armor Destruction.
+               <Description>Deals +20% Damage
+Cooldown: 3 seconds
+Fire Ki Melee Attack: Your attacks can shatter objects. You strike at weak points
+in your opponents armor or hide, applying four stacks of Armor Destruction.
 (Each stack reduces Armor Class by 1 and Fortification by 1% for 20 seconds.
 This effect can stack up to 15 times.)</Description>
                <Icon>HMEagleClawAttack</Icon>
@@ -941,40 +942,49 @@ This effect can stack up to 15 times.)</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Fists of Iron</Name>
-               <Description>Earth Ki Melee Attack: You have imbued your attacks with extra force.
-Performs a melee attack with +3[W] damage, +1 critical threat range, and
-+1 Critical Damage Multiplier.</Description>
+               <Description>Deals +30% Damage
++1 Critical Multiplier
++1 Critical Threat Range
+Cooldown: 3 seconds
+Earth Ki Melee Attack: You have imbued your attacks with extra force.</Description>
                <Icon>HMFIstsOfIron</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Knock on the Sky</Name>
-               <Description>Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
-Performs a melee attack with +1[W] damage, and your enemy deals 4% less
-physical damage for 30 seconds. This effect can stack up to 5 times. </Description>
+               <Description>Deals +10% Damage
+Cooldown: 3 seconds
+Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
+Your enemy deals 4% less physical damage for 30 seconds. This effect can stack up
+to 5 times. </Description>
                <Icon>HMKnockOnTheSky</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Unbalancing Strike</Name>
-               <Description>Water Ki Melee Attack: You have learned several joint strikes.
-You can attack these weak points of your opponent, dealing +3[W] and
-throwing them off balance for a short period of time. This reduces their
-armor class by 2, applies a -10 penalty to their Balance skill, and
-renders them vulnerable to sneak attacks. A successful Reflex save negates
-this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+               <Description>Deals +30% Damage
+Cooldown: 3 seconds
+Water Ki Melee Attack: You have learned several joint strikes. You can attack
+these weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
 The target receives periodic saves to attempt to break free of this effect.</Description>
                <Icon>HMUnbalancingStrike</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
                <DC>
                   <Name>Henshin Mystic: Unbalancing Strike</Name>
-                  <Description>Water Ki Melee Attack: You have learned several joint strikes.
-You can attack these weak points of your opponent, dealing +3[w] and throwing
-them off balance for a short period of time. This reduces their armor class by 2,
-applies a -10 penalty to their Balance skill, and renders them vulnerable to sneak attacks.</Description>
+               <Description>Deals +30% Damage
+Cooldown: 3 seconds
+Water Ki Melee Attack: You have learned several joint strikes. You can attack
+these weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+The target receives periodic saves to attempt to break free of this effect.</Description>
                   <Icon>HMUnbalancingStrike</Icon>
                   <DCType>Sneak Attack Vulnerability</DCType>
                   <DCVersus>Reflex</DCVersus>
@@ -1539,10 +1549,13 @@ bonus to Spell Power and +5 Exceptional Bonuses to both Melee and Ranged Power.<
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Void Strike</Name>
          <InternalName>HMVoidStrike</InternalName>
-         <Description>Void Ki Melee Attack: You have learned to make attacks backed by pure Ki energy.
-On Hit: +3[W], +1 to Critical Threat Range and Multiplier, and 10d6 Force
+         <Description>Deals +30% Damage
++1 Critical Multiplier
++1 Critical Threat Range
+Void Ki Melee Attack: You have learned to make attacks backed by pure Ki energy.
+On Hit: +30% damage, +1 to Critical Threat Range and Multiplier, and 10d6 Force
 damage that scales with Melee Power. On Vorpal: Your enemy is erased from
-existence. (Activation Cost: 15 Ki. Cooldown: 3 seconds)</Description>
+existence.</Description>
          <Icon>HMVoidStrike</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1693,10 +1706,10 @@ with quarterstaves.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Henshin Mystic: Every Light Casts a Shadow</Name>
-               <Description>Dark Ki Melee Attack: Perform an attack with +2[W] damage.
-On Damage: Target suffers 1d4 Negative Levels.
-All nearby enemies suffer 1d2 Negative Levels.
-(Cost: 15 Ki. Cooldown: 12 seconds) </Description>
+               <Description>Deals +20% Damage
+Cooldown: 12 seconds
+Dark Ki Melee Attack: On Damage: Target suffers 1d4 Negative Levels.
+All nearby enemies suffer 1d2 Negative Levels.</Description>
                <Icon>HMEveryLightCastsAShadow</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
@@ -1709,11 +1722,11 @@ All nearby enemies suffer 1d2 Negative Levels.
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Henshin Mystic: Shadows Cannot Exist Without Light</Name>
-               <Description>Light Ki Melee Attack: Perform an attack with +2[W] damage.
-On Damage: Target suffers 1d6 Light damage every 2 seconds for 10 seconds.
-This can stack up to 10 times. All allies around you receive 100 Positive
-Energy healing. (This healing effect is unaffected by Spell Power.)
-(Cost: 15 Ki. Cooldown: 6 seconds) </Description>
+               <Description>Deals +20% Damage
+Cooldown: 12 seconds
+Light Ki Melee Attack: On Damage: Target suffers 1d6 Light damage every 2 seconds
+for 10 seconds. This can stack up to 10 times. All allies around you receive 100
+Positive Energy healing. (This healing effect is unaffected by Spell Power.)</Description>
                <Icon>HMShadowsCannotExistWithoutLight</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>

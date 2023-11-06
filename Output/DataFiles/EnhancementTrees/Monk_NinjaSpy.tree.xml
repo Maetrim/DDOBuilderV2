@@ -890,49 +890,61 @@ Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or 
          <Selector>
             <EnhancementSelection>
                <Name>Eagle Claw Attack</Name>
-               <Description>Fire Ki Melee Attack: Your attacks can shatter objects.
-You strike at weak points in your opponents armor or hide, dealing +2[W] damage
-and apply four stacks of Armor Destruction. (Each stack reduces Armor Class by 1
-and Fortification by 1% for 20 seconds. This effect can stack up to 15 times.)</Description>
+               <Description>Deals +20% Damage
+Cooldown: 3 seconds
+Fire Ki Melee Attack: Your attacks can shatter objects. You strike at weak points
+in your opponents armor or hide, applying four stacks of Armor Destruction.
+(Each stack reduces Armor Class by 1 and Fortification by 1% for 20 seconds.
+This effect can stack up to 15 times.)</Description>
                <Icon>HMEagleClawAttack</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Fists of Iron</Name>
-               <Description>Earth Ki Melee Attack: You have imbued your attacks with extra force.
-Performs a melee attack with +3[W] damage, +1 critical threat range, and +1 Critical Damage Multiplier. </Description>
+               <Description>Deals +30% Damage
++1 Critical Multiplier
++1 Critical Threat Range
+Cooldown: 3 seconds
+Earth Ki Melee Attack: You have imbued your attacks with extra force.</Description>
                <Icon>ShintaoFistsOfIron</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Knock on the Sky</Name>
-               <Description>Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
-Performs a melee attack with +1[W] damage, and your enemy deals 2% less physical
-damage for 30 seconds. This effect can stack up to 5 times.</Description>
+               <Description>Deals +10% Damage
+Cooldown: 3 seconds
+Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
+Your enemy deals 4% less physical damage for 30 seconds. This effect can stack up
+to 5 times. </Description>
                <Icon>HMKnockOnTheSky</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Unbalancing Strike</Name>
-               <Description>Water Ki Melee Attack: You have learned several joint strikes.
-You can attack these weak points of your opponent, dealing +3[w] and throwing
-them off balance for a short period of time. This reduces their armor class by 2,
-applies a -10 penalty to their Balance skill, and renders them vulnerable to sneak attacks.
-A successful Reflex save negates this effect
-(DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+               <Description>Deals +30% Damage
+Cooldown: 3 seconds
+Water Ki Melee Attack: You have learned several joint strikes. You can attack
+these weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
 The target receives periodic saves to attempt to break free of this effect.</Description>
                <Icon>HMUnbalancingStrike</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
                <DC>
                   <Name>Ninja Spy: Unbalancing Strike</Name>
-                  <Description>Water Ki Melee Attack: You have learned several joint strikes.
-You can attack these weak points of your opponent, dealing +3[w] and throwing
-them off balance for a short period of time. This reduces their armor class by 2,
-applies a -10 penalty to their Balance skill, and renders them vulnerable to sneak attacks.</Description>
+               <Description>Deals +30% Damage
+Cooldown: 3 seconds
+Water Ki Melee Attack: You have learned several joint strikes. You can attack
+these weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+The target receives periodic saves to attempt to break free of this effect.</Description>
                   <Icon>HMUnbalancingStrike</Icon>
                   <DCType>Sneak Attack Vulnerability</DCType>
                   <DCVersus>Reflex</DCVersus>
@@ -1285,10 +1297,10 @@ save and momentarily dazing opponents on a failed fortitude save.</Description>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Sting of the Ninja</Name>
          <InternalName>NSStingOfTheNinja</InternalName>
-         <Description>Weapon Stance: You poison your weapon with a secret mixture.
-You do 1d6 Poison damage per Imbue Dice scaling with either Melee or Ranged power.
-While you are centered, any shortsword, kama, or shuriken you wield will inflict
-your foe with a stack of Ninja Poison on critical hits.
+         <Description>Imbue Toggle: You poison your weapon with a secret mixture. While you are
+centered, you deal an additional 1d6 Poison damage on hit scaling with 100% of
+the higher of Melee or Ranged power, any shortsword, kama, or shuriken you wield
+will inflict your foe with a stack of Ninja Poison on critical hits.
 (Magical Poison: Target takes 1d4 points of Poison damage every 3 seconds for 15
 seconds. The target's vulnerability to poison is increased by 5%. This ability
 can stack up to 20 times. On timer expiration, 5 stacks of Ninja Poison are
@@ -1314,8 +1326,14 @@ if they are normally Piercing or Slashing weapons. Cooldown: 3 seconds.</Descrip
          <Stance>
             <Name>Ninja Spy: Sting of the Ninja</Name>
             <Icon>NSStingOfTheNinja</Icon>
-            <Description>Weapon Stance: You poison your weapon with a secret mixture.
-You do 1d6 Poison damage per Imbue Dice scaling with either Melee or Ranged power.</Description>
+            <Description>Imbue Toggle: You poison your weapon with a secret mixture. While you are
+centered, you deal an additional 1d6 Poison damage on hit scaling with 100% of
+the higher of Melee or Ranged power, any shortsword, kama, or shuriken you wield
+will inflict your foe with a stack of Ninja Poison on critical hits.
+(Magical Poison: Target takes 1d4 points of Poison damage every 3 seconds for 15
+seconds. The target's vulnerability to poison is increased by 5%. This ability
+can stack up to 20 times. On timer expiration, 5 stacks of Ninja Poison are
+removed at a time.)</Description>
             <Group>Imbue</Group>
          </Stance>
       </EnhancementTreeItem>
@@ -1780,9 +1798,15 @@ Passive: +3 to Hit and Damage while Centered, does not apply to Handwraps or Qua
          </Requirements>
          <DC>
             <Name>Ninja Spy: Touch of Death</Name>
-            <Description>Dark Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
-500 additional negative energy damage. Your opponent takes half damage on a
-successful Fortitude save.</Description>
+            <Description>Deals +30% Damage
+Cooldown: 15 seconds
+Dark Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
+500 additional negative energy damage that scales with 200% Melee Power. Your
+opponent takes half damage on a successful Fortitude save.
+DC = 10 + Monk Level + Highest(Dex/Wis) + Assassinate DCs.
+
+Passive: +3 to Hit and Damage while Centered, does not apply to Handwraps or
+Quarterstaves.</Description>
             <Icon>NSTouchOfDeath</Icon>
             <DCType>Half Damage</DCType>
             <DCVersus>Fortitude</DCVersus>
@@ -2024,9 +2048,10 @@ Kamas and Shuriken gain double this bonus.</Description>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Shadow Double</Name>
          <InternalName>NSShadowDouble</InternalName>
-         <Description>Ki Melee Attack: You perform a melee attack with +2[W] and gain 100% Melee
-doublestrike and +5 Assassinate DCs for 6 seconds.
-Activation Cost: 30 Ki. Cooldown: 30 seconds</Description>
+         <Description>Deals +30% Damage
+Cooldown: 20 seconds
+Ki Melee Attack: Strike an enemy, gaining +50% doublestrike and +5 Assassinate
+DCs for 12 seconds.</Description>
          <Icon>NSShadowDouble</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>

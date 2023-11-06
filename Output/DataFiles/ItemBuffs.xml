@@ -4,6 +4,10 @@
     <Type>BuffNotFound</Type>
     <DisplayText>Buff Missing: The buff specified was missing!</DisplayText>
   </Buff>
+  <Buff>
+    <Type>3rd Degree Burns</Type>
+    <DisplayText>3rd Degree Burns: On Vorpal: 85 to 195 Fire Damage every 2 seconds for 10 seconds, and adds 1-5 stacks of Vulnerability.</DisplayText>
+  </Buff>
   <!--A-->
   <Buff>
     <Type>AbilityBonus</Type>
@@ -3301,6 +3305,10 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>Cursed Level Drain: Each time the player equipping this item is hit there is a small chance it will drain 1 level (no save, almost nothing wards).</DisplayText>
   </Buff>
   <Buff>
+    <Type>Cursed Maelstrom</Type>
+    <DisplayText>Cursed Maelstrom: This weapon is wracked with a dangerous and volatile curse. Striking an enemy has a chance to place a random, debilitating, and deadly debuff on your foe.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>CurseOfClumsiness</Type>
     <DisplayText>Curse of Clumsiness: Passive -1 Penalty to Dexterity. (The minimum level required to equip this item is lower than normal due to this curse.)</DisplayText>
     <Effect>
@@ -5243,6 +5251,18 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Feeding 10</Type>
+    <DisplayText>Feeding 10: On Vorpal Hit : Your target incurs one Negative Level, and you gain +10 Temporary Hit Points. (These Temporary Hit Points last for one minute, or until used to negate incoming damage.)</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Feeding 20</Type>
+    <DisplayText>Feeding 20: On Vorpal Hit : Your target incurs one Negative Level, and you gain +20 Temporary Hit Points. (These Temporary Hit Points last for one minute, or until used to negate incoming damage.)</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Feeding 30</Type>
+    <DisplayText>Feeding 30: On Vorpal Hit : Your target incurs one Negative Level, and you gain +30 Temporary Hit Points. (These Temporary Hit Points last for one minute, or until used to negate incoming damage.)</DisplayText>
+  </Buff>
+  <Buff>
     <Type>FellingTheOak</Type>
     <DisplayText>Felling the Oak: On a natural 20 that is confirmed as a critical hit, this weapon will trip your opponent, forcing them to fall prone. There is no save against this effect.</DisplayText>
     <Effect>
@@ -6394,6 +6414,21 @@ Greater: Insightful Fortification +25%</DisplayText>
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Slash</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Gashing 15</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Gashing 15: The edges of this weapon are sharpened beyond belief, dealing an additional 15d6 slashing damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">15</Number>
         <Sides size="1">6</Sides>
         <Damage>Slash</Damage>
       </Dice>
@@ -8602,6 +8637,10 @@ Greater: Insightful Fortification +25%</DisplayText>
     <DisplayText>Improved Quelling Strikes: On Vorpal Melee: applies a Quell effect to target enemy for six seconds, rendering them unable to cast divine spells. This has a 50% chance of preventing the target from casting all spells for three seconds (12 second cooldown).</DisplayText>
   </Buff>
   <Buff>
+    <Type>Improved Slowburst</Type>
+    <DisplayText>Improved Slowburst: This weapon has an image of a snail worked into its hilt or grip, and it feels cold to the touch. Whenever you score a critical hit with this weapon, the target is slowed for 30 seconds. A DC 28 Will save negates this effect.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Impulse</Type>
     <DisplayText>%b1 Impulse %v1: %v1 %b1 bonus to Force/Untyped spell power.</DisplayText>
     <Ignore>Equipment</Ignore>
@@ -8887,12 +8926,21 @@ Greater: Insightful Fortification +25%</DisplayText>
     <DisplayText>Legendary Slicing Winds: This weapon whistles with the wind. On hit, this mysterious power has a chance of coming to the surface, slicing at the struck enemy for a significant amount of Slashing damage.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Slowburst</Type>
+    <DisplayText>Legendary Slowburst: This weapon has an image of a snail worked into its hilt or grip, and it feels cold to the touch. Whenever you score a critical hit with this weapon, the target is slowed for 30 seconds. A DC 100 Will save negates this effect.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Stone Prison</Type>
     <DisplayText>Legendary Stone Prison: This weapon is invested with the power of the earth. On an attack roll of 20 which is confirmed as a critical hit it will attempt to turn the target to stone, as the Flesh to Stone spell. A successful Fortitude save (DC 100) negates this effect.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Telekinetic</Type>
     <DisplayText>Legendary Telekinetic: On hit, this has a chance of knocking your enemies off their feet. Struck enemies must make a DC 100 Reflex save or be knocked down.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Vile Grip of the Hidden Hand</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Legendary Vile Grip of the Hidden Hand: Attacks and offensive spells have a small chance to deal massive evil damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>LesserActionBoostEnhancement</Type>
@@ -9195,10 +9243,6 @@ Greater: Insightful Fortification +25%</DisplayText>
   <Buff>
     <Type>Linguistics 15%</Type>
     <DisplayText>Linguistics 15%: This item reduced the cooldowns of your Social skills (Diplomacy, Bluff, Intimidate) by 15%. This does not stack with the Negotiator ability.</DisplayText>
-  </Buff>
-  <Buff>
-    <Type>Legendary Blinding Embers</Type>
-    <DisplayText>Legendary Blinding Embers: This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks.</DisplayText>
   </Buff>
   <!--M-->
   <Buff>
@@ -9866,6 +9910,33 @@ Greater: Insightful Fortification +25%</DisplayText>
   <Buff>
     <Type>Path of the Guarding Stone</Type>
     <DisplayText>Path of the Guarding Stone: While wearing this item and in mountain stance, there is a chance you will be protected by a Stoneskin spell when enemies strike you.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Penalty Good</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Penalty: If equipped by a Good user, they receive 1 Negative Level for as long as this item is equipped.</DisplayText>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Neutral Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Good</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Penalty Lawful</Type>
@@ -12391,6 +12462,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Soundproof</Type>
+    <DisplayText>Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout .</DisplayText>
+  </Buff>
+  <Buff>
     <Type>SovereignAcidResistance</Type>
     <DisplayText>Sovereign Acid Resistance: This property absorbs the first 50 points of Acid damage per attack that the wearer would normally take.</DisplayText>
     <Effect>
@@ -12763,6 +12838,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Stone Prison</Type>
     <DisplayText>Stone Prison: This weapon is invested with the power of the earth. On an attack roll of 20 which is confirmed as a critical hit it will attempt to turn the target to stone, as the Flesh to Stone spell. A successful Fortitude save (DC 27) negates this effect.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Stormreaver's Thunderclap</Type>
+    <DisplayText>Stormreaver's Thunderclap: This item crackles with power, flickers of lightning emanating from it. On a Melee strike of a Natural 20 that is confirmed as a critical hit, this item will strike your foe with a tremendous burst of lightning. A DC 100 Reflex save will prevent half of this damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>StrengthOfPurpose</Type>
@@ -13865,6 +13944,11 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Amount size="1">0</Amount>
       <Item>Trip</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Vile Grip of the Hidden</Type>
+    <ApplyToWeaponOnly/>
+    <DisplayText>Hand Vile Grip of the Hidden Hand: Attacks and offensive spells have a small chance to deal massive evil damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Vitality</Type>

@@ -15,7 +15,8 @@
     <EnhancementTreeItem>
       <Name>Vile Chemist: Poisoner</Name>
       <InternalName>VileCore1</InternalName>
-      <Description>+2 to saves vs. Poisons, +2 to saves vs. Diseases.</Description>
+      <Description>+1 to your Reflex Saving Throws. Each Core Ability you take in this tree beyond the
+first grants +5 Physical Resistance Rating.</Description>
       <Icon>VilePoisoner</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
@@ -33,25 +34,20 @@
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">2</Amount>
-        <Item>Poison</Item>
-      </Effect>
-      <Effect>
-        <Type>SaveBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">2</Amount>
-        <Item>Disease</Item>
+        <Amount size="1">1</Amount>
+        <Item>Reflex</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Vile Chemist: Poisoned Coating</Name>
       <InternalName>VileCore2</InternalName>
-      <Description>Toggle: While active, deal an additional 1d6 Poison damage on hit.
-You gain an additional 1d6 every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
-This damage scales with Spell Power.
+      <Description>Imbue Toggle: While active, simple weapons deal an additional 1d8 Poison damage on hit.
+This damage scales with 75% of your Spell Power.
 
-Passive: While your Reaction is Orchidium, +5 Physical Resistance Rating.</Description>
+You also gain an +1 bonus Imbue Dice every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
+
+Passive: While your Reaction is Orchidium, you gain +5 Poison Spell Power, 2% Dodge,
+and 2% Dodge Cap.</Description>
       <Icon>VilePoisonedCoating</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
@@ -70,11 +66,27 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance Rating.</Descr
           <Item>VileCore1</Item>
         </Requirement>
       </Requirements>
+      <Stance>
+        <Name>Poisoned Coating</Name>
+        <Icon>VilePoisonedCoating</Icon>
+        <Description>While active, deal an additional 1d8 Poison damage on hit.
+You also gain an +1 bonus Imbue Dice every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
+This damage scales with 75% of your Spell Power.</Description>
+        <Group>Imbue</Group>
+      </Stance>
       <Effect>
-        <Type>PRR</Type>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>ClassLevel</AType>
+        <StackSource>Alchemist</StackSource>
+        <Amount size="21">0 0 0 0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
+        <Item>Poison</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -82,27 +94,27 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance Rating.</Descr
           </Requirement>
         </Requirements>
       </Effect>
-         <Stance>
-            <Name>Poisoned Coating</Name>
-            <Icon>VilePoisonedCoating</Icon>
-            <Description>While active, deal an additional 1d8 Poison damage on hit.
-You gain an additional 1d8 every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
-This damage scales with Poison Spell Power.</Description>
-            <Group>Imbue</Group>
-         </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>ClassLevel</AType>
-            <StackSource>Alchemist</StackSource>
-            <Amount size="21">0 1 1 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
-         </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Orchidium</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Vile Chemist: Hidden Blades</Name>
       <InternalName>VileCore3</InternalName>
-      <Description>+3% Doublestrike and Doubleshot.
-Passive: While your Reaction in Orchidium, +5 Physical Resistance Rating.</Description>
+      <Description>+5 Universal Spell Power, +3% Doublestrike and Doubleshot, +1 Bonus Imbue Dice.
+
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap.</Description>
       <Icon>VileHiddenBlades</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
@@ -121,22 +133,43 @@ Passive: While your Reaction in Orchidium, +5 Physical Resistance Rating.</Descr
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>Doublestrike</Type>
+        <Type>UniversalSpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">3</Amount>
+        <Amount size="1">5</Amount>
       </Effect>
       <Effect>
+        <Type>Doublestrike</Type>
         <Type>Doubleshot</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">3</Amount>
       </Effect>
       <Effect>
-        <Type>PRR</Type>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Orchidium</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -146,15 +179,14 @@ Passive: While your Reaction in Orchidium, +5 Physical Resistance Rating.</Descr
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: More Hidden Blades</Name>
+      <Name>Vile Chemist: Hidden Blades II</Name>
       <InternalName>VileCore4</InternalName>
-         <Description>+10 Universal Spell Power, +5% Doublestrike and Doubleshot.
-You gain +1 Imbue Dice.
-If you have Simple Thrown Expertise, you now use the higher of your
-Intelligence and Dexterity to determine how much Doubleshot you gain from
-that feat.
+      <Description>+5 Universal Spell Power, +3% Doublestrike and Doubleshot, +1 bonus Imbue Dice.
 
-Passive: While your Reaction is Orchidium, +5% Dodge and full Base Attack Bonus.</Description>
+Your Base Attack Bonus is now equal to your Character Level.
+
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap.</Description>
       <Icon>VileMoreHiddenBlades</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
@@ -172,53 +204,31 @@ Passive: While your Reaction is Orchidium, +5% Dodge and full Base Attack Bonus.
           <Item>VileCore3</Item>
         </Requirement>
       </Requirements>
-       <Effect>
-          <Type>Doubleshot</Type>
-          <Bonus>Feat</Bonus>
-          <AType>AbilityValue</AType>
-          <StackSource>Intelligence</StackSource>
-          <Requirements>
-             <Requirement>
-                <Type>Feat</Type>
-                <Item>Simple Thrown Expertise</Item>
-             </Requirement>
-             <Requirement>
-                <Type>Stance</Type>
-                <Item>Thrown Weapon</Item>
-             </Requirement>
-          </Requirements>
-          <ApplyAsItemEffect/>
-       </Effect>
-       <Effect>
-        <Type>SpellPower</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>All</Item>
-      </Effect>
       <Effect>
-        <Type>Doublestrike</Type>
+        <Type>UniversalSpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
       </Effect>
       <Effect>
+        <Type>Doublestrike</Type>
         <Type>Doubleshot</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">5</Amount>
-      </Effect>
-      <Effect>
-        <Type>Doublestrike</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">3</Amount>
       </Effect>
       <Effect>
-        <Type>DodgeBonus</Type>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
+        <Item>Poison</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -227,10 +237,11 @@ Passive: While your Reaction is Orchidium, +5% Dodge and full Base Attack Bonus.
         </Requirements>
       </Effect>
       <Effect>
-        <Type>OverrideBAB</Type>
+        <Type>DodgeBonus</Type>
+        <Type>DodgeCapBonus</Type>
         <Bonus>Enhancement</Bonus>
-        <Amount size="1">1</Amount>
         <AType>Simple</AType>
+        <Amount size="1">2</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -238,24 +249,18 @@ Passive: While your Reaction is Orchidium, +5% Dodge and full Base Attack Bonus.
           </Requirement>
         </Requirements>
       </Effect>
-       <Effect>
-          <Type>ImbueDice</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">1</Amount>
-       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Brushed Aside</Name>
+      <Name>Vile Chemist: Hidden Blades III</Name>
       <InternalName>VileCore5</InternalName>
-         <Description>You gain the Defensive Roll feat (While below 20% HP, there's a chance equal
-to your Reflex save that attacks do half damage and have their effects negated).
-You gain 1 Imbue dice.
+      <Description>+5 Universal Spell Power, +3% Doublestrike and Doubleshot, +1 bonus Imbue Dice.
+
 While holding a Simple Weapon in your Main Hand and a Simple Weapon, Orb,
 Rune Arm, or nothing in your off hand, you have +1 Competence bonus to Critical
 Damage Multiplier.
 
-Passive: While your Reaction is Orchidium, +5 Physical Resistance rating and +5% Dodge Cap.</Description>
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap.</Description>
       <Icon>VileBrushedAside</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -273,12 +278,6 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance rating and +5%
           <Item>VileCore4</Item>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>GrantFeat</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Defensive Roll</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
       <Effect>
         <Type>WeaponCriticalMultiplierClass</Type>
         <Bonus>Competence</Bonus>
@@ -303,10 +302,30 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance rating and +5%
         </Requirements>
       </Effect>
       <Effect>
-        <Type>PRR</Type>
+        <Type>UniversalSpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Poison</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -315,10 +334,11 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance rating and +5%
         </Requirements>
       </Effect>
       <Effect>
+        <Type>DodgeBonus</Type>
         <Type>DodgeCapBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">5</Amount>
+        <Amount size="1">2</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -326,19 +346,15 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance rating and +5%
           </Requirement>
         </Requirements>
       </Effect>
-       <Effect>
-          <Type>ImbueDice</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">1</Amount>
-       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Vile Chemist: Venom's Grip</Name>
       <InternalName>VileCore6</InternalName>
-         <Description>Passive: +4 Intelligence.
-You gain +2 Imbue dice
-Passive: While your Reaction is Orchidium, +10 Physical Resistance rating and +5% Dodge Cap.</Description>
+      <Description>Passive: +4 Intelligence, +10 Universal Spell Power, +3% Doublestrike and Doubleshot,
++2 bonus Imbue Dice.
+
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap.</Description>
       <Icon>VileVenomsGrip</Icon>
       <XPosition>5</XPosition>
       <YPosition>0</YPosition>
@@ -364,10 +380,30 @@ Passive: While your Reaction is Orchidium, +10 Physical Resistance rating and +5
         <Item>Intelligence</Item>
       </Effect>
       <Effect>
-        <Type>PRR</Type>
+        <Type>UniversalSpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Poison</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -376,10 +412,11 @@ Passive: While your Reaction is Orchidium, +10 Physical Resistance rating and +5
         </Requirements>
       </Effect>
       <Effect>
+        <Type>DodgeBonus</Type>
         <Type>DodgeCapBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">5</Amount>
+        <Amount size="1">2</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -387,12 +424,6 @@ Passive: While your Reaction is Orchidium, +10 Physical Resistance rating and +5
           </Requirement>
         </Requirements>
       </Effect>
-       <Effect>
-          <Type>ImbueDice</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">2</Amount>
-       </Effect>
     </EnhancementTreeItem>
     <!--Tier 1 Enhancements-->
     <EnhancementTreeItem>
@@ -501,7 +532,7 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
     <EnhancementTreeItem>
       <Name>Vile Chemist: Alchemical Accuracy</Name>
       <InternalName>VileAlchemicalAccuracy</InternalName>
-      <Description>+[1/2/3] to attack.</Description>
+      <Description>+[1/2/3] to Attack.</Description>
       <Icon>VileAlchemicalAccuracy</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
@@ -525,8 +556,8 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Magical Subtlety</Name>
-      <InternalName>VileMagicalSubtlety</InternalName>
+      <Name>Vile Chemist: Martial Subtlety</Name>
+      <InternalName>VileMartialSubtlety</InternalName>
       <Description>-[20/30/40]% threat generation with melee attacks.
 
 Anti-requisite: This enhancement cannot be taken at the same time as Subtlety
@@ -543,20 +574,20 @@ enhancements in other trees.</Description>
           <Item>Alchemist</Item>
           <Value>1</Value>
         </Requirement>
-         <Requirement>
-            <Type>Exclusive</Type>
-            <Item>VileMagicalSubtlety</Item>
-            <Item>Magical Subtlety</Item>
-         </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>VileMartialSubtlety</Item>
+          <Item>Martial Subtlety</Item>
+        </Requirement>
       </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>VileMagicalSubtlety</Item>
-          <Item>Magical Subtlety</Item>
-       </Effect>
-       <Effect>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>VileMartialSubtlety</Item>
+        <Item>Martial Subtlety</Item>
+      </Effect>
+      <Effect>
         <Type>ThreatBonusMelee</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
@@ -693,7 +724,8 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
       <Selector>
         <EnhancementSelection>
           <Name>Poisoned Shot</Name>
-          <Description>Ranged Attack: +[1/2/3][W]: On successful damage, your opponent is Contaminated.
+          <Description>+[10/20/30]% Damage
+Ranged Attack:: On successful damage, your opponent is Contaminated.
 Using this attack acts as if you cast a Crimsonite spell.
 Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedShot</Icon>
@@ -702,7 +734,8 @@ Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 second
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Poisoned Strike</Name>
-          <Description>Melee Attack: +[1/2/3][W]: On successful damage, your opponent is Contaminated.
+          <Description>+[10/20/30]% Damage
+Melee Attack: On successful damage, your opponent is Contaminated.
 Using this attack acts as if you cast a Crimsonite spell.
 Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedStrike</Icon>
@@ -740,7 +773,7 @@ Rank 3: +1 Reflex Saving throws.</Description>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-         <Rank>3</Rank>
+        <Rank>3</Rank>
         <Amount size="1">1</Amount>
         <Item>Reflex</Item>
       </Effect>
@@ -749,8 +782,8 @@ Rank 3: +1 Reflex Saving throws.</Description>
       <Name>Vile Chemist: Stone of the Subliminal</Name>
       <InternalName>VileStoneOfTheSubliminal</InternalName>
       <Description>Alchemist's Stone Toggle: While wielding an Orb in your off-hand, you gain
-+5% Doublestrike, +5% Doubleshot, and Blur. You can only have one Alchemist's
-Stone Toggle active at a time.</Description>
++5% Doublestrike, +5% Doubleshot, and the effects of the Blur spell (+20% Concealment).
+You can only have one Alchemist's Stone Toggle active at a time.</Description>
       <Icon>VileStoneOfTheSubliminal</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
@@ -769,8 +802,8 @@ Stone Toggle active at a time.</Description>
         <Name>Stone of the Subliminal</Name>
         <Icon>VileStoneOfTheSubliminal</Icon>
         <Description>While wielding an Orb in your off-hand, you gain
-+5% Doublestrike, +5% Doubleshot, and Blur. You can only have one Alchemist's
-Stone Toggle active at a time.</Description>
++5% Doublestrike, +5% Doubleshot, and the effects of the Blur spell (+20% Concealment).
+You can only have one Alchemist's Stone Toggle active at a time.</Description>
         <Group>Alchemist's Stone</Group>
       </Stance>
       <Effect>
@@ -927,9 +960,9 @@ for 6 seconds. This effect stacks up to 4 times.</Description>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Firm Ambition</Name>
+      <Name>Vile Chemist: Swift Ambition</Name>
       <InternalName>VileWillfulAmbition</InternalName>
-      <Description>When your Reaction is Orchidium, you gain +1 Fortitude Save,
+      <Description>When your Reaction is Orchidium, you gain +1 Reflex Save,
 +1 for every 5 Alchemist Levels you have.</Description>
       <Icon>VileWillfulAmbition</Icon>
       <XPosition>3</XPosition>
@@ -950,7 +983,7 @@ for 6 seconds. This effect stacks up to 4 times.</Description>
         <Amount size="21">0 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</Amount>
         <AType>ClassLevel</AType>
         <StackSource>Alchemist</StackSource>
-        <Item>Fortitude</Item>
+        <Item>Reflex</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1007,6 +1040,42 @@ for 6 seconds. This effect stacks up to 4 times.</Description>
       </Selector>
     </EnhancementTreeItem>
     <!--Tier 4 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Vile Chemist: Simple Thrown Mastery</Name>
+      <InternalName>VileSimpleThorwnMastery</InternalName>
+      <Description>If you have Simple Thrown Weapon Expertise, you now use the higher of your Intelligence
+and Dexterity to determine how much Doubleshot you gain from that feat.</Description>
+      <Icon>VileSimpleThorwnMastery</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Simple Thrown Weapon Expertise</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Doubleshot</Type>
+        <Bonus>Feat</Bonus>
+        <AType>AbilityValue</AType>
+        <StackSource>Intelligence</StackSource>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Thrown Weapon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Vile Chemist: Deadly Poison IV</Name>
       <InternalName>VileDeadlyPoisonIV</InternalName>
@@ -1108,7 +1177,7 @@ Rank 3: +1 Reflex Saving throws</Description>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-         <Rank>3</Rank>
+        <Rank>3</Rank>
         <Amount size="1">1</Amount>
         <Item>Reflex</Item>
       </Effect>
@@ -1217,15 +1286,15 @@ Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Descriptio
       <Clickie />
       <Tier5 />
       <Requirements>
-         <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>5</Value>
-         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Alchemist</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>SpellLikeAbility</Type>
@@ -1255,11 +1324,11 @@ Competence Bonus to Critical Range. For Darts, this Range bonus is +2 instead.</
           <Item>Alchemist</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
-         <Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
           <Type>Enhancement</Type>
           <Item>VileDeadlyPoisonIV</Item>
         </Requirement>
@@ -1382,16 +1451,17 @@ times, and loses one stack on expiration.</Description>
           <Item>Alchemist</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Chemical Weapon</Name>
+      <Name>Vile Chemist: Better living through chemicals</Name>
       <InternalName>VileChemicalWeapon</InternalName>
-      <Description>Choose:</Description>
+      <Description>Choice between a significant boost to hit points and melee power or an increase to
+weapon damage, and attack speed when throwing simple weapons.</Description>
       <Icon>VileChemicalWeapon</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
@@ -1405,80 +1475,79 @@ times, and loses one stack on expiration.</Description>
           <Item>Alchemist</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Chemical Weapon</Name>
-               <Description>Your Simple Weapons gain +1[W].
+      <Selector>
+        <EnhancementSelection>
+          <Name>Chemical Weapon</Name>
+          <Description>Your Simple Weapons gain +1[W].
 Simple Thrown Weapons you wield also gain +15% Attack Speed as long as you are
 holding a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Description>
-               <Icon>VileChemicalWeapon</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>WeaponBaseDamageBonusClass</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Simple</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Alacrity</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">15</Amount>
-                  <Item>Dart</Item>
-                  <Item>Throwing Dagger</Item>
-                  <Item>Throwing Hammer</Item>
-                  <Requirements>
-                     <RequiresOneOf>
-                        <Requirement>
-                           <Type>Stance</Type>
-                           <Item>Orb</Item>
-                        </Requirement>
-                        <Requirement>
-                           <Type>Stance</Type>
-                           <Item>Rune Arm</Item>
-                        </Requirement>
-                        <Requirement>
-                           <Type>Stance</Type>
-                           <Item>Empty Offhand</Item>
-                        </Requirement>
-                     </RequiresOneOf>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Chemical Body</Name>
-               <Description>Grants a 15% Competence bonus to maximum hit points and 10 Melee power.</Description>
-               <Icon>VilePoisonedStrike</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-                 <Effect>
-                    <Type>Hitpoints</Type>
-                    <Bonus>Competence</Bonus>
-                    <AType>Simple</AType>
-                    <Amount size="1">15</Amount>
-                    <Percent/>
-                    <ApplyAsItemEffect/>
-                 </Effect>
-                 <Effect>
-                    <Type>MeleePower</Type>
-                    <Bonus>Enhancement</Bonus>
-                    <AType>Simple</AType>
-                    <Amount size="1">10</Amount>
-                 </Effect>
-            </EnhancementSelection>
-         </Selector>
+          <Icon>VileChemicalWeapon</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>WeaponBaseDamageBonusClass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Simple</Item>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Item>Dart</Item>
+            <Item>Throwing Dagger</Item>
+            <Item>Throwing Hammer</Item>
+            <Requirements>
+              <RequiresOneOf>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Orb</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Rune Arm</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Empty Offhand</Item>
+                </Requirement>
+              </RequiresOneOf>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Chemical Body</Name>
+          <Description>Grants a 15% Competence bonus to maximum hit points and 10 Melee power.</Description>
+          <Icon>VilePoisonedStrike</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Percent />
+            <ApplyAsItemEffect />
+          </Effect>
+          <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Sapping Ambition</Name>
-      <InternalName>VileSappingAmbition</InternalName>
-      <Description>While your Reaction is Orchidium, you have a Simple Weapon in your Main Hand,
-and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand, attacking
-grants a 10% chance to gain 10 Temporary Spell Points, +1 per Alchemist level.</Description>
+      <Name>Vile Chemist: Brushed Aside</Name>
+      <InternalName>VileBrushedAside</InternalName>
+      <Description>You gain the Defensive Roll feat (While below 20% HP, there's a chance equal to your
+Reflex save that attacks do half damage and have their effects negated).</Description>
       <Icon>VileSappingAmbition</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>
@@ -1492,11 +1561,17 @@ grants a 10% chance to gain 10 Temporary Spell Points, +1 per Alchemist level.</
           <Item>Alchemist</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Defensive Roll</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

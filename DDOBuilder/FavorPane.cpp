@@ -127,7 +127,7 @@ void CFavorPane::OnSize(UINT nType, int cx, int cy)
             rectPatronItem += CPoint(0, c_controlSpacing + rectPatronItem.Height());
         }
         m_listQuests.MoveWindow(cx / 2 + c_controlSpacing, c_controlSpacing,
-                cx - c_controlSpacing - GetSystemMetrics(SM_CYHSCROLL), rectPatronItem.top - c_controlSpacing, TRUE);
+                cx / 2 - c_controlSpacing, cy - c_controlSpacing * 2, TRUE);
     }
     SetScrollSizes(MM_TEXT, CSize(cx- GetSystemMetrics(SM_CYHSCROLL), rectPatronItem.top));
 }
@@ -185,7 +185,12 @@ void CFavorPane::PopulateQuestList()
         const std::vector<int>& levels = qit.Levels();
         for (auto&& lit: levels)
         {
-            int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), qit.Name().c_str());
+            CString questName = qit.Name().c_str();
+            if (qit.HasEpicName() && lit > MAX_CLASS_LEVEL)
+            {
+                questName = qit.EpicName().c_str();
+            }
+            int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), questName);
             m_listQuests.SetItemData(iIndex, dwQuestindex);
             CString text;
             text.Format("%d", lit);

@@ -183,3 +183,4 @@ void BreakUpLongLines(CString& line);
 void AddToIgnoreList(const std::string& name);
 void RemoveFromIgnoreList(const std::string& name);
 bool IsInIgnoreList(const std::string& name);
+CString ExtractLine(size_t index, CString lines);

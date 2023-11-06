@@ -1137,10 +1137,36 @@ void CFeatsClassControl::OnFeatSelectOk()
         std::vector<FeatSlot> tfts = m_availableFeats[m_featSelectItem.Level()];
         CString featName;
         m_featSelector.GetLBText(sel, featName);
-        m_pCharacter->ActiveBuild()->TrainFeat(
+        Feat feat = FindFeat((LPCTSTR)featName);
+        if (m_pCharacter->ShowUnavailable())
+        {
+            // need to evaluate the feat properly
+            m_pCharacter->ToggleShowUnavailable();
+            if (m_pCharacter->ActiveBuild()->IsFeatTrainable(
+                        m_featSelectItem.Level(),
+                        tfts[m_featSelectItem.Data()].FeatType(), feat, true))
+            {
+                m_pCharacter->ActiveBuild()->TrainFeat(
+                    (LPCTSTR)featName,
+                    tfts[m_featSelectItem.Data()].FeatType(),
+                    m_featSelectItem.Level());
+            }
+            else
+            {
+                // tried to select an untrainable feat
+                ::MessageBeep(MB_OK);
+            }
+            // restore
+            m_pCharacter->ToggleShowUnavailable();
+        }
+        else
+        {
+                // just train it
+            m_pCharacter->ActiveBuild()->TrainFeat(
                 (LPCTSTR)featName,
                 tfts[m_featSelectItem.Data()].FeatType(),
                 m_featSelectItem.Level());
+        }
     }
 }
 

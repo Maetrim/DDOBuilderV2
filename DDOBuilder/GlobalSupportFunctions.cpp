@@ -1765,3 +1765,24 @@ bool IsInIgnoreList(const std::string& name)
     }
     return found;
 }
+
+CString ExtractLine(size_t index, CString lines)
+{
+    CString strLine;
+    char* pInternalState = NULL;
+    char* pch = strtok_s(lines.GetBuffer(), "\n", &pInternalState);
+    while (index > 0 && pch != NULL)
+    {
+        pch = strtok_s(NULL, "\n", &pInternalState);
+        index--;
+    }
+    if (pch != NULL)
+    {
+        strLine = pch;
+    }
+    else
+    {
+        strLine.Format("Line %d not found", index);
+    }
+    return strLine;
+}

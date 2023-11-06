@@ -53,9 +53,10 @@ bool Quest::VerifyObject() const
 {
     bool ok = true;
     std::stringstream ss;
-    if (Favor().size() != FI_count)
+    ss << "Quest \"" << m_Name << "\" ";
+    if (m_Patron == Patron_Unknown)
     {
-        ss << "Quest \"" << Name() << "\" has incorrect favor size vector\n";
+        ss << "Has bad Patron field\n";
         ok = false;
     }
     if (!ok)
@@ -68,10 +69,10 @@ bool Quest::VerifyObject() const
 int Quest::MaxFavor() const
 {
     int maxFavor = 0;
-    for (size_t i = 0; i < FI_count; ++i)
-    {
-        maxFavor = max(maxFavor, Favor()[i]);
-    }
+    if (HasReaper() || HasElite()) maxFavor = Favor() * 3;
+    else if (HasHard()) maxFavor = Favor() * 2;
+    else if (HasNormal() || HasSolo()) maxFavor = Favor();
+    else if (HasCasual()) maxFavor = (Favor() / 2);
     return maxFavor;
 }
 

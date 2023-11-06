@@ -15,10 +15,12 @@
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Slayer of Evil I</Name>
          <InternalName>KotCCore1</InternalName>
-         <Description>You gain +1 to attack evil creatures and deal 1d6 Light damage
-per Imbue dice that scales with 200% Melee or Ranged Power (whichever is higher).
-You resist evil influences particularly well, gaining a +2 bonus to saves against
-spells and effects produced by evil creatures.</Description>
+         <Description>Imbue Toggle: While using a Favored Weapon, you deal 1d6 additional Light damage
+that scales with 200% Melee or Ranged Power (whichever is higher).
+
+Passive: You resist evil influences particularly well, gaining a +2 bonus to
+saves against spells and effects produced by evil creatures. You also gain +1 to
+attack evil creatures.</Description>
          <Icon>KotCSlayerOfEvil</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -26,6 +28,7 @@ spells and effects produced by evil creatures.</Description>
          <Ranks>1</Ranks>
          <MinSpent>0</MinSpent>
          <ArrowRight/>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <Type>ClassMinLevel</Type>
@@ -116,7 +119,7 @@ to saves against spells and effects produced by evil creatures.
 Your weapons gain the Ghost Touch effect.
 In Addition, you gain +4 Remove Disease charges and your Remove Disease also applies a
 Greater Restoration effect to your target.</Description>
-         <Icon>KotCSlayerOfEvil</Icon>
+         <Icon>KoTCSlayerOfEvilII</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
          <CostPerRank size="1">1</CostPerRank>
@@ -648,16 +651,20 @@ Cooldown: 20 seconds</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Avenging Shot</Name>
-               <Description>Take a powerful shot for +3[W] damage.
-Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
+               <Description>Deals +30% Damage
+Cooldown: 5 seconds
+Ranged Attack: Take a powerful shot.
+Shares a cooldown with the Cleave feat.</Description>
                <Icon>KotCAvengingShot</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Exalted Cleave</Name>
-               <Description>Make a sweeping attack against all nearby enemies for +3[W] damage.
-Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
+               <Description>Deals +30% Damage
+Cooldown: 5 seconds
+Make a sweeping attack against all nearby enemies.
+Shares a cooldown with the Cleave feat.</Description>
                <Icon>KotCExaltedCleave</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
@@ -761,20 +768,26 @@ You gain Greatsword as a Favored Weapon.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Divine Sacrifice</Name>
-               <Description>Giving up some of your life force to win the battle, you empower your next blow
-against your foe. This attack increases the critical multiplier of your weapon
-by 1 and deals an additional 5d6 Light damage, but costs you 5 HP and 1 SP,
-whether or not the attack is successful.</Description>
+               <Description>Deals +[20/30/40]% Damage
++1 Critical Multiplier
+Cooldown: 3 seconds.
+Giving up some of your life force to win the battle, you empower your next blow
+against your foe. This attack deals an additional 5d6 Light damage, but costs
+you 5 HP and 1 SP, whether or not the attack is successful. You gain +15
+Temporary Spell Points if you strike an Undead or Evil Outsider with this attack.</Description>
                <Icon>KotCDivineSacrifice</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Divine Sacrifice (Ranged)</Name>
-               <Description>Giving up some of your life force to win the battle, you empower your next blow
-against your foe. This attack increases the critical multiplier of your weapon
-by 1 and deals an additional 5d6 Light damage, but costs you 5 HP and 1 SP,
-whether or not the attack is successful.</Description>
+               <Description>Deals +[20/30/40]% Damage
++1 Critical Multiplier
+Cooldown: 3 seconds.
+Giving up some of your life force to win the battle, you empower your next blow
+against your foe. This attack deals an additional 5d6 Light damage, but costs
+you 5 HP and 1 SP, whether or not the attack is successful. You gain +15
+Temporary Spell Points if you strike an Undead or Evil Outsider with this attack.</Description>
                <Icon>KotCDivineSacrificeRanged</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -784,9 +797,10 @@ whether or not the attack is successful.</Description>
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Lead the Charge</Name>
          <InternalName>KotCLeadTheCharge</InternalName>
-         <Description>Melee Rush Attack: Rush forward up to 30 feet to your selected opponent
-and deliver a +[2/3/5][W] strike. 12 second cooldown. Shares a cooldown with
-Shield Charge.</Description>
+         <Description>Deals +[10/20/30]% Damage
+Melee Rush Attack: Rush forward up to 30 feet to your selected opponent and deliver
+a mighty strike. Shares a cooldown with Shield Charge.
+12 second cooldown.</Description>
          <Icon>KotCLeadTheCharge</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -1286,9 +1300,13 @@ You also gain 10 Melee and Ranged Power.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Avenging Cleave</Name>
-               <Description>Make a sweeping weapon attack against all nearby enemies for +5[W] damage.
-Damaged enemies gains one stack of Vulnerability.
+               <Description>Deals +30% Damage
+Cooldown: 5 seconds.
+Make a sweeping weapon attack against all nearby enemies. Damaged enemies gains
+one stack of Vulnerability.
+
 Shares its cooldown with the Great Cleave feat.
+
 Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
 20 times, and loses one stack on expiration.</Description>
                <Icon>KotCAvengingCleave</Icon>
@@ -1297,9 +1315,12 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Avenging Shot</Name>
-               <Description>Take a sweeping weapon attack against all nearby enemies for +5[W] damage.
-Damaged enemies gains one stack of Vulnerability.
+               <Description>Deals +50% Damage
+Cooldown: 5 seconds.
+Ranged Attack: Damaged enemies gains one stack of Vulnerability.
+
 Shares its cooldown with the Great Cleave feat.
+
 Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
 20 times, and loses one stack on expiration.</Description>
                <Icon>KotCAvengingCleaveRanged</Icon>
@@ -1334,10 +1355,12 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
          <Selector>
             <EnhancementSelection>
                <Name>Holy Retribution</Name>
-               <Description>Melee Channel Divinity: Executes a powerful holy cleave against nearby targets
-that deals +5[W] damage, 100 extra holy damage that scales with 200% Melee or
-Ranged Power, -6 to all ability scores for 10 seconds, and recharges one Smite
-Evil charge to you. On Damage: Evil creatures may be forced to make a Will save
+               <Description>Deals +50% Damage
+Cooldown: 30 seconds
+Melee Attack: Executes a powerful holy cleave against nearby targets that deals
+100 extra holy damage that scales with 200% Melee or Ranged Power, -6 to all
+ability scores for 10 seconds, and recharges one Smite Evil charge to you.
+On Damage: Evil creatures may be forced to make a Will save
 (DC 10 + Paladin Level + Charisma Mod + Sunder Bonuses) or be destroyed.
 
 Evil creatures with under 1000 HP must always make this save or die.
@@ -1351,10 +1374,11 @@ save or die.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Holy Retribution Shot</Name>
-               <Description>Ranged Channel Divinity: Executes a powerful holy cleave against nearby targets
-that deals +5[W] damage, 100 extra holy damage that scales with 200% Melee or
-Ranged Power, -6 to all ability scores for 10 seconds, and recharges one Smite
-Evil charge to you. On Damage: Evil creatures may be forced to make a Will save
+               <Description>Deals +50% Damage
+Cooldown: 30 seconds
+Ranged Attack: Deals 100 extra holy damage that scales with 200% Melee or Ranged
+Power, -6 to all ability scores for 10 seconds, and recharges one Smite Evil
+charge to you. On Damage: Evil creatures may be forced to make a Will save
 (DC 10 + Paladin Level + Charisma Mod + Sunder Bonuses) or be destroyed.
 
 Evil creatures with under 1000 HP must always make this save or die.

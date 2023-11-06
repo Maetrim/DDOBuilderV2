@@ -20,7 +20,9 @@ Character::Character(CDDOBuilderDoc * pDoc) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_pDocument(pDoc),
     m_uiActiveLifeIndex(10000), // large number that will never occur naturally
-    m_uiActiveBuildIndex(10000) // large number that will never occur naturally
+    m_uiActiveBuildIndex(10000),// large number that will never occur naturally
+    m_bShowEpicOnly(true),
+    m_bShowUnavailableFeats(false)
 {
     DL_INIT(Character_PROPERTIES)
 }
@@ -59,6 +61,26 @@ void Character::AboutToLoad()
     m_Lives.clear();
     m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
     m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
+}
+
+bool Character::ShowUnavailable() const
+{
+    return m_bShowUnavailableFeats;
+}
+
+bool Character::ShowEpicOnly() const
+{
+    return m_bShowEpicOnly;
+}
+
+void Character::ToggleShowEpicOnly()
+{
+    m_bShowEpicOnly = !m_bShowEpicOnly;
+}
+
+void Character::ToggleShowUnavailable()
+{
+    m_bShowUnavailableFeats = !m_bShowUnavailableFeats;
 }
 
 void Character::NotifyNumBuildsChanged()

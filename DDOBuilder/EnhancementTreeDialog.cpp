@@ -26,8 +26,6 @@ namespace
         IBE_CorePassiveDisabled,
         IBE_ItemClickieDisabled,
         IBE_ItemPassiveDisabled,
-        IBE_ItemUnavailableClickie,
-        IBE_ItemUnavailablePassive,
         IBE_ArrowLeft,
         IBE_ArrowRight,
         IBE_ArrowUp,
@@ -79,8 +77,6 @@ void CEnhancementTreeDialog::InitialiseStaticImages()
         LoadImageFile(folderPath, "CorePassive", &s_imageBorders[IBE_CorePassiveDisabled], CSize(38, 38));
         LoadImageFile(folderPath, "ItemClickie", &s_imageBorders[IBE_ItemClickieDisabled], CSize(43, 53));
         LoadImageFile(folderPath, "ItemPassive", &s_imageBorders[IBE_ItemPassiveDisabled], CSize(43, 53));
-        LoadImageFile(folderPath, "ItemUnavailableClickie", &s_imageBorders[IBE_ItemUnavailableClickie], CSize(38, 38));
-        LoadImageFile(folderPath, "ItemUnavailablePassive", &s_imageBorders[IBE_ItemUnavailablePassive], CSize(38, 38));
         LoadImageFile(folderPath, "EnhancementArrowLeft", &s_imageBorders[IBE_ArrowLeft], CSize(13, 14));
         LoadImageFile(folderPath, "EnhancementArrowRight", &s_imageBorders[IBE_ArrowRight], CSize(13, 14));
         LoadImageFile(folderPath, "EnhancementArrowUp", &s_imageBorders[IBE_ArrowUp], CSize(14, 15));

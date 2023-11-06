@@ -1225,6 +1225,7 @@ void CItemSelectDialog::AddSpecialSlots()
         {
             AddAugment(&currentAugments, "Reaper Ring", true);
         }
+        AddAugment(&currentAugments, "Deck Curse", true);
         // now set the slots on the item
         m_item.Set_Augments(currentAugments);
     }
