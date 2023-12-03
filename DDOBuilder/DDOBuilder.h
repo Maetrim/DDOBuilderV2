@@ -75,10 +75,19 @@ public:
     virtual void LoadCustomState();
     virtual void SaveCustomState();
 
+    // Retrieve an integer value from INI file or registry.
+    virtual UINT GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault);
+    virtual BOOL WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue);
+    virtual CString GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault = NULL);
+    virtual BOOL WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue);
+    virtual BOOL GetProfileBinary(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPBYTE* ppData, UINT* pBytes);
+    virtual BOOL WriteProfileBinary(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPBYTE pData, UINT nBytes);
+
     afx_msg void OnAppAbout();
     afx_msg void OnFileNew();
     afx_msg void OnVerifyLoadedData();
     afx_msg void OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateDisabledDuringLoadSpecial(CCmdUI* pCmdUI);
     DECLARE_MESSAGE_MAP()
 private:
     void LoadData();
@@ -93,7 +102,6 @@ private:
     void LoadFiligrees(const std::string& path);
     void LoadStances(const std::string& path);
     void LoadSpells(const std::string& path);
-    void LoadItems(const std::string& path);
     void LoadPatrons(const std::string& path);
     void LoadQuests(const std::string& path);
     void LoadSentientGems(const std::string& path);
@@ -117,7 +125,9 @@ private:
     void VerifyItemClickies();
     void VerifyQuests();
     void NotifyLoadComplete();
-    void LoadImage(const std::string& localPath, std::string filename);
+    static void LoadImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename);
+
+    static UINT ThreadedItemLoad(LPVOID pParam);
 
     CCustomContextMenuManager m_ourMenuManager; // construction of object replaces default implementation created in InitContextMenuManager
     std::list<Bonus> m_bonusTypes;
@@ -149,6 +159,11 @@ private:
     CImageList m_itemImages;
     std::map<std::string, int> m_imagesMap;
     bool m_bLoadComplete;
+    CString m_iniFileFilename;
+
+    // threaded item load variables
+    bool m_bItemLoadThreadRunning;
+    bool m_bKillItemLoadThread;
 
     friend class Item;
 };

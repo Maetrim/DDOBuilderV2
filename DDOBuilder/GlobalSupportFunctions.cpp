@@ -737,7 +737,7 @@ Spell FindClassSpellByName(const std::string& ct, const std::string& name)
     return spell;
 }
 
-Spell FindSpellByName(const std::string& name)
+Spell FindSpellByName(const std::string& name, bool bSuppressError)
 {
     Spell spell;
     const std::list<Spell>& spells = Spells();
@@ -751,7 +751,7 @@ Spell FindSpellByName(const std::string& name)
         }
         ++si;
     }
-    if (spell.Name() == "")
+    if (spell.Name() == "" && !bSuppressError)
     {
         CString errMsg;
         errMsg.Format("Spell %s not found in Spells.xml file", name.c_str());
@@ -760,7 +760,7 @@ Spell FindSpellByName(const std::string& name)
     return spell;
 }
 
-Spell FindItemClickieByName(const std::string& ct)
+Spell FindItemClickieByName(const std::string& ct, bool bSuppressError)
 {
     Spell spell;
     const std::list<Spell>& spells = ItemClickies();
@@ -774,7 +774,7 @@ Spell FindItemClickieByName(const std::string& ct)
         }
         ++si;
     }
-    if (spell.Name() == "")
+    if (spell.Name() == "" && !bSuppressError)
     {
         CString errMsg;
         errMsg.Format("Spell %s not found in ItemClickie.xml file", ct.c_str());
@@ -1414,6 +1414,7 @@ std::list<Augment> CompatibleAugments(const std::string& name, size_t maxLevel)
     std::list<Augment>::const_iterator it = augments.begin();
     while (it != augments.end())
     {
+        bool bAdded = false;
         if ((*it).IsCompatibleWithSlot(name)
                 || ((*it).Name() == " No Augment"))
         {
@@ -1421,16 +1422,20 @@ std::list<Augment> CompatibleAugments(const std::string& name, size_t maxLevel)
             if ((*it).HasMinLevel() && (*it).MinLevel() <= maxLevel)
             {
                 compatibleAugments.push_back((*it));
+                bAdded = true;
             }
             if ((*it).HasChooseLevel()
-                && (*it).HasLevelValue())
+                && (*it).HasLevelValue()
+                && !bAdded)
             {
                 // cannith selection item
                 compatibleAugments.push_back((*it));
+                bAdded = true;
             }
             // or it must have a selectable level <= max level
             if ((*it).HasChooseLevel()
-                && (*it).HasLevels())
+                && (*it).HasLevels()
+                && !bAdded)
             {
                 std::vector<int> levels = (*it).Levels();
                 bool bInclude = false;
@@ -1441,6 +1446,7 @@ std::list<Augment> CompatibleAugments(const std::string& name, size_t maxLevel)
                 if (bInclude)
                 {
                     compatibleAugments.push_back((*it));
+                    bAdded = true;
                 }
             }
         }

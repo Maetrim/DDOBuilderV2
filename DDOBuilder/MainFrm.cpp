@@ -58,15 +58,22 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_COMMAND_RANGE(ID_DOCKING_WINDOWS_START, ID_DOCKING_WINDOWS_END, OnDockPane)
     ON_COMMAND(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnDevelopmentRunwWikiItemCrawler)
     ON_COMMAND(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnDevelopmentProcessWikiFiles)
+    ON_COMMAND(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnDevelopmentProcessSpecificWikiFile)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnDevelopmentUpdateItemImages)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
     //ON_COMMAND(ID_DEVELOPMENT_UPDATEARMORITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateItemImages)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateWeaponImages)
     ON_COMMAND(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnEditIgnorelistActive)
     ON_UPDATE_COMMAND_UI(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnUpdateEditIgnorelistActive)
+    ON_REGISTERED_MESSAGE(UWM_STARTPROGRESS, OnStartProgress)
+    ON_REGISTERED_MESSAGE(UWM_SETPROGRESS, OnSetProgress)
+    ON_REGISTERED_MESSAGE(UWM_ENDPROGRESS, OnEndProgress)
+    ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
+    ON_REGISTERED_MESSAGE(UWM_LOG_MESSAGE, OnLogMessage)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -751,10 +758,14 @@ void CMainFrame::LoadComplete()
         }
     }
     // do the same for all docked windows also
+    // Except the Inventory Pane which is done after the Item load step completes
     for (size_t i = 0; i < m_dockablePanes.size(); ++i)
     {
         CView * pView = m_dockablePanes[i]->GetView();
-        pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
+        if (RUNTIME_CLASS(CEquipmentPane) != pView->GetRuntimeClass())
+        {
+            pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
+        }
     }
     m_bLoadComplete = true;
     //m_menuToolbar.LoadToolBar(IDR_MENUICONS_TOOLBAR);
@@ -824,6 +835,12 @@ void CMainFrame::OnDevelopmentProcessWikiFiles()
     }
 }
 
+void CMainFrame::OnDevelopmentProcessSpecificWikiFile()
+{
+    WikiItemFileProcessor fileProcessor;
+    fileProcessor.ProcessSpecificFile();
+}
+
 void CMainFrame::OnDevelopmentUpdateItemImages()
 {
     CItemImageDialog dlg(this);
@@ -866,4 +883,90 @@ void CMainFrame::OnUpdateEditIgnorelistActive(CCmdUI* pCmdUI)
 {
     pCmdUI->SetCheck(g_bShowIgnoredItems);
     pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// ProgressBar operations
+
+void CMainFrame::BeginProgress(CString fixedText)
+{
+    // find the rectangle of the pane where we want the status bar
+    CRect rc;
+
+    if (m_wndStatusBar.m_hWnd != NULL)
+    {
+        CDC* pDC = GetDC();
+        ASSERT(pDC);
+        pDC->SaveDC();
+        pDC->SelectObject(m_wndStatusBar.GetFont());
+        CSize size = pDC->GetTextExtent(fixedText);
+        VERIFY(pDC->RestoreDC(-1));
+        VERIFY(ReleaseDC(pDC));
+
+        m_wndStatusBar.GetItemRect(0, &rc);
+        rc.left += size.cx + c_controlSpacing;
+        m_wndStatusBar.SetPaneText(0, fixedText);
+        VERIFY(m_ctlProgress.Create(WS_CHILD | WS_VISIBLE | PBS_SMOOTH, rc, &m_wndStatusBar, 1));
+        m_ctlProgress.SetRange(0, 100);
+        m_ctlProgress.SetPos(0);
+    }
+}
+
+// Set progress bar
+void CMainFrame::SetProgress(int nProg)
+{
+    if (m_ctlProgress.m_hWnd != NULL)
+    {
+        m_ctlProgress.SetPos(nProg);
+    }
+}
+
+// Clear up progress bar
+void CMainFrame::EndProgress()
+{
+    if (m_ctlProgress.m_hWnd != NULL)
+    {
+        m_ctlProgress.DestroyWindow();
+        m_wndStatusBar.SetPaneText(0, "Ready");
+    }
+}
+
+LRESULT CMainFrame::OnStartProgress(WPARAM wp, LPARAM)
+{
+    CString* pText = reinterpret_cast<CString*>(wp);
+    BeginProgress(*pText);
+    delete pText;
+    pText = nullptr;
+    return 0;
+}
+
+LRESULT CMainFrame::OnSetProgress(WPARAM wp, LPARAM)
+{
+    int nPos = static_cast<int>(wp);
+    SetProgress(nPos);
+    return 0;
+}
+
+LRESULT CMainFrame::OnEndProgress(WPARAM, LPARAM)
+{
+    EndProgress();
+    return 0;
+}
+
+LRESULT CMainFrame::OnLoadComplete(WPARAM, LPARAM)
+{
+    // let the Equipment Pane know the load has completed
+    CCustomDockablePane* pPane = GetPane(ID_DOCK_EQUIPMENT);
+    CView* pView = pPane->GetView();
+    pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
+    return 0;
+}
+
+LRESULT CMainFrame::OnLogMessage(WPARAM wp, LPARAM)
+{
+    CString* pText = reinterpret_cast<CString*>(wp);
+    GetLog().AddLogEntry(*pText);
+    delete pText;
+    pText = nullptr;
+    return 0;
 }

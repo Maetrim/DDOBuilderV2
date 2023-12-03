@@ -41,6 +41,7 @@ enum InventorySlotType
     Inventory_ArmorMedium,
     Inventory_ArmorHeavy,
     Inventory_ArmorDocent,
+    Inventory_All
 };
 const XmlLib::enumMapEntry<InventorySlotType> InventorySlotTypeMap[] =
 {

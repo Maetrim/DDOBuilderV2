@@ -104,7 +104,7 @@ CString Buff::MakeDescription() const
             int pos = str.Find(Ignore().c_str());
             if (pos == 0)
             {
-                str = description.Right(str.GetLength() - (Ignore().size() + 1));
+                str = str.Right(str.GetLength() - (Ignore().size() + 1));
             }
         }
         BreakUpLongLines(str);

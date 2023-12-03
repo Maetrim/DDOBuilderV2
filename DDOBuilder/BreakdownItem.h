@@ -170,6 +170,7 @@ class BreakdownItem :
         MfcControls::CTreeListCtrl * m_pTreeList;
         HTREEITEM m_hItem;
         BreakdownType m_type;
+        mutable bool m_bHasNonStackingEffects;
 
         friend class BreakdownItemWeapon;
 };

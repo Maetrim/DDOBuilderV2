@@ -169,31 +169,38 @@ void BreakdownItemWeaponEffects::AddToAffectedWeapon(
     WeaponType wt,
     NotificationType nt)
 {
-    (*list)[wt].push_back(effect);
-    if (m_pMainHandWeapon != NULL
-        && m_pMainHandWeapon->Weapon() == wt
-        && effect.HasWeapon1())
+    if (wt == Weapon_All)
     {
-        // also apply to the active breakdowns
-        switch (nt)
-        {
-        case NT_Feat: m_pMainHandWeapon->FeatEffectApplied(NULL, effect); break;
-        case NT_Item: m_pMainHandWeapon->ItemEffectApplied(NULL, effect); break;
-        case NT_ItemWeapon: m_pMainHandWeapon->ItemEffectApplied(NULL, effect); break;
-        case NT_Enhancement: m_pMainHandWeapon->EnhancementEffectApplied(NULL, effect); break;
-        }
+        AddToAffectedWeapons(list, effect, nt);
     }
-    if (m_pOffHandWeapon != NULL
-        && m_pOffHandWeapon->Weapon() == wt
-        && effect.HasWeapon2())
+    else
     {
-        // also apply to the active breakdowns
-        switch (nt)
+        (*list)[wt].push_back(effect);
+        if (m_pMainHandWeapon != NULL
+            && m_pMainHandWeapon->Weapon() == wt
+            && effect.HasWeapon1())
         {
-        case NT_Feat: m_pOffHandWeapon->FeatEffectApplied(NULL, effect); break;
-        case NT_Item: m_pOffHandWeapon->ItemEffectApplied(NULL, effect); break;
-        case NT_ItemWeapon: m_pOffHandWeapon->ItemEffectApplied(NULL, effect); break;
-        case NT_Enhancement: m_pOffHandWeapon->EnhancementEffectApplied(NULL, effect); break;
+            // also apply to the active breakdowns
+            switch (nt)
+            {
+            case NT_Feat: m_pMainHandWeapon->FeatEffectApplied(NULL, effect); break;
+            case NT_Item: m_pMainHandWeapon->ItemEffectApplied(NULL, effect); break;
+            case NT_ItemWeapon: m_pMainHandWeapon->ItemEffectApplied(NULL, effect); break;
+            case NT_Enhancement: m_pMainHandWeapon->EnhancementEffectApplied(NULL, effect); break;
+            }
+        }
+        if (m_pOffHandWeapon != NULL
+            && m_pOffHandWeapon->Weapon() == wt
+            && effect.HasWeapon2())
+        {
+            // also apply to the active breakdowns
+            switch (nt)
+            {
+            case NT_Feat: m_pOffHandWeapon->FeatEffectApplied(NULL, effect); break;
+            case NT_Item: m_pOffHandWeapon->ItemEffectApplied(NULL, effect); break;
+            case NT_ItemWeapon: m_pOffHandWeapon->ItemEffectApplied(NULL, effect); break;
+            case NT_Enhancement: m_pOffHandWeapon->EnhancementEffectApplied(NULL, effect); break;
+            }
         }
     }
 }
@@ -204,42 +211,49 @@ void BreakdownItemWeaponEffects::RemoveFromAffectedWeapon(
     WeaponType wt,
     NotificationType nt)
 {
-    std::list<Effect>::iterator it = (*list)[wt].begin();
-    while (it != (*list)[wt].end())
+    if (wt == Weapon_All)
     {
-        if ((*it) == effect)
+        RemoveFromAffectedWeapons(list, effect, nt);
+    }
+    else
+    {
+        std::list<Effect>::iterator it = (*list)[wt].begin();
+        while (it != (*list)[wt].end())
         {
-            // this is it
-            it = (*list)[wt].erase(it);
-            if (m_pMainHandWeapon != NULL
-                && m_pMainHandWeapon->Weapon() == wt
-                && effect.HasWeapon1())
+            if ((*it) == effect)
             {
-                // also apply to the active breakdowns
-                switch (nt)
+                // this is it
+                it = (*list)[wt].erase(it);
+                if (m_pMainHandWeapon != NULL
+                    && m_pMainHandWeapon->Weapon() == wt
+                    && effect.HasWeapon1())
                 {
-                case NT_Feat: m_pMainHandWeapon->FeatEffectRevoked(NULL, effect); break;
-                case NT_Item: m_pMainHandWeapon->ItemEffectRevoked(NULL, effect); break;
-                case NT_ItemWeapon: m_pMainHandWeapon->ItemEffectRevoked(NULL, effect); break;
-                case NT_Enhancement: m_pMainHandWeapon->EnhancementEffectRevoked(NULL, effect); break;
+                    // also apply to the active breakdowns
+                    switch (nt)
+                    {
+                    case NT_Feat: m_pMainHandWeapon->FeatEffectRevoked(NULL, effect); break;
+                    case NT_Item: m_pMainHandWeapon->ItemEffectRevoked(NULL, effect); break;
+                    case NT_ItemWeapon: m_pMainHandWeapon->ItemEffectRevoked(NULL, effect); break;
+                    case NT_Enhancement: m_pMainHandWeapon->EnhancementEffectRevoked(NULL, effect); break;
+                    }
                 }
-            }
-            if (m_pOffHandWeapon != NULL
-                && m_pOffHandWeapon->Weapon() == wt
-                && effect.HasWeapon2())
-            {
-                // also apply to the active breakdowns
-                switch (nt)
+                if (m_pOffHandWeapon != NULL
+                    && m_pOffHandWeapon->Weapon() == wt
+                    && effect.HasWeapon2())
                 {
-                case NT_Feat: m_pOffHandWeapon->FeatEffectRevoked(NULL, effect); break;
-                case NT_Item: m_pOffHandWeapon->ItemEffectRevoked(NULL, effect); break;
-                case NT_ItemWeapon: m_pOffHandWeapon->ItemEffectRevoked(NULL, effect); break;
-                case NT_Enhancement: m_pOffHandWeapon->EnhancementEffectRevoked(NULL, effect); break;
+                    // also apply to the active breakdowns
+                    switch (nt)
+                    {
+                    case NT_Feat: m_pOffHandWeapon->FeatEffectRevoked(NULL, effect); break;
+                    case NT_Item: m_pOffHandWeapon->ItemEffectRevoked(NULL, effect); break;
+                    case NT_ItemWeapon: m_pOffHandWeapon->ItemEffectRevoked(NULL, effect); break;
+                    case NT_Enhancement: m_pOffHandWeapon->EnhancementEffectRevoked(NULL, effect); break;
+                    }
                 }
+                break; // and were done
             }
-            break; // and were done
+            ++it;
         }
-        ++it;
     }
 }
 
@@ -562,7 +576,7 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
         if ((ist == Inventory_Weapon1 && wieit.HasWeapon1())
             || (ist == Inventory_Weapon2 && wieit.HasWeapon2()))
         {
-            pWeaponBreakdown->FeatEffectApplied(
+            pWeaponBreakdown->ItemEffectApplied(
                     m_pCharacter->ActiveBuild(),
                     wieit);
         }

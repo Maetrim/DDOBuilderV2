@@ -2891,7 +2891,7 @@ void CBreakdownsPane::UpdateItemWeaponEffectApplied(
 {
     // effects can have multiple types
     const std::list<EffectType>& types = effect.Type();
-    Effect copy = effect;   // we apon effect when notified need to have singel Type(0 elements
+    Effect copy = effect;   // weapon effect when notified need to have single Type() elements
     for (auto&& tit : types)
     {
         copy.SetType(tit);  // single Type()
@@ -2921,7 +2921,7 @@ void CBreakdownsPane::UpdateItemWeaponEffectRevoked(
 {
     // effects can have multiple types
     const std::list<EffectType>& types = effect.Type();
-    Effect copy = effect;   // we apon effect when notified need to have singel Type(0 elements
+    Effect copy = effect;   // weapon effect when notified need to have single Type() elements
     for (auto&& tit : types)
     {
         copy.SetType(tit);  // single Type()

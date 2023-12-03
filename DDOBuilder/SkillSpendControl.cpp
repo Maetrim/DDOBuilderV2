@@ -967,6 +967,8 @@ void CSkillSpendControl::OnLButtonUp(UINT nFlags, CPoint point)
             {
                 ClearAllSkills();
             }
+            // ensure highlight is correct
+            OnMouseMove(nFlags, point);
         }
     }
 }
@@ -1043,6 +1045,8 @@ void CSkillSpendControl::OnRButtonUp(UINT nFlags, CPoint point)
                 // user has clicked on the skill name, clear the skill!
                 ClearThisSkill(m_highlightSkill);
             }
+            // ensure highlight is correct
+            OnMouseMove(nFlags, point);
         }
     }
 }

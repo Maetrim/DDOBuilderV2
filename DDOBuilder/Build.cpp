@@ -3623,8 +3623,12 @@ void Build::SetGear(
 {
     if (name == ActiveGear())
     {
-        // first revoke all gear effects as the gear is about to change
-        RevokeGearEffects();        // always for active gear
+        // revoke specific equipped item only
+        if (ActiveGearSet().HasItemInSlot(slot))
+        {
+            const Item& oldItem = ActiveGearSet().ItemInSlot(slot);
+            RevokeItem(oldItem, slot);
+        }
     }
     // update the gear entry
     std::list<EquippedGear>::iterator it = m_GearSetups.begin();
@@ -3642,6 +3646,11 @@ void Build::SetGear(
                 {
                     if (item.RestrictedSlots().HasSlot((InventorySlotType)i))
                     {
+                        if (name == ActiveGear())
+                        {
+                            const Item& badItem = ActiveGearSet().ItemInSlot((InventorySlotType)i);
+                            RevokeItem(badItem, (InventorySlotType)i);
+                        }
                         (*it).ClearItem((InventorySlotType)i);
                     }
                 }
@@ -3654,7 +3663,11 @@ void Build::SetGear(
     // now apply the gear effects if its the active gear set
     if (name == ActiveGear())
     {
-        ApplyGearEffects();         // always for active gear
+        // apply specific equipped item only
+        if (ActiveGearSet().HasItemInSlot(slot))
+        {
+            ApplyItem(item, slot);
+        }
     }
     NotifyGearChanged(slot);
     //UpdateGreensteelStances();
@@ -3665,8 +3678,12 @@ void Build::ClearGearInSlot(const std::string& name, InventorySlotType slot)
 {
     if (name == ActiveGear())
     {
-        // first revoke all gear effects as the gear is about to change
-        RevokeGearEffects();        // always for active gear
+        // revoke specific equipped item only
+        if (ActiveGearSet().HasItemInSlot(slot))
+        {
+            const Item& oldItem = ActiveGearSet().ItemInSlot(slot);
+            RevokeItem(oldItem, slot);
+        }
     }
     // update the gear entry
     std::list<EquippedGear>::iterator it = m_GearSetups.begin();
@@ -3682,11 +3699,6 @@ void Build::ClearGearInSlot(const std::string& name, InventorySlotType slot)
     }
     ASSERT(found);
 
-    // now apply the gear effects if its the active gear set
-    if (name == ActiveGear())
-    {
-        ApplyGearEffects();         // always for active gear
-    }
     NotifyGearChanged(slot);
     SetModifiedFlag(TRUE);
 }
@@ -3984,7 +3996,14 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
         {
             if (buff.HasApplyToWeaponOnly())
             {
-                NotifyItemWeaponEffectRevoked(item.Name(), eit, item.Weapon(), ist);
+                if (item.HasWeapon())
+                {
+                    NotifyItemWeaponEffectRevoked(item.Name(), eit, item.Weapon(), ist);
+                }
+                else
+                {
+                    NotifyItemWeaponEffectRevoked(item.Name(), eit, Weapon_All, ist);
+                }
             }
             else
             {
@@ -4692,5 +4711,10 @@ void Build::VerifySpecialFeats()
         }
         ++fit;
     }
+}
+
+bool Build::operator<(const Build& other) const
+{
+    return m_Level < other.Level();
 }
 

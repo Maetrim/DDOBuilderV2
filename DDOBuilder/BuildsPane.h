@@ -42,6 +42,7 @@ public:
 
     // CharacterObserver
     virtual void UpdateNumBuildsChanged(Character* charData) override;
+    virtual void UpdateActiveBuildPositionChanged(Character*) override;
 
     DECLARE_DYNCREATE(CBuildsPane)
     DECLARE_MESSAGE_MAP()

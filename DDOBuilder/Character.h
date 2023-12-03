@@ -15,6 +15,7 @@ class CharacterObserver :
         virtual void UpdateNumBuildsChanged(Character *) {};
         virtual void UpdateActiveLifeChanged(Character*) {};
         virtual void UpdateActiveBuildChanged(Character *) {};
+        virtual void UpdateActiveBuildPositionChanged(Character*) {};
 };
 
 class Character :
@@ -34,6 +35,7 @@ class Character :
         void SetActiveBuild(size_t lifeIndex, size_t buildIndex);
         Build* ActiveBuild();  // can be NULL
         const Build* ActiveBuild() const; // can be NULL
+        void SetActiveBuildIndex(size_t buildIndex);
 
         // life support
         Life* ActiveLife(); // can be NULL
@@ -52,7 +54,8 @@ class Character :
         void SetModifiedFlag(BOOL modified);
 
         void NotifyActiveBuildChanged();
-    protected:
+        void NotifyActiveBuildPositionChanged();
+protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
                 const XmlLib::SaxAttributes & attributes);

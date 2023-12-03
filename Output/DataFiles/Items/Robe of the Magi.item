@@ -4,8 +4,9 @@
     <Icon>Cloth_1c</Icon>
     <Description>This robe requires an arcane spell caster to unlock all of its potential. It
 is much favored by the arcane followers of Black Abbot.</Description>
-    <DropLocation>Litany of the Dead, Mentau 's, High Priest of Vol 's or Cholthulzz' needs verificationchest</DropLocation>
+    <DropLocation>Litany of the Dead, Mentau 's, High Priest of Vol 's or Cholthulzz' chest</DropLocation>
     <MinLevel>14</MinLevel>
+    <NoAutoUpdate/>
     <EquipmentSlot>
       <Armor/>
     </EquipmentSlot>
@@ -13,8 +14,38 @@ is much favored by the arcane followers of Black Abbot.</Description>
       <Requirement>
         <Type>NotConstruct</Type>
       </Requirement>
+       <RequiresOneOf>
+         <Requirement>
+            <Type>BaseClass</Type>
+            <Item>Bard</Item>
+         </Requirement>
+         <Requirement>
+            <Type>BaseClass</Type>
+            <Item>Sorcerer</Item>
+         </Requirement>
+         <Requirement>
+            <Type>BaseClass</Type>
+            <Item>Wizard</Item>
+         </Requirement>
+       </RequiresOneOf>
     </Requirements>
     <Armor>Cloth</Armor>
+    <Buff>
+      <Type>ArmorEnchantment</Type>
+      <Value1>7</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>SpellResistance</Type>
+      <Value1>25</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>SpellPenetrationNumeral</Type>
+      <Value1>2</Value1>
+      <Item>II</Item>
+      <BonusType>Equipment</BonusType>
+    </Buff>
     <ItemAugment>
       <Type>Green</Type>
     </ItemAugment>

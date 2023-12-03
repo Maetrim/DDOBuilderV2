@@ -9,9 +9,18 @@
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <Requirement>
-        <Type>NotConstruct</Type>
-      </Requirement>
+      <RequiresNoneOf>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Bladeforged</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Warforged</Item>
+          <Value>1</Value>
+        </Requirement>
+      </RequiresNoneOf>
     </Requirements>
     <Armor>Cloth</Armor>
     <Buff>
@@ -32,11 +41,12 @@
     <Buff>
       <Type>Shield</Type>
       <Value1>4</Value1>
-      <BonusType/>
     </Buff>
     <Buff>
-      <Type>GreaterColdResistance</Type>
+      <Type>EnergyResistance</Type>
+      <Value1>30</Value1>
       <BonusType>Enhancement</BonusType>
+      <Item>Cold</Item>
     </Buff>
   </Item>
 </Items>

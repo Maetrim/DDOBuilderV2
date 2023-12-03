@@ -9,9 +9,18 @@
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <Requirement>
-        <Type>NotConstruct</Type>
-      </Requirement>
+      <RequiresNoneOf>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Bladeforged</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Warforged</Item>
+          <Value>1</Value>
+        </Requirement>
+      </RequiresNoneOf>
     </Requirements>
     <Armor>Cloth</Armor>
     <ArmorBonus>0</ArmorBonus>
@@ -38,8 +47,10 @@
       <Item>Potency</Item>
     </Buff>
     <Buff>
-      <Type>SuperiorLightningResistance</Type>
+      <Type>EnergyResistance</Type>
+      <Value1>40</Value1>
       <BonusType>Enhancement</BonusType>
+      <Item>Electric</Item>
     </Buff>
     <SetBonus>Draconic Mind</SetBonus>
     <ItemAugment>

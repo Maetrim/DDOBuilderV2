@@ -56,11 +56,11 @@ bool RequiresNoneOf::Met(
         WeaponType wtOffHand) const
 {
     // one or more of the requirements must not be met
-    bool canTrain = false;
+    bool canTrain = true;
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
     while (it != m_Requirements.end())
     {
-        canTrain |= (*it).Met(
+        canTrain &= !(*it).Met(
                 build,
                 level,
                 includeTomes,
@@ -68,7 +68,7 @@ bool RequiresNoneOf::Met(
                 wtOffHand);
         ++it;
     }
-    return !canTrain;       // can't have any requirement met
+    return canTrain;        // can't have any requirement met
 }
 
 bool RequiresNoneOf::CanTrainEnhancement(
@@ -97,7 +97,7 @@ bool RequiresNoneOf::MetHardRequirements(
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
     while (it != m_Requirements.end())
     {
-        canTrain &= (*it).MetHardRequirements(
+        canTrain &= !(*it).MetHardRequirements(
                 build,
                 level,
                 includeTomes);

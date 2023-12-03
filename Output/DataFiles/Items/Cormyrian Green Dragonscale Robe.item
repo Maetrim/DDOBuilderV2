@@ -9,9 +9,18 @@
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <Requirement>
-        <Type>NotConstruct</Type>
-      </Requirement>
+      <RequiresNoneOf>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Bladeforged</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Warforged</Item>
+          <Value>1</Value>
+        </Requirement>
+      </RequiresNoneOf>
     </Requirements>
     <Armor>Cloth</Armor>
     <Buff>
@@ -25,8 +34,10 @@
       <BonusType>Vitality</BonusType>
     </Buff>
     <Buff>
-      <Type>SuperiorAcidResistance</Type>
+      <Type>EnergyResistance</Type>
+      <Value1>40</Value1>
       <BonusType>Enhancement</BonusType>
+      <Item>Acid</Item>
     </Buff>
     <Buff>
       <Type>Absorption</Type>
@@ -46,7 +57,6 @@
     </Buff>
     <Buff>
       <Type>PowerStore</Type>
-      <BonusType/>
     </Buff>
   </Item>
 </Items>

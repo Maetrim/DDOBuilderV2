@@ -592,11 +592,15 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 }
                 else
                 {
-                    Spell spell = FindSpellByName(m_Item.front());
+                    Spell spell = FindSpellByName(m_Item.front(), true);
                     if (spell.Name() != m_Item.front())
                     {
-                        (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect references unknown spell\n";
-                        ok = false;
+                        spell = FindItemClickieByName(m_Item.front(), true);
+                        if (spell.Name() != m_Item.front())
+                        {
+                            (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect references unknown spell\n";
+                            ok = false;
+                        }
                     }
                     const ::Class& c = FindClass(m_Item.back());
                     if (c.Name() == ""

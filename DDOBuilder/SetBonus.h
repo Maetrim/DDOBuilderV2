@@ -27,6 +27,7 @@ class SetBonus :
         #define SetBonus_PROPERTIES(_) \
                 DL_STRING(_, Type) \
                 DL_STRING(_, Icon) \
+                DL_FLAG(_, IgnoreForParse) \
                 DL_OBJECT_LIST(_, SetBonusBuff, Buffs)
 
         DL_DECLARE_ACCESS(SetBonus_PROPERTIES)

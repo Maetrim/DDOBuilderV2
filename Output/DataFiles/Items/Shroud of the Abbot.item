@@ -10,9 +10,18 @@ he was slain before being raised as a lich.</Description>
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <Requirement>
-        <Type>NotConstruct</Type>
-      </Requirement>
+      <RequiresNoneOf>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Bladeforged</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Warforged</Item>
+          <Value>1</Value>
+        </Requirement>
+      </RequiresNoneOf>
     </Requirements>
     <Armor>Cloth</Armor>
     <ArmorBonus>0</ArmorBonus>
@@ -31,7 +40,6 @@ he was slain before being raised as a lich.</Description>
     </Buff>
     <Buff>
       <Type>Boon of Undeath</Type>
-      <BonusType/>
     </Buff>
     <Buff>
       <Type>VoidLore</Type>
@@ -40,6 +48,12 @@ he was slain before being raised as a lich.</Description>
     <Buff>
       <Type>LightningLore</Type>
       <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>EnergyResistance</Type>
+      <Value1>20</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Item>Light</Item>
     </Buff>
   </Item>
 </Items>

@@ -4,6 +4,7 @@
 #include "RequirementsBase.h"
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
+#include "InfoTipItem.h"
 
 // A requirements object if it exists list the things that a given item needs
 // to be either selectable or active in the context in which it is being used
@@ -186,6 +187,36 @@ void RequirementsBase::CreateRequirementStrings(
     {
         (*itNO).CreateRequirementStrings(build, level, includeTomes, requirements, met);
         ++itNO;
+    }
+}
+
+void RequirementsBase::AddItemRequirements(
+        std::vector<InfoTipItem*>& infoTip) const
+{
+    for (auto&& it : m_Requires)
+    {
+        switch (it.Type())
+        {
+            case Requirement_NotConstruct:
+                {
+                    InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+                    CString raceExcluded("Race Absolutely Excluded: Warforged");
+                    pRequirements->AddRequirement(raceExcluded, false);  // red highlighted line
+                    infoTip.push_back(pRequirements);
+                }
+                break;
+            case Requirement_RaceConstruct:
+                {
+                    InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+                    CString raceExcluded("Race Absolutely Required: Warforged");
+                    pRequirements->AddRequirement(raceExcluded, true);  // red highlighted line
+                    infoTip.push_back(pRequirements);
+                }
+                break;
+            default:
+                ASSERT(FALSE);
+                break;
+        }
     }
 }
 

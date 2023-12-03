@@ -132,37 +132,40 @@ bool EnhancementTreeItem::MeetRequirements(
     }
     // cannot train this enhancement if its tier5 and not from the same tier 5
     // tree if one has already been trained
-    met = !IsTier5Blocked(build, treeName);
-    if (met && selection != "")
+    if (met)
     {
-        // check if we can train this selection
-        std::list<EnhancementSelection> selections = m_Selections.Selections();
-        std::list<EnhancementSelection>::const_iterator it = selections.begin();
-        while (it != selections.end())
+        met = !IsTier5Blocked(build, treeName);
+        if (met && selection != "")
         {
-            if ((*it).Name() == selection)
+            // check if we can train this selection
+            std::list<EnhancementSelection> selections = m_Selections.Selections();
+            std::list<EnhancementSelection>::const_iterator it = selections.begin();
+            while (it != selections.end())
             {
-                // this is the one we need to check
-                if ((*it).HasMinSpent())
+                if ((*it).Name() == selection)
                 {
-                    met &= ((*it).MinSpent() <= spentInTree);
-                }
-                if (HasRequirementsToTrain())
-                {
-                    if ((*it).HasRequirementsToTrain())
+                    // this is the one we need to check
+                    if ((*it).HasMinSpent())
                     {
-                        met &= (*it).RequirementsToTrain().Met(
-                                build,
-                                level,
-                                false,
-                                Weapon_Unknown,
-                                Weapon_Unknown);
+                        met &= ((*it).MinSpent() <= spentInTree);
                     }
+                    if (HasRequirementsToTrain())
+                    {
+                        if ((*it).HasRequirementsToTrain())
+                        {
+                            met &= (*it).RequirementsToTrain().Met(
+                                    build,
+                                    level,
+                                    false,
+                                    Weapon_Unknown,
+                                    Weapon_Unknown);
+                        }
+                    }
+                    // and were done
+                    break;
                 }
-                // and were done
-                break;
+                ++it;
             }
-            ++it;
         }
     }
     return met;

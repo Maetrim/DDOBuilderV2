@@ -31,8 +31,8 @@ void WikiDownloader::Start()
     m_knownUrls["https://www.ddowiki.com/page/Items"] = m_pageIndex++;
     m_pagesToProcess.push_back("https://www.ddowiki.com/page/Items");
 
-    m_knownUrls["https://ddowiki.com/page/Update_61_named_items"] = m_pageIndex++;
-    m_pagesToProcess.push_back("https://ddowiki.com/page/Update_61_named_items");
+    m_knownUrls["https://www.ddowiki.com/page/Update_61_named_items"] = m_pageIndex++;
+    m_pagesToProcess.push_back("https://www.ddowiki.com/page/Update_61_named_items");
 
     std::string url = m_pagesToProcess.front();
     m_pagesToProcess.pop_front();

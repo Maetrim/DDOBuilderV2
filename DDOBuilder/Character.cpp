@@ -98,6 +98,11 @@ void Character::NotifyActiveBuildChanged()
     NotifyAll(&CharacterObserver::UpdateActiveBuildChanged, this);
 }
 
+void Character::NotifyActiveBuildPositionChanged()
+{
+    NotifyAll(&CharacterObserver::UpdateActiveBuildPositionChanged, this);
+}
+
 const Life & Character::GetLife(size_t lifeIndex) const
 {
     std::list<Life>::const_iterator lit = m_Lives.begin();
@@ -266,6 +271,16 @@ const Build * Character::ActiveBuild() const
         pBuild = (*lit).GetBuildPointer(m_uiActiveBuildIndex);
     }
     return pBuild;
+}
+
+void Character::SetActiveBuildIndex(size_t buildIndex)
+{
+    if (buildIndex != m_uiActiveBuildIndex)
+    {
+        m_uiActiveBuildIndex = buildIndex;
+        m_ActiveBuildIndex = buildIndex;
+        NotifyActiveBuildPositionChanged();
+    }
 }
 
 void Character::SetModifiedFlag(BOOL modified)

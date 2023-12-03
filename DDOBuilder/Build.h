@@ -6,6 +6,7 @@
 #include "AbilitySpend.h"
 #include "ActiveStances.h"
 #include "AlignmentTypes.h"
+#include "CompletedQuest.h"
 #include "DestinySpendInTree.h"
 #include "EnhancementItemParams.h"
 #include "EnhancementSpendInTree.h"
@@ -295,6 +296,8 @@ class Build :
         void RemoveMergeGroup(const Effect& effect);
         void DumpWeaponGroups() const;
 
+        bool operator<(const Build& other) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -319,7 +322,8 @@ class Build :
                 DL_OBJECT_LIST(_, DestinySpendInTree, DestinyTreeSpend) \
                 DL_STRING(_, ActiveGear) \
                 DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
-                DL_OBJECT(_, FeatsListObject, FavorFeats)
+                DL_OBJECT(_, FeatsListObject, FavorFeats) \
+                DL_OBJECT_LIST(_, CompletedQuest, CompletedQuests)
 
         DL_DECLARE_ACCESS(Build_PROPERTIES)
         DL_DECLARE_VARIABLES(Build_PROPERTIES)

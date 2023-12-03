@@ -11,6 +11,7 @@ public:
     ~WikiItemFileProcessor();
 
     void Start();
+    void ProcessSpecificFile();
 
 protected:
     XmlLib::SaxContentElementInterface* StartElement(

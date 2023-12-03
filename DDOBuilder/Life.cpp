@@ -145,6 +145,19 @@ void Life::SetBuildLevel(size_t buildIndex, size_t level)
     std::list<Build>::iterator bit = m_Builds.begin();
     std::advance(bit, buildIndex);
     (*bit).SetLevel(level);
+    Build* pBuild = &*bit;  // we need to check the index
+    // all builds are sort by level
+    m_Builds.sort();
+    size_t index = 0;
+    for (auto&& bit2 : m_Builds)
+    {
+        if (pBuild == &bit2)
+        {
+            break;
+        }
+        ++index;
+    }
+    m_pCharacter->SetActiveBuildIndex(index);
 }
 
 int Life::LevelUpsAtLevel(AbilityType ability, size_t level) const

@@ -22,7 +22,8 @@ BreakdownItem::BreakdownItem(
     m_bHasWeapon(false),
     m_weapon(Weapon_Unknown),
     m_weaponCriticalMultiplier(0),
-    m_bAddEnergies(true)
+    m_bAddEnergies(true),
+    m_bHasNonStackingEffects(false)
 {
 }
 
@@ -133,6 +134,10 @@ void BreakdownItem::Populate()
             m_pTreeList->SetItemText(m_hItem, 0, title);
         }
         m_pTreeList->SetItemText(m_hItem, 1, Value());
+        m_pTreeList->SetItemColor(m_hItem, m_bHasNonStackingEffects
+                ? COLORREF(RGB(255, 0, 0))
+                : COLORREF(RGB(0, 0, 0)));
+
         if (m_pTreeList->GetSelectedItem() == m_hItem)
         {
             // force an update if the actively viewed item has changed
@@ -611,6 +616,7 @@ void BreakdownItem::RemoveNonStacking(
         std::list<Effect> * effects,
         std::list<Effect> * nonStackingEffects) const
 {
+    m_bHasNonStackingEffects = false;
     // the same effect type can come from multiple sources in the form of
     // buffs or equipment effects. To avoid these giving increased values
     // we remove all the duplicate and lesser powered versions of any effects
@@ -648,6 +654,7 @@ void BreakdownItem::RemoveNonStacking(
             // add the item to be removed into the non stacking list
             nonStackingEffects->push_back((*sit));
             sit = effects->erase(sit);      // remove from source list
+            m_bHasNonStackingEffects = true;
         }
         else
         {

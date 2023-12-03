@@ -16,11 +16,15 @@ class MultiFileObjectLoader :
         MultiFileObjectLoader(
                 const XmlLib::SaxString& rootElement,
                 const std::string& path,
-                const std::string& filter) :
+                const std::string& filter,
+                size_t expectedCount = 0,
+                HWND hwndUpdateWindow = INVALID_HWND_VALUE) :
             SaxContentElement(rootElement),
             m_path(path),
             m_filter(filter),
-            m_loadTotal(0)
+            m_loadTotal(0),
+            m_expectedTotal(expectedCount),
+            m_hwndUpdateWindow(hwndUpdateWindow)
         {
         };
         ~MultiFileObjectLoader(void) {};
@@ -28,7 +32,18 @@ class MultiFileObjectLoader :
         void ReadFiles(const std::string& prompt)
         {
             m_prompt = prompt;
-            GetLog().AddLogEntry(prompt.c_str());
+            if (INVALID_HWND_VALUE != m_hwndUpdateWindow)
+            {
+                CString* pLoadingItems = new CString(m_prompt.c_str());
+                ::SendMessage(m_hwndUpdateWindow,
+                        UWM_STARTPROGRESS,
+                        reinterpret_cast<WPARAM>(pLoadingItems),
+                        0L);
+            }
+            else
+            {
+                GetLog().AddLogEntry(prompt.c_str());
+            }
 
             std::string fileFilter = m_path;
             fileFilter += m_filter;
@@ -46,8 +61,23 @@ class MultiFileObjectLoader :
                     fullFilename = m_path;
                     fullFilename += findFileData.cFileName;
                     ReadFile(fullFilename);
+                    if (INVALID_HWND_VALUE != m_hwndUpdateWindow)
+                    {
+                        int count = m_loadedObjects.size();
+                        if (count % 10 == 0)
+                        {
+                            // update the progress control
+                            int percent = (count * 100) / m_expectedTotal;
+                            percent = min(100, percent);
+                            ::SendMessage(m_hwndUpdateWindow, UWM_SETPROGRESS, percent, 0L);
+                        }
+                    }
                 }
                 FindClose(hFind);
+                if (INVALID_HWND_VALUE != m_hwndUpdateWindow)
+                {
+                    SendMessage(m_hwndUpdateWindow, UWM_ENDPROGRESS, 0L, 0L);
+                }
             }
         };
 
@@ -71,12 +101,15 @@ class MultiFileObjectLoader :
                     m_loadedObjects.push_back(object);
                     subHandler = &(m_loadedObjects.back());
                     // update log during load action
-                    CString strTreeCount;
-                    strTreeCount.Format(
-                            "%s%d",
-                            m_prompt.c_str(),
-                            m_loadedObjects.size());
-                    GetLog().UpdateLastLogEntry(strTreeCount);
+                    if (INVALID_HWND_VALUE == m_hwndUpdateWindow)
+                    {
+                        CString strTreeCount;
+                        strTreeCount.Format(
+                                "%s%d",
+                                m_prompt.c_str(),
+                                m_loadedObjects.size());
+                        GetLog().UpdateLastLogEntry(strTreeCount);
+                    }
                 }
             }
 
@@ -103,7 +136,7 @@ class MultiFileObjectLoader :
                     "failed to load. The XML parser reported the following problem:\n"
                     "\n", filename.c_str());
                 text += errorMessage.c_str();
-                AfxMessageBox(text, MB_ICONERROR);
+                GetLog().UpdateLastLogEntry(text);
             }
             else
             {
@@ -117,5 +150,7 @@ class MultiFileObjectLoader :
         std::list<T> m_loadedObjects;
         size_t m_loadTotal;
         std::string m_prompt;
+        size_t m_expectedTotal;
+        HWND m_hwndUpdateWindow;
 };
 

@@ -1417,12 +1417,14 @@ void CDDOBuilderView::UpdateClassChanged(
 
 void CDDOBuilderView::UpdateLifeFeatTrained(Life*, const std::string&)
 {
+    EnableButtons();
     UpdateRadioPoints();
     UpdateAvailableSpend();
 }
 
 void CDDOBuilderView::UpdateLifeFeatRevoked(Life*, const std::string&)
 {
+    EnableButtons();
     UpdateRadioPoints();
     UpdateAvailableSpend();
 }

@@ -62,12 +62,18 @@ const int c_controlSpacing = 3;
 #define MAX_SKILL_TOME          5
 #define MAX_FAVOR_ITEMS         25
 
+#define INVALID_HWND_VALUE      0
+
 #include <string>
 const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
 const UINT UWM_LOAD_COMPLETE = ::RegisterWindowMessage(_T("LoadComplete"));
 const UINT UWM_UPDATE_TREES = ::RegisterWindowMessage(_T("UpdateTrees"));
 const UINT UWM_UPDATE = ::RegisterWindowMessage(_T("Update"));
 const UINT UWM_TOGGLE_INCLUDED = ::RegisterWindowMessage(_T("ToggleIgnoreItem"));
+const UINT UWM_STARTPROGRESS = ::RegisterWindowMessage(_T("StartProgress"));
+const UINT UWM_SETPROGRESS = ::RegisterWindowMessage(_T("SetProgress"));
+const UINT UWM_ENDPROGRESS = ::RegisterWindowMessage(_T("EndProgress"));
+const UINT UWM_LOG_MESSAGE = ::RegisterWindowMessage(_T("LogMessage"));
 const COLORREF c_transparentColour = RGB(255, 128, 255);
 const std::string Class_Unknown = "Unknown";
 const std::string Class_Epic = "Epic";

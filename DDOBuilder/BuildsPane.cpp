@@ -221,13 +221,26 @@ void CBuildsPane::UpdateNumBuildsChanged(Character *)
     PopulateBuildsList();
 }
 
+void CBuildsPane::UpdateActiveBuildPositionChanged(Character*)
+{
+    DWORD selItemData = MakeItemData(
+            TEI_Build,
+            m_pCharacter->ActiveLifeIndex(),
+            m_pCharacter->ActiveBuildIndex());
+    SelectTreeItem(selItemData);
+    PopulateBuildsList();
+}
+
 void CBuildsPane::PopulateBuildsList()
 {
     if (m_pCharacter != NULL)
     {
         // keep the same item selected if there was one
         HTREEITEM hSelItem = m_treeBuilds.GetSelectedItem();
-        DWORD selItemData = MakeItemData(TEI_Build, m_pCharacter->ActiveLifeIndex(), m_pCharacter->ActiveBuildIndex());
+        DWORD selItemData = MakeItemData(
+                TEI_Build,
+                m_pCharacter->ActiveLifeIndex(),
+                m_pCharacter->ActiveBuildIndex());
         if (hSelItem != NULL)
         {
             selItemData = m_treeBuilds.GetItemData(hSelItem);
@@ -502,6 +515,7 @@ void CBuildsPane::SelectTreeItem(DWORD itemData)
             && hItem != hCurrent)
     {
         m_treeBuilds.Select(hItem, TVGN_CARET);
+        m_treeBuilds.SetItemState(hItem, TVIS_SELECTED, TVIS_SELECTED);
         m_treeBuilds.EnsureVisible(hItem);
     }
 }

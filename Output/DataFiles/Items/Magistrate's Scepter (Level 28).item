@@ -28,23 +28,246 @@
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
-      <Type>Doublestrike</Type>
-      <Value1>8</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Ghostbane VIII</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Ribcracker VIII</Type>
+      <Type>Axiomatic V</Type>
       <BonusType>Enhancement</BonusType>
       <Item>All</Item>
     </Buff>
-    <Buff>
-      <Type>Riposte</Type>
-      <BonusType>Insightful</BonusType>
-    </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Variant</Type>
+        <Augment>
+           <Name>Dazing VIII</Name>
+           <Description>Dazing VIII: On Hit: Your target suffers a -1 Penalty to Will Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Stunning Blow and Stunning
+Fist combat feats is increased by 13.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+        </Augment>
+        <Augment>
+           <Name>Deception VIII</Name>
+           <Description>Deception VIII: 5% Chance on Hit: Your target becomes Bluffed for four seconds.
+(Bluffed enemies can be affected by Sneak Attacks even while targeting you.)
+On sneak attack: +8 to Attack Rolls, +16 to Damage.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Equipment</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">8</Amount>
+          </Effect>
+          <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Bonus>Equipment</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">16</Amount>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Doublestrike 8%</Name>
+           <Description>Doublestrike 8%: Passive: 8% Enhancement bonus to Doublestrike.
+(Doublestrike is a chance to score an additional hit with a melee attack.)</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">8</Amount>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Draining VIII</Name>
+           <Description>Draining VIII: On Vorpal Hit: Your target incurs one Negative Level, and you
+gain +16 Temporary Spell Points. (These Temporary Spell Points last for one minute,
+or until used to reduce the cost of your next spell.)</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+        </Augment>
+        <Augment>
+           <Name>Feeding VIII</Name>
+           <Description>Feeding VIII: On Vorpal Hit: Your target incurs one Negative Level, and you
+gain +40 Temporary Hit Points. (These Temporary Hit Points last for one minute,
+or until used to negate incoming damage.)</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+        </Augment>
+        <Augment>
+           <Name>Ghostbane VIII</Name>
+           <Description>Ghostbane VIII: On Hit: 8 to 32 Bane Damage vs Undead. (Bane damage cannot be resisted.)
+Passive: Attacks from this weapon bypass the miss chance of incorporeal creatures,
+such as ghosts, shadows, and wraiths.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>All</Item>
+          </Effect>
+          <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Type>WeaponOtherDamageBonusCritical</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+              <Number size="1">8</Number>
+              <Sides size="1">4</Sides>
+              <Damage>Bane</Damage>
+            </Dice>
+            <Item>All</Item>
+            <Requirements>
+              <Requirement>
+                <Type>EnemyType</Type>
+                <Item>Undead</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Humanoid Bane VIII</Name>
+           <Description>Humanoid Bane VIII: On Hit: 8 to 32 Bane Damage vs Humanoids and Giants.
+(Bane damage cannot be resisted.)</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Type>WeaponOtherDamageBonusCritical</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+              <Number size="1">8</Number>
+              <Sides size="1">4</Sides>
+              <Damage>Bane</Damage>
+            </Dice>
+            <Item>All</Item>
+            <Requirements>
+              <Requirement>
+                <Type>EnemyType</Type>
+                <Item>Humanoid</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Greater Disruption</Name>
+           <Description>Greater Disruption: On Hit: 4 to 24 Bane damage to Undead.
+On Vorpal Hit: If an undead struck by this weapon has fewer than 2000 Hit Points,
+it is instantly slain. If the undead has above 2000 Hit Points, it takes 200 damage.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Type>WeaponOtherDamageBonusCritical</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+              <Number size="1">4</Number>
+              <Sides size="1">6</Sides>
+              <Damage>Bane</Damage>
+            </Dice>
+            <Item>All</Item>
+            <Requirements>
+              <Requirement>
+                <Type>EnemyType</Type>
+                <Item>Undead</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Greater Smiting</Name>
+           <Description>Greater Smiting: On Hit: 4 to 24 Bane damage to Constructs.
+On Vorpal Hit: If a construct struck by this weapon has fewer than 2000 Hit Points,
+it is instantly slain. If the construct has above 2000 Hit Points, it takes 200 damage.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Type>WeaponOtherDamageBonusCritical</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+              <Number size="1">4</Number>
+              <Sides size="1">6</Sides>
+              <Damage>Bane</Damage>
+            </Dice>
+            <Item>All</Item>
+            <Requirements>
+              <Requirement>
+                <Type>EnemyType</Type>
+                <Item>Construct</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Ribcracker VIII</Name>
+           <Description>Ribcracker VIII: On Critical Hit: 17 to 102 Bludgeoning damage from weapons with
+a x2 Critical Multiplier, 17 to 136 Bludgeoning damage from weapons with
+a x3 Critical Multiplier, and 17 to 170 Bludgeoning damage from weapons with
+a x4 or greater Critical Multiplier.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Type>WeaponOtherDamageBonusCritical</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+              <Number size="1">17</Number>
+              <Sides size="1">8</Sides>
+              <Damage>Bludgeon</Damage>
+            </Dice>
+            <Item>All</Item>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Riposte VIII</Name>
+           <Description>Riposte VIII: When Missed by an attack: Deals 8 to 32 damage to your attacker.
+Passive: +4 Insight bonus to Armor Class, +4 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>All</Item>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+            <Item>All</Item>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Stumbling VIII</Name>
+           <Description>Stumbling VIII: On Hit: Your target suffers a -1 Penalty to Reflex Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Trip combat feats is increased by 13.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+          <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Equipment</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">13</Amount>
+            <Item>Trip</Item>
+          </Effect>
+        </Augment>
+        <Augment>
+           <Name>Sundering VIII</Name>
+           <Description>Sundering VIII: On Hit: Your target suffers a -1 Penalty to Fortitude Saving
+Throws for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Sunder combat feats is increased by 13.</Description>
+           <MinLevel>26</MinLevel>
+           <Icon>Variant</Icon>
+        </Augment>
+     </ItemAugment>
     <ItemAugment>
       <Type>Red</Type>
     </ItemAugment>

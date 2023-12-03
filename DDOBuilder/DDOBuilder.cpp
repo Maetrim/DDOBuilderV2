@@ -37,31 +37,46 @@ BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     // UI options disabled during start up
     ON_UPDATE_COMMAND_UI(ID_APP_ABOUT, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI(ID_FILE_NEW, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
-    ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
-    ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
-    ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
-    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_VERIFYLOADEDDATA, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
-    ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
+    ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_VERIFYLOADEDDATA, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_COMMAND(ID_DEVELOPMENT_VERIFYLOADEDDATA, OnVerifyLoadedData)
 END_MESSAGE_MAP()
 
 // CDDOBuilderApp construction
 CDDOBuilderApp::CDDOBuilderApp() :
     m_nAppLook(0),
-    m_bLoadComplete(false)
+    m_bLoadComplete(false),
+    m_bItemLoadThreadRunning(false),
+    m_bKillItemLoadThread(false)
 {
     EnableHtmlHelp();
 
     m_bHiColorIcons = TRUE;
     SetAppID(_T("DDOBuilder.AppID.NoVersion"));
-
-    m_itemImages.Create(
-        32,
-        32,
-        ILC_COLOR32,
-        2000,
-        0);
     g_bShowIgnoredItems = false;
+
+    // make the ini file filename
+    char fullPath[MAX_PATH];
+    ::GetModuleFileName(
+        NULL,
+        fullPath,
+        MAX_PATH);
+
+    char drive[_MAX_DRIVE];
+    char folder[_MAX_PATH];
+    _splitpath_s(fullPath,
+        drive, _MAX_DRIVE,
+        folder, _MAX_PATH,
+        NULL, 0,        // filename
+        NULL, 0);       // extension
+
+    char path[_MAX_PATH];
+    _makepath_s(path, _MAX_PATH, drive, folder, NULL, NULL);
+    m_iniFileFilename = path;
+    m_iniFileFilename += "DDOBuilder.ini";
 }
 
 // The one and only CDDOBuilderApp object
@@ -105,8 +120,6 @@ BOOL CDDOBuilderApp::InitInstance()
     // of your final executable, you should remove from the following
     // the specific initialization routines you do not need
     // Change the registry key under which our settings are stored
-    // TODO: You should modify this string to be something appropriate
-    // such as the name of your company or organization
     SetRegistryKey(_T("DDOBuilder"));
     LoadStdProfileSettings(16);  // Load standard INI file options (including MRU)
 
@@ -168,7 +181,12 @@ BOOL CDDOBuilderApp::InitInstance()
 
 int CDDOBuilderApp::ExitInstance()
 {
-    //TODO: handle additional resources you may have added
+    m_bKillItemLoadThread = true;
+    // wait for the load item thread to terminate if closed during start up
+    while (m_bItemLoadThreadRunning)
+    {
+        Sleep(5);
+    }
     AfxOleTerm(FALSE);
 
     return CWinAppEx::ExitInstance();
@@ -210,7 +228,7 @@ void CDDOBuilderApp::PreLoadState()
     BOOL bNameValid;
     CString strName;
     bNameValid = strName.LoadString(IDS_EDIT_MENU);
-    ASSERT(bNameValid);
+    VERIFY(bNameValid);
     GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
 }
 
@@ -240,6 +258,14 @@ const std::list<Class>& CDDOBuilderApp::Classes() const
 
 void CDDOBuilderApp::LoadData()
 {
+    int lastImageCount = GetProfileInt("ItemLoad", "LastImageCount", 2173);
+    m_itemImages.Create(
+        32,
+        32,
+        ILC_COLOR32,
+        lastImageCount,
+        100);
+
     std::string folderPath = DataFolder();
     LoadBonusTypes(folderPath);
     LoadEnhancements(folderPath);
@@ -257,8 +283,9 @@ void CDDOBuilderApp::LoadData()
     LoadItemClickies(folderPath);
     LoadPatrons(folderPath);
     LoadQuests(folderPath);
-    LoadItems(folderPath);
     LoadIgnoreList(folderPath);
+    // done last as not thread safe
+    AfxBeginThread(CDDOBuilderApp::ThreadedItemLoad, this);
 
     // all loaded feats need to be consolidated into a single map
     // and also have their groups updated so they match any additional
@@ -736,124 +763,7 @@ void CDDOBuilderApp::LoadSpells(const std::string& path)
     m_spells = file.Spells();
 }
 
-void CDDOBuilderApp::LoadItems(const std::string& path)
-{
-    {
-        // item images are in sub folders. look in each sub folder
-        CDDOBuilderApp::LoadImage("", "NoImage");    // always first index
-        std::string folders[] =
-        {
-            "Armor_Cloth\\",
-            "Armor_Docent\\",
-            "Armor_Heavy\\",
-            "Armor_Light\\",
-            "Armor_Medium\\",
-            "Armor_Cosmetic\\",
-            "Belts\\",
-            "Boots\\",
-            "Bracers\\",
-            "Collar\\",
-            "Cloaks\\",
-            "Gloves\\",
-            "Goggles\\",
-            "Helmets\\",
-            "Necklace\\",
-            "Orbs\\",
-            "Rings\\",
-            "Quiver\\",
-            "Shields\\",
-            "Trinkets\\",
-            "Weapon_HeavyCrossbow\\",
-            "Weapon_BastardSword\\",
-            "Weapon_BattleAxe\\",
-            "Weapon_Club\\",
-            "Weapon_Dagger\\",
-            "Weapon_Dart\\",
-            "Weapon_DwarvenAxe\\",
-            "Weapon_Falchion\\",
-            "Weapon_GreatAxe\\",
-            "Weapon_GreatClub\\",
-            "Weapon_GreatCrossbow\\",
-            "Weapon_GreatSword\\",
-            "Weapon_HandAxe\\",
-            "Weapon_Handwraps\\",
-            "Weapon_HeavyMace\\",
-            "Weapon_HeavyPick\\",
-            "Weapon_Kama\\",
-            "Weapon_Khopesh\\",
-            "Weapon_Kukri\\",
-            "Weapon_LightCrossbow\\",
-            "Weapon_LightHammer\\",
-            "Weapon_LightMace\\",
-            "Weapon_LightPick\\",
-            "Weapon_Longbow\\",
-            "Weapon_Longsword\\",
-            "Weapon_Maul\\",
-            "Weapon_Morningstar\\",
-            "Weapon_Quarterstaff\\",
-            "Weapon_Rapier\\",
-            "Weapon_RepeatingHeavyCrossbow\\",
-            "Weapon_RepeatingLightCrossbow\\",
-            "Weapon_RuneArm\\",
-            "Weapon_Scimitar\\",
-            "Weapon_Shortbow\\",
-            "Weapon_Shortsword\\",
-            "Weapon_Shuriken\\",
-            "Weapon_Sickle\\",
-            "Weapon_ThrowingAxe\\",
-            "Weapon_ThrowingDagger\\",
-            "Weapon_ThrowingHammer\\",
-            "Weapon_Warhammer\\"
-        };
-        size_t numFolders = sizeof(folders) / sizeof(std::string);
-        int imageCount = 0;
-        GetLog().AddLogEntry("Loading Item Images...");
-        for (size_t fi = 0; fi < numFolders; ++fi)
-        {
-            std::string fileFilter(path);
-            fileFilter += "ItemImages\\";
-            fileFilter += folders[fi];
-            fileFilter += "*.png";
-            WIN32_FIND_DATA findFileData;
-            HANDLE hFind = FindFirstFile(fileFilter.c_str(), &findFileData);
-            if (hFind != INVALID_HANDLE_VALUE)
-            {
-                CDDOBuilderApp::LoadImage(folders[fi], findFileData.cFileName);
-                while (FindNextFile(hFind, &findFileData))
-                {
-                    ++imageCount;
-                    CString text;
-                    text.Format("Loading Item Images...%d", imageCount);
-                    GetLog().UpdateLastLogEntry(text);
-                    CDDOBuilderApp::LoadImage(folders[fi], findFileData.cFileName);
-                }
-                FindClose(hFind);
-            }
-        }
-    }
-    {
-        // all the items are in the same folder
-        std::string localPath(path);
-        localPath += "Items\\";
-        MultiFileObjectLoader<Item> file(L"Items", localPath, "*.item");
-        file.ReadFiles("Loading Items...");
-        m_items = file.LoadedObjects();
-        // update all the items with their correct image index
-        for (auto&& iit : m_items)
-        {
-            if (iit.HasIcon())
-            {
-                std::string icon = iit.Icon();
-                if (m_imagesMap.find(icon) != m_imagesMap.end())
-                {
-                    iit.SetIconIndex(m_imagesMap[icon]);
-                }
-            }
-        }
-    }
-}
-
-void CDDOBuilderApp::LoadImage(const std::string& localPath, std::string filename)
+void CDDOBuilderApp::LoadImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename)
 {
     CImage image;
     std::string fullPath("DataFiles\\ItemImages\\");
@@ -867,8 +777,8 @@ void CDDOBuilderApp::LoadImage(const std::string& localPath, std::string filenam
     {
         CBitmap bitmap;
         bitmap.Attach(image.Detach());
-        int imageIndex = m_itemImages.Add(&bitmap, c_transparentColour);
-        m_imagesMap[filename] = imageIndex;
+        int imageIndex = pApp->m_itemImages.Add(&bitmap, c_transparentColour);
+        pApp->m_imagesMap[filename] = imageIndex;
     }
 }
 
@@ -1133,6 +1043,11 @@ void CDDOBuilderApp::OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI)
     pCmdUI->Enable(m_bLoadComplete);
 }
 
+void CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete && !m_bItemLoadThreadRunning);
+}
+
 void CDDOBuilderApp::UpdateIgnoreList(const std::list<std::string>& itemList)
 {
     m_ignoreList = itemList;
@@ -1164,4 +1079,223 @@ void CDDOBuilderApp::LoadIgnoreList(const std::string& path)
         file.Read();
         m_ignoreList = file.IgnoredItems();
     }
+}
+
+UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
+{
+    CDDOBuilderApp* pApp = static_cast<CDDOBuilderApp*>(pParam);
+    pApp->m_bItemLoadThreadRunning = true;
+    HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+    VERIFY(hr == ERROR_SUCCESS);
+    CString* pLoadingImages = new CString("Loading Item Images...");
+    HWND hwndMainFrame = pApp->m_pMainWnd->GetSafeHwnd();
+    ::SendMessage(hwndMainFrame,
+            UWM_STARTPROGRESS,
+            reinterpret_cast<WPARAM>(pLoadingImages),
+            0L);
+    int lastImageCount = pApp->GetProfileInt("ItemLoad", "LastImageCount", 2173);
+    std::string folderPath = DataFolder();
+    {
+        // item images are in sub folders. look in each sub folder
+        CDDOBuilderApp::LoadImage(pApp, "", "NoImage");    // always first index
+        std::string folders[] =
+        {
+            "Armor_Cloth\\",
+            "Armor_Docent\\",
+            "Armor_Heavy\\",
+            "Armor_Light\\",
+            "Armor_Medium\\",
+            "Armor_Cosmetic\\",
+            "Belts\\",
+            "Boots\\",
+            "Bracers\\",
+            "Collar\\",
+            "Cloaks\\",
+            "Gloves\\",
+            "Goggles\\",
+            "Helmets\\",
+            "Necklace\\",
+            "Orbs\\",
+            "Rings\\",
+            "Quiver\\",
+            "Shields\\",
+            "Trinkets\\",
+            "Weapon_HeavyCrossbow\\",
+            "Weapon_BastardSword\\",
+            "Weapon_BattleAxe\\",
+            "Weapon_Club\\",
+            "Weapon_Dagger\\",
+            "Weapon_Dart\\",
+            "Weapon_DwarvenAxe\\",
+            "Weapon_Falchion\\",
+            "Weapon_GreatAxe\\",
+            "Weapon_GreatClub\\",
+            "Weapon_GreatCrossbow\\",
+            "Weapon_GreatSword\\",
+            "Weapon_HandAxe\\",
+            "Weapon_Handwraps\\",
+            "Weapon_HeavyMace\\",
+            "Weapon_HeavyPick\\",
+            "Weapon_Kama\\",
+            "Weapon_Khopesh\\",
+            "Weapon_Kukri\\",
+            "Weapon_LightCrossbow\\",
+            "Weapon_LightHammer\\",
+            "Weapon_LightMace\\",
+            "Weapon_LightPick\\",
+            "Weapon_Longbow\\",
+            "Weapon_Longsword\\",
+            "Weapon_Maul\\",
+            "Weapon_Morningstar\\",
+            "Weapon_Quarterstaff\\",
+            "Weapon_Rapier\\",
+            "Weapon_RepeatingHeavyCrossbow\\",
+            "Weapon_RepeatingLightCrossbow\\",
+            "Weapon_RuneArm\\",
+            "Weapon_Scimitar\\",
+            "Weapon_Shortbow\\",
+            "Weapon_Shortsword\\",
+            "Weapon_Shuriken\\",
+            "Weapon_Sickle\\",
+            "Weapon_ThrowingAxe\\",
+            "Weapon_ThrowingDagger\\",
+            "Weapon_ThrowingHammer\\",
+            "Weapon_Warhammer\\"
+        };
+        size_t numFolders = sizeof(folders) / sizeof(std::string);
+        int imageCount = 0;
+        for (size_t fi = 0; fi < numFolders; ++fi)
+        {
+            std::string fileFilter(folderPath);
+            fileFilter += "ItemImages\\";
+            fileFilter += folders[fi];
+            fileFilter += "*.png";
+            WIN32_FIND_DATA findFileData;
+            HANDLE hFind = FindFirstFile(fileFilter.c_str(), &findFileData);
+            if (hFind != INVALID_HANDLE_VALUE)
+            {
+                CDDOBuilderApp::LoadImage(pApp, folders[fi], findFileData.cFileName);
+                while (FindNextFile(hFind, &findFileData))
+                {
+                    ++imageCount;
+                    CDDOBuilderApp::LoadImage(pApp, folders[fi], findFileData.cFileName);
+                    if (imageCount % 10 == 0)
+                    {
+                        // update the progress control
+                        int percent = (imageCount * 100) / lastImageCount;
+                        percent = min(100, percent);
+                        ::SendMessage(hwndMainFrame, UWM_SETPROGRESS, percent, 0L);
+                    }
+                }
+                FindClose(hFind);
+            }
+        }
+        SendMessage(hwndMainFrame, UWM_ENDPROGRESS, 0L, 0L);
+        // update image count for next run
+        pApp->WriteProfileInt("ItemLoad", "LastImageCount", imageCount);
+        // finally log to UI
+        CString* pLoadedImages = new CString;
+        pLoadedImages->Format("Item Images Loaded: %d", imageCount);
+        SendMessage(hwndMainFrame,
+                UWM_LOG_MESSAGE,
+                reinterpret_cast<WPARAM>(pLoadedImages),
+                0L);
+    }
+    {
+        // all the items are in the same folder
+        std::string localPath(folderPath);
+        localPath += "Items\\";
+        int lastItemCount = pApp->GetProfileInt("ItemLoad", "LastItemCount", 7030);
+        MultiFileObjectLoader<Item> file(L"Items", localPath, "*.item", lastItemCount, hwndMainFrame);
+        file.ReadFiles("Loading Items...");
+        pApp->m_items = file.LoadedObjects();
+        pApp->WriteProfileInt("ItemLoad", "LastItemCount", pApp->m_items.size());
+        // update all the items with their correct image index
+        for (auto&& iit : pApp->m_items)
+        {
+            if (iit.HasIcon())
+            {
+                std::string icon = iit.Icon();
+                if (pApp->m_imagesMap.find(icon) != pApp->m_imagesMap.end())
+                {
+                    iit.SetIconIndex(pApp->m_imagesMap[icon]);
+                }
+            }
+        }
+        CString* pLoadedItems = new CString;
+        pLoadedItems->Format("Items Loaded: %d", pApp->m_items.size());
+        SendMessage(hwndMainFrame,
+                UWM_LOG_MESSAGE,
+                reinterpret_cast<WPARAM>(pLoadedItems),
+                0L);
+    }
+    CoUninitialize();
+    pApp->m_bItemLoadThreadRunning = false;
+    ::SendMessage(hwndMainFrame, UWM_LOAD_COMPLETE, 0, 0L);
+    return 0;
+}
+
+UINT CDDOBuilderApp::GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault)
+{
+    return ::GetPrivateProfileInt(lpszSection, lpszEntry, nDefault, m_iniFileFilename);
+}
+
+BOOL CDDOBuilderApp::WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue)
+{
+    TCHAR szT[16];
+    _stprintf_s(szT, _countof(szT), _T("%d"), nValue);
+    return ::WritePrivateProfileString(lpszSection, lpszEntry, szT, m_iniFileFilename);
+}
+
+CString CDDOBuilderApp::GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault)
+{
+    if (lpszDefault == NULL)
+    {
+        lpszDefault = _T(""); // don't pass in NULL
+    }
+    TCHAR szT[4096];
+    DWORD dw = ::GetPrivateProfileString(lpszSection, lpszEntry, lpszDefault, szT, _countof(szT), m_iniFileFilename);
+    VERIFY(dw < 4095);
+    return szT;
+}
+
+BOOL CDDOBuilderApp::WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue)
+{
+    VERIFY(AtlStrLen(m_iniFileFilename) < 4095); // can't read in bigger
+    return ::WritePrivateProfileString(lpszSection, lpszEntry, lpszValue, m_iniFileFilename);
+}
+
+BOOL CDDOBuilderApp::GetProfileBinary(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPBYTE* ppData, UINT* pBytes)
+{
+    CString str = GetProfileString(lpszSection, lpszEntry, NULL);
+    if (str.IsEmpty())
+    {
+        return FALSE;
+    }
+    VERIFY(str.GetLength() % 2 == 0);
+    INT_PTR nLen = str.GetLength();
+    *pBytes = UINT(nLen) / 2;
+    *ppData = new BYTE[*pBytes+5];
+    for (int i = 0; i < nLen; i += 2)
+    {
+        (*ppData)[i / 2] = (BYTE)(((str[i + 1] - 'A') << 4) + (str[i] - 'A'));
+    }
+    return TRUE;
+}
+
+BOOL CDDOBuilderApp::WriteProfileBinary(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPBYTE pData, UINT nBytes)
+{
+    // convert to string and write out
+    LPTSTR lpsz = new TCHAR[nBytes * 2 + 1];
+    UINT i;
+    for (i = 0; i < nBytes; i++)
+    {
+        lpsz[i * 2] = (TCHAR)((pData[i] & 0x0F) + 'A'); //low nibble
+        lpsz[i * 2 + 1] = (TCHAR)(((pData[i] >> 4) & 0x0F) + 'A'); //high nibble
+    }
+    lpsz[i * 2] = 0;
+
+    BOOL bResult = WriteProfileString(lpszSection, lpszEntry, lpsz);
+    delete[] lpsz;
+    return bResult;
 }

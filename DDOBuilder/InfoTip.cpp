@@ -612,6 +612,11 @@ void CInfoTip::SetItem(
     }
     m_tipItems.push_back(pHeader);
 
+    if (pItem->HasRequirementsToUse())
+    {
+        pItem->RequirementsToUse().AddItemRequirements(m_tipItems);
+    }
+
     if (pItem->HasDropLocation())
     {
         InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;

@@ -9,6 +9,7 @@
 class Build;
 class Feat;
 class TrainedFeat;
+class InfoTipItem;
 
 class RequirementsBase :
     public XmlLib::SaxContentElement
@@ -40,6 +41,8 @@ class RequirementsBase :
                 bool includeTomes,
                 std::vector<CString> * requirements,
                 std::vector<bool> * met) const;
+
+        void AddItemRequirements(std::vector<InfoTipItem*>& infoTip) const;
 
         void SetRequirement(const Requirement& r);
         void GetExclusionGroup(std::string * enhancementId, std::string * group) const;

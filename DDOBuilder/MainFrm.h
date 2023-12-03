@@ -36,6 +36,10 @@ public:
     BreakdownItem* FindBreakdown(BreakdownType type);
     CFormView* GetPaneView(const CRuntimeClass* c);
 
+    void BeginProgress(CString fixedText);
+    void SetProgress(int nProg);
+    void EndProgress();
+
 protected:
     CMainFrame();
     DECLARE_DYNCREATE(CMainFrame)
@@ -50,12 +54,20 @@ protected:
     afx_msg void OnDockPane(UINT nID);
     afx_msg void OnDevelopmentRunwWikiItemCrawler();
     afx_msg void OnDevelopmentProcessWikiFiles();
+    afx_msg void OnDevelopmentProcessSpecificWikiFile();
     afx_msg void OnDevelopmentUpdateItemImages();
     afx_msg void OnDevelopmentUpdateWeaponImages();
     afx_msg void OnUpdateDevelopmentRunwWikiItemCrawler(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentProcessWikiFiles(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentUpdateItemImages(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentUpdateWeaponImages(CCmdUI* pCmdUI);
+    afx_msg void OnEditIgnorelistActive();
+    afx_msg void OnUpdateEditIgnorelistActive(CCmdUI* pCmdUI);
+    afx_msg LRESULT OnStartProgress(WPARAM wp, LPARAM lp);
+    afx_msg LRESULT OnSetProgress(WPARAM wp, LPARAM lp);
+    afx_msg LRESULT OnEndProgress(WPARAM wp, LPARAM lp);
+    afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
+    afx_msg LRESULT OnLogMessage(WPARAM, LPARAM);
     DECLARE_MESSAGE_MAP()
 
     BOOL CreateDockingWindows();
@@ -68,6 +80,7 @@ protected:
     void AddSmallClassImageMenuIcons();
     CCustomDockablePane* GetPane(UINT nID);
 
+    CProgressCtrl     m_ctlProgress;
     CMFCMenuBar       m_wndMenuBar;
     CMFCToolBar       m_wndToolBar;
     CMFCStatusBar     m_wndStatusBar;
@@ -79,7 +92,4 @@ protected:
     bool m_bWikiProcessing;
 
     friend class WikiDownloader;
-public:
-    afx_msg void OnEditIgnorelistActive();
-    afx_msg void OnUpdateEditIgnorelistActive(CCmdUI* pCmdUI);
 };

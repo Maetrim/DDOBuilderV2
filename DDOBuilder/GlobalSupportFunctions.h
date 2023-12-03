@@ -76,8 +76,8 @@ const EnhancementTree & GetEnhancementTree(const std::string& treeName);
 size_t ClassIndex(const std::string& className);
 const Class & ClassFromIndex(size_t index);
 Spell FindClassSpellByName(const std::string& ct, const std::string& name);
-Spell FindSpellByName(const std::string& ct);
-Spell FindItemClickieByName(const std::string& ct);
+Spell FindSpellByName(const std::string& ct, bool bSuppressError = false);
+Spell FindItemClickieByName(const std::string& ct, bool bSuppressError = false);
 const Item& FindItem(const std::string& itemName);
 
 int BaseStatToBonus(double ability);
