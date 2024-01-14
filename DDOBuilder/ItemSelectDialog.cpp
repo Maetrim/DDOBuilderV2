@@ -207,7 +207,7 @@ BOOL CItemSelectDialog::OnInitDialog()
                 false);
     }
 
-    //LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
+    LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
     m_bInitialising = false;
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
@@ -592,7 +592,7 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 if ((*it)->Name() != m_item.Name())
                 {
                     m_item = *(*it);
-                    AddSpecialSlots();  // adds reaper or mythic slots to the item
+                    AddSpecialSlots(m_slot, m_item);  // adds reaper or mythic slots to the item
                     // update the other controls
                     EnableControls();
                     // item selected, can now click ok!
@@ -624,8 +624,8 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
         if (text == " No Augment")
         {
             // "No Augment" select, clear any augment
-            augments[augmentIndex].Clear_SelectedAugment();
-            augments[augmentIndex].Clear_Value();
+            augments[augmentIndex].ClearSelectedAugment();
+            augments[augmentIndex].ClearValue();
         }
         else
         {
@@ -636,8 +636,8 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
             {
                 oldSelection = augments[augmentIndex].SelectedAugment();
             }
-            augments[augmentIndex].Set_SelectedAugment((LPCTSTR)text);
-            augments[augmentIndex].Clear_Value(); // if we just selected an augment ensure any previous value does not carry over
+            augments[augmentIndex].SetSelectedAugment((LPCTSTR)text);
+            augments[augmentIndex].ClearValue(); // if we just selected an augment ensure any previous value does not carry over
             if (oldSelection != "")
             {
                 if (oldAugment.HasGrantAugment())
@@ -709,7 +709,6 @@ void CItemSelectDialog::OnAugmentCancel(UINT nID)
 {
     UNREFERENCED_PARAMETER(nID);
     HideTip();
-    m_bIgnoreNextMessage = true;
 }
 
 void CItemSelectDialog::OnAugmentLevelSelect(UINT nID)
@@ -720,7 +719,7 @@ void CItemSelectDialog::OnAugmentLevelSelect(UINT nID)
     if (sel != CB_ERR)
     {
         std::vector<ItemAugment> augments = m_item.Augments();
-        augments[augmentIndex].Set_SelectedLevelIndex(sel);
+        augments[augmentIndex].SetSelectedLevelIndex(sel);
         m_item.Set_Augments(augments);
         PopulateAugmentList(
             &m_comboAugmentDropList[augmentIndex],
@@ -821,12 +820,12 @@ void CItemSelectDialog::OnKillFocusAugmentEdit(UINT nID)
     m_augmentValues[augmentIndex].GetWindowText(text);
     double value1 = atof(text);
     std::vector<ItemAugment> augments = m_item.Augments();
-    augments[augmentIndex].Set_Value(value1);
+    augments[augmentIndex].SetValue(value1);
     if (m_augmentValues2[augmentIndex].IsWindowVisible())
     {
         m_augmentValues2[augmentIndex].GetWindowText(text);
         double value2 = atof(text);
-        augments[augmentIndex].Set_Value2(value2);
+        augments[augmentIndex].SetValue2(value2);
     }
     m_item.Set_Augments(augments);
     EnableControls();
@@ -866,7 +865,7 @@ void CItemSelectDialog::OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult)
     // just save the column widths to registry so restored next time we run
     UNREFERENCED_PARAMETER(pNMHDR);
     UNREFERENCED_PARAMETER(pResult);
-    //SaveColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
+    SaveColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
 }
 
 void CItemSelectDialog::OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult)
@@ -1177,80 +1176,6 @@ void CItemSelectDialog::SetupFilterCombobox()
     m_comboFilter.SetCurSel(selItem);
 }
 
-void CItemSelectDialog::AddSpecialSlots()
-{
-    // add Mythic and reaper slots to the item as long as its a named item.
-    // We can tell its named as it will not have a minimum level of 1 as all
-    // non-named items (random loot and Cannith crafted) are set to min level 1
-    if (m_item.MinLevel() >= 1)
-    {
-        std::vector<ItemAugment> currentAugments = m_item.Augments();
-        AddAugment(&currentAugments, "Mythic", true);
-        std::string reaperSlot;
-        switch (m_slot)
-        {
-            case Inventory_Arrows:  break;
-            case Inventory_Armor:   reaperSlot = "Reaper Armor"; break;
-            case Inventory_Belt:    reaperSlot = "Reaper Belt"; break;
-            case Inventory_Boots:   reaperSlot = "Reaper Boot"; break;
-            case Inventory_Bracers: reaperSlot = "Reaper Bracers"; break;
-            case Inventory_Cloak:   reaperSlot = "Reaper Cloak"; break;
-            case Inventory_Gloves:  reaperSlot = "Reaper Gloves"; break;
-            case Inventory_Goggles: reaperSlot = "Reaper Goggles"; break;
-            case Inventory_Helmet:  reaperSlot = "Reaper Helmet"; break;
-            case Inventory_Necklace:reaperSlot = "Reaper Necklace"; break;
-            case Inventory_Quiver:  break;
-            case Inventory_Ring1:   
-            case Inventory_Ring2:   reaperSlot = "Reaper Ring"; break;
-            case Inventory_Trinket: reaperSlot = "Reaper Trinket"; break;
-            case Inventory_Weapon1: 
-            case Inventory_Weapon2: if (m_item.Weapon() == Weapon_ShieldBuckler
-                                        || m_item.Weapon() == Weapon_ShieldSmall
-                                        || m_item.Weapon() == Weapon_ShieldLarge
-                                        || m_item.Weapon() == Weapon_ShieldTower)
-                                    {
-                                        reaperSlot = "Reaper Shield";
-                                    }
-                                    else
-                                    {
-                                        reaperSlot = "Reaper Weapon";
-                                    }
-                                    break;
-        }
-        if (reaperSlot != "")
-        {
-            AddAugment(&currentAugments, reaperSlot, true);
-        }
-        if (m_item.CanEquipToSlot(Inventory_Ring1))
-        {
-            AddAugment(&currentAugments, "Reaper Ring", true);
-        }
-        AddAugment(&currentAugments, "Deck Curse", true);
-        // now set the slots on the item
-        m_item.Set_Augments(currentAugments);
-    }
-    else
-    {
-        //// add upgrade slots for Cannith crafted and random loot
-        //SlotUpgrade slot;
-        //slot.Set_Type("Upgrade Slot");
-        //std::vector<std::string> slots;
-        //slots.push_back("Colorless");
-        //slots.push_back("Blue");
-        //slots.push_back("Green");
-        //slots.push_back("Yellow");
-        //slots.push_back("Orange");
-        //slots.push_back("Red");
-        //slots.push_back("Purple");
-        //slot.Set_UpgradeType(slots);
-
-        //std::vector<SlotUpgrade> upgrades;
-        //upgrades.push_back(slot);   // 2 standard upgrade slots
-        //upgrades.push_back(slot);
-        //m_item.Set_SlotUpgrades(upgrades);
-    }
-}
-
 LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
 {
     if (!m_bIgnoreNextMessage)
@@ -1264,7 +1189,7 @@ LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
         }
         if (wParam >= 0)
         {
-            // we have a selection, get the filigree name
+            // we have a selection, get the augment name
             CString augmentName;
             CWnd * pWnd = GetDlgItem(lParam);
             CComboBox * pCombo =  dynamic_cast<CComboBox*>(pWnd);
@@ -1323,51 +1248,6 @@ void CItemSelectDialog::OnWindowPosChanging(WINDOWPOS * pos)
     // ensure tooltip locations are correct on window move
     CDialog::OnWindowPosChanging(pos);
     PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
-}
-
-void CItemSelectDialog::AddAugment(
-        std::vector<ItemAugment> * augments,
-        const std::string & name,
-        bool atEnd)
-{
-    // only add if it is not already present
-    bool found = false;
-    for (size_t i = 0; i < augments->size(); ++i)
-    {
-        if ((*augments)[i].Type() == name)
-        {
-            found = true;
-            break;
-        }
-    }
-    if (!found)
-    {
-        // this is a new augment slot that needs to be added
-        ItemAugment newAugment;
-        newAugment.Set_Type(name);
-        // all new augments are added before any "Mythic" slot if present
-        bool foundMythic = false;
-        size_t i;
-        for (i = 0; i < augments->size(); ++i)
-        {
-            if ((*augments)[i].Type() == "Mythic")
-            {
-                foundMythic = true;
-                break;
-            }
-        }
-        if (!atEnd && foundMythic)
-        {
-            std::vector<ItemAugment>::iterator it = augments->begin();
-            std::advance(it, i);
-            augments->insert(it, newAugment);
-        }
-        else
-        {
-            // just add to the end if no current Mythic slot
-            augments->push_back(newAugment);
-        }
-    }
 }
 
 void CItemSelectDialog::RemoveAugment(

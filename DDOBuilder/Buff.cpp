@@ -94,9 +94,9 @@ CString Buff::MakeDescription() const
         {
             str.Replace("%b1", BonusType().c_str());
         }
-        if (HasItem())
+        if (HasDescription1())
         {
-            str.Replace("%i1", Item().c_str());
+            str.Replace("%i1", Description1().c_str());
         }
         if (HasIgnore())
         {

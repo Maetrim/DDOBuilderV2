@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Cavalry Plate (Level 20)</Name>
     <Icon>HeavyArmor_1a</Icon>
     <Description>High-seas pirates plundered this richly-decorated plate mail from naval cavalry
@@ -11,18 +12,9 @@ better protection may benefit from it.</Description>
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <RequiresNoneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Bladeforged</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Warforged</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresNoneOf>
+      <Requirement>
+        <Type>NotConstruct</Type>
+      </Requirement>
     </Requirements>
     <Armor>Medium</Armor>
     <ArmorBonus>26</ArmorBonus>
@@ -55,37 +47,35 @@ better protection may benefit from it.</Description>
       <Type>MithralArmor</Type>
       <BonusType/>
     </Buff>
-    <NoAutoUpdate/>
     <ItemAugment>
-        <Type>Upgradeable - Tier 2</Type>
-        <Augment>
-           <Name>Greater False Life -> Superior False life</Name>
-           <Description>Superior False Life: This item grants the wearer +40 maximum health.</Description>
-           <MinLevel>20</MinLevel>
-          <Effect>
-            <Type>FalseLife</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">40</Amount>
-          </Effect>
-        </Augment>
-     </ItemAugment>
+      <Type>Upgradeable - Tier 2</Type>
+      <Augment>
+        <Name>Greater False Life -&gt; Superior False life</Name>
+        <Description>Superior False Life: This item grants the wearer +40 maximum health.</Description>
+        <MinLevel>20</MinLevel>
+        <Effect>
+          <Type>FalseLife</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">40</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <ItemAugment>
-        <Type>Upgradeable - Tier 3</Type>
-        <Augment>
-           <Name>DR 3/Chaotic -> DR 5/Chaotic, Adds a Blue Augment Slot</Name>
-          <Description>DR Damage Reduction 5/Chaotic: Reduces physical damage by 5, except from Chaotic attacks.</Description>
-           <MinLevel>20</MinLevel>
-          <Ignore>Enhancement</Ignore>
-          <Effect>
-            <Type>DR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Item>Chaotic</Item>
-          </Effect>
-          <GrantAugment>Blue</GrantAugment>
-        </Augment>
-     </ItemAugment>
+      <Type>Upgradeable - Tier 3</Type>
+      <Augment>
+        <Name>DR 3/Chaotic -&gt; DR 5/Chaotic, Adds a Blue Augment Slot</Name>
+        <Description>DR Damage Reduction 5/Chaotic: Reduces physical damage by 5, except from Chaotic attacks.</Description>
+        <MinLevel>20</MinLevel>
+        <GrantAugment>Blue</GrantAugment>
+        <Effect>
+          <Type>DR</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Chaotic</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

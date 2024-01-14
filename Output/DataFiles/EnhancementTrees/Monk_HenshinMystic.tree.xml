@@ -16,11 +16,11 @@
          <Name>Henshin Mystic: Riddle of Fire</Name>
          <InternalName>HMCore1</InternalName>
          <Description>Each Core Enhancement in the Henshin Mystic tree, including this one,
-grants you the following passive abilities:
-+1 Imbue Dice
+grants you the following passive effects:
 +3 Melee Power 
 +2 Fire Resistance 
 +3 PRR
++1 Imbue Dice
 Enemies have -2 Fire Resistance against your spells.</Description>
          <Icon>HMRiddleOfFire</Icon>
          <XPosition>0</XPosition>
@@ -66,12 +66,13 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Name>Henshin Mystic: Ki Bolt</Name>
          <InternalName>HMCore2</InternalName>
          <Description>Ki Spell-Like Ability: Ki Bolt
-Passive:
-+1 Imbue Dice
-+3 Melee Power 
-+2 Fire Resistance 
-+3 PRR 
-Enemies have -2 Fire Resistance against your spells.</Description>
+Activation Cost: 5 Ki
+Cooldown: 3 seconds
+Ki Spell-Like Ability: You fir a Ki blast that deals 1d6 Fire and 1d4 Force damage
+per Caster Level to an opponent. This damage scales with 3x Melee power.
+The target also gains a stack of Weakened Will, Feeble Fortitude, and Reduced
+Reflexes. (-1 Saving Throws, 6 second duration. Can stack up to 5 times.)
+This ability has double normal spell range.</Description>
          <Icon>HMKiBolt</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -120,16 +121,10 @@ Enemies have -2 Fire Resistance against your spells.</Description>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Sounding Staff</Name>
          <InternalName>HMCore3</InternalName>
-         <Description>You gain the Quick Draw feat, which reduces the time between using Spell-Like Abilities
-and attacking. In addition, while you are centered and wielding a quarterstaff,
-you gain +2 Ki each time you hit a creature.
-This stacks with all other sources of Ki generation.
-Passive:
-+1 Imbue Dice
-+3 Melee Power 
-+2 Fire Resistance 
-+3 PRR 
-Enemies have -2 Fire Resistance against your spells.</Description>
+         <Description>You gain the Quick Draw feat, which reduces the time between using Spell-Like
+Abilities and attacking. In addition, while you are centered and wielding a
+Quarterstaff, you gain +2 Ki each time you hit a creature.
+This stacks with all other sources of Ki generation.</Description>
          <Icon>HMSoundingStaff</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -190,12 +185,13 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Name>Henshin Mystic: Incinerating Wave</Name>
          <InternalName>HMCore4</InternalName>
          <Description>Fire Ki Spell-Like Ability: Incinerating Wave
-Passive:
-+1 Imbue Dice
-+3 Melee Power
-+2 Fire Resistance 
-+3 PRR 
-Enemies have -2 Fire Resistance against your spells.</Description>
+Activation Cost: 20 Ki
+Cooldown: 9 seconds
+Fire Ki Spell-Like Ability: You produce a wall of Ki flame that travels away
+from you, dealing 1d6+3 Fire and Force damage per Caster Level every 2 seconds
+to all opponents near it. This damage scales with 3x Melee Power. A successful
+Reflex save (DC 10 + Monk Level + Wisdom Mod + Stunning Bonuses) reduces
+damage by half.</Description>
          <Icon>HMIncineratingWave</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -245,12 +241,16 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Name>Henshin Mystic: Cauldron Of Flame</Name>
          <InternalName>HMCore5</InternalName>
          <Description>Fire Ki Spell-Like Ability: Cauldron of Flame
-Passive:
-+1 Imbue Dice
-+3 Melee Power
-+2 Fire Resistance
-+3 PRR
-Enemies have -2 Fire Resistance against your spells.</Description>
+Activation Cost: 30 Ki
+Cooldown: 1 minute
+Fire Ki Spell-Like Ability: You will flame into the world around you. Enemies
+around you take 1d2 Fire damage per Monk level every 2 seconds, increasing by
+an additional 1d2 Fire damage per Monk level every 2 seconds that you remain
+standing in the flames. This damage scales with 2x Melee Power. If you leave the
+area of the flames, this effect ends. A successful Reflex save (DC 10 + Monk Level
++ Wisdom Mod + Stunning Bonuses) reduces damage by half. While you remain
+inside your Cauldron of Flames, you personally game +20 PRR, +10 MRR, and +15%
+Dodge that ignores Dodge Cap.</Description>
          <Icon>HMCauldronOfFlame</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -355,15 +355,12 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Description>Your understanding of things has evolved to a level that defies description.
 Passive:
 +4 Wisdom 
-+1 Imbue Dice
 +10 Concentration 
 +1 Passive Ki Generation 
-+15 Melee Power 
-+2 Fire Resistance 
-Enemies have an additional -2 Fire Resistance against your spells.
-While wielding a quarterstaff inside your Cauldron of Flame, you gain +5 to
-hit and damage, and a +1 Critical Multiplier.
-+15% attack speed with quarterstaves.</Description>
++12 Melee Power (in addition to the +3 you get for each Core, for a total of +15)
++15% attack speed with Quarterstaves.
+While inside your Cauldron of Flame and wielding a Quarterstaff, +5 to Hit and
+Damage, +1 Critical Multiplier.</Description>
          <Icon>HMSerenity</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -489,40 +486,48 @@ hit and damage, and a +1 Critical Multiplier.
          <Selector>
             <EnhancementSelection>
                <Name>All-Consuming Flame</Name>
-               <Description>Fire Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to light up like tinder. On Hit: Target takes +1[W] damage, 10% more
-fire damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMAllConsumingFlame</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Porous Soul</Name>
-               <Description>Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes +1[W] damage, 10%
-more acid damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMPorousSoul</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Static Charge</Name>
-               <Description>Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes +1[W] damage, 10% more
-electrical and sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMStaticCharge</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Winter's Touch</Name>
-               <Description>Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
-10% more cold damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMWintersTouch</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -713,7 +718,8 @@ At monk levels 3, 9, and 15, the bonuses increase by 1. </Description>
                <Name>Way of the Patient Tortoise</Name>
                <Description>Like a tortoise, you are calm at heart and worries wash over you.
 You gain +1 to your Concentration skill and 5 additional hit points.
-At monk levels 3, 9, and 15, the skill bonus increases by 1 and hit point bonus increases by 5. </Description>
+At monk levels 3, 9, and 15, the skill bonus increases by 1 and hit point bonus
+increases by 5.</Description>
                <Icon>HMWayOfThePatientTortoise</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Effect>
@@ -736,10 +742,10 @@ At monk levels 3, 9, and 15, the skill bonus increases by 1 and hit point bonus 
                <Name>Way of the Tenacious Badger</Name>
                <Description>Like a badger, you are most dangerous when grievously injured.
 You gain +1 to your Intimidate skill, and whenever you are below 50% health,
-your passive Ki regeneration is increased by 1 and you deal +0.25[W] additional damage.
-Your patience has suffered, however, and you generate Ki slower when meditating.
-At monk levels 3, 9, and 15, the skill bonus increases by 1 and the damage bonus
-increases by +0.25[W].</Description>
+your passive Ki regeneration is increased by 1 and you deal +0.25[W] additional
+damage. Your patience has suffered, however, and you generate Ki slower when
+meditating. At monk levels 3, 9, and 15, the skill bonus increases by 1 and the
+damage bonus increases by +0.25[W].</Description>
                <Icon>HMWayOfTheTenaciousBadger</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Effect>
@@ -808,40 +814,48 @@ increases by +0.25[W].</Description>
             <Exclusions>HMElementalWordsI</Exclusions>
             <EnhancementSelection>
                <Name>All-Consuming Flame</Name>
-               <Description>Fire Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to light up like tinder. On Hit: Target takes +1[W] damage, 10% more
-fire damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMAllConsumingFlame</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Porous Soul</Name>
-               <Description>Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes +1[W] damage, 10%
-more acid damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMPorousSoul</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Static Charge</Name>
-               <Description>Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes +1[W] damage, 10% more
-electrical and sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMStaticCharge</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Winter's Touch</Name>
-               <Description>Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
-10% more cold damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMWintersTouch</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -890,9 +904,10 @@ cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Quick Strike</Name>
          <InternalName>HMQuickStrike</InternalName>
-         <Description>Melee Quarterstaff Attack: Deals +[1/2/3][W] damage.
-You gain a [5/15/25]% Morale bonus to melee doublestrike for 10 seconds.
-(Cooldown: [18/15/12] seconds)</Description>
+         <Description>Deals +[10/20/30]% Damage
+Cooldown: [18/15/12] seconds
+Melee Quarterstaff Attack: You gain a [5/15/25]% Morale bonus to melee doublestrike
+for 10 seconds.</Description>
          <Icon>HMQuickStrike</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -907,12 +922,25 @@ You gain a [5/15/25]% Morale bonus to melee doublestrike for 10 seconds.
                <Value>2</Value>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Morale</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 15 25</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Quick Strike</Item>
+               </Requirement>
+            </Requirements>
+            <ApplyAsItemEffect/>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Elemental Ki Strikes</Name>
          <InternalName>HMElementalKiStrikes</InternalName>
          <Description>Select one of four attacks that have secondary after effects:
-(Activation Cost: 5 Ki. Cooldown: 3 seconds) </Description>
+(Activation Cost: 5 Ki. Cooldown: 3 seconds)</Description>
          <Icon>HMElementalKiStrikes</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -931,6 +959,7 @@ You gain a [5/15/25]% Morale bonus to melee doublestrike for 10 seconds.
             <EnhancementSelection>
                <Name>Eagle Claw Attack</Name>
                <Description>Deals +20% Damage
+Activation Cost: 5 Ki
 Cooldown: 3 seconds
 Fire Ki Melee Attack: Your attacks can shatter objects. You strike at weak points
 in your opponents armor or hide, applying four stacks of Armor Destruction.
@@ -943,6 +972,7 @@ This effect can stack up to 15 times.)</Description>
             <EnhancementSelection>
                <Name>Fists of Iron</Name>
                <Description>Deals +30% Damage
+Activation Cost: 5 Ki
 +1 Critical Multiplier
 +1 Critical Threat Range
 Cooldown: 3 seconds
@@ -954,6 +984,7 @@ Earth Ki Melee Attack: You have imbued your attacks with extra force.</Descripti
             <EnhancementSelection>
                <Name>Knock on the Sky</Name>
                <Description>Deals +10% Damage
+Activation Cost: 5 Ki
 Cooldown: 3 seconds
 Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
 Your enemy deals 4% less physical damage for 30 seconds. This effect can stack up
@@ -965,6 +996,7 @@ to 5 times. </Description>
             <EnhancementSelection>
                <Name>Unbalancing Strike</Name>
                <Description>Deals +30% Damage
+Activation Cost: 5 Ki
 Cooldown: 3 seconds
 Water Ki Melee Attack: You have learned several joint strikes. You can attack
 these weak points of your opponent, throwing them off balance for a short period
@@ -977,7 +1009,7 @@ The target receives periodic saves to attempt to break free of this effect.</Des
                <Clickie/>
                <DC>
                   <Name>Henshin Mystic: Unbalancing Strike</Name>
-               <Description>Deals +30% Damage
+                  <Description>Deals +30% Damage
 Cooldown: 3 seconds
 Water Ki Melee Attack: You have learned several joint strikes. You can attack
 these weak points of your opponent, throwing them off balance for a short period
@@ -1065,40 +1097,48 @@ Rank 3: Your passive Ki regeneration is increased by 1.</Description>
             <Exclusions>HMElementalWordsII</Exclusions>
             <EnhancementSelection>
                <Name>All-Consuming Flame</Name>
-               <Description>Fire Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to light up like tinder. On Hit: Target takes +1[W] damage, 10% more
-fire damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMAllConsumingFlame</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Porous Soul</Name>
-               <Description>Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes +1[W] damage, 10%
-more acid damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMPorousSoul</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Static Charge</Name>
-               <Description>Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes +1[W] damage, 10% more
-electrical and sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMStaticCharge</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Winter's Touch</Name>
-               <Description>Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
-10% more cold damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMWintersTouch</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -1173,7 +1213,7 @@ dealing +1d6 Fire damage on hit, and an additional 1d6 Force damage on critical.
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Embrace the Void</Name>
          <InternalName>HMEmbraceTheVoid</InternalName>
-         <Description>Gain 1/2/3 Meditation use per rest, +[1/2/3] to Dodge Cap, and regenerate Ki
+         <Description>Gain +[1/2/3] Meditation use per rest, +[1/2/3] to Dodge Cap, and regenerate Ki
 faster while meditating. While you are meditating, you generate a
 protective shield which can absorb up to [25/50/100] damage, and is refreshed
 every 3 seconds.</Description>
@@ -1201,7 +1241,7 @@ every 3 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Ability I</Name>
          <InternalName>HMAbilityScoreI</InternalName>
-         <Description>+1 to an Ability of your choice:</Description>
+         <Description>+1 to any Ability score</Description>
          <Icon>HMAbilityScore</Icon>
          <XPosition>4</XPosition>
          <YPosition>3</YPosition>
@@ -1327,40 +1367,48 @@ every 3 seconds.</Description>
             <Exclusions>HMElementalWordsIII</Exclusions>
             <EnhancementSelection>
                <Name>All-Consuming Flame</Name>
-               <Description>Fire Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to light up like tinder. On Hit: Target takes +1[W] damage, 10% more
-fire damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMAllConsumingFlame</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Porous Soul</Name>
-               <Description>Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes +1[W] damage, 10%
-more acid damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMPorousSoul</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Static Charge</Name>
-               <Description>Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes +1[W] damage, 10% more
-electrical and sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMStaticCharge</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Winter's Touch</Name>
-               <Description>Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
-10% more cold damage for 30 seconds, and gains 2 stacks of Vulnerable.
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
+               <Description>Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
                <Icon>HMWintersTouch</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -1409,8 +1457,9 @@ cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Focus</Name>
          <InternalName>HMFocus</InternalName>
-         <Description>Grants a passive bonus to the Monk and nearby allies that grants +10 Exceptional
-bonus to Spell Power and +5 Exceptional Bonuses to both Melee and Ranged Power.</Description>
+         <Description>While centered, you and nearby party members gain a +10 Exceptional bonus to
+Universal Spell Power, a +5 Exceptional Bonus to hit, and a +5 Exceptional bonus
+to Melee and Ranged Power.</Description>
          <Icon>HMFocus</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -1429,18 +1478,20 @@ bonus to Spell Power and +5 Exceptional Bonuses to both Melee and Ranged Power.<
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Exceptional</Bonus>
-            <Item>All</Item>
             <AType>Simple</AType>
             <Amount size="1">10</Amount>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Type>RangedPower</Type>
+            <Type>Weapon_AttackBonus</Type>
+            <Type>Weapon_AttackBonusCritical</Type>
             <Bonus>Exceptional</Bonus>
             <AType>Simple</AType>
             <Amount size="1">5</Amount>
+            <Item>All</Item>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1550,8 +1601,10 @@ bonus to Spell Power and +5 Exceptional Bonuses to both Melee and Ranged Power.<
          <Name>Henshin Mystic: Void Strike</Name>
          <InternalName>HMVoidStrike</InternalName>
          <Description>Deals +30% Damage
+Activation Cost: 10 Ki
 +1 Critical Multiplier
 +1 Critical Threat Range
+Cooldown: 3 seconds
 Void Ki Melee Attack: You have learned to make attacks backed by pure Ki energy.
 On Hit: +30% damage, +1 to Critical Threat Range and Multiplier, and 10d6 Force
 damage that scales with Melee Power. On Vorpal: Your enemy is erased from
@@ -1636,7 +1689,7 @@ with quarterstaves.</Description>
          <Effect>
             <Type>Weapon_CriticalRange</Type>
             <Type>Weapon_CriticalMultiplier</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Competence</Bonus>
             <Item>Quarterstaff</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
@@ -1645,7 +1698,8 @@ with quarterstaves.</Description>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Self Defense</Name>
          <InternalName>HMSelfDefense</InternalName>
-         <Description>Grants +5 MRR and MRR Cap and 25% competence bonus to Hit Points</Description>
+         <Description>Grants +5 MRR and MRR Cap.
+You gain a +25% Competence bonus to Max Hit Points</Description>
          <Icon>SelfDefense</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1683,7 +1737,7 @@ with quarterstaves.</Description>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Balance in Dawn</Name>
          <InternalName>HMBalanceInDawn</InternalName>
-         <Description>Select a melee attack that opposes your philosophy:</Description>
+         <Description>Select a melee attack that opposes your philosophy.</Description>
          <Icon>HMBalanceInDawn</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -1707,6 +1761,7 @@ with quarterstaves.</Description>
             <EnhancementSelection>
                <Name>Henshin Mystic: Every Light Casts a Shadow</Name>
                <Description>Deals +20% Damage
+Activation Cost: 15 Ki
 Cooldown: 12 seconds
 Dark Ki Melee Attack: On Damage: Target suffers 1d4 Negative Levels.
 All nearby enemies suffer 1d2 Negative Levels.</Description>
@@ -1723,7 +1778,8 @@ All nearby enemies suffer 1d2 Negative Levels.</Description>
             <EnhancementSelection>
                <Name>Henshin Mystic: Shadows Cannot Exist Without Light</Name>
                <Description>Deals +20% Damage
-Cooldown: 12 seconds
+Activation Cost: 15 Ki
+Cooldown: 6 seconds
 Light Ki Melee Attack: On Damage: Target suffers 1d6 Light damage every 2 seconds
 for 10 seconds. This can stack up to 10 times. All allies around you receive 100
 Positive Energy healing. (This healing effect is unaffected by Spell Power.)</Description>

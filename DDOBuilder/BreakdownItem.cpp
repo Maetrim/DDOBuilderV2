@@ -479,7 +479,7 @@ AbilityType BreakdownItem::LargestStatBonus()
         // must be active
         bool active = m_mainAbility[i].requirements.Met(
                 *m_pCharacter->ActiveBuild(),
-                m_pCharacter->ActiveBuild()->Level(),
+                m_pCharacter->ActiveBuild()->Level()-1,
                 true,
                 Weapon(),
                 Weapon_Unknown);
@@ -599,7 +599,7 @@ void BreakdownItem::RemoveInactive(
     {
         // only add inactive items when it has a stance flag
         if ((*it).HasRequirementsToBeActive()
-                && !(*it).RequirementsToBeActive().Met(*pBuild, pBuild->Level(), true, Weapon(), Weapon_Unknown))
+                && !(*it).RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, Weapon(), Weapon_Unknown))
         {
             // add the item to be removed into the inactive list
             inactiveEffects->push_back((*it));
@@ -636,13 +636,13 @@ void BreakdownItem::RemoveNonStacking(
             if (sit != tit)
             {
                 // not the same item, gets removed if it is a duplicate
-                if ((*sit).Bonus() == (*tit).Bonus())
+                const Bonus& bonus = FindBonus((*sit).Bonus());
+                if (bonus.Stacking() == StackingType_HighestOnly)
                 {
-                    // its the same bonus type, so it may be affected by stacking rules
-                    // look up the bonus type
-                    const Bonus& bonus = FindBonus((*sit).Bonus());
-                    if (bonus.Stacking() == StackingType_HighestOnly)
+                    if ((*sit).Bonus() == (*tit).Bonus())
                     {
+                        // its the same bonus type, so it may be affected by stacking rules
+                        // look up the bonus type
                         removeIt |= ((*sit).TotalAmount(false) <= (*tit).TotalAmount(false));
                     }
                 }

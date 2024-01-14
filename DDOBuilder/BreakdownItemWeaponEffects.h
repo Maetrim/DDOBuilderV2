@@ -48,6 +48,8 @@ class BreakdownItemWeaponEffects :
         virtual void EnhancementEffectApplied(Build*, const Effect& effect) override;
         virtual void EnhancementEffectRevoked(Build*, const Effect& effect) override;
         virtual void SliderChanged(Build*, const std::string& sliderName, int newValue) override;
+        virtual void StanceActivated(Build* pBuild, const std::string& stanceName) override;
+        virtual void StanceDeactivated(Build* pBuild, const std::string& stanceName) override;
 
     private:
         enum NotificationType

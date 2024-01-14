@@ -557,49 +557,51 @@ void BreakdownItemWeapon::SliderChanged(
     m_drBypass.SliderChanged(pBuild, sliderName, newValue);
 }
 
-//void BreakdownItemWeapon::UpdateStanceActivated(
-//        Character * pBuild,
-//        const std::string & stanceName)
-//{
-//    // pass through to all our sub breakdowns
-//    m_baseDamage.UpdateStanceActivated(pBuild, stanceName);
-//    m_attackBonus.UpdateStanceActivated(pBuild, stanceName);
-//    m_damageBonus.UpdateStanceActivated(pBuild, stanceName);
-//    m_otherDamageEffects.UpdateStanceActivated(pBuild, stanceName);
-//    //m_vorpalRange.UpdateStanceActivated(pBuild, stanceName);
-//    m_criticalThreatRange.UpdateStanceActivated(pBuild, stanceName);
-//    m_criticalAttackBonus.UpdateStanceActivated(pBuild, stanceName);
-//    m_criticalDamageBonus.UpdateStanceActivated(pBuild, stanceName);
-//    m_otherCriticalDamageEffects.UpdateStanceActivated(pBuild, stanceName);
-//    m_criticalMultiplier.UpdateStanceActivated(pBuild, stanceName);
-//    m_criticalMultiplier19To20.UpdateStanceActivated(pBuild, stanceName);
-//    m_attackSpeed.UpdateStanceActivated(pBuild, stanceName);
-//    m_ghostTouch.UpdateStanceActivated(pBuild, stanceName);
-//    m_trueSeeing.UpdateStanceActivated(pBuild, stanceName);
-//    m_drBypass.UpdateStanceActivated(pBuild, stanceName);
-//}
-//
-//void BreakdownItemWeapon::UpdateStanceDeactivated(
-//        Character * pBuild,
-//        const std::string & stanceName)
-//{
-//    // pass through to all our sub breakdowns
-//    m_baseDamage.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_attackBonus.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_damageBonus.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_otherDamageEffects.UpdateStanceDeactivated(pBuild, stanceName);
-//    //m_vorpalRange.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_criticalThreatRange.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_criticalAttackBonus.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_criticalDamageBonus.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_otherCriticalDamageEffects.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_criticalMultiplier.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_criticalMultiplier19To20.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_attackSpeed.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_ghostTouch.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_trueSeeing.UpdateStanceDeactivated(pBuild, stanceName);
-//    m_drBypass.UpdateStanceDeactivated(pBuild, stanceName);
-//}
+void BreakdownItemWeapon::StanceActivated(
+    Build* pBuild,
+    const std::string& stanceName)
+{
+    BreakdownItem::StanceActivated(pBuild, stanceName);
+    // pass through to all our sub breakdowns
+    m_baseDamage.StanceActivated(pBuild, stanceName);
+    m_attackBonus.StanceActivated(pBuild, stanceName);
+    m_damageBonus.StanceActivated(pBuild, stanceName);
+    //m_otherDamageEffects.StanceActivated(pBuild, stanceName);
+    /////////m_vorpalRange.StanceActivated(pBuild, stanceName);
+    m_criticalThreatRange.StanceActivated(pBuild, stanceName);
+    m_criticalAttackBonus.StanceActivated(pBuild, stanceName);
+    m_criticalDamageBonus.StanceActivated(pBuild, stanceName);
+    //m_otherCriticalDamageEffects.StanceActivated(pBuild, stanceName);
+    m_criticalMultiplier.StanceActivated(pBuild, stanceName);
+    m_criticalMultiplier19To20.StanceActivated(pBuild, stanceName);
+    m_attackSpeed.StanceActivated(pBuild, stanceName);
+    m_ghostTouch.StanceActivated(pBuild, stanceName);
+    m_trueSeeing.StanceActivated(pBuild, stanceName);
+    m_drBypass.StanceActivated(pBuild, stanceName);
+}
+
+void BreakdownItemWeapon::StanceDeactivated(
+    Build* pBuild,
+    const std::string& stanceName)
+{
+    BreakdownItem::StanceDeactivated(pBuild, stanceName);
+    // pass through to all our sub breakdowns
+    m_baseDamage.StanceDeactivated(pBuild, stanceName);
+    m_attackBonus.StanceDeactivated(pBuild, stanceName);
+    m_damageBonus.StanceDeactivated(pBuild, stanceName);
+    //m_otherDamageEffects.StanceDeactivated(pBuild, stanceName);
+    /////////m_vorpalRange.StanceDeactivated(pBuild, stanceName);
+    m_criticalThreatRange.StanceDeactivated(pBuild, stanceName);
+    m_criticalAttackBonus.StanceDeactivated(pBuild, stanceName);
+    m_criticalDamageBonus.StanceDeactivated(pBuild, stanceName);
+    //m_otherCriticalDamageEffects.StanceDeactivated(pBuild, stanceName);
+    m_criticalMultiplier.StanceDeactivated(pBuild, stanceName);
+    m_criticalMultiplier19To20.StanceDeactivated(pBuild, stanceName);
+    m_attackSpeed.StanceDeactivated(pBuild, stanceName);
+    m_ghostTouch.StanceDeactivated(pBuild, stanceName);
+    m_trueSeeing.StanceDeactivated(pBuild, stanceName);
+    m_drBypass.StanceDeactivated(pBuild, stanceName);
+}
 
 void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)
 {

@@ -71,8 +71,6 @@ class CItemSelectDialog : public CDialog
         void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
         void SetTooltipText(const Augment & augment, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
         void SetupFilterCombobox();
-        void AddSpecialSlots();
-        void AddAugment(std::vector<ItemAugment> * augments, const std::string & name, bool atEnd = false);
         void RemoveAugment(std::vector<ItemAugment> * augments, const std::string & name);
         void SetupItemLevel(size_t maxLevel, size_t currentLevel, bool bSelectable);
 

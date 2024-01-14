@@ -185,6 +185,33 @@ void Character::SetBuildLevel(
     (*lit).SetBuildLevel(buildIndex, level);
 }
 
+void Character::ToggleApplyGuildBuffs()
+{
+    if (HasApplyGuildBuffs())
+    {
+        Set_ApplyGuildBuffs(!ApplyGuildBuffs());
+    }
+    else
+    {
+        Set_ApplyGuildBuffs(true);
+    }
+    Build *pBuild = ActiveBuild();
+    if (pBuild != NULL)
+    {
+        pBuild->ApplyGuildBuffs(ApplyGuildBuffs());
+    }
+}
+
+void Character::SetGuildLevel(size_t level)
+{
+    Set_GuildLevel(level);
+    Build* pBuild = ActiveBuild();
+    if (pBuild != NULL)
+    {
+        pBuild->GuildLevelChange();
+    }
+}
+
 void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex)
 {
     if (m_uiActiveLifeIndex != lifeIndex

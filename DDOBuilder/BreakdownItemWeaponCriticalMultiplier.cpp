@@ -14,6 +14,10 @@ BreakdownItemWeaponCriticalMultiplier::BreakdownItemWeaponCriticalMultiplier(
     BreakdownItem(type, treeList, hItem),
     m_pBaseTotal(pBaseTotal)
 {
+    if (m_pBaseTotal != NULL)
+    {
+        m_pBaseTotal->AttachObserver(this);
+    }
 }
 
 BreakdownItemWeaponCriticalMultiplier::~BreakdownItemWeaponCriticalMultiplier()
@@ -49,7 +53,6 @@ void BreakdownItemWeaponCriticalMultiplier::CreateOtherEffects()
         {
             // we need this weapons standard multiplier as our base
             ASSERT(m_pBaseTotal != NULL);
-            m_pBaseTotal->AttachObserver(this);
             double base = m_pBaseTotal->Total();
             if (base != 0)
             {

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Smoldering Club</Name>
     <Icon/>
     <Description>A weapon found deep within the Temple of Elemental Evil.</Description>
@@ -14,7 +15,7 @@
     <DamageModifier>Strength</DamageModifier>
     <DRBypass>Bludgeon</DRBypass>
     <DRBypass>Magic</DRBypass>
-    <WeaponDamage>1.5</WeaponDamage>
+    <WeaponDamage>1</WeaponDamage>
     <BaseDice>
       <Number>1</Number>
       <Sides>6</Sides>
@@ -30,7 +31,6 @@
       <Type>FireVulnerability</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <NoAutoUpdate/>
     <ItemAugment>
       <Type>Tier 1</Type>
       <Augment>
@@ -45,17 +45,17 @@ Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll of
 dealing damage to the target and all enemies near it for 15d6 fire damage.
 A successful Fortitude save (DC 39) reduces this by half.</Description>
         <MinLevel>7</MinLevel>
-       <Effect>
-         <Type>WeaponOtherDamageBonusCritical</Type>
-         <Bonus>Stacking</Bonus>
-         <AType>CriticalDice</AType>
-         <Dice>
-           <Number size="6">0 0 1 2 3 4 </Number>
-           <Sides size="6">0 0 6 6 6 6</Sides>
-           <Damage>Untyped</Damage>
-         </Dice>
-         <Item>All</Item>
-       </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <AType>CriticalDice</AType>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4 </Number>
+            <Sides size="6">0 0 6 6 6 6</Sides>
+            <Damage>Untyped</Damage>
+          </Dice>
+        </Effect>
       </Augment>
     </ItemAugment>
     <ItemAugment>
@@ -69,17 +69,17 @@ Additionally, if you roll a 20 when attacking and confirm the critical hit, the
 weapon blasts your target, doing 4 to 24 more fire damage.</Description>
         <MinLevel>7</MinLevel>
         <GrantAugment>Purple</GrantAugment>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Not Set</Bonus>
-      <Dice>
-           <Number size="6">0 1 2 3 4 5 </Number>
-           <Sides size="6">0 10 10 10 10 10</Sides>
-           <Damage>Fire</Damage>
-      </Dice>
-      <Item>All</Item>
-    </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 1 2 3 4 5 </Number>
+            <Sides size="6">0 10 10 10 10 10</Sides>
+            <Damage>Fire</Damage>
+          </Dice>
+        </Effect>
       </Augment>
     </ItemAugment>
   </Item>

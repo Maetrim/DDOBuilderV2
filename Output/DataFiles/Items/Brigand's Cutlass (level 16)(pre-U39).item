@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Brigand's Cutlass (level 16)(pre-U39)</Name>
     <Icon>Scimitar_4</Icon>
     <Description>A curved sword with an elegant hilt. Popular amongst pirates for its intimidating
@@ -41,7 +42,6 @@ lawful opponents.</Description>
       <Value1>15</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <NoAutoUpdate/>
     <ItemAugment>
       <Type>Tier 2</Type>
       <Augment>
@@ -64,23 +64,23 @@ lawful opponents.</Description>
         <Description>Absolute Chaos: This weapon is infused with the ultimate power of Chaos. It does an additional 2 to 12 damage to non-chaotic targets and can only be wielded by Chaotic-aligned characters.</Description>
         <MinLevel>8</MinLevel>
         <Icon>Heroism</Icon>
-         <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Type>WeaponOtherDamageBonusCritical</Type>
-         <Bonus>Equipment</Bonus>
-         <Dice>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Requirements version="1">
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Chaotic</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
             <Number size="1">2</Number>
             <Sides size="1">6</Sides>
             <Damage>Untyped</Damage>
-         </Dice>
-         <Item>All</Item>
-         <Requirements>
-            <Requirement>
-               <Type>EnemyType</Type>
-               <Item>Non-Chaotic</Item>
-            </Requirement>
-         </Requirements>
-         </Effect>
+          </Dice>
+        </Effect>
       </Augment>
     </ItemAugment>
   </Item>

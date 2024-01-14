@@ -4,6 +4,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "Effect.h"
+#include "Stance.h"
 
 class Buff :
     public XmlLib::SaxContentElement
@@ -33,9 +34,11 @@ class Buff :
                 DL_OPTIONAL_SIMPLE(_, double, Value1, 0.0) \
                 DL_OPTIONAL_SIMPLE(_, double, Value2, 0.0) \
                 DL_OPTIONAL_STRING(_, BonusType) \
+                DL_OPTIONAL_STRING(_, Description1) \
                 DL_OPTIONAL_STRING(_, Item) \
                 DL_OPTIONAL_STRING(_, Item2) \
-                DL_OBJECT_LIST(_, Effect, Effects)
+                DL_OBJECT_LIST(_, Effect, Effects) \
+                DL_OBJECT_LIST(_, Stance, Stances)
 
         DL_DECLARE_ACCESS(Buff_PROPERTIES)
         DL_DECLARE_VARIABLES(Buff_PROPERTIES)

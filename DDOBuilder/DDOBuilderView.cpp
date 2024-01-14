@@ -518,10 +518,13 @@ void CDDOBuilderView::RestoreControls()
         ShowHidControls(40, &m_comboAILevel40, IDC_STATIC_LEVEL40);
 
         // guild level
-        //CString level;
-        //level.Format("%d", m_pCharacter->GuildLevel());
-        //m_editGuildLevel.SetWindowText(level);
-        //m_buttonGuildBuffs.SetCheck(m_pCharacter->HasApplyGuildBuffs() ? BST_CHECKED : BST_UNCHECKED);
+        CString level;
+        level.Format("%d", m_pCharacter->HasGuildLevel() ? m_pCharacter->GuildLevel() : 0);
+        m_editGuildLevel.SetWindowText(level);
+        bool bApplyGuildBuffs = m_pCharacter->HasApplyGuildBuffs() ? m_pCharacter->ApplyGuildBuffs() : false;
+        m_buttonGuildBuffs.SetCheck(bApplyGuildBuffs ? BST_CHECKED : BST_UNCHECKED);
+        m_editGuildLevel.EnableWindow(TRUE);
+        m_buttonGuildBuffs.EnableWindow(TRUE);
     }
     else
     {
@@ -1191,16 +1194,16 @@ void CDDOBuilderView::OnSize(UINT nType, int cx, int cy)
 void CDDOBuilderView::OnButtonGuildBuffs()
 {
     // toggle the enabled guild buffs status
-    //m_pCharacter->ToggleApplyGuildBuffs();
+    m_pCharacter->ToggleApplyGuildBuffs();
 }
 
 void CDDOBuilderView::OnKillFocusGuildLevel()
 {
     // change the guild level
-    //CString text;
-    //m_editGuildLevel.GetWindowText(text);
-    //size_t level = atoi(text);      // its ES_NUMBER so guaranteed to work
-    //m_pCharacter->SetGuildLevel(level);
+    CString text;
+    m_editGuildLevel.GetWindowText(text);
+    size_t level = atoi(text);      // its ES_NUMBER so guaranteed to work
+    m_pCharacter->SetGuildLevel(level);
 }
 
 void CDDOBuilderView::UpdateRadioPoints()

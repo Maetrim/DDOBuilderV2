@@ -1126,7 +1126,15 @@ void Requirement::CreateRequirementStrings(
                     m_Item.front().c_str());
             break;
         }
-    default:
+        case Requirement_StartingWorld:
+        {
+            met = EvaluateStartingWorld(build);
+            description.Format(
+                "Requires: Starting World of %s",
+                m_Item.front().c_str());
+            break;
+        }
+        default:
         {
             met = false;
             description = "Requires: Unknown";

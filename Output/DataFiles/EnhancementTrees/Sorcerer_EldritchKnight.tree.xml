@@ -14,12 +14,14 @@
       <EnhancementTreeItem>
          <Name>Eldritch Knight: Eldritch Strike</Name>
          <InternalName>EKSorcCore1</InternalName>
-         <Description>Melee Cleave Attack: Sheathe your weapon in eldritch energies, striking foes in front
-of you for +1[W] damage. If this attack hits, your weapon also releases a blast of magical energy,
-dealing an additional 1 to 2 Force Damage per character level to all nearby foes.
-This additional Force damage is affected by your Force Spell Power.
+         <Description>Deals +10% Damage
 Cooldown: 12 seconds
-Passive:  You gain proficiency with Simple Weapons. Every Core Ability in this tree,
+Melee Cleave Attack: Sheathe your weapon in eldritch energies. If this attack
+hits, your weapon also releases a blast of magical energy, dealing an additional 
+to 2 Force Damage per character level to all nearby foes.
+This additional Force damage is affected by your Force Spell Power.
+
+Passive: You gain proficiency with Simple Weapons. Every Core Ability in this tree,
 including this one, grants +10 Maximum Hit Points.</Description>
          <Icon>EKEldritchStrike</Icon>
          <XPosition>0</XPosition>
@@ -72,7 +74,7 @@ including this one, grants +10 Maximum Hit Points.</Description>
          <Description>You gain four elemental toggles that each imbue your weapon with
 elemental power. Only one may be active at a time, causing them to deal an additional
 1d6 (element) damage on hit. You gain an additional Imbue Dice every 3 Sorcerer levels
-(at 6, 9, 12, 15 and 18). This damage scales with Spell Power. While active,
+(at 3, 6, 9, 12, 15 and 18). This damage scales with Spell Power. While active,
 your Eldritch Strike deals 1-2 additional (element) damage per Character Level which
 scales with Spell Power. While this is enabled, your weapon and shield attacks have Ghost Touch.
 Passive: +2% Doublestrike, +10 Universal Spell Power. You also gain proficiency
@@ -160,7 +162,7 @@ with Fire Spell power.</Description>
             <Bonus>Enhancement</Bonus>
             <AType>ClassLevel</AType>
             <StackSource>Sorcerer</StackSource>
-            <Amount size="21">0 1 1 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
+            <Amount size="21">0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Amount>
          </Effect>
          <Effect>
             <Type>AddGroupWeapon</Type>
@@ -531,8 +533,10 @@ Activation Cost: [8/6/4] Spell Points</Description>
       <EnhancementTreeItem>
          <Name>Eldritch Knight: Arcane Siphon</Name>
          <InternalName>EKSorcArcaneSiphon</InternalName>
-         <Description>Melee Attack: +[1/2/3][W]
-On Hit: Gain +[10/20/30] Competence bonus to Universal Spell Power for 20 seconds.</Description>
+         <Description>Deals +[10/20/30]% Damage
+Cooldown: 12 seconds
+Melee Attack: On Hit: Gain +[10/20/30] Competence bonus to Universal Spell Power
+for 20 seconds.</Description>
          <Icon>EKArcaneSiphon</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -947,7 +951,7 @@ Action Boost bonus to Melee and Ranged Power for 20 seconds.</Description>
          <InternalName>EKSorcKnightsTransformation</InternalName>
          <Description>Toggle: While this toggle is active your base attack bonus is increased to equal
 your character level. When you successfully hit with an Eldritch Strike you gain
-Knight's Strike: +30 universal spell power and +3% Critical Spell Damage for 30 seconds.
+Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 seconds.
 
 Exclusive from the Enlarge Metamagic and any Eldritch Blast shape stance.
 This stance works with other offensive and defensive stances, as well as Rages.</Description>
@@ -964,7 +968,13 @@ This stance works with other offensive and defensive stances, as well as Rages.<
             <Icon>EKKnightsTransformation</Icon>
             <Description>Toggle: While this toggle is active your base attack bonus is increased to equal
 your character level. When you successfully hit with an Eldritch Strike you gain
-Knight's Strike: +30 universal spell power and +3% Critical Spell Damage for 30 seconds.</Description>
+Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 seconds.</Description>
+            <Group>Major Form</Group>
+         </Stance>
+         <Stance>
+            <Name>Knight's Strike</Name>
+            <Icon>EKKnightsTransformation</Icon>
+            <Description>Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 seconds.</Description>
          </Stance>
          <Requirements>
             <Requirement>
@@ -981,7 +991,7 @@ Knight's Strike: +30 universal spell power and +3% Critical Spell Damage for 30 
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
-                  <Item>Knight's Transformation</Item>
+                  <Item>Knight's Strike</Item>
                </Requirement>
             </Requirements>
          </Effect>
@@ -993,7 +1003,7 @@ Knight's Strike: +30 universal spell power and +3% Critical Spell Damage for 30 
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
-                  <Item>Knight's Transformation</Item>
+                  <Item>Knight's Strike</Item>
                </Requirement>
             </Requirements>
          </Effect>
@@ -1467,15 +1477,16 @@ Cooldown: 3 Minutes</Description>
       <EnhancementTreeItem>
          <Name>Eldritch Knight: Eldritch Tempest</Name>
          <InternalName>EKSorcEldritchTempest</InternalName>
-         <Description>Activate: Perform a spinning melee attack, dealing weapon damage +5[W] to all
-nearby enemies and knocking them prone for 1 second. This attack has +10 to Critical
-Threat Range and +3 to Critical Multiplier. Enemies affected are knocked prone for
-one second and Slowed by 50% for 6 seconds.
+         <Description>Deals +50% Damage
++3 Critical Multiplier
++10 Critical Threat Range
+Cooldown: [60/45/30] Seconds
+Activation Cost: [25/20/15] Spell points.
+Activate: Perform a spinning melee attack. Enemies affected are and knocked prone
+for 1 second and Slowed by 50% for 6 seconds.
 If any foes are struck by Eldritch Tempest, your weapon also releases an explosion
 of magical force, dealing an additional 1d6 Force damage per character level to
-all nearby enemies. This additional force damage is affected by your spell power.
-Activation Cost: [25/20/15] Spell points.
-Cooldown: [60/45/30] seconds</Description>
+all nearby enemies. This additional force damage is affected by your spell power.</Description>
          <Icon>EKEldritchTempest</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>

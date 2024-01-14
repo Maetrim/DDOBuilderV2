@@ -1,33 +1,28 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Robe of the Magi</Name>
     <Icon>Cloth_1c</Icon>
     <Description>This robe requires an arcane spell caster to unlock all of its potential. It
 is much favored by the arcane followers of Black Abbot.</Description>
-    <DropLocation>Litany of the Dead, Mentau 's, High Priest of Vol 's or Cholthulzz' chest</DropLocation>
+    <DropLocation>Litany of the Dead, Mentau 's, High Priest of Vol 's or Cholthulzz' needs verificationchest</DropLocation>
     <MinLevel>14</MinLevel>
-    <NoAutoUpdate/>
     <EquipmentSlot>
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <Requirement>
-        <Type>NotConstruct</Type>
-      </Requirement>
-       <RequiresOneOf>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Bard</Item>
-         </Requirement>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Sorcerer</Item>
-         </Requirement>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Wizard</Item>
-         </Requirement>
-       </RequiresOneOf>
+      <RequiresNoneOf>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Bladeforged</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Warforged</Item>
+          <Value>1</Value>
+        </Requirement>
+      </RequiresNoneOf>
     </Requirements>
     <Armor>Cloth</Armor>
     <Buff>
@@ -43,8 +38,8 @@ is much favored by the arcane followers of Black Abbot.</Description>
     <Buff>
       <Type>SpellPenetrationNumeral</Type>
       <Value1>2</Value1>
-      <Item>II</Item>
       <BonusType>Equipment</BonusType>
+      <Item>II</Item>
     </Buff>
     <ItemAugment>
       <Type>Green</Type>

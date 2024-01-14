@@ -82,3 +82,38 @@ const Augment& ItemAugment::GetSelectedAugment() const
     }
     return badAugment;
 }
+
+void ItemAugment::SetType(const std::string& type)
+{
+    Set_Type(type);
+}
+
+void ItemAugment::ClearSelectedAugment()
+{
+    Clear_SelectedAugment();
+}
+
+void ItemAugment::ClearValue()
+{
+    Clear_Value();
+}
+
+void ItemAugment::SetSelectedAugment(const std::string& name)
+{
+    Set_SelectedAugment(name);
+}
+
+void ItemAugment::SetSelectedLevelIndex(int level)
+{
+    Set_SelectedLevelIndex(level);
+}
+
+void ItemAugment::SetValue(double value)
+{
+    Set_Value(value);
+}
+
+void ItemAugment::SetValue2(double value)
+{
+    Set_Value2(value);
+}

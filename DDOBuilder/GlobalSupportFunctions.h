@@ -9,6 +9,7 @@
 #include "AbilityTypes.h"
 #include "BreakdownTypes.h"
 #include "DamageTypes.h"
+#include "InventorySlotTypes.h"
 #include "SkillTypes.h"
 #include "SpellPowerTypes.h"
 #include "SpellSchoolTypes.h"
@@ -25,7 +26,9 @@ class EnhancementTree;
 class EnhancementTreeItem;
 class Feat;
 class Filigree;
+class GuildBuff;
 class Item;
+class ItemAugment;
 class Gem;
 class MouseHook;
 class Patron;
@@ -59,6 +62,7 @@ const std::list<Spell>& Spells();
 const std::list<Item>& Items();
 const std::list<Quest>& Quests();
 const std::list<Patron>& Patrons();
+const std::list<GuildBuff>& GuildBuffs();
 CImageList& ItemsImages();
 const std::list<Gem>& SentientGems();
 const std::list<WeaponGroup>& WeaponGroups();
@@ -184,3 +188,9 @@ void AddToIgnoreList(const std::string& name);
 void RemoveFromIgnoreList(const std::string& name);
 bool IsInIgnoreList(const std::string& name);
 CString ExtractLine(size_t index, CString lines);
+void AddSpecialSlots(InventorySlotType slot, Item& item);
+void AddAugment(std::vector<ItemAugment>* augments, const std::string& name, bool atEnd = false);
+void LoadColumnWidthsByName(CListCtrl* control, const std::string& fmtString);
+void SaveColumnWidthsByName(CListCtrl* control, const std::string& fmtString);
+void FormatExportData(std::string* exportData);
+void FormatExportData(CString* exportData);

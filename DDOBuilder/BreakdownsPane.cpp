@@ -223,7 +223,7 @@ void CBreakdownsPane::OnInitialUpdate()
         m_itemBreakdownList.InsertColumn(2, "Value", LVCFMT_LEFT, 50);
         m_itemBreakdownList.InsertColumn(3, "Bonus Type", LVCFMT_LEFT, 50);
         m_itemBreakdownList.SetExtendedStyle(m_itemBreakdownList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
-        //LoadColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
+        LoadColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
         // Image for copy to clipboard button
         m_buttonClipboard.SetImage(IDB_BITMAP_COPYTOCLIPBOARD);
     }
@@ -1193,14 +1193,14 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
 
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-            "Imbue Dice",
+            "Bonus Imbue Dice",
             hOffensiveParent,
             TVI_LAST);
         BreakdownItem* pID = new BreakdownItemSimple(
                 this,
                 Breakdown_ImbueDice,
                 Effect_ImbueDice,
-                "Imbue Dice",
+                "Bonus Imbue Dice",
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pID);
@@ -1777,6 +1777,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellSchool(Breakdown_SpellSchoolIllusion, SpellSchool_Illusion, "Illusion DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolNecromancy, SpellSchool_Necromancy, "Necromancy DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolTransmutation, SpellSchool_Transmutation, "Transmutation DC", hItem);
+        AddSpellSchool(Breakdown_SpellSchoolFear, SpellSchool_Fear, "Fear DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem);
         AddSpellSchool(Breakdown_SpellSchoolRuneArm, SpellSchool_RuneArm, "Rune Arm DC Bonus", hItem);
     }
@@ -2601,97 +2602,97 @@ void CBreakdownsPane::OnEndtrackBreakdownList(NMHDR* pNMHDR, LRESULT* pResult)
     // just save the column widths to registry so restored next time we run
     UNREFERENCED_PARAMETER(pNMHDR);
     UNREFERENCED_PARAMETER(pResult);
-    //SaveColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
+    SaveColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
 }
 
 void CBreakdownsPane::OnButtonClipboardCopy()
 {
-//    // build up column data so we can align the clipboard text output
-//    std::vector<CString> columns[CO_count];
-//    // title is the selected breakdown and its total
-//    HTREEITEM hItem = m_itemBreakdownTree.GetSelectedItem();
-//    if (hItem != NULL)
-//    {
-//        DWORD itemData = m_itemBreakdownTree.GetItemData(hItem);
-//        if (itemData != 0)      // headings don't have items to display
-//        {
-//            BreakdownItem * pItem = static_cast<BreakdownItem *>((void*)itemData);
-//            // first item is the breakdown item and total
-//            columns[CO_Source].push_back(pItem->Title());
-//            columns[CO_Value].push_back(pItem->Value());
-//            columns[CO_Stacks].push_back("");
-//            columns[CO_BonusType].push_back("");
-//            // now add headings in the list control
-//            CHeaderCtrl* pHeaderCtrl = m_itemBreakdownList.GetHeaderCtrl();
-//            int nColumnCount = pHeaderCtrl->GetItemCount();
-//            ASSERT(nColumnCount == CO_count);
-//            for (int column = 0; column < nColumnCount; ++column)
-//            {
-//                HDITEM item;
-//                char itemText[100];
-//                item.mask = HDI_TEXT;
-//                item.pszText = itemText;
-//                item.cchTextMax = 100;
-//                pHeaderCtrl->GetItem(column, &item);
-//                columns[column].push_back(item.pszText);
-//            }
-//            // now add the content
-//            size_t count = (size_t)m_itemBreakdownList.GetItemCount();
-//            for (size_t i = 0; i < count; ++i)
-//            {
-//                CString itemText;
-//                for (int column = 0; column < nColumnCount; ++column)
-//                {
-//                    itemText = m_itemBreakdownList.GetItemText(i, column);
-//                    columns[column].push_back(itemText);
-//                }
-//            }
-//            // now pad all items in each column to the same size
-//            int maxWidth[CO_count] = {0, 0, 0, 0};
-//            for (size_t i = 0; i < columns[0].size(); ++i)
-//            {
-//                for (int column = 0; column < nColumnCount; ++column)
-//                {
-//                    maxWidth[column] = max(maxWidth[column], columns[column][i].GetLength());
-//                }
-//            }
-//            for (size_t i = 0; i < columns[0].size(); ++i)
-//            {
-//                CString padded;
-//                for (int column = 0; column < nColumnCount; ++column)
-//                {
-//                    padded.Format("%*s", maxWidth[column] + 2, columns[column][i]); // 2 extra spaces
-//                    columns[column][i] = padded;
-//                }
-//            }
-//            // now generate the total clipboard text, ensure mono-spaced
-//            CString clipboardText;
-//            clipboardText += "[font=courier]\r\n";
-//            for (size_t i = 0; i < columns[0].size(); ++i)
-//            {
-//                CString padded;
-//                for (int column = 0; column < nColumnCount; ++column)
-//                {
-//                    clipboardText += columns[column][i];
-//                }
-//                clipboardText += "\r\n";
-//            }
-//            clipboardText += "[/font]\r\n";
-//            FormatExportData(&clipboardText);
-//            // now place the text on the clipboard
-//            if (OpenClipboard())
-//            {
-//                HGLOBAL clipbuffer = GlobalAlloc(GMEM_DDESHARE, clipboardText.GetLength()+1);
-//                ASSERT(clipbuffer != NULL);
-//                char *buffer = (char*)GlobalLock(clipbuffer);
-//                strcpy_s(buffer, clipboardText.GetLength()+1, clipboardText);
-//                GlobalUnlock(clipbuffer);
-//                EmptyClipboard();
-//                SetClipboardData(CF_TEXT, clipbuffer);
-//                CloseClipboard();
-//            }
-//        }
-//    }
+    // build up column data so we can align the clipboard text output
+    std::vector<CString> columns[CO_count];
+    // title is the selected breakdown and its total
+    HTREEITEM hItem = m_itemBreakdownTree.GetSelectedItem();
+    if (hItem != NULL)
+    {
+        DWORD itemData = m_itemBreakdownTree.GetItemData(hItem);
+        if (itemData != 0)      // headings don't have items to display
+        {
+            BreakdownItem * pItem = static_cast<BreakdownItem *>((void*)itemData);
+            // first item is the breakdown item and total
+            columns[CO_Source].push_back(pItem->Title());
+            columns[CO_Value].push_back(pItem->Value());
+            columns[CO_Stacks].push_back("");
+            columns[CO_BonusType].push_back("");
+            // now add headings in the list control
+            CHeaderCtrl* pHeaderCtrl = m_itemBreakdownList.GetHeaderCtrl();
+            int nColumnCount = pHeaderCtrl->GetItemCount();
+            ASSERT(nColumnCount == CO_count);
+            for (int column = 0; column < nColumnCount; ++column)
+            {
+                HDITEM item;
+                char itemText[100];
+                item.mask = HDI_TEXT;
+                item.pszText = itemText;
+                item.cchTextMax = 100;
+                pHeaderCtrl->GetItem(column, &item);
+                columns[column].push_back(item.pszText);
+            }
+            // now add the content
+            size_t count = (size_t)m_itemBreakdownList.GetItemCount();
+            for (size_t i = 0; i < count; ++i)
+            {
+                CString itemText;
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    itemText = m_itemBreakdownList.GetItemText(i, column);
+                    columns[column].push_back(itemText);
+                }
+            }
+            // now pad all items in each column to the same size
+            int maxWidth[CO_count] = {0, 0, 0, 0};
+            for (size_t i = 0; i < columns[0].size(); ++i)
+            {
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    maxWidth[column] = max(maxWidth[column], columns[column][i].GetLength());
+                }
+            }
+            for (size_t i = 0; i < columns[0].size(); ++i)
+            {
+                CString padded;
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    padded.Format("%*s", maxWidth[column] + 2, (LPCTSTR)columns[column][i]); // 2 extra spaces
+                    columns[column][i] = padded;
+                }
+            }
+            // now generate the total clipboard text, ensure mono-spaced
+            CString clipboardText;
+            clipboardText += "[font=courier]\r\n";
+            for (size_t i = 0; i < columns[0].size(); ++i)
+            {
+                CString padded;
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    clipboardText += columns[column][i];
+                }
+                clipboardText += "\r\n";
+            }
+            clipboardText += "[/font]\r\n";
+            FormatExportData(&clipboardText);
+            // now place the text on the clipboard
+            if (OpenClipboard())
+            {
+                HGLOBAL clipbuffer = GlobalAlloc(GMEM_DDESHARE, clipboardText.GetLength()+1);
+                ASSERT(clipbuffer != NULL);
+                char *buffer = (char*)GlobalLock(clipbuffer);
+                strcpy_s(buffer, clipboardText.GetLength()+1, clipboardText);
+                GlobalUnlock(clipbuffer);
+                EmptyClipboard();
+                SetClipboardData(CF_TEXT, clipbuffer);
+                CloseClipboard();
+            }
+        }
+    }
 }
 
 void CBreakdownsPane::UpdateGearChanged(

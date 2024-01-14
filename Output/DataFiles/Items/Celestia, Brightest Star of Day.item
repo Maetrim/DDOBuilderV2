@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Celestia, Brightest Star of Day</Name>
     <Icon>Shortsword_4</Icon>
     <Description>This magnificent bastard sword appears to somehow have been made from a ray
@@ -14,32 +15,11 @@ This blade is Celestia, the Brightest Star of Day.</Description>
       <Weapon1/>
       <Weapon2/>
     </EquipmentSlot>
-    <Requirements>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Alignment</Type>
-          <Item>Lawful Good</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Alignment</Type>
-          <Item>Neutral Good</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Alignment</Type>
-          <Item>Chaotic Good</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Skill</Type>
-          <Item>Use Magic Device</Item>
-          <Value>32</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </Requirements>
     <Weapon>Shortsword</Weapon>
     <AttackModifier>Strength</AttackModifier>
     <DamageModifier>Strength</DamageModifier>
     <DRBypass>Light</DRBypass>
-    <WeaponDamage>2.5</WeaponDamage>
+    <WeaponDamage>3.6</WeaponDamage>
     <BaseDice>
       <Number>1</Number>
       <Sides>10</Sides>
@@ -68,8 +48,6 @@ This blade is Celestia, the Brightest Star of Day.</Description>
       <Type>Fiery Detonation</Type>
       <BonusType/>
     </Buff>
-    <IsAcceptsSentience/>
-    <NoAutoUpdate/>
     <ItemAugment>
       <Type>Attuned to Heroism 1</Type>
       <Augment>
@@ -109,18 +87,18 @@ you will gain set bonuses based on the Planar Focus that you have equipped.</Des
           <Type>WeaponOtherDamageBonus</Type>
           <Type>WeaponOtherDamageBonusCritical</Type>
           <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Requirements version="1">
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Outsider</Item>
+            </Requirement>
+          </Requirements>
           <Dice>
             <Number size="1">4</Number>
             <Sides size="1">6</Sides>
             <Damage>Bane</Damage>
           </Dice>
-          <Item>All</Item>
-      <Requirements>
-        <Requirement>
-          <Type>EnemyType</Type>
-          <Item>Outsider</Item>
-        </Requirement>
-      </Requirements>
         </Effect>
       </Augment>
     </ItemAugment>
@@ -134,5 +112,6 @@ you will gain set bonuses based on the Planar Focus that you have equipped.</Des
         <GrantAugment>Green</GrantAugment>
       </Augment>
     </ItemAugment>
+    <IsAcceptsSentience/>
   </Item>
 </Items>

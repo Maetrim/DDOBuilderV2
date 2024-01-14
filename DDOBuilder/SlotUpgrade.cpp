@@ -46,3 +46,16 @@ void SlotUpgrade::Write(XmlLib::SaxWriter * writer) const
     DL_WRITE(SlotUpgrade_PROPERTIES)
     writer->EndElement();
 }
+
+bool SlotUpgrade::HasSlotType(const std::string& type) const
+{
+    bool bHas = false;
+    for (size_t i = 0; i < m_UpgradeType.size(); ++i)
+    {
+        if (type == m_UpgradeType[i])
+        {
+            bHas = true;
+        }
+    }
+    return bHas;
+}

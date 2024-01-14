@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Dreampiercer</Name>
     <Icon>Quarterstaff_7</Icon>
     <Description>This is a truly ancient relic of the giant wars against the Dal Quor. The dream-monsters
@@ -18,7 +19,7 @@ flesh</Description>
     <DRBypass>Good</DRBypass>
     <DRBypass>Magic</DRBypass>
     <DRBypass>Pierce</DRBypass>
-    <WeaponDamage>2.5</WeaponDamage>
+    <WeaponDamage>4</WeaponDamage>
     <BaseDice>
       <Number>1</Number>
       <Sides>10</Sides>
@@ -47,7 +48,6 @@ flesh</Description>
       <BonusType>Equipment</BonusType>
       <Item>Enchantment</Item>
     </Buff>
-    <NoAutoUpdate/>
     <ItemAugment>
       <Type>Attuned to Heroism Tier 1</Type>
       <Augment>
@@ -70,23 +70,23 @@ flesh</Description>
         <Description>Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding.</Description>
         <MinLevel>25</MinLevel>
         <Icon>Heroism</Icon>
-    <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Type>WeaponOtherDamageBonusCritical</Type>
-      <Bonus>Stacking</Bonus>
-      <Dice>
-        <Number size="1">3</Number>
-        <Sides size="1">6</Sides>
-        <Damage>Good</Damage>
-      </Dice>
-      <Item>All</Item>
-      <Requirements>
-         <Requirement>
-         <Type>EnemyType</Type>
-         <Item>Non-Good</Item>
-         </Requirement>
-      </Requirements>
-    </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <Requirements version="1">
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Good</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">3</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Good</Damage>
+          </Dice>
+        </Effect>
       </Augment>
     </ItemAugment>
     <ItemAugment>

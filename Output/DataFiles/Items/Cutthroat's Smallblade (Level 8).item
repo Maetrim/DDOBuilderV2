@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Cutthroat's Smallblade (Level 8)</Name>
     <Icon>Shortsword_3</Icon>
     <Description>When a cutlass is simply too big for the job, a pirate will turn instead to
@@ -36,19 +37,56 @@ wounds on living creatures.</Description>
     <Buff>
       <Type>Bleed</Type>
       <BonusType>Enhancement</BonusType>
+      <Description1>All</Description1>
       <Item>All</Item>
     </Buff>
     <Buff>
       <Type>SkillBonus</Type>
       <Value1>7</Value1>
       <BonusType>Competence</BonusType>
+      <Description1>Hide</Description1>
       <Item>Hide</Item>
     </Buff>
     <Buff>
       <Type>SkillBonus</Type>
       <Value1>7</Value1>
       <BonusType>Competence</BonusType>
+      <Description1>Move Silently</Description1>
       <Item>Move Silently</Item>
     </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Tier 2</Type>
+      <Augment>
+        <Name>+3 Enhancement Bonus</Name>
+        <Description>+3 Enhancement Bonus: +3 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>8</MinLevel>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Upgradeable Tier 3</Type>
+      <Augment>
+        <Name>Adds Slicing and Red Augment Slot</Name>
+        <Description>Slicing: This weapon is incredibly sharp and will do an additional 1 to 4 damage to targets that are vulnerable to bleeding.</Description>
+        <MinLevel>8</MinLevel>
+        <GrantAugment>Red</GrantAugment>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">4</Sides>
+            <Damage>Bleeding</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

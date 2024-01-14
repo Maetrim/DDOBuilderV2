@@ -13,6 +13,24 @@
 #include "Spell.h"
 #include "IgnoredListFile.h"
 
+namespace
+{
+    const int f_noWidthSetup = -1;
+    const char f_registrySection[] = "ColumnWidths";
+    const int c_textFieldSize = 256;
+
+    void f_RemoveInvalidKeyCharacters(CString* key)
+    {
+        // backslash is not allowed in registry key names
+        key->Remove('\\');
+        // no space characters
+        key->Remove(' ');
+        // line breaks not allowed either
+        key->Remove('\r');
+        key->Remove('\n');
+    }
+}
+
 const std::list<Bonus>& BonusTypes()
 {
     return theApp.BonusTypes();
@@ -141,6 +159,11 @@ const std::list<Quest>& Quests()
 const std::list<Patron>& Patrons()
 {
     return theApp.Patrons();
+}
+
+const std::list<GuildBuff>& GuildBuffs()
+{
+    return theApp.GuildBuffs();
 }
 
 const Item& FindItem(const std::string& itemName)
@@ -1791,4 +1814,261 @@ CString ExtractLine(size_t index, CString lines)
         strLine.Format("Line %d not found", index);
     }
     return strLine;
+}
+
+void AddSpecialSlots(InventorySlotType slot, Item& item)
+{
+    // add Mythic and reaper slots to the item as long as its a named item.
+    // We can tell its named as it will not have a minimum level of 1 as all
+    // non-named items (random loot and Cannith crafted) are set to min level 1
+    if (item.MinLevel() >= 1)
+    {
+        std::vector<ItemAugment> currentAugments = item.Augments();
+        AddAugment(&currentAugments, "Mythic", true);
+        std::string reaperSlot;
+        switch (slot)
+        {
+            case Inventory_Arrows:  break;
+            case Inventory_Armor:   reaperSlot = "Reaper Armor"; break;
+            case Inventory_Belt:    reaperSlot = "Reaper Belt"; break;
+            case Inventory_Boots:   reaperSlot = "Reaper Boot"; break;
+            case Inventory_Bracers: reaperSlot = "Reaper Bracers"; break;
+            case Inventory_Cloak:   reaperSlot = "Reaper Cloak"; break;
+            case Inventory_Gloves:  reaperSlot = "Reaper Gloves"; break;
+            case Inventory_Goggles: reaperSlot = "Reaper Goggles"; break;
+            case Inventory_Helmet:  reaperSlot = "Reaper Helmet"; break;
+            case Inventory_Necklace:reaperSlot = "Reaper Necklace"; break;
+            case Inventory_Quiver:  break;
+            case Inventory_Ring1:
+            case Inventory_Ring2:   reaperSlot = "Reaper Ring"; break;
+            case Inventory_Trinket: reaperSlot = "Reaper Trinket"; break;
+            case Inventory_Weapon1:
+            case Inventory_Weapon2: if (item.Weapon() == Weapon_ShieldBuckler
+                || item.Weapon() == Weapon_ShieldSmall
+                || item.Weapon() == Weapon_ShieldLarge
+                || item.Weapon() == Weapon_ShieldTower)
+            {
+                reaperSlot = "Reaper Shield";
+            }
+            else
+            {
+                reaperSlot = "Reaper Weapon";
+            }
+            break;
+        }
+        if (reaperSlot != "")
+        {
+            AddAugment(&currentAugments, reaperSlot, true);
+        }
+        if (item.CanEquipToSlot(Inventory_Ring1))
+        {
+            AddAugment(&currentAugments, "Reaper Ring", true);
+        }
+        AddAugment(&currentAugments, "Deck Curse", true);
+        // now set the slots on the item
+        item.SetAugments(currentAugments);
+    }
+    else
+    {
+        //// add upgrade slots for Cannith crafted and random loot
+        //SlotUpgrade slot;
+        //slot.Set_Type("Upgrade Slot");
+        //std::vector<std::string> slots;
+        //slots.push_back("Colorless");
+        //slots.push_back("Blue");
+        //slots.push_back("Green");
+        //slots.push_back("Yellow");
+        //slots.push_back("Orange");
+        //slots.push_back("Red");
+        //slots.push_back("Purple");
+        //slot.Set_UpgradeType(slots);
+
+        //std::vector<SlotUpgrade> upgrades;
+        //upgrades.push_back(slot);   // 2 standard upgrade slots
+        //upgrades.push_back(slot);
+        //item.Set_SlotUpgrades(upgrades);
+    }
+}
+
+void AddAugment(
+    std::vector<ItemAugment>* augments,
+    const std::string& name,
+    bool atEnd)
+{
+    // only add if it is not already present
+    bool found = false;
+    for (size_t i = 0; i < augments->size(); ++i)
+    {
+        if ((*augments)[i].Type() == name)
+        {
+            found = true;
+            break;
+        }
+    }
+    if (!found)
+    {
+        // this is a new augment slot that needs to be added
+        ItemAugment newAugment;
+        newAugment.SetType(name);
+        // all new augments are added before any "Mythic" slot if present
+        bool foundMythic = false;
+        size_t i;
+        for (i = 0; i < augments->size(); ++i)
+        {
+            if ((*augments)[i].Type() == "Mythic")
+            {
+                foundMythic = true;
+                break;
+            }
+        }
+        if (!atEnd && foundMythic)
+        {
+            std::vector<ItemAugment>::iterator it = augments->begin();
+            std::advance(it, i);
+            augments->insert(it, newAugment);
+        }
+        else
+        {
+            // just add to the end if no current Mythic slot
+            augments->push_back(newAugment);
+        }
+    }
+}
+
+void LoadColumnWidthsByName(
+    CListCtrl* control,
+    const std::string& fmtString)
+{
+    ASSERT(control);
+    // make sure columns have correct width
+    CHeaderCtrl* pHeaderCtrl = control->GetHeaderCtrl();
+    if (pHeaderCtrl != NULL)
+    {
+        // some controls set the control Id to a specific value, only set to
+        // control ID if its not already set to something other than 0, else we
+        // could break some ON_HDN_NOTIFICATION messages
+        if (pHeaderCtrl->GetDlgCtrlID() == 0)
+        {
+            pHeaderCtrl->SetDlgCtrlID(control->GetDlgCtrlID());
+        }
+        int nColumnCount = pHeaderCtrl->GetItemCount();
+        for (int column = 0; column < nColumnCount; column++)
+        {
+            CString valueKeyName;
+
+            HDITEM item;
+            char itemText[c_textFieldSize];
+            memset(itemText, 0, c_textFieldSize);
+            item.mask = HDI_TEXT;
+            item.pszText = itemText;
+            item.cchTextMax = c_textFieldSize;
+            pHeaderCtrl->GetItem(column, &item);
+
+            if (strlen(itemText) == 0)
+            {
+                // its an empty column header, use the column index instead
+                sprintf_s(
+                    itemText,
+                    "%d",
+                    column);
+            }
+
+            valueKeyName.Format(fmtString.c_str(), itemText);
+            f_RemoveInvalidKeyCharacters(&valueKeyName);
+            int width = AfxGetApp()->GetProfileInt(
+                f_registrySection,
+                valueKeyName,
+                f_noWidthSetup);
+            if (width != f_noWidthSetup)
+            {
+                control->SetColumnWidth(column, width);
+            }
+        }
+    }
+}
+
+void SaveColumnWidthsByName(
+    CListCtrl* control,
+    const std::string& fmtString)
+{
+    ASSERT(control);
+    // save the new column widths to the registry
+    CHeaderCtrl* pHeaderCtrl = control->GetHeaderCtrl();
+    if (pHeaderCtrl != NULL)
+    {
+        int nColumnCount = pHeaderCtrl->GetItemCount();
+        for (int column = 0; column < nColumnCount; column++)
+        {
+            CString valueKeyName;
+
+            HDITEM item;
+            char itemText[c_textFieldSize];
+            memset(itemText, 0, c_textFieldSize);
+            item.mask = HDI_TEXT;
+            item.pszText = itemText;
+            item.cchTextMax = c_textFieldSize;
+            pHeaderCtrl->GetItem(column, &item);
+
+            if (strlen(itemText) == 0)
+            {
+                // its an empty column header, use the column index instead
+                sprintf_s(
+                    itemText,
+                    "%d",
+                    column);
+            }
+
+            valueKeyName.Format(fmtString.c_str(), itemText);
+            f_RemoveInvalidKeyCharacters(&valueKeyName);
+            int width = control->GetColumnWidth(column);
+            AfxGetApp()->WriteProfileInt(
+                f_registrySection,
+                valueKeyName,
+                width);
+        }
+    }
+}
+
+void FormatExportData(std::string* exportData)
+{
+    // break the generated data up and process each line
+    std::vector<std::string> lines;
+    std::istringstream ss(*exportData);
+    std::string s;
+    while (std::getline(ss, s, '\n'))
+    {
+        lines.push_back(s);
+    }
+    // now process each line and convert double "  " on even character positions
+    for (size_t li = 0; li < lines.size(); ++li)
+    {
+        std::string line = lines[li];
+        size_t length = line.length();
+        for (size_t ci = 0; ci < length; ci += 2)
+        {
+            if (line[ci] == ' '
+                && ((ci > 0 && line[ci - 1] == ' ')
+                || (ci < length - 1 && line[ci + 1] == ' ')))
+            {
+                line[ci] = '·';
+            }
+        }
+        lines[li] = line;
+    }
+    // now re-build the forum export string
+    s = "";
+    for (size_t li = 0; li < lines.size(); ++li)
+    {
+        s += lines[li];
+        s += "\n";
+    }
+    *exportData = s;
+}
+
+void FormatExportData(CString* exportData)
+{
+    // implemented by the std::string version
+    std::string copy = (LPCTSTR)(*exportData);
+    FormatExportData(&copy);
+    *exportData = copy.c_str();
 }

@@ -392,6 +392,30 @@ your Monk Finishing Moves.</Description>
             </EnhancementSelection>
          </Selector>
          <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellResistance</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+         </Effect>
+         <Effect>
             <Type>DodgeBypass</Type>
             <Bonus>Destiny</Bonus>
             <AType>Simple</AType>
@@ -1286,6 +1310,22 @@ Stun DC: 20 + Highest Ability Score Mod + Stunning Bonuses. This stun lasts 2 se
                      <Item>Orchid Blossom</Item>
                   </Requirement>
                </Requirements>
+               <DC>
+                 <Name>Blossoming Peace</Name>
+                 <Description>Orchid Blossom now attempts to Stun all enemies struck.
+Stun DC: 20 + Highest Ability Score Mod + Stunning Bonuses. This stun lasts 2 seconds.</Description>
+                 <Icon>BlossomingPeace</Icon>
+                 <DCType>Stun</DCType>
+                 <DCVersus>Fortitude</DCVersus>
+                 <Amount size="1">20</Amount>
+                 <ModAbility>Strength</ModAbility>
+                 <ModAbility>Dexterity</ModAbility>
+                 <ModAbility>Constitution</ModAbility>
+                 <ModAbility>Intelligence</ModAbility>
+                 <ModAbility>Wisdom</ModAbility>
+                 <ModAbility>Charisma</ModAbility>
+                 <Tactical>Stun</Tactical>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Lotus Bloom</Name>
@@ -1300,6 +1340,22 @@ Stun DC: 20 + Highest Ability Score Mod + Stunning Bonuses. This stun lasts 4 se
                      <Item>Drifting Lotus</Item>
                   </Requirement>
                </Requirements>
+               <DC>
+                 <Name>Lotus Bloom</Name>
+                 <Description>Drifting Lotus now attempts to Stun all enemies struck.
+Stun DC: 20 + Highest Ability Score Mod + Stunning Bonuses. This stun lasts 4 seconds.</Description>
+                 <Icon>BlossomingPeace</Icon>
+                 <DCType>Stun</DCType>
+                 <DCVersus>Fortitude</DCVersus>
+                 <Amount size="1">20</Amount>
+                 <ModAbility>Strength</ModAbility>
+                 <ModAbility>Dexterity</ModAbility>
+                 <ModAbility>Constitution</ModAbility>
+                 <ModAbility>Intelligence</ModAbility>
+                 <ModAbility>Wisdom</ModAbility>
+                 <ModAbility>Charisma</ModAbility>
+                 <Tactical>Stun</Tactical>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1479,8 +1535,9 @@ instead paralyzed by temporal shock for six seconds.</Description>
         <Tactical>Stun</Tactical>
       </DC>
          <Effect>
-             <DisplayName>Emptiness</DisplayName>
+            <DisplayName>Emptiness (Everything is Nothing)</DisplayName>
             <Type>DodgeBonus</Type>
+            <Type>DodgeCapBonus</Type>
             <Bonus>Stacking</Bonus>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
@@ -1492,11 +1549,11 @@ instead paralyzed by temporal shock for six seconds.</Description>
             </Requirements>
          </Effect>
          <Effect>
-             <DisplayName>Emptiness</DisplayName>
-            <Type>DodgeCapBonus</Type>
+            <DisplayName>Emptiness (Everything is Nothing)</DisplayName>
+            <Type>GrantFeat</Type>
             <Bonus>Stacking</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
+            <AType>NotNeeded</AType>
+            <Item>Elusive Target</Item>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -1510,10 +1567,13 @@ instead paralyzed by temporal shock for six seconds.</Description>
          <InternalName>U51GrandmasterOfFlowersSplitTheSoul</InternalName>
          <Description>Epic Moment: For 30 seconds, your soul is split, and a fragment of it manifests beside you
 as a combatant. Your Soul Warrior provides the following benefits as a baseline:
+
 Dark: Your attacks may strike an additional target regardless of weapon type,
 and each attack has a 5% chance of banishing your enemies from the multi-verse with no save.
+
 Light: Your Soul Warrior also grants you 25% Concealment, 25% Incorporeality,
 and 25% Dodge/max Dodge, as your physical form is less present while you are in this state.
+
 If you follow a Monk Philosophy, your split soul will embody that choice more fully
 (either Light or Dark), doubling either the Dark portions or Light portions and
 still granting you the baseline version of the other philosophy.</Description>

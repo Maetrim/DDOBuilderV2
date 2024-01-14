@@ -139,6 +139,22 @@
 #define HID_EDIT_IGNORELIST_ACTIVE              0x18038
 #define HID_DEVELOPMENT_VERIFYLOADEDDATA        0x18039
 #define HID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE 0x1803A
+#define HID_SETFAVOR_NONE                       0x1803B
+#define HID_SETFAVOR_CASUAL                     0x1803C
+#define HID_SETFAVOR_NORMAL                     0x1803D
+#define HID_SETFAVOR_HARD                       0x1803E
+#define HID_SETFAVOR_ELITE                      0x1803F
+#define HID_REAPER_REAPER1                      0x18040
+#define HID_REAPER_REAPER2                      0x18041
+#define HID_REAPER_REAPER3                      0x18042
+#define HID_REAPER_REAPER4                      0x18043
+#define HID_REAPER_REAPER5                      0x18044
+#define HID_REAPER_REAPER6                      0x18045
+#define HID_REAPER_REAPER7                      0x18046
+#define HID_REAPER_REAPER8                      0x18047
+#define HID_REAPER_REAPER9                      0x18048
+#define HID_REAPER_REAPER10                     0x18049
+#define HID_SETFAVOR_SETFAVORLEVEL              0x1804A
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064
@@ -152,6 +168,7 @@
 #define HIDR_OUTPUT_POPUP                       0x200B6
 #define HIDR_THEME_MENU                         0x200C8
 #define HIDR_LEVEL_SELECT_MENU                  0x20138
+#define HIDR_SELECT_FAVOR_MENU                  0x2014E
  
 // Dialogs (IDD_*) 
 #define HIDD_ABOUTBOX                           0x20064

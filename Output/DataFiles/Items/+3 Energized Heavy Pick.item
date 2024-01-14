@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>+3 Energized Heavy Pick</Name>
     <Icon>HeavyPick_1d</Icon>
     <Description>A weapon found deep within the Temple of Elemental Evil.</Description>
@@ -14,11 +15,10 @@
     <DamageModifier>Strength</DamageModifier>
     <DRBypass>Magic</DRBypass>
     <DRBypass>Pierce</DRBypass>
-    <WeaponDamage>1.5</WeaponDamage>
+    <WeaponDamage>1</WeaponDamage>
     <BaseDice>
       <Number>1</Number>
       <Sides>6</Sides>
-      <Bonus>3</Bonus>
     </BaseDice>
     <CriticalMultiplier>4</CriticalMultiplier>
     <CriticalThreatRange>1</CriticalThreatRange>
@@ -31,12 +31,11 @@
       <Type>ElectricVulnerability</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <NoAutoUpdate/>
-     <ItemAugment>
-        <Type>Tier 1</Type>
-        <Augment>
-           <Name>Maiming and Electric Storm</Name>
-           <Description>Maiming: This weapon has a twisted haft or grip and spikes along its blade,
+    <ItemAugment>
+      <Type>Tier 1</Type>
+      <Augment>
+        <Name>Maiming and Electric Storm</Name>
+        <Description>Maiming: This weapon has a twisted haft or grip and spikes along its blade,
 head, or point. Whenever you score a critical hit with this weapon it deals an
 amount of extra untyped damage depending on its critical multiplier: x2 - 1 to 6,
 x3 - 2 to 12, x4 - 3 to 18.
@@ -44,53 +43,50 @@ Electric Storm: This weapon is imbued with an electrifying wrath. On an attack r
 of 20 which is confirmed as a critical hit this power will be released, dealing
 damage to the target and all enemies near it for 15d6 electric damage.
 A successful Reflex save (DC 39) reduces this by half.</Description>
-           <MinLevel>7</MinLevel>
-            <Effect>
-                <Type>WeaponOtherDamageBonusCritical</Type>
-                <Bonus>Enhancement</Bonus>
-                <Dice>
-                    <Number size="6">0 0 1 2 3 4</Number>
-                    <Sides size="6">0 0 6 6 6 6</Sides>
-                     
-                </Dice>
-                <Item>All</Item>
-            </Effect>
-            <Effect>
-                <Type>WeaponOtherDamageBonusCritical</Type>
-                <Bonus>Enhancement</Bonus>
-                <Dice>
-                    <Number size="1">15</Number>
-                    <Sides size="1">6</Sides>
-                    <Damage>Electric</Damage>
-                     
-                </Dice>
-                <Item>All</Item>
-            </Effect>
-        </Augment>
-     </ItemAugment>
-     <ItemAugment>
-        <Type>Tier 2</Type>
-        <Augment>
-           <Name>Shocking Blast and a Purple Augment slot.</Name>
-           <Description>Shocking Blast: A shocking blast weapon is sheathed in crackling electricity
+        <MinLevel>7</MinLevel>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4</Number>
+            <Sides size="6">0 0 6 6 6 6</Sides>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">15</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Electric</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Shocking Blast and a Purple Augment slot.</Name>
+        <Description>Shocking Blast: A shocking blast weapon is sheathed in crackling electricity
 Critical hits with this weapon deal an additional 1 to 10 electric damage for
 weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier,
 and 3 to 30 for a x4 multiplier. Additionally, if you roll a 20 when attacking
 and confirm the critical hit, the weapon blasts your target, doing 4 to 24
 more electric damage.</Description>
-           <MinLevel>7</MinLevel>
-            <Effect>
-                <Type>WeaponOtherDamageBonusCritical</Type>
-                <Bonus>Enhancement</Bonus>
-                <Dice>
-                    <Number size="6">0 0 1 2 3 4</Number>
-                    <Sides size="6">0 0 10 10 10 10</Sides>
-                     
-                </Dice>
-                <Item>All</Item>
-            </Effect>
-           <GrantAugment>Purple</GrantAugment>
-        </Augment>
-     </ItemAugment>
+        <MinLevel>7</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

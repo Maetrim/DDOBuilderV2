@@ -70,6 +70,7 @@ private:
     bool ProcessParryingRomanNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value);
     bool ProcessPowerNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value);
     bool ProcessSpellPenetrationNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value);
+    bool ProcessSpellLoreNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value);
     bool ProcessWillSave(const std::string& line, const std::string& bonus);
     bool ProcessFortitudeSave(const std::string& line, const std::string& bonus);
     bool ProcessReflexSave(const std::string& line, const std::string& bonus);

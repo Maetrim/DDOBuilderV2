@@ -39,6 +39,8 @@ class Item :
         void AddRaceRequirement(const std::string& race);
         void AddClassRequirement(const std::string& c);
         void AddBuff(const Buff& b);
+
+        void SetAugments(const std::vector<ItemAugment>& augments);
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

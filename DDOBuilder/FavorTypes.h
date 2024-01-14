@@ -11,6 +11,7 @@ enum FavorType
 {
     Favor_Unknown = 0,
     Favor_None,
+    Favor_Solo,
     Favor_Casual,
     Favor_Normal,
     Favor_Hard,
@@ -33,6 +34,7 @@ const XmlLib::enumMapEntry<FavorType> favorTypeMap[] =
 {
     {Favor_Unknown,     L"Unknown"},
     {Favor_None,        L"None"},
+    {Favor_Solo,        L"Solo"},
     {Favor_Casual,      L"Casual"},
     {Favor_Normal,      L"Normal"},
     {Favor_Hard,        L"Hard"},

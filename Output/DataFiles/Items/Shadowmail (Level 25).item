@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Shadowmail (Level 25)</Name>
     <Icon>MediumArmor_2</Icon>
     <Description>The lightweight, magical construction of this metal scale armor allows wearers
@@ -11,18 +12,9 @@ failure.</Description>
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <RequiresNoneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Bladeforged</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Warforged</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresNoneOf>
+      <Requirement>
+        <Type>NotConstruct</Type>
+      </Requirement>
     </Requirements>
     <Armor>Medium</Armor>
     <ArmorBonus>18</ArmorBonus>
@@ -37,71 +29,6 @@ failure.</Description>
       <Type>Greater Twilight</Type>
       <BonusType/>
     </Buff>
-    <NoAutoUpdate/>
-    <ItemAugment>
-        <Type>Variant</Type>
-        <Augment>
-           <Name>Combustion +120</Name>
-           <Description>Combustion +120: Passive: +120 Equipment bonus to Fire Spell Power.</Description>
-           <MinLevel>25</MinLevel>
-           <Effect>
-              <Type>SpellPower</Type>
-              <Bonus>Equipment</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">120</Amount>
-              <Item>Fire</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>Corrosion +120</Name>
-           <Description>Corrosion +120: Passive: +120 Equipment bonus to Acid Spell Power.</Description>
-           <MinLevel>25</MinLevel>
-           <Effect>
-              <Type>SpellPower</Type>
-              <Bonus>Equipment</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">120</Amount>
-              <Item>Acid</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>Glaciation +120</Name>
-           <Description>Glaciation +120: Passive: +120 Equipment bonus to Cold Spell Power.</Description>
-           <MinLevel>25</MinLevel>
-           <Effect>
-              <Type>SpellPower</Type>
-              <Bonus>Equipment</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">120</Amount>
-              <Item>Cold</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>Impulse +120</Name>
-           <Description>Impulse +120: Passive: +120 Equipment bonus to Force, Untyped, Slashing, Piercing, and Bludgeoning Spell Power.</Description>
-           <MinLevel>25</MinLevel>
-           <Effect>
-              <Type>SpellPower</Type>
-              <Bonus>Equipment</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">120</Amount>
-              <Item>Force</Item>
-              <Item>Untyped</Item>
-           </Effect>
-        </Augment>
-        <Augment>
-           <Name>Magnetism +120</Name>
-           <Description>Magnetism +120: Passive: +120 Equipment bonus to Electric Spell Power.</Description>
-           <MinLevel>25</MinLevel>
-           <Effect>
-              <Type>SpellPower</Type>
-              <Bonus>Equipment</Bonus>
-              <AType>Simple</AType>
-              <Amount size="1">120</Amount>
-              <Item>Electric</Item>
-           </Effect>
-        </Augment>
-     </ItemAugment>
     <Buff>
       <Type>Wizardry</Type>
       <Value1>250</Value1>
@@ -113,5 +40,69 @@ failure.</Description>
       <BonusType>Equipment</BonusType>
       <Item>VI</Item>
     </Buff>
+    <ItemAugment>
+      <Type>Variant</Type>
+      <Augment>
+        <Name>Combustion +120</Name>
+        <Description>Combustion +120: Passive: +120 Equipment bonus to Fire Spell Power.</Description>
+        <MinLevel>25</MinLevel>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Corrosion +120</Name>
+        <Description>Corrosion +120: Passive: +120 Equipment bonus to Acid Spell Power.</Description>
+        <MinLevel>25</MinLevel>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Glaciation +120</Name>
+        <Description>Glaciation +120: Passive: +120 Equipment bonus to Cold Spell Power.</Description>
+        <MinLevel>25</MinLevel>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Cold</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Impulse +120</Name>
+        <Description>Impulse +120: Passive: +120 Equipment bonus to Force, Untyped, Slashing, Piercing, and Bludgeoning Spell Power.</Description>
+        <MinLevel>25</MinLevel>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Force</Item>
+          <Item>Untyped</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Magnetism +120</Name>
+        <Description>Magnetism +120: Passive: +120 Equipment bonus to Electric Spell Power.</Description>
+        <MinLevel>25</MinLevel>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

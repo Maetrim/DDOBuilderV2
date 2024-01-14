@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Deific Diadem</Name>
     <Icon>Helmet_17a</Icon>
     <Description>The crown the abbot had made to signify his ascension and godhood.</Description>
@@ -8,17 +9,43 @@
     <EquipmentSlot>
       <Helmet/>
     </EquipmentSlot>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Lesser Heighten</Item>
+      <AType>SLA</AType>
+      <Amount size="3">12 3 3</Amount>
+    </Effect>
     <Buff>
       <Type>AbilityBonus</Type>
       <Value1>6</Value1>
       <BonusType>Enhancement</BonusType>
+      <Description1>Wisdom</Description1>
       <Item>Wisdom</Item>
     </Buff>
     <Buff>
       <Type>AbilityBonus</Type>
       <Value1>6</Value1>
       <BonusType>Enhancement</BonusType>
+      <Description1>Intelligence</Description1>
       <Item>Intelligence</Item>
     </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Black Abbot)</Type>
+      <Augment>
+        <Name>Adds Evocation Focus +2 and Increases Lesser Height Charges to 5</Name>
+        <Description>Evocation Focus +2: +2 Equipment bonus to the DC of Evocation spells.
+Increases Lesser Height Charges to 5 (NOT MODELLED)</Description>
+        <MinLevel>13</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellDC</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Evocation</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -12,6 +12,7 @@
 #include "BonusTypesFile.h"
 #include "BuffFile.h"
 #include "FeatsFile.h"
+#include "GuildBuffsFile.h"
 #include "MultiFileObjectLoader.h"
 #include "PatronsFile.h"
 #include "QuestsFile.h"
@@ -283,6 +284,7 @@ void CDDOBuilderApp::LoadData()
     LoadItemClickies(folderPath);
     LoadPatrons(folderPath);
     LoadQuests(folderPath);
+    LoadGuildBuffs(folderPath);
     LoadIgnoreList(folderPath);
     // done last as not thread safe
     AfxBeginThread(CDDOBuilderApp::ThreadedItemLoad, this);
@@ -871,6 +873,18 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
     }
 }
 
+void CDDOBuilderApp::LoadGuildBuffs(const std::string& path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "GuildBuffs.xml";
+
+    GetLog().AddLogEntry("Loading Guild Buffs List...");
+    GuildBuffsFile file(filename);
+    file.Read();
+    m_guildBuffs = file.GuildBuffs();
+}
+
 void CDDOBuilderApp::UpdateFeats()
 {
     // go through every class and race loaded and update
@@ -1056,6 +1070,11 @@ void CDDOBuilderApp::UpdateIgnoreList(const std::list<std::string>& itemList)
 const std::list<std::string>& CDDOBuilderApp::IgnoreList() const
 {
     return m_ignoreList;
+}
+
+const std::list<GuildBuff>& CDDOBuilderApp::GuildBuffs() const
+{
+    return m_guildBuffs;
 }
 
 void CDDOBuilderApp::LoadIgnoreList(const std::string& path)

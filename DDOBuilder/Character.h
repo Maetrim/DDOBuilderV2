@@ -51,6 +51,10 @@ class Character :
         size_t GetBuildLevel(size_t lifeIndex, size_t buildIndex) const;
         void SetBuildLevel(size_t lifeIndex, size_t buildIndex, size_t level);
 
+        // guild buffs
+        void ToggleApplyGuildBuffs();
+        void SetGuildLevel(size_t level);
+
         void SetModifiedFlag(BOOL modified);
 
         void NotifyActiveBuildChanged();
@@ -64,6 +68,8 @@ protected:
 
         #define Character_PROPERTIES(_) \
                 DL_THIS_OBJECT_LIST(_, Life, Lives) \
+                DL_OPTIONAL_SIMPLE(_, size_t, GuildLevel, 0) \
+                DL_OPTIONAL_SIMPLE(_, bool, ApplyGuildBuffs, 0) \
                 DL_SIMPLE(_, size_t, ActiveLifeIndex, 0) \
                 DL_SIMPLE(_, size_t, ActiveBuildIndex, 0)
 

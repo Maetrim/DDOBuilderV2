@@ -69,6 +69,47 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Accursed Flame</Type>
+    <DisplayText>Accursed Flame: Coalesce beyond the material, join us in the Flame! Hatred burns
+eternal! This weapon is wrapped in cursed flames, dealing an additional 6d6 Fire
+damage on each hit. When striking an enemy that has been Quelled, it also deals
+6d6 Evil damage on each hit. This effect makes the weapon evil aligned.
+Good characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Lawful Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Neutral Good</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Alignment</Type>
+            <Item>Chaotic Good</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>AcidArrow</Type>
     <DisplayText>Acid Arrow: This bow coats your arrows in corrosive acid.
 A successful hit douses the target in acid causing an additional 6 to 15 damage
@@ -1004,6 +1045,10 @@ acid damage by two seconds.</DisplayText>
   <Buff>
     <Type>AngelicGrace</Type>
     <DisplayText>Angelic Grace: When you are hit, 5% chance to gain 150 Temporary Hitpoints. This can only proc once every 10 seconds. These Temporary Hitpoints last for 10 minutes or until used up, whichever is first.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Anger</Type>
+    <DisplayText>Anger: This will increase the total number of Rages you can use by 3. However, these additional Rages will only take effect after the wielder rests.</DisplayText>
   </Buff>
   <Buff>
     <Type>Antimagic Spike</Type>
@@ -2945,17 +2990,19 @@ acid damage by two seconds.</DisplayText>
   </Buff>
   <Buff>
     <Type>Command</Type>
-    <DisplayText>Command %b1: Passive: %b1 Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.</DisplayText>
+    <DisplayText>Command %v1: Passive: %v1 Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a %v2 penalty on Hide checks.</DisplayText>
     <Effect>
-      <Type>SkillBonus</Type>
+      <Type>SkillBonusAbility</Type>
       <Bonus>Insightful</Bonus>
-      <Amount size="1">%b1</Amount>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
       <Item>Charisma</Item>
     </Effect>
     <Effect>
       <Type>SkillBonus</Type>
       <Bonus>Penalty</Bonus>
-      <Amount size="1">-6</Amount>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
       <Item>Hide</Item>
     </Effect>
   </Buff>
@@ -2963,7 +3010,7 @@ acid damage by two seconds.</DisplayText>
     <Type>CommandCommand</Type>
     <DisplayText>Command: Passive: +2 Competence bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.</DisplayText>
     <Effect>
-      <Type>SkillBonus</Type>
+      <Type>SkillBonusAbility</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -2991,6 +3038,40 @@ acid damage by two seconds.</DisplayText>
         <Damage>Fire</Damage>
       </Dice>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Construct Bane</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Construct Bane: A bane weapon excels at attacking one type or subtype of creature. Against Constructs, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Construct</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Stacking</Bonus>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Construct</Item>
+        </Requirement>
+      </Requirements>
     </Effect>
   </Buff>
   <Buff>
@@ -3113,6 +3194,10 @@ acid damage by two seconds.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Coronach</Type>
+    <DisplayText>Coronach: While wearing this item, your melee and ranged weapons gain Critical Hit Effect: Critical hit with this weapon will fascinate an undead opponent. (Will DC: 20 Negates)</DisplayText>
   </Buff>
   <Buff>
     <Type>Corrosion</Type>
@@ -4420,6 +4505,14 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Dragontouched</Type>
+    <DisplayText>Dragontouched: This mythical material was created by combining an unknown metal with
+ancient enchantments known only by the dragons. This material is said to enchant
+the wielder as if they were protected by +5 armor enchantment. Additionally it
+provides leather items with additional flexibility and metal armors additional
+protection.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Dragonshard Focus: Sentinel</Type>
     <DisplayText>Dragonshard Focus - Sentinel :This effect bestows additional benefits to those that
 bear the Dragonmark of Sentinel.
@@ -5003,6 +5096,18 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Enchantable: Adventuring Bonus</Type>
+    <DisplayText>Enchantable: Adventuring Bonus: This hat can be enchanted to bestow one of various benefits useful in general adventuring. Adventuring effects may change the minimum level of this item.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Enchantable: Crystal Rush</Type>
+    <DisplayText>Enchantable: Crystal Rush: This hat can be enchanted to bestow one of various benefits to nearby kobolds in Crystal Cove.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Enchantable: Skilled Seaman</Type>
+    <DisplayText>Enchantable: Skilled Seaman: This hat can be enchanted to grant a bonus to one skill. You can have one skill bonus on a hat at a time, but can replace it with a different choice. Skill effects may change the minimum level of this item.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>EnchantmentSave</Type>
     <DisplayText>%b1 Enchantment Save %v1: %v1 %b1 bonus to your saves versus enchantments</DisplayText>
     <Ignore>Resistance</Ignore>
@@ -5053,6 +5158,73 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Enhanced Bloodrage</Type>
+    <DisplayText>Enhanced Bloodrage: This weapon is enhanced by blood - your blood! Each time you take damage or kill an enemy, there is a small chance that you will fall into an unholy bloodrage, greatly increasing your Melee Power, Constitution, and Damage. However, this rage will leave you more vulnerable to Physical attacks, slightly reducing your Armor Class.</DisplayText>
+    <Stance>
+      <Name>Enhanced Bloodrage</Name>
+      <Icon>FBBloodTribute</Icon>
+      <Description>THIRST FOR BLOOD
+You spell blood... Blood! BLOOD
+BLOOD BLOOD! GIVE ME BLOOD!
+
++10 Melee Power
++8 Constitution
++5 Damage
+-4 Armor Class</Description>
+    </Stance>
+    <Effect>
+      <Type>MeleePower</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Enhanced Bloodrage</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">8</Amount>
+      <Item>Constitution</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Enhanced Bloodrage</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_DamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Enhanced Bloodrage</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-4</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Enhanced Bloodrage</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Enhanced Ghostly</Type>
     <DisplayText>Enhanced Ghostly: Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 15% chance to miss you due to incorporeality . You receive a +5 enhancement bonus to your Hide and Move Silently skills.</DisplayText>
     <Effect>
@@ -5080,6 +5252,10 @@ Greater: Insightful Fortification +25%</DisplayText>
       <Amount size="1"></Amount>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Entangling Yarn</Type>
+    <DisplayText>Entangling Yarn: Enemies struck by this weapon have a small chance to be tangled up in its enchanted yarn, becoming Entangled and preventing all movement for 9 seconds. A DC 35 Reflex Save negates this effect.</DisplayText>
   </Buff>
   <Buff>
     <Type>Entropic</Type>
@@ -5175,6 +5351,53 @@ Greater: Insightful Fortification +25%</DisplayText>
   <Buff>
     <Type>Epic Paragon Light Guard</Type>
     <DisplayText>Epic Paragon Light Guard: When hit or missed in combat, the attacking creature takes 8d8 Light damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Equipped Healing Amplification</Type>
+    <DisplayText>Equipped Healing Amplification +%v1: This effect amplifies all incoming positive energy healing by +%v1 (Equipment bonus). Includes spells, potions, and other effects.</DisplayText>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Eternal Holy Burst</Type>
+    <DisplayText>Eternal Holy Burst: While you are wearing this item, your melee, ranged, and unarmed attacks gain the Holy Burst ability. (This weapon is holy. The weapon deals an additional 1 to 6 good damage each hit. Critical hits deal an additional 1 to 10 good damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>CriticalDice</AType>
+      <Dice>
+        <Number size="6">0 0 1 2 3 4 </Number>
+        <Sides size="6">0 0 10 10 10 10</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Good</Value>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Eternal Faith</Type>
@@ -6768,6 +6991,13 @@ Greater: Insightful Fortification +25%</DisplayText>
       <Type>GhostTouch</Type>
       <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>Incorporeality</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
       <Amount size="1">10</Amount>
       <Item>All</Item>
     </Effect>
@@ -7698,6 +7928,18 @@ Greater: Insightful Fortification +25%</DisplayText>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>HealingLore</Type>
+    <DisplayText>%b1 Healing Lore %v1%: Passive: Your Positive Energy spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Positive</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -9047,7 +9289,8 @@ Greater: Insightful Fortification +25%</DisplayText>
     <Effect>
       <Type>Weapon_Keen</Type>
       <Bonus>Equipment</Bonus>
-      <AType>NotNeeded</AType>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
       <Item>All</Item>
     </Effect>
   </Buff>
@@ -9084,6 +9327,23 @@ Greater: Insightful Fortification +25%</DisplayText>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Insightful Faith</Type>
+    <DisplayText>Insightful Faith: An item with this quality assists only wearers who have the ability to turn undead. Insightful Faith items provide Insight Bonuses to the owner's effective level for the turning check by +2, their maximum Hit Dice turned by +2, and their total Hit Dice turned by +4.</DisplayText>
+    <Effect>
+      <Type>TurnLevelBonus</Type>
+      <Type>TurnMaxDice</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>TurnDiceBonus</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
     </Effect>
   </Buff>
   <Buff>
@@ -9243,7 +9503,8 @@ Greater: Insightful Fortification +25%</DisplayText>
     <Effect>
       <Type>Weapon_Keen</Type>
       <Bonus>Equipment</Bonus>
-      <AType>NotNeeded</AType>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
       <Item>All</Item>
     </Effect>
   </Buff>
@@ -9263,6 +9524,37 @@ Greater: Insightful Fortification +25%</DisplayText>
   <Buff>
     <Type>Knee Cracker</Type>
     <DisplayText>Knee Cracker: On Hit: 15% chance to slow 25% (No Save) for 5 seconds (non-bosses only).</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Kos-zik, The Air-Change</Type>
+    <DisplayText>Kos-zik, The Air-Change: +20 Insight Bonus to Jump and Tumble, +5 Insight Bonus to Sneak Attack dice and damage</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Jump</Item>
+      <Item>Tumble</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Wind Stance</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>SneakAttackAttack</Type>
+      <Type>SneakAttackDamage</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Wind Stance</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Buff>
   <!--L-->
   <Buff>
@@ -9314,6 +9606,10 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Legendary Entangling Yarn</Type>
+    <DisplayText>Legendary Entangling Yarn: Enemies struck by this weapon have a small chance to be tangled up in its enchanted yarn, becoming Entangled and preventing all movement for 9 seconds. A DC 110 Reflex Save negates this effect.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Lightningstorm Guard</Type>
     <DisplayText>Legendary Lightningstorm Guard: This item stores the incredible, dynamic power of the air deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, striking the attacker with an incredible amount of electrical force.</DisplayText>
   </Buff>
@@ -9334,6 +9630,10 @@ Greater: Insightful Fortification +25%</DisplayText>
     <DisplayText>Legendary Sirocco: On hit, this has a chance of blinding your enemies with whirling sand. Struck enemies must make a DC 100 Fortitude save or be blinded.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Slay Living</Type>
+    <DisplayText>Legendary Slay Living : On hit, this has a chance of snuffing the life from your foes, slaying them instantly. Struck enemies must make a DC 100 Fortitude save or be slain.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Slicing Winds</Type>
     <DisplayText>Legendary Slicing Winds: This weapon whistles with the wind. On hit, this mysterious power has a chance of coming to the surface, slicing at the struck enemy for a significant amount of Slashing damage.</DisplayText>
   </Buff>
@@ -9348,6 +9648,10 @@ Greater: Insightful Fortification +25%</DisplayText>
   <Buff>
     <Type>Legendary Stone Prison</Type>
     <DisplayText>Legendary Stone Prison: This weapon is invested with the power of the earth. On an attack roll of 20 which is confirmed as a critical hit it will attempt to turn the target to stone, as the Flesh to Stone spell. A successful Fortitude save (DC 100) negates this effect.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Tet-zik, The Enlightened Change</Type>
+    <DisplayText>Legendary Tet-zik, The Enlightened Change: Whispers of the ancients grant you the ancient martial secrets of the Thri-Kreen. Your elemental Monk stances grant additional bonuses.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Trap the Soul</Type>
@@ -9418,6 +9722,10 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Lesser Divine Augmentation IX</Type>
+    <DisplayText>Lesser Divine Augmentation IX: Increases the wearer's caster level when casting ninth level or lower Divine spells by one.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Lesser Dwarf Bane</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Lesser Dwarf Bane: A bane weapon excels at attacking one type or subtype of creature. Against Dwarves, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
@@ -9447,6 +9755,40 @@ Greater: Insightful Fortification +25%</DisplayText>
         <Requirement>
           <Type>EnemyType</Type>
           <Item>Dwarf</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Lesser Elemental Bane</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Lesser Elemental Bane: A bane weapon excels at attacking one type or subtype of creature. Against Elementals, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Elemental</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Stacking</Bonus>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Elemental</Item>
         </Requirement>
       </Requirements>
     </Effect>
@@ -9598,6 +9940,10 @@ Greater: Insightful Fortification +25%</DisplayText>
     <DisplayText>Lesser Arcane Augmentation I: Increases the wearer's caster level when casting first level sorcerer or wizard spells by one.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Lesser Arcane Augmentation IX</Type>
+    <DisplayText>Lesser Arcane Augmentation IX: Increases the wearer's caster level when casting ninth level or lower sorcerer or wizard spells by one.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Lesser Undead Guard</Type>
     <DisplayText>Lesser Undead Guard: This armor burns those Undead that attack the wearer, causing 1d8 Good damage on a successful melee attack.</DisplayText>
   </Buff>
@@ -9608,6 +9954,10 @@ Greater: Insightful Fortification +25%</DisplayText>
   <Buff>
     <Type>Life-Devouring</Type>
     <DisplayText>Life-Devouring: This weapon deprives an enemy of its energy and passes it on to you. When you roll a 20 on an attack, the enemy must make a DC 28 Fortitude save or be subjected to a -6 penalty to all stats. At the same time you will feel your power return, as though Greater Restoration were cast on you. (Greater Restoration cures all temporary ability damage, restores all negative levels suffered from energy drain, and eliminates fatigue, exhaustion, confusion, and insanity suffered by you.)</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Lifedrinker</Type>
+    <DisplayText>Lifedrinker: This weapon uses the power of water to draw out the life essence of its targets. On an attack roll of 20 which is confirmed as a critical hit, this power comes to the surface, granting 25 temporary hit points to the wielder and dealing 25 to 45 damage to the target. Creatures with the Fire trait take double this damage instead.</DisplayText>
   </Buff>
   <Buff>
     <Type>Life Shield</Type>
@@ -10155,6 +10505,21 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Negative Energy Spike</Type>
+    <DisplayText>Negative Energy Spike: This weapon is pulsating with negative energy. It deals an extra 2 to 12 points of negative energy damage on a successful hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Negative</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>NightmareGuard</Type>
     <DisplayText>Nightmare Guard: This item has a chance to terrorizing foes that hit you, applying a Mind Thrust effect, when you are hit by them (dealing 5d8 force damage, Will save vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell.</DisplayText>
   </Buff>
@@ -10184,6 +10549,18 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <!--O-->
+  <Buff>
+    <Type>Occultation</Type>
+    <DisplayText>Occultation: 20% Enhancement bonus to Decreased threat generated from all damage.</DisplayText>
+    <Effect>
+      <Type>ThreatBonusMelee</Type>
+      <Type>ThreatBonusRanged</Type>
+      <Type>ThreatBonusSpell</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-20</Amount>
+    </Effect>
+  </Buff>
   <Buff>
     <Type>On Critical</Type>
     <DisplayText>On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
@@ -10393,6 +10770,18 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Permanent Nihil</Type>
+    <DisplayText>Permanent Nihil: Passive: +30 Alchemical bonus to your Negative and Poison Spell Power.</DisplayText>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Persuasion</Type>
     <DisplayText>Persuasion: This item gives a +3 Competence bonus to all Charisma based skills.</DisplayText>
     <Ignore>Competence</Ignore>
@@ -10514,6 +10903,16 @@ Greater: Insightful Fortification +25%</DisplayText>
         <Damage>Pierce</Damage>
       </Dice>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Pirate Cleverness</Type>
+    <DisplayText>Pirate Cleverness: You gain the cleverness of a pirate, which grants a +50 bonus to your maximum spell points. This stacks with all other bonuses except itself.</DisplayText>
+    <Effect>
+      <Type>SpellPoints</Type>
+      <Bonus>Pirate</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">50</Amount>
     </Effect>
   </Buff>
   <Buff>
@@ -10876,7 +11275,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Potency</Type>
     <DisplayText>%b1 Potency %v1: %v1 %b1 bonus to Universal spell power.</DisplayText>
-    <Ignore>Enhancement</Ignore>
+    <Ignore>Equipment</Ignore>
     <Effect>
       <Type>UniversalSpellPower</Type>
       <Bonus>Not Set</Bonus>
@@ -11510,6 +11909,24 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Riik-zik, The Fire-Change</Type>
+    <DisplayText>Riik-zik, The Fire-Change: +1.5[W] Unarmed damage (does not stack with reinforced fists)</DisplayText>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Implement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1.5</Amount>
+      <Item>Handwraps</Item>
+      <Item>Unarmed</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Sun Stance</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Riposte</Type>
     <DisplayText>Riposte %v1: This item enchants its user with incredible awareness and speed, granting a %v1 %b1 bonus to AC and to Saves.</DisplayText>
     <Ignore>Insightful</Ignore>
@@ -11821,6 +12238,21 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Rune Arm Imbue - Light II</Type>
+    <DisplayText>Rune Arm Imbue - Light II: Wearing this Rune Arm will imbue any weapon you wield, dealing 1 to 4 points of light damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Light</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune-fueled Warding</Type>
     <DisplayText>Rune-fueled Warding : When you are holding a two-handed weapon, you have a DR of 30/-.</DisplayText>
     <Effect>
@@ -11862,8 +12294,28 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Scallywag's Luck I</Type>
+    <DisplayText>Scallawag's Luck I: While in Smuggler's Rest, you gain 10% additional doubloons when fighting pirates.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Scallywag's Luck II</Type>
+    <DisplayText>Scallawag's Luck II: While in Smuggler's Rest, you gain 15% additional doubloons when fighting pirates.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Scallywag's Luck III</Type>
+    <DisplayText>Scallawag's Luck III: While in Smuggler's Rest, you gain 20% additional doubloons when fighting pirates.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Scallywag's Luck IV</Type>
+    <DisplayText>Scallawag's Luck IV: While in Smuggler's Rest, you gain 25% additional doubloons when fighting pirates.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Scallywag's Luck V</Type>
     <DisplayText>Scallywag's Luck V: While in Smuggler's Rest, you gain 30% additional doubloons when fighting pirates.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Scallywag's Luck VI</Type>
+    <DisplayText>Scallawag's Luck VI: While in Smuggler's Rest, you gain 35% additional doubloons when fighting pirates.</DisplayText>
   </Buff>
   <Buff>
     <Type>SchoolFocus</Type>
@@ -11901,6 +12353,38 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
         <Damage>Sonic</Damage>
       </Dice>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sed-zik, The Water-Change</Type>
+    <DisplayText>Sed-zik, The Water-Change: +5 Luck Bonus to Attack/Saves, +10 MRR Cap</DisplayText>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
+      <Bonus>Luck</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Ocean Stance</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>MRRCap</Type>
+      <Bonus>Luck</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Ocean Stance</Item>
+        </Requirement>
+      </Requirements>
     </Effect>
   </Buff>
   <Buff>
@@ -12428,6 +12912,18 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>SkillBonusAbility</Type>
+    <DisplayText>%b1 %i1 Skills %v1: Passive: %v1 %b1 bonus to all %i1 based skills.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonusAbility</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>%i1</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Slashing 2</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Slashing 2: The edges of this weapon are sharpened, dealing an additional 2d6 slashing damage on each hit.</DisplayText>
@@ -12938,6 +13434,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Slowburst</Type>
+    <DisplayText>Slowburst: This weapon has an image of a snail worked into its hilt or grip, and it feels cold to the touch. Whenever you score a critical hit with this weapon, the target is slowed for 30 seconds. A DC 15 Will save negates this effect.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Soundproof</Type>
     <DisplayText>Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout .</DisplayText>
   </Buff>
@@ -13108,6 +13608,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Spell: Summon Raptor</Type>
+    <DisplayText>Spell: Summon Raptor: Rawr I'm a raptor!</DisplayText>
+  </Buff>
+  <Buff>
     <Type>SpellcastingImplement</Type>
     <DisplayText>Spellcasting Implement %v1: Passive: %v1 Implement bonus to Universal spell power.</DisplayText>
     <Effect>
@@ -13155,6 +13659,18 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>SpellLore</Type>
+    <DisplayText>%b1 Spell Lore %i1: Passive: All of your spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SpellLoreNumeral</Type>
     <DisplayText>%b1 Spell Lore %i1: Passive: All of your spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
@@ -13390,6 +13906,20 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">40</Amount>
       <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Superior Heroism</Type>
+    <DisplayText>Superior Heroism: Passive: +5 morale bonus to all your attack rolls, saving throws, and skill checks.</DisplayText>
+    <Effect>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
+      <Type>SkillBonus</Type>
+      <Type>SaveBonus</Type>
+      <Bonus>Morale</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -13682,6 +14212,34 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
         <Requirement>
           <Type>Feat</Type>
           <Item>Path of Harmonious Balance</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Thok-zik, The Earth-Change</Type>
+    <DisplayText>Thok-zik, The Earth-Change: +5 Critical Hit and Critical Confirmation, +10 PRR</DisplayText>
+    <Effect>
+      <Type>Weapon_AttackAndDamageCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Mountain Stance</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>PRR</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Mountain Stance</Item>
         </Requirement>
       </Requirements>
     </Effect>
@@ -14498,6 +15056,19 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>VoidLoreNumeral</Type>
+    <DisplayText>%b1 Void Lore %i1: Passive: Your Negative Energy and Poison spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Voltaic</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Voltaic: This weapon is sheathed in Powerful electricity. A voltaic weapon deals an extra 2 to 12 points of electricity damage on a successful hit.</DisplayText>
@@ -14622,7 +15193,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>%v1 Enhancement Bonus: %v1 Enhancement bonus to attack and damage rolls.</DisplayText>
     <Effect>
       <Type>Weapon_Enchantment</Type>
-      <Bonus>Not Set</Bonus>
+      <Bonus>Weapon Enchantment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
     </Effect>

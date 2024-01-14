@@ -590,10 +590,11 @@ void CInfoTip::SetStanceItem(const Stance& item)
 
 void CInfoTip::SetSetBonusItem(
     const SetBonus& item,
-    size_t numStacks)
+    size_t numStacks,
+    bool bSuppressed)
 {
     ClearOldTipItems();
-    AppendSetBonusDescription(item.Type(), numStacks);
+    AppendSetBonusDescription(item.Type(), numStacks, bSuppressed);
 }
 
 void CInfoTip::SetItem(
@@ -627,7 +628,8 @@ void CInfoTip::SetItem(
         m_tipItems.push_back(pRequirements);
     }
 
-    if (pItem->HasArmorBonus())
+    if (pItem->HasArmorBonus()
+            && pItem->Armor() != Armor_Cloth)
     {
         // add the items armor stats
         CString text;
@@ -653,12 +655,6 @@ void CInfoTip::SetItem(
                 "Armor Bonus: %d",
                 pItem->ArmorBonus() + (pItem->HasMaximumDexterityBonus() ? pItem->MaximumDexterityBonus() : 0),
                 pItem->ArmorBonus());
-        }
-        if (pItem->HasMaximumDexterityBonus())
-        {
-            CString mdb;
-            mdb.Format("\r\nMax Dex Bonus: %d", pItem->MaximumDexterityBonus());
-            text += mdb;
         }
         if (pItem->HasMaximumDexterityBonus())
         {
@@ -710,6 +706,7 @@ void CInfoTip::SetItem(
         InfoTipItem_BuffDescription* pBuff = new InfoTipItem_BuffDescription(bdit);
         m_tipItems.push_back(pBuff);
     }
+    bool bSetSuppressed = false;
     if (pItem->Augments().size() > 0)
     {
         InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
@@ -722,6 +719,10 @@ void CInfoTip::SetItem(
                 // augment name may need to be updated to include the actual bonus value
                 const Augment& augment = FindAugmentByName((LPCTSTR)augmentName, pItem);
                 AppendFilledAugment(pItem->MinLevel(), ait, &augment);
+                if (augment.HasSuppressSetBonus())
+                {
+                    bSetSuppressed = true;
+                }
             }
             else
             {
@@ -733,7 +734,7 @@ void CInfoTip::SetItem(
     }
     for (auto&& sbit : pItem->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0);
+        AppendSetBonusDescription(sbit, 0, bSetSuppressed);
     }
     if (!pItem->Description().empty())
     {
@@ -761,7 +762,7 @@ void CInfoTip::SetFiligree(
 
     for (auto&& sbit : pFiligree->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0);
+        AppendSetBonusDescription(sbit, 0, false);
     }
 }
 
@@ -783,7 +784,10 @@ void CInfoTip::AppendFilledAugment(
         minLevel = pAugment->MinLevel();
     }
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
-    pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->Icon(), true);
+    if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
+    {
+        pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", true);
+    }
     pHeader->SetTitle(slot.Type().c_str());
 
     CString augmentName = pAugment->Name().c_str();
@@ -839,7 +843,7 @@ void CInfoTip::AppendFilledAugment(
 
     for (auto&& sbit : pAugment->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0);
+        AppendSetBonusDescription(sbit, 0, false);
     }
 }
 
@@ -847,7 +851,10 @@ void CInfoTip::AppendAugment(
     const Augment* pAugment)
 {
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
-    pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->Icon(), true);
+    if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
+    {
+        pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", true);
+    }
     pHeader->SetTitle(pAugment->Name().c_str());
     if (pAugment->HasMinLevel())
     {
@@ -885,7 +892,7 @@ void CInfoTip::AppendAugment(
 
     for (auto&& sbit : pAugment->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0);
+        AppendSetBonusDescription(sbit, 0, false);
     }
 }
 
@@ -1223,7 +1230,10 @@ void CInfoTip::SetDCItem(
     m_tipItems.push_back(pRequirements);
 }
 
-void CInfoTip::AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks)
+void CInfoTip::AppendSetBonusDescription(
+    const std::string& setBonusName,
+    size_t numStacks,
+    bool bSuppressed)
 {
     const SetBonus& setBonus = FindSetBonus(setBonusName);
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
@@ -1235,6 +1245,10 @@ void CInfoTip::AppendSetBonusDescription(const std::string& setBonusName, size_t
         }
     }
     pHeader->SetTitle(setBonusName.c_str());
+    if (bSuppressed)
+    {
+        pHeader->SetTitle2("This set bonus is suppressed by a slotted augment");
+    }
     if (numStacks > 0)
     {
         CString str;

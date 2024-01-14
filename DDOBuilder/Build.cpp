@@ -10,6 +10,7 @@
 #include "GlobalSupportFunctions.h"
 #include "Feat.h"
 #include "Filigree.h"
+#include "GuildBuff.h"
 #include "Life.h"
 #include "Race.h"
 #include "TrainedSpell.h"
@@ -58,7 +59,8 @@ Build::Build(Life * pParentLife) :
     m_racialTreeSpend(0),
     m_universalTreeSpend(0),
     m_classTreeSpend(0),
-    m_destinyTreeSpend(0)
+    m_destinyTreeSpend(0),
+    m_previousGuildLevel(0)
 {
     DL_INIT(Build_PROPERTIES)
     // make sure we have Level() default LevelTraining objects in the list
@@ -273,7 +275,7 @@ void Build::BuildNowActive()
     }
     ApplyGearEffects();     // apply effects from equipped gear
     //m_previousGuildLevel = 0;   // ensure all effects apply
-    //ApplyGuildBuffs();
+    ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
     //UpdateGreensteelStances();
     //NotifyAllSelfAndPartyBuffs();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
@@ -888,7 +890,8 @@ size_t Build::ClassLevels(
     for (size_t i = 0 ; i <= level; ++i)
     {
         std::string levelClass = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
-        if (levelClass == ct)
+        if (levelClass == ct
+                || ct == "All")
         {
             ++classLevels;
         }
@@ -2075,7 +2078,7 @@ void Build::VerifyGear()
             bool bRemoveItem = (item.MinLevel() > Level());
             if (item.HasRequirementsToUse())
             {
-                if (!item.RequirementsToUse().Met(*this, Level(), true, item.HasWeapon() ? item.Weapon() : Weapon_Unknown, Weapon_Unknown))
+                if (!item.RequirementsToUse().Met(*this, Level()-1, true, item.HasWeapon() ? item.Weapon() : Weapon_Unknown, Weapon_Unknown))
                 {
                     bRemoveItem |= true;
                 }
@@ -2644,11 +2647,12 @@ void Build::TrainSpecialFeat(const std::string& featName)
     }
 }
 
-void Build::RevokeSpecialFeat(const std::string& featName)
+void Build::RevokeSpecialFeat(const std::string& featName, bool bOverride)
 {
     // this is handled at the life level, pass through for all but favor feats
     const Feat& feat = FindFeat(featName);
-    if (feat.Acquire() == FeatAcquisition_Favor)
+    if (feat.Acquire() == FeatAcquisition_Favor
+            || bOverride == true)
     {
         // just remove the first copy of the feat name from the current list
         std::list<TrainedFeat> trainedFeats = FavorFeats().Feats();
@@ -3554,7 +3558,7 @@ void Build::UpdateGearToLatestVersions()
         {
             if ((*it).HasItemInSlot((InventorySlotType)i))
             {
-                Item latestVersion = GetLatestVersionOfItem((*it).ItemInSlot((InventorySlotType)i));
+                Item latestVersion = GetLatestVersionOfItem((InventorySlotType)i, (*it).ItemInSlot((InventorySlotType)i));
                 (*it).SetItem((InventorySlotType)i, this, latestVersion);
             }
         }
@@ -3562,8 +3566,9 @@ void Build::UpdateGearToLatestVersions()
     }
 }
 
-Item Build::GetLatestVersionOfItem(const Item& original)
+Item Build::GetLatestVersionOfItem(InventorySlotType slot, Item original)
 {
+    AddSpecialSlots(slot, original); // only adds if they are missing
     Item newVersion = original; // assume unchanged
     const Item& foundItem = FindItem(original.Name());
     // no name if not found
@@ -3571,26 +3576,58 @@ Item Build::GetLatestVersionOfItem(const Item& original)
     {
         // this is the item we want to copy
         newVersion = foundItem;
-        // now copy across specific fields from the source item
+        AddSpecialSlots(slot, newVersion); // only adds if they are missing
+            // now copy across specific fields from the source item
         newVersion.CopyUserSetValues(original);
         // make sure all the selected augments are valid
-        std::vector<ItemAugment> augments = original.Augments();
-        for (size_t i = 0; i < augments.size(); ++i)
+        std::vector<ItemAugment> originalAugments = original.Augments();
+        std::vector<ItemAugment> newAugments = newVersion.Augments();
+        std::vector<SlotUpgrade> newUpgrades = foundItem.SlotUpgrades();
+        for (size_t i = 0; i < originalAugments.size(); ++i)
         {
-            if (augments[i].HasSelectedAugment()
-                    && augments[i].SelectedAugment() != "")
+            bool bFound = false;
+            if (originalAugments[i].HasSelectedAugment()
+                    && originalAugments[i].SelectedAugment() != "")
             {
-                const Augment& augment = augments[i].GetSelectedAugment();
-                if (augment.Name() == "")
+                // find it in the newAugments
+                for (size_t j = 0; !bFound && j < newAugments.size(); ++j)
                 {
-                    // if we failed to find the augment, its a bad one. Just clear it
-                    augments[i].Clear_SelectedAugment();
-                    augments[i].Clear_Value();
-                    augments[i].Clear_Value2();
+                    // match by augment type. If not matched, its ignored
+                    if (newAugments[j].Type() == originalAugments[i].Type())
+                    {
+                        newAugments[j].Set_SelectedAugment(originalAugments[i].SelectedAugment());
+                        newAugments[j].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                        bFound = true;
+                    }
+                }
+            }
+            if (!bFound)
+            {
+                // we have an augment (populated or not) that not in the regular
+                // augment list. This could be a SlotUpgrade augment.
+                for (size_t j = 0; !bFound && j < newUpgrades.size(); ++j)
+                {
+                    if (newUpgrades[j].HasSlotType(originalAugments[i].Type()))
+                    {
+                        AddAugment(&newAugments, originalAugments[i].Type(), false);
+                        newUpgrades.erase(newUpgrades.begin()+j);
+                        j--;
+                        for (size_t k = 0; !bFound && k < newAugments.size(); ++k)
+                        {
+                            // match by augment type. If not matched, its ignored
+                            if (newAugments[k].Type() == originalAugments[i].Type())
+                            {
+                                newAugments[k].Set_SelectedAugment(originalAugments[i].SelectedAugment());
+                                newAugments[k].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                                bFound = true;
+                            }
+                        }
+                    }
                 }
             }
         }
-        newVersion.Set_Augments(augments);
+        newVersion.Set_Augments(newAugments);
+        newVersion.Set_SlotUpgrades(newUpgrades);
     }
     return newVersion;
 }
@@ -3845,14 +3882,14 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
                 NotifyItemEffect(item.Name(), eit);
             }
         }
+        for (auto&& sit: buff.Stances())
+        {
+            NotifyNewStance(sit);
+        }
     }
     //for (auto&& dcit: item.EffectDC())
     //{
     //    NotifyNewDC(dcit);
-    //}
-    //for (auto&& sit: item.Stances())
-    //{
-    //    NotifyNewStance(sit);
     //}
     // do the same for any augment slots
     for (auto&& ait: item.Augments())
@@ -4010,14 +4047,14 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
                 NotifyItemEffectRevoked(item.Name(), eit);
             }
         }
+        for (auto&& sit : buff.Stances())
+        {
+            NotifyRevokeStance(sit);
+        }
     }
     //for (auto&& dcit: item.EffectDC())
     //{
     //    NotifyRevokeDC(dcit);
-    //}
-    //for (auto&& sit: item.Stances())
-    //{
-    //    NotifyRevokeStance(sit);
     //}
     // do the same for any augment slots
     for (auto&& ait: item.Augments())
@@ -4473,10 +4510,10 @@ void Build::ApplyWeaponEffects(const Item& item)
     {
         Effect effect(
             Effect_DRBypass,
-            "Weapon",
-            "Unique",
+            item.Name(),
+            "Weapon DR",
             0);
-        //effect.SetAType(Amount_NotNeeded);
+        effect.SetAType(Amount_NotNeeded);
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
         NotifyItemEffect(item.Name(), effect);
@@ -4520,10 +4557,10 @@ void Build::RevokeWeaponEffects(const Item& item)
     {
         Effect effect(
             Effect_DRBypass,
-            "Weapon",
-            "Unique",
+            item.Name(),
+            "Weapon DR",
             0);
-        //effect.SetAType(Amount_NotNeeded);
+        effect.SetAType(Amount_NotNeeded);
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
         NotifyItemEffectRevoked(item.Name(), effect);
@@ -4706,7 +4743,7 @@ void Build::VerifySpecialFeats()
         if (fit->FeatName() != feat.Name())
         {
             // this special feat no longer exists, remove it
-            RevokeSpecialFeat(fit->FeatName());
+            RevokeSpecialFeat(fit->FeatName(), true);
             GetLog().AddLogEntry("Legacy feat removed from build");
         }
         ++fit;
@@ -4718,3 +4755,100 @@ bool Build::operator<(const Build& other) const
     return m_Level < other.Level();
 }
 
+void Build::ApplyGuildBuffs(bool bApply)
+{
+    // we only apply or revoke the effects within the m_previousGuildLevel to
+    // GuildLevel range
+    if (bApply)
+    {
+        if (m_previousGuildLevel != m_pLife->GuildLevel())
+        {
+            // there has been a change in guild level find the list of guild buffs
+            // that have changed. Then either apply or revoke them depending
+            // on the direction of level change
+            bool revoke = (m_previousGuildLevel > m_pLife->GuildLevel());
+            size_t minLevel = min(m_previousGuildLevel, m_pLife->GuildLevel());
+            size_t maxLevel = max(m_previousGuildLevel, m_pLife->GuildLevel());
+            std::list<GuildBuff> guildBuffs = GuildBuffs(); // all known guild buffs
+            std::list<GuildBuff>::iterator it = guildBuffs.begin();
+            while (it != guildBuffs.end())
+            {
+                // remove the buff if it is not in the required level range of change
+                if ((*it).Level() <= minLevel
+                    || (*it).Level() > maxLevel)
+                {
+                    // this buff is not in the range of those changed, exclude it
+                    it = guildBuffs.erase(it);
+                }
+                else
+                {
+                    // on to the next buff to check
+                    ++it;
+                }
+            }
+            // now apply or revoke the buffs left in the list
+            it = guildBuffs.begin();
+            while (it != guildBuffs.end())
+            {
+                const std::list<Effect>& effects = (*it).Effects();
+                std::list<Effect>::const_iterator eit = effects.begin();
+                while (eit != effects.end())
+                {
+                    if (revoke)
+                    {
+                        NotifyItemEffectRevoked((*it).Name(), (*eit));
+                    }
+                    else
+                    {
+                        NotifyItemEffect((*it).Name(), (*eit));
+                    }
+                    ++eit;
+                }
+                ++it;
+            }
+            m_previousGuildLevel = m_pLife->GuildLevel();
+        }
+    }
+    else
+    {
+        // guild buffs are no longer applied all, existing buffs need to be revoked
+        size_t minLevel = 0;
+        size_t maxLevel = m_pLife->GuildLevel();
+        std::list<GuildBuff> guildBuffs = GuildBuffs(); // all known guild buffs
+        std::list<GuildBuff>::iterator it = guildBuffs.begin();
+        while (it != guildBuffs.end())
+        {
+            // remove the buff if it is not in the required level range of revoke
+            if ((*it).Level() <= minLevel
+                || (*it).Level() > maxLevel)
+            {
+                // this buff is not in the range of those changed, exclude it
+                it = guildBuffs.erase(it);
+            }
+            else
+            {
+                // on to the next buff to check
+                ++it;
+            }
+        }
+        // now revoke the buffs left in the list
+        it = guildBuffs.begin();
+        while (it != guildBuffs.end())
+        {
+            const std::list<Effect>& effects = (*it).Effects();
+            std::list<Effect>::const_iterator eit = effects.begin();
+            while (eit != effects.end())
+            {
+                NotifyItemEffectRevoked((*it).Name(), (*eit));
+                ++eit;
+            }
+            ++it;
+        }
+        m_previousGuildLevel = 0;
+    }
+}
+
+void Build::GuildLevelChange()
+{
+    ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
+}

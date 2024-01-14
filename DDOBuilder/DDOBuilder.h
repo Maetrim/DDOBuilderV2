@@ -10,6 +10,7 @@
 #include "Feat.h"
 #include "Filigree.h"
 #include "Gem.h"
+#include "GuildBuff.h"
 #include "Item.h"
 #include "Patron.h"
 #include "Quest.h"
@@ -67,6 +68,7 @@ public:
     const std::list<Patron>& Patrons() const;
     const std::list<Quest>& Quests() const;
     const std::list<std::string>& IgnoreList() const;
+    const std::list<GuildBuff>& GuildBuffs() const;
     void UpdateIgnoreList(const std::list<std::string>& itemList);
 
     virtual BOOL InitInstance();
@@ -95,6 +97,7 @@ private:
     void LoadRaces(const std::string& path);
     void LoadClasses(const std::string& path);
     void LoadFeats(const std::string& path);
+    void LoadGuildBuffs(const std::string& path);
     void SeparateFeats();   // breaks them out into groups based on type
     void LoadEnhancements(const std::string& path);
     void LoadAugments(const std::string& path);
@@ -150,6 +153,7 @@ private:
     std::list<Spell> m_spells;
     std::list<Item> m_items;
     std::list<Gem> m_sentientGems;
+    std::list<GuildBuff> m_guildBuffs;
     std::list<WeaponGroup> m_weaponGroups;
     std::list<Buff> m_itemBuffs;
     std::list<Spell> m_itemClickies;

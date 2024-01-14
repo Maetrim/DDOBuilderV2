@@ -38,6 +38,7 @@ BreakdownItemSave::BreakdownItemSave(
         m_pNoFailOnOne->AttachObserver(this);
         pPane->RegisterBuildCallbackEffect(Effect_SaveBonus, this);
         pPane->RegisterBuildCallbackEffect(Effect_DivineGrace, this);
+        pPane->RegisterBuildCallbackEffect(Effect_SaveBonusAbility, this);
     }
     else
     {
@@ -224,6 +225,182 @@ void BreakdownItemSave::ClassChanged(
     // need to re-create other effects list
     CreateOtherEffects();
     Populate();
+}
+
+void BreakdownItemSave::FeatEffectApplied(Build* pBuild, const Effect& effect)
+{
+    if (AffectsUs(effect))
+    {
+        if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit: effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    AddAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::FeatEffectApplied(pBuild, effect);
+        }
+    }
+}
+
+void BreakdownItemSave::FeatEffectRevoked(Build* pBuild, const Effect& effect)
+{
+    if (AffectsUs(effect))
+    {
+            if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit : effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    RemoveFirstAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::FeatEffectRevoked(pBuild, effect);
+        }
+    }
+}
+
+void BreakdownItemSave::ItemEffectApplied(Build* pBuild, const Effect& effect)
+{
+    if (AffectsUs(effect))
+    {
+        if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit : effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    AddAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::ItemEffectApplied(pBuild, effect);
+        }
+    }
+}
+
+void BreakdownItemSave::ItemEffectRevoked(Build* pBuild, const Effect& effect)
+{
+    if (AffectsUs(effect))
+    {
+        if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit : effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    RemoveFirstAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::ItemEffectRevoked(pBuild, effect);
+        }
+    }
+}
+
+void BreakdownItemSave::ItemEffectApplied(Build* pBuild, const Effect& effect, WeaponType wt)
+{
+    if (AffectsUs(effect))
+    {
+        if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit : effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    AddAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::ItemEffectApplied(pBuild, effect, wt);
+        }
+    }
+}
+
+void BreakdownItemSave::ItemEffectRevoked(Build* pBuild, const Effect& effect, WeaponType wt)
+{
+    if (AffectsUs(effect))
+    {
+        if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit : effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    RemoveFirstAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::ItemEffectRevoked(pBuild, effect, wt);
+        }
+    }
+}
+
+void BreakdownItemSave::EnhancementEffectApplied(Build* pBuild, const Effect& effect)
+{
+    if (AffectsUs(effect))
+    {
+        if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit : effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    AddAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::EnhancementEffectApplied(pBuild, effect);
+        }
+    }
+}
+
+void BreakdownItemSave::EnhancementEffectRevoked(Build* pBuild, const Effect& effect)
+{
+    if (AffectsUs(effect))
+    {
+        if (effect.IsType(Effect_SaveBonusAbility))
+        {
+            for (auto iit : effect.Item())
+            {
+                AbilityType at = TextToEnumEntry(iit, abilityTypeMap, false);
+                if (at != Ability_Unknown)
+                {
+                    RemoveFirstAbility(at);
+                }
+            }
+        }
+        else
+        {
+            BreakdownItem::EnhancementEffectRevoked(pBuild, effect);
+        }
+    }
 }
 
 void BreakdownItemSave::UpdateTotalChanged(

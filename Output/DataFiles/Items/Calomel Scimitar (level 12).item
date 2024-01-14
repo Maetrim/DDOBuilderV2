@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Calomel Scimitar (level 12)</Name>
     <Icon>Scimitar_6c</Icon>
     <Description>A weapon crafted from durable white Calomel ore is always sheathed in condensed
@@ -15,7 +16,7 @@ water droplets. It is particularly effective against dragons and fiery creatures
     <DamageModifier>Strength</DamageModifier>
     <DRBypass>Magic</DRBypass>
     <DRBypass>Slash</DRBypass>
-    <WeaponDamage>1</WeaponDamage>
+    <WeaponDamage>1.4</WeaponDamage>
     <BaseDice>
       <Number>1</Number>
       <Sides>6</Sides>
@@ -37,47 +38,46 @@ water droplets. It is particularly effective against dragons and fiery creatures
       <BonusType/>
       <Item>All</Item>
     </Buff>
-    <NoAutoUpdate/>
     <ItemAugment>
-        <Type>Tier 2</Type>
-        <Augment>
-           <Name>+4 Enhancement Bonus</Name>
-           <Description>+4 Enhancement Bonus: +4 enhancement bonus to attack and damage rolls.</Description>
-           <MinLevel>12</MinLevel>
-          <Effect>
-            <Type>Weapon_Enchantment</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">4</Amount>
-          </Effect>
-        </Augment>
-     </ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+4 Enhancement Bonus</Name>
+        <Description>+4 Enhancement Bonus: +4 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>12</MinLevel>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <ItemAugment>
-        <Type>Tier 3</Type>
-        <Augment>
-           <Name>Dragon Bane 4  and adds a Purple augment slot</Name>
-           <Description>Dragon Bane 4: This weapon is attuned specifically to disrupt those with draconic blood, dealing an additional 4d10 bane damage vs. Dragons.
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Dragon Bane 4  and adds a Purple augment slot</Name>
+        <Description>Dragon Bane 4: This weapon is attuned specifically to disrupt those with draconic blood, dealing an additional 4d10 bane damage vs. Dragons.
 Adds a Purple augment slot to this item</Description>
-           <MinLevel>12</MinLevel>
-          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Type>WeaponOtherDamageBonusCritical</Type>
-            <Bonus>Not Set</Bonus>
-            <Dice>
-              <Number size="1">4</Number>
-              <Sides size="1">10</Sides>
-              <Damage>Bane</Damage>
-            </Dice>
-            <Item>All</Item>
-            <Requirements>
-              <Requirement>
-                <Type>EnemyType</Type>
-                <Item>Dragon</Item>
-              </Requirement>
-            </Requirements>
-          </Effect>
-           <GrantAugment>Purple</GrantAugment>
-        </Augment>
-     </ItemAugment>
+        <MinLevel>12</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements version="1">
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Dragon</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">4</Number>
+            <Sides size="1">10</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

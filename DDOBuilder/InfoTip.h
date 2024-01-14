@@ -53,7 +53,8 @@ class CInfoTip :
                 const Stance& item);
         void SetSetBonusItem(
                 const SetBonus& item,
-                size_t numStacks);
+                size_t numStacks,
+                bool bSuppressed);
         void SetItem(
                 const Item * pItem);
         void SetFiligree(
@@ -93,7 +94,7 @@ class CInfoTip :
         void ClearOldTipItems();
         void AppendSubItem(const SubItem& item);
         void AppendFeatInfo(const Build& build, const std::string& feat, const Requirements& req);
-        void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks);
+        void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks, bool bSuppressed);
         void AppendDCInfo(const Build& build, const DC& dc);
         void AppendSpellItem(const Build& build, const Spell& spell);
         void AppendSpellDamageEffect(const Build& build, const Spell& spell, const SpellDamage& sd);

@@ -345,6 +345,7 @@ std::vector<CString> Item::BuffDescriptions() const
         if (it.HasValue1()) buff.Set_Value1(it.Value1());
         if (it.HasValue2()) buff.Set_Value2(it.Value2());
         if (it.HasItem()) buff.Set_Item(it.Item());
+        if (it.HasDescription1()) buff.Set_Description1(it.Description1());
         buffs.push_back(buff.MakeDescription());
     }
     return buffs;
@@ -377,4 +378,9 @@ void Item::AddClassRequirement(const std::string& c)
 void Item::AddBuff(const Buff& b)
 {
     m_Buffs.push_back(b);
+}
+
+void Item::SetAugments(const std::vector<ItemAugment>& augments)
+{
+    Set_Augments(augments);
 }

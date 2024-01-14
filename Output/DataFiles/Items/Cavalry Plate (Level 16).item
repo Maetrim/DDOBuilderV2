@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Cavalry Plate (Level 16)</Name>
     <Icon>HeavyArmor_1a</Icon>
     <Description>High-seas pirates plundered this richly-decorated plate mail from naval cavalry
@@ -11,18 +12,9 @@ better protection may benefit from it.</Description>
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <RequiresNoneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Bladeforged</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Warforged</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresNoneOf>
+      <Requirement>
+        <Type>NotConstruct</Type>
+      </Requirement>
     </Requirements>
     <Armor>Medium</Armor>
     <ArmorBonus>20</ArmorBonus>
@@ -55,36 +47,34 @@ better protection may benefit from it.</Description>
       <Type>MithralArmor</Type>
       <BonusType/>
     </Buff>
-    <NoAutoUpdate/>
     <ItemAugment>
-        <Type>Upgradeable - Tier 2</Type>
-        <Augment>
-           <Name>+4 Enhancement Bonus -> +5 Enhancement Bonus</Name>
-           <Description>+5 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +5 Enhancement bonus to AC.</Description>
-           <MinLevel>16</MinLevel>
-          <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-          </Effect>
-        </Augment>
-     </ItemAugment>
+      <Type>Upgradeable - Tier 2</Type>
+      <Augment>
+        <Name>+4 Enhancement Bonus -&gt; +5 Enhancement Bonus</Name>
+        <Description>+5 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +5 Enhancement bonus to AC.</Description>
+        <MinLevel>16</MinLevel>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <ItemAugment>
-        <Type>Upgradeable - Tier 3</Type>
-        <Augment>
-           <Name>DR 2/Chaotic -> DR 3/Chaotic</Name>
-          <Description>DR Damage Reduction 3/Chaotic: Reduces physical damage by 3, except from Chaotic attacks.</Description>
-           <MinLevel>16</MinLevel>
-          <Ignore>Enhancement</Ignore>
-          <Effect>
-            <Type>DR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-            <Item>Chaotic</Item>
-          </Effect>
-        </Augment>
-     </ItemAugment>
+      <Type>Upgradeable - Tier 3</Type>
+      <Augment>
+        <Name>DR 2/Chaotic -&gt; DR 3/Chaotic</Name>
+        <Description>DR Damage Reduction 3/Chaotic: Reduces physical damage by 3, except from Chaotic attacks.</Description>
+        <MinLevel>16</MinLevel>
+        <Effect>
+          <Type>DR</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Chaotic</Item>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

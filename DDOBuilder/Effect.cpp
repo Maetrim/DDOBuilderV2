@@ -587,7 +587,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 // Look up the spell entry and ensure it exists
                 if (m_Item.size() != 2)
                 {
-                    (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect missing values\n";
+                    (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect missing/extra Item fields\n";
                     ok = false;
                 }
                 else
@@ -846,6 +846,8 @@ bool Effect::operator==(const Effect & other) const
             && (m_AType == other.m_AType)
             && (m_hasAmount == other.m_hasAmount)
             && (m_Amount == other.m_Amount)
+            && (m_hasValue == other.m_hasValue)
+            && (m_Value == other.m_Value)
             && (m_hasStackSource == other.m_hasStackSource)
             && (m_StackSource == other.m_StackSource)
             && (m_hasPercent == other.m_hasPercent)
@@ -1187,6 +1189,11 @@ void Effect::SetType(EffectType t)
 {
     m_Type.clear();
     m_Type.push_back(t);
+}
+
+void Effect::SetAType(AmountType t)
+{
+    Set_AType(t);
 }
 
 void Effect::SetAmount(double value)

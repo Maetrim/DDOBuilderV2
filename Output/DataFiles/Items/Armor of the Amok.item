@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Armor of the Amok</Name>
     <Icon>LightArmor_1b</Icon>
     <Description>These animal skins are dyed a dull red and are stitched together in a mad patchwork
@@ -10,37 +11,27 @@ of occult symbols.</Description>
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <RequiresNoneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Bladeforged</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Warforged</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresNoneOf>
+      <Requirement>
+        <Type>NotConstruct</Type>
+      </Requirement>
     </Requirements>
     <Armor>Light</Armor>
     <ArmorBonus>7</ArmorBonus>
     <MaximumDexterityBonus>8</MaximumDexterityBonus>
     <ArmorCheckPenalty>0</ArmorCheckPenalty>
     <ArcaneSpellFailure>10</ArcaneSpellFailure>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Rage</Item>
+      <AType>SLA</AType>
+      <Amount size="3">5 3 3</Amount>
+    </Effect>
     <Buff>
       <Type>ArmorEnchantment</Type>
       <Value1>3</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <NoAutoUpdate/>
-    <Effect>
-      <Type>ItemClickie</Type>
-      <Bonus>Equipment</Bonus>
-      <AType>SLA</AType>
-      <Amount size="3">5 3 3</Amount>
-      <Item>Rage</Item>
-    </Effect>
     <ItemAugment>
       <Type>Blue</Type>
     </ItemAugment>

@@ -268,11 +268,11 @@ class Build :
         // special feats
         size_t GetSpecialFeatTrainedCount(const std::string& featName) const;
         void TrainSpecialFeat(const std::string& featName);
-        void RevokeSpecialFeat(const std::string& featName);
+        void RevokeSpecialFeat(const std::string& featName, bool bOverride = false);
 
         // gear support
         void UpdateGearToLatestVersions();
-        Item GetLatestVersionOfItem(const Item& original);
+        Item GetLatestVersionOfItem(InventorySlotType slot, Item original);
         void VerifyGear();
         void AddGearSet(const EquippedGear & gear);
         void DeleteGearSet(const std::string& name);
@@ -295,6 +295,10 @@ class Build :
         void MergeGroups(const Effect& effect);
         void RemoveMergeGroup(const Effect& effect);
         void DumpWeaponGroups() const;
+
+        // guild buffs
+        void ApplyGuildBuffs(bool bApply);
+        void GuildLevelChange();
 
         bool operator<(const Build& other) const;
 
@@ -399,6 +403,7 @@ class Build :
         int m_universalTreeSpend;
         int m_classTreeSpend;
         int m_destinyTreeSpend;
+        size_t m_previousGuildLevel;
         std::list<ExclusionGroup> m_exclusiveEnhancements;
         std::list<StackTracking> m_setBonusStacks;
         std::list<WeaponGroup> m_weaponGroups;

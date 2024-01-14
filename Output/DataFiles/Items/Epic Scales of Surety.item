@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Scales of Surety</Name>
     <Icon>MediumArmor_2</Icon>
     <Description>A thick coat of scale mail is covered with a surprisingly light layer of fabric.</Description>
@@ -9,31 +10,21 @@
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <RequiresNoneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Bladeforged</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Warforged</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresNoneOf>
+      <Requirement>
+        <Type>NotConstruct</Type>
+      </Requirement>
     </Requirements>
     <Armor>Medium</Armor>
     <ArmorBonus>30</ArmorBonus>
     <MaximumDexterityBonus>10</MaximumDexterityBonus>
     <ArmorCheckPenalty>0</ArmorCheckPenalty>
     <ArcaneSpellFailure>25</ArcaneSpellFailure>
-    <NoAutoUpdate/>
     <Effect>
       <Type>ItemClickie</Type>
       <Bonus>Equipment</Bonus>
+      <Item>Nightshield</Item>
       <AType>SLA</AType>
       <Amount size="3">25 1 1</Amount>
-      <Item>Nightshield</Item>
     </Effect>
     <Buff>
       <Type>ArmorEnchantment</Type>
@@ -56,13 +47,14 @@
     </Buff>
     <Buff>
       <Type>Fortification</Type>
+      <Value1>50</Value1>
       <BonusType>Exceptional</BonusType>
-       <Value1>50</Value1>
     </Buff>
     <Buff>
       <Type>Greater Nimbleness</Type>
       <BonusType/>
     </Buff>
+    <SetBonus>Unbreakable Adamancy</SetBonus>
     <ItemAugment>
       <Type>Upgradeable - Primary Augment</Type>
       <Augment>
@@ -90,6 +82,5 @@
         <GrantAugment>Green</GrantAugment>
       </Augment>
     </ItemAugment>
-    <SetBonus>Unbreakable Adamancy</SetBonus>
   </Item>
 </Items>

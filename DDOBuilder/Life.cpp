@@ -758,3 +758,26 @@ void Life::NotifyActiveBuildChanged()
     CountBonusUniversalAP();
 }
 
+bool Life::ApplyGuildBuffs() const
+{
+    bool bApply = false;
+    if (m_pCharacter->HasApplyGuildBuffs())
+    {
+        bApply = true;
+    }
+    return bApply;
+}
+
+size_t Life::GuildLevel() const
+{
+    size_t guildLevel = 0;
+    if (m_pCharacter->HasApplyGuildBuffs())
+    {
+        if (m_pCharacter->HasGuildLevel())
+        {
+            guildLevel = m_pCharacter->GuildLevel();
+        }
+    }
+    return guildLevel;
+}
+

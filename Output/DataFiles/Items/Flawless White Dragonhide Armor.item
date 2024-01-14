@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Flawless White Dragonhide Armor</Name>
     <Icon>LightArmor_15</Icon>
     <Description>Flawless Leather armor crafted from the hide and scales of a white dragon.</Description>
@@ -38,16 +39,52 @@
       <Value1>6</Value1>
     </Buff>
     <Buff>
-      <Type>EnergyResistance</Type>
+      <Type>SuperiorColdResistance</Type>
       <Value1>40</Value1>
       <BonusType>Enhancement</BonusType>
+      <Description1>Cold</Description1>
       <Item>Cold</Item>
     </Buff>
-    <Buff>
-      <Type>Shield</Type>
-      <Value1>6</Value1>
-    </Buff>
     <SetBonus>Draconic Resilience</SetBonus>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>25</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>Protection +8 and Shield +8</Name>
+        <Description>Protection +8: Passive: +8 Deflection bonus to Armor Class.
+Shield +8: While this item is equipped, you are partially protected by a field
+of magical force which can deflect enemy attacks. This item provides a +8 Shield
+bonus to Armor Class. It does not stack with an equipped shield.</Description>
+        <MinLevel>25</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Deflection</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Shield</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <ItemAugment>
       <Type>Blue</Type>
     </ItemAugment>

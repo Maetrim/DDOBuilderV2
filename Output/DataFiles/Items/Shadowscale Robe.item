@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Shadowscale Robe</Name>
     <Icon>Cloth_5a</Icon>
     <Description>A finely crafted silk robe that includes many scales from a shadow dragon.</Description>
@@ -9,12 +10,27 @@
       <Armor/>
     </EquipmentSlot>
     <Requirements version="1">
-      <Requirement>
-        <Type>NotConstruct</Type>
-      </Requirement>
+      <RequiresNoneOf>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Bladeforged</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Warforged</Item>
+          <Value>1</Value>
+        </Requirement>
+      </RequiresNoneOf>
     </Requirements>
     <Armor>Cloth</Armor>
-    <ArmorBonus>11</ArmorBonus>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Shadow Phase</Item>
+      <AType>SLA</AType>
+      <Amount size="3">30 3 3</Amount>
+    </Effect>
     <Buff>
       <Type>ArmorBonus</Type>
       <Value1>10</Value1>
@@ -42,14 +58,6 @@
       <Type>From The Shadows</Type>
       <BonusType/>
     </Buff>
-    <NoAutoUpdate/>
-    <Effect>
-      <Type>ItemClickie</Type>
-      <Bonus>Equipment</Bonus>
-      <AType>SLA</AType>
-      <Amount size="3">30 3 3</Amount>
-      <Item>Shadow Phase</Item>
-    </Effect>
     <ItemAugment>
       <Type>Blue</Type>
     </ItemAugment>

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Calomel Rapier (level 8)</Name>
     <Icon>Rapier_6</Icon>
     <Description>A weapon crafted from durable white Calomel ore is always sheathed in condensed
@@ -36,47 +37,46 @@ water droplets. It is particularly effective against dragons and fiery creatures
       <Type>Tidal</Type>
       <BonusType/>
     </Buff>
-    <NoAutoUpdate/>
     <ItemAugment>
-        <Type>Tier 2</Type>
-        <Augment>
-           <Name>+3 Enhancement Bonus and Dragon Bane 3</Name>
-           <Description>+3 Enhancement Bonus: +3 enhancement bonus to attack and damage rolls.
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+3 Enhancement Bonus and Dragon Bane 3</Name>
+        <Description>+3 Enhancement Bonus: +3 enhancement bonus to attack and damage rolls.
 Dragon Bane 3: This weapon is attuned specifically to disrupt those with draconic blood, dealing an additional 3d10 bane damage vs. Dragons.</Description>
-           <MinLevel>8</MinLevel>
-          <Effect>
-            <Type>Weapon_Enchantment</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-          </Effect>
-          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Type>WeaponOtherDamageBonusCritical</Type>
-            <Bonus>Not Set</Bonus>
-            <Dice>
-              <Number size="1">3</Number>
-              <Sides size="1">10</Sides>
-              <Damage>Bane</Damage>
-            </Dice>
-            <Item>All</Item>
-            <Requirements>
-              <Requirement>
-                <Type>EnemyType</Type>
-                <Item>Dragon</Item>
-              </Requirement>
-            </Requirements>
-          </Effect>
-        </Augment>
-     </ItemAugment>
+        <MinLevel>8</MinLevel>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements version="1">
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Dragon</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">3</Number>
+            <Sides size="1">10</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <ItemAugment>
-        <Type>Tier 3</Type>
-        <Augment>
-           <Name>Adds a Purple augment slot</Name>
-           <Description>Adds a Purple augment slot to this item</Description>
-           <MinLevel>8</MinLevel>
-           <GrantAugment>Purple</GrantAugment>
-        </Augment>
-     </ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds a Purple augment slot</Name>
+        <Description>Adds a Purple augment slot to this item</Description>
+        <MinLevel>8</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

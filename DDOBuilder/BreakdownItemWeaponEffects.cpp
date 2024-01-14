@@ -434,6 +434,36 @@ void BreakdownItemWeaponEffects::SliderChanged(
     }
 }
 
+void BreakdownItemWeaponEffects::StanceActivated(
+    Build* pBuild,
+    const std::string& stanceName)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->StanceActivated(pBuild, stanceName);
+    }
+
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->StanceActivated(pBuild, stanceName);
+    }
+}
+
+void BreakdownItemWeaponEffects::StanceDeactivated(
+    Build* pBuild,
+    const std::string& stanceName)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->StanceDeactivated(pBuild, stanceName);
+    }
+
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->StanceDeactivated(pBuild, stanceName);
+    }
+}
+
 void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
 {
     // first remove any previous weapons breakdowns (if present)

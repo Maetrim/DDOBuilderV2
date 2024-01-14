@@ -12,6 +12,8 @@ class SlotUpgrade :
         SlotUpgrade(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
+        bool HasSlotType(const std::string& type) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

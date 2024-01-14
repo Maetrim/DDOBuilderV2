@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>+7 Epic Energized Falchion</Name>
     <Icon>Falchion_1c</Icon>
     <Description>A weapon found deep within the Temple of Elemental Evil.</Description>
@@ -13,11 +14,10 @@
     <DamageModifier>Strength</DamageModifier>
     <DRBypass>Magic</DRBypass>
     <DRBypass>Slash</DRBypass>
-    <WeaponDamage>5</WeaponDamage>
+    <WeaponDamage>4.2</WeaponDamage>
     <BaseDice>
       <Number>2</Number>
       <Sides>4</Sides>
-      <Bonus>7</Bonus>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>3</CriticalThreatRange>
@@ -30,12 +30,11 @@
       <Type>ElectricVulnerability</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <NoAutoUpdate/>
-     <ItemAugment>
-        <Type>Tier 1</Type>
-        <Augment>
-           <Name>Greater Maiming and Greater Electric Storm</Name>
-           <Description>Greater Maiming: This weapon has a twisted haft or grip and spikes along
+    <ItemAugment>
+      <Type>Tier 1</Type>
+      <Augment>
+        <Name>Greater Maiming and Greater Electric Storm</Name>
+        <Description>Greater Maiming: This weapon has a twisted haft or grip and spikes along
 its blade, head, or point. Whenever you score a critical hit with this weapon it
 deals an amount of extra untyped damage depending on its critical multiplier:
 x2 - 8 to 48, x3 - 12 to 72, x4 - 16 to 96.
@@ -43,55 +42,52 @@ Greater Electric Storm: This weapon is imbued with an electrifying wrath. On an 
 which is confirmed as a critical hit this power will be released, dealing damage
 to the target and all enemies near it for 30d3 + 90 electric damage. A successful
 Reflex save (DC 90) reduces this by half.</Description>
-           <MinLevel>26</MinLevel>
-            <Effect>
-                <Type>WeaponOtherDamageBonusCritical</Type>
-                <Bonus>Enhancement</Bonus>
-                 
-                <Dice>
-                    <Number size="6">0 0 6 12 16 20</Number>
-                    <Sides size="6">0 0 6 6 6 6</Sides>
-                </Dice>
-                <Item>All</Item>
-            </Effect>
-            <Effect>
-                <Type>WeaponOtherDamageBonusCritical</Type>
-                <Bonus>Enhancement</Bonus>
-                 
-                <Dice>
-                    <Number size="1">30</Number>
-                    <Sides size="1">3</Sides>
-                    <Bonus size="1">90</Bonus>
-                    <Damage>Electric</Damage>
-                </Dice>
-                <Item>All</Item>
-            </Effect>
-        </Augment>
-     </ItemAugment>
-     <ItemAugment>
-        <Type>Tier 2</Type>
-        <Augment>
-           <Name>Greater Shocking Blast, Purple Augment slot and set bonus.</Name>
-           <Description>Greater Shocking Blast: A shocking blast weapon is sheathed in crackling
+        <MinLevel>26</MinLevel>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 6 12 16 20</Number>
+            <Sides size="6">0 0 6 6 6 6</Sides>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">30</Number>
+            <Sides size="1">3</Sides>
+            <Bonus size="1">90</Bonus>
+            <Damage>Electric</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Greater Shocking Blast, Purple Augment slot and set bonus.</Name>
+        <Description>Greater Shocking Blast: A shocking blast weapon is sheathed in crackling
 electricity. Critical hits with this weapon deal an additional 4 to 40 electric
 damage for weapons with a x2 critical multiplier, 6 to 60 for a x3 critical
 multiplier, and 8 to 80 for a x4 multiplier. Additionally, if you roll a 20 when
 attacking and confirm the critical hit, the weapon blasts your target, doing 6
 to 36 more electric damage.</Description>
-           <MinLevel>7</MinLevel>
-            <Effect>
-                <Type>WeaponOtherDamageBonusCritical</Type>
-                <Bonus>Enhancement</Bonus>
-                 
-                <Dice>
-                    <Number size="6">0 0 4 6 8 10</Number>
-                    <Sides size="6">0 0 10 10 10 10</Sides>
-                </Dice>
-                <Item>All</Item>
-            </Effect>
-           <GrantAugment>Purple</GrantAugment>
-           <SetBonus>Epic Elemental Evil Set</SetBonus>
-        </Augment>
-     </ItemAugment>
+        <MinLevel>7</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+        <SetBonus>Epic Elemental Evil Set</SetBonus>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 4 6 8 10</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

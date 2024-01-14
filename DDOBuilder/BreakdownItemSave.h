@@ -36,6 +36,14 @@ class BreakdownItemSave:
     protected:
         virtual void BuildLevelChanged(Build*) override;
         virtual void ClassChanged(Build*, const std::string& classFrom, const std::string& classTo,size_t level) override;
+        virtual void FeatEffectApplied(Build*, const Effect& effect) override;
+        virtual void FeatEffectRevoked(Build*, const Effect& effect) override;
+        virtual void ItemEffectApplied(Build*, const Effect& effect) override;
+        virtual void ItemEffectRevoked(Build*, const Effect& effect) override;
+        virtual void ItemEffectApplied(Build*, const Effect& effect, WeaponType wt) override;
+        virtual void ItemEffectRevoked(Build*, const Effect& effect, WeaponType wt) override;
+        virtual void EnhancementEffectApplied(Build*, const Effect& effect) override;
+        virtual void EnhancementEffectRevoked(Build*, const Effect& effect) override;
 
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;

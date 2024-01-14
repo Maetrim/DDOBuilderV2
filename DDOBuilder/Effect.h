@@ -491,6 +491,7 @@ class Effect :
         bool UpdateSliderEffects(const std::string& sliderName, int newValue);
 
         void SetType(EffectType t);
+        void SetAType(AmountType t);
         void SetAmount(double value);
         void SetBonus(const std::string& bonus);
         void SetItem(const std::list<std::string>& items);

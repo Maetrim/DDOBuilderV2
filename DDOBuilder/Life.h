@@ -71,6 +71,10 @@ class Life :
         void TrainSpecialFeat(const std::string& featName);
         void RevokeSpecialFeat(const std::string& featName);
 
+        // guild buffs
+        bool ApplyGuildBuffs() const;
+        size_t GuildLevel() const;
+
         void NotifyActiveBuildChanged();
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

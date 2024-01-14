@@ -393,6 +393,7 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         std::string fullname = itemFields.at("Name");
         CString text;
         text.Format("Item \"%s\"", name.c_str());
+        GetLog().AddLogEntry(text);
 
         size_t pos = name.find(':', 0);
         while (pos != std::string::npos)
@@ -413,115 +414,121 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         XmlLib::SaxReader reader(this, f_saxElementName);
         // read in the xml from a file (fully qualified path)
         reader.Open(itemFilename);    // reads if file is present
+        // clear any existing effects from load action to avoid carry over after recreated
+        m_item.m_AttackModifier.clear();
+        m_item.m_DamageModifier.clear();
+        m_item.m_DRBypass.clear();
+        m_item.Clear_IsGreensteel();
+        m_item.Clear_MinorArtifact();
+        m_item.Clear_RequirementsToUse();
+        m_item.m_RequirementsToUse = Requirements();
+        m_item.Clear_Weapon();
+        m_item.Clear_Armor();
+        m_item.Clear_WeaponDamage();
+        m_item.Clear_DamageDice();
+        m_item.Clear_CriticalMultiplier();
+        m_item.Clear_CriticalThreatRange();
+        m_item.Clear_ArmorBonus();
+        m_item.Clear_MithralBody();
+        m_item.Clear_AdamantineBody();
+        m_item.Clear_MaximumDexterityBonus();
+        m_item.Clear_ArmorCheckPenalty();
+        m_item.Clear_ArcaneSpellFailure();
+
+        // now update the item
+        m_item.Set_Name(fullname);
+        int minLevel = 1;
+        if (itemFields.find("Minimum Level") != itemFields.end())
+        {
+            std::string levelText = itemFields.at("Minimum Level");
+            if (levelText == "None")
+            {
+                minLevel = 1;
+            }
+            else
+            {
+                minLevel = atoi(levelText.c_str());
+            }
+        }
+        m_item.Set_MinLevel(minLevel);
+        // set the item slot type.
+        if (false == SetItemSlot(itemFields))
+        {
+            // no equipment slot for this item, its not real
+            ::DeleteFile(itemFilename.c_str());
+            return;
+        }
+
+        if (itemFields.find("Drop Location") != itemFields.end())
+        {
+            m_item.Set_DropLocation(itemFields.at("Drop Location"));
+        }
+        if (itemFields.find("Description") != itemFields.end())
+        {
+            text = itemFields.at("Description").c_str();
+            BreakUpLongLines(text);
+            m_item.Set_Description((LPCTSTR)text);
+        }
+        if (itemFields.find("Accept Sentience") != itemFields.end())
+        {
+            std::string as = itemFields.at("Accept Sentience");
+            if (as.find("Yes") != std::string::npos)
+            {
+                m_item.Set_IsAcceptsSentience();
+            }
+        }
+        if (bMinorArtifact)
+        {
+            m_item.Set_MinorArtifact();
+        }
+        if (itemFields.find("Race Absolutely Required") != itemFields.end())
+        {
+            // note, must be done after SetItemSlot
+            // as that can set some requirements also
+            std::string race = itemFields.at("Race Absolutely Required");
+            if (race.find("None") == std::string::npos
+                    && race.find("Warforged") == std::string::npos)
+            {
+                m_item.AddRaceRequirement(race);
+            }
+        }
+
+        AddArmorFields(itemFields);
+        AddAttackMods(itemFields);
+        AddDamageMods(itemFields);
+        AddDamageDice(itemFields);
+        AddCriticalThreatAndMultiplier(itemFields);
         // some item files have to be manually set up. In such cases the file has
         // been marked to never be auto updated by this procedure. Skip these files
         if (!m_item.HasNoAutoUpdate())
         {
-            GetLog().AddLogEntry(text);
             // clear any existing effects from load action to avoid carry over after recreated
             m_item.m_Buffs.clear();
             m_item.m_SetBonus.clear();
             m_item.m_Augments.clear();
             m_item.m_SlotUpgrades.clear();
-            m_item.m_AttackModifier.clear();
-            m_item.m_DamageModifier.clear();
-            m_item.m_DRBypass.clear();
-            m_item.Clear_IsGreensteel();
-            m_item.Clear_MinorArtifact();
-            m_item.Clear_RequirementsToUse();
-            m_item.m_RequirementsToUse = Requirements();
-
-            // now update the item
-            m_item.Set_Name(fullname);
-            int minLevel = 1;
-            if (itemFields.find("Minimum Level") != itemFields.end())
-            {
-                std::string levelText = itemFields.at("Minimum Level");
-                if (levelText == "None")
-                {
-                    minLevel = 1;
-                }
-                else
-                {
-                    minLevel = atoi(levelText.c_str());
-                }
-            }
-            m_item.Set_MinLevel(minLevel);
-            // set the item slot type.
-            if (false == SetItemSlot(itemFields))
-            {
-                // no equipment slot for this item, its not real
-                ::DeleteFile(itemFilename.c_str());
-                return;
-            }
-
-            if (itemFields.find("Drop Location") != itemFields.end())
-            {
-                m_item.Set_DropLocation(itemFields.at("Drop Location"));
-            }
-            if (itemFields.find("Description") != itemFields.end())
-            {
-                text = itemFields.at("Description").c_str();
-                BreakUpLongLines(text);
-                m_item.Set_Description((LPCTSTR)text);
-            }
-            if (itemFields.find("Accept Sentience") != itemFields.end())
-            {
-                std::string as = itemFields.at("Accept Sentience");
-                if (as.find("Yes") != std::string::npos)
-                {
-                    m_item.Set_IsAcceptsSentience();
-                }
-            }
-            if (bMinorArtifact)
-            {
-                m_item.Set_MinorArtifact();
-            }
-            if (itemFields.find("Race Absolutely Required") != itemFields.end())
-            {
-                // note, must be done after SetItemSlot
-                // as that can set some requirements also
-                std::string race = itemFields.at("Race Absolutely Required");
-                if (race.find("None") == std::string::npos
-                        && race.find("Warforged") == std::string::npos)
-                {
-                    m_item.AddRaceRequirement(race);
-                }
-            }
-
-            AddArmorFields(itemFields);
-            AddAttackMods(itemFields);
-            AddDamageMods(itemFields);
-            AddDamageDice(itemFields);
-            AddCriticalThreatAndMultiplier(itemFields);
             AddItemEffects(itemFields);
-
-            if (m_item.HasWeapon()
-                && m_item.Weapon() == Weapon_Unknown)
-            {
-                // its a dud weapon file, ignore it
-                return;
-            }
-            try
-            {
-                XmlLib::SaxWriter writer;
-                writer.Open(itemFilename);
-                writer.StartDocument(f_saxElementName);
-                m_item.Write(&writer);
-                writer.EndDocument();
-            }
-            catch (const std::exception& e)
-            {
-                std::string errorMessage = e.what();
-                CString err;
-                err.Format("...Failed to save item. Error \"%s\"", errorMessage.c_str());
-                text += err;
-            }
         }
-        else
+        if (m_item.HasWeapon()
+            && m_item.Weapon() == Weapon_Unknown)
         {
-            text += " ----- Not auto updated";
-            GetLog().AddLogEntry(text);
+            // its a dud weapon file, ignore it
+            return;
+        }
+        try
+        {
+            XmlLib::SaxWriter writer;
+            writer.Open(itemFilename);
+            writer.StartDocument(f_saxElementName);
+            m_item.Write(&writer);
+            writer.EndDocument();
+        }
+        catch (const std::exception& e)
+        {
+            std::string errorMessage = e.what();
+            CString err;
+            err.Format("...Failed to save item. Error \"%s\"", errorMessage.c_str());
+            text += err;
         }
 #ifdef _DEBUG
         // debug build also dumps the itemFields extracted to a file of the same name
@@ -890,9 +897,13 @@ void WikiItemFileProcessor::AddArmorFields(const std::map<std::string, std::stri
 {
     if (itemFields.find("Armor Bonus") != itemFields.end())
     {
-        std::string field = itemFields.at("Armor Bonus");
-        size_t armor = atoi(field.c_str());
-        m_item.Set_ArmorBonus(armor);
+        // never an armor bonus for cloth/robes
+        if (m_item.Armor() != Armor_Cloth)
+        {
+            std::string field = itemFields.at("Armor Bonus");
+            size_t armor = atoi(field.c_str());
+            m_item.Set_ArmorBonus(armor);
+        }
     }
     if (itemFields.find("Armor Bonus CP") != itemFields.end())
     {
@@ -1087,8 +1098,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ExtraSmites", "Extra Smites ", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Protection", "Protection", "Deflection", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "SpellcastingImplement", "Spellcasting Implement ", "Implement", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "WeaponEnchantment", "enhancement bonus to attack and damage rolls", "Enhancement", "", 60);
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "WeaponEnchantmentBad", "-1 Enhancement Bonus", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "WeaponEnchantment", "enhancement bonus to attack and damage rolls", "Weapon Enchantment", "", 60);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "WeaponEnchantmentBad", "-1 Enhancement Bonus", "Weapon Enchantment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "GhostTouch", "Ghost Touch Ghost Touch", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "GhostTouch", "Passive: This weapon has Ghost Touch", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blurry", "Blurry Blurry", "", "");
@@ -1097,6 +1108,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MithralArmor", "Mithral Mithral : Mithral armor", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "WeakenUndead", "Weaken Undead Weaken Undead", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unnatural", "Unnatural Unnatural", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dragontouched", "Dragontouched", "", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MinorActionBoostEnhancement", "Minor Action Boost Enhancement", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserActionBoostEnhancement", "Lesser Action Boost Enhancement", "Equipment", "");
@@ -1158,7 +1170,10 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "GreaterFalseLife", "Greater False Life", "Enhancement", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "SuperiorFalseLife", "Superior False Life", "Enhancement", "", 5);
 
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Elemental Bane", "Lesser Elemental Bane", "Enhancement", "All", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserIncorporealBane", "Lesser Incorporeal Bane", "Enhancement", "All", 5);
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Construct Bane", "Construct Bane Construct Bane", "Enhancement", "All", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ElementalManipulation", "Elemental Manipulation", "Equipment", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "PowerOfTheDarkRestoration", "Power of the Dark Restoration", "Equipment", "", 5);
@@ -1178,6 +1193,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Winged Allure", "Winged Allure", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Construct Fortification (10%)", "Construct Fortification (10%)", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "On Critical", "On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anger", "Anger Anger", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Nimbleness", "Greater Nimbleness", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Superior Nimbleness", "Superior Nimbleness", "", "", 5);
@@ -1232,6 +1248,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Minor Lesser Dragonmark Enhancement", "Minor Lesser Dragonmark Enhancement", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dragonshard Focus: Sentinel", "Dragonshard Focus: Sentinel", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Embodiment of Law", "Embodiment of Law Embodiment of Law", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Eternal Holy Burst", "Eternal Holy Burst", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Paragon Evil Guard", "Paragon Evil Guard Paragon", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Paragon Good Guard", "Paragon Good Guard Paragon", "", "", 5);
@@ -1386,6 +1403,14 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
         for (auto&& bit : bonuses)
         {
             bRecognised = ProcessRomanNumeralTypes(line, bit.Name());
+            if (bRecognised) break;     // and were done
+        }
+        if (!bRecognised)
+        {
+            bRecognised = ProcessRomanNumeralTypes(line, "");
+        }
+        for (auto&& bit : bonuses)
+        {
             if (!bRecognised) bRecognised = ProcessBonusType(line, bit.Name());
             if (bRecognised) break;     // and were done
         }
@@ -1428,6 +1453,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "BluntedAmmunition", "Blunted Ammunition", "Enhancement", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Brilliance", "Brilliance Brilliance", "Enhancement", "", 20);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Negative Energy Spike", "Negative Energy Spike", "Enhancement", "", 20);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Elemental Energy", "Legendary Elemental Energy", "", "", 5);
 
@@ -1435,6 +1461,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Turning", "Lesser Turning Lesser Turning", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Turning", "Turning Turning", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Eternal Faith", "Eternal Faith Eternal Faith", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Insightful Faith", "Insightful Faith Insightful Faith", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shocking Blow", "Shocking Blow Shocking Blow", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Fire Guard X", "Fire Guard X", "", "", 5);
@@ -1741,8 +1768,12 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Taint of Chaos", "Taint of Chaos", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Corrosive Salt", "Corrosive Salt", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anthem", "Anthem Anthem", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slowburst", "Slowburst Slowburst", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Improved Slowburst", "Improved Slowburst Improved Slowburst", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Slowburst", "Legendary Slowburst Legendary Slowburst", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Entangling Yarn", "Legendary Entangling Yarn", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Entangling Yarn", "Entangling Yarn", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lifedrinker", "Lifedrinker Lifedrinker", "", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Everbright", "Everbright", "", "All");
 
@@ -1964,6 +1995,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Cloudburst", "Cloudburst Cloudburst", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Improved Paralyzing", "Improved Paralyzing", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Slay Living", "Legendary Slay Living Legendary Slay Living", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slay Living", "Slay Living Slay Living", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Calamitous Blows", "Calamitous Blows", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bloodrage Defense", "Bloodrage Defense", "Enhancement", "");
@@ -2119,6 +2151,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Spearblock II", "Spearblock II", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vile Grip of the Hidden", "Vile Grip of the Hidden", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Vile Grip of the Hidden", "Legendary Vile Grip of the Hidden", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Equipped Healing Amplification", "Equipped Healing Amplification", "", "", 5);
     if (!bRecognised) bRecognised |= ProcessSpeed(line);
     if (!bRecognised) bRecognised |= AddFavoredWeapon(line);
 
@@ -2194,7 +2227,10 @@ bool WikiItemFileProcessor::AddSetBonuses(const std::string& line)
     {
         if (!sbit.HasIgnoreForParse())
         {
-            size_t pos = line.find(sbit.Type());
+            std::string name = sbit.Type();
+            name += " ";
+            name += sbit.Type();
+            size_t pos = line.find(name);
             if (pos != std::string::npos
                 && pos < 5)
             {
@@ -2274,6 +2310,7 @@ bool WikiItemFileProcessor::ProcessRomanNumeralType(const std::string& line, con
     if (!bProcessed) bProcessed = ProcessParryingRomanNumeral(line, numeral, bonus, index * 10);
     if (!bProcessed) bProcessed = ProcessPowerNumeral(line, numeral, bonus, index * 10);
     if (!bProcessed) bProcessed = ProcessSpellPenetrationNumeral(line, numeral, bonus, index);
+    if (!bProcessed) bProcessed = ProcessSpellLoreNumeral(line, numeral, bonus, index);
     return bProcessed;
 }
 
@@ -2537,6 +2574,7 @@ bool WikiItemFileProcessor::ProcessSpellLore(const std::string& line, const std:
         "SonicLore", "Sonic Lore",
         "SpellLore", "Spell Lore",
         "VoidLore", "Void Lore",
+        "HealingLore", "Healing Lore",
         "PowerOfTheFrozenStorm", "Power of the Frozen Storm"
     };
     size_t count = sizeof(lores) / sizeof(std::string);
@@ -2671,7 +2709,7 @@ bool WikiItemFileProcessor::ProcessWizardryRomanNumeral(
         b.Set_Type("Wizardry");
         b.Set_BonusType(bonus);
         b.Set_Value1(value);
-        b.Set_Item(numeral);
+        b.Set_Description1(numeral);
         m_item.AddBuff(b);
         bProcessed = true;
     }
@@ -2747,7 +2785,7 @@ bool WikiItemFileProcessor::ProcessSpellFocusRomanNumeral(const std::string& lin
         b.Set_Type("SpellFocus");
         b.Set_BonusType(bonus);
         b.Set_Value1(value);
-        b.Set_Item(numeral);
+        b.Set_Description1(numeral);
         m_item.AddBuff(b);
         bProcessed = true;
     }
@@ -2774,7 +2812,7 @@ bool WikiItemFileProcessor::ProcessSpellFocusRomanNumeral(const std::string& lin
             b.Set_Type("SchoolFocus");
             b.Set_BonusType(bonus);
             b.Set_Value1(value);
-            b.Set_Item(numeral);
+            b.Set_Description1(numeral);
             m_item.AddBuff(b);
             bProcessed = true;
         }
@@ -2869,7 +2907,7 @@ bool WikiItemFileProcessor::ProcessParryingRomanNumeral(const std::string& line,
         b.Set_Type("Parrying");
         b.Set_BonusType(bonus);
         b.Set_Value1(value);
-        b.Set_Item(numeral);
+        b.Set_Description1(numeral);
         m_item.AddBuff(b);
         bProcessed = true;
     }
@@ -2880,7 +2918,14 @@ bool WikiItemFileProcessor::ProcessPowerNumeral(const std::string& line, const s
 {
     bool bProcessed = false;
     CString searchText;
-    searchText.Format("Power %s", numeral.c_str());
+    if (bonus != "Equipment")
+    {
+        searchText.Format("%s Power %s", bonus.c_str(), numeral.c_str());
+    }
+    else
+    {
+        searchText.Format("Power %s", numeral.c_str());
+    }
     size_t pos = line.find((LPCTSTR)searchText, 0);
     if (pos != std::string::npos)
     {
@@ -2888,7 +2933,7 @@ bool WikiItemFileProcessor::ProcessPowerNumeral(const std::string& line, const s
         b.Set_Type("Power");
         b.Set_BonusType(bonus);
         b.Set_Value1(value);
-        b.Set_Item(numeral);
+        b.Set_Description1(numeral);
         m_item.AddBuff(b);
         bProcessed = true;
     }
@@ -2899,7 +2944,14 @@ bool WikiItemFileProcessor::ProcessSpellPenetrationNumeral(const std::string& li
 {
     bool bProcessed = false;
     CString searchText;
-    searchText.Format("%s Spell Penetration %s", bonus.c_str(), numeral.c_str());
+    if (bonus != "Equipment")
+    {
+        searchText.Format("%s Spell Penetration %s", bonus.c_str(), numeral.c_str());
+    }
+    else
+    {
+        searchText.Format("Spell Penetration %s", numeral.c_str());
+    }
     size_t pos = line.find((LPCTSTR)searchText, 0);
     if (pos != std::string::npos)
     {
@@ -2907,7 +2959,33 @@ bool WikiItemFileProcessor::ProcessSpellPenetrationNumeral(const std::string& li
         b.Set_Type("SpellPenetrationNumeral");
         b.Set_BonusType(bonus);
         b.Set_Value1(value);
-        b.Set_Item(numeral);
+        b.Set_Description1(numeral);
+        m_item.AddBuff(b);
+        bProcessed = true;
+    }
+    return bProcessed;
+}
+
+bool WikiItemFileProcessor::ProcessSpellLoreNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value)
+{
+    bool bProcessed = false;
+    CString searchText;
+    if (bonus != "Equipment")
+    {
+        searchText.Format("%s Spell Lore %s", bonus.c_str(), numeral.c_str());
+    }
+    else
+    {
+        searchText.Format("Spell Lore %s", numeral.c_str());
+    }
+    size_t pos = line.find((LPCTSTR)searchText, 0);
+    if (pos != std::string::npos)
+    {
+        Buff b;
+        b.Set_Type("SpellLoreNumeral");
+        b.Set_BonusType(bonus);
+        b.Set_Value1(value);
+        b.Set_Description1(numeral);
         m_item.AddBuff(b);
         bProcessed = true;
     }
@@ -3507,9 +3585,9 @@ bool WikiItemFileProcessor::ProcessCombatAction(const std::string& line, const s
 bool WikiItemFileProcessor::ProcessKeen(const std::string& line)
 {
     bool bRecognised = false;
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Keen", "Keen Keen :", "Enhancement", "", 20);
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impact", "Impact Impact: This weapon", "Enhancement", "", 20);
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impact", "Impact Impact : Passive", "Enhancement", "", 20);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Keen", "Keen Keen :", "", "", 20);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impact", "Impact Impact: This weapon", "", "", 20);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impact", "Impact Impact : Passive", "", "", 20);
     if (bRecognised)
     {
         // need to adjust the critical threat range of this weapon to not include the Keen bonus
@@ -3589,6 +3667,7 @@ bool WikiItemFileProcessor::AddCommonEffect(
         }
         CString text(line.c_str());
         text = text.Right(line.size() - pos - searchText.size());
+        text.Replace(" - ", "");    // clear bad parse text that may be present
         double value = atoi(text);
         if (value == 0)
         {
@@ -3603,6 +3682,7 @@ bool WikiItemFileProcessor::AddCommonEffect(
         if (item != "")
         {
             b.Set_Item(item);
+            b.Set_Description1(item);
         }
         m_item.AddBuff(b);
         bRecognised = true;
