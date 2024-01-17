@@ -655,3 +655,22 @@ BreakdownItem * BreakdownItemWeaponEffects::GetWeaponBreakdown(bool bMainhand, B
     return pBI;
 }
 
+void BreakdownItemWeaponEffects::BuildChanged(Character* charData)
+{
+    // clear any effects on a character change
+    for (size_t i = 0; i < Weapon_Count; ++i)
+    {
+        m_weaponFeatEffects[i].clear();
+        m_weaponItemEffects[i].clear();
+        m_weaponEnhancementEffects[i].clear();
+    }
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->BuildChanged(charData);
+    }
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->BuildChanged(charData);
+    }
+    BreakdownItem::BuildChanged(charData);
+}

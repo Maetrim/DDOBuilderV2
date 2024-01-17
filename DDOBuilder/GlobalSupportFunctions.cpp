@@ -1870,6 +1870,10 @@ void AddSpecialSlots(InventorySlotType slot, Item& item)
     }
     else
     {
+        std::vector<ItemAugment> currentAugments = item.Augments();
+        AddAugment(&currentAugments, "Deck Curse", true);
+        // now set the slots on the item
+        item.SetAugments(currentAugments);
         //// add upgrade slots for Cannith crafted and random loot
         //SlotUpgrade slot;
         //slot.Set_Type("Upgrade Slot");

@@ -763,7 +763,7 @@ bool Life::ApplyGuildBuffs() const
     bool bApply = false;
     if (m_pCharacter->HasApplyGuildBuffs())
     {
-        bApply = true;
+        bApply = m_pCharacter->ApplyGuildBuffs();
     }
     return bApply;
 }

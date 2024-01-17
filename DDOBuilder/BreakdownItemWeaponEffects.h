@@ -32,6 +32,8 @@ class BreakdownItemWeaponEffects :
         virtual bool AffectsUs(const Effect & effect) const override;
         virtual void SetCharacter(Character * charData);
 
+        virtual void BuildChanged(Character* charData) override;
+
         void WeaponsChanged(const EquippedGear & gear);
         bool AreWeaponsCentering() const;
         void AddForumExportData(std::stringstream & forumExport);

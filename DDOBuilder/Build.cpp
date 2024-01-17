@@ -188,9 +188,6 @@ void Build::BuildNowActive()
 {
     SetupDefaultWeaponGroups();
     VerifySpecialFeats();
-    // needs to be before Notify to avoid multiple feat notifications
-    UpdateFeats();
-    m_pLife->NotifyActiveBuildChanged();
     // make sure we are correctly tracking how many APs have been spent
     // in each tree type
     m_racialTreeSpend = 0;
@@ -222,6 +219,9 @@ void Build::BuildNowActive()
         //const EnhancementTree& eTree = EnhancementTree::GetTree(tit.TreeName());
         m_destinyTreeSpend += tit.Spent();
     }
+    // needs to be before Notify to avoid multiple feat notifications
+    UpdateFeats();
+    m_pLife->NotifyActiveBuildChanged();
     // first notify all the feat effects for this builds level (trained and automatic)
     std::list<TrainedFeat> feats = CurrentFeats(Level());
     for (auto&& fit: feats)
@@ -274,7 +274,7 @@ void Build::BuildNowActive()
         }
     }
     ApplyGearEffects();     // apply effects from equipped gear
-    //m_previousGuildLevel = 0;   // ensure all effects apply
+    m_previousGuildLevel = 0;   // ensure all effects apply
     ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
     //UpdateGreensteelStances();
     //NotifyAllSelfAndPartyBuffs();
@@ -3596,7 +3596,10 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, Item original)
                     if (newAugments[j].Type() == originalAugments[i].Type())
                     {
                         newAugments[j].Set_SelectedAugment(originalAugments[i].SelectedAugment());
-                        newAugments[j].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                        if (originalAugments[i].HasSelectedLevelIndex())
+                        {
+                            newAugments[j].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                        }
                         bFound = true;
                     }
                 }
@@ -3618,7 +3621,10 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, Item original)
                             if (newAugments[k].Type() == originalAugments[i].Type())
                             {
                                 newAugments[k].Set_SelectedAugment(originalAugments[i].SelectedAugment());
-                                newAugments[k].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                                if (originalAugments[i].HasSelectedLevelIndex())
+                                {
+                                    newAugments[k].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                                }
                                 bFound = true;
                             }
                         }

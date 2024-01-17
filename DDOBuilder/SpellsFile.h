@@ -8,7 +8,7 @@ class SpellsFile :
     public XmlLib::SaxContentElement
 {
     public:
-        SpellsFile(const std::string& filename, bool bItemClickies);
+        SpellsFile(const std::string& filename);
         ~SpellsFile(void);
 
         void Read();
@@ -24,5 +24,4 @@ class SpellsFile :
         std::string m_filename;
         std::list<Spell> m_loadedSpells;
         size_t m_loadTotal;
-        bool m_bItemClickies;
 };

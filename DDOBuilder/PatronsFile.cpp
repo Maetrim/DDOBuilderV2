@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "PatronsFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -55,10 +53,6 @@ XmlLib::SaxContentElementInterface * PatronsFile::StartElement(
         {
             m_loadedPatrons.push_back(q);
             subHandler = &(m_loadedPatrons.back());
-            // update log during load action
-            CString strPatronsCount;
-            strPatronsCount.Format("Loading Patron List...%d", m_loadedPatrons.size());
-            GetLog().UpdateLastLogEntry(strPatronsCount);
         }
     }
 

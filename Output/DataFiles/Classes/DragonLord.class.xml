@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Classes>
+  <Class>
+    <Name>Dragon Lord</Name>
+    <BaseClass>Fighter</BaseClass>
+    <Description>Dragon Lords are Fighters who commune with a Draconic Soul to gain tactical advantages,
+powerful Auras, and elemental power on the battlefield. They excel at martial
+combat and using Tactical Feats for crowd control.</Description>
+    <SmallIcon>Fighter_Small</SmallIcon>
+    <LargeIcon>Fighter</LargeIcon>
+    <ClassSpecificFeatType>Minor Draconic Aura</ClassSpecificFeatType>
+    <ClassSpecificFeatType>Major Draconic Aura</ClassSpecificFeatType>
+    <ClassSpecificFeatType>Superior Draconic Aura</ClassSpecificFeatType>
+    <SkillPoints>2</SkillPoints>
+    <HitPoints>10</HitPoints>
+    <ClassSkill>Concentration</ClassSkill>
+    <ClassSkill>Diplomacy</ClassSkill>
+    <ClassSkill>Heal</ClassSkill>
+    <ClassSkill>Intimidate</ClassSkill>
+    <Alignment>Any</Alignment>
+    <Fortitude>Type2</Fortitude>
+    <Reflex>Type1</Reflex>
+    <Will>Type2</Will>
+    <SpellPointsPerLevel size="21">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
+    <AutoBuySkill>Intimidate</AutoBuySkill>
+    <AutoBuySkill>Heal</AutoBuySkill>
+    <BAB size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</BAB>
+    <!--Feat Slots-->
+    <FeatSlot>
+      <Level>1</Level>
+      <FeatType>Minor Draconic Aura</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>2</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+      <FeatUpdateList>Shield Proficiency (General)</FeatUpdateList>
+      <FeatUpdateList>Tower Shield Proficiency</FeatUpdateList>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>4</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>6</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>8</Level>
+      <FeatType>Major Draconic Aura</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>10</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>12</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>14</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>16</Level>
+      <FeatType>Superior Draconic Aura</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>18</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+    </FeatSlot>
+    <FeatSlot>
+      <Level>20</Level>
+      <FeatType>Fighter Bonus Feat</FeatType>
+    </FeatSlot>
+    <!--Minor Draconic Aura-->
+    <Feat>
+      <Name>Aussircaex's Defiance</Name>
+      <Description>Minor Draconic Aura: You have taken on a small aspect of Aussircaex, the frozen
+foe of Korthos, which is reflected in your leadership. You and allies close to
+you get a +2 Morale Bonus to Saving Throws. You may have only one Minor Draconic
+Aura.</Description>
+      <Group>Minor Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Nevalarich's Hunger</Name>
+      <Description>Minor Draconic Aura: You have taken on a small aspect of Nevalarich, scourge of
+the Thunder Peaks, which is reflected in your leadership. You and allies close
+to you get a +2 Morale Bonus to Attack Rolls. You may have only one Minor Draconic
+Aura.</Description>
+      <Group>Minor Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Thraxata's Instinct</Name>
+      <Description>Minor Draconic Aura: You have taken on a small aspect of Thraxata, scourge of
+the Thunder Peaks, which is reflected in your leadership. You and allies close
+to you get a +2 Morale Bonus to Tactical Feat DCs. You may have only one Minor
+Draconic Aura.</Description>
+      <Group>Minor Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <!--Major Draconic Aura-->
+    <Feat>
+      <Name>Velah's Fury</Name>
+      <Description>Major Draconic Aura: You have taken on a significant aspect of Vela, invader of
+the Vault of Night. You and allies close to you get a +3 Morale Bonus to Damage
+Rolls. You may have only one Major Draconic Aura, which stacks with your Minor
+Draconic Aura.</Description>
+      <Group>Major Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>8</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Sinvala's Toughness</Name>
+      <Description>Major Draconic Aura: You have taken on a significant aspect of Sinvala the Vile.
+You and allies close to you get a +3 Morale Bonus to PRR. Rolls. You may have only
+one Major Draconic Aura, which stacks with your Minor Draconic Aura.</Description>
+      <Group>Major Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>8</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Eternity's Ward</Name>
+      <Description>Major Draconic Aura: You have taken on a significant aspect of Eternity, the
+Spectral Dragon of Night. You and allies close to you get a +3 Morale Bonus to
+MRR. Rolls. You may have only one Major Draconic Aura, which stacks with your
+Minor Draconic Aura.</Description>
+      <Group>Major Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>8</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <!--Superior Draconic Aura-->
+    <Feat>
+      <Name>The Truthful One's Might</Name>
+      <Description>Major Draconic Aura: You have taken on a powerful aspect of The Truthful One,
+the ancient betrayer. You and allies close to you get a +4 Morale Bonus to
+Melee Power. You may have only one Superior Draconic Aura, which stacks with your
+Minor and Major Draconic Auras.</Description>
+      <Group>Superior Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>16</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Aurgloroasa's Ascendend Wrath</Name>
+      <Description>Major Draconic Aura: You have taken on a powerful aspect of Aurgloroasa, the
+Sibilant Shade. You and allies close to you get a +4 Morale Bonus to Ranged Power.
+You may have only one Superior Draconic Aura, which stacks with your Minor and
+Major Draconic Auras.</Description>
+      <Group>Superior Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>16</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Kor Kaza's Forbidden Power</Name>
+      <Description>Major Draconic Aura: You have taken on a powerful aspect of Kor Kaza, scholar and
+temporal ravager. You and allies close to you get a +4 Morale Bonus to Universal
+Spell Power. You may have only one Superior Draconic Aura, which stacks with your
+Minor and Major Draconic Auras.</Description>
+      <Group>Superior Draconic Aura</Group>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Lord</Item>
+          <Value>16</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+    </Feat>
+    <!--Past Life Feat-->
+    <Feat>
+      <Name>Past Life: Fighter - Dragon Lord</Name>
+      <Description>You were a Dragon Lord in a past life.
+Others find you strangely compelling when you speak or take to the battlefield.
+Each time you acquire this feat you gain +1 Damage with Melee weapons and
++1 Breath Weapon DC.
+This feat can be stacked up to three times.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeFighter</Icon>
+      <Effect>
+        <Type>Weapon_DamageBonusClass</Type>
+        <Type>Weapon_DamageBonusCriticalClass</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Melee</Item>
+      </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Breath Weapon</Item>
+      </Effect>
+    </Feat>
+  </Class>
+</Classes>

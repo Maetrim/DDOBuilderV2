@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "GuildBuffsFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -54,10 +52,6 @@ XmlLib::SaxContentElementInterface * GuildBuffsFile::StartElement(
         {
             m_loadedGuildBuffs.push_back(buff);
             subHandler = &(m_loadedGuildBuffs.back());
-            // update log during load action
-            CString strGuildBuffsCount;
-            strGuildBuffsCount.Format("Loading Guild Buffs...%d", m_loadedGuildBuffs.size());
-            GetLog().UpdateLastLogEntry(strGuildBuffsCount);
         }
     }
 

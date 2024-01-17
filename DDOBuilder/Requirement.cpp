@@ -964,14 +964,14 @@ void Requirement::CreateRequirementStrings(
             if (HasValue())
             {
                 description.Format(
-                        "Requires: %s(%d)",
+                        "Requires: Base Class %s(%d)",
                         m_Item.front().c_str(),
                         Value());
             }
             else
             {
                 description.Format(
-                        "Requires: %s(All levels)",
+                        "Requires: Base Class %s(All levels)",
                         m_Item.front().c_str());
             }
             break;
@@ -980,7 +980,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateClassAtLevel(build, level, includeTomes);
             description.Format(
-                    "Requires: %s(%d)",
+                    "Requires: Class %s(%d)",
                     m_Item.front().c_str(),
                     Value());
         break;
@@ -989,7 +989,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateBaseClassMinLevel(build, level, includeTomes);
             description.Format(
-                    "Requires: %s(%d)",
+                    "Requires: Base Class %s(%d)",
                     m_Item.front().c_str(),
                     Value());
             break;
@@ -998,7 +998,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateClassMinLevel(build, level, includeTomes);
             description.Format(
-                "Requires: %s(%d)",
+                "Requires: Class %s(%d)",
                 m_Item.front().c_str(),
                 Value());
             break;
@@ -1007,7 +1007,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateBaseClass(build, level, includeTomes);
             description.Format(
-                    "Requires: %s",
+                    "Requires: Base Class %s",
                     m_Item.front().c_str());
             break;
         }
@@ -1015,7 +1015,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateClass(build, level, includeTomes);
             description.Format(
-                    "Requires: %s",
+                    "Requires: Class %s",
                     m_Item.front().c_str());
             break;
         }
@@ -1096,7 +1096,7 @@ void Requirement::CreateRequirementStrings(
     case Requirement_Race:
         {
             met = EvaluateRace(build, level, includeTomes);
-            description = "Requires: ";
+            description = "Requires: Race ";
             auto it = m_Item.begin();
             while (it != m_Item.end())
             {

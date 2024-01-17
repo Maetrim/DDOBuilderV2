@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "BuffFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -54,10 +52,6 @@ XmlLib::SaxContentElementInterface * BuffFile::StartElement(
         {
             m_itemBuffs.push_back(b);
             subHandler = &(m_itemBuffs.back());
-            // update log during load action
-            CString strFeatCount;
-            strFeatCount.Format("Loading Item Buffs...%d", m_itemBuffs.size());
-            GetLog().UpdateLastLogEntry(strFeatCount);
         }
     }
 

@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "QuestsFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -55,10 +53,6 @@ XmlLib::SaxContentElementInterface * QuestsFile::StartElement(
         {
             m_loadedQuests.push_back(q);
             subHandler = &(m_loadedQuests.back());
-            // update log during load action
-            CString strQuestsCount;
-            strQuestsCount.Format("Loading Quests...%d", m_loadedQuests.size());
-            GetLog().UpdateLastLogEntry(strQuestsCount);
         }
     }
 

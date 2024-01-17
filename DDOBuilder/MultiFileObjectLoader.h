@@ -5,8 +5,6 @@
 #include "XmlLib\SaxContentElement.h"
 #include "XmlLib\SaxWriter.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 template <class T>
 class MultiFileObjectLoader :
@@ -31,18 +29,13 @@ class MultiFileObjectLoader :
 
         void ReadFiles(const std::string& prompt)
         {
-            m_prompt = prompt;
             if (INVALID_HWND_VALUE != m_hwndUpdateWindow)
             {
-                CString* pLoadingItems = new CString(m_prompt.c_str());
+                CString* pLoadingItems = new CString(prompt.c_str());
                 ::SendMessage(m_hwndUpdateWindow,
                         UWM_STARTPROGRESS,
                         reinterpret_cast<WPARAM>(pLoadingItems),
                         0L);
-            }
-            else
-            {
-                GetLog().AddLogEntry(prompt.c_str());
             }
 
             std::string fileFilter = m_path;
@@ -100,16 +93,6 @@ class MultiFileObjectLoader :
                 {
                     m_loadedObjects.push_back(object);
                     subHandler = &(m_loadedObjects.back());
-                    // update log during load action
-                    if (INVALID_HWND_VALUE == m_hwndUpdateWindow)
-                    {
-                        CString strTreeCount;
-                        strTreeCount.Format(
-                                "%s%d",
-                                m_prompt.c_str(),
-                                m_loadedObjects.size());
-                        GetLog().UpdateLastLogEntry(strTreeCount);
-                    }
                 }
             }
 
@@ -149,7 +132,6 @@ class MultiFileObjectLoader :
         std::string m_filter;
         std::list<T> m_loadedObjects;
         size_t m_loadTotal;
-        std::string m_prompt;
         size_t m_expectedTotal;
         HWND m_hwndUpdateWindow;
 };

@@ -51,20 +51,23 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
         if (pLife != NULL
             && pBuild != NULL)
         {
-            // sp bonus due to fate points
-            BreakdownItem* pBD = FindBreakdown(Breakdown_FatePoints);
-            if (pBD != NULL)
+            // sp bonus due to fate points (active at level 20+)
+            if (pBuild->Level() >= MAX_CLASS_LEVEL)
             {
-                pBD->AttachObserver(this); // need to know about changes
-                int fatePoints = static_cast<int>(pBD->Total());
-                if (fatePoints != 0)
+                BreakdownItem* pBD = FindBreakdown(Breakdown_FatePoints);
+                if (pBD != NULL)
                 {
-                    Effect fateBonus(
-                        Effect_FatePoint,
-                        "Fate Points bonus",
-                        "Fate Points bonus",
-                        fatePoints);
-                    AddOtherEffect(fateBonus);
+                    pBD->AttachObserver(this); // need to know about changes
+                    int fatePoints = static_cast<int>(pBD->Total());
+                    if (fatePoints != 0)
+                    {
+                        Effect fateBonus(
+                            Effect_FatePoint,
+                            "Fate Points bonus",
+                            "Fate Points bonus",
+                            fatePoints);
+                        AddOtherEffect(fateBonus);
+                    }
                 }
             }
             std::vector<size_t> classLevels = pBuild->ClassLevels(pBuild->Level()-1);

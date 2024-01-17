@@ -3,19 +3,16 @@
 #include "StdAfx.h"
 #include "SpellsFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
     const XmlLib::SaxString f_saxElementName = L"Spells"; // root element name to look for
 }
 
-SpellsFile::SpellsFile(const std::string& filename, bool bItemClickies) :
+SpellsFile::SpellsFile(const std::string& filename) :
     SaxContentElement(f_saxElementName),
     m_filename(filename),
-    m_loadTotal(0),
-    m_bItemClickies(bItemClickies)
+    m_loadTotal(0)
 {
 }
 
@@ -55,17 +52,6 @@ XmlLib::SaxContentElementInterface * SpellsFile::StartElement(
         {
             m_loadedSpells.push_back(spell);
             subHandler = &(m_loadedSpells.back());
-            // update log during load action
-            CString strSpellCount;
-            if (m_bItemClickies)
-            {
-                strSpellCount.Format("Loading Item Clickies...%d", m_loadedSpells.size());
-            }
-            else
-            {
-                strSpellCount.Format("Loading Spells...%d", m_loadedSpells.size());
-            }
-            GetLog().UpdateLastLogEntry(strSpellCount);
         }
     }
 

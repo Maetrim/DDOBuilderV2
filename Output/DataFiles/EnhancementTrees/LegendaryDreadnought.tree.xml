@@ -238,7 +238,6 @@ duration of that Action Boost.</Description>
             <Bonus>Destiny</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
-            <Item>Assassinate</Item>
             <Item>Trip</Item>
             <Item>Sunder</Item>
             <Item>Stun</Item>
@@ -669,12 +668,18 @@ When you have Precision active, you gain +[2/4/6] to your critical confirmation 
             <Bonus>Destiny</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">2 4 6</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Power Attack</Item>
-               </Requirement>
-            </Requirements>
+        <Requirements>
+           <RequiresOneOf>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Power Attack</Item>
+             </Requirement>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Heavy Draw</Item>
+             </Requirement>
+           </RequiresOneOf>
+        </Requirements>
             <Item>All</Item>
          </Effect>
          <Effect>

@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "SentientGemsFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -55,10 +53,6 @@ XmlLib::SaxContentElementInterface * SentientGemsFile::StartElement(
         {
             m_loadedGems.push_back(gem);
             subHandler = &(m_loadedGems.back());
-            // update log during load action
-            CString strGemCount;
-            strGemCount.Format("Loading Sentient Gems...%d", m_loadedGems.size());
-            GetLog().UpdateLastLogEntry(strGemCount);
         }
     }
 

@@ -52,6 +52,7 @@ enum BreakdownType
     Breakdown_MaxDexBonusShields,
     Breakdown_OffHandAttackBonus,
     Breakdown_DoubleStrike,
+    Breakdown_DoublestrikeOffhand,
     Breakdown_DoubleShot,
     Breakdown_Fortification,
     Breakdown_HealingAmplification,

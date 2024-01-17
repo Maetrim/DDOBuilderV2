@@ -475,12 +475,18 @@ has an additional -[1/2/3] to your attack bonus.</Description>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
             <Item>Melee</Item>
-            <Requirements>
-               <Requirement>
+           <Requirements>
+              <RequiresOneOf>
+                <Requirement>
                   <Type>Stance</Type>
                   <Item>Power Attack</Item>
-               </Requirement>
-            </Requirements>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Heavy Draw</Item>
+                </Requirement>
+              </RequiresOneOf>
+           </Requirements>
          </Effect>
          <Effect>
             <Type>WeaponAttackBonusClass</Type>

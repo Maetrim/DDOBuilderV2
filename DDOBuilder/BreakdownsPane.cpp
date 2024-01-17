@@ -13,6 +13,7 @@
 #include "BreakdownItemSchoolCasterLevel.h"
 #include "BreakdownItemDestinyAps.h"
 #include "BreakdownItemDodge.h"
+#include "BreakdownItemOffhandDoublestrike.h"
 #include "BreakdownItemDuration.h"
 #include "BreakdownItemDR.h"
 #include "BreakdownItemEnergyAbsorption.h"
@@ -1071,6 +1072,7 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
     // threat generation
     // off hand attack chance
     // doublestrike
+    // offhand doublestrike
     // doubleshot
     // Melee Power
     // Ranged Power
@@ -1189,6 +1191,21 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
             hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDS);
         m_items.push_back(pDS);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Offhand Doublestrike",
+            hOffensiveParent,
+            TVI_LAST);
+        BreakdownItem* pODS = new BreakdownItemOffhandDoublestrike(
+            this,
+            Breakdown_DoublestrikeOffhand,
+            "Offhand Doublestrike",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pODS);
+        m_items.push_back(pODS);
     }
 
     {

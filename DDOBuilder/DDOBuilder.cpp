@@ -305,6 +305,10 @@ void CDDOBuilderApp::LoadBonusTypes(const std::string& path)
     BonusTypesFile file(filename);
     file.Read();
     m_bonusTypes = file.BonusTypes();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Bonus Types...%d", m_bonusTypes.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadRaces(const std::string& path)
@@ -312,8 +316,13 @@ void CDDOBuilderApp::LoadRaces(const std::string& path)
     std::string localPath(path);
     localPath += "Races\\";
     MultiFileObjectLoader<Race> file(L"Races", localPath, "*.race.xml");
-    file.ReadFiles("Loading Races...");
+    GetLog().AddLogEntry("Loading Races...");
+    file.ReadFiles("");
     m_races = file.LoadedObjects();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Races...%d", m_races.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadClasses(const std::string& path)
@@ -321,10 +330,15 @@ void CDDOBuilderApp::LoadClasses(const std::string& path)
     std::string localPath(path);
     localPath += "Classes\\";
     MultiFileObjectLoader<Class> file(L"Classes", localPath, "*.class.xml");
-    file.ReadFiles("Loading Classes...");
+    GetLog().AddLogEntry("Loading Classes...");
+    file.ReadFiles("");
     m_classes = file.LoadedObjects();
     m_classes.sort();       // sort alphabetically
     Class::CreateClassImageLists();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Classes...%d", m_classes.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadFeats(const std::string& path)
@@ -345,17 +359,11 @@ void CDDOBuilderApp::LoadFeats(const std::string& path)
         for (auto&& it: ihdfs)
         {
             m_allFeats.insert(std::pair<std::string, Feat>(it.Name(), it));
-            CString strFeatCount;
-            strFeatCount.Format("Loading Feats...%d", m_allFeats.size());
-            GetLog().UpdateLastLogEntry(strFeatCount);
         }
         // also add any class specific feats
         for (auto&& cfit : cit.ClassFeats())
         {
             m_allFeats.insert(std::pair<std::string, Feat>(cfit.Name(), cfit));
-            CString strFeatCount;
-            strFeatCount.Format("Loading Feats...%d", m_allFeats.size());
-            GetLog().UpdateLastLogEntry(strFeatCount);
         }
         // no need to keep 2 copies of the feats
         cit.ClearClassFeats();
@@ -369,13 +377,15 @@ void CDDOBuilderApp::LoadFeats(const std::string& path)
         for (auto&& rfit : rit.RacialFeats())
         {
             m_allFeats.insert(std::pair<std::string, Feat>(rfit.Name(), rfit));
-            CString strFeatCount;
-            strFeatCount.Format("Loading Feats...%d", m_allFeats.size());
-            GetLog().UpdateLastLogEntry(strFeatCount);
         }
         // no need to keep 2 copies of the feats
         rit.ClearRacialFeats();
     }
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Feats...%d", m_allFeats.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
+
     // update the class completionist feat to include all the required
     // past lives for classes
     auto fit = m_allFeats.find("Completionist");
@@ -697,8 +707,13 @@ void CDDOBuilderApp::LoadEnhancements(const std::string& path)
     std::string localPath(path);
     localPath += "EnhancementTrees\\";
     MultiFileObjectLoader<EnhancementTree> file(L"Enhancements", localPath, "*.tree.xml");
-    file.ReadFiles("Loading Enhancement Trees...");
+    GetLog().AddLogEntry("Loading Enhancement Trees...");
+    file.ReadFiles("");
     m_enhancementTrees = file.LoadedObjects();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Enhancement Trees...%d", m_enhancementTrees.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadAugments(const std::string& path)
@@ -706,8 +721,13 @@ void CDDOBuilderApp::LoadAugments(const std::string& path)
     std::string localPath(path);
     localPath += "Augments\\";
     MultiFileObjectLoader<Augment> file(L"Augments", localPath, "*.augments.xml");
-    file.ReadFiles("Loading Augments...");
+    GetLog().AddLogEntry("Loading Augments...");
+    file.ReadFiles("");
     m_augments = file.LoadedObjects();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Augments...%d", m_augments.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadSetBonuses(const std::string& path)
@@ -720,6 +740,11 @@ void CDDOBuilderApp::LoadSetBonuses(const std::string& path)
     SetBonusFile file(filename);
     file.Read();
     m_setBonuses = file.SetBonuses();
+
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Gear Set Bonuses...%d", m_setBonuses.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadFiligrees(const std::string& path)
@@ -728,16 +753,27 @@ void CDDOBuilderApp::LoadFiligrees(const std::string& path)
     localPath += "FiligreeSets\\";
     {
         MultiFileObjectLoader<Filigree> file(L"Filigrees", localPath, "*.filigree.xml");
-        file.ReadFiles("Loading Filigrees...");
+        GetLog().AddLogEntry("Loading Filigrees...");
+        file.ReadFiles("");
         m_filigrees = file.LoadedObjects();
         m_filigrees.sort();
+
+        // update log after load action
+        CString strUpdate;
+        strUpdate.Format("Loading Filigrees...%d", m_filigrees.size());
+        GetLog().UpdateLastLogEntry(strUpdate);
     }
 
     {
         MultiFileObjectLoader<SetBonus> file(L"Filigrees", localPath, "*.filigree.xml");
-        file.ReadFiles("Loading Filigrees Set Bonuses...");
+        GetLog().AddLogEntry("Loading Filigree Set Bonuses...");
+        file.ReadFiles("");
         std::list<SetBonus> filigreeSetBonuses = file.LoadedObjects();
         m_setBonuses.insert(m_setBonuses.end(), filigreeSetBonuses.begin(), filigreeSetBonuses.end());
+        // update log after load action
+        CString strUpdate;
+        strUpdate.Format("Loading Filigree Set Bonuses...%d", filigreeSetBonuses.size());
+        GetLog().UpdateLastLogEntry(strUpdate);
     }
 }
 
@@ -751,6 +787,10 @@ void CDDOBuilderApp::LoadStances(const std::string& path)
     StancesFile file(filename);
     file.Read();
     m_stances = file.Stances();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Stances...%d", m_stances.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadSpells(const std::string& path)
@@ -760,9 +800,13 @@ void CDDOBuilderApp::LoadSpells(const std::string& path)
     filename += "Spells.xml";
 
     GetLog().AddLogEntry("Loading Spells...");
-    SpellsFile file(filename, false);
+    SpellsFile file(filename);
     file.Read();
     m_spells = file.Spells();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Spells...%d", m_spells.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename)
@@ -795,6 +839,10 @@ void CDDOBuilderApp::LoadSentientGems(const std::string& path)
     file.Read();
     m_sentientGems = file.SentientGems();
     m_sentientGems.sort();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Sentient Gems...%d", m_sentientGems.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadWeaponGroups(const std::string& path)
@@ -808,6 +856,10 @@ void CDDOBuilderApp::LoadWeaponGroups(const std::string& path)
     file.Read();
     m_weaponGroups = file.WeaponGroups();
     m_weaponGroups.sort();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Weapon Groups...%d", m_weaponGroups.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadItemBuffs(const std::string& path)
@@ -820,6 +872,10 @@ void CDDOBuilderApp::LoadItemBuffs(const std::string& path)
     BuffFile file(filename);
     file.Read();
     m_itemBuffs = file.ItemBuffs();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Item Buffs...%d", m_itemBuffs.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadItemClickies(const std::string& path)
@@ -829,9 +885,13 @@ void CDDOBuilderApp::LoadItemClickies(const std::string& path)
     filename += "ItemClickies.xml";
 
     GetLog().AddLogEntry("Loading Item Clickies...");
-    SpellsFile file(filename, true);
+    SpellsFile file(filename);
     file.Read();
     m_itemClickies = file.Spells();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Item Clickies...%d", m_itemClickies.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadPatrons(const std::string& path)
@@ -844,6 +904,10 @@ void CDDOBuilderApp::LoadPatrons(const std::string& path)
     PatronsFile file(filename);
     file.Read();
     m_patrons = file.Patrons();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Patron List...%d", m_patrons.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadQuests(const std::string& path)
@@ -871,6 +935,10 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
         pit->SetMaxFavor(patronMaxFavor[i]);
         ++pit;
     }
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Quests...%d", m_quests.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::LoadGuildBuffs(const std::string& path)
@@ -883,6 +951,10 @@ void CDDOBuilderApp::LoadGuildBuffs(const std::string& path)
     GuildBuffsFile file(filename);
     file.Read();
     m_guildBuffs = file.GuildBuffs();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Guild Buffs List...%d", m_guildBuffs.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
 }
 
 void CDDOBuilderApp::UpdateFeats()

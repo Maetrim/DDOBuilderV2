@@ -2535,6 +2535,21 @@ bool WikiItemFileProcessor::ProcessSpellPower(const std::string& line, const std
         "Resonance",
         "Universal"
     };
+    static std::string spellPowersType[] =
+    {
+        "Fire",
+        "Acid",
+        "Positive",
+        "Cold",
+        "Force/Untyped",
+        "Electric",
+        "Negative",
+        "All",
+        "Light/Alignment",
+        "Repair",
+        "Sonic",
+        "Universal"
+    };
     size_t spellPowerCount = sizeof(spellPowers) / sizeof(std::string);
     CString searchText;
     for (size_t spi = 0; spi < spellPowerCount && !bProcessed; ++spi)
@@ -2542,12 +2557,12 @@ bool WikiItemFileProcessor::ProcessSpellPower(const std::string& line, const std
         if (bonus != "Equipment")
         {
             searchText.Format("%s %s", bonus.c_str(), spellPowers[spi].c_str());
-            bProcessed = AddCommonEffect(line, spellPowers[spi], (LPCSTR)searchText, bonus, spellPowers[spi]);
+            bProcessed = AddCommonEffect(line, spellPowers[spi], (LPCSTR)searchText, bonus, spellPowersType[spi]);
         }
         else
         {
             searchText.Format("%s", spellPowers[spi].c_str());
-            bProcessed = AddCommonEffect(line, spellPowers[spi], (LPCSTR)searchText, bonus, spellPowers[spi]);
+            bProcessed = AddCommonEffect(line, spellPowers[spi], (LPCSTR)searchText, bonus, spellPowersType[spi]);
         }
     }
     return bProcessed;

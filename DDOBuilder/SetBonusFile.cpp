@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "SetBonusFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -55,10 +53,6 @@ XmlLib::SaxContentElementInterface * SetBonusFile::StartElement(
         {
             m_loadedSetBonuses.push_back(sb);
             subHandler = &(m_loadedSetBonuses.back());
-            // update log during load action
-            CString strSetBonusCount;
-            strSetBonusCount.Format("Loading Gear Set Bonuses...%d", m_loadedSetBonuses.size());
-            GetLog().UpdateLastLogEntry(strSetBonusCount);
         }
     }
 

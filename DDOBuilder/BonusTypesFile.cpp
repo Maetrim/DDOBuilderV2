@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "BonusTypesFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -55,10 +53,6 @@ XmlLib::SaxContentElementInterface * BonusTypesFile::StartElement(
         {
             m_loadedBonusTypes.push_back(bonus);
             subHandler = &(m_loadedBonusTypes.back());
-            // update log during load action
-            CString strBonusTypesCount;
-            strBonusTypesCount.Format("Loading Bonus Types...%d", m_loadedBonusTypes.size());
-            GetLog().UpdateLastLogEntry(strBonusTypesCount);
         }
     }
 

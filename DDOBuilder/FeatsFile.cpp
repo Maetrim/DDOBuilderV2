@@ -3,8 +3,6 @@
 #include "StdAfx.h"
 #include "FeatsFile.h"
 #include "XmlLib\SaxReader.h"
-#include "LogPane.h"
-#include "GlobalSupportFunctions.h"
 
 namespace
 {
@@ -54,10 +52,6 @@ XmlLib::SaxContentElementInterface * FeatsFile::StartElement(
         {
             m_loadedFeats.push_back(feat);
             subHandler = &(m_loadedFeats.back());
-            // update log during load action
-            CString strFeatCount;
-            strFeatCount.Format("Loading Feats...%d", m_loadedFeats.size());
-            GetLog().UpdateLastLogEntry(strFeatCount);
         }
     }
 

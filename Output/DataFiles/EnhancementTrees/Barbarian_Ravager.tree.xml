@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
   <EnhancementTree>
-    <Name>Ravager</Name>
+    <Name>Ravager (Barbarian)</Name>
     <Version>1</Version>
     <Requirements>
       <Requirement>
@@ -31,6 +31,12 @@ This effect stacks and one stack fades every six seconds.</Description>
           <Item>Barbarian</Item>
           <Value>1</Value>
         </Requirement>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>DLRavCore1</Item>
+               </Requirement>
+            </RequiresNoneOf>
       </Requirements>
       <Effect>
         <Type>CreateSlider</Type>
@@ -122,9 +128,8 @@ a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
       </Effect>
       <DC>
         <Name>Ravager: Demoralizing Success</Name>
-        <Description>When you score a vorpal
-hit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on
-a failed DC 20 Will saving throw.</Description>
+        <Description>When you score a vorpal hit in melee, you inflict Crushing Despair on nearby
+enemies for 30 seconds on a failed DC 20 Will saving throw.</Description>
         <Icon>RavDemoralizingSuccess</Icon>
         <DCType>Crushing Despair</DCType>
         <DCVersus>Will</DCVersus>
@@ -383,10 +388,16 @@ Damage is doubled when Two Handed Fighting.</Description>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
         <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Power Attack</Item>
-          </Requirement>
+           <RequiresOneOf>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Power Attack</Item>
+             </Requirement>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Heavy Draw</Item>
+             </Requirement>
+           </RequiresOneOf>
         </Requirements>
         <Item>All</Item>
       </Effect>
@@ -397,10 +408,16 @@ Damage is doubled when Two Handed Fighting.</Description>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
         <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Power Attack</Item>
-          </Requirement>
+           <RequiresOneOf>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Power Attack</Item>
+             </Requirement>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Heavy Draw</Item>
+             </Requirement>
+           </RequiresOneOf>
         </Requirements>
         <Item>TwoHanded</Item>
       </Effect>
@@ -454,7 +471,8 @@ Damage is doubled when Two Handed Fighting.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Fear me!</Name>
       <InternalName>RavFearMe</InternalName>
-      <Description>When you intimidate, affected enemies are Shaken for 6 seconds.</Description>
+      <Description>When you intimidate, affected enemies are Shaken for 6 seconds
+(-2 penalty on attack rolls, saves, and skill checks).</Description>
       <Icon>RavFearMe</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>

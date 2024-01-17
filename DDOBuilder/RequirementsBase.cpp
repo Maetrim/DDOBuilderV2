@@ -144,7 +144,7 @@ bool RequirementsBase::MetHardRequirements(
     auto itNO = m_NoneOf.begin();
     while (met && itNO != m_NoneOf.end())
     {
-        met = (*itNO).MetHardRequirements(build, level, includeTomes);
+        met = !(*itNO).MetHardRequirements(build, level, includeTomes);
         ++itNO;
     }
     return met;

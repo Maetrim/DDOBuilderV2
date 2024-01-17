@@ -60,7 +60,7 @@ CString BasicDice::DiceAsText() const
     {
         if (HasBonus())
         {
-            dt.Format("%dd%d+%d", Number(), Sides(), Bonus());
+            dt.Format("%dd%d%+d", Number(), Sides(), Bonus());
         }
         else
         {
@@ -90,7 +90,7 @@ double BasicDice::MaxDamage() const
     double maxDmg = HasBonus() ? Bonus() : 0;
     if (HasNumber() && HasSides())
     {
-        maxDmg += Sides() * Number();
+        maxDmg += static_cast<double>(Sides()) * static_cast<double>(Number());
     }
     return maxDmg;
 }
