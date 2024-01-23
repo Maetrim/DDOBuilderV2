@@ -4,6 +4,7 @@
 #include "Buff.h"
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
+#include "Build.h"
 
 #define DL_ELEMENT Buff
 
@@ -160,6 +161,10 @@ void Buff::UpdatedEffects(std::list<Effect>* effects) const
             else
                 eit.SetAmount(Value2());
             ++index;
+            if (HasRequirementsToUse())
+            {
+                eit.SetRequirements(RequirementsToUse());
+            }
         }
     }
     else if (HasValue1())
@@ -168,6 +173,10 @@ void Buff::UpdatedEffects(std::list<Effect>* effects) const
         for (auto&& eit : *effects)
         {
             eit.SetAmount(Value1());
+            if (HasRequirementsToUse())
+            {
+                eit.SetRequirements(RequirementsToUse());
+            }
         }
     }
 }

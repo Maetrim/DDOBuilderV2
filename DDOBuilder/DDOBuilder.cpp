@@ -922,13 +922,20 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
     m_quests = file.Quests();
 
     // update the loaded patrons with the max favor for each
+    int totalFavor = 0;
     int patronMaxFavor[Patron_Count];
     memset(patronMaxFavor, 0, sizeof(patronMaxFavor[0]) * Patron_Count);
     for (auto&& qit: m_quests)
     {
-        PatronType ePatron = qit.Patron();
-        patronMaxFavor[ePatron] += qit.MaxFavor();
+        // some quests (Devil Assault) appear multiple times and should only be counted once
+        if (!qit.HasIgnoreForTotalFavor())
+        {
+            PatronType ePatron = qit.Patron();
+            patronMaxFavor[ePatron] += qit.MaxFavor();
+            totalFavor += qit.MaxFavor();
+        }
     }
+    patronMaxFavor[Patron_TotalFavor] = totalFavor;
     std::list<Patron>::iterator pit = m_patrons.begin();
     for (size_t i = 0; i < Patron_Count; ++i)
     {

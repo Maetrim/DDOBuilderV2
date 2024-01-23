@@ -46,6 +46,7 @@ class DC :
                 DL_ENUM_LIST(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \
                 DL_OPTIONAL_ENUM(_, TacticalType, Tactical, Tactical_Unknown, tacticalTypeMap) \
+                DL_OPTIONAL_ENUM(_, TacticalType, Tactical2, Tactical_Unknown, tacticalTypeMap) \
                 DL_OPTIONAL_STRING(_, ClassLevel) \
                 DL_OPTIONAL_STRING(_, HalfClassLevel)
 

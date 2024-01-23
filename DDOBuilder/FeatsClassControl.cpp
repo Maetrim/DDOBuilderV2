@@ -209,6 +209,17 @@ void CFeatsClassControl::SetupControl()
             }
         }
     }
+
+    // cause a resize
+    static bool bSent = false;
+    if (!bSent)
+    {
+        bSent = true;
+        CRect rect;
+        GetParent()->GetClientRect(&rect);
+        GetParent()->SendMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rect.Width(), rect.Height()));
+        bSent = false;
+    }
     Invalidate(TRUE);
 }
 

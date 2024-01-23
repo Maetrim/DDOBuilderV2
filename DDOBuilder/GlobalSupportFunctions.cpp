@@ -1663,16 +1663,19 @@ bool LimitToRuneArm(Build* pBuild)
         && (pBuild->IsFeatTrained("Artificer Rune Arm Use")
             || pBuild->IsGrantedFeat("Artificer Rune Arm Use")))
     {
-        Item item = pBuild->ActiveGearSet().MainHand();
-        switch (item.Weapon())
+        if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
         {
-        case Weapon_GreatCrossbow:
-        case Weapon_HeavyCrossbow:
-        case Weapon_LightCrossbow:
-        case Weapon_RepeatingHeavyCrossbow:
-        case Weapon_RepeatingLightCrossbow:
-            bLimitToRuneArm = true;
-            break;
+            Item item = pBuild->ActiveGearSet().MainHand();
+            switch (item.Weapon())
+            {
+            case Weapon_GreatCrossbow:
+            case Weapon_HeavyCrossbow:
+            case Weapon_LightCrossbow:
+            case Weapon_RepeatingHeavyCrossbow:
+            case Weapon_RepeatingLightCrossbow:
+                bLimitToRuneArm = true;
+                break;
+            }
         }
     }
     return bLimitToRuneArm;

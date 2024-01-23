@@ -155,10 +155,17 @@ bool RequirementsBase::MetEnhancements(
     size_t trainedRanks) const
 {
     bool met = true;
-    // note that for enhancements we only check direct requirements on specific enhancements
     for (auto&& rit : m_Requires)
     {
         met &= rit.MetEnhancements(build, trainedRanks);
+    }
+    for (auto&& rooit : m_OneOf)
+    {
+        met &= rooit.MetEnhancements(build, trainedRanks);
+    }
+    for (auto&& rnoit : m_NoneOf)
+    {
+        met &= rnoit.MetEnhancements(build, trainedRanks);
     }
     return met;
 }

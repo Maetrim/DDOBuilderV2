@@ -600,7 +600,10 @@ LRESULT CBuildsPane::OnStartLabelEdit(WPARAM, LPARAM)
 {
     // start a label edit
     HTREEITEM hItem = m_treeBuilds.GetSelectedItem();
-    m_treeBuilds.EditLabel(hItem);
+    if (hItem != NULL)
+    {
+        m_treeBuilds.EditLabel(hItem);
+    }
     return 0;
 }
 

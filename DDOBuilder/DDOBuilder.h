@@ -170,6 +170,7 @@ private:
     bool m_bKillItemLoadThread;
 
     friend class Item;
+    friend class EquippedGear;
 };
 
 extern CDDOBuilderApp theApp;

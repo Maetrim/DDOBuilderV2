@@ -59,7 +59,8 @@ class Requirement :
     private:
         bool EvaluateAbility(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateAbilityGreaterCondition(const Build& build, size_t level, bool includeTomes) const;
-        bool EvaluateAlignment(const Build& build, size_t level, bool includeTomes) const;
+        bool EvaluateAlignment(const Build& build) const;
+        bool EvaluateAlignmentType(const Build& build) const;
         bool EvaluateBAB(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateBaseClass(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateBaseClassAtLevel(const Build& build, size_t level, bool includeTomes) const;

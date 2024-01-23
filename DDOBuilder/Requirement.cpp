@@ -164,6 +164,23 @@ bool Requirement::VerifyObject(
                 }
             }
             break;
+        case Requirement_AlignmentType:
+            if (m_Item.size() == 0)
+            {
+                (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " missing/extra Alignment item field\n";
+                ok = false;
+            }
+            else
+            {
+                for (auto&& iit : m_Item)
+                {
+                    if (TextToEnumEntry(iit, alignmentOptionsTypeMap) == AlignmentOption_Unknown)
+                    {
+                        (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad AlignmentOptions item field\n";
+                    }
+                }
+            }
+            break;
         case Requirement_BAB:
             requiresValueField = true;  // just a Value field required
             break;
@@ -399,7 +416,8 @@ bool Requirement::Met(
     {
     case Requirement_Ability:           met = EvaluateAbility(build, level, includeTomes); break;
     case Requirement_AbilityGreaterCondition:   met = EvaluateAbilityGreaterCondition(build, level, includeTomes); break;
-    case Requirement_Alignment:         met = EvaluateAlignment(build, level, includeTomes); break;
+    case Requirement_Alignment:         met = EvaluateAlignment(build); break;
+    case Requirement_AlignmentType:     met = EvaluateAlignmentType(build); break;
     case Requirement_BAB:               met = EvaluateBAB(build, level, includeTomes); break;
     case Requirement_BaseClass:         met = EvaluateBaseClass(build, level, includeTomes); break;
     case Requirement_BaseClassAtLevel:  met = EvaluateBaseClassAtLevel(build, level, includeTomes); break;
@@ -439,7 +457,8 @@ bool Requirement::CanTrainEnhancement(
     {
     case Requirement_Ability:           met = EvaluateAbility(build, level, includeTomes); break;
     case Requirement_AbilityGreaterCondition:   met = EvaluateAbilityGreaterCondition(build, level, includeTomes); break;
-    case Requirement_Alignment:         met = EvaluateAlignment(build, level, includeTomes); break;
+    case Requirement_Alignment:         met = EvaluateAlignment(build); break;
+    case Requirement_AlignmentType:     met = EvaluateAlignmentType(build); break;
     case Requirement_BAB:               met = EvaluateBAB(build, level, includeTomes); break;
     case Requirement_BaseClass:         met = EvaluateBaseClass(build, level, includeTomes); break;
     case Requirement_BaseClassAtLevel:  met = EvaluateBaseClassAtLevel(build, level, includeTomes); break;
@@ -478,7 +497,8 @@ bool Requirement::MetHardRequirements(
     {
     case Requirement_Ability:       met = EvaluateAbility(build, level, includeTomes); break;
     case Requirement_AbilityGreaterCondition:   met = EvaluateAbilityGreaterCondition(build, level, includeTomes); break;
-    case Requirement_Alignment:     met = EvaluateAlignment(build, level, includeTomes); break;
+    case Requirement_Alignment:     met = EvaluateAlignment(build); break;
+    case Requirement_AlignmentType:     met = EvaluateAlignmentType(build); break;
     case Requirement_BAB:           met = EvaluateBAB(build, level, includeTomes); break;
     case Requirement_BaseClass:         met = EvaluateBaseClass(build, level, includeTomes); break;
     case Requirement_BaseClassAtLevel:  met = EvaluateBaseClassAtLevel(build, level, includeTomes); break;
@@ -580,12 +600,8 @@ bool Requirement::EvaluateAbilityGreaterCondition(
 }
 
 bool Requirement::EvaluateAlignment(
-    const Build& build,
-    size_t level,  // this is 0 based
-    bool includeTomes) const
+    const Build& build) const
 {
-    UNREFERENCED_PARAMETER(level);
-    UNREFERENCED_PARAMETER(includeTomes);
     AlignmentType a = build.Alignment();
     bool met = false;
     auto it = m_Item.begin();
@@ -593,6 +609,52 @@ bool Requirement::EvaluateAlignment(
     {
         AlignmentType at = TextToEnumEntry(*m_Item.begin(), alignmentTypeMap);
         met = (at == a);
+        ++it;
+    }
+    return met;
+}
+
+bool Requirement::EvaluateAlignmentType(
+    const Build& build) const
+{
+    AlignmentType a = build.Alignment();
+    bool met = false;
+    auto it = m_Item.begin();
+    while (!met && it != m_Item.end())
+    {
+        AlignmentOptions ao = TextToEnumEntry(*m_Item.begin(), alignmentOptionsTypeMap);
+        switch (ao)
+        {
+            case AlignmentOption_Lawful:
+                met = (a == Alignment_LawfulGood
+                        || a == Alignment_LawfulNeutral
+                        || a == Alignment_LawfulEvil);
+                break;
+            case AlignmentOption_Chaotic:
+                met = (a == Alignment_ChaoticNeutral
+                        || a == Alignment_ChaoticGood
+                        || a == Alignment_ChaoticEvil);
+                break;
+            case AlignmentOption_TrueNeutral:
+                met = (a == Alignment_TrueNeutral);
+                break;
+            case AlignmentOption_Good:
+                met = (a == Alignment_LawfulGood
+                        || a == Alignment_NeutralGood
+                        || a == Alignment_ChaoticGood);
+                break;
+            case AlignmentOption_Evil:
+                met = (a == Alignment_LawfulEvil
+                        || a == Alignment_NeutralEvil
+                        || a == Alignment_ChaoticEvil);
+                break;
+            case AlignmentOption_PartNeutral:
+                met = (a == Alignment_LawfulNeutral
+                        || a == Alignment_NeutralGood
+                        || a == Alignment_ChaoticNeutral
+                        || a == Alignment_NeutralEvil);
+                break;
+        }
         ++it;
     }
     return met;
@@ -938,7 +1000,7 @@ void Requirement::CreateRequirementStrings(
         }
     case Requirement_Alignment:
         {
-            met = EvaluateAlignment(build, level, includeTomes);
+            met = EvaluateAlignment(build);
             description = "Requires: ";
             auto it = m_Item.begin();
             while (it != m_Item.end())
@@ -950,6 +1012,23 @@ void Requirement::CreateRequirementStrings(
                     description += ", ";
                 }
             }
+            break;
+        }
+    case Requirement_AlignmentType:
+        {
+            met = EvaluateAlignmentType(build);
+            description = "Requires: ";
+            auto it = m_Item.begin();
+            while (it != m_Item.end())
+            {
+                description += (LPCTSTR)(*it).c_str();
+                ++it;
+                if (it != m_Item.end())
+                {
+                    description += ", ";
+                }
+            }
+            description += " alignment";
             break;
         }
     case Requirement_BAB:

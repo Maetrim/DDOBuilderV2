@@ -14,6 +14,7 @@ enum RequirementType
     Requirement_Ability,                    // must have at least this ability value
     Requirement_AbilityGreaterCondition,    // the first ability value must be greater than the second
     Requirement_Alignment,                  // must have one of the listed  alignments
+    Requirement_AlignmentType,              // must be of the specified alignment type (e.g. Lawful, chaotic, goog, neytral or evil)
     Requirement_BAB,                        // must have at least the listed BAB
     Requirement_BaseClass,                  // must have at least 1 level of this base class
     Requirement_BaseClassAtLevel,           // must have a specific base class level
@@ -41,12 +42,14 @@ enum RequirementType
     Requirement_WeaponClassMainHand,        // Main hand weapon is a "type" e.g. Light weapon
     Requirement_WeaponClassOffHand,         // off hand weapon is a "type" e.g. Heavy weapon
 };
+
 const XmlLib::enumMapEntry<RequirementType> requirementTypeMap[] =
 {
     {Requirement_Unknown,                   L"Unknown"},
     {Requirement_Ability,                   L"Ability"},
     {Requirement_AbilityGreaterCondition,   L"AbilityGreaterCondition"},
     {Requirement_Alignment,                 L"Alignment"},
+    {Requirement_AlignmentType,             L"AlignmentType"},
     {Requirement_BAB,                       L"BAB"},
     {Requirement_BaseClass,                 L"BaseClass"},
     {Requirement_BaseClassAtLevel,          L"BaseClassAtLevel"},

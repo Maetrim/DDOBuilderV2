@@ -56,7 +56,8 @@ class CInfoTip :
                 size_t numStacks,
                 bool bSuppressed);
         void SetItem(
-                const Item * pItem);
+                const Item * pItem,
+                const Build* pBuild);
         void SetFiligree(
                 const Filigree * pFiligree);
         void SetAugment(

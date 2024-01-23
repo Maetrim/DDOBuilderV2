@@ -76,33 +76,13 @@ void CClassAndFeatPane::OnSize(UINT nType, int cx, int cy)
 
 LRESULT CClassAndFeatPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
-    if (m_pCharacter != NULL)
-    {
-        Build * pBuild = m_pCharacter->ActiveBuild();
-        if (pBuild != NULL)
-        {
-            pBuild->DetachObserver(this);
-        }
-        m_pCharacter->DetachObserver(this);
-    }
-
     // wParam is the document pointer
     CDocument * pDoc = (CDocument*)(wParam);
     m_pDocument = pDoc;
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
     m_pCharacter = pCharacter;
-    if (m_pCharacter != NULL)
-    {
-        m_pCharacter->AttachObserver(this);
-        Build * pBuild = m_pCharacter->ActiveBuild();
-        if (pBuild != NULL)
-        {
-            pBuild->AttachObserver(this);
-        }
-    }
     m_featsAndClasses.SetCharacter(m_pCharacter);
-    PostUpdateMessage();
     return 0L;
 }
 
@@ -127,45 +107,4 @@ void CClassAndFeatPane::OnVScroll(UINT p1, UINT p2, CScrollBar* p3)
 {
     // call base class
     CFormView::OnVScroll(p1, p2, p3);
-}
-
-void CClassAndFeatPane::UpdateActiveBuildChanged(Character *)
-{
-    Build * pBuild = m_pCharacter->ActiveBuild();
-    if (pBuild != NULL)
-    {
-        pBuild->AttachObserver(this);
-    }
-    // cause a resize after all sub windows have updated
-    PostUpdateMessage();
-}
-
-void CClassAndFeatPane::PostUpdateMessage()
-{
-    // cause a resize after all sub windows have updated
-    CRect rect;
-    GetClientRect(&rect);
-    PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rect.Width(), rect.Height()));
-}
-
-void CClassAndFeatPane::UpdateBuildLevelChanged(Build *)
-{
-    // cause a resize after all sub windows have updated
-    PostUpdateMessage();
-}
-
-void CClassAndFeatPane::UpdateClassChoiceChanged(Build *)
-{
-    // cause a resize after all sub windows have updated
-    PostUpdateMessage();
-}
-
-void CClassAndFeatPane::UpdateClassChanged(
-        Build *,
-        const std::string&,
-        const std::string&,
-        size_t)
-{
-    // cause a resize after all sub windows have updated
-    PostUpdateMessage();
 }

@@ -877,6 +877,7 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
         {
             m_item.Set_Weapon(Weapon_RuneArm);
             slot.SetValue_Weapon2(true);
+            m_item.AddFeatAnySourceRequirement("Artificer Rune Arm Use");
         }
         bRealItem = true;
     }
@@ -1093,7 +1094,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     bRecognised |= AddCommonEffect(line, "ArmorEnchantment", "enhancement bonus to Armor Class", "Enhancement", "", 60);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ArmorBonus", "Armor Bonus", "Armor", "", 10);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "CommandCommand", "Command Command", "", "", 10);
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Command ", "Command ", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Command", "Command ", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ExtraLayOnHands", "Extra Lay on Hands", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ExtraSmites", "Extra Smites ", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Protection", "Protection", "Deflection", "");
@@ -1396,6 +1397,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Twilight", "Greater Twilight", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "High Spirits", "High Spirits", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Elemental Resistance", "Competence Elemental Resistance -", "Competence", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "DeceptionFixed", "Deception Deception", "Enhancement", "", 5);
 
     if (!bRecognised)
     {
@@ -1752,6 +1754,11 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Heartseeker IV", "Heartseeker IV", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Heartseeker III", "Heartseeker III", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Heartseeker I", "Heartseeker I", "Enhancement", "");
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Ooze Bane", "Greater Ooze Bane", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Aberration Bane", "Greater Aberration Bane", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Magical Beast Bane", "Greater Magical Beast Bane", "", "All");
+
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Feybane 2", "Feybane 2", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Feybane 6", "Feybane 6", "Enhancement", "");

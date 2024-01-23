@@ -33,11 +33,13 @@ class Item :
         size_t IconIndex() const;
         void SetFilename(const std::string& filename);
         const std::string& Filename() const;
-        std::vector<CString> BuffDescriptions() const;
+        std::vector<CString> BuffDescriptions(const Build* pBuild) const;
         void AddSetBonus(const std::string& setName);
         void AddItemAugment(const ItemAugment& ia);
         void AddRaceRequirement(const std::string& race);
-        void AddClassRequirement(const std::string& c);
+        void AddClassRequirement(const std::string& feat);
+        void AddFeatRequirement(const std::string& feat);
+        void AddFeatAnySourceRequirement(const std::string& c);
         void AddBuff(const Buff& b);
 
         void SetAugments(const std::vector<ItemAugment>& augments);

@@ -163,6 +163,34 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                     static_cast<int>(bonus));
                 AddOtherEffect(falseLifeBonus);
             }
+
+            // add reaper hitpoints which are level gated
+            pBreakdown = FindBreakdown(Breakdown_ReaperHitpoints);
+            pBreakdown->AttachObserver(this);
+            bonus = pBreakdown->Total();
+            if (bonus != 0)
+            {
+                size_t level = m_pCharacter->ActiveBuild()->Level() + 1;    // 1 based
+                double hpCap = 0;
+                if (level <= 5) hpCap = 50;
+                else if (level <= 10) hpCap = 100;
+                else if (level <= 15) hpCap = 200;
+                else if (level <= 20) hpCap = 400;
+                else if (level <= 25) hpCap = 800;
+                else hpCap = 1e99;
+                bonus = min(bonus, hpCap);
+
+                Effect reaperBonus(
+                    Effect_FalseLife,
+                    "Reaper Bonus",
+                    "Reaper Bonus",
+                    static_cast<int>(bonus));
+                Requirements req;
+                Requirement reqStance(Requirement_Stance, "Reaper");
+                req.AddRequirement(reqStance);
+                reaperBonus.SetRequirements(req);
+                AddOtherEffect(reaperBonus);
+            }
         }
     }
 }

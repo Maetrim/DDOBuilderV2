@@ -686,6 +686,21 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
             m_itemBreakdownTree.SetItemData(hFalseLife, (DWORD)(void*)pFL);
             m_items.push_back(pFL);
         }
+        {
+            HTREEITEM hReaperHP = m_itemBreakdownTree.InsertItem(
+                "Reaper Hitpoints",
+                hItem,
+                TVI_LAST);
+            BreakdownItem* pRHP = new BreakdownItemSimple(
+                this,
+                Breakdown_ReaperHitpoints,
+                Effect_HitpointsReaper,
+                "Reaper Hitpoints",
+                &m_itemBreakdownTree,
+                hReaperHP);
+            m_itemBreakdownTree.SetItemData(hReaperHP, (DWORD)(void*)pRHP);
+            m_items.push_back(pRHP);
+        }
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
@@ -2684,18 +2699,17 @@ void CBreakdownsPane::OnButtonClipboardCopy()
             }
             // now generate the total clipboard text, ensure mono-spaced
             CString clipboardText;
-            clipboardText += "[font=courier]\r\n";
+            clipboardText += "[font=courier][code]\r\n";
             for (size_t i = 0; i < columns[0].size(); ++i)
             {
-                CString padded;
                 for (int column = 0; column < nColumnCount; ++column)
                 {
                     clipboardText += columns[column][i];
                 }
                 clipboardText += "\r\n";
             }
-            clipboardText += "[/font]\r\n";
-            FormatExportData(&clipboardText);
+            clipboardText += "[/code][/font]\r\n";
+            //FormatExportData(&clipboardText); // [code] tags makes this not required
             // now place the text on the clipboard
             if (OpenClipboard())
             {

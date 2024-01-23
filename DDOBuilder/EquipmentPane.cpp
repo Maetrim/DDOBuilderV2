@@ -676,6 +676,8 @@ void CEquipmentPane::OnGearPaste()
                         // ensure the gear set name is unique
                         if (!m_pCharacter->ActiveBuild()->DoesGearSetExist(dlg.Name()))
                         {
+                            // make sure the gear set has item images (not saved on clipboard)
+                            gear.UpdateImages();
                             gear.SetName(dlg.Name());
                             pBuild->AddGearSet(gear);
                             // once added the copy gear set automatically becomes active
@@ -1043,9 +1045,9 @@ void CEquipmentPane::UpdateBuildLevelChanged(Build*)
     }
 }
 
-void CEquipmentPane::UpdateGearChanged(Build*, InventorySlotType)
+void CEquipmentPane::UpdateGearChanged(Build* pBuild, InventorySlotType)
 {
-    Invalidate();
+    m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());
     EnableControls();
 }
 

@@ -1,653 +1,2139 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Dragon Lord</Name>
-      <Version>1</Version>
-      <Icon>Fighter</Icon>
-      <Background>FighterBackground</Background>
+  <EnhancementTree>
+    <Name>Dragon Lord</Name>
+    <Version>1</Version>
+    <Icon>Fighter</Icon>
+    <Background>FighterBackground</Background>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Dragon Lord</Item>
+      </Requirement>
+    </Requirements>
+    <!--tree core items-->
+    <EnhancementTreeItem>
+      <InternalName>DragonLordCore1</InternalName>
+      <Name>Dragon Lord: Soul of the Dragon</Name>
+      <Description>Pick a Draconic Soul to commune with, which will influence the rest of your power
+in this tree. Passive: You gain +1 to Tactical Feat DCs.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
       <Requirements>
-         <Requirement>
-            <Type>Class</Type>
-            <Item>Dragon Lord</Item>
-         </Requirement>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
       </Requirements>
-      <!--tree core items-->
-      <EnhancementTreeItem>
-         <InternalName>DragonLordCore1</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordCore2</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>DragonLordCore1</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordCore3</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>6</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>DragonLordCore2</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordCore4</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>DragonLordCore3</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordCore5</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>18</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>DragonLordCore4</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordCore6</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>20</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>DragonLordCore5</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Exclusive</Type>
-              <Item>DragonLordCore6</Item>
-              <Item>Capstone Enhancement</Item>
-            </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Soul of the Black Dragon</Name>
+          <Description>You have chosen to commune with a Black Dragon's soul, granting the power of Acid
+to abilities in this tree. Passive: +1 to Tactical Feat DCs.</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Soul of the Blue Dragon</Name>
+          <Description>You have chosen to commune with a Blue Dragon's soul, granting the power of Electricity
+to abilities in this tree. Passive: +1 to Tactical Feat DCs.</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Soul of the Green Dragon</Name>
+          <Description>You have chosen to commune with a Blue Dragon's soul, granting the power of poison
+to abilities in this tree. Passive: +1 to Tactical Feat DCs.</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Soul of the Red Dragon</Name>
+          <Description>You have chosen to commune with a Red Dragon's soul, granting the power of Fire
+to abilities in this tree. Passive: +1 to Tactical Feat DCs.</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Soul of the White Dragon</Name>
+          <Description>You have chosen to commune with a White Dragon's soul, granting the power of Cold
+to abilities in this tree. Passive: +1 to Tactical Feat DCs.</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordCore2</InternalName>
+      <Name>Dragon Lord: Draconic Arms</Name>
+      <Description>Imbue Toggle: Your Draconic Soul emboldens your weapon strikes, which deal 1d6
+damage on each hit in the element of your Draconic Soul. This damage scales with
+200% of the higher of Melee or Ranged Power.
+
+Passive: The bonus of each of your Draconic Auras is increased by 1.</Description>
+      <Icon>ActiveStub</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Stance>
+        <Name>Soul of the Dragon: [Selected Dragon Type]</Name>
+        <Icon>ActiveStub</Icon>
+        <Description>Imbue Toggle: Your Draconic Soul emboldens your weapon strikes, which deal 1d6
+damage on each hit in the element of your Draconic Soul. This damage scales with
+200% of the higher of Melee or Ranged Power.</Description>
+        <Group>Imbue</Group>
+      </Stance>
+      <!--Note that even counts give 0, odd counts add to total. Odd counts happen when the feat is actually trained-->
+      <Effect>
+        <DisplayName>Aussircaex's Defiance</DisplayName>
+        <Type>SaveBonus</Type>
+        <Type>SaveBonus</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Nevalarich's Hunger</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Thraxata's Instinct</DisplayName>
+        <Type>TacticalDC</Type>
+        <Type>TacticalDC</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>Trip</Item>
+        <Item>Stun</Item>
+        <Item>Sunder</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Velah's Fury</DisplayName>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Sinvala's Toughness</DisplayName>
+        <Type>PRR</Type>
+        <Type>PRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Eternity's Ward</DisplayName>
+        <Type>MRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>The Truthful One's Might</DisplayName>
+        <Type>MeleePower</Type>
+        <Type>MeleePower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Aurgloroasa's Ascendend Wrath</DisplayName>
+        <Type>RangedPower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Kor Kaza's Forbidden Power</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordCore3</InternalName>
+      <Name>Dragon Lord: Reckless Devotion</Name>
+      <Description>Cooldown: 20 seconds.
+Activate: Target Ally gains a Morale bonus to Critical Confirmation and Critical
+Hit Damage equal to 1 + 1 quarter of your Dragon Lord level for 20 seconds.
+
+Passive: +1 Imbue Die, +5 Melee and Ranged Power, +3 to Critical Confirmation
+and Critical Hit Damage. The bonus of each of your Draconic Auras is increased
+by 1.</Description>
+      <Icon>ActiveStub</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordCore2</Item>
+        </Requirement>
+      </Requirements>
+      <!--Note that even counts give 0, odd counts add to total. Odd counts happen when the feat is actually trained-->
+      <Effect>
+        <DisplayName>Aussircaex's Defiance</DisplayName>
+        <Type>SaveBonus</Type>
+        <Type>SaveBonus</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Nevalarich's Hunger</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Thraxata's Instinct</DisplayName>
+        <Type>TacticalDC</Type>
+        <Type>TacticalDC</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>Trip</Item>
+        <Item>Stun</Item>
+        <Item>Sunder</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Velah's Fury</DisplayName>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Sinvala's Toughness</DisplayName>
+        <Type>PRR</Type>
+        <Type>PRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Eternity's Ward</DisplayName>
+        <Type>MRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>The Truthful One's Might</DisplayName>
+        <Type>MeleePower</Type>
+        <Type>MeleePower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Aurgloroasa's Ascendend Wrath</DisplayName>
+        <Type>RangedPower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Kor Kaza's Forbidden Power</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordCore4</InternalName>
+      <Name>Dragon Lord: Conqueror's Command</Name>
+      <Description>When you use Reckless Devotion, the power of your Draconic command grants that
+ally the effects of the Panacea spell, curing many afflictions and healing that
+ally for 1d6+2 Hit Points plus 1 per Dragon Lord level. This healing scales with
+200% of Melee Power.
+
+Passive: +1 Imbue Die. The bonus of each of your Draconic Auras is increased by 1.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordCore3</Item>
+        </Requirement>
+      </Requirements>
+      <!--Note that even counts give 0, odd counts add to total. Odd counts happen when the feat is actually trained-->
+      <Effect>
+        <DisplayName>Aussircaex's Defiance</DisplayName>
+        <Type>SaveBonus</Type>
+        <Type>SaveBonus</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Nevalarich's Hunger</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Thraxata's Instinct</DisplayName>
+        <Type>TacticalDC</Type>
+        <Type>TacticalDC</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>Trip</Item>
+        <Item>Stun</Item>
+        <Item>Sunder</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Velah's Fury</DisplayName>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Sinvala's Toughness</DisplayName>
+        <Type>PRR</Type>
+        <Type>PRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Eternity's Ward</DisplayName>
+        <Type>MRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>The Truthful One's Might</DisplayName>
+        <Type>MeleePower</Type>
+        <Type>MeleePower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Aurgloroasa's Ascendend Wrath</DisplayName>
+        <Type>RangedPower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Kor Kaza's Forbidden Power</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordCore5</InternalName>
+      <Name>Dragon Lord: Dragon's Defense</Name>
+      <Description>While you have any Draconic Aura active, you and nearby allies gain a +3 Morale
+Bonus to Resistance and +5% Morale Bonus to Absorption of the element of your
+Draconic Soul.
+
+Passive: +2 Imbue Dice. +10 Melee and Ranged Power.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>18</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Acid</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Black Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Blue Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Poison</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Green Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Fire</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Red Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the White Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordCore6</InternalName>
+      <Name>Dragon Lord: Sunder Soul</Name>
+      <Description>Deals +50% Damage
+Cooldown: 20 seconds
+Sundered enemies in a small area in front of you must make a Will saving throw
+(DC 10 + Highest of STR and CHA mod + Sunder bonuses) or have their Soul
+sundered, killing them instantly.
+
+Passive: +2 Strength, +2 Charisma, +10 Melee and Ranged Power, +1 Imbue Die.
+The bonus of all of your Draconic Auras increases by 2.</Description>
+      <Icon>ActiveStub</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
           <Item>DragonLordCore6</Item>
           <Item>Capstone Enhancement</Item>
-       </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1 Enhancements-->
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier1/1</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier1/2</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier1/3</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier1/4</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier1/5</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 2 Enhancements-->
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier2/1</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier2/2</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier2/3</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier2/4</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier2/5</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 3 Enhancements-->
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier3/1</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier3/2</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier3/3</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier3/4</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier3/5</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 4 Enhancements-->
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier4/1</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier4/2</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier4/3</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier4/4</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier4/5</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 5 Enhancements-->
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier5/1</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier5/2</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier5/3</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier5/4</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>ActiveStub</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <InternalName>DragonLordTier5/5</InternalName>
-         <Name>Dragon Lord: ???</Name>
-         <Description/>
-         <Icon>PassiveStub</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>Class</Type>
-               <Item>Dragon Lord</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>DragonLordCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <!--Note that even counts give 0, odd counts add to total. Odd counts happen when the feat is actually trained-->
+      <Effect>
+        <DisplayName>Aussircaex's Defiance</DisplayName>
+        <Type>SaveBonus</Type>
+        <Type>SaveBonus</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Nevalarich's Hunger</DisplayName>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Thraxata's Instinct</DisplayName>
+        <Type>TacticalDC</Type>
+        <Type>TacticalDC</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">2 0 3 0 4 0 5 0 7</Amount>
+        <Item>Trip</Item>
+        <Item>Stun</Item>
+        <Item>Sunder</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Velah's Fury</DisplayName>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Type>Weapon_DamageBonus</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Sinvala's Toughness</DisplayName>
+        <Type>PRR</Type>
+        <Type>PRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Eternity's Ward</DisplayName>
+        <Type>MRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">3 0 4 0 5 0 6 0 8</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>The Truthful One's Might</DisplayName>
+        <Type>MeleePower</Type>
+        <Type>MeleePower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Aurgloroasa's Ascendend Wrath</DisplayName>
+        <Type>RangedPower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Kor Kaza's Forbidden Power</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="9">4 0 5 0 6 0 7 0 9</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Strength</Item>
+        <Item>Charisma</Item>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1 Enhancements-->
+    <EnhancementTreeItem>
+      <InternalName>DragonLordDragonsProtectionI</InternalName>
+      <Name>Dragon Lord: Dragon's Protection I</Name>
+      <Description>You gain +3 Resistance to the element of your Draconic Soul.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Acid</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Black Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Blue Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Green Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Red Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the White Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordBattlefieldTacticianI</InternalName>
+      <Name>Dragon Lord: Battlefield Tactician I</Name>
+      <Description>+1 to Tactical Feat DCs</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordUnbreakableWill</InternalName>
+      <Name>Dragon Lord: Unbreakable Will</Name>
+      <Description>+[1/2/3] to Will Saving Throws.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Will</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordFieldSkills</InternalName>
+      <Name>Dragon Lord: Field Skills</Name>
+      <Description>+[1/2/3] to Intimidate, Jump, and Haggle.
+Rank 3: You gain +2 to Attack.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Intimidate</Item>
+        <Item>Jump</Item>
+        <Item>Haggle</Item>
+      </Effect>
+      <Effect>
+        <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 0 2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordMartialSuperioirity</InternalName>
+      <Name>Dragon Lord: Martial Superiority</Name>
+      <Description>Select and advantage with weapons.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Dragon Lord: Martial Superiority: Deft Strikes</Name>
+          <Description>+[3/6/10]% Offhand Strike Chance</Description>
+          <Icon>SFDeftStrikes</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">3 6 10</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Centered</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dragon Lord: Martial Superiority: Improved Second Strikes</Name>
+          <Description>+[5/10/20]% Strikethrough</Description>
+          <Icon>HalfOrcGreatWeaponAptitude</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 20</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dragon Lord: Martial Superiority: Shoot Twice</Name>
+          <Description>+[2/4/6]% Doubleshot</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dragon Lord: Martial Superiority: Strike Twice</Name>
+          <Description>+[2/4/6]% Doublestrike</Description>
+          <Icon>PassiveStub</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">2 4 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 2 Enhancements-->
+    <EnhancementTreeItem>
+      <InternalName>DragonLordDragonsProtectionII</InternalName>
+      <Name>Dragon Lord: Dragon's Protection II</Name>
+      <Description>You gain +3 Resistance to the element of your Draconic Soul.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordDragonsProtectionI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Acid</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Black Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Blue Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Green Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Red Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the White Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordBattlefieldTacticianII</InternalName>
+      <Name>Dragon Lord: Battlefield Tactician II</Name>
+      <Description>+1 to Tactical Feat DCs</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordBattlefieldTacticianI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordDraconicResilience</InternalName>
+      <Name>Dragon Lord: Draconic Resilience</Name>
+      <Description>+[2/4/6] Natural Armor</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>NaturalArmor</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordActionBoost</InternalName>
+      <Name>Dragon Lord: Action Boost</Name>
+      <Description>Select Haste or Tactics Boost</Description>
+      <Icon>DragonLordABTactics</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Action Boost: Haste</Name>
+          <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+          <Icon>KenseiHasteBoost</Icon>
+          <Clickie />
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Action Boost: Tactics</Name>
+          <Description>Activate to gain a +[3/6/9] Action Boost bonus to Tactical DCs for 20 seconds.</Description>
+          <Icon>DragonLordABTactics</Icon>
+          <Clickie />
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordDragonslayer</InternalName>
+      <Name>Dragon Lord: Dragonslayer</Name>
+      <Description>You have chosen to assert dominance over Dragons, despite sharing in their power.
+You gain Favored Enemy: Dragon.
+
+When fighting a Favored Enemy, you gain +2 Damage for each Favored Enemy feat
+you have. If you have more than one Favored Enemy feat that applies to a particular
+Enemy, the damage applies for each type that matches your Favored Enemy feat you
+have.</Description>
+      <Icon>DragonLordDragonslayer</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>Favored Enemy: Dragon</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 3 Enhancements-->
+    <EnhancementTreeItem>
+      <InternalName>DragonLordDragonsProtectionIII</InternalName>
+      <Name>Dragon Lord: Dragon's Protection III</Name>
+      <Description>You gain an additional +3 Resistance and +5% Absorption to the element of your
+Draconic Soul.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordDragonsProtectionII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Acid</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Black Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Blue Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Green Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Red Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the White Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Acid</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Black Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Blue Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Green Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Red Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the White Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordBattlefieldTacticianIII</InternalName>
+      <Name>Dragon Lord: Battlefield Tactician III</Name>
+      <Description>+1 to Tactical Feat DCs and Breath Weapon DCs. When you attack with Trip or Sunder
+(or their Improved variants), you deal 1d4 additional damage per Character Level
+of the Element of you Draconic Soul. This damage scales with 200% Melee or Ranged
+Power.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordBattlefieldTacticianII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+        <Item>Breath Weapon</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordDragonsRoar</InternalName>
+      <Name>Dragon Lord: Dragon's Roar</Name>
+      <Description>Cooldown: 20 seconds
+Tactical Feat: Enemies in a cone ahead of you must make a Will Saving Throw
+(DC 10 + Highest of STR and CHA mod + Stunning bonuses + Breath Weapon DC bonuses)
+or be Dazed. Affected enemies have a 25% chance to be broken out of Daze on damage.</Description>
+      <Icon>ActiveStub</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <DC>
+        <Name>Dragon's Roar</Name>
+        <Description>Enemies in a cone ahead of you must make a Will Saving Throw
+(DC 10 + Highest of STR and CHA mod + Stunning bonuses + Breath Weapon DC bonuses)
+or be Dazed. Affected enemies have a 25% chance to be broken out of Daze on damage.</Description>
+        <Icon>ActiveStub</Icon>
+        <DCType>Daze</DCType>
+        <DCVersus>Will</DCVersus>
+        <Amount size="1">10</Amount>
+        <ModAbility>Strength</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <Tactical>Stun</Tactical>
+        <Tactical2>Breath Weapon</Tactical2>
+      </DC>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordMightOrOutburst</InternalName>
+      <Name>Dragon Lord: Might or Outburst</Name>
+      <Description>Select a Trance.</Description>
+      <Icon>ActiveStub</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>DragonLordMightOrOutburst</Item>
+          <Item>Battle Trance</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Draconic Might</Name>
+          <Description>Cooldown: 20 seconds
+(Prerequisite: Non-Chaotic Alignment)
+Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
+tactical feats equal to 1/2 of your Strength modifier for [30/60/120] seconds.
+Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
+(or their Improved variants), you have a chance to restore 1 charge.</Description>
+          <Icon>ActiveStub</Icon>
+          <Clickie />
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>AlignmentType</Type>
+                <Item>Chaotic</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Stance>
+            <Name>Draconic Might</Name>
+            <Icon>ActiveStub</Icon>
+            <Description>Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
+tactical feats equal to 1/2 of your Strength modifier for [30/60/120] seconds.
+Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
+(or their Improved variants), you have a chance to restore 1 charge.</Description>
+            <Group>Battle Trance</Group>
+          </Stance>
+          <Effect>
+            <DisplayName>Dragon Lord: Draconic Might (Str Mod / 2)</DisplayName>
+            <Type>TacticalDC</Type>
+            <Bonus>Insightful</Bonus>
+            <StackSource>Strength</StackSource>
+            <AType>HalfAbilityMod</AType>
+            <Item>Trip</Item>
+            <Item>Sunder</Item>
+            <Item>Stun</Item>
+            <Item>General</Item>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Draconic Might</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+          <Effect>
+            <DisplayName>Dragon Lord: Draconic Might (Str Mod / 2)</DisplayName>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Insightful</Bonus>
+            <StackSource>Strength</StackSource>
+            <AType>HalfAbilityMod</AType>
+            <Item>All</Item>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Draconic Might</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Draconic Outburst</Name>
+          <Description>Cooldown: 20 seconds
+Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
+tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
+Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
+(or their Improved variants), you have a chance to restore 1 charge.</Description>
+          <Icon>ActiveStub</Icon>
+          <Clickie />
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>AlignmentType</Type>
+                <Item>Lawful</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Stance>
+            <Name>Draconic Outburst</Name>
+            <Icon>ActiveStub</Icon>
+            <Description>Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
+tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
+Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
+(or their Improved variants), you have a chance to restore 1 charge.</Description>
+            <Group>Battle Trance</Group>
+          </Stance>
+          <Effect>
+            <DisplayName>Dragon Lord: Draconic Outburst (Cha Mod / 2)</DisplayName>
+            <Type>TacticalDC</Type>
+            <Bonus>Insightful</Bonus>
+            <StackSource>Charisma</StackSource>
+            <AType>HalfAbilityMod</AType>
+            <Item>Trip</Item>
+            <Item>Sunder</Item>
+            <Item>Stun</Item>
+            <Item>General</Item>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Draconic Outburst</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+          <Effect>
+            <DisplayName>Dragon Lord: Draconic Outburst (Cha Mod / 2)</DisplayName>
+            <Type>Weapon_DamageBonus</Type>
+            <Type>Weapon_DamageBonusCritical</Type>
+            <Bonus>Insightful</Bonus>
+            <StackSource>Charisma</StackSource>
+            <AType>HalfAbilityMod</AType>
+            <Item>All</Item>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Draconic Outburst</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>DragonLordMightOrOutburst</Item>
+        <Item>Battle Trance</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordAbilityI</InternalName>
+      <Name>Dragon Lord: Ability Score I</Name>
+      <Description>Select between Strength or Charisma.</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4 Enhancements-->
+    <EnhancementTreeItem>
+      <InternalName>DragonLordDragonsProtectionIV</InternalName>
+      <Name>Dragon Lord: Dragon's Protection IV</Name>
+      <Description>You gain an additional +3 Resistance and +5% Absorption to the element of your
+Draconic Soul.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordDragonsProtectionIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Acid</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Black Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Blue Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Green Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Red Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the White Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Acid</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Black Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Blue Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Poison</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Green Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the Red Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Cold</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>DragonLordCore1</Item>
+            <Item>Soul of the White Dragon</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordBattlefieldTacticianIV</InternalName>
+      <Name>Dragon Lord: Battlefield Tactician IV</Name>
+      <Description>+1 to Tactical Feat DCs and Breath Weapon DCs. When you attack with Trip or Sunder
+(or their Improved variants), you deal 1d4 additional damage per Character Level
+of the Element of you Draconic Soul. This damage scales with 200% Melee or Ranged
+Power.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordBattlefieldTacticianIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+        <Item>Breath Weapon</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordUntouchableSoul</InternalName>
+      <Name>Dragon Lord: Untouchable Soul</Name>
+      <Description>You have Displacement, giving opponents a 50% chance to miss you due to concealment.
+This cannot be dispelled.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Concealment</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">50</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordLeadTheCharge</InternalName>
+      <Name>Dragon Lord: Lead the Charge</Name>
+      <Description>Deals +[20/30/50]% Damage
+Cooldown: 20 seconds
+Melee Rush Attack: Rush forward up to 30 feet to your selected opponent and
+deliver a mighty strike. Shares a cooldown with Shield Charge.</Description>
+      <Icon>ActiveStub</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordAbilityII</InternalName>
+      <Name>Dragon Lord: Ability Score II</Name>
+      <Description>Select between Strength or Charisma.</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordAbilityI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5 Enhancements-->
+    <EnhancementTreeItem>
+      <InternalName>DragonLordSoulScales</InternalName>
+      <Name>Dragon Lord: Soul Scales</Name>
+      <Description>You gain +15 Magical Resistance Rating. +25% Competence Bonus to Maximum HP,
+ans you have a 5% chance to ignore damage of the element of your Draconic Soul.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordDragonsProtectionIV</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Percent />
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordTacticalCommander</InternalName>
+      <Name>Dragon Lord: Tactical Commander</Name>
+      <Description>The cooldowns of your Trip, Sunder, Stunning Blow, and Dragon's Roar (and their
+Improved variants) are reduced by 33%. +2 to Breath Weapon DCs.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DragonLordBattlefieldTacticianIV</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Breath Weapon</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordImprovedDragonsRoar</InternalName>
+      <Name>Dragon Lord: Improved Dragon's Roar</Name>
+      <Description>Your Dragon's Roar now Cowers enemies instead of Dazing them.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordFlightOfKings</InternalName>
+      <Name>Dragon Lord: Flight of Kings</Name>
+      <Description>Cooldown: 15 seconds
+Memories of flight lie within you. You are able to leap through the air to bring
+the fight to your enemies or traverse chasms that make normal adventure's balk.
+
+When you use Flight of Kings, you gain a +20% Action Boost bonus to movement
+speed for 6 seconds.</Description>
+      <Icon>DragonbornMemoryOfFlight</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DragonLordConqueror</InternalName>
+      <Name>Dragon Lord: Conqueror</Name>
+      <Description>+[1/2] Competence Bonus to Critical Multiplier with All Weapons.</Description>
+      <Icon>PassiveStub</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">1 2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

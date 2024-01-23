@@ -102,6 +102,24 @@ bool RequiresOneOf::CanTrainEnhancement(
     return canTrain;
 }
 
+bool RequiresOneOf::MetEnhancements(const Build& build, size_t trainedRanks) const
+{
+    // one or more of the requirements must be met
+    bool canTrain = false;
+    bool bNone = true;
+    std::list<Requirement>::const_iterator it = m_Requirements.begin();
+    while (!canTrain && it != m_Requirements.end())
+    {
+        if ((*it).Type() == Requirement_Enhancement)
+        {
+            canTrain |= (*it).MetEnhancements(build, trainedRanks);
+            bNone = false;
+        }
+        ++it;
+    }
+    return canTrain || bNone;
+}
+
 bool RequiresOneOf::MetHardRequirements(
     const Build& build,
     size_t level,

@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CFavorPane, CFormView)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST_QUESTS, OnColumnclickListQuests)
     ON_NOTIFY(NM_RCLICK, IDC_LIST_QUESTS, OnRightClickListQuests)
     ON_UPDATE_COMMAND_UI(ID_SETFAVOR_NONE, OnUpdateFavorNone)
+    ON_UPDATE_COMMAND_UI(ID_SETFAVOR_SOLO, OnUpdateFavorSolo)
     ON_UPDATE_COMMAND_UI(ID_SETFAVOR_CASUAL, OnUpdateFavorCasual)
     ON_UPDATE_COMMAND_UI(ID_SETFAVOR_NORMAL, OnUpdateFavorNormal)
     ON_UPDATE_COMMAND_UI(ID_SETFAVOR_HARD, OnUpdateFavorHard)
@@ -138,15 +139,15 @@ void CFavorPane::OnSize(UINT nType, int cx, int cy)
         m_favorItems[0].GetWindowRect(&rectPatronItem);
         rectPatronItem -= rectPatronItem.TopLeft();
         rectPatronItem += CPoint(c_controlSpacing, c_controlSpacing);
-        rectPatronItem.right = cx / 2;
+        rectPatronItem.right = min(280, cx / 2);    // limit x size
         // patron list on the left hand side
         for (size_t i = 0; i < m_patronCount; ++i)
         {
             m_favorItems[i].MoveWindow(rectPatronItem, TRUE);
             rectPatronItem += CPoint(0, c_controlSpacing + rectPatronItem.Height());
         }
-        m_listQuests.MoveWindow(cx / 2 + c_controlSpacing, c_controlSpacing,
-                cx / 2 - c_controlSpacing, cy - c_controlSpacing * 2, TRUE);
+        m_listQuests.MoveWindow(rectPatronItem.right + c_controlSpacing, c_controlSpacing,
+                cx - rectPatronItem.right - c_controlSpacing * 2, cy - c_controlSpacing * 2, TRUE);
     }
     SetScrollSizes(MM_TEXT, CSize(cx- GetSystemMetrics(SM_CYHSCROLL), rectPatronItem.top));
 }
@@ -381,6 +382,14 @@ void CFavorPane::OnUpdateFavorNone(CCmdUI* pCmdUi)
     unsigned int checkedState = GetCheckedState(Favor_None);
     pCmdUi->SetCheck(checkedState);
     bool bEnabledState = GetEnabledState(Favor_None);
+    pCmdUi->Enable(bEnabledState);
+}
+
+void CFavorPane::OnUpdateFavorSolo(CCmdUI* pCmdUi)
+{
+    unsigned int checkedState = GetCheckedState(Favor_Solo);
+    pCmdUi->SetCheck(checkedState);
+    bool bEnabledState = GetEnabledState(Favor_Solo);
     pCmdUi->Enable(bEnabledState);
 }
 

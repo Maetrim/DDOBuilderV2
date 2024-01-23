@@ -27,6 +27,7 @@ protected:
     afx_msg void OnColumnclickListQuests(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnRightClickListQuests(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnUpdateFavorNone(CCmdUI * pCmdUi);
+    afx_msg void CFavorPane::OnUpdateFavorSolo(CCmdUI* pCmdUi);
     afx_msg void OnUpdateFavorCasual(CCmdUI * pCmdUi);
     afx_msg void OnUpdateFavorNormal(CCmdUI * pCmdUi);
     afx_msg void OnUpdateFavorHard(CCmdUI * pCmdUi);

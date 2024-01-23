@@ -6,9 +6,7 @@
 #include "FeatsClassControl.h"
 
 class CClassAndFeatPane :
-    public CFormView,
-    public CharacterObserver,
-    public BuildObserver
+    public CFormView
 {
     public:
         enum { IDD = IDD_CLASS_AND_FEAT_PANE };
@@ -36,21 +34,7 @@ class CClassAndFeatPane :
         afx_msg void OnVScroll( UINT, UINT, CScrollBar* );
         DECLARE_MESSAGE_MAP()
 
-        // CharacterObserver
-        virtual void UpdateActiveBuildChanged(Character * pCharacter) override;
-
-        // Build Observer
-        virtual void UpdateBuildLevelChanged(Build *) override;
-        virtual void UpdateClassChoiceChanged(Build *) override;
-        virtual void UpdateClassChanged(
-                Build *,
-                const std::string& classFrom,
-                const std::string& classTo,
-                size_t level) override;
-
     private:
-        void PostUpdateMessage();
-
         CDocument * m_pDocument;
         Character * m_pCharacter;
         CFeatsClassControl m_featsAndClasses;

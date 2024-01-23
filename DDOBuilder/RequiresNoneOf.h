@@ -23,6 +23,7 @@ class RequiresNoneOf :
         bool CanTrainEnhancement(
                 const Build& build,
                 size_t trainedRanks) const;
+        bool MetEnhancements(const Build& build, size_t trainedRanks) const;
         bool MetHardRequirements(
                 const Build & build,
                 size_t level,

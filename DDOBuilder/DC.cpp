@@ -84,6 +84,11 @@ bool DC::VerifyObject(std::stringstream * ss) const
         *ss << "DC is missing image file \"" << Icon() << "\"\n";
         ok = false;
     }
+    if (HasTactical2() && !HasTactical())
+    {
+        *ss << "DC is missing Tactical field with tactical 2 present\n";
+        ok = false;
+    }
     return ok;
 }
 
@@ -157,6 +162,13 @@ int DC::CalculateDC(const Build * build) const
         BreakdownItem * pBI = FindBreakdown(bt);
         int tacticalBonus = (int)pBI->Total();
         value += tacticalBonus;
+        if (m_hasTactical2)
+        {
+            bt = TacticalToBreakdown(m_Tactical2);
+            pBI = FindBreakdown(bt);
+            tacticalBonus = (int)pBI->Total();
+            value += tacticalBonus;
+        }
     }
     // spell school bonuses, all of these get added if present
     std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
@@ -344,6 +356,18 @@ std::string DC::DCBreakdown(const Build * build) const
         BreakdownItem * pBI = FindBreakdown(bt);
         int tacticalBonus = (int)pBI->Total();
         ss << EnumEntryText(m_Tactical, tacticalTypeMap) << "(" << tacticalBonus << ")";
+        if (m_hasTactical2)
+        {
+            if (!first)
+            {
+                ss << " + ";
+            }
+            first = false;
+            bt = TacticalToBreakdown(m_Tactical2);
+            pBI = FindBreakdown(bt);
+            tacticalBonus = (int)pBI->Total();
+            ss << EnumEntryText(m_Tactical2, tacticalTypeMap) << "(" << tacticalBonus << ")";
+        }
     }
     // spell school bonuses, all of these get added if present
     std::list<SpellSchoolType>::const_iterator sit = m_School.begin();

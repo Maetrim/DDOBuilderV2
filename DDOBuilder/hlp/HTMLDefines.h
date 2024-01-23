@@ -155,6 +155,7 @@
 #define HID_REAPER_REAPER9                      0x18048
 #define HID_REAPER_REAPER10                     0x18049
 #define HID_SETFAVOR_SETFAVORLEVEL              0x1804A
+#define HID_SETFAVOR_SOLO                       0x1804B
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064

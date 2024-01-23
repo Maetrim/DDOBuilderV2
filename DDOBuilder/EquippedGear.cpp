@@ -6,6 +6,7 @@
 #include "GlobalSupportFunctions.h"
 #include "LogPane.h"
 #include "Character.h"
+#include "DDOBuilder.h"
 
 #define DL_ELEMENT EquippedGear
 
@@ -89,6 +90,28 @@ void EquippedGear::Write(XmlLib::SaxWriter * writer) const
 void EquippedGear::SetName(const std::string& name)
 {
     Set_Name(name);
+}
+
+void EquippedGear::UpdateImages()
+{
+    CDDOBuilderApp* pApp = static_cast<CDDOBuilderApp*>(AfxGetApp());
+    for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+    {
+        InventorySlotType ist = static_cast<InventorySlotType>(i);
+        if (HasItemInSlot(ist))
+        {
+            Item item = ItemInSlot(ist);
+            if (item.HasIcon())
+            {
+                std::string icon = item.Icon();
+                if (pApp->m_imagesMap.find(icon) != pApp->m_imagesMap.end())
+                {
+                    item.SetIconIndex(pApp->m_imagesMap[icon]);
+                    UpdateItem(ist, item);
+                }
+            }
+        }
+    }
 }
 
 bool EquippedGear::HasItemInSlot(InventorySlotType slot) const
@@ -915,4 +938,35 @@ void EquippedGear::ApplyItemAugment(Item* pItem, CString augmentText)
         text.Format("      Augment not recognised \"%s\"", (LPCTSTR)augmentText);
     }
     GetLog().AddLogEntry(text);
+}
+
+void EquippedGear::UpdateItem(
+    InventorySlotType slot,
+    const Item& item)
+{
+    switch (slot)
+    {
+        case Inventory_Arrows:  Set_Arrow(item); break;
+        case Inventory_Armor:   Set_Armor(item); break;
+        case Inventory_Belt:    Set_Belt(item); break;
+        case Inventory_Boots:   Set_Boots(item); break;
+        case Inventory_Bracers: Set_Bracers(item); break;
+        case Inventory_Cloak:   Set_Cloak(item); break;
+        case Inventory_Gloves:  Set_Gloves(item); break;
+        case Inventory_Goggles: Set_Goggles(item); break;
+        case Inventory_Helmet:  Set_Helmet(item); break;
+        case Inventory_Necklace: Set_Necklace(item); break;
+        case Inventory_Quiver:  Set_Quiver(item); break;
+        case Inventory_Ring1:   Set_Ring1(item); break;
+        case Inventory_Ring2:   Set_Ring2(item); break;
+        case Inventory_Trinket: Set_Trinket(item); break;
+        case Inventory_Weapon1: Set_MainHand(item); break;
+        case Inventory_Weapon2: Set_OffHand(item); break;
+        case Inventory_CosmeticArmor:   Set_CosmeticArmor(item); break;
+        case Inventory_CosmeticCloak:   Set_CosmeticCloak(item); break;
+        case Inventory_CosmeticHelm:    Set_CosmeticHelm(item); break;
+        case Inventory_CosmeticWeapon1: Set_CosmeticWeapon1(item); break;
+        case Inventory_CosmeticWeapon2: Set_CosmeticWeapon2(item); break;
+        default: ASSERT(FALSE); break;
+    }
 }

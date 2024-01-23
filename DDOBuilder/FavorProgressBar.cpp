@@ -63,12 +63,18 @@ END_MESSAGE_MAP()
 
 void CFavorProgressBar::OnPaint() 
 {
-    CPaintDC dc(this); // device context for painting
-    dc.SaveDC();
+    CDC* pDC = GetDC();
+    pDC->SaveDC();
+
     CRect rect;
     GetClientRect(&rect);
     CBrush brush(GetSysColor(COLOR_HIGHLIGHT));
-    dc.FillRect(rect, &brush);
+    pDC->FillRect(rect, &brush);
+
+    // stop text drawing beyond the control edge on a resize
+    CRect rctAreaRight(rect);
+    rctAreaRight += CPoint(rect.Width(), 0);
+    pDC->ExcludeClipRect(rctAreaRight);
 
     // favor tiers shown in small font
     LOGFONT lf;
@@ -77,11 +83,11 @@ void CFavorProgressBar::OnPaint()
     lf.lfHeight = 9;
     CFont smallFont;
     smallFont.CreateFontIndirect(&lf);
-    dc.SelectObject(&smallFont);
-    dc.SetBkMode(TRANSPARENT); // don't erase the text background
-    dc.SetTextColor(COLORREF(RGB(255, 255, 255)));   // white
+    pDC->SelectObject(&smallFont);
+    pDC->SetBkMode(TRANSPARENT); // don't erase the text background
+    pDC->SetTextColor(COLORREF(RGB(255, 255, 255)));   // white
     CPen penWhite(PS_SOLID, 1, COLORREF(RGB(255, 255, 255)));
-    dc.SelectObject(&penWhite);
+    pDC->SelectObject(&penWhite);
 
     m_favorTiersPoints.clear();
     CRect rect2(rect);
@@ -90,17 +96,17 @@ void CFavorProgressBar::OnPaint()
         CString tierText;
         tierText.Format("%d", m_favorTiers[tier]);
         // measure the text so its centered horizontally
-        CSize textSize = dc.GetTextExtent(tierText);
+        CSize textSize = pDC->GetTextExtent(tierText);
         int xPos = ((rect.Width() * m_favorTiers[tier]) / m_maxValue);
-        dc.MoveTo(xPos, 0);
-        dc.LineTo(xPos, 2);
+        pDC->MoveTo(xPos, 0);
+        pDC->LineTo(xPos, 2);
         m_favorTiersPoints.push_back(xPos);
         // now position the text
         xPos -= textSize.cx / 2;
         // stop going off left/right hand sides
         if (xPos < 0) xPos = 0;
         else if (xPos + textSize.cx > rect.Width()) xPos = rect.right - textSize.cx - 1;
-        dc.TextOut(xPos, 0, tierText);
+        pDC->TextOut(xPos, 0, tierText);
         rect2.top = textSize.cy;
     }
     m_favorHeight = rect2.top;
@@ -108,23 +114,25 @@ void CFavorProgressBar::OnPaint()
     int xCF = ((rect.Width() * m_currentFavor) / m_maxValue);
     CBrush brush2(GetSysColor(COLOR_BTNFACE));
     rect2.left = xCF;
-    dc.FillRect(rect2, &brush2);
+    pDC->FillRect(rect2, &brush2);
 
     CFont* pDefaultGUIFont = CFont::FromHandle(
             (HFONT)GetStockObject(DEFAULT_GUI_FONT));
-    dc.SelectObject(pDefaultGUIFont);
+    pDC->SelectObject(pDefaultGUIFont);
     CString favorText;
     favorText.Format("%s (%d / %d)", (LPCTSTR)m_patronName, m_currentFavor, m_maxValue);
-    CSize textSize = dc.GetTextExtent(favorText);
+    CSize textSize = pDC->GetTextExtent(favorText);
     // one colour text for the unselected background
-    dc.SetTextColor(COLORREF(RGB(0, 0, 0)));
-    dc.TextOut((rect.Width() - textSize.cx) / 2, rect.bottom - textSize.cy, favorText);
+    pDC->SetTextColor(COLORREF(RGB(0, 0, 0)));
+    pDC->TextOut((rect.Width() - textSize.cx) / 2, rect.bottom - textSize.cy, favorText);
     // highlighted text colour for the selected background
-    dc.ExcludeClipRect(rect2);
-    dc.SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
-    dc.TextOut((rect.Width() - textSize.cx) / 2, rect.bottom - textSize.cy, favorText);
+    pDC->ExcludeClipRect(rect2);
+    pDC->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
+    pDC->TextOut((rect.Width() - textSize.cx) / 2, rect.bottom - textSize.cy, favorText);
 
-    dc.RestoreDC(-1);
+    pDC->RestoreDC(-1);
+    ReleaseDC(pDC);
+    ValidateRect(NULL);
 }
 
 LRESULT CFavorProgressBar::OnMouseLeave(WPARAM, LPARAM)

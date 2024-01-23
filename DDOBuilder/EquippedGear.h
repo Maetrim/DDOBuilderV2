@@ -18,6 +18,7 @@ class EquippedGear :
         void Write(XmlLib::SaxWriter * writer) const;
 
         void SetName(const std::string& name);
+        void UpdateImages();
 
         bool HasItemInSlot(InventorySlotType slot) const;
         Item ItemInSlot(InventorySlotType slot) const;
@@ -89,6 +90,7 @@ class EquippedGear :
         size_t ExtractLine(CString* line, size_t pif, char* buffer, size_t bufferSize);
         bool ProcessLine(CString line);
         void ApplyItemAugment(Item* pItem, CString augmentText);
+        void UpdateItem(InventorySlotType slot, const Item& item);
 
         friend class CEquipmentPane;
 };

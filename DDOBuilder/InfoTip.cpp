@@ -598,7 +598,8 @@ void CInfoTip::SetSetBonusItem(
 }
 
 void CInfoTip::SetItem(
-        const Item * pItem)
+        const Item * pItem,
+        const Build* pBuild)
 {
     ClearOldTipItems();
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
@@ -700,7 +701,7 @@ void CInfoTip::SetItem(
                 static_cast<int>(eit.Amount()[2]));
         }
     }
-    std::vector<CString> buffDescriptions = pItem->BuffDescriptions();
+    std::vector<CString> buffDescriptions = pItem->BuffDescriptions(pBuild);
     for (auto&& bdit : buffDescriptions)
     {
         InfoTipItem_BuffDescription* pBuff = new InfoTipItem_BuffDescription(bdit);
@@ -806,25 +807,39 @@ void CInfoTip::AppendFilledAugment(
     {
         if (slot.HasSelectedLevelIndex())
         {
-            minLevel = pAugment->Levels()[slot.SelectedLevelIndex()];
             CString txt;
-            txt.Format(" %+.0f", pAugment->LevelValue()[slot.SelectedLevelIndex()]);
-            augmentName += txt;
-            if (pAugment->HasDualValues())
+            if (pAugment->HasLevels())
             {
-                txt.Format("/%+.0f", pAugment->LevelValue2()[slot.SelectedLevelIndex()]);
+                minLevel = pAugment->Levels()[slot.SelectedLevelIndex()];
+                txt.Format(" %+.0f", pAugment->LevelValue()[slot.SelectedLevelIndex()]);
                 augmentName += txt;
+                if (pAugment->HasDualValues())
+                {
+                    txt.Format("/%+.0f", pAugment->LevelValue2()[slot.SelectedLevelIndex()]);
+                }
             }
+            else
+            {
+                txt.Format("Augment %s has missing Levels field", pAugment->Name().c_str());
+            }
+            augmentName += txt;
         }
         else
         {
             CString txt;
-            txt.Format(" %+.0f", pAugment->LevelValue()[itemLevel - 1]);
-            augmentName += txt;
-            if (pAugment->HasDualValues())
+            if (pAugment->HasLevelValue())
             {
-                txt.Format("/%+.0f", pAugment->LevelValue2()[itemLevel - 1]);
+                txt.Format(" %+.0f", pAugment->LevelValue()[itemLevel - 1]);
                 augmentName += txt;
+                if (pAugment->HasDualValues())
+                {
+                    txt.Format("/%+.0f", pAugment->LevelValue2()[itemLevel - 1]);
+                    augmentName += txt;
+                }
+            }
+            else
+            {
+                txt.Format("Augment %s has missing LevelValue field", pAugment->Name().c_str());
             }
         }
     }
@@ -928,6 +943,9 @@ void CInfoTip::SetFavorItem(
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     pHeader->LoadIcon("DataFiles\\FeatImages\\", feat.Icon(), true);
     pHeader->SetTitle(feat.Name().c_str());
+    CString maxFavor;
+    maxFavor.Format("Max: %d", patron.MaxFavor());
+    pHeader->SetRank(maxFavor);
     m_tipItems.push_back(pHeader);
 
     CString line = ExtractLine(favorTier, feat.Description().c_str());

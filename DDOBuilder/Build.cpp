@@ -2085,14 +2085,14 @@ void Build::VerifyGear()
             }
             if (bRemoveItem)
             {
-                CString text("...");
+                CString text("Item in slot ");
                 revokeOccurred = true;
                 ClearGearInSlot(gear.Name(), (InventorySlotType)i);
                 CString itemName;
                 itemName = EnumEntryText((InventorySlotType)i, InventorySlotTypeMap);
                 itemName += ": ";
                 itemName += item.Name().c_str();
-                itemName += " removed.\r\n";
+                itemName += " removed as requirements no longer met.\r\n";
                 text += itemName;
                 GetLog().AddLogEntry(text);
             }
@@ -2993,12 +2993,17 @@ void Build::RevokeEnhancementEffects(
         const std::string& selection,
         size_t rank)
 {
+    bool bVerifyGear = false;
     const EnhancementTreeItem* pItem = FindEnhancement(treeName, enhancementName);
     if (pItem != NULL)
     {
         std::list<Effect> effects = pItem->GetEffects(selection, rank);
         for (auto&& eit : effects)
         {
+            if (eit.IsType(Effect_GrantFeat))
+            {
+                bVerifyGear = true;
+            }
             if (eit.IsType(Effect_AddGroupWeapon))
             {
                 RemoveFromWeaponGroup(eit);
@@ -3044,6 +3049,10 @@ void Build::RevokeEnhancementEffects(
         {
             NotifyRevokeDC(dcit);
         }
+    }
+    if (bVerifyGear)
+    {
+        VerifyGear();
     }
 }
 

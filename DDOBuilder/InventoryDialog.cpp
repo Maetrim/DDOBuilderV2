@@ -815,7 +815,7 @@ void CInventoryDialog::SetTooltipText(
         CPoint tipAlternate)
 {
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-    m_tooltip.SetItem(&item);
+    m_tooltip.SetItem(&item, m_pBuild);
     m_tooltip.Show();
 }
 

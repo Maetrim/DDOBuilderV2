@@ -8,6 +8,7 @@
 #include "Buff.h"
 #include "SetBonus.h"
 #include "DDOBuilder.h"
+#include "Build.h"
 #include <algorithm>
 
 #define DL_ELEMENT Item
@@ -331,7 +332,7 @@ const std::string& Item::Filename() const
     return m_filename;
 }
 
-std::vector<CString> Item::BuffDescriptions() const
+std::vector<CString> Item::BuffDescriptions(const Build* pBuild) const
 {
     std::vector<CString> buffs;
     for (auto&& it : m_Buffs)
@@ -347,6 +348,11 @@ std::vector<CString> Item::BuffDescriptions() const
         if (it.HasItem()) buff.Set_Item(it.Item());
         if (it.HasDescription1()) buff.Set_Description1(it.Description1());
         buffs.push_back(buff.MakeDescription());
+        if (it.HasRequirementsToUse())
+        {
+            std::vector<bool> metIgnored;
+            it.RequirementsToUse().CreateRequirementStrings(*pBuild, pBuild->Level(), true, &buffs, &metIgnored);
+        }
     }
     return buffs;
 }
@@ -370,8 +376,22 @@ void Item::AddRaceRequirement(const std::string& race)
 
 void Item::AddClassRequirement(const std::string& c)
 {
-    Requirement classRequirement(Requirement_BaseClass, c, 1);
+    Requirement classRequirement(Requirement_BaseClass, c);
     m_RequirementsToUse.AddRequirement(classRequirement);
+    m_hasRequirementsToUse = true;
+}
+
+void Item::AddFeatRequirement(const std::string& feat)
+{
+    Requirement featRequirement(Requirement_Feat, feat);
+    m_RequirementsToUse.AddRequirement(featRequirement);
+    m_hasRequirementsToUse = true;
+}
+
+void Item::AddFeatAnySourceRequirement(const std::string& feat)
+{
+    Requirement featRequirement(Requirement_FeatAnySource, feat, 1);
+    m_RequirementsToUse.AddRequirement(featRequirement);
     m_hasRequirementsToUse = true;
 }
 
