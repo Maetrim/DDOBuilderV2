@@ -34,6 +34,10 @@ void WikiDownloader::Start()
     m_knownUrls["https://www.ddowiki.com/page/Update_61_named_items"] = m_pageIndex++;
     m_pagesToProcess.push_back("https://www.ddowiki.com/page/Update_61_named_items");
 
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(pWnd);
+    pFrameWnd->BeginProgress("Downloading wiki files...");
+
     std::string url = m_pagesToProcess.front();
     m_pagesToProcess.pop_front();
     if (!DownloadUrl(url))
@@ -45,6 +49,7 @@ void WikiDownloader::Start()
         ParseDownloadedFile(url, "page/Category:");
     }
 
+    int lastPercent = -1;
     while (!m_pagesToProcess.empty())
     {
         url = m_pagesToProcess.front();
@@ -64,15 +69,14 @@ void WikiDownloader::Start()
         {
             AfxGetThread()->PumpMessage();
         }
-        CWnd* pWnd = AfxGetApp()->m_pMainWnd;
-        CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(pWnd);
-        if (pMainFrame != NULL)
+        int percent = static_cast<int>((m_knownUrls.size() - m_pagesToProcess.size()) * 100 / m_knownUrls.size());
+        if (percent != lastPercent)
         {
-            CString strProgress;
-            strProgress.Format("%d Urls of %d to go", m_pagesToProcess.size(), m_knownUrls.size());
-            pMainFrame->m_wndStatusBar.SetPaneText(0, strProgress);
+            lastPercent = percent;
+            pFrameWnd->SetProgress(percent);
         }
     }
+    pFrameWnd->EndProgress();
 
     GetLog().AddLogEntry("Wiki download complete");
 }

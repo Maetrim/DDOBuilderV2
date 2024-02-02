@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Elemental Rapier of Air (level 16)</Name>
     <Icon>Rapier_4d</Icon>
     <Description>This rapier is part of a mass-produced line of House Cannith weapons with elementals
@@ -23,6 +24,11 @@ bound to them. This one is infused with Air and shocks enemies as a result.</Des
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>3</CriticalThreatRange>
     <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>4</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
       <Type>Shocking Burst</Type>
       <BonusType>Enhancement</BonusType>
       <Description1>All</Description1>
@@ -42,12 +48,44 @@ bound to them. This one is infused with Air and shocks enemies as a result.</Des
       <Description1>Electric</Description1>
       <Item>Electric</Item>
     </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>30</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Electric</Description1>
-      <Item>Electric</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+5 Enhancement Bonus and Electric Resistance 32</Name>
+        <Description>+5 Enhancement Bonus: +5 Enhancement bonus to attack and damage rolls.
+Electric Resistance +32: Passive: +32 Enhancement bonus to your Electric Resistance.</Description>
+        <MinLevel>16</MinLevel>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">32</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds a Purple augment slot and Electric Resistance 35</Name>
+        <Description>Adds a Purple augment slot to this item
+Electric Resistance +35: Passive: +35 Enhancement bonus to your Electric Resistance.</Description>
+        <MinLevel>16</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">35</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

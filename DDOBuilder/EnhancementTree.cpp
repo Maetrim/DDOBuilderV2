@@ -14,29 +14,29 @@ namespace
     const wchar_t f_saxElementName[] = L"EnhancementTree";
     DL_DEFINE_NAMES(EnhancementTree_PROPERTIES)
 
-    const unsigned f_verCurrent = 1;
+        const unsigned f_verCurrent = 1;
 }
 
 EnhancementTree::EnhancementTree() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
 {
     DL_INIT(EnhancementTree_PROPERTIES)
-    m_Icon = "NoIcon";  // default to a blank icon
+        m_Icon = "NoIcon";  // default to a blank icon
     m_Background = "NoTreeBackground";
 }
 
 DL_DEFINE_ACCESS(EnhancementTree_PROPERTIES)
 
-XmlLib::SaxContentElementInterface * EnhancementTree::StartElement(
-        const XmlLib::SaxString & name,
-        const XmlLib::SaxAttributes & attributes)
+XmlLib::SaxContentElementInterface* EnhancementTree::StartElement(
+    const XmlLib::SaxString& name,
+    const XmlLib::SaxAttributes& attributes)
 {
-    XmlLib::SaxContentElementInterface * subHandler =
-            SaxContentElement::StartElement(name, attributes);
+    XmlLib::SaxContentElementInterface* subHandler =
+        SaxContentElement::StartElement(name, attributes);
 
     DL_START(EnhancementTree_PROPERTIES)
 
-    ASSERT(subHandler != NULL || wasFlag);
+        ASSERT(subHandler != NULL || wasFlag);
     return subHandler;
 }
 
@@ -47,10 +47,42 @@ void EnhancementTree::EndElement()
     DL_END(EnhancementTree_PROPERTIES)
 }
 
-void EnhancementTree::Write(XmlLib::SaxWriter * writer) const
+void EnhancementTree::Write(XmlLib::SaxWriter* writer) const
 {
     writer->StartElement(ElementName());//, VersionAttributes());
-    DL_WRITE(EnhancementTree_PROPERTIES)
+    //DL_WRITE(EnhancementTree_PROPERTIES)
+    // expanded MACRO version to allow comments to be placed in output
+    writer->WriteSimpleElement(f_saxName, m_Name);
+    writer->WriteSimpleElement(f_saxVersion, m_Version);
+    if (m_hasRequirementsToTrain) { m_RequirementsToTrain.Write(writer); }
+    if (m_hasIsEpicDestiny) { writer->WriteEmptyElement(f_saxIsEpicDestiny); }
+    if (m_hasIsRacialTree) { writer->WriteEmptyElement(f_saxIsRacialTree); }
+    if (m_hasIsReaperTree) { writer->WriteEmptyElement(f_saxIsReaperTree); }
+    if (m_hasIsUniversalTree) { writer->WriteEmptyElement(f_saxIsUniversalTree); }
+    writer->WriteSimpleElement(f_saxIcon, m_Icon);
+    writer->WriteSimpleElement(f_saxBackground, m_Background);
+    if (!m_Items.empty())
+    {
+        int last = -1;
+        std::list<EnhancementTreeItem>::const_iterator iter;
+        for (iter = m_Items.begin(); iter != m_Items.end(); ++iter)
+        {
+            if ((int)iter->YPosition() != last)
+            {
+                last = iter->YPosition();
+                switch (last)
+                {
+                    case 0: writer->WriteComment(L"Core Items"); break;
+                    case 1: writer->WriteComment(L"Tier 1"); break;
+                    case 2: writer->WriteComment(L"Tier 2"); break;
+                    case 3: writer->WriteComment(L"Tier 3"); break;
+                    case 4: writer->WriteComment(L"Tier 4"); break;
+                    case 5: writer->WriteComment(L"Tier 5"); break;
+                }
+            }
+            iter->Write(writer);
+        }
+    }
     writer->EndElement();
 }
 
@@ -71,6 +103,40 @@ bool EnhancementTree::MeetRequirements(
     }
     return met;
 }
+
+void EnhancementTree::SetFilename(const std::string& filename)
+{
+    m_filename = filename;
+}
+
+void EnhancementTree::Save() const
+{
+    XmlLib::SaxWriter writer;
+    // write out the tree as xml
+    if (writer.Open(m_filename))
+    {
+        writer.StartDocument(L"Enhancements");
+        Write(&writer);
+        writer.EndDocument();
+    }
+}
+
+EnhancementTreeItem* EnhancementTree::FindItemByPosition(
+    size_t x,
+    size_t y) const
+{
+    EnhancementTreeItem* pItem = NULL;
+    for (auto&& iit : m_Items)
+    {
+        if (iit.XPosition() == x && iit.YPosition() == y)
+        {
+            const EnhancementTreeItem* pConstItem = &iit;
+            pItem = const_cast<EnhancementTreeItem*>(pConstItem);
+        }
+    }
+    return pItem;
+}
+
 
 void EnhancementTree::VerifyObject(
         std::map<std::string, int> * names,

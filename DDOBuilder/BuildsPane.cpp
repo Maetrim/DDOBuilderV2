@@ -216,11 +216,6 @@ BOOL CBuildsPane::PreTranslateMessage(MSG* pMsg)
     return CFormView::PreTranslateMessage(pMsg);
 }
 
-void CBuildsPane::UpdateNumBuildsChanged(Character *)
-{
-    PopulateBuildsList();
-}
-
 void CBuildsPane::UpdateActiveBuildPositionChanged(Character*)
 {
     DWORD selItemData = MakeItemData(
@@ -309,6 +304,7 @@ void CBuildsPane::OnButtonNewLife()
     if (lifeIndex == 0)
     {
         m_pCharacter->SetModifiedFlag(FALSE);
+        m_pCharacter->NotifyActiveBuildChanged();
     }
 }
 

@@ -194,3 +194,4 @@ void LoadColumnWidthsByName(CListCtrl* control, const std::string& fmtString);
 void SaveColumnWidthsByName(CListCtrl* control, const std::string& fmtString);
 void FormatExportData(std::string* exportData);
 void FormatExportData(CString* exportData);
+void MakeIconTransparent(const CString& iconFilename, bool bPlusTopLeft);

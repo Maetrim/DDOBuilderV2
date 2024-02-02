@@ -47,8 +47,10 @@ class DC :
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \
                 DL_OPTIONAL_ENUM(_, TacticalType, Tactical, Tactical_Unknown, tacticalTypeMap) \
                 DL_OPTIONAL_ENUM(_, TacticalType, Tactical2, Tactical_Unknown, tacticalTypeMap) \
+                DL_OPTIONAL_STRING(_, BaseClassLevel) \
                 DL_OPTIONAL_STRING(_, ClassLevel) \
-                DL_OPTIONAL_STRING(_, HalfClassLevel)
+                DL_OPTIONAL_STRING(_, HalfClassLevel) \
+                DL_OPTIONAL_STRING(_, HalfBaseClassLevel)
 
         DL_DECLARE_ACCESS(DC_PROPERTIES)
         DL_DECLARE_VARIABLES(DC_PROPERTIES)

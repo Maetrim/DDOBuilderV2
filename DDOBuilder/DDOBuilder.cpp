@@ -205,14 +205,23 @@ void CDDOBuilderApp::OnAppAbout()
 void CDDOBuilderApp::OnFileNew()
 {
     CWinAppEx::OnFileNew();
+    POSITION pos = m_pDocManager->GetFirstDocTemplatePosition();
+    CDocTemplate* pTemplate = m_pDocManager->GetNextDocTemplate(pos);
+    pos = pTemplate->GetFirstDocPosition();
+    CDocument* pDoc = pTemplate->GetNextDoc(pos);
+    pos = pDoc->GetFirstViewPosition();
+    CView* pView = pDoc->GetNextView(pos);
+
     if (m_bLoadComplete)
     {
         CWnd* pWnd = AfxGetApp()->m_pMainWnd;
         CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+        pMainWnd->SetActiveView(pView, FALSE);
         CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CBuildsPane)));
         if (pBuildsPane != NULL)
         {
             pBuildsPane->OnButtonNewLife();
+            pMainWnd->NewDocument(dynamic_cast<CDDOBuilderDoc*>(pDoc));
         }
     }
 }
@@ -333,7 +342,15 @@ void CDDOBuilderApp::LoadClasses(const std::string& path)
     GetLog().AddLogEntry("Loading Classes...");
     file.ReadFiles("");
     m_classes = file.LoadedObjects();
-    m_classes.sort();       // sort alphabetically
+    m_classes.sort();       // sort alphabetically and by base classes
+    // now move the "Unknown" class to the top of the list
+    Class unknown = FindClass(Class_Unknown);
+    size_t pos = ClassIndex(Class_Unknown);
+    std::list<Class>::iterator cit = m_classes.begin();
+    std::advance(cit, pos);
+    m_classes.erase(cit);
+    m_classes.push_front(unknown);
+
     Class::CreateClassImageLists();
     // update log after load action
     CString strUpdate;
@@ -919,13 +936,13 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
     GetLog().AddLogEntry("Loading Quest List...");
     QuestsFile file(filename);
     file.Read();
-    m_quests = file.Quests();
+    std::list<Quest> quests = file.Quests();
 
     // update the loaded patrons with the max favor for each
     int totalFavor = 0;
     int patronMaxFavor[Patron_Count];
     memset(patronMaxFavor, 0, sizeof(patronMaxFavor[0]) * Patron_Count);
-    for (auto&& qit: m_quests)
+    for (auto&& qit: quests)
     {
         // some quests (Devil Assault) appear multiple times and should only be counted once
         if (!qit.HasIgnoreForTotalFavor())
@@ -933,6 +950,21 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
             PatronType ePatron = qit.Patron();
             patronMaxFavor[ePatron] += qit.MaxFavor();
             totalFavor += qit.MaxFavor();
+        }
+        // now unpack the quests so we have multiple entries for each level
+        const std::vector<int>& levels = qit.Levels();
+        for (size_t li = 0; li < levels.size(); ++li)
+        {
+            Quest copy = qit;
+            std::vector<int> singleLevel;
+            singleLevel.push_back(levels[li]);
+            copy.Set_Levels(singleLevel);
+            if (li == 1 && copy.HasEpicName())
+            {
+                copy.Set_Name(copy.EpicName());
+                copy.Clear_EpicName();
+            }
+            m_quests.push_back(copy);
         }
     }
     patronMaxFavor[Patron_TotalFavor] = totalFavor;
@@ -1304,7 +1336,7 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
         std::string localPath(folderPath);
         localPath += "Items\\";
         int lastItemCount = pApp->GetProfileInt("ItemLoad", "LastItemCount", 7030);
-        MultiFileObjectLoader<Item> file(L"Items", localPath, "*.item", lastItemCount, hwndMainFrame);
+        MultiFileObjectLoader<Item> file(L"Items", localPath, "*.item", max(7030, lastItemCount), hwndMainFrame);
         file.ReadFiles("Loading Items...");
         pApp->m_items = file.LoadedObjects();
         pApp->WriteProfileInt("ItemLoad", "LastItemCount", pApp->m_items.size());

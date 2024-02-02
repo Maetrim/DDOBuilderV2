@@ -75,9 +75,9 @@ LRESULT CFavorPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pDoc = pDoc;
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
-    m_pCharacter = pCharacter;
-    if (m_pCharacter != NULL)
+    if (m_pCharacter != pCharacter)
     {
+        m_pCharacter = pCharacter;
         m_pCharacter->AttachObserver(this);
         PopulateQuestList();
     }
@@ -197,32 +197,25 @@ void CFavorPane::PopulateQuestList()
 {
     m_listQuests.LockWindowUpdate();
     m_listQuests.DeleteAllItems();
-    const std::list<Quest>& quests = Quests();
-    DWORD dwQuestindex = 0;
+    std::list<Quest> quests = Quests();
+    int column = 0;
+    bool bAscending = false;
+    m_sortHeader.GetSortArrow(&column, &bAscending);
+    Quest::SetSortInfo(column, bAscending);
+    quests.sort();
     for (auto&& qit : quests)
     {
         // add one list entry for every Levels entry this quest has
-        const std::vector<int>& levels = qit.Levels();
         CString patron = EnumEntryText(qit.Patron(), patronTypeMap);
-        for (auto&& lit: levels)
-        {
-            CString questName = qit.Name().c_str();
-            if (qit.HasEpicName() && lit > MAX_CLASS_LEVEL)
-            {
-                questName = qit.EpicName().c_str();
-            }
-            int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), questName);
-            m_listQuests.SetItemData(iIndex, dwQuestindex);
-            CString text;
-            text.Format("%d", lit);
-            m_listQuests.SetItemText(iIndex, QLC_level, text);
-            ++dwQuestindex;
-            m_listQuests.SetItemText(iIndex, QLC_patron, patron);
-        }
+        CString questName = qit.Name().c_str();
+        int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), questName);
+        CString text;
+        text.Format("%d", qit.Levels()[0]);
+        m_listQuests.SetItemText(iIndex, QLC_level, text);
+        text.Format("%d", qit.Favor());
+        m_listQuests.SetItemText(iIndex, QLC_favor, text);
+        m_listQuests.SetItemText(iIndex, QLC_patron, patron);
     }
-    m_listQuests.SortItems(
-            CFavorPane::SortCompareFunction,
-            (long)GetSafeHwnd());
     m_listQuests.UnlockWindowUpdate();
 }
 
@@ -266,8 +259,7 @@ void CFavorPane::OnColumnclickListQuests(NMHDR* pNMHDR, LRESULT* pResult)
         column = columnToSort;
     }
     m_sortHeader.SetSortArrow(column, bAscending);
-    m_listQuests.SortItems(CFavorPane::SortCompareFunction, (long)GetSafeHwnd());
-
+    PopulateQuestList();
     *pResult = 0;
 }
 
@@ -288,93 +280,6 @@ void CFavorPane::OnRightClickListQuests(NMHDR* /*pNMHDR*/, LRESULT* pResult)
                 this);
     }
     *pResult = 0;
-}
-
-int CFavorPane::SortCompareFunction(
-        LPARAM lParam1,
-        LPARAM lParam2,
-        LPARAM lParamSort)
-{
-    // this is a static function so we need to make our own this pointer
-    CWnd* pWnd = CWnd::FromHandle((HWND)lParamSort);
-    CFavorPane* pThis = static_cast<CFavorPane*>(pWnd);
-
-    int sortResult = 0;
-    size_t index1 = lParam1; // item data index
-    size_t index2 = lParam2; // item data index
-
-    // need to find the actual current entry in the list control to compare the
-    // text content
-    index1 = FindItemIndexByItemData(&pThis->m_listQuests, index1);
-    index2 = FindItemIndexByItemData(&pThis->m_listQuests, index2);
-
-    // get the current sort settings
-    int column;
-    bool bAscending;
-    pThis->m_sortHeader.GetSortArrow(&column, &bAscending);
-
-    // get the control text entries for the column being sorted
-    CString index1Text = pThis->m_listQuests.GetItemText(index1, column);
-    CString index2Text = pThis->m_listQuests.GetItemText(index2, column);
-
-    // some columns are converted to numeric to do the sort
-    // while others are compared as ASCII
-    switch (column)
-    {
-    case QLC_patron:
-        // ASCII sorts
-        sortResult = (index1Text < index2Text) ? -1 : 1;
-        if (index1Text == index2Text)
-        {
-            // if we have the same patron, sort by quest level
-            index1Text = pThis->m_listQuests.GetItemText(index1, QLC_level);
-            index2Text = pThis->m_listQuests.GetItemText(index2, QLC_level);
-            // numeric sorts
-            double val1 = atof(index1Text);
-            double val2 = atof(index2Text);
-            if (val1 == val2)
-            {
-                // if numeric match, sort by item name instead
-                index1Text = pThis->m_listQuests.GetItemText(index1, QLC_name);
-                index2Text = pThis->m_listQuests.GetItemText(index2, QLC_name);
-                sortResult = (index1Text < index2Text) ? -1 : 1;
-            }
-            else
-            {
-                sortResult = (val1 < val2) ? -1 : 1;
-            }
-        }
-        break;
-    case QLC_name:
-        // ASCII sorts
-        sortResult = (index1Text < index2Text) ? -1 : 1;
-        break;
-    case QLC_level:
-    case QLC_favor:
-        {
-            // numeric sorts
-            double val1 = atof(index1Text);
-            double val2 = atof(index2Text);
-            if (val1 == val2)
-            {
-                // if numeric match, sort by item name instead
-                index1Text = pThis->m_listQuests.GetItemText(index1, QLC_name);
-                index2Text = pThis->m_listQuests.GetItemText(index2, QLC_name);
-                sortResult = (index1Text < index2Text) ? -1 : 1;
-            }
-            else
-            {
-                sortResult = (val1 < val2) ? -1 : 1;
-            }
-        }
-        break;
-    }
-    if (!bAscending)
-    {
-        // switch sort direction result
-        sortResult = -sortResult;
-    }
-    return sortResult;
 }
 
 void CFavorPane::OnUpdateFavorNone(CCmdUI* pCmdUi)

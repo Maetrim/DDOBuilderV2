@@ -41,7 +41,6 @@ public:
     virtual BOOL PreTranslateMessage(MSG* pMsg) override;
 
     // CharacterObserver
-    virtual void UpdateNumBuildsChanged(Character* charData) override;
     virtual void UpdateActiveBuildPositionChanged(Character*) override;
 
     DECLARE_DYNCREATE(CBuildsPane)

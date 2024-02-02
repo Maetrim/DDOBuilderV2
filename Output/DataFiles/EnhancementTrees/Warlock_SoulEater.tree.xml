@@ -145,7 +145,7 @@ enemies to be Shaken for 6 seconds. This can occur up to once per 2 seconds.</De
       <EnhancementTreeItem>
          <Name>Soul Eater: Inhuman Nature</Name>
          <InternalName>SECore4</InternalName>
-         <Description>Toggle: You gain +25% Fortification and +4 Saving Throws versus Poison and Disease.
+         <Description>You gain +25% Fortification and +4 Saving Throws versus Poison and Disease.
 Your Consume damage over time is increased by 2d10. Your Stricken damage is
 increased by 4d6.</Description>
          <Icon>SEInhumanNature</Icon>
@@ -244,10 +244,10 @@ increased by 4d6.</Description>
          <InternalName>SECore6</InternalName>
          <Description>Passive: +4 Charisma.
 You consume the soul of your targeted enemy, killing it instantly unless it
-makes a Will saving throw with a DC of 18 + Warlock level + Charisma bonus.
+makes a Will saving throw (DC of 16 + Cha Mod + Necromancy School bonuses).
 This ability is considered a Necromancy spell. This ability works on undead,
-but not constructs and other creatures with no life force.
-If the target survives then it loses 20 PRR and MRR for 6 seconds.
+but not constructs and other creatures with no life force. If the target
+survives then it loses 20 PRR and MRR for 6 seconds.
 Cooldown: 15 seconds.</Description>
          <Icon>SEDevourTheSoul</Icon>
          <XPosition>5</XPosition>
@@ -315,9 +315,9 @@ makes a Will saving throw.</Description>
             <Icon>SEDevourTheSoul</Icon>
             <DCType>Death</DCType>
             <DCVersus>Will</DCVersus>
-            <Amount size="1">18</Amount>
-            <ClassLevel>Warlock</ClassLevel>
+            <Amount size="1">16</Amount>
             <ModAbility>Charisma</ModAbility>
+            <School>Necromancy</School>
          </DC>
       </EnhancementTreeItem>
       <!--Tier 1-->
@@ -326,11 +326,9 @@ makes a Will saving throw.</Description>
          <InternalName>SEConsume</InternalName>
          <Description>Ranged Magical Attack. Your magics consume bits of your opponent's form,
 disintegrating bits of them for 2d10 Chaotic damage every 2 seconds for a duration
-of 16 seconds. The damage scales with 125% spell power.
-The effect can stack up to 3 times.
-Your enemy is also marked with the Consumed trait.
-The shot is unguided with a slower flight speed, so enemies at long range may
-avoid it.</Description>
+of 16 seconds. The damage scales with 125% spell power. The effect can stack up
+to 3 times. Your enemy is also marked with the Consumed trait.
+Cooldown 10 seconds</Description>
          <Icon>SEConsume</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -386,7 +384,7 @@ likely to attack you.</Description>
       <EnhancementTreeItem>
          <Name>Soul Eater: Taint the Blood</Name>
          <InternalName>SETaintTheBlood</InternalName>
-         <Description>Your Eldritch Blast, Melee and ranged attacks reduce the Fortitude saving throw
+         <Description>Your Eldritch Blast, Melee and Ranged attacks reduce the Fortitude saving throw
 of the target by -1 for 6 seconds. The effect stacks up to 4 times.</Description>
          <Icon>SETaintTheBlood</Icon>
          <XPosition>2</XPosition>
@@ -406,7 +404,7 @@ of the target by -1 for 6 seconds. The effect stacks up to 4 times.</Description
          <Name>Soul Eater: Daunting Presence</Name>
          <InternalName>SEDauntingPresence</InternalName>
          <Description>+[1/2/3] Bluff, Haggle, and Diplomacy.
-Rank 3: +1 Will save.</Description>
+Rank 3: +1 Will saving throw.</Description>
          <Icon>SEDauntingPresence</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -477,11 +475,9 @@ Rank 3: +1 Will save.</Description>
          <Description>Ranged Magical Attack. You cause [4/8/12]d6 Chaotic damage and reduce the Healing
 Amplification of the opponent by [40/80/120] for 12 seconds.
 The reduction is negated by a Fortitude saving throw with a DC of
-18 + Warlock level + the higher of Intelligence or Charisma modifier.
-The damage scales with 125% Spell Power.
-Your enemy is also marked with the Strickened trait. Cooldown: 10 seconds.
-The shot is unguided with a slower flight speed, so enemies at long range may
-avoid it.</Description>
+[10/14/18] + Warlock level + the higher of Intelligence or Charisma modifier.
+The damage scales with 125% Spell Power. Your enemy is also marked with the
+Strickened trait. Cooldown: 10 seconds.</Description>
          <Icon>SEStricken</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -504,7 +500,7 @@ the Healing Amplification of the opponent by [40/80/120] for 12 seconds.</Descri
             <Icon>SEStricken</Icon>
             <DCType>Stricken</DCType>
             <DCVersus>Fortitude</DCVersus>
-            <Amount size="1">18</Amount>
+            <Amount size="3">10 14 18</Amount>
             <ClassLevel>Warlock</ClassLevel>
             <ModAbility>Intelligence</ModAbility>
             <ModAbility>Charisma</ModAbility>
@@ -646,7 +642,7 @@ by 20 for 10 seconds.</Description>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Soul Eater: Dark Feeding</Name>
+         <Name>Soul Eater: Your Flesh is Weak</Name>
          <InternalName>SEDarkFeeding</InternalName>
          <Description>Select one</Description>
          <Icon>SEDarkFeeding</Icon>
@@ -717,8 +713,7 @@ Cooldown: 5 seconds.
 
 A harmful enchantment that deals Acid damage (1d8) and Fire damage (1d8, +1
 per caster level) every 2 seconds for a duration of 10 seconds.
-No initial tic, then 4 tics of damage.
-           </Description>
+No initial tic, then 4 tics of damage.</Description>
          <Icon>SEBurningBlood</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -745,10 +740,8 @@ No initial tic, then 4 tics of damage.
       <EnhancementTreeItem>
          <Name>Soul Eater: Eldritch Blast Shape: Cone</Name>
          <InternalName>SEEldritchBlastShapeCone</InternalName>
-         <Description>Eldritch Blast Shape Stance: Toggle on to turn your automatic attack into a ranged
-magical cone dealing 1d6 Force damage.
-While active you have -1 Pact damage die, and this spell scales with 100% Spell
-power. This cone attack has standard range for cone spells.</Description>
+         <Description>Eldritch Blast Shape: Transform you Eldritch Blast into a magical cone of Force
+dealing damage to all enemies in its area. While active you have -1 Pact damage die</Description>
          <Icon>SEEldritchBlastShapeCone</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -766,10 +759,8 @@ power. This cone attack has standard range for cone spells.</Description>
          <Stance>
             <Name>Cone</Name>
             <Icon>SEEldritchBlastShapeCone</Icon>
-            <Description>Eldritch Blast Shape Stance: Toggle on to turn your automatic attack
-into a ranged magical cone dealing 1d6 force damage.
-While active you have -1 Pact damage die, and this spell scales with 100% Spell power.
-This cone attack has standard range for cone spells.</Description>
+            <Description>Eldritch Blast Shape: Transform you Eldritch Blast into a magical cone of Force
+dealing damage to all enemies in its area. While active you have -1 Pact damage die</Description>
             <Group>Blast Shape</Group>
          </Stance>
          <Effect>
@@ -836,8 +827,11 @@ This cone attack has standard range for cone spells.</Description>
       <EnhancementTreeItem>
          <Name>Soul Eater: Strickened Form</Name>
          <InternalName>SEStrickenedForm</InternalName>
-         <Description>Against targets marked by your Stricken attack: Your melee, ranged and
-Eldritch Blast attacks inflict Vulnerability.</Description>
+         <Description>Against targets marked by your Stricken attack: Your Melee, Ranged and
+Eldritch Blast attacks inflict Vulnerability.
+
+Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
+20 times, and loses one stack on expiration.</Description>
          <Icon>SEStrickenedForm</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -859,9 +853,11 @@ Eldritch Blast attacks inflict Vulnerability.</Description>
       <EnhancementTreeItem>
          <Name>Soul Eater: Greater Hunger</Name>
          <InternalName>SEGreaterHunger</InternalName>
-         <Description>Your melee, ranged, and Eldritch Blast attacks do 2d6 Chaotic damage when striking
+         <Description>Your Melee, Ranged, and Eldritch Blast attacks do 2d6 Chaotic damage when striking
 an opponent marked by your Consume attack.
+
 Your Consume damage over time is increased by 2d10.
+
 Your stricken damage is increased by 4d6.</Description>
          <Icon>SEGreaterHunger</Icon>
          <XPosition>1</XPosition>
@@ -882,9 +878,9 @@ Your stricken damage is increased by 4d6.</Description>
          <Name>Soul Eater: Steal Life Force</Name>
          <InternalName>SEStealLifeForce</InternalName>
          <Description>You cause [4/8/12]d6 Chaotic damage to your target and heal for [4/8/12]d6
-positive energy (or negative if you are undead.)
-This damage and healing scales with 150% spell power.
-Cooldown: 20 seconds.
+positive energy (or negative if you are undead.) This damage and healing scales
+with 150% spell power. Cooldown: 20 seconds.
+
 It will always give you the self healing effect even if the target is blocked
 from taking damage. The projectile is unguided but quite fast, so it has a
 good chance of hitting long-range targets.</Description>
@@ -986,7 +982,7 @@ good chance of hitting long-range targets.</Description>
          <InternalName>SEEldritchWave</InternalName>
          <Description>You create a cone of eldritch energy that strikes all opponents in the area with
 three consecutive Eldritch Blasts. The damage from these Eldritch Blasts
-scales with 150% spell power.</Description>
+scales with 150% spell power. Cooldown 8 seconds.</Description>
          <Icon>SEEldritchWave</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1010,7 +1006,7 @@ scales with 150% spell power.</Description>
       <EnhancementTreeItem>
          <Name>Soul Eater: Supreme Hunger</Name>
          <InternalName>SESupremeHunger</InternalName>
-         <Description>Your Consume damage over time is increased by 2d10.
+         <Description>Supreme Hunger: Your Consume damage over time is increased by 2d10.
 Your Stricken damage is increased by 4d6.</Description>
          <Icon>SESupremeHunger</Icon>
          <XPosition>1</XPosition>
@@ -1038,7 +1034,7 @@ Your Stricken damage is increased by 4d6.</Description>
       <EnhancementTreeItem>
          <Name>Soul Eater: Feed On Magic</Name>
          <InternalName>SEFeedOnMagic</InternalName>
-         <Description>Attacking with melee, ranged, and Eldritch Blast gives a 10% chance to gain 10
+         <Description>Attacking with Melee, Ranged, and Eldritch Blast gives a 10% chance to gain 10
 temporary Spell Points +1 per Warlock level. Spell Points last 1 minute.</Description>
          <Icon>SEFeedOnMagic</Icon>
          <XPosition>2</XPosition>

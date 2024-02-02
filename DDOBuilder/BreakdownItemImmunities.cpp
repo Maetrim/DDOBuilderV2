@@ -67,11 +67,12 @@ void BreakdownItemImmunities::AddEffectToString(
         CString * value,
         const Effect & effect) const
 {
-    UNREFERENCED_PARAMETER(effect);
-    if ((*value) != "")
+    for (auto&& eit: effect.Item())
     {
-        (*value) += ", ";
+        if ((*value) != "")
+        {
+            (*value) += ", ";
+        }
+        (*value) += eit.c_str();
     }
-    (*value) += "NYI";
-    //(*value) += effect.Description().c_str();
 }

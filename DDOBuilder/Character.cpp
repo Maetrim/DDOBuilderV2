@@ -83,11 +83,6 @@ void Character::ToggleShowUnavailable()
     m_bShowUnavailableFeats = !m_bShowUnavailableFeats;
 }
 
-void Character::NotifyNumBuildsChanged()
-{
-    NotifyAll(&CharacterObserver::UpdateNumBuildsChanged, this);
-}
-
 void Character::NotifyActiveLifeChanged()
 {
     NotifyAll(&CharacterObserver::UpdateActiveLifeChanged, this);

@@ -196,6 +196,18 @@ int DC::CalculateDC(const Build * build) const
         int classLevels = build->ClassLevels(m_HalfClassLevel, build->Level()-1);
         value += (int)(classLevels / 2); // round down
     }
+    // add any base class level bonus
+    if (m_hasBaseClassLevel)
+    {
+        int baseClassLevels = build->BaseClassLevels(m_BaseClassLevel, build->Level() - 1);
+        value += baseClassLevels;
+    }
+    // add any half base class level bonus
+    if (m_hasHalfClassLevel)
+    {
+        int baseClassLevels = build->BaseClassLevels(m_HalfBaseClassLevel, build->Level() - 1);
+        value += (int)(baseClassLevels / 2); // round down
+    }
     return value;
 }
 
@@ -414,6 +426,38 @@ std::string DC::DCBreakdown(const Build * build) const
         first = false;
         int classLevels = (int)(build->ClassLevels(m_HalfClassLevel, build->Level()-1) / 2);
         std::string name = m_HalfClassLevel;
+        if (name == "All")
+        {
+            name = "Character Level";
+        }
+        ss << name << "/2(" << classLevels << ")";
+    }
+    // add any base class level bonus
+    if (m_hasBaseClassLevel)
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        std::string name = m_BaseClassLevel;
+        int classLevels = build->BaseClassLevels(m_BaseClassLevel, build->Level() - 1);
+        if (m_BaseClassLevel == "All")
+        {
+            name = "Character Level";
+        }
+        ss << name << "(" << classLevels << ")";
+    }
+    // add any half base class level bonus
+    if (m_hasHalfBaseClassLevel)
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        int classLevels = (int)(build->BaseClassLevels(m_HalfBaseClassLevel, build->Level() - 1) / 2);
+        std::string name = m_HalfBaseClassLevel;
         if (name == "All")
         {
             name = "Character Level";

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Elocator's Habiliment</Name>
     <Icon>MediumArmor_21</Icon>
     <Description>A fine suit of splint mail cut for ease of movement on as well as between the
@@ -10,7 +11,7 @@ planes, this is the garb favored by some Sarlonan psychic warriors.</Description
     <EquipmentSlot>
       <Armor/>
     </EquipmentSlot>
-    <Requirements version="1">
+    <Requirements>
       <Requirement>
         <Type>NotConstruct</Type>
       </Requirement>
@@ -19,6 +20,13 @@ planes, this is the garb favored by some Sarlonan psychic warriors.</Description
     <ArmorBonus>22</ArmorBonus>
     <MaximumDexterityBonus>5</MaximumDexterityBonus>
     <ArcaneSpellFailure>30</ArcaneSpellFailure>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Displacement</Item>
+      <AType>SLA</AType>
+      <Amount size="3">5 5 2</Amount>
+    </Effect>
     <Buff>
       <Type>ArmorEnchantment</Type>
       <Value1>5</Value1>
@@ -52,8 +60,22 @@ planes, this is the garb favored by some Sarlonan psychic warriors.</Description
       <Value1>5</Value1>
       <BonusType>Resistance</BonusType>
     </Buff>
-    <Buff>
-      <Type>Suppressed Power</Type>
-    </Buff>
+    <ItemAugment>
+      <Type>Suppressed power</Type>
+      <Augment>
+        <Name>Adds Greater Nimbleness</Name>
+        <Description>Greater Nimbleness: This suit of armor looks much less restrictive than others
+of its type. A suit of armor that has this property has a maximum Dexterity
+bonus 2 higher than normal, and its armor check penalty is reduced by 4.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>ArmorCheckPenalty</Type>
+          <Bonus>Stacking</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">-4</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

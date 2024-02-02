@@ -109,17 +109,21 @@ bool Class::operator<(const Class & other) const
 {
     // (assumes all class names are unique)
     // sort by name
-    bool ret = false;
-    if (GetBaseClass() == other.GetBaseClass())
+    // make a combined name of "<BaseClass> <Actual Class>" for comparison
+    CString ourName = GetBaseClass().c_str(); // same as class name when no base class
+    if (HasBaseClass())
     {
-        // sort by actual class name
-        ret = Name() < other.Name();
+        ourName += " ";
+        ourName += Name().c_str();
     }
-    else
+    CString theirName = other.GetBaseClass().c_str(); // same as class name when no base class
+    if (other.HasBaseClass())
     {
-        // sort by the base class
-        ret = GetBaseClass() < other.GetBaseClass();
+        theirName += " ";
+        theirName += other.Name().c_str();
     }
+
+    bool ret = ourName < theirName;
     return ret;
 }
 

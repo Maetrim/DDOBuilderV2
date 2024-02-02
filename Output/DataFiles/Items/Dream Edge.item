@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Dream Edge</Name>
     <Icon>Kama_3</Icon>
     <Description>A curious weapon favored by monks of Sarlona. Each Dream Edge bears the psychic
@@ -43,152 +44,798 @@ imprint of its creator, cause many variations in their final enchantments.</Desc
     <Buff>
       <Type>Bodyfeeder</Type>
     </Buff>
-    <Buff>
-      <Type>Absorption</Type>
-      <Value1>20</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Acid</Description1>
-      <Item>Acid</Item>
-    </Buff>
-    <Buff>
-      <Type>ArmorBonus</Type>
-      <Value1>8</Value1>
-      <BonusType>Armor</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Absorption</Type>
-      <Value1>20</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Cold</Description1>
-      <Item>Cold</Item>
-    </Buff>
-    <Buff>
-      <Type>HealingAmplification</Type>
-      <Value1>60</Value1>
-      <BonusType>Competence</BonusType>
-    </Buff>
-    <Buff>
-      <Type>DeceptionFixed</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Destruction</Type>
-    </Buff>
-    <Buff>
-      <Type>Absorption</Type>
-      <Value1>20</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Electric</Description1>
-      <Item>Electric</Item>
-    </Buff>
-    <Buff>
-      <Type>ElfBane</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>Enhanced Ki</Type>
-      <Value1>1</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Everbright</Type>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>FeatherFalling</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Finesse</Type>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>Absorption</Type>
-      <Value1>20</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Fire</Description1>
-      <Item>Fire</Item>
-    </Buff>
-    <Buff>
-      <Type>Ghostly</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>GoodLuck</Type>
-      <Value1>2</Value1>
-      <BonusType>Luck</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Greater Good</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>Lesser Dwarf Bane</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>MeleeAlacrity</Type>
-      <Value1>10</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Metalline</Type>
-    </Buff>
-    <Buff>
-      <Type>NaturalArmor</Type>
-      <Value1>4</Value1>
-      <BonusType>Resistance</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Paralyzing</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>Parrying</Type>
-      <Value1>10</Value1>
-      <BonusType>Insightful</BonusType>
-      <Description1>I</Description1>
-    </Buff>
-    <Buff>
-      <Type>Pure Good</Type>
-      <BonusType>Equipment</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Resistance</Type>
-      <Value1>5</Value1>
-      <BonusType>Resistance</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Shatter</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Telekinetic</Type>
-    </Buff>
-    <Buff>
-      <Type>True Law</Type>
-      <BonusType>Equipment</BonusType>
-    </Buff>
-    <Buff>
-      <Type>UnderwaterAction</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Vorpal</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
+    <ItemAugment>
+      <Type>Variant</Type>
+      <Augment>
+        <Name>Absolute Law</Name>
+        <Description>Absolute Law: This weapon is infused with the ultimate power of Law. It does an
+additional 2 to 12 damage to non-lawful targets and can only be wielded by
+Lawful-aligned characters.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Lawful</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Lawful</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Acid Absorption +20%</Name>
+        <Description>Acid Absorption +20%: Passive: 20% Enhancement Bonus to Acid Absorption.
+(Absorption reduces damage from an element by a percentage, after resistance have
+been taken into account.)</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyAbsorbance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">20</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Armor Bonus +8</Name>
+        <Description>Armor Bonus +8: This item surrounds the wearer with an invisible but tangible
+field of force, granting +8 armor bonus to AC, just as though he were wearing armor.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Armor</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Banishing</Name>
+        <Description>Banishing: On Hit: 4 to 24 Bane damage to Outsiders.
+On Vorpal Hit: If an outsider struck by this weapon has fewer than 1000 Hit
+Points, it is instantly slain. If the outsider has above 1000 Hit Points, it
+takes 100 damage.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Outsider</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">4</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Cold Absorption +20%</Name>
+        <Description>Cold Absorption +20%: Passive: 20% Enhancement Bonus to Cold Absorption.
+(Absorption reduces damage from an element by a percentage, after resistance have
+been taken into account.)</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyAbsorbance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Cold</Item>
+          <AType>Simple</AType>
+          <Amount size="1">20</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Competence Healing Amplification +60</Name>
+        <Description>Healing Amplification: This effect amplifies all incoming positive energy healing
+by +60 (Competence bonus). Includes spells, potions, and other effects.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>HealingAmplification</Type>
+          <Bonus>Competence</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">60</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Cursespewing</Name>
+        <Description>Cursespewing: On Vorpal Hit: Your enemy is cursed with a -4 morale penalty on
+attack rolls, saving throws, and skill checks. This painful curse also causes
+the victim to take 1d6 damage every two seconds for a duration of twelve seconds.
+Additional vorpal strikes while the curse is active will extend the duration by
+another twelve seconds.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>Deception</Name>
+        <Description>Deception: This weapon is hard to focus upon and thus provides a +3 enhancement
+bonus to Bluff checks. In addition, Deception weapons have a small chance to
+envelop the target in darkness, making them vulnerable to sneak attacks for a
+short time.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Destruction</Name>
+        <Description>Destruction: On Hit: Your target gains a stack of Armor Destruction.
+(-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration.
+Stacks up to 15 times.) This effect may trigger once every three seconds.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>Electric Absorption +20%</Name>
+        <Description>Electric Absorption +20%: Passive: 20% Enhancement Bonus to Electric Absorption.
+(Absorption reduces damage from an element by a percentage, after resistance have
+been taken into account.)</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyAbsorbance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">20</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Elf Bane</Name>
+        <Description>Elf Bane: A bane weapon excels at attacking one type or subtype of creature.
+Against Elves, this weapon's effective enhancement bonus is +2 better than its
+normal enhancement bonus. It deals an extra 2 to 12 points of damage against the
+foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Elf</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Enhanced Ki + 1</Name>
+        <Description>Enhanced Ki +1: Increases the rate at which the user gains Ki with each
+successful attack.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>KiHit</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Amount size="1">1</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Everbright</Name>
+        <Description>Everbright: Flecks of marble and pearl shimmer across this shield, set within
+images of bursting stars and beaming suns. An everbright shield will never take
+damage from rust or acid and can emit a Blinding Flash 3/rest.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>Feather Falling</Name>
+        <Description>Feather Falling: This item is engraved with feathers and bestows a powerful
+magical effect. Whenever the wearer begins to fall from any height, this effect
+slows the descent dramatically, causing the wearer to fall like a feather.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>Immunity</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Falling Damage</Item>
+          <AType>NotNeeded</AType>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Finesse</Name>
+        <Description>Finesse: This weapon has a Small air elemental bound to it. The wielder can
+use a finesse weapon as if he had the Weapon Finesse feat. In addition, the
+weapon grants a +2 Enhancement bonus to the wielder's Dexterity score.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AddGroupWeapon</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Finesseable</Item>
+          <AType>NotNeeded</AType>
+        </Effect>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Dexterity</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Fire Absorption +20%</Name>
+        <Description>Fire Absorption +20%: Passive: 20% Enhancement Bonus to Fire Absorption.
+(Absorption reduces damage from an element by a percentage, after resistance have
+been taken into account.)</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyAbsorbance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">20</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Ghostly</Name>
+        <Description>Ghostly: Equipping this item causes you to become partially incorporeal.
+Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy
+attacks have a 10% chance to miss you due to incorporeality. You receive a +5
+Enhancement bonus to your Hide and Move Silently skills.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>GhostTouch</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+        </Effect>
+        <Effect>
+          <Type>Incorporeality</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">10</Amount>
+        </Effect>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Hide</Item>
+          <Item>Move Silently</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Gnoll Bane</Name>
+        <Description>Gnoll Bane: A bane weapon excels at attacking one type or subtype of creature.
+Against Gnolls, this weapon's effective enhancement bonus is +2 better than its
+normal enhancement bonus. It deals an extra 2 to 12 points of damage against the
+foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Gnoll</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Good Luck +2</Name>
+        <Description>Good Luck +2: This item gives a +2 Luck bonus to all saves and skill checks.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Type>SkillBonus</Type>
+          <Bonus>Luck</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Greater Goblinoid Bane</Name>
+        <Description>Greater Goblinoid Bane: A bane weapon excels at attacking one type or subtype
+of creature. Against Goblinoids, this weapon's effective enhancement bonus is
++4 better than its normal enhancement bonus. It deals an extra 3 to 18 points
+of damage against the foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Goblinoid</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">3</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Greater Good</Name>
+        <Description>Greater Good: This weapon is infused with the ultimate power of Good. It does
+an additional 2 to 12 damage to non-good targets and can only be wielded by
+Good-aligned characters.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Good</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Greater Lawful Outsider Bane</Name>
+        <Description>Greater Lawful Outsider Bane: A bane weapon excels at attacking one type or
+subtype of creature. Against Lawful Outsiders, this weapon's effective enhancement
+bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18
+points of damage against the foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Lawful Outsider</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">3</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Greater Monstrous Humanoid Bane</Name>
+        <Description>Greater Monstrous Humanoid Bane: A bane weapon excels at attacking one type or
+subtype of creature. Against Monstrous Humanoids, this weapon's effective
+enhancement bonus is +4 better than its normal enhancement bonus. It deals an
+extra 3 to 18 points of damage against the foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Monstrous Humanoid</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">3</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Lesser Dwarf Bane</Name>
+        <Description>Lesser Dwarf Bane: A bane weapon excels at attacking one type or subtype of
+creature. Against Dwarves, this weapon's effective enhancement bonus is +1 better
+than its normal enhancement bonus. It deals an extra 1 to 6 points of damage
+against the foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Dwarf</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Lesser Evil Outsider Bane</Name>
+        <Description>Lesser Evil Outsider Bane: A bane weapon excels at attacking one type or
+subtype of creature. Against Evil Outsiders, this weapon's effective enhancement
+bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6
+points of damage against the foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Evil Outsider</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Lesser Goblinoid Bane</Name>
+        <Description>Lesser Goblinoid Bane: A bane weapon excels at attacking one type or subtype
+of creature. Against Goblinoids, this weapon's effective enhancement bonus is
++1 better than its normal enhancement bonus. It deals an extra 1 to 6 points
+of damage against the foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Goblinoid</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Lesser Reptilian Bane</Name>
+        <Description>Lesser Reptilian Bane: A bane weapon excels at attacking one type or subtype
+of creature. Against Reptiles, this weapon's effective enhancement bonus is +1
+better than its normal enhancement bonus. It deals an extra 1 to 6 points of
+damage against the foe.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Reptile</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Melee Alacrity 10%</Name>
+        <Description>Melee Alacrity 10%: Gain 10% enhancement bonus to Melee attack speed. Does not
+stack with the Haste spell.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>Weapon_Alacrity</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Kama</Item>
+          <AType>Simple</AType>
+          <Amount size="1">10</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Metalline</Name>
+        <Description>Metalline: Metalline bypasses any metal based damage reduction.
+Adamantine, "Alchemical, Silver", Byeshk, Cold Iron, Mithral</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Adamantine</Value>
+        </Effect>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Silver</Value>
+        </Effect>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Byeshk</Value>
+        </Effect>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Cold Iron</Value>
+        </Effect>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Mithral</Value>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Natural Armor +4</Name>
+        <Description>Natural Armor +4: Passive: +4 Natural Armor Bonus to Armor Class.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>NaturalArmor</Type>
+          <Bonus>Natural Armor</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Paralyzing</Name>
+        <Description>Paralyzing: Any creature struck by this weapon must succeed on a DC 15 Will
+save or be paralyzed. The target may attempt a new save to end the effect every
+several seconds; otherwise the paralysis lasts for 1 minute.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>Parrying I</Name>
+        <Description>Parrying I: Passive: +1 Insight bonus to Armor Class, +1 Insight bonus to Fortitude,
+Reflex, and Will Saving throws.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+        </Effect>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Plant Slaying</Name>
+        <Description>Plant Slaying: This item is keyed to plants. If it strikes such a creature, the
+target must make a DC 20 Fortitude save or die instantly.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>Pure Good</Name>
+        <Description>Pure Good: This weapon is infused with the power of Pure Good. It does an
+additional 1 to 6 damage to non-good targets and can only be wielded by
+Good-aligned characters.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Good</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Good</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Resistance +5</Name>
+        <Description>Resistance +5: Passive: +5 Resistance bonus to Fortitude, Reflex, and Will
+Saving Throws.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Resistance</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Shattermantle</Name>
+        <Description>Shattermantle: Translucent, writhing energy and blue sparks can be seen raging
+within this weapon. When a shattermantle weapon strikes a foe that has spell
+resistance, the value of that spell resistance is reduced by 3 for 9 seconds.
+A foe can only have its SR reduced by one Shattermantle effect at a time.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>Smiting</Name>
+        <Description>Smiting: On Hit: 4 to 24 Bane damage to Constructs.
+On Vorpal Hit: If a construct struck by this weapon has fewer than 1000 Hit Points,
+it is instantly slain. If the construct has above 1000 Hit Points, it takes 100
+damage.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Construct</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">4</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Telekinetic</Name>
+        <Description>Telekinetic: Targets that suffer a critical hit from a Telekinetic weapon must
+make a DC 17 Balance check or be knocked down.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>True Law</Name>
+        <Description>True Law: This weapon is infused with the power of True Law. It does an
+additional 1 to 6 damage to non-lawful targets and can only be wielded by
+Lawful-aligned characters.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Lawful</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Lawful</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Underwater Action</Name>
+        <Description>Underwater Action: This item grants the wearer the ability to breathe water as
+if it were air.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>Immunity</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>Drowning</Item>
+          <AType>NotNeeded</AType>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Vicious</Name>
+        <Description>Vicious: When a vicious weapon strikes an opponent, it creates a flash of
+disruptive energy that resonates between the opponent and the wielder. This energy
+deals an extra 2 to 12 points of damage to the opponent and 1 to 3 points of damage
+to the wielder.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Vorpal</Name>
+        <Description>Vorpal: Passive: +0.5[W] damage dice.
+On Vorpal Hit: If your target has fewer than 1000 Hit Points, they are instantly
+slain. If your target has above 1000 Hit Points, they take 100 damage.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>Weapon_BaseDamage</Type>
+          <Bonus>Enhancement</Bonus>
+          <Amount size="1">0.5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
       <Type>Suppressed Power</Type>
-    </Buff>
+      <Augment>
+        <Name>Adds Lesser Vampirism</Name>
+        <Description>Lesser Vampirism: This weapon drains a tiny portion of the target's life force
+whenever it does damage. Note: provides 1 hp of healing per hit.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Upgrade</Icon>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

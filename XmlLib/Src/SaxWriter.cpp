@@ -197,7 +197,12 @@ void SaxWriter::WriteEmptyElement(const SaxString & elementName)
 
 void SaxWriter::WriteComment(const SaxString & comment)
 {
-    std::string commentStart("<!--");
+    std::string commentStart;
+    for (size_t i = 0; i < m_elementDepth; ++i)
+    {
+        commentStart += "  ";
+    }
+    commentStart += "<!--";
     Write(commentStart.c_str(), commentStart.length());
     Characters(comment);
     std::string commentEnd("-->\r\n");

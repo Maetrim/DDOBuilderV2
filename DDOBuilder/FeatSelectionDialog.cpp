@@ -13,6 +13,7 @@ BEGIN_MESSAGE_MAP(CFeatSelectionDialog, CDialog)
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_BN_CLICKED(IDC_FEAT_BUTTON, OnFeatButtonLeftClick)
     ON_NOTIFY(NM_RCLICK, IDC_FEAT_BUTTON, OnFeatButtonRightClick)
+    ON_NOTIFY(NM_THEMECHANGED, IDC_FEAT_BUTTON, OnFeatButtonMiddleClick)
     ON_WM_ERASEBKGND()
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
@@ -308,3 +309,29 @@ void CFeatSelectionDialog::UpdateActiveBuildChanged(Character *)
     SetupControls();
 }
 
+void CFeatSelectionDialog::OnFeatButtonMiddleClick(NMHDR * pNotifyStruct, LRESULT * result)
+{
+    UNREFERENCED_PARAMETER(pNotifyStruct);
+    UNREFERENCED_PARAMETER(result);
+    if (GetKeyState(VK_SHIFT) < 0)
+    {
+        // may be trying to set for a sub item (if trained)
+        CString iconName = m_feat.Icon().c_str();
+        CString prompt;
+        prompt.Format("Make the Enhancement Image \"%s\" transparent?\r\n"
+            "Yes - Normal Transparency for a passive icon\r\n"
+            "No  - Transparency for a passive icon with top left +\r\n"
+            "Cancel - Cancel the action\r\n", (LPCTSTR)iconName);
+        int ret = AfxMessageBox(prompt, MB_YESNOCANCEL);
+        CString fullIconLocation("FeatImages\\");
+        fullIconLocation += iconName;
+        if (IDYES == ret)
+        {
+            MakeIconTransparent(fullIconLocation, false);
+        }
+        else if (IDNO == ret)
+        {
+            MakeIconTransparent(fullIconLocation, true);
+        }
+    }
+}

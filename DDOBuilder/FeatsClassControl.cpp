@@ -978,7 +978,12 @@ int CFeatsClassControl::DoClassContextMenu(
         {
             // show all classes in the drop list, with classes disabled
             // if not selectable due to alignment
-            CString className = (*cci).Name().c_str();
+            CString className;
+            if ((*cci).HasBaseClass())
+            {
+                className = "  ";   // indent archetype classes slightly
+            }
+            className += (*cci).Name().c_str();
             std::string baseClassName = (*cci).GetBaseClass();
             bool bAlignmentRestricted = !(*cci).CanTrainClass(m_pCharacter->ActiveBuild()->Alignment());
             // ensure ui allows switch of base types in same selection
@@ -1027,6 +1032,14 @@ int CFeatsClassControl::DoClassContextMenu(
         }
         ++cci;
         ++ci;
+        if (ci == 1)
+        {
+            // separator after "Unknown" class
+            menu.AppendMenu(
+                    MF_SEPARATOR,
+                    0,
+                    (LPCTSTR)NULL);
+        }
     }
     ClientToScreen(&menuPos);
     CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());

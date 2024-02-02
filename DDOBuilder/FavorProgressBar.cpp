@@ -90,7 +90,8 @@ void CFavorProgressBar::OnPaint()
     pDC->SelectObject(&penWhite);
 
     m_favorTiersPoints.clear();
-    CRect rect2(rect);
+    CRect rectRed(rect);
+    CRect rectWhite(rect);
     for (size_t tier = 0; tier < m_favorTiers.size(); ++tier)
     {
         CString tierText;
@@ -107,14 +108,26 @@ void CFavorProgressBar::OnPaint()
         if (xPos < 0) xPos = 0;
         else if (xPos + textSize.cx > rect.Width()) xPos = rect.right - textSize.cx - 1;
         pDC->TextOut(xPos, 0, tierText);
-        rect2.top = textSize.cy;
+        rectWhite.top = textSize.cy;
+        rectRed.top = textSize.cy;
     }
-    m_favorHeight = rect2.top;
+    m_favorHeight = rectWhite.top;
 
     int xCF = ((rect.Width() * m_currentFavor) / m_maxValue);
+    rectRed.right = xCF - 1;
+    if (rectRed.right > 0)
+    {
+        CBrush brushRed(COLORREF(RGB(255, 0, 0)));
+        pDC->FillRect(rectRed, &brushRed);
+    }
     CBrush brush2(GetSysColor(COLOR_BTNFACE));
-    rect2.left = xCF;
-    pDC->FillRect(rect2, &brush2);
+    rectWhite.left = xCF;
+    pDC->FillRect(rectWhite, &brush2);
+
+    CPen pen(PS_SOLID, 1, COLORREF(RGB(0, 0, 0)));
+    pDC->SelectObject(pen);
+    pDC->MoveTo(xCF-1, rectWhite.top);
+    pDC->LineTo(xCF-1, rectWhite.bottom + 1);
 
     CFont* pDefaultGUIFont = CFont::FromHandle(
             (HFONT)GetStockObject(DEFAULT_GUI_FONT));
@@ -126,7 +139,7 @@ void CFavorProgressBar::OnPaint()
     pDC->SetTextColor(COLORREF(RGB(0, 0, 0)));
     pDC->TextOut((rect.Width() - textSize.cx) / 2, rect.bottom - textSize.cy, favorText);
     // highlighted text colour for the selected background
-    pDC->ExcludeClipRect(rect2);
+    pDC->ExcludeClipRect(rectWhite);
     pDC->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
     pDC->TextOut((rect.Width() - textSize.cx) / 2, rect.bottom - textSize.cy, favorText);
 

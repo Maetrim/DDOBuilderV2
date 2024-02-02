@@ -164,7 +164,7 @@ const std::string& CEnhancementTreeDialog::CurrentTree() const
     return m_pTree->Name();
 }
 
-void CEnhancementTreeDialog::ChangeTree(const EnhancementTree & tree)
+void CEnhancementTreeDialog::ChangeTree(const EnhancementTree& tree)
 {
     m_pTree = &tree;
     m_imageBackground.Destroy();
@@ -175,6 +175,12 @@ void CEnhancementTreeDialog::ChangeTree(const EnhancementTree & tree)
     m_treeIcon.SetTransparentColor(c_transparentColour);
     m_hitBoxes.clear();
     m_bCreateHitBoxes = true;
+    // on a tree change, make sure we update to the correct tree type
+    // so purchases will work correctly
+    m_type = TT_enhancement;        // assume
+    if (tree.HasIsRacialTree()) m_type = TT_racial;
+    if (tree.HasIsUniversalTree()) m_type = TT_universal;
+    if (tree.HasIsEpicDestiny()) m_type = TT_epicDestiny;
     if (IsWindow(GetSafeHwnd()))
     {
         Invalidate(TRUE);
@@ -656,171 +662,179 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
     CDialog::OnLButtonDown(nFlags, point);
     if (m_pTree->Items().size() > 0)
     {
-        // determine which enhancement has been clicked on
-        const EnhancementTreeItem * item = FindByPoint();
-        if (item != NULL)
+        if (GetKeyState(VK_SHIFT) < 0
+            && GetKeyState(VK_CONTROL) < 0)
         {
-            // an item has been clicked, see if we can train a rank in it
-            Build* pBuild = m_pCharacter->ActiveBuild();
-            size_t spentInTree = pBuild->APSpentInTree(m_pTree->Name());
-            const TrainedEnhancement * te = pBuild->IsTrained(item->InternalName(), "");//, m_type);
-            bool isAllowed = item->MeetRequirements(*pBuild, "", m_pTree->Name(), pBuild->Level()-1, spentInTree);
-            bool isTrainable = item->CanTrain(*pBuild, spentInTree, m_type, pBuild->Level()-1);
-            if (isAllowed && isTrainable)
+            ApplyArrowToItem();
+        }
+        else
+        {
+            // determine which enhancement has been clicked on
+            const EnhancementTreeItem * item = FindByPoint();
+            if (item != NULL)
             {
-                // if its a selector that needs selecting do selection, else
-                // just train it
-                if (item->HasSelections()
-                        && te == NULL)
+                // an item has been clicked, see if we can train a rank in it
+                Build* pBuild = m_pCharacter->ActiveBuild();
+                size_t spentInTree = pBuild->APSpentInTree(m_pTree->Name());
+                const TrainedEnhancement * te = pBuild->IsTrained(item->InternalName(), "");//, m_type);
+                bool isAllowed = item->MeetRequirements(*pBuild, "", m_pTree->Name(), pBuild->Level()-1, spentInTree);
+                bool isTrainable = item->CanTrain(*pBuild, spentInTree, m_type, pBuild->Level()-1);
+                if (isAllowed && isTrainable)
                 {
-                    // need to show the selection dialog
-                    CSelectionSelectDialog dlg(
-                            this,
-                            *pBuild,
-                            *item,
-                            m_pTree->Name(),
-                            m_type);
-                    // no tooltips while a dialog is displayed
-                    GetMouseHook()->SaveState();
-                    if (dlg.DoModal() == IDOK)
+                    // if its a selector that needs selecting do selection, else
+                    // just train it
+                    if (item->HasSelections()
+                            && te == NULL)
                     {
-                        // they made a valid selection
-                        switch (m_type)
+                        // need to show the selection dialog
+                        CSelectionSelectDialog dlg(
+                                this,
+                                *pBuild,
+                                *item,
+                                m_pTree->Name(),
+                                m_type);
+                        // no tooltips while a dialog is displayed
+                        GetMouseHook()->SaveState();
+                        if (dlg.DoModal() == IDOK)
                         {
-                        case TT_universal:
-                        case TT_racial:
-                        case TT_enhancement:
-                            pBuild->Enhancement_TrainEnhancement(
-                                    m_pTree->Name(),
-                                    item->InternalName(),
-                                    dlg.Selection(),
-                                    item->ItemCosts(dlg.Selection()));
-                            break;
-                        case TT_epicDestiny:
-                            pBuild->Destiny_TrainEnhancement(
-                                    m_pTree->Name(),
-                                    item->InternalName(),
-                                    dlg.Selection(),
-                                    item->ItemCosts(dlg.Selection()));
-                            break;
-                        case TT_reaper:
-                            pBuild->Reaper_TrainEnhancement(
-                                    m_pTree->Name(),
-                                    item->InternalName(),
-                                    dlg.Selection(),
-                                    item->ItemCosts(dlg.Selection()));
-                            break;
+                            // they made a valid selection
+                            switch (m_type)
+                            {
+                            case TT_universal:
+                            case TT_racial:
+                            case TT_enhancement:
+                                pBuild->Enhancement_TrainEnhancement(
+                                        m_pTree->Name(),
+                                        item->InternalName(),
+                                        dlg.Selection(),
+                                        item->ItemCosts(dlg.Selection()));
+                                break;
+                            case TT_epicDestiny:
+                                pBuild->Destiny_TrainEnhancement(
+                                        m_pTree->Name(),
+                                        item->InternalName(),
+                                        dlg.Selection(),
+                                        item->ItemCosts(dlg.Selection()));
+                                break;
+                            case TT_reaper:
+                                pBuild->Reaper_TrainEnhancement(
+                                        m_pTree->Name(),
+                                        item->InternalName(),
+                                        dlg.Selection(),
+                                        item->ItemCosts(dlg.Selection()));
+                                break;
+                            }
+                            Invalidate();
                         }
-                        Invalidate();
+                        GetMouseHook()->RestoreState();
                     }
-                    GetMouseHook()->RestoreState();
+                    else
+                    {
+                        std::string selection = (te != NULL && te->HasSelection()) ? te->Selection() : "";
+                        if (te == NULL          // if its not trained
+                                || te->Ranks() < item->Ranks()) // or has ranks still to be trained
+                        {
+                            switch (m_type)
+                            {
+                            case TT_universal:
+                            case TT_racial:
+                            case TT_enhancement:
+                                pBuild->Enhancement_TrainEnhancement(
+                                        m_pTree->Name(),
+                                        item->InternalName(),
+                                        selection,
+                                        item->ItemCosts(selection));
+                                break;
+                            case TT_epicDestiny:
+                                pBuild->Destiny_TrainEnhancement(
+                                        m_pTree->Name(),
+                                        item->InternalName(),
+                                        selection,
+                                        item->ItemCosts(selection));
+                                break;
+                            case TT_reaper:
+                                pBuild->Reaper_TrainEnhancement(
+                                        m_pTree->Name(),
+                                        item->InternalName(),
+                                        selection,
+                                        item->ItemCosts(selection));
+                                break;
+                            }
+                            Invalidate();
+                        }
+                    }
                 }
                 else
                 {
-                    std::string selection = (te != NULL && te->HasSelection()) ? te->Selection() : "";
-                    if (te == NULL          // if its not trained
-                            || te->Ranks() < item->Ranks()) // or has ranks still to be trained
+                    // although this item cannot be trained, still allow the selection
+                    // dialog to be displayed for item if it has one.
+                    if (item->HasSelections()
+                            && te == NULL)
                     {
+                        // need to show the selection dialog
+                        CSelectionSelectDialog dlg(
+                                AfxGetApp()->m_pMainWnd->GetActiveWindow(),
+                                *pBuild,
+                                *item,
+                                m_pTree->Name(),
+                                m_type);
+                        // no tooltips while a dialog is displayed
+                        GetMouseHook()->SaveState();
+                        dlg.DoModal();
+                        GetMouseHook()->RestoreState();
+                    }
+                }
+            }
+            // check for a click of the reset tree button
+            CRect rctResetButton(
+                    c_sizeX - 79 - c_controlSpacing,
+                    c_sizeY - 24 - c_controlSpacing,
+                    c_sizeX - c_controlSpacing,
+                    c_sizeY - c_controlSpacing);
+            if (rctResetButton.PtInRect(point))
+            {
+                Build* pBuild = m_pCharacter->ActiveBuild();
+                size_t spentInTree = pBuild->APSpentInTree(m_pTree->Name());
+                if (spentInTree > 0)
+                {
+                    UINT ret = AfxMessageBox("Are you sure you want to reset this tree?", MB_YESNO | MB_ICONWARNING);
+                    if (ret == IDYES)
+                    {
+                        // lets go for a tree reset action
                         switch (m_type)
                         {
                         case TT_universal:
                         case TT_racial:
                         case TT_enhancement:
-                            pBuild->Enhancement_TrainEnhancement(
-                                    m_pTree->Name(),
-                                    item->InternalName(),
-                                    selection,
-                                    item->ItemCosts(selection));
+                            pBuild->Enhancement_ResetEnhancementTree(m_pTree->Name());
                             break;
                         case TT_epicDestiny:
-                            pBuild->Destiny_TrainEnhancement(
-                                    m_pTree->Name(),
-                                    item->InternalName(),
-                                    selection,
-                                    item->ItemCosts(selection));
+                            pBuild->Destiny_ResetEnhancementTree(m_pTree->Name());
                             break;
                         case TT_reaper:
-                            pBuild->Reaper_TrainEnhancement(
-                                    m_pTree->Name(),
-                                    item->InternalName(),
-                                    selection,
-                                    item->ItemCosts(selection));
+                            pBuild->Reaper_ResetEnhancementTree(m_pTree->Name());
                             break;
                         }
-                        Invalidate();
                     }
                 }
             }
-            else
+            // optional tree drag and reposition option
+            if (!m_pTree->HasIsRacialTree()
+                    && !m_pTree->HasIsReaperTree()
+                    && !m_pTree->HasIsEpicDestiny()
+                    && m_pTree->Items().size() > 0)
             {
-                // although this item cannot be trained, still allow the selection
-                // dialog to be displayed for item if it has one.
-                if (item->HasSelections()
-                        && te == NULL)
+                CPoint mouse;
+                GetCursorPos(&mouse);
+                ScreenToClient(&mouse);
+                if (mouse.x >= c_iconLeft && mouse.x < c_iconLeft + 32)
                 {
-                    // need to show the selection dialog
-                    CSelectionSelectDialog dlg(
-                            AfxGetApp()->m_pMainWnd->GetActiveWindow(),
-                            *pBuild,
-                            *item,
-                            m_pTree->Name(),
-                            m_type);
-                    // no tooltips while a dialog is displayed
-                    GetMouseHook()->SaveState();
-                    dlg.DoModal();
-                    GetMouseHook()->RestoreState();
-                }
-            }
-        }
-        // check for a click of the reset tree button
-        CRect rctResetButton(
-                c_sizeX - 79 - c_controlSpacing,
-                c_sizeY - 24 - c_controlSpacing,
-                c_sizeX - c_controlSpacing,
-                c_sizeY - c_controlSpacing);
-        if (rctResetButton.PtInRect(point))
-        {
-            Build* pBuild = m_pCharacter->ActiveBuild();
-            size_t spentInTree = pBuild->APSpentInTree(m_pTree->Name());
-            if (spentInTree > 0)
-            {
-                UINT ret = AfxMessageBox("Are you sure you want to reset this tree?", MB_YESNO | MB_ICONWARNING);
-                if (ret == IDYES)
-                {
-                    // lets go for a tree reset action
-                    switch (m_type)
+                    if (mouse.y >= c_iconTop && mouse.y < c_iconTop + 32)
                     {
-                    case TT_universal:
-                    case TT_racial:
-                    case TT_enhancement:
-                        pBuild->Enhancement_ResetEnhancementTree(m_pTree->Name());
-                        break;
-                    case TT_epicDestiny:
-                        pBuild->Destiny_ResetEnhancementTree(m_pTree->Name());
-                        break;
-                    case TT_reaper:
-                        pBuild->Reaper_ResetEnhancementTree(m_pTree->Name());
-                        break;
+                        // start the tree drag operation
+                        m_bDraggingTree = true;
+                        SetCapture();
                     }
-                }
-            }
-        }
-        // optional tree drag and reposition option
-        if (!m_pTree->HasIsRacialTree()
-                && !m_pTree->HasIsReaperTree()
-                && !m_pTree->HasIsEpicDestiny()
-                && m_pTree->Items().size() > 0)
-        {
-            CPoint mouse;
-            GetCursorPos(&mouse);
-            ScreenToClient(&mouse);
-            if (mouse.x >= c_iconLeft && mouse.x < c_iconLeft + 32)
-            {
-                if (mouse.y >= c_iconTop && mouse.y < c_iconTop + 32)
-                {
-                    // start the tree drag operation
-                    m_bDraggingTree = true;
-                    SetCapture();
                 }
             }
         }
@@ -1255,37 +1269,132 @@ void CEnhancementTreeDialog::OnMButtonDown(UINT nFlags, CPoint point)
 {
     UNREFERENCED_PARAMETER(nFlags);
     UNREFERENCED_PARAMETER(point);
-    // copy the bitmap content to the clipboard
-    CDC screenDC;
-    screenDC.Attach(::GetDC(NULL));
-    CDC clipboardDC;
-    CDC bitmapDC;
-    CBitmap clipboardBitmap;
-
-    bitmapDC.CreateCompatibleDC(&screenDC);
-    bitmapDC.SaveDC();
-    bitmapDC.SelectObject(&m_cachedDisplay);
-    // draw to a compatible device context and then copy to clipboard
-    clipboardDC.CreateCompatibleDC(&screenDC);
-    clipboardDC.SaveDC();
-    clipboardBitmap.CreateCompatibleBitmap(
-            &screenDC,
-            c_sizeX,
-            c_sizeY);
-    clipboardDC.SelectObject(&clipboardBitmap);
-    clipboardDC.BitBlt(0, 0, c_sizeX, c_sizeY, &bitmapDC, 0, 0, SRCCOPY);
-    clipboardDC.RestoreDC(-1);
-    clipboardDC.DeleteDC();
-    ::ReleaseDC(NULL, screenDC.Detach());
-
-    bitmapDC.RestoreDC(-1);
-    bitmapDC.DeleteDC();
-
-    // Open the clipboard
-    if (::OpenClipboard(NULL))
+    if (GetKeyState(VK_SHIFT) < 0)
     {
-        ::EmptyClipboard();
-        SetClipboardData(CF_BITMAP, clipboardBitmap.Detach());     // clipboard now owns the object
-        ::CloseClipboard();
+        const EnhancementTreeItem * item = FindByPoint();
+        if (item != NULL)
+        {
+            // may be trying to set for a sub item (if trained)
+            CString iconName = item->Icon().c_str();
+            const TrainedEnhancement* te = m_pCharacter->ActiveBuild()->IsTrained(item->InternalName(), "");
+            if (te != NULL)
+            {
+                if (te->HasSelection())
+                {
+                    iconName = item->SelectionIcon(te->Selection()).c_str();
+                }
+            }
+            CString prompt;
+            prompt.Format("Make the Enhancement Image \"%s\" transparent?\r\n"
+                "Yes - Normal Transparency for a passive icon\r\n"
+                "No  - Transparency for a passive icon with top left +\r\n"
+                "Cancel - Cancel the action\r\n", (LPCTSTR)iconName);
+            int ret = AfxMessageBox(prompt, MB_YESNOCANCEL);
+            CString fullIconLocation("EnhancementImages\\");
+            fullIconLocation += iconName;
+            if (IDYES == ret)
+            {
+                MakeIconTransparent(fullIconLocation, false);
+            }
+            else if (IDNO == ret)
+            {
+                MakeIconTransparent(fullIconLocation, true);
+            }
+        }
+    }
+    else
+    {
+        // copy the bitmap content to the clipboard
+        CDC screenDC;
+        screenDC.Attach(::GetDC(NULL));
+        CDC clipboardDC;
+        CDC bitmapDC;
+        CBitmap clipboardBitmap;
+
+        bitmapDC.CreateCompatibleDC(&screenDC);
+        bitmapDC.SaveDC();
+        bitmapDC.SelectObject(&m_cachedDisplay);
+        // draw to a compatible device context and then copy to clipboard
+        clipboardDC.CreateCompatibleDC(&screenDC);
+        clipboardDC.SaveDC();
+        clipboardBitmap.CreateCompatibleBitmap(
+                &screenDC,
+                c_sizeX,
+                c_sizeY);
+        clipboardDC.SelectObject(&clipboardBitmap);
+        clipboardDC.BitBlt(0, 0, c_sizeX, c_sizeY, &bitmapDC, 0, 0, SRCCOPY);
+        clipboardDC.RestoreDC(-1);
+        clipboardDC.DeleteDC();
+        ::ReleaseDC(NULL, screenDC.Detach());
+
+        bitmapDC.RestoreDC(-1);
+        bitmapDC.DeleteDC();
+
+        // Open the clipboard
+        if (::OpenClipboard(NULL))
+        {
+            ::EmptyClipboard();
+            SetClipboardData(CF_BITMAP, clipboardBitmap.Detach());     // clipboard now owns the object
+            ::CloseClipboard();
+        }
+        AfxMessageBox("Enhancement tree image copied to clipboard as a bitmap.", MB_ICONEXCLAMATION);
+    }
+}
+
+void CEnhancementTreeDialog::ApplyArrowToItem()
+{
+    const EnhancementTreeItem* pConstItem = FindByPoint();
+    if (pConstItem != NULL)
+    {
+        EnhancementTreeItem *item = const_cast<EnhancementTreeItem*>(pConstItem);
+        // can only set arrows on non core items
+        if (item->YPosition() > 0)
+        {
+            int ret = AfxMessageBox("What type of arrows to add?\r\n"
+                "\r\n"
+                "YES    <- Small Arrow Up\r\n"
+                "NO     <-- Medium Arrow Up\r\n"
+                "CANCEL <--- Long Arrow Up\r\n", MB_YESNOCANCEL);
+            size_t offset = 0;
+            switch (ret)
+            {
+                case IDYES:     offset = 1; break;
+                case IDNO:      offset = 2; break;
+                case IDCANCEL:  offset = 3; break;
+            }
+            EnhancementTreeItem* pTarget = m_pTree->FindItemByPosition(item->XPosition(), item->YPosition() + offset);
+            if (pTarget != NULL)
+            {
+                CString text;
+                text.Format("Are you sure you want to add an arrow to item:\r\n"
+                        "%s\r\n"
+                        "and a dependency on that item to item:\r\n"
+                        "%s?", item->Name().c_str(), pTarget->Name().c_str());
+                ret = AfxMessageBox(text, MB_YESNO);
+                if (ret == IDYES)
+                {
+                    switch (offset)
+                    {
+                        case 1: item->Set_ArrowUp(); break;
+                        case 2: item->Set_LongArrowUp(); break;
+                        case 3: item->Set_ExtraLongArrowUp(); break;
+                    }
+                    // add a requirement to target item
+                    Requirements requirements = pTarget->HasRequirementsToTrain() ? pTarget->RequirementsToTrain() : Requirements();
+                    std::list<Requirement> reqs = requirements.Requires();
+                    Requirement r(Requirement_Enhancement, item->InternalName());
+                    reqs.push_back(r);
+                    requirements.AddRequirement(r);
+                    pTarget->Set_RequirementsToTrain(requirements);
+                    m_pTree->Save();
+                    // visually show changes
+                    Invalidate();
+                }
+            }
+            else
+            {
+                AfxMessageBox("No arrow applied as no target item", MB_ICONERROR);
+            }
+        }
     }
 }

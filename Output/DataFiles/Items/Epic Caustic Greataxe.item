@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Caustic Greataxe</Name>
     <Icon>GreatAxe_2b</Icon>
     <Description>A weapon found deep within the Temple of Elemental Evil.</Description>
@@ -31,17 +32,50 @@
       <BonusType>Weapon Enchantment</BonusType>
     </Buff>
     <Buff>
-      <Type>SpellPenetrationNumeral</Type>
-      <Value1>6</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>VI</Description1>
-    </Buff>
-    <Buff>
       <Type>Corrosion</Type>
       <Value1>156</Value1>
       <BonusType>Equipment</BonusType>
       <Description1>Acid</Description1>
       <Item>Acid</Item>
     </Buff>
+    <ItemAugment>
+      <Type>Tier 1</Type>
+      <Augment>
+        <Name>Spell Penetration VI and Riposte XII</Name>
+        <Description>+6 Equipment bonus to Spell Penetration.
+Riposte XII: When Missed by an attack: Deals 12 to 48 damage to your attacker.
+Passive: +6 Insight bonus to Armor Class</Description>
+        <MinLevel>26</MinLevel>
+        <Effect>
+          <Type>SpellPenetrationBonus</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Adds Acid Lore XIII and a Purple Augment slot and set bonus.</Name>
+        <Description>Acid Lore XIII: Passive: Your Acid spells gain a 23% Equipment bonus to their chance to critical hit.</Description>
+        <MinLevel>26</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+        <SetBonus>Epic Elemental Evil Set</SetBonus>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">23</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

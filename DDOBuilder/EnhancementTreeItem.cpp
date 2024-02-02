@@ -320,6 +320,14 @@ void EnhancementTreeItem::RenderIcon(
     }
 }
 
+std::string EnhancementTreeItem::SelectionIcon(
+    const std::string& selection) const
+{
+    std::string iconName;
+    iconName = m_Selections.SelectedIcon(selection);
+    return iconName;
+}
+
 bool EnhancementTreeItem::CanRevoke(
         const SpendInTree* pTreeSpend) const
 {

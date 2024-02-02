@@ -10,7 +10,8 @@
 
 enum QuestDifficulty
 {
-    QD_solo = 0,
+    QD_notRun = 0,
+    QD_solo,
     QD_casual,
     QD_normal,
     QD_hard,
@@ -32,6 +33,7 @@ enum QuestDifficulty
 
 const XmlLib::enumMapEntry<QuestDifficulty> questDifficultyTypeMap[] =
 {
+    {QD_notRun,             L"NotRun"},
     {QD_solo,               L"Solo"},
     {QD_casual,             L"Casual"},
     {QD_normal,             L"Normal"},

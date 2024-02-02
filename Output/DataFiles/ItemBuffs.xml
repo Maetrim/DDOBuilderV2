@@ -22,6 +22,50 @@
     </Effect>
   </Buff>
   <Buff>
+    <Type>Aberration Bane</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Aberration Bane: A bane weapon excels at attacking one type or subtype of creature. Against Aberrations, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Aberration</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Aberration Bane 6</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Aberration Bane 6: This weapon is attuned specifically to disrupt the unnatural, dealing an additional 6d10 bane damage vs. Aberrations.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Aberration</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Absolute Law</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Absolute Law: This weapon is infused with the ultimate power of Law. It does an additional 2 to 12 damage to non-lawful targets and can only be wielded by Lawful-aligned characters.</DisplayText>
@@ -213,6 +257,41 @@ acid damage by two seconds.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Acid Burst</Type>
+    <DisplayText>Acid Burst : This weapon is sheathed in corrosive acid, and does 1 to 6 acid damage each hit. Critical hits deal an additional 1 to 10 acid damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>CriticalDice</AType>
+      <Dice>
+        <Number size="6">0 0 1 2 3 4 </Number>
+        <Sides size="6">0 0 10 10 10 10</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Acidic Reaping</Type>
+    <DisplayText>Acidic Reaping: While this item is equipped, any killing blows you strike against enemies grants you 40 Acid resistance for 30 seconds. Slaying weaker opponents has a reduced chance of producing this effect.</DisplayText>
   </Buff>
   <Buff>
     <Type>AcidLore</Type>
@@ -1655,6 +1734,221 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Axiomatic Blast 2</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Axiomatic Blast 2: This weapon is an implement of law, dealing 2d6 Law damage on a successful hit, and an additional 2d6 Law damage on a critical hit. This effect makes the weapon lawfully aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Lawful</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+         <Requirement>
+            <Type>AlignmentType</Type>
+            <Item>Lawful</Item>
+         </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axiomatic Blast 3</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Axiomatic Blast 3: This weapon is an implement of law, dealing 3d6 Law damage on a successful hit, and an additional 3d6 Law damage on a critical hit. This effect makes the weapon lawfully aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Lawful</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+         <Requirement>
+            <Type>AlignmentType</Type>
+            <Item>Lawful</Item>
+         </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axiomatic Blast 4</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Axiomatic Blast 4: This weapon is an implement of law, dealing 4d6 Law damage on a successful hit, and an additional 4d6 Law damage on a critical hit. This effect makes the weapon lawfully aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Lawful</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+         <Requirement>
+            <Type>AlignmentType</Type>
+            <Item>Lawful</Item>
+         </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axiomatic Blast 5</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Axiomatic Blast 5: This weapon is an implement of law, dealing 5d6 Law damage on a successful hit, and an additional 5d6 Law damage on a critical hit. This effect makes the weapon lawfully aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">5</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">10</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Lawful</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+         <Requirement>
+            <Type>AlignmentType</Type>
+            <Item>Lawful</Item>
+         </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axiomatic Blast 6</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Axiomatic Blast 6: This weapon is an implement of law, dealing 6d6 Law damage on a successful hit, and an additional 6d6 Law damage on a critical hit. This effect makes the weapon lawfully aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="1">12</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Lawful</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Lawful</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+         <Requirement>
+            <Type>AlignmentType</Type>
+            <Item>Lawful</Item>
+         </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Axiomatic Burst</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Axiomatic Burst: An axiomatic weapon is lawfully aligned and infused with the power of law. It makes the weapon law-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2 to 12 points of damage against all of chaotic alignment and an extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier, and 5 to 30 for a x4 multiplier.</DisplayText>
@@ -1812,6 +2106,30 @@ acid damage by two seconds.</DisplayText>
   <Buff>
     <Type>BaneOfTheDepths</Type>
     <DisplayText>Bane of the Depths: Your Negative, Poison and Cold spells automatically apply the effects of Bane to enemies struck.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Banishing</Type>
+    <DisplayText>Banishing: On Hit: 4 to 24 Bane damage to Outsiders.
+On Vorpal Hit : If an outsider struck by this weapon has fewer than 1000 Hit
+Points, it is instantly slain. If the outsider has above 1000 Hit Points, it
+takes 100 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Dice</AType>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Outsider</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Banishing Fists</Type>
@@ -2147,6 +2465,22 @@ acid damage by two seconds.</DisplayText>
       <Bonus>Not Set</Bonus>
       <AType>NotNeeded</AType>
       <Item>Blindness</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Blood</Type>
+    <DisplayText>Blood: This Docent converts a portion of the wood and metal structure of the Warforged to living flesh. The Warforged will benefit more from positive energy healing such as cure spells and potions (+20 Positive Healing Amplification) but will also be more subject to critical hits (-10% fortification ).</DisplayText>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+    </Effect>
+    <Effect>
+      <Type>Fortification</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-10</Amount>
     </Effect>
   </Buff>
   <Buff>
@@ -2528,6 +2862,10 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Brazen Brilliance</Type>
+    <DisplayText>Brazen Brilliance: With this item equipped, your offensive attacks and spells have a chance of creating a burst of pure light, dealing Light damage and blinding enemies.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Byeshk</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Byeshk: Byeshk is effective against Mind Flayers and other aberrations.</DisplayText>
@@ -2831,6 +3169,10 @@ acid damage by two seconds.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Constricting Nightmare</Type>
+    <DisplayText>Constricting Nightmare: Enemies struck by this weapon are stricken with a horrible fear of death, reducing their Physical Resistance and Magical Resistance by 10.</DisplayText>
   </Buff>
   <Buff>
     <Type>Construct Bane</Type>
@@ -5428,6 +5770,48 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Extra damage vs Giants</Type>
+    <DisplayText>Extra damage vs Giants: This weapon deals an additional 2 to 16 damage against Giants.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Dice</AType>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Giant</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Extra damage vs non-Giants</Type>
+    <DisplayText>Extra damage vs non-Giants: This weapon deals an additional 1 to 8 damage against non-Giants.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Dice</AType>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Non-Giant</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>ExtraLayOnHands</Type>
     <DisplayText>Extra Lay on Hands %v1: You have %v1 Lay on Hands charges.</DisplayText>
   </Buff>
@@ -5461,6 +5845,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Item>Favored Weapon</Item>
       <AType>NotNeeded</AType>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Fearsome</Type>
+    <DisplayText>Fearsome: This item causes those who strike the user to be overcome with terror, as from the Fear spell.</DisplayText>
   </Buff>
   <Buff>
     <Type>FeatherFalling</Type>
@@ -7496,6 +7884,28 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Greater Evil Outsider Bane</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Greater Evil Outsider Bane: A bane weapon excels at attacking one type or subtype of creature. Against Evil Outsiders, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil Outsider</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>GreaterFalseLife</Type>
     <DisplayText>Greater False Life: This item grants the wearer +30 maximum health.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -9375,6 +9785,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Legendary Slowburst: This weapon has an image of a snail worked into its hilt or grip, and it feels cold to the touch. Whenever you score a critical hit with this weapon, the target is slowed for 30 seconds. A DC 100 Will save negates this effect.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Stealer of Souls</Type>
+    <DisplayText>Legendary Stealer of Souls: Blackrazor hungers for the Souls of those you have defeated. On a Vorpal hit with this weapon, Blackrazor will absorb some of its Soul, draining one level from the target. When you strike the killing blow on an enemy, Blackrazor retains one Defeated Soul, up to a maximum of 20. Each Defeated Soul grants you +1 Profane bonus to Melee Power and +1 Profane bonus to Damage. If you block or unequip Blackrazor, the Defeated Souls will be released. Defeated Souls last for 30 seconds.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Stone Guard</Type>
     <DisplayText>Legendary Stone Guard: This item is invested with the power of the earth. On being struck in melee, it has the chance to attempt to turn the target to stone, as the Flesh to Stone spell. A successful Fortitude save (DC 100) negates the effect.</DisplayText>
   </Buff>
@@ -9401,6 +9815,32 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Legendary Virulent Poison</Type>
     <DisplayText>Legendary Virulent Poison: This item carries a potent poison that is delivered with your attacks. On any strike, the Poison has a chance to be applied, dealing 5d6 Constitution damage if your enemy fails a DC100 Fortitude saving throw.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Whelming Shockwave</Type>
+    <DisplayText>Legendary Whelming Shockwave: This weapon reverberates with incredible power. On Vorpal, this weapon triggers a Shockwave, striking its target with incredible bludgeoning damage and dealing damage to surrounding enemies.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Lesser Aberration Bane</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Lesser Aberration Bane: A bane weapon excels at attacking one type or subtype of creature. Against Aberrations, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Aberration</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>LesserActionBoostEnhancement</Type>
@@ -9432,6 +9872,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <AType>Simple</AType>
       <Amount size="1">-5</Amount>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Lesser Boneshatter</Type>
+    <DisplayText>Lesser Boneshatter: This weapon is powerful enough to shatter the bones of those it strikes. On an attack roll of 20 which is confirmed as a critical hit, the weapon breaks multiple bones in the target's body, causing significant impairment. Creatures with skeletons take 10d6 damage and will have their movement and attacks slowed by 25% and their attack damage reduced by 25% when their bones are shattered.</DisplayText>
   </Buff>
   <Buff>
     <Type>LesserColdResistance</Type>
@@ -9766,6 +10210,28 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Magical Beast Bane</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Magical Beast Bane: A bane weapon excels at attacking one type or subtype of creature. Against Magical Beasts, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Magical Beast</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>MagicalEfficiency</Type>
     <DisplayText>%b1 Magical Efficiency %b1%: You take a %v1% %b1 discount to the Spell Point cost of your spells.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -9971,8 +10437,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Ignore>Enhancement</Ignore>
     <Effect>
       <Type>Weapon_Alacrity</Type>
-      <Type>Enhancement</Type>
-      <Bonus>Not Set</Bonus>
+      <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>%i1</Item>
@@ -10383,6 +10848,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Overwhelming Shockwave</Type>
     <DisplayText>Overwhelming Shockwave: This legendary weapon resonates with incredible power. On a Vorpal strike that is confirmed as a critical hit, it releases a Shockwave that does tremendous Sonic damage to all foes. Furthermore, the enemy that the shockwave is released on is Dazed from the force of the blast.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Overwhelming Stealer of Souls</Type>
+    <DisplayText>Overwhelming Stealer of Souls: This weapon tears at the very essence of your foes. On any strike, this weapon applies a single stack of Soul Scar, which reduces your target's Will Saves, Armor Class, and Fortification by 1 per stack, max 10. Occasionally, this weapon attempts to rip the life from your foe, as if it were the victim of a Phantasmal Killer spell with a DC of 100 versus Will. Bosses (and enemies with more than 10,000 hit points) are immune to this effect. Killing a monster will consume your soul, adding a stack of Consumed Soul to you. Consumed Souls stack up to 20 times, and linger for 20 seconds. Each one provides a +1 Profane bonus to Damage and Melee Power . If you block or unequip this weapon, the Consumed Souls will be released.</DisplayText>
   </Buff>
   <!--P-->
   <Buff>
@@ -11211,6 +11680,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Power Store: This item collects and stores magical energy. Any spell caster can use this energy to partially power their spells. All spells cast while using this item receive an enhancement bonus of -10% to their spell point costs.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Psychic Ward</Type>
+    <DisplayText>Psychic Ward: This items wards you against mind-altering effects and spells, such as Charm and Domination.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Puncturing</Type>
     <DisplayText>Puncturing: Critical hits by this weapon deal an extra 1 to 6 points of Constitution damage from blood loss.</DisplayText>
     <Effect>
@@ -11681,6 +12154,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Roaring: This weapon causes targets to become shaken (DC 25 Will save negates) and, on a critical hit, does 2 to 12 sonic damage to the target.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Rock Shattering</Type>
+    <DisplayText>Rock Shattering: When striking stone-like creatures (such as gargoyles and earth elementals ) or creatures that have been turned to stone, there is a chance this weapon will instantly shatter and destroy the target.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Rockslide</Type>
     <DisplayText>Rockslide: This weapon stores the power of a volatile rockslide deep within. On hit, there is a chance to do massive bludgeoning damage to your enemy.</DisplayText>
     <ApplyToWeaponOnly />
@@ -12125,6 +12602,32 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shadowblade</Type>
+    <DisplayText>Shadowblade: This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately.</DisplayText>
+    <Effect>
+      <Type>GhostTouch</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shadow Spike</Type>
+    <DisplayText>Shadow Spike: On Damage: Do an additional 2 to 12 Negative Energy damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Negative</Damage>
+      </Dice>
       <Item>All</Item>
     </Effect>
   </Buff>
@@ -13525,6 +14028,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Starter: Starter equipment cannot be traded, sold or crafted.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Stealer of Souls</Type>
+    <DisplayText>Stealer of Souls: Blackrazor hungers for the Souls of those you have defeated. On a Vorpal hit with this weapon, Blackrazor will absorb some of its Soul, draining one level from the target. When you strike the killing blow on an enemy, Blackrazor retains one Defeated Soul, up to a maximum of 5. Each Defeated Soul grants you +1 Profane bonus to Melee Power and +1 Profane bonus to Damage. If you block or unequip Blackrazor, the Defeated Souls will be released. Defeated Souls last for 30 seconds.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>StealthStrike</Type>
     <DisplayText>Stealth Strike: Reduces the threat generated by ranged attacks and spells by 15%.</DisplayText>
     <Effect>
@@ -14549,6 +15056,17 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Unraveling Enchantments: The enchantments on this item have become unstable and weakened with time, but those serving House Deneith may be able to restore it. Combine this item in Visbane's Folly atop Sentinel's Tower in House Deneith Enclave with a Sigil of the Goat, a Sigil of the Lion, and a Sigil of the Dragon to restore its original enchantments.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Unwieldy</Type>
+    <DisplayText>Unwieldy: This weapon is very large and makes you clumsier as you wield it, causing a -2 Dexterity penalty.</DisplayText>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-2</Amount>
+      <Item>Dexterity</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Upgradeable - Tier 2</Type>
     <DisplayText>Upgradeable - Tier 2: This is a tier 2 upgradeable item.</DisplayText>
   </Buff>
@@ -14932,6 +15450,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>NotNeeded</AType>
       <Item>Web</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Whelming Shockwave</Type>
+    <DisplayText>Whelming Shockwave: This weapon reverberates with incredible power. On Vorpal, this weapon triggers a Shockwave, striking its target with bludgeoning damage and dealing damage to surrounding enemies.</DisplayText>
   </Buff>
   <Buff>
     <Type>Whirlwind Ward</Type>

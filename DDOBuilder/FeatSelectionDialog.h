@@ -39,6 +39,7 @@ class CFeatSelectionDialog :
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg void OnFeatButtonLeftClick();
         afx_msg void OnFeatButtonRightClick(NMHDR * pNotifyStruct, LRESULT * result);
+        afx_msg void OnFeatButtonMiddleClick(NMHDR * pNotifyStruct, LRESULT * result);
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg void OnSize(UINT nType, int cx, int cy);

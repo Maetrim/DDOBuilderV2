@@ -156,7 +156,7 @@ void CEnhancementsPane::OnSize(UINT nType, int cx, int cy)
                 MM_TEXT,
                 CSize(
                         itemRect.left + scrollX,
-                        itemRect.bottom + scrollY + c_controlSpacing * 2));
+                        rect.bottom + scrollY + c_controlSpacing));
     }
 }
 
@@ -340,8 +340,9 @@ std::list<EnhancementTree> CEnhancementsPane::DetermineTrees()
                 // never auto assign universal trees
                 if (!(*tit).HasIsUniversalTree())
                 {
+                    size_t start = (*tit).HasIsRacialTree() ? 0 : 1;
                     // tree not present, see if it can be assigned
-                    for (size_t ti = 0; ti < MST_Number; ++ti)
+                    for (size_t ti = start; ti < MST_Number; ++ti)
                     {
                         std::string treeName = selTrees.Tree(ti);
                         if (Enhancement_SelectedTrees::IsNotSelected(treeName)

@@ -6,6 +6,7 @@
 #include "BreakdownTypes.h"
 #include "BuildsPane.h"
 #include "MouseHook.h"
+#include "CCustomMFCStatusBar.h"
 
 class BreakdownItem;
 class CDDOBuilderDoc;
@@ -83,7 +84,7 @@ protected:
     CProgressCtrl     m_ctlProgress;
     CMFCMenuBar       m_wndMenuBar;
     CMFCToolBar       m_wndToolBar;
-    CMFCStatusBar     m_wndStatusBar;
+    CCustomMFCStatusBar m_wndStatusBar;
     CMFCToolBarImages m_UserImages;
     CMFCToolBar       m_menuToolbar;
     std::vector<CCustomDockablePane*> m_dockablePanes;

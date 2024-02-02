@@ -855,7 +855,8 @@ size_t Build::BaseClassLevels(
     {
         std::string levelClass = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
         std::string baseClass = FindClass(levelClass).GetBaseClass();
-        if (baseClass == ct)
+        if (baseClass == ct
+                || levelClass == ct)
         {
             ++baseClassLevels;
         }
@@ -2769,16 +2770,13 @@ void Build::Enhancement_TrainEnhancement(
     {
         m_racialTreeSpend += spent;
     }
+    else if (eTree.HasIsUniversalTree())
+    {
+        m_universalTreeSpend += spent;
+    }
     else
     {
-        if (eTree.HasIsUniversalTree())
-        {
-            m_universalTreeSpend += spent;
-        }
-        else
-        {
-            m_classTreeSpend += spent;
-        }
+        m_classTreeSpend += spent;
     }
     // track whether this is a tier 5 enhancement
     ASSERT(pTreeItem != NULL);

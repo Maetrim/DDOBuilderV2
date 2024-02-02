@@ -906,6 +906,7 @@ void CMainFrame::BeginProgress(CString fixedText)
         m_wndStatusBar.GetItemRect(0, &rc);
         rc.left += size.cx + c_controlSpacing;
         m_wndStatusBar.SetPaneText(0, fixedText);
+        m_wndStatusBar.SetPaneTextLockState(true);
         VERIFY(m_ctlProgress.Create(WS_CHILD | WS_VISIBLE | PBS_SMOOTH, rc, &m_wndStatusBar, 1));
         m_ctlProgress.SetRange(0, 100);
         m_ctlProgress.SetPos(0);
@@ -927,6 +928,7 @@ void CMainFrame::EndProgress()
     if (m_ctlProgress.m_hWnd != NULL)
     {
         m_ctlProgress.DestroyWindow();
+        m_wndStatusBar.SetPaneTextLockState(false);
         m_wndStatusBar.SetPaneText(0, "Ready");
     }
 }

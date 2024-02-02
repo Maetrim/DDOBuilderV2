@@ -16,8 +16,12 @@ namespace
     const unsigned f_verCurrent = 1;
 }
 
+int Quest::gm_column = 0;
+bool Quest::gm_bAscending = false;
+
 Quest::Quest() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_difficulty(QD_notRun)
 {
     DL_INIT(Quest_PROPERTIES)
 }
@@ -66,6 +70,21 @@ bool Quest::VerifyObject() const
     return ok;
 }
 
+void Quest::SetSortInfo(int column, bool bAscending)
+{
+    gm_column = column;
+    gm_bAscending = bAscending;
+}
+
+void Quest::SetDifficulty(QuestDifficulty diff)
+{
+    m_difficulty = diff;
+}
+
+QuestDifficulty Quest::GetDifficulty() const
+{
+    return m_difficulty;
+}
 int Quest::MaxFavor() const
 {
     int maxFavor = 0;
@@ -74,5 +93,43 @@ int Quest::MaxFavor() const
     else if (HasNormal() || HasSolo()) maxFavor = Favor();
     else if (HasCasual()) maxFavor = (Favor() / 2);
     return maxFavor;
+}
+
+bool Quest::operator<(const Quest& other) const
+{
+    bool bRet = false;
+
+    switch (gm_column)
+    {
+        case 0: // quest name
+            if (Name() != other.Name())
+            {
+                bRet = Name() < other.Name();
+            }
+            else
+            {
+                // sort by level
+                bRet = Levels()[0] < other.Levels()[0];
+            }
+            break;
+        case 1: // quest level
+            bRet = Levels()[0] < other.Levels()[0];
+            break;
+        case 2: // quest favor
+            bRet = Favor() < other.Favor();
+            break;
+        case 3: // quest run at
+            bRet = GetDifficulty() < other.GetDifficulty();
+            break;
+        case 4: // quest patron
+            bRet = Patron() < other.Patron();
+            break;
+    }
+    if (!gm_bAscending)
+    {
+        // switch sort direction result
+        bRet = !bRet;
+    }
+    return bRet;
 }
 

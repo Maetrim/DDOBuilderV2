@@ -3,6 +3,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "PatronTypes.h"
+#include "QuestDifficultyTypes.h"
 
 class Quest :
     public XmlLib::SaxContentElement
@@ -10,6 +11,8 @@ class Quest :
     public:
         Quest(void);
         void Write(XmlLib::SaxWriter * writer) const;
+
+        static void SetSortInfo(int column, bool bAscending);
 
         enum FavorIndex
         {
@@ -25,7 +28,11 @@ class Quest :
 
         int MaxFavor() const;
 
+        void SetDifficulty(QuestDifficulty diff);
+        QuestDifficulty GetDifficulty() const;
+
         bool VerifyObject() const;
+        bool operator<(const Quest& other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -51,4 +58,11 @@ class Quest :
 
         DL_DECLARE_ACCESS(Quest_PROPERTIES)
         DL_DECLARE_VARIABLES(Quest_PROPERTIES)
+
+        QuestDifficulty m_difficulty;
+
+        static int gm_column;
+        static bool gm_bAscending;
+
+        friend class CDDOBuilderApp;
 };

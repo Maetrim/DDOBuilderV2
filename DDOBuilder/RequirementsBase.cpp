@@ -55,7 +55,7 @@ void RequirementsBase::EndElement()
 
 void RequirementsBase::Write(XmlLib::SaxWriter* writer) const
 {
-    writer->StartElement(ElementName(), VersionAttributes());
+    writer->StartElement(ElementName());//, VersionAttributes());
     DL_WRITE(RequirementsBase_PROPERTIES)
         writer->EndElement();
 }

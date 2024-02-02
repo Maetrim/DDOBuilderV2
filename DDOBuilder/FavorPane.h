@@ -50,7 +50,6 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    static int CALLBACK SortCompareFunction(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
     void PopulateQuestList();
     unsigned int GetCheckedState(FavorType ft);
     bool GetEnabledState(FavorType ft);

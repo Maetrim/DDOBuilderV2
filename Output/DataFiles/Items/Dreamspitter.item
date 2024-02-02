@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Dreamspitter</Name>
     <Icon>Quarterstaff_7b</Icon>
     <Description>This is a truly ancient relic of the giant wars against Dal Quor. The dream-monsters
@@ -29,16 +30,96 @@ flesh.</Description>
       <BonusType>Weapon Enchantment</BonusType>
     </Buff>
     <Buff>
+      <Type>Greater Evil Outsider Bane</Type>
+    </Buff>
+    <Buff>
       <Type>Life Stealing</Type>
     </Buff>
     <Buff>
       <Type>SchoolFocusNumber</Type>
+      <Value1>2</Value1>
       <BonusType>Equipment</BonusType>
       <Description1>Enchantment</Description1>
       <Item>Enchantment</Item>
     </Buff>
-    <Buff>
+    <ItemAugment>
       <Type>Suppressed Power</Type>
-    </Buff>
+      <Augment>
+        <Name>Adds Holy</Name>
+        <Description>Holy: A holy weapon is imbued with holy power. This power makes the weapon
+good-aligned. Evil characters wielding this weapon suffer a negative level.
+The weapon deals an extra 2 to 12 damage against all targets of evil alignment.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Evil</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Good</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Stacking</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Good</Value>
+        </Effect>
+        <Effect>
+          <Type>NegativeLevel</Type>
+          <Bonus>Stacking</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Requirements>
+            <Requirement>
+              <Type>AlignmentType</Type>
+              <Item>Evil</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Upgradeable Item (Stormreaver)</Type>
+      <Augment>
+        <Name>Adds Force Burst</Name>
+        <Description>Force Burst: This weapon is humming with magical force, and does 1 to 6 force
+damage each hit. Critical hits deal an additional 1 to 10 force damage for
+weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30
+for a x4 multiplier.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Force</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <AType>CriticalDice</AType>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4 </Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Force</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -214,12 +214,19 @@ void BreakdownItem::AddActiveItems(
                         0);
 
                 // the number of stacks of it
-                CString stacks = it.StacksAsString().c_str();
-                pControl->SetItemText(index, CO_Stacks, stacks);
+                if (it.AType() != Amount_NotNeeded)
+                {
+                    CString stacks = it.StacksAsString().c_str();
+                    pControl->SetItemText(index, CO_Stacks, stacks);
+                }
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                if (it.HasValue())
+                if (it.AType() == Amount_NotNeeded)
+                {
+                    amount = it.Item().front().c_str();
+                }
+                else if (it.HasValue())
                 {
                     amount = it.Value().c_str();
                 }
@@ -262,12 +269,19 @@ void BreakdownItem::AddActivePercentageItems(
                         0);
 
                 // the number of stacks of it
-                CString stacks = it.StacksAsString().c_str();
-                pControl->SetItemText(index, CO_Stacks, stacks);
+                if (it.AType() != Amount_NotNeeded)
+                {
+                    CString stacks = it.StacksAsString().c_str();
+                    pControl->SetItemText(index, CO_Stacks, stacks);
+                }
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                if (it.HasValue())
+                if (it.AType() == Amount_NotNeeded)
+                {
+                    amount = it.Item().front().c_str();
+                }
+                else if (it.HasValue())
                 {
                     amount = it.Value().c_str();
                 }
@@ -311,12 +325,19 @@ void BreakdownItem::AddDeactiveItems(
                         0);
 
                 // the number of stacks of it
-                CString stacks = it.StacksAsString().c_str();
-                pControl->SetItemText(index, CO_Stacks, stacks);
+                if (it.AType() != Amount_NotNeeded)
+                {
+                    CString stacks = it.StacksAsString().c_str();
+                    pControl->SetItemText(index, CO_Stacks, stacks);
+                }
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                if (it.HasValue())
+                if (it.AType() == Amount_NotNeeded)
+                {
+                    amount = it.Item().front().c_str();
+                }
+                else if (it.HasValue())
                 {
                     amount = it.Value().c_str();
                 }

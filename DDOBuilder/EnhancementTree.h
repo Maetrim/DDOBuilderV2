@@ -26,7 +26,10 @@ class EnhancementTree :
         const EnhancementTreeItem * FindEnhancementItem(const std::string& enhancementName) const;
         bool MeetRequirements(const Build & build, size_t level) const;
 
-        void SetFilename(const std::string&) {};
+        void SetFilename(const std::string& filename);
+
+        void Save() const;
+        EnhancementTreeItem* FindItemByPosition(size_t x, size_t y) const;
 
         bool operator==(const EnhancementTree & other) const;
         void VerifyObject(
@@ -56,4 +59,6 @@ class EnhancementTree :
         DL_DECLARE_VARIABLES(EnhancementTree_PROPERTIES)
 
         friend class CEnhancementEditorDialog;
+    private:
+        std::string m_filename;
 };

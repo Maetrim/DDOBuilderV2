@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Elemental Khopesh of Water (level 12)</Name>
     <Icon>Khopesh_9</Icon>
     <Description>This khopesh is part of a mass-produced line of the House Cannith weapons with
@@ -24,6 +25,11 @@ as a result.</Description>
     <CriticalMultiplier>3</CriticalMultiplier>
     <CriticalThreatRange>2</CriticalThreatRange>
     <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>3</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
       <Type>Icy Burst</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
@@ -43,12 +49,44 @@ as a result.</Description>
       <Description1>Fire</Description1>
       <Item>Fire</Item>
     </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>24</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Fire</Description1>
-      <Item>Fire</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+4 Enhancement Bonus and Fire Resistance 20</Name>
+        <Description>+4 Enhancement Bonus: +4 Enhancement bonus to attack and damage rolls.
+Fire Resistance +26: Passive: +26 Enhancement bonus to your Fire Resistance.</Description>
+        <MinLevel>12</MinLevel>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">26</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds a Purple augment slot and Fire Resistance 29</Name>
+        <Description>Adds a Purple augment slot to this item
+Fire Resistance +29: Passive: +29 Enhancement bonus to your Fire Resistance.</Description>
+        <MinLevel>12</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">29</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

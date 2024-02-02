@@ -20,6 +20,7 @@ CMFCButtonMMRelay::~CMFCButtonMMRelay()
 BEGIN_MESSAGE_MAP(CMFCButtonMMRelay, CMFCButton)
     ON_WM_MOUSEMOVE()
     ON_WM_RBUTTONUP()
+    ON_WM_MBUTTONDOWN()
 END_MESSAGE_MAP()
 
 void CMFCButtonMMRelay::SetTransparent()
@@ -48,6 +49,17 @@ void CMFCButtonMMRelay::OnRButtonUp(UINT nFlags, CPoint point)
     UNREFERENCED_PARAMETER(point);
     NMHDR hdr;
     hdr.code = NM_RCLICK;
+    hdr.hwndFrom = this->GetSafeHwnd();
+    hdr.idFrom = GetDlgCtrlID();
+    GetParent()->SendMessage(WM_NOTIFY, (WPARAM)hdr.idFrom, (LPARAM)&hdr);
+}
+
+void CMFCButtonMMRelay::OnMButtonDown(UINT nFlags, CPoint point) 
+{
+    UNREFERENCED_PARAMETER(nFlags);
+    UNREFERENCED_PARAMETER(point);
+    NMHDR hdr;
+    hdr.code = NM_THEMECHANGED;
     hdr.hwndFrom = this->GetSafeHwnd();
     hdr.idFrom = GetDlgCtrlID();
     GetParent()->SendMessage(WM_NOTIFY, (WPARAM)hdr.idFrom, (LPARAM)&hdr);

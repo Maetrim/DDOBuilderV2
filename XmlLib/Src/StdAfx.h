@@ -2,6 +2,7 @@
 
 #pragma once
 #pragma warning(disable: 4786) // identifier was truncated to '255' characters in the debug information
+#pragma warning( disable : 26812 ) //the enum type "name" is unscoped. Prefer 'enum class' over 'enum'
 
 #define VC_EXTRALEAN        // Exclude rarely-used stuff from Windows headers
 #define _WIN32_WINNT 0x0400

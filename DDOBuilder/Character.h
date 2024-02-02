@@ -12,7 +12,6 @@ class CharacterObserver :
     public Observer<Character>
 {
     public:
-        virtual void UpdateNumBuildsChanged(Character *) {};
         virtual void UpdateActiveLifeChanged(Character*) {};
         virtual void UpdateActiveBuildChanged(Character *) {};
         virtual void UpdateActiveBuildPositionChanged(Character*) {};
@@ -76,7 +75,6 @@ protected:
         DL_DECLARE_ACCESS(Character_PROPERTIES)
         DL_DECLARE_VARIABLES(Character_PROPERTIES)
     private:
-        void NotifyNumBuildsChanged();
         void NotifyActiveLifeChanged();
 
         CDDOBuilderDoc* m_pDocument;

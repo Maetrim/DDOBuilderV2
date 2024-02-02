@@ -2079,3 +2079,73 @@ void FormatExportData(CString* exportData)
     FormatExportData(&copy);
     *exportData = copy.c_str();
 }
+
+void MakeIconTransparent(const CString& iconFilename, bool bPlusTopLeft)
+{
+    std::string location = DataFolder();
+    std::string filename = location;
+    filename += iconFilename;
+    filename += ".png";
+
+    // load the image
+    CImage image;
+    HRESULT result = image.Load(filename.c_str());
+    if (result == S_OK)
+    {
+        // set the pixel background
+        for (size_t y = 0; y < 9; y++)
+        {
+            if (!bPlusTopLeft)
+            {
+                for (size_t x = 0; x < (9 - y); x++)
+                {
+                    image.SetPixel(x, y, c_transparentColour);
+                }
+            }
+            for (size_t x = 0; x < (9 - y); x++)
+            {
+                image.SetPixel(x, 31 - y, c_transparentColour);
+            }
+            for (size_t x = 0; x < (9 - y); x++)
+            {
+                image.SetPixel(31 - x, y, c_transparentColour);
+            }
+            for (size_t x = 0; x < (9 - y); x++)
+            {
+                image.SetPixel(31 - x, 31 - y, c_transparentColour);
+            }
+        }
+        if (bPlusTopLeft)
+        {
+            // do direct pixels to avoid the + part
+            image.SetPixel(0, 0, c_transparentColour);
+            image.SetPixel(1, 0, c_transparentColour);
+            image.SetPixel(2, 0, c_transparentColour);
+            image.SetPixel(0, 1, c_transparentColour);
+            image.SetPixel(1, 1, c_transparentColour);
+            image.SetPixel(2, 1, c_transparentColour);
+            image.SetPixel(0, 2, c_transparentColour);
+            image.SetPixel(1, 2, c_transparentColour);
+            image.SetPixel(2, 2, c_transparentColour);
+
+            image.SetPixel(6, 0, c_transparentColour);
+            image.SetPixel(7, 0, c_transparentColour);
+            image.SetPixel(8, 0, c_transparentColour);
+            image.SetPixel(6, 1, c_transparentColour);
+            image.SetPixel(7, 1, c_transparentColour);
+            image.SetPixel(6, 2, c_transparentColour);
+
+            image.SetPixel(0, 6, c_transparentColour);
+            image.SetPixel(0, 7, c_transparentColour);
+            image.SetPixel(0, 8, c_transparentColour);
+            image.SetPixel(1, 6, c_transparentColour);
+            image.SetPixel(1, 7, c_transparentColour);
+            image.SetPixel(2, 6, c_transparentColour);
+        }
+        image.Save(filename.c_str(), Gdiplus::ImageFormatPNG);
+    }
+    else
+    {
+        AfxMessageBox("Failed, image failed to load", MB_ICONERROR);
+    }
+}

@@ -22,6 +22,7 @@ class EnhancementTreeItem :
         std::string DisplayName(const std::string& selection) const;
         std::string ActiveIcon(const Build & build) const;
         void RenderIcon(const Build & build, CDC * pDC, const CRect & itemRect) const;
+        std::string SelectionIcon(const std::string& selection) const;
         bool MeetRequirements(
                 const Build & build,
                 const std::string& selection,
@@ -105,4 +106,6 @@ class EnhancementTreeItem :
 
         static CImageList sm_enhancementImages;
         static CImageList sm_disabledEnhancementImages;
+
+        friend class CEnhancementTreeDialog;
 };

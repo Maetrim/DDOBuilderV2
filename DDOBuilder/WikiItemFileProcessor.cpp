@@ -49,37 +49,65 @@ void WikiItemFileProcessor::Start()
     text.Format("Processing files in \"%s\"", m_sourcePath.c_str());
     GetLog().AddLogEntry(text);
 
-    int fileCount = 0;
     std::string fileFilter = m_sourcePath;
     fileFilter += "\\*.*";
+
+    // first count the number of files
+    size_t totalFileCount = 0;
+    {
+        WIN32_FIND_DATA findFileData;
+        HANDLE hFind = FindFirstFile(fileFilter.c_str(), &findFileData);
+        if (hFind != INVALID_HANDLE_VALUE)
+        {
+            totalFileCount++;
+            while (FindNextFile(hFind, &findFileData))
+            {
+                totalFileCount++;
+            }
+            FindClose(hFind);
+        }
+    }
+
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(pWnd);
+    pFrameWnd->BeginProgress("Processing wiki files...");
 
     // read all the item files found in the Items sub-directory
     // first enumerate each file and load it
     WIN32_FIND_DATA findFileData;
     HANDLE hFind = FindFirstFile(fileFilter.c_str(), &findFileData);
+    size_t fileIndex = 0;
+    int lastPercent = -1;
     if (hFind != INVALID_HANDLE_VALUE)
     {
         std::string fullFilename = m_sourcePath;
         fullFilename += "\\";
         fullFilename += findFileData.cFileName;
-        ProcessFile(fileCount++, fullFilename);
+        ProcessFile(fileIndex++, fullFilename);
         while (FindNextFile(hFind, &findFileData))
         {
             fullFilename = m_sourcePath;
             fullFilename += "\\";
             fullFilename += findFileData.cFileName;
-            ProcessFile(fileCount++, fullFilename);
+            ProcessFile(fileIndex++, fullFilename);
             // allow UI to function
             MSG msg;
             while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
             {
                 AfxGetThread()->PumpMessage();
             }
+            int percent = static_cast<int>(fileIndex * 100 / totalFileCount);
+            if (percent != lastPercent)
+            {
+                lastPercent = percent;
+                pFrameWnd->SetProgress(percent);
+            }
         }
         FindClose(hFind);
     }
+    pFrameWnd->EndProgress();
 
-    text.Format("Processing complete, %d files done", fileCount);
+    text.Format("Processing complete, %d files done", totalFileCount);
     GetLog().AddLogEntry(text);
 }
 
@@ -1174,6 +1202,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Elemental Bane", "Lesser Elemental Bane", "Enhancement", "All", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserIncorporealBane", "Lesser Incorporeal Bane", "Enhancement", "All", 5);
 
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Evil Outsider Bane", "Greater Evil Outsider Bane Greater Evil Outsider Bane", "Enhancement", "All", 5);
+
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Construct Bane", "Construct Bane Construct Bane", "Enhancement", "All", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ElementalManipulation", "Elemental Manipulation", "Equipment", "", 5);
@@ -1184,6 +1214,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Absolute Law", "Absolute Law Absolute Law", "Equipment", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Supreme Law", "Supreme Law Supreme Law", "Equipment", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Pure Good", "Pure Good Pure Good", "Equipment", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shadow Spike", "Shadow Spike Shadow Spike", "Equipment", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Acid Burst", "Acid Burst Acid Burst", "Equipment", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Feeding 10", "Feeding 10 Feeding 10", "Equipment", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Feeding 20", "Feeding 20 Feeding 20", "Equipment", "", 5);
@@ -1202,6 +1234,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Stormreaver's Thunderclap", "Stormreaver's Thunderclap", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "3rd Degree Burns", "3rd Degree Burns", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Cursed Maelstrom", "Cursed Maelstrom", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Brazen Brilliance", "Brazen Brilliance Brazen Brilliance", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Banishing", "Banishing Banishing", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dampened", "Dampened Dampened", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Suppressed Power", "Suppressed Power Suppressed Power", "", "", 5);
@@ -1538,6 +1572,11 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Burst 2", "Axiomatic Burst 2", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Burst 4", "Axiomatic Burst 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Burst 6", "Axiomatic Burst 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Blast 2", "Axiomatic Blast 2", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Blast 3", "Axiomatic Blast 3", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Blast 4", "Axiomatic Blast 4", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Blast 5", "Axiomatic Blast 5", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Axiomatic Blast 6", "Axiomatic Blast 6", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EvilOutsiderBane", "Evil Outsider Bane Evil Outsider Bane", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EvilOutsiderBane 2", "Evil Outsider Bane 2", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EvilOutsiderBane 3", "Evil Outsider Bane 3", "Enhancement", "All");
@@ -1757,14 +1796,32 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Ooze Bane", "Greater Ooze Bane", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Aberration Bane", "Greater Aberration Bane", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Aberration Bane", "Lesser Aberration Bane", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Aberration Bane 6", "Aberration Bane 6", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Aberration Bane", "Aberration Bane", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Magical Beast Bane", "Greater Magical Beast Bane", "", "All");
-
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Magical Beast Bane", "Magical Beast Bane", "", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Feybane 2", "Feybane 2", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Feybane 6", "Feybane 6", "Enhancement", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Stabbing 6", "Stabbing 6", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Stabbing 15", "Stabbing 15", "Enhancement", "");
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unwieldy", "Unwieldy Unwieldy", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Rock Shattering", "Rock Shattering Rock Shattering", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Psychic Ward", "Psychic Ward Psychic Ward", "Enhancement", "");
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Stealer of Souls", "Legendary Stealer of Souls Legendary Stealer of Souls", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Overwhelming Stealer of Souls", "Overwhelming Stealer of Souls Overwhelming Stealer of Souls", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Stealer of Souls", "Stealer of Souls Stealer of Souls", "Enhancement", "");
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Whelming Shockwave", "Legendary Whelming Shockwave Legendary Whelming Shockwave", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Whelming Shockwave", "Whelming Shockwave Whelming Shockwave", "Enhancement", "");
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Boneshatter", "Lesser Boneshatter Lesser Boneshatter", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shadowblade", "Shadowblade Shadowblade", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Constricting Nightmare", "Constricting Nightmare Constricting Nightmare", "Enhancement", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Fetters of Unreality", "Fetters of Unreality", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vulnerable", "Vulnerable", "", "All");
@@ -2191,6 +2248,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= line.find("Passive: Attacks from this weapon bypass the miss chance of incorporeal") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("Greater: Insightful Fortification +25%") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("Note: provides 1 hp of healing per hit.") != std::string::npos;
+    if (!bRecognised) bRecognised |= line.find("On Vorpal Hit : If an outsider struck by this weapon") != std::string::npos;
 
     return bRecognised;
 }

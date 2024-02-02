@@ -90,6 +90,9 @@ void SpendInTree::EndElement()
             m_pointsSpent += teit.Cost(rank);
         }
     }
+    CString text;
+    text.Format("Points spent in tree %s is %d\r\n", TreeName().c_str(), m_pointsSpent);
+    GetLog().AddLogEntry(text);
 }
 
 void SpendInTree::Write(XmlLib::SaxWriter * writer) const
