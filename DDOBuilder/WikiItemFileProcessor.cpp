@@ -1201,6 +1201,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Elemental Bane", "Lesser Elemental Bane", "Enhancement", "All", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserIncorporealBane", "Lesser Incorporeal Bane", "Enhancement", "All", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Incorporeal Bane", "Greater Incorporeal Bane", "Enhancement", "All", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Evil Outsider Bane", "Greater Evil Outsider Bane Greater Evil Outsider Bane", "Enhancement", "All", 5);
 

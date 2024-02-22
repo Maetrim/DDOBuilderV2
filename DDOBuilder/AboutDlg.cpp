@@ -54,7 +54,23 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     m_bugReporters.SetWindowText(
             "In alphabetical order:\r\n"
             "\r\n"
-            "<name>\r\n");
+            "Aaumini, "
+            "d3x-dt3, "
+            "Daawsomeone, "
+            "DODOCung, "
+            "DougSK, "
+            "JelloDDO, "
+            "keluynn, "
+            "Melkizadek1, "
+            "MuazAlhaidar, "
+            "Mummykiller, "
+            "nb756, "
+            "Ntoukis, "
+            "Orbalus, "
+            "rosstracy, "
+            "SpartanKiller13, "
+            "thomas-langworthy, "
+            "zilgabex");
     m_bugReporters.SetSel((DWORD)-1);    // nothing starts selected
 }
 

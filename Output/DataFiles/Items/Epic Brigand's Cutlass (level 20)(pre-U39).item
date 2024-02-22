@@ -25,12 +25,21 @@ lawful opponents.</Description>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>3</CriticalThreatRange>
+    <NoAutoUpdate />
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
     <Buff>
       <Type>SkillBonus</Type>
       <Value1>15</Value1>
       <BonusType>Competence</BonusType>
       <Description1>Intimidate</Description1>
       <Item>Intimidate</Item>
+    </Buff>
+    <Buff>
+      <Type>Anarchic Burst</Type>
     </Buff>
     <Buff>
       <Type>Vorpal</Type>
@@ -43,10 +52,57 @@ lawful opponents.</Description>
       <Value1>15</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <Buff>
-      <Type>Incite</Type>
-      <Value1>15</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+6 Enhancement Bonus and Incite 30</Name>
+        <Description>+6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Incite +30: +30% Enhancement bonus to increased threat generation from melee damage</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+        <Effect>
+          <Type>ThreatBonusMelee</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">20</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds Absolute Chaos and a Red augment slot</Name>
+        <Description>Absolute Chaos: This weapon is infused with the ultimate power of Chaos.
+It does an additional 2 to 12 damage to non-chaotic targets and can only be
+wielded by Chaotic-aligned characters.
+Adds a Red augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Lawful</Damage>
+          </Dice>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Chaotic</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

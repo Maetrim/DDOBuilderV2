@@ -1297,33 +1297,6 @@ void Build::Reaper_SwapTrees(
     NotifyEnhancementTreeOrderChanged();
 }
 
-int Build::TotalPointsAvailable(
-        size_t level,
-        TreeType type) const
-{
-    size_t levelAps = level * 4 + 4;
-    int aps = 0;
-    switch (type)
-    {
-    case TT_racial:
-        aps = levelAps + m_pLife->BonusRacialActionPoints();  // bonus APs only apply to racial tree
-        break;
-    case TT_enhancement:
-        aps = levelAps;
-        break;
-    case TT_universal:
-        aps = levelAps + m_pLife->BonusUniversalActionPoints();  // bonus APs only apply to universal tree(s)
-        break;
-    case TT_reaper:
-        aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
-        break;
-    case TT_epicDestiny:
-        aps = static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total());
-        break;
-    }
-    return aps;
-}
-
 int Build::AvailableActionPoints(
         size_t level,
         TreeType type) const

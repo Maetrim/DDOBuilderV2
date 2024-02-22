@@ -1158,11 +1158,11 @@ void Requirement::CreateRequirementStrings(
             met = EvaluateFeatAnySource(build, level, includeTomes);
             if (HasValue())
             {
-                description.Format("Requires: %s(%d)", m_Item.front().c_str(), Value());
+                description.Format("Requires: %s(%d) (Any source)", m_Item.front().c_str(), Value());
             }
             else
             {
-                description.Format("Requires: %s", m_Item.front().c_str());
+                description.Format("Requires: %s (Any source)", m_Item.front().c_str());
             }
             break;
         }

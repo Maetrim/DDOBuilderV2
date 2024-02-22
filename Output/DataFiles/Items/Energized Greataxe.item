@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Energized Greataxe</Name>
     <Icon>GreatAxe_2a</Icon>
     <Description>A weapon found deep within the Temple of Elemental Evil.</Description>
@@ -29,5 +30,59 @@
       <Type>ElectricVulnerability</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Tier 1</Type>
+      <Augment>
+        <Name>Adds Maiming and Electric Storm</Name>
+        <Description>Maiming: This weapon has a twisted haft or grip and spikes along its blade,
+head, or point. Whenever you score a critical hit with this weapon it deals an
+amount of extra untyped damage depending on its critical multiplier: x2 - 1 to 6,
+x3 - 2 to 12, x4 - 3 to 18.
+Electric Storm: This weapon is imbued with an electrifying wrath. On an attack
+roll of 20 which is confirmed as a critical hit this power will be released,
+dealing damage to the target and all enemies near it for 15d6 electric damage.
+A successful Reflex save (DC 39) reduces this by half.</Description>
+        <MinLevel>7</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <AType>CriticalDice</AType>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4 </Number>
+            <Sides size="6">0 0 6 6 6 6</Sides>
+            <Damage>Untyped</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Adds Shocking Blast and a Purple augment slot</Name>
+        <Description>Shocking Blast: A shocking blast weapon is sheathed in crackling electricity.
+Critical hits with this weapon deal an additional 1 to 10 electric damage for
+weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier,
+and 3 to 30 for a x4 multiplier. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 4 to 24 more
+electric damage.
+Adds a Purple augment slot to this item</Description>
+        <MinLevel>16</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <AType>CriticalDice</AType>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4 </Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Electric</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

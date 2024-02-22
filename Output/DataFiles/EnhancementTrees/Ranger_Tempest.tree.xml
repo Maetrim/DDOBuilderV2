@@ -17,7 +17,15 @@
          <InternalName>TempestCore1</InternalName>
          <Description>While you are dual wielding weapons, you gain a +2 Shield bonus to Armor Class,
 Physical Resistance Rating, and Magical Resistance Rating. This increases by +1
-for each additional Tempest Core Ability you acquire.</Description>
+for each additional Tempest Core Ability you acquire.
+
+In addition, if you are a level 1 character, you gain the Two Weapon Fighting
+Feat until you reach Ranger level 2. (Two Weapon Fighting is granted permanently
+when you take a second Ranger level).
+
+Two Weapon Fighting: Reduces the penalty for fighting with two weapons, and
+increases the chance to produce off hand attacks when fighting with two weapons
+(or as an unarmed Monk) by 20% to 40%.</Description>
          <Icon>TempestShieldOfWhirlingSteel</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -46,13 +54,31 @@ for each additional Tempest Core Ability you acquire.</Description>
                </Requirement>
             </Requirements>
          </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>Two Weapon Fighting</Item>
+            <Requirements>
+               <RequiresNoneOf>
+                  <Requirement>
+                     <Type>Feat</Type>
+                     <Item>Two Weapon Fighting</Item>
+                  </Requirement>
+               </RequiresNoneOf>
+            </Requirements>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tempest: Tempest</Name>
          <InternalName>TempestCore2</InternalName>
-         <Description>+10% stacking chance to make off-hand attacks when dual wielding weapons.
-You now treat Scimitars as if they were light melee weapons. While you are dual
-wielding, you can use your dexterity modifier to hit with light melee weapons.</Description>
+         <Description>+10% Offhand Strike Chance (the chance to make off-hand attacks when Dual Wielding
+Melee weapons).
+
+You now treat Scimitars as if they were light melee weapons.
+
+While you are Dual Wielding light Melee weapons, you can use your dexterity modifier
+to hit.</Description>
          <Icon>Tempest</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -109,8 +135,8 @@ wielding, you can use your dexterity modifier to hit with light melee weapons.</
       <EnhancementTreeItem>
          <Name>Tempest: Graceful Death</Name>
          <InternalName>TempestCore3</InternalName>
-         <Description>While you are dual wielding weapons, you can use your Dexterity modifier for
-damage with light melee weapons. </Description>
+         <Description>While you are Dual Wielding light Melee weapons, you can use your Dexterity modifier
+for damage.</Description>
          <Icon>TempestGracefulDeath</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -154,9 +180,10 @@ damage with light melee weapons. </Description>
       <EnhancementTreeItem>
          <Name>Tempest: Deflect Arrows</Name>
          <InternalName>TempestCore4</InternalName>
-         <Description>You gain the benefits of the Deflect Arrows feat while dual wielding,
+         <Description>You gain the benefits of the Deflect Arrows feat while Dual Wielding Melee weapons,
 knocking aside one incoming projectile that would have struck you every 6 seconds.
-+1 Competence Bonus to Critical Damage Multiplier while dual wielding weapons. </Description>
+
++1 Competence Bonus to Critical Damage Multiplier while Dual Wielding Melee weapons.</Description>
          <Icon>TempestDeflectArrows</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -225,8 +252,10 @@ knocking aside one incoming projectile that would have struck you every 6 second
       <EnhancementTreeItem>
          <Name>Tempest: Whirlwind</Name>
          <InternalName>TempestCore5</InternalName>
-         <Description>+5% Melee Doublestrike when dual wielding, +5% Incorporeality (stacking),
-+10% stacking chance to make off-hand attacks when dual wielding.</Description>
+         <Description>+5%  Doublestrike when Dual Wielding Melee weapons.
+
++5% Incorporeality (stacking),
++10% Offhand Strike Chance.</Description>
          <Icon>TempestWhirlwind</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -287,8 +316,12 @@ knocking aside one incoming projectile that would have struck you every 6 second
       <EnhancementTreeItem>
          <Name>Tempest: Dervish</Name>
          <InternalName>TempestCore6</InternalName>
-         <Description>+4 Dexterity. +10% doublestrike. While wearing light or no armor: +10 Melee Power,
-Physical Resistance Rating, and Magical Resistance Rating</Description>
+         <Description>+4 Dexterity. +10% Doublestrike.
+
+While wearing medium, light or no armor:
++10 Melee Power
++10 Physical Resistance Rating
++10 Magical Resistance Rating</Description>
          <Icon>TempestDervish</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -362,6 +395,10 @@ Physical Resistance Rating, and Magical Resistance Rating</Description>
                      <Type>Stance</Type>
                      <Item>Light Armor</Item>
                   </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Medium Armor</Item>
+                  </Requirement>
                </RequiresOneOf>
             </Requirements>
          </Effect>
@@ -381,7 +418,7 @@ Physical Resistance Rating, and Magical Resistance Rating</Description>
       <EnhancementTreeItem>
          <Name>Tempest: Improved Reaction</Name>
          <InternalName>TempestImprovedReaction</InternalName>
-         <Description>+[1/2/3] Reflex saves and an additional +[1/2/3] saves against traps.</Description>
+         <Description>+[1/2/3] Reflex Saves and an additional +[1/2/3] saves against traps.</Description>
          <Icon>TempestImprovedReaction</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -624,7 +661,7 @@ effect can stack up to 5 times.
          <Selector>
             <EnhancementSelection>
                <Name>Haste Boost</Name>
-               <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds. </Description>
+               <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
                <Icon>TempestHasteBoost</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -642,9 +679,8 @@ effect can stack up to 5 times.
       <EnhancementTreeItem>
          <Name>Tempest: Storm Dancer</Name>
          <InternalName>TempestStormDancer</InternalName>
-         <Description>Stance: Absorb 15% of Electrical damage.
-Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
-This damage scales with 100% Melee or Ranged Power.</Description>
+         <Description>Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+This damage scales with 100% Melee Power.</Description>
          <Icon>TempestStormDancer</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -663,24 +699,10 @@ This damage scales with 100% Melee or Ranged Power.</Description>
          <Stance>
             <Name>Storm Dancer</Name>
             <Icon>TempestStormDancer</Icon>
-            <Description>You absorb an additional 15% of Electrical damage.
-Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
-This damage scales with 100% Melee or Ranged Power.</Description>
+            <Description>Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+This damage scales with 100% Melee Power.</Description>
             <Group>Imbue</Group>
          </Stance>
-         <Effect>
-            <Type>EnergyAbsorbance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Storm Dancer</Item>
-               </Requirement>
-            </Requirements>
-            <AType>Simple</AType>
-            <Amount size="1">15</Amount>
-         </Effect>
          <Effect>
             <Type>WeaponOtherDamageBonusCritical</Type>
             <Type>WeaponOtherDamageBonusCritical</Type>
@@ -688,7 +710,7 @@ This damage scales with 100% Melee or Ranged Power.</Description>
             <Bonus>Enhancement</Bonus>
             <Dice>
                <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
+               <Sides size="1">8</Sides>
                <Damage>Electric</Damage>
                <ScalesWithMeleePower/>
             </Dice>
@@ -766,7 +788,7 @@ This damage scales with 100% Melee or Ranged Power.</Description>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
-                  <Item>Cloth Armor</Item>
+                  <Item>Light Armor</Item>
                </Requirement>
             </Requirements>
          </Effect>
@@ -774,7 +796,8 @@ This damage scales with 100% Melee or Ranged Power.</Description>
       <EnhancementTreeItem>
          <Name>Tempest: Critical Mastery</Name>
          <InternalName>TempestCriticalMastery</InternalName>
-         <Description>+[1/2/3] to confirm critical hits and to critical hit damage (before weapon multipliers)</Description>
+         <Description>+[1/2/3] to confirm critical hits and to critical hit damage
+(before weapon multipliers)</Description>
          <Icon>TempestCriticalMastery</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -879,7 +902,7 @@ This damage scales with 100% Melee or Ranged Power.</Description>
       <EnhancementTreeItem>
          <Name>Tempest: Storm Tempest</Name>
          <InternalName>TempestStormTempest</InternalName>
-         <Description>Upgrades Storm Dancer Electrical damage absorption to 30% (instead of 15%).</Description>
+         <Description>Upgrades Storm Dancer Imbue Toggle to grant +30% Electrical Absorption.</Description>
          <Icon>TempestStormTempest</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -908,14 +931,15 @@ This damage scales with 100% Melee or Ranged Power.</Description>
                </Requirement>
             </Requirements>
             <AType>Simple</AType>
-            <Amount size="1">15</Amount>
+            <Amount size="1">30</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tempest: Elaborate Parry</Name>
          <InternalName>TempestElaborateParry</InternalName>
-         <Description>For the next [6/12/18] seconds, you gain Dodge, Maximum Dodge, and Maximum Dexterity
-Bonus to light armor, equal to your Dexterity Modifier. (Cooldown: 90 seconds).</Description>
+         <Description>Elaborate Parry: For the next [6/12/18] seconds, you gain Dodge, Maximum Dodge,
+and Maximum Dexterity Bonus to light armor, equal to your Dexterity Modifier.
+Cooldown: 90 seconds.</Description>
          <Icon>TempestElaborateParry</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -930,7 +954,8 @@ Bonus to light armor, equal to your Dexterity Modifier. (Cooldown: 90 seconds).<
          <InternalName>TempestTheGrowingStorm</InternalName>
          <Description>Melee Dual Wielding Attack: Attacks an opponent. For the next [5/10/15] seconds,
 each time you damage an opponent you gain +1 damage for 5 seconds. This effect
-can stack up to 10 times. (Cooldown: 30 seconds) </Description>
+can stack up to 10 times.
+Cooldown: 30 seconds</Description>
          <Icon>TempestTheGrowingStorm</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1038,7 +1063,11 @@ can stack up to 10 times. (Cooldown: 30 seconds) </Description>
          <Name>Tempest: Dual Perfection</Name>
          <InternalName>TempestDualPerfection</InternalName>
          <Description>Your off hand weapon now adds your full attribute damage modifier.
-+25% Competence bonus to Maximum Hit Points.</Description>
+
+(For instance, if you have 30 Strength, you gain +10 damage with your offhand
+weapon, like your main hand weapon).
+
+Passive: +25% Competence bonus to Maximum Hit Points.</Description>
          <Icon>TempestDualPerfection</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1076,7 +1105,8 @@ can stack up to 10 times. (Cooldown: 30 seconds) </Description>
          <Name>Tempest: Evasive Dance</Name>
          <InternalName>TempestEvasiveDance</InternalName>
          <Description>Improves your Evasion ability so on a failed Reflex saving throw against an
-attack that normally deals half damage on a successful save, you only take [85/70/50]% damage. </Description>
+attack that normally deals half damage on a successful save, you only take
+[85/70/50]% damage. </Description>
          <Icon>TempestEvasiveDance</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1095,7 +1125,7 @@ attack that normally deals half damage on a successful save, you only take [85/7
                <Value>12</Value>
             </Requirement>
             <Requirement>
-               <Type>Feat</Type>
+               <Type>FeatAnySource</Type>
                <Item>Evasion</Item>
             </Requirement>
             <Requirement>
@@ -1107,7 +1137,7 @@ attack that normally deals half damage on a successful save, you only take [85/7
       <EnhancementTreeItem>
          <Name>Tempest: Cuts</Name>
          <InternalName>TempestCuts</InternalName>
-         <Description>Choose one:</Description>
+         <Description>Choose a method of inflicting additional cuts.</Description>
          <Icon>TempestCuts</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1224,6 +1254,19 @@ Strikethrough regardless of Combat Style for the duration.</Description>
                <Value>12</Value>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="1">0 100 200</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Dance of Death</Item>
+               </Requirement>
+            </Requirements>
+            <Item>All</Item>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

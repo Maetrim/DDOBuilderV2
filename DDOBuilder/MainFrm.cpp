@@ -44,6 +44,7 @@ const UINT uiLastUserToolBarId = uiFirstUserToolBarId + iMaxUserToolbars - 1;
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_WM_CREATE()
+    ON_WM_SIZE()
     // Global help commands
     ON_COMMAND(ID_HELP_FINDER, &CFrameWndEx::OnHelpFinder)
     ON_COMMAND(ID_HELP, &CFrameWndEx::OnHelp)
@@ -196,6 +197,22 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     }
 
     return 0;
+}
+
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
+{
+    CFrameWndEx::OnSize(nType, cx, cy);
+    // re-position progress control if it exists
+    if (IsWindow(m_ctlProgress.GetSafeHwnd()))
+    {
+        CRect wndRect;
+        m_ctlProgress.GetWindowRect(&wndRect);
+        m_wndStatusBar.ScreenToClient(&wndRect);
+        CRect rc;
+        m_wndStatusBar.GetItemRect(0, &rc);
+        rc.left += wndRect.left;
+        m_ctlProgress.MoveWindow(rc, TRUE);
+    }
 }
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)

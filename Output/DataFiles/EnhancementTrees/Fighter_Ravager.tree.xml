@@ -16,8 +16,12 @@
       <Name>Ravager: Furious Rage</Name>
       <InternalName>DLRavCore1</InternalName>
       <Description>When you miss your attack by rolling 1, you gain Fury for six seconds.
-Fury: +1 Rage bonus to attack and damage.
-This effect stacks and one stack fades every six seconds.</Description>
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks and one stack fades
+every six seconds.
+
+You cannot take this enhancement if you have any points in the Barbarian's
+version of this tree.</Description>
       <Icon>RavFuriousrage</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
@@ -41,7 +45,7 @@ This effect stacks and one stack fades every six seconds.</Description>
     <EnhancementTreeItem>
       <InternalName>DLRavCore2</InternalName>
       <Name>Ravager: Pain Touch I</Name>
-      <Description>Passive: +5 Melee power and +10 Healing Amplification</Description>
+      <Description>Passive: +5 Melee power and +5 Healing Amplification</Description>
       <Icon>RavPainTouch</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
@@ -69,16 +73,23 @@ This effect stacks and one stack fades every six seconds.</Description>
         <Type>HealingAmplification</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">10</Amount>
+        <Amount size="1">5</Amount>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>DLRavCore3</InternalName>
       <Name>Ravager: Demoralizing Success</Name>
-      <Description>You gain +30 hit points and +10 healing amplification. When you score a vorpal
+      <Description>You gain +15 hit points and +5 Healing Amplification. When you score a vorpal
 hit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on
 a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
-15 seconds, regardless of the Crushing Despair saving throw.</Description>
+15 seconds, regardless of the Crushing Despair saving throw.
+
+Crushing Despair: -2 penalty to Attack, Damage, Saving Throws, and Skill checks.
+
+Vulnerable Will: -3 to Will Saving throws.
+
+Vorpal Strike: Requires rolling 20 on the Attack roll and confirming the Critical
+hit.</Description>
       <Icon>RavDemoralizingSuccess</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
@@ -100,13 +111,13 @@ a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
         <Type>Hitpoints</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">30</Amount>
+        <Amount size="1">15</Amount>
       </Effect>
       <Effect>
         <Type>HealingAmplification</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">10</Amount>
+        <Amount size="1">5</Amount>
       </Effect>
       <DC>
         <Name>Ravager: Demoralizing Success</Name>
@@ -121,7 +132,7 @@ enemies for 30 seconds on a failed DC 20 Will saving throw.</Description>
     <EnhancementTreeItem>
       <InternalName>DLRavCore4</InternalName>
       <Name>Ravager: Pain Touch II</Name>
-       <Description>Passive: You gain +60 hit points, +5 Melee power and +20 healing amplification</Description>
+       <Description>Passive: You gain +30 hit points, +5 Melee power and +10 Healing Amplification</Description>
        <Icon>RavPainTouch</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
@@ -143,7 +154,7 @@ enemies for 30 seconds on a failed DC 20 Will saving throw.</Description>
         <Type>Hitpoints</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">60</Amount>
+        <Amount size="1">30</Amount>
       </Effect>
        <Effect>
           <Type>MeleePower</Type>
@@ -155,14 +166,18 @@ enemies for 30 seconds on a failed DC 20 Will saving throw.</Description>
         <Type>HealingAmplification</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">20</Amount>
+        <Amount size="1">10</Amount>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>DLRavCore5</InternalName>
       <Name>Ravager: Subsiding Fury</Name>
       <Description>When you use Second Wind, you gain 3 stacks of Fury.
-Passive: You gain +100 hit points and +20 healing amplification</Description>
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks and one stack fades
+every 12 seconds.
+
+Passive: You gain +50 hit points and +10 Healing Amplification</Description>
       <Icon>RavSubsidingFury</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -184,23 +199,26 @@ Passive: You gain +100 hit points and +20 healing amplification</Description>
         <Type>Hitpoints</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">100</Amount>
+        <Amount size="1">50</Amount>
       </Effect>
       <Effect>
         <Type>HealingAmplification</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">20</Amount>
+        <Amount size="1">10</Amount>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>DLRavCore6</InternalName>
       <Name>Ravager: Visage of Terror</Name>
-      <Description>Terrorize up to six enemies, killing them with fear if they fail a Will
-save vs 10 + Constitution modifier + half Barbarian level. Enemies who make their
-saving throw are paralyzed with Fear for six seconds instead.
-Does not affect bosses. (Cooldown: 36 seconds)
-Passive:  +4 Constitution , +150 hit points and  +40 healing amplification</Description>
+      <Description>Terrorize up to six enemies, killing them with fear if they fail a Will Saving Throw
+(1d20 + your Intimidate skill). Enemies who make their saving throw are paralyzed
+with Fear for six seconds instead.
+
+Does not affect bosses, Raid Bosses, or monsters immune to Fear or Paralysis.
+Cooldown: 30 seconds
+
+Passive:  +4 Constitution , +75 hit points and  +20 healing amplification</Description>
       <Icon>RavVisageOfTerror</Icon>
       <XPosition>5</XPosition>
       <YPosition>0</YPosition>
@@ -242,13 +260,13 @@ Passive:  +4 Constitution , +150 hit points and  +40 healing amplification</Desc
         <Type>Hitpoints</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">150</Amount>
+        <Amount size="1">75</Amount>
       </Effect>
       <Effect>
         <Type>HealingAmplification</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">40</Amount>
+        <Amount size="1">20</Amount>
       </Effect>
       <DC>
         <Name>Visage of Terror</Name>
@@ -258,9 +276,8 @@ Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
         <Icon>RavVisageOfTerror</Icon>
         <DCType>Death</DCType>
         <DCVersus>Will</DCVersus>
-        <Amount size="1">10</Amount>
-        <ModAbility>Constitution</ModAbility>
-        <HalfClassLevel>Dragon Lord</HalfClassLevel>
+        <Other>1d20 + </Other>
+        <Skill>Intimidate</Skill>
       </DC>
     </EnhancementTreeItem>
     <!--Tier 1 Enhancements-->
@@ -322,7 +339,7 @@ Cooldown: 6 seconds</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Do You Like Pain?</Name>
       <InternalName>DLRavDoYouLikePain</InternalName>
-      <Description>When you are hit: [20/40/60]% chance attacker loses 10 AC.</Description>
+      <Description>When you are hit: [20/40/60]% chance attacker loses 10 Armor Class.</Description>
       <Icon>RavDoYouLikePain</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
@@ -341,8 +358,7 @@ Cooldown: 6 seconds</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Draconic Power Attack</Name>
       <InternalName>DLRavDraconicPowerAttack</InternalName>
-      <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
-Damage is doubled when Two Handed Fighting.</Description>
+      <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.</Description>
       <Icon>RavBarbarianPowerAttack</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
@@ -381,26 +397,6 @@ Damage is doubled when Two Handed Fighting.</Description>
         </Requirements>
         <Item>All</Item>
       </Effect>
-      <Effect>
-        <Type>WeaponDamageBonusClass</Type>
-         <Type>WeaponDamageBonusCriticalClass</Type>
-         <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">1 2 3</Amount>
-        <Requirements>
-           <RequiresOneOf>
-             <Requirement>
-               <Type>Stance</Type>
-               <Item>Power Attack</Item>
-             </Requirement>
-             <Requirement>
-               <Type>Stance</Type>
-               <Item>Heavy Draw</Item>
-             </Requirement>
-           </RequiresOneOf>
-        </Requirements>
-        <Item>TwoHanded</Item>
-      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Ravager: Extra Action Boost</Name>
@@ -424,8 +420,8 @@ Damage is doubled when Two Handed Fighting.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Fear me!</Name>
       <InternalName>DLRavFearMe</InternalName>
-      <Description>When you intimidate, affected enemies are Shaken for 6 seconds
-(-2 penalty on attack rolls, saves, and skill checks).</Description>
+      <Description>When you intimidate, affected enemies are Shaken for 6 seconds (-2 penalty on attack
+rolls, saves, and skill checks).</Description>
       <Icon>RavFearMe</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -447,9 +443,9 @@ Damage is doubled when Two Handed Fighting.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Mutilate</Name>
       <InternalName>DLRavMutilate</InternalName>
-      <Description>Hate additionally deals 1d[4/6/8] Charisma damage and 1d[4/6/8] Bane damage.
-The bane damage scales with 200% Melee Power.
-Cooldown: 10 seconds per monster on proccing its Charisma damage.</Description>
+      <Description>Hate additionally deals 1d[4/6/8] Charisma damage and 1d[2/4/6] Bane damage.
+The bane damage scales with 200% Melee Power. Charisma damage from this attack
+can only affect a creature once every 10 seconds.</Description>
       <Icon>RavMutilate</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
@@ -471,7 +467,7 @@ Cooldown: 10 seconds per monster on proccing its Charisma damage.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: I Like Pain</Name>
       <InternalName>DLRavILikePain</InternalName>
-      <Description>When you are hit: Small chance to gain [50/100/150] Temporary HP.
+      <Description>When you are hit: Small chance to gain [50/100/150] Temporary Hit Points.
 This gain scales with 100% Melee Power</Description>
       <Icon>RavILikePain</Icon>
       <XPosition>2</XPosition>
@@ -495,8 +491,8 @@ This gain scales with 100% Melee Power</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Cruel Cut</Name>
       <InternalName>DLRavCruelCut</InternalName>
-      <Description>Melee Attack: Deals [1/2/3]d6 extra constitution damage as long as you
-damage your target. (30 second cooldown)</Description>
+      <Description>Melee Attack: Deals [1/2/3]d6 extra Constitution damage as long as you damage your target.
+Cooldown: 20 seconds</Description>
       <Icon>RavCruelCut</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
@@ -582,7 +578,8 @@ Cooldown: 12 seconds</Description>
       <InternalName>DLRavFesteringWound</InternalName>
       <Description>Cruel Cut additionally inflicts [1/2/3] 5-second stacks of 1d6 Poison damage
 every 2 seconds and that monster's positive energy healing is reduced by 50%
-for [5/10/15] seconds. Damage stacks fade one at a time.</Description>
+for [5/10/15] seconds. This Poison damage scales with 200% Melee Power. Damage
+stacks fade one at a time.</Description>
       <Icon>RavFesteringWound</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
@@ -639,6 +636,13 @@ for [5/10/15] seconds. Damage stacks fade one at a time.</Description>
           <Description>+1 Strength</Description>
           <Icon>Strength</Icon>
           <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Strength</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -646,9 +650,14 @@ for [5/10/15] seconds. Damage stacks fade one at a time.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Laughter</Name>
       <InternalName>DLRavLaughter</InternalName>
-      <Description>When Slaughter damages an enemy, you gain three stacks of Fury.
-When Slaughter scores a critical hit on an enemy, you gain three more Fury
-(for a total of six) and gain 10 Melee Power for 15 seconds. </Description>
+      <Description>When Slaughter damages an enemy, you gain three stacks of Fury. When Slaughter scores
+a critical hit on an enemy, you gain three more Fury (for a total of six) and
+gain 10 Melee Power for 15 seconds.
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks and one stack fades
+every six seconds.
+
+For many Ravagers, there's no Laughter without Slaughter.</Description>
       <Icon>RavLaughter</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
@@ -694,10 +703,9 @@ This damage scales with 100% Melee Power.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Dismember</Name>
       <InternalName>DLRavDismember</InternalName>
-      <Description>Cruel Cut increases Melee Power by 5 for 10 seconds.
-Cruel Cut additionally slows enemy movement speed, or slows attack speed,
-or deals 2d[4/6/8] bane damage, or deals 6d[4/6/8] bane damage.
-This bane damage scales with 200% Melee Power</Description>
+      <Description>Cruel Cut increases Melee Power by 5 for 10 seconds. Cruel Cut additionally slows
+enemy movement speed, or slows attack speed, or deals 2d[4/6/8] Bane damage, or
+deals 6d[4/6/8] bane damage. This bane damage scales with 200% Melee Power</Description>
       <Icon>RavDismember</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
@@ -756,6 +764,13 @@ This bane damage scales with 200% Melee Power</Description>
           <Description>+1 Strength</Description>
           <Icon>Strength</Icon>
           <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Strength</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -764,9 +779,9 @@ This bane damage scales with 200% Melee Power</Description>
       <Name>Ravager: Blood Strength</Name>
       <InternalName>DLRavBloodStrength</InternalName>
       <Description>Each time you land a hit there is a 12% chance you heal positive damage equal
-to half your Barbarian level. Each time you kill an opponent you are healed for
-20 hit points. This healing scales with 100% Melee Power.
-Blood Strength has a one-second cooldown when you kill an enemy.</Description>
+to half your Dragon Lord level. Once per second, when you kill an opponent you
+are healed for 20 hit points (Enemies weaker than you will not always produce
+this effect). This healing scales with 100% Melee Power.</Description>
       <Icon>RavBloodStrength</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
@@ -789,7 +804,7 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Bully</Name>
       <InternalName>DLRavBully</InternalName>
-      <Description>You deal +[5/10/15]% damage to helpless enemies.</Description>
+      <Description>You deal +[5/10/15]% damage to Helpless enemies.</Description>
       <Icon>RavBully</Icon>
       <XPosition>2</XPosition>
       <YPosition>5</YPosition>
@@ -823,7 +838,8 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
       <Name>Ravager: Uncanny Balance</Name>
       <InternalName>DLRavUncannyBalance</InternalName>
       <Description>You are immune to most knockdowns and slippery surfaces.
-+25% Competence bonus to Maximum Hit Points.</Description>
+
+You gain a +25% Competence bonus to Maximum Hit Points.</Description>
       <Icon>RavUncannyBalance</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
@@ -866,7 +882,7 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Critical Rage</Name>
       <InternalName>DLRavCriticalRage</InternalName>
-      <Description>+[1/2] Competence bonus to critical threat range.</Description>
+      <Description>+[1/2] Competence bonus to Critical Threat Range with all weapons.</Description>
       <Icon>RavCriticalRage</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>

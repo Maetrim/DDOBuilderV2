@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
     <Name>Epic Brawling Gloves (Level 24)</Name>
@@ -7,7 +8,7 @@ gloves are perfect for their fighting style.</Description>
     <DropLocation>Treasure of Crystal Cove, Dusty Old Treasure of Crystal Cove </DropLocation>
     <MinLevel>24</MinLevel>
     <EquipmentSlot>
-      <Gloves/>
+      <Gloves />
     </EquipmentSlot>
     <Buff>
       <Type>SpikeStudded</Type>
@@ -22,5 +23,51 @@ gloves are perfect for their fighting style.</Description>
     <Buff>
       <Type>GlassJawStrike</Type>
     </Buff>
+    <Buff>
+      <Type>Sneak Attack</Type>
+      <BonusType>Enhancement</BonusType>
+      <Value1>4</Value1>
+      <Value2>6</Value2>
+    </Buff>
+    <NoAutoUpdate />
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Strength +8</Name>
+        <Description>Strength +8: This item gives the wearer the power of Ogre Strength, granting a +8 enhancement bonus to Strength.</Description>
+        <MinLevel>24</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+          <Item>Strength</Item>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Sneak Attack Bonus +5, Adds a Yellow augment slot</Name>
+        <Description>Sneak Attack Bonus +5: Provides a +5 to attack bonus and a +8 to damage for any
+attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.
+Adds a Yellow augment slot to this item</Description>
+        <MinLevel>24</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>SneakAttackAttack</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+        <Effect>
+          <Type>SneakAttackDamage</Type>
+          <Bonus>Enhancement</Bonus>
+          <Amount size="1">8</Amount>
+        </Effect>
+        <GrantAugment>Yellow</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

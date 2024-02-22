@@ -115,9 +115,8 @@ class MultiFileObjectLoader :
                 std::string errorMessage = reader.ErrorMessage();
                 // document has failed to load. Tell the user what we can about it
                 CString text;
-                text.Format("The document %s\n"
-                    "failed to load. The XML parser reported the following problem:\n"
-                    "\n", filename.c_str());
+                text.Format("The document '%s' failed to load. The XML parser reported the following problem:\r\n"
+                    "\r\n", filename.c_str());
                 text += errorMessage.c_str();
                 GetLog().UpdateLastLogEntry(text);
             }

@@ -190,7 +190,6 @@ class Build :
         void Destiny_SwapTrees(const std::string& tree1, const std::string& tree2);
         void Reaper_SwapTrees(const std::string& tree1, const std::string& tree2);
 
-        int TotalPointsAvailable(size_t level, TreeType type) const;
         int AvailableActionPoints(size_t level, TreeType type) const;
         int APSpentInTree(const std::string& treeName) const;
         const TrainedEnhancement * IsTrained(

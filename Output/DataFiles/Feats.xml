@@ -889,42 +889,6 @@ cooldown when this mode is active.</Description>
         </Requirement>
       </Requirements>
     </Effect>
-    <Effect>
-      <DisplayName>Unyielding Sentinel: Attack and Defend</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Bonus>Destiny</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="7">1 2 3 0 3 6 9</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>Unyielding Sentinel: Attack and Defend</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Bonus>Destiny</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="7">1 2 3 0 3 6 9</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>Unyielding Sentinel: Attack and Defend</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Bonus>Destiny</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="7">1 2 3 0 3 6 9</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>Unyielding Sentinel: Attack and Defend</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Bonus>Destiny</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="7">1 2 3 0 3 6 9</Amount>
-      <Item>All</Item>
-    </Effect>
   </Feat>
   <Feat>
     <Name>Completionist</Name>
@@ -3540,6 +3504,7 @@ This feat does not stack with item effects that double threat range like keen an
     <Name>Improved Damage Reduction</Name>
     <Description>You gain damage reduction 1/Adamantine, or improve your existing damage
 reduction by 1/Adamantine.</Description>
+    <MaxTimesAcquire>99</MaxTimesAcquire>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -4867,15 +4832,8 @@ physical resistance when wearing light armor.</Description>
     </Effect>
     <Effect>
       <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Bonus>Luck</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="6">0 0 0 1 2 3</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
+      <Type>SkillBonus</Type>
+      <Type>SkillBonus</Type>
       <Type>SkillBonus</Type>
       <AType>Stacks</AType>
       <Bonus>Luck</Bonus>
@@ -4886,59 +4844,7 @@ physical resistance when wearing light armor.</Description>
     <Effect>
       <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
       <Type>SaveBonus</Type>
-      <AType>Stacks</AType>
-      <Bonus>Luck</Bonus>
-      <Item>All</Item>
-      <Amount size="6">0 0 0 1 2 3</Amount>
-      <ApplyAsItemEffect />
-    </Effect>
-    <Effect>
-      <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Bonus>Luck</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="6">0 0 0 1 2 3</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
-      <Type>SkillBonus</Type>
-      <AType>Stacks</AType>
-      <Bonus>Luck</Bonus>
-      <Item>All</Item>
-      <Amount size="6">0 0 0 1 2 3</Amount>
-      <ApplyAsItemEffect />
-    </Effect>
-    <Effect>
-      <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
       <Type>SaveBonus</Type>
-      <AType>Stacks</AType>
-      <Bonus>Luck</Bonus>
-      <Item>All</Item>
-      <Amount size="6">0 0 0 1 2 3</Amount>
-      <ApplyAsItemEffect />
-    </Effect>
-    <Effect>
-      <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Bonus>Luck</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="6">0 0 0 1 2 3</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
-      <Type>SkillBonus</Type>
-      <AType>Stacks</AType>
-      <Bonus>Luck</Bonus>
-      <Item>All</Item>
-      <Amount size="6">0 0 0 1 2 3</Amount>
-      <ApplyAsItemEffect />
-    </Effect>
-    <Effect>
-      <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
       <Type>SaveBonus</Type>
       <AType>Stacks</AType>
       <Bonus>Luck</Bonus>
@@ -7664,7 +7570,10 @@ Add +3 Combat Style bonus to Melee Power</Description>
   </Feat>
   <Feat>
     <Name>Shield Proficiency (General)</Name>
-    <Description>This feat negates the penalties from using bucklers, small and Large Shields.</Description>
+    <Description>You are proficient with Bucklers, Small and Large Shields.
+
+Wearing a shield can cause Arcane spells to fail to cast (known as Arcane Spell
+Failure). In general, the larger the shield, the greater the chance of failure.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
@@ -10187,8 +10096,10 @@ point for each additional level.</Description>
   </Feat>
   <Feat>
     <Name>Tower Shield Proficiency</Name>
-    <Description>This feat negates the extra penalties from using a tower shield while untrained.
-The -2 attack penalty still applies.</Description>
+    <Description>You are proficient with Tower shields and do not suffer extra penalties when using them.
+
+Wearing a shield can cause Arcane spells to fail to cast (known as Arcane Spell
+Failure). In general, the larger the shield, the greater the chance of failure.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>

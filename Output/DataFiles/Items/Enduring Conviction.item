@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Enduring Conviction</Name>
     <Icon>Longsword_11</Icon>
     <Description>The longsword of the Argent Fist of the Silver Flame. She was betrayed by the
@@ -46,5 +47,31 @@ blade.</Description>
       <Description1>All</Description1>
       <Item>All</Item>
     </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item</Type>
+      <Augment>
+        <Name>Greater Evil Outsider Bane</Name>
+        <Description>Greater Evil Outsider Bane: A bane weapon excels at attacking one type or subtype of creature. Against Evil Outsiders, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Evil Outsider</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">3</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

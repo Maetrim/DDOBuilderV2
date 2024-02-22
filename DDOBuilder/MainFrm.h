@@ -46,6 +46,7 @@ protected:
     DECLARE_DYNCREATE(CMainFrame)
 
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnViewCustomize();
     afx_msg LRESULT OnToolbarCreateNew(WPARAM wp, LPARAM lp);
     afx_msg void OnApplicationLook(UINT id);
