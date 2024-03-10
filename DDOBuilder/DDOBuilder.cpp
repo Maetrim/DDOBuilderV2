@@ -438,7 +438,7 @@ void CDDOBuilderApp::LoadFeats(const std::string& path)
                     {
                         // same base class
                         std::stringstream ass;
-                        ass << "Past Life: " << acit.Name();
+                        ass << "Past Life: " << acit.BaseClass() << " - " << acit.Name();
                         Requirement architypeClassRequirement(Requirement_Feat, ass.str(), 1);
                         roo.AddRequirement(architypeClassRequirement);
                         ++architypeCount;

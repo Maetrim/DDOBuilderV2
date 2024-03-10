@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Elemental Greataxe of Fire</Name>
     <Icon>GreatAxe_2d</Icon>
     <Description>This greataxe is part of a mass-produced line of House Cannith weapons with
@@ -28,6 +29,11 @@ a result.</Description>
     <CriticalMultiplier>3</CriticalMultiplier>
     <CriticalThreatRange>1</CriticalThreatRange>
     <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
       <Type>Flaming Burst</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
@@ -52,13 +58,49 @@ a result.</Description>
       <Description1>Cold</Description1>
       <Item>Cold</Item>
     </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>36</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Cold</Description1>
-      <Item>Cold</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+6 Enhancement Bonus, Cold Resistance 38 and a Colorless augment slot</Name>
+        <Description>+6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Cold Resistance +38: Passive: +38 Enhancement bonus to your Cold Resistance.
+Adds a Colorless augment slot</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Cold</Item>
+          <AType>Simple</AType>
+          <Amount size="1">38</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Cold Resistance 41 and Adds a Purple augment slot</Name>
+        <Description>Cold Resistance +41: Passive: +41 Enhancement bonus to your Cold Resistance.
+Adds a Purple augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Cold</Item>
+          <AType>Simple</AType>
+          <Amount size="1">41</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

@@ -59,6 +59,35 @@ void BreakdownItemDestinyAps::CreateOtherEffects()
                     bonus);
             AddOtherEffect(fpBonus);
         }
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            size_t level = pBuild->Level();
+            if (level > MAX_CLASS_LEVEL)
+            {
+                level -= MAX_CLASS_LEVEL;
+                size_t epicLevels = min(level, 10);
+                size_t legendarylevels = level - epicLevels;
+                if (epicLevels > 0)
+                {
+                    Effect elBonus(
+                        Effect_DestinyAPBonus,
+                        "Epic Levels",
+                        "Class",
+                        epicLevels * 4);
+                    AddOtherEffect(elBonus);
+                }
+                if (legendarylevels > 0)
+                {
+                    Effect llBonus(
+                        Effect_DestinyAPBonus,
+                        "Legendary Levels",
+                        "Class",
+                        legendarylevels * 4);
+                    AddOtherEffect(llBonus);
+                }
+            }
+        }
     }
 }
 
@@ -76,3 +105,11 @@ void BreakdownItemDestinyAps::UpdateTotalChanged(
     // do base class stuff also
     BreakdownItem::UpdateTotalChanged(item, type);
 }
+
+void BreakdownItemDestinyAps::BuildLevelChanged(Build* pBuild)
+{
+    CreateOtherEffects();
+    // do base class stuff also
+    BreakdownItem::BuildLevelChanged(pBuild);
+}
+

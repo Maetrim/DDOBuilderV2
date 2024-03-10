@@ -299,6 +299,9 @@ class Build :
         void ApplyGuildBuffs(bool bApply);
         void GuildLevelChange();
 
+        // notes
+        void SetNotes(const std::string& newNotes);
+
         bool operator<(const Build& other) const;
 
     protected:
@@ -326,7 +329,8 @@ class Build :
                 DL_STRING(_, ActiveGear) \
                 DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
                 DL_OBJECT(_, FeatsListObject, FavorFeats) \
-                DL_OBJECT_LIST(_, CompletedQuest, CompletedQuests)
+                DL_OBJECT_LIST(_, CompletedQuest, CompletedQuests) \
+                DL_STRING(_, Notes)
 
         DL_DECLARE_ACCESS(Build_PROPERTIES)
         DL_DECLARE_VARIABLES(Build_PROPERTIES)

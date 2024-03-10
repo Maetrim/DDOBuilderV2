@@ -60,6 +60,7 @@ class EnhancementTreeItem :
 
         bool RequiresEnhancement(const std::string& name) const;
         size_t MinSpent(const std::string& selection) const;
+        size_t Ranks(const std::string& selection) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

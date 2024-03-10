@@ -1162,7 +1162,7 @@ void CFeatsClassControl::OnFeatSelectOk()
         CString featName;
         m_featSelector.GetLBText(sel, featName);
         Feat feat = FindFeat((LPCTSTR)featName);
-        if (m_pCharacter->ShowUnavailable())
+        if (m_pCharacter->ShowUnavailable() && featName != " No Selection")
         {
             // need to evaluate the feat properly
             m_pCharacter->ToggleShowUnavailable();
@@ -1185,7 +1185,7 @@ void CFeatsClassControl::OnFeatSelectOk()
         }
         else
         {
-                // just train it
+            // just train it
             m_pCharacter->ActiveBuild()->TrainFeat(
                 (LPCTSTR)featName,
                 tfts[m_featSelectItem.Data()].FeatType(),

@@ -38,7 +38,7 @@
 #define HID_DOCK_EQUIPMENT                      0x10BC5
 #define HID_DOCK_SPELLS                         0x10BC6
 #define HID_DOCK_FAVOR                          0x10BC7
-#define HID_DOCK_UNUSED15                       0x10BC8
+#define HID_DOCK_NOTES                          0x10BC8
 #define HID_DOCK_UNUSED16                       0x10BC9
 #define HID_DOCK_UNUSED17                       0x10BCA
 #define HID_DOCK_UNUSED18                       0x10BCB
@@ -168,7 +168,7 @@
 #define HIDR_DDOBuilderTYPE                     0x20082
 #define HIDR_OUTPUT_POPUP                       0x200B6
 #define HIDR_THEME_MENU                         0x200C8
-#define HIDR_LEVEL_SELECT_MENU                  0x20138
+#define HIDR_LEVEL_SELECT_MENU                  0x2013E
 #define HIDR_SELECT_FAVOR_MENU                  0x2014E
  
 // Dialogs (IDD_*) 
@@ -200,6 +200,7 @@
 #define HIDD_ITEM_SELECT                        0x200DC
 #define HIDD_DIALOG_SETITEMIMAGES               0x20141
 #define HIDD_FAVOR_PANE                         0x20142
+#define HIDD_NOTES_PANE                         0x20143
  
 // Frame Controls (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.

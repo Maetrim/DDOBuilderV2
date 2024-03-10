@@ -246,7 +246,7 @@ void CSelectionSelectDialog::SetTooltipText(
             &m_item,
             &item,
             m_build.APSpentInTree(m_treeName),
-            m_item.Ranks());
+            m_item.Ranks(item.Name()));
     m_tooltip.Show();
 }
 

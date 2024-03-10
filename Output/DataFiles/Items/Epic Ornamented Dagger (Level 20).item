@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Ornamented Dagger (level 20)</Name>
     <Icon>Dagger_2d</Icon>
     <Description>A dagger set with precious gems, each of which are enchanted with spell-enhancing
@@ -23,32 +24,70 @@ their pillaging.</Description>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>2</CriticalThreatRange>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Lesser Maximize</Item>
+      <AType>SLA</AType>
+      <Amount size="3">12 3 3</Amount>
+    </Effect>
+    <Buff>
+      <Type>SpellcastingImplement</Type>
+      <Value1>15</Value1>
+    </Buff>
     <Buff>
       <Type>WeaponEnchantment</Type>
-      <Value1>6</Value1>
+      <Value1>5</Value1>
       <BonusType>Weapon Enchantment</BonusType>
     </Buff>
     <Buff>
       <Type>SkillBonus</Type>
-      <Value1>17</Value1>
+      <Value1>15</Value1>
       <BonusType>Competence</BonusType>
       <Description1>Concentration</Description1>
       <Item>Concentration</Item>
     </Buff>
     <Buff>
       <Type>Potency</Type>
-      <Value1>73</Value1>
+      <Value1>48</Value1>
       <BonusType>Equipment</BonusType>
       <Description1>All</Description1>
       <Item>All</Item>
     </Buff>
     <Buff>
-      <Type>SpellLore</Type>
-      <Value1>8</Value1>
-      <BonusType>Equipment</BonusType>
+      <Type>EfficientMaximizeII</Type>
     </Buff>
     <ItemAugment>
-      <Type>Orange</Type>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Adds Spell Lore III</Name>
+        <Description>Spell Lore III: Passive: All of your spells gain a 3% Equipment bonus to their chance to critical hit.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Potency 52 and a Yellow Augment slot</Name>
+        <Description>Adds a Yellow augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Yellow</GrantAugment>
+        <Effect>
+          <Type>UniversalSpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">52</Amount>
+        </Effect>
+      </Augment>
     </ItemAugment>
     <IsAcceptsSentience/>
   </Item>

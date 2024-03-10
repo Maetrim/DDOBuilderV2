@@ -23,4 +23,5 @@ class BreakdownItemDestinyAps :
     protected:
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
+        virtual void BuildLevelChanged(Build* pBuild) override;
 };

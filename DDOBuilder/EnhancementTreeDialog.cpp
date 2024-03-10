@@ -366,12 +366,13 @@ void CEnhancementTreeDialog::RenderTreeItem(
         Build* pBuild = m_pCharacter->ActiveBuild();
         const TrainedEnhancement * te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
         bool clickie = item.HasClickie();
+        std::string selection;
         if (te != NULL)
         {
             if (te->HasSelection())
             {
-                std::string sel = te->Selection();
-                clickie = item.IsSelectionClickie(sel);
+                selection = te->Selection();
+                clickie = item.IsSelectionClickie(selection);
             }
         }
         if (clickie)
@@ -392,7 +393,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
             text.Format(
                     "%d/%d",
                     (te == NULL) ? 0: te->Ranks(),
-                    item.Ranks());
+                    item.Ranks(selection));
             CSize textSize = pDC->GetTextExtent(text);
             pDC->TextOut(
                     itemRect.left + (itemRect.Width() - textSize.cx) / 2,
@@ -473,12 +474,13 @@ void CEnhancementTreeDialog::RenderItemCore(
     // clickie item state may be overridden by item selection
     const TrainedEnhancement * te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
     bool clickie = item.HasClickie();
+    std::string selection;
     if (te != NULL)
     {
         if (te->HasSelection())
         {
-            std::string sel = te->Selection();
-            clickie = item.IsSelectionClickie(sel);
+            selection = te->Selection();
+            clickie = item.IsSelectionClickie(selection);
         }
     }
     if (clickie)
@@ -511,7 +513,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     text.Format(
             "%d/%d",
             (te == NULL) ? 0: te->Ranks(),
-            item.Ranks());
+            item.Ranks(selection));
     CSize textSize = pDC->GetTextExtent(text);
     pDC->TextOut(
             itemRect.left + (itemRect.Width() - textSize.cx) / 2,
@@ -732,7 +734,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     {
                         std::string selection = (te != NULL && te->HasSelection()) ? te->Selection() : "";
                         if (te == NULL          // if its not trained
-                                || te->Ranks() < item->Ranks()) // or has ranks still to be trained
+                                || te->Ranks() < item->Ranks(selection)) // or has ranks still to be trained
                         {
                             switch (m_type)
                             {

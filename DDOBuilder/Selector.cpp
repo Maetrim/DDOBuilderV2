@@ -232,6 +232,25 @@ size_t Selector::Cost(const std::string& selection, size_t rank) const
     return cost;
 }
 
+size_t Selector::Ranks(
+    const std::string& selection,
+    size_t defaultRank) const
+{
+    size_t ranks = defaultRank;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection
+                && (*it).HasRanks())
+        {
+            ranks = (*it).Ranks();
+            break;          // done
+        }
+        ++it;
+    }
+    return ranks;
+}
+
 const std::vector<size_t>& Selector::ItemCosts(const std::string& selection) const
 {
     static std::vector<size_t> defaultCost(1, 1);

@@ -22,6 +22,7 @@
 #include "FavorPane.h"
 #include "GrantedFeatsPane.h"
 #include "LogPane.h"
+#include "NotesPane.h"
 #include "ReaperEnhancementsPane.h"
 #include "SkillsPane.h"
 #include "SpecialFeatsPane.h"
@@ -337,6 +338,13 @@ BOOL CMainFrame::CreateDockingWindows()
             RUNTIME_CLASS(CFavorPane),
             ID_DOCK_FAVOR);
     pFavorPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    CCustomDockablePane* pNotesPane = CreateDockablePane(
+            "Notes",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CNotesPane),
+            ID_DOCK_NOTES);
+    pNotesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // Builds pane must be created last, so that panes are initialised
     // correctly in order after a file load event
@@ -684,7 +692,7 @@ CCustomDockablePane* CMainFrame::GetPane(UINT nID)
         case ID_DOCK_EQUIPMENT:         pRTC = RUNTIME_CLASS(CEquipmentPane); break;
         case ID_DOCK_SPELLS:            pRTC = RUNTIME_CLASS(CSpellsPane); break;
         case ID_DOCK_FAVOR:             pRTC = RUNTIME_CLASS(CFavorPane); break;
-        case ID_DOCK_UNUSED15:
+        case ID_DOCK_NOTES:             pRTC = RUNTIME_CLASS(CNotesPane); break;
         case ID_DOCK_UNUSED16:
         case ID_DOCK_UNUSED17:
         case ID_DOCK_UNUSED18:

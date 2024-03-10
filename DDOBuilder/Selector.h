@@ -26,6 +26,7 @@ class Selector :
         size_t MinSpent(const std::string& selection, size_t defaultMinSpent) const;
         bool CostVaries(const std::string& selection) const;
         size_t Cost(const std::string& selection, size_t rank) const;
+        size_t Ranks(const std::string& selection, size_t defaultRank) const;
         const std::vector<size_t>& ItemCosts(const std::string& selection) const;
         bool IsSelectionClickie(const std::string& selection) const;
         bool HasTrainableOption(const Build& build, size_t spentInTree) const;

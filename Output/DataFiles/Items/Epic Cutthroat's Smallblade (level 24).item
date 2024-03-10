@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Cutthroat's Smallblade (Level 24)</Name>
     <Icon>Shortsword_3</Icon>
     <Description>When a cutlass is simply too big for the job, a pirate will turn instead to
@@ -59,11 +60,40 @@ wounds on living creatures.</Description>
       <Description1>Move Silently</Description1>
       <Item>Move Silently</Item>
     </Buff>
-    <Buff>
-      <Type>Doublestrike</Type>
-      <Value1>6</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+7 Enhancement Bonus, Doublestrike 7%</Name>
+        <Description>+7 Enhancement Bonus: +7 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>24</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+        <Effect>
+          <Type>Doublestrike</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds Corrosive Salt and a Red augment slot</Name>
+        <Description>Corrosive Salt: This weapon stores a caustic, insatiable power deep within.
+When this weapon is used, this power can come to the surface in the form of a
+noxious, corrosive salt that dissolves all substances.
+Adds a Red augment slot to this item</Description>
+        <MinLevel>24</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

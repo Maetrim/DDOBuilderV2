@@ -1,23 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
   <EnhancementTree>
     <Name>Grandmaster of Flowers</Name>
     <Version>1</Version>
-    <Icon>GrandmasterOfFlowers</Icon>
-    <Background>DestinyMartial</Background>
     <Requirements>
       <Requirement>
         <Type>Feat</Type>
         <Item>Grandmaster of Flowers</Item>
       </Requirement>
     </Requirements>
-    <IsEpicDestiny />
-    <!--tree core items-->
+    <IsEpicDestiny/>
+    <Icon>GrandmasterOfFlowers</Icon>
+    <Background>DestinyMartial</Background>
+    <!--Core Items-->
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersCore1</InternalName>
       <Name>Grandmaster of Flowers: Inner Focus</Name>
-      <Description>You gain proficiency with Handwraps. You also gain +10 Maximum Ki per Epic Level
-if you have at least one level of Monk or are in the Grandmaster of Flowers
+      <InternalName>U51GrandmasterOfFlowersCore1</InternalName>
+      <Description>You gain proficiency with Handwraps. You also gain +10 Maximum Ki per Epic/Legendary
+Level if you have at least one level of Monk or are in the Grandmaster of Flowers
 Destiny Mantle.
 
 Each Core ability of this tree grants, including this one, grants the following:
@@ -88,10 +87,30 @@ Each Core ability of this tree grants, including this one, grants the following:
           </RequiresOneOf>
         </Requirements>
       </Effect>
+      <Effect>
+        <Type>KiMaximum</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>ClassLevel</AType>
+        <Amount size="21">0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200</Amount>
+        <StackSource>Legendary</StackSource>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>ClassMinLevel</Type>
+              <Item>Monk</Item>
+              <Value>1</Value>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Grandmaster of Flowers Destiny Mantle</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersCore2</InternalName>
       <Name>Grandmaster of Flowers: Disciple of Material</Name>
+      <InternalName>U51GrandmasterOfFlowersCore2</InternalName>
       <Description>Select a Material Type. Your weapons bypass the chosen material type.
 Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
 have the Discipline feat.</Description>
@@ -122,9 +141,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Adamantine</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Adamantine</Value>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -137,9 +156,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Byeshk</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Byeshk</Value>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -152,9 +171,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Cold Iron</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Cold Iron</Value>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -167,9 +186,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Crystal</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Crystal</Value>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -182,9 +201,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Silver</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Silver</Value>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -228,8 +247,8 @@ have the Discipline feat.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersCore3</InternalName>
       <Name>Grandmaster of Flowers: Disciple of Morality</Name>
+      <InternalName>U51GrandmasterOfFlowersCore3</InternalName>
       <Description>Select an Alignment. Your weapons bypass the chosen alignment.
 Regardless of your choice you gain +5 Magical Resistance Rating, or +10 if you
 have the Discipline feat.</Description>
@@ -260,9 +279,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Chaotic</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Chaotic</Value>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -275,9 +294,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Evil</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Evil</Value>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -290,9 +309,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Good</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Good</Value>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -305,9 +324,9 @@ have the Discipline feat.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Destiny</Bonus>
-            <Value>Lawful</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Lawful</Value>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -351,8 +370,8 @@ have the Discipline feat.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersCore4</InternalName>
       <Name>Grandmaster of Flowers: Disciple of Philosophy</Name>
+      <InternalName>U51GrandmasterOfFlowersCore4</InternalName>
       <Description>Select a Philosophy to embody with your strikes.</Description>
       <Icon>BringPeace</Icon>
       <XPosition>3</XPosition>
@@ -442,10 +461,10 @@ desire.)</Description>
         <Amount size="1">10</Amount>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 1 Enhancements-->
+    <!--Tier 1-->
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersStrikeWithPoise</InternalName>
       <Name>Grandmaster of Flowers: Strike with Poise</Name>
+      <InternalName>U51GrandmasterOfFlowersStrikeWithPoise</InternalName>
       <Description>+[2/4/6] Stunning DCs</Description>
       <Icon>StrikeWithPoise</Icon>
       <XPosition>0</XPosition>
@@ -462,14 +481,14 @@ desire.)</Description>
       <Effect>
         <Type>TacticalDC</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Stun</Item>
         <AType>Stacks</AType>
         <Amount size="3">2 4 6</Amount>
-        <Item>Stun</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersDisciplesStudies</InternalName>
       <Name>Grandmaster of Flowers: Disciple's Studies</Name>
+      <InternalName>U51GrandmasterOfFlowersDisciplesStudies</InternalName>
       <Description>+[1/2/3] Heal, Diplomacy and Intimidate.
 Rank 3: +10 Positive, Negative, and Repair Amplification.</Description>
       <Icon>DisciplesStudies</Icon>
@@ -503,8 +522,8 @@ Rank 3: +10 Positive, Negative, and Repair Amplification.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersSerenity</InternalName>
       <Name>Grandmaster of Flowers: Serenity</Name>
+      <InternalName>U51GrandmasterOfFlowersSerenity</InternalName>
       <Description>Grandmaster of Flowers Destiny Mantle: You may now fight with the Unarmed combat style
 as if you were a Monk, and may be Centered and use Ki. When you attack with
 Handwraps or begin falling, you will use the Monk class' animations instead of
@@ -520,13 +539,8 @@ You also gain 10 Ki for training this enhancement.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
-      <Clickie />
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>20</Value>
-        </Requirement>
-      </Requirements>
+      <Clickie/>
+      <ArrowUp/>
       <Stance>
         <Name>Grandmaster of Flowers Destiny Mantle</Name>
         <Icon>U51Serenity</Icon>
@@ -539,6 +553,12 @@ of the world: you may tumble through enemies, and are immune to slippery surface
 and most forms of knockdown.</Description>
         <Group>Mantle</Group>
       </Stance>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>20</Value>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>MovementSpeed</Type>
         <Bonus>Action Boost</Bonus>
@@ -560,20 +580,20 @@ and most forms of knockdown.</Description>
       <Effect>
         <Type>Immunity</Type>
         <Bonus>Destiny</Bonus>
-        <AType>NotNeeded</AType>
         <Item>Slippery Surfaces</Item>
+        <AType>NotNeeded</AType>
       </Effect>
       <Effect>
         <Type>Immunity</Type>
         <Bonus>Destiny</Bonus>
-        <AType>NotNeeded</AType>
         <Item>Falling Damage</Item>
+        <AType>NotNeeded</AType>
       </Effect>
       <Effect>
         <Type>Immunity</Type>
         <Bonus>Destiny</Bonus>
-        <AType>NotNeeded</AType>
         <Item>Most forms of Knockdown</Item>
+        <AType>NotNeeded</AType>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -586,7 +606,7 @@ and most forms of knockdown.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
-      <Clickie />
+      <Clickie/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -602,40 +622,39 @@ thoughts and instantly restore 10d12 Ki.
 Cooldown: [120/90/60] seconds</Description>
           <Icon>InnerFocus</Icon>
           <CostPerRank size="1">1</CostPerRank>
-          <Clickie />
+          <Clickie/>
           <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Destiny</Bonus>
             <Item>Inner Focus</Item>
+            <Item>None</Item>
             <AType>SpellInfo</AType>
             <Amount size="3">0 0 0</Amount>
-            <Item>None</Item>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Wholeness of Spirit</Name>
-          <Description>
-Bring your mind, body, and soul into harmonious balance, restoring health as if
+          <Description>Bring your mind, body, and soul into harmonious balance, restoring health as if
 you were affected by the benefits of a Heal spell, as well as curing all ability
 damage, negative levels, and other Adverse Conditions that may be affecting you.
 Cooldown: [120/90/60] seconds.</Description>
           <Icon>U51WholenessOfSpirit</Icon>
           <CostPerRank size="1">1</CostPerRank>
-          <Clickie />
+          <Clickie/>
           <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Destiny</Bonus>
             <Item>Wholeness of Spirit</Item>
+            <Item>None</Item>
             <AType>SpellInfo</AType>
             <Amount size="3">0 0 0</Amount>
-            <Item>None</Item>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersEnlightenment</InternalName>
       <Name>Grandmaster of Flowers: Enlightenment</Name>
+      <InternalName>U51GrandmasterOfFlowersEnlightenment</InternalName>
       <Description>+[15/30/45] Maximum Ki and +[2/4/6] Concentration.
 Rank 3: +1 Passive Ki Generation.</Description>
       <Icon>U51Enlightenment</Icon>
@@ -667,14 +686,14 @@ Rank 3: +1 Passive Ki Generation.</Description>
         <Type>KiPassive</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
-        <Rank>3</Rank>
         <Amount size="1">1</Amount>
+        <Rank>3</Rank>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 2 Enhancements-->
+    <!--Tier 2-->
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersCalmBeforeStorms</InternalName>
       <Name>Grandmaster of Flowers: Calm before Storms</Name>
+      <InternalName>U51GrandmasterOfFlowersCalmBeforeStorms</InternalName>
       <Description>+[3/6/10] Spell Resistance.
 Rank 3: You no longer automatically fail Will saving throws when you roll a natural 1.</Description>
       <Icon>CalmBeforeStorms</Icon>
@@ -700,13 +719,13 @@ Rank 3: You no longer automatically fail Will saving throws when you roll a natu
         <Bonus>Destiny</Bonus>
         <Item>Will</Item>
         <AType>Simple</AType>
-        <Rank>3</Rank>
         <Amount size="1">1</Amount>
+        <Rank>3</Rank>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersGrandmasterStrikes</InternalName>
       <Name>Grandmaster of Flowers: Grandmaster Strikes</Name>
+      <InternalName>U51GrandmasterOfFlowersGrandmasterStrikes</InternalName>
       <Description>Select an Epic Strike</Description>
       <Icon>GrandmasterStrikes</Icon>
       <XPosition>1</XPosition>
@@ -714,7 +733,7 @@ Rank 3: You no longer automatically fail Will saving throws when you roll a natu
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie />
+      <Clickie/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -738,7 +757,7 @@ Every Epic strike shares a cooldown with every other Epic Strike. Using this
 ability will put every Epic Strike onto this ability's cooldown.</Description>
           <Icon>DrfitingLotus</Icon>
           <CostPerRank size="1">1</CostPerRank>
-          <Clickie />
+          <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Orchid Blossom</Name>
@@ -754,20 +773,21 @@ Every Epic strike shares a cooldown with every other Epic Strike. Using this
 ability will put every Epic Strike onto this ability's cooldown.</Description>
           <Icon>GoFSpenders</Icon>
           <CostPerRank size="1">1</CostPerRank>
-          <Clickie />
+          <Clickie/>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersADanceOfFlowers</InternalName>
       <Name>Grandmaster of Flowers: A Dance of Flowers</Name>
-      <Description>While in the Grandmaster Destiny Mantle, your weapons gain +1[W].</Description>
+      <InternalName>U51GrandmasterOfFlowersADanceOfFlowers</InternalName>
+      <Description>While in the Grandmaster of Flowers Destiny Mantle, your weapons gain +1[W].</Description>
       <Icon>U51ADanceOfFlowers</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
+      <ArrowUp/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -781,9 +801,9 @@ ability will put every Epic Strike onto this ability's cooldown.</Description>
       <Effect>
         <Type>Weapon_BaseDamage</Type>
         <Bonus>Destiny</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -793,8 +813,8 @@ ability will put every Epic Strike onto this ability's cooldown.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersLotusBlades</InternalName>
       <Name>Grandmaster of Flowers: Lotus Blades</Name>
+      <InternalName>U51GrandmasterOfFlowersLotusBlades</InternalName>
       <Description>Select a feat to gain access to without meeting its prerequisites.</Description>
       <Icon>LotusBladesLongsword</Icon>
       <XPosition>3</XPosition>
@@ -825,15 +845,15 @@ ability will put every Epic Strike onto this ability's cooldown.</Description>
           <Effect>
             <Type>ExclusionGroup</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
             <Item>U51GrandmasterOfFlowersLotusBlades</Item>
             <Item>Deflect Arrows</Item>
+            <AType>NotNeeded</AType>
           </Effect>
           <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Destiny</Bonus>
-            <AType>NotNeeded</AType>
             <Item>Deflect Arrows</Item>
+            <AType>NotNeeded</AType>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -845,8 +865,8 @@ were Ki weapons.</Description>
           <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Destiny</Bonus>
-            <AType>NotNeeded</AType>
             <Item>Zen Archery</Item>
+            <AType>NotNeeded</AType>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -858,8 +878,8 @@ as if they were Ki weapons.</Description>
           <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Destiny</Bonus>
-            <AType>NotNeeded</AType>
             <Item>Whirling Steel Strike</Item>
+            <AType>NotNeeded</AType>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -871,16 +891,16 @@ were Ki weapons.</Description>
           <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Destiny</Bonus>
-            <AType>NotNeeded</AType>
             <Item>Prescient Curve</Item>
+            <AType>NotNeeded</AType>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersHailOfBlows</InternalName>
       <Name>Grandmaster of Flowers: Hail of Blows</Name>
-      <Description>+5% Offhand Strike chance, +10% Strikethrough, +3% doublestrike and doubleshot.</Description>
+      <InternalName>U51GrandmasterOfFlowersHailOfBlows</InternalName>
+      <Description>+5% Offhand Strike chance, +10% Strikethrough, +3% Doublestrike and Doubleshot.</Description>
       <Icon>U51HailOfBlows</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
@@ -913,12 +933,12 @@ were Ki weapons.</Description>
         <Amount size="1">3</Amount>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 3 Enhancements-->
+    <!--Tier 3-->
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersTheFlickeringFlame</InternalName>
       <Name>Grandmaster of Flowers: The Flickering Flame</Name>
+      <InternalName>U51GrandmasterOfFlowersTheFlickeringFlame</InternalName>
       <Description>+[1/2/3] to hit and damage.
-Rank 3: +25% Fire Absorption. If you are in any Sun Stance, the bonuses of this
+Rank 3: +25% Fire Absorption. If you are in Sun Stance, the bonuses of this
 enhancement are doubled.</Description>
       <Icon>TheFlickeringFlame</Icon>
       <XPosition>0</XPosition>
@@ -935,24 +955,24 @@ enhancement are doubled.</Description>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Destiny</Bonus>
+        <Item>All</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Fire</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Fire</Item>
       </Effect>
       <Effect>
         <DisplayName>The Flickering Flame + Sun Stance</DisplayName>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Destiny</Bonus>
+        <Item>All</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -964,9 +984,9 @@ enhancement are doubled.</Description>
         <DisplayName>The Flickering Flame + Sun Stance</DisplayName>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Fire</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Fire</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -976,10 +996,10 @@ enhancement are doubled.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersFlowOfWater</InternalName>
       <Name>Grandmaster of Flowers: Flow of Water</Name>
-      <Description>+[1/2/3] saving throws, you take [5/10/15]% less damage while Helpless.
-Rank 3: +25% Cold Absorption. If you are in any Ocean Stance, the bonuses of this
+      <InternalName>U51GrandmasterOfFlowersFlowOfWater</InternalName>
+      <Description>+[1/2/3] to all Saving Throws, you take [5/10/15]% less damage while Helpless.
+Rank 3: +25% Cold Absorption. If you are in Ocean Stance, the bonuses of this
 enhancement are doubled.</Description>
       <Icon>FlowOfWater</Icon>
       <XPosition>1</XPosition>
@@ -996,9 +1016,9 @@ enhancement are doubled.</Description>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Destiny</Bonus>
+        <Item>All</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>HelplessDamageReduction</Type>
@@ -1009,17 +1029,17 @@ enhancement are doubled.</Description>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Cold</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Cold</Item>
       </Effect>
       <Effect>
         <DisplayName>The Flow of Water + Ocean Stance</DisplayName>
         <Type>SaveBonus</Type>
         <Bonus>Destiny</Bonus>
+        <Item>All</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1044,9 +1064,9 @@ enhancement are doubled.</Description>
         <DisplayName>The Flow of Water + Ocean Stance</DisplayName>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Cold</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Cold</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1056,8 +1076,8 @@ enhancement are doubled.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersSereneMercy</InternalName>
       <Name>Grandmaster of Flowers: Serene Mercy</Name>
+      <InternalName>U51GrandmasterOfFlowersSereneMercy</InternalName>
       <Description>While in the Grandmaster of Flowers Destiny Mantle, you deal +[5/10/15]% bonus
 damage to the Helpless.</Description>
       <Icon>SereneMercy</Icon>
@@ -1070,6 +1090,10 @@ damage to the Helpless.</Description>
         <Requirement>
           <Type>Level</Type>
           <Value>23</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>U51GrandmasterOfFlowersADanceOfFlowers</Item>
         </Requirement>
       </Requirements>
       <Effect>
@@ -1086,10 +1110,10 @@ damage to the Helpless.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersCatchTheWind</InternalName>
       <Name>Grandmaster of Flowers: Catch the Wind</Name>
-      <Description>+[1/2/3]% Dodge, +[2/4/6] Armor Class.
-Rank 3: +25% Electric Absorption. If you are in any Wind Stance, the bonuses of
+      <InternalName>U51GrandmasterOfFlowersCatchTheWind</InternalName>
+      <Description>+[1/2/3]% Dodge chance and +[2/4/6] Armor Class.
+Rank 3: +25% Electric Absorption. If you are in Wind Stance, the bonuses of
 this enhancement are doubled.</Description>
       <Icon>CatchTheWind</Icon>
       <XPosition>3</XPosition>
@@ -1118,9 +1142,9 @@ this enhancement are doubled.</Description>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Electric</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Electric</Item>
       </Effect>
       <Effect>
         <DisplayName>Catch the Wind + Wind Stance</DisplayName>
@@ -1152,9 +1176,9 @@ this enhancement are doubled.</Description>
         <DisplayName>Catch the Wind + Wind Stance</DisplayName>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Electric</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Electric</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1164,10 +1188,10 @@ this enhancement are doubled.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersStrengthOfStone</InternalName>
       <Name>Grandmaster of Flowers: Strength of Stone</Name>
-      <Description>+[5/10/15] Hit Points and +[2/4/6] Physical Resistance Rating.
-Rank 3: +25% Acid Absorption. If you are in any Mountain Stance, the bonuses of
+      <InternalName>U51GrandmasterOfFlowersStrengthOfStone</InternalName>
+      <Description>+[5/10/15] Maximum Hit Points, +[2/4/6] Physical Resistance Rating.
+Rank 3: +25% Acid Absorption. If you are in Mountain Stance, the bonuses of
 this enhancement are doubled.</Description>
       <Icon>StrengthOfStone</Icon>
       <XPosition>4</XPosition>
@@ -1196,9 +1220,9 @@ this enhancement are doubled.</Description>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Acid</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Acid</Item>
       </Effect>
       <Effect>
         <DisplayName>Strength of Stone + Mountain Stance</DisplayName>
@@ -1230,9 +1254,9 @@ this enhancement are doubled.</Description>
         <DisplayName>Strength of Stone + Mountain Stance</DisplayName>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Acid</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 25</Amount>
-        <Item>Acid</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1241,10 +1265,10 @@ this enhancement are doubled.</Description>
         </Requirements>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 4 Enhancements-->
+    <!--Tier 4-->
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersTheClarityOfLaw</InternalName>
       <Name>Grandmaster of Flowers: The Clarity of Law</Name>
+      <InternalName>U51GrandmasterOfFlowersTheClarityOfLaw</InternalName>
       <Description>Your attacks bypass [5/10/15]% of enemy Fortification.
 Rank 3: +15% Law Absorption.</Description>
       <Icon>TheClarityOfLaw</Icon>
@@ -1268,14 +1292,14 @@ Rank 3: +15% Law Absorption.</Description>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Lawful</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 15</Amount>
-        <Item>Lawful</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersTheSerenityOfGood</InternalName>
       <Name>Grandmaster of Flowers: The Serenity of Good</Name>
+      <InternalName>U51GrandmasterOfFlowersTheSerenityOfGood</InternalName>
       <Description>+[1/2/3] Saves vs Enchantments, Curses, and Illusions, and +[2/4/6] Magical
 Resistance Rating.
 Rank 3: +15% Good Absorption</Description>
@@ -1294,11 +1318,11 @@ Rank 3: +15% Good Absorption</Description>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Destiny</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">1 2 3</Amount>
         <Item>Enchantment</Item>
         <Item>Curse</Item>
         <Item>Illusion</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
       </Effect>
       <Effect>
         <Type>MRR</Type>
@@ -1309,14 +1333,14 @@ Rank 3: +15% Good Absorption</Description>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Good</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 15</Amount>
-        <Item>Good</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersEpicStrikeUpgrades</InternalName>
       <Name>Grandmaster of Flowers: Lotus Bloom</Name>
+      <InternalName>U51GrandmasterOfFlowersEpicStrikeUpgrades</InternalName>
       <Description>Drifting Lotus and Orchid Blossom now attempts to Stun all enemies struck.
 Stun DC: 20 + Highest Ability Score Mod + Stunning Bonuses. This stun lasts 4
 seconds for Drifting Lotus ans 2 seconds for Orchid Blossom.</Description>
@@ -1337,25 +1361,25 @@ seconds for Drifting Lotus ans 2 seconds for Orchid Blossom.</Description>
         </Requirement>
       </Requirements>
       <DC>
-      <Name>Lotus Bloom</Name>
-         <Description>Drifting Lotus and Orchid Blossom now attempts to Stun all enemies struck.
+        <Name>Lotus Bloom</Name>
+        <Description>Drifting Lotus and Orchid Blossom now attempts to Stun all enemies struck.
 This stun lasts 4 seconds for Drifting Lotus ans 2 seconds for Orchid Blossom.</Description>
-         <Icon>BlossomingPeace</Icon>
-         <DCType>Stun</DCType>
-         <DCVersus>Fortitude</DCVersus>
-         <Amount size="1">20</Amount>
-         <ModAbility>Strength</ModAbility>
-         <ModAbility>Dexterity</ModAbility>
-         <ModAbility>Constitution</ModAbility>
-         <ModAbility>Intelligence</ModAbility>
-         <ModAbility>Wisdom</ModAbility>
-         <ModAbility>Charisma</ModAbility>
-         <Tactical>Stun</Tactical>
+        <Icon>BlossomingPeace</Icon>
+        <DCType>Stun</DCType>
+        <DCVersus>Fortitude</DCVersus>
+        <Amount size="1">20</Amount>
+        <ModAbility>Strength</ModAbility>
+        <ModAbility>Dexterity</ModAbility>
+        <ModAbility>Constitution</ModAbility>
+        <ModAbility>Intelligence</ModAbility>
+        <ModAbility>Wisdom</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <Tactical>Stun</Tactical>
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersTheDelightOfChaos</InternalName>
       <Name>Grandmaster of Flowers: The Delight of Chaos</Name>
+      <InternalName>U51GrandmasterOfFlowersTheDelightOfChaos</InternalName>
       <Description>+[1/2/3] Critical Hit Confirmation and Critical Hit Damage.
 Rank 3: +15% Chaos Absorption</Description>
       <Icon>TheDelightOfChaos</Icon>
@@ -1374,21 +1398,21 @@ Rank 3: +15% Chaos Absorption</Description>
         <Type>Weapon_AttackBonusCritical</Type>
         <Type>Weapon_DamageBonusCritical</Type>
         <Bonus>Destiny</Bonus>
+        <Item>All</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Chaos</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 15</Amount>
-        <Item>Chaos</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersTheCrueltyOfEvil</InternalName>
       <Name>Grandmaster of Flowers: The Cruelty of Evil</Name>
+      <InternalName>U51GrandmasterOfFlowersTheCrueltyOfEvil</InternalName>
       <Description>+[1/2/3] Sneak Attack and Sneak Attack Damage.
 Rank 3: +15% Evil Absorption</Description>
       <Icon>TheCrueltyOfEvil</Icon>
@@ -1413,15 +1437,15 @@ Rank 3: +15% Evil Absorption</Description>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Evil</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 15</Amount>
-        <Item>Evil</Item>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 5 Enhancements-->
+    <!--Tier 5-->
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersBeyondTheCenter</InternalName>
       <Name>Grandmaster of Flowers: Beyond the Center</Name>
+      <InternalName>U51GrandmasterOfFlowersBeyondTheCenter</InternalName>
       <Description>+[5/10/15] Magical Resistance Rating Cap.
 Rank 3: +15% Force Absorption</Description>
       <Icon>BeyondTheCenter</Icon>
@@ -1430,7 +1454,7 @@ Rank 3: +15% Force Absorption</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
+      <Tier5/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -1446,14 +1470,14 @@ Rank 3: +15% Force Absorption</Description>
       <Effect>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
+        <Item>Force</Item>
         <AType>Stacks</AType>
         <Amount size="3">0 0 15</Amount>
-        <Item>Force</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersImposingForce</InternalName>
       <Name>Grandmaster of Flowers: Imposing Force</Name>
+      <InternalName>U51GrandmasterOfFlowersImposingForce</InternalName>
       <Description>While centered, when rolling a 19 or 20 on an attack, your Critical Multiplier
 is increased by +1.</Description>
       <Icon>ImposingForce</Icon>
@@ -1462,7 +1486,7 @@ is increased by +1.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
+      <Tier5/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -1472,9 +1496,9 @@ is increased by +1.</Description>
       <Effect>
         <Type>Weapon_CriticalMultiplier19To20</Type>
         <Bonus>Destiny</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1505,14 +1529,41 @@ or if you already have it, it instead has double the chance to proc.</Descriptio
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
-      <Clickie />
+      <Clickie/>
+      <Tier5/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
           <Value>30</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <DisplayName>Emptiness (Everything is Nothing)</DisplayName>
+        <Type>DodgeBonus</Type>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Emptiness</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Emptiness (Everything is Nothing)</DisplayName>
+        <Type>GrantFeat</Type>
+        <Bonus>Stacking</Bonus>
+        <Item>Elusive Target</Item>
+        <AType>NotNeeded</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Emptiness</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
       <DC>
         <Name>Everything is Nothing</Name>
         <Description>Your state of luminous consciousness allows your will to alter the fabric of the planes,
@@ -1532,33 +1583,6 @@ instead paralyzed by temporal shock for six seconds.</Description>
         <ModAbility>Charisma</ModAbility>
         <Tactical>Stun</Tactical>
       </DC>
-      <Effect>
-        <DisplayName>Emptiness (Everything is Nothing)</DisplayName>
-        <Type>DodgeBonus</Type>
-        <Type>DodgeCapBonus</Type>
-        <Bonus>Stacking</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">3</Amount>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Emptiness</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
-      <Effect>
-        <DisplayName>Emptiness (Everything is Nothing)</DisplayName>
-        <Type>GrantFeat</Type>
-        <Bonus>Stacking</Bonus>
-        <AType>NotNeeded</AType>
-        <Item>Elusive Target</Item>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Emptiness</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Grandmaster of Flowers: Split the Soul</Name>
@@ -1586,8 +1610,8 @@ Defensive (Light) portions.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Clickie />
-      <Tier5 />
+      <Clickie/>
+      <Tier5/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -1596,10 +1620,9 @@ Defensive (Light) portions.</Description>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>U51GrandmasterOfFlowersLegendaryFlurryOfBlows</InternalName>
       <Name>Grandmaster of Flowers: Legendary Flurry of Blows</Name>
-      <Description>
-+[1/2/3]% Doublestrike and Doubleshot, +[3/6/10]% Strikethrough,
+      <InternalName>U51GrandmasterOfFlowersLegendaryFlurryOfBlows</InternalName>
+      <Description>+[1/2/3]% Doublestrike and Doubleshot, +[3/6/10]% Strikethrough,
 +[3/6/10]% Offhand Strike chance.
 
 Rank 3: While dual wielding (including handwraps) or using a quarterstaff, you gain:
@@ -1614,7 +1637,7 @@ dazed as a result.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
+      <Tier5/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>

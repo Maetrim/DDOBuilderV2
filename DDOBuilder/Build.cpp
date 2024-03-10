@@ -109,6 +109,7 @@ XmlLib::SaxContentElementInterface * Build::StartElement(
 
 void Build::EndElement()
 {
+    m_hasNotes = true;
     SaxContentElement::EndElement();
     DL_END(Build_PROPERTIES)
     // as a build has a default number of LevelTraining objects setup in the constructor
@@ -123,6 +124,8 @@ void Build::EndElement()
     m_GearSetups.pop_front();
     m_hasActiveGear = true;
     UpdateGearToLatestVersions();
+    // notes text is not saved as \r\n's replace all text
+    m_Notes = ReplaceAll(m_Notes, "\n", "\r\n");
 }
 
 void Build::Write(XmlLib::SaxWriter * writer) const
@@ -4837,4 +4840,10 @@ void Build::ApplyGuildBuffs(bool bApply)
 void Build::GuildLevelChange()
 {
     ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
+}
+
+void Build::SetNotes(const std::string& newNotes)
+{
+    Set_Notes(newNotes);
+    SetModifiedFlag(TRUE);
 }

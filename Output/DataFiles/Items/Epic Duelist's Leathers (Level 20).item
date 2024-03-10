@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Duelist's Leathers (Level 20)</Name>
     <Icon>LightArmor_1b</Icon>
     <Description>When pirates who prefer light blades in battle need armor, this is the kind
@@ -49,5 +50,39 @@ that allows plenty of stylish movement in combat.</Description>
       <Value1>2</Value1>
       <BonusType>Competence</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Epic Nimbleness</Name>
+        <Description>Epic Nimbleness: This suit of armor looks much less restrictive than others of
+its type. A suit of armor that has this property has a maximum Dexterity bonus
+6 higher than normal, and its armor check penalty is reduced by 4.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>ArmorCheckPenalty</Type>
+          <Bonus>Stacking</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">-4</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Dodge 8% and Adds a Blue augment slot</Name>
+        <Description>Dodge +8%: +8% Enhancement bonus to Dodge.
+Adds a Blue augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Blue</GrantAugment>
+        <Effect>
+          <Type>DodgeBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -441,6 +441,8 @@ bool Requirement::Met(
     case Requirement_SpecificLevel:     met = EvaluateSpecificLevel(build, level, includeTomes); break;
     case Requirement_Stance:            met = EvaluateStance(build, level, includeTomes); break;
     case Requirement_StartingWorld:     met = EvaluateStartingWorld(build); break;
+    case Requirement_WeaponClassMainHand: met = EvaluateWeaponGroupMember(build, wtMainHand); break;
+    case Requirement_WeaponClassOffHand: met = EvaluateWeaponGroupMember(build, wtOffHand); break;
     default:                            met = false; break;
     }
     return met;
@@ -544,7 +546,7 @@ bool Requirement::MetEnhancements(
         if (te != NULL)
         {
             const EnhancementTreeItem* pTreeItem = FindEnhancement(enhancement);
-            size_t maxRanks = pTreeItem->Ranks();
+            size_t maxRanks = pTreeItem->Ranks(selection);
             size_t ranksTrained = te->Ranks();
             if (maxRanks != 1)
             {

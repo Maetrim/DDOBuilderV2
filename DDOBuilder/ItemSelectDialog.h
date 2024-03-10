@@ -80,7 +80,7 @@ class CItemSelectDialog : public CDialog
 
         enum
         {
-            MAX_Augments = 10,
+            MAX_Augments = 15,
             MAX_Upgrades = 4,
         };
         CStatic m_staticType;

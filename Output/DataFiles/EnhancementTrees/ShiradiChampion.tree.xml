@@ -17,7 +17,7 @@
       <InternalName>U51ShiradiChampionCore1</InternalName>
       <Description>You gain the Magical Training Feat.
 
-Each core ability in this tree, including this one grants the following:
+Each core ability in this tree, including this one, grants the following:
 
 +1 Epic bonus to Spell DCs
 +15 Maximum Hit Points
@@ -52,7 +52,7 @@ Each core ability in this tree, including this one grants the following:
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
@@ -114,7 +114,7 @@ have the Holy Strike feat, double the Dodge and Fortification bypass.</Descripti
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
@@ -194,7 +194,7 @@ These effects last for 10 minutes.</Description>
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
@@ -257,7 +257,7 @@ Enemy feat you've acquired.
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
@@ -292,7 +292,7 @@ Enemy feat you've acquired.
         <Type>SaveBonus</Type>
         <Bonus>Destiny</Bonus>
         <Item>Spell</Item>
-        <AType>Simple</AType>
+        <AType>Stacks</AType>
         <Amount size="41">0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 0 8 0 9 0 10 0 11 0 12 0 13 0 14 0 15 0 16 0 17 0 18 0 19 0 20</Amount>
       </Effect>
     </EnhancementTreeItem>
@@ -368,7 +368,7 @@ Rank 3: +5 Force and Universal Spell Power</Description>
     <EnhancementTreeItem>
       <Name>Shiradi Champion: Good Luck</Name>
       <InternalName>U51ShiradiChampionGoodLuck</InternalName>
-      <Description>+[1/2/3] Luck bonus to all Saving throws and Skills. If you have the Luck of
+      <Description>+[1/2/3] Luck bonus to all Saving Throws and Skills. If you have the Luck of
 Heroes feat, double this bonus.</Description>
       <Icon>GoodLuck</Icon>
       <XPosition>2</XPosition>
@@ -453,10 +453,12 @@ ability will put every Epic Strike onto this ability's cooldown.</Description>
           <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Hunt's End</Name>
-          <Description>Epic Strike: AOE Ranged Attack: Make a Ranged Attack that shatters on impact,
-hitting all enemies in a small area around where it lands. If a moving enemy is
-affected, they are slowed for 12 seconds.
+          <Name>Pin</Name>
+          <Description>Deals +30% Damage
+Cooldown: 15 seconds
+Epic Strike: AOE Ranged Attack: Make a Single Shot Ranged Attack that shatters
+on impact, hitting all enemies in a small area around where it lands. If a moving
+enemy is affected, they are slowed for 12 seconds.
 
 Every Epic Strike shares a cooldown with every other Epic Strike. Using this
 ability will put every Epic Strike onto this ability's cooldown.</Description>
@@ -687,7 +689,8 @@ Cooldown: 30 Seconds.
 Cost: 1 Wild Empathy Charge.
 
 Only one Vigor spell can be active at a time, with the most beneficial taking
-priority. If multiple Vigor spells are cast on the same target, then the duration is extended.
+priority. If multiple Vigor spells are cast on the same target, then the
+duration is extended.
 Passive: +1 Wild Empathy Charge.</Description>
       <Icon>U51HealingSpring</Icon>
       <XPosition>3</XPosition>
@@ -1028,10 +1031,6 @@ and Armor Class by 1 and Fortification by 2%. Stacks 10 times.</Description>
           <Type>Enhancement</Type>
           <Item>U51ShiradiChampionStrikeUpgradeI</Item>
         </Requirement>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>U51ShiradiChampionStrikeUpgradeI</Item>
-        </Requirement>
       </Requirements>
       <Selector>
         <EnhancementSelection>
@@ -1050,7 +1049,7 @@ and Armor Class by 1 and Fortification by 2%. Stacks 10 times.</Description>
         <EnhancementSelection>
           <Name>Overwhelming Force</Name>
           <Description>Pin now automatically applies 10 stacks of Track to enemies.</Description>
-          <Icon>OverwhelmingForce</Icon>
+          <Icon>ShiradiOverwhelmingForce</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
             <Requirement>

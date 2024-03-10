@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Etched Light Crossbow</Name>
     <Icon>LightCrossbow_1h</Icon>
     <Description>A weapon found deep within the Temple of Elemental Evil.</Description>
@@ -28,5 +29,50 @@
       <Type>AcidVulnerability</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Tier 1</Type>
+      <Augment>
+        <Name>Exceptional Seeker +5 and Crippling</Name>
+        <Description>Exceptional Seeker +5: Provides a +5 Insight bonus to confirm critical hits, and
+a +5 Insight bonus to critical hit damage (before multipliers are applied).
+Crippling: A crippling weapon is infused with binding power so that when a target
+is critically hit their movement is slowed by half.
+Note: Real slowdown is only 25%</Description>
+        <MinLevel>26</MinLevel>
+        <Effect>
+          <Type>Weapon_AttackBonusCritical</Type>
+          <Type>Unknown</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Greater Acid Blast, Purple Augment slot and Set Bonus.</Name>
+        <Description>Greater Acid Blast: An acid blast weapon is sheathed in corrosive acid.
+Critical hits with this weapon deal an additional 4 to 40 acid damage for
+weapons with a x2 critical multiplier, 6 to 60 for a x3 critical multiplier,
+and 8 to 80 for a x4 multiplier. Additionally, if you roll a 20 when
+attacking and confirm the critical hit, the weapon blasts your target, doing
+6 to 36 more acid damage.</Description>
+        <MinLevel>7</MinLevel>
+        <GrantAugment>Purple</GrantAugment>
+        <SetBonus>Epic Elemental Evil Set</SetBonus>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 4 6 8 10</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Acid</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Etched Scalemail Armor</Name>
     <Icon>MediumArmor_2</Icon>
     <Description>Armor from deep within the Temple of Elemental Evil.</Description>
@@ -35,14 +36,32 @@
       <Value1>12</Value1>
       <BonusType>Resistance</BonusType>
     </Buff>
-    <Buff>
-      <Type>Fortification</Type>
-      <Value1>150</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <SetBonus>Epic Elemental Evil Set</SetBonus>
     <ItemAugment>
-      <Type>Green</Type>
+      <Type>Upgradeable Item (TOEE)</Type>
+      <Augment>
+        <Name>Adds Lesser Displacement, Fortification +150%, Green Augment and Set bonus</Name>
+        <Description>Lesser Displacement: Equipping this item causes light to distort around you.
+Attacks from enemies have a 25% chance to miss you due to concealment.
+Fortification +150%: +150% Enhancement bonus to reduced chance of taking critical
+damage on a critical hit.
+Adds a Green Augment slot
+Adds the Epic Elemental Evil Set bonus</Description>
+        <MinLevel>26</MinLevel>
+        <GrantAugment>Green</GrantAugment>
+        <SetBonus>Epic Elemental Evil Set</SetBonus>
+        <Effect>
+          <Type>Displacement</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">25</Amount>
+        </Effect>
+        <Effect>
+          <Type>Fortification</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">150</Amount>
+        </Effect>
+      </Augment>
     </ItemAugment>
   </Item>
 </Items>

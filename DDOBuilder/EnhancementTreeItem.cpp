@@ -258,7 +258,7 @@ bool EnhancementTreeItem::CanTrain(
     const TrainedEnhancement * te = build.IsTrained(InternalName(), "");
     size_t trainedRanks = (te != NULL) ? te->Ranks() : 0;
     std::string selection = (te != NULL && te->HasSelection()) ? te->Selection() : "";
-    bool canTrain = (trainedRanks < Ranks());
+    bool canTrain = (trainedRanks < Ranks(selection));
     canTrain &= (spentInTree >= MinSpent(selection));
     // if we have no selection, and we have a selector, only enabled if at least
     // one of the sub selector items can be trained
@@ -559,6 +559,17 @@ size_t EnhancementTreeItem::MinSpent(const std::string& selection) const
         min = m_Selections.MinSpent(selection, min);    // returns min if no MinSpent on item or not found
     }
     return min;
+}
+
+size_t EnhancementTreeItem::Ranks(const std::string& selection) const
+{
+    size_t ranks = Ranks();
+    if (selection != "")
+    {
+        // find the selection and use its MinSepnt if it has one
+        ranks = m_Selections.Ranks(selection, ranks);
+    }
+    return ranks;
 }
 
 std::string EnhancementTreeItem::Name(const std::string& selection) const

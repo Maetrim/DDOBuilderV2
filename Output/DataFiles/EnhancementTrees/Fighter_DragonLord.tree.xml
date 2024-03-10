@@ -211,9 +211,9 @@ damage on each hit in the element of your Draconic Soul. This damage scales with
     <EnhancementTreeItem>
       <InternalName>DragonLordCore3</InternalName>
       <Name>Dragon Lord: Reckless Devotion</Name>
-      <Description>Cooldown: 20 seconds.
-Activate: Target Ally gains a Morale bonus to Critical Confirmation and Critical
-Hit Damage equal to 1 + 1 quarter of your Dragon Lord level for 20 seconds.
+      <Description>Activate: Target Ally gains a Morale bonus to Critical Confirmation and Critical
+Hit Damage equal to 1 + a quarter of your Dragon Lord level for 20 seconds.
+Cooldown: 20 seconds.
 
 Passive: +1 Imbue Die, +5 Melee and Ranged Power, +3 to Critical Confirmation
 and Critical Hit Damage. The bonus of each of your Draconic Auras is increased
@@ -488,8 +488,8 @@ Passive: +1 Imbue Die. The bonus of each of your Draconic Auras is increased by 
       <InternalName>DragonLordCore5</InternalName>
       <Name>Dragon Lord: Dragon's Defense</Name>
       <Description>While you have any Draconic Aura active, you and nearby allies gain a +3 Morale
-Bonus to Resistance and +5% Morale Bonus to Absorption of the element of your
-Draconic Soul.
+Bonus to Elemental Resistance and +5% Morale Bonus to Elemental Absorption of
+the element of your Draconic Soul.
 
 Passive: +1 Imbue Dice. +10 Melee and Ranged Power.</Description>
       <Icon>DLDragonsDefense</Icon>
@@ -1023,7 +1023,7 @@ Rank 3: You gain +2 to Attack.</Description>
     <EnhancementTreeItem>
       <InternalName>DragonLordDragonsProtectionII</InternalName>
       <Name>Dragon Lord: Dragon's Protection II</Name>
-      <Description>You gain +3 Resistance to the element of your Draconic Soul.</Description>
+      <Description>You gain an additional +3 Resistance to the element of your Draconic Soul.</Description>
       <Icon>DLDragonsProtectionII</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -1191,14 +1191,16 @@ Rank 3: You gain +2 to Attack.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Action Boost: Haste</Name>
-          <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+          <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.
+Cooldown: 30 seconds.</Description>
           <Icon>KenseiHasteBoost</Icon>
           <Clickie />
           <CostPerRank size="1">1</CostPerRank>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Action Boost: Tactics</Name>
-          <Description>Activate to gain a +[3/6/9] Action Boost bonus to Tactical DCs for 20 seconds.</Description>
+          <Description>Activate to gain a +[3/6/9] Action Boost bonus to Tactical DCs for 20 seconds.
+Cooldown: 30 seconds.</Description>
           <Icon>DragonLordABTactics</Icon>
           <Clickie />
           <CostPerRank size="1">1</CostPerRank>
@@ -1440,10 +1442,10 @@ Power.</Description>
     <EnhancementTreeItem>
       <InternalName>DragonLordDragonsRoar</InternalName>
       <Name>Dragon Lord: Dragon's Roar</Name>
-      <Description>Cooldown: 20 seconds
-Tactical Feat: Enemies in a cone ahead of you must make a Will Saving Throw
+      <Description>Tactical Feat: Enemies in a cone ahead of you must make a Will Saving Throw
 (DC 10 + Highest of STR and CHA mod + Stunning bonuses + Breath Weapon DC bonuses)
-or be Dazed. Affected enemies have a 25% chance to be broken out of Daze on damage.</Description>
+or be Dazed. Affected enemies have a 25% chance to be broken out of Daze on damage.
+Cooldown: 20 seconds</Description>
       <Icon>DLDragonsRoar</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
@@ -1499,29 +1501,27 @@ or be Dazed. Affected enemies have a 25% chance to be broken out of Daze on dama
       <Selector>
         <EnhancementSelection>
           <Name>Draconic Conviction</Name>
-          <Description>Cooldown: 20 seconds
-(Prerequisite: Non-Chaotic Alignment)
-Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
-tactical feats equal to 1/2 of your Strength modifier for [30/60/120] seconds.
-Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
-(or their Improved variants), you have a chance to restore 1 charge.</Description>
+          <Description>Battle Trance: You gain an Insight bonuses to Attack, Damage and the DC of
+tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
+When you use Dragon's Roar, you have a chance to restore 1 charge.
+Cooldown: 20 seconds</Description>
           <Icon>DLDraconicConviction</Icon>
           <Clickie />
           <CostPerRank size="1">1</CostPerRank>
           <Stance>
             <Name>Draconic Conviction</Name>
             <Icon>DLDraconicConviction</Icon>
-            <Description>Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
-tactical feats equal to 1/2 of your Strength modifier for [30/60/120] seconds.
-Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
-(or their Improved variants), you have a chance to restore 1 charge.</Description>
+          <Description>Battle Trance: You gain an Insight bonuses to Attack, Damage and the DC of
+tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
+When you use Dragon's Roar, you have a chance to restore 1 charge.
+Cooldown: 20 seconds</Description>
             <Group>Battle Trance</Group>
           </Stance>
           <Effect>
-            <DisplayName>Dragon Lord: Draconic Might (Str Mod / 2)</DisplayName>
+            <DisplayName>Dragon Lord: Draconic Might (Cha Mod / 2)</DisplayName>
             <Type>TacticalDC</Type>
             <Bonus>Insightful</Bonus>
-            <StackSource>Strength</StackSource>
+            <StackSource>Charisma</StackSource>
             <AType>HalfAbilityMod</AType>
             <Item>Trip</Item>
             <Item>Sunder</Item>
@@ -1530,22 +1530,22 @@ Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
             <Requirements>
               <Requirement>
                 <Type>Stance</Type>
-                <Item>Draconic Might</Item>
+                <Item>Draconic Conviction</Item>
               </Requirement>
             </Requirements>
           </Effect>
           <Effect>
-            <DisplayName>Dragon Lord: Draconic Might (Str Mod / 2)</DisplayName>
+            <DisplayName>Dragon Lord: Draconic Might (Cha Mod / 2)</DisplayName>
             <Type>Weapon_DamageBonus</Type>
             <Type>Weapon_DamageBonusCritical</Type>
             <Bonus>Insightful</Bonus>
-            <StackSource>Strength</StackSource>
+            <StackSource>Charisma</StackSource>
             <AType>HalfAbilityMod</AType>
             <Item>All</Item>
             <Requirements>
               <Requirement>
                 <Type>Stance</Type>
-                <Item>Draconic Might</Item>
+                <Item>Draconic Conviction</Item>
               </Requirement>
             </Requirements>
           </Effect>
@@ -1564,16 +1564,15 @@ Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
             <Name>Might in Order</Name>
             <Icon>DLMightOrOutburst</Icon>
             <Description>Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
-tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
-Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
-(or their Improved variants), you have a chance to restore 1 charge.</Description>
+tactical feats equal to 1/2 of your Strength modifier for [30/60/120] seconds.
+When you use Dragon's Roar, you have a chance to restore 1 charge.</Description>
             <Group>Battle Trance</Group>
           </Stance>
           <Effect>
-            <DisplayName>Dragon Lord: Draconic Outburst (Cha Mod / 2)</DisplayName>
+            <DisplayName>Dragon Lord: Draconic Outburst (Str Mod / 2)</DisplayName>
             <Type>TacticalDC</Type>
             <Bonus>Insightful</Bonus>
-            <StackSource>Charisma</StackSource>
+            <StackSource>Strength</StackSource>
             <AType>HalfAbilityMod</AType>
             <Item>Trip</Item>
             <Item>Sunder</Item>
@@ -1582,22 +1581,22 @@ Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
             <Requirements>
               <Requirement>
                 <Type>Stance</Type>
-                <Item>Draconic Outburst</Item>
+                <Item>Might in Order</Item>
               </Requirement>
             </Requirements>
           </Effect>
           <Effect>
-            <DisplayName>Dragon Lord: Draconic Outburst (Cha Mod / 2)</DisplayName>
+            <DisplayName>Dragon Lord: Draconic Outburst (Str Mod / 2)</DisplayName>
             <Type>Weapon_DamageBonus</Type>
             <Type>Weapon_DamageBonusCritical</Type>
             <Bonus>Insightful</Bonus>
-            <StackSource>Charisma</StackSource>
+            <StackSource>Strength</StackSource>
             <AType>HalfAbilityMod</AType>
             <Item>All</Item>
             <Requirements>
               <Requirement>
                 <Type>Stance</Type>
-                <Item>Draconic Outburst</Item>
+                <Item>Might in Order</Item>
               </Requirement>
             </Requirements>
           </Effect>
@@ -1826,10 +1825,13 @@ Draconic Soul.</Description>
     <EnhancementTreeItem>
       <InternalName>DragonLordBattlefieldTacticianIV</InternalName>
       <Name>Dragon Lord: Battlefield Tactician IV</Name>
-      <Description>+1 to Tactical Feat DCs and Breath Weapon DCs. When you attack with Trip or Sunder
-(or their Improved variants), you deal 1d4 additional damage per Character Level
-of the Element of you Draconic Soul. This damage scales with 200% Melee or Ranged
-Power.</Description>
+      <Description>+1 to Tactical Feat DCs and Breath Weapon DCs. When you Sunder enemies, it makes them
+vulnerable to the element of your Draconic Soul for 10 seconds.
+
+Additionally, if you successfully Sunder (or Improved Sunder) a target under the
+effects of Trip (or Improved Trip), that target takes an additional 1d6 damage per
+Character Level of the Element of you Draconic Soul. This damage scales with 200%
+Melee or Ranged Power.</Description>
       <Icon>DLBattlefieldTacticianIV</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
@@ -1890,7 +1892,7 @@ This cannot be dispelled.</Description>
       <InternalName>DragonLordLeadTheCharge</InternalName>
       <Name>Dragon Lord: Lead the Charge</Name>
       <Description>Deals +[20/30/50]% Damage
-Cooldown: 20 seconds
+Cooldown: 12 seconds
 Melee Rush Attack: Rush forward up to 30 feet to your selected opponent and
 deliver a mighty strike. Shares a cooldown with Shield Charge.</Description>
       <Icon>DLLeadTheCharge</Icon>
@@ -2009,7 +2011,7 @@ Improved variants) are reduced by 33%. +2 to Breath Weapon DCs.</Description>
       <Icon>DLTacticalCommander</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
@@ -2064,12 +2066,12 @@ for 20 seconds.</Description>
     <EnhancementTreeItem>
       <InternalName>DragonLordFlightOfKings</InternalName>
       <Name>Dragon Lord: Flight of Kings</Name>
-      <Description>Cooldown: 15 seconds
-Memories of flight lie within you. You are able to leap through the air to bring
+      <Description>Memories of flight lie within you. You are able to leap through the air to bring
 the fight to your enemies or traverse chasms that make normal adventure's balk.
+Cooldown: 15 seconds
 
-When you use Flight of Kings, you gain a +20% Action Boost bonus to movement
-speed for 6 seconds.</Description>
+When you use Flight of Kings, you gain a +20% Action Boost bonus to Movement
+Speed for 6 seconds.</Description>
       <Icon>DragonbornMemoryOfFlight</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>

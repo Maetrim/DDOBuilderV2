@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Brigand's Cutlass (level 24)(pre-U39)</Name>
     <Icon>Scimitar_4</Icon>
     <Description>A curved sword with an elegant hilt, popular amongst pirates for its intimidating
@@ -10,8 +10,8 @@ lawful opponents.</Description>
     <DropLocation>Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal at Dusty Old Treasure of Crystal Cove </DropLocation>
     <MinLevel>24</MinLevel>
     <EquipmentSlot>
-      <Weapon1 />
-      <Weapon2 />
+      <Weapon1/>
+      <Weapon2/>
     </EquipmentSlot>
     <Weapon>Scimitar</Weapon>
     <AttackModifier>Strength</AttackModifier>
@@ -26,7 +26,6 @@ lawful opponents.</Description>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>3</CriticalThreatRange>
-    <NoAutoUpdate />
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>6</Value1>
@@ -85,15 +84,11 @@ wielded by Chaotic-aligned characters.
 Adds a Red augment slot to this item</Description>
         <MinLevel>24</MinLevel>
         <Icon>Upgrade</Icon>
+        <GrantAugment>Red</GrantAugment>
         <Effect>
           <Type>WeaponOtherDamageBonus</Type>
           <Type>WeaponOtherDamageBonusCritical</Type>
           <Bonus>Equipment</Bonus>
-          <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">6</Sides>
-            <Damage>Lawful</Damage>
-          </Dice>
           <Item>All</Item>
           <Requirements>
             <Requirement>
@@ -101,8 +96,12 @@ Adds a Red augment slot to this item</Description>
               <Item>Non-Chaotic</Item>
             </Requirement>
           </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Lawful</Damage>
+          </Dice>
         </Effect>
-        <GrantAugment>Red</GrantAugment>
       </Augment>
     </ItemAugment>
   </Item>

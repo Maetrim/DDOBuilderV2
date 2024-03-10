@@ -222,7 +222,12 @@ void BreakdownItem::AddActiveItems(
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                if (it.AType() == Amount_NotNeeded)
+                if (it.AType() == Amount_NotNeeded
+                    && it.HasValue())
+                {
+                    amount = it.Value().c_str();
+                }
+                else if (it.AType() == Amount_NotNeeded && it.Item().size() > 0)
                 {
                     amount = it.Item().front().c_str();
                 }
@@ -233,6 +238,7 @@ void BreakdownItem::AddActiveItems(
                 else
                 {
                     amount.Format("%.2f", total); //= it.AmountAsText(bShowMultiplier ? Multiplier() : 1.0);
+                    if (it.HasPercent()) amount += "%";
                     amount.Replace(".00", "");
                 }
                 pControl->SetItemText(index, CO_Value, amount);
@@ -333,7 +339,12 @@ void BreakdownItem::AddDeactiveItems(
 
                 // and the total amount the number of stacks contribute
                 CString amount;
-                if (it.AType() == Amount_NotNeeded)
+                if (it.AType() == Amount_NotNeeded
+                    && it.HasValue())
+                {
+                    amount = it.Value().c_str();
+                }
+                else if (it.AType() == Amount_NotNeeded && it.Item().size() > 0)
                 {
                     amount = it.Item().front().c_str();
                 }

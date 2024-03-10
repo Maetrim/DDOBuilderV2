@@ -117,10 +117,20 @@ void Character::SetLifeName(
 
 size_t Character::AddLife()
 {
+    Life* pCurrentLife = ActiveLife();
     m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
     m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
     // all new lives start with a default build
     Life life(this);
+    // add all past lives from the previously selected life to this one
+    if (pCurrentLife != NULL)
+    {
+        const FeatsListObject& specialFeats = pCurrentLife->SpecialFeats();
+        for (auto&& fit: specialFeats.Feats())
+        {
+            life.TrainSpecialFeat(fit.FeatName());
+        }
+    }
     m_Lives.push_back(life);
     m_Lives.back().AddBuild(0);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -226,8 +236,6 @@ void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex)
             GetLog().AddLogEntry(ss.str().c_str());
         }
 
-        NotifyActiveLifeChanged();
-        NotifyActiveBuildChanged();
         if (ActiveBuild() != NULL)
         {
             ActiveBuild()->BuildNowActive();

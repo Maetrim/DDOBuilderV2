@@ -304,7 +304,6 @@ void CBuildsPane::OnButtonNewLife()
     if (lifeIndex == 0)
     {
         m_pCharacter->SetModifiedFlag(FALSE);
-        m_pCharacter->NotifyActiveBuildChanged();
     }
 }
 

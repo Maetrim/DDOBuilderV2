@@ -113,16 +113,48 @@ bool Quest::operator<(const Quest& other) const
             }
             break;
         case 1: // quest level
-            bRet = Levels()[0] < other.Levels()[0];
+            if (Levels()[0] != other.Levels()[0])
+            {
+                bRet = Levels()[0] < other.Levels()[0];
+            }
+            else
+            {
+                // sort by name
+                bRet = Name() < other.Name();
+            }
             break;
         case 2: // quest favor
-            bRet = Favor() < other.Favor();
+            if (Favor() != other.Favor())
+            {
+                bRet = Favor() < other.Favor();
+            }
+            else
+            {
+                // sort by name
+                bRet = Name() < other.Name();
+            }
             break;
         case 3: // quest run at
-            bRet = GetDifficulty() < other.GetDifficulty();
+            if (GetDifficulty() != other.GetDifficulty())
+            {
+                bRet = GetDifficulty() < other.GetDifficulty();
+            }
+            else
+            {
+                // sort by name
+                bRet = Name() < other.Name();
+            }
             break;
         case 4: // quest patron
-            bRet = Patron() < other.Patron();
+            if (Patron() != other.Patron())
+            {
+                bRet = Patron() < other.Patron();
+            }
+            else
+            {
+                // sort by name
+                bRet = Name() < other.Name();
+            }
             break;
     }
     if (!gm_bAscending)

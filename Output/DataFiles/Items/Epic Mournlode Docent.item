@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Mournlode Docent</Name>
     <Icon>Docent_1k</Icon>
     <Description>Metal armor constructed from valuable purple Mournlode crystal is imbued with
@@ -20,6 +21,11 @@ wearer from evil.</Description>
     <MithralBody>9</MithralBody>
     <AdamantineBody>20</AdamantineBody>
     <Buff>
+      <Type>ArmorEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
       <Type>Protection</Type>
       <Value1>8</Value1>
       <BonusType>Deflection</BonusType>
@@ -34,20 +40,58 @@ wearer from evil.</Description>
       <Value1>4</Value1>
     </Buff>
     <Buff>
-      <Type>Protection</Type>
-      <BonusType>Deflection</BonusType>
+      <Type>Protection from Evil</Type>
     </Buff>
     <Buff>
-      <Type>WeakenUndead</Type>
+      <Type>Weaken Undead</Type>
     </Buff>
-    <Buff>
-      <Type>UndeadGuard</Type>
-      <Value1>4</Value1>
-    </Buff>
-    <Buff>
-      <Type>Resistance</Type>
-      <Value1>8</Value1>
-      <BonusType>Resistance</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+6 Enhancement Bonus, Undead Guard 5, Colorless Augment slot</Name>
+        <Description>+6 Enhancement Bonus: +6 enhancement bonus to Armor Class.
+Undead Guard +5: Chance to deal 5d8 Good damage to undead when hit.
+Colorless Augment slot</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Protection +9, Resistance +9, Negative Absorption 30%, Adds a Green augment slot</Name>
+        <Description>Adds a Purple augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Deflection</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">9</Amount>
+        </Effect>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Resistance</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">9</Amount>
+        </Effect>
+        <Effect>
+          <Type>EnergyAbsorbance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Negative</Item>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

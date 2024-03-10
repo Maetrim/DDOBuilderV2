@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Cloak of Flames</Name>
     <Icon>Cloak_15</Icon>
     <Description>Imbued with the power of a bound Fire Elemental, this smooth cloak of crimson
@@ -9,6 +10,11 @@ fabric absorbs harmful flames and makes your fire spells stronger.</Description>
     <EquipmentSlot>
       <Cloak/>
     </EquipmentSlot>
+    <Buff>
+      <Type>Combustion</Type>
+      <Value1>110</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
     <Buff>
       <Type>FireLore</Type>
       <Value1>16</Value1>
@@ -27,28 +33,73 @@ fabric absorbs harmful flames and makes your fire spells stronger.</Description>
       <Item>Fire</Item>
     </Buff>
     <Buff>
-      <Type>FireLore</Type>
-      <Value1>16</Value1>
-      <BonusType>Equipment</BonusType>
+      <Type>Fire Shield (Hot)</Type>
     </Buff>
-    <Buff>
-      <Type>Absorption</Type>
-      <Value1>27</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Fire</Description1>
-      <Item>Fire</Item>
-    </Buff>
-    <Buff>
-      <Type>FireLore</Type>
-      <Value1>17</Value1>
-      <BonusType>Equipment</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Absorption</Type>
-      <Value1>28</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Fire</Description1>
-      <Item>Fire</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Combustion 116, Fire Lore 17%, Fire Absorption 28% and a Colorless augment slot</Name>
+        <Description>Combustion +116: Passive: +116 Equipment bonus to Fire Spell Power.
+Fire Lore +17: Passive: Your Fire spells gain a 17% Equipment bonus to their
+chance to critical hit.
+Fire Absorption +28%: Passive: 28% Enhancement Bonus to Fire Absorption.
+Colorless augment slot</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">116</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">17</Amount>
+        </Effect>
+        <Effect>
+          <Type>EnergyAbsorbance</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">28</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Combustion 122, Fire Lore 18%, Fire Absorption 30% and a Green augment slot</Name>
+        <Description>Adds a Purple augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">122</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">18</Amount>
+        </Effect>
+        <Effect>
+          <Type>EnergyAbsorbance</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Ring of Master Artifice</Name>
     <Icon>Ring_22</Icon>
     <Description>A ring said to have been worn by a legendary artificer. Using it, he was able
@@ -9,6 +10,13 @@ to take things that seemed beyond repair and make them good as new.</Description
     <EquipmentSlot>
       <Ring/>
     </EquipmentSlot>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Reconstruct</Item>
+      <AType>SLA</AType>
+      <Amount size="3">10 1 1</Amount>
+    </Effect>
     <Buff>
       <Type>WizardryNumber</Type>
       <Value1>192</Value1>
@@ -22,8 +30,9 @@ to take things that seemed beyond repair and make them good as new.</Description
       <Item>Repair</Item>
     </Buff>
     <Buff>
-      <Type>SkillBonus</Type>
-      <BonusType>Competence</BonusType>
+      <Type>SpellLore</Type>
+      <Value1>16</Value1>
+      <BonusType>Equipment</BonusType>
       <Description1>Repair</Description1>
       <Item>Repair</Item>
     </Buff>
@@ -31,31 +40,74 @@ to take things that seemed beyond repair and make them good as new.</Description
       <Type>GreaterAutoRepair</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <Buff>
-      <Type>Reconstruction</Type>
-      <Value1>110</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
-    </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <BonusType>Competence</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
-    </Buff>
-    <Buff>
-      <Type>Reconstruction</Type>
-      <Value1>116</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
-    </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <BonusType>Competence</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Wizardry 206, Reconstruction 116, Repair Lore 17% and a Colorless augment slot</Name>
+        <Description>Wizardry +206: +206 Enhancement bonus to spell points.
+Reconstruction +116: Passive: +116 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +17: Passive: Your Repair and Rust spells gain a 17% Equipment bonus
+to their chance to critical hit.
+Adds a Colorless Augment slot.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+        <Effect>
+          <Type>SpellPoints</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">206</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <AType>Simple</AType>
+          <Amount size="1">116</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <AType>Simple</AType>
+          <Amount size="1">17</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Wizardry 220, Reconstruction 122, Repair Lore 18%, Repair Systems and a Green augment slot</Name>
+        <Description>Wizardry +220: +220 Enhancement bonus to spell points.
+Reconstruction +122: Passive: +122 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +18: Passive: Your Repair and Rust spells gain a 18% Equipment bonus
+to their chance to critical hit.
+Repair Systems: This item gradually repairs constructs and living constructs.
+Adds a Green augment slot.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>SpellPoints</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">220</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <AType>Simple</AType>
+          <Amount size="1">122</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <AType>Simple</AType>
+          <Amount size="1">18</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

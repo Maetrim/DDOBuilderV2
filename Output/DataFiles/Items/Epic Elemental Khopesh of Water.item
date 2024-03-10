@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Elemental Khopesh of Water</Name>
     <Icon>Khopesh_9</Icon>
     <Description>This khopesh is part of a mass-produced line of the House Cannith weapons with
@@ -23,6 +24,11 @@ as a result.</Description>
     </BaseDice>
     <CriticalMultiplier>3</CriticalMultiplier>
     <CriticalThreatRange>2</CriticalThreatRange>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
     <Buff>
       <Type>Icy Burst</Type>
       <BonusType>Enhancement</BonusType>
@@ -49,13 +55,49 @@ as a result.</Description>
       <Description1>Fire</Description1>
       <Item>Fire</Item>
     </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>36</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Fire</Description1>
-      <Item>Fire</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+6 Enhancement Bonus, Fire Resistance 38 and a Colorless augment slot</Name>
+        <Description>+6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Fire Resistance +38: Passive: +38 Enhancement bonus to your Fire Resistance.
+Adds a Colorless augment slot</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">38</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Fire Resistance 41 and Adds a Purple augment slot</Name>
+        <Description>Fire Resistance +41: Passive: +41 Enhancement bonus to your Fire Resistance.
+Adds a Purple augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">41</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

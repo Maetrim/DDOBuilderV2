@@ -338,7 +338,7 @@ void CInfoTip::SetEnhancementTreeItem(
     str.Format("Cost %d", pItem->Cost(selection, 0));
     if (pItem->CostVaries(selection))
     {
-        for (size_t rank = 1; rank < pItem->Ranks(); ++rank)
+        for (size_t rank = 1; rank < pItem->Ranks(selection); ++rank)
         {
             CString rankCost;
             rankCost.Format("/%d", pItem->Cost(selection, rank));
@@ -346,7 +346,7 @@ void CInfoTip::SetEnhancementTreeItem(
         }
     }
     pHeader->SetCost(str);
-    str.Format("Ranks %d", pItem->Ranks());
+    str.Format("Ranks %d", pItem->Ranks(selection));
     pHeader->SetRank(str);
     m_tipItems.push_back(pHeader);
 
@@ -430,7 +430,7 @@ void CInfoTip::SetEnhancementSelectionItem(
     str.Format("Cost %d", pSelection->Cost(0));
     if (pSelection->CostVaries())
     {
-        for (size_t rank = 1; rank < pItem->Ranks(); ++rank)
+        for (size_t rank = 1; rank < pItem->Ranks(pSelection->Name()); ++rank)
         {
             CString rankCost;
             rankCost.Format("/%d", pSelection->Cost(rank));
@@ -438,7 +438,7 @@ void CInfoTip::SetEnhancementSelectionItem(
         }
     }
     pHeader->SetCost(str);
-    str.Format("Ranks %d", pItem->Ranks());
+    str.Format("Ranks %d", pItem->Ranks(pSelection->Name()));
     pHeader->SetRank(str);
     m_tipItems.push_back(pHeader);
 

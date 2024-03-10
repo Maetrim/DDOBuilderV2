@@ -51,7 +51,7 @@ Each Core ability in this tree, including this one, grants the following:
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
@@ -110,7 +110,7 @@ Destiny ability that modify your Echoes of Power.</Description>
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
@@ -178,7 +178,7 @@ Cooldown: 2 minutes</Description>
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
@@ -236,7 +236,7 @@ have a 5% chance to be Frozen for 10 seconds with no saving throw.</Description>
         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>SpellPenetrationBonus</Type>
         <Bonus>Destiny</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
@@ -265,10 +265,11 @@ have a 5% chance to be Frozen for 10 seconds with no saving throw.</Description>
     </EnhancementTreeItem>
     <!--Tier 1-->
     <EnhancementTreeItem>
-      <Name>Magus of the Eclipse: Self or Summons</Name>
-      <InternalName>U51MagusSelfOrSummons</InternalName>
-      <Description>Augment yourself or your Summons.</Description>
-      <Icon>MagusSelfOrSummons</Icon>
+      <Name>Magus of the Eclipse: Imperceptible Casting</Name>
+      <InternalName>MoEImperceptableCasting</InternalName>
+      <Description>-[10/20/30]% Spell threat.
+Rank 3: if you have the Discipline feat, double these bonuses.</Description>
+      <Icon>MoEImperceptableCasting</Icon>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -280,55 +281,13 @@ have a 5% chance to be Frozen for 10 seconds with no saving throw.</Description>
           <Value>20</Value>
         </Requirement>
       </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>Great Summoner</Name>
-          <Description>Your summons, pets, and hirelings gain +4 to all ability scores, increased health,
-100% Fortification, and a 40% increase to movement speed.</Description>
-          <Icon>GreatSummoner</Icon>
-          <CostPerRank size="1">1</CostPerRank>
-          <Effect>
-            <Type>HirelingAbilityBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">4</Amount>
-          </Effect>
-          <Effect>
-            <Type>HirelingHitpoints</Type>
-            <Bonus>Destiny</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">100</Amount>
-          </Effect>
-          <Effect>
-            <Type>HirelingFortification</Type>
-            <Bonus>Destiny</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">100</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Imperceptable Casting</Name>
-          <Description>Epic Strike: Single-target SLA, 1d6+6 Cold Damage per caster level and applies
-3 stacks of Shattermantle. Cooldown 6 seconds, cost 5 Spell Points</Description>
-          <Icon>MoEImperceptableCasting</Icon>
-          <CostPerRank size="1">1</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>U51ExaltedAngelSubtleFlame</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <DisplayName>Magus of the Eclipse: Imperceptible Casting</DisplayName>
-            <Type>ThreatBonusSpell</Type>
-            <Bonus>Destiny</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="7">-10 -20 -30 0 -20 -40 -60</Amount>
-          </Effect>
-        </EnhancementSelection>
-      </Selector>
+      <Effect>
+         <DisplayName>Magus of the Eclipse: Imperceptible Casting</DisplayName>
+         <Type>ThreatBonusSpell</Type>
+         <Bonus>Destiny</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="7">-10 -20 -30 0 -20 -40 -60</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Magus of the Eclipse: Moonbeams</Name>
@@ -395,10 +354,10 @@ ability will put every Epic Strike onto this ability's cooldown.</Description>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Magus of the Eclipse: Moontouched</Name>
-      <InternalName>U51MagusMoontouched</InternalName>
+      <Name>Magus of the Eclipse: Cloak of Silver</Name>
+      <InternalName>U51MagusCloakOfSilver</InternalName>
       <Description>+[2/4/6] Magical Resistance rating.
-      Rank 3: +5 Cold, Negative, Force, and Universal Spell Power.</Description>
+Rank 3: +5 Cold, Negative, Force, and Universal Spell Power.</Description>
       <Icon>MagusMoontouched</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
@@ -546,10 +505,9 @@ Light instead. This does not stack with Fire Shield: Cold or Cold Energy Sheathe
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Magus of the Eclipse: Impregnable Mind</Name>
-      <InternalName>U51MagusImpregnableMind</InternalName>
-      <Description>+[2/4/6] Will Saving Throws and Concentration.
-Rank 3: You no longer fail Will saves on a natural 1.</Description>
+      <Name>Magus of the Eclipse: Self or Summons</Name>
+      <InternalName>U51MagusSelfOrSummons</InternalName>
+      <Description>Augment yourself or your Summons.</Description>
       <Icon>MoEImpregnableMind</Icon>
       <XPosition>4</XPosition>
       <YPosition>1</YPosition>
@@ -562,33 +520,77 @@ Rank 3: You no longer fail Will saves on a natural 1.</Description>
           <Value>20</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>SaveBonus</Type>
-        <Bonus>Destiny</Bonus>
-        <Item>Will</Item>
-        <AType>Stacks</AType>
-        <Amount size="3">2 4 6</Amount>
-      </Effect>
-      <Effect>
-        <Type>SkillBonus</Type>
-        <Bonus>Destiny</Bonus>
-        <Item>Concentration</Item>
-        <AType>Stacks</AType>
-        <Amount size="3">2 4 6</Amount>
-      </Effect>
-      <Effect>
-        <Type>SaveNoFailOn1</Type>
-        <Bonus>Destiny</Bonus>
-        <Item>Will</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-        <Rank>3</Rank>
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Great Summoner</Name>
+          <Description>Your summons, pets, and hirelings gain +4 to all ability scores, increased health,
+100% Fortification, and a 40% increase to movement speed.</Description>
+          <Icon>GreatSummoner</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Ranks>1</Ranks>
+          <Effect>
+            <Type>HirelingAbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+          </Effect>
+          <Effect>
+            <Type>HirelingHitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">100</Amount>
+          </Effect>
+          <Effect>
+            <Type>HirelingFortification</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">100</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Impregnable Mind</Name>
+          <Description>+[2/4/6] Will Saving Throws and Concentration.
+Rank 3: You no longer fail Will saves on a natural 1.</Description>
+          <Icon>MoEImpregnableMind</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Ranks>3</Ranks>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>Enhancement</Type>
+                <Item>U51ExaltedAngelSubtleFlame</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+         <Effect>
+           <Type>SaveBonus</Type>
+           <Bonus>Destiny</Bonus>
+           <Item>Will</Item>
+           <AType>Stacks</AType>
+           <Amount size="3">2 4 6</Amount>
+         </Effect>
+         <Effect>
+           <Type>SkillBonus</Type>
+           <Bonus>Destiny</Bonus>
+           <Item>Concentration</Item>
+           <AType>Stacks</AType>
+           <Amount size="3">2 4 6</Amount>
+         </Effect>
+         <Effect>
+           <Type>SaveNoFailOn1</Type>
+           <Bonus>Destiny</Bonus>
+           <Item>Will</Item>
+           <AType>Simple</AType>
+           <Amount size="1">1</Amount>
+           <Rank>3</Rank>
+         </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <!--Tier 2-->
     <EnhancementTreeItem>
-      <Name>Magus of the Eclipse: Moontouched 2</Name>
-      <InternalName>U51MagusMoontouched2</InternalName>
+      <Name>Magus of the Eclipse: Moontouched</Name>
+      <InternalName>U51MagusMoontouched</InternalName>
       <Description>+[1/2/3] to the DCs of Fear-based spells.</Description>
       <Icon>Moontouched</Icon>
       <XPosition>0</XPosition>
@@ -690,6 +692,7 @@ Rank 3: You no longer fail Will saves on a natural 1.</Description>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie/>
+      <ArrowUp/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -740,12 +743,10 @@ that enhance Spells beyond Spell Power, but also cannot be dispelled.
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Magus of the Eclipse: Chill Aura</Name>
-      <InternalName>U51MagusChillAura</InternalName>
-      <Description>WRONG DATA HEREWhile in your Frostlight Mantle, enemies within melee range take 1d6+6 Cold damage
-per caster level and 1d6+6 Negative damage per caster level every 6 seconds.
-If an enemy would heal from either of these effects, they do not take the damage.</Description>
-      <Icon>ChillAura</Icon>
+      <Name>Magus of the Eclipse: Frostlight Improvement I</Name>
+      <InternalName>U51MagusFrostlightImprovementI</InternalName>
+      <Description>Improves your Magus of the Eclipse Destiny Mantle.</Description>
+      <Icon>FrostlightImprovementI</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -758,6 +759,27 @@ If an enemy would heal from either of these effects, they do not take the damage
           <Value>20</Value>
         </Requirement>
       </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Chill Aura</Name>
+          <Description>While in your Magus of the Eclipse Destiny Mantle, enemies within melee range take
+1d6+6 Cold damage per caster level and 1d6+6 Negative damage per caster level
+every 6 seconds. If an enemy would heal from either of these effects, they do
+not take the damage.</Description>
+          <Icon>ChillAura</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Flash of the Eclipse</Name>
+          <Description>While in your Magus of the Eclipse Destiny Mantle, your Cold and Negative spells
+have a chance to blast your target for an additional 1d6+6 damage per character
+level of the same type as the spell used, as well as applying one stack of
+Shattermantle. Each element and the Shattermantle application can only strike
+once every 5 seconds, tracked separately.</Description>
+          <Icon>FlashOfTheEclipse</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Magus of the Eclipse: Lunar Insight</Name>
@@ -917,7 +939,7 @@ last 60 seconds.</Description>
     <EnhancementTreeItem>
       <Name>Magus of the Eclipse: Lunar Imbuement</Name>
       <InternalName>U51MagusLunarImbuement</InternalName>
-      <Description>When you hit an enemy with Moon Lance or Gloom Spear Epic Strike, you gain +15 Cold,
+      <Description>When you hit an enemy with Moon Lance or Gloom Spear Epic Strike, you gain +5 Cold,
 Negative, Force, and Universal for 12 seconds. These spells also now apply 5 stacks
 of Vulnerable.
 
@@ -929,6 +951,7 @@ times, and loses one stack on expiration.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
+      <ArrowUp/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -954,6 +977,10 @@ the relevant kind of damage to enemies within.</Description>
         <Requirement>
           <Type>Level</Type>
           <Value>23</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>U51MagusMoonlight</Item>
         </Requirement>
       </Requirements>
     </EnhancementTreeItem>
@@ -1056,10 +1083,15 @@ for 12 seconds.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
+      <ArrowUp/>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
           <Value>26</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>U51MagusLunarImbuement</Item>
         </Requirement>
       </Requirements>
     </EnhancementTreeItem>
@@ -1226,6 +1258,10 @@ Resistance.</Description>
         <Requirement>
           <Type>Level</Type>
           <Value>30</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>U51MagusGreaterBeams</Item>
         </Requirement>
       </Requirements>
       <Effect>

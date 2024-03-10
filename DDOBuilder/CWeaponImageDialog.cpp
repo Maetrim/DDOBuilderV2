@@ -254,7 +254,7 @@ void CWeaponImageDialog::FindNextItem()
         std::advance(it, m_nextItem);
         if ((*it).HasWeapon()
                 && (*it).Weapon() == m_selectedItemType
-                && (*it).Icon() == "")
+                && (!(*it).HasIcon() || (*it).Icon() == ""))
         {
             // found an item that equips to this slot type with no icon
             GetDlgItem(IDC_EDIT_ITEMNAME)->SetWindowText((*it).Name().c_str());
