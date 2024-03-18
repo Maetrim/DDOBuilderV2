@@ -14,6 +14,7 @@ using XmlLib::SaxAttributes;
 SaxReader::SaxReader(XmlLib::SaxContentElement * root, const SaxString & rootName) :
     m_root(root),
     m_rootName(rootName),
+    m_subElementDepth(0),
     m_errorReported(false)
 {
     HRESULT hr = m_rdr.CreateInstance(__uuidof(MSXML2::SAXXMLReader));

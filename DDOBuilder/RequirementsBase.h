@@ -47,6 +47,7 @@ class RequirementsBase :
         void SetRequirement(const Requirement& r);
         void GetExclusionGroup(std::string * enhancementId, std::string * group) const;
         bool RequiresEnhancement(const std::string& name) const;
+        bool RequiresAnEnhancement() const;
         void AddRequirement(const Requirement& req);
         void AddRequiresOneOf(const RequiresOneOf& roo);
         void AddRequiresNoneOf(const RequiresNoneOf& rno);

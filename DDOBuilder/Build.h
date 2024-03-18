@@ -16,6 +16,7 @@
 #include "FeatSlot.h"
 #include "InventorySlotTypes.h"
 #include "LevelTraining.h"
+#include "LegacyItem.h"
 #include "ReaperSpendInTree.h"
 #include "Destiny_SelectedTrees.h"
 #include "Enhancement_SelectedTrees.h"
@@ -37,6 +38,8 @@ class SetBonus;
 class Stance;
 class StanceGroup;
 class TrainedEnhancement;
+class LegacyEnhancementSelectedTrees;
+class LegacyDestinySelectedTrees;
 
 class BuildObserver :
     public Observer<Build>
@@ -159,6 +162,7 @@ class Build :
         // Enhancements
         void Enhancement_ResetEnhancementTree(std::string treeName);
         void Enhancement_SetSelectedTrees(const Enhancement_SelectedTrees& trees);
+        void Enhancement_SetSelectedTrees(const LegacyEnhancementSelectedTrees& trees);
         void Enhancement_TrainEnhancement(
                 const std::string& treeName,
                 const std::string& enhancementName,
@@ -240,6 +244,7 @@ class Build :
         void RevokeFeatEffects(const Feat & feat);
 
         void Destiny_SetSelectedTrees(const Destiny_SelectedTrees& trees);
+        void Destiny_SetSelectedTrees(const LegacyDestinySelectedTrees& trees);
         void Destiny_TrainEnhancement(
                 const std::string& treeName,
                 const std::string& enhancementName,
@@ -272,6 +277,7 @@ class Build :
         // gear support
         void UpdateGearToLatestVersions();
         Item GetLatestVersionOfItem(InventorySlotType slot, Item original);
+        Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original);
         void VerifyGear();
         void AddGearSet(const EquippedGear & gear);
         void DeleteGearSet(const std::string& name);
@@ -413,4 +419,5 @@ class Build :
 
         friend class CStancesPane;
         friend class CStanceButton;
+        friend class CDDOBuilderApp;
 };

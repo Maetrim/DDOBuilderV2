@@ -62,7 +62,7 @@ void SaxContentElementInterface::ClearSaxReadErrorHandler()
 void SaxContentElementInterface::ReportSaxReadError(const std::string & errorDescription)
 {
     // propagate or die
-    if (m_readErrorHandler != NULL)
+    if (m_readErrorHandler != NULL && m_readErrorHandler != this)
     {
         m_readErrorHandler->ReportSaxReadError(errorDescription);
     }

@@ -61,6 +61,44 @@ void TrainedFeat::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(TrainedFeat_PROPERTIES)
+
+    // translate old feat slot names of V1 builder to thier new names in V2
+    if (m_Type == "AasimarBond") m_Type = "Aasimar Bond";
+    if (m_Type == "AlchemistBonus") m_Type = "Alchemist Bonus Feat";
+    if (m_Type == "ArtificerBonus") m_Type = "Artificer Bonus Feat";
+    if (m_Type == "BelovedOf") m_Type = "Beloved Of";
+    if (m_Type == "BlightCasterToggleImbue") m_Type = "Toggle Imbue";
+    if (m_Type == "ChildOf") m_Type = "Child Of";
+    if (m_Type == "DarkHunterFavoredEnemy") m_Type = "Favored Enemy ";
+    if (m_Type == "DamageReduction") m_Type = "Damage Reduction";
+    if (m_Type == "DomainFeat") m_Type = "Domain Feat";
+    if (m_Type == "DruidWildShape") m_Type = "Wild Shape";
+    if (m_Type == "EnergyResistance") m_Type = "Energy Resistance";
+    if (m_Type == "EpicDestinyFeat") m_Type = "Epic Destiny Feat";
+    if (m_Type == "EpicFeat") m_Type = "Epic Feat";
+    if (m_Type == "FavoredEnemy") m_Type = "Favored Enemy";
+    if (m_Type == "FavoredSoulBattle") m_Type = "Battle Feat";
+    if (m_Type == "FighterBonus") m_Type = "Fighter Bonus Feat";
+    if (m_Type == "FollowerOf") m_Type = "Follower Of";
+    if (m_Type == "FavoredSoulHeart") m_Type = "Heart Feat";
+    if (m_Type == "KinForm") m_Type = "Kin Form";
+    if (m_Type == "Legendary") m_Type = "Legendary Feat";
+    if (m_Type == "MajorDragonLordAura") m_Type = "Major Draconic Aura";
+    if (m_Type == "Metamagic") m_Type = "Metamagic Feat";
+    if (m_Type == "MinorDragonLordAura") m_Type = "Minor Draconic Aura";
+    if (m_Type == "MinorDragonLordAura") m_Type = "Rogue Special Ability";
+    if (m_Type == "MonkBonus") m_Type = "Monk Bonus";
+    if (m_Type == "MonkBonus6") m_Type = "Monk Bonus";
+    if (m_Type == "MonkPhilosophy") m_Type = "Monk Philosophy";
+    if (m_Type == "RogueSpecialAbility") m_Type = "Superior Draconic Aura";
+    if (m_Type == "TruePact") m_Type = "True Patron";
+    if (m_Type == "WarlockPactAbility") m_Type = "Pact Ability";
+    if (m_Type == "WarlockPactSaveBonus") m_Type = "Pact Save Bonus";
+    if (m_Type == "WarlockPactSpell") m_Type = "Pact Spell";
+    if (m_Type == "WarlockPact") m_Type = "Warlock Pact";
+
+    // all Favored Enemy feats changed their name
+    m_FeatName = ReplaceAll(m_FeatName, "Favored enemy", "Favored Enemy");
 }
 
 void TrainedFeat::Write(XmlLib::SaxWriter * writer) const

@@ -13,6 +13,7 @@
 #include "BuffFile.h"
 #include "FeatsFile.h"
 #include "GuildBuffsFile.h"
+#include "LegacyCharacter.h"
 #include "MultiFileObjectLoader.h"
 #include "PatronsFile.h"
 #include "QuestsFile.h"
@@ -41,9 +42,11 @@ BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI(ID_FILE_IMPORT, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_VERIFYLOADEDDATA, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_COMMAND(ID_DEVELOPMENT_VERIFYLOADEDDATA, OnVerifyLoadedData)
+    ON_COMMAND(ID_FILE_IMPORT, OnFileImport)
 END_MESSAGE_MAP()
 
 // CDDOBuilderApp construction
@@ -222,6 +225,39 @@ void CDDOBuilderApp::OnFileNew()
         {
             pBuildsPane->OnButtonNewLife();
             pMainWnd->NewDocument(dynamic_cast<CDDOBuilderDoc*>(pDoc));
+        }
+    }
+}
+
+void CDDOBuilderApp::OnFileImport()
+{
+    CFileDialog dlg(TRUE, NULL, NULL, OFN_FILEMUSTEXIST, "DDOBuilder V1 Files (*.ddocp)|*.ddocp||");
+    if (IDOK == dlg.DoModal())
+    {
+        CString filename = dlg.GetPathName();
+        CWaitCursor longOperation;
+        LegacyCharacter importedCharacter;
+        // set up a reader with this as the expected root node
+        XmlLib::SaxReader reader(&importedCharacter, L"DDOCharacterData");
+        // read in the xml from a file (fully qualified path)
+        bool ok = reader.Open((LPCTSTR)filename);
+        if (ok)
+        {
+            std::stringstream ss;
+            ss << "Legacy DDOBuilder V1 Document \"" << (LPCTSTR)filename << "\" loaded.";
+            GetLog().AddLogEntry(ss.str().c_str());
+            ConvertToNewDataStructure(importedCharacter);
+        }
+        else
+        {
+            std::string errorMessage = reader.ErrorMessage();
+            // document has failed to load. Tell the user what we can about it
+            CString text;
+            text.Format("The document %s\n"
+                "failed to load. The XML parser reported the following problem:\n"
+                "\n", (LPCTSTR)filename);
+            text += errorMessage.c_str();
+            AfxMessageBox(text, MB_ICONERROR);
         }
     }
 }
@@ -952,11 +988,11 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
             totalFavor += qit.MaxFavor();
         }
         // now unpack the quests so we have multiple entries for each level
-        const std::vector<int>& levels = qit.Levels();
+        const std::vector<size_t>& levels = qit.Levels();
         for (size_t li = 0; li < levels.size(); ++li)
         {
             Quest copy = qit;
-            std::vector<int> singleLevel;
+            std::vector<size_t> singleLevel;
             singleLevel.push_back(levels[li]);
             copy.Set_Levels(singleLevel);
             if (li == 1 && copy.HasEpicName())
@@ -1428,4 +1464,137 @@ BOOL CDDOBuilderApp::WriteProfileBinary(LPCTSTR lpszSection, LPCTSTR lpszEntry, 
     BOOL bResult = WriteProfileString(lpszSection, lpszEntry, lpsz);
     delete[] lpsz;
     return bResult;
+}
+
+void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCharacter)
+{
+    // create a new life with a single build to receive the imported character data
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CBuildsPane)));
+    if (pBuildsPane != NULL)
+    {
+        Build* pBuild = pBuildsPane->OnNewLife();
+        pBuild->SetName(importedCharacter.Name());
+        pBuild->SetRace(importedCharacter.Race());
+        pBuild->SetAlignment(importedCharacter.Alignment());
+        pBuild->SetAbilityTome(Ability_Strength, importedCharacter.StrTome());
+        pBuild->SetAbilityTome(Ability_Dexterity, importedCharacter.DexTome());
+        pBuild->SetAbilityTome(Ability_Constitution, importedCharacter.ConTome());
+        pBuild->SetAbilityTome(Ability_Intelligence, importedCharacter.IntTome());
+        pBuild->SetAbilityTome(Ability_Wisdom, importedCharacter.WisTome());
+        pBuild->SetAbilityTome(Ability_Charisma, importedCharacter.ChaTome());
+        pBuild->SetAbilityLevelUp(4, importedCharacter.Level4());
+        pBuild->SetAbilityLevelUp(8, importedCharacter.Level8());
+        pBuild->SetAbilityLevelUp(12, importedCharacter.Level12());
+        pBuild->SetAbilityLevelUp(16, importedCharacter.Level16());
+        pBuild->SetAbilityLevelUp(20, importedCharacter.Level20());
+        pBuild->SetAbilityLevelUp(24, importedCharacter.Level24());
+        pBuild->SetAbilityLevelUp(28, importedCharacter.Level28());
+        pBuild->SetAbilityLevelUp(32, importedCharacter.Level32());
+        pBuild->SetAbilityLevelUp(36, importedCharacter.Level36());
+        pBuild->SetAbilityLevelUp(40, importedCharacter.Level40());
+        pBuild->Set_BuildPoints(importedCharacter.BuildPoints());
+        if (importedCharacter.HasClass1()) pBuild->SetClass1(importedCharacter.Class1());
+        if (importedCharacter.HasClass2()) pBuild->SetClass2(importedCharacter.Class2());
+        if (importedCharacter.HasClass3()) pBuild->SetClass3(importedCharacter.Class3());
+        // need to set level up classes and feats before enhancements
+        for (auto&& sfit: importedCharacter.SpecialFeats().Feats())
+        {
+            pBuild->TrainSpecialFeat(sfit.FeatName());
+        }
+        pBuild->Set_Levels(importedCharacter.Levels());
+        size_t level = 0;
+        for (auto&& lit: importedCharacter.Levels())
+        {
+            for (auto&& tfit: lit.TrainedFeats())
+            {
+                pBuild->TrainFeat(tfit.FeatName(), tfit.Type(), level);
+            }
+            ++level;
+        }
+        pBuild->Enhancement_SetSelectedTrees(importedCharacter.SelectedTrees());
+        pBuild->Set_EnhancementTreeSpend(importedCharacter.EnhancementTreeSpend());
+        pBuild->Destiny_SetSelectedTrees(importedCharacter.DestinyTrees());
+        pBuild->Set_DestinyTreeSpend(importedCharacter.DestinyTreeSpend());
+        pBuild->Set_ReaperTreeSpend(importedCharacter.ReaperTreeSpend());
+        pBuild->SetNotes(importedCharacter.Notes());
+        std::list<EquippedGear> gearSets;
+        for (auto&& gsit: importedCharacter.GearSetups())
+        {
+            EquippedGear gearSet;
+            gearSet.SetName(gsit.Name());
+            std::stringstream ss;
+            ss << "Converting gear set \"" << gsit.Name() << "\"";
+            GetLog().AddLogEntry(ss.str().c_str());
+            for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+            {
+                if (gsit.HasItemInSlot(static_cast<InventorySlotType>(i)))
+                {
+                    LegacyItem legacyItem = gsit.ItemInSlot(static_cast<InventorySlotType>(i));
+                    Item item = pBuild->GetLatestVersionOfItem(static_cast<InventorySlotType>(i), legacyItem);
+                    if (item.Name() == "")
+                    {
+                        std::stringstream().swap(ss);   // clear it
+                        ss << "---Item \"" << legacyItem.Name() << "\" not found, skipped in gear set.";
+                        GetLog().AddLogEntry(ss.str().c_str());
+                    }
+                    else
+                    {
+                        // TBD translate augments here
+                        gearSet.SetItem(static_cast<InventorySlotType>(i), pBuild, item);
+                    }
+                }
+            }
+            // sentient jewel
+            gearSet.SetPersonality(gsit.SentientIntelligence().Personality());
+            // weapon filigrees now
+            gearSet.SetNumFiligrees(gsit.SentientIntelligence().NumFiligrees());
+            size_t fi = 0;
+            for (auto&& fit: gsit.SentientIntelligence().Filigrees())
+            {
+                if (fit.Name() != "")
+                {
+                    const Filigree& fili = FindFiligreeByNameComponents(fit.Name());
+                    if (fili.Name() == "")
+                    {
+                        std::stringstream().swap(ss);   // clear it
+                        ss << "---Weapon Filigree \"" << fit.Name() << "\" not found, skipped in gear set.";
+                        GetLog().AddLogEntry(ss.str().c_str());
+                    }
+                    else
+                    {
+                        gearSet.SetFiligree(fi, fili.Name());
+                        gearSet.SetFiligreeRare(fi, fit.HasRare());
+                    }
+                }
+                fi++;
+            }
+            // artifact filigrees
+            fi = 0;
+            for (auto&& fit : gsit.SentientIntelligence().ArtifactFiligrees())
+            {
+                if (fit.Name() != "")
+                {
+                    const Filigree& fili = FindFiligreeByNameComponents(fit.Name());
+                    if (fili.Name() == "")
+                    {
+                        std::stringstream().swap(ss);   // clear it
+                        ss << "---Artifact Filigree \"" << fit.Name() << "\" not found, skipped in gear set.";
+                        GetLog().AddLogEntry(ss.str().c_str());
+                    }
+                    else
+                    {
+                        gearSet.SetArtifactFiligree(fi, fili.Name());
+                        gearSet.SetArtifactFiligreeRare(fi, fit.HasRare());
+                    }
+                }
+                fi++;
+            }
+            gearSets.push_back(gearSet);
+        }
+        pBuild->Set_GearSetups(gearSets);
+        pBuild->SetActiveGearSet(importedCharacter.ActiveGear());
+        pBuild->BuildNowActive();
+    }
 }

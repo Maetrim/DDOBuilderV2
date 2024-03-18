@@ -319,6 +319,50 @@ void BreakdownItemWeapon::ItemEffectRevoked(
     }
 }
 
+void BreakdownItemWeapon::EnhancementTrained(
+    Build* pBuild,
+    const EnhancementItemParams& item)
+{
+    // pass through to all our sub breakdowns
+    m_baseDamage.EnhancementTrained(pBuild, item);
+    m_attackBonus.EnhancementTrained(pBuild, item);
+    m_damageBonus.EnhancementTrained(pBuild, item);
+    //m_otherDamageEffects.EnhancementTrained(pBuild, item);
+    ////////m_vorpalRange.EnhancementTrained(pBuild, item);
+    m_criticalThreatRange.EnhancementTrained(pBuild, item);
+    m_criticalAttackBonus.EnhancementTrained(pBuild, item);
+    m_criticalDamageBonus.EnhancementTrained(pBuild, item);
+    //m_otherCriticalDamageEffects.EnhancementTrained(pBuild, item);
+    m_criticalMultiplier.EnhancementTrained(pBuild, item);
+    m_criticalMultiplier19To20.EnhancementTrained(pBuild, item);
+    m_attackSpeed.EnhancementTrained(pBuild, item);
+    m_ghostTouch.EnhancementTrained(pBuild, item);
+    m_trueSeeing.EnhancementTrained(pBuild, item);
+    m_drBypass.EnhancementTrained(pBuild, item);
+}
+
+void BreakdownItemWeapon::EnhancementRevoked(
+    Build* pBuild,
+    const EnhancementItemParams& item)
+{
+    // pass through to all our sub breakdowns
+    m_baseDamage.EnhancementRevoked(pBuild, item);
+    m_attackBonus.EnhancementRevoked(pBuild, item);
+    m_damageBonus.EnhancementRevoked(pBuild, item);
+    //m_otherDamageEffects.EnhancementRevoked(pBuild, item);
+    ////////m_vorpalRange.EnhancementRevoked(pBuild, item);
+    m_criticalThreatRange.EnhancementRevoked(pBuild, item);
+    m_criticalAttackBonus.EnhancementRevoked(pBuild, item);
+    m_criticalDamageBonus.EnhancementRevoked(pBuild, item);
+    //m_otherCriticalDamageEffects.EnhancementRevoked(pBuild, item);
+    m_criticalMultiplier.EnhancementRevoked(pBuild, item);
+    m_criticalMultiplier19To20.EnhancementRevoked(pBuild, item);
+    m_attackSpeed.EnhancementRevoked(pBuild, item);
+    m_ghostTouch.EnhancementRevoked(pBuild, item);
+    m_trueSeeing.EnhancementRevoked(pBuild, item);
+    m_drBypass.EnhancementRevoked(pBuild, item);
+}
+
 void BreakdownItemWeapon::EnhancementEffectApplied(
     Build* pBuild,
     const Effect& effect)

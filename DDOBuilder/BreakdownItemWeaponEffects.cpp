@@ -402,6 +402,34 @@ void BreakdownItemWeaponEffects::ItemEffectRevoked(
     RemoveFromAffectedWeapon(&m_weaponItemEffects, effect, wt, NT_ItemWeapon);
 }
 
+void BreakdownItemWeaponEffects::EnhancementTrained(
+    Build* pBuild,
+    const EnhancementItemParams& item)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->EnhancementTrained(pBuild, item);
+    }
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->EnhancementTrained(pBuild, item);
+    }
+}
+
+void BreakdownItemWeaponEffects::EnhancementRevoked(
+    Build* pBuild,
+    const EnhancementItemParams& item)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->EnhancementRevoked(pBuild, item);
+    }
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->EnhancementRevoked(pBuild, item);
+    }
+}
+
 void BreakdownItemWeaponEffects::EnhancementEffectApplied(
     Build*,
     const Effect& effect)

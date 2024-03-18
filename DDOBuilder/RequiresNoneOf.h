@@ -37,6 +37,7 @@ class RequiresNoneOf :
                 std::vector<bool>* metArray) const;
 
         void AddRequirement(const Requirement& req);
+        bool RequiresAnEnhancement() const;
 
         bool operator==(const RequiresNoneOf& other) const;
 

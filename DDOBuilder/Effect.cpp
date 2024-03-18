@@ -1157,6 +1157,11 @@ bool Effect::UpdateTreeEffects(const std::string& treeName)
     {
         bUpdate = true;
     }
+    // also update if has requirements dependent on an enhancement
+    if (HasRequirementsToBeActive())
+    {
+        bUpdate |= m_RequirementsToBeActive.RequiresAnEnhancement();
+    }
     return bUpdate;
 }
 

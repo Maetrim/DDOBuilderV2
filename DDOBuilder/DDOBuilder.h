@@ -27,6 +27,7 @@
 #include "resource.h"       // main symbols
 #include "CustomContextMenuManager.h"
 
+class LegacyCharacter;
 
 // CDDOBuilderApp:
 // See DDOBuilder.cpp for the implementation of this class
@@ -90,6 +91,7 @@ public:
     afx_msg void OnVerifyLoadedData();
     afx_msg void OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDisabledDuringLoadSpecial(CCmdUI* pCmdUI);
+    afx_msg void OnFileImport();
     DECLARE_MESSAGE_MAP()
 private:
     void LoadData();
@@ -131,6 +133,7 @@ private:
     static void LoadImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename);
 
     static UINT ThreadedItemLoad(LPVOID pParam);
+    void ConvertToNewDataStructure(const LegacyCharacter& importedCharacter);
 
     CCustomContextMenuManager m_ourMenuManager; // construction of object replaces default implementation created in InitContextMenuManager
     std::list<Bonus> m_bonusTypes;

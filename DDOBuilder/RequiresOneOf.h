@@ -37,6 +37,7 @@ class RequiresOneOf :
                 std::vector<bool>* metArray) const;
 
         void AddRequirement(const Requirement& req);
+        bool RequiresAnEnhancement() const;
 
         bool operator==(const RequiresOneOf& other) const;
 

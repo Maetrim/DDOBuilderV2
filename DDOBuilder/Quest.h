@@ -53,7 +53,7 @@ class Quest :
                 DL_FLAG(_, Elite) \
                 DL_FLAG(_, Reaper) \
                 DL_SIMPLE(_, int, Favor, 0) \
-                DL_VECTOR(_, int, Levels) \
+                DL_VECTOR(_, size_t, Levels) \
                 DL_FLAG(_, IgnoreForTotalFavor)
 
         DL_DECLARE_ACCESS(Quest_PROPERTIES)

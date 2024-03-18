@@ -1413,6 +1413,43 @@ const Filigree& FindFiligreeByName(const std::string& name)
     return badFiligree;
 }
 
+const Filigree& FindFiligreeByNameComponents(const std::string& name)
+{
+    static Filigree badFiligree;
+    // TBD, break the name of the filigree up into individual words
+    // find a matching filigree that contains all those words
+    std::vector<std::string> tokens;
+    std::string copy(name);
+    char* dup = _strdup(copy.c_str());
+    char* tokenPtr = NULL;
+    char* token = strtok_s(dup, " :", &tokenPtr);
+    while (token != NULL)
+    {
+        tokens.push_back(std::string(token));
+        token = strtok_s(NULL, " :", &tokenPtr);
+    }
+    free(dup);
+
+    const std::list<Filigree>& filigrees = Filigrees();
+    std::list<Filigree>::const_iterator it = filigrees.begin();
+    while (it != filigrees.end())
+    {
+        // must contain all the tokens for a match
+        std::string filigreeName = (*it).Name();
+        bool bMatch = true;
+        for (size_t i = 0; bMatch == true && i < tokens.size(); ++i)
+        {
+            bMatch = (filigreeName.find(tokens[i], 0) != std::string::npos);
+        }
+        if (bMatch == true)
+        {
+            return (*it);
+        }
+        ++it;
+    }
+    return badFiligree;
+}
+
 const Gem& FindSentientGemByName(const std::string& name)
 {
     static Gem badGem;

@@ -176,6 +176,7 @@ BreakdownType SpellPowerToCriticalChanceBreakdown(SpellPowerType sp);
 BreakdownType SpellPowerToCriticalMultiplierBreakdown(SpellPowerType sp);
 const Augment & FindAugmentByName(const std::string& name, const Item* pItem);
 const Filigree & FindFiligreeByName(const std::string& name);
+const Filigree & FindFiligreeByNameComponents(const std::string& name);
 const Gem& FindSentientGemByName(const std::string& name);
 std::list<Augment> CompatibleAugments(const std::string& name, size_t maxLevel);
 const SetBonus& FindSetBonus(const std::string& name);

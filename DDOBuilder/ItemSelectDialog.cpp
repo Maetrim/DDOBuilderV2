@@ -170,6 +170,8 @@ BOOL CItemSelectDialog::OnInitDialog()
     m_comboLevelRange.AddString("20");
     m_comboLevelRange.AddString("25");
     m_comboLevelRange.AddString("30");
+    m_comboLevelRange.AddString("35");
+    m_comboLevelRange.AddString("40");
     switch (m_levelRange)
     {
     case 5:     m_comboLevelRange.SetCurSel(0); break;
@@ -178,6 +180,8 @@ BOOL CItemSelectDialog::OnInitDialog()
     case 20:    m_comboLevelRange.SetCurSel(3); break;
     case 25:    m_comboLevelRange.SetCurSel(4); break;
     case 30:    m_comboLevelRange.SetCurSel(5); break;
+    case 35:    m_comboLevelRange.SetCurSel(6); break;
+    case 40:    m_comboLevelRange.SetCurSel(7); break;
     }
     
 

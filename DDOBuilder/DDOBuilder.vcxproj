@@ -607,6 +607,12 @@ echo.
     <ClInclude Include="ItemAugment.h" />
     <ClInclude Include="ItemBuff.h" />
     <ClInclude Include="ItemSelectDialog.h" />
+    <ClInclude Include="LegacyCharacter.h" />
+    <ClInclude Include="LegacyDestinySelectedTrees.h" />
+    <ClInclude Include="LegacyEnhancementSelectedTrees.h" />
+    <ClInclude Include="LegacyEquippedGear.h" />
+    <ClInclude Include="LegacyItem.h" />
+    <ClInclude Include="LegacySentientJewel.h" />
     <ClInclude Include="LevelTraining.h" />
     <ClInclude Include="Life.h" />
     <ClInclude Include="LocalSettingsStore.h" />
@@ -893,6 +899,15 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="ItemAugment.cpp" />
     <ClCompile Include="ItemBuff.cpp" />
     <ClCompile Include="ItemSelectDialog.cpp" />
+    <ClCompile Include="LegacyCharacter.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreprocessToFile>
+    </ClCompile>
+    <ClCompile Include="LegacyDestinySelectedTrees.cpp" />
+    <ClCompile Include="LegacyEnhancementSelectedTrees.cpp" />
+    <ClCompile Include="LegacyEquippedGear.cpp" />
+    <ClCompile Include="LegacyItem.cpp" />
+    <ClCompile Include="LegacySentientJewel.cpp" />
     <ClCompile Include="LevelTraining.cpp" />
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="LocalSettingsStore.cpp" />

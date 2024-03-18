@@ -20,6 +20,7 @@ class CompletedQuest :
 
         #define CompletedQuest_PROPERTIES(_) \
                 DL_STRING(_, Name) \
+                DL_SIMPLE(_, size_t, Level, 0) \
                 DL_ENUM(_, QuestDifficulty, Difficulty, QD_Unknown, questDifficultyTypeMap)
 
         DL_DECLARE_ACCESS(CompletedQuest_PROPERTIES)

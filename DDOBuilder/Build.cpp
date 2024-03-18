@@ -22,6 +22,8 @@
 #include <algorithm>
 #include "MainFrm.h"
 #include "BreakdownItem.h"
+#include "LegacyEnhancementSelectedTrees.h"
+#include "LegacyDestinySelectedTrees.h"
 
 #define DL_ELEMENT Build
 
@@ -198,6 +200,7 @@ void Build::BuildNowActive()
     m_classTreeSpend = 0;
     m_destinyTreeSpend = 0;
     m_exclusiveEnhancements.clear();
+    m_setBonusStacks.clear();
     for (auto&& tit : m_EnhancementTreeSpend)
     {
         const EnhancementTree& eTree = EnhancementTree::GetTree(tit.TreeName());
@@ -351,12 +354,16 @@ const std::string& Build::Race() const
 
 void Build::SetRace(const std::string& race)
 {
-    // add the log entry
-    std::stringstream ss;
-    ss << "Race changed from \"" << m_pLife->Race() << "\" to \"" << race << "\"";
-    GetLog().AddLogEntry(ss.str().c_str());
-    m_pLife->SetRace(race);
-    VerifyGear();
+    if (race != m_pLife->Race())
+    {
+        // add the log entry
+        std::stringstream ss;
+        ss << "Race changed from \"" << m_pLife->Race() << "\" to \"" << race << "\"";
+        GetLog().AddLogEntry(ss.str().c_str());
+        m_pLife->SetRace(race);
+        VerifyTrainedFeats();
+        VerifyGear();
+    }
 }
 
 AlignmentType Build::Alignment() const
@@ -367,14 +374,17 @@ AlignmentType Build::Alignment() const
 
 void Build::SetAlignment(AlignmentType alignment)
 {
-    // add the log entry
-    std::stringstream ss;
-    ss << "Alignment changed from \""
-            << EnumEntryText(Alignment(), alignmentTypeMap)
-            << "\" to \""
-            << EnumEntryText(alignment,  alignmentTypeMap) << "\"";
-    GetLog().AddLogEntry(ss.str().c_str());
-    m_pLife->SetAlignment(alignment);
+    if (alignment != m_pLife->Alignment())
+    {
+        // add the log entry
+        std::stringstream ss;
+        ss << "Alignment changed from \""
+                << EnumEntryText(Alignment(), alignmentTypeMap)
+                << "\" to \""
+                << EnumEntryText(alignment,  alignmentTypeMap) << "\"";
+        GetLog().AddLogEntry(ss.str().c_str());
+        m_pLife->SetAlignment(alignment);
+    }
 }
 
 void Build::NotifyBuildLevelChanged()
@@ -2585,41 +2595,44 @@ void Build::TrainSpecialFeat(const std::string& featName)
 {
     // this is handled at the life level, pass through for all  but favor feats
     const Feat& feat = FindFeat(featName);
-    if (feat.Acquire() == FeatAcquisition_Favor)
+    if (feat.Name() != "Feat not found")
     {
-        // just add a copy of the feat name to the current list
-        std::list<TrainedFeat> trainedFeats = FavorFeats().Feats();
-        TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
-        trainedFeats.push_back(tf);
-
-        FeatsListObject flo(L"FavorFeats", trainedFeats);
-        Set_FavorFeats(flo);
-
-        // notify about the feat effects
-        ApplyFeatEffects(feat);
-
-        m_pLife->NotifyLifeFeatTrained(featName);
-        m_pLife->m_pCharacter->SetModifiedFlag(TRUE);
-
-        // add log entry
-        std::stringstream ss;
-        ss << "Trained the favor feat \"" << featName.c_str() << "\"";
-        GetLog().AddLogEntry(ss.str().c_str());
-        SetModifiedFlag(TRUE);
-    }
-    else
-    {
-        m_pLife->TrainSpecialFeat(featName);
-    }
-    if (feat.Acquire() == FeatAcquisition_RacialPastLife
-        || feat.Acquire() == FeatAcquisition_HeroicPastLife)
-    {
-        // either of the completionist feats may now be available
-        std::list<TrainedFeat> allFeats = SpecialFeats();
-        UpdateFeats(0, &allFeats);      // racial completionist state may have changed
-        if (Level() >= 3)
+        if (feat.Acquire() == FeatAcquisition_Favor)
         {
-            UpdateFeats(2, &allFeats);      // completionist state may have changed
+            // just add a copy of the feat name to the current list
+            std::list<TrainedFeat> trainedFeats = FavorFeats().Feats();
+            TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
+            trainedFeats.push_back(tf);
+
+            FeatsListObject flo(L"FavorFeats", trainedFeats);
+            Set_FavorFeats(flo);
+
+            // notify about the feat effects
+            ApplyFeatEffects(feat);
+
+            m_pLife->NotifyLifeFeatTrained(featName);
+            m_pLife->m_pCharacter->SetModifiedFlag(TRUE);
+
+            // add log entry
+            std::stringstream ss;
+            ss << "Trained the favor feat \"" << featName.c_str() << "\"";
+            GetLog().AddLogEntry(ss.str().c_str());
+            SetModifiedFlag(TRUE);
+        }
+        else
+        {
+            m_pLife->TrainSpecialFeat(featName);
+        }
+        if (feat.Acquire() == FeatAcquisition_RacialPastLife
+            || feat.Acquire() == FeatAcquisition_HeroicPastLife)
+        {
+            // either of the completionist feats may now be available
+            std::list<TrainedFeat> allFeats = SpecialFeats();
+            UpdateFeats(0, &allFeats);      // racial completionist state may have changed
+            if (Level() >= 3)
+            {
+                UpdateFeats(2, &allFeats);      // completionist state may have changed
+            }
         }
     }
 }
@@ -2714,6 +2727,17 @@ void Build::Enhancement_ResetEnhancementTree(std::string treeName)
 void Build::Enhancement_SetSelectedTrees(const Enhancement_SelectedTrees& trees)
 {
     m_EnhancementSelectedTrees = trees;
+}
+
+void Build::Enhancement_SetSelectedTrees(const LegacyEnhancementSelectedTrees& trees)
+{
+    m_EnhancementSelectedTrees.SetTree(0, trees.Tree(0));
+    m_EnhancementSelectedTrees.SetTree(1, trees.Tree(1));
+    m_EnhancementSelectedTrees.SetTree(2, trees.Tree(2));
+    m_EnhancementSelectedTrees.SetTree(3, trees.Tree(3));
+    m_EnhancementSelectedTrees.SetTree(4, trees.Tree(4));
+    m_EnhancementSelectedTrees.SetTree(5, trees.Tree(5));
+    m_EnhancementSelectedTrees.SetTree(6, trees.Tree(6));
 }
 
 void Build::Enhancement_TrainEnhancement(
@@ -3144,6 +3168,14 @@ void Build::StanceSliderChanged(const std::string& sliderName, int value)
 void Build::Destiny_SetSelectedTrees(const Destiny_SelectedTrees& trees)
 {
     m_DestinySelectedTrees = trees;
+}
+
+void Build::Destiny_SetSelectedTrees(const LegacyDestinySelectedTrees& trees)
+{
+    m_DestinySelectedTrees.SetTree(0, trees.Tree(0));
+    m_DestinySelectedTrees.SetTree(1, trees.Tree(1));
+    m_DestinySelectedTrees.SetTree(2, trees.Tree(2));
+    m_DestinySelectedTrees.SetTree(3, trees.Tree(3));
 }
 
 void Build::Destiny_TrainEnhancement(
@@ -3619,6 +3651,73 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, Item original)
         newVersion.Set_SlotUpgrades(newUpgrades);
     }
     return newVersion;
+}
+
+Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
+{
+    Item foundItem = FindItem(original.Name());
+    // no name if not found
+    if (foundItem.Name() == original.Name())
+    {
+        // this is the item we want to copy
+        AddSpecialSlots(slot, foundItem); // only adds if they are missing
+        // make sure all the selected augments are valid
+        std::vector<ItemAugment> originalAugments = original.Augments();
+        std::vector<ItemAugment> newAugments = foundItem.Augments();
+        std::vector<SlotUpgrade> newUpgrades = foundItem.SlotUpgrades();
+        for (size_t i = 0; i < originalAugments.size(); ++i)
+        {
+            bool bFound = false;
+            if (originalAugments[i].HasSelectedAugment()
+                && originalAugments[i].SelectedAugment() != "")
+            {
+                // find it in the newAugments
+                for (size_t j = 0; !bFound && j < newAugments.size(); ++j)
+                {
+                    // match by augment type. If not matched, its ignored
+                    if (newAugments[j].Type() == originalAugments[i].Type())
+                    {
+                        newAugments[j].Set_SelectedAugment(originalAugments[i].SelectedAugment());
+                        if (originalAugments[i].HasSelectedLevelIndex())
+                        {
+                            newAugments[j].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                        }
+                        bFound = true;
+                    }
+                }
+            }
+            if (!bFound)
+            {
+                // we have an augment (populated or not) that not in the regular
+                // augment list. This could be a SlotUpgrade augment.
+                for (size_t j = 0; !bFound && j < newUpgrades.size(); ++j)
+                {
+                    if (newUpgrades[j].HasSlotType(originalAugments[i].Type()))
+                    {
+                        AddAugment(&newAugments, originalAugments[i].Type(), false);
+                        newUpgrades.erase(newUpgrades.begin() + j);
+                        j--;
+                        for (size_t k = 0; !bFound && k < newAugments.size(); ++k)
+                        {
+                            // match by augment type. If not matched, its ignored
+                            if (newAugments[k].Type() == originalAugments[i].Type())
+                            {
+                                newAugments[k].Set_SelectedAugment(originalAugments[i].SelectedAugment());
+                                if (originalAugments[i].HasSelectedLevelIndex())
+                                {
+                                    newAugments[k].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                                }
+                                bFound = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        foundItem.Set_Augments(newAugments);
+        foundItem.Set_SlotUpgrades(newUpgrades);
+    }
+    return foundItem;
 }
 
 void Build::UpdateActiveGearSet(const EquippedGear & newGear)

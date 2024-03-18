@@ -296,6 +296,12 @@ void CBuildsPane::PopulateBuildsList()
 
 void CBuildsPane::OnButtonNewLife()
 {
+    OnNewLife();
+}
+
+Build* CBuildsPane::OnNewLife()
+{
+    Build* pBuild = NULL;
     GetLog().AddLogEntry("New life added");
     size_t lifeIndex = m_pCharacter->AddLife();
     PopulateBuildsList();
@@ -305,6 +311,8 @@ void CBuildsPane::OnButtonNewLife()
     {
         m_pCharacter->SetModifiedFlag(FALSE);
     }
+    pBuild = m_pCharacter->ActiveBuild();
+    return pBuild;
 }
 
 void CBuildsPane::OnButtonDeleteLife()

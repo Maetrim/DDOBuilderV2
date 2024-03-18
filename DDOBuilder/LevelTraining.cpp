@@ -31,6 +31,11 @@ XmlLib::SaxContentElementInterface * LevelTraining::StartElement(
 
     DL_START(LevelTraining_PROPERTIES)
 
+    if (subHandler == NULL && name == L"TrainedFeats")
+    {
+        subHandler = this;
+    }
+
     return subHandler;
 }
 

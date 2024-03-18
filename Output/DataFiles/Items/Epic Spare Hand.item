@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
     <Name>Epic Spare Hand</Name>
@@ -7,8 +8,14 @@ will help you attack your foes and make tasks easier to perform.</Description>
     <DropLocation>Vaults of the Artificers, Turn in various ingredients</DropLocation>
     <MinLevel>20</MinLevel>
     <EquipmentSlot>
-      <Belt/>
+      <Belt />
     </EquipmentSlot>
+    <NoAutoUpdate />
+    <Buff>
+      <Type>Riposte</Type>
+      <Value1>4</Value1>
+      <BonusType>Insightful</BonusType>
+    </Buff>
     <Buff>
       <Type>CombatMastery</Type>
       <Value1>4</Value1>
@@ -31,24 +38,86 @@ will help you attack your foes and make tasks easier to perform.</Description>
       <Description1>Open Lock</Description1>
       <Item>Open Lock</Item>
     </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>17</Value1>
-      <BonusType>Competence</BonusType>
-      <Description1>Open Lock</Description1>
-      <Item>Open Lock</Item>
-    </Buff>
-    <Buff>
-      <Type>CombatMastery</Type>
-      <Value1>4</Value1>
-      <BonusType>Insightful</BonusType>
-    </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>3</Value1>
-      <BonusType>Competence</BonusType>
-      <Description1>Use Magic Device</Description1>
-      <Item>Use Magic Device</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Disable Device +18, Open Lock +18, Use Magic Device +3 and a Colorless Augment Slot</Name>
+        <Description>Disable Device +18: Passive: +18 Competence bonus to the Disable Device skill.
+Open Lock +18: Passive: +18 Competence bonus to the Open Lock skill.
+Use Magic Device +3: Passive: +3 Competence bonus to the Use Magic Device skill.
+Adds a Colorless Augment Slot</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Competence</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">18</Amount>
+          <Item>Disable Device</Item>
+          <Item>Open Lock</Item>
+        </Effect>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Competence</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+          <Item>Use Magic Device</Item>
+        </Effect>
+        <GrantAugment>Colorless</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Riposte +5, Insightful Combat Mastery +5, UMD +4, Doublestrike 12% and a Green augment slot</Name>
+        <Description>Riposte +5: This item enchants its user with incredible awareness and speed,
+granting a +5 Insight bonus to AC and to Saves.
+Insightful Combat Mastery +5: +5 Insight bonus to the DC to resist the character's Trip, Improved Trip,
+Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts.
+Use Magic Device +4: Passive: +4 Competence bonus to the Use Magic Device skill.
+Doublestrike 12%: Passive: 12% Enhancement bonus to Doublestrike.
+Adds a Green augment slot to this item</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+          <Item>All</Item>
+        </Effect>
+        <Effect>
+          <Type>TacticalDC</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+          <Item>Trip</Item>
+          <Item>Sunder</Item>
+          <Item>Stun</Item>
+          <Item>General</Item>
+          <Item>Quivering Palm</Item>
+        </Effect>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Competence</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+          <Item>Use Magic Device</Item>
+        </Effect>
+        <Effect>
+          <Type>Doublestrike</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">12</Amount>
+        </Effect>
+        <GrantAugment>Green</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

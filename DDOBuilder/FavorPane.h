@@ -63,6 +63,7 @@ private:
     size_t m_patronCount;
     bool m_bHadIntialise;
     CMenu m_favorMenu;
+    std::list<CompletedQuest> m_runQuests;
 };
 
 

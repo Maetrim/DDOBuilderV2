@@ -318,3 +318,21 @@ void Character::SetModifiedFlag(BOOL modified)
     m_pDocument->SetModifiedFlag(modified);
 }
 
+std::list<CompletedQuest> Character::CompletedQuests() const
+{
+    std::list<CompletedQuest> runQuests;
+    // we need to collate all quests run in every build up to and including
+    // the active build only. As all builds in a life are sorted by level
+    // and we store which build ran which quest.
+    const Life* pLife = ActiveLife();
+    if (pLife != NULL)
+    {
+        for (size_t bi = 0; bi <= m_uiActiveBuildIndex; ++bi)
+        {
+            const Build& build = pLife->GetBuild(bi);
+            const std::list<CompletedQuest>& runBuildQuests = build.CompletedQuests();
+            runQuests.insert(runQuests.end(), runBuildQuests.begin(), runBuildQuests.end());
+        }
+    }
+    return runQuests;
+}

@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
     <Name>Frozen Tunic (Level 8)</Name>
@@ -8,7 +9,7 @@ of your ice-related magic. A bound Water Elemental fuels this item.</Description
     <DropLocation>Vaults of the Artificers, Crafted from various challenge ingredients</DropLocation>
     <MinLevel>8</MinLevel>
     <EquipmentSlot>
-      <Armor/>
+      <Armor />
     </EquipmentSlot>
     <Requirements>
       <RequiresNoneOf>
@@ -25,6 +26,12 @@ of your ice-related magic. A bound Water Elemental fuels this item.</Description
       </RequiresNoneOf>
     </Requirements>
     <Armor>Cloth</Armor>
+    <NoAutoUpdate />
+    <Buff>
+      <Type>ArmorBonus</Type>
+      <Value1>4</Value1>
+      <BonusType>Armor</BonusType>
+    </Buff>
     <Buff>
       <Type>Glaciation</Type>
       <Value1>69</Value1>
@@ -40,22 +47,63 @@ of your ice-related magic. A bound Water Elemental fuels this item.</Description
     <Buff>
       <Type>Minor Freezing Ice</Type>
     </Buff>
-    <Buff>
-      <Type>Glaciation</Type>
-      <Value1>69</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Cold</Description1>
-      <Item>Cold</Item>
-    </Buff>
-    <Buff>
-      <Type>IceLore</Type>
-      <Value1>10</Value1>
-      <BonusType>Equipment</BonusType>
-    </Buff>
-    <Buff>
-      <Type>IceLore</Type>
-      <Value1>11</Value1>
-      <BonusType>Equipment</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Armor Bonus +5, Glaciation 74 and Ice Lore 11%</Name>
+        <Description>Armor Bonus +5: This item surrounds the wearer with an invisible but tangible
+field of force, granting +5 armor bonus to AC, just as though he were wearing armor.
+Glaciation +74: Passive: +74 Equipment bonus to Cold Spell Power.
+Ice Lore +11: Passive: Your Cold spells gain a 11% Equipment bonus to their chance to critical hit.</Description>
+        <MinLevel>8</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">74</Amount>
+          <Item>Cold</Item>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">11</Amount>
+          <Item>Cold</Item>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds Glaciation 79, Ice Lore 12% and a Green augment slot</Name>
+        <Description>Glaciation +79: Passive: +79 Equipment bonus to Cold Spell Power.
+Ice Lore +12: Passive: Your Cold spells gain a 12% Equipment bonus to their chance to critical hit.
+Adds a Green augment slot to this item</Description>
+        <MinLevel>8</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">79</Amount>
+          <Item>Cold</Item>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">12</Amount>
+          <Item>Cold</Item>
+        </Effect>
+        <GrantAugment>Green</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

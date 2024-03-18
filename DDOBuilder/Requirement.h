@@ -50,6 +50,7 @@ class Requirement :
                 std::vector<bool>* metArray) const;
 
         bool RequiresEnhancement(const std::string& name) const;
+        bool RequiresAnEnhancement() const;
 
         bool operator==(const Requirement& other) const;
 

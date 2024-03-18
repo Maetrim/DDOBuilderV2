@@ -40,6 +40,8 @@ public:
     virtual void OnInitialUpdate() override;
     virtual BOOL PreTranslateMessage(MSG* pMsg) override;
 
+    Build* OnNewLife();
+
     // CharacterObserver
     virtual void UpdateActiveBuildPositionChanged(Character*) override;
 

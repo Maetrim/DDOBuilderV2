@@ -404,6 +404,11 @@ bool Requirement::RequiresEnhancement(const std::string& name) const
     return bRequires;
 }
 
+bool Requirement::RequiresAnEnhancement() const
+{
+    return (m_Type == Requirement_Enhancement);
+}
+
 bool Requirement::Met(
         const Build & build,
         size_t level,  // this is 0 based

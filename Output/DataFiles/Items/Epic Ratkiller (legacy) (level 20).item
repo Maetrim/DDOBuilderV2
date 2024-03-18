@@ -22,6 +22,7 @@ task and would probably be useful in battle as well.</Description>
     </BaseDice>
     <CriticalMultiplier>3</CriticalMultiplier>
     <CriticalThreatRange>1</CriticalThreatRange>
+    <NoAutoUpdate/>
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>5</Value1>
@@ -33,12 +34,50 @@ task and would probably be useful in battle as well.</Description>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
-      <Type>StaggeringBlow</Type>
+      <Type>Greater Animal Bane</Type>
     </Buff>
     <Buff>
-      <Type>Stunning</Type>
-      <Value1>8</Value1>
-      <BonusType>Enhancement</BonusType>
+      <Type>Unbalancing</Type>
     </Buff>
+    <Buff>
+      <Type>StaggeringBlow</Type>
+    </Buff>
+    <ItemAugment>
+        <Type>Tier 2</Type>
+        <Augment>
+           <Name>+6 Enhancement Bonus and Stunning +10</Name>
+           <Description>+6 Enhancement Bonus: +6 Enhancement bonus to attack and damage rolls.
+Stunning +10: +10 Enhancement bonus to the DC of character's Stunning Blow and
+Stunning Fist attempts.</Description>
+           <MinLevel>20</MinLevel>
+           <Icon>Upgrade</Icon>
+          <Effect>
+            <Type>Weapon_Enchantment</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">6</Amount>
+          </Effect>
+          <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Equipment</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Item>Stun</Item>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Tier 3</Type>
+        <Augment>
+           <Name>Earthgrab and a Red augment slot</Name>
+           <Description>Earthgrab: This weapon stores the implacable strength of the earth deep within.
+When this weapon is used, this power occasionally comes to the surface, calling
+on the earth to erupt from the ground and hold an enemy in place.
+Adds a Red augment slot to this item</Description>
+           <MinLevel>20</MinLevel>
+           <Icon>Upgrade</Icon>
+           <GrantAugment>Red</GrantAugment>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

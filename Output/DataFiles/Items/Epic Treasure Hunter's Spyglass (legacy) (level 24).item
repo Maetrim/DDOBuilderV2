@@ -41,19 +41,57 @@ that might be lurking along the way.</Description>
       <Description1>Intelligence</Description1>
       <Item>Intelligence</Item>
     </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>15</Value1>
-      <BonusType>Competence</BonusType>
-      <Description1>Open Lock</Description1>
-      <Item>Open Lock</Item>
-    </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>4</Value1>
-      <BonusType>Competence</BonusType>
-      <Description1>Use Magic Device</Description1>
-      <Item>Use Magic Device</Item>
-    </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Tier 2</Type>
+        <Augment>
+           <Name>Open Lock +15</Name>
+           <Description>Open Lock +15: Passive: +15 Competence bonus to the Open Lock skill.</Description>
+           <MinLevel>24</MinLevel>
+           <Icon>Upgrade</Icon>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Item>Open Lock</Item>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Tier 3</Type>
+        <Augment>
+           <Name>Insightful Intelligence +3, open Lock +20, Enhanced UMD +4 and a Green Augment Slot</Name>
+           <Description>Insightful Intelligence +3: This item focuses the power of the wearer's mind,
+granting a +3 insight bonus to Intelligence.
+Open Lock +20: Passive: +20 Competence bonus to the Open Lock skill.
+Enhanced Use Magic Device +4: Passive: +4 Enhancement bonus to the Use Magic Device skill.
+Adds a Green augment slot to this item</Description>
+           <MinLevel>20</MinLevel>
+           <Icon>Upgrade</Icon>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>Intelligence</Item>
+          </Effect>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Item>Open Lock</Item>
+          </Effect>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>Use Magic Device</Item>
+          </Effect>
+           <GrantAugment>Green</GrantAugment>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

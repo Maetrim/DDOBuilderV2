@@ -58,6 +58,10 @@ class Character :
 
         void NotifyActiveBuildChanged();
         void NotifyActiveBuildPositionChanged();
+
+        // quest favor tracking
+        std::list<CompletedQuest> CompletedQuests() const;
+
 protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

@@ -279,39 +279,42 @@ int Life::TomeAtLevel(
 
 void Life::SetAbilityTome(AbilityType ability, size_t value)
 {
-    switch (ability)
+    if (value != AbilityTomeValue(ability))
     {
-    case Ability_Strength:
-        Set_StrTome(value);
-        break;
-    case Ability_Dexterity:
-        Set_DexTome(value);
-        break;
-    case Ability_Constitution:
-        Set_ConTome(value);
-        break;
-    case Ability_Intelligence:
-        Set_IntTome(value);
-        break;
-    case Ability_Wisdom:
-        Set_WisTome(value);
-        break;
-    case Ability_Charisma:
-        Set_ChaTome(value);
-        break;
-    default:
-        ASSERT(FALSE);
-        break;
+        switch (ability)
+        {
+        case Ability_Strength:
+            Set_StrTome(value);
+            break;
+        case Ability_Dexterity:
+            Set_DexTome(value);
+            break;
+        case Ability_Constitution:
+            Set_ConTome(value);
+            break;
+        case Ability_Intelligence:
+            Set_IntTome(value);
+            break;
+        case Ability_Wisdom:
+            Set_WisTome(value);
+            break;
+        case Ability_Charisma:
+            Set_ChaTome(value);
+            break;
+        default:
+            ASSERT(FALSE);
+            break;
+        }
+        // if Intelligence has changed, update the available skill points
+        if (ability == Ability_Intelligence)
+        {
+            UpdateSkillPoints();
+        }
+        NotifyAbilityTomeChanged(ability);
+        SetModifiedFlag(TRUE);
+        // changing an inherent tome value can invalidate a feat selection (e.g Dodge)
+        VerifyTrainedFeats();
     }
-    // if Intelligence has changed, update the available skill points
-    if (ability == Ability_Intelligence)
-    {
-        UpdateSkillPoints();
-    }
-    NotifyAbilityTomeChanged(ability);
-    SetModifiedFlag(TRUE);
-    // changing an inherent tome value can invalidate a feat selection (e.g Dodge)
-    VerifyTrainedFeats();
 }
 
 size_t Life::AbilityTomeValue(AbilityType ability) const

@@ -195,6 +195,10 @@ void CFavorPane::OnInitialUpdate()
 
 void CFavorPane::PopulateQuestList()
 {
+    if (m_pCharacter != NULL)
+    {
+        m_runQuests = m_pCharacter->CompletedQuests();
+    }
     m_listQuests.LockWindowUpdate();
     m_listQuests.DeleteAllItems();
     std::list<Quest> quests = Quests();
@@ -215,6 +219,19 @@ void CFavorPane::PopulateQuestList()
         text.Format("%d", qit.Favor());
         m_listQuests.SetItemText(iIndex, QLC_favor, text);
         m_listQuests.SetItemText(iIndex, QLC_patron, patron);
+        // look for the highest difficulty this quests has been run at (could
+        // occur multiple times in the list)
+        QuestDifficulty diff = QD_notRun;
+        for (auto&& rqi : m_runQuests)
+        {
+            if (rqi.Name() == qit.Name()
+                && rqi.Level() == qit.Levels()[0])
+            {
+                diff = max(diff, rqi.Difficulty());
+            }
+        }
+        CString difficulty = EnumEntryText(diff, questDifficultyTypeMap);
+        m_listQuests.SetItemText(iIndex, QLC_runAt, difficulty);
     }
     m_listQuests.UnlockWindowUpdate();
 }
@@ -226,6 +243,7 @@ void CFavorPane::UpdateActiveBuildChanged(Character*)
         const Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
+            m_runQuests.clear();
             PopulateQuestList();
         }
         else
@@ -412,6 +430,17 @@ void CFavorPane::OnUpdateFavorReaper10(CCmdUI * pCmdUi)
 
 unsigned int CFavorPane::GetCheckedState(FavorType ft)
 {
+    // look for the highest difficulty this quests has been run at (could
+    // occur multiple times in the list)
+    //QuestDifficulty diff = QD_notRun;
+    //for (auto&& rqi : m_runQuests)
+    //{
+    //    if (rqi.Name() == qit.Name()
+    //        && rqi.Level() == qit.Levels()[0])
+    //    {
+    //        diff = max(diff, rqi.Difficulty());
+    //    }
+    //}
     return (ft % 3);
 }
 

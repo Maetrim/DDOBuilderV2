@@ -266,6 +266,27 @@ bool RequirementsBase::RequiresEnhancement(const std::string& name) const
     return bRequiresIt;
 }
 
+bool RequirementsBase::RequiresAnEnhancement() const
+{
+    bool bRequiresEnhancement = false;
+    // check all the individual requirements
+    for (auto&& it : m_Requires)
+    {
+        bRequiresEnhancement |= it.RequiresAnEnhancement();
+    }
+    // check all the OneOf requirements
+    for (auto&& it : m_OneOf)
+    {
+        bRequiresEnhancement |= it.RequiresAnEnhancement();
+    }
+    // check all the NoneOf requirements
+    for (auto&& it : m_NoneOf)
+    {
+        bRequiresEnhancement |= it.RequiresAnEnhancement();
+    }
+    return bRequiresEnhancement;
+}
+
 void RequirementsBase::AddRequirement(const Requirement& req)
 {
     m_Requires.push_back(req);

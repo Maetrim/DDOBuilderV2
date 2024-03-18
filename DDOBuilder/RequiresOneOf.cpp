@@ -230,6 +230,17 @@ void RequiresOneOf::AddRequirement(const Requirement& req)
     m_Requirements.push_back(req);
 }
 
+bool RequiresOneOf::RequiresAnEnhancement() const
+{
+    bool bRequiresEnhancement = false;
+    // check all the individual requirements
+    for (auto&& it : m_Requirements)
+    {
+        bRequiresEnhancement |= it.RequiresAnEnhancement();
+    }
+    return bRequiresEnhancement;
+}
+
 bool RequiresOneOf::operator==(const RequiresOneOf& other) const
 {
     return (m_hasDisplayDescription == other.m_hasDisplayDescription)

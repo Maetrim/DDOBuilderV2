@@ -9,11 +9,6 @@
 #include "SaxString.h"
 #include <vector>
 
-namespace CryptLib
-{
-    class CryptProvider;
-}
-
 namespace XmlLib
 {
     class SaxReader :

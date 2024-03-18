@@ -37,15 +37,40 @@ dexterous, and better able to survive the perils of the ocean.</Description>
       <Value1>6</Value1>
       <BonusType>Deflection</BonusType>
     </Buff>
-    <Buff>
-      <Type>GoodLuck</Type>
-      <Value1>1</Value1>
-      <BonusType>Luck</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Protection</Type>
-      <Value1>6</Value1>
-      <BonusType>Deflection</BonusType>
-    </Buff>
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Tier 2</Type>
+        <Augment>
+           <Name>Good Luck +2 and Protection +7</Name>
+           <Description>Good Luck +2: This item gives a +2 Luck bonus to all saves and skill checks.
+Protection +7: Passive: +7 Deflection bonus to Armor Class.</Description>
+           <MinLevel>24</MinLevel>
+           <Icon>Upgrade</Icon>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Type>SkillBonus</Type>
+            <Bonus>Luck</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Item>All</Item>
+          </Effect>
+          <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Deflection</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">7</Amount>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Tier 3</Type>
+        <Augment>
+           <Name>Adds a Green augment slot</Name>
+           <Description>Adds a Green augment slot to this item</Description>
+           <MinLevel>24</MinLevel>
+           <Icon>Upgrade</Icon>
+           <GrantAugment>Green</GrantAugment>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

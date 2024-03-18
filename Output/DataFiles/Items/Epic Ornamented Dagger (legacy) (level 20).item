@@ -50,19 +50,47 @@ their pillaging.</Description>
     <Buff>
       <Type>EfficientMaximizeII</Type>
     </Buff>
-    <Buff>
-      <Type>SpellLoreNumeral</Type>
-      <Value1>3</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>III</Description1>
-    </Buff>
-    <Buff>
-      <Type>Potency</Type>
-      <Value1>48</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
     <IsAcceptsSentience/>
+    <NoAutoUpdate/>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>SLA</AType>
+      <Amount size="3">12 3 3</Amount>
+      <Item>Lesser Maximize</Item>
+    </Effect>
+    <ItemAugment>
+        <Type>Tier 2</Type>
+        <Augment>
+           <Name>Adds Spell Lore III</Name>
+           <Description>Spell Lore III: Passive: All of your spells gain a 3% Equipment bonus to their chance to critical hit.</Description>
+           <MinLevel>20</MinLevel>
+           <Icon>Upgrade</Icon>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Equipment</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>All</Item>
+          </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Tier 3</Type>
+        <Augment>
+           <Name>Adds Potency +52 and a Yellow augment slot</Name>
+           <Description>Potency +52: Passive: +52 Equipment bonus to each Spell Power.
+Adds a Yellow augment slot to this item</Description>
+           <MinLevel>20</MinLevel>
+           <Icon>Upgrade</Icon>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Equipment</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">52</Amount>
+          </Effect>
+           <GrantAugment>Yellow</GrantAugment>
+        </Augment>
+     </ItemAugment>
   </Item>
 </Items>

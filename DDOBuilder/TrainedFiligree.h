@@ -28,4 +28,5 @@ class TrainedFiligree :
         DL_DECLARE_VARIABLES(TrainedFiligree_PROPERTIES)
 
         friend class EquippedGear;
+        friend class LegacySentientJewel;
 };
