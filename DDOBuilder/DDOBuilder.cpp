@@ -1504,6 +1504,7 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
             pBuild->TrainSpecialFeat(sfit.FeatName());
         }
         pBuild->Set_Levels(importedCharacter.Levels());
+        pBuild->Set_Level(importedCharacter.Levels().size());
         size_t level = 0;
         for (auto&& lit: importedCharacter.Levels())
         {
@@ -1596,5 +1597,6 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
         pBuild->Set_GearSetups(gearSets);
         pBuild->SetActiveGearSet(importedCharacter.ActiveGear());
         pBuild->BuildNowActive();
+        pBuildsPane->PopulateBuildsList();
     }
 }

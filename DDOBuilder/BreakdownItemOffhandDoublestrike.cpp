@@ -5,6 +5,8 @@
 #include "BreakdownsPane.h"
 #include "GlobalSupportFunctions.h"
 
+const std::string c_PTWF = "Perfect Two Weapon Fighting";
+
 BreakdownItemOffhandDoublestrike::BreakdownItemOffhandDoublestrike(
         CBreakdownsPane* pPane,
         BreakdownType type,
@@ -46,13 +48,25 @@ void BreakdownItemOffhandDoublestrike::CreateOtherEffects()
     
     // we need to know when these breakdown values changes
     BreakdownItem * pBI = FindBreakdown(Breakdown_DoubleStrike);
-    if (m_pCharacter->ActiveBuild() != NULL)
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
     {
         double mainhandDoublestrike = pBI->Total();
         if (mainhandDoublestrike > 0)
         {
-            // offhand doublestrike procs at half the rate of the main hand
-            mainhandDoublestrike /= 2;
+            std::string name;
+            if (pBuild->IsFeatTrained(c_PTWF))
+            {
+                // offhand doublestrike procs at half the rate of the main hand +15% due to PWTF
+                mainhandDoublestrike *= 0.65;
+                name = "65% of main hand doublestrike";
+            }
+            else
+            {
+                // offhand doublestrike procs at half the rate of the main hand
+                mainhandDoublestrike /= 2;
+                name = "50% of main hand doublestrike";
+            }
             Effect mainhandBonus(
                     Effect_DoublestrikeOffhand,
                     "Half main hand doublestrike",
@@ -79,3 +93,28 @@ void BreakdownItemOffhandDoublestrike::UpdateTotalChanged(
     BreakdownItem::UpdateTotalChanged(item, type);
     Populate();
 }
+
+void BreakdownItemOffhandDoublestrike::FeatTrained(
+    Build* pBuild,
+    const std::string& featName)
+{
+    UNREFERENCED_PARAMETER(pBuild);
+    // Perfect Two Weapon Fighting affects max doublestrike chance
+    if (featName == c_PTWF)
+    {
+        CreateOtherEffects();
+    }
+}
+
+void BreakdownItemOffhandDoublestrike::FeatRevoked(
+    Build* pBuild,
+    const std::string& featName)
+{
+    UNREFERENCED_PARAMETER(pBuild);
+    // Perfect Two Weapon Fighting affects max doublestrike chance
+    if (featName == c_PTWF)
+    {
+        CreateOtherEffects();
+    }
+}
+

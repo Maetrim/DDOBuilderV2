@@ -7,6 +7,32 @@ Unbalancing
 Vengeful
 
 
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>SDItemDefense</Item>
+               <Item>Item Defense</Item>
+            </Requirement>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SDItemDefense</Item>
+            <Item>Item Defense</Item>
+         </Effect>
+
+            <Requirement>
+               <Type>Exclusive</Type>
+               <Item>SDStalwartDefensiveMastery</Item>
+               <Item>Armor Mastery</Item>
+            </Requirement>
+         <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SDStalwartDefensiveMastery</Item>
+            <Item>Armor Mastery</Item>
+         </Effect>
+
 Enhancement tree review;
 
 Artificer
@@ -407,6 +433,29 @@ you will gain set bonuses based on the Planar Focus that you have equipped.</Des
       </Augment>
     </ItemAugment>
 
+
+
+    <NoAutoUpdate/>
+    <ItemAugment>
+      <Type>Attuned by Heroism: Tier 1</Type>
+      <Augment>
+        <Name>Yellow Augment Slot</Name>
+        <Description>Add a Yellow augment slot to this item</Description>
+        <MinLevel>27</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Yellow</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned by Heroism: Tier 2</Type>
+      <Augment>
+        <Name>Colorless Augment Slot</Name>
+        <Description>Add a Colorless augment slot to this item</Description>
+        <MinLevel>25</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+      </Augment>
+    </ItemAugment>
 
 
     <NoAutoUpdate/>
@@ -1513,3 +1562,175 @@ Adds a Purple augment slot to this item</Description>
           </Effect>
         </Augment>
      </ItemAugment>
+
+
+    <NoAutoUpdate/>
+    <ItemAugment>
+        <Type>Variant Ability</Type>
+        <Augment>
+           <Name>Strength +8</Name>
+           <Description>Strength +8: This item gives the wearer the power of Ogre Strength, granting a +8 enhancement bonus to Strength.</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">8</Amount>
+              <Item>Strength</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Insightful Strength +3</Name>
+           <Description>+3 Insight bonus to Strength</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Insightful</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">3</Amount>
+              <Item>Strength</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Dexterity +8</Name>
+           <Description>Dexterity +8: This item makes the wearer more nimble and dexterous, granting a +8 enhancement bonus to Dexterity.</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">8</Amount>
+              <Item>Dexterity</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Insightful Dexterity +3</Name>
+           <Description>+3 Insight bonus to Dexterity</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Insightful</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">3</Amount>
+              <Item>Dexterity</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Constitution +8</Name>
+           <Description>Constitution +8: This item gives the wearer improved health, granting a +8 enhancement bonus to Constitution.</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">8</Amount>
+              <Item>Constitution</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Insightful Constitution +3</Name>
+           <Description>+3 Insight bonus to Constitution</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Insightful</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">3</Amount>
+              <Item>Constitution</Item>
+           </Effect>
+        </Augment>
+     </ItemAugment>
+    <ItemAugment>
+        <Type>Variant Combat</Type>
+        <Augment>
+           <Name>Shatter +10</Name>
+           <Description>Shatter +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Sunder and Improved Sunder attempts.</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>TacticalDC</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">10</Amount>
+              <Item>Shatter</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Stunning +10</Name>
+           <Description>Stunning +10: +10 Enhancement bonus to the DC of character's Stunning Blow and Stunning Fist attempts.</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>TacticalDC</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">10</Amount>
+              <Item>Stun</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Vertigo +10</Name>
+           <Description>Vertigo +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Trip and Improved Trip attempts.</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>TacticalDC</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">10</Amount>
+              <Item>Vertigo</Item>
+           </Effect>
+        </Augment>
+        <Augment>
+           <Name>Tendon Slice +10</Name>
+           <Description>Tendon Slice +10: On Hit: 10% chance to slow target's movement by 50% for 6 seconds.</Description>
+           <MinLevel>22</MinLevel>
+           <Icon>Variant</Icon>
+           <Effect>
+              <Type>TacticalDC</Type>
+              <Bonus>Enhancement</Bonus>
+              <AType>Simple</AType>
+              <Amount size="1">10</Amount>
+              <Item>Vertigo</Item>
+           </Effect>
+        </Augment>
+     </ItemAugment>
+
+
+Here is what is currently on my website:
+var CarponeInq=[134.63, 136.87, 139.11, 141.34, 143.58, 145.82, 148.06, 150.30, 152.53, 154.77, 157.01, 159.25, 161.49, 163.72, 165.96, 168.20, 170.44, 172.68];
+var VanshilarUnarmed=[93.2, 99.3, 105.3, 111.3, 117.4, 123.4, 129.4, 135.5, 141.5, 147.5, 153.5, 159.6, 165.6];
+var VanshilarTWF=[86.7, 91.8, 97.0, 102.2, 107.4, 112.6, 117.8, 123.0, 128.1, 133.3, 138.5, 143.7, 148.9];
+var VanshilarFastTHF=[86.5, 91.0, 95.4, 99.9, 104.4, 108.8, 113.3, 117.8, 122.2, 126.7, 131.2, 135.6, 140.1];
+var VanshilarSlowTHF=[86.6, 90.8, 95.0, 99.1, 103.3, 107.5, 111.6, 115.8, 119.9, 124.1, 128.3, 132.4, 136.6];
+
+var MrCowTWF=[87.59, 91.95, 96.77, 102.13, 108.11, 113.21, 118.23, 123.08, 127.66, 133.33];
+var MrCowFastTHF=[88.89, 92.31, 96.00, 100.00, 104.35, 109.09, 113.74, 118.23, 121.83, 126.32];
+var MrCowSlowTHF=[85.71, 88.89, 92.31, 96.00, 100.00, 104.35, 109.09, 114.29, 120.00, 126.32];
+var MrCowUnarmed=[96.00, 100.00, 104.35, 109.09, 114.29, 120.00, 126.32, 133.33, 141.18, 150.00];
+
+var MrCowBow=[53.36, 55.13, 56.89, 58.65, 60.41, 62.17, 63.93, 65.69, 67.45, 69.21, 70.98, 72.74, 74.50];
+var MrCowThrown=[53.36, 55.58, 57.79, 60.01, 62.22, 64.44, 66.65, 68.87, 71.08, 73.30, 75.51, 77.73, 79.94];
+
+var TimoteoDeLaniHeavyRepeater=[60*100/55.];
+
+var UltinoobWolf=[114.8, 123.13, 131.46, 139.79, 148.12, 156.45, 164.78, 173.11, 181.44, 189.77, 198.1, 206.43, 214.76];
+var UltinoobBear=[72.29, 77.53, 82.77, 88.01, 93.25, 98.49, 103.73, 108.97, 114.21, 119.45, 124.69, 129.93, 135.17, 140.41, 145.65, 150.89, 156.13, 161.37];
+
+All are starting at alacrity 0 and each step is 5 more alacrity. All are tested at BAB 20 except bear form which is at 14 BAB. Heavy repeater is at BAB 19. Carpone inquisitive is at BAB 19.
+
+These are the attacks per minute not including offhand attacks, doublestrike or shield procs.
+
+This is the best i can do for now. Seems like the only data that takes both BAB and alacrity into account is bear and wolf forms... Data for bows are probably obsolete as they redid that some time ago but it is the best we got.
+
+from here: https://forums-old.ddo.com/forums/showthread.php/275144-Vanshilar-s-Attack-Speed-Index-and-Formulae
+Fast THF (greataxe, quarterstaff)
+Slow THF (greatsword)
+
+That is what is on my website and the best i can do without going through all the post about attack speed to see if there is some info i forgot.

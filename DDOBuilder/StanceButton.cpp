@@ -75,16 +75,8 @@ bool CStanceButton::Evaluate(Character* charData)
     {
         if (m_stance.HasActiveRequirements())
         {
-            WeaponType wtMainHand = Weapon_Empty;
-            WeaponType wtOffHand = Weapon_Empty;
-            if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
-            {
-                wtMainHand = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon1).Weapon();
-            }
-            if (pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon2))
-            {
-                wtOffHand = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon2).Weapon();
-            }
+            WeaponType wtMainHand = pBuild->MainHandWeapon();
+            WeaponType wtOffHand = pBuild->OffhandWeapon();
             bool bState = m_stance.ActiveRequirements().Met(*pBuild, pBuild->Level()-1, false, wtMainHand, wtOffHand);
             if (m_stance.HasGroup()
                 && m_stance.Group() == "Auto")

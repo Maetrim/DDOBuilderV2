@@ -133,11 +133,12 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             }
         }
 
-        if (m_pCharacter->ActiveBuild()->IsStanceActive("Two Weapon Fighting"))
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild->IsStanceActive("Two Weapon Fighting"))
         {
             int bonus = 0;
             // they are two weapon fighting, apply attack penalties to this weapon
-            if (m_pCharacter->ActiveBuild()->IsFeatTrained(c_TWF))
+            if (pBuild->IsFeatTrained(c_TWF))
             {
                 // -4/-4 penalty when TWF with light off hand weapon
                 bonus = -4;
@@ -148,8 +149,9 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
                 bonus = m_bOffhandWeapon ? -10: -6;
             }
             // heavy weapon off hand weapon penalty
-            if (/*m_pCharacter->ActiveBuild()->LightWeaponInOffHand()
-                    || */m_pCharacter->ActiveBuild()->IsFeatTrained(c_OTWF))
+            WeaponType wtOffhand = pBuild->OffhandWeapon();
+            if (pBuild->IsWeaponInGroup("Light", wtOffhand)
+                    || m_pCharacter->ActiveBuild()->IsFeatTrained(c_OTWF))
             {
                 // 2 less penalty if off hand weapon is light
                 // or over sized TWF is trained
@@ -436,12 +438,8 @@ void BreakdownItemWeaponAttackBonus::FeatTrained(
 {
     UNREFERENCED_PARAMETER(pBuild);
     // TWF and Oversized TWF affect attack penalty
-    if (featName == c_TWF)
-    {
-        CreateOtherEffects();
-    }
-    else if (m_bOffhandWeapon
-            && featName == c_OTWF)
+    if (featName == c_TWF
+            || featName == c_OTWF)
     {
         CreateOtherEffects();
     }
@@ -453,12 +451,8 @@ void BreakdownItemWeaponAttackBonus::FeatRevoked(
 {
     UNREFERENCED_PARAMETER(pBuild);
     // TWF and Oversized TWF affect attack penalty
-    if (featName == c_TWF)
-    {
-        CreateOtherEffects();
-    }
-    else if (m_bOffhandWeapon
-            && featName == c_OTWF)
+    if (featName == c_TWF
+        || featName == c_OTWF)
     {
         CreateOtherEffects();
     }

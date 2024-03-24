@@ -51,6 +51,8 @@ XmlLib::SaxContentElementInterface * LegacyEquippedGear::StartElement(
 
 void LegacyEquippedGear::EndElement()
 {
+    m_hasSentientIntelligence = true;   // assume for very old files to load
+
     SaxContentElement::EndElement();
     DL_END(LegacyEquippedGear_PROPERTIES)
 }

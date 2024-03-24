@@ -41,6 +41,7 @@ public:
     virtual BOOL PreTranslateMessage(MSG* pMsg) override;
 
     Build* OnNewLife();
+    void PopulateBuildsList();
 
     // CharacterObserver
     virtual void UpdateActiveBuildPositionChanged(Character*) override;
@@ -49,7 +50,6 @@ public:
     DECLARE_MESSAGE_MAP()
 
 private:
-    void PopulateBuildsList();
     void SelectTreeItem(
         TreeEntryItem type,
         size_t lifeIndex,

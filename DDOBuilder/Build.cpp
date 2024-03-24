@@ -2254,6 +2254,51 @@ SpendInTree* Build::FindSpendInTree(const std::string& treeName)
     return pTree;
 }
 
+void Build::RemoveTreeSpend(const std::string& treeName)
+{
+    SpendInTree* pTree = NULL;
+
+    std::list<EnhancementSpendInTree>::iterator eit = m_EnhancementTreeSpend.begin();
+    while (pTree == NULL
+        && eit != m_EnhancementTreeSpend.end())
+    {
+        if ((*eit).TreeName() == treeName)
+        {
+            m_EnhancementTreeSpend.erase(eit);
+            break;
+        }
+        ++eit;
+    }
+    if (pTree == NULL)
+    {
+        std::list<ReaperSpendInTree>::iterator rit = m_ReaperTreeSpend.begin();
+        while (pTree == NULL
+            && rit != m_ReaperTreeSpend.end())
+        {
+            if ((*rit).TreeName() == treeName)
+            {
+                m_ReaperTreeSpend.erase(rit);
+                break;
+            }
+            ++rit;
+        }
+    }
+    if (pTree == NULL)
+    {
+        std::list<DestinySpendInTree>::iterator dit = m_DestinyTreeSpend.begin();
+        while (pTree == NULL
+            && dit != m_DestinyTreeSpend.end())
+        {
+            if ((*dit).TreeName() == treeName)
+            {
+                m_DestinyTreeSpend.erase(dit);
+                break;
+            }
+            ++dit;
+        }
+    }
+}
+
 void Build::NotifySkillSpendChanged(size_t level, SkillType skill)
 {
     NotifyAll(&BuildObserver::UpdateSkillSpendChanged, this, level, skill);
@@ -2703,7 +2748,7 @@ void Build::Enhancement_ResetEnhancementTree(std::string treeName)
     if (pItem != NULL)
     {
         // clear all the enhancements trained by revoking them until none left
-        while (pItem->Enhancements().size() > 0)
+        while (pItem != NULL && pItem->Enhancements().size() > 0)
         {
             Enhancement_RevokeEnhancement(treeName, pItem->Enhancements().back().EnhancementName());
             pItem = FindSpendInTree(treeName);
@@ -2831,61 +2876,74 @@ void Build::Enhancement_RevokeEnhancement(
                 &revokedEnhancementSelection,
                 &ranks);
         const EnhancementTree& eTree = EnhancementTree::GetTree(treeName);
-        if (eTree.HasIsRacialTree())
+        if (eTree.Name() == "")
         {
-            m_racialTreeSpend -= spent;
+            RemoveTreeSpend(treeName);
+            // this tree no longer exists at all in any capacity, just delete the entry
+            std::stringstream ss;
+            ss << "Enhancement tree \"" << treeName << "\" not found. Removed from build.";
+            GetLog().AddLogEntry(ss.str().c_str());
         }
         else
         {
-            if (eTree.HasIsUniversalTree())
+            if (eTree.HasIsRacialTree())
             {
-                m_universalTreeSpend -= spent;
+                m_racialTreeSpend -= spent;
             }
             else
             {
-                m_classTreeSpend -= spent;
+                if (eTree.HasIsUniversalTree())
+                {
+                    m_universalTreeSpend -= spent;
+                }
+                else
+                {
+                    m_classTreeSpend -= spent;
+                }
             }
-        }
-        // now notify all and sundry about the enhancement effects
-        // get the list of effects this enhancement has
-        RevokeEnhancementEffects(treeName, enhancementName, revokedEnhancementSelection, ranks);
-        // determine whether we still have a tier 5 enhancement trained if the tree just had one
-        // revoked in it
-        if (m_EnhancementSelectedTrees.HasTier5Tree()
-                && m_EnhancementSelectedTrees.Tier5Tree() == treeName)
-        {
-            // may have lost the tier 5 status, check the tree to see if any tier 5 are still trained
-            if (!pItem->HasTier5())
+            // now notify all and sundry about the enhancement effects
+            // get the list of effects this enhancement has
+            RevokeEnhancementEffects(treeName, enhancementName, revokedEnhancementSelection, ranks);
+            // determine whether we still have a tier 5 enhancement trained if the tree just had one
+            // revoked in it
+            if (m_EnhancementSelectedTrees.HasTier5Tree()
+                    && m_EnhancementSelectedTrees.Tier5Tree() == treeName)
             {
-                m_EnhancementSelectedTrees.ClearTier5Tree();  // no longer a tier 5 trained
+                // may have lost the tier 5 status, check the tree to see if any tier 5 are still trained
+                if (!pItem->HasTier5())
+                {
+                    m_EnhancementSelectedTrees.ClearTier5Tree();  // no longer a tier 5 trained
+                }
             }
+            EnhancementItemParams item;
+            item.tree = treeName;
+            item.enhancementName = enhancementName;
+            item.selection = revokedEnhancementSelection;
+            item.isTier5 = wasTier5;
+            NotifyEnhancementRevoked(item);
+            NotifyActionPointsChanged();
+            std::stringstream ss;
+            const EnhancementTreeItem* pTreeItem = FindEnhancement(treeName, enhancementName);
+            if (pTreeItem != NULL)
+            {
+                ss << "Revoked enhancement from tree \""
+                    << treeName
+                    << "\": Rank "
+                    << ranks
+                    << " of \""
+                    << pTreeItem->DisplayName(revokedEnhancementSelection)
+                    << "\"";
+            }
+            else
+            {
+                ss << "Revoked enhancement from tree \""
+                    << treeName
+                    << "\": Rank "
+                    << ranks
+                    << " of \"Unknown\"";
+            }
+            GetLog().AddLogEntry(ss.str().c_str());
         }
-        EnhancementItemParams item;
-        item.tree = treeName;
-        item.enhancementName = enhancementName;
-        item.selection = revokedEnhancementSelection;
-        item.isTier5 = wasTier5;
-        NotifyEnhancementRevoked(item);
-        NotifyActionPointsChanged();
-        //NotifyAPSpentInTreeChanged(treeName);
-        //if (enhancementName != NULL)
-        //{
-        //    *enhancementName = revokedEnhancement;
-        //}
-        //if (enhancementSelection != NULL)
-        //{
-        //    *enhancementSelection = revokedEnhancementSelection;
-        //}
-        const EnhancementTreeItem* pTreeItem = FindEnhancement(treeName, enhancementName);
-        std::stringstream ss;
-        ss << "Revoked enhancement from tree \""
-                << treeName
-                << "\": Rank "
-                << ranks
-                << " of \""
-                << pTreeItem->DisplayName(revokedEnhancementSelection)
-                << "\"";
-        GetLog().AddLogEntry(ss.str().c_str());
     }
 }
 
@@ -3678,9 +3736,29 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
                     if (newAugments[j].Type() == originalAugments[i].Type())
                     {
                         newAugments[j].Set_SelectedAugment(originalAugments[i].SelectedAugment());
-                        if (originalAugments[i].HasSelectedLevelIndex())
+                        // find the nearest level from the list available
+                        size_t levelIndex = 0;
+                        const Augment& aug = FindAugmentByName(originalAugments[i].SelectedAugment(), NULL);
+                        if (aug.HasChooseLevel())
                         {
-                            newAugments[j].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                            // switch to the index thats closest to this items actual level or lower
+                            if (aug.HasLevels())
+                            {
+                                const std::vector<int>& levels = aug.Levels();
+                                for (size_t index = 0; index < levels.size(); ++index)
+                                {
+                                    if (levels[index] <= (int)foundItem.MinLevel())
+                                    {
+                                        levelIndex = index;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                // its a cannith type augment, lookup by item level
+                                levelIndex = foundItem.MinLevel();
+                            }
+                            newAugments[j].Set_SelectedLevelIndex(levelIndex);
                         }
                         bFound = true;
                     }
@@ -3688,7 +3766,7 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
             }
             if (!bFound)
             {
-                // we have an augment (populated or not) that not in the regular
+                // we have an augment (populated or not) thats not in the regular
                 // augment list. This could be a SlotUpgrade augment.
                 for (size_t j = 0; !bFound && j < newUpgrades.size(); ++j)
                 {
@@ -3697,17 +3775,40 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
                         AddAugment(&newAugments, originalAugments[i].Type(), false);
                         newUpgrades.erase(newUpgrades.begin() + j);
                         j--;
-                        for (size_t k = 0; !bFound && k < newAugments.size(); ++k)
+                        if (originalAugments[i].HasSelectedAugment())
                         {
-                            // match by augment type. If not matched, its ignored
-                            if (newAugments[k].Type() == originalAugments[i].Type())
+                            for (size_t k = 0; !bFound && k < newAugments.size(); ++k)
                             {
-                                newAugments[k].Set_SelectedAugment(originalAugments[i].SelectedAugment());
-                                if (originalAugments[i].HasSelectedLevelIndex())
+                                // match by augment type. If not matched, its ignored
+                                if (newAugments[k].Type() == originalAugments[i].Type())
                                 {
-                                    newAugments[k].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
+                                    newAugments[k].Set_SelectedAugment(originalAugments[i].SelectedAugment());
+                                    // find the nearest level from the list available
+                                    size_t levelIndex = 0;
+                                    const Augment& aug = FindAugmentByName(originalAugments[i].SelectedAugment(), NULL);
+                                    if (aug.HasChooseLevel())
+                                    {
+                                        if (aug.HasLevels())
+                                        {
+                                            // switch to the index thats closest to this items actual level or lower
+                                            const std::vector<int>& levels = aug.Levels();
+                                            for (size_t index = 0; index < levels.size(); ++index)
+                                            {
+                                                if (levels[index] <= (int)foundItem.MinLevel())
+                                                {
+                                                    levelIndex = index;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            // its a cannith type augment, lookup by item level
+                                            levelIndex = foundItem.MinLevel();
+                                        }
+                                        newAugments[k].Set_SelectedLevelIndex(levelIndex);
+                                    }
+                                    bFound = true;
                                 }
-                                bFound = true;
                             }
                         }
                     }
@@ -4558,6 +4659,28 @@ void Build::DumpWeaponGroups() const
     {
         wgit.DumpToLog(*this);
     }
+}
+
+WeaponType Build::MainHandWeapon() const
+{
+    WeaponType wt = Weapon_Empty;
+    EquippedGear gs = ActiveGearSet();
+    if (gs.HasItemInSlot(Inventory_Weapon1))
+    {
+        wt = gs.ItemInSlot(Inventory_Weapon1).Weapon();
+    }
+    return wt;
+}
+
+WeaponType Build::OffhandWeapon() const
+{
+    WeaponType wt = Weapon_Empty;
+    EquippedGear gs = ActiveGearSet();
+    if (gs.HasItemInSlot(Inventory_Weapon2))
+    {
+        wt = gs.ItemInSlot(Inventory_Weapon2).Weapon();
+    }
+    return wt;
 }
 
 void Build::ApplyWeaponEffects(const Item& item)

@@ -257,6 +257,7 @@ class Build :
 
         const SpendInTree* FindSpendInTree(const std::string& treeName) const;
         SpendInTree* FindSpendInTree(const std::string& treeName);
+        void RemoveTreeSpend(const std::string& treeName);
 
         void SetSkillTome(SkillType skill, size_t value);
         size_t SkillTomeValue(SkillType skill, size_t level) const;
@@ -300,6 +301,8 @@ class Build :
         void MergeGroups(const Effect& effect);
         void RemoveMergeGroup(const Effect& effect);
         void DumpWeaponGroups() const;
+        WeaponType MainHandWeapon() const;
+        WeaponType OffhandWeapon() const;
 
         // guild buffs
         void ApplyGuildBuffs(bool bApply);

@@ -117,7 +117,7 @@ class CStancesPane :
         std::list<SliderItem>::iterator GetSlider(UINT controlId);
 
         StanceGroup* CreateStanceGroup(const std::string& strName, bool singleSelection);
-        void PositionStanceGroup(StanceGroup& sg, CRect* pRect, int maxX);
+        void PositionStanceGroup(StanceGroup& sg, CRect* pGroupRect, CRect* pItemRect, int maxX);
 
         CDocument * m_pDocument;
         Character * m_pCharacter;

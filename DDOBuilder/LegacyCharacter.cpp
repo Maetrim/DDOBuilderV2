@@ -39,6 +39,10 @@ XmlLib::SaxContentElementInterface * LegacyCharacter::StartElement(
 
 void LegacyCharacter::EndElement()
 {
+    m_hasLevel32 = true;    // assume for  very old files to load (default to strength)
+    m_hasLevel36 = true;
+    m_hasLevel40 = true;
+    m_hasDestinyTrees = true;    // assume for  very old files to load
     SaxContentElement::EndElement();
     DL_END(LegacyCharacter_PROPERTIES)
 }

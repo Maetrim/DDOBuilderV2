@@ -25,5 +25,6 @@ class BreakdownItemBAB :
         virtual void ClassChanged(Build *, const std::string& classFrom, const std::string& classTo, size_t level) override;
         virtual void BuildLevelChanged(Build* pBuild) override;
 
-        size_t m_overrideBabCount;
+        // BreakdownObserver overrides
+        virtual void UpdateTotalChanged(BreakdownItem* item, BreakdownType type) override;
 };

@@ -9,6 +9,7 @@
 namespace
 {
     const int c_windowSize = 38;
+    const int c_windowSizeGroupX = 48;
 }
 
 IMPLEMENT_DYNCREATE(CStancesPane, CFormView)
@@ -126,6 +127,11 @@ void CStancesPane::OnSize(UINT nType, int cx, int cy)
             sliderBottom = rctSlider.bottom + c_controlSpacing;
             ++si;
         }
+        CRect groupRect(
+            c_controlSpacing,
+            sliderBottom,
+            c_windowSizeGroupX + c_controlSpacing,
+            sliderBottom + c_windowSize);
         CRect itemRect(
             c_controlSpacing,
             sliderBottom,
@@ -133,7 +139,7 @@ void CStancesPane::OnSize(UINT nType, int cx, int cy)
             sliderBottom + c_windowSize);
         for (auto&& sgi : m_stanceGroups)
         {
-            PositionStanceGroup(*sgi, &itemRect, cx);
+            PositionStanceGroup(*sgi, &groupRect, &itemRect, cx);
         }
         // show scroll bars if required
         SetScrollSizes(
@@ -144,12 +150,15 @@ void CStancesPane::OnSize(UINT nType, int cx, int cy)
 
 void CStancesPane::PositionStanceGroup(
     StanceGroup& sg,
-    CRect* pRect,
+    CRect* pGroupRect,
+    CRect* pItemRect,
     int maxX)
 {
     // user stance header first
-    PositionWindow(sg.GroupLabel(), pRect, maxX);
-    // move each stance button
+    PositionWindow(sg.GroupLabel(), pGroupRect, maxX);
+    *pItemRect -= pItemRect->TopLeft();
+    *pItemRect += pGroupRect->TopLeft();
+// move each stance button
     size_t numButtons = sg.NumButtons();
     bool bAutoGroup = sg.GroupName() == "Auto";
     for (size_t i = 0; i < numButtons; ++i)
@@ -159,7 +168,7 @@ void CStancesPane::PositionStanceGroup(
             CWnd* pButton = sg.StanceButton(i);
             if (sg.GetStance(i)->IsSelected())
             {
-                PositionWindow(pButton, pRect, maxX);
+                PositionWindow(pButton, pItemRect, maxX);
                 pButton->ShowWindow(SW_SHOW);
             }
             else
@@ -172,7 +181,9 @@ void CStancesPane::PositionStanceGroup(
         else
         {
             // all non-auto group items are always shown
-            PositionWindow(sg.StanceButton(i), pRect, maxX);
+            PositionWindow(sg.StanceButton(i), pItemRect, maxX);
+            *pGroupRect -= pGroupRect->TopLeft();
+            *pGroupRect += pItemRect->TopLeft();
         }
     }
 }

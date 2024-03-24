@@ -24,6 +24,10 @@ class BreakdownItemOffhandDoublestrike :
         virtual bool AffectsUs(const Effect & effect) const override;
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem* item, BreakdownType type) override;
-private:
+
+        // EffectCallbackItem
+        virtual void FeatTrained(Build*, const std::string&) override;
+        virtual void FeatRevoked(Build*, const std::string&) override;
+    private:
         CString m_title;
 };

@@ -435,8 +435,8 @@ bool Requirement::Met(
     case Requirement_Exclusive:         met = EvaluateExclusive(build, level, includeTomes); break;
     case Requirement_Feat:              met = EvaluateFeat(build, level, includeTomes); break;
     case Requirement_FeatAnySource:     met = EvaluateFeatAnySource(build, level, includeTomes); break;
-    case Requirement_GroupMember:       met = EvaluateWeaponGroupMember(build, wtMainHand); break;
-    case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, wtOffHand); break;
+    case Requirement_GroupMember:       met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, true); break;
+    case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, false); break;
     case Requirement_ItemTypeInSlot:    met = EvaluateItemInSlot(build); break;
     case Requirement_Level:             met = EvaluateLevel(build, level, includeTomes); break;
     case Requirement_NotConstruct:      met = EvaluateNotConstruct(build); break;
@@ -446,8 +446,8 @@ bool Requirement::Met(
     case Requirement_SpecificLevel:     met = EvaluateSpecificLevel(build, level, includeTomes); break;
     case Requirement_Stance:            met = EvaluateStance(build, level, includeTomes); break;
     case Requirement_StartingWorld:     met = EvaluateStartingWorld(build); break;
-    case Requirement_WeaponClassMainHand: met = EvaluateWeaponGroupMember(build, wtMainHand); break;
-    case Requirement_WeaponClassOffHand: met = EvaluateWeaponGroupMember(build, wtOffHand); break;
+    case Requirement_WeaponClassMainHand: met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, true); break;
+    case Requirement_WeaponClassOffHand: met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, false); break;
     default:                            met = false; break;
     }
     return met;
@@ -478,8 +478,8 @@ bool Requirement::CanTrainEnhancement(
     case Requirement_Exclusive:         met = EvaluateExclusive(build, level, includeTomes); break;
     case Requirement_Feat:              met = EvaluateFeat(build, level, includeTomes); break;
     case Requirement_FeatAnySource:     met = EvaluateFeatAnySource(build, level, includeTomes); break;
-    case Requirement_GroupMember:
-    case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, Weapon_Unknown); break;
+    case Requirement_GroupMember:       met = EvaluateWeaponGroupMember(build, Weapon_Unknown, Weapon_Unknown, true); break;
+    case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, Weapon_Unknown, Weapon_Unknown, false); break;
     case Requirement_ItemTypeInSlot:    met = false; break;
     case Requirement_Level:             met = EvaluateLevel(build, level, includeTomes); break;
     case Requirement_NotConstruct:      met = EvaluateNotConstruct(build); break;
@@ -846,10 +846,28 @@ bool Requirement::EvaluateFeatAnySource(
     return met;
 }
 
-bool Requirement::EvaluateWeaponGroupMember(const Build& build, WeaponType wt) const
+bool Requirement::EvaluateWeaponGroupMember(
+        const Build& build,
+        WeaponType wtMain,
+        WeaponType wtOffhand,
+        bool bMainHand) const
 {
-    std::string group = m_Item.front();
-    return build.IsWeaponInGroup(group, wt);
+    bool bRet = false;
+    const std::string& group = m_Item.front();
+    if ((m_Type == Requirement_GroupMember
+            || m_Type == Requirement_GroupMember2)
+            && group == "One Handed"
+            && wtMain == Weapon_Handwraps
+            && wtOffhand == Weapon_Empty)
+    {
+        // special case for this requirement when handwraps in use
+        bRet = true;
+    }
+    else
+    {
+        bRet = build.IsWeaponInGroup(group, bMainHand ? wtMain : wtOffhand);
+    }
+    return bRet;
 }
 
 bool Requirement::EvaluateItemInSlot(const Build& build) const

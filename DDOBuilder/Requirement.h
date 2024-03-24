@@ -73,7 +73,7 @@ class Requirement :
         bool EvaluateExclusive(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateFeat(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateFeatAnySource(const Build& build, size_t level, bool includeTomes) const;
-        bool EvaluateWeaponGroupMember(const Build& build, WeaponType wt) const;
+        bool EvaluateWeaponGroupMember(const Build& build, WeaponType wtMain, WeaponType wtOffhand, bool bMainhand) const;
         bool EvaluateItemInSlot(const Build& build) const;
         bool EvaluateLevel(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateNotConstruct(const Build& build) const;

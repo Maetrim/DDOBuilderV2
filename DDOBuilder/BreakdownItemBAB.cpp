@@ -8,14 +8,11 @@
 #include "GlobalSupportFunctions.h"
 
 BreakdownItemBAB::BreakdownItemBAB(
-        CBreakdownsPane* pPane,
+        CBreakdownsPane*,
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem) :
-    BreakdownItem(Breakdown_BAB, treeList, hItem),
-    m_overrideBabCount(0)
+    BreakdownItem(Breakdown_BAB, treeList, hItem)
 {
-    // register ourselves for effects that affect us
-    pPane->RegisterBuildCallbackEffect(Effect_OverrideBAB, this);
 }
 
 BreakdownItemBAB::~BreakdownItemBAB()
@@ -68,9 +65,13 @@ void BreakdownItemBAB::CreateOtherEffects()
                 }
             }
 
-            if (m_overrideBabCount > 0)
+            BreakdownItem* pBABOverride = FindBreakdown(Breakdown_OverrideBAB);
+            pBABOverride->AttachObserver(this);
+            double count = pBABOverride->Total();
+            if (count > 0)
             {
                 // have at least 1 enhancement that boosts BAB to Character level
+                // note that BAB is capped at maximum 25
                 size_t currentBab = pBuild->BaseAttackBonus(pBuild->Level()-1);
                 Effect amountTrained(
                         Effect_Unknown,
@@ -108,3 +109,8 @@ void BreakdownItemBAB::BuildLevelChanged(Build* pBuild)
     Populate();
 }
 
+void BreakdownItemBAB::UpdateTotalChanged(BreakdownItem* item, BreakdownType type)
+{
+    CreateOtherEffects();
+    BreakdownItem::UpdateTotalChanged(item, type);
+}

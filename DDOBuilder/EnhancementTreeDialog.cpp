@@ -1146,18 +1146,26 @@ void CEnhancementTreeDialog::ValidateTreeSelections()
             while (!bTreeHasInvalidItems && it != enhancements.end())
             {
                 const EnhancementTreeItem* pItem = FindEnhancement((*it).EnhancementName());
-                revokedSelection = (*it).HasSelection() ? (*it).Selection() : "";
-                bool isAllowed = pItem->MeetRequirements(
-                    *pBuild,
-                    revokedSelection,
-                    treeName,
-                    pBuild->Level()-1,
-                    spentInTree);
-                if (!isAllowed)
+                if (pItem != NULL)
+                {
+                    revokedSelection = (*it).HasSelection() ? (*it).Selection() : "";
+                    bool isAllowed = pItem->MeetRequirements(
+                        *pBuild,
+                        revokedSelection,
+                        treeName,
+                        pBuild->Level()-1,
+                        spentInTree);
+                    if (!isAllowed)
+                    {
+                        bTreeHasInvalidItems = true;
+                        pBadItem = pItem;
+                        break;
+                    }
+                }
+                else
                 {
                     bTreeHasInvalidItems = true;
-                    pBadItem = pItem;
-                    break;
+                    pBadItem = NULL;
                 }
                 ++it;
             }
@@ -1166,15 +1174,15 @@ void CEnhancementTreeDialog::ValidateTreeSelections()
                 // get the name of the tree item about to be revoked and add it to the
                 // reported revoked message.
                 std::string revokedEnhancement;
+                // revoke the last trained enhancement until we can revoke the bad one
+                revokedEnhancement = enhancements.back().EnhancementName();
                 // 1: can we revoke the bad enhancement directly?
-                if (pBadItem->CanRevoke(esit))
+                if (pBadItem != NULL)
                 {
-                    revokedEnhancement = pBadItem->InternalName();
-                }
-                else
-                {
-                    // revoke the last trained enhancement until we can revoke the bad one
-                    revokedEnhancement = enhancements.back().EnhancementName();
+                    if (pBadItem->CanRevoke(esit))
+                    {
+                        revokedEnhancement = pBadItem->InternalName();
+                    }
                 }
                 // the tree does have invalid items in it.
                 // revoke an item in this tree and try again to see if the tree is now valid
