@@ -1237,3 +1237,12 @@ void Effect::SetRequirements(const Requirements& req)
     m_RequirementsToBeActive = req;
     m_hasRequirementsToBeActive = true;
 }
+
+void Effect::ReplaceLastItem(const std::string& newEntry)
+{
+    if (m_Item.size() > 0)
+    {
+        m_Item.pop_back();
+    }
+    m_Item.push_back(newEntry);
+}

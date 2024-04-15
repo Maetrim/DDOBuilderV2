@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Epic Brigand's Cutlass (legacy) (level 24)</Name>
     <Icon>Scimitar_4</Icon>
     <Description>A curved sword with an elegant hilt, popular amongst pirates for its intimidating
@@ -25,7 +26,6 @@ lawful opponents.</Description>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>3</CriticalThreatRange>
-    <NoAutoUpdate />
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>6</Value1>
@@ -77,15 +77,11 @@ Chaotic-aligned characters.
 Adds a Red augment slot to this item</Description>
         <MinLevel>24</MinLevel>
         <Icon>Upgrade</Icon>
+        <GrantAugment>Red</GrantAugment>
         <Effect>
           <Type>WeaponOtherDamageBonus</Type>
           <Type>WeaponOtherDamageBonusCritical</Type>
           <Bonus>Not Set</Bonus>
-          <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">6</Sides>
-            <Damage>Chaotic</Damage>
-          </Dice>
           <Item>All</Item>
           <Requirements>
             <Requirement>
@@ -93,8 +89,12 @@ Adds a Red augment slot to this item</Description>
               <Item>Non-Chaotic</Item>
             </Requirement>
           </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Unknown</Damage>
+          </Dice>
         </Effect>
-        <GrantAugment>Red</GrantAugment>
       </Augment>
     </ItemAugment>
   </Item>

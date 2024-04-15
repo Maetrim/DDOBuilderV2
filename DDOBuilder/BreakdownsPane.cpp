@@ -117,6 +117,11 @@ void CBreakdownsPane::RegisterBuildCallbackEffect(
     }
 }
 
+void CBreakdownsPane::UpdateBreakdown()
+{
+    OnSelChangedBreakdownTree(NULL, NULL);
+}
+
 LRESULT CBreakdownsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
@@ -1510,7 +1515,6 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
     AddTacticalItem(Breakdown_TacticalSunder, Tactical_Sunder, "Sunder", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalTrip, Tactical_Trip, "Trip", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalGeneral, Tactical_General, "General", hTacticalParent);
-    //AddTacticalItem(Breakdown_QuiveringPalm, Tactical_QuiveringPalm, "Quivering Palm", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalStunningShield, Tactical_StunningShield, "Stunning Shield", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalWands, Tactical_Wands, "Wands", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalFear, Tactical_Fear, "Fear", hTacticalParent);
@@ -1518,7 +1522,6 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
     AddTacticalItem(Breakdown_TacticalBreathWeapon, Tactical_BreathWeapon, "Breath Weapon", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalPoison, Tactical_Poison, "Poison", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalRuneArm, Tactical_RuneArm, "Rune Arm", hTacticalParent);
-    AddTacticalItem(Breakdown_TacticalQuiveringPalm, Tactical_QuiveringPalm, "Quivering Palm", hTacticalParent);
 
     HTREEITEM hKi = m_itemBreakdownTree.InsertItem(
             "Ki Breakdowns", 

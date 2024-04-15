@@ -58,7 +58,7 @@ void SetBonus::VerifyObject() const
 {
     bool ok = true;
     std::stringstream ss;
-    ss << "--- Set Bonus " << m_Type << "\n";
+    ss << "===Set Bonus " << m_Type << "===\n";
     if (!ImageFileExists("DataFiles\\SetBonusImages\\", Icon())
             && !ImageFileExists("DataFiles\\FiligreeImages\\", Icon())
             && !ImageFileExists("DataFiles\\AugmentImages\\", Icon()))

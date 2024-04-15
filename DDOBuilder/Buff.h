@@ -18,7 +18,7 @@ class Buff :
         CString MakeDescription() const;
         void UpdatedEffects(std::list<Effect>* effects) const;
 
-        void VerifyObject() const;
+        bool VerifyObject(std::stringstream* ss) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

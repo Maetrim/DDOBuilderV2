@@ -881,7 +881,7 @@ bool Requirement::EvaluateItemInSlot(const Build& build) const
         if (item.HasWeapon())
         {
             WeaponType wt = TextToEnumEntry(m_Item.back(), weaponTypeMap, false);
-            met = (wt == item.Weapon());
+            met = (wt == item.Weapon() || wt == Weapon_All);
         }
         else if (item.HasArmor())
         {

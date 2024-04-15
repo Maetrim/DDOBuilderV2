@@ -55,21 +55,16 @@ void Buff::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-void Buff::VerifyObject() const
+bool Buff::VerifyObject(std::stringstream* ss) const
 {
     bool ok = true;
-    //std::stringstream ss;
-    //ss << "=====" << m_Name << "=====\n";
-    //if (!ImageFileExists("DataFiles\\BuffImages\\", Icon()))
-    //{
-    //    ss << "Buff is missing image file \"" << Icon() << "\"\n";
-    //    ok = false;
-    //}
-
-    if (!ok)
+    const Buff& buff = FindBuff(Type());
+    if (buff.Type() == "BuffNotFound")
     {
-        //::OutputDebugString(ss.str().c_str());
+        (*ss) << "---Has missing Buff \"" << Type() << "\"\n";
+        ok = false;
     }
+    return ok;
 }
 
 CString Buff::MakeDescription() const

@@ -59,6 +59,7 @@ class EnhancementTreeItem :
         std::list<DC> GetDCs(const std::string& selection) const;
 
         bool RequiresEnhancement(const std::string& name) const;
+        bool RequiresEnhancement(const std::string& ourSelection, const std::string& name) const;
         size_t MinSpent(const std::string& selection) const;
         size_t Ranks(const std::string& selection) const;
 

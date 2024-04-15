@@ -179,6 +179,13 @@ void Item::VerifyObject() const
         ok &= (*it).VerifyObject(&ss);
         ++it;
     }
+    // verify any buffs
+    std::vector<Buff>::const_iterator bit = m_Buffs.begin();
+    while (bit != m_Buffs.end())
+    {
+        ok &= (*bit).VerifyObject(&ss);
+        ++bit;
+    }
     // verify its DC objects
     //std::list<DC>::const_iterator edcit = m_EffectDC.begin();
     //while (edcit != m_EffectDC.end())

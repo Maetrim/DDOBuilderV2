@@ -70,8 +70,9 @@ void SpendInTree::EndElement()
         const EnhancementTreeItem* pTreeItem = FindEnhancement(TreeName(), teit.EnhancementName());
         if (pTreeItem != NULL)
         {
-            teit.SetCost(pTreeItem->ItemCosts(teit.HasSelection() ? teit.Selection() : ""));
-            teit.SetRequiredAps(pTreeItem->MinSpent());
+            std::string selection = teit.HasSelection() ? teit.Selection() : "";
+            teit.SetCost(pTreeItem->ItemCosts(selection));
+            teit.SetRequiredAps(pTreeItem->MinSpent(selection));
         }
         else
         {
@@ -188,8 +189,8 @@ bool SpendInTree::EnoughPointsSpentAtLowerTiers(size_t minSpent, size_t cost) co
 }
 
 bool SpendInTree::HasTrainedDependants(
-        const std::string& enhancementName,
-        size_t ranksTrained) const
+    const std::string& enhancementName,
+    size_t ranksTrained) const
 {
     bool hasDependants = false;
     // look through the list of enhancement items trained
@@ -200,7 +201,7 @@ bool SpendInTree::HasTrainedDependants(
     {
         if (it.HasRequirementOf(enhancementName))
         {
-            hasDependants = it.Ranks() >= ranksTrained; // cannot revoke if has equal or more ranks
+            hasDependants = (it.Ranks() >= ranksTrained); // cannot revoke if has equal or more ranks
         }
     }
     return hasDependants;

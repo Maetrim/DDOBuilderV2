@@ -204,6 +204,7 @@ void BreakdownItem::AddActiveItems(
             // only list it if its non-zero
             double total = it.TotalAmount(false);
             if (total != 0
+                    || g_bShowZeroBreakdown
                     || it.AType() == Amount_NotNeeded)
             {
                 // put the effect name into the control
@@ -265,6 +266,7 @@ void BreakdownItem::AddActivePercentageItems(
             // only list it if its non-zero
             double total = it.TotalAmount(false);
             if (total != 0
+                || g_bShowZeroBreakdown
                 || it.AType() == Amount_NotNeeded)
             {
                 // put the effect name into the control
@@ -321,6 +323,7 @@ void BreakdownItem::AddDeactiveItems(
             // only list it if its non-zero
             double total = it.TotalAmount(false);
             if (total != 0
+                || g_bShowZeroBreakdown
                 || it.AType() == Amount_NotNeeded)
             {
                 // put the effect name into the control

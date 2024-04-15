@@ -58,12 +58,14 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_WM_SETTINGCHANGE()
     ON_UPDATE_COMMAND_UI_RANGE(ID_DOCKING_WINDOWS_START, ID_DOCKING_WINDOWS_END, OnUpdateDockPane)
     ON_COMMAND_RANGE(ID_DOCKING_WINDOWS_START, ID_DOCKING_WINDOWS_END, OnDockPane)
+    ON_COMMAND(ID_DEVELOPMENT_SHOW0VALUEBREAKDOWNENTRIES, &CMainFrame::OnDevelopmentShow0ValueBreakdowns)
     ON_COMMAND(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnDevelopmentRunwWikiItemCrawler)
     ON_COMMAND(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnDevelopmentProcessWikiFiles)
     ON_COMMAND(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnDevelopmentProcessSpecificWikiFile)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnDevelopmentUpdateItemImages)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
     //ON_COMMAND(ID_DEVELOPMENT_UPDATEARMORITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_SHOW0VALUEBREAKDOWNENTRIES, &CMainFrame::OnUpdateDevelopmentShow0ValueBreakdowns)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
@@ -997,3 +999,16 @@ LRESULT CMainFrame::OnLogMessage(WPARAM wp, LPARAM)
     pText = nullptr;
     return 0;
 }
+
+void CMainFrame::OnDevelopmentShow0ValueBreakdowns()
+{
+    g_bShowZeroBreakdown = !g_bShowZeroBreakdown;
+    CBreakdownsPane* pBreakdownsPane = dynamic_cast<CBreakdownsPane*>(GetPaneView(RUNTIME_CLASS(CBreakdownsPane)));
+    pBreakdownsPane->UpdateBreakdown();
+}
+
+void CMainFrame::OnUpdateDevelopmentShow0ValueBreakdowns(CCmdUI* pCmdUI)
+{
+    pCmdUI->SetCheck(g_bShowZeroBreakdown);
+}
+

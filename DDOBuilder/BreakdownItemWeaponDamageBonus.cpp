@@ -120,6 +120,10 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
     }
     if (m_bCriticalEffects)
     {
+        if (effect.IsType(Effect_Weapon_DamageBonusCritical))
+        {
+            isUs = true;
+        }
         if (effect.IsType(Effect_WeaponDamageBonusCriticalClass))
         {
             isUs = true;
@@ -131,6 +135,10 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
     }
     else
     {
+        if (effect.IsType(Effect_Weapon_DamageBonus))
+        {
+            isUs = true;
+        }
         if (effect.IsType(Effect_WeaponDamageBonusClass))
         {
             isUs = true;

@@ -118,7 +118,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
         {
             std::vector<size_t> classLevels = m_build.ClassLevels(m_build.Level()-1);
             std::list<TrainedFeat> trainedFeats = m_build.CurrentFeats(m_build.Level() - 1);
-            canTrain = (*it).RequirementsToTrain().Met(
+            canTrain &= (*it).RequirementsToTrain().Met(
                     m_build,
                     m_build.Level()-1,
                     true,          // do include tomes

@@ -83,6 +83,7 @@ const std::string Feat_Granted = "Granted Feat";
 const std::string Race_All = "All";
 const std::string c_noTreeSelection = "No selection";
 extern bool g_bShowIgnoredItems;
+extern bool g_bShowZeroBreakdown;
 const int c_noSelection = -1;
 
 enum TreeType

@@ -4,6 +4,22 @@
     <Type>BuffNotFound</Type>
     <DisplayText>Buff Missing: The buff specified was missing!</DisplayText>
   </Buff>
+    <Buff>
+      <Type>1st Litany</Type>
+      <DisplayText>First Litany of the Crimson Covenant: "Look not to the skies, nor the depths below, nor even the distant past or future." On Hit: 6d6 Evil damage and 6d8 bleeding damage to those that are vulnerable to it.</DisplayText>
+    </Buff>
+    <Buff>
+      <Type>2nd Litany</Type>
+      <DisplayText>Second Litany of the Crimson Covenant: "Seek the divine within, for the blood is the life..." On Hit: You are healed for 3d2 hit points.</DisplayText>
+    </Buff>
+    <Buff>
+      <Type>3rd Litany</Type>
+      <DisplayText>Third Litany of the Crimson Covenant: "...and in its call can be heard the promise of eternal life." On Hit: Strip the vitality from your enemies, dealing 3 Constitution damage and reducing their Physical and Magical Resistance Ratings by 10.</DisplayText>
+    </Buff>
+    <Buff>
+      <Type>4th Litany</Type>
+      <DisplayText>Final Litany of the Crimson Covenant: "One has but to listen." On hit: This dagger has a chance of conjuring the Mark of Death itself, snuffing the life from your foes and slaying them instantly without a save.</DisplayText>
+    </Buff>
   <Buff>
     <Type>3rd Degree Burns</Type>
     <DisplayText>3rd Degree Burns: On Vorpal: 85 to 195 Fire Damage every 2 seconds for 10 seconds, and adds 1-5 stacks of Vulnerability.</DisplayText>
@@ -567,6 +583,21 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Alignment Absorption</Type>
+    <DisplayText>%b1 Alignment Absorption %v1%: Passive: %v1% %b1 Bonus to Alignment Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Lawful</Item>
+      <Item>Chaotic</Item>
+      <Item>Good</Item>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Alluring Skills Bonus</Type>
     <DisplayText>%b1 Alluring Skills Bonus %v1: %v1 %b1 bonus to Bluff, Diplomacy, Haggle, Intimidate, and Perform .</DisplayText>
     <Ignore>Competence</Ignore>
@@ -816,6 +847,61 @@ acid damage by two seconds.</DisplayText>
       <Bonus>Stacking</Bonus>
       <Dice>
         <Number size="1">10</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaos</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Chaos</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Anarchic Burst 6</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Anarchic Burst 6: This weapon is a chaotic conduit, dealing 6d6 Chaos damage on a successful hit to Lawful enemies, and 1d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaos</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">12</Number>
         <Sides size="1">6</Sides>
         <Damage>Chaos</Damage>
       </Dice>
@@ -1419,6 +1505,16 @@ acid damage by two seconds.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Augment Summoning</Type>
+    <DisplayText>Augment Summoning: This item grants you the Augment Summoning feat, which gives your summoned creatures +4 to all ability scores, increased health, and increased fortification.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Augment Summoning</Item>
+      <AType>NotNeeded</AType>
     </Effect>
   </Buff>
   <Buff>
@@ -2317,6 +2413,27 @@ takes 100 damage.</DisplayText>
     <DisplayText>Battle-Scarred: This item has obviously seen use in many fights. It is chipped and scratched, but perhaps in the future there will be a way to restore it to its former glory.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Better Offhanded</Type>
+    <DisplayText>Better Offhanded: While this item is in your offhand, it gains +2[W].</DisplayText>
+    <ApplyToWeaponOnly/>
+    <Effect>
+      <!--This effect doesn't work properly. Awarded if any item is in offhand-->
+      <DisplayName>Better Offhanded</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <Amount size="1">2.0</Amount>
+      <AType>Simple</AType>
+      <Item>All</Item>
+       <Requirements>
+          <Requirement>
+             <Type>ItemTypeInSlot</Type>
+             <Item>Weapon2</Item>
+             <Item>All</Item>
+          </Requirement>
+       </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Bewildering</Type>
     <DisplayText>Bewildering: Targets of this weapon can feel their willpower slipping away. They lose -1 Wisdom on a successful attack.</DisplayText>
     <Effect>
@@ -2329,6 +2446,22 @@ takes 100 damage.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Beyond the Soul of Flame</Type>
+    <DisplayText>Beyond the Soul of Flame: Chance on hit: blind and fear.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Beyond the Soul of Storm</Type>
+    <DisplayText>Beyond the Soul of Storm: On hit: 3 to 18 electric damage, and target bleeds for 1 to 8 bleed damage periodically.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Beyond the Soul of Stone</Type>
+    <DisplayText>Beyond the Soul of Stone: +10 Insight bonus to AC and reflex Saves.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Beyond the Soul of Tide</Type>
+    <DisplayText>Beyond the Soul of Tide: Chance on hit: trip.</DisplayText>
   </Buff>
   <Buff>
     <Type>Blackscale Ferocity</Type>
@@ -3344,6 +3477,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Cold Vulnerability</Type>
+    <DisplayText>Cold Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.). This effect may only occur on-hit once every second.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>CombatMastery</Type>
     <DisplayText>%b1 Combat Mastery %v1: %v1 %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -3356,7 +3493,6 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Item>Sunder</Item>
       <Item>Stun</Item>
       <Item>General</Item>
-      <Item>Quivering Palm</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -3408,6 +3544,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Concentrated Corrosive Salt</Type>
+    <DisplayText>Concentrated Corrosive Salt: This weapon stores a caustic, insatiable power deep within. When this item is used, this power can come to the surface in the form of a noxious, corrosive salt that dissolves all material.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Conflagrating</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Conflagrating: This weapon is sheathed in furious flame. A conflagrating weapon deals an extra 3 to 18 points of fire damage on a successful hit.</DisplayText>
@@ -3422,6 +3562,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Confounding Enchantment</Type>
+    <DisplayText>Confounding Enchantment: The shifting nature of the magic that enchants this ring makes the effect hard to determine. Random: +1 Exceptional bonus to one of Strength, Dexterity, Constitution, Intelligence, Wisdom or Charisma. (Not modelled)</DisplayText>
   </Buff>
   <Buff>
     <Type>Constricting Nightmare</Type>
@@ -3715,6 +3859,21 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Cosmic</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Cosmic: This weapon is glowing with a barely-contained magical force. It deals an additional 3 to 18 force damage on a successful hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>CreepingDustLore</Type>
     <DisplayText>%b1 Creeping Dust Lore %v1: Passive: Your Cold and Acid spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
@@ -3801,6 +3960,20 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Critical Weakening 3</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Critical Weakening 3: This deadly weapon saps the power and might from your enemies, dealing 3 Strength damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Bonus size="1">3</Bonus>
+        <Damage>Strength</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Critical Wounding 2</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Critical Wounding 2: This deadly weapon saps the health from your enemies, dealing 2 Constitution damage on each critical hit.</DisplayText>
@@ -3853,6 +4026,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <AType>Simple</AType>
       <Amount size="1">5</Amount>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Crushing Tsunami</Type>
+    <DisplayText>Crushing Tsunami: This weapon stores the unstoppable force of the oceans [sic] fury deep beneath. When this weapon is used this power occasionally comes to the surface, crushing enemies beneath an overwhelming torrent of frigid water.</DisplayText>
   </Buff>
   <Buff>
     <Type>Crushing4</Type>
@@ -4037,6 +4214,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Crushing Wave</Type>
     <DisplayText>Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep within. When this weapon is used, this power occasionally comes to the surface, crushing enemies beneath a torrent of frigid water.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Crushing Wave Guard</Type>
+    <DisplayText>Crushing Wave Guard: This item stores the unstoppable force of the ocean's fury deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, crushing enemies beneath a torrent of frigid water.</DisplayText>
   </Buff>
   <Buff>
     <Type>Crystal</Type>
@@ -4432,6 +4613,21 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Dexterity Skills - Exceptional Bonus</Type>
+    <DisplayText>Dexterity Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Dexterity based skills of: Balance, Hide, Move Silently, Open Lock, and Tumble</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Balance</Item>
+      <Item>Hide</Item>
+      <Item>Move Silently</Item>
+      <Item>Open Lock</Item>
+      <Item>Tumble</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Diehard</Type>
     <DisplayText>Diehard: If you are incapacitated while this item is equipped, it will automatically stabilize you as if you had the Diehard feat.</DisplayText>
     <Effect>
@@ -4440,6 +4636,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Item>Diehard</Item>
       <AType>NotNeeded</AType>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Disease Guard</Type>
+    <DisplayText>Disease Guard: This item carries the Maggot Plague disease, which deals 1d6 Constitution damage and may be contracted by enemies that hit you. A successful Fortitude save (DC 20) will negate this effect.</DisplayText>
   </Buff>
   <Buff>
     <Type>Disease: Unholy Tear</Type>
@@ -5583,6 +5783,21 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Elemental Resonance</Type>
+    <DisplayText>%b1 Elemental Resonance %v1: Passive: %v1 %b1 bonus to Acid, Fire, Electric and Cold Spell Power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Elemental Spell Power</Type>
     <DisplayText>Elemental Spell Power: Harnessing a small amount of the power and potential of the raw elements, this item gives you a +50 bonus to your maximum spell points. This stacks with all other bonuses except Elemental Spell Power.</DisplayText>
     <Effect>
@@ -5932,6 +6147,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Epic Paragon Light Guard: When hit or missed in combat, the attacking creature takes 8d8 Light damage.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Epic Paragon Negative Guard</Type>
+    <DisplayText>Epic Paragon Negative Guard: When hit or missed in combat, the attacking creature takes 8d8 Negative damage.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Epic Telekinetic</Type>
     <DisplayText>Epic Telekinetic: Targets that suffer a critical hit from a Telekinetic weapon must make a DC 35 Strength or Dexterity check or be knocked down. The target will then be forced to make DC 16 Balance checks to recover from this effect.</DisplayText>
   </Buff>
@@ -6005,6 +6224,37 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">4</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Eternal Fire</Type>
+    <DisplayText>Eternal Fire: While you are wearing this item, your melee, ranged, and unarmed attacks gain the Flaming Burst ability. (This weapon is sheathed in fire. The weapon deals an additional 1 to 6 fire damage each hit. In addition, critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>CriticalDice</AType>
+      <Dice>
+        <Number size="6">0 0 1 2 3 4 </Number>
+        <Sides size="6">0 0 10 10 10 10</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -6337,6 +6587,17 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Faeryfire Curse: Empowered by the Fearylights, your Illusion spells have a chance to curse your enemies with Purple Faery Fire, dispelling stealth, invisibilty, blur, and displacement for 30 seconds, and giving a -40 penalty to hide. Sightless enemies are immune to the dazzle effect.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Faith</Type>
+    <DisplayText>Faith: Holy power infuses this item, providing damage reduction 5/evil.</DisplayText>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Item>Evil</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>FalseLife</Type>
     <DisplayText>%b1 False Life %v1: %v1 %b1 bonus to hit points.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -6662,6 +6923,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Fire Shield (Cold): When you are successfully attacked, there is a 10% chance that a Fire Shield (Cold) will be cast on you. If this effect activates while you have an active Fire Shield (Hot) from another item source, they will nullify each-other.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Fire Shield (Cold) Miss-Guard</Type>
+    <DisplayText>Fire Shield (Cold) Miss-Guard: When you are missed, there is a 10% chance that a Fire Shield (Cold) will be cast on you. If this effect activates while you have an active Fire Shield (Hot) from another source, they will nullify each other.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Fire Shield (Hot)</Type>
     <DisplayText>Fire Shield (Hot): When you are successfully attacked, there is a 10% chance that a Fire Shield (Hot) will be cast on you. If this effect activates while you have an active Fire Shield (Cold) from another item source, they will nullify each-other.</DisplayText>
   </Buff>
@@ -6827,6 +7092,22 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Flaming 10</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming 10: This effect causes the edges of this weapon to burn with enchanted flames, dealing 10d6 Fire damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">10</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Flaming X</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Flaming X: On Hit: 10 to 40 Fire Damage.</DisplayText>
@@ -6852,6 +7133,36 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>%i1</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Flaming 14</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming 14: This effect causes the edges of this weapon to burn with enchanted flames, dealing 14d6 Fire damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>%i1</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Flaming 15</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming 15: This effect causes the edges of this weapon to burn with enchanted flames, dealing 15d6 Fire damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">15</Number>
         <Sides size="1">6</Sides>
         <Damage>Fire</Damage>
       </Dice>
@@ -6932,6 +7243,31 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Flaming Blast 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming Blast 7: This weapon burns with deadly magical fire, dealing 7d6 Fire damage on a successful hit, and an additional 7d6 Fire damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">14</Number>
         <Sides size="1">6</Sides>
         <Damage>Fire</Damage>
       </Dice>
@@ -7095,6 +7431,32 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Force Burst</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Force Burst: This weapon is humming with magical force, and does 1 to 6 force damage each hit. Critical hits deal an additional 1 to 10 force damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>CriticalDice</AType>
+      <Dice>
+        <Number size="6">0 0 1 2 3 4</Number>
+        <Sides size="6">0 0 10 10 10 10</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Forged Lightning</Type>
     <DisplayText>Forged Lightning: On Hit: 2% Chance to do 300 to 500 damage in a blast radius.</DisplayText>
   </Buff>
@@ -7199,6 +7561,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Fragmented</Type>
+    <DisplayText>Fragmented: This item looks as though it is only one half of a greater item. Perhaps in the future it could be rejoined with its other half to reform the item in its original glory.</DisplayText>
   </Buff>
   <Buff>
     <Type>Freedom of Movement</Type>
@@ -8912,6 +9278,26 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Greater Marksmanship</Type>
+    <DisplayText>Greater Marksmanship: This item is enchanted to enhance your skill with ranged weapons. You gain a +3 Competence Bonus to Ranged Attack and a +2 Competence Bonus to Ranged Damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_AttackBonusClass</Type>
+      <Type>Weapon_AttackBonusCriticalClass</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Ranged</Item>
+    </Effect>
+    <Effect>
+      <Type>Weapon_DamageBonusClass</Type>
+      <Type>Weapon_DamageBonusCriticalClass</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Ranged</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Greater Nimbleness</Type>
     <DisplayText>Greater Nimbleness: This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus 2 higher than normal, and its armor check penalty is reduced by 4.</DisplayText>
     <Effect>
@@ -8966,7 +9352,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Greater Regeneration: This item is imbued with an undeniable goodness that freely flows outward in a pleasant palpable current, constantly healing the wearer over time.</DisplayText>
   </Buff>
   <Buff>
-    <Type>GreaterRefinforcedFists</Type>
+    <Type>GreaterReinforcedFists</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Greater Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one die.</DisplayText>
     <Effect>
@@ -8983,6 +9369,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Greater Shocking Blow: This item is charged with electricity. When in melee, on an attack roll of 20 which is confirmed as a critical hit it will punish the target with a powerful bolt of lightning (20 to 120 electric damage).</DisplayText>
   </Buff>
   <Buff>
+    <Type>Greater Shrieking Bolt</Type>
+    <DisplayText>Greater Shrieking Bolt: This item resonates with sonic energy. On ranged attacks, on an attack roll of 20 which is confirmed as a critical hit it will punish the target with a blast of sound (20 to 120 sonic damage).</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Greater Sirocco</Type>
     <DisplayText>Greater Sirocco: A critical hit with this weapon causes a whirlwind of desert sand to swirl about the target, temporarily blinding it. A successful Reflex save (DC 35) prevents the effect.</DisplayText>
   </Buff>
@@ -8997,6 +9387,16 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Greater Thorn Guard</Type>
     <DisplayText>Greater Thorn Guard: This armor stings those that attack the wearer, causing 2d6 piercing damage on a successful melee attack.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Greater Turning</Type>
+    <DisplayText>Greater Turning: Increases total number of Turn Undead uses by 4, once wielder rests. If you unequip the item you will lose these turns.</DisplayText>
+    <Effect>
+      <Type>TurnBonus</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Greater Twilight</Type>
@@ -10343,6 +10743,21 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Impellent</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Impellent: This weapon is pulsing with magical force. It deals an additional 2 to 12 force damage on a successful hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>ImprovedAcidResistance</Type>
     <DisplayText>Improved Acid Resistance: This property absorbs the first 20 points of Acid damage per attack that the wearer would normally take.</DisplayText>
     <Effect>
@@ -10416,6 +10831,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Improved Destruction</Type>
     <DisplayText>Improved Destruction: On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification . 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every second.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Improved Disease Guard</Type>
+    <DisplayText>Improved Disease Guard: This item carries a virulent disease that may be contracted by enemies that hit you, dealing 2 to 8 Constitution damage. A successful Fortitude save (DC 24) will negate this effect.</DisplayText>
   </Buff>
   <Buff>
     <Type>Improved Disruption</Type>
@@ -10652,6 +11071,20 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Inspiring Echoes</Type>
     <DisplayText>Inspiring Echoes: When a bard wields this item, Anthem abilities that restore Bard songs over time restore them 40% faster (for example, an ability that restores a Song every 5 minutes would restore one song per 3 minutes instead).</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Intelligence Skills - Exceptional Bonus</Type>
+    <DisplayText>Intelligence Skills - Exceptional Bonus +4: Passive +4 Exceptional bonus to the Intelligence based skills of: Disable Device, Repair, Search, and Spellcraft</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Disable Device</Item>
+      <Item>Repair</Item>
+      <Item>Search</Item>
+      <Item>Spellcraft</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Inflict Blight</Type>
@@ -10898,6 +11331,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Legendary Brilliance Guard: This item is imbued with a brilliant, radiant power. When the wearer of this item is successfully attacked in melee, the attacker has a chance of becoming blinded.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Cerulean Wave</Type>
+    <DisplayText>Legendary Cerulean Wave: This powerful magical implement hums in your hands and resonates with icy magic. Spells you cast have a chance of freezing your targets in a block of solid ice. DC: 70</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Cursespewing</Type>
     <DisplayText>Legendary Cursespewing : On Vorpal Hit : Your enemy is cursed with a -4 morale penalty on attack rolls, saving throws, and skill checks . This painful curse also causes the victim to take 6d6+6 damage every two seconds for a duration of twelve seconds. Additional vorpal strikes while the curse is active will extend the duration by another twelve seconds.</DisplayText>
   </Buff>
@@ -10914,6 +11351,18 @@ BLOOD BLOOD! GIVE ME BLOOD!
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Legendary Demonic Curse</Type>
+    <DisplayText>Legendary Demonic Curse: Each time you are hit in melee combat there is a chance that your attacker will be Cursed.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Demonic Shield</Type>
+    <DisplayText>Legendary Demonic Shield: Each time you are hit in melee combat there is a chance that a shield of demonic energy will grant you a +240 Profane bonus to temporary hit points.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Disease Guard</Type>
+    <DisplayText>Legendary Disease Guard: This item carries the Maggot Plague disease, which deals 3d6 Constitution damage and may be contracted by enemies that hit you. A successful Fortitude Save (DC 100) will negate this effect.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Earthgrab Guard</Type>
@@ -10942,12 +11391,24 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Legendary Freezing Ice: On hit, this has a chance of freezing your enemies in solid ice. Struck enemies must make a DC 100 Fortitude save or be frozen solid.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Goldcurse</Type>
+    <DisplayText>Legendary Goldcurse: This weapon applies a dangerous, golden curse to enemies struck! They must succeed on a DC100 Fortitude save on each Critical hit or be Paralyzed by solid gold.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Ice Barrier</Type>
+    <DisplayText>Legendary Ice Barrier: When struck in combat, there is a small chance you will be shielded by conjured ice, preventing the next 150 Damage unless that damage is Fire. This lasts for 1 minute or until depleted.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Ice Shards Guard</Type>
     <DisplayText>Legendary Ice Shards Guard: This item stores the pitiless immovable power of the ice deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, dealing an incredible amount of Cold damage to the attacker.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Lightningstorm Guard</Type>
     <DisplayText>Legendary Lightningstorm Guard: This item stores the incredible, dynamic power of the air deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, striking the attacker with an incredible amount of electrical force.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Magma Surge</Type>
+    <DisplayText>Legendary Magma Surge: This item stores the immeasurable heat of the planet's molten mantle. When this weapon is used, superheated magma occasionally flows to the surface, slowing an enemy down and inflicting massive fire damage over time.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Magma Surge Guard</Type>
@@ -11166,6 +11627,44 @@ BLOOD BLOOD! GIVE ME BLOOD!
         </Requirement>
       </Requirements>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Lesser Evil Outsider Bane</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Lesser Evil Outsider Bane: A bane weapon excels at attacking one type or subtype of creature. Against Evil Outsiders, this weapon's effective enhancement bonus is +1 better than its normal enhancement bonus. It deals an extra 1 to 6 points of damage against the foe.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil Outsider</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Stacking</Bonus>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil Outsider</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Lesser Evocation Augmentation IX</Type>
+    <DisplayText>Lesser Evocation Augmentation IX: Increases the wearer's caster level when casting ninth level or lower Evocation spells by one.</DisplayText>
   </Buff>
   <Buff>
     <Type>LesserFalseLife</Type>
@@ -11416,6 +11915,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Light of Dawn: Chance on being hit or missed in combat to deal 10 to 60 points of light damage to attacker.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Lightning Bolt Ward</Type>
+    <DisplayText>Lightning Bolt Ward: Protects against lightning bolt spells.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Lightning Guard VII</Type>
     <DisplayText>Lightning Guard VII: When Hit in Melee: Deals 7 to 28 Electric damage to your attacker.</DisplayText>
   </Buff>
@@ -11440,6 +11943,14 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Lightning Strike: This weapon stores the power of a volatile thunderstorm deep within. Occasionally, this dynamic power comes to the surface, devastating enemies with a massive lightning strike.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Lights Out</Type>
+    <DisplayText>Lights Out: This lantern does not light the way. On hit, this has a chance of blinding your enemies with ash.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Limb Chopper</Type>
+    <DisplayText>Limb Chopper: This potent and feared ability allows the weapon to sever the limbs of those it strikes. On an attack roll of 20 which is confirmed as a critical hit, the weapon severs an opponent's limb from its body. Some creatures, including many aberrations and all oozes, have no limbs. Others, such as golems and undead creatures, are not affected by the loss of their limbs. Most other creatures, however, have their movement slowed 75% and attacks slowed by 50% when a limb is cut off.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Linguistics</Type>
     <DisplayText>Linguistics %v1%: This item reduced the cooldowns of your Social skills (Diplomacy, Bluff, Intimidate) by %v1%. This does not stack with the Negotiator ability.</DisplayText>
   </Buff>
@@ -11452,7 +11963,29 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Linguistics 15%: This item reduced the cooldowns of your Social skills (Diplomacy, Bluff, Intimidate) by 15%. This does not stack with the Negotiator ability.</DisplayText>
   </Buff>
   <Buff>
-    <Type>>Litany of the Dead II - Ability Bonus</Type>
+    <Type>Litany of the Dead - Ability Bonus</Type>
+    <DisplayText>Litany of the Dead - Ability Bonus: The Litany of the Dead enhances the physical and mental abilities of its owner. Grants a +1 Profane bonus to all Abilities.</DisplayText>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Litany of the Dead - Combat Bonus</Type>
+    <DisplayText>Litany of the Dead - Combat Bonus: The Litany of the Dead enhances the combat abilities of its owner. Grants a +1 Profane bonus to attack bonus and damage.</DisplayText>
+    <Effect>
+      <Type>Weapon_AttackAndDamage</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Litany of the Dead II - Ability Bonus</Type>
     <DisplayText>Litany of the Dead II - Ability Bonus: The Litany of the Dead enhances the physical and mental abilities of its owner. Grants a +2 Profane bonus to all Abilities.</DisplayText>
     <Effect>
       <Type>AbilityBonus</Type>
@@ -11463,7 +11996,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
-    <Type>>Litany of the Dead II - Combat Bonus</Type>
+    <Type>Litany of the Dead II - Combat Bonus</Type>
     <DisplayText>Litany of the Dead II - Combat Bonus: The Litany of the Dead enhances the combat abilities of its owner. Grants a +4 Profane bonus to attack bonus and damage.</DisplayText>
     <Effect>
       <Type>Weapon_AttackAndDamage</Type>
@@ -11523,7 +12056,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
-    <Type>MagamaSurge</Type>
+    <Type>MagmaSurge</Type>
     <DisplayText>Magma Surge: This weapon stores the immeasurable heat of the planet's molten mantle. When this weapon is used, superheated magma occasionally surges to the surface, slowing an enemy down and inflicting massive fire damage over time.</DisplayText>
   </Buff>
   <Buff>
@@ -11734,12 +12267,58 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Mark of Sentinel</Type>
+    <DisplayText>Chimera's Fangs - Mark of Sentinel (Hate Magnet): House Deneith's Mark of Sentinel grants a +10 Enhancement bonus, Incite +20% and Insightful Fortification +50%</DisplayText>
+    <Requirements>
+      <Requirement>
+        <Type>FeatAnySource</Type>
+        <Item>Least Dragonmark of Sentinel</Item>
+      </Requirement>
+    </Requirements>
+    <Effect>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>FeatAnySource</Type>
+          <Item>Least Dragonmark of Sentinel</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>ThreatBonusMelee</Type>
+      <Type>ThreatBonusRanged</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>FeatAnySource</Type>
+          <Item>Least Dragonmark of Sentinel</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>Fortification</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">50</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>FeatAnySource</Type>
+          <Item>Least Dragonmark of Sentinel</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Marksmanship</Type>
     <DisplayText>Marksmanship: This item is enchanted to enhance your skill with ranged weapons. When using ranged weapons you gain +2 to your attack rolls and +1 to your damage.</DisplayText>
     <Effect>
       <Type>Weapon_AttackClass</Type>
       <Type>Weapon_AttackCriticalClass</Type>
-      <Type>Enhancement</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -11748,7 +12327,6 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Effect>
       <Type>Weapon_DamageClass</Type>
       <Type>Weapon_DamageCriticalClass</Type>
-      <Type>Enhancement</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
@@ -11827,7 +12405,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>Melody: Bulwark</Type>
-    <DisplayText>Melody: Bulwark: Your Inspire Greatness grants you and your allies an additional +3 PRR.</DisplayText>
+    <DisplayText>Melody Bulwark: Your Inspire Greatness grants you and your allies an additional +3 PRR.</DisplayText>
     <Effect>
       <Type>PRR</Type>
       <Bonus>Exceptional</Bonus>
@@ -12148,6 +12726,32 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Negative Blast 6</Type>
+    <DisplayText>Negative Blast 6: This weapon is an unholy conduit, dealing 6d6 Negative damage on a successful hit, and an additional 6d6 Negative damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Dice</AType>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Negative</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Dice</AType>
+      <Dice>
+        <Number size="1">12</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Negative</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>NegativeEnergyAbsorption</Type>
     <DisplayText>Negative Energy Absorption: This effect absorbs negative energy and energy drain effects.</DisplayText>
   </Buff>
@@ -12176,6 +12780,22 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <AType>Dice</AType>
       <Dice>
         <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Negative</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Negativity 6</Type>
+    <DisplayText>Negativity 6: This effect causes this weapon to be shrouded in dark mists, dealing 6d6 negative energy on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Dice</AType>
+      <Dice>
+        <Number size="1">6</Number>
         <Sides size="1">6</Sides>
         <Damage>Negative</Damage>
       </Dice>
@@ -12227,6 +12847,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <!--O-->
+  <Buff>
+    <Type>Occasional Overcooling</Type>
+    <DisplayText>Occasional Overcooling: Your shots from this Rune Arm have a 15% chance of freezing your target solid for six seconds. (Fortitude Save negates, DC is equal to your Rune Arm shots, +2 per Charge Tier the shot was fired at).</DisplayText>
+  </Buff>
   <Buff>
     <Type>Occultation</Type>
     <DisplayText>Occultation: 20% Enhancement bonus to Decreased threat generated from all damage.</DisplayText>
@@ -12360,7 +12984,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>Parrying</Type>
-    <DisplayText>%b1 Parrying %i1: Passive: %v1 %b1 bonus to Armor Class, %v1 %b2 bonus to Fortitude, Reflex, and Will Saving throws.</DisplayText>
+    <DisplayText>%b1 Parrying %i1: Passive: %v1 %b1 bonus to Armor Class, %v1 %b1 bonus to Fortitude, Reflex, and Will Saving throws.</DisplayText>
     <Ignore>Insightful</Ignore>
     <Effect>
       <Type>ACBonus</Type>
@@ -12378,7 +13002,8 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>ParryingNumber</Type>
-    <DisplayText>%b1 Parrying %v1: %v1 %b1 bonus to Armor Class, %v1 %b2 bonus to Fortitude, Reflex, and Will Saving throws.</DisplayText>
+    <DisplayText>%b1 Parrying %v1: %v1 %b1 bonus to Armor Class, %v1 %b1 bonus to Fortitude, Reflex, and Will Saving throws.</DisplayText>
+    <Ignore>Insightful</Ignore>
     <Effect>
       <Type>ACBonus</Type>
       <Bonus>Not Set</Bonus>
@@ -12453,6 +13078,20 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Percussive Maintenance 3</Type>
+    <DisplayText>Percussive Maintenance 3: Each strike from this weapon vibrates with disruptive levels of energy, interrupting your target's concentration. This weapon's strikes deal 3 Wisdom damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Bonus size="1">3</Bonus>
+        <Damage>Wisdom</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Permanent Nihil</Type>
     <DisplayText>Permanent Nihil: Passive: +30 Alchemical bonus to your Negative and Poison Spell Power.</DisplayText>
     <Effect>
@@ -12496,7 +13135,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Dice>
         <Number size="1">3</Number>
         <Sides size="1">8</Sides>
-        <Damage>Bleed</Damage>
+        <Damage>Bleeding</Damage>
       </Dice>
       <Item>All</Item>
       <Requirements>
@@ -13340,18 +13979,6 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
-    <Type>RadianceLore</Type>
-    <DisplayText>%b1 Radiance Lore %v1%: Passive: Your Light and Aligned spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
-    <Ignore>Equipment</Ignore>
-    <Effect>
-      <Type>SpellPower</Type>
-      <Bonus>Not Set</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">0</Amount>
-      <Item>Light/Alignment</Item>
-    </Effect>
-  </Buff>
-  <Buff>
     <Type>Radiance Attack</Type>
     <DisplayText>Radiance: This weapon is imbued with a brilliant, radiant power that deals an additional 4 to 24 points of Light damage and blinds the target on a successful critical hit.</DisplayText>
     <Effect>
@@ -13364,6 +13991,22 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
         <Damage>Light</Damage>
       </Dice>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Radiance Guard</Type>
+    <DisplayText>Radiance Guard: This item is imbued with a brilliant, radiant power. When the wearer of this item is successfully attacked in melee, the attacker has a chance of being hit by 4d6 points of light damage and has a chance of being blinded.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>RadianceLore</Type>
+    <DisplayText>%b1 Radiance Lore %v1%: Passive: Your Light and Aligned spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Light/Alignment</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -13392,8 +14035,12 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Raging Inferno</Type>
+    <DisplayText>Raging Inferno: Your True Rage effects (such as Barbarian or Bestial Rage) light you on fire, as if you were under the effects of a Fire Shield. This ability also protects you from Energy Drain for the duration.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Raging Resilience</Type>
-    <DisplayText>Raging Resilience: While Raged, +4 Rage Bonus to Fortitude Saves .</DisplayText>
+    <DisplayText>Raging Resilience: While Raged, +4 Rage Bonus to Fortitude Saves.</DisplayText>
     <Effect>
       <Type>SaveBonus</Type>
       <Bonus>Stacking</Bonus>
@@ -13426,7 +14073,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
-    <Type>RadiantGlory</Type>
+    <Type>Ram's Might</Type>
     <DisplayText>Ram's Might: You permanently benefit from the spell Ram's Might.</DisplayText>
     <Effect>
       <Type>AbilityBonus</Type>
@@ -13449,7 +14096,6 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Ranged Alacrity %v1%: Gain %v1% %b1 bonus to Ranged attack speed. Does not stack with the Haste spell.</DisplayText>
     <Effect>
       <Type>Weapon_AlacrityClass</Type>
-      <Type>Enhancement</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -13479,6 +14125,18 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>RepairLore</Type>
+    <DisplayText>%b1 Repair Lore %v1: Passive: Your Repair and Rust spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+       <Item>Repair</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Reconstruction</Type>
     <DisplayText>%b1 Reconstruction %v1: %v1 %b1 bonus to Repair spell power.</DisplayText>
     <Ignore>Equipment</Ignore>
@@ -13500,6 +14158,28 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">4</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Reptilian</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Reptilian Bane 6</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Reptilian Bane 6: This weapon is attuned specifically to hunt those with cunning and scales, dealing an additional 6d10 bane damage vs. Reptilians.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
         <Sides size="1">10</Sides>
         <Damage>Bane</Damage>
       </Dice>
@@ -13840,6 +14520,16 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Royalty's Frigid Response: The Prince of Frost sends his regards... Your attacks and offensive spells have a chance to freeze an enemy in a block of ice.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Rune Arm Charge Rate</Type>
+    <DisplayText>Rune Arm Charge Rate %v1%: This Rune Arm has a %v1% %b1 bonus to its Charge Rate.</DisplayText>
+    <Effect>
+      <Type>RuneArmChargeRate</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune Arm Imbue - Acid II</Type>
     <DisplayText>Rune Arm Imbue - Acid II: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d4 points of Acid damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
@@ -13900,6 +14590,21 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Rune Arm Imbue - Acid VI</Type>
+    <DisplayText>Rune Arm Imbue - Acid VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d12 points of Acid damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">12</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune Arm Imbue - Bludgeon V</Type>
     <DisplayText>Rune Arm Imbue - Bludgeon V: Wearing this Rune Arm will imbue any weapon you wield, dealing 5d4 points of Acid damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
@@ -13916,15 +14621,30 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Cold I</Type>
-    <DisplayText>Rune Arm Imbue - Cold I: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d8 points of bludgeon damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Cold I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of cold damage per hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Cold II</Type>
+    <DisplayText>Rune Arm Imbue - Cold II: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d4 points of cold damage per hit.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">2</Number>
-        <Sides size="1">8</Sides>
-        <Damage>Bludgeon</Damage>
+        <Sides size="1">4</Sides>
+        <Damage>Cold</Damage>
       </Dice>
       <Item>All</Item>
     </Effect>
@@ -13961,6 +14681,21 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Cold V</Type>
+    <DisplayText>Rune Arm Imbue - Cold VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d12 points of cold damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">12</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Cold VI</Type>
     <DisplayText>Rune Arm Imbue - Cold V: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of cold damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
@@ -14050,6 +14785,21 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Rune Arm Imbue - Electrical VI</Type>
+    <DisplayText>Rune Arm Imbue - Electrical VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d12 points of electrical damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">12</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune Arm Imbue - Force I</Type>
     <DisplayText>Rune Arm Imbue - Force I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d2 points of force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
@@ -14073,6 +14823,21 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">1</Number>
+        <Sides size="1">4</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Force III</Type>
+    <DisplayText>Rune Arm Imbue: Force III: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d4 points of Force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
         <Sides size="1">4</Sides>
         <Damage>Force</Damage>
       </Dice>
@@ -14185,6 +14950,36 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Rune Arm Imbue - Fire VI</Type>
+    <DisplayText>Rune Arm Imbue - Fire VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d12 points of fire damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">12</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Knife Shot VI</Type>
+    <DisplayText>Rune Arm Imbue - Knife Shot VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of Pierce damage per hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Piercing</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune Arm Imbue - Light I</Type>
     <DisplayText>Rune Arm Imbue - Light I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1 to 2 points of light damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
@@ -14245,6 +15040,36 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Rune Arm Imbue - Light VI</Type>
+    <DisplayText>Rune Arm Imbue - Light VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d12 points of light damage per hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">12</Sides>
+        <Damage>Light</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Rune Arm Imbue - Sonic VI</Type>
+    <DisplayText>Rune Arm Imbue: Sonic VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of untyped damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Sonic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune Arm Focus</Type>
     <DisplayText>%b1 Rune Arm Focus %v1: %v1 %b1 bonus to the DC of Rune Arm spells.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -14296,6 +15121,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Item>Acid</Item>
       <Item>Light/Alignment</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Secret Door Detection</Type>
+    <DisplayText>Secret Door Detection: This item will automatically reveal secret doors with a DC of 20 or less.</DisplayText>
   </Buff>
   <Buff>
     <Type>Scallywag's Luck I</Type>
@@ -14392,6 +15221,42 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Screeching 14</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Screeching 14: This effect causes the edges of this weapon to pulse with sound, dealing 14d6 Sonic damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Sonic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Screeching 15</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Screeching 15: This effect causes the edges of this weapon to pulse with sound, dealing 15d6 Sonic damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <Dice>
+        <Number size="1">15</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Sonic</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sea Attunement</Type>
+    <DisplayText>Sea Attunement: While you are a Water Elemental, you gain bonuses to the caster level, spell power, and crit chance for your Cold spells.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Sed-zik, The Water-Change</Type>
     <DisplayText>Sed-zik, The Water-Change: +5 Luck Bonus to Attack/Saves, +10 MRR Cap</DisplayText>
     <Effect>
@@ -14438,6 +15303,18 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shadow</Type>
+    <DisplayText>%v1 Shadow: This armor blurs the wearer whenever she tries to hide, granting a %v1 %b1 bonus to Hide checks.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+       <Item>Hide</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -14520,6 +15397,28 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Sight Beyond Sight</Type>
+    <DisplayText>Sight Beyond Sight: You can see through all veils, piercing magical and mundane defenses alike. +5% Enhancement bonus to Dodge bypass.</DisplayText>
+    <Effect>
+      <Type>DodgeBypass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Silent Moves</Type>
+    <DisplayText>%b1 Silent Moves: This armor is well-oiled and magically constructed, so not only is it nearly silent, it also dampens surrounding sounds. It provides a %v1 %b1 bonus on its wearer's Move Silently checks.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+       <Item>Move Silently</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Single-Mindedness</Type>
     <DisplayText>Single-Mindedness: This item drives your magic towards chaos, and you cannot focus as well on the nuances of subtler spells. -2 DCs on your enchantment spells.</DisplayText>
     <Effect>
@@ -14529,6 +15428,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Amount size="1">-2</Amount>
       <Item>Enchantment</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sink Like a Brick</Type>
+    <DisplayText>Sink Like a Brick: These boots are made of concrete. You sink in water.</DisplayText>
   </Buff>
   <Buff>
     <Type>ShockI</Type>
@@ -14928,10 +15831,19 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Shocking Blast VI: This weapon arcs with deadly electricity. The weapon deals an extra 6d6 electric damage each hit. In addition, critical hits deal an additional 6d6 electric damage.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
-      <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">12</Number>
         <Sides size="1">6</Sides>
         <Damage>Electric</Damage>
       </Dice>
@@ -15011,6 +15923,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Amount size="1">0</Amount>
       <Item>%i1</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sky Attunement</Type>
+    <DisplayText>Sky Attunement: While you are a Fire Elemental, you gain bonuses to the caster level, spell power, and crit chance for your Fire spells.</DisplayText>
   </Buff>
   <Buff>
     <Type>Slashing 2</Type>
@@ -15311,6 +16227,27 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Smiting</Type>
+    <DisplayText>Smiting: On Hit: 4 to 24 Bane damage to Constructs. On Vorpal Hit: If a construct struck by this weapon has fewer than 1000 Hit Points, it is instantly slain. If the construct has above 1000 Hit Points, it takes 100 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Construct</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Sneak Attack</Type>
     <DisplayText>%b1 Sneak Attack Bonus %v1: Provides a %v1 %b1 modifier to your attack bonus and a %v2 %b1 bonus to damage for any attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -15514,6 +16451,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Staggering Blow: This item is enchanted to make your attacks send enemies reeling. When you roll a 20 on an attack with a melee weapon you will knock the target down unless it makes a DC 17 Balance check.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Static Attraction</Type>
+    <DisplayText>Static Attraction: This weapon attracts the static electricity in the air, and over time will charge with magic while held in your main hand. Every five seconds, this weapon gains a charge of Static Electricity, up to a maxiumum of 3, providing a +10 Exceptional bonus to Electric Spell Power and a +5% Exceptional bonus to Electric Spell Lore. When you cast an Electric spell, all stacks are consumed.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>SonicLore</Type>
     <DisplayText>%b1 Sonic Lore %v1: Passive: Your Sonic spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
@@ -15553,6 +16494,27 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Sovereign Banishing</Type>
+    <DisplayText>Sovereign Banishing: On Hit: 4 to 24 Bane damage to Outsiders. On Vorpal Hit: If an outsider struck by this weapon has fewer than 3000 Hit Points, it is instantly slain. If the outsider has above 3000 Hit Points, it takes 300 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Outsider</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>SovereignColdResistance</Type>
     <DisplayText>Sovereign Cold Resistance: This property absorbs the first 50 points of cold damage per attack that the wearer would normally take.</DisplayText>
     <Effect>
@@ -15561,6 +16523,27 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">50</Amount>
       <Item>Cold</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Sovereign Disruption</Type>
+    <DisplayText>Sovereign Disruption: On Hit: 4 to 24 Bane damage to Undead. On Vorpal Hit: If an undead struck by this weapon has fewer than 3000 Hit Points, it is instantly slain. If the undead has above 3000 Hit Points, it takes 300 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
     </Effect>
   </Buff>
   <Buff>
@@ -15586,8 +16569,33 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Sovereign Lightning Strike</Type>
+    <DisplayText>Sovereign Lightning Strike: This item crackles with power, flickers of lightning emanating from it. On a strike of a Natural 20 that is confirmed as a critical hit, this item will strike your foe with a tremendous burst of lightning. A DC 100 Reflex save will prevent half of this damage.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Sovereign Nightmares</Type>
     <DisplayText>Sovereign Nightmares: On Vorpal Hit: If your target has below 5,000 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell. If your target has above 5,000 Hit Points, they instead take significant Force damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Sovereign Smiting</Type>
+    <DisplayText>Sovereign Smiting: On Hit: 4 to 24 Bane damage to Constructs. On Vorpal Hit: If a construct struck by this weapon has fewer than 3000 Hit Points, it is instantly slain. If the construct has above 3000 Hit Points, it takes 300 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Construct</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Sovereign Vorpal</Type>
@@ -15604,6 +16612,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Soul Eating</Type>
     <DisplayText>Soul Eating: On a Vorpal strike, the dark energy that inhabits this weapon will tear at the soul of your foe, inflicting up to three negative levels to your target. The Soul Eating weapon will feed this stolen life back to you in the form of 35 Temporary Hit Points that last for one minute or until depleted by incoming damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Soul of the Elements</Type>
+    <DisplayText>While you are centered, this item grants you a bonus depending on your current monk stance.</DisplayText>
   </Buff>
   <Buff>
     <Type>Spearblock II</Type>
@@ -16311,12 +17323,48 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Tempest</Type>
+    <DisplayText>Tempest: This item is one of two pieces of the Tempest set. When both items are equipped your weapons will deal 1d4 additional slashing damage. If you have the Tempest Capstone enhancement, this item will give your weapons an additional +3 to hit bonus. This bonus stacks with all other effects.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Tet-zik, The Enlightened Change</Type>
     <DisplayText>Tet-zik, The Enlightened Change: Whispers of the ancients grant you the ancient martial secrets of the Thri-Kreen. Your elemental Monk stances grant additional bonuses.</DisplayText>
   </Buff>
   <Buff>
     <Type>Tendon Slice</Type>
     <DisplayText>Tendon Slice %v1: On Hit: 6% chance to slow target's movement by 50% for %v1 seconds.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>The Dragging of the Depths 6</Type>
+    <DisplayText>The Dragging of the Depths 6: Attuned to the dark depths of the waves below, this weapon is cold to the touch and unholy. Each hit drains life from your enemies, dealing 6d6 Evil damage, and when striking Good enemies, it also deals an additional 6d6 Cold damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Evil</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Good</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Buff>
   <Buff>
     <Type>The Golden Curse</Type>
@@ -16496,6 +17544,14 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Thorn Guard +4</Type>
+    <DisplayText>Thorn Guard +4: When you are hit or missed in combat, this item has a chance to deal 4d8 Piercing damage on hit.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Thorn Guard +6</Type>
+    <DisplayText>Thorn Guard +6: When you are hit or missed in combat, this item has a chance to deal 6d8 Piercing damage on hit.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Thunderbane</Type>
     <DisplayText>Thunderbane: This weapon was crafted in the great Thunderforge before the Dragons came. Against constructs and the undead, this weapon's effective enhancement bonus is +8 better than its normal enhancement bonus. It deals an extra 7 to 42 points of damage against the foes.</DisplayText>
   </Buff>
@@ -16636,6 +17692,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Toxic</Type>
+    <DisplayText>Toxic: This weapon oozes with magical poisons from a dozen esoteric sources. Occasionally, these toxins will erupt on your target, unleashing a vile fog that will dissolve your foes with acid, and will additionally deal constitution damage to enemies whom are not immune to poison. Weak foes may be killed outright by this Toxic Cloud.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Toxic 12</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Toxic 12: This effect causes the edges of this weapon to drip with a vile venom, dealing 12d6 poison damage on each critical hit.</DisplayText>
@@ -16661,6 +17721,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Transmuted Platinum</Type>
     <DisplayText>Transmuted Platinum: This weapon, made of transmuted platinum, is slightly magically unstable, and has a chance to transfer its magic to those it strikes. Struck enemies have a small chance to turn into transmuted platinum, preventing all movement, with a DC of 35 negating this effect.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Trap the Soul Guard</Type>
+    <DisplayText>Trap the Soul Guard: This item stores an overwhelming, merciless power deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, sucking out the life force of an enemy and imprisoning the essence of their body and soul in a gem.</DisplayText>
   </Buff>
   <Buff>
     <Type>Treason</Type>
@@ -16885,6 +17949,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>UndeadGuard</Type>
     <DisplayText>Undead Guard: This armor burns those Undead that attack the wearer, causing 3d8 Good damage on a successful melee attack.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Undersun</Type>
+    <DisplayText>Undersun: While this item is equipped in areas with Underdark radiation, your sight is augmented to allow you to discern your surroundings even with little or no light.</DisplayText>
   </Buff>
   <Buff>
     <Type>UnderwaterAction</Type>
@@ -17152,6 +18220,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Unraveling Enchantments: The enchantments on this item have become unstable and weakened with time, but those serving House Deneith may be able to restore it. Combine this item in Visbane's Folly atop Sentinel's Tower in House Deneith Enclave with a Sigil of the Goat, a Sigil of the Lion, and a Sigil of the Dragon to restore its original enchantments.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Unstoppable Staggering Blow</Type>
+    <DisplayText>Unstoppable Staggering Blow: On a Vorpal strike with a Melee weapon, this weapon will trip your opponent, forcing them to fall prone for 2 seconds. There is no save against this effect.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Unwieldy</Type>
     <DisplayText>Unwieldy: This weapon is very large and makes you clumsier as you wield it, causing a -2 Dexterity penalty.</DisplayText>
     <Effect>
@@ -17169,6 +18241,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Utter Disintegration</Type>
     <DisplayText>Utter Disintegration: This weapon has a dark, insidious power deep within. Occasionally, this power lashes out violently at enemies and attempts to disintegrate them. This disintegrate is incredibly powerful, and will utterly destroy weaker foes.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Utter Disintegration Guard</Type>
+    <DisplayText>Utter Disintegration Guard: This item has a dark, insidious power deep within. Occasionally, this power lashes out violently at enemies that strike you and attempts to disintegrate them. This disintegrate is incredibly powerful, and will utterly destroy weaker foes.</DisplayText>
   </Buff>
   <!--V-->
   <Buff>
@@ -17468,7 +18544,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
-    <Type>Weaken undead</Type>
+    <Type>Weaken Undead</Type>
     <DisplayText>Weaken Undead: While wearing this item, your attacks cause undead creatures to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</DisplayText>
   </Buff>
   <Buff>
@@ -17570,6 +18646,16 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Weighty Asset</Type>
+    <DisplayText>Weighty Asset: This item is so heavy you find it hard to be dragged anywhere - even to your grave. You benefit from a +100 Enhancement bonus to increased unconsciousness range.</DisplayText>
+    <Effect>
+      <Type>UnconsciousRange</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Value1>-100</Value1>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Whelming Shockwave</Type>
     <DisplayText>Whelming Shockwave: This weapon reverberates with incredible power. On Vorpal, this weapon triggers a Shockwave, striking its target with bludgeoning damage and dealing damage to surrounding enemies.</DisplayText>
   </Buff>
@@ -17582,6 +18668,14 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>NotNeeded</AType>
       <Item>Air Elemental Knockdown</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Wild Frenzy</Type>
+    <DisplayText>Wild Frenzy: This weapon has a tendency to drive those it strikes insane. On an attack roll of 20 which is confirmed as a critical hit the target will go wild and attack its own allies for 15 seconds if it fails a DC 25 Will save. Enemies driven wild in this way, however, have a chance of coming to their senses if damaged.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Wild Mage</Type>
+    <DisplayText>Set Bonus: This item is one of the two pieces of the Wild Mage set. When both items are equipped all of your Level 8 and lower spells gain +2 to the die to penetrate target's Spell Resistance.</DisplayText>
   </Buff>
   <Buff>
     <Type>WillSave</Type>

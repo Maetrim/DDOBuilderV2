@@ -550,6 +550,24 @@ bool EnhancementTreeItem::RequiresEnhancement(const std::string& name) const
     return bRequiresIt;
 }
 
+bool EnhancementTreeItem::RequiresEnhancement(
+    const std::string& ourSelection,
+    const std::string& name) const
+{
+    bool bRequiresIt = false;
+    for (auto&& it: m_Selections.Selections())
+    {
+        if (it.Name() == ourSelection)
+        {
+            if (it.HasRequirementsToTrain())
+            {
+                bRequiresIt = it.RequirementsToTrain().RequiresEnhancement(name);
+            }
+        }
+    }
+    return bRequiresIt;
+}
+
 size_t EnhancementTreeItem::MinSpent(const std::string& selection) const
 {
     size_t min = MinSpent();    // assume default

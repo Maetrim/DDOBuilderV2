@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Litany of the Dead</Name>
     <Icon>Trinket_30</Icon>
     <Description>The Litany of the Dead is a powerful book the Abbot used to attempt to ascend
@@ -10,8 +11,47 @@ potent.</Description>
     <EquipmentSlot>
       <Trinket/>
     </EquipmentSlot>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Turn the Page</Item>
+      <AType>SLA</AType>
+      <Amount size="3">12 3 3</Amount>
+    </Effect>
     <Buff>
-      <Type>TaintOfEvil</Type>
+      <Type>Litany of the Dead - Ability Bonus</Type>
     </Buff>
+    <Buff>
+      <Type>Litany of the Dead - Combat Bonus</Type>
+    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Black Abbot)</Type>
+      <SelectedAugment>Taint of Evil</SelectedAugment>
+      <Augment>
+        <Name>Taint of Evil</Name>
+        <Description>Taint of Evil: Good aligned characters equipping this item suffer a temporary negative
+level until the item is removed.</Description>
+        <MinLevel>13</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>NegativeLevel</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Requirements>
+            <Requirement>
+              <Type>AlignmentType</Type>
+              <Item>Good</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Removes Taint of Evil</Name>
+        <Description>This item has been cleansed of its taint.</Description>
+        <MinLevel>13</MinLevel>
+        <Icon>Upgrade</Icon>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

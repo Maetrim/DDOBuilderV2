@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Tempest</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Ranger</Item>
-         </Requirement>
-      </Requirements>
-      <Background>RangerBackground</Background>
-      <Icon>Ranger</Icon>
-      <!--Core Items-->
-      <EnhancementTreeItem>
-         <Name>Tempest: Shield of Whirling Steel</Name>
-         <InternalName>TempestCore1</InternalName>
-         <Description>While you are dual wielding weapons, you gain a +2 Shield bonus to Armor Class,
+  <EnhancementTree>
+    <Name>Tempest</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Ranger</Item>
+      </Requirement>
+    </Requirements>
+    <Background>RangerBackground</Background>
+    <Icon>Ranger</Icon>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Tempest: Shield of Whirling Steel</Name>
+      <InternalName>TempestCore1</InternalName>
+      <Description>While you are dual wielding weapons, you gain a +2 Shield bonus to Armor Class,
 Physical Resistance Rating, and Magical Resistance Rating. This increases by +1
 for each additional Tempest Core Ability you acquire.
 
@@ -26,1247 +26,1262 @@ when you take a second Ranger level).
 Two Weapon Fighting: Reduces the penalty for fighting with two weapons, and
 increases the chance to produce off hand attacks when fighting with two weapons
 (or as an unarmed Monk) by 20% to 40%.</Description>
-         <Icon>TempestShieldOfWhirlingSteel</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Shield</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>GrantFeat</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
+      <Icon>TempestShieldOfWhirlingSteel</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Shield</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
             <Item>Two Weapon Fighting</Item>
-            <Requirements>
-               <RequiresNoneOf>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Two Weapon Fighting</Item>
-                  </Requirement>
-               </RequiresNoneOf>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Tempest</Name>
-         <InternalName>TempestCore2</InternalName>
-         <Description>+10% Offhand Strike Chance (the chance to make off-hand attacks when Dual Wielding
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>Two Weapon Fighting</Item>
+        <Requirements>
+          <RequiresNoneOf>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Two Weapon Fighting</Item>
+            </Requirement>
+          </RequiresNoneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Tempest</Name>
+      <InternalName>TempestCore2</InternalName>
+      <Description>+10% Offhand Strike Chance (the chance to make off-hand attacks when Dual Wielding
 Melee weapons).
 
 You now treat Scimitars as if they were light melee weapons.
 
 While you are Dual Wielding light Melee weapons, you can use your dexterity modifier
 to hit.</Description>
-         <Icon>Tempest</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestCore1</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AddGroupWeapon</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Light</Item>
-            <Item>Scimitar</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>WeaponAttackAbilityClass</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <Item>Light</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>OffHandAttackBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Shield</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Graceful Death</Name>
-         <InternalName>TempestCore3</InternalName>
-         <Description>While you are Dual Wielding light Melee weapons, you can use your Dexterity modifier
+      <Icon>Tempest</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AddGroupWeapon</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Light</Item>
+        <Item>Scimitar</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>WeaponAttackAbilityClass</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <Item>Light</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>OffHandAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Shield</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Graceful Death</Name>
+      <InternalName>TempestCore3</InternalName>
+      <Description>While you are Dual Wielding light Melee weapons, you can use your Dexterity modifier
 for damage.</Description>
-         <Icon>TempestGracefulDeath</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>6</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestCore2</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Shield</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>WeaponDamageAbilityClass</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <Item>Light</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Deflect Arrows</Name>
-         <InternalName>TempestCore4</InternalName>
-         <Description>You gain the benefits of the Deflect Arrows feat while Dual Wielding Melee weapons,
+      <Icon>TempestGracefulDeath</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Shield</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>WeaponDamageAbilityClass</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <Item>Light</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Deflect Arrows</Name>
+      <InternalName>TempestCore4</InternalName>
+      <Description>You gain the benefits of the Deflect Arrows feat while Dual Wielding Melee weapons,
 knocking aside one incoming projectile that would have struck you every 6 seconds.
 
 +1 Competence Bonus to Critical Damage Multiplier while Dual Wielding Melee weapons.</Description>
-         <Icon>TempestDeflectArrows</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestCore3</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>TempestCore4</Item>
-               <Item>Deflect Arrows</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExclusionGroup</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
-            <Item>TempestCore4</Item>
-            <Item>Deflect Arrows</Item>
-         </Effect>
-         <Effect>
-            <Type>GrantFeat</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Deflect Arrows</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>Weapon_CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-            <ApplyAsItemEffect/>
-         </Effect>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Shield</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Whirlwind</Name>
-         <InternalName>TempestCore5</InternalName>
-         <Description>+5%  Doublestrike when Dual Wielding Melee weapons.
+      <Icon>TempestDeflectArrows</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestCore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>TempestCore4</Item>
+          <Item>Deflect Arrows</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>TempestCore4</Item>
+        <Item>Deflect Arrows</Item>
+      </Effect>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Deflect Arrows</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Shield</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Whirlwind</Name>
+      <InternalName>TempestCore5</InternalName>
+      <Description>+5%  Doublestrike when Dual Wielding Melee weapons.
 
 +5% Incorporeality (stacking),
 +10% Offhand Strike Chance.</Description>
-         <Icon>TempestWhirlwind</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>18</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestCore4</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Shield</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Doublestrike</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>OffHandAttackBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>Incorporeality</Type>
-            <Bonus>Stacking</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Dervish</Name>
-         <InternalName>TempestCore6</InternalName>
-         <Description>+4 Dexterity. +10% Doublestrike.
+      <Icon>TempestWhirlwind</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>18</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Shield</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>OffHandAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Incorporeality</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Dervish</Name>
+      <InternalName>TempestCore6</InternalName>
+      <Description>+4 Dexterity. +10% Doublestrike.
 
-While wearing medium, light or no armor:
+While wearing Medium, Light or No Armor:
 +10 Melee Power
 +10 Physical Resistance Rating
 +10 Magical Resistance Rating</Description>
-         <Icon>TempestDervish</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>20</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestCore5</Item>
-            </Requirement>
+      <Icon>TempestDervish</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestCore5</Item>
+        </Requirement>
         <Requirement>
           <Type>Exclusive</Type>
           <Item>TempestCore6</Item>
           <Item>Capstone Enhancement</Item>
         </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>TempestCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <AType>Simple</AType>
-            <Amount size="1">4</Amount>
-         </Effect>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Shield</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Doublestrike</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Cloth Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Medium Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Tempest: Item Defense</Name>
-         <InternalName>TempestItemDefense</InternalName>
-         <Description>You have a [25/50/75]% chance to negate potential item wear.</Description>
-         <Icon>TempestItemDefense</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Improved Reaction</Name>
-         <InternalName>TempestImprovedReaction</InternalName>
-         <Description>+[1/2/3] Reflex Saves and an additional +[1/2/3] saves against traps.</Description>
-         <Icon>TempestImprovedReaction</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Reflex</Item>
-            <Item>Traps</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Improved Defense</Name>
-         <InternalName>TempestImprovedDefense</InternalName>
-         <Description>Your Shield of Whirling Steel Grants +[1/2/3] additional Armor Class,
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>TempestCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Shield</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Cloth Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Medium Armor</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    <!--3 stacks in enhancements to get correct stacking-->
+    <Effect>
+      <DisplayName>Tempest Set - 3 Piece bonus</DisplayName>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="8">0 0 0 0 0 3 3 3</Amount>
+      <Item>All</Item>
+      <ApplyAsItemEffect/>
+    </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Tempest: Item Defense</Name>
+      <InternalName>TempestItemDefense</InternalName>
+      <Description>You have a [25/50/75]% chance to negate potential item wear.</Description>
+      <Icon>TempestItemDefense</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Improved Reaction</Name>
+      <InternalName>TempestImprovedReaction</InternalName>
+      <Description>+[1/2/3] Reflex Saves and an additional +[1/2/3] saves against traps.</Description>
+      <Icon>TempestImprovedReaction</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Reflex</Item>
+        <Item>Traps</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Improved Defense</Name>
+      <InternalName>TempestImprovedDefense</InternalName>
+      <Description>Your Shield of Whirling Steel Grants +[1/2/3] additional Armor Class,
 Physical Resistance and Magical Resistance.
 If you possess Deflect Arrows it can trigger once every [4/3/2] seconds.</Description>
-         <Icon>TempestImprovedDefense</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Type>PRR</Type>
-            <Type>MRR</Type>
-            <Bonus>Shield</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Whirling Blades I</Name>
-         <InternalName>TempestWhirlingBladesI</InternalName>
-         <Description>+1 to hit and damage while dual wielding.</Description>
-         <Icon>TempestWhirlingBlades</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Acrobatic</Name>
-         <InternalName>TempestAcrobatic</InternalName>
-         <Description>+[1/2/3] Balance, Jump, and Tumble.
+      <Icon>TempestImprovedDefense</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Shield</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Whirling Blades I</Name>
+      <InternalName>TempestWhirlingBladesI</InternalName>
+      <Description>+1 to hit and damage while dual wielding.</Description>
+      <Icon>TempestWhirlingBlades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Acrobatic</Name>
+      <InternalName>TempestAcrobatic</InternalName>
+      <Description>+[1/2/3] Balance, Jump, and Tumble.
 Rank 3: +1 to Reflex Saving Throws.</Description>
-         <Icon>TempestAcrobatic</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Balance</Item>
-            <Item>Jump</Item>
-            <Item>Tumble</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Reflex</Item>
-            <AType>Simple</AType>
-            <Rank>3</Rank>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Tempest: Improved Parry</Name>
-         <InternalName>TempestImprovedParry</InternalName>
-         <Description>Gain +[3/6/10] Physical Resistance Rating when dual wielding.</Description>
-         <Icon>TempestImprovedParry</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
+      <Icon>TempestAcrobatic</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Balance</Item>
+        <Item>Jump</Item>
+        <Item>Tumble</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Reflex</Item>
+        <AType>Simple</AType>
+        <Rank>3</Rank>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Tempest: Improved Parry</Name>
+      <InternalName>TempestImprovedParry</InternalName>
+      <Description>Gain +[3/6/10] Physical Resistance Rating when dual wielding.</Description>
+      <Icon>TempestImprovedParry</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">3 6 10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Improved Dodge</Name>
+      <InternalName>TempestImprovedDodge</InternalName>
+      <Description>+[1/2/3]% dodge when wearing light or no armor.</Description>
+      <Icon>TempestImprovedDodge</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Dodge</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestImprovedReaction</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <RequiresOneOf>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">3 6 10</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Improved Dodge</Name>
-         <InternalName>TempestImprovedDodge</InternalName>
-         <Description>+[1/2/3]% dodge when wearing light or no armor.</Description>
-         <Icon>TempestImprovedDodge</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>2</Value>
+              <Type>Stance</Type>
+              <Item>Cloth Armor</Item>
             </Requirement>
             <Requirement>
-               <Type>Feat</Type>
-               <Item>Dodge</Item>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
             </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestImprovedReaction</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Cloth Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Bleed Them Out</Name>
-         <InternalName>TempestBleedThemOut</InternalName>
-         <Description>Deals +[10/20/30]% Damage
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Bleed Them Out</Name>
+      <InternalName>TempestBleedThemOut</InternalName>
+      <Description>Deals +[10/20/30]% Damage
 Cooldown: 6 seconds.
 Melee attack: On successful damage causes your opponent to bleed. The bleed
 effect can stack up to 5 times.
 
 (Bleed deals 1d6 damage every 2 seconds for 14 seconds.)</Description>
-         <Icon>TempestBleedThemOut</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Whirling Blades II</Name>
-         <InternalName>TempestWhirlingBladesII</InternalName>
-         <Description>+1 to hit and damage while dual wielding.</Description>
-         <Icon>TempestWhirlingBlades</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestWhirlingBladesI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Action Boost</Name>
-         <InternalName>TempestActionBoost</InternalName>
-         <Description>Select Haste or Sprint Boost</Description>
-         <Icon>TempestActionBoost</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Haste Boost</Name>
-               <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
-               <Icon>TempestHasteBoost</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Sprint Boost</Name>
-               <Description>Activate to gain a +[30/40/50]% Action Boost bonus to movement speed for 20 seconds.</Description>
-               <Icon>TempestSprintBoost</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Tempest: Storm Dancer</Name>
-         <InternalName>TempestStormDancer</InternalName>
-         <Description>Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+      <Icon>TempestBleedThemOut</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Whirling Blades II</Name>
+      <InternalName>TempestWhirlingBladesII</InternalName>
+      <Description>+1 to hit and damage while dual wielding.</Description>
+      <Icon>TempestWhirlingBlades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestWhirlingBladesI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Action Boost</Name>
+      <InternalName>TempestActionBoost</InternalName>
+      <Description>Select Haste or Sprint Boost</Description>
+      <Icon>TempestActionBoost</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Selector>
+        <EnhancementSelection>
+          <Name>Haste Boost</Name>
+          <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+          <Icon>TempestHasteBoost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Sprint Boost</Name>
+          <Description>Activate to gain a +[30/40/50]% Action Boost bonus to movement speed for 20 seconds.</Description>
+          <Icon>TempestSprintBoost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Tempest: Storm Dancer</Name>
+      <InternalName>TempestStormDancer</InternalName>
+      <Description>Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
 This damage scales with 100% Melee Power.</Description>
-         <Icon>TempestStormDancer</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Stance>
-            <Name>Storm Dancer</Name>
-            <Icon>TempestStormDancer</Icon>
-            <Description>Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+      <Icon>TempestStormDancer</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Stance>
+        <Name>Storm Dancer</Name>
+        <Icon>TempestStormDancer</Icon>
+        <Description>Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
 This damage scales with 100% Melee Power.</Description>
-            <Group>Imbue</Group>
-         </Stance>
-         <Effect>
-            <Type>WeaponOtherDamageBonusCritical</Type>
-            <Type>WeaponOtherDamageBonusCritical</Type>
-            <AType>NotNeeded</AType>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">8</Sides>
-               <Damage>Electric</Damage>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Storm Dancer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Improved Mobility</Name>
-         <InternalName>TempestImprovedMobility</InternalName>
-         <Description>+[1/2/3] Maximum Dexterity bonus and Dodge cap while wearing light or no armor.
+        <Group>Imbue</Group>
+      </Stance>
+      <Effect>
+        <Type>WeaponOtherDamageBonusCritical</Type>
+        <Type>WeaponOtherDamageBonusCritical</Type>
+        <AType>NotNeeded</AType>
+        <Bonus>Enhancement</Bonus>
+        <Dice>
+          <Number size="1">1</Number>
+          <Sides size="1">8</Sides>
+          <Damage>Electric</Damage>
+          <ScalesWithMeleePower />
+        </Dice>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Storm Dancer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Improved Mobility</Name>
+      <InternalName>TempestImprovedMobility</InternalName>
+      <Description>+[1/2/3] Maximum Dexterity bonus and Dodge cap while wearing light or no armor.
 -[1/2/3] Armor Check Penalty in light armor.</Description>
-         <Icon>TempestImprovedMobility</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
+      <Icon>TempestImprovedMobility</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Mobility</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestImprovedDodge</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MaxDexBonus</Type>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <RequiresOneOf>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>3</Value>
+              <Type>Stance</Type>
+              <Item>Cloth Armor</Item>
             </Requirement>
             <Requirement>
-               <Type>Feat</Type>
-               <Item>Mobility</Item>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
             </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestImprovedDodge</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>MaxDexBonus</Type>
-            <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Cloth Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>ArmorCheckPenalty</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">-1 -2 -3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Light Armor</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>ArmorCheckPenalty</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">-1 -2 -3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Light Armor</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Critical Mastery</Name>
-         <InternalName>TempestCriticalMastery</InternalName>
-         <Description>+[1/2/3] to confirm critical hits and to critical hit damage
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ArmorCheckPenalty</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-1 -2 -3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ArmorCheckPenalty</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-1 -2 -3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Critical Mastery</Name>
+      <InternalName>TempestCriticalMastery</InternalName>
+      <Description>+[1/2/3] to confirm critical hits and to critical hit damage
 (before weapon multipliers)</Description>
-         <Icon>TempestCriticalMastery</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackBonusCritical</Type>
-            <Type>Weapon_DamageBonusCritical</Type>
+      <Icon>TempestCriticalMastery</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_DamageBonusCritical</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Whirling Blades III</Name>
+      <InternalName>TempestWhirlingBladesIII</InternalName>
+      <Description>+1 to hit and damage while dual wielding.</Description>
+      <Icon>TempestWhirlingBlades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestWhirlingBladesII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Ability I</Name>
+      <InternalName>TempestAbilityScore</InternalName>
+      <Description>Strength or Dexterity, choose one:</Description>
+      <Icon>StrDex</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Whirling Blades III</Name>
-         <InternalName>TempestWhirlingBladesIII</InternalName>
-         <Description>+1 to hit and damage while dual wielding.</Description>
-         <Icon>TempestWhirlingBlades</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestWhirlingBladesII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
+            <Item>Strength</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Ability I</Name>
-         <InternalName>TempestAbilityScore</InternalName>
-         <Description>Strength or Dexterity, choose one:</Description>
-         <Icon>StrDex</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Strength</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Tempest: Storm Tempest</Name>
-         <InternalName>TempestStormTempest</InternalName>
-         <Description>Upgrades Storm Dancer Imbue Toggle to grant +30% Electrical Absorption.</Description>
-         <Icon>TempestStormTempest</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestStormDancer</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>EnergyAbsorbance</Type>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Storm Dancer</Item>
-               </Requirement>
-            </Requirements>
+            <Item>Dexterity</Item>
             <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Elaborate Parry</Name>
-         <InternalName>TempestElaborateParry</InternalName>
-         <Description>Elaborate Parry: For the next [6/12/18] seconds, you gain Dodge, Maximum Dodge,
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Tempest: Storm Tempest</Name>
+      <InternalName>TempestStormTempest</InternalName>
+      <Description>Upgrades Storm Dancer Imbue Toggle to grant +30% Electrical Absorption.</Description>
+      <Icon>TempestStormTempest</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestStormDancer</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Electric</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Storm Dancer</Item>
+          </Requirement>
+        </Requirements>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Elaborate Parry</Name>
+      <InternalName>TempestElaborateParry</InternalName>
+      <Description>Elaborate Parry: For the next [6/12/18] seconds, you gain Dodge, Maximum Dodge,
 and Maximum Dexterity Bonus to light armor, equal to your Dexterity Modifier.
 Cooldown: 90 seconds.</Description>
-         <Icon>TempestElaborateParry</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: The Growing Storm</Name>
-         <InternalName>TempestTheGrowingStorm</InternalName>
-         <Description>Melee Dual Wielding Attack: Attacks an opponent. For the next [5/10/15] seconds,
+      <Icon>TempestElaborateParry</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowUp />
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: The Growing Storm</Name>
+      <InternalName>TempestTheGrowingStorm</InternalName>
+      <Description>Melee Dual Wielding Attack: Attacks an opponent. For the next [5/10/15] seconds,
 each time you damage an opponent you gain +1 damage for 5 seconds. This effect
 can stack up to 10 times.
 Cooldown: 30 seconds</Description>
-         <Icon>TempestTheGrowingStorm</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Whirling Blades IV</Name>
-         <InternalName>TempestWhirlingBladesIV</InternalName>
-         <Description>+1 to hit and damage while dual wielding.</Description>
-         <Icon>TempestWhirlingBlades</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestWhirlingBladesIII</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
+      <Icon>TempestTheGrowingStorm</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Whirling Blades IV</Name>
+      <InternalName>TempestWhirlingBladesIV</InternalName>
+      <Description>+1 to hit and damage while dual wielding.</Description>
+      <Icon>TempestWhirlingBlades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestWhirlingBladesIII</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Ability II</Name>
+      <InternalName>TempestAbilityScoreII</InternalName>
+      <Description>Strength or Dexterity, Choose one:</Description>
+      <Icon>StrDex</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestAbilityScore</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>Strength</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Ability II</Name>
-         <InternalName>TempestAbilityScoreII</InternalName>
-         <Description>Strength or Dexterity, Choose one:</Description>
-         <Icon>StrDex</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestAbilityScore</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Strength</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Tempest: Dual Perfection</Name>
-         <InternalName>TempestDualPerfection</InternalName>
-         <Description>Your off hand weapon now adds your full attribute damage modifier.
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Tempest: Dual Perfection</Name>
+      <InternalName>TempestDualPerfection</InternalName>
+      <Description>Your off hand weapon now adds your full attribute damage modifier.
 
 (For instance, if you have 30 Strength, you gain +10 damage with your offhand
 weapon, like your main hand weapon).
 
 Passive: +25% Competence bonus to Maximum Hit Points.</Description>
-         <Icon>TempestDualPerfection</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DamageAbilityMultiplierOffhand</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">0.5</Amount>
-         </Effect>
-         <Effect>
-            <Type>Hitpoints</Type>
-            <Bonus>Competence</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">25</Amount>
-            <Percent/>
-            <ApplyAsItemEffect/>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Evasive Dance</Name>
-         <InternalName>TempestEvasiveDance</InternalName>
-         <Description>Improves your Evasion ability so on a failed Reflex saving throw against an
+      <Icon>TempestDualPerfection</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DamageAbilityMultiplierOffhand</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">0.5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Percent />
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Evasive Dance</Name>
+      <InternalName>TempestEvasiveDance</InternalName>
+      <Description>Improves your Evasion ability so on a failed Reflex saving throw against an
 attack that normally deals half damage on a successful save, you only take
 [85/70/50]% damage. </Description>
-         <Icon>TempestEvasiveDance</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>FeatAnySource</Type>
-               <Item>Evasion</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestElaborateParry</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Cuts</Name>
-         <InternalName>TempestCuts</InternalName>
-         <Description>Choose a method of inflicting additional cuts.</Description>
-         <Icon>TempestCuts</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestTheGrowingStorm</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Tempest: A Thousand Cuts</Name>
-               <Description>Deals +10% Damage
+      <Icon>TempestEvasiveDance</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>FeatAnySource</Type>
+          <Item>Evasion</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestElaborateParry</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Cuts</Name>
+      <InternalName>TempestCuts</InternalName>
+      <Description>Choose a method of inflicting additional cuts.</Description>
+      <Icon>TempestCuts</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestTheGrowingStorm</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Tempest: A Thousand Cuts</Name>
+          <Description>Deals +10% Damage
 Cooldown: 90 seconds.
 Melee Dual Wielding Attack: You gain +[10/20/30] Melee Doublestrike and
 +[10/20/30] Melee Power for 15 seconds.</Description>
-               <Icon>TempestAThousandCuts</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Tempest: Many Cuts</Name>
-               <Description>Passive: +[2/3/4]% Doublestrike, +[2/3/4] Melee Power.</Description>
-               <Icon>TempestManyCuts</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>Doublestrike</Type>
-                  <Type>MeleePower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">2 3 4</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Whirling Blades V</Name>
-         <InternalName>TempestWhirlingBladesV</InternalName>
-         <Description>+3 to hit and damage while dual wielding.</Description>
-         <Icon>TempestWhirlingBlades</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TempestWhirlingBladesIV</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
+          <Icon>TempestAThousandCuts</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Tempest: Many Cuts</Name>
+          <Description>Passive: +[2/3/4]% Doublestrike, +[2/3/4] Melee Power.</Description>
+          <Icon>TempestManyCuts</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Doublestrike</Type>
+            <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Two Weapon Fighting</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tempest: Dance of Death</Name>
-         <InternalName>TempestDanceOfDeath</InternalName>
-         <Description>Deals +[10/30/50]% Damage
+            <AType>Stacks</AType>
+            <Amount size="3">2 3 4</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Whirling Blades V</Name>
+      <InternalName>TempestWhirlingBladesV</InternalName>
+      <Description>+3 to hit and damage while dual wielding.</Description>
+      <Icon>TempestWhirlingBlades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TempestWhirlingBladesIV</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Two Weapon Fighting</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tempest: Dance of Death</Name>
+      <InternalName>TempestDanceOfDeath</InternalName>
+      <Description>Deals +[10/30/50]% Damage
 Strikethrough: +[0/100/200]%
 Cooldown: 15 seconds
 Melee Dual Wielding Attack: On Hit: For 10 seconds, you gain the ability to
 Strikethrough regardless of Combat Style for the duration.</Description>
-         <Icon>TempestDanceOfDeath</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Ranger</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Strikethrough</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">0 100 200</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Dance of Death</Item>
-               </Requirement>
-            </Requirements>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+      <Icon>TempestDanceOfDeath</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Strikethrough</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 100 200</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Dance of Death</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

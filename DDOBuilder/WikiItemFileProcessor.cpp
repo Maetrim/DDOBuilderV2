@@ -1103,14 +1103,16 @@ void WikiItemFileProcessor::AddItemEffects(const std::map<std::string, std::stri
         {
             bool bProcessed = AddSetBonuses(it);
             if (!bProcessed) bProcessed = AddAugmentSlots(it);
-            if (!bProcessed && m_item.SetBonus().size() > 0) break; // rest of items are bad set bonus/augment items
             if (!bProcessed && m_item.Augments().size() > 0) break; // rest of items are bad set bonus/augment items
             if (!bProcessed) bProcessed = ProcessEnchantmentLine(it);
             if (!bProcessed)
             {
-                CString text;
-                text.Format("...Line \"%s\" not processed.", it.c_str());
-                GetLog().AddLogEntry(text);
+                if (m_item.SetBonus().size() == 0)
+                {
+                    CString text;
+                    text.Format("...Line \"%s\" not processed.", it.c_str());
+                    GetLog().AddLogEntry(text);
+                }
             }
         }
     }
@@ -1138,6 +1140,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "WeakenUndead", "Weaken Undead Weaken Undead", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unnatural", "Unnatural Unnatural", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dragontouched", "Dragontouched", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "UniversalSpellPower", "Exceptional Universal Spell Power", "Exceptional", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MinorActionBoostEnhancement", "Minor Action Boost Enhancement", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserActionBoostEnhancement", "Lesser Action Boost Enhancement", "Equipment", "");
@@ -1910,7 +1913,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison VII", "Poison VII", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison VI", "Poison VI", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison V", "Poison V", "Enhancement", "All");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison IVII", "Poison IV", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison IV", "Poison IV", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison III", "Poison III", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison II", "Poison II", "Enhancement", "All");
 
@@ -2215,7 +2218,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Spearblock III", "Spearblock III", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Spearblock II", "Spearblock II", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vile Grip of the Hidden", "Vile Grip of the Hidden", "", "", 5);
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Vile Grip of the Hidden", "Legendary Vile Grip of the Hidden", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Vile Grip of the Hidden Hand", "Legendary Vile Grip of the Hidden", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Equipped Healing Amplification", "Equipped Healing Amplification", "", "", 5);
     if (!bRecognised) bRecognised |= ProcessSpeed(line);
     if (!bRecognised) bRecognised |= AddFavoredWeapon(line);
@@ -2598,8 +2601,7 @@ bool WikiItemFileProcessor::ProcessSpellPower(const std::string& line, const std
         "Potency",
         "Radiance",
         "Reconstruction",
-        "Resonance",
-        "Universal"
+        "Resonance"
     };
     static std::string spellPowersType[] =
     {
@@ -2613,8 +2615,7 @@ bool WikiItemFileProcessor::ProcessSpellPower(const std::string& line, const std
         "All",
         "Light/Alignment",
         "Repair",
-        "Sonic",
-        "Universal"
+        "Sonic"
     };
     size_t spellPowerCount = sizeof(spellPowers) / sizeof(std::string);
     CString searchText;
@@ -3098,7 +3099,7 @@ bool WikiItemFileProcessor::ProcessFortitudeSave(const std::string& line, const 
     if (bonus != "Resistance")
     {
         searchText.Format("%s Fortitude Save", bonus.c_str());
-        bProcessed = AddCommonEffect(line, "ForitudeSave", (LPCSTR)searchText, bonus, "");
+        bProcessed = AddCommonEffect(line, "FortitudeSave", (LPCSTR)searchText, bonus, "");
     }
     else
     {

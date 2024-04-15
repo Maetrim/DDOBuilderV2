@@ -505,6 +505,7 @@ class Effect :
         void AddValue(const std::string& str);
 
         void SetRequirements(const Requirements& req);
+        void ReplaceLastItem(const std::string& newEntry);
 
         bool operator==(const Effect & other) const;
 

@@ -5,4 +5,4 @@
 
 #include "stdafx.h"
 bool g_bShowIgnoredItems = false;
-
+bool g_bShowZeroBreakdown = false;

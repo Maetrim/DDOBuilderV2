@@ -404,8 +404,10 @@ class Build :
         void RevokeWeaponEffects(const Item& item);
         void ApplyArmorEffects(const Item& item);
         void RevokeArmorEffects(const Item& item);
-        void ApplyAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel);
-        void RevokeAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel);
+        void ApplyAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel, WeaponType wt);
+        void RevokeAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel, WeaponType wt);
+        void ApplyItemEffect(const std::string& name, const Effect& effect);
+        void RevokeItemEffect(const std::string& name, const Effect& effect);
         size_t AddSetBonusStack(const std::string& set);
         size_t RevokeSetBonusStack(const std::string& set);
         void VerifySpecialFeats();

@@ -31,6 +31,7 @@ class CBreakdownsPane :
         virtual void OnInitialUpdate();
         BreakdownItem * FindBreakdown(BreakdownType type) const;
         void RegisterBuildCallbackEffect(EffectType type, EffectCallbackItem* pItem);
+        void UpdateBreakdown();
 
     protected:
         CBreakdownsPane();           // protected constructor used by dynamic creation

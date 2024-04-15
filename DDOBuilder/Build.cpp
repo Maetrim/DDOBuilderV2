@@ -2808,7 +2808,7 @@ void Build::Enhancement_TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            pTreeItem->MinSpent(),
+            pTreeItem->MinSpent(selection),
             pTreeItem->HasTier5(),
             &ranks);
     if (eTree.HasIsRacialTree())
@@ -2989,40 +2989,50 @@ void Build::ApplyEnhancementEffects(
     if (pItem != NULL)
     {
         std::list<Effect> effects = pItem->GetEffects(selection, rank);
+        std::string name = enhancementName;
+        if (selection != "")
+        {
+            name = selection;
+        }
         for (auto&& eit : effects)
         {
-            if (eit.IsType(Effect_AddGroupWeapon))
+            for (auto&& tit : eit.Type())
             {
-                AddWeaponToGroup(eit);
-            }
-            if (eit.IsType(Effect_MergeGroups))
-            {
-                MergeGroups(eit);
-            }
-            NotifyEnhancementEffectApplied(eit);
-            // handle exclusive enhancement items (regular enhancements only)
-            if (eit.IsType(Effect_ExclusionGroup))
-            {
-                if (IsExclusiveEnhancement(eit.Item().front(), eit.Item().back()))
+                Effect copy = eit;
+                copy.SetType(tit);
+                if (copy.IsType(Effect_AddGroupWeapon))
                 {
-                    // need to add a stack
-                    auto it = m_exclusiveEnhancements.begin();
-                    bool found = false;
-                    while (it != m_exclusiveEnhancements.end())
+                    AddWeaponToGroup(copy);
+                }
+                if (copy.IsType(Effect_MergeGroups))
+                {
+                    MergeGroups(copy);
+                }
+                NotifyEnhancementEffectApplied(copy);
+                // handle exclusive enhancement items (regular enhancements only)
+                if (copy.IsType(Effect_ExclusionGroup))
+                {
+                    if (IsExclusiveEnhancement(copy.Item().front(), copy.Item().back()))
                     {
-                        if ((*it).Name() == eit.Item().back())
+                        // need to add a stack
+                        auto it = m_exclusiveEnhancements.begin();
+                        bool found = false;
+                        while (it != m_exclusiveEnhancements.end())
                         {
-                            (*it).AddStack();
-                            found = true;
+                            if ((*it).Name() == copy.Item().back())
+                            {
+                                (*it).AddStack();
+                                found = true;
+                            }
+                            it++;
                         }
-                        it++;
-                    }
-                    if (!found)
-                    {
-                        // group does not currently exist. add it
-                        ExclusionGroup eg(eit.Item().back(), eit.Item().front());
-                        eg.AddStack();
-                        m_exclusiveEnhancements.push_back(eg);
+                        if (!found)
+                        {
+                            // group does not currently exist. add it
+                            ExclusionGroup eg(copy.Item().back(), copy.Item().front());
+                            eg.AddStack();
+                            m_exclusiveEnhancements.push_back(eg);
+                        }
                     }
                 }
             }
@@ -3056,38 +3066,43 @@ void Build::RevokeEnhancementEffects(
         std::list<Effect> effects = pItem->GetEffects(selection, rank);
         for (auto&& eit : effects)
         {
-            if (eit.IsType(Effect_GrantFeat))
+            for (auto&& tit : eit.Type())
             {
-                bVerifyGear = true;
-            }
-            if (eit.IsType(Effect_AddGroupWeapon))
-            {
-                RemoveFromWeaponGroup(eit);
-            }
-            if (eit.IsType(Effect_MergeGroups))
-            {
-                RemoveMergeGroup(eit);
-            }
-            NotifyEnhancementEffectRevoked(eit);
-            // handle exclusive enhancement items (regular enhancements only)
-            if (eit.IsType(Effect_ExclusionGroup))
-            {
-                if (IsExclusiveEnhancement(eit.Item().front(), eit.Item().back()))
+                Effect copy = eit;
+                copy.SetType(tit);
+                if (copy.IsType(Effect_GrantFeat))
                 {
-                    // need to remove a stack
-                    auto it = m_exclusiveEnhancements.begin();
-                    while (it != m_exclusiveEnhancements.end())
+                    bVerifyGear = true;
+                }
+                if (copy.IsType(Effect_AddGroupWeapon))
+                {
+                    RemoveFromWeaponGroup(copy);
+                }
+                if (copy.IsType(Effect_MergeGroups))
+                {
+                    RemoveMergeGroup(copy);
+                }
+                NotifyEnhancementEffectRevoked(copy);
+                // handle exclusive enhancement items (regular enhancements only)
+                if (copy.IsType(Effect_ExclusionGroup))
+                {
+                    if (IsExclusiveEnhancement(copy.Item().front(), copy.Item().back()))
                     {
-                        if ((*it).Name() == eit.Item().back())
+                        // need to remove a stack
+                        auto it = m_exclusiveEnhancements.begin();
+                        while (it != m_exclusiveEnhancements.end())
                         {
-                            bool last = (*it).RevokeStack();
-                            if (last)
+                            if ((*it).Name() == copy.Item().back())
                             {
-                                it = m_exclusiveEnhancements.erase(it);
+                                bool last = (*it).RevokeStack();
+                                if (last)
+                                {
+                                    it = m_exclusiveEnhancements.erase(it);
+                                }
+                                break;
                             }
-                            break;
+                            it++;
                         }
-                        it++;
                     }
                 }
             }
@@ -3161,9 +3176,6 @@ void Build::DeactivateStance(
         m_Stances.RevokeStance(stance.Name());
         NotifyStanceDeactivated(stance.Name());
     }
-    std::stringstream ss;
-    ss << "Stance \"" << stance.Name() << "\" disabled (Requirements not met)";
-    GetLog().AddLogEntry(ss.str().c_str());
     NotifyStanceDisabled(stance.Name());
 }
 
@@ -3260,7 +3272,7 @@ void Build::Destiny_TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            pTreeItem->MinSpent(),
+            pTreeItem->MinSpent(selection),
             pTreeItem->HasTier5(),
             &ranks);
     m_destinyTreeSpend += spent;
@@ -3411,7 +3423,7 @@ void Build::Reaper_TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            pTreeItem->MinSpent(),
+            pTreeItem->MinSpent(selection),
             pTreeItem->HasTier5(),
             &ranks);
     // now notify all and sundry about the enhancement effects
@@ -4076,6 +4088,11 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
             NotifyNewStance(sit);
         }
     }
+    // apply the items effects
+    for (auto&& eit : item.Effects())
+    {
+        ApplyItemEffect(item.Name(), eit);
+    }
     //for (auto&& dcit: item.EffectDC())
     //{
     //    NotifyNewDC(dcit);
@@ -4088,7 +4105,7 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
             // there is an augment in this position
             const Augment& augment = ait.GetSelectedAugment();
             bSuppressSetBonuses |= augment.HasSuppressSetBonus();
-            ApplyAugment(augment, ait, item.Name(), item.MinLevel());
+            ApplyAugment(augment, ait, item.Name(), item.MinLevel(), item.HasWeapon() ? item.Weapon() : Weapon_Unknown);
         }
     }
     // apply any item set bonuses if not suppressed
@@ -4105,7 +4122,8 @@ void Build::ApplyAugment(
         const Augment& augment,
         const ItemAugment& itemAugment,
         const std::string& itemName,
-        size_t itemLevel)
+        size_t itemLevel,
+        WeaponType wt)
 {
     // name is:
     // <item>:<augment type>:<Augment name>
@@ -4184,6 +4202,14 @@ void Build::ApplyAugment(
                 }
             }
         }
+        if (eit.IsType(Effect_AddGroupWeapon))
+        {
+            if (eit.Item().back() == "ReplacedDynamically")
+            {
+                CString weapon = EnumEntryText(wt, weaponTypeMap);
+                eit.ReplaceLastItem((LPCTSTR)weapon);
+            }
+        }
         NotifyItemEffect(name, eit);
         ++effectIndex;
     }
@@ -4241,6 +4267,11 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
             NotifyRevokeStance(sit);
         }
     }
+    // apply the items effects
+    for (auto&& eit : item.Effects())
+    {
+        RevokeItemEffect(item.Name(), eit);
+    }
     //for (auto&& dcit: item.EffectDC())
     //{
     //    NotifyRevokeDC(dcit);
@@ -4253,7 +4284,7 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
             // there is an augment in this position
             const Augment & augment = ait.GetSelectedAugment();
             bSuppressSetBonuses |= augment.HasSuppressSetBonus();
-            RevokeAugment(augment, ait, item.Name(), item.MinLevel());
+            RevokeAugment(augment, ait, item.Name(), item.MinLevel(), item.HasWeapon() ? item.Weapon() : Weapon_Unknown);
         }
     }
     if (!bSuppressSetBonuses)
@@ -4270,7 +4301,8 @@ void Build::RevokeAugment(
         const Augment& augment,
         const ItemAugment& itemAugment,
         const std::string& itemName,
-        size_t itemLevel)
+        size_t itemLevel,
+        WeaponType wt)
 {
     // name is:
     // <item>:<augment type>:<Augment name>
@@ -4347,6 +4379,14 @@ void Build::RevokeAugment(
                 {
                     eit.SetAmount(augment.LevelValue()[itemLevel]);
                 }
+            }
+        }
+        if (eit.IsType(Effect_AddGroupWeapon))
+        {
+            if (eit.Item().back() == "ReplacedDynamically")
+            {
+                CString weapon = EnumEntryText(wt, weaponTypeMap);
+                eit.ReplaceLastItem((LPCTSTR)weapon);
             }
         }
         NotifyItemEffectRevoked(name, eit);
@@ -5069,3 +5109,24 @@ void Build::SetNotes(const std::string& newNotes)
     Set_Notes(newNotes);
     SetModifiedFlag(TRUE);
 }
+
+void Build::ApplyItemEffect(const std::string& name, const Effect& effect)
+{
+    for (auto&& tit : effect.Type())
+    {
+        Effect copy = effect;
+        copy.SetType(tit);
+        NotifyItemEffect(name, copy);
+    }
+}
+
+void Build::RevokeItemEffect(const std::string& name, const Effect& effect)
+{
+    for (auto&& tit : effect.Type())
+    {
+        Effect copy = effect;
+        copy.SetType(tit);
+        NotifyItemEffectRevoked(name, copy);
+    }
+}
+
