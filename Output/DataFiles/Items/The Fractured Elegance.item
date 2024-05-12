@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>The Fractured Elegance</Name>
     <Icon>Scimitar_1d</Icon>
     <Description>This scimitar is made of tempered glass.</Description>
@@ -28,8 +29,54 @@
       <Value1>15</Value1>
       <BonusType>Weapon Enchantment</BonusType>
     </Buff>
+    <Buff>
+      <Type>Keen</Type>
+    </Buff>
+    <Buff>
+      <Type>Glass Shards</Type>
+    </Buff>
+    <Buff>
+      <Type>Spiked</Type>
+    </Buff>
     <ItemAugment>
-      <Type>Purple</Type>
+      <Type>Red</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Nearly Finished</Type>
+      <Augment>
+        <Name>Purple Augment Slot</Name>
+        <Description>Adds a Purple Augment Slot</Description>
+        <GrantAugment>Purple</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Almost There</Type>
+      <Augment>
+        <Name>Sovereign Vorpal</Name>
+        <Description>Sovereign Vorpal: Passive: +0.5[W] damage dice. On Vorpal Hit: If your target has fewer than 3000 Hit Points, they are instantly slain. If your target has above 3000 Hit Points, they take 300 damage.</Description>
+        <Effect>
+          <Type>Weapon_BaseDamage</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">0.5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Finishing Touch</Type>
+      <Augment>
+        <Name>Completed Weapon</Name>
+        <Description>This item is fully completed, and as a result deals an additional 0.5[W] damage.</Description>
+        <MinLevel>1</MinLevel>
+        <Effect>
+          <Type>Weapon_BaseDamage</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <Amount size="1">0.5</Amount>
+          <IsItemSpecific/>
+        </Effect>
+      </Augment>
     </ItemAugment>
     <IsAcceptsSentience/>
   </Item>

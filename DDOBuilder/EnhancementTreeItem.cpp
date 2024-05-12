@@ -540,6 +540,19 @@ std::list<Stance> EnhancementTreeItem::GetStances(
     return stances;
 }
 
+bool EnhancementTreeItem::HasRequirementsToTrain(const std::string& selection) const
+{
+    bool bHas = false;
+    for (auto&& it : m_Selections.Selections())
+    {
+        if (it.Name() == selection)
+        {
+            bHas = it.HasRequirementsToTrain();
+        }
+    }
+    return bHas;
+}
+
 bool EnhancementTreeItem::RequiresEnhancement(const std::string& name) const
 {
     bool bRequiresIt = false;

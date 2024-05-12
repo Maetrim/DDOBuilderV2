@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Terror</Name>
     <Icon>Greatsword_17</Icon>
     <Description>This crystal greatsword terrorizes your enemies with psionic power.</Description>
@@ -21,16 +22,50 @@
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>2</CriticalThreatRange>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Phantasmal Killer</Item>
+      <AType>SLA</AType>
+      <Amount size="3">3 3 3</Amount>
+    </Effect>
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>5</Value1>
       <BonusType>Weapon Enchantment</BonusType>
     </Buff>
     <Buff>
-      <Type>Nightmares</Type>
+      <Type>Fearsome</Type>
     </Buff>
     <Buff>
-      <Type>Suppressed Power</Type>
+      <Type>Nightmares</Type>
     </Buff>
+    <ItemAugment>
+      <Type>Suppressed Power</Type>
+      <Augment>
+        <Name>Adds intimidate +15 and Deception</Name>
+        <Description>Intimidate +15: Passive: +15 Competence bonus to the Intimidate skill.
+Deception: This weapon is hard to focus upon and thus provides a +3 Enhancement
+bonus to Bluff checks. In addition, Deception weapons have a small chance to
+envelop the target in darkness, making them vulnerable to sneak attacks for a
+short time.</Description>
+        <MinLevel>18</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Competence</Bonus>
+          <Item>Intimidate</Item>
+          <AType>Simple</AType>
+          <Amount size="1">15</Amount>
+        </Effect>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Bluff</Item>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

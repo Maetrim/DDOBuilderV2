@@ -57,7 +57,6 @@ class CFeatSelectionDialog :
         CMFCButtonMMRelay m_featButton;
         Character * m_pCharacter;
         Feat m_feat;
-        CBitmap m_bitmap;
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;

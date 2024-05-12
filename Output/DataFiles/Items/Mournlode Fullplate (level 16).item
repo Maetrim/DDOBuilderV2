@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Mournlode Fullplate (level 16)</Name>
     <Icon>HeavyArmor_1</Icon>
     <Description>Metal armor constructed from valuable purple Mournlode crystal is imbued with
@@ -20,6 +21,17 @@ wearer from evil.</Description>
     <MaximumDexterityBonus>1</MaximumDexterityBonus>
     <ArmorCheckPenalty>-5</ArmorCheckPenalty>
     <ArcaneSpellFailure>35</ArcaneSpellFailure>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Negative Energy Absorption</Item>
+      <AType>SLA</AType>
+      <Amount size="3">0 10 10</Amount>
+    </Effect>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>4</Value1>
+    </Buff>
     <Buff>
       <Type>Protection</Type>
       <Value1>6</Value1>
@@ -35,24 +47,47 @@ wearer from evil.</Description>
       <Value1>4</Value1>
     </Buff>
     <Buff>
-      <Type>Protection</Type>
-      <BonusType>Deflection</BonusType>
+      <Type>Protection from Evil</Type>
     </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <BonusType>Competence</BonusType>
-      <Description1>Heal</Description1>
-      <Item>Heal</Item>
-    </Buff>
-    <Buff>
-      <Type>Protection</Type>
-      <Value1>6</Value1>
-      <BonusType>Deflection</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Resistance</Type>
-      <Value1>6</Value1>
-      <BonusType>Resistance</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+5 Enhancement Bonus and Undead Guard 3</Name>
+        <Description>+5 Enhancement Bonus: +5 Enhancement bonus to Armor Class.
+Protection +7: Passive: +7 Deflection bonus to Armor Class.
+Resistance +7: Passive: +7 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.</Description>
+        <MinLevel>16</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Deflection</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Resistance</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Adds a Green Augment Slot</Name>
+        <Description>Adds a Green augment slot to this item</Description>
+        <MinLevel>16</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Mournlode Maul (level 12)</Name>
     <Icon>Maul_5b</Icon>
     <Description>A weapon crafted from valuable purple Mournlode crystal is especially effective
@@ -23,6 +24,11 @@ against the undead.</Description>
     <CriticalMultiplier>3</CriticalMultiplier>
     <CriticalThreatRange>1</CriticalThreatRange>
     <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>3</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
       <Type>Righteous</Type>
     </Buff>
     <Buff>
@@ -33,7 +39,33 @@ against the undead.</Description>
     </Buff>
     <Buff>
       <Type>Brilliance</Type>
-      <BonusType>Enhancement</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+4 Enhancement Bonus</Name>
+        <Description>+4 Enhancement Bonus: +4 Enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>12</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Undead bane 4 and Adds a Purple augment slot</Name>
+        <Description>Undead Bane 4: Those that have died must return, and this weapon is attuned
+specifically to lay them to rest. This weapon deals an additional 4d10 bane damage vs. Undead.
+Adds a Purple augment slot to this item</Description>
+        <MinLevel>12</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Purple</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

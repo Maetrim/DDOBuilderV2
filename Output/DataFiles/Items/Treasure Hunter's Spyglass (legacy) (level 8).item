@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Treasure Hunter's Spyglass (legacy) (level 8)</Name>
     <Icon>Trinket_17</Icon>
     <Description>A tool such as this is a great aid to the treasure-seeking pirate, for it allows
@@ -10,6 +11,13 @@ that might be lurking along the way.</Description>
     <EquipmentSlot>
       <Trinket/>
     </EquipmentSlot>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Detect Secret Doors</Item>
+      <AType>SLA</AType>
+      <Amount size="3">10 5 5</Amount>
+    </Effect>
     <Buff>
       <Type>SkillBonus</Type>
       <Value1>7</Value1>
@@ -24,19 +32,38 @@ that might be lurking along the way.</Description>
       <Description1>Search</Description1>
       <Item>Search</Item>
     </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>1</Value1>
-      <BonusType>Competence</BonusType>
-      <Description1>Use Magic Device</Description1>
-      <Item>Use Magic Device</Item>
-    </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>7</Value1>
-      <BonusType>Competence</BonusType>
-      <Description1>Search</Description1>
-      <Item>Search</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Tier 2</Type>
+      <Augment>
+        <Name>Spot +11 and Search +11</Name>
+        <Description>Spot +11: Passive: +11 Competence bonus to the Spot skill.
+Search +11: Passive: +11 Competence bonus to the Search skill.</Description>
+        <MinLevel>8</MinLevel>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Competence</Bonus>
+          <Item>Spot</Item>
+          <Item>Search</Item>
+          <AType>Simple</AType>
+          <Amount size="1">11</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Upgradeable Tier 3</Type>
+      <Augment>
+        <Name>Add Intelligence +4</Name>
+        <Description>Intelligence +4: This item focuses the power of the wearer's mind, granting a
++4 Enhancement bonus to Intelligence.</Description>
+        <MinLevel>8</MinLevel>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Intelligence</Item>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Sunken Chains</Name>
     <Icon>Bracers_25</Icon>
     <Description>Heavy and rusted.</Description>
@@ -23,20 +24,45 @@
       <Value1>9</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>1</Value1>
-      <BonusType>Quality</BonusType>
-      <Description1>Dexterity</Description1>
-      <Item>Dexterity</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>1</Value1>
-      <BonusType>Quality</BonusType>
-      <Description1>Intelligence</Description1>
-      <Item>Intelligence</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Nearly Finished</Type>
+      <Augment>
+        <Name>Quality Strength +1</Name>
+        <Description>Quality Strength +1: This item gives the wearer the power of Ogre Strength, granting a +1 quality bonus to Strength.</Description>
+        <MinLevel>17</MinLevel>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Quality</Bonus>
+          <Item>Strength</Item>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Quality Dexterity +1</Name>
+        <Description>Quality Dexterity +1: This item makes the wearer more nimble and dexterous, granting a +1 quality bonus to Dexterity.</Description>
+        <MinLevel>17</MinLevel>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Quality</Bonus>
+          <Item>Dexterity</Item>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Quality Intelligence +1</Name>
+        <Description>Quality Intelligence +1: This item focuses the power of the wearer's mind, granting a +1 quality bonus to Intelligence.</Description>
+        <MinLevel>17</MinLevel>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Quality</Bonus>
+          <Item>Intelligence</Item>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <ItemAugment>
       <Type>Green</Type>
     </ItemAugment>

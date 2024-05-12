@@ -17,6 +17,11 @@ namespace
 {
     const int c_FeatColumnWidth = 200;      // pixels
     const int c_dudLevel = MAX_BUILDER_LEVEL + 1;
+    COLORREF f_selectedColour = ::GetSysColor(COLOR_HIGHLIGHT);
+    COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
+    COLORREF f_backgroundColourDark = RGB(83, 83, 83);
+    COLORREF f_white = RGB(255, 255, 255);                      // white
+    COLORREF f_black = RGB(0, 0, 0);                            // black
 }
 
 IMPLEMENT_DYNAMIC(CFeatsClassControl, CWnd)
@@ -225,6 +230,7 @@ void CFeatsClassControl::SetupControl()
 
 void CFeatsClassControl::OnPaint()
 {
+    bool bDarkMode = DarkModeEnabled();
     CPaintDC dc(this);
     CRect rctWindow;
     GetWindowRect(rctWindow);
@@ -247,15 +253,16 @@ void CFeatsClassControl::OnPaint()
 
     CBrush selectedBackgroundBrush;
     CBrush normalBackgroundBrush;
-    selectedBackgroundBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
-    normalBackgroundBrush.CreateSolidBrush(::GetSysColor(COLOR_BTNFACE));
+    selectedBackgroundBrush.CreateSolidBrush(f_selectedColour);
+    normalBackgroundBrush.CreateSolidBrush(bDarkMode ? f_backgroundColourDark : f_backgroundColour);
 
     // fill background
     memoryDc.FillRect(rctWindow, &normalBackgroundBrush);
     memoryDc.Draw3dRect(
             rctWindow,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
+    memoryDc.SetTextColor(bDarkMode ? f_white : f_black);
 
     if (m_pCharacter != NULL)
     {
@@ -291,12 +298,13 @@ void CFeatsClassControl::OnPaint()
 
 size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
 {
+    bool bDarkMode = DarkModeEnabled();
     m_hitChecks.clear();
 
     CBrush selectedBackgroundBrush;
     CBrush normalBackgroundBrush;
-    selectedBackgroundBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
-    normalBackgroundBrush.CreateSolidBrush(::GetSysColor(COLOR_BTNFACE));
+    selectedBackgroundBrush.CreateSolidBrush(f_selectedColour);
+    normalBackgroundBrush.CreateSolidBrush(bDarkMode ? f_backgroundColourDark : f_backgroundColour);
 
     // [][class1^][class2^][class3^][Feat1    ][Feat2    ][Feat3    ][str][dex][con][int][wis][cha][BAB]
     // level column, get its max width
@@ -313,8 +321,8 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
         rctItem.right = rctItem.left + 35;
         pDC->Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         const std::string& ct = (m_pCharacter->ActiveBuild() != NULL)
                 ? m_pCharacter->ActiveBuild()->Class(cc)
                 : "Unknown";
@@ -334,8 +342,8 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
         rctItem.right = rctItem.left + c_FeatColumnWidth;
         pDC->Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         CSize csText = pDC->GetTextExtent("1"); // just need the height of text
         pDC->TextOut(
                 rctItem.left,
@@ -363,8 +371,8 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
         rctItem.right = rctItem.left + csText.cx;
         pDC->Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         pDC->TextOut(
                 rctItem.left,
                 rctItem.top + (rctItem.Height() - csText.cy) / 2,
@@ -382,15 +390,32 @@ size_t CFeatsClassControl::DrawLevelLine(
 {
     // switch the fill colour and text colour if this is the highlighted line
     CBrush fillBrush;
-    if (level == m_highlightedLevelLine)
+    bool bDarkMode = DarkModeEnabled();
+    if (true == bDarkMode)
     {
-        pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
-        fillBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
+        if (level == m_highlightedLevelLine)
+        {
+            pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
+            fillBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
+        }
+        else
+        {
+            pDC->SetTextColor(f_white);  // white text
+            fillBrush.CreateSolidBrush(f_backgroundColourDark);
+        }
     }
     else
     {
-        pDC->SetTextColor(RGB(0, 0, 0));  // black text
-        fillBrush.CreateSolidBrush(::GetSysColor(COLOR_BTNFACE));
+        if (level == m_highlightedLevelLine)
+        {
+            pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
+            fillBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
+        }
+        else
+        {
+            pDC->SetTextColor(f_black);  // black text
+            fillBrush.CreateSolidBrush(f_backgroundColour);
+        }
     }
     CRect rctItem = m_levelRect;
     bool bFeatsAvailable = (m_availableFeats[level].size() > 0);
@@ -406,8 +431,8 @@ size_t CFeatsClassControl::DrawLevelLine(
     }
     pDC->Draw3dRect(
             rctItem,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
     {
         CRect rctFill(rctItem);
         rctFill.DeflateRect(1, 1, 1, 1);
@@ -430,8 +455,8 @@ size_t CFeatsClassControl::DrawLevelLine(
         rctItem.right = m_classRects[cc].right;
         pDC->Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         CRect rctFill(rctItem);
         rctFill.DeflateRect(1, 1, 1, 1);
         pDC->FillRect(rctFill, &fillBrush);
@@ -478,8 +503,8 @@ size_t CFeatsClassControl::DrawLevelLine(
         rctItem.right = m_featRects[fc].right;
         pDC->Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         CRect rctFill(rctItem);
         rctFill.DeflateRect(1, 1, 1, 1);
         pDC->FillRect(rctFill, &fillBrush);
@@ -492,8 +517,8 @@ size_t CFeatsClassControl::DrawLevelLine(
         rctItem.right = m_statRects[stats].right;
         pDC->Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         CRect rctFill(rctItem);
         rctFill.DeflateRect(1, 1, 1, 1);
         pDC->FillRect(rctFill, &fillBrush);

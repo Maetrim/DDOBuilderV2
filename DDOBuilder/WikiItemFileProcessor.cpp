@@ -421,7 +421,6 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         std::string fullname = itemFields.at("Name");
         CString text;
         text.Format("Item \"%s\"", name.c_str());
-        GetLog().AddLogEntry(text);
 
         size_t pos = name.find(':', 0);
         while (pos != std::string::npos)
@@ -486,6 +485,7 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
             ::DeleteFile(itemFilename.c_str());
             return;
         }
+        GetLog().AddLogEntry(text);
 
         if (itemFields.find("Drop Location") != itemFields.end())
         {

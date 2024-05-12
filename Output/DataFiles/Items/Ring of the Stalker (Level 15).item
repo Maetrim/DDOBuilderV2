@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Ring of the Stalker (Level 15)</Name>
     <Icon>Ring_24</Icon>
     <Description>A bound Invisible Stalker makes this ring a dangerous asset for anyone striking
@@ -10,6 +11,15 @@ their enemies from the shadows.</Description>
       <Ring/>
     </EquipmentSlot>
     <Buff>
+      <Type>Manslayer</Type>
+    </Buff>
+    <Buff>
+      <Type>Deception</Type>
+      <Value1>3</Value1>
+      <Value2>4</Value2>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <Buff>
       <Type>Seeker</Type>
       <Value1>8</Value1>
       <BonusType>Enhancement</BonusType>
@@ -17,5 +27,30 @@ their enemies from the shadows.</Description>
     <Buff>
       <Type>Ethereal</Type>
     </Buff>
+    <ItemAugment>
+      <Type>Upgradeable - Tier 2</Type>
+      <Augment>
+        <Name>No change to item</Name>
+        <Description>this item does not change on this upgrade.</Description>
+        <MinLevel>15</MinLevel>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Upgradeable - Tier 2</Type>
+      <Augment>
+        <Name>Seeker +9 and a Green Augment Slot</Name>
+        <Description>Insightful Deception +3: +3 Insight bonus to hit and +5 to damage for any hit that would qualify as a sneak attack.</Description>
+        <MinLevel>15</MinLevel>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>Weapon_AttackBonusCritical</Type>
+          <Type>Weapon_DamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">9</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

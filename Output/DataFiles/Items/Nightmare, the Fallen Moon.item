@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Nightmare, the Fallen Moon</Name>
     <Icon>BastardSword_5a</Icon>
     <Description>A moonblade is an elven artifact, passed down a family lineage from parent to
@@ -23,7 +24,7 @@ magic, Nightmare will serve anyone strong enough to claim it... for a time.</Des
       <Sides>12</Sides>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
-    <CriticalThreatRange>2</CriticalThreatRange>
+    <CriticalThreatRange>4</CriticalThreatRange>
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>7</Value1>
@@ -45,6 +46,60 @@ magic, Nightmare will serve anyone strong enough to claim it... for a time.</Des
     <Buff>
       <Type>Nightmares</Type>
     </Buff>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Adds +0.5[W] Dice Multiplier</Name>
+        <Description>Adds +0.5[W] Dice Multiplier</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_BaseDamage</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">0.5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Red augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

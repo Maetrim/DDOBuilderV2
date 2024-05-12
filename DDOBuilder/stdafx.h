@@ -74,6 +74,7 @@ const UINT UWM_STARTPROGRESS = ::RegisterWindowMessage(_T("StartProgress"));
 const UINT UWM_SETPROGRESS = ::RegisterWindowMessage(_T("SetProgress"));
 const UINT UWM_ENDPROGRESS = ::RegisterWindowMessage(_T("EndProgress"));
 const UINT UWM_LOG_MESSAGE = ::RegisterWindowMessage(_T("LogMessage"));
+const UINT UWM_THEME_CHANGED = ::RegisterWindowMessage(_T("ThemeChanged"));
 const COLORREF c_transparentColour = RGB(255, 128, 255);
 const std::string Class_Unknown = "Unknown";
 const std::string Class_Epic = "Epic";
@@ -97,3 +98,7 @@ enum TreeType
     TT_allEnhancement,
     TT_allEnhancementMinusSpent
 };
+
+#ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
+#define DWMWA_USE_IMMERSIVE_DARK_MODE 20
+#endif

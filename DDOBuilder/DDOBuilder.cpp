@@ -2,6 +2,8 @@
 //
 
 #include "stdafx.h"
+#include <dwmapi.h>
+
 #include "afxwinappex.h"
 #include "afxdialogex.h"
 #include "DDOBuilder.h"

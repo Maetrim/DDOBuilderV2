@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "MainFrm.h"
+#include <dwmapi.h>
 
 #include "DDOBuilder.h"
 #include "DDOBuilderDoc.h"
@@ -30,6 +31,7 @@
 #include "StancesPane.h"
 #include "CItemImageDialog.h"
 #include "CWeaponImageDialog.h"
+#include "CMFCVisualManagerOffice2007DarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -392,6 +394,7 @@ LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)
 void CMainFrame::OnApplicationLook(UINT id)
 {
     CWaitCursor wait;
+    BOOL bDark = FALSE;
 
     theApp.m_nAppLook = id;
 
@@ -431,28 +434,60 @@ void CMainFrame::OnApplicationLook(UINT id)
         break;
 
     default:
-        switch (theApp.m_nAppLook)
         {
-        case ID_VIEW_APPLOOK_OFF_2007_BLUE:
-            CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_LunaBlue);
-            break;
+            switch (theApp.m_nAppLook)
+            {
+            case ID_VIEW_APPLOOK_OFF_2007_BLUE:
+                CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_LunaBlue);
+                break;
 
-        case ID_VIEW_APPLOOK_OFF_2007_BLACK:
-            CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_ObsidianBlack);
-            break;
+            case ID_VIEW_APPLOOK_OFF_2007_BLACK:
+                CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_ObsidianBlack);
+                bDark = TRUE;
+                break;
 
-        case ID_VIEW_APPLOOK_OFF_2007_SILVER:
-            CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Silver);
-            break;
+            case ID_VIEW_APPLOOK_OFF_2007_SILVER:
+                CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Silver);
+                break;
 
-        case ID_VIEW_APPLOOK_OFF_2007_AQUA:
-            CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Aqua);
-            break;
+            case ID_VIEW_APPLOOK_OFF_2007_AQUA:
+                CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Aqua);
+                break;
+            }
+
+            ::DwmSetWindowAttribute(
+                GetSafeHwnd(),
+                DWMWA_USE_IMMERSIVE_DARK_MODE,
+                &bDark,
+                sizeof(bDark));
+            CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2007DarkMode));
+            CDockingManager::SetDockingMode(DT_SMART);
+            if (bDark == TRUE)
+            {
+                CMFCVisualManager* pVisMan = CMFCVisualManager::GetInstance();
+                CMFCVisualManagerOffice2007DarkMode* pDarkVisMan = dynamic_cast<CMFCVisualManagerOffice2007DarkMode*>(pVisMan);
+                pDarkVisMan->UpdateColours();
+            }
         }
-
-        CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2007));
-        CDockingManager::SetDockingMode(DT_SMART);
     }
+    // notify all windows that the theme has changed
+    // do the same for all docked windows also
+    CDocument* pDoc = GetActiveDocument();
+    if (pDoc != NULL)
+    {
+        POSITION pos = pDoc->GetFirstViewPosition();
+        while (pos != NULL)
+        {
+            CView* pView = pDoc->GetNextView(pos);
+            pView->SendMessage(UWM_THEME_CHANGED, bDark, 0L);
+        }
+    }
+    for (size_t i = 0; i < m_dockablePanes.size(); ++i)
+    {
+        CView* pView = m_dockablePanes[i]->GetView();
+        pView->SendMessage(UWM_THEME_CHANGED, bDark, 0L);
+    }
+    
 
     RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW | RDW_FRAME | RDW_ERASE);
 
@@ -1011,4 +1046,3 @@ void CMainFrame::OnUpdateDevelopmentShow0ValueBreakdowns(CCmdUI* pCmdUI)
 {
     pCmdUI->SetCheck(g_bShowZeroBreakdown);
 }
-

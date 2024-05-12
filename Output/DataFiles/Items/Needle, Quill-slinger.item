@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Needle, Quill-slinger</Name>
     <Icon>RepeatingLightCrossbow_1i</Icon>
     <Description>This repeating crossbow has an enchanted bolt-feeding mechanism, increasing
@@ -39,6 +40,64 @@ the rate at which it can fire, while maintaining precise accuracy.</Description>
       <Value1>4</Value1>
       <BonusType>Competence</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Phlebotomizing</Name>
+        <Description>Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">8</Sides>
+            <Damage>Unknown</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Red augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

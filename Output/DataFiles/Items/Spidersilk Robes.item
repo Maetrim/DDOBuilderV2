@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Spidersilk Robes</Name>
     <Icon>Cloth_1c</Icon>
     <Description>This clothing is spun entirely from the silk of some arachnid. It is strong,
@@ -27,27 +28,6 @@ flexible, and nearly weightless.</Description>
     <MaximumDexterityBonus>0</MaximumDexterityBonus>
     <ArmorCheckPenalty>0</ArmorCheckPenalty>
     <ArcaneSpellFailure>0</ArcaneSpellFailure>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>3</Value1>
-      <BonusType>Insightful</BonusType>
-      <Description1>Intelligence</Description1>
-      <Item>Intelligence</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>8</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Charisma</Description1>
-      <Item>Charisma</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>3</Value1>
-      <BonusType>Insightful</BonusType>
-      <Description1>Charisma</Description1>
-      <Item>Charisma</Item>
-    </Buff>
     <Buff>
       <Type>ArmorBonus</Type>
       <Value1>9</Value1>
@@ -83,5 +63,60 @@ flexible, and nearly weightless.</Description>
       <Value1>20</Value1>
       <BonusType>Vitality</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Variant Ability</Type>
+      <Augment>
+        <Name>Intelligence +8</Name>
+        <Description>Intelligence +8: This item focuses the power of the wearer's mind, granting a +8 enhancement bonus to Intelligence.</Description>
+        <MinLevel>22</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Intelligence</Item>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Insightful Intelligence +3</Name>
+        <Description>+3 Insight bonus to Intelligence</Description>
+        <MinLevel>22</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Intelligence</Item>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Charisma +8</Name>
+        <Description>Charisma +8: This item makes the wearer have more flair, granting a +8 enhancement bonus to Charisma.</Description>
+        <MinLevel>22</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Charisma</Item>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Insightful Charisma +3</Name>
+        <Description>+3 Insight bonus to Charisma</Description>
+        <MinLevel>22</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Charisma</Item>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

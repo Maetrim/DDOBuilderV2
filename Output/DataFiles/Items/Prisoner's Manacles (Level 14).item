@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Prisoner's Manacles (Level 14)</Name>
     <Icon>Bracers_24</Icon>
     <Description>Broken chains, yet still a Prisoner.</Description>
@@ -17,66 +18,141 @@
     <Buff>
       <Type>ReinforcedFists</Type>
     </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>30</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Acid</Description1>
-      <Item>Acid</Item>
-    </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>30</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Cold</Description1>
-      <Item>Cold</Item>
-    </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>30</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Fire</Description1>
-      <Item>Fire</Item>
-    </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>30</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Electric</Description1>
-      <Item>Electric</Item>
-    </Buff>
-    <Buff>
-      <Type>EnergyResistance</Type>
-      <Value1>30</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Sonic</Description1>
-      <Item>Sonic</Item>
-    </Buff>
-    <Buff>
-      <Type>Fortification</Type>
-      <Value1>105</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>6</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Strength</Description1>
-      <Item>Strength</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>6</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Dexterity</Description1>
-      <Item>Dexterity</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>6</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Constitution</Description1>
-      <Item>Constitution</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Variant</Type>
+      <Augment>
+        <Name>Armor Bonus +8</Name>
+        <Description>Armor Bonus +8: This item surrounds the wearer with an invisible but tangible
+field of force, granting +8 armor bonus to AC, just as though he were wearing armor.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Armor</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Acid Resistance +30</Name>
+        <Description>Acid Resistance +30: Passive: +30 Enhancement bonus to your Acid Resistance.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Cold Resistance +30</Name>
+        <Description>Cold Resistance +30: Passive: +30 Enhancement bonus to your Cold Resistance.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Cold</Item>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Fire Resistance +30</Name>
+        <Description>Fire Resistance +30: Passive: +30 Enhancement bonus to your Fire Resistance.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Electric Resistance +30</Name>
+        <Description>Electric Resistance +30: Passive: +30 Enhancement bonus to your Electric Resistance.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Sonic Resistance +30</Name>
+        <Description>Sonic Resistance +30: Passive: +30 Enhancement bonus to your Sonic Resistance.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Sonic</Item>
+          <AType>Simple</AType>
+          <Amount size="1">30</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Fortification +105%</Name>
+        <Description>Fortification +105%: +105% Enhancement bonus to reduced chance of taking critical
+damage on a critical hit.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>Fortification</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">105</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Strength +6</Name>
+        <Description>Strength +6: This item gives the wearer the power of Ogre Strength, granting a
++6 enhancement bonus to Strength.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Strength</Item>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Dexterity +6</Name>
+        <Description>Dexterity +6: This item makes the wearer more nimble and dexterous, granting
+a +6 Enhancement bonus to Dexterity.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Dexterity</Item>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Constitution +6</Name>
+        <Description>Constitution +6: This item gives the wearer improved health, granting a +6
+Enhancement bonus to Constitution.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Constitution</Item>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

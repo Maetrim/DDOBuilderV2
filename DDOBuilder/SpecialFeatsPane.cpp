@@ -18,7 +18,7 @@ IMPLEMENT_DYNCREATE(CSpecialFeatPane, CFormView)
 #pragma warning(disable: 4407) // warning C4407: cast between different pointer to member representations, compiler may generate incorrect code
 BEGIN_MESSAGE_MAP(CSpecialFeatPane, CFormView)
     ON_WM_SIZE()
-    //ON_WM_ERASEBKGND()
+    ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
     ON_BN_CLICKED(IDC_STATIC_HEROIC, OnHeroic)
@@ -202,7 +202,7 @@ size_t CSpecialFeatPane::PositionWindows(
 
     // now position the group windows immediately to the right
     CRect itemRect(c_controlSpacing, *yPos, c_windowSizeX, c_windowSizeY + *yPos);
-    itemRect += CPoint(rctGroup.Width() + c_windowSpacing, 0);
+    itemRect += CPoint(rctGroup.Width() + c_windowSpacing + c_windowSpacing, 0);
     for (size_t fi = 0; fi < dialogs.size(); ++fi)
     {
         dialogs[fi]->MoveWindow(itemRect);
@@ -235,135 +235,70 @@ LRESULT CSpecialFeatPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 
 BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
 {
-    static int controlsNotToBeErased[] =
-    {
-        IDC_STATIC_HEROIC,
-        IDC_STATIC_RACIAL,
-        IDC_STATIC_ICONIC,
-        IDC_STATIC_EPIC,
-        IDC_STATIC_SPECIAL,
-        IDC_STATIC_FAVOR,
-        0 // end marker
-    };
+    std::vector<int> controlsNotToBeErased;
+    //static int controlsNotToBeErased[] =
+    //{
+    controlsNotToBeErased.push_back(IDC_STATIC_HEROIC);
+        controlsNotToBeErased.push_back(IDC_STATIC_RACIAL);
+        controlsNotToBeErased.push_back(IDC_STATIC_ICONIC);
+        controlsNotToBeErased.push_back(IDC_STATIC_EPIC);
+        controlsNotToBeErased.push_back(IDC_STATIC_SPECIAL);
+        controlsNotToBeErased.push_back(IDC_STATIC_FAVOR);
+        //0 // end marker
+    //};
 
-    BOOL ret = OnEraseBackground(this, pDC, controlsNotToBeErased);
-    
     // now handle the dynamic controls also
     for (size_t i = 0; i < m_heroicSelectionViews.size(); ++i)
     {
         CWnd * pControl = m_heroicSelectionViews[i];
-        if (pControl && pControl->IsWindowVisible())
+        if (pControl)
         {
-            CRect controlClip;
-            pControl->GetWindowRect(&controlClip);
-            ScreenToClient(&controlClip);
-            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
-            {
-                // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the height of the selection combo
-                controlClip.bottom = controlClip.top
-                        + GetSystemMetrics(SM_CYHSCROLL)
-                        + GetSystemMetrics(SM_CYEDGE) * 2;
-            }
-            pDC->ExcludeClipRect(&controlClip);
+            controlsNotToBeErased.push_back(pControl->GetDlgCtrlID());
         }
     }
     for (size_t i = 0; i < m_racialSelectionViews.size(); ++i)
     {
         CWnd * pControl = m_racialSelectionViews[i];
-        if (pControl && pControl->IsWindowVisible())
+        if (pControl)
         {
-            CRect controlClip;
-            pControl->GetWindowRect(&controlClip);
-            ScreenToClient(&controlClip);
-            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
-            {
-                // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the height of the selection combo
-                controlClip.bottom = controlClip.top
-                        + GetSystemMetrics(SM_CYHSCROLL)
-                        + GetSystemMetrics(SM_CYEDGE) * 2;
-            }
-            pDC->ExcludeClipRect(&controlClip);
+            controlsNotToBeErased.push_back(pControl->GetDlgCtrlID());
         }
     }
     for (size_t i = 0; i < m_iconicSelectionViews.size(); ++i)
     {
         CWnd * pControl = m_iconicSelectionViews[i];
-        if (pControl && pControl->IsWindowVisible())
+        if (pControl)
         {
-            CRect controlClip;
-            pControl->GetWindowRect(&controlClip);
-            ScreenToClient(&controlClip);
-            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
-            {
-                // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the height of the selection combo
-                controlClip.bottom = controlClip.top
-                        + GetSystemMetrics(SM_CYHSCROLL)
-                        + GetSystemMetrics(SM_CYEDGE) * 2;
-            }
-            pDC->ExcludeClipRect(&controlClip);
+            controlsNotToBeErased.push_back(pControl->GetDlgCtrlID());
         }
     }
     for (size_t i = 0; i < m_epicSelectionViews.size(); ++i)
     {
         CWnd * pControl = m_epicSelectionViews[i];
-        if (pControl && pControl->IsWindowVisible())
+        if (pControl)
         {
-            CRect controlClip;
-            pControl->GetWindowRect(&controlClip);
-            ScreenToClient(&controlClip);
-            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
-            {
-                // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the height of the selection combo
-                controlClip.bottom = controlClip.top
-                        + GetSystemMetrics(SM_CYHSCROLL)
-                        + GetSystemMetrics(SM_CYEDGE) * 2;
-            }
-            pDC->ExcludeClipRect(&controlClip);
+            controlsNotToBeErased.push_back(pControl->GetDlgCtrlID());
         }
     }
     for (size_t i = 0; i < m_specialSelectionViews.size(); ++i)
     {
         CWnd * pControl = m_specialSelectionViews[i];
-        if (pControl && pControl->IsWindowVisible())
+        if (pControl)
         {
-            CRect controlClip;
-            pControl->GetWindowRect(&controlClip);
-            ScreenToClient(&controlClip);
-            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
-            {
-                // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the height of the selection combo
-                controlClip.bottom = controlClip.top
-                        + GetSystemMetrics(SM_CYHSCROLL)
-                        + GetSystemMetrics(SM_CYEDGE) * 2;
-            }
-            pDC->ExcludeClipRect(&controlClip);
+            controlsNotToBeErased.push_back(pControl->GetDlgCtrlID());
         }
     }
     for (size_t i = 0; i < m_favorSelectionViews.size(); ++i)
     {
         CWnd * pControl = m_favorSelectionViews[i];
-        if (pControl && pControl->IsWindowVisible())
+        if (pControl)
         {
-            CRect controlClip;
-            pControl->GetWindowRect(&controlClip);
-            ScreenToClient(&controlClip);
-            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
-            {
-                // combo boxes return the height of the whole control, including the drop rectangle
-                // limit to the height of the selection combo
-                controlClip.bottom = controlClip.top
-                        + GetSystemMetrics(SM_CYHSCROLL)
-                        + GetSystemMetrics(SM_CYEDGE) * 2;
-            }
-            pDC->ExcludeClipRect(&controlClip);
+            controlsNotToBeErased.push_back(pControl->GetDlgCtrlID());
         }
     }
 
+    controlsNotToBeErased.push_back(0); // end marker
+    BOOL ret = OnEraseBackground(this, pDC, &controlsNotToBeErased[0]);
     return ret;
 }
 

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Mournlode Fullplate (level 12)</Name>
     <Icon>HeavyArmor_1</Icon>
     <Description>Metal armor constructed from valuable purple Mournlode crystal is imbued with
@@ -21,6 +22,10 @@ wearer from evil.</Description>
     <ArmorCheckPenalty>-5</ArmorCheckPenalty>
     <ArcaneSpellFailure>35</ArcaneSpellFailure>
     <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>3</Value1>
+    </Buff>
+    <Buff>
       <Type>Protection</Type>
       <Value1>5</Value1>
       <BonusType>Deflection</BonusType>
@@ -35,18 +40,48 @@ wearer from evil.</Description>
       <Value1>3</Value1>
     </Buff>
     <Buff>
-      <Type>Protection</Type>
-      <BonusType>Deflection</BonusType>
+      <Type>Protection from Evil</Type>
     </Buff>
-    <Buff>
-      <Type>Protection</Type>
-      <Value1>5</Value1>
-      <BonusType>Deflection</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Resistance</Type>
-      <Value1>5</Value1>
-      <BonusType>Resistance</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+4 Enhancement Bonus and Undead Guard 3</Name>
+        <Description>+4 Enhancement Bonus: +4 Enhancement bonus to Armor Class.
+Protection +6: Passive: +6 Deflection bonus to Armor Class.
+Resistance +6: Passive: +6 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.</Description>
+        <MinLevel>12</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Deflection</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Resistance</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Undead Guard 4 and a Green Augment Slot</Name>
+        <Description>Undead Guard +4: Chance to deal 4d8 Good damage to undead when hit.
+Adds a Green augment slot to this item</Description>
+        <MinLevel>12</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

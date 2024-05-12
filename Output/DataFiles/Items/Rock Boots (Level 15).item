@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Rock Boots (Level 15)</Name>
     <Icon>Boots_12</Icon>
     <Description>These boots are encased in a stony shell, bolstered by the power of a bound
@@ -11,12 +12,17 @@ nearby enimes over, as well as turning your attackers to stone on occasion.</Des
       <Boots/>
     </EquipmentSlot>
     <Buff>
+      <Type>Corrosion</Type>
+      <Value1>96</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
       <Type>AcidLore</Type>
       <Value1>14</Value1>
       <BonusType>Equipment</BonusType>
     </Buff>
     <Buff>
-      <Type>Stone Prison</Type>
+      <Type>Stone Prison Guard</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
@@ -25,15 +31,57 @@ nearby enimes over, as well as turning your attackers to stone on occasion.</Des
     <Buff>
       <Type>ImmunityToSlippery</Type>
     </Buff>
-    <Buff>
-      <Type>AcidLore</Type>
-      <Value1>14</Value1>
-      <BonusType>Equipment</BonusType>
-    </Buff>
-    <Buff>
-      <Type>AcidLore</Type>
-      <Value1>15</Value1>
-      <BonusType>Equipment</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Corrosion +102 and Acid Lore +15%</Name>
+        <Description>Corrosion +102: Passive: +102 Equipment bonus to Acid Spell Power.
+Acid Lore +15: Passive: Your Acid spells gain a 15% Equipment bonus to their chance
+to critical hit.</Description>
+        <MinLevel>15</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">102</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">15</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Corrosion +108 and Acid Lore +16%, and a Green augment slot</Name>
+        <Description>Corrosion +108: Passive: +108 Equipment bonus to Acid Spell Power.
+Acid Lore +16: Passive: Your Acid spells gain a 16% Equipment bonus to their chance
+to critical hit.
+Adds a Green augment slot to this item</Description>
+        <MinLevel>15</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">108</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">16</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

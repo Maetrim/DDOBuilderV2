@@ -14,6 +14,8 @@ namespace
         SI_count
     };
     const int c_slaSlotImageSize = 36; // 36 * 36 pixels
+    COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
+    COLORREF f_backgroundColourDark = RGB(83, 83, 83);
 }
 
 // global image data used for drawing all enhancements trees.
@@ -63,6 +65,7 @@ END_MESSAGE_MAP()
 
 void CSLAControl::OnPaint()
 {
+    bool bDarkMode = DarkModeEnabled();
     if (!m_tipCreated)
     {
         m_tooltip.Create(this);
@@ -94,7 +97,7 @@ void CSLAControl::OnPaint()
     memoryDc.SetBkMode(TRANSPARENT);
 
     // first fill the background with a default brush
-    COLORREF bkColor = ::GetSysColor(COLOR_3DFACE);
+    COLORREF bkColor = bDarkMode ? f_backgroundColourDark : f_backgroundColour;
     CBrush bkBrush(bkColor);
     memoryDc.FillRect(rect, &bkBrush);
 

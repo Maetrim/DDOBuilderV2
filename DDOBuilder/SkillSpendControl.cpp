@@ -18,6 +18,7 @@ namespace
     COLORREF f_untrainableSkillColour = RGB(0xFF, 0xB6, 0xC1);  // light pink
     COLORREF f_selectedColour = ::GetSysColor(COLOR_HIGHLIGHT);
     COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
+    COLORREF f_backgroundColourDark = RGB(83, 83, 83);
     COLORREF f_skillOverspendColour = RGB(0xFF, 0x00, 0x00);    // RED
     COLORREF f_white = RGB(255, 255, 255);                      // white
     COLORREF f_black = RGB(0, 0, 0);                            // black
@@ -206,6 +207,8 @@ void CSkillSpendControl::SetupControl()
 
 void CSkillSpendControl::OnPaint()
 {
+    bool bDarkMode = DarkModeEnabled();
+
     CPaintDC dc(this);
     CRect rctWindow;
     GetWindowRect(rctWindow);
@@ -232,11 +235,11 @@ void CSkillSpendControl::OnPaint()
     memoryDc.SetBkMode(TRANSPARENT);
 
     // fill background
-    memoryDc.FillSolidRect(rctWindow, f_backgroundColour);
+    memoryDc.FillSolidRect(rctWindow, bDarkMode ? f_backgroundColourDark : f_backgroundColour);
     memoryDc.Draw3dRect(
             rctWindow,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
 
     if (m_pCharacter != NULL)
     {
@@ -293,10 +296,11 @@ void CSkillSpendControl::DrawButtons(CDC* pDC)
 
 void CSkillSpendControl::DrawButton(CDC* pDC, CRect& rctItem, const CString& text, bool bSelected)
 {
+    bool bDarkMode = DarkModeEnabled();
     pDC->Draw3dRect(
             rctItem,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
     CSize strSize = pDC->GetTextExtent(text);
     if (bSelected)
     {
@@ -305,16 +309,17 @@ void CSkillSpendControl::DrawButton(CDC* pDC, CRect& rctItem, const CString& tex
         pDC->FillSolidRect(rctnterior, f_selectedColour);
         pDC->SetTextColor(f_white);
         pDC->TextOut(rctItem.left + (rctItem.Width() - strSize.cx) / 2, rctItem.top + 1, text);
-        pDC->SetTextColor(f_black);
     }
     else
     {
+        pDC->SetTextColor(bDarkMode ? f_white : f_black);
         pDC->TextOut(rctItem.left + (rctItem.Width() - strSize.cx) / 2, rctItem.top + 1, text);
     }
 }
 
 size_t CSkillSpendControl::DrawAvailableSkillPoints(CDC* pDC, size_t top)
 {
+    bool bDarkMode = DarkModeEnabled();
     CRect rctLevelItem(0, top, m_skillColumnSize.cx, top + m_skillColumnSize.cy);
     rctLevelItem += CPoint(m_skillNameSize.cx, 0);
 
@@ -333,11 +338,14 @@ size_t CSkillSpendControl::DrawAvailableSkillPoints(CDC* pDC, size_t top)
             pDC->FillSolidRect(rctLevelItem, f_selectedColour);
             pDC->SetTextColor(f_white);
         }
+        else
+        {
+            pDC->SetTextColor(bDarkMode ? f_white : f_black);
+        }
         pDC->TextOut(
                 rctLevelItem.left + (rctLevelItem.Width() - strSize.cx) / 2,
                 rctLevelItem.top + 1,
                 str);
-        pDC->SetTextColor(f_black);
         rctLevelItem += CPoint(m_skillColumnSize.cx, 0);
     }
     return (top + m_skillColumnSize.cy);
@@ -391,6 +399,7 @@ size_t CSkillSpendControl::DrawClassImages(CDC* pDC, size_t top)
 
 size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
 {
+    bool bDarkMode = DarkModeEnabled();
     CString str;
 
     // show only heroic class levels
@@ -409,8 +418,8 @@ size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
         CSize strSize = pDC->GetTextExtent(str);
         pDC->Draw3dRect(
                 rctLevel,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         if (m_selectedColumn == static_cast<int>(iLevel)
                 || m_highlightedColumn == static_cast<int>(iLevel))
         {
@@ -419,11 +428,14 @@ size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
             pDC->FillSolidRect(rctInterior, f_selectedColour);
             pDC->SetTextColor(f_white);
         }
+        else
+        {
+            pDC->SetTextColor(bDarkMode ? f_white : f_black);
+        }
         pDC->TextOut(
                 rctLevel.left + (rctLevel.Width() - strSize.cx) / 2,
                 rctLevel.top + 1,
                 str);
-        pDC->SetTextColor(f_black);
         rctLevel += CPoint(m_skillColumnSize.cx, 0);
     }
     m_rctLevels.left = m_skillNameSize.cx + 1;
@@ -433,8 +445,9 @@ size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
     rctLevel.right = rctLevel.left + m_skillRanksSize.cx;
     pDC->Draw3dRect(
             rctLevel,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
+    pDC->SetTextColor(bDarkMode ? f_white : f_black);
     pDC->TextOut(rctLevel.left, rctLevel.top + 1, "  Ranks  ");
     rctLevel += CPoint(m_skillRanksSize.cx, 0);
 
@@ -442,8 +455,8 @@ size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
     rctLevel.right = rctLevel.left + m_skillTomeSize.cx;
     pDC->Draw3dRect(
             rctLevel,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
     if (m_selectedColumn == c_tomeColumn)
     {
         CRect rctInterior(rctLevel);
@@ -451,25 +464,25 @@ size_t CSkillSpendControl::DrawLevelLine(CDC* pDC, size_t top)
         pDC->FillSolidRect(rctInterior, f_selectedColour);
         pDC->SetTextColor(f_white);
     }
+    pDC->SetTextColor(bDarkMode ? f_white : f_black);
     pDC->TextOut(rctLevel.left, rctLevel.top + 1, "  Tome  ");
-    pDC->SetTextColor(f_black);
     m_rctTomeTitle = rctLevel;
     rctLevel += CPoint(m_skillTomeSize.cx, 0);
 
     // last comes the Total column
     rctLevel.right = rctLevel.left + m_skillTotalSize.cx;
     pDC->Draw3dRect(
-        rctLevel,
-        ::GetSysColor(COLOR_BTNHIGHLIGHT),
-        ::GetSysColor(COLOR_BTNSHADOW));
+            rctLevel,
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
     pDC->TextOut(rctLevel.left, rctLevel.top + 1, "  Total  ");
-    pDC->SetTextColor(f_black);
     m_rctTotal = rctLevel;
     return (top + m_skillTotalSize.cy);
 }
 
 size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
 {
+    bool bDarkMode = DarkModeEnabled();
     CRect rctSkillItem(0, top, m_skillNameSize.cx, top + m_skillNameSize.cy);
     if (skill == Skill_Unknown + 1)
     {
@@ -486,8 +499,8 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
     CString strSkill = " " + EnumEntryText(skill, skillTypeMap) + " ";
     pDC->Draw3dRect(
             rctSkillItem,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
     if (skill == m_highlightSkill)
     {
         CRect rctSkillInterior(rctSkillItem);
@@ -495,10 +508,10 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
         pDC->FillSolidRect(rctSkillInterior, f_selectedColour);
         pDC->SetTextColor(f_white);
         pDC->TextOut(rctSkillItem.left, rctSkillItem.top + 1, strSkill);
-        pDC->SetTextColor(f_black);
     }
     else
     {
+        pDC->SetTextColor(bDarkMode ? f_white : f_black);
         pDC->TextOut(rctSkillItem.left, rctSkillItem.top + 1, strSkill);
     }
     rctSkillItem += CPoint(m_skillNameSize.cx, 0);
@@ -516,7 +529,7 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
                 + m_skillRanksSize.cx
                 + m_skillTomeSize.cx
                 + m_skillTotalSize.cx;
-        pDC->FillSolidRect(rctSkillItem, f_white);
+        pDC->FillSolidRect(rctSkillItem, bDarkMode ? RGB(128, 128, 128)  : f_white);
     }
     // do we have a highlighted column?
     if (m_highlightedColumn >= 0
@@ -569,11 +582,13 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
             pDC->FillSolidRect(rctSkillItem, f_untrainableSkillColour);
         }
 
+        pDC->SetTextColor(bDarkMode ? f_white : f_black);
         bool bClassSkill = c.IsClassSkill(skill);
         str = "";
         if (bClassSkill)
         {
             // need a green background for this cell
+            pDC->SetTextColor(f_black);
             if (static_cast<int>(iLevel) == m_highlightedColumn)
             {
                 pDC->FillSolidRect(rctSkillItem, f_classSkillColourHighlighted);
@@ -704,6 +719,8 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
 
 size_t CSkillSpendControl::DrawRemainingSkillPoints(CDC* pDC, size_t top)
 {
+    bool bDarkMode = DarkModeEnabled();
+    pDC->SetTextColor(bDarkMode ? f_white : f_black);
     CRect rctSkillItem(0, top, m_skillNameSize.cx, top + m_skillNameSize.cy);
     pDC->TextOut(rctSkillItem.left, rctSkillItem.top + 1, " Not Spent");
     CRect rctLevelItem(0, top, m_skillColumnSize.cx, top + m_skillColumnSize.cy);
@@ -721,6 +738,7 @@ size_t CSkillSpendControl::DrawRemainingSkillPoints(CDC* pDC, size_t top)
         int availablePoints = (static_cast<int>(skillPoints) - static_cast<int>(spentSkillPoints));
         str.Format("%d", availablePoints);
         CSize strSize = pDC->GetTextExtent(str);
+        pDC->SetTextColor(bDarkMode ? f_white : f_black);
         if (m_selectedColumn == static_cast<int>(iLevel))
         {
             pDC->FillSolidRect(rctLevelItem, f_selectedColour);
@@ -734,16 +752,18 @@ size_t CSkillSpendControl::DrawRemainingSkillPoints(CDC* pDC, size_t top)
                 rctLevelItem.left + (rctLevelItem.Width() - strSize.cx) / 2,
                 rctLevelItem.top + 1,
                 str);
-        pDC->SetTextColor(f_black);
         rctLevelItem += CPoint(m_skillColumnSize.cx, 0);
     }
-    pDC->SetTextColor(f_black);
+    pDC->SetTextColor(bDarkMode ? f_white : f_black);
     return (top + m_skillColumnSize.cy);
 }
 
 void CSkillSpendControl::DrawSelection(CDC* pDC)
 {
-    // show skill selection (This goes all the way across)
+    bool bDarkMode = DarkModeEnabled();
+    CPen pen(PS_SOLID, 1, bDarkMode ? f_white : f_black);
+    pDC->SelectObject(&pen);
+// show skill selection (This goes all the way across)
     if (m_selectedRow != c_noSelection)
     {
         // show horizontal bars for this skill selection

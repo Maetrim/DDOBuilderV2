@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Toven's Hammer</Name>
     <Icon>RuneArm_1d</Icon>
     <Description>When all you have is a hammer, everything looks like a nail.</Description>
@@ -16,9 +17,20 @@
       </Requirement>
     </Requirements>
     <Weapon>RuneArm</Weapon>
+    <Effect>
+      <Type>SpellLikeAbility</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Electrical Storm</Item>
+      <Item>None</Item>
+      <AType>SpellInfo</AType>
+      <Amount size="3">0 0 0</Amount>
+    </Effect>
     <Buff>
       <Type>MaximumChargeTierV</Type>
       <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Lightning Strike Weapons</Type>
     </Buff>
     <Buff>
       <Type>Potency</Type>
@@ -29,7 +41,39 @@
     </Buff>
     <Buff>
       <Type>Fortification</Type>
+      <Value1>10</Value1>
       <BonusType>Exceptional</BonusType>
     </Buff>
+    <Buff>
+      <Type>Rune Arm Imbue - Electrical IV</Type>
+      <BonusType/>
+    </Buff>
+    <ItemAugment>
+      <Type>Alchemical Crafting Tier 1</Type>
+      <Augment>
+        <Name>Adds Insightful Intelligence +2</Name>
+        <Description>Insightful Intelligence +2: This item focuses the power of the wearer's mind,
+granting a +2 insight bonus to Intelligence.</Description>
+        <MinLevel>19</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Intelligence</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Alchemical Crafting Tier 2</Type>
+      <Augment>
+        <Name>Adds Transform Kinetic Energy2</Name>
+        <Description>Transform Kinetic Energy: Each time you are hit in melee combat there is a chance
+that the energy of the blow will be converted into Spell Points.</Description>
+        <MinLevel>19</MinLevel>
+        <Icon>Upgrade</Icon>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -118,7 +118,7 @@ class MultiFileObjectLoader :
                 text.Format("The document '%s' failed to load. The XML parser reported the following problem:\r\n"
                     "\r\n", filename.c_str());
                 text += errorMessage.c_str();
-                GetLog().UpdateLastLogEntry(text);
+                GetLog().AddLogEntry(text);
             }
             else
             {

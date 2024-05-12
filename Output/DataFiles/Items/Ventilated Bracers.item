@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Ventilated Bracers</Name>
     <Icon>Bracers_11a</Icon>
     <Description>These bracers have the unique feature of having air vents cut into their sides
@@ -32,19 +33,30 @@ disarming a bomb) much less sweat inducing.</Description>
     <Buff>
       <Type>AirGuard</Type>
     </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>3</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Disable Device</Description1>
-      <Item>Disable Device</Item>
-    </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <Value1>3</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Open Lock</Description1>
-      <Item>Open Lock</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Stormreaver)</Type>
+      <Augment>
+        <Name>Armor Bonus +7, Enhance Disable Device +5 and Enhanced Open Lock +5</Name>
+        <Description>Armor Bonus +7: This item surrounds the wearer with an invisible but tangible field
+of force, granting +7 armor bonus to AC, just as though he were wearing armor.
+Enhanced Disable Device +5: Passive: +5 Enhancement bonus to the Disable Device skill.
+Enhanced Open Lock +5: Passive: +5 Enhancement bonus to the Open Lock skill.</Description>
+        <MinLevel>13</MinLevel>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Armor</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Disable Device</Item>
+          <Item>Open Lock</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

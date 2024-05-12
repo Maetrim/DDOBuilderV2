@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Seal of House Szind</Name>
     <Icon>Ring_1</Icon>
     <Description>This ring bears a stylized impression of a human ribcage.</Description>
@@ -21,26 +22,60 @@
       <BonusType>Enhancement</BonusType>
       <Description1>IX</Description1>
     </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>2</Value1>
-      <BonusType>Insightful</BonusType>
-      <Description1>Charisma</Description1>
-      <Item>Charisma</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>7</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Intelligence</Description1>
-      <Item>Intelligence</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>2</Value1>
-      <BonusType>Insightful</BonusType>
-      <Description1>Intelligence</Description1>
-      <Item>Intelligence</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Variant Ability</Type>
+      <Augment>
+        <Name>Charisma +7</Name>
+        <Description>Charisma +7: This item makes the wearer have more flair, granting a +7 enhancement bonus to Charisma.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Charisma</Item>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Insightful Charisma +2</Name>
+        <Description>+2 Insight bonus to Charisma</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Charisma</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Intelligence +7</Name>
+        <Description>Intelligence +7: This item focuses the power of the wearer's mind, granting a +7 enhancement bonus to Intelligence.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Intelligence</Item>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Insightful Intelligence +2</Name>
+        <Description>+2 Insight bonus to Intelligence</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Intelligence</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

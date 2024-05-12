@@ -35,6 +35,7 @@ BEGIN_MESSAGE_MAP(CDDOBuilderView, CFormView)
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, &CDDOBuilderView::OnNewDocument)
     ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, &CDDOBuilderView::OnLoadComplete)
+    ON_REGISTERED_MESSAGE(UWM_THEME_CHANGED, &CDDOBuilderView::OnThemeChanged)
     ON_BN_CLICKED(IDC_BUTTON_STR_PLUS, &CDDOBuilderView::OnButtonStrPlus)
     ON_BN_CLICKED(IDC_BUTTON_STR_MINUS, &CDDOBuilderView::OnButtonStrMinus)
     ON_BN_CLICKED(IDC_BUTTON_DEX_PLUS, &CDDOBuilderView::OnButtonDexPlus)
@@ -151,6 +152,31 @@ void CDDOBuilderView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_LEVEL32_ABILITY, m_comboAILevel32);
     DDX_Control(pDX, IDC_COMBO_LEVEL36_ABILITY, m_comboAILevel36);
     DDX_Control(pDX, IDC_COMBO_LEVEL40_ABILITY, m_comboAILevel40);
+
+    // theme controls
+    DDX_Control(pDX, IDC_STATIC_NAME, m_staticTheme[0]);
+    DDX_Control(pDX, IDC_STATIC_RACE, m_staticTheme[1]);
+    DDX_Control(pDX, IDC_STATIC_ALIGNMENT, m_staticTheme[2]);
+    DDX_Control(pDX, IDC_STATIC_ABILITY_VALUE, m_staticTheme[3]);
+    DDX_Control(pDX, IDC_STATIC_COST, m_staticTheme[4]);
+    DDX_Control(pDX, IDC_STATIC_TOME, m_staticTheme[5]);
+    DDX_Control(pDX, IDC_STATIC_STR, m_staticTheme[6]);
+    DDX_Control(pDX, IDC_STATIC_DEX, m_staticTheme[7]);
+    DDX_Control(pDX, IDC_STATIC_CON, m_staticTheme[8]);
+    DDX_Control(pDX, IDC_STATIC_INT, m_staticTheme[9]);
+    DDX_Control(pDX, IDC_STATIC_WIS, m_staticTheme[10]);
+    DDX_Control(pDX, IDC_STATIC_CHA, m_staticTheme[11]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL, m_staticTheme[12]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL4, m_staticTheme[13]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL8, m_staticTheme[14]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL12, m_staticTheme[15]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL16, m_staticTheme[16]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL20, m_staticTheme[17]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL24, m_staticTheme[18]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL28, m_staticTheme[19]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL32, m_staticTheme[20]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL36, m_staticTheme[21]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL40, m_staticTheme[22]);
 }
 
 void CDDOBuilderView::OnInitialUpdate()
@@ -163,6 +189,7 @@ void CDDOBuilderView::OnInitialUpdate()
         // controls disabled until data load complete on program startup
         DisableControls();
         m_bHadIntialUpdate = true;
+        OnThemeChanged(DarkModeEnabled(), 0L);
     }
 }
 
@@ -196,6 +223,20 @@ LRESULT CDDOBuilderView::OnLoadComplete(WPARAM, LPARAM)
     return 0;
 }
 
+LRESULT CDDOBuilderView::OnThemeChanged(WPARAM wParam, LPARAM)
+{
+    // wParam = 1 for dark mode, else = 0 for all others
+    bool bDark = (wParam != 0);
+    COLORREF clrText = bDark ? RGB(255, 255, 255) : RGB(0, 0, 0);   // white text in dark mode, else black
+    m_staticBuildDescription.SetTextColour(clrText);
+    m_staticAvailableSpend.SetTextColour(clrText);
+    for (size_t i = 0; i < MSS_Number; ++i)
+    {
+        m_staticTheme[i].SetTextColour(clrText);
+    }
+    return 0;
+}
+
 void CDDOBuilderView::OnRButtonUp(UINT nFlags, CPoint point)
 {
     UNREFERENCED_PARAMETER(nFlags);
@@ -214,6 +255,8 @@ void CDDOBuilderView::OnContextMenu(CWnd* pWnd, CPoint point)
 
 BOOL CDDOBuilderView::OnEraseBkgnd(CDC* pDC)
 {
+    // note that static controls are not in this list so they get drawn with the current
+    // theme background
     static int controlsNotToBeErased[] =
     {
         IDC_RADIO_28PT,
@@ -307,13 +350,7 @@ BOOL CDDOBuilderView::OnEraseBkgnd(CDC* pDC)
         // next in list
         ++pId;
     }
-    CRect rctClient;
-    GetWindowRect(&rctClient);
-    ScreenToClient(&rctClient);
-    pDC->FillSolidRect(rctClient, GetSysColor(COLOR_BTNFACE));
-    pDC->RestoreDC(-1);
-
-    return TRUE;
+    return OnEraseBackground(this, pDC, controlsNotToBeErased);
 }
 // CDDOBuilderView diagnostics
 
@@ -1448,7 +1485,7 @@ BOOL CDDOBuilderView::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
     case IDC_EDIT_INT:
     case IDC_EDIT_WIS:
     case IDC_EDIT_CHA:
-        m_tipText = "Current ability value of Base + racial + Spent points";
+        m_tipText = "Current ability value of Base + Racial + Spent points";
         break;
     case IDC_BUTTON_STR_PLUS:
     case IDC_BUTTON_DEX_PLUS:
@@ -1532,4 +1569,3 @@ void CDDOBuilderView::OnUpdateDumpWeaponGroups(CCmdUI* pCmdUi)
 {
     pCmdUi->Enable(m_pCharacter->ActiveBuild() != NULL);
 }
-

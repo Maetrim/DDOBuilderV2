@@ -4,6 +4,7 @@
 #pragma once
 #include "resource.h"
 #include "Character.h"
+#include "MFCStaticEx.h"
 
 class CDDOBuilderView :
     public CFormView,
@@ -33,6 +34,7 @@ class CDDOBuilderView :
         afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
         afx_msg LRESULT OnNewDocument(WPARAM, LPARAM);
         afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
+        afx_msg LRESULT OnThemeChanged(WPARAM, LPARAM);
 
         afx_msg void OnButtonStrPlus();
         afx_msg void OnButtonStrMinus();
@@ -110,7 +112,7 @@ class CDDOBuilderView :
         void ShowHidControls(size_t level, CComboBox * pCombo, UINT idStatic);
 
         Character * m_pCharacter;
-        CStatic m_staticBuildDescription;
+        CMFCStaticEx m_staticBuildDescription;
         CButton m_button28Pt;
         CButton m_button32Pt;
         CButton m_button34Pt;
@@ -150,7 +152,7 @@ class CDDOBuilderView :
         CComboBox m_comboTomeCha;
         CButton m_buttonGuildBuffs;
         CEdit m_editGuildLevel;
-        CStatic m_staticAvailableSpend;
+        CMFCStaticEx m_staticAvailableSpend;
         CComboBox m_comboAILevel4;
         CComboBox m_comboAILevel8;
         CComboBox m_comboAILevel12;
@@ -161,6 +163,11 @@ class CDDOBuilderView :
         CComboBox m_comboAILevel32;
         CComboBox m_comboAILevel36;
         CComboBox m_comboAILevel40;
+        enum MaxSupportedStatics
+        {
+            MSS_Number = 23
+        };
+        CMFCStaticEx m_staticTheme[MSS_Number];
 
         bool m_bIgnoreFocus;
         CString m_tipText;

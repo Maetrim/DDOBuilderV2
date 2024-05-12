@@ -28,6 +28,7 @@ public:
     afx_msg void OnButtonDeleteBuild();
     afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
+    afx_msg LRESULT OnDarkModeChange(WPARAM, LPARAM);
     afx_msg void OnSelchangedTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBeginlabeleditTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnEndlabeleditTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
@@ -66,6 +67,7 @@ private:
     HTREEITEM m_hPopupMenuItem;
     bool m_bEscape;
     bool m_bLoadComplete;
+    bool m_bEditInProgress;
 };
 
 

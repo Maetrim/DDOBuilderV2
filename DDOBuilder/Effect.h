@@ -16,6 +16,7 @@ class Character;
 enum EffectType
 {
     Effect_Unknown = 0,
+    Effect_NotModeled,
     Effect_AbilityBonus,
     Effect_ACBonus,
     Effect_ACBonusShield,
@@ -218,6 +219,7 @@ enum EffectType
 const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
 {
     {Effect_Unknown, L"Unknown"},
+    {Effect_NotModeled, L"NotModeled"},
     {Effect_AbilityBonus, L"AbilityBonus"},
     {Effect_ACBonus, L"ACBonus"},
     {Effect_ACBonusShield, L"ACBonusShield"},

@@ -123,6 +123,8 @@ void CGroupLine::OnPaint()
             // would overflow width so clip it
             textRect.right = clientRect.right - border;
         }
+        //COLORREF col = CMFCVisualManager::GetInstance()->GetMenuItemTextColor();
+        //dc.SetTextColor(col);
         dc.DrawText(text, textRect, DT_END_ELLIPSIS|DT_LEFT|DT_NOCLIP|DT_NOPREFIX|DT_SINGLELINE|DT_VCENTER);
     }
 

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Necklace of Mystic Eidolons</Name>
     <Icon>Necklace_14</Icon>
     <Description>These necklaces vary in appearance, but to the wearer, they always appear as
@@ -10,6 +11,9 @@ pendant within one turn, it dwindles away and is lost.</Description>
     <EquipmentSlot>
       <Necklace/>
     </EquipmentSlot>
+    <Buff>
+      <Type>Eidolon Summons</Type>
+    </Buff>
     <Buff>
       <Type>Ghostly</Type>
       <BonusType>Enhancement</BonusType>
@@ -32,6 +36,36 @@ pendant within one turn, it dwindles away and is lost.</Description>
       <Description1>Dexterity</Description1>
       <Item>Dexterity</Item>
     </Buff>
+    <ItemAugment>
+      <Type>Zhentarim Attuned</Type>
+      <Augment>
+        <Name>Faster Eidolon Summons, Insightful Dex/Con +4 and Augment Summoning</Name>
+        <Description>Eidolon Summons: On Being Damaged: Animates a portion of the wearer's shadow to
+support them in battle. The shadow remains animate for 30 seconds and can be
+created once every 80 seconds.
+Insightful Constitution +4: This item gives the wearer improved health, granting
+a +4 insight bonus to Constitution.
+Insightful Dexterity +4: This item makes the wearer more nimble and dexterous,
+granting a +4 insight bonus to Dexterity.
+Adds Augment Summoning</Description>
+        <MinLevel>26</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Constitution</Item>
+          <Item>Dexterity</Item>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+        <Effect>
+          <Type>GrantFeat</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Augment Summoning</Item>
+          <AType>NotNeeded</AType>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <ItemAugment>
       <Type>Green</Type>
     </ItemAugment>

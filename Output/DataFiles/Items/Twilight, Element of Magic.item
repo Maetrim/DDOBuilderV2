@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Twilight, Element of Magic</Name>
     <Icon>Quarterstaff_3a</Icon>
     <Description>A spark of magic for a studious mind.</Description>
@@ -46,12 +47,14 @@
     </Buff>
     <Buff>
       <Type>SchoolFocusNumber</Type>
+      <Value1>3</Value1>
       <BonusType>Equipment</BonusType>
       <Description1>Evocation</Description1>
       <Item>Evocation</Item>
     </Buff>
     <Buff>
       <Type>SchoolFocusNumber</Type>
+      <Value1>3</Value1>
       <BonusType>Equipment</BonusType>
       <Description1>Enchantment</Description1>
       <Item>Enchantment</Item>
@@ -65,48 +68,139 @@
       <BonusType>Equipment</BonusType>
       <Description1>VI</Description1>
     </Buff>
-    <Buff>
-      <Type>Glaciation</Type>
-      <Value1>120</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Cold</Description1>
-      <Item>Cold</Item>
-    </Buff>
-    <Buff>
-      <Type>Corrosion</Type>
-      <Value1>120</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Acid</Description1>
-      <Item>Acid</Item>
-    </Buff>
-    <Buff>
-      <Type>Magnetism</Type>
-      <Value1>120</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Electric</Description1>
-      <Item>Electric</Item>
-    </Buff>
-    <Buff>
-      <Type>Nullification</Type>
-      <Value1>120</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Negative</Description1>
-      <Item>Negative</Item>
-    </Buff>
-    <Buff>
-      <Type>Devotion</Type>
-      <Value1>120</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Positive</Description1>
-      <Item>Positive</Item>
-    </Buff>
-    <Buff>
-      <Type>Radiance</Type>
-      <Value1>120</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Light/Alignment</Description1>
-      <Item>Light/Alignment</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Planar Conflux</Name>
+        <Description>Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <SetBonus>Erudition / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Prowess / Planar Conflux Set Bonus</SetBonus>
+        <SetBonus>Subterfuge / Planar Conflux Set Bonus</SetBonus>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>+8 Enhancement Bonus</Name>
+        <Description>+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 3</Type>
+      <Augment>
+        <Name>Combustion +120</Name>
+        <Description>Combustion +120: Passive: +120 Equipment bonus to Fire Spell Power.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Fire</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Glaciation +120</Name>
+        <Description>Glaciation +120: Passive: +120 Equipment bonus to Cold Spell Power.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Cold</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Corrosion +120</Name>
+        <Description>Corrosion +120: Passive: +120 Equipment bonus to Acid Spell Power.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Acid</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Magnetism +120</Name>
+        <Description>Magnetism +120: Passive: +120 Equipment bonus to Electric Spell Power.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Electric</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Nullification +120</Name>
+        <Description>Nullification +120: Passive: +120 Equipment bonus to Negative and Poison Spell Power.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Negative</Item>
+          <Item>Poison</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Devotion +120</Name>
+        <Description>Devotion +120: Passive: +120 Equipment bonus to Positive Spell Power.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Positive</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Radiance +120</Name>
+        <Description>Radiance +120: Passive: +120 Equipment bonus to Light and Alignment Spell Power.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Light/Alignment</Item>
+          <AType>Simple</AType>
+          <Amount size="1">120</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 4</Type>
+      <Augment>
+        <Name>Red Augment Slot</Name>
+        <Description>Adds a Red augment slot to this weapon.</Description>
+        <MinLevel>23</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Red</GrantAugment>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

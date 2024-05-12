@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Star of Day</Name>
     <Icon>Shortsword_4b</Icon>
     <Description>Though seemingly made of pure gold, the blade of this bastard sword is as hard
@@ -37,28 +38,162 @@ all that hide in shadow and darkness. This blade is not one of them.</Descriptio
       <Type>Brilliance</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <Buff>
-      <Type>Radiance</Type>
-      <BonusType>Equipment</BonusType>
-      <Description1>Light/Alignment</Description1>
-      <Item>Light/Alignment</Item>
-    </Buff>
-    <Buff>
-      <Type>Flaming Burst</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Greater Good</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>Holy Burst</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Variant 1</Type>
+      <Augment>
+        <Name>Fiery Detonation</Name>
+        <Description>Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll
+of 20 which is confirmed as a critical hit this burning power will be released,
+dealing damage to the target and all enemies near it for 15d6 fire damage.
+A successful Fortitude save (DC 39) reduces this by half.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+      <Augment>
+        <Name>Radiance</Name>
+        <Description>Radiance: This weapon is imbued with a brilliant, radiant power that deals an
+additional 4 to 24 points of light damage and blinds the target on a successful
+critical hit.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">4</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Light</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Variant 2</Type>
+      <Augment>
+        <Name>Disruption</Name>
+        <Description>Disruption: On Hit: 4 to 24 Bane damage to Undead.
+On Vorpal Hit: If an undead struck by this weapon has fewer than 1000 Hit Points,
+it is instantly slain. If the undead has above 1000 Hit Points, it takes 100 damage.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Undead</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">4</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Bane</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Flaming Burst</Name>
+        <Description>Flaming Burst: This weapon is sheathed in fire, and deals 1 to 6 fire damage
+each hit. Critical hits deal an additional 1 to 10 fire damage for weapons with
+a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Fire</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <AType>CriticalDice</AType>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Fire</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Greater Good</Name>
+        <Description>Greater Good: This weapon is infused with the ultimate power of Good. It does an
+additional 2 to 12 damage to non-good targets and can only be wielded by
+Good-aligned characters.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Non-Good</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Good</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Holy Burst</Name>
+        <Description>Holy Burst: A holy weapon is imbued with holy power. This power makes the weapon
+good-aligned and thus bypasses the corresponding damage reduction. It deals an
+extra 2 to 12 points of damage against all of evil alignment and an extra 3 to
+18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3
+multiplier, and 5 to 30 for a x4 multiplier.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Evil</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Good</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Stacking</Bonus>
+          <Item>All</Item>
+          <AType>CriticalDice</AType>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4 </Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Good</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Stacking</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Good</Value>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

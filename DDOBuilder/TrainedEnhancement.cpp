@@ -111,7 +111,8 @@ bool TrainedEnhancement::HasRequirementOf(
     const EnhancementTreeItem *pItem = FindEnhancement(EnhancementName());
     if (pItem != NULL)
     {
-        if (HasSelection())
+        if (HasSelection()
+            && pItem->HasRequirementsToTrain(Selection()))
         {
             bRequiresIt = pItem->RequiresEnhancement(Selection(), dependentOnEnhancementName);
         }

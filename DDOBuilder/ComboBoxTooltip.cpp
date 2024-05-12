@@ -6,6 +6,16 @@
 //    is selected so it can display a tooltip. This is done via a WM_MOUSEHOVER message
 #include "stdafx.h"
 #include "ComboBoxTooltip.h"
+#include "GlobalSupportFunctions.h"
+
+namespace
+{
+    COLORREF f_selectedColour = ::GetSysColor(COLOR_HIGHLIGHT);
+    COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
+    COLORREF f_backgroundColourDark = RGB(83, 83, 83);
+    COLORREF f_white = RGB(255, 255, 255);                      // white
+    COLORREF f_black = RGB(0, 0, 0);                            // black
+}
 
 // CComboBoxTooltip
 IMPLEMENT_DYNAMIC(CComboBoxTooltip, CComboBox)
@@ -51,6 +61,7 @@ void CComboBoxTooltip::SetImageList(CImageList* il)
 
 void CComboBoxTooltip::DrawItem(LPDRAWITEMSTRUCT lpDis)
 {
+    bool bDarkMode = DarkModeEnabled();
     bool isDropped = (GetDroppedState() != 0);
     if (!m_bSubclassedListbox)
     {
@@ -73,8 +84,8 @@ void CComboBoxTooltip::DrawItem(LPDRAWITEMSTRUCT lpDis)
         // highlight the background if selected.
         if (nState & ODS_SELECTED)
         {
-            pDC->FillSolidRect(rcItem, ::GetSysColor(COLOR_HIGHLIGHT));
-            pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
+            pDC->FillSolidRect(rcItem, f_selectedColour);
+            pDC->SetTextColor(f_white);
             if (isDropped
                 && lpDis->itemID != static_cast<UINT>(m_selection)
                 && lpDis->itemAction == ODA_SELECT
@@ -92,8 +103,8 @@ void CComboBoxTooltip::DrawItem(LPDRAWITEMSTRUCT lpDis)
         else
         {
             // white background, black text
-            pDC->FillSolidRect(rcItem, RGB(255, 255, 255));
-            pDC->SetTextColor(RGB(0, 0, 0));
+            pDC->FillSolidRect(rcItem, bDarkMode ? f_backgroundColourDark  : f_white);
+            pDC->SetTextColor(bDarkMode ? f_white : f_black);
         }
 
         // draw image if it has one

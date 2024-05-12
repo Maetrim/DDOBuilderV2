@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Tenderizer</Name>
     <Icon>Morningstar_2a</Icon>
     <Description>Once used by the Stormreaver's cook to tenderize the meat that would feed the
@@ -22,7 +23,7 @@ great leader. This Morningstar is caked in the blood of a million creatures.</De
       <Sides>10</Sides>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
-    <CriticalThreatRange>1</CriticalThreatRange>
+    <CriticalThreatRange>2</CriticalThreatRange>
     <Buff>
       <Type>WeaponEnchantment</Type>
       <Value1>5</Value1>
@@ -48,5 +49,40 @@ great leader. This Morningstar is caked in the blood of a million creatures.</De
       <Description1>All</Description1>
       <Item>All</Item>
     </Buff>
+    <Buff>
+      <Type>Maladroit</Type>
+    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Stormreaver)</Type>
+      <Augment>
+        <Name>Adds Bone Breaking and Spikes</Name>
+        <Description>Bone Breaking: Critical hits by this weapon deal an extra 1 to 6 points of Dexterity
+damage by shattering the bones of its target.
+Spikes: The sharp spikes on this item deal an additional 1 to 6 Piercing damage
+when used to strike an enemy.</Description>
+        <MinLevel>14</MinLevel>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Dexterity</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Pierce</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

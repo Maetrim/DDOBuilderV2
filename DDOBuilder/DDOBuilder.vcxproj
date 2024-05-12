@@ -108,6 +108,9 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>Dwmapi.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -155,6 +158,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>Dwmapi.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -291,6 +297,7 @@ echo.
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Making help file...</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Making help file...</Message>
     </CustomBuild>
+    <None Include="hlp\hhcenter.css" />
     <None Include="hlp\hidr_doc1type.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
@@ -369,6 +376,60 @@ echo.
     <None Include="hlp\hid_next_pane.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="hlp\hid_pane_automaticfeats.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_breakdowns.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_builds.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_classandlevels.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_dcs.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_empty.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_enhancements.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_epicdestinies.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_gearandfiligrees.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_grantedfeats.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_log.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_notes.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_pastlives.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_questsandfavor.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_reaperenhancements.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_skills.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_spellsandslas.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_stances.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="hlp\hid_prev_pane.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
@@ -436,13 +497,22 @@ echo.
     <None Include="hlp\main_index.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="hlp\menu_development.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="hlp\menu_edit.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\menu_file.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="hlp\menu_gear.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="hlp\menu_help.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_settings.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\menu_view.htm">
@@ -539,6 +609,7 @@ echo.
     <ClInclude Include="Class.h" />
     <ClInclude Include="ClassAndFeatPane.h" />
     <ClInclude Include="ClassSpell.h" />
+    <ClInclude Include="CMFCVisualManagerOffice2007DarkMode.h" />
     <ClInclude Include="ComboBoxTooltip.h" />
     <ClInclude Include="CompletedQuest.h" />
     <ClInclude Include="CriticalSection.h" />
@@ -619,6 +690,7 @@ echo.
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MemoryDC.h" />
     <ClInclude Include="MFCButtonMMRelay.h" />
+    <ClInclude Include="MFCStaticEx.h" />
     <ClInclude Include="MouseHook.h" />
     <ClInclude Include="MultiFileObjectLoader.h" />
     <ClInclude Include="NotesPane.h" />
@@ -840,6 +912,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="ClassAndFeatPane.cpp" />
     <ClCompile Include="ClassSpell.cpp" />
+    <ClCompile Include="CMFCVisualManagerOffice2007DarkMode.cpp" />
     <ClCompile Include="ComboBoxTooltip.cpp" />
     <ClCompile Include="CompletedQuest.cpp" />
     <ClCompile Include="CriticalSection.cpp" />
@@ -914,6 +987,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MemoryDC.cpp" />
     <ClCompile Include="MFCButtonMMRelay.cpp" />
+    <ClCompile Include="MFCStaticEx.cpp" />
     <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="NotesPane.cpp" />
     <ClCompile Include="ObserverSubject.cpp" />
@@ -1243,6 +1317,47 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Xml Include="..\Output\DataFiles\Stances.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="hlp\Images\AutomaticFeats.png" />
+    <Image Include="hlp\Images\ButtonAbout.png" />
+    <Image Include="hlp\Images\ButtonContextHelp.png" />
+    <Image Include="hlp\Images\ButtonCopyGearSet.png" />
+    <Image Include="hlp\Images\ButtonDeleteGearSet.png" />
+    <Image Include="hlp\Images\ButtonEpicFeatsOnly.png" />
+    <Image Include="hlp\Images\ButtonFileNew.png" />
+    <Image Include="hlp\Images\ButtonFileOpen.png" />
+    <Image Include="hlp\Images\ButtonFileSave.png" />
+    <Image Include="hlp\Images\ButtonIgnoreListsActive.png" />
+    <Image Include="hlp\Images\ButtonImportGearSet.png" />
+    <Image Include="hlp\Images\ButtonNewGearSet.png" />
+    <Image Include="hlp\Images\ButtonPaneAutomaticFeats.png" />
+    <Image Include="hlp\Images\ButtonPaneBreakdowns.png" />
+    <Image Include="hlp\Images\ButtonPaneBuilds.png" />
+    <Image Include="hlp\Images\ButtonPaneClassAndLevels.png" />
+    <Image Include="hlp\Images\ButtonPaneDCs.png" />
+    <Image Include="hlp\Images\ButtonPaneEnhancements.png" />
+    <Image Include="hlp\Images\ButtonPaneEpicDestinies.png" />
+    <Image Include="hlp\Images\ButtonPaneGearAndFiligrees.png" />
+    <Image Include="hlp\Images\ButtonPaneGrantedFeats.png" />
+    <Image Include="hlp\Images\ButtonPaneLog.png" />
+    <Image Include="hlp\Images\ButtonPaneNotes.png" />
+    <Image Include="hlp\Images\ButtonPanePastLives.png" />
+    <Image Include="hlp\Images\ButtonPaneQuestsAndFavor.png" />
+    <Image Include="hlp\Images\ButtonPaneReaperEnhancements.png" />
+    <Image Include="hlp\Images\ButtonPaneSkills.png" />
+    <Image Include="hlp\Images\ButtonPaneSpellsAndSLAs.png" />
+    <Image Include="hlp\Images\ButtonPaneStances.png" />
+    <Image Include="hlp\Images\ButtonPasteGearSet.png" />
+    <Image Include="hlp\Images\ButtonShowUnavailableFeats.png" />
+    <Image Include="hlp\Images\DefaultLayout.png" />
+    <Image Include="hlp\Images\EnhancementRequirement.png" />
+    <Image Include="hlp\Images\Enhancements.png" />
+    <Image Include="hlp\Images\EnhancementsDropList.png" />
+    <Image Include="hlp\Images\EnhancementsSelector.png" />
+    <Image Include="hlp\Images\EnhancementTooltip.png" />
+    <Image Include="hlp\Images\RevokeEnhancement.png" />
+    <Image Include="hlp\Images\SkillsPane.png" />
+    <Image Include="hlp\Images\Tome.png" />
+    <Image Include="hlp\Images\ToolbarStandard.png" />
     <Image Include="res\bitmapCopy.bmp" />
     <Image Include="res\bitmapDelete.bmp" />
     <Image Include="res\BitmapImport.bmp" />

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Ring of the Stalker (Level 11)</Name>
     <Icon>Ring_24</Icon>
     <Description>A bound Invisible Stalker makes this ring a dangerous asset for anyone striking
@@ -10,14 +11,66 @@ their enemies from the shadows.</Description>
       <Ring/>
     </EquipmentSlot>
     <Buff>
+      <Type>Manslayer</Type>
+    </Buff>
+    <Buff>
+      <Type>Deception</Type>
+      <Value1>2</Value1>
+      <Value2>3</Value2>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <Buff>
       <Type>Seeker</Type>
       <Value1>6</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <Buff>
-      <Type>Seeker</Type>
-      <Value1>7</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable - Tier 2</Type>
+      <Augment>
+        <Name>Seeker +7 and a Green Augment Slot</Name>
+        <Description>Seeker +7: Provides a +7 Enhancement bonus to confirm critical hits, and a +6 Enhancement bonus to critical hit damage (before multipliers are applied).</Description>
+        <MinLevel>11</MinLevel>
+        <Effect>
+          <Type>Weapon_AttackBonusCritical</Type>
+          <Type>Weapon_DamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Upgradeable - Tier 2</Type>
+      <Augment>
+        <Name>Insightful Deception +3, Seeker +8 and a Green Augment Slot</Name>
+        <Description>Insightful Deception +3: +3 Insight bonus to hit and +5 to damage for any hit that
+would qualify as a sneak attack.
+Seeker +8: Provides a +8 Enhancement bonus to confirm critical hits, and a +8
+Enhancement bonus to critical hit damage (before multipliers are applied).</Description>
+        <MinLevel>11</MinLevel>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>SneakAttackAttack</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+        <Effect>
+          <Type>SneakAttackDamage</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+        <Effect>
+          <Type>Weapon_AttackBonusCritical</Type>
+          <Type>Weapon_DamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

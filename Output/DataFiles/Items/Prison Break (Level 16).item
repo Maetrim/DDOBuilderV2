@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Prison Break (Level 16)</Name>
     <Icon>DwarvenWaraxe_3</Icon>
     <Description>When brute force doesn't work... You didn't use enough brute force.</Description>
@@ -27,61 +28,314 @@
       <BonusType>Weapon Enchantment</BonusType>
     </Buff>
     <Buff>
-      <Type>AcidII</Type>
-      <BonusType>Enhancement</BonusType>
+      <Type>Sundering V</Type>
     </Buff>
-    <Buff>
-      <Type>Penalty Lawful</Type>
-    </Buff>
-    <Buff>
-      <Type>Axiomatic I</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>Flaming Burst</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>FlamingII</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>FrostII</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Icy Burst</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Poison II</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>On Critical</Type>
-    </Buff>
-    <Buff>
-      <Type>Seeker</Type>
-      <Value1>4</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Shocking Burst</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>All</Description1>
-      <Item>All</Item>
-    </Buff>
-    <Buff>
-      <Type>ShockII</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>ShriekingI</Type>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Variant</Type>
+      <Augment>
+        <Name>Acid Burst</Name>
+        <Description>Acid Burst: This weapon is sheathed in corrosive acid, and does 1 to 6 acid damage
+each hit. Critical hits deal an additional 1 to 10 acid damage for weapons with
+a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Acid</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Acid</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Acid II</Name>
+        <Description>Acid II: On Hit: 2 to 8 Acid Damage.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">4</Sides>
+            <Damage>Acid</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Anarchic I</Name>
+        <Description>Anarchic I: On Hit: 1 to 6 Chaos damage. Chaos-aligned creatures are immune to this effect.
+Penalty: If equipped by a Lawful user, they receive 1 Negative Level for as long as this item is equipped.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Acid</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>NegativeLevel</Type>
+          <Bonus>Penalty</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Requirements>
+            <Requirement>
+              <Type>AlignmentType</Type>
+              <Item>Lawful</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Axiomatic I</Name>
+        <Description>Axiomatic I: On Hit: 1 to 6 Law damage. Law-aligned creatures are immune to this effect.
+Penalty: If equipped by a Chaotic user, they receive 1 Negative Level for as long as this item is equipped.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Unknown</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>NegativeLevel</Type>
+          <Bonus>Penalty</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Requirements>
+            <Requirement>
+              <Type>AlignmentType</Type>
+              <Item>Chaotic</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Flaming Burst</Name>
+        <Description>Flaming Burst: This weapon is sheathed in fire, and deals 1 to 6 fire damage each hit.
+Critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical
+multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Fire</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Fire</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Flaming II</Name>
+        <Description>Flaming II: On Hit: 2 to 8 Fire Damage.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">4</Sides>
+            <Damage>Fire</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Frost II</Name>
+        <Description>Frost II: On Hit: 2 to 8 Cold Damage.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">4</Sides>
+            <Damage>Cold</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Icy Burst</Name>
+        <Description>Icy Burst: This weapon is sheathed in icy cold, and deals 1 to 6 cold damage each hit.
+Critical hits deal an additional 1 to 10 cold damage for weapons with a x2 critical
+multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Cold</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Cold</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Poison II</Name>
+        <Description>Poison II: On Hit: 2 to 6 Poison Damage.
+On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">3</Sides>
+            <Damage>Poison</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">4</Sides>
+            <Damage>Constitution</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Seeker +4</Name>
+        <Description>Seeker +4: Provides a +4 Enhancement bonus to confirm critical hits, and a
++8 Enhancement bonus to critical hit damage (before multipliers are applied).</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>Weapon_DamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Shocking Burst</Name>
+        <Description>Shocking Burst: This weapon is sheathed in crackling electricity, and deals 1 to 6
+electric damage each hit. Critical hits deal an additional 1 to 10 electric damage
+for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30
+for a x4 multiplier.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Electric</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="6">0 0 1 2 3 4</Number>
+            <Sides size="6">0 0 10 10 10 10</Sides>
+            <Damage>Electric</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Shock II</Name>
+        <Description>Shock II: On Hit: 2 to 8 Electric Damage.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">4</Sides>
+            <Damage>Electric</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Shrieking I</Name>
+        <Description>Shrieking I: On Hit: 1 to 6 Sonic Damage.</Description>
+        <MinLevel>14</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Sonic</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

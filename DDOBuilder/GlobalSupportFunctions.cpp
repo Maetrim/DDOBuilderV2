@@ -466,7 +466,7 @@ BOOL OnEraseBackground(
                     {
                         IMAGEINFO info;
                         pImage->GetImageInfo(0, &info);
-                        // limit to the the height of the selection combo
+                        // limit to the height of the selection combo
                         controlClip.bottom = controlClip.top
                                 + info.rcImage.bottom
                                 - info.rcImage.top
@@ -1901,7 +1901,10 @@ void AddSpecialSlots(InventorySlotType slot, Item& item)
         {
             AddAugment(&currentAugments, "Reaper Ring", true);
         }
-        AddAugment(&currentAugments, "Deck Curse", true);
+        if (slot != Inventory_Quiver)
+        {
+            AddAugment(&currentAugments, "Deck Curse", true);
+        }
         // now set the slots on the item
         item.SetAugments(currentAugments);
     }
@@ -2197,3 +2200,10 @@ std::string ReplaceAll(
     }
     return str;
 }
+
+bool DarkModeEnabled()
+{
+    bool bDarkMode = (theApp.m_nAppLook == ID_VIEW_APPLOOK_OFF_2007_BLACK);
+    return bDarkMode;
+}
+

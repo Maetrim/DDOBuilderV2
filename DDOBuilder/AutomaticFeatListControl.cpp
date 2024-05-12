@@ -10,6 +10,7 @@ namespace
 {
     COLORREF f_selectedColour = ::GetSysColor(COLOR_HIGHLIGHT);
     COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
+    COLORREF f_backgroundColourDark = RGB(83, 83, 83);
     COLORREF f_white = RGB(255, 255, 255);                      // white
     COLORREF f_black = RGB(0, 0, 0);                            // black
 }
@@ -97,6 +98,7 @@ void CAutomaticFeatListControl::SetAutomaticFeats(
 
 void CAutomaticFeatListControl::OnPaint()
 {
+    bool bDarkMode = DarkModeEnabled();
     CPaintDC dc(this);
 
     CRect rctWindow;
@@ -118,12 +120,14 @@ void CAutomaticFeatListControl::OnPaint()
     memoryDc.SelectStockObject(DEFAULT_GUI_FONT);
     memoryDc.SetBkMode(TRANSPARENT);
 
+    memoryDc.SetTextColor(bDarkMode ? f_white : f_black);
+
     // fill background
-    memoryDc.FillSolidRect(rctWindow, f_backgroundColour);
+    memoryDc.FillSolidRect(rctWindow, bDarkMode ? f_backgroundColourDark : f_backgroundColour);
     memoryDc.Draw3dRect(
             rctWindow,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
 
     m_headerItemSize.cx = rctWindow.Width();
     m_featItemSize.cx = rctWindow.Width();
@@ -133,8 +137,8 @@ void CAutomaticFeatListControl::OnPaint()
     CRect rctItem(0, top, m_headerItemSize.cx, top + m_headerItemSize.cy);
     memoryDc.Draw3dRect(
             rctItem,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
     CSize strSize = memoryDc.GetTextExtent(m_label.c_str());
     memoryDc.TextOut(
             rctItem.left + (rctItem.Width() - strSize.cx) / 2,
@@ -150,14 +154,13 @@ void CAutomaticFeatListControl::OnPaint()
         rctItem = CRect(0, top, m_headerItemSize.cx, top + m_featItemSize.cy);
         memoryDc.Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         if ((int)iItemIndex == m_selectedItem)
         {
             CRect rctInterior(rctItem);
             rctInterior.DeflateRect(1, 1, 1, 1);
             memoryDc.FillSolidRect(rctInterior, f_selectedColour);
-            memoryDc.SetTextColor(f_white);
         }
         // draw the feat icon
         const Feat& feat = FindFeat(fit.FeatName());
@@ -171,7 +174,6 @@ void CAutomaticFeatListControl::OnPaint()
                 rctItem.left + 34,
                 rctItem.top + (rctItem.Height() - strSize.cy) / 2,  // centred vertically
                 fit.FeatName().c_str());
-        memoryDc.SetTextColor(f_black);
         top += rctItem.Height();
         ++iItemIndex;
     }

@@ -10,6 +10,7 @@ namespace
 {
     COLORREF f_selectedColour = ::GetSysColor(COLOR_HIGHLIGHT);
     COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
+    COLORREF f_backgroundColourDark = RGB(83, 83, 83);
     COLORREF f_white = RGB(255, 255, 255);                      // white
     COLORREF f_black = RGB(0, 0, 0);                            // black
 }
@@ -106,6 +107,8 @@ void CGrantedFeatListControl::SetupControl()
 
 void CGrantedFeatListControl::OnPaint()
 {
+    bool bDarkMode = DarkModeEnabled();
+
     CPaintDC dc(this);
     CRect rctWindow;
     GetWindowRect(rctWindow);
@@ -134,11 +137,11 @@ void CGrantedFeatListControl::OnPaint()
     m_headerItemSize.cx = rctWindow.Width();
 
     // fill background
-    memoryDc.FillSolidRect(rctWindow, f_backgroundColour);
+    memoryDc.FillSolidRect(rctWindow, bDarkMode ? f_backgroundColourDark : f_backgroundColour);
     memoryDc.Draw3dRect(
             rctWindow,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
 
     if (m_pCharacter != NULL)
     {
@@ -164,20 +167,23 @@ void CGrantedFeatListControl::OnPaint()
 
 size_t CGrantedFeatListControl::DrawSection(CDC* pDC, size_t iSection, size_t top)
 {
+    bool bDarkMode = DarkModeEnabled();
     // draw the section header item
     CRect rctItem(0, top, m_headerItemSize.cx, top + m_headerItemSize.cy);
     pDC->Draw3dRect(
             rctItem,
-            ::GetSysColor(COLOR_BTNHIGHLIGHT),
-            ::GetSysColor(COLOR_BTNSHADOW));
+            bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+            bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
     CString sectionName = m_sections[iSection].name;
     CSize strSize = pDC->GetTextExtent(sectionName);
+    pDC->SetTextColor(bDarkMode ? f_white : f_black);
     pDC->TextOut(
             rctItem.left + (rctItem.Width() - strSize.cx) / 2,
             rctItem.top + (rctItem.Height() - strSize.cy) / 2,
             sectionName);
     top += rctItem.Height();
 
+    pDC->SetTextColor(bDarkMode ? f_white : f_black);
     // now draw all the items in this section
     CImageList & il = Feat::FeatImageList();
     const std::list<Feat>& feats = m_sections[iSection].feats;
@@ -187,15 +193,14 @@ size_t CGrantedFeatListControl::DrawSection(CDC* pDC, size_t iSection, size_t to
         rctItem = CRect(0, top, m_headerItemSize.cx, top + m_featItemSize.cy);
         pDC->Draw3dRect(
                 rctItem,
-                ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                ::GetSysColor(COLOR_BTNSHADOW));
+                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
         if ((int)iSection == m_selectedSection
                 && (int)iItemIndex == m_selectedSectionItem)
         {
             CRect rctInterior(rctItem);
             rctInterior.DeflateRect(1, 1, 1, 1);
             pDC->FillSolidRect(rctInterior, f_selectedColour);
-            pDC->SetTextColor(f_white);
         }
         // draw the feat icon
         il.Draw(pDC, fit.FeatImageIndex(), rctItem.TopLeft() + CPoint(1, 1), ILD_NORMAL);
@@ -205,7 +210,6 @@ size_t CGrantedFeatListControl::DrawSection(CDC* pDC, size_t iSection, size_t to
                 rctItem.left + 34,
                 rctItem.top + (rctItem.Height() - strSize.cy) / 2,  // centred vertically
                 fit.Name().c_str());
-        pDC->SetTextColor(f_black);
         top += rctItem.Height();
         ++iItemIndex;
     }

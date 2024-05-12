@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Sacrificial Dagger</Name>
     <Icon>Dagger_1d</Icon>
     <Description>This vile blade was used by a drow priestess to sacrifice innocent farmers.</Description>
@@ -28,20 +29,10 @@
       <BonusType>Weapon Enchantment</BonusType>
     </Buff>
     <Buff>
-      <Type>AbilityBonus</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Dexterity</Description1>
-      <Item>Dexterity</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Strength</Description1>
-      <Item>Strength</Item>
+      <Type>Poison Burst</Type>
     </Buff>
     <Buff>
       <Type>Negative Energy Spike</Type>
-      <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
       <Type>Life Stealing</Type>
@@ -49,6 +40,99 @@
     <Buff>
       <Type>Lesser Vampirism</Type>
     </Buff>
+    <ItemAugment>
+      <Type>Variant</Type>
+      <Augment>
+        <Name>Constitution Poison, Virulent</Name>
+        <Description>Constitution Poison, Virulent: The deadly poison coating this weapon deals one
+point of constitution damage every time it strikes an enemy, and an additional
+1 to 6 points of constitution damage when it scores a critical hit. Some creatures
+may be immune or resistant to ability damage.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Bonus size="1">1</Bonus>
+            <Damage>Constitution</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Constitution</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Variant</Type>
+      <Augment>
+        <Name>Dexterity Poison, Virulent</Name>
+        <Description>Dexterity Poison, Virulent: The deadly poison coating this weapon deals one
+point of dexterity damage every time it strikes an enemy, and an additional 1 to
+6 points of dexterity damage when it scores a critical hit. Some creatures may be
+immune or resistant to ability damage.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Bonus size="1">1</Bonus>
+            <Damage>Dexterity</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Dexterity</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Variant</Type>
+      <Augment>
+        <Name>Strength Poison, Virulent</Name>
+        <Description>Strength Poison, Virulent: The deadly poison coating this weapon deals one point
+of strength damage every time it strikes an enemy, and an additional 1 to 6 points
+of strength damage when it scores a critical hit. Some creatures may be immune or
+resistant to ability damage.</Description>
+        <MinLevel>20</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Bonus size="1">1</Bonus>
+            <Damage>Strength</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Strength</Damage>
+          </Dice>
+        </Effect>
+      </Augment>
+    </ItemAugment>
     <IsAcceptsSentience/>
   </Item>
 </Items>

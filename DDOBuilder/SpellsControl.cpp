@@ -18,6 +18,10 @@ namespace
         SI_count
     };
     const int c_spellSlotImageSize = 36; // 36 * 36 pixels
+    COLORREF f_backgroundColour = ::GetSysColor(COLOR_BTNFACE); // grey
+    COLORREF f_backgroundColourDark = RGB(83, 83, 83);
+    COLORREF f_white = RGB(255, 255, 255);                      // white
+    COLORREF f_black = RGB(0, 0, 0);                            // black
 }
 
 // global image data used for drawing all enhancements trees.
@@ -82,6 +86,7 @@ END_MESSAGE_MAP()
 
 void CSpellsControl::OnPaint()
 {
+    bool bDarkMode = DarkModeEnabled();
     // size is based on current window extent
     CRect rect;
     GetWindowRect(rect);
@@ -153,9 +158,10 @@ void CSpellsControl::OnPaint()
     memoryDc.SetBkMode(TRANSPARENT);
 
     // first fill the background with a default brush
-    COLORREF bkColor = ::GetSysColor(COLOR_3DFACE);
+    COLORREF bkColor = bDarkMode ? f_backgroundColourDark : f_backgroundColour;
     CBrush bkBrush(bkColor);
     memoryDc.FillRect(rect, &bkBrush);
+    memoryDc.SetTextColor(bDarkMode ? f_white : f_black);
 
     m_hitBoxes.clear();
 

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Stormreaver's Tablecloth</Name>
     <Icon>Cloak_24a</Icon>
     <Description>You hold in your hand a small shred of the huge tablecloth that was used by
@@ -30,11 +31,30 @@ everything is so much easier to understand now.</Description>
       <Value1>2</Value1>
       <BonusType>Equipment</BonusType>
     </Buff>
-    <Buff>
-      <Type>SpellPenetrationNumeral</Type>
-      <Value1>3</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>III</Description1>
-    </Buff>
+    <ItemAugment>
+      <Type>Attuned by Heroism: Tier 1</Type>
+      <Augment>
+        <Name>Yellow Augment Slot</Name>
+        <Description>Add a Yellow augment slot to this item</Description>
+        <MinLevel>25</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Yellow</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned by Heroism: Tier 2</Type>
+      <Augment>
+        <Name>Adds Spell Penetration III</Name>
+        <Description>Spell Penetration III: Passive: +3 Equipment bonus to Spell Penetration checks.</Description>
+        <MinLevel>25</MinLevel>
+        <Icon>Heroism</Icon>
+        <Effect>
+          <Type>SpellPenetrationBonus</Type>
+          <Bonus>Equipment</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Ring of the Stalker (Level 7)</Name>
     <Icon>Ring_24</Icon>
     <Description>A bound Invisible Stalker makes this ring a dangerous asset for anyone striking
@@ -10,9 +11,52 @@ their enemies from the shadows.</Description>
       <Ring/>
     </EquipmentSlot>
     <Buff>
+      <Type>Deception</Type>
+      <Value1>3</Value1>
+      <Value2>5</Value2>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
       <Type>Seeker</Type>
       <Value1>5</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Upgradeable - Tier 2</Type>
+      <Augment>
+        <Name>Insightful Deception +2</Name>
+        <Description>Insightful Deception +2: +2 Insight bonus to hit and +3 to damage for any hit that would qualify as a sneak attack.</Description>
+        <MinLevel>7</MinLevel>
+        <Effect>
+          <Type>SneakAttackAttack</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+        <Effect>
+          <Type>SneakAttackDamage</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Upgradeable - Tier 3</Type>
+      <Augment>
+        <Name>Seeker +6 and a Green Augment Slot</Name>
+        <Description>Seeker +6: Provides a +6 Enhancement bonus to confirm critical hits, and a +6 Enhancement bonus to critical hit damage (before multipliers are applied).</Description>
+        <MinLevel>7</MinLevel>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>Weapon_AttackBonusCritical</Type>
+          <Type>Weapon_DamageBonusCritical</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

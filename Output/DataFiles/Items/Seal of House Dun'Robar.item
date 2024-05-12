@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Seal of House Dun'Robar</Name>
     <Icon>Ring_4</Icon>
     <Description>Atop this ring is a plain steel circle. Encompassed by the circle is a stylized
@@ -10,49 +11,127 @@ blade, possibly a shortsword or stiletto.</Description>
       <Ring/>
     </EquipmentSlot>
     <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>2</Value1>
-      <BonusType>Insightful</BonusType>
-      <Description1>Constitution</Description1>
-      <Item>Constitution</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>7</Value1>
-      <BonusType>Enhancement</BonusType>
-      <Description1>Strength</Description1>
-      <Item>Strength</Item>
-    </Buff>
-    <Buff>
-      <Type>AbilityBonus</Type>
-      <Value1>2</Value1>
-      <BonusType>Insightful</BonusType>
-      <Description1>Strength</Description1>
-      <Item>Strength</Item>
-    </Buff>
-    <Buff>
       <Type>Dodge</Type>
       <Value1>8</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <Buff>
-      <Type>Shatter</Type>
-      <Value1>10</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Stunning</Type>
-      <Value1>10</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Vertigo</Type>
-      <Value1>10</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
-    <Buff>
-      <Type>Tendon Slice</Type>
-      <Value1>10</Value1>
-    </Buff>
+    <ItemAugment>
+      <Type>Variant Ability</Type>
+      <Augment>
+        <Name>Constitution +7</Name>
+        <Description>Constitution +7: This item gives the wearer improved health, granting a +7 enhancement bonus to Constitution.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Constitution</Item>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Insightful Constitution +2</Name>
+        <Description>+2 Insight bonus to Constitution</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Constitution</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Strength +7</Name>
+        <Description>Strength +7: This item gives the wearer the power of Ogre Strength, granting a +7 enhancement bonus to Strength.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Strength</Item>
+          <AType>Simple</AType>
+          <Amount size="1">7</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Insightful Strength +2</Name>
+        <Description>+2 Insight bonus to Strength</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Strength</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Variant Combat</Type>
+      <Augment>
+        <Name>Insightful Combat Mastery +5</Name>
+        <Description>Insightful Combat Mastery +5: +5 Insight bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>TacticalDC</Type>
+          <Bonus>Insightful</Bonus>
+          <Item>Shatter</Item>
+          <Item>Stun</Item>
+          <Item>Vertigo</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Shatter +10</Name>
+        <Description>Shatter +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Sunder and Improved Sunder attempts.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>TacticalDC</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Shatter</Item>
+          <AType>Simple</AType>
+          <Amount size="1">10</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Stunning +10</Name>
+        <Description>Stunning +10: +10 Enhancement bonus to the DC of character's Stunning Blow and Stunning Fist attempts.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>TacticalDC</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Stun</Item>
+          <AType>Simple</AType>
+          <Amount size="1">10</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Vertigo +10</Name>
+        <Description>Vertigo +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Trip and Improved Trip attempts.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+        <Effect>
+          <Type>TacticalDC</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Vertigo</Item>
+          <AType>Simple</AType>
+          <Amount size="1">10</Amount>
+        </Effect>
+      </Augment>
+      <Augment>
+        <Name>Tendon Slice +10</Name>
+        <Description>Tendon Slice +10: On Hit: 10% chance to slow target's movement by 50% for 6 seconds.</Description>
+        <MinLevel>21</MinLevel>
+        <Icon>Variant</Icon>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

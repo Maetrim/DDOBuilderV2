@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Mournlode Breastplate (level 8)</Name>
     <Icon>MediumArmor_1</Icon>
     <Description>Metal armor constructed from valuable purple Mournlode crystal is imbued with
@@ -21,6 +22,10 @@ wearer from evil.</Description>
     <ArmorCheckPenalty>-3</ArmorCheckPenalty>
     <ArcaneSpellFailure>25</ArcaneSpellFailure>
     <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>2</Value1>
+    </Buff>
+    <Buff>
       <Type>Protection</Type>
       <Value1>4</Value1>
       <BonusType>Deflection</BonusType>
@@ -34,14 +39,46 @@ wearer from evil.</Description>
       <Type>UndeadGuard</Type>
       <Value1>2</Value1>
     </Buff>
-    <Buff>
-      <Type>UndeadGuard</Type>
-      <Value1>2</Value1>
-    </Buff>
-    <Buff>
-      <Type>Resistance</Type>
-      <Value1>4</Value1>
-      <BonusType>Resistance</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>+3 Enhancement Bonus and Undead Guard 3</Name>
+        <Description>+3 Enhancement Bonus: +3 Enhancement bonus to Armor Class.
+Undead Guard +3: Chance to deal 3d8 Good damage to undead when hit.</Description>
+        <MinLevel>8</MinLevel>
+        <Icon>Upgrade</Icon>
+        <Effect>
+          <Type>Weapon_Enchantment</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">3</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Protection +5, Resistance +5 and a Green Augment Slot</Name>
+        <Description>Protection +5: Passive: +5 Deflection bonus to Armor Class.
+Resistance +5: Passive: +5 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.
+Adds a Green augment slot to this item</Description>
+        <MinLevel>8</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Deflection</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Resistance</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

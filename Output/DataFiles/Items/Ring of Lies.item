@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Ring of Lies</Name>
     <Icon>Ring_11b</Icon>
     <Description>This ring is a potent facilitator of deceptions and falsehoods, but it is risky
@@ -57,5 +58,37 @@ to addiction and ruin.</Description>
       <Type>DeceptionFixed</Type>
       <BonusType>Enhancement</BonusType>
     </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Stormreaver)</Type>
+      <Augment>
+        <Name>Adds +2 Exceptional Charisma Skills and Improved Deception</Name>
+        <Description>Charisma Skills - Exceptional Bonus +2: Passive +2 Exceptional bonus to the Charisma
+based skills of: Bluff, Diplomacy, Haggle, Intimidate, Perform and Use Magic Device (UMD)
+Improved Deception: This item makes your weapons hard to focus upon and thus provides
+a +5 enhancement bonus to Bluff checks. In addition, while using this item your
+weapons have a chance to envelop the target in darkness, making them vulnerable
+to sneak attacks for a short time.</Description>
+        <MinLevel>13</MinLevel>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Exceptional</Bonus>
+          <Item>Bluff</Item>
+          <Item>Diplomacy</Item>
+          <Item>Haggle</Item>
+          <Item>Intimidate</Item>
+          <Item>Perform</Item>
+          <Item>Use Magic Device</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Bluff</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

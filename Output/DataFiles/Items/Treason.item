@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Treason</Name>
     <Icon>Shortsword_16</Icon>
     <Description>This weapon was a trophy of the giants' last victory, taken from the fallen
@@ -35,6 +36,12 @@ Lost Empire, Treason was lost in the ashes.</Description>
       <BonusType>Enhancement</BonusType>
     </Buff>
     <Buff>
+      <Type>Sneak Attack</Type>
+      <Value1>3</Value1>
+      <Value2>5</Value2>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
       <Type>Treason</Type>
     </Buff>
     <Buff>
@@ -42,10 +49,33 @@ Lost Empire, Treason was lost in the ashes.</Description>
       <Value1>10</Value1>
       <BonusType>Enhancement</BonusType>
     </Buff>
-    <Buff>
-      <Type>ArmorPiercing</Type>
-      <Value1>10</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Stormreaver)</Type>
+      <Augment>
+        <Name>Adds Sneak Attack Bonus +4 and Armor Piercing 15%</Name>
+        <Description>Sneak Attack Bonus +4: Provides a +4 to attack bonus and a +6 to damage for any
+attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.
+Armor-Piercing - 15%: Passive: +15% Enhancement bonus to Fortification Bypass.</Description>
+        <MinLevel>26</MinLevel>
+        <Effect>
+          <Type>SneakAttackAttack</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">4</Amount>
+        </Effect>
+        <Effect>
+          <Type>SneakAttackDamage</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+        <Effect>
+          <Type>FortificationBypass</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">15</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Noxious Embers</Name>
     <Icon>Necklace_24</Icon>
     <Description>This small glass phial is attached to a necklace of blood red hair and filled
@@ -9,6 +10,13 @@ with the ashes of Salasso's warped and twisted heart.</Description>
     <EquipmentSlot>
       <Necklace/>
     </EquipmentSlot>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Lesser Maximize</Item>
+      <AType>SLA</AType>
+      <Amount size="3">12 3 3</Amount>
+    </Effect>
     <Buff>
       <Type>Combustion</Type>
       <Value1>78</Value1>
@@ -17,16 +25,30 @@ with the ashes of Salasso's warped and twisted heart.</Description>
       <Item>Fire</Item>
     </Buff>
     <Buff>
+      <Type>EfficientEnlargeI</Type>
+    </Buff>
+    <Buff>
       <Type>SpellLoreNumeral</Type>
       <Value1>3</Value1>
       <BonusType>Equipment</BonusType>
       <Description1>III</Description1>
     </Buff>
-    <Buff>
-      <Type>SpellLoreNumeral</Type>
-      <Value1>6</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>VI</Description1>
-    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Black Abbot)</Type>
+      <Augment>
+        <Name>Lesser maximize get 5 charges and Spell Lore VI</Name>
+        <Description>Lesser Maximize: 5 / Day
+Spell Lore VI: Passive: All of your spells gain a 6% Equipment bonus to their
+chance to critical hit.</Description>
+        <MinLevel>13</MinLevel>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>All</Item>
+          <AType>Simple</AType>
+          <Amount size="1">6</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

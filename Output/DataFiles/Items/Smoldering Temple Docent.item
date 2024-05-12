@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Smoldering Temple Docent</Name>
     <Icon>Docent_1a</Icon>
     <Description>A docent from deep within the Temple of Elemental Evil.</Description>
@@ -36,13 +37,31 @@
       <Value1>2</Value1>
       <BonusType>Resistance</BonusType>
     </Buff>
-    <Buff>
-      <Type>Fortification</Type>
-      <Value1>75</Value1>
-      <BonusType>Enhancement</BonusType>
-    </Buff>
     <ItemAugment>
-      <Type>Green</Type>
+      <Type>Upgradeable Item</Type>
+      <Augment>
+        <Name>Adds Dusk, Fortification +75% and a Green augment slot.</Name>
+        <Description>Dusk: Equipping this item engulfs you in twilight shadows. Attacks from enemies
+have a 10% chance to miss you due to concealment.
+Fortification +75%: +75% Enhancement bonus to reduced chance of taking critical
+damage on a critical hit.
+Adds a Green Augment slot.</Description>
+        <MinLevel>7</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>Displacement</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">10</Amount>
+        </Effect>
+        <Effect>
+          <Type>Fortification</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">75</Amount>
+        </Effect>
+      </Augment>
     </ItemAugment>
   </Item>
 </Items>

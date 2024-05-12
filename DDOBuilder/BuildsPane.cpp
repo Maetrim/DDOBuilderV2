@@ -56,7 +56,8 @@ CBuildsPane::CBuildsPane() :
     m_pCharacter(NULL),
     m_hPopupMenuItem(NULL),
     m_bEscape(false),
-    m_bLoadComplete(false)
+    m_bLoadComplete(false),
+    m_bEditInProgress(false)
 {
 }
 
@@ -228,7 +229,7 @@ void CBuildsPane::UpdateActiveBuildPositionChanged(Character*)
 
 void CBuildsPane::PopulateBuildsList()
 {
-    if (m_pCharacter != NULL)
+    if (m_pCharacter != NULL && !m_bEditInProgress)
     {
         // keep the same item selected if there was one
         HTREEITEM hSelItem = m_treeBuilds.GetSelectedItem();
@@ -458,6 +459,7 @@ void CBuildsPane::OnEndlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
 {
     if (!m_bEscape)
     {
+        m_bEscape = true;   // stop a double edit on a click away
         // the user has renamed a life or build
         LPNMTVDISPINFO pTVDispInfo = reinterpret_cast<LPNMTVDISPINFO>(pNMHDR);
         DWORD itemData = m_treeBuilds.GetItemData(pTVDispInfo->item.hItem);
@@ -480,6 +482,9 @@ void CBuildsPane::OnEndlabeleditTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
                 // fail!
                 break;
         }
+    }
+    else
+    {
         m_bEscape = false;
     }
     *pResult = 0;
@@ -605,7 +610,9 @@ LRESULT CBuildsPane::OnStartLabelEdit(WPARAM, LPARAM)
     HTREEITEM hItem = m_treeBuilds.GetSelectedItem();
     if (hItem != NULL)
     {
+        m_bEditInProgress = true;
         m_treeBuilds.EditLabel(hItem);
+        m_bEditInProgress = false;
     }
     return 0;
 }
@@ -622,4 +629,3 @@ void CBuildsPane::OnUpdateBuildLevel(CCmdUI* pCmdUI)
     // disable item for levels not yet supported in game
     pCmdUI->Enable(menuItemLevel <= MAX_GAME_LEVEL);
 }
-

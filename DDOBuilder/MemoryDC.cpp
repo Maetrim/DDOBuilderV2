@@ -8,13 +8,21 @@
 using MfcControls::MemoryDC;
 
 MemoryDC::MemoryDC(CDC* pDC, const CRect * pRect) :
-    CDC()
+    CDC(),
+    m_bMemDC(FALSE),
+    m_pDC(pDC),
+    m_rect(0, 0, 0, 0),
+    m_pOldBitmap(NULL),
+    m_pOldBrush(NULL),
+    m_pOldFont(NULL),
+    m_crOldBkColor(RGB(0, 0, 0)),
+    m_crOldTextColor(RGB(0, 0, 0)),
+    m_pOldPen(NULL),
+    m_ptOldOrigin(0, 0),
+    m_nOldBkMode(0)
 {
     // make sure the call provided a valid device context
     ASSERT(pDC != NULL);
-
-    // save the original device context for later BitBlt()
-    m_pDC = pDC;
 
     // check whether we're printing
     m_bMemDC = !pDC->IsPrinting();

@@ -1,5 +1,6 @@
 <Items>
   <Item>
+    <NoAutoUpdate/>
     <Name>Ring of Master Artifice (Level 15)</Name>
     <Icon>Ring_22</Icon>
     <Description>A ring said to have been worn by a legendary artificer. Using it, he was able
@@ -9,6 +10,13 @@ to take things that seemed beyond repair and make them good as new.</Description
     <EquipmentSlot>
       <Ring/>
     </EquipmentSlot>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Reconstruct</Item>
+      <AType>SLA</AType>
+      <Amount size="3">10 1 1</Amount>
+    </Effect>
     <Buff>
       <Type>WizardryNumber</Type>
       <Value1>159</Value1>
@@ -22,36 +30,80 @@ to take things that seemed beyond repair and make them good as new.</Description
       <Item>Repair</Item>
     </Buff>
     <Buff>
-      <Type>SkillBonus</Type>
-      <BonusType>Competence</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
-    </Buff>
-    <Buff>
-      <Type>Reconstruction</Type>
-      <Value1>96</Value1>
+      <Type>RepairLore</Type>
+      <Value1>14</Value1>
       <BonusType>Equipment</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
     </Buff>
     <Buff>
-      <Type>SkillBonus</Type>
-      <BonusType>Competence</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
+      <Type>Improved Auto-Repair</Type>
     </Buff>
-    <Buff>
-      <Type>Reconstruction</Type>
-      <Value1>102</Value1>
-      <BonusType>Equipment</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
-    </Buff>
-    <Buff>
-      <Type>SkillBonus</Type>
-      <BonusType>Competence</BonusType>
-      <Description1>Repair</Description1>
-      <Item>Repair</Item>
-    </Buff>
+    <ItemAugment>
+      <Type>Tier 2</Type>
+      <Augment>
+        <Name>Wizardry 173, Reconstruction 102, Repair Lore 15</Name>
+        <Description>Wizardry +173: +173 Enhancement bonus to spell points.
+Reconstruction +102: Passive: +102 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +15: Passive: Your Repair and Rust spells gain a 15% Equipment bonus
+to their chance to critical hit.</Description>
+        <MinLevel>15</MinLevel>
+        <Effect>
+          <Type>SpellPoints</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">173</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <Item>Rust</Item>
+          <AType>Simple</AType>
+          <Amount size="1">102</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <Item>Rust</Item>
+          <AType>Simple</AType>
+          <Amount size="1">15</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Tier 3</Type>
+      <Augment>
+        <Name>Wizardry 187, Reconstruction 108, Repair Lore 16 and a Green Augment Slot</Name>
+        <Description>Wizardry +187: +187 Enhancement bonus to spell points.
+Reconstruction +108: Passive: +108 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +16: Passive: Your Repair and Rust spells gain a 16% Equipment bonus
+to their chance to critical hit.
+Adds a Green Augment Slot</Description>
+        <MinLevel>15</MinLevel>
+        <GrantAugment>Green</GrantAugment>
+        <Effect>
+          <Type>SpellPoints</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">187</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellPower</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <Item>Rust</Item>
+          <AType>Simple</AType>
+          <Amount size="1">108</Amount>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Repair</Item>
+          <Item>Rust</Item>
+          <AType>Simple</AType>
+          <Amount size="1">16</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>
