@@ -191,6 +191,11 @@ std::string Build::ComplexUIDescription() const
 
 void Build::BuildNowActive()
 {
+    // ensure all gear sets have images setup
+    for (auto&& git : m_GearSetups)
+    {
+        git.UpdateImages();
+    }
     SetupDefaultWeaponGroups();
     VerifySpecialFeats();
     // make sure we are correctly tracking how many APs have been spent
@@ -1368,6 +1373,16 @@ int Build::AvailableActionPoints(
     return aps;
 }
 
+size_t Build::BonusRacialActionPoints() const
+{
+    return m_pLife->BonusRacialActionPoints();
+}
+
+size_t Build::BonusUniversalActionPoints() const
+{
+    return m_pLife->BonusUniversalActionPoints();
+}
+
 int Build::APSpentInTree(const std::string& treeName) const
 {
     int spent = 0;
@@ -1600,7 +1615,7 @@ double Build::SkillAtLevel(
     double skillLevel = 0;  // assume untrained
 
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
-    for (size_t li = 0; li <= level; ++li)
+    for (size_t li = 0; li < level; ++li)
     {
         // full point per spend if its a class skill at this level
         // half point per spend if its a cross class skill at this level
@@ -2501,6 +2516,26 @@ void Build::SetAbilityLevelUp(size_t level, AbilityType ability)
         NotifyAbilityValueChanged(ability);
     }
 }
+
+AbilityType Build::AbilityLevelUp(size_t level) const
+{
+    AbilityType at = Ability_Unknown;
+    switch (level)
+    {
+        case 4: at = Level4();   break;
+        case 8: at = Level8();   break;
+        case 12: at = Level12();   break;
+        case 16: at = Level16();   break;
+        case 20: at = Level20();   break;
+        case 24: at = Level24();   break;
+        case 28: at = Level28();   break;
+        case 32: at = Level32();   break;
+        case 36: at = Level36();   break;
+        case 40: at = Level40();   break;
+    }
+    return at;
+}
+
 
 size_t Build::BaseAbilityValue(AbilityType ability) const
 {
@@ -5128,5 +5163,50 @@ void Build::RevokeItemEffect(const std::string& name, const Effect& effect)
         copy.SetType(tit);
         NotifyItemEffectRevoked(name, copy);
     }
+}
+
+void Build::SetQuestsCompletions(const std::list<CompletedQuest>& quests)
+{
+    std::list<CompletedQuest> currentQuests = CompletedQuests();
+    for (auto&& qit : quests)
+    {
+        std::list<CompletedQuest>::iterator cqit = currentQuests.begin();
+        while (cqit != currentQuests.end())
+        {
+            if (qit.SameQuestAndLevel(*cqit))
+            {
+                // this is the one we need to update
+                break;
+            }
+            cqit++;
+        }
+        if (cqit != currentQuests.end())
+        {
+            // we have a Q to update to a new difficulty
+            if (qit.Difficulty() != QD_notRun)
+            {
+                cqit->Set_Difficulty(qit.Difficulty()); // update
+            }
+            else
+            {
+                currentQuests.erase(cqit);  // remove as no longer been "run"
+            }
+        }
+        else
+        {
+            // this quest has never been completed before, add it unless we're setting to QD_notRun
+            if (qit.Difficulty() != QD_notRun)
+            {
+                currentQuests.push_back(qit);   // add it
+            }
+            else
+            {
+                // just ignore as its being set to Not Run and its not in the list anyway
+            }
+        }
+    }
+    Set_CompletedQuests(currentQuests);
+    // and were done
+    SetModifiedFlag(TRUE);
 }
 

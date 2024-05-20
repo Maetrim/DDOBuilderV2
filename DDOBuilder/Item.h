@@ -25,7 +25,7 @@ class Item :
 
         bool CanEquipToSlot(InventorySlotType slot) const;
         void VerifyObject() const;
-        bool ContainsSearchText(const std::string& searchText) const;
+        bool ContainsSearchText(const std::string& searchText, const Build* pBuild) const;
 
         void CopyUserSetValues(const Item & original);
         std::string ItemType() const;
@@ -95,6 +95,7 @@ class Item :
 
         friend class WikiItemFileProcessor;
         friend class CItemSelectDialog;
+        friend class CFindGearDialog;
         friend class CItemImageDialog;
         friend class CWeaponImageDialog;
         friend class Build;

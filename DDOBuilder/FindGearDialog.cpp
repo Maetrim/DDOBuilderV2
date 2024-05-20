@@ -1,15 +1,13 @@
-// ItemSelectDialog.cpp
+// FindGearDialog.cpp
 //
 
 #include "stdafx.h"
-#include "ItemSelectDialog.h"
+#include "FindGearDialog.h"
 #include "Build.h"
 #include "GlobalSupportFunctions.h"
 #include "MouseHook.h"
-#include "Race.h"
-#include "Augment.h"
 
-// CItemSelectDialog dialog
+// CFindGearDialog dialog
 
 namespace
 {
@@ -20,58 +18,37 @@ namespace
     };
 }
 
-IMPLEMENT_DYNAMIC(CItemSelectDialog, CDialog)
+IMPLEMENT_DYNAMIC(CFindGearDialog, CDialog)
 
-CItemSelectDialog::CItemSelectDialog(
+CFindGearDialog::CFindGearDialog(
         CWnd* pParent,
-        InventorySlotType slot,
-        const Item & item,
         Build* pBuild) :
-    CDialog(CItemSelectDialog::IDD, pParent),
-    m_slot(slot),
-    m_item(item),
+    CDialog(CFindGearDialog::IDD, pParent),
     m_pBuild(pBuild),
     m_bInitialising(false),
     m_showingTip(false),
     m_tipCreated(false),
     m_hoverItem(-1),
     m_hoverHandle(0),
-    m_armorType(Armor_Unknown),
-    m_weaponType(Weapon_Unknown),
     m_bIgnoreNextMessage(false),
     m_levelRange(30)
 {
-    if (m_item.HasArmor())
-    {
-        m_armorType = m_item.Armor();
-    }
-    if (m_item.HasWeapon())
-    {
-        m_weaponType = m_item.Weapon();
-    }
-    // race overrides current armor type
-    const Race& race = FindRace(pBuild->Race());
-    if (race.HasIsConstruct())
-    {
-        m_armorType = Armor_Docent;
-    }
     m_levelRange = AfxGetApp()->GetProfileInt("ItemSelectDialog", "LevelRange", 5);
     memset(m_augmentHookHandles, 0, sizeof(m_augmentHookHandles));
 }
 
-CItemSelectDialog::~CItemSelectDialog()
+CFindGearDialog::~CFindGearDialog()
 {
     AfxGetApp()->WriteProfileInt("ItemSelectDialog", "LevelRange", m_levelRange);
 }
 
-void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
+void CFindGearDialog::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_COMBO_FILTER, m_comboFilter);
-    DDX_Control(pDX, IDC_ITEM_TYPE, m_staticType);
     DDX_Control(pDX, IDC_EDIT_TEXT, m_editSearchText);
     DDX_Control(pDX, IDC_BUTTON_FILTER, m_buttonFilter);
     DDX_Control(pDX, IDC_ITEM_LIST, m_availableItemsCtrl);
+    DDX_Control(pDX, IDC_EQUIP_IT, m_buttonEquipIt);
     if (!pDX->m_bSaveAndValidate)
     {
         VERIFY(m_sortHeader.SubclassWindow(m_availableItemsCtrl.GetHeaderCtrl()->GetSafeHwnd()));
@@ -95,8 +72,7 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     }
 }
 
-#pragma warning(disable: 26454) // C26454 Arithmetic overflow : '-' operation produces a negative unsigned result at compile time(io.5).
-BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
+BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_ITEM_LIST, OnItemSelected)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments - 1, OnAugmentSelect)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments - 1, OnAugmentCancel)
@@ -106,7 +82,6 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT2_AUGMENT1, IDC_EDIT2_AUGMENT1 + MAX_Augments - 1, OnKillFocusAugmentEdit)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_LEVELAUGMENT1, IDC_COMBO_LEVELAUGMENT1 + MAX_Augments - 1, OnAugmentLevelSelect)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_LEVELAUGMENT1, IDC_COMBO_LEVELAUGMENT1 + MAX_Augments - 1, OnAugmentLevelCancel)
-    ON_CBN_SELENDOK(IDC_COMBO_FILTER, OnSelEndOkFilter)
     ON_WM_SIZE()
     ON_WM_WINDOWPOSCHANGING()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
@@ -116,14 +91,14 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
+    ON_BN_CLICKED(IDC_EQUIP_IT, OnButtonEquipIt)
     ON_EN_KILLFOCUS(IDC_EDIT_TEXT, OnSearchTextKillFocus)
     ON_CBN_SELENDOK(IDC_COMBO_ITEMLEVEL, OnItemLevelSelect)
     ON_CBN_SELENDOK(IDC_COMBO_WITHINLEVELS, OnSelEndLevelRange)
 END_MESSAGE_MAP()
-#pragma warning(default: 26454)
 
-// CItemSelectDialog message handlers
-BOOL CItemSelectDialog::OnInitDialog()
+// CFindGearDialog message handlers
+BOOL CFindGearDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
     m_bInitialising = true;
@@ -131,37 +106,19 @@ BOOL CItemSelectDialog::OnInitDialog()
     m_tooltip.Create(this);
     m_tipCreated = true;
 
-    // show item type of selection
-    CString text;
-    switch(m_slot)
-    {
-    case Inventory_Arrows: text = "Arrows"; break;
-    case Inventory_Armor: text = "Armor"; break;
-    case Inventory_Belt: text = "Belt"; break;
-    case Inventory_Boots: text = "Boots"; break;
-    case Inventory_Bracers: text = "Bracers"; break;
-    case Inventory_Cloak: text = "Cloak"; break;
-    case Inventory_Gloves: text = "Gloves"; break;
-    case Inventory_Goggles: text = "Goggles"; break;
-    case Inventory_Helmet: text = "Helm"; break;
-    case Inventory_Necklace: text = "Necklace"; break;
-    case Inventory_Quiver: text = "Quiver"; break;
-    case Inventory_Ring1:
-    case Inventory_Ring2: text = "Ring"; break;
-    case Inventory_Trinket: text = "Trinket"; break;
-    case Inventory_Weapon1: text = "Weapon"; break;
-    case Inventory_Weapon2: text = "Weapon, Shield, Orb"; break;
-    case Inventory_CosmeticArmor: text = "Cosmetic Armor"; break;
-    case Inventory_CosmeticCloak: text = "Cosmetic Cloak"; break;
-    case Inventory_CosmeticHelm: text = "Cosmetic Helm"; break;
-    case Inventory_CosmeticWeapon1: text = "Cosmetic Weapon"; break;
-    case Inventory_CosmeticWeapon2: text = "Cosmetic Weapon, Shield, Orb"; break;
-    }
-    SetupFilterCombobox();
     // add list control columns
     m_availableItemsCtrl.InsertColumn(0, "Item Name", LVCFMT_LEFT, 226);
     m_availableItemsCtrl.InsertColumn(1, "Level", LVCFMT_LEFT, 50);
+    m_availableItemsCtrl.SetImageList(&ItemsImages(), LVSIL_SMALL);
+    m_availableItemsCtrl.SetImageList(&ItemsImages(), LVSIL_NORMAL);
     m_sortHeader.SetSortArrow(1, FALSE);     // sort by level by default
+    m_availableItemsCtrl.SetExtendedStyle(
+            m_availableItemsCtrl.GetExtendedStyle()
+            | LVS_EX_FULLROWSELECT
+            | LVS_EX_TRACKSELECT
+            | LVS_EX_ONECLICKACTIVATE
+            //| LVS_EX_LABELTIP); // stop hover tooltips from working
+            );
 
     m_comboLevelRange.ResetContent();
     m_comboLevelRange.AddString("5");
@@ -174,25 +131,17 @@ BOOL CItemSelectDialog::OnInitDialog()
     m_comboLevelRange.AddString("40");
     switch (m_levelRange)
     {
-    case 5:     m_comboLevelRange.SetCurSel(0); break;
-    case 10:    m_comboLevelRange.SetCurSel(1); break;
-    case 15:    m_comboLevelRange.SetCurSel(2); break;
-    case 20:    m_comboLevelRange.SetCurSel(3); break;
-    case 25:    m_comboLevelRange.SetCurSel(4); break;
-    case 30:    m_comboLevelRange.SetCurSel(5); break;
-    case 35:    m_comboLevelRange.SetCurSel(6); break;
-    case 40:    m_comboLevelRange.SetCurSel(7); break;
+        case 5:     m_comboLevelRange.SetCurSel(0); break;
+        case 10:    m_comboLevelRange.SetCurSel(1); break;
+        case 15:    m_comboLevelRange.SetCurSel(2); break;
+        case 20:    m_comboLevelRange.SetCurSel(3); break;
+        case 25:    m_comboLevelRange.SetCurSel(4); break;
+        case 30:    m_comboLevelRange.SetCurSel(5); break;
+        case 35:    m_comboLevelRange.SetCurSel(6); break;
+        case 40:    m_comboLevelRange.SetCurSel(7); break;
     }
 
     PopulateAvailableItemList();
-    m_staticType.SetWindowText(text);
-    m_availableItemsCtrl.SetExtendedStyle(
-            m_availableItemsCtrl.GetExtendedStyle()
-            | LVS_EX_FULLROWSELECT
-            | LVS_EX_TRACKSELECT
-            | LVS_EX_ONECLICKACTIVATE
-            //| LVS_EX_LABELTIP); // stop hover tooltips from working
-            );
     SetupItemLevel(m_pBuild->Level(), m_item.MinLevel(), m_item.HasUserSetsLevel());
     EnableControls();
 
@@ -210,22 +159,15 @@ BOOL CItemSelectDialog::OnInitDialog()
                 false);
     }
 
-    LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
+    LoadColumnWidthsByName(&m_availableItemsCtrl, "FindGearDialog_%s");
     m_bInitialising = false;
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-Item CItemSelectDialog::SelectedItem()
-{
-    return m_item;
-}
-
-void CItemSelectDialog::PopulateAvailableItemList()
+void CFindGearDialog::PopulateAvailableItemList()
 {
     CWaitCursor longOperation;
-    m_availableItemsCtrl.LockWindowUpdate();
-    m_availableItemsCtrl.DeleteAllItems();
 
     CString searchText;
     m_editSearchText.GetWindowText(searchText);
@@ -233,63 +175,27 @@ void CItemSelectDialog::PopulateAvailableItemList()
 
     int minItemLevel = m_pBuild->Level() - m_levelRange;
 
-    // need to know how many levels and of what classes they have trained
-    std::vector<size_t> classLevels = m_pBuild->ClassLevels(m_pBuild->Level()-1);
-    // need to know which feats have already been trained by this point
-    // include any feats also trained at the current level
-    std::list<TrainedFeat> currentFeats = m_pBuild->CurrentFeats(m_pBuild->Level());
-
-    const Race& race = FindRace(m_pBuild->Race());
-    // filter the list of items loaded to those that match the slot type
     const std::list<Item> & allItems = Items();
     m_availableItems.clear();
     std::list<Item>::const_iterator it = allItems.begin();
     while (it != allItems.end())
     {
-        // may not qualify due to current level
-        if ((*it).MinLevel() <= m_pBuild->Level()
-            && (*it).CanEquipToSlot(m_slot)
-            && (static_cast<int>((*it).MinLevel()) >= minItemLevel || (*it).MinLevel() == 0))
+        bool canSelect = true;
+        // exclude weapons
+        if (!(*it).CanEquipToSlot(Inventory_Weapon1)
+                && !(*it).CanEquipToSlot(Inventory_Weapon2)
+                && (*it).MinLevel() <= m_pBuild->Level()
+                && (static_cast<int>((*it).MinLevel()) >= minItemLevel || (*it).MinLevel() == 0))
         {
-            // if its armor or a weapon, we may need to filter items further
-            bool canSelect = true;  // assume
-            switch (m_slot)
-            {
-            case Inventory_Armor:
-                canSelect = (m_armorType == Armor_Unknown)
-                        || (m_armorType == (*it).Armor());
-                if (m_armorType == Armor_Unknown
-                        && (*it).Armor() == Armor_Docent)
-                {
-                    if (race.HasIsConstruct())
-                    {
-                        // can't select docents for non-forged characters
-                        canSelect = false;
-                    }
-                }
-                break;
-            case Inventory_Weapon1:
-            case Inventory_Weapon2:
-                canSelect = (m_weaponType == Weapon_Unknown)
-                        || (m_weaponType == (*it).Weapon());
-                break;
-            }
             // must have the required search text present in the item
             if (searchText.GetLength() > 0)
             {
                 canSelect &= (*it).ContainsSearchText((LPCTSTR)searchText, m_pBuild);
             }
-            // need to include the selected item in the list regardless of
-            // filter category
-            if ((*it).Name() == m_item.Name())
-            {
-                // always include current selection
-                canSelect = true;
-            }
             // some items have requirements to be able to use, see if they are met
             if ((*it).HasRequirementsToUse())
             {
-                if (!(*it).RequirementsToUse().Met(*m_pBuild, m_pBuild->Level()-1, true, (*it).HasWeapon() ? (*it).Weapon() : Weapon_Unknown, Weapon_Unknown))
+                if (!(*it).RequirementsToUse().Met(*m_pBuild, m_pBuild->Level() - 1, true, (*it).HasWeapon() ? (*it).Weapon() : Weapon_Unknown, Weapon_Unknown))
                 {
                     canSelect = false;
                 }
@@ -302,8 +208,8 @@ void CItemSelectDialog::PopulateAvailableItemList()
         }
         ++it;
     }
-    m_availableItemsCtrl.SetImageList(&ItemsImages(), LVSIL_SMALL);
-    m_availableItemsCtrl.SetImageList(&ItemsImages(), LVSIL_NORMAL);
+    m_availableItemsCtrl.LockWindowUpdate();
+    m_availableItemsCtrl.DeleteAllItems();
 
     // now populate the control
     size_t itemIndex = 0;
@@ -324,13 +230,9 @@ void CItemSelectDialog::PopulateAvailableItemList()
     }
 
     m_availableItemsCtrl.SortItems(
-            CItemSelectDialog::SortCompareFunction,
+            CFindGearDialog::SortCompareFunction,
             (long)GetSafeHwnd());
 
-    CString text;
-    text.Format("Item Selection and Configuration - %s",
-            m_item.Name().c_str());
-    SetWindowText(text);
     int sel = -1;           // item to be selected
     LVFINDINFO fi;
     fi.flags = LVFI_STRING;
@@ -342,18 +244,11 @@ void CItemSelectDialog::PopulateAvailableItemList()
         m_availableItemsCtrl.SetItemState(sel, LVIS_SELECTED, LVIS_SELECTED);
         m_availableItemsCtrl.EnsureVisible(sel, FALSE);
     }
-    else
-    {
-        // ok not available until item selected
-        GetDlgItem(IDOK)->EnableWindow(FALSE);
-        // show the name of the selected item in the dialog title
-        SetWindowText("Item Selection and Configuration - No item selected");
-    }
     m_availableItemsCtrl.UnlockWindowUpdate();
     HideTip();
 }
 
-void CItemSelectDialog::EnableControls()
+void CFindGearDialog::EnableControls()
 {
     // show / hide the available augments based on the selected item
     std::vector<ItemAugment> augments = m_item.Augments();
@@ -409,7 +304,7 @@ void CItemSelectDialog::EnableControls()
     {
         if ((*it).HasSelectedAugment())
         {
-            const Augment& augment = (*it).GetSelectedAugment();
+            const Augment & augment = FindAugmentByName((*it).SelectedAugment(), &m_item);
             if (augment.HasSuppressSetBonus())
             {
                 ++count;
@@ -417,7 +312,7 @@ void CItemSelectDialog::EnableControls()
         }
         ++it;
     }
-    GetDlgItem(IDOK)->EnableWindow(count <= 1);
+    m_buttonEquipIt.EnableWindow(count <= 1);
     if (count > 1)
     {
         AfxMessageBox(
@@ -426,12 +321,12 @@ void CItemSelectDialog::EnableControls()
     }
 }
 
-void CItemSelectDialog::PopulateAugmentList(
-        CComboBox * combo,
-        CEdit * edit1,
-        CEdit * edit2,
-        CComboBox* comboLevel,
-        const ItemAugment & augment)
+void CFindGearDialog::PopulateAugmentList(
+    CComboBox* combo,
+    CEdit* edit1,
+    CEdit* edit2,
+    CComboBox* comboLevel,
+    const ItemAugment& augment)
 {
     combo->LockWindowUpdate();
     combo->ResetContent();
@@ -447,8 +342,8 @@ void CItemSelectDialog::PopulateAugmentList(
     }
     std::list<Augment>::const_iterator it = augments.begin();
     std::string selectedAugment = augment.HasSelectedAugment()
-            ? augment.SelectedAugment()
-            : "";
+        ? augment.SelectedAugment()
+        : "";
 
     // note that this list can be sorted
     {
@@ -503,7 +398,7 @@ void CItemSelectDialog::PopulateAugmentList(
                     }
                     comboLevel->ResetContent();
                     std::vector<int> levels = selAugment.Levels();
-                    for (auto&& lit: levels)
+                    for (auto&& lit : levels)
                     {
                         if (lit <= static_cast<int>(m_pBuild->Level()))
                         {
@@ -538,7 +433,7 @@ void CItemSelectDialog::PopulateAugmentList(
                 {
                     // value is set by the level of the item we are in
                     CString text;
-                    text.Format("%+.0f", selAugment.LevelValue()[m_item.MinLevel()-1]);
+                    text.Format("%+.0f", selAugment.LevelValue()[m_item.MinLevel() - 1]);
                     edit1->SetWindowText(text);
                     edit1->ShowWindow(SW_SHOW);
                     edit1->EnableWindow(false);     // read only
@@ -547,7 +442,7 @@ void CItemSelectDialog::PopulateAugmentList(
                         edit2->ShowWindow(SW_SHOW);
                         edit1->EnableWindow(false); // read only
                         // show the value of this augment in the control
-                        text.Format("%+.0f", selAugment.LevelValue2()[m_item.MinLevel()-1]);
+                        text.Format("%+.0f", selAugment.LevelValue2()[m_item.MinLevel() - 1]);
                         edit2->SetWindowText(text);
                     }
                     else
@@ -576,7 +471,7 @@ void CItemSelectDialog::PopulateAugmentList(
     combo->UnlockWindowUpdate();
 }
 
-void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
+void CFindGearDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
 {
     if (!m_bInitialising)
     {
@@ -595,11 +490,11 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 if ((*it)->Name() != m_item.Name())
                 {
                     m_item = *(*it);
-                    AddSpecialSlots(m_slot, m_item);  // adds reaper or mythic slots to the item
+                    AddSpecialSlots(Inventory_Boots, m_item);  // adds reaper or mythic slots to the item
                     // update the other controls
                     EnableControls();
-                    // item selected, can now click ok!
-                    GetDlgItem(IDOK)->EnableWindow(TRUE);
+                    // item selected, can now click equip it
+                    m_buttonEquipIt.EnableWindow(TRUE);
                     CString text;
                     text.Format("Item Selection and Configuration - %s",
                             m_item.Name().c_str());
@@ -612,7 +507,7 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
     *pResult = 0;
 }
 
-void CItemSelectDialog::OnAugmentSelect(UINT nID)
+void CFindGearDialog::OnAugmentSelect(UINT nID)
 {
     // the user has selected an augment in one of the augment combo boxes
     int augmentIndex = nID - IDC_COMBO_AUGMENT1;
@@ -651,7 +546,7 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
                 if (oldAugment.HasGrantConditionalAugment())
                 {
                     if (oldAugment.HasWeaponClass()
-                            && m_item.HasWeapon())
+                        && m_item.HasWeapon())
                     {
                         std::string weaponClass = EnumEntryText(oldAugment.WeaponClass(), weaponClassTypeMap);
                         if (m_pBuild->IsWeaponInGroup(weaponClass, m_item.Weapon()))
@@ -683,7 +578,7 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
             if (augment.HasGrantConditionalAugment())
             {
                 if (augment.HasWeaponClass()
-                        && m_item.HasWeapon())
+                    && m_item.HasWeapon())
                 {
                     std::string weaponClass = EnumEntryText(augment.WeaponClass(), weaponClassTypeMap);
                     if (m_pBuild->IsWeaponInGroup(weaponClass, m_item.Weapon()))
@@ -708,13 +603,14 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
     HideTip();
 }
 
-void CItemSelectDialog::OnAugmentCancel(UINT nID)
+void CFindGearDialog::OnAugmentCancel(UINT nID)
 {
     UNREFERENCED_PARAMETER(nID);
     HideTip();
+    m_bIgnoreNextMessage = true;
 }
 
-void CItemSelectDialog::OnAugmentLevelSelect(UINT nID)
+void CFindGearDialog::OnAugmentLevelSelect(UINT nID)
 {
     int augmentIndex = nID - IDC_COMBO_LEVELAUGMENT1;
     ASSERT(augmentIndex >= 0 && augmentIndex < (int)m_item.Augments().size());
@@ -733,12 +629,12 @@ void CItemSelectDialog::OnAugmentLevelSelect(UINT nID)
     }
 }
 
-void CItemSelectDialog::OnAugmentLevelCancel(UINT nID)
+void CFindGearDialog::OnAugmentLevelCancel(UINT nID)
 {
     UNREFERENCED_PARAMETER(nID);
 }
 
-void CItemSelectDialog::PopulateSlotUpgradeList(
+void CFindGearDialog::PopulateSlotUpgradeList(
         size_t controlIndex,
         const SlotUpgrade & upgrade)
 {
@@ -762,7 +658,7 @@ void CItemSelectDialog::PopulateSlotUpgradeList(
     m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
 }
 
-void CItemSelectDialog::OnUpgradeSelect(UINT nID)
+void CFindGearDialog::OnUpgradeSelect(UINT nID)
 {
     // an upgrade selection has been made. Determine which augment slot type
     // needs to be added and remove the upgrade list from the item. This action
@@ -798,14 +694,14 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
     HideTip();
 }
 
-void CItemSelectDialog::OnUpgradeCancel(UINT nID)
+void CFindGearDialog::OnUpgradeCancel(UINT nID)
 {
     UNREFERENCED_PARAMETER(nID);
     HideTip();
     m_bIgnoreNextMessage = true;
 }
 
-void CItemSelectDialog::OnKillFocusAugmentEdit(UINT nID)
+void CFindGearDialog::OnKillFocusAugmentEdit(UINT nID)
 {
     // user may have completed editing an edit field for a selectable augment
     // read the value and update if its changed
@@ -823,21 +719,21 @@ void CItemSelectDialog::OnKillFocusAugmentEdit(UINT nID)
     m_augmentValues[augmentIndex].GetWindowText(text);
     double value1 = atof(text);
     std::vector<ItemAugment> augments = m_item.Augments();
-    augments[augmentIndex].SetValue(value1);
+    augments[augmentIndex].Set_Value(value1);
     if (m_augmentValues2[augmentIndex].IsWindowVisible())
     {
         m_augmentValues2[augmentIndex].GetWindowText(text);
         double value2 = atof(text);
-        augments[augmentIndex].SetValue2(value2);
+        augments[augmentIndex].Set_Value2(value2);
     }
     m_item.Set_Augments(augments);
     EnableControls();
 }
 
-void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
+void CFindGearDialog::OnSize(UINT nType, int cx, int cy)
 {
     CDialog::OnSize(nType, cx, cy);
-    if (IsWindow(m_staticType.GetSafeHwnd()))
+    if (IsWindow(m_editSearchText.GetSafeHwnd()))
     {
         // assign half the space to each set of controls:
         // +----------------------++-------------------+
@@ -848,7 +744,7 @@ void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
 
         // TBD!
     }
-    if (IsWindow(m_staticType.GetSafeHwnd()))
+    if (IsWindow(m_editSearchText.GetSafeHwnd()))
     {
         // update the mouse hook handles for tooltips
         CRect rect;
@@ -863,24 +759,24 @@ void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
     }
 }
 
-void CItemSelectDialog::OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult)
+void CFindGearDialog::OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult)
 {
     // just save the column widths to registry so restored next time we run
     UNREFERENCED_PARAMETER(pNMHDR);
     UNREFERENCED_PARAMETER(pResult);
-    SaveColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
+    SaveColumnWidthsByName(&m_availableItemsCtrl, "FindGearDialog_%s");
 }
 
-void CItemSelectDialog::OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult)
+void CFindGearDialog::OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult)
 {
     // allow the user to sort the item list based on the selected column
     NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
 
-    int columnToSort = pNMListView->iSubItem;
+    size_t columnToSort = pNMListView->iSubItem;
     int column;
     bool bAscending;
     m_sortHeader.GetSortArrow(&column, &bAscending);
-    if (column == columnToSort)
+    if ((size_t)column == columnToSort)
     {
         // just change sort direction
         bAscending = !bAscending;
@@ -891,19 +787,19 @@ void CItemSelectDialog::OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult)
         column = columnToSort;
     }
     m_sortHeader.SetSortArrow(column, bAscending);
-    m_availableItemsCtrl.SortItems(CItemSelectDialog::SortCompareFunction, (long)GetSafeHwnd());
+    m_availableItemsCtrl.SortItems(CFindGearDialog::SortCompareFunction, (long)GetSafeHwnd());
 
     *pResult = 0;
 }
 
-int CItemSelectDialog::SortCompareFunction(
+int CFindGearDialog::SortCompareFunction(
         LPARAM lParam1,
         LPARAM lParam2,
         LPARAM lParamSort)
 {
     // this is a static function so we need to make our own this pointer
     CWnd * pWnd = CWnd::FromHandle((HWND)lParamSort);
-    CItemSelectDialog * pThis = static_cast<CItemSelectDialog*>(pWnd);
+    CFindGearDialog * pThis = static_cast<CFindGearDialog*>(pWnd);
 
     int sortResult = 0;
     size_t index1 = lParam1; // item data index
@@ -958,7 +854,7 @@ int CItemSelectDialog::SortCompareFunction(
     return sortResult;
 }
 
-void CItemSelectDialog::OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult)
+void CFindGearDialog::OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult)
 {
     UNREFERENCED_PARAMETER(pNMHDR);
     // the user it hovering over a list control item. Identify it and display
@@ -1004,7 +900,7 @@ void CItemSelectDialog::OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult)
     *pResult = 1;   // stop the hover selecting the item
 }
 
-LRESULT CItemSelectDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
+LRESULT CFindGearDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
     // hide any tooltip when the mouse leaves the area its being shown for
@@ -1019,7 +915,7 @@ LRESULT CItemSelectDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void CItemSelectDialog::ShowTip(const Item & item, CRect itemRect)
+void CFindGearDialog::ShowTip(const Item & item, CRect itemRect)
 {
     if (m_showingTip)
     {
@@ -1032,7 +928,7 @@ void CItemSelectDialog::ShowTip(const Item & item, CRect itemRect)
     m_showingTip = true;
 }
 
-void CItemSelectDialog::HideTip()
+void CFindGearDialog::HideTip()
 {
     // tip not shown if not over a gear slot
     if (m_tipCreated && m_showingTip)
@@ -1042,7 +938,7 @@ void CItemSelectDialog::HideTip()
     }
 }
 
-void CItemSelectDialog::SetTooltipText(
+void CFindGearDialog::SetTooltipText(
         const Item & item,
         CPoint tipTopLeft,
         CPoint tipAlternate)
@@ -1053,7 +949,7 @@ void CItemSelectDialog::SetTooltipText(
     m_showingTip = true;
 }
 
-void CItemSelectDialog::SetTooltipText(
+void CFindGearDialog::SetTooltipText(
         const Augment & augment,
         CPoint tipTopLeft,
         CPoint tipAlternate,
@@ -1065,121 +961,7 @@ void CItemSelectDialog::SetTooltipText(
     m_showingTip = true;
 }
 
-void CItemSelectDialog::OnSelEndOkFilter()
-{
-    int sel = m_comboFilter.GetCurSel();
-    if (sel != CB_ERR)
-    {
-        sel = m_comboFilter.GetItemData(sel);
-        // selection is based on the slot type
-        switch (m_slot)
-        {
-        case Inventory_Armor:
-            m_armorType = (ArmorType)sel;
-            break;
-        case Inventory_Weapon1:
-        case Inventory_Weapon2:
-            m_weaponType = (WeaponType)sel;
-            break;
-        }
-        PopulateAvailableItemList();
-    }
-}
-
-void CItemSelectDialog::SetupFilterCombobox()
-{
-    m_comboFilter.ResetContent();
-    int selItem = 0;        // assume 1st item
-    if (m_slot == Inventory_Armor)
-    {
-        const Race& race = FindRace(m_pBuild->Race());
-        bool construct = race.HasIsConstruct();
-        // limit to docent only for constructs
-        if (construct)
-        {
-            int i = m_comboFilter.AddString("Docent");
-            m_comboFilter.SetItemData(i, Armor_Docent);
-            selItem = 0;
-        }
-        else
-        {
-            m_comboFilter.AddString("All");
-            m_comboFilter.SetItemData(0, 0);
-            int i = m_comboFilter.AddString("Cloth/Robe");
-            m_comboFilter.SetItemData(i, Armor_Cloth);
-            i = m_comboFilter.AddString("Light Armor");
-            m_comboFilter.SetItemData(i, Armor_Light);
-            i = m_comboFilter.AddString("Medium Armor");
-            m_comboFilter.SetItemData(i, Armor_Medium);
-            i = m_comboFilter.AddString("Heavy Armor");
-            m_comboFilter.SetItemData(i, Armor_Heavy);
-            selItem = m_armorType;  // 1..4
-        }
-    }
-    else if (m_slot == Inventory_Weapon1)
-    {
-        m_comboFilter.AddString("All");
-        m_comboFilter.SetItemData(0, 0);
-        // any weapon
-        for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
-        {
-            if (m_pBuild->IsWeaponInGroup("Melee", (WeaponType)i)
-                    || m_pBuild->IsWeaponInGroup("Ranged", (WeaponType)i))
-            {
-                // we can add this one
-                int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
-                m_comboFilter.SetItemData(index, i);
-                if ((WeaponType)i == m_weaponType)
-                {
-                    selItem = index;
-                }
-            }
-        }
-    }
-    else if (m_slot == Inventory_Weapon2)
-    {
-        // if the gear has an item that restricts in the main hand, we may only be
-        // allowed to equip a rune arm
-        if (LimitToRuneArm(m_pBuild))
-        {
-            selItem = m_comboFilter.AddString(EnumEntryText(Weapon_RuneArm, weaponTypeMap));
-            m_comboFilter.SetItemData(selItem, Weapon_RuneArm);
-            m_weaponType = Weapon_RuneArm;
-        }
-        else
-        {
-            m_comboFilter.AddString("All");
-            m_comboFilter.SetItemData(0, 0);
-            // any single handed weapon, orb, shield or rune-arm
-            // any one handed weapon
-            for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
-            {
-                if ((m_pBuild->IsWeaponInGroup("One Handed", (WeaponType)i)
-                        || m_pBuild->IsWeaponInGroup("Shield", (WeaponType)i)
-                        || i == Weapon_Orb
-                        || (i == Weapon_RuneArm && m_pBuild->IsFeatTrained("Artificer Rune Arm Use"))
-                        || (i == Weapon_RuneArm && m_pBuild->IsGrantedFeat("Artificer Rune Arm Use"))))
-                {
-                    // we can add this one
-                    int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
-                    m_comboFilter.SetItemData(index, i);
-                    if ((WeaponType)i == m_weaponType)
-                    {
-                        selItem = index;
-                    }
-                }
-            }
-        }
-    }
-    else
-    {
-        // selection combo not enabled
-        m_comboFilter.EnableWindow(FALSE);
-    }
-    m_comboFilter.SetCurSel(selItem);
-}
-
-LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
+LRESULT CFindGearDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
 {
     if (!m_bIgnoreNextMessage)
     {
@@ -1192,7 +974,7 @@ LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
         }
         if (wParam >= 0)
         {
-            // we have a selection, get the augment name
+            // we have a selection, get the filigree name
             CString augmentName;
             CWnd * pWnd = GetDlgItem(lParam);
             CComboBox * pCombo =  dynamic_cast<CComboBox*>(pWnd);
@@ -1215,7 +997,7 @@ LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-LRESULT CItemSelectDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
+LRESULT CFindGearDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
     // is it a jewel or a filigree?
@@ -1246,14 +1028,59 @@ LRESULT CItemSelectDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void CItemSelectDialog::OnWindowPosChanging(WINDOWPOS * pos)
+void CFindGearDialog::OnWindowPosChanging(WINDOWPOS * pos)
 {
     // ensure tooltip locations are correct on window move
     CDialog::OnWindowPosChanging(pos);
     PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
 }
 
-void CItemSelectDialog::RemoveAugment(
+void CFindGearDialog::AddAugment(
+        std::vector<ItemAugment> * augments,
+        const std::string & name,
+        bool atEnd)
+{
+    // only add if it is not already present
+    bool found = false;
+    for (size_t i = 0; i < augments->size(); ++i)
+    {
+        if ((*augments)[i].Type() == name)
+        {
+            found = true;
+            break;
+        }
+    }
+    if (!found)
+    {
+        // this is a new augment slot that needs to be added
+        ItemAugment newAugment;
+        newAugment.Set_Type(name);
+        // all new augments are added before any "Mythic" slot if present
+        bool foundMythic = false;
+        size_t i;
+        for (i = 0; i < augments->size(); ++i)
+        {
+            if ((*augments)[i].Type() == "Mythic")
+            {
+                foundMythic = true;
+                break;
+            }
+        }
+        if (!atEnd && foundMythic)
+        {
+            std::vector<ItemAugment>::iterator it = augments->begin();
+            std::advance(it, i);
+            augments->insert(it, newAugment);
+        }
+        else
+        {
+            // just add to the end if no current Mythic slot
+            augments->push_back(newAugment);
+        }
+    }
+}
+
+void CFindGearDialog::RemoveAugment(
         std::vector<ItemAugment> * augments,
         const std::string & name)
 {
@@ -1271,7 +1098,136 @@ void CItemSelectDialog::RemoveAugment(
     }
 }
 
-void CItemSelectDialog::SetupItemLevel(size_t maxLevel, size_t currentLevel, bool bSelectable)
+void CFindGearDialog::OnSearchTextKillFocus()
+{
+    CString text;
+    m_editSearchText.GetWindowText(text);
+    if (text != m_previousSearchText)
+    {
+        // just update the list of items as the search text changes
+        m_bInitialising = true;
+        PopulateAvailableItemList();
+        m_bInitialising = false;
+        m_previousSearchText = text;
+    }
+}
+
+BOOL CFindGearDialog::PreTranslateMessage(MSG* pMsg)
+{
+    BOOL handled = FALSE;
+    // if the user presses return/enter on text in the filter control,
+    // we just set the focus to the filter button
+    if (pMsg->message == WM_KEYDOWN
+            && pMsg->wParam == VK_RETURN
+            && GetFocus() == &m_editSearchText)
+    {
+        m_buttonFilter.SetFocus();
+        handled = TRUE;
+    }
+    if (!handled)
+    {
+        handled = CDialog::PreTranslateMessage(pMsg);
+    }
+    return handled;
+}
+
+void CFindGearDialog::OnButtonEquipIt()
+{
+    InventorySlotType slot = Inventory_Unknown;
+    // determine which slot(s) this item can equip to
+    std::vector<InventorySlotType> slots;
+    for (size_t i = Inventory_Unknown; i < Inventory_Count; ++i)
+    {
+        if (m_item.CanEquipToSlot((InventorySlotType)(i)))
+        {
+            slots.push_back((InventorySlotType)(i));
+        }
+    }
+    // see which slot to equip to
+    if (slots.size() > 0)
+    {
+        if (slots.size() > 1)
+        {
+            // let the user choose which slot this item is to go in as
+            // it can go into 2 or more positions
+            slot = SelectTargetSlot(slots);
+        }
+        else
+        {
+            // single slot, must go in that one
+            slot = slots[0];
+        }
+        if (slot != Inventory_Unknown)
+        {
+            m_pBuild->SetGear(
+                    m_pBuild->ActiveGearSet().Name(),
+                    slot,
+                    m_item);
+        }
+    }
+}
+
+InventorySlotType CFindGearDialog::SelectTargetSlot(const std::vector<InventorySlotType> & slots)
+{
+    // build a menu of the available slot names and let user select it
+    CMenu cMenu;
+    cMenu.CreatePopupMenu();
+    cMenu.AppendMenu(
+            MF_STRING | MF_GRAYED,
+            0,
+            "Select equipment slot to populate");
+    cMenu.AppendMenu(MF_SEPARATOR);
+    for (size_t i = 0; i < slots.size(); ++i)
+    {
+        CString itemText;
+        itemText = (LPCTSTR)EnumEntryText(slots[i], InventorySlotTypeMap);
+        cMenu.AppendMenu(
+                MF_STRING,
+                ID_INVENTORY_UNKNOWN + slots[i],
+                itemText);
+    }
+    CPoint p;
+    GetCursorPos(&p);
+    CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+    UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
+            cMenu.GetSafeHmenu(),
+            p.x,
+            p.y,
+            this);
+    InventorySlotType slot = Inventory_Unknown;
+    if (sel >= ID_INVENTORY_UNKNOWN)
+    {
+        slot = (InventorySlotType)(sel - ID_INVENTORY_UNKNOWN);
+    }
+    return slot;
+}
+
+void CFindGearDialog::OnItemLevelSelect()
+{
+    if (m_item.HasUserSetsLevel())
+    {
+        int sel = m_comboItemLevel.GetCurSel();
+        if (sel != CB_ERR)
+        {
+            m_item.Set_MinLevel(sel + 1);       // 1 based
+            EnableControls();
+        }
+    }
+}
+
+void CFindGearDialog::OnSelEndLevelRange()
+{
+    int sel = m_comboLevelRange.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        CString text;
+        m_comboLevelRange.GetLBText(sel, text);
+        m_levelRange = atoi(text);
+        PopulateAvailableItemList();
+    }
+}
+
+void CFindGearDialog::SetupItemLevel(size_t maxLevel, size_t currentLevel, bool bSelectable)
 {
     m_comboItemLevel.LockWindowUpdate();
     m_comboItemLevel.ResetContent();
@@ -1296,60 +1252,3 @@ void CItemSelectDialog::SetupItemLevel(size_t maxLevel, size_t currentLevel, boo
     m_comboItemLevel.UnlockWindowUpdate();
 }
 
-void CItemSelectDialog::OnSearchTextKillFocus()
-{
-    CString text;
-    m_editSearchText.GetWindowText(text);
-    if (text != m_previousSearchText)
-    {
-        // just update the list of items as the search text changes
-        m_bInitialising = true;
-        PopulateAvailableItemList();
-        m_bInitialising = false;
-        m_previousSearchText = text;
-    }
-}
-
-BOOL CItemSelectDialog::PreTranslateMessage(MSG* pMsg)
-{
-    BOOL handled = FALSE;
-    // if the user presses return/enter on text in the filter control,
-    // we just set the focus to the filter button
-    if (pMsg->message == WM_KEYDOWN
-            && pMsg->wParam == VK_RETURN
-            && GetFocus() == &m_editSearchText)
-    {
-        m_buttonFilter.SetFocus();
-        handled = TRUE;
-    }
-    if (!handled)
-    {
-        handled = CDialog::PreTranslateMessage(pMsg);
-    }
-    return handled;
-}
-
-void CItemSelectDialog::OnItemLevelSelect()
-{
-    if (m_item.HasUserSetsLevel())
-    {
-        int sel = m_comboItemLevel.GetCurSel();
-        if (sel != CB_ERR)
-        {
-            m_item.Set_MinLevel(sel + 1);       // 1 based
-            EnableControls();
-        }
-    }
-}
-
-void CItemSelectDialog::OnSelEndLevelRange()
-{
-    int sel = m_comboLevelRange.GetCurSel();
-    if (sel != CB_ERR)
-    {
-        CString text;
-        m_comboLevelRange.GetLBText(sel, text);
-        m_levelRange = atoi(text);
-        PopulateAvailableItemList();
-    }
-}

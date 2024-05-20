@@ -686,21 +686,19 @@ void CEnhancementsPane::UpdateWindowTitle()
     CString text("Enhancements");
     if (m_pCharacter != NULL)
     {
-        Life* pLife = m_pCharacter->ActiveLife();
         Build* pBuild = m_pCharacter->ActiveBuild();
-        if (pBuild != NULL
-            && pLife != NULL)
+        if (pBuild != NULL)
         {
             CString additional;
             text.Format("Enhancements - Total points %d",
                     pBuild->AvailableActionPoints(pBuild->Level(), TT_allEnhancement));
-            size_t bonusRacial = pLife->BonusRacialActionPoints();
+            size_t bonusRacial = pBuild->BonusRacialActionPoints();
             if (bonusRacial > 0)
             {
                 additional.Format(", Racial %d", bonusRacial);
                 text += additional;
             }
-            size_t bonusUniversal = pLife->BonusUniversalActionPoints();
+            size_t bonusUniversal = pBuild->BonusUniversalActionPoints();
             if (bonusUniversal > 0)
             {
                 additional.Format(", Universal %d", bonusUniversal);

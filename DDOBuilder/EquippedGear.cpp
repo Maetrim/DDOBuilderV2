@@ -95,7 +95,7 @@ void EquippedGear::SetName(const std::string& name)
 void EquippedGear::UpdateImages()
 {
     CDDOBuilderApp* pApp = static_cast<CDDOBuilderApp*>(AfxGetApp());
-    for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+    for (size_t i = Inventory_Unknown + 1; i < Inventory_FinalDrawnItem; ++i)
     {
         InventorySlotType ist = static_cast<InventorySlotType>(i);
         if (HasItemInSlot(ist))

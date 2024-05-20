@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CFavorPane, CFormView)
     ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST_QUESTS, OnColumnclickListQuests)
     ON_NOTIFY(NM_RCLICK, IDC_LIST_QUESTS, OnRightClickListQuests)
+    ON_UPDATE_COMMAND_UI(ID_NOT_SELECTABLE, OnUpdateNotSelectable)
     ON_UPDATE_COMMAND_UI(ID_SETFAVOR_NONE, OnUpdateFavorNone)
     ON_UPDATE_COMMAND_UI(ID_SETFAVOR_SOLO, OnUpdateFavorSolo)
     ON_UPDATE_COMMAND_UI(ID_SETFAVOR_CASUAL, OnUpdateFavorCasual)
@@ -75,12 +76,12 @@ LRESULT CFavorPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pDoc = pDoc;
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
-    if (m_pCharacter != pCharacter)
+    if (NULL != pCharacter)
     {
         m_pCharacter = pCharacter;
         m_pCharacter->AttachObserver(this);
-        PopulateQuestList();
     }
+    PopulateQuestList();
     return 0L;
 }
 
@@ -92,7 +93,7 @@ LRESULT CFavorPane::OnLoadComplete(WPARAM, LPARAM)
     m_listQuests.InsertColumn(1, "Level", LVCFMT_LEFT, 40);
     m_listQuests.InsertColumn(2, "Favor", LVCFMT_LEFT, 40);
     m_listQuests.InsertColumn(3, "Run@", LVCFMT_LEFT, 60);
-    m_listQuests.InsertColumn(4, "Patron", LVCFMT_LEFT, 100);
+    m_listQuests.InsertColumn(4, "Patron", LVCFMT_LEFT, 140);
     m_listQuests.SetExtendedStyle(m_listQuests.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
     m_sortHeader.SetSortArrow(1, FALSE);     // sort by level by default
 
@@ -195,10 +196,13 @@ void CFavorPane::OnInitialUpdate()
 
 void CFavorPane::PopulateQuestList()
 {
+    m_runQuests.clear();
     if (m_pCharacter != NULL)
     {
+        // duplicates have been removed here
         m_runQuests = m_pCharacter->CompletedQuests();
     }
+    int topIndex = m_listQuests.GetTopIndex();
     m_listQuests.LockWindowUpdate();
     m_listQuests.DeleteAllItems();
     std::list<Quest> quests = Quests();
@@ -219,8 +223,6 @@ void CFavorPane::PopulateQuestList()
         text.Format("%d", qit.Favor());
         m_listQuests.SetItemText(iIndex, QLC_favor, text);
         m_listQuests.SetItemText(iIndex, QLC_patron, patron);
-        // look for the highest difficulty this quests has been run at (could
-        // occur multiple times in the list)
         QuestDifficulty diff = QD_notRun;
         for (auto&& rqi : m_runQuests)
         {
@@ -233,6 +235,25 @@ void CFavorPane::PopulateQuestList()
         CString difficulty = EnumEntryText(diff, questDifficultyTypeMap);
         m_listQuests.SetItemText(iIndex, QLC_runAt, difficulty);
     }
+    // now sum the total favor per patron from all quests that have a run@
+    std::vector<size_t> favorPerPatron(MAX_FAVOR_ITEMS, 0);
+    // now add the favor to the total for this patron
+    std::list<CompletedQuest> favorQs = m_runQuests;
+    RemoveQuestDuplicates(favorQs); // only the highest favor for a given quest name regardless of level
+    for (auto&& fqit : favorQs)
+    {
+        const Quest& quest = FindQuest(fqit.Name());
+        PatronType pt = quest.Patron();
+        int favor = quest.Favor(fqit.Difficulty());
+        favorPerPatron[static_cast<size_t>(pt)] += favor;
+        favorPerPatron[Patron_TotalFavor] += favor;
+    }
+    for (size_t i = 0; i < MAX_FAVOR_ITEMS; ++i)
+    {
+        m_favorItems[i].SetCurrentFavor(favorPerPatron[i]);
+    }
+    m_listQuests.EnsureVisible(m_listQuests.GetItemCount() - 1, FALSE);
+    m_listQuests.EnsureVisible(topIndex, FALSE);
     m_listQuests.UnlockWindowUpdate();
 }
 
@@ -243,7 +264,6 @@ void CFavorPane::UpdateActiveBuildChanged(Character*)
         const Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
-            m_runQuests.clear();
             PopulateQuestList();
         }
         else
@@ -291,13 +311,64 @@ void CFavorPane::OnRightClickListQuests(NMHDR* /*pNMHDR*/, LRESULT* pResult)
         CPoint menuPos;
         GetCursorPos(&menuPos);
         CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
-        /*int sel = */pApp->GetContextMenuManager()->TrackPopupMenu(
+        int sel = pApp->GetContextMenuManager()->TrackPopupMenu(
                 pPopup->GetSafeHmenu(),
                 menuPos.x,
                 menuPos.y,
                 this);
+        if (sel != 0)
+        {
+            // the user has selected a difficulty for the selected quests
+            QuestDifficulty qd = QD_notRun;
+            switch (sel)
+            {
+                case ID_SETFAVOR_NONE:      qd = QD_notRun; break;
+                case ID_SETFAVOR_SOLO:      qd = QD_solo; break;
+                case ID_SETFAVOR_CASUAL:    qd = QD_casual; break;
+                case ID_SETFAVOR_NORMAL:    qd = QD_normal; break;
+                case ID_SETFAVOR_HARD:      qd = QD_hard; break;
+                case ID_SETFAVOR_ELITE:     qd = QD_elite; break;
+                case ID_REAPER_REAPER1:     qd = QD_reaper1; break;
+                case ID_REAPER_REAPER2:     qd = QD_reaper2; break;
+                case ID_REAPER_REAPER3:     qd = QD_reaper3; break;
+                case ID_REAPER_REAPER4:     qd = QD_reaper4; break;
+                case ID_REAPER_REAPER5:     qd = QD_reaper5; break;
+                case ID_REAPER_REAPER6:     qd = QD_reaper6; break;
+                case ID_REAPER_REAPER7:     qd = QD_reaper7; break;
+                case ID_REAPER_REAPER8:     qd = QD_reaper8; break;
+                case ID_REAPER_REAPER9:     qd = QD_reaper9; break;
+                case ID_REAPER_REAPER10:    qd = QD_reaper10; break;
+            }
+            std::list<CompletedQuest> selectedQs = GetSelectedQuests();
+            std::list<CompletedQuest>::iterator qit = selectedQs.begin();
+            while (qit != selectedQs.end())
+            {
+                if (qit->Supports(qd))
+                {
+                    qit->Set_Difficulty(qd);
+                    ++qit;
+                }
+                else
+                {
+                    // this quest does not support this difficulty, don't try and set it
+                    qit = selectedQs.erase(qit);
+                }
+            }
+            Build* pBuild = m_pCharacter->ActiveBuild();
+            if (pBuild != NULL)
+            {
+                pBuild->SetQuestsCompletions(selectedQs);
+            }
+        }
+        // update the display and total favor etc
+        PopulateQuestList();
     }
     *pResult = 0;
+}
+
+void CFavorPane::OnUpdateNotSelectable(CCmdUI* pCmdUi)
+{
+    pCmdUi->Enable(FALSE);
 }
 
 void CFavorPane::OnUpdateFavorNone(CCmdUI* pCmdUi)
@@ -428,7 +499,7 @@ void CFavorPane::OnUpdateFavorReaper10(CCmdUI * pCmdUi)
     pCmdUi->Enable(bEnabledState);
 }
 
-unsigned int CFavorPane::GetCheckedState(FavorType ft)
+unsigned int CFavorPane::GetCheckedState(FavorType)
 {
     // look for the highest difficulty this quests has been run at (could
     // occur multiple times in the list)
@@ -441,10 +512,99 @@ unsigned int CFavorPane::GetCheckedState(FavorType ft)
     //        diff = max(diff, rqi.Difficulty());
     //    }
     //}
-    return (ft % 3);
+    return FALSE;
 }
 
-bool CFavorPane::GetEnabledState(FavorType /*ft*/)
+bool CFavorPane::GetEnabledState(FavorType ft)
 {
-    return true;
+    std::list<CompletedQuest> quests = GetSelectedQuests();
+    // at least one of the selected quests must support the given favor
+    // tier for it to be enabled.
+    bool bSupported = false;
+    //if (quests.size() < 15)
+    {
+        // don't allow more than 15 quests at a time to be set
+        for (auto&& qit : quests)
+        {
+            const Quest& q = FindQuest(qit.Name());
+            switch (ft)
+            {
+                case Favor_None:    bSupported = true; break;
+                case Favor_Solo:    bSupported = q.HasSolo(); break;
+                case Favor_Casual:  bSupported = q.HasCasual(); break;
+                case Favor_Normal:  bSupported = q.HasNormal(); break;
+                case Favor_Hard:    bSupported = q.HasHard(); break;
+                case Favor_Elite:   bSupported = q.HasElite(); break;
+                case Favor_Reaper1:
+                case Favor_Reaper2:
+                case Favor_Reaper3:
+                case Favor_Reaper4:
+                case Favor_Reaper5:
+                case Favor_Reaper6:
+                case Favor_Reaper7:
+                case Favor_Reaper8:
+                case Favor_Reaper9:
+                case Favor_Reaper10:    bSupported = q.HasReaper(); break;
+            }
+            if (bSupported) break;
+        }
+    }
+    return bSupported;
 }
+
+std::list<CompletedQuest> CFavorPane::GetSelectedQuests()
+{
+    std::list<CompletedQuest> quests;
+    int iCount = m_listQuests.GetSelectedCount();
+    std::vector<int> indexes;
+    indexes.reserve(iCount);
+    POSITION pos = m_listQuests.GetFirstSelectedItemPosition();
+    while (pos != NULL)
+    {
+        int sel = m_listQuests.GetNextSelectedItem(pos);
+        indexes.push_back(sel);
+    }
+    for (size_t i = 0; i < static_cast<size_t>(iCount); ++i)
+    {
+        CString name = m_listQuests.GetItemText(indexes[i], QLC_name);
+        int level = atoi(m_listQuests.GetItemText(indexes[i], QLC_level));
+        CompletedQuest cq;
+        cq.Set_Name((LPCTSTR)name);
+        cq.Set_Level(static_cast<size_t>(level));
+        quests.push_back(cq);
+    }
+    return quests;
+}
+
+void CFavorPane::RemoveQuestDuplicates(std::list<CompletedQuest>& favorQs)
+{
+    // only the highest favor for a given quest name regardless of level
+    if (favorQs.size() > 1)
+    {
+        std::list<CompletedQuest>::iterator it = favorQs.begin();
+        while (it != favorQs.end())
+        {
+            std::list<CompletedQuest>::iterator nit = it;
+            const Quest& itq = FindQuest(it->Name());
+            nit++;
+            while (nit != favorQs.end())
+            {
+                const Quest& nitq = FindQuest(nit->Name());
+                if (itq.Name() == nitq.Name())
+                {
+                    QuestDifficulty qd1 = it->Difficulty();
+                    QuestDifficulty qd2 = nit->Difficulty();
+                    QuestDifficulty nqd = max(qd1, qd2);
+                    it->Set_Difficulty(nqd);
+                    nit = favorQs.erase(nit);
+                }
+                else
+                {
+                    ++nit;
+                }
+            }
+            ++it;
+        }
+    }
+}
+

@@ -11,6 +11,9 @@ class CompletedQuest :
         CompletedQuest(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
+        bool SameQuestAndLevel(const CompletedQuest& other) const;
+        bool Supports(QuestDifficulty qd) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -25,4 +28,7 @@ class CompletedQuest :
 
         DL_DECLARE_ACCESS(CompletedQuest_PROPERTIES)
         DL_DECLARE_VARIABLES(CompletedQuest_PROPERTIES)
+
+        friend class CFavorPane;
+        friend class Build;
 };

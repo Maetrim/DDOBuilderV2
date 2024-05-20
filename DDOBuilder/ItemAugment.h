@@ -46,4 +46,5 @@ class ItemAugment :
         friend class WikiItemFileProcessor;
         friend class Build;
         friend class EquippedGear;
+        friend class CFindGearDialog;
 };

@@ -139,6 +139,11 @@ bool CGrantedFeatsPane::IsGrantedFeat(const std::string& featName) const
     return isGranted;
 }
 
+const std::list<Effect>& CGrantedFeatsPane::GrantedFeats() const
+{
+    return m_grantedFeats;
+}
+
 LRESULT CGrantedFeatsPane::OnLoadComplete(WPARAM, LPARAM)
 {
     return 0;

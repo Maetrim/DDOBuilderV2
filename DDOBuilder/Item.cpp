@@ -235,7 +235,7 @@ void Item::CopyUserSetValues(const Item & original)
     m_SlotUpgrades = original.m_SlotUpgrades;
 }
 
-bool Item::ContainsSearchText(const std::string& searchText) const
+bool Item::ContainsSearchText(const std::string& searchText, const Build* pBuild) const
 {
     bool bHasSearchText = true;
     // break up the search text into individual fields and search for each
@@ -261,19 +261,21 @@ bool Item::ContainsSearchText(const std::string& searchText) const
         {
             bHasSearchText |= SearchForText(DropLocation(), parsedItem);
         }
-        //std::list<std::string>::const_iterator it = m_EffectDescription.begin();
-        //while (!bHasSearchText && it != m_EffectDescription.end())
-        //{
-        //    bHasSearchText |= SearchForText((*it), parsedItem);
-        //    ++it;
-        //}
-        //it = m_SetBonus.begin();
-        //while (!bHasSearchText && it != m_SetBonus.end())
-        //{
-        //    const ::SetBonus& set = FindSetBonus((*it));
-        //    bHasSearchText |= SearchForText(set.Description(), parsedItem);
-        //    ++it;
-        //}
+
+        std::vector<CString> buffs = BuffDescriptions(pBuild);
+        auto bit = buffs.begin();
+        while (!bHasSearchText && bit != buffs.end())
+        {
+            bHasSearchText |= SearchForText((LPCTSTR)(*bit), parsedItem);
+            ++bit;
+        }
+        std::list<std::string>::const_iterator it = m_SetBonus.begin();
+        while (!bHasSearchText && it != m_SetBonus.end())
+        {
+            const ::SetBonus& set = FindSetBonus((*it));
+            bHasSearchText |= SearchForText(set.Type(), parsedItem);
+            ++it;
+        }
     }
     return bHasSearchText;
 }

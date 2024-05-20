@@ -40,8 +40,7 @@ void CFavorProgressBar::SetFavorTiers(
     m_favorTiers = favorTiers;
     m_maxFavor = maxFavor;
     m_maxValue = max(m_maxFavor, *std::max_element(m_favorTiers.begin(), m_favorTiers.end()));
-
-    m_currentFavor = (rand() % m_maxValue);
+    m_currentFavor = 0;
 }
 
 void CFavorProgressBar::SetCurrentFavor(int currentFavor)

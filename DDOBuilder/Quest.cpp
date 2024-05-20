@@ -26,6 +26,15 @@ Quest::Quest() :
     DL_INIT(Quest_PROPERTIES)
 }
 
+Quest::Quest(const std::string& name) :
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_difficulty(QD_notRun)
+{
+    DL_INIT(Quest_PROPERTIES)
+    m_Name = name;
+    m_hasName = true;
+}
+
 DL_DEFINE_ACCESS(Quest_PROPERTIES)
 
 XmlLib::SaxContentElementInterface * Quest::StartElement(
@@ -95,6 +104,31 @@ int Quest::MaxFavor() const
     return maxFavor;
 }
 
+int Quest::Favor(QuestDifficulty diff) const
+{
+    int favor = 0;
+    switch (diff)
+    {
+        case QD_notRun:     break;
+        case QD_solo:       favor = Favor(); break;
+        case QD_casual:     favor = (Favor() / 2); break;
+        case QD_normal:     favor = Favor(); break;
+        case QD_hard:       favor = (Favor() * 2); break;
+        case QD_elite:
+        case QD_reaper1:
+        case QD_reaper2:
+        case QD_reaper3:
+        case QD_reaper4:
+        case QD_reaper5:
+        case QD_reaper6:
+        case QD_reaper7:
+        case QD_reaper8:
+        case QD_reaper9:
+        case QD_reaper10:   favor = (Favor() * 3); break;
+    }
+    return favor;
+}
+
 bool Quest::operator<(const Quest& other) const
 {
     bool bRet = false;
@@ -119,8 +153,16 @@ bool Quest::operator<(const Quest& other) const
             }
             else
             {
-                // sort by name
-                bRet = Name() < other.Name();
+                // sort by patron name
+                if (Patron() != other.Patron())
+                {
+                    bRet = Patron() < other.Patron();
+                }
+                else
+                {
+                    // same patron, sort by name
+                    bRet = Name() < other.Name();
+                }
             }
             break;
         case 2: // quest favor
@@ -130,8 +172,8 @@ bool Quest::operator<(const Quest& other) const
             }
             else
             {
-                // sort by name
-                bRet = Name() < other.Name();
+                // sort by patron name
+                bRet = Patron() < other.Patron();
             }
             break;
         case 3: // quest run at
@@ -141,8 +183,8 @@ bool Quest::operator<(const Quest& other) const
             }
             else
             {
-                // sort by name
-                bRet = Name() < other.Name();
+                // sort by patron name
+                bRet = Patron() < other.Patron();
             }
             break;
         case 4: // quest patron
@@ -152,8 +194,8 @@ bool Quest::operator<(const Quest& other) const
             }
             else
             {
-                // sort by name
-                bRet = Name() < other.Name();
+                // sort by level
+                bRet = Levels()[0] < other.Levels()[0];
             }
             break;
     }

@@ -8,7 +8,7 @@
 #include "GlobalSupportFunctions.h"
 #include "GearSetNameDialog.h"
 #include "ItemSelectDialog.h"
-//#include "FindGearDialog.h"
+#include "FindGearDialog.h"
 #include "MouseHook.h"
 #include "XmlLib\SaxReader.h"
 #include "MainFrm.h"
@@ -448,39 +448,42 @@ void CEquipmentPane::UpdateSlotLeftClicked(
         InventorySlotType slot)
 {
     Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
-    //if (slot == Inventory_FindItems)
-    //{
-    //    // no tooltips while a dialog is displayed
-    //    GetMouseHook()->SaveState();
-    //    CFindGearDialog dlg(this, m_pCharacter);
-    //    dlg.DoModal();
-    //    GetMouseHook()->RestoreState();
-    //}
-    //else
+    if (pBuild != NULL)
     {
-        // determine the item selected in this slot already (if any)
-        EquippedGear gear = pBuild->GetGearSet(SelectedGearSet());
-        Item item;
-        if (gear.HasItemInSlot(slot))
-        {
-            item = gear.ItemInSlot(slot);
-        }
-        if (gear.IsSlotRestricted(slot, pBuild))
-        {
-            // not allowed to equip in this due to item in weapon slot 1 or an item restricting this slot
-            ::MessageBeep(MB_OK);
-        }
-        else
+        if (slot == Inventory_FindItems)
         {
             // no tooltips while a dialog is displayed
             GetMouseHook()->SaveState();
-            CItemSelectDialog dlg(this, slot, item, pBuild);
-            if (dlg.DoModal() == IDOK)
-            {
-                pBuild->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
-                m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());
-            }
+            CFindGearDialog dlg(this, pBuild);
+            dlg.DoModal();
             GetMouseHook()->RestoreState();
+        }
+        else
+        {
+            // determine the item selected in this slot already (if any)
+            EquippedGear gear = pBuild->GetGearSet(SelectedGearSet());
+            Item item;
+            if (gear.HasItemInSlot(slot))
+            {
+                item = gear.ItemInSlot(slot);
+            }
+            if (gear.IsSlotRestricted(slot, pBuild))
+            {
+                // not allowed to equip in this due to item in weapon slot 1 or an item restricting this slot
+                ::MessageBeep(MB_OK);
+            }
+            else
+            {
+                // no tooltips while a dialog is displayed
+                GetMouseHook()->SaveState();
+                CItemSelectDialog dlg(this, slot, item, pBuild);
+                if (dlg.DoModal() == IDOK)
+                {
+                    pBuild->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
+                    m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());
+                }
+                GetMouseHook()->RestoreState();
+            }
         }
     }
 }
@@ -1028,6 +1031,10 @@ void CEquipmentPane::UpdateActiveBuildChanged(Character*)
         if (pBuild != NULL)
         {
             m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());
+        }
+        else
+        {
+            m_inventoryView->SetGearSet(NULL, EquippedGear());
         }
     }
     Invalidate();

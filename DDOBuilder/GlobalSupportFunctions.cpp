@@ -352,6 +352,28 @@ const Patron& FindPatron(const std::string& patronName)
     return badPatron;
 }
 
+const Quest& FindQuest(const std::string& questName)
+{
+    const std::list<Quest>& quests = Quests();
+    for (auto&& it : quests)
+    {
+        std::string name = it.Name();
+        if (name == questName)
+        {
+            // this is the quest we are looking for
+            return it;
+        }
+        if (it.HasEpicName()
+                && it.EpicName() == questName)
+        {
+            // this is the quest we are looking for
+            return it;
+        }
+    }
+    static Quest badQuest(std::string("Bad Patron"));
+    return badQuest;
+}
+
 const EnhancementTreeItem * FindEnhancement(
         const std::string& internalName,
         std::string * treeName) // can be NULL
@@ -1911,7 +1933,10 @@ void AddSpecialSlots(InventorySlotType slot, Item& item)
     else
     {
         std::vector<ItemAugment> currentAugments = item.Augments();
-        AddAugment(&currentAugments, "Deck Curse", true);
+        if (slot != Inventory_Quiver)
+        {
+            AddAugment(&currentAugments, "Deck Curse", true);
+        }
         // now set the slots on the item
         item.SetAugments(currentAugments);
         //// add upgrade slots for Cannith crafted and random loot
@@ -2094,7 +2119,7 @@ void FormatExportData(std::string* exportData)
                 && ((ci > 0 && line[ci - 1] == ' ')
                 || (ci < length - 1 && line[ci + 1] == ' ')))
             {
-                line[ci] = '·';
+                line[ci] = '\xA0'; // no break space character
             }
         }
         lines[li] = line;

@@ -10,6 +10,7 @@ class Quest :
 {
     public:
         Quest(void);
+        Quest(const std::string& name);
         void Write(XmlLib::SaxWriter * writer) const;
 
         static void SetSortInfo(int column, bool bAscending);
@@ -27,6 +28,8 @@ class Quest :
         };
 
         int MaxFavor() const;
+
+        int Favor(QuestDifficulty diff) const;
 
         void SetDifficulty(QuestDifficulty diff);
         QuestDifficulty GetDifficulty() const;

@@ -82,6 +82,8 @@ class CDDOBuilderView :
         afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnDumpWeaponGroups();
         afx_msg void OnUpdateDumpWeaponGroups(CCmdUI * pCmdUi);
+        afx_msg void OnEditForumExport();
+        afx_msg void OnUpdateEditForumExport(CCmdUI* pCmdUi);
         DECLARE_MESSAGE_MAP()
 
         // Character overrides

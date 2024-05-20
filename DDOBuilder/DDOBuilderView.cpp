@@ -13,6 +13,7 @@
 #include "MainFrm.h"
 //#include "ActiveStanceDialog.h"
 #include <algorithm>
+#include "ForumExportDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -81,6 +82,8 @@ BEGIN_MESSAGE_MAP(CDDOBuilderView, CFormView)
     ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CDDOBuilderView::OnTtnNeedText)
     ON_COMMAND(ID_DEVELOPMENT_DUMPWEAPONGROUPSTOLOG, &CDDOBuilderView::OnDumpWeaponGroups)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_DUMPWEAPONGROUPSTOLOG, &CDDOBuilderView::OnUpdateDumpWeaponGroups)
+    ON_COMMAND(ID_EDIT_FORUMEXPORT, &CDDOBuilderView::OnEditForumExport)
+    ON_UPDATE_COMMAND_UI(ID_EDIT_FORUMEXPORT, &CDDOBuilderView::OnUpdateEditForumExport)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -1569,3 +1572,15 @@ void CDDOBuilderView::OnUpdateDumpWeaponGroups(CCmdUI* pCmdUi)
 {
     pCmdUi->Enable(m_pCharacter->ActiveBuild() != NULL);
 }
+
+void CDDOBuilderView::OnEditForumExport()
+{
+    CForumExportDlg dlg(m_pCharacter->ActiveBuild());
+    dlg.DoModal();
+}
+
+void CDDOBuilderView::OnUpdateEditForumExport(CCmdUI* pCmdUi)
+{
+    pCmdUi->Enable(m_pCharacter->ActiveBuild() != NULL);
+}
+

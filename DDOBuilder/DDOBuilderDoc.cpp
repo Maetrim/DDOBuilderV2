@@ -77,7 +77,8 @@ BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
     CWnd* pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
     pMF->NewDocument(this);
-
+    // just opened the file, its unmodified!
+    SetModifiedFlag(FALSE);
     return ok;
 }
 

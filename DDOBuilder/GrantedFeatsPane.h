@@ -18,6 +18,7 @@ class CGrantedFeatsPane :
         virtual void OnInitialUpdate();
         bool IsGrantedFeat(const std::string& featName) const;
 
+        const std::list<Effect>& GrantedFeats() const;
     protected:
         CGrantedFeatsPane();           // protected constructor used by dynamic creation
         virtual ~CGrantedFeatsPane();

@@ -234,11 +234,12 @@ void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex)
             ss << "Selected Life \"" << ActiveLife()->UIDescription(lifeIndex) << "\" build of \"" << ActiveBuild()->ComplexUIDescription() << "\"";
             SetModifiedFlag(TRUE);
             GetLog().AddLogEntry(ss.str().c_str());
-        }
-
-        if (ActiveBuild() != NULL)
-        {
             ActiveBuild()->BuildNowActive();
+        }
+        else
+        {
+            NotifyActiveLifeChanged();
+            NotifyActiveBuildChanged();
         }
     }
     else
@@ -332,6 +333,30 @@ std::list<CompletedQuest> Character::CompletedQuests() const
             const Build& build = pLife->GetBuild(bi);
             const std::list<CompletedQuest>& runBuildQuests = build.CompletedQuests();
             runQuests.insert(runQuests.end(), runBuildQuests.begin(), runBuildQuests.end());
+        }
+    }
+    // we now need to remove any duplicates we have which are for the same quest
+    // at the same level but at lower difficulties. e.g. if you ran a Q at N, H and R3
+    // it should only show up once as an R3 quest run.
+    if (runQuests.size() > 1)
+    {
+        std::list<CompletedQuest>::iterator qit = runQuests.begin();
+        while (qit != runQuests.end())
+        {
+            std::list<CompletedQuest>::iterator nqit = qit;
+            nqit++;
+            // look through all following Qs and remove qit if it is the same Q
+            // at the same level but run at a lower difficulty
+            bool bRunLower = false;
+            while (!bRunLower && nqit != runQuests.end())
+            {
+                if (qit->SameQuestAndLevel(*nqit))
+                {
+                    bRunLower = (nqit->Difficulty() >= qit->Difficulty());
+                }
+                nqit++;
+            }
+            qit++;
         }
     }
     return runQuests;

@@ -3,6 +3,8 @@
 #include "StdAfx.h"
 #include "CompletedQuest.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
+#include "Quest.h"
 
 #define DL_ELEMENT CompletedQuest
 
@@ -46,3 +48,41 @@ void CompletedQuest::Write(XmlLib::SaxWriter * writer) const
     DL_WRITE(CompletedQuest_PROPERTIES)
     writer->EndElement();
 }
+
+bool CompletedQuest::SameQuestAndLevel(const CompletedQuest& other) const
+{
+    bool bSame = false;
+    if (Name() == other.Name()
+            && Level() == other.Level())
+    {
+        bSame = true;
+    }
+    return bSame;
+}
+
+bool CompletedQuest::Supports(QuestDifficulty qd) const
+{
+    bool bSupported = false;
+    const Quest& q = FindQuest(Name());
+    switch (qd)
+    {
+        case QD_notRun:     bSupported = true; // always
+        case QD_solo:       bSupported = q.HasSolo(); break;
+        case QD_casual:     bSupported = q.HasCasual(); break;
+        case QD_normal:     bSupported = q.HasNormal(); break;
+        case QD_hard:       bSupported = q.HasHard(); break;
+        case QD_elite:      bSupported = q.HasElite(); break;
+        case QD_reaper1:
+        case QD_reaper2:
+        case QD_reaper3:
+        case QD_reaper4:
+        case QD_reaper5:
+        case QD_reaper6:
+        case QD_reaper7:
+        case QD_reaper8:
+        case QD_reaper9:
+        case QD_reaper10:   bSupported = q.HasReaper(); break;
+    }
+    return bSupported;
+}
+

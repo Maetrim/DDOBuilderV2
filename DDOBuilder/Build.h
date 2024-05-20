@@ -140,6 +140,7 @@ class Build :
         AbilityType Level36() const;
         AbilityType Level40() const;
         void SetAbilityLevelUp(size_t level, AbilityType ability);
+        AbilityType AbilityLevelUp(size_t level) const;
 
         // stances
         void ActivateStance(const Stance& stance, StanceGroup* pStanceGroup);
@@ -195,6 +196,8 @@ class Build :
         void Reaper_SwapTrees(const std::string& tree1, const std::string& tree2);
 
         int AvailableActionPoints(size_t level, TreeType type) const;
+        size_t BonusRacialActionPoints() const;
+        size_t BonusUniversalActionPoints() const;
         int APSpentInTree(const std::string& treeName) const;
         const TrainedEnhancement * IsTrained(
                 const std::string& enhancementName,
@@ -310,6 +313,9 @@ class Build :
 
         // notes
         void SetNotes(const std::string& newNotes);
+
+        // quests
+        void SetQuestsCompletions(const std::list<CompletedQuest>& quests);
 
         bool operator<(const Build& other) const;
 

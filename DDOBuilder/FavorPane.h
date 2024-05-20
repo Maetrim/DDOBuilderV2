@@ -26,22 +26,23 @@ protected:
     afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
     afx_msg void OnColumnclickListQuests(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnRightClickListQuests(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnUpdateFavorNone(CCmdUI * pCmdUi);
+    afx_msg void OnUpdateFavorNone(CCmdUI* pCmdUi);
     afx_msg void CFavorPane::OnUpdateFavorSolo(CCmdUI* pCmdUi);
-    afx_msg void OnUpdateFavorCasual(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorNormal(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorHard(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorElite(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper1(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper2(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper3(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper4(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper5(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper6(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper7(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper8(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper9(CCmdUI * pCmdUi);
-    afx_msg void OnUpdateFavorReaper10(CCmdUI * pCmdUi);
+    afx_msg void OnUpdateNotSelectable(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorCasual(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorNormal(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorHard(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorElite(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper1(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper2(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper3(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper4(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper5(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper6(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper7(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper8(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper9(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavorReaper10(CCmdUI* pCmdUi);
 
     virtual void DoDataExchange(CDataExchange* pDX) override;
     virtual void OnInitialUpdate() override;
@@ -53,6 +54,8 @@ private:
     void PopulateQuestList();
     unsigned int GetCheckedState(FavorType ft);
     bool GetEnabledState(FavorType ft);
+    std::list<CompletedQuest> GetSelectedQuests();
+    void RemoveQuestDuplicates(std::list<CompletedQuest>& favorQs);
 
     CDDOBuilderDoc* m_pDoc;
     Character* m_pCharacter;
