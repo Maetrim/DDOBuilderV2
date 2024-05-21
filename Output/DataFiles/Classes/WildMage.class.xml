@@ -1,16 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Classes>
   <Class>
-    <Name>Sorcerer</Name>
-    <Description>A Sorcerer is an arcane spell caster, and serve as the primary offensive
-magic class for DDO, but are physically quite weak. Their enhancements
-are built almost entirely around dealing significant damage with spells.
-Unlike wizards, they have a limited selection of spells, only gaining a
-few spell slots per spell level and cannot change them at a tavern or rest
-shrine. However, they cast spells much faster than any other, and most
-often have the highest amount of spell points of any class. Charisma is
-the primary attribute for sorcerers, increasing their available spell
-points and making their spells more effective.</Description>
+    <Name>Wild Mage</Name>
+    <BaseClass>Sorcerer</BaseClass>
+    <Description>TBD</Description>
     <SmallIcon>Sorcerer_Small</SmallIcon>
     <LargeIcon>Sorcerer</LargeIcon>
     <SkillPoints>2</SkillPoints>
@@ -70,6 +63,10 @@ points and making their spells more effective.</Description>
       <Cost>2</Cost>
       <Level>1</Level>
       <MaxCasterLevel>10</MaxCasterLevel>
+    </ClassSpell>
+    <ClassSpell>
+      <Name>Chaos Bolt</Name>
+      <Level>1</Level>
     </ClassSpell>
     <ClassSpell>
       <Name>Charm Person</Name>
@@ -377,6 +374,10 @@ points and making their spells more effective.</Description>
       <MaxCasterLevel>19</MaxCasterLevel>
     </ClassSpell>
     <ClassSpell>
+      <Name>Chaos Sphere</Name>
+      <Level>3</Level>
+    </ClassSpell>
+    <ClassSpell>
       <Name>Deep Slumber</Name>
       <Level>3</Level>
     </ClassSpell>
@@ -495,6 +496,10 @@ points and making their spells more effective.</Description>
     <ClassSpell>
       <Name>Burning Blood</Name>
       <Cost>10</Cost>
+      <Level>4</Level>
+    </ClassSpell>
+    <ClassSpell>
+      <Name>Chaos Hammer</Name>
       <Level>4</Level>
     </ClassSpell>
     <ClassSpell>
@@ -1008,74 +1013,31 @@ points and making their spells more effective.</Description>
     </ClassSpell>
     <!--Feats-->
     <Feat>
-      <Name>Past Life: Sorcerer</Name>
-      <Description>You were a Sorcerer in a past life.
-You occasionally find yourself daydreaming of dragons.
-Each time you acquire this feat you gain +1 to the DC's of your Evocation spells
-and gain 20 additional spell points.
+      <Name>Wild Magic</Name>
+      <Description>Wildmagic - When you cast spells, you have a small chance to have additional strange
+effects occur around you. These effects vary greatly from helpful, dangerous to
+just silly.
+
+Grants a 5% chance of a Wildsurge every time you cast. Wildsurges will also manifest
+over time passively. Wildsurges do not occur in public spaces.</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Wild Mage</Item>
+          <Value>1</Value>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>WildMagic</Icon>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Sorcerer - Wild Mage</Name>
+      <Description>You were a Wild Mage in a past life.
+Bonus effects TBD!
 This feat can be stacked up to three times.</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Acquire>HeroicPastLife</Acquire>
       <Icon>PastLifeSorcerer</Icon>
-      <Effect>
-        <Type>SpellDC</Type>
-        <Bonus>Feat</Bonus>
-        <Item>Evocation</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">20</Amount>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Past Life: Arcane Prodigy</Name>
-      <Description>You recall more about your past life as a sorcerer.
-Your maximum spell points are increased by 10 at first level and 5 spell points
-for each additional level and can produce random elemental damage spells ten
-times per rest. (Activate this sorcerer ability to blast a target with a ray of
-combined elements, doing 1 to 12 damage of a random elemental type plus an
-additional 1 to 12 per three caster levels on impact.
-A successful Reflex save reduces the damage by half.)
-D&amp;D Dice: Deals 1d12 damage plus 1d12 damage additional per three caster levels.</Description>
-      <Group>Standard</Group>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>3</Value>
-        </Requirement>
-        <RequiresOneOf>
-           <Requirement>
-             <Type>Feat</Type>
-             <Item>Past Life: Sorcerer</Item>
-           </Requirement>
-           <Requirement>
-             <Type>Feat</Type>
-             <Item>Past Life: Sorcerer - Wild Mage</Item>
-           </Requirement>
-        </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>PastLifeSorcerer</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <Amount size="40">10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 105 110 115 120 125 130 135 140 145 150 155 160 165 170 175 180 185 190 195 200 205</Amount>
-        <AType>TotalLevel</AType>
-        <StackSource>Stacks</StackSource>
-      </Effect>
-      <Effect>
-        <Type>SpellLikeAbility</Type>
-        <Bonus>Feat</Bonus>
-        <Item>Elemental Damage</Item>
-        <AType>SpellInfo</AType>
-        <Amount size="3">0 0 0</Amount>
-        <Item>Sorcerer</Item>
-      </Effect>
     </Feat>
   </Class>
 </Classes>

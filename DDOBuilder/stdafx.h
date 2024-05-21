@@ -61,6 +61,7 @@ const int c_controlSpacing = 3;
 #define MAX_ARTIFACT_FILIGREE   10
 #define MAX_SKILL_TOME          5
 #define MAX_FAVOR_ITEMS         25
+#define MAX_QUEST_LEVEL         40
 
 #define INVALID_HWND_VALUE      0
 

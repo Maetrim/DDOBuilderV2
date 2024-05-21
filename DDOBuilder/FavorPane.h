@@ -43,6 +43,9 @@ protected:
     afx_msg void OnUpdateFavorReaper8(CCmdUI* pCmdUi);
     afx_msg void OnUpdateFavorReaper9(CCmdUI* pCmdUi);
     afx_msg void OnUpdateFavorReaper10(CCmdUI* pCmdUi);
+    afx_msg void OnSelendokMinLevel();
+    afx_msg void OnSelendokMaxLevel();
+    afx_msg void OnSelendokPatron();
 
     virtual void DoDataExchange(CDataExchange* pDX) override;
     virtual void OnInitialUpdate() override;
@@ -63,6 +66,14 @@ private:
     CFavorListCtrl m_listQuests;
     CSortHeaderCtrl m_sortHeader;
     CFavorProgressBar m_favorItems[MAX_FAVOR_ITEMS];
+    CStatic m_staticFilterByLevel;
+    CComboBox m_comboMinLevel;
+    CStatic m_staticTo;
+    CComboBox m_comboMaxLevel;
+    CStatic m_staticPatron;
+    CComboBox m_comboPatron;
+    CStatic m_staticContains;
+    CEdit m_editSearchText;
     size_t m_patronCount;
     bool m_bHadIntialise;
     CMenu m_favorMenu;

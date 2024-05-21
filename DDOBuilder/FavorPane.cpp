@@ -47,6 +47,9 @@ BEGIN_MESSAGE_MAP(CFavorPane, CFormView)
     ON_UPDATE_COMMAND_UI(ID_REAPER_REAPER8, OnUpdateFavorReaper8)
     ON_UPDATE_COMMAND_UI(ID_REAPER_REAPER9, OnUpdateFavorReaper9)
     ON_UPDATE_COMMAND_UI(ID_REAPER_REAPER10, OnUpdateFavorReaper10)
+    ON_CBN_SELENDOK(IDC_COMBO_MINLEVEL, OnSelendokMinLevel)
+    ON_CBN_SELENDOK(IDC_COMBO_MAXLEVEL, OnSelendokMaxLevel)
+    ON_CBN_SELENDOK(IDC_COMBO_PATRON, OnSelendokPatron)
 END_MESSAGE_MAP()
 
 CFavorPane::CFavorPane() :
@@ -95,7 +98,7 @@ LRESULT CFavorPane::OnLoadComplete(WPARAM, LPARAM)
     m_listQuests.InsertColumn(3, "Run@", LVCFMT_LEFT, 60);
     m_listQuests.InsertColumn(4, "Patron", LVCFMT_LEFT, 140);
     m_listQuests.SetExtendedStyle(m_listQuests.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
-    m_sortHeader.SetSortArrow(1, FALSE);     // sort by level by default
+    m_sortHeader.SetSortArrow(1, TRUE);     // sort by level (increasing) by default
 
     const std::list<Patron>& patrons = Patrons();
     m_patronCount = 0;
@@ -107,6 +110,23 @@ LRESULT CFavorPane::OnLoadComplete(WPARAM, LPARAM)
         m_favorItems[m_patronCount].ShowWindow(SW_SHOW);
         ++m_patronCount;
     }
+    // populate the drop list controls
+    CString txt;
+    for (size_t level = 1; level <= MAX_QUEST_LEVEL; ++level)
+    {
+        txt.Format("%d", level);
+        m_comboMinLevel.AddString(txt);
+        m_comboMaxLevel.AddString(txt);
+    }
+    m_comboMinLevel.SetCurSel(0);
+    m_comboMaxLevel.SetCurSel(m_comboMaxLevel.GetCount() - 1);
+    m_comboPatron.AddString("<No Filtering>");
+    for (auto&& pit : patrons)
+    {
+        CString patronName = EnumEntryText(pit.Name(), patronTypeMap);
+        m_comboPatron.AddString(patronName);
+    }
+    m_comboPatron.SetCurSel(0);
     CRect rect;
     GetClientRect(rect);
     OnSize(SIZE_RESTORED, rect.Width(), rect.Height());
@@ -128,6 +148,14 @@ void CFavorPane::DoDataExchange(CDataExchange* pDX)
         {
             VERIFY(m_sortHeader.SubclassWindow(m_listQuests.GetHeaderCtrl()->GetSafeHwnd()));
         }
+        DDX_Control(pDX, IDC_STATIC_FILTER_BY, m_staticFilterByLevel);
+        DDX_Control(pDX, IDC_COMBO_MINLEVEL, m_comboMinLevel);
+        DDX_Control(pDX, IDC_STATIC_TO, m_staticTo);
+        DDX_Control(pDX, IDC_COMBO_MAXLEVEL, m_comboMaxLevel);
+        DDX_Control(pDX, IDC_STATIC_PATRON, m_staticPatron);
+        DDX_Control(pDX, IDC_COMBO_PATRON, m_comboPatron);
+        DDX_Control(pDX, IDC_STATIC_TEXT, m_staticContains);
+        DDX_Control(pDX, IDC_EDIT_SEARCHTEXT, m_editSearchText);
     }
 }
 
@@ -147,7 +175,38 @@ void CFavorPane::OnSize(UINT nType, int cx, int cy)
             m_favorItems[i].MoveWindow(rectPatronItem, TRUE);
             rectPatronItem += CPoint(0, c_controlSpacing + rectPatronItem.Height());
         }
-        m_listQuests.MoveWindow(rectPatronItem.right + c_controlSpacing, c_controlSpacing,
+        // measure and place the filter control to the right
+        CRect rctSearchControls[8];
+        m_staticFilterByLevel.GetWindowRect(rctSearchControls[0]);
+        m_comboMinLevel.GetWindowRect(rctSearchControls[1]);
+        m_staticTo.GetWindowRect(rctSearchControls[2]);
+        m_comboMaxLevel.GetWindowRect(rctSearchControls[3]);
+        m_staticPatron.GetWindowRect(rctSearchControls[4]);
+        m_comboPatron.GetWindowRect(rctSearchControls[5]);
+        m_staticContains.GetWindowRect(rctSearchControls[6]);
+        m_editSearchText.GetWindowRect(rctSearchControls[7]);
+        for (size_t i = 0; i < 8; i++)
+        {
+            rctSearchControls[i] -= rctSearchControls[i].TopLeft();
+            if (i == 0)
+            {
+                rctSearchControls[i] += CSize(rectPatronItem.right + c_controlSpacing, c_controlSpacing);
+            }
+            else
+            {
+                rctSearchControls[i] += CSize(rctSearchControls[i-1].right + c_controlSpacing, c_controlSpacing);
+            }
+        }
+        rctSearchControls[7].right = cx - c_controlSpacing;
+        m_staticFilterByLevel.MoveWindow(rctSearchControls[0]);
+        m_comboMinLevel.MoveWindow(rctSearchControls[1]);
+        m_staticTo.MoveWindow(rctSearchControls[2]);
+        m_comboMaxLevel.MoveWindow(rctSearchControls[3]);
+        m_staticPatron.MoveWindow(rctSearchControls[4]);
+        m_comboPatron.MoveWindow(rctSearchControls[5]);
+        m_staticContains.MoveWindow(rctSearchControls[6]);
+        m_editSearchText.MoveWindow(rctSearchControls[7]);
+        m_listQuests.MoveWindow(rectPatronItem.right + c_controlSpacing, rctSearchControls[0].bottom + c_controlSpacing,
                 cx - rectPatronItem.right - c_controlSpacing * 2, cy - c_controlSpacing * 2, TRUE);
     }
     SetScrollSizes(MM_TEXT, CSize(cx- GetSystemMetrics(SM_CYHSCROLL), rectPatronItem.top));
@@ -157,7 +216,6 @@ BOOL CFavorPane::OnEraseBkgnd(CDC* pDC)
 {
     static int controlsNotToBeErased[] =
     {
-        IDC_LIST_QUESTS,
         IDC_FAVOR_1,
         IDC_FAVOR_2,
         IDC_FAVOR_3,
@@ -183,6 +241,15 @@ BOOL CFavorPane::OnEraseBkgnd(CDC* pDC)
         IDC_FAVOR_23,
         IDC_FAVOR_24,
         IDC_FAVOR_25,
+        IDC_STATIC_FILTER_BY,
+        IDC_COMBO_MINLEVEL,
+        IDC_STATIC_TO,
+        IDC_COMBO_MAXLEVEL,
+        IDC_STATIC_PATRON,
+        IDC_COMBO_PATRON,
+        IDC_STATIC_TEXT,
+        IDC_EDIT_SEARCHTEXT,
+        IDC_LIST_QUESTS,
         0 // end marker
     };
 
@@ -202,6 +269,17 @@ void CFavorPane::PopulateQuestList()
         // duplicates have been removed here
         m_runQuests = m_pCharacter->CompletedQuests();
     }
+    size_t selMinLevel = m_comboMinLevel.GetCurSel() + 1;
+    size_t selMaxLevel = m_comboMaxLevel.GetCurSel() + 1;
+    int selPatron = m_comboPatron.GetCurSel();
+    PatronType selectedPatron = Patron_Unknown;
+    if (selPatron > 0)
+    {
+        CString patronName;
+        m_comboPatron.GetLBText(selPatron, patronName);
+        selectedPatron = TextToEnumEntry((LPCSTR)patronName, patronTypeMap);
+    }
+
     int topIndex = m_listQuests.GetTopIndex();
     m_listQuests.LockWindowUpdate();
     m_listQuests.DeleteAllItems();
@@ -213,27 +291,37 @@ void CFavorPane::PopulateQuestList()
     quests.sort();
     for (auto&& qit : quests)
     {
-        // add one list entry for every Levels entry this quest has
-        CString patron = EnumEntryText(qit.Patron(), patronTypeMap);
-        CString questName = qit.Name().c_str();
-        int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), questName);
-        CString text;
-        text.Format("%d", qit.Levels()[0]);
-        m_listQuests.SetItemText(iIndex, QLC_level, text);
-        text.Format("%d", qit.Favor());
-        m_listQuests.SetItemText(iIndex, QLC_favor, text);
-        m_listQuests.SetItemText(iIndex, QLC_patron, patron);
-        QuestDifficulty diff = QD_notRun;
-        for (auto&& rqi : m_runQuests)
+        // level filtering
+        if (selMinLevel <= qit.Levels()[0]
+            && selMaxLevel >= qit.Levels()[0])
         {
-            if (rqi.Name() == qit.Name()
-                && rqi.Level() == qit.Levels()[0])
+            CString patron = EnumEntryText(qit.Patron(), patronTypeMap);
+            // do we have patron filtering?
+            if (selPatron == 0          // no filtering
+                || qit.Patron() == selectedPatron)
             {
-                diff = max(diff, rqi.Difficulty());
+                // add one list entry for every Levels entry this quest has
+                CString questName = qit.Name().c_str();
+                int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), questName);
+                CString text;
+                text.Format("%d", qit.Levels()[0]);
+                m_listQuests.SetItemText(iIndex, QLC_level, text);
+                text.Format("%d", qit.Favor());
+                m_listQuests.SetItemText(iIndex, QLC_favor, text);
+                m_listQuests.SetItemText(iIndex, QLC_patron, patron);
+                QuestDifficulty diff = QD_notRun;
+                for (auto&& rqi : m_runQuests)
+                {
+                    if (rqi.Name() == qit.Name()
+                        && rqi.Level() == qit.Levels()[0])
+                    {
+                        diff = max(diff, rqi.Difficulty());
+                    }
+                }
+                CString difficulty = EnumEntryText(diff, questDifficultyTypeMap);
+                m_listQuests.SetItemText(iIndex, QLC_runAt, difficulty);
             }
         }
-        CString difficulty = EnumEntryText(diff, questDifficultyTypeMap);
-        m_listQuests.SetItemText(iIndex, QLC_runAt, difficulty);
     }
     // now sum the total favor per patron from all quests that have a run@
     std::vector<size_t> favorPerPatron(MAX_FAVOR_ITEMS, 0);
@@ -255,6 +343,15 @@ void CFavorPane::PopulateQuestList()
     m_listQuests.EnsureVisible(m_listQuests.GetItemCount() - 1, FALSE);
     m_listQuests.EnsureVisible(topIndex, FALSE);
     m_listQuests.UnlockWindowUpdate();
+    bool bEnableWindows = false;
+    if (m_pCharacter != NULL)
+    {
+        bEnableWindows = (m_pCharacter->ActiveBuild() != NULL);
+    }
+    m_comboMinLevel.EnableWindow(bEnableWindows);
+    m_comboMaxLevel.EnableWindow(bEnableWindows);
+    m_comboPatron.EnableWindow(bEnableWindows);
+    m_editSearchText.EnableWindow(bEnableWindows);
 }
 
 void CFavorPane::UpdateActiveBuildChanged(Character*)
@@ -269,11 +366,19 @@ void CFavorPane::UpdateActiveBuildChanged(Character*)
         else
         {
             m_listQuests.DeleteAllItems();
+            m_comboMinLevel.EnableWindow(FALSE);
+            m_comboMaxLevel.EnableWindow(FALSE);
+            m_comboPatron.EnableWindow(FALSE);
+            m_editSearchText.EnableWindow(FALSE);
         }
     }
     else
     {
         m_listQuests.DeleteAllItems();
+        m_comboMinLevel.EnableWindow(FALSE);
+        m_comboMaxLevel.EnableWindow(FALSE);
+        m_comboPatron.EnableWindow(FALSE);
+        m_editSearchText.EnableWindow(FALSE);
     }
 }
 
@@ -608,3 +713,29 @@ void CFavorPane::RemoveQuestDuplicates(std::list<CompletedQuest>& favorQs)
     }
 }
 
+void CFavorPane::OnSelendokMinLevel()
+{
+    int selMin = m_comboMinLevel.GetCurSel();
+    int selMax = m_comboMaxLevel.GetCurSel();
+    if (selMax < selMin)
+    {
+        m_comboMaxLevel.SetCurSel(selMin);
+    }
+    PopulateQuestList();
+}
+
+void CFavorPane::OnSelendokMaxLevel()
+{
+    int selMin = m_comboMinLevel.GetCurSel();
+    int selMax = m_comboMaxLevel.GetCurSel();
+    if (selMin > selMax)
+    {
+        m_comboMinLevel.SetCurSel(selMax);
+    }
+    PopulateQuestList();
+}
+
+void CFavorPane::OnSelendokPatron()
+{
+    PopulateQuestList();
+}
