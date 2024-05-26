@@ -309,12 +309,12 @@ bool EquippedGear::IsSlotRestricted(
     return bRestricted;
 }
 
-void EquippedGear::SetItem(
+std::list<Item> EquippedGear::SetItem(
         InventorySlotType slot,
         Build* pBuild,
         const Item & item)
 {
-    UNREFERENCED_PARAMETER(pBuild);
+    std::list<Item> revokedItems;
     bool itemsRemoved = false;
     std:: stringstream ss;
     switch (slot)
@@ -360,6 +360,7 @@ void EquippedGear::SetItem(
                         ss << "You can only have a single Minor Artifact equipped at any time.\r\n"
                             "The following item was removed: ";
                         ss << ItemInSlot((InventorySlotType)s).Name();
+                        revokedItems.push_back(ItemInSlot((InventorySlotType)s));
                         ClearItem((InventorySlotType)s);
                         itemsRemoved = true;
                     }
@@ -374,6 +375,7 @@ void EquippedGear::SetItem(
         ss << "The following item was removed because you cannot have an item in your off hand:\r\n\r\n";
         ss << ItemInSlot(Inventory_Weapon2).Name();
         // item in this slot now stops an item in weapon slot 2
+        revokedItems.push_back(ItemInSlot(Inventory_Weapon2));
         ClearItem(Inventory_Weapon2);
         itemsRemoved = true;
     }
@@ -381,6 +383,7 @@ void EquippedGear::SetItem(
     {
         AfxMessageBox(ss.str().c_str(), MB_ICONEXCLAMATION);
     }
+    return revokedItems;
 }
 
 void EquippedGear::ClearItem(InventorySlotType slot)

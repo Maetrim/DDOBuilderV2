@@ -94,6 +94,10 @@ CString Buff::MakeDescription() const
         {
             str.Replace("%i1", Description1().c_str());
         }
+        else if (HasItem())
+        {
+            str.Replace("%i1", Item().c_str());
+        }
         if (HasIgnore())
         {
             // only remove the ignore if it is at the start of the description

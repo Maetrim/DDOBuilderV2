@@ -700,7 +700,7 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
     pDC->FillSolidRect(rctSkillItem, f_totalSkillColour);
     double maxSkill = pBuild->MaxSkillForLevel(
             skill,
-            m_pCharacter->ActiveBuild()->Level());
+            m_pCharacter->ActiveBuild()->Level()-1);
     if (maxSkill != 0)
     {
         str.Format("%d", static_cast<int>(skillTotal));

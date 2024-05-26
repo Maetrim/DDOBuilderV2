@@ -453,7 +453,6 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         m_item.Clear_Armor();
         m_item.Clear_WeaponDamage();
         m_item.Clear_DamageDice();
-        m_item.Clear_CriticalMultiplier();
         m_item.Clear_CriticalThreatRange();
         m_item.Clear_ArmorBonus();
         m_item.Clear_MithralBody();
@@ -525,11 +524,15 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         AddAttackMods(itemFields);
         AddDamageMods(itemFields);
         AddDamageDice(itemFields);
-        AddCriticalThreatAndMultiplier(itemFields);
         // some item files have to be manually set up. In such cases the file has
         // been marked to never be auto updated by this procedure. Skip these files
         if (!m_item.HasNoAutoUpdate())
         {
+            // only update the critical threat range if we are updating th whole item.
+            // this value should be correct from the first parse
+            m_item.Clear_CriticalMultiplier();
+            AddCriticalThreatAndMultiplier(itemFields);
+
             // clear any existing effects from load action to avoid carry over after recreated
             m_item.m_Buffs.clear();
             m_item.m_SetBonus.clear();

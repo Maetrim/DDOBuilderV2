@@ -50,8 +50,6 @@ class Item :
 
         virtual void EndElement();
 
-        bool SearchForText(std::string source, const std::string& find) const;
-
         #define Item_PROPERTIES(_) \
                 DL_FLAG(_, NoAutoUpdate) \
                 DL_FLAG(_, UserSetsLevel) \

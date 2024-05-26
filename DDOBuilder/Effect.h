@@ -167,6 +167,7 @@ enum EffectType
     Effect_UniversalSpellCriticalDamage,
     Effect_UniversalSpellLore,
     Effect_UniversalSpellPower,
+    Effect_WildsurgeChance,
 
     // weapon effects for specified weapons in Item(s)
     Effect_Weapon_Alacrity,
@@ -370,6 +371,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_UnconsciousRange, L"UnconsciousRange"},
     {Effect_UniversalSpellLore, L"UniversalSpellLore"},
     {Effect_UniversalSpellPower, L"UniversalSpellPower"},
+    {Effect_WildsurgeChance, L"WildsurgeChance"},
 
     // weapon effects for specified weapons in Item(s)
     {Effect_Weapon_Alacrity, L"Weapon_Alacrity"},

@@ -50,6 +50,7 @@ BEGIN_MESSAGE_MAP(CFavorPane, CFormView)
     ON_CBN_SELENDOK(IDC_COMBO_MINLEVEL, OnSelendokMinLevel)
     ON_CBN_SELENDOK(IDC_COMBO_MAXLEVEL, OnSelendokMaxLevel)
     ON_CBN_SELENDOK(IDC_COMBO_PATRON, OnSelendokPatron)
+    ON_EN_CHANGE(IDC_EDIT_SEARCHTEXT, OnChangeSearchText)
 END_MESSAGE_MAP()
 
 CFavorPane::CFavorPane() :
@@ -207,7 +208,7 @@ void CFavorPane::OnSize(UINT nType, int cx, int cy)
         m_staticContains.MoveWindow(rctSearchControls[6]);
         m_editSearchText.MoveWindow(rctSearchControls[7]);
         m_listQuests.MoveWindow(rectPatronItem.right + c_controlSpacing, rctSearchControls[0].bottom + c_controlSpacing,
-                cx - rectPatronItem.right - c_controlSpacing * 2, cy - c_controlSpacing * 2, TRUE);
+                cx - rectPatronItem.right - c_controlSpacing * 2, cy - c_controlSpacing * 3 - rctSearchControls[0].Height(), TRUE);
     }
     SetScrollSizes(MM_TEXT, CSize(cx- GetSystemMetrics(SM_CYHSCROLL), rectPatronItem.top));
 }
@@ -279,6 +280,10 @@ void CFavorPane::PopulateQuestList()
         m_comboPatron.GetLBText(selPatron, patronName);
         selectedPatron = TextToEnumEntry((LPCSTR)patronName, patronTypeMap);
     }
+    CString strSearchText;
+    m_editSearchText.GetWindowText(strSearchText);
+    strSearchText.MakeLower();
+    std::string strFindText = (LPCTSTR)strSearchText;
 
     int topIndex = m_listQuests.GetTopIndex();
     m_listQuests.LockWindowUpdate();
@@ -300,26 +305,30 @@ void CFavorPane::PopulateQuestList()
             if (selPatron == 0          // no filtering
                 || qit.Patron() == selectedPatron)
             {
-                // add one list entry for every Levels entry this quest has
-                CString questName = qit.Name().c_str();
-                int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), questName);
-                CString text;
-                text.Format("%d", qit.Levels()[0]);
-                m_listQuests.SetItemText(iIndex, QLC_level, text);
-                text.Format("%d", qit.Favor());
-                m_listQuests.SetItemText(iIndex, QLC_favor, text);
-                m_listQuests.SetItemText(iIndex, QLC_patron, patron);
-                QuestDifficulty diff = QD_notRun;
-                for (auto&& rqi : m_runQuests)
+                if (strSearchText == ""
+                        || SearchForText(qit.Name(), strFindText))
                 {
-                    if (rqi.Name() == qit.Name()
-                        && rqi.Level() == qit.Levels()[0])
+                    // add one list entry for every Levels entry this quest has
+                    CString questName = qit.Name().c_str();
+                    int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), questName);
+                    CString text;
+                    text.Format("%d", qit.Levels()[0]);
+                    m_listQuests.SetItemText(iIndex, QLC_level, text);
+                    text.Format("%d", qit.Favor());
+                    m_listQuests.SetItemText(iIndex, QLC_favor, text);
+                    m_listQuests.SetItemText(iIndex, QLC_patron, patron);
+                    QuestDifficulty diff = QD_notRun;
+                    for (auto&& rqi : m_runQuests)
                     {
-                        diff = max(diff, rqi.Difficulty());
+                        if (rqi.Name() == qit.Name()
+                            && rqi.Level() == qit.Levels()[0])
+                        {
+                            diff = max(diff, rqi.Difficulty());
+                        }
                     }
+                    CString difficulty = EnumEntryText(diff, questDifficultyTypeMap);
+                    m_listQuests.SetItemText(iIndex, QLC_runAt, difficulty);
                 }
-                CString difficulty = EnumEntryText(diff, questDifficultyTypeMap);
-                m_listQuests.SetItemText(iIndex, QLC_runAt, difficulty);
             }
         }
     }
@@ -736,6 +745,11 @@ void CFavorPane::OnSelendokMaxLevel()
 }
 
 void CFavorPane::OnSelendokPatron()
+{
+    PopulateQuestList();
+}
+
+void CFavorPane::OnChangeSearchText()
 {
     PopulateQuestList();
 }

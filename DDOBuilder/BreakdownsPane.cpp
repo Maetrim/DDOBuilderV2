@@ -1554,6 +1554,21 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSP);
         m_items.push_back(pSP);
     }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Wildsurge Chance",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pWS = new BreakdownItemSimple(
+                this,
+                Breakdown_Wildsurge,
+                Effect_WildsurgeChance,
+                "Wildsurge Chance",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pWS);
+        m_items.push_back(pWS);
+    }
     // Warlock Eldritch blast
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
@@ -1707,6 +1722,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         }
         AddSpellPower(Breakdown_SpellPowerAcid, SpellPower_Acid, "Acid Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerLightAlignment, SpellPower_LightAlignment, "Light/Alignment Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerChaos, SpellPower_Chaos, "Chaos Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerCold, SpellPower_Cold, "Cold Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerElectric, SpellPower_Electric, "Electric Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerEvil, SpellPower_Evil, "Evil Spell power", hItem);
@@ -1745,6 +1761,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         }
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceAcid, SpellPower_Acid, "Acid Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceChaos, SpellPower_Chaos, "Chaos Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceCold, SpellPower_Cold, "Cold Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceElectric, SpellPower_Electric, "Electric Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceEvil, SpellPower_Evil, "Evil Critical Chance", hItem);
@@ -1783,6 +1800,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         }
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierAcid, SpellPower_Acid, "Acid Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierChaos, SpellPower_Chaos, "Chaos Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierCold, SpellPower_Cold, "Cold Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierElectric, SpellPower_Electric, "Electric Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierEvil, SpellPower_Evil, "Evil Critical Multiplier", hItem);

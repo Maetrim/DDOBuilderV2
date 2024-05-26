@@ -23,9 +23,9 @@ class EquippedGear :
         bool HasItemInSlot(InventorySlotType slot) const;
         Item ItemInSlot(InventorySlotType slot) const;
         bool IsSlotRestricted(InventorySlotType slot, Build* pBuild) const;
-        void SetItem(InventorySlotType slot,
+        std::list<Item> SetItem(InventorySlotType slot,
                 Build* pBuild,
-                const Item & item);
+                const Item & item); // returns list of revoked items (if any)
         void ClearItem(InventorySlotType slot);
 
         bool HasMinorArtifact() const;

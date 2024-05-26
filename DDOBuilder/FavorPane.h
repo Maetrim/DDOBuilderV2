@@ -46,6 +46,7 @@ protected:
     afx_msg void OnSelendokMinLevel();
     afx_msg void OnSelendokMaxLevel();
     afx_msg void OnSelendokPatron();
+    afx_msg void OnChangeSearchText();
 
     virtual void DoDataExchange(CDataExchange* pDX) override;
     virtual void OnInitialUpdate() override;

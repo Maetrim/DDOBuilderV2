@@ -9,7 +9,6 @@
 #include "SetBonus.h"
 #include "DDOBuilder.h"
 #include "Build.h"
-#include <algorithm>
 
 #define DL_ELEMENT Item
 
@@ -278,16 +277,6 @@ bool Item::ContainsSearchText(const std::string& searchText, const Build* pBuild
         }
     }
     return bHasSearchText;
-}
-
-bool Item::SearchForText(std::string source, const std::string& find) const
-{
-    // the search is done in all lower case
-    // note that std::tolower is wrapped in a lamda function to avoid a compile warning
-    std::transform(source.begin(), source.end(), source.begin(), 
-        [](char c) {return static_cast<char>(std::tolower(c)); });
-    bool bTextPresent = (source.find(find.c_str()) != std::string::npos);
-    return bTextPresent;
 }
 
 std::string Item::ItemType() const

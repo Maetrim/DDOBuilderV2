@@ -1615,7 +1615,7 @@ double Build::SkillAtLevel(
     double skillLevel = 0;  // assume untrained
 
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
-    for (size_t li = 0; li < level; ++li)
+    for (size_t li = 0; li <= level; ++li)
     {
         // full point per spend if its a class skill at this level
         // half point per spend if its a cross class skill at this level
@@ -3910,7 +3910,7 @@ void Build::SetGear(
     {
         if ((*it).Name() == name)
         {
-            (*it).SetItem(slot, this, item);
+            std::list<Item> revokedItems = (*it).SetItem(slot, this, item);
             found = true;
             // clear any items from restricted gear slots if required
             if (item.HasRestrictedSlots())
@@ -3921,12 +3921,18 @@ void Build::SetGear(
                     {
                         if (name == ActiveGear())
                         {
-                            const Item& badItem = ActiveGearSet().ItemInSlot((InventorySlotType)i);
-                            RevokeItem(badItem, (InventorySlotType)i);
+                            revokedItems.push_back(ActiveGearSet().ItemInSlot((InventorySlotType)i));
                         }
                         (*it).ClearItem((InventorySlotType)i);
                     }
                 }
+            }
+            for (auto&& riit : revokedItems)
+            {
+                InventorySlotType ist = Inventory_Unknown;
+                if (riit.HasArmor()) ist = Inventory_Armor;
+                else if (riit.HasWeapon()) ist = Inventory_Weapon1;
+                RevokeItem(riit, ist);
             }
         }
         ++it;

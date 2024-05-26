@@ -12,6 +12,7 @@
 #include "SetBonus.h"
 #include "Spell.h"
 #include "IgnoredListFile.h"
+#include <algorithm>
 
 namespace
 {
@@ -1296,6 +1297,7 @@ BreakdownType SpellPowerToBreakdown(SpellPowerType sp)
     switch (sp)
     {
     case SpellPower_Acid:           bt = Breakdown_SpellPowerAcid; break;
+    case SpellPower_Chaos:          bt = Breakdown_SpellPowerChaos; break;
     case SpellPower_Cold:           bt = Breakdown_SpellPowerCold; break;
     case SpellPower_Electric:       bt = Breakdown_SpellPowerElectric; break;
     case SpellPower_Evil:           bt = Breakdown_SpellPowerEvil; break;
@@ -1319,6 +1321,7 @@ BreakdownType SpellPowerToCriticalChanceBreakdown(SpellPowerType sp)
     switch (sp)
     {
     case SpellPower_Acid:           bt = Breakdown_SpellCriticalChanceAcid; break;
+    case SpellPower_Chaos:          bt = Breakdown_SpellCriticalChanceChaos; break;
     case SpellPower_Cold:           bt = Breakdown_SpellCriticalChanceCold; break;
     case SpellPower_Electric:       bt = Breakdown_SpellCriticalChanceElectric; break;
     case SpellPower_Evil:           bt = Breakdown_SpellCriticalChanceEvil; break;
@@ -1342,6 +1345,7 @@ BreakdownType SpellPowerToCriticalMultiplierBreakdown(SpellPowerType sp)
     switch (sp)
     {
     case SpellPower_Acid:           bt = Breakdown_SpellCriticalMultiplierAcid; break;
+    case SpellPower_Chaos:          bt = Breakdown_SpellCriticalMultiplierChaos; break;
     case SpellPower_Cold:           bt = Breakdown_SpellCriticalMultiplierCold; break;
     case SpellPower_Electric:       bt = Breakdown_SpellCriticalMultiplierElectric; break;
     case SpellPower_Evil:           bt = Breakdown_SpellCriticalMultiplierEvil; break;
@@ -2232,3 +2236,12 @@ bool DarkModeEnabled()
     return bDarkMode;
 }
 
+bool SearchForText(std::string source, const std::string& find)
+{
+    // the search is done in all lower case
+    // note that std::tolower is wrapped in a lamda function to avoid a compile warning
+    std::transform(source.begin(), source.end(), source.begin(),
+        [](char c) {return static_cast<char>(std::tolower(c)); });
+    bool bTextPresent = (source.find(find.c_str()) != std::string::npos);
+    return bTextPresent;
+}

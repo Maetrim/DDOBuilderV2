@@ -52,7 +52,7 @@ CString BreakdownItemSkill::Value() const
             // some skills must have trained ranks else always shown as N/A
             double maxSkill = pBuild->MaxSkillForLevel(
                     m_skill,
-                    19);   // only check heroic level spend
+                    min(MAX_CLASS_LEVEL, pBuild->Level())-1);   // only check heroic level spend
             if (maxSkill > 0)
             {
                 value.Format(

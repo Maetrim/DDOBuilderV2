@@ -948,13 +948,13 @@ void CForumExportDlg::AddSkills(std::stringstream & forumExport)
                 forumExport << "   ";
             }
         }
-        double total = m_pBuild->SkillAtLevel((SkillType)skill, m_pBuild->Level(), false);
+        double total = m_pBuild->SkillAtLevel((SkillType)skill, m_pBuild->Level()-1, false);
         forumExport.precision(1);          // max 1 dp
         forumExport.fill(' ');
         forumExport.width(7);              // xxx.y
         forumExport << std::fixed << std::right << total;
         // show the tome value
-        size_t tome = m_pBuild->SkillTomeValue((SkillType)skill, m_pBuild->Level());
+        size_t tome = m_pBuild->SkillTomeValue((SkillType)skill, m_pBuild->Level()-1);
         forumExport.width(5);              // .....x
         forumExport << std::fixed << std::right << tome;
         // now add the total for this skill
@@ -1349,6 +1349,7 @@ void CForumExportDlg::AddSpellPowers(std::stringstream & forumExport)
     forumExport << "[TR][TD][COLOR=rgb(65, 168, 95)]Spell Power[/COLOR][/TD][TD][COLOR=rgb(65, 168, 95)]Base[/COLOR][/TD][TD][COLOR=rgb(65, 168, 95)]Critical Chance[/COLOR][/TD][TD][COLOR=rgb(65, 168, 95)]Critical Multiplier[/COLOR][/TD][/COLOR][/TR]\r\n";
     AddSpellPowerToTable(forumExport, "Acid           ", Breakdown_SpellPowerAcid, Breakdown_SpellCriticalChanceAcid, Breakdown_SpellCriticalMultiplierAcid);
     AddSpellPowerToTable(forumExport, "Light/Alignment", Breakdown_SpellPowerLightAlignment, Breakdown_SpellCriticalChanceLightAlignment, Breakdown_SpellCriticalMultiplierLightAlignment);
+    AddSpellPowerToTable(forumExport, "Chaos          ", Breakdown_SpellPowerChaos, Breakdown_SpellCriticalChanceChaos, Breakdown_SpellCriticalMultiplierChaos);
     AddSpellPowerToTable(forumExport, "Cold           ", Breakdown_SpellPowerCold, Breakdown_SpellCriticalChanceCold, Breakdown_SpellCriticalMultiplierCold);
     AddSpellPowerToTable(forumExport, "Electric       ", Breakdown_SpellPowerElectric, Breakdown_SpellCriticalChanceElectric, Breakdown_SpellCriticalMultiplierElectric);
     AddSpellPowerToTable(forumExport, "Evil           ", Breakdown_SpellPowerEvil, Breakdown_SpellCriticalChanceEvil, Breakdown_SpellCriticalMultiplierEvil);
