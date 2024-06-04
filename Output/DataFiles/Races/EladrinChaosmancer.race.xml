@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Races>
+  <Race>
+    <Name>Eladrin Chaosmancer</Name>
+    <Description>Wild magic is my only friend. An Eladrin wild mage who causes chaos where they roam.</Description>
+    <StartingWorld>Forgotten Realms</StartingWorld>
+    <BuildPoints size="4">28 32 34 36</BuildPoints>
+    <IconicClass>Wild Mage</IconicClass>
+    <Dexterity>+2</Dexterity>
+    <Feat>
+      <Name>Wildmagic Fey</Name>
+      <Description>Your fey nature touchs all your spells with wildmagic. Wildmagic - When you cast
+spells, you have a small chance to have additional strange effects occur around
+you. These effects vary greatly from helpful, dangerous to just silly. Grants a
+5% chance os a Wildsurge every time you cast. Wildsurges do not occur in public
+spaces.</Description>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Eladrin Chaosmancer</Item>
+        </Requirement>
+      </AutomaticAcquisition>
+      <Icon>WildmagicFey</Icon>
+      <Effect>
+        <Type>WildsurgeChance</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Eladrin Chaosmancer</Name>
+      <Description>Iconic Past Life Stance: Fey Ste[: Disappear and reappear several feet in front of you.
+You have maximum charges equal to your number of Eladrin Wild Mage past lives.
+
+Passive Bonus: +3 Universal Spell Power per stack of this past life. This feat
+can be stacked up to three times.</Description>
+      <Stance>
+        <Name>Eladrin Chaosmancer </Name>
+        <Icon>EladrinChaosmancer</Icon>
+        <Description>Iconic Past Life Stance: Fey Ste[: Disappear and reappear several feet in front of you.
+You have maximum charges equal to your number of Eladrin Wild Mage past lives.</Description>
+        <Group>Iconic</Group>
+      </Stance>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>EladrinChaosmancer</Icon>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>
+  </Race>
+</Races>

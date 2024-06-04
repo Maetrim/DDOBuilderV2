@@ -41,12 +41,12 @@ BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     // UI options disabled during start up
     ON_UPDATE_COMMAND_UI(ID_APP_ABOUT, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI(ID_FILE_NEW, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
-    ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
-    ON_UPDATE_COMMAND_UI(ID_FILE_IMPORT, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI(ID_FILE_IMPORT, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_VERIFYLOADEDDATA, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
-    ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
+    ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_COMMAND(ID_DEVELOPMENT_VERIFYLOADEDDATA, OnVerifyLoadedData)
     ON_COMMAND(ID_FILE_IMPORT, OnFileImport)
 END_MESSAGE_MAP()
@@ -128,6 +128,14 @@ BOOL CDDOBuilderApp::InitInstance()
     // Change the registry key under which our settings are stored
     SetRegistryKey(_T("DDOBuilder"));
     LoadStdProfileSettings(16);  // Load standard INI file options (including MRU)
+    // Change extension for help file
+    CString strHelpFile = m_pszHelpFilePath;
+#ifdef _DEBUG
+    strHelpFile.Replace("D.HLP", ".HLP"); // convert to non-debug help file name
+#endif
+    strHelpFile.Replace(".HLP", ".chm");
+    free((void*)m_pszHelpFilePath);
+    m_pszHelpFilePath = _tcsdup(strHelpFile);
 
     //InitContextMenuManager(); // we construct our own custom one
     InitShellManager();

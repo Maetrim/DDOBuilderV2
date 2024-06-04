@@ -52,7 +52,11 @@ BOOL CItemImageDialog::OnInitDialog()
         int index = m_comboItemType.AddString(itemType);
         m_comboItemType.SetItemData(index, i);
     }
-    int index = m_comboItemType.AddString("Cloth Armor");
+    int index = m_comboItemType.AddString("Cosmetic Cloak");
+    m_comboItemType.SetItemData(index, Inventory_CosmeticCloak);
+    index = m_comboItemType.AddString("Cosmetic Helm");
+    m_comboItemType.SetItemData(index, Inventory_CosmeticHelm);
+    index = m_comboItemType.AddString("Cloth Armor");
     m_comboItemType.SetItemData(index, Inventory_ArmorCloth);
     index = m_comboItemType.AddString("Light Armor");
     m_comboItemType.SetItemData(index, Inventory_ArmorLight);

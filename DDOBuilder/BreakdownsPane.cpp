@@ -1874,6 +1874,221 @@ void CBreakdownsPane::CreateSongBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSD);
         m_items.push_back(pSD);
     }
+    // inspire greatness breakdowns
+    hParent = m_itemBreakdownTree.InsertItem(
+        "Inspire Greatness Effects",
+        hParent,
+        TVI_LAST);
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "AC Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSACB = new BreakdownItemSimple(
+            this,
+            Breakdown_SongACBonus,
+            Effect_SongACBonus,
+            "AC Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSACB);
+        m_items.push_back(pSACB);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Attack Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSAB = new BreakdownItemSimple(
+            this,
+            Breakdown_SongAttackBonus,
+            Effect_SongAttackBonus,
+            "Attack Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSAB);
+        m_items.push_back(pSAB);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Damage Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSDB = new BreakdownItemSimple(
+            this,
+            Breakdown_SongDamageBonus,
+            Effect_SongDamageBonus,
+            "Damage Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSDB);
+        m_items.push_back(pSDB);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Doublestrike Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSDS = new BreakdownItemSimple(
+            this,
+            Breakdown_SongDoublestrike,
+            Effect_SongDoublestrike,
+            "Doublestrike Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSDS);
+        m_items.push_back(pSDS);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Doubleshot Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSDS = new BreakdownItemSimple(
+            this,
+            Breakdown_SongDoubleshot,
+            Effect_SongDoubleshot,
+            "Doubleshot Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSDS);
+        m_items.push_back(pSDS);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Universal Spell Power Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSUSP = new BreakdownItemSimple(
+            this,
+            Breakdown_SongUniversalSpellPower,
+            Effect_SongUniversalSpellPower,
+            "Universal Spell Power Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSUSP);
+        m_items.push_back(pSUSP);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Spell Penetration Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSSP = new BreakdownItemSimple(
+            this,
+            Breakdown_SongSpellPenetration,
+            Effect_SongSpellPenetration,
+            "Spell Penetration Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSSP);
+        m_items.push_back(pSSP);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Caster Level Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSCL = new BreakdownItemSimple(
+            this,
+            Breakdown_SongCasterLevel,
+            Effect_SongCasterLevel,
+            "Caster Level Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSCL);
+        m_items.push_back(pSCL);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Skill Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSSB = new BreakdownItemSimple(
+            this,
+            Breakdown_SongSkillBonus,
+            Effect_SongSkillBonus,
+            "Skill Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSSB);
+        m_items.push_back(pSSB);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "PRR Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSPRR = new BreakdownItemSimple(
+            this,
+            Breakdown_SongPRR,
+            Effect_SongPRR,
+            "PRR Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSPRR);
+        m_items.push_back(pSPRR);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "MRR Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSMRR = new BreakdownItemSimple(
+            this,
+            Breakdown_SongMRR,
+            Effect_SongMRR,
+            "MRR Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSMRR);
+        m_items.push_back(pSMRR);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Healing Amp Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSHA = new BreakdownItemSimple(
+            this,
+            Breakdown_SongHealingAmp,
+            Effect_SongHealingAmp,
+            "Healing Amp Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSHA);
+        m_items.push_back(pSHA);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Negative Healing Amp Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSNHA = new BreakdownItemSimple(
+            this,
+            Breakdown_SongNegativeHealingAmp,
+            Effect_SongNegativeHealingAmp,
+            "Negative Healing Amp Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSNHA);
+        m_items.push_back(pSNHA);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Repair Amp Bonus",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSRA = new BreakdownItemSimple(
+            this,
+            Breakdown_SongRepairAmp,
+            Effect_SongRepairAmp,
+            "Repair Amp Bonus",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSRA);
+        m_items.push_back(pSRA);
+    }
 }
 
 void CBreakdownsPane::CreateTurnUndeadBreakdowns()

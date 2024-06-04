@@ -1110,7 +1110,8 @@ bool Build::IsFeatTrainable(
         const std::string& type,
         const Feat & feat,
         bool includeTomes,
-        bool alreadyTrained) const
+        bool alreadyTrained,
+        bool bIgnoreEpicOnly) const
 {
     bool bShowEpicOnly = m_pLife->m_pCharacter->ShowEpicOnly();
     bool bShowUnavailable = m_pLife->m_pCharacter->ShowUnavailable();
@@ -1142,7 +1143,8 @@ bool Build::IsFeatTrainable(
         {
             if (type == "Epic Feat"
                 && bShowEpicOnly
-                && bHasGroupStandard)
+                && bHasGroupStandard
+                && !bIgnoreEpicOnly)
             {
                 // user only wants to show epic feats
                 bCanTrain = false;
@@ -1716,7 +1718,7 @@ void Build::VerifyTrainedFeats()
         {
             // is this feat trainable at this level?
             const Feat & feat = FindFeat((*fit).FeatName());
-            if (!IsFeatTrainable(level, (*fit).Type(), feat, true, true))
+            if (!IsFeatTrainable(level, (*fit).Type(), feat, true, true, true))
             {
                 // no longer trainable, remove it from the list
                 revokedFeats.Add(*fit);

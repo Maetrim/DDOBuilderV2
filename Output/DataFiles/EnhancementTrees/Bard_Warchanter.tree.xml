@@ -132,6 +132,12 @@ Duration increases with effects that increase Song durations.
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
          </Effect>
+         <Effect>
+            <Type>SongDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Song of Heroism</Name>
@@ -207,13 +213,18 @@ as well as immunity to fear and some temporary hit points.
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
          </Effect>
+         <Effect>
+            <Type>SongDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Fighting Spirit</Name>
          <InternalName>WCCore4</InternalName>
          <Description>+10 hit points
-Your Inspire Greatness now uses your Charisma score for its Temporary hit points,
-doubled in Epic levels.
+Your Inspire Greatness now uses your Charisma score for its Temporary hit points, doubled in Epic levels.
 +1 Imbue Dice</Description>
          <Icon>WCFightingSpirit</Icon>
          <XPosition>3</XPosition>
@@ -391,6 +402,12 @@ rolls and saving throws vs. Fear.</Description>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
             <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>SongAttackBonus</Type>
+            <Bonus>Music</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
@@ -574,7 +591,8 @@ Cooldown: 8 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Arcane Shield Chant</Name>
          <InternalName>WCArcaneShieldChant</InternalName>
-         <Description>You and nearby allies gain +[2/4/6] Music bonus to resist Acid, Cold, Electric, Fire, and Sonic damage</Description>
+         <Description>You and nearby allies gain +[2/4/6] Music bonus to resist Acid, Cold, Electric,
+Fire, and Sonic damage</Description>
          <Icon>WCArcaneShieldChant</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -678,7 +696,7 @@ Requires 8 trained ranks of Perform to use.</Description>
             <Item>-</Item>
          </Effect>
          <Effect>
-            <Type>PRR</Type>
+            <Type>SongPRR</Type>
             <Bonus>Music</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">2 4 6</Amount>
@@ -919,15 +937,14 @@ and Inspire Courage grants an additional +[3/6/9] Universal Spell Power.</Descri
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>UniversalSpellPower</Type>
+            <Type>SongUniversalSpellPower</Type>
             <Bonus>Music</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">3 6 9</Amount>
-            <Item>All</Item>
          </Effect>
          <Effect>
-            <Type>Doublestrike</Type>
-            <Type>Doubleshot</Type>
+            <Type>SongDoublestrike</Type>
+            <Type>SongDoubleshot</Type>
             <Bonus>Music</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">2 4 6</Amount>
@@ -1131,7 +1148,7 @@ for twenty seconds. This ability can be used while feared, and dispels Fear effe
          <Name>Warchanter: Chant of Power</Name>
          <InternalName>WCChantOfPower</InternalName>
          <Description>You and nearby allies gain +[2/4/6]% Music bonus to melee damage,
-ranged damage, and spell critical chance.</Description>
+ranged damage, and spell critical chance. TBD - Effects to be added</Description>
          <Icon>WCChantOfPower</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1170,7 +1187,7 @@ ranged damage, and spell critical chance.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Howl of the North</Name>
          <InternalName>WCHowlOfTheNorth</InternalName>
-         <Description>+1 critical damage multiplier on attack rolls of 19-20.
+         <Description>+1 Critical Damage Multiplier on attack rolls of 19-20.
 +20% Competence bonus to Maximum Hit Points.</Description>
          <Icon>WCHowlOfTheNorth</Icon>
          <XPosition>2</XPosition>

@@ -26,6 +26,7 @@ private:
     std::string ExtractSingleField(const std::string& field, const std::string& startMarker, const std::string& endMarker, const std::string& fileData);
     void ReplaceRequiredCharacters(std::string& field);
     void RemoveLinks(std::string& field);
+    void RemoveTrailingSpaces(std::string& field);
     void ExtractEnchantmentsText(std::map<std::string, std::string>& itemFields, const std::string& fileData);
     void CreateItem(const std::map<std::string, std::string>& itemFields, bool bMinorArtifact);
     bool SetItemSlot(const std::map<std::string, std::string>& itemFields);

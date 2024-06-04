@@ -167,9 +167,25 @@ void Item::VerifyObject() const
         ss << "Item is missing Icon field\n";
         ok = false;
     }
-    if (m_hasDamageDice)
+    if (HasWeapon())
     {
-        //ok &= m_DamageDice.VerifyObject(&ss);
+        if (Weapon() != Weapon_RuneArm)
+        {
+            if (!HasCriticalThreatRange())
+            {
+                ss << "Item is missing Critical Threat Range\n";
+                ok = false;
+            }
+            if (!HasCriticalMultiplier())
+            {
+                ss << "Item is missing Critical Multiplier\n";
+                ok = false;
+            }
+            if (m_hasDamageDice)
+            {
+                //ok &= m_DamageDice.VerifyObject(&ss);
+            }
+        }
     }
     // check the item effects also
     std::vector<Effect>::const_iterator it = m_Effects.begin();

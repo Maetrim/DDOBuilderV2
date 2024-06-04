@@ -14,6 +14,7 @@
 //#include "ActiveStanceDialog.h"
 #include <algorithm>
 #include "ForumExportDlg.h"
+#include "EnableBuddyButton.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -169,17 +170,17 @@ void CDDOBuilderView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STATIC_INT, m_staticTheme[9]);
     DDX_Control(pDX, IDC_STATIC_WIS, m_staticTheme[10]);
     DDX_Control(pDX, IDC_STATIC_CHA, m_staticTheme[11]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL, m_staticTheme[12]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL4, m_staticTheme[13]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL8, m_staticTheme[14]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL12, m_staticTheme[15]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL16, m_staticTheme[16]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL20, m_staticTheme[17]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL24, m_staticTheme[18]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL28, m_staticTheme[19]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL32, m_staticTheme[20]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL36, m_staticTheme[21]);
-    DDX_Control(pDX, IDC_STATIC_LEVEL40, m_staticTheme[22]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL, m_staticGuildLevel);
+    DDX_Control(pDX, IDC_STATIC_LEVEL4, m_staticTheme[12]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL8, m_staticTheme[13]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL12, m_staticTheme[14]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL16, m_staticTheme[15]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL20, m_staticTheme[16]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL24, m_staticTheme[17]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL28, m_staticTheme[18]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL32, m_staticTheme[19]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL36, m_staticTheme[20]);
+    DDX_Control(pDX, IDC_STATIC_LEVEL40, m_staticTheme[21]);
 }
 
 void CDDOBuilderView::OnInitialUpdate()
@@ -193,6 +194,14 @@ void CDDOBuilderView::OnInitialUpdate()
         DisableControls();
         m_bHadIntialUpdate = true;
         OnThemeChanged(DarkModeEnabled(), 0L);
+
+        EnableBuddyButton2(m_editStr.GetSafeHwnd(), m_buttonStrMinus.GetSafeHwnd(), m_buttonStrPlus.GetSafeHwnd());
+        EnableBuddyButton2(m_editDex.GetSafeHwnd(), m_buttonDexMinus.GetSafeHwnd(), m_buttonDexPlus.GetSafeHwnd());
+        EnableBuddyButton2(m_editCon.GetSafeHwnd(), m_buttonConMinus.GetSafeHwnd(), m_buttonConPlus.GetSafeHwnd());
+        EnableBuddyButton2(m_editInt.GetSafeHwnd(), m_buttonIntMinus.GetSafeHwnd(), m_buttonIntPlus.GetSafeHwnd());
+        EnableBuddyButton2(m_editWis.GetSafeHwnd(), m_buttonWisMinus.GetSafeHwnd(), m_buttonWisPlus.GetSafeHwnd());
+        EnableBuddyButton2(m_editCha.GetSafeHwnd(), m_buttonChaMinus.GetSafeHwnd(), m_buttonChaPlus.GetSafeHwnd());
+        EnableBuddyButton2(m_editGuildLevel.GetSafeHwnd(), m_buttonGuildBuffs.GetSafeHwnd(), m_staticGuildLevel.GetSafeHwnd());
     }
 }
 
@@ -299,7 +308,7 @@ BOOL CDDOBuilderView::OnEraseBkgnd(CDC* pDC)
         IDC_BUTTON_CHA_MINUS,
         IDC_EDIT_CHA_COST,
         IDC_COMBO_TOME_CHA,
-        IDC_CHECK_GUILD_BUFFS,
+        //IDC_CHECK_GUILD_BUFFS,
         IDC_EDIT_GUILD_LEVEL,
         IDC_COMBO_LEVEL4_ABILITY,
         IDC_COMBO_LEVEL8_ABILITY,

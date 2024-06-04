@@ -213,7 +213,8 @@ class Build :
                 const std::string& type,
                 const Feat & feat,
                 bool includeTomes,
-                bool alreadyTrained = false) const;
+                bool alreadyTrained = false,
+                bool bIgnoreEpicOnly = false) const;
         std::list<TrainedFeat> SpecialFeats() const;
         std::vector<FeatSlot> TrainableFeatTypeAtLevel(size_t level) const;
         const LevelTraining & LevelData(size_t level) const;

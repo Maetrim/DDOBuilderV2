@@ -176,7 +176,7 @@ void WikiItemFileProcessor::ExtractFields(
         "Description",              ">Description\n",               "<i>",      "</i>",
         "Drop Location",            ">Location",                    "\">",      "</td>",
         "Item Type",                ">Item Type",                   "\">",      "<",
-        "Name",                     "firstHeading",                 ">",        "<",
+        "Name",                     "firstHeading",                 "main\">",  "<",
         "Material",                 ">Material",                    "title=\"", "\"",
         "Maximum Dexterity Bonus",  ">Maximum Dexterity Bonus\n",   "\">",      "<",
         "Maximum Dexterity Bonus",  ">Max Dex Bonus\n",             "\">",      "<",
@@ -227,6 +227,7 @@ std::string WikiItemFileProcessor::ExtractSingleField(
             fieldEntry = fileData.substr(start + startMarker.size(), end - start - startMarker.size());
             ReplaceRequiredCharacters(fieldEntry);
             RemoveLinks(fieldEntry);
+            RemoveTrailingSpaces(fieldEntry);
         }
     }
 
@@ -377,6 +378,19 @@ void WikiItemFileProcessor::RemoveLinks(std::string& field)
     }
 }
 
+void WikiItemFileProcessor::RemoveTrailingSpaces(std::string& field)
+{
+    std::string whitespace = " ";
+    auto strBegin = field.find_first_not_of(whitespace);
+    if (strBegin == std::string::npos)
+        return;  // no change
+
+    auto strEnd = field.find_last_not_of(whitespace);
+    auto strRange = strEnd - strBegin + 1;
+
+    field = field.substr(strBegin, strRange);
+}
+
 void WikiItemFileProcessor::ExtractEnchantmentsText(
         std::map<std::string, std::string>& itemFields,
         const std::string& fileData)
@@ -453,7 +467,6 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         m_item.Clear_Armor();
         m_item.Clear_WeaponDamage();
         m_item.Clear_DamageDice();
-        m_item.Clear_CriticalThreatRange();
         m_item.Clear_ArmorBonus();
         m_item.Clear_MithralBody();
         m_item.Clear_AdamantineBody();
@@ -531,6 +544,7 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
             // only update the critical threat range if we are updating th whole item.
             // this value should be correct from the first parse
             m_item.Clear_CriticalMultiplier();
+            m_item.Clear_CriticalThreatRange();
             AddCriticalThreatAndMultiplier(itemFields);
 
             // clear any existing effects from load action to avoid carry over after recreated

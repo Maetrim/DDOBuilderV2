@@ -167,9 +167,10 @@ class CDDOBuilderView :
         CComboBox m_comboAILevel40;
         enum MaxSupportedStatics
         {
-            MSS_Number = 23
+            MSS_Number = 22
         };
         CMFCStaticEx m_staticTheme[MSS_Number];
+        CStatic m_staticGuildLevel;
 
         bool m_bIgnoreFocus;
         CString m_tipText;

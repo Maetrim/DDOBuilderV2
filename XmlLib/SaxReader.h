@@ -7,6 +7,7 @@
 #include "SAXErrorHandlerImpl.h"
 #include "SaxContentElement.h"
 #include "SaxString.h"
+#include "CriticalSection.h"
 #include <vector>
 
 namespace XmlLib
@@ -64,12 +65,13 @@ namespace XmlLib
             std::vector<SaxContentElementInterface *> m_handlers;
 
             // if an element is not being handled this counts the depth of sub-elements
-            /// so that the handling can restart when the skipped element ends
+            // so that the handling can restart when the skipped element ends
             size_t m_subElementDepth;
 
             bool m_errorReported;
             std::string m_errorMessage;
 
             MSXML2::ISAXXMLReaderPtr m_rdr;
+            CriticalSection s_critsec;
     };
 }

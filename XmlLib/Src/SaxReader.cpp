@@ -34,6 +34,9 @@ SaxReader::~SaxReader()
 
 bool SaxReader::Open(const std::string & pathname)
 {
+    // critical section on the Read/Write actions as XmlLib is not thread safe
+    // and we cannot have multiple threads reading/writing file simultaneously
+    CriticalSectionLock lock(&s_critsec);
     m_errorReported = false;
     m_errorMessage.erase();
 
