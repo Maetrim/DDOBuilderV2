@@ -58,6 +58,8 @@ class CInfoTip :
         void SetItem(
                 const Item * pItem,
                 const Build* pBuild);
+        void SetSelfBuff(
+            const std::string& name);
         void SetFiligree(
                 const Filigree * pFiligree);
         void SetAugment(

@@ -12,6 +12,7 @@
 #include "Gem.h"
 #include "GuildBuff.h"
 #include "Item.h"
+#include "OptionalBuff.h"
 #include "Patron.h"
 #include "Quest.h"
 #include "Race.h"
@@ -66,6 +67,7 @@ public:
     const std::list<WeaponGroup>& WeaponGroups() const;
     const std::list<Buff>& ItemBuffs() const;
     const std::list<Spell>& ItemClickies() const;
+    const std::list<OptionalBuff>& OptionalBuffs() const;
     const std::list<Patron>& Patrons() const;
     const std::list<Quest>& Quests() const;
     const std::list<std::string>& IgnoreList() const;
@@ -113,6 +115,7 @@ private:
     void LoadWeaponGroups(const std::string& path);
     void LoadItemBuffs(const std::string& path);
     void LoadItemClickies(const std::string& path);
+    void LoadOptionalBuffs(const std::string& path);
     void LoadIgnoreList(const std::string& path);
     void UpdateFeats();
     void VerifyLoadedData();
@@ -160,6 +163,7 @@ private:
     std::list<WeaponGroup> m_weaponGroups;
     std::list<Buff> m_itemBuffs;
     std::list<Spell> m_itemClickies;
+    std::list<OptionalBuff> m_selfAndPartyBuffs;
     std::list<Quest> m_quests;
     std::list<Patron> m_patrons;
     std::list<std::string> m_ignoreList;

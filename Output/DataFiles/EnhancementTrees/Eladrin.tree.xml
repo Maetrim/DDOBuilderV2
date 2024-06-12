@@ -466,7 +466,7 @@ Will Saving Throws.</Description>
       <MinSpent>5</MinSpent>
       <ArrowUp />
       <Effect>
-        <Type>SenakAttackAttack</Type>
+        <Type>SneakAttackAttack</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
@@ -562,7 +562,7 @@ Your Spring Affinity grants you an additional +1 Charisma</Description>
     <EnhancementTreeItem>
       <InternalName>EladrinMajorSummerAttunement</InternalName>
       <Name>Eladrin: Major Summer Attunement</Name>
-      <Description>+[1/2/3] critical hit damage.
+      <Description>+[1/2/3] damage.
 Your Summer Affinity grants you an additional +1 Strength</Description>
       <Icon>EladrinMajorSummerAttunement</Icon>
       <XPosition>1</XPosition>
@@ -578,6 +578,7 @@ Your Summer Affinity grants you an additional +1 Strength</Description>
         </Requirement>
       </Requirements>
       <Effect>
+        <Type>Weapon_DamageBonus</Type>
         <Type>Weapon_DamageBonusCritical</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
@@ -635,7 +636,7 @@ Your Autumn Affinity grants you an additional +1 Wisdom.</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>SenakAttackDamage</Type>
+        <Type>SneakAttackDamage</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
@@ -657,7 +658,7 @@ Your Autumn Affinity grants you an additional +1 Wisdom.</Description>
     <EnhancementTreeItem>
       <InternalName>EladrinMajorWinterAttunement</InternalName>
       <Name>Eladrin: Major Winter Attunement</Name>
-      <Description>+[1/2/3] Damage.
+      <Description>+[1/2/3] Fortitude Saves.
 Your Winter Affinity grants you an additional +1 Intelligence.</Description>
       <Icon>EladrinMajorWinterAttunement</Icon>
       <XPosition>4</XPosition>
@@ -673,12 +674,11 @@ Your Winter Affinity grants you an additional +1 Intelligence.</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>Weapon_DamageBonus</Type>
-        <Type>Weapon_DamageBonusCritical</Type>
+        <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>All</Item>
+        <Item>Fortitude</Item>
       </Effect>
       <Effect>
         <Type>AbilityBonus</Type>
@@ -697,8 +697,8 @@ Your Winter Affinity grants you an additional +1 Intelligence.</Description>
     <!--Tier 4 Enhancements-->
     <EnhancementTreeItem>
       <InternalName>EladrinSpringSpell</InternalName>
-      <Name>Eladrin: Spring Spell - Lesser Vigor</Name>
-      <Description>Spell Like Ability: Lesser Vigor: A positive energy conjuration that heals 1d2,
+      <Name>Eladrin: Spring Spell - Vigor</Name>
+      <Description>Spell Like Ability: Vigor: A positive energy conjuration that heals 1d6,
 +1 per 3 caster levels (max +3 at caster level 9), every 2 seconds for 8 seconds.
 When the initial effect expires, a smaller healing effect that heals 1 HP every
 5 seconds for 30 seconds is applied.
@@ -708,10 +708,10 @@ Cooldown: 3 seconds
 Only one Vigor spell can be active at a time, with the most beneficial taking
 priority. If multiple Vigor spells are cast on the same target, then the duration
 is extended.</Description>
-      <Icon>EladrinLesserVigor</Icon>
+      <Icon>EladrinVigor</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
       <Clickie />
@@ -724,7 +724,7 @@ is extended.</Description>
       <Effect>
         <Type>SpellLikeAbility</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Lesser Vigor</Item>
+        <Item>Vigor</Item>
         <AType>SpellInfo</AType>
         <Amount size="3">0 0 0</Amount>
         <Item>None</Item>
@@ -732,9 +732,11 @@ is extended.</Description>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>EladrinSummerSpell</InternalName>
-      <Name>Eladrin: Summer Spell - Longstrider</Name>
-      <Description>Spell Like Ability: Longstrider: Increases your base run speed by +15% and shallow
-water no longer slows your movement.
+      <Name>Eladrin: Summer Spell - Fire Shield (Hot)</Name>
+      <Description>Spell Like Ability: Fire Shield (Hot): Wreaths the caster in hot flames. Any
+creature striking you in melee takes 1d3+3 plus 1 per caster level (Maximum caster
+level 15.) Fire damage, and reduces damage the caster takes from cold by half.
+The flames from this spell will burn away any webs that attempt to entangle you.
 Cost: 2 Spell Points
 Cooldown: 3 seconds</Description>
       <Icon>EladrinLongstrider</Icon>
@@ -798,7 +800,7 @@ Cooldown: 3 seconds</Description>
       <Icon>EladrinNightshield</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
       <Clickie />
@@ -819,9 +821,9 @@ Cooldown: 3 seconds</Description>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>EladrinSWinterSpell</InternalName>
-      <Name>Eladrin: Spring Spell - Blur</Name>
-      <Description>Spell Like Ability: Blur: An ally's outline becomes slightly blurred, giving enemies
-a 20% miss chance when attacking.
+      <Name>Eladrin: Spring Spell - Displacement</Name>
+      <Description>Spell Like Ability: Displacement: An ally creature's outline becomes blurred, giving
+enemies a 50% miss chance when attacking.
 Cost: 2 Spell Points
 Cooldown: 3 seconds</Description>
       <Icon>EladrinBlur</Icon>

@@ -152,6 +152,11 @@ const std::list<Spell>& ItemClickies()
     return theApp.ItemClickies();
 }
 
+const std::list<OptionalBuff>& OptionalBuffs()
+{
+    return theApp.OptionalBuffs();
+}
+
 const std::list<Quest>& Quests()
 {
     return theApp.Quests();
@@ -201,7 +206,7 @@ const Bonus& FindBonus(const std::string& bonus)
     return bonusNotFound;
 }
 
-const Feat & FindFeat(const std::string& featName)
+const Feat& FindFeat(const std::string& featName)
 {
     // find the information about a specific feat from the feat list
     static Feat featNotFound("Feat not found", "No description", "Unknown");
@@ -273,7 +278,7 @@ const Feat & FindFeat(const std::string& featName)
     return featNotFound;
 }
 
-const Race & FindRace(const std::string& raceName)
+const Race& FindRace(const std::string& raceName)
 {
     static Race badRace;
 
@@ -298,7 +303,7 @@ const Race & FindRace(const std::string& raceName)
     return badRace;
 }
 
-const Class & FindClass(const std::string& className)
+const Class& FindClass(const std::string& className)
 {
     static Class badClass;
 
@@ -373,6 +378,21 @@ const Quest& FindQuest(const std::string& questName)
     }
     static Quest badQuest(std::string("Bad Patron"));
     return badQuest;
+}
+
+const OptionalBuff& FindOptionalBuff(const std::string& name)
+{
+    const std::list<OptionalBuff>& opBuffs = OptionalBuffs();
+    for (auto&& it : opBuffs)
+    {
+        if (name == it.Name())
+        {
+            // this is the optional buff we are looking for
+            return it;
+        }
+    }
+    static OptionalBuff badBuff;
+    return badBuff;
 }
 
 const EnhancementTreeItem * FindEnhancement(

@@ -17,6 +17,7 @@
 #include "GuildBuffsFile.h"
 #include "LegacyCharacter.h"
 #include "MultiFileObjectLoader.h"
+#include "OptionalBuffFile.h"
 #include "PatronsFile.h"
 #include "QuestsFile.h"
 #include "SentientGemsFile.h"
@@ -337,6 +338,7 @@ void CDDOBuilderApp::LoadData()
     LoadWeaponGroups(folderPath);
     LoadItemBuffs(folderPath);
     LoadItemClickies(folderPath);
+    LoadOptionalBuffs(folderPath);
     LoadPatrons(folderPath);
     LoadQuests(folderPath);
     LoadGuildBuffs(folderPath);
@@ -706,6 +708,11 @@ const std::list<Spell>& CDDOBuilderApp::ItemClickies() const
     return m_itemClickies;
 }
 
+const std::list<OptionalBuff>& CDDOBuilderApp::OptionalBuffs() const
+{
+    return m_selfAndPartyBuffs;
+}
+
 void CDDOBuilderApp::VerifyLoadedData()
 {
     VerifyClasses();
@@ -954,6 +961,22 @@ void CDDOBuilderApp::LoadItemClickies(const std::string& path)
     // update log after load action
     CString strUpdate;
     strUpdate.Format("Loading Item Clickies...%d", m_itemClickies.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
+}
+
+void CDDOBuilderApp::LoadOptionalBuffs(const std::string& path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "SelfAndPartyBuffs.xml";
+
+    GetLog().AddLogEntry("Loading Self and Party Buffs...");
+    OptionalBuffFile file(filename);
+    file.Read();
+    m_selfAndPartyBuffs = file.OptionalBuffs();
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Self and Party Buffs...%d", m_selfAndPartyBuffs.size());
     GetLog().UpdateLastLogEntry(strUpdate);
 }
 

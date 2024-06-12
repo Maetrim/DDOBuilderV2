@@ -75,6 +75,10 @@ class Life :
         bool ApplyGuildBuffs() const;
         size_t GuildLevel() const;
 
+        // self and party buffs
+        void EnableSelfAndPartyBuff(const std::string& name);
+        void DisableSelfAndPartyBuff(const std::string& name);
+
         void NotifyActiveBuildChanged();
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -106,6 +110,7 @@ class Life :
                 DL_OBJECT(_, SkillTomes, Tomes) \
                 DL_THIS_OBJECT_LIST(_, Build, Builds) \
                 DL_OBJECT(_, FeatsListObject, SpecialFeats) \
+                DL_STRING_LIST(_, SelfAndPartyBuffs) \
                 DL_FLAG(_, TreeCollapsed)
 
         DL_DECLARE_ACCESS(Life_PROPERTIES)

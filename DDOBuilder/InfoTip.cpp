@@ -19,6 +19,7 @@
 #include "SubItem.h"
 #include "InfoTipItem.h"
 #include "BreakdownItem.h"
+#include "OptionalBuff.h"
 #include <map>
 
 CInfoTip::CInfoTip() :
@@ -628,6 +629,21 @@ void CInfoTip::SetItem(
         pRequirements->AddRequirement(dropLoc, false);  // red highlighted line
         m_tipItems.push_back(pRequirements);
     }
+    if (pItem->HasRestrictedSlots())
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        CString restrictedLocs;
+        const EquipmentSlot& slots = pItem->RestrictedSlots();
+        for (size_t i = Inventory_Arrows; i < Inventory_Count; ++i)
+        {
+            if (slots.HasSlot((InventorySlotType)i))
+            {
+                restrictedLocs.Format("Restricted Slot: %s", (LPCTSTR)EnumEntryText((InventorySlotType)i, InventorySlotTypeMap));
+                pRequirements->AddRequirement(restrictedLocs, false);  // red highlighted line
+                m_tipItems.push_back(pRequirements);
+            }
+        }
+    }
 
     if (pItem->HasArmorBonus()
             && pItem->Armor() != Armor_Cloth)
@@ -743,6 +759,26 @@ void CInfoTip::SetItem(
         pDescription->SetText(pItem->Description().c_str());
         m_tipItems.push_back(pDescription);
     }
+}
+
+void CInfoTip::SetSelfBuff(const std::string& name)
+{
+    ClearOldTipItems();
+    const OptionalBuff& opBuff = FindOptionalBuff(name);
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    if (!pHeader->LoadIcon("DataFiles\\SpellImages\\", opBuff.Icon(), false))
+    {
+        if (!pHeader->LoadIcon("DataFiles\\AugmentImages\\", opBuff.Icon(), false))
+        {
+            pHeader->LoadIcon("DataFiles\\FeatImages\\", opBuff.Icon(), true);
+        }
+    }
+    pHeader->SetTitle(opBuff.Name().c_str());
+    m_tipItems.push_back(pHeader);
+
+    InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
+    pDescription->SetText(opBuff.Description().c_str());
+    m_tipItems.push_back(pDescription);
 }
 
 void CInfoTip::SetFiligree(

@@ -19,6 +19,7 @@
 #include "GrantedFeatsPane.h"
 #include "SetBonus.h"
 #include "StancesPane.h"
+#include "OptionalBuff.h"
 #include <algorithm>
 #include "MainFrm.h"
 #include "BreakdownItem.h"
@@ -285,6 +286,7 @@ void Build::BuildNowActive()
         }
     }
     ApplyGearEffects();     // apply effects from equipped gear
+    ApplySelfAndPartyBuffs();
     m_previousGuildLevel = 0;   // ensure all effects apply
     ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
     //UpdateGreensteelStances();
@@ -2756,6 +2758,11 @@ void Build::RevokeSpecialFeat(const std::string& featName, bool bOverride)
             GetLog().AddLogEntry(ss.str().c_str());
             SetModifiedFlag(TRUE);
         }
+        else
+        {
+            // try and remove it as a special feat
+            m_pLife->RevokeSpecialFeat(featName);
+        }
     }
     else
     {
@@ -3934,6 +3941,11 @@ void Build::SetGear(
                 InventorySlotType ist = Inventory_Unknown;
                 if (riit.HasArmor()) ist = Inventory_Armor;
                 else if (riit.HasWeapon()) ist = Inventory_Weapon1;
+
+                std::stringstream ss;
+                ss << "Item revoked as slot restricted: \""
+                    << riit.Name() << "\"\r\n";
+                GetLog().AddLogEntry(ss.str().c_str());
                 RevokeItem(riit, ist);
             }
         }
@@ -5038,7 +5050,6 @@ void Build::VerifySpecialFeats()
         {
             // this special feat no longer exists, remove it
             RevokeSpecialFeat(fit->FeatName(), true);
-            GetLog().AddLogEntry("Legacy feat removed from build");
         }
         ++fit;
     }
@@ -5145,6 +5156,40 @@ void Build::ApplyGuildBuffs(bool bApply)
 void Build::GuildLevelChange()
 {
     ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
+}
+
+void Build::NotifyOptionalBuff(const std::string& name)
+{
+    // find the buff and notify its effects
+    const OptionalBuff& buff = FindOptionalBuff(name);
+    // get the list of effects this OptionalBuff has
+    const std::vector<Effect>& effects = buff.Effects();
+    std::vector<Effect>::const_iterator feit = effects.begin();
+    for (auto&& it: effects)
+    {
+        NotifyItemEffect(name, it);
+    }
+}
+
+void Build::RevokeOptionalBuff(const std::string& name)
+{
+    // find the buff and clear its effects
+    const OptionalBuff& buff = FindOptionalBuff(name);
+    // get the list of effects this OptionalBuff has
+    const std::vector<Effect>& effects = buff.Effects();
+    for (auto&& it : effects)
+    {
+        NotifyItemEffectRevoked(name, it);
+    }
+}
+
+void Build::ApplySelfAndPartyBuffs()
+{
+    const std::list<std::string>& opBuffs = m_pLife->SelfAndPartyBuffs();
+    for (auto&& it : opBuffs)
+    {
+        NotifyOptionalBuff(it);
+    }
 }
 
 void Build::SetNotes(const std::string& newNotes)

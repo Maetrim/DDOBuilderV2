@@ -52,7 +52,8 @@ const int c_controlSpacing = 3;
 #define MAX_CLASS_LEVEL         20
 #define MAX_EPIC_LEVEL          10
 #define MAX_BUILDER_LEVEL       40
-#define MAX_GAME_LEVEL          32
+#define BUILD_START_LEVEL       32
+#define MAX_GAME_LEVEL          34
 #define MAX_SPELL_LEVEL         9
 #define MAX_ENHANCEMENT_TREES   7
 #define MAX_DESTINY_TREES       3

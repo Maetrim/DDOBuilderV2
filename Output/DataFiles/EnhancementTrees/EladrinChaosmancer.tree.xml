@@ -8,7 +8,7 @@
     <Requirements>
       <Requirement>
         <Type>Race</Type>
-        <Item>Eladrin Chaos Mage</Item>
+        <Item>Eladrin Chaosmancer</Item>
       </Requirement>
     </Requirements>
     <IsRacialTree />
@@ -34,11 +34,11 @@ outcomes.</Description>
     <EnhancementTreeItem>
       <InternalName>EladrinWMCore2</InternalName>
       <Name>Eladrin Chaos Mage: Ability I</Name>
-      <Description>Choose between Dexterity, Intelligence, or Charisma.</Description>
-      <Icon>DexChaInt</Icon>
+      <Description>Choose between Intelligence, Wisdom, or Charisma.</Description>
+      <Icon>IntWisCha</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
+      <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>0</MinSpent>
       <Requirements>
@@ -53,19 +53,6 @@ outcomes.</Description>
       </Requirements>
       <Selector>
         <EnhancementSelection>
-          <Name>+1 Dexterity</Name>
-          <Description>+1 Dexterity</Description>
-          <Icon>Dexterity</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
           <Name>+1 Intelligence</Name>
           <Description>+1 Intelligence</Description>
           <Icon>Intelligence</Icon>
@@ -74,6 +61,19 @@ outcomes.</Description>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Intelligence</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wisdom</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
           </Effect>
@@ -117,11 +117,11 @@ outcomes.</Description>
     <EnhancementTreeItem>
       <InternalName>EladrinWMCore4</InternalName>
       <Name>Eladrin Chaos Mage: Ability II</Name>
-      <Description>Choose between Dexterity, Intelligence, or Charisma.</Description>
-      <Icon>DexChaInt</Icon>
+      <Description>Choose between Intelligence, Wisdom, or Charisma.</Description>
+      <Icon>IntWisCha</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
+      <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>0</MinSpent>
       <Requirements>
@@ -136,19 +136,6 @@ outcomes.</Description>
       </Requirements>
       <Selector>
         <EnhancementSelection>
-          <Name>+1 Dexterity</Name>
-          <Description>+1 Dexterity</Description>
-          <Icon>Dexterity</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
           <Name>+1 Intelligence</Name>
           <Description>+1 Intelligence</Description>
           <Icon>Intelligence</Icon>
@@ -157,6 +144,19 @@ outcomes.</Description>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Intelligence</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wisdom</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
           </Effect>
@@ -249,7 +249,6 @@ at a -[12/8/4] penalty.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
-      <ArrowUp />
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>EladrinWMArcaneFeyStep</InternalName>
@@ -374,12 +373,6 @@ Character Levels, for 10 seconds.</Description>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
       <ArrowUp />
-      <Requirements>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>EladrinWMChaosControlI</Item>
-        </Requirement>
-      </Requirements>
       <Effect>
         <Type>SpellPoints</Type>
         <Bonus>Enhancement</Bonus>
@@ -497,8 +490,8 @@ Your Spring Affinity grants an additional +1 Charisma.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>EladrinMajorSummerAttunement</InternalName>
-      <Name>Eladrin: Major Summer Attunement</Name>
+      <InternalName>EladrinWMMajorSummerAttunement</InternalName>
+      <Name>Eladrin Chaos Mage: Major Summer Attunement</Name>
       <Description>The Maximize Metamagic costs 1 SP less.
 Your Summer Affinity grants an additional +1 Strength.</Description>
       <Icon>EladrinMajorSummerAttunement</Icon>
@@ -539,7 +532,6 @@ You are able to see invisible creatures and pierce illusions.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowUp />
       <Requirements>
         <Requirement>
           <Type>Enhancement</Type>
@@ -689,12 +681,6 @@ Can only be used if you have Summer Affinity Active.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>EladrinWMFeySight</Item>
-        </Requirement>
-      </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>EladrinWMAutumnDecay</InternalName>

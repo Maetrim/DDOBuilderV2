@@ -784,3 +784,34 @@ size_t Life::GuildLevel() const
     return guildLevel;
 }
 
+void Life::EnableSelfAndPartyBuff(const std::string& name)
+{
+    // add it to the list of enabled buffs
+    m_SelfAndPartyBuffs.push_front(name);
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    pBuild->NotifyOptionalBuff(name);
+    m_pCharacter->SetModifiedFlag(TRUE);
+}
+
+void Life::DisableSelfAndPartyBuff(const std::string& name)
+{
+    // remove it from the list of enabled buffs
+    bool found = false;
+    std::list<std::string>::iterator it = m_SelfAndPartyBuffs.begin();
+    while (!found && it != m_SelfAndPartyBuffs.end())
+    {
+        if ((*it) == name)
+        {
+            // this is the one to remove
+            found = true;
+            it = m_SelfAndPartyBuffs.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    pBuild->RevokeOptionalBuff(name);
+    m_pCharacter->SetModifiedFlag(TRUE);
+}

@@ -311,6 +311,11 @@ class Build :
         // guild buffs
         void ApplyGuildBuffs(bool bApply);
         void GuildLevelChange();
+        void ApplySelfAndPartyBuffs();
+
+        // self and party buffs
+        void NotifyOptionalBuff(const std::string& name);
+        void RevokeOptionalBuff(const std::string& name);
 
         // notes
         void SetNotes(const std::string& newNotes);
@@ -328,7 +333,7 @@ class Build :
         virtual void EndElement();
 
         #define Build_PROPERTIES(_) \
-                DL_SIMPLE(_, size_t, Level, MAX_GAME_LEVEL) \
+                DL_SIMPLE(_, size_t, Level, BUILD_START_LEVEL) \
                 DL_STRING(_, Class1) \
                 DL_STRING(_, Class2) \
                 DL_STRING(_, Class3) \
