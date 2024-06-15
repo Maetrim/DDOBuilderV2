@@ -15,7 +15,7 @@ fate shall not befall you.</Description>
     <DamageModifier>Strength</DamageModifier>
     <DRBypass>Bludgeon</DRBypass>
     <DRBypass>Magic</DRBypass>
-    <WeaponDamage>4.7</WeaponDamage>
+    <WeaponDamage>5.7</WeaponDamage>
     <BaseDice>
       <Number>2</Number>
       <Sides>6</Sides>
@@ -25,5 +25,80 @@ fate shall not befall you.</Description>
     <MaximumDexterityBonus>2</MaximumDexterityBonus>
     <ArmorCheckPenalty>-9</ArmorCheckPenalty>
     <ArcaneSpellFailure>50</ArcaneSpellFailure>
+    <Buff>
+      <Type>ArmorEnchantment</Type>
+      <Value1>8</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Constitution</Description1>
+      <Item>Constitution</Item>
+    </Buff>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Charisma</Description1>
+      <Item>Charisma</Item>
+    </Buff>
+    <NoAutoUpdate/>
+    <Buff>
+      <Type>Improved Bashing X</Type>
+    </Buff>
+    <Buff>
+      <Type>Sovereign Vorpal</Type>
+      <BonusType>Enhancement</BonusType>
+      <Description1>All</Description1>
+      <Item>All</Item>
+    </Buff>
+    <Buff>
+      <Type>Block Elements</Type>
+    </Buff>
+    <ItemAugment>
+      <Type>Zhentarim Attuned</Type>
+      <Augment>
+        <Name>Adds +8 Orb Bonus and a Purple Augment slot</Name>
+        <Description>+8 Orb Bonus: While this orb is equipped and you are actively blocking, you gain
+a +8 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and
+Sonic resistances.
+Adds a Purple Augment slot</Description>
+        <MinLevel>26</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Purple</GrantAugment>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Orb</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blocking</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Orb</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">8</Amount>
+          <Item>Acid</Item>
+          <Item>Cold</Item>
+          <Item>Fire</Item>
+          <Item>Electric</Item>
+          <Item>Sonic</Item>
+          <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blocking</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

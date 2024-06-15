@@ -66,7 +66,7 @@ bool CompletedQuest::Supports(QuestDifficulty qd) const
     const Quest& q = FindQuest(Name());
     switch (qd)
     {
-        case QD_notRun:     bSupported = true; // always
+        case QD_notRun:     bSupported = true; break;// always
         case QD_solo:       bSupported = q.HasSolo(); break;
         case QD_casual:     bSupported = q.HasCasual(); break;
         case QD_normal:     bSupported = q.HasNormal(); break;

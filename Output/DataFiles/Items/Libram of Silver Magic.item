@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
     <Name>Libram of Silver Magic</Name>
@@ -7,7 +8,7 @@ wizards, most baneful to evil ones.</Description>
     <DropLocation>The Haunted Halls of Eveningstar, Miior or Dragon chest</DropLocation>
     <MinLevel>26</MinLevel>
     <EquipmentSlot>
-      <Weapon2/>
+      <Weapon2 />
     </EquipmentSlot>
     <Weapon>Orb</Weapon>
     <AttackModifier>Intelligence</AttackModifier>
@@ -19,5 +20,105 @@ wizards, most baneful to evil ones.</Description>
     </BaseDice>
     <CriticalMultiplier>2</CriticalMultiplier>
     <CriticalThreatRange>1</CriticalThreatRange>
+    <Buff>
+      <Type>OrbBonus</Type>
+      <Value1>8</Value1>
+      <BonusType>Orb</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Potency</Type>
+      <Value1>10</Value1>
+      <BonusType>Insightful</BonusType>
+      <Description1>All</Description1>
+      <Item>All</Item>
+    </Buff>
+    <Buff>
+      <Type>SpellLoreNumeral</Type>
+      <Value1>1</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>I</Description1>
+    </Buff>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Intelligence</Description1>
+      <Item>Intelligence</Item>
+    </Buff>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Charisma</Description1>
+      <Item>Charisma</Item>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>20</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Spellcraft</Description1>
+      <Item>Spellcraft</Item>
+    </Buff>
+    <ItemAugment>
+      <Type>Zhentarim Attuned</Type>
+      <Augment>
+        <Name>+11 Orb Bonus, Insightful Spell Lore II, Int +11, Cha +11, Orange Augment slot</Name>
+        <Description>+11 Orb Bonus: While this orb is equipped and you are actively blocking, you gain
+a +11 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and
+Sonic resistances.
+Insightful Spell Lore II: Passive: All of your spells gain a 2% Insight bonus to their chance to critical hit.
+Intelligence +11: This item focuses the power of the wearer's mind, granting a +11 enhancement bonus to Intelligence.
+Charisma +11: This item makes the wearer have more flair, granting a +11 enhancement bonus to Charisma.
+Adds an Orange Augment slot</Description>
+        <MinLevel>26</MinLevel>
+        <Icon>Upgrade</Icon>
+        <GrantAugment>Orange</GrantAugment>
+        <Effect>
+          <Type>SaveBonus</Type>
+          <Bonus>Orb</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">11</Amount>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blocking</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+        <Effect>
+          <Type>EnergyResistance</Type>
+          <Bonus>Orb</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">11</Amount>
+          <Item>Acid</Item>
+          <Item>Cold</Item>
+          <Item>Fire</Item>
+          <Item>Electric</Item>
+          <Item>Sonic</Item>
+          <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blocking</Item>
+            </Requirement>
+          </Requirements>
+        </Effect>
+        <Effect>
+          <Type>SpellLore</Type>
+          <Bonus>Insightful</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+          <Item>All</Item>
+        </Effect>
+        <Effect>
+          <Type>AbilityBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">11</Amount>
+          <Item>Intelligence</Item>
+          <Item>Charisma</Item>
+        </Effect>
+      </Augment>
+    </ItemAugment>
   </Item>
 </Items>

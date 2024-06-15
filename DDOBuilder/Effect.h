@@ -542,6 +542,7 @@ class Effect :
 
         void SetRequirements(const Requirements& req);
         void ReplaceLastItem(const std::string& newEntry);
+        void SetIsItemSpecific();
 
         bool operator==(const Effect & other) const;
 

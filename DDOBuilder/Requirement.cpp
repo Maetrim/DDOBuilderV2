@@ -703,7 +703,7 @@ bool Requirement::EvaluateBaseClassAtLevel(
     if (HasValue())
     {
         size_t classLevel = build.BaseClassLevels(c, level);
-        met = (classLevel == Value());
+        met = (classLevel == Value() && c == build.BaseClassAtLevel(level));
     }
     else
     {
@@ -750,7 +750,7 @@ bool Requirement::EvaluateClassAtLevel(
     if (HasValue())
     {
         size_t classLevel = build.ClassLevels(c, level);
-        met = (classLevel == Value());
+        met = (classLevel == Value() && (c == build.ClassAtLevel(level)));
     }
     else
     {

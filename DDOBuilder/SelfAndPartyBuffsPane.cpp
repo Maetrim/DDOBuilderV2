@@ -24,7 +24,8 @@ CSelfAndPartyBuffsPane::CSelfAndPartyBuffsPane() :
     m_showingTip(false),
     m_tipCreated(false),
     m_hoverItem(-1),
-    m_hoverHandle(0)
+    m_hoverHandle(0),
+    m_bHasInitialUpdate(false)
 {
 }
 
@@ -46,19 +47,23 @@ END_MESSAGE_MAP()
 
 void CSelfAndPartyBuffsPane::OnInitialUpdate()
 {
-    CFormView::OnInitialUpdate();
-    UpdateFonts();
-    m_tooltip.Create(this);
-    m_tipCreated = true;
+    if (!m_bHasInitialUpdate)
+    {
+        m_bHasInitialUpdate = true;
+        CFormView::OnInitialUpdate();
+        UpdateFonts();
+        m_tooltip.Create(this);
+        m_tipCreated = true;
 
-    m_listBuffs.InsertColumn(0, "Buff Name", LVCFMT_LEFT, 250, 0);
+        m_listBuffs.InsertColumn(0, "Buff Name", LVCFMT_LEFT, 250, 0);
 
-    // set the style to allow check boxes on each item
-    m_listBuffs.SetExtendedStyle(m_listBuffs.GetExtendedStyle()
-            | LVS_EX_TRACKSELECT
-            | LVS_EX_FULLROWSELECT
-            | LVS_EX_CHECKBOXES);
-            //| LVS_EX_LABELTIP); // stops hover tooltips from working
+        // set the style to allow check boxes on each item
+        m_listBuffs.SetExtendedStyle(m_listBuffs.GetExtendedStyle()
+                | LVS_EX_TRACKSELECT
+                | LVS_EX_FULLROWSELECT
+                | LVS_EX_CHECKBOXES);
+                //| LVS_EX_LABELTIP); // stops hover tooltips from working
+    }
 }
 
 LRESULT CSelfAndPartyBuffsPane::OnLoadComplete(WPARAM, LPARAM)

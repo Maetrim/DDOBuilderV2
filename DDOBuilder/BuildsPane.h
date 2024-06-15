@@ -42,6 +42,7 @@ public:
     virtual BOOL PreTranslateMessage(MSG* pMsg) override;
 
     Build* OnNewLife();
+    Build* OnNewImportLife();
     void PopulateBuildsList();
 
     // CharacterObserver

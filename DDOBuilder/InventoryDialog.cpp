@@ -27,7 +27,7 @@ namespace
     const int c_sentientGem = -1;
     const int c_noMenuSelection = 0;
     const int c_clearMenuOption = 1;
-    const int c_trueItemIndexOffset = 2;
+    const int c_trueItemIndexOffset = 7000;
 }
 
 #pragma warning(push)
@@ -467,7 +467,7 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                 itemRect.left,
                                 itemRect.top,
                                 this);
-                        if (sel > c_noMenuSelection)    // sel is 0 if menu is cancelled
+                        if (sel > c_noMenuSelection)    // sel is 0 if menu is canceled
                         {
                             if (sel == c_clearMenuOption)   // clear augment option
                             {

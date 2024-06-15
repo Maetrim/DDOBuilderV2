@@ -1507,7 +1507,7 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
     CBuildsPane* pBuildsPane = dynamic_cast<CBuildsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CBuildsPane)));
     if (pBuildsPane != NULL)
     {
-        Build* pBuild = pBuildsPane->OnNewLife();
+        Build* pBuild = pBuildsPane->OnNewImportLife();
         pBuild->SetName(importedCharacter.Name());
         pBuild->SetRace(importedCharacter.Race());
         pBuild->SetAlignment(importedCharacter.Alignment());
@@ -1528,6 +1528,8 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
         pBuild->SetAbilityLevelUp(36, importedCharacter.Level36());
         pBuild->SetAbilityLevelUp(40, importedCharacter.Level40());
         pBuild->Set_BuildPoints(importedCharacter.BuildPoints());
+        pBuild->m_pLife->Set_Tomes(importedCharacter.Tomes());
+        GetLog().AddLogEntry("Skill Tomes imported.");
         if (importedCharacter.HasClass1()) pBuild->SetClass1(importedCharacter.Class1());
         if (importedCharacter.HasClass2()) pBuild->SetClass2(importedCharacter.Class2());
         if (importedCharacter.HasClass3()) pBuild->SetClass3(importedCharacter.Class3());
@@ -1552,6 +1554,7 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
         pBuild->Destiny_SetSelectedTrees(importedCharacter.DestinyTrees());
         pBuild->Set_DestinyTreeSpend(importedCharacter.DestinyTreeSpend());
         pBuild->Set_ReaperTreeSpend(importedCharacter.ReaperTreeSpend());
+        pBuild->Set_TrainedSpells(importedCharacter.TrainedSpells());
         pBuild->SetNotes(importedCharacter.Notes());
         std::list<EquippedGear> gearSets;
         for (auto&& gsit: importedCharacter.GearSetups())
@@ -1575,13 +1578,15 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
                     }
                     else
                     {
-                        // TBD translate augments here
                         gearSet.SetItem(static_cast<InventorySlotType>(i), pBuild, item);
                     }
                 }
             }
             // sentient jewel
-            gearSet.SetPersonality(gsit.SentientIntelligence().Personality());
+            if (gsit.SentientIntelligence().HasPersonality())
+            {
+                gearSet.SetPersonality(gsit.SentientIntelligence().Personality());
+            }
             // weapon filigrees now
             gearSet.SetNumFiligrees(gsit.SentientIntelligence().NumFiligrees());
             size_t fi = 0;

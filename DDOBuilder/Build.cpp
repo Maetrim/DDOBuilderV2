@@ -126,7 +126,6 @@ void Build::EndElement()
     // also remove the default "Standard" gear layout which we get by default
     m_GearSetups.pop_front();
     m_hasActiveGear = true;
-    UpdateGearToLatestVersions();
     // notes text is not saved as \r\n's replace all text
     m_Notes = ReplaceAll(m_Notes, "\n", "\r\n");
 }
@@ -285,6 +284,7 @@ void Build::BuildNowActive()
             }
         }
     }
+    UpdateGearToLatestVersions();
     ApplyGearEffects();     // apply effects from equipped gear
     ApplySelfAndPartyBuffs();
     m_previousGuildLevel = 0;   // ensure all effects apply
@@ -4790,6 +4790,7 @@ void Build::ApplyWeaponEffects(const Item& item)
             item.WeaponDamage());
         // need to add the weapon type
         effect.AddItem(wt);
+        effect.SetIsItemSpecific();
         NotifyItemEffect(item.Name(), effect);
     }
     if (item.HasCriticalThreatRange())
@@ -4800,6 +4801,7 @@ void Build::ApplyWeaponEffects(const Item& item)
                 "Base",
                 item.CriticalThreatRange());
         effect.AddItem(wt);
+        effect.SetIsItemSpecific();
         NotifyItemEffect(item.Name(), effect);
     }
     if (item.HasCriticalMultiplier())
@@ -4810,6 +4812,7 @@ void Build::ApplyWeaponEffects(const Item& item)
             "Base",
             item.CriticalMultiplier());
         effect.AddItem(wt);
+        effect.SetIsItemSpecific();
         NotifyItemEffect(item.Name(), effect);
     }
     for (auto&& itDr: item.DRBypass())
@@ -4822,6 +4825,7 @@ void Build::ApplyWeaponEffects(const Item& item)
         effect.SetAType(Amount_NotNeeded);
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
+        effect.SetIsItemSpecific();
         NotifyItemEffect(item.Name(), effect);
     }
 }
@@ -4837,6 +4841,7 @@ void Build::RevokeWeaponEffects(const Item& item)
                 "Base",
                 item.WeaponDamage());
         effect.AddItem(wt);
+        effect.SetIsItemSpecific();
         NotifyItemEffectRevoked(item.Name(), effect);
     }
     if (item.HasCriticalThreatRange())
@@ -4847,6 +4852,7 @@ void Build::RevokeWeaponEffects(const Item& item)
                 "Base",
                 item.CriticalThreatRange());
         effect.AddItem(wt);
+        effect.SetIsItemSpecific();
         NotifyItemEffectRevoked(item.Name(), effect);
     }
     if (item.HasCriticalMultiplier())
@@ -4857,6 +4863,7 @@ void Build::RevokeWeaponEffects(const Item& item)
                 "Base",
                 item.CriticalMultiplier());
         effect.AddItem(wt);
+        effect.SetIsItemSpecific();
         NotifyItemEffectRevoked(item.Name(), effect);
     }
     for (auto&& itDr : item.DRBypass())
@@ -4869,6 +4876,7 @@ void Build::RevokeWeaponEffects(const Item& item)
         effect.SetAType(Amount_NotNeeded);
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
+        effect.SetIsItemSpecific();
         NotifyItemEffectRevoked(item.Name(), effect);
     }
 }
@@ -5262,4 +5270,3 @@ void Build::SetQuestsCompletions(const std::list<CompletedQuest>& quests)
     // and were done
     SetModifiedFlag(TRUE);
 }
-

@@ -528,7 +528,7 @@ size_t Life::GetSpecialFeatTrainedCount(
     // return the count of how many times this particular feat has
     // been trained.
     size_t count = 0;
-    const std::list<TrainedFeat> & specialFeats = SpecialFeats().Feats();
+    const std::list<TrainedFeat>& specialFeats = SpecialFeats().Feats();
     for (auto&& sfit: specialFeats)
     {
         if (sfit.FeatName() == featName)
@@ -555,14 +555,11 @@ size_t Life::GetSpecialFeatTrainedCount(
 void Life::TrainSpecialFeat(
         const std::string& featName)
 {
-    const Feat & feat = FindFeat(featName);
+    const Feat& feat = FindFeat(featName);
     // just add a copy of the feat name to the current list
-    std::list<TrainedFeat> trainedFeats = SpecialFeats().Feats();
     TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
-    trainedFeats.push_back(tf);
-
-    FeatsListObject flo(L"SpecialFeats", trainedFeats);
-    Set_SpecialFeats(flo);
+    m_SpecialFeats.Add(tf);
+    m_hasSpecialFeats = true;
 
     // notify about the feat effects
     ApplyFeatEffects(feat);

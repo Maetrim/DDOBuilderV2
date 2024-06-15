@@ -137,6 +137,16 @@ size_t Character::AddLife()
     return m_Lives.size()-1;    // 0 based
 }
 
+size_t Character::AddImportLife()
+{
+    // all new lives start with a default build
+    Life life(this);
+    m_Lives.push_back(life);
+    m_Lives.back().AddBuild(0);
+    m_pDocument->SetModifiedFlag(TRUE);
+    return m_Lives.size()-1;    // 0 based
+}
+
 void Character::DeleteLife(size_t lifeIndex)
 {
     std::list<Life>::iterator lit = m_Lives.begin();

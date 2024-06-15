@@ -42,6 +42,7 @@ class Character :
         const Life& GetLife(size_t lifeIndex) const;
         void SetLifeName(size_t lifeIndex, CString name);
         size_t AddLife();
+        size_t AddImportLife();
         void DeleteLife(size_t lifeIndex);
 
         // build support

@@ -57,6 +57,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Aaumini, "
         "Belenian, "
         "BrentAuble, "
+        "BuckGB, "
         "CBDunk, "
         "d3x-dt3, "
         "Daawsomeone, "
@@ -65,8 +66,11 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "DiQuintino, "
         "DODOCung, "
         "DougSK, "
+        "Droomar, "
         "Guntharm, "
+        "Gus, "
         "JelloDDO, "
+        "Kalibano, "
         "keluynn, "
         "Larendell, "
         "Melkizadek1, "
@@ -79,10 +83,12 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Orbalus, "
         "rosstracy, "
         "SpartanKiller13, "
+        "Spook," 
         "Terraism, "
         "thomas-langworthy, "
         "Warsaga, "
         "YoureNotDead, "
+        "Vyder, "
         "zilgabex");
     m_bugReporters.SetSel((DWORD)-1);    // nothing starts selected
 }

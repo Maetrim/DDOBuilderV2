@@ -49,5 +49,6 @@ private:
     bool m_tipCreated;
     int m_hoverItem;
     UINT m_hoverHandle;
+    bool m_bHasInitialUpdate;
 };
 

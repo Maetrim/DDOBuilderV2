@@ -614,7 +614,7 @@ void EquippedGear::SetArtifactFiligreeRare(size_t fi, bool isRare)
         std::list<ArtifactFiligree>::iterator it = m_ArtifactFiligrees.begin();
         std::advance(it, fi);
         std::stringstream ss;
-        ss << "Weapon Filigree " << (fi + 1) << " of \"" << it->Name() << "\"";
+        ss << "Artifact Filigree " << (fi + 1) << " of \"" << it->Name() << "\"";
         if (isRare)
         {
             ss << " was set to Rare state";

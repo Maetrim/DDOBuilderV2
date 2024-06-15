@@ -1246,3 +1246,8 @@ void Effect::ReplaceLastItem(const std::string& newEntry)
     }
     m_Item.push_back(newEntry);
 }
+
+void Effect::SetIsItemSpecific()
+{
+    Set_IsItemSpecific();
+}

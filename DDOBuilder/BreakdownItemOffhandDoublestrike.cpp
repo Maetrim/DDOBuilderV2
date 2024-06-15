@@ -69,7 +69,7 @@ void BreakdownItemOffhandDoublestrike::CreateOtherEffects()
             }
             Effect mainhandBonus(
                     Effect_DoublestrikeOffhand,
-                    "Half main hand doublestrike",
+                    name,
                     "Base",
                     mainhandDoublestrike);
             AddOtherEffect(mainhandBonus);

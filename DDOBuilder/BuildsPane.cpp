@@ -316,6 +316,22 @@ Build* CBuildsPane::OnNewLife()
     return pBuild;
 }
 
+Build* CBuildsPane::OnNewImportLife()
+{
+    Build* pBuild = NULL;
+    GetLog().AddLogEntry("New life added");
+    size_t lifeIndex = m_pCharacter->AddImportLife();
+    PopulateBuildsList();
+    // new life, 1st build starts selected
+    SelectTreeItem(TEI_Build, lifeIndex, 0);
+    if (lifeIndex == 0)
+    {
+        m_pCharacter->SetModifiedFlag(FALSE);
+    }
+    pBuild = m_pCharacter->ActiveBuild();
+    return pBuild;
+}
+
 void CBuildsPane::OnButtonDeleteLife()
 {
     GetLog().AddLogEntry("Life deleted");

@@ -136,4 +136,5 @@ class Life :
         int m_bonusDestinyActionPoints;
 
         friend class Build;
+        friend class CDDOBuilderApp;
 };

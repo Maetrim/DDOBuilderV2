@@ -1186,7 +1186,18 @@ void CEnhancementTreeDialog::ValidateTreeSelections()
                 }
                 // the tree does have invalid items in it.
                 // revoke an item in this tree and try again to see if the tree is now valid
-                pBuild->Enhancement_RevokeEnhancement(treeName, revokedEnhancement);
+                if (m_pTree->HasIsEpicDestiny())
+                {
+                    pBuild->Destiny_RevokeEnhancement(treeName, revokedEnhancement);
+                }
+                else if (m_pTree->HasIsReaperTree())
+                {
+                    pBuild->Reaper_RevokeEnhancement(treeName, revokedEnhancement);
+                }
+                else
+                {
+                    pBuild->Enhancement_RevokeEnhancement(treeName, revokedEnhancement);
+                }
             }
         }
     } while (bTreeHasInvalidItems);
