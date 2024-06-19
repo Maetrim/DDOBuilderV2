@@ -322,11 +322,19 @@ void CDDOBuilderApp::LoadData()
         ILC_COLOR32,
         lastImageCount,
         100);
+    int lastSpellCount = GetProfileInt("SpellLoad", "LastSpellCount", 747);
+    m_spellImages.Create(
+        32,
+        32,
+        ILC_COLOR32,
+        lastSpellCount,
+        100);
 
     std::string folderPath = DataFolder();
     LoadBonusTypes(folderPath);
     LoadEnhancements(folderPath);
     LoadSpells(folderPath);         // spells must load before classes
+    LoadSpellImages(folderPath);
     LoadRaces(folderPath);
     LoadClasses(folderPath);
     LoadFeats(folderPath);
@@ -673,6 +681,11 @@ CImageList& CDDOBuilderApp::ItemImageList()
     return m_itemImages;
 }
 
+CImageList& CDDOBuilderApp::SpellImageList()
+{
+    return m_spellImages;
+}
+
 const std::list<SetBonus>& CDDOBuilderApp::SetBonuses() const
 {
     return m_setBonuses;
@@ -879,7 +892,49 @@ void CDDOBuilderApp::LoadSpells(const std::string& path)
     GetLog().UpdateLastLogEntry(strUpdate);
 }
 
-void CDDOBuilderApp::LoadImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename)
+void CDDOBuilderApp::LoadSpellImages(const std::string& path)
+{
+    GetLog().AddLogEntry("Loading Spell Images...");
+    // item images are in sub folders. look in each sub folder
+    LoadSpellImage("NoImage");    // always first index
+    int imageCount = 0;
+    std::string filePath(path);
+    filePath += "SpellImages\\";
+    std::string fileFilter(filePath);
+    fileFilter += "*.png";
+
+    WIN32_FIND_DATA findFileData;
+    HANDLE hFind = FindFirstFile(fileFilter.c_str(), &findFileData);
+    if (hFind != INVALID_HANDLE_VALUE)
+    {
+        LoadSpellImage(findFileData.cFileName);
+        while (FindNextFile(hFind, &findFileData))
+        {
+            ++imageCount;
+            LoadSpellImage(findFileData.cFileName);
+        }
+        FindClose(hFind);
+    }
+    CString strUpdate;
+    strUpdate.Format("Loading Spell Images...%d", imageCount);
+    GetLog().UpdateLastLogEntry(strUpdate);
+    WriteProfileInt("SpellLoad", "LastSpellCount", imageCount);
+
+    // update all the spells with their correct image index
+    for (auto&& iit : m_spells)
+    {
+        if (iit.HasIcon())
+        {
+            std::string icon = iit.Icon();
+            if (m_spellImagesMap.find(icon) != m_spellImagesMap.end())
+            {
+                iit.SetIconIndex(m_spellImagesMap[icon]);
+            }
+        }
+    }
+}
+
+void CDDOBuilderApp::LoadItemImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename)
 {
     CImage image;
     std::string fullPath("DataFiles\\ItemImages\\");
@@ -894,7 +949,25 @@ void CDDOBuilderApp::LoadImage(CDDOBuilderApp* pApp, const std::string& localPat
         CBitmap bitmap;
         bitmap.Attach(image.Detach());
         int imageIndex = pApp->m_itemImages.Add(&bitmap, c_transparentColour);
-        pApp->m_imagesMap[filename] = imageIndex;
+        pApp->m_itemImagesMap[filename] = imageIndex;
+    }
+}
+
+void CDDOBuilderApp::LoadSpellImage(std::string filename)
+{
+    CImage image;
+    std::string fullPath("DataFiles\\SpellImages\\");
+    size_t pos = filename.find(".png");
+    if (pos != std::string::npos)
+    {
+        filename.replace(pos, 4, "");
+    }
+    if (S_OK == LoadImageFile(fullPath, filename, &image, CSize(32, 32), false))
+    {
+        CBitmap bitmap;
+        bitmap.Attach(image.Detach());
+        int imageIndex = m_spellImages.Add(&bitmap, c_transparentColour);
+        m_spellImagesMap[filename] = imageIndex;
     }
 }
 
@@ -1296,7 +1369,7 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
     std::string folderPath = DataFolder();
     {
         // item images are in sub folders. look in each sub folder
-        CDDOBuilderApp::LoadImage(pApp, "", "NoImage");    // always first index
+        CDDOBuilderApp::LoadItemImage(pApp, "", "NoImage");    // always first index
         std::string folders[] =
         {
             "Armor_Cloth\\",
@@ -1373,11 +1446,11 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
             HANDLE hFind = FindFirstFile(fileFilter.c_str(), &findFileData);
             if (hFind != INVALID_HANDLE_VALUE)
             {
-                CDDOBuilderApp::LoadImage(pApp, folders[fi], findFileData.cFileName);
+                CDDOBuilderApp::LoadItemImage(pApp, folders[fi], findFileData.cFileName);
                 while (FindNextFile(hFind, &findFileData))
                 {
                     ++imageCount;
-                    CDDOBuilderApp::LoadImage(pApp, folders[fi], findFileData.cFileName);
+                    CDDOBuilderApp::LoadItemImage(pApp, folders[fi], findFileData.cFileName);
                     if (imageCount % 10 == 0)
                     {
                         // update the progress control
@@ -1415,9 +1488,9 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
             if (iit.HasIcon())
             {
                 std::string icon = iit.Icon();
-                if (pApp->m_imagesMap.find(icon) != pApp->m_imagesMap.end())
+                if (pApp->m_itemImagesMap.find(icon) != pApp->m_itemImagesMap.end())
                 {
-                    iit.SetIconIndex(pApp->m_imagesMap[icon]);
+                    iit.SetIconIndex(pApp->m_itemImagesMap[icon]);
                 }
             }
         }

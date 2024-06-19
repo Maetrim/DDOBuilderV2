@@ -136,7 +136,7 @@ void BreakdownItemWeaponCriticalThreatRange::HandleAddSpecialEffects(
         ++m_keenCount;
         if (m_keenCount == 1)
         {
-            double baseRange = WeaponBaseCriticalRange();
+            double baseRange = WeaponBaseCriticalRange(Weapon());
             if (baseRange > 0)
             {
                 // we have an effect that doubles this weapons base critical range
@@ -154,7 +154,7 @@ void BreakdownItemWeaponCriticalThreatRange::HandleAddSpecialEffects(
         ++m_improvedCriticalCount;
         if (m_improvedCriticalCount == 1)
         {
-            double baseRange = WeaponBaseCriticalRange();
+            double baseRange = WeaponBaseCriticalRange(Weapon());
             if (baseRange > 0)
             {
                 // we have an effect that doubles this weapons base critical range
@@ -177,7 +177,7 @@ void BreakdownItemWeaponCriticalThreatRange::HandleRevokeSpecialEffects(
         --m_keenCount;
         if (m_keenCount == 0)
         {
-            double baseRange = WeaponBaseCriticalRange();
+            double baseRange = WeaponBaseCriticalRange(Weapon());
             if (baseRange > 0)
             {
                 // we have an effect that doubles this weapons base critical range
@@ -195,7 +195,7 @@ void BreakdownItemWeaponCriticalThreatRange::HandleRevokeSpecialEffects(
         --m_improvedCriticalCount;
         if (m_improvedCriticalCount == 0)
         {
-            double baseRange = WeaponBaseCriticalRange();
+            double baseRange = WeaponBaseCriticalRange(Weapon());
             if (baseRange > 0)
             {
                 // we have an effect that doubles this weapons base critical range
@@ -208,54 +208,5 @@ void BreakdownItemWeaponCriticalThreatRange::HandleRevokeSpecialEffects(
             }
         }
     }
-}
-
-size_t BreakdownItemWeaponCriticalThreatRange::WeaponBaseCriticalRange() const
-{
-    // from the wiki: This feat adds 1, 2, or 3 to critical threat
-    // range based on the weapon type's unmodified threat range.
-    // +3 for falchion, great crossbow, kukri, rapier, and scimitar.
-    // +2 for bastard sword, dagger, greatsword, heavy crossbow, khopesh,
-    // light crossbow, long sword, repeating heavy crossbow,
-    // repeating light crossbow, short sword, and throwing dagger.
-    // +1 to all other weapons.
-    // Shields do not benefit from Improved Critical.
-    size_t baseRange = 0;     // assume unknown
-    switch (Weapon())
-    {
-        case Weapon_Falchion:
-        case Weapon_GreatCrossbow:
-        case Weapon_Kukri:
-        case Weapon_Rapier:
-        case Weapon_Scimitar:
-            baseRange = +3;
-            break;
-        case Weapon_BastardSword:
-        case Weapon_Dagger:
-        case Weapon_GreatSword:
-        case Weapon_HeavyCrossbow:
-        case Weapon_Khopesh:
-        case Weapon_LightCrossbow:
-        case Weapon_Longsword:
-        case Weapon_RepeatingHeavyCrossbow:
-        case Weapon_RepeatingLightCrossbow:
-        case Weapon_Shortsword:
-        case Weapon_ThrowingDagger:
-            baseRange = +2;
-            break;
-        case Weapon_ShieldBuckler:
-        case Weapon_ShieldSmall:
-        case Weapon_ShieldLarge:
-        case Weapon_ShieldTower:
-        case Weapon_Orb:
-        case Weapon_RuneArm:
-            baseRange = 0;
-            break;
-        default:
-            // all other weapon types
-            baseRange = +1;
-            break;
-    }
-    return baseRange;
 }
 

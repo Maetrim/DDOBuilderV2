@@ -29,7 +29,6 @@ class BreakdownItemWeaponCriticalThreatRange :
     private:
         void HandleAddSpecialEffects(const Effect& effect);
         void HandleRevokeSpecialEffects(const Effect& effect);
-        size_t WeaponBaseCriticalRange() const;
         size_t m_keenCount;
         size_t m_improvedCriticalCount;
 };

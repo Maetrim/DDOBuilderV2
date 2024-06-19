@@ -398,7 +398,7 @@ void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct)
             {
                 // negative spell levels for auto-assigned spells
                 int autoSpellLevel = -((int)i + 1);
-                std::vector<Spell> autoSpells = FilterSpells(m_class, autoSpellLevel);
+                std::vector<Spell> autoSpells = FilterSpells(pBuild, m_class, autoSpellLevel);
                 for (size_t si = 0; si < autoSpells.size(); ++si)
                 {
                     FixedSpell spell(autoSpells[si].Name(), i + 1, autoSpells[si].Cost(), autoSpells[si].MaxCasterLevel());
@@ -587,39 +587,36 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
 
                 // display a drop list combo just below the spell item
                 // get the list of trainable spells for this class and level
+                Build* pBuild = m_pCharacter->ActiveBuild();
                 std::string currentSelection;
-                std::list<TrainedSpell> trainedSpells =
-                        m_pCharacter->ActiveBuild()->TrainedSpells(m_class, m_editSpellLevel);
+                std::list<TrainedSpell> trainedSpells = pBuild->TrainedSpells(m_class, m_editSpellLevel);
                 if (m_editSpellIndex < trainedSpells.size())
                 {
                     auto sit = trainedSpells.begin();
                     std::advance(sit, m_editSpellIndex);
                     currentSelection = (*sit).SpellName();
                 }
-                std::list<Spell> spells = c.Spells(item->SpellLevel());
-                m_pCharacter->ActiveBuild()->AppendSpellListAdditions(spells, m_class, m_editSpellLevel);
+                std::list<Spell> spells = c.Spells(pBuild, item->SpellLevel(), false);
 
                 m_comboSpellSelect.SetImageList(NULL);
                 m_comboSpellSelect.ResetContent();
-                m_comboSpellSelect.SetImageList(c.SpellImageList(item->SpellLevel()));
+                m_comboSpellSelect.SetImageList(&SpellImages());
 
                 // now add the spell names to the combo control
                 int sel = CB_ERR;   // assume no selection
-                size_t spellIndex = 0;
                 for (auto&& it: spells)
                 {
                     if (it.Name() == currentSelection
-                            || !m_pCharacter->ActiveBuild()->IsSpellTrained(it.Name()))
+                            || !pBuild->IsSpellTrained(it.Name()))
                     {
                         size_t pos = m_comboSpellSelect.AddString(it.Name().c_str());
-                        m_comboSpellSelect.SetItemData(pos, spellIndex);
+                        m_comboSpellSelect.SetItemData(pos, it.IconIndex());
                         if (it.Name() == currentSelection)
                         {
                             // this is the default selection in the combo
                             sel = pos;
                         }
                     }
-                    ++spellIndex;
                 }
                 // hide the current tip
                 HideTip();
@@ -672,27 +669,21 @@ void CSpellsControl::OnSpellSelectOk()
     int sel = m_comboSpellSelect.GetCurSel();
     if (sel != CB_ERR)
     {
-        const ::Class& c = FindClass(m_class);
-        // get the true index of the item as combo is sorted
-        sel = m_comboSpellSelect.GetItemData(sel);
-        std::list<TrainedSpell> trainedSpells =
-                m_pCharacter->ActiveBuild()->TrainedSpells(m_class, m_editSpellLevel);
-        std::list<Spell> spells = c.Spells(m_editSpellLevel);
-        m_pCharacter->ActiveBuild()->AppendSpellListAdditions(spells, m_class, m_editSpellLevel);
-
-        // revoke any previous spell selection this selection is replacing
+        CString sname;
+        m_comboSpellSelect.GetLBText(sel, sname);
+        std::string spellName = (LPCTSTR)sname;
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        std::list<TrainedSpell> trainedSpells = pBuild->TrainedSpells(m_class, m_editSpellLevel);
+    // revoke any previous spell selection this selection is replacing
         if (m_editSpellIndex < trainedSpells.size())
         {
             // need to revoke this spells as replacing current selection
             std::list<TrainedSpell>::iterator it = trainedSpells.begin();
             std::advance(it, m_editSpellIndex);
-            m_pCharacter->ActiveBuild()->RevokeSpell(m_class, m_editSpellLevel, (*it).SpellName(), false);
+            pBuild->RevokeSpell(m_class, m_editSpellLevel, (*it).SpellName(), false);
         }
         // now train this spell selection
-        ASSERT(sel >= 0 && (size_t)sel < spells.size());
-        std::list<Spell>::iterator it = spells.begin();
-        std::advance(it, sel);
-        m_pCharacter->ActiveBuild()->TrainSpell(m_class, m_editSpellLevel, (*it).Name());
+        pBuild->TrainSpell(m_class, m_editSpellLevel, spellName);
     }
     HideTip();
     Invalidate(TRUE);       // needs to redraw

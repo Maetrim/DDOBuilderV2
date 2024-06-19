@@ -22,7 +22,8 @@ namespace
 }
 
 Spell::Spell() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_iconIndex(0)
 {
     DL_INIT(Spell_PROPERTIES)
 }
@@ -54,76 +55,11 @@ void Spell::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-void Spell::AddImage(CImageList& il) const
-{
-    CImage image;
-    HRESULT result = LoadImageFile(
-                "DataFiles\\SpellImages\\",
-                m_Icon,
-                &image,
-                CSize(32, 32));
-    if (result != S_OK)
-    {
-        result = LoadImageFile(
-                "DataFiles\\UIImages\\",
-                "NoImage",
-                &image,
-                CSize(32, 32),
-                false);
-    }
-    CBitmap bitmap;
-    bitmap.Attach(image.Detach());
-    il.Add(&bitmap, c_transparentColour);  // standard mask color (purple)
-}
-
 bool Spell::operator<(const Spell& other) const
 {
     // (assumes all spell names are unique)
     // sort by name
     return (Name() < other.Name());
-}
-
-size_t Spell::SpellLevel(const std::string& ct) const
-{
-    UNREFERENCED_PARAMETER(ct);
-    size_t level = 0;
-    //switch (ct)
-    //{
-    //case Class_Artificer:
-    //    level = Artificer();
-    //    break;
-    //case Class_Bard:
-    //    level = Bard();
-    //    break;
-    //case Class_Cleric:
-    //    level = Cleric();
-    //    break;
-    //case Class_Druid:
-    //    level = Druid();
-    //    break;
-    //case Class_FavoredSoul:
-    //    level = FavoredSoul();
-    //    break;
-    //case Class_Paladin:
-    //    level = Paladin();
-    //    break;
-    //case Class_Ranger:
-    //    level = Ranger();
-    //    break;
-    //case Class_Sorcerer:
-    //    level = Sorcerer();
-    //    break;
-    //case Class_Warlock:
-    //    level = Warlock();
-    //    break;
-    //case Class_Wizard:
-    //    level = Wizard();
-    //    break;
-    //default:
-    //    ASSERT(FALSE);
-    //    break;
-    //}
-    return level;
 }
 
 size_t Spell::MetamagicCount() const
@@ -467,4 +403,14 @@ CString Spell::ActualMaxCasterLevelText(const SpellDamage& sd) const
         totalText += mcl;
     }
     return totalText;
+}
+
+void Spell::SetIconIndex(size_t index)
+{
+    m_iconIndex = index;
+}
+
+size_t Spell::IconIndex() const
+{
+    return m_iconIndex;
 }

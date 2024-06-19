@@ -993,7 +993,7 @@ double Effect::TotalAmount(bool allowTruncate) const
                     ss << "Effect \"" << DisplayName() << "\" has incorrect Amount vector size. Stacks present are " << level;
                     GetLog().AddLogEntry(ss.str().c_str());
                 }
-                total = m_Amount[vi];
+                total = m_Amount[vi] * m_stacks;
                 break;
             }
         case Amount_ClassLevel:
@@ -1015,7 +1015,7 @@ double Effect::TotalAmount(bool allowTruncate) const
                     ss << "Effect \"" << DisplayName() << "\" has incorrect Amount vector size. Stacks present are " << level;
                     GetLog().AddLogEntry(ss.str().c_str());
                 }
-                total = m_Amount[vi];
+                total = m_Amount[vi] * m_stacks;
                 break;
             }
         case Amount_APCount:
@@ -1069,7 +1069,7 @@ double Effect::TotalAmount(bool allowTruncate) const
                     GetLog().AddLogEntry(ss.str().c_str());
                     count = m_Amount.size() - 1;
                 }
-                total = m_Amount[count];
+                total = m_Amount[count] * m_stacks;
                 break;
             }
         case Amount_Slider:
@@ -1258,4 +1258,14 @@ void Effect::SetIsItemSpecific()
 void Effect::SetApplyAsItemEffect()
 {
     Set_ApplyAsItemEffect();
+}
+
+void Effect::SetWeapon1()
+{
+    Set_Weapon1();
+}
+
+void Effect::SetWeapon2()
+{
+    Set_Weapon2();
 }

@@ -47,8 +47,7 @@ class Class :
         void ClearClassFeats();
         void CreateSpellLists();
 
-        const std::list<Spell>& Spells(size_t spellLevel) const;
-        CImageList* SpellImageList(size_t spellLevel) const;
+        std::list<Spell> Spells(Build* pBuild, size_t spellLevel, bool bIncludeFixedSpells) const;
         Spell FindSpell(const std::string& name) const;
 
         void SetFilename(const std::string&) {};
@@ -110,5 +109,4 @@ class Class :
         static CImageList sm_classImagesSmall;
         static size_t sm_tomeIndex;
         std::vector<std::list<Spell> > m_classSpells;
-        std::vector<CImageList*> m_classSpellsImages;
 };

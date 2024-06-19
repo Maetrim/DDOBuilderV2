@@ -60,6 +60,7 @@ public:
     const std::list<Filigree>& Filigrees() const;
     const std::list<Item>& Items() const;
     CImageList& ItemImageList();
+    CImageList& SpellImageList();
     const std::list<SetBonus>& SetBonuses() const;
     const std::list<Stance>& Stances() const;
     const std::list<Spell>& Spells() const;
@@ -109,6 +110,7 @@ private:
     void LoadFiligrees(const std::string& path);
     void LoadStances(const std::string& path);
     void LoadSpells(const std::string& path);
+    void LoadSpellImages(const std::string& path);
     void LoadPatrons(const std::string& path);
     void LoadQuests(const std::string& path);
     void LoadSentientGems(const std::string& path);
@@ -133,7 +135,8 @@ private:
     void VerifyItemClickies();
     void VerifyQuests();
     void NotifyLoadComplete();
-    static void LoadImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename);
+    static void LoadItemImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename);
+    void LoadSpellImage(std::string filename);
 
     static UINT ThreadedItemLoad(LPVOID pParam);
     void ConvertToNewDataStructure(LegacyCharacter& importedCharacter);
@@ -168,7 +171,9 @@ private:
     std::list<Patron> m_patrons;
     std::list<std::string> m_ignoreList;
     CImageList m_itemImages;
-    std::map<std::string, int> m_imagesMap;
+    CImageList m_spellImages;
+    std::map<std::string, int> m_itemImagesMap;
+    std::map<std::string, int> m_spellImagesMap;
     bool m_bLoadComplete;
     CString m_iniFileFilename;
 

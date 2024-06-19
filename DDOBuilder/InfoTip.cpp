@@ -645,6 +645,64 @@ void CInfoTip::SetItem(
         }
     }
 
+    if (pItem->HasWeapon())
+    {
+        CString text;
+        CString entry;
+        int value = pItem->BuffValue(Effect_Weapon_Enchantment);
+        entry.Format("Damage %.2f[%s] + %d ", pItem->WeaponDamage(), (LPCTSTR)pItem->DamageDice().DiceAsText(), value);
+        // now append its DR breaking types
+        bool first = true;
+        for (auto&& it: pItem->DRBypass())
+        {
+            if (!first) entry += ", ";
+            first = false;
+            entry += EnumEntryText(it, drTypeMap);
+        }
+        text += entry;
+
+        size_t criticalRange = pItem->RealCriticalThreatRange(); // includes Keen etc
+        if (criticalRange > 1)
+        {
+            entry.Format("\r\nCritical Roll: %d-20 / x%d", 21 - criticalRange, pItem->CriticalMultiplier());
+        }
+        else
+        {
+            entry.Format("\r\nCritical Roll: 20 / x%d", pItem->CriticalMultiplier());
+        }
+        text += entry;
+
+        if (pItem->AttackModifier().size() > 0)
+        {
+            entry.Format("\r\nAttack Mod: ");
+            first = true;
+            for (auto&& it : pItem->AttackModifier())
+            {
+                if (!first) entry += ", ";
+                first = false;
+                entry += EnumEntryText(it, abilityTypeMap);
+            }
+            text += entry;
+        }
+
+        if (pItem->DamageModifier().size() > 0)
+        {
+            entry.Format("\r\nDamage Mod: ");
+            first = true;
+            for (auto&& it : pItem->DamageModifier())
+            {
+                if (!first) entry += ", ";
+                first = false;
+                entry += EnumEntryText(it, abilityTypeMap);
+            }
+            text += entry;
+        }
+
+        InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
+        pDescription->SetText(text);
+        m_tipItems.push_back(pDescription);
+    }
+
     if (pItem->HasArmorBonus()
             && pItem->Armor() != Armor_Cloth)
     {

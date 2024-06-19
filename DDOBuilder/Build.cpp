@@ -4901,7 +4901,7 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
         // need to add the weapon type
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect, ist);
+        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
     if (item.HasCriticalThreatRange())
     {
@@ -4912,7 +4912,7 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
                 item.CriticalThreatRange());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect, ist);
+        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
     if (item.HasCriticalMultiplier())
     {
@@ -4923,7 +4923,7 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
             item.CriticalMultiplier());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect, ist);
+        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
     for (auto&& itDr: item.DRBypass())
     {
@@ -4936,7 +4936,7 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect, ist);
+        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
 }
 
@@ -4952,7 +4952,7 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
                 item.WeaponDamage());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect, ist);
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
     }
     if (item.HasCriticalThreatRange())
     {
@@ -4963,7 +4963,7 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
                 item.CriticalThreatRange());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect, ist);
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
     }
     if (item.HasCriticalMultiplier())
     {
@@ -4974,7 +4974,7 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
                 item.CriticalMultiplier());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect, ist);
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
     }
     for (auto&& itDr : item.DRBypass())
     {
@@ -4987,7 +4987,7 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect, ist);
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
     }
 }
 

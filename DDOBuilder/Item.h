@@ -41,6 +41,9 @@ class Item :
         void AddFeatRequirement(const std::string& feat);
         void AddFeatAnySourceRequirement(const std::string& c);
         void AddBuff(const Buff& b);
+        size_t RealCriticalThreatRange() const;
+        bool FindEffect(EffectType et) const;
+        int BuffValue(EffectType et) const;
 
         void SetAugments(const std::vector<ItemAugment>& augments);
     protected:

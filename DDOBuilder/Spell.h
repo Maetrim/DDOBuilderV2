@@ -18,20 +18,16 @@ class Spell :
 {
     public:
         Spell(void);
-        void Write(XmlLib::SaxWriter * writer) const;
+        void Write(XmlLib::SaxWriter* writer) const;
 
         bool operator<(const Spell& other) const;
-        void AddImage(CImageList& il) const;
-
-        size_t SpellLevel(const std::string& ct) const;
 
         size_t MetamagicCount() const;
         void VerifyObject() const;
 
+        size_t SpellDC(const Build& build, const std::string& ct, size_t spellLevel, size_t maxSpellLevel) const;
         const std::string& Class() const;
         void SetClass(const std::string& ct);
-
-        size_t SpellDC(const Build & build, const std::string& ct, size_t spellLevel, size_t maxSpellLevel) const;
         std::list<Effect> UpdatedEffects(size_t castingLevel) const;
         void UpdateSpell(const ClassSpell& cs, const std::string& ct);
         void UpdateSpell(const FixedSpell& fs, const std::string& ct);
@@ -40,6 +36,9 @@ class Spell :
         int ActualMaxCasterLevel(const SpellDamage& sd) const;
         CString ActualCasterLevelText(const SpellDamage& sd) const;
         CString ActualMaxCasterLevelText(const SpellDamage& sd) const;
+
+        void SetIconIndex(size_t index);
+        size_t IconIndex() const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -74,4 +73,5 @@ class Spell :
         DL_DECLARE_VARIABLES(Spell_PROPERTIES)
     private:
         std::string m_class;
+        size_t m_iconIndex;
 };

@@ -156,7 +156,7 @@ void Item::VerifyObject() const
     if (HasIcon())
     {
         CDDOBuilderApp* pApp = dynamic_cast<CDDOBuilderApp*>(AfxGetApp());
-        if (pApp->m_imagesMap.find(Icon()) == pApp->m_imagesMap.end())
+        if (pApp->m_itemImagesMap.find(Icon()) == pApp->m_itemImagesMap.end())
         {
             ss << "Item is missing image file \"" << Icon() << "\"\n";
             ok = false;
@@ -418,3 +418,72 @@ void Item::SetAugments(const std::vector<ItemAugment>& augments)
 {
     Set_Augments(augments);
 }
+
+size_t Item::RealCriticalThreatRange() const
+{
+    size_t criticalRange = CriticalThreatRange(); // default
+    bool bHasKeen = false;
+    bHasKeen = FindEffect(Effect_Weapon_Keen);
+    if (bHasKeen)
+    {
+        criticalRange += WeaponBaseCriticalRange(Weapon());
+    }
+    return criticalRange;
+}
+
+bool Item::FindEffect(EffectType et) const
+{
+    bool isEffectType = false;
+    for (auto&& eit: m_Effects)
+    {
+        isEffectType |= eit.IsType(et);
+    }
+    if (!isEffectType)
+    {
+        for (auto&& bit: m_Buffs)
+        {
+            Buff buff = FindBuff(bit.Type());
+            const std::list<Effect>& effects = buff.Effects();
+            for (auto&& eit: effects)
+            {
+                isEffectType |= eit.IsType(et);
+            }
+        }
+    }
+    return isEffectType;
+}
+
+int Item::BuffValue(EffectType et) const
+{
+    int value = 0;
+    bool bFound = false;
+    for (auto&& eit: m_Effects)
+    {
+        if (eit.IsType(et))
+        {
+            value = static_cast<int>(eit.Amount().front());
+            bFound = true;
+        }
+    }
+    if (!bFound)
+    {
+        for (auto&& bit: m_Buffs)
+        {
+            Buff buff = FindBuff(bit.Type());
+            std::list<Effect> effects = buff.Effects();
+            bit.UpdatedEffects(&effects, false);
+            for (auto&& eit: effects)
+            {
+                if (eit.IsType(et))
+                {
+                    value = static_cast<int>(eit.Amount().front());
+                    bFound = true;
+                }
+                if (bFound) break;
+            }
+            if (bFound) break;
+        }
+    }
+    return value;
+}
+

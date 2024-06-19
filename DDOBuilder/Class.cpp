@@ -56,15 +56,6 @@ Class::Class() :
 
 Class::~Class()
 {
-    // note that its always ok to delete these as these are the image lists
-    // in the global list of class objects. The images are not created until
-    // the class objects have been copied into this global list, so the pointers
-    // are never shared between objects due to operator=
-    for (auto&& it : m_classSpellsImages)
-    {
-        delete it;
-        it = NULL;
-    }
 }
 
 DL_DEFINE_ACCESS(Class_PROPERTIES)
@@ -88,7 +79,7 @@ void Class::EndElement()
     DL_END(Class_PROPERTIES)
 }
 
-void Class::Write(XmlLib::SaxWriter * writer) const
+void Class::Write(XmlLib::SaxWriter* writer) const
 {
     writer->StartElement(ElementName());//, VersionAttributes());
     DL_WRITE(Class_PROPERTIES)
@@ -105,7 +96,7 @@ std::string Class::GetBaseClass() const
     return baseClass;
 }
 
-bool Class::operator<(const Class & other) const
+bool Class::operator<(const Class& other) const
 {
     // (assumes all class names are unique)
     // sort by name
@@ -467,7 +458,6 @@ void Class::CreateSpellLists()
     std::vector<size_t> spellSlots = SpellSlotsAtLevel(MAX_CLASS_LEVEL);
     // reserve a list for each levels Spells this class has
     m_classSpells.resize(spellSlots.size());
-    m_classSpellsImages.resize(spellSlots.size(), NULL);
     // now process all the ClassSpell objects and create the spell lists
     for (auto&& csit : m_ClassSpells)
     {
@@ -476,35 +466,39 @@ void Class::CreateSpellLists()
         spell.UpdateSpell(csit, Name());
         m_classSpells[abs(csit.Level()) - 1].push_back(spell);
     }
-    // now create the image lists used for each set of spells
-    size_t spellLevel = 0;
-    for (auto&& slit : m_classSpells)
-    {
-        slit.sort();            // ensure alphabetical
-        m_classSpellsImages[spellLevel] = new CImageList;
-        m_classSpellsImages[spellLevel]->Create(32, 32, ILC_COLOR24, 0, slit.size());
-        for (auto&& sit : slit)
-        {
-            // now add each spell image to the list
-            sit.AddImage(*m_classSpellsImages[spellLevel]);
-        }
-        spellLevel++;
-    }
     // were done with all class spells, clear data that is no longer required
     m_ClassSpells.clear();
 }
 
-const std::list<Spell>& Class::Spells(size_t spellLevel) const
+std::list<Spell> Class::Spells(Build* pBuild, size_t spellLevel, bool bIncludeFixedSpells) const
 {
-    // spellLevel is 1 based
-    auto it = m_classSpells.begin();
-    std::advance(it, spellLevel - 1);
-    return *it;
-}
+    std::list<Spell> spells;
+    if (spellLevel <= m_classSpells.size())
+    {
+        // spellLevel is 1 based
+        auto it = m_classSpells.begin();
+        std::advance(it, spellLevel - 1);
 
-CImageList* Class::SpellImageList(size_t spellLevel) const
-{
-    return m_classSpellsImages[spellLevel - 1];
+         spells = *it;
+        if (!bIncludeFixedSpells)
+        {
+            // remove any automatic feats (negative levels)
+            std::list<Spell>::iterator sit = spells.begin();
+            while (sit != spells.end())
+            {
+                if ((*sit).Level() < 0)
+                {
+                    sit = spells.erase(sit);
+                }
+                else
+                {
+                    ++sit;
+                }
+            }
+        }
+        pBuild->AppendSpellListAdditions(spells, Name(), spellLevel);
+    }
+    return spells;
 }
 
 Spell Class::FindSpell(const std::string& name) const

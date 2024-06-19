@@ -104,9 +104,9 @@ void EquippedGear::UpdateImages()
             if (item.HasIcon())
             {
                 std::string icon = item.Icon();
-                if (pApp->m_imagesMap.find(icon) != pApp->m_imagesMap.end())
+                if (pApp->m_itemImagesMap.find(icon) != pApp->m_itemImagesMap.end())
                 {
-                    item.SetIconIndex(pApp->m_imagesMap[icon]);
+                    item.SetIconIndex(pApp->m_itemImagesMap[icon]);
                     UpdateItem(ist, item);
                 }
             }

@@ -542,6 +542,8 @@ class Effect :
         void ReplaceLastItem(const std::string& newEntry);
         void SetIsItemSpecific();
         void SetApplyAsItemEffect();
+        void SetWeapon1();
+        void SetWeapon2();
 
         bool operator==(const Effect & other) const;
 

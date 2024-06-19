@@ -211,6 +211,12 @@ void BreakdownItem::AddActiveItems(
             {
                 // put the effect name into the control
                 CString effectName = it.DisplayName().c_str();
+                if (it.AType() == Amount_TotalLevel && it.EffectStacks() > 1)
+                {
+                    CString strCount;
+                    strCount.Format(" (*%d)", it.EffectStacks());
+                    effectName += strCount;
+                }
                 size_t index = pControl->InsertItem(
                         pControl->GetItemCount(),
                         effectName,
@@ -678,9 +684,12 @@ void BreakdownItem::RemoveNonStacking(
                 {
                     if ((*sit).Bonus() == (*tit).Bonus())
                     {
-                        // its the same bonus type, so it may be affected by stacking rules
-                        // look up the bonus type
-                        removeIt |= ((*sit).TotalAmount(false) <= (*tit).TotalAmount(false));
+                        if ((*sit).HasPercent() == (*tit).HasPercent())
+                        {
+                            // its the same bonus type, so it may be affected by stacking rules
+                            // look up the bonus type
+                            removeIt |= ((*sit).TotalAmount(false) <= (*tit).TotalAmount(false));
+                        }
                     }
                 }
             }
