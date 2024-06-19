@@ -49,6 +49,9 @@ class EquippedGear :
 
         bool ImportFromFile(const CString& filename);
 
+        WeaponType Weapon1() const;
+        WeaponType Weapon2() const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

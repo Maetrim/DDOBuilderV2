@@ -465,7 +465,7 @@ void Class::ClearClassFeats()
 void Class::CreateSpellLists()
 {
     std::vector<size_t> spellSlots = SpellSlotsAtLevel(MAX_CLASS_LEVEL);
-    // reserve a list for each levels Spells this class hase
+    // reserve a list for each levels Spells this class has
     m_classSpells.resize(spellSlots.size());
     m_classSpellsImages.resize(spellSlots.size(), NULL);
     // now process all the ClassSpell objects and create the spell lists

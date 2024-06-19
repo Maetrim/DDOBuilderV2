@@ -38,5 +38,6 @@ class SelectedTrees :
         DL_DECLARE_ACCESS(SelectedTrees_PROPERTIES)
         DL_DECLARE_VARIABLES(SelectedTrees_PROPERTIES)
     private:
+        void TranslateNamesFromV1();
         size_t m_nMaxTrees;
 };

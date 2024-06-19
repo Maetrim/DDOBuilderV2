@@ -285,6 +285,7 @@ void Build::BuildNowActive()
         }
     }
     UpdateGearToLatestVersions();
+    ApplySpellEffects();
     ApplyGearEffects();     // apply effects from equipped gear
     ApplySelfAndPartyBuffs();
     m_previousGuildLevel = 0;   // ensure all effects apply
@@ -450,11 +451,19 @@ void Build::NotifyFeatEffectRevoked(
     NotifyAll(&BuildObserver::UpdateFeatEffectRevoked, this, effect);
 }
 
-void Build::NotifyItemEffect(const std::string& itemName, Effect effect)
+void Build::NotifyItemEffect(const std::string& itemName, Effect effect, InventorySlotType ist)
 {
     if (!effect.HasDisplayName())
     {
-        effect.SetDisplayName(itemName);
+        if (ist == Inventory_Ring2)
+        {
+            // stop duplicate effects from 2 of the same ring stacking
+            effect.SetDisplayName(itemName + " ");
+        }
+        else
+        {
+            effect.SetDisplayName(itemName);
+        }
     }
     if (effect.IsType(Effect_AddGroupWeapon))
     {
@@ -467,11 +476,19 @@ void Build::NotifyItemEffect(const std::string& itemName, Effect effect)
     NotifyAll(&BuildObserver::UpdateItemEffectApplied, this, effect);
 }
 
-void Build::NotifyItemEffectRevoked(const std::string& itemName, Effect effect)
+void Build::NotifyItemEffectRevoked(const std::string& itemName, Effect effect, InventorySlotType ist)
 {
     if (!effect.HasDisplayName())
     {
-        effect.SetDisplayName(itemName);
+        if (ist == Inventory_Ring2)
+        {
+            // stop duplicate effects from 2 of the same ring stacking
+            effect.SetDisplayName(itemName + " ");
+        }
+        else
+        {
+            effect.SetDisplayName(itemName);
+        }
     }
     if (effect.IsType(Effect_AddGroupWeapon))
     {
@@ -1872,6 +1889,7 @@ void Build::TrainSpell(
     std::stringstream ss;
     ss << "Trained class \"" << ct << "\" spell \"" << spellName << "\" at spell level " << level;
     GetLog().AddLogEntry(ss.str().c_str());
+    ApplySpellEffects(spellName);
 }
 
 void Build::RevokeSpell(
@@ -1907,6 +1925,7 @@ void Build::RevokeSpell(
         ss << "Revoked class \"" << ct << "\" spell \"" << spellName << "\" at spell level " << level;
         GetLog().AddLogEntry(ss.str().c_str());
     }
+    RevokeSpellEffects(spellName);
 }
 
 bool Build::IsSpellTrained(
@@ -1927,6 +1946,39 @@ bool Build::IsSpellTrained(
         }
     }
     return found;
+}
+
+void Build::ApplySpellEffects()
+{
+    // apply any effects from any trained spells (always assumed to be active)
+    for (auto&& tsit: m_TrainedSpells)
+    {
+        ApplySpellEffects(tsit.SpellName());
+    }
+}
+
+void Build::ApplySpellEffects(const std::string& spellName)
+{
+    const Spell& spell = FindSpellByName(spellName);
+    for (auto&& seit: spell.Effects())
+    {
+        Effect copy = seit;
+        copy.SetDisplayName(std::string("Spell: ") + spellName);
+        copy.SetApplyAsItemEffect();
+        NotifyEnhancementEffectApplied(copy);
+    }
+}
+
+void Build::RevokeSpellEffects(const std::string& spellName)
+{
+    const Spell& spell = FindSpellByName(spellName);
+    for (auto&& seit : spell.Effects())
+    {
+        Effect copy = seit;
+        copy.SetDisplayName(std::string("Spell: ") + spellName);
+        copy.SetApplyAsItemEffect();
+        NotifyEnhancementEffectRevoked(copy);
+    }
 }
 
 void Build::UpdateFeats()
@@ -2346,12 +2398,20 @@ void Build::NotifyEnhancementRevoked(const EnhancementItemParams& item)
 void Build::NotifyEnhancementEffectApplied(
     const Effect& effect)
 {
+    if (effect.IsType(Effect_SpellListAddition))
+    {
+        AddSpellListAddition(effect);
+    }
     NotifyAll(&BuildObserver::UpdateEnhancementEffectApplied, this, effect);
 }
 
 void Build::NotifyEnhancementEffectRevoked(
     const Effect& effect)
 {
+    if (effect.IsType(Effect_SpellListAddition))
+    {
+        RevokeSpellListAddition(effect);
+    }
     NotifyAll(&BuildObserver::UpdateEnhancementEffectRevoked, this, effect);
 }
 
@@ -2827,6 +2887,30 @@ void Build::Enhancement_SetSelectedTrees(const LegacyEnhancementSelectedTrees& t
     m_EnhancementSelectedTrees.SetTree(4, trees.Tree(4));
     m_EnhancementSelectedTrees.SetTree(5, trees.Tree(5));
     m_EnhancementSelectedTrees.SetTree(6, trees.Tree(6));
+    if (trees.HasTier5Tree())
+    {
+        std::string name = trees.Tier5Tree();
+        static std::string nameTranslations[] =
+        {
+            // old tree name                        new tree name
+            "Ravager",                              "Ravager (Barbarian)",
+            "Ravager (Ftr)",                        "Ravager (Fighter)"
+        };
+        size_t count = sizeof(nameTranslations) / sizeof(std::string);
+        if (count % 2 != 0)
+        {
+            throw "Must be an multiple of 2";
+        }
+        for (size_t i = 0; i < count; i += 2)
+        {
+            if (name == nameTranslations[i])
+            {
+                name = nameTranslations[i + 1];
+                break;
+            }
+        }
+        m_EnhancementSelectedTrees.SetTier5Tree(name);
+    }
 }
 
 void Build::Enhancement_TrainEnhancement(
@@ -3290,6 +3374,10 @@ void Build::Destiny_SetSelectedTrees(const LegacyDestinySelectedTrees& trees)
     m_DestinySelectedTrees.SetTree(1, trees.Tree(1));
     m_DestinySelectedTrees.SetTree(2, trees.Tree(2));
     m_DestinySelectedTrees.SetTree(3, trees.Tree(3));
+    if (trees.HasTier5Tree())
+    {
+        m_DestinySelectedTrees.SetTier5Tree(trees.Tier5Tree());
+    }
 }
 
 void Build::Destiny_TrainEnhancement(
@@ -3729,6 +3817,10 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, Item original)
                         {
                             newAugments[j].Set_SelectedLevelIndex(originalAugments[i].SelectedLevelIndex());
                         }
+                        if (newAugments[j].Type().find("Cannith") != std::string::npos)
+                        {
+                            newAugments[j].Set_SelectedLevelIndex(newVersion.MinLevel());
+                        }
                         bFound = true;
                     }
                 }
@@ -3789,7 +3881,8 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
                 for (size_t j = 0; !bFound && j < newAugments.size(); ++j)
                 {
                     // match by augment type. If not matched, its ignored
-                    if (newAugments[j].Type() == originalAugments[i].Type())
+                    if (newAugments[j].Type() == originalAugments[i].Type()
+                            || originalAugments[i].Type().find(newAugments[j].Type()) != std::string::npos)
                     {
                         newAugments[j].Set_SelectedAugment(originalAugments[i].SelectedAugment());
                         // find the nearest level from the list available
@@ -3797,15 +3890,32 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
                         const Augment& aug = FindAugmentByName(originalAugments[i].SelectedAugment(), NULL);
                         if (aug.HasChooseLevel())
                         {
-                            // switch to the index thats closest to this items actual level or lower
+                            bool bFoundIndex = false;
                             if (aug.HasLevels())
                             {
-                                const std::vector<int>& levels = aug.Levels();
-                                for (size_t index = 0; index < levels.size(); ++index)
+                                if (aug.HasLevelValue())
                                 {
-                                    if (levels[index] <= (int)foundItem.MinLevel())
+                                    // switch to the index that matches the value
+                                    const std::vector<double>& levelValue = aug.LevelValue();
+                                    for (size_t index = 0; index < levelValue.size(); ++index)
                                     {
-                                        levelIndex = index;
+                                        if (levelValue[index] == originalAugments[i].Value())
+                                        {
+                                            levelIndex = index;
+                                            bFoundIndex = true;
+                                        }
+                                    }
+                                }
+                                if (!bFoundIndex)
+                                {
+                                    // switch to the index thats closest to this items actual level or lower
+                                    const std::vector<int>& levels = aug.Levels();
+                                    for (size_t index = 0; index < levels.size(); ++index)
+                                    {
+                                        if (levels[index] <= (int)foundItem.MinLevel())
+                                        {
+                                            levelIndex = index;
+                                        }
                                     }
                                 }
                             }
@@ -4045,7 +4155,7 @@ void Build::RevokeFiligree(
         name = ss.str();
         for (auto&& feit : filigree.NormalEffects())
         {
-            NotifyItemEffectRevoked(name, feit);
+            NotifyItemEffectRevoked(name, feit, Inventory_Unknown);
         }
         // now do any rare effects
         // now do any rare effects
@@ -4053,7 +4163,7 @@ void Build::RevokeFiligree(
         {
             for (auto&& feit : filigree.RareEffects())
             {
-                NotifyItemEffectRevoked(name, feit);
+                NotifyItemEffectRevoked(name, feit, Inventory_Unknown);
             }
         }
         // revoke any filigree stances
@@ -4108,7 +4218,7 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
     {
         case Inventory_Weapon1:
         case Inventory_Weapon2:
-            ApplyWeaponEffects(item);
+            ApplyWeaponEffects(item, ist);
             break;
         case Inventory_Armor:
             ApplyArmorEffects(item);
@@ -4119,7 +4229,7 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
     {
         const Buff& buff = FindBuff(ibit.Type());
         std::list<Effect> effects = buff.Effects();
-        ibit.UpdatedEffects(&effects);
+        ibit.UpdatedEffects(&effects, buff.HasNegativeValues());
         for (auto&& eit : effects)
         {
             if (buff.HasApplyToWeaponOnly())
@@ -4135,7 +4245,7 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
             }
             else
             {
-                NotifyItemEffect(item.Name(), eit);
+                NotifyItemEffect(item.Name(), eit, ist);
             }
         }
         for (auto&& sit: buff.Stances())
@@ -4146,7 +4256,7 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
     // apply the items effects
     for (auto&& eit : item.Effects())
     {
-        ApplyItemEffect(item.Name(), eit);
+        ApplyItemEffect(item.Name(), eit, ist);
     }
     //for (auto&& dcit: item.EffectDC())
     //{
@@ -4265,7 +4375,7 @@ void Build::ApplyAugment(
                 eit.ReplaceLastItem((LPCTSTR)weapon);
             }
         }
-        NotifyItemEffect(name, eit);
+        NotifyItemEffect(name, eit, Inventory_Unknown);
         ++effectIndex;
     }
     // apply any augment stances
@@ -4287,7 +4397,7 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
     {
         case Inventory_Weapon1:
         case Inventory_Weapon2:
-            RevokeWeaponEffects(item);
+            RevokeWeaponEffects(item, ist);
             break;
         case Inventory_Armor:
             RevokeArmorEffects(item);
@@ -4298,7 +4408,7 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
     {
         const Buff& buff = FindBuff(ibit.Type());
         std::list<Effect> effects = buff.Effects();
-        ibit.UpdatedEffects(&effects);
+        ibit.UpdatedEffects(&effects, buff.HasNegativeValues());
         for (auto&& eit : effects)
         {
             if (buff.HasApplyToWeaponOnly())
@@ -4314,7 +4424,7 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
             }
             else
             {
-                NotifyItemEffectRevoked(item.Name(), eit);
+                NotifyItemEffectRevoked(item.Name(), eit, ist);
             }
         }
         for (auto&& sit : buff.Stances())
@@ -4325,7 +4435,7 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
     // apply the items effects
     for (auto&& eit : item.Effects())
     {
-        RevokeItemEffect(item.Name(), eit);
+        RevokeItemEffect(item.Name(), eit, ist);
     }
     //for (auto&& dcit: item.EffectDC())
     //{
@@ -4444,7 +4554,7 @@ void Build::RevokeAugment(
                 eit.ReplaceLastItem((LPCTSTR)weapon);
             }
         }
-        NotifyItemEffectRevoked(name, eit);
+        NotifyItemEffectRevoked(name, eit, Inventory_Unknown);
         ++effectIndex;
     }
     // clear any augment stances
@@ -4478,14 +4588,14 @@ void Build::ApplyFiligree(
         std::string name(ss.str());
         for (auto&& feit: filigree.NormalEffects())
         {
-            NotifyItemEffect(name, feit);
+            NotifyItemEffect(name, feit, Inventory_Unknown);
         }
         // now do any rare effects
         if (bRare)
         {
             for (auto&& feit: filigree.RareEffects())
             {
-                NotifyItemEffect(name, feit);
+                NotifyItemEffect(name, feit, Inventory_Unknown);
             }
         }
         // apply any filigree stances
@@ -4510,7 +4620,7 @@ void Build::ApplySetBonus(
     // sets effects
     for (auto&& it: setObject.ActiveEffects(stacks))
     {
-        NotifyItemEffect(name, it);
+        NotifyItemEffect(name, it, Inventory_Unknown);
     }
     // notify about the new set being trained (or new stack of it)
     NotifyNewSetBonusStack(setObject);
@@ -4534,7 +4644,7 @@ void Build::RevokeSetBonus(
     // sets effects
     for (auto&& it: setObject.ActiveEffects(stacks+1))
     {
-        NotifyItemEffectRevoked(name, it);
+        NotifyItemEffectRevoked(name, it, Inventory_Unknown);
     }
     // notify about the new set being trained (or new stack of it)
     NotifyRevokeSetBonusStack(setObject);
@@ -4778,7 +4888,7 @@ WeaponType Build::OffhandWeapon() const
     return wt;
 }
 
-void Build::ApplyWeaponEffects(const Item& item)
+void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
 {
     std::string wt = (LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap);
     if (item.HasWeaponDamage())
@@ -4791,7 +4901,7 @@ void Build::ApplyWeaponEffects(const Item& item)
         // need to add the weapon type
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, ist);
     }
     if (item.HasCriticalThreatRange())
     {
@@ -4802,7 +4912,7 @@ void Build::ApplyWeaponEffects(const Item& item)
                 item.CriticalThreatRange());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, ist);
     }
     if (item.HasCriticalMultiplier())
     {
@@ -4813,7 +4923,7 @@ void Build::ApplyWeaponEffects(const Item& item)
             item.CriticalMultiplier());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, ist);
     }
     for (auto&& itDr: item.DRBypass())
     {
@@ -4826,11 +4936,11 @@ void Build::ApplyWeaponEffects(const Item& item)
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
         effect.SetIsItemSpecific();
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, ist);
     }
 }
 
-void Build::RevokeWeaponEffects(const Item& item)
+void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
 {
     std::string wt = (LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap);
     if (item.HasWeaponDamage())
@@ -4842,7 +4952,7 @@ void Build::RevokeWeaponEffects(const Item& item)
                 item.WeaponDamage());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, ist);
     }
     if (item.HasCriticalThreatRange())
     {
@@ -4853,7 +4963,7 @@ void Build::RevokeWeaponEffects(const Item& item)
                 item.CriticalThreatRange());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, ist);
     }
     if (item.HasCriticalMultiplier())
     {
@@ -4864,7 +4974,7 @@ void Build::RevokeWeaponEffects(const Item& item)
                 item.CriticalMultiplier());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, ist);
     }
     for (auto&& itDr : item.DRBypass())
     {
@@ -4877,7 +4987,7 @@ void Build::RevokeWeaponEffects(const Item& item)
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
         effect.SetIsItemSpecific();
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, ist);
     }
 }
 
@@ -4896,7 +5006,7 @@ void Build::ApplyArmorEffects(const Item& item)
             Requirement featRequirement(Requirement_Feat, "Composite Plating");
             req.AddRequirement(featRequirement);
             effect.SetRequirements(req);
-            NotifyItemEffect(item.Name(), effect);
+            NotifyItemEffect(item.Name(), effect, Inventory_Armor);
         }
         Effect effect(
             Effect_ACBonus,
@@ -4907,7 +5017,7 @@ void Build::ApplyArmorEffects(const Item& item)
         Requirement featRequirement(Requirement_Feat, "Mithral Body");
         req.AddRequirement(featRequirement);
         effect.SetRequirements(req);
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, Inventory_Armor);
     }
     else
     {
@@ -4919,7 +5029,7 @@ void Build::ApplyArmorEffects(const Item& item)
                 "Armor Bonus",
                 "Armor",
                 item.ArmorBonus());
-            NotifyItemEffect(item.Name(), effect);
+            NotifyItemEffect(item.Name(), effect, Inventory_Armor);
         }
     }
     if (item.HasAdamantineBody())
@@ -4933,7 +5043,7 @@ void Build::ApplyArmorEffects(const Item& item)
         Requirement featRequirement(Requirement_Feat, "Adamantine Body");
         req.AddRequirement(featRequirement);
         effect.SetRequirements(req);
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, Inventory_Armor);
     }
     if (item.HasMaximumDexterityBonus())
     {
@@ -4942,7 +5052,7 @@ void Build::ApplyArmorEffects(const Item& item)
             "Armor Max Dex Bonus",
             "Armor",
             item.MaximumDexterityBonus());
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, Inventory_Armor);
     }
     if (item.HasArmorCheckPenalty())
     {
@@ -4951,7 +5061,7 @@ void Build::ApplyArmorEffects(const Item& item)
             "Armor Check Penalty",
             "Armor",
             item.ArmorCheckPenalty());
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, Inventory_Armor);
     }
     if (item.HasArcaneSpellFailure())
     {
@@ -4960,7 +5070,7 @@ void Build::ApplyArmorEffects(const Item& item)
             "Armor Arcane Spell Failure",
             "Armor",
             item.ArcaneSpellFailure());
-        NotifyItemEffect(item.Name(), effect);
+        NotifyItemEffect(item.Name(), effect, Inventory_Armor);
     }
 }
 
@@ -4979,7 +5089,7 @@ void Build::RevokeArmorEffects(const Item& item)
             Requirement featRequirement(Requirement_Feat, "Composite Plating");
             req.AddRequirement(featRequirement);
             effect.SetRequirements(req);
-            NotifyItemEffectRevoked(item.Name(), effect);
+            NotifyItemEffectRevoked(item.Name(), effect, Inventory_Armor);
         }
         Effect effect(
             Effect_ACBonus,
@@ -4990,7 +5100,7 @@ void Build::RevokeArmorEffects(const Item& item)
         Requirement featRequirement(Requirement_Feat, "Mithral Body");
         req.AddRequirement(featRequirement);
         effect.SetRequirements(req);
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, Inventory_Armor);
     }
     else
     {
@@ -5002,7 +5112,7 @@ void Build::RevokeArmorEffects(const Item& item)
                 "Armor Bonus",
                 "Armor",
                 item.ArmorBonus());
-            NotifyItemEffectRevoked(item.Name(), effect);
+            NotifyItemEffectRevoked(item.Name(), effect, Inventory_Armor);
         }
     }
     if (item.HasAdamantineBody())
@@ -5016,7 +5126,7 @@ void Build::RevokeArmorEffects(const Item& item)
         Requirement featRequirement(Requirement_Feat, "Adamantine Body");
         req.AddRequirement(featRequirement);
         effect.SetRequirements(req);
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, Inventory_Armor);
     }
     if (item.HasMaximumDexterityBonus())
     {
@@ -5025,7 +5135,7 @@ void Build::RevokeArmorEffects(const Item& item)
             "Armor Max Dex Bonus",
             "Armor",
             item.MaximumDexterityBonus());
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, Inventory_Armor);
     }
     if (item.HasArmorCheckPenalty())
     {
@@ -5034,7 +5144,7 @@ void Build::RevokeArmorEffects(const Item& item)
             "Armor Check Penalty",
             "Armor",
             item.ArmorCheckPenalty());
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, Inventory_Armor);
     }
     if (item.HasArcaneSpellFailure())
     {
@@ -5043,7 +5153,7 @@ void Build::RevokeArmorEffects(const Item& item)
             "Armor Arcane Spell Failure",
             "Armor",
             item.ArcaneSpellFailure());
-        NotifyItemEffectRevoked(item.Name(), effect);
+        NotifyItemEffectRevoked(item.Name(), effect, Inventory_Armor);
     }
 }
 
@@ -5109,11 +5219,11 @@ void Build::ApplyGuildBuffs(bool bApply)
                 {
                     if (revoke)
                     {
-                        NotifyItemEffectRevoked((*it).Name(), (*eit));
+                        NotifyItemEffectRevoked((*it).Name(), (*eit), Inventory_Unknown);
                     }
                     else
                     {
-                        NotifyItemEffect((*it).Name(), (*eit));
+                        NotifyItemEffect((*it).Name(), (*eit), Inventory_Unknown);
                     }
                     ++eit;
                 }
@@ -5152,7 +5262,7 @@ void Build::ApplyGuildBuffs(bool bApply)
             std::list<Effect>::const_iterator eit = effects.begin();
             while (eit != effects.end())
             {
-                NotifyItemEffectRevoked((*it).Name(), (*eit));
+                NotifyItemEffectRevoked((*it).Name(), (*eit), Inventory_Unknown);
                 ++eit;
             }
             ++it;
@@ -5175,7 +5285,7 @@ void Build::NotifyOptionalBuff(const std::string& name)
     std::vector<Effect>::const_iterator feit = effects.begin();
     for (auto&& it: effects)
     {
-        NotifyItemEffect(name, it);
+        NotifyItemEffect(name, it, Inventory_Unknown);
     }
 }
 
@@ -5187,7 +5297,7 @@ void Build::RevokeOptionalBuff(const std::string& name)
     const std::vector<Effect>& effects = buff.Effects();
     for (auto&& it : effects)
     {
-        NotifyItemEffectRevoked(name, it);
+        NotifyItemEffectRevoked(name, it, Inventory_Unknown);
     }
 }
 
@@ -5206,23 +5316,23 @@ void Build::SetNotes(const std::string& newNotes)
     SetModifiedFlag(TRUE);
 }
 
-void Build::ApplyItemEffect(const std::string& name, const Effect& effect)
+void Build::ApplyItemEffect(const std::string& name, const Effect& effect, InventorySlotType ist)
 {
     for (auto&& tit : effect.Type())
     {
         Effect copy = effect;
         copy.SetType(tit);
-        NotifyItemEffect(name, copy);
+        NotifyItemEffect(name, copy, ist);
     }
 }
 
-void Build::RevokeItemEffect(const std::string& name, const Effect& effect)
+void Build::RevokeItemEffect(const std::string& name, const Effect& effect, InventorySlotType ist)
 {
     for (auto&& tit : effect.Type())
     {
         Effect copy = effect;
         copy.SetType(tit);
-        NotifyItemEffectRevoked(name, copy);
+        NotifyItemEffectRevoked(name, copy, ist);
     }
 }
 
@@ -5270,3 +5380,106 @@ void Build::SetQuestsCompletions(const std::list<CompletedQuest>& quests)
     // and were done
     SetModifiedFlag(TRUE);
 }
+
+void Build::AddSpellListAddition(const Effect& effect)
+{
+    // check to make sure it is not already present
+    std::string spellName = effect.Item().front();
+    std::string className = effect.Item().back();
+    int spellLevel = static_cast<int>(effect.Amount()[0]);
+    //int spellSPCost = static_cast<int>(effect.Amount()[1]);
+    //int spellMCL = static_cast<int>(effect.Amount()[2]);
+    if (!IsSpellInSpellListAdditionList(className, spellLevel, spellName))
+    {
+        SpellListAddition sla(className, spellLevel, spellName);
+        m_additionalSpells.push_back(sla);
+    }
+    else
+    {
+        // its already present, add to its count
+        for (size_t i = 0; i < m_additionalSpells.size(); ++i)
+        {
+            if (m_additionalSpells[i].AddsToSpellList(className, spellLevel)
+                    && m_additionalSpells[i].SpellName() == spellName)
+            {
+                m_additionalSpells[i].AddReference();
+            }
+        }
+    }
+}
+
+void Build::RevokeSpellListAddition(const Effect& effect)
+{
+    bool bUpdate = false;
+    // if its present remove a stack and revoke if now all gone
+    std::string spellName = effect.Item().front();
+    std::string className = effect.Item().back();
+    int spellLevel = static_cast<int>(effect.Amount()[0]);
+    //int spellSPCost = static_cast<int>(effect.Amount()[1]);
+    //int spellMCL = static_cast<int>(effect.Amount()[2]);
+    for (size_t i = 0; i < m_additionalSpells.size(); ++i)
+    {
+        if (m_additionalSpells[i].AddsToSpellList(className, spellLevel)
+            && m_additionalSpells[i].SpellName() == spellName)
+        {
+            bool erase = m_additionalSpells[i].RemoveReference();
+            if (erase)
+            {
+                m_additionalSpells.erase(m_additionalSpells.begin() + i);
+                --i;        // keep index right
+                bUpdate = true;
+            }
+        }
+    }
+    if (bUpdate)
+    {
+        // make sure trained spell lists are correct on spell list changes
+        UpdateSpells();
+    }
+}
+
+bool Build::IsSpellInSpellListAdditionList(
+    const std::string& ct,
+    size_t spellLevel,
+    const std::string& spellName) const
+{
+    bool bPresent = false;
+    for (size_t i = 0; !bPresent && i < m_additionalSpells.size(); ++i)
+    {
+        bPresent = m_additionalSpells[i].AddsToSpellList(ct, spellLevel)
+            && m_additionalSpells[i].SpellName() == spellName;
+    }
+    return bPresent;
+}
+
+Spell Build::AdditionalClassSpell(
+        const std::string& className,
+        const std::string& spellName) const
+{
+    Spell spell;
+    for (auto&& it: m_additionalSpells)
+    {
+        if (it.AddsToSpellList(className, spellName))
+        {
+            spell = FindSpellByName(spellName);
+        }
+    }
+    return spell;
+}
+
+void Build::AppendSpellListAdditions(
+        std::list<Spell>& spells,
+        const std::string& ct,
+        int spellLevel)
+{
+    for (auto&& it : m_additionalSpells)
+    {
+        if (it.AddsToSpellList(ct, spellLevel))
+        {
+            Spell spell = FindSpellByName(it.SpellName());
+            spells.push_back(spell);
+        }
+    }
+    spells.sort();
+}
+

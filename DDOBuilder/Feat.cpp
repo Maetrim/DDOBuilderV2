@@ -262,3 +262,4 @@ void Feat::SetRequirements(const Requirements& requirements)
     m_RequirementsToTrain = requirements;
     m_hasRequirementsToTrain = true;
 }
+

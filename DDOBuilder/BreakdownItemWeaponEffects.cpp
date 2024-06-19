@@ -58,7 +58,6 @@ BreakdownItemWeaponEffects::BreakdownItemWeaponEffects(
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponAttackBonusCriticalClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponDamageBonusClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponDamageBonusCriticalClass, this);
-    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_KeenClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponCriticalMultiplierClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponCriticalRangeClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_EnchantmentClass, this);
@@ -330,7 +329,6 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         case Effect_WeaponAttackBonusCriticalClass:
         case Effect_WeaponDamageBonusClass:
         case Effect_WeaponDamageBonusCriticalClass:
-        case Effect_Weapon_KeenClass:
         case Effect_WeaponCriticalMultiplierClass:
         case Effect_WeaponCriticalRangeClass:
         case Effect_Weapon_EnchantmentClass:
@@ -592,6 +590,9 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
                 : 1);
     m_pTreeList->SetItemData(hItem, (DWORD)(void*)pWeaponBreakdown);
     pWeaponBreakdown->SetCharacter(m_pCharacter);
+    WeaponType wtMain = m_pCharacter->ActiveBuild()->ActiveGearSet().Weapon1();
+    WeaponType wtOffhand = m_pCharacter->ActiveBuild()->ActiveGearSet().Weapon2();
+    pWeaponBreakdown->SetWeaponTypes(wtMain, wtOffhand);
 
     // apply the items stat attack modifiers (if any)
     for (auto&& amit : item.AttackModifier())

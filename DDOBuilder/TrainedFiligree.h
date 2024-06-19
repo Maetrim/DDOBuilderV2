@@ -13,6 +13,8 @@ class TrainedFiligree :
 
         bool operator==(const TrainedFiligree & other) const;
 
+        void TranslateOldNamesFromV1();
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

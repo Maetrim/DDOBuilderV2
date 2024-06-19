@@ -136,7 +136,7 @@ private:
     static void LoadImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename);
 
     static UINT ThreadedItemLoad(LPVOID pParam);
-    void ConvertToNewDataStructure(const LegacyCharacter& importedCharacter);
+    void ConvertToNewDataStructure(LegacyCharacter& importedCharacter);
 
     CCustomContextMenuManager m_ourMenuManager; // construction of object replaces default implementation created in InitContextMenuManager
     std::list<Bonus> m_bonusTypes;

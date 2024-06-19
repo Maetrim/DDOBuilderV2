@@ -693,6 +693,11 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
                     }
                 }
             }
+            if (!augments[augmentIndex].HasSelectedLevelIndex())
+            {
+                // default to the first option if not selected
+                augments[augmentIndex].SetSelectedLevelIndex(0);
+            }
             PopulateAugmentList(
                 &m_comboAugmentDropList[augmentIndex],
                 &m_augmentValues[augmentIndex],
@@ -1124,7 +1129,8 @@ void CItemSelectDialog::SetupFilterCombobox()
         for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
         {
             if (m_pBuild->IsWeaponInGroup("Melee", (WeaponType)i)
-                    || m_pBuild->IsWeaponInGroup("Ranged", (WeaponType)i))
+                    || m_pBuild->IsWeaponInGroup("Ranged", (WeaponType)i)
+                    || m_pBuild->IsWeaponInGroup("Thrown", (WeaponType)i))
             {
                 // we can add this one
                 int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));

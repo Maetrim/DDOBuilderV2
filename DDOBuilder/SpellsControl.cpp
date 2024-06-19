@@ -260,7 +260,7 @@ void CSpellsControl::OnPaint()
                 {
                     std::list<TrainedSpell>::iterator it = trainedSpells.begin();
                     std::advance(it, spellIndex);
-                    const Spell & spell = FindClassSpellByName(m_class, (*it).SpellName());
+                    const Spell & spell = FindClassSpellByName(m_pCharacter->ActiveBuild(), m_class, (*it).SpellName());
                     CImage spellImage;
                     HRESULT result = LoadImageFile(
                             "DataFiles\\SpellImages\\",
@@ -384,34 +384,35 @@ LRESULT CSpellsControl::OnMouseLeave(WPARAM, LPARAM)
 
 void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct)
 {
-    if (m_pCharacter != pCharacter)
+    m_pCharacter = pCharacter;
+    if (m_pCharacter != NULL)
     {
-        m_pCharacter = pCharacter;
         m_class = ct;
-        //// fixed spells change if character changes
-        //// we get updated with list for new character
-        //for (size_t i = 0; i < MAX_SPELL_LEVEL; ++i)
-        //{
-        //    m_fixedSpells[i].clear();
-        //    // negative spell levels for auto-assigned spells
-        //    int autoSpellLevel = -((int)i + 1);
-        //    std::vector<Spell> autoSpells = FilterSpells(pCharacter, ct, autoSpellLevel);
-        //    for (size_t si = 0; si < autoSpells.size(); ++si)
-        //    {
-        //        FixedSpell spell(autoSpells[si].Name(), i + 1);
-        //        m_fixedSpells[i].push_back(spell);
-        //    }
-        //}
-        //UpdateSpells(0);
-        //if (m_pCharacter == NULL)
-        //{
-        //    // no character == no spells to display
-        //    m_spellsPerLevel.clear();
-        //    if (IsWindow(GetSafeHwnd()))
-        //    {
-        //        Invalidate(TRUE);
-        //    }
-        //}
+        Build *pBuild = m_pCharacter->ActiveBuild();
+        // fixed spells change if character changes
+        // we get updated with list for new character
+        for (size_t i = 0; i < MAX_SPELL_LEVEL; ++i)
+        {
+            m_fixedSpells[i].clear();
+            if (pBuild != NULL)
+            {
+                // negative spell levels for auto-assigned spells
+                int autoSpellLevel = -((int)i + 1);
+                std::vector<Spell> autoSpells = FilterSpells(m_class, autoSpellLevel);
+                for (size_t si = 0; si < autoSpells.size(); ++si)
+                {
+                    FixedSpell spell(autoSpells[si].Name(), i + 1, autoSpells[si].Cost(), autoSpells[si].MaxCasterLevel());
+                    m_fixedSpells[i].push_back(spell);
+                }
+            }
+        }
+        UpdateSpells(0);
+        // no character == no spells to display
+        m_spellsPerLevel.clear();
+        if (IsWindow(GetSafeHwnd()))
+        {
+            Invalidate(TRUE);
+        }
     }
 }
 
@@ -447,7 +448,7 @@ LRESULT CSpellsControl::OnHoverComboBox(WPARAM wParam, LPARAM)
             // tip is shown to the left or the right of the combo box
             CPoint tipTopLeft(rctWindow.left, rctWindow.top);
             CPoint tipAlternate(rctWindow.right, rctWindow.top);
-            Spell spell = FindClassSpellByName(m_class, (LPCTSTR)spellName);
+            Spell spell = FindClassSpellByName(m_pCharacter->ActiveBuild(), m_class, (LPCTSTR)spellName);
             m_tooltip.SetOrigin(tipTopLeft, tipAlternate, true);
             m_tooltip.SetSpell(
                     *m_pCharacter->ActiveBuild(),
@@ -513,7 +514,7 @@ void CSpellsControl::SetTooltipText(
             spellName = (*si).SpellName();
             spellLevel = (*si).Level();
             //maxSpellLevel = c.SpellSlotsForClass(m_pCharacter->ActiveBuild()->ClassLevels(m_class)).size();
-            spell = FindClassSpellByName(m_class, spellName);
+            spell = FindClassSpellByName(m_pCharacter->ActiveBuild(), m_class, spellName);
         }
         else
         {
@@ -595,7 +596,8 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                     std::advance(sit, m_editSpellIndex);
                     currentSelection = (*sit).SpellName();
                 }
-                const std::list<Spell>& spells = c.Spells(item->SpellLevel());
+                std::list<Spell> spells = c.Spells(item->SpellLevel());
+                m_pCharacter->ActiveBuild()->AppendSpellListAdditions(spells, m_class, m_editSpellLevel);
 
                 m_comboSpellSelect.SetImageList(NULL);
                 m_comboSpellSelect.ResetContent();
@@ -676,6 +678,7 @@ void CSpellsControl::OnSpellSelectOk()
         std::list<TrainedSpell> trainedSpells =
                 m_pCharacter->ActiveBuild()->TrainedSpells(m_class, m_editSpellLevel);
         std::list<Spell> spells = c.Spells(m_editSpellLevel);
+        m_pCharacter->ActiveBuild()->AppendSpellListAdditions(spells, m_class, m_editSpellLevel);
 
         // revoke any previous spell selection this selection is replacing
         if (m_editSpellIndex < trainedSpells.size())

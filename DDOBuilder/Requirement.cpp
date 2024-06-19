@@ -448,6 +448,7 @@ bool Requirement::Met(
     case Requirement_StartingWorld:     met = EvaluateStartingWorld(build); break;
     case Requirement_WeaponClassMainHand: met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, true); break;
     case Requirement_WeaponClassOffHand: met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, false); break;
+    case Requirement_WeaponTypesEquipped: met = EvaluateWeaponTypesEquipped(build, wtMainHand, wtOffHand); break;
     default:                            met = false; break;
     }
     return met;
@@ -699,16 +700,42 @@ bool Requirement::EvaluateBaseClassAtLevel(
 {
     UNREFERENCED_PARAMETER(includeTomes);
     bool met = false;
-    std::string c = m_Item.front();
-    if (HasValue())
+    std::string requiredClass = m_Item.front();
+    std::string cal = build.ClassAtLevel(level);
+    const Class& calc = FindClass(cal);
+    if (requiredClass == cal)
     {
-        size_t classLevel = build.BaseClassLevels(c, level);
-        met = (classLevel == Value() && c == build.BaseClassAtLevel(level));
+        if (HasValue())
+        {
+            size_t classLevel = build.ClassLevels(requiredClass, level);
+            met = (classLevel == Value());
+        }
+        else
+        {
+            // must have this class at the level in question
+            met = (requiredClass == cal);
+        }
     }
     else
     {
-        // must have this class at the level in question
-        met = (c == build.BaseClassAtLevel(level));
+        // may be a base class requirement
+        if (calc.HasBaseClass())
+        {
+            cal = calc.BaseClass();
+            if (requiredClass == cal)
+            {
+                if (HasValue())
+                {
+                    size_t classLevel = build.ClassLevels(calc.Name(), level);
+                    met = (classLevel == Value());
+                }
+                else
+                {
+                    // must have this class at the level in question
+                    met = (requiredClass == cal);
+                }
+            }
+        }
     }
     return met;
 }
@@ -867,6 +894,27 @@ bool Requirement::EvaluateWeaponGroupMember(
     {
         bRet = build.IsWeaponInGroup(group, bMainHand ? wtMain : wtOffhand);
     }
+    return bRet;
+}
+
+bool Requirement::EvaluateWeaponTypesEquipped(
+        const Build& build,
+        WeaponType wtMain,
+        WeaponType wtOffhand) const
+{
+    UNREFERENCED_PARAMETER(build);
+    bool bRet = false;
+    std::string w1 = m_Item.front();
+    WeaponType wt1 = TextToEnumEntry(w1.c_str(), weaponTypeMap, false);
+    bRet = (wtMain == wt1);
+    if (m_Item.size() > 1)
+    {
+        std::string w2;
+        w2 = m_Item.back();
+        WeaponType wt2 = TextToEnumEntry(w2.c_str(), weaponTypeMap, false);
+        bRet &= (wtOffhand == wt2);
+    }
+
     return bRet;
 }
 

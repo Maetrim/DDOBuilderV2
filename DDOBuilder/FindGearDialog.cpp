@@ -588,6 +588,11 @@ void CFindGearDialog::OnAugmentSelect(UINT nID)
                     }
                 }
             }
+            if (!augments[augmentIndex].HasSelectedLevelIndex())
+            {
+                // default to the first option if not selected
+                augments[augmentIndex].SetSelectedLevelIndex(0);
+            }
             PopulateAugmentList(
                 &m_comboAugmentDropList[augmentIndex],
                 &m_augmentValues[augmentIndex],

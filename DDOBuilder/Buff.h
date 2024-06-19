@@ -16,7 +16,7 @@ class Buff :
         void Write(XmlLib::SaxWriter * writer) const;
 
         CString MakeDescription() const;
-        void UpdatedEffects(std::list<Effect>* effects) const;
+        void UpdatedEffects(std::list<Effect>* effects, bool bNegativeValues) const;
 
         bool VerifyObject(std::stringstream* ss) const;
 
@@ -30,6 +30,7 @@ class Buff :
         #define Buff_PROPERTIES(_) \
                 DL_STRING(_, Type) \
                 DL_FLAG(_, ApplyToWeaponOnly) \
+                DL_FLAG(_, NegativeValues) \
                 DL_STRING_LIST(_, DisplayText) \
                 DL_OPTIONAL_STRING(_, Ignore) \
                 DL_OPTIONAL_SIMPLE(_, double, Value1, 0.0) \

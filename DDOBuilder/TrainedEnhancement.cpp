@@ -41,6 +41,7 @@ void TrainedEnhancement::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(TrainedEnhancement_PROPERTIES)
+    m_EnhancementName = ReplaceAll(m_EnhancementName, "PaleCore", "PMCore");
 }
 
 void TrainedEnhancement::Write(XmlLib::SaxWriter * writer) const
@@ -115,6 +116,10 @@ bool TrainedEnhancement::HasRequirementOf(
             && pItem->HasRequirementsToTrain(Selection()))
         {
             bRequiresIt = pItem->RequiresEnhancement(Selection(), dependentOnEnhancementName);
+            if (!bRequiresIt)
+            {
+                bRequiresIt = pItem->RequiresEnhancement(dependentOnEnhancementName);
+            }
         }
         else
         {

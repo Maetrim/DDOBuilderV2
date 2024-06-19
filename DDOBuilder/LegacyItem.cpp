@@ -2,6 +2,7 @@
 //
 #include "StdAfx.h"
 #include "LegacyItem.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT LegacyItem
 
@@ -45,6 +46,17 @@ void LegacyItem::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(LegacyItem_PROPERTIES)
+    if (m_Name.find("Legendary Greensteel") != std::string::npos)
+    {
+        m_Name = ReplaceAll(
+            m_Name,
+            "Legendary Greensteel",
+            "Legendary Green Steel");
+        m_Name = ReplaceAll(
+            m_Name,
+            "Helmet",
+            "Helm");
+    }
 }
 
 void LegacyItem::Write(XmlLib::SaxWriter * writer) const

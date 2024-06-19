@@ -1082,4 +1082,82 @@ Drops in: Joe Candymaker: The Night Revels Trader</Description>
          <AType>NotNeeded</AType>
       </Effect>
    </Augment>
+   <Augment>
+      <Name>The Eye of Daanvi</Name>
+      <Description>This weapon becomes Lawfully aligned, and on each hit, deals 10d6 extra Law damage to all non-Lawful enemies.</Description>
+      <MinLevel>30</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <Value>Lawful</Value>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Type>WeaponOtherDamageBonusCritical</Type>
+         <Bonus>Enhancement</Bonus>
+         <Dice>
+            <Number size="1">10</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Law</Damage>
+         </Dice>
+         <Item>All</Item>
+         <IsItemSpecific/>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>The Eye of Lamannia</Name>
+      <Description>This weapon becomes an Implement. +146 Equipment bonus to Positive and Force Spellpower.</Description>
+      <MinLevel>30</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">146</Amount>
+         <Item>Positive</Item>
+         <Item>Force/Untyped</Item>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>All</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>The Eye of Mabar</Name>
+      <Description>This weapon becomes Evil aligned. You heal 5d2 damage per strike, and when you slay an enemy, you gain 15 Temporary HP. If you are Undead, this healing becomes Negative.</Description>
+      <MinLevel>30</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+   </Augment>
+   <Augment>
+      <Name>The Eye of Shavarath</Name>
+      <Description>You are immune to Fear. On a Critical Hit, this weapon applies the Shaken debuff.</Description>
+      <MinLevel>30</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Effect>
+         <Type>Immunity</Type>
+         <Immunity>Fear</Immunity>
+         <Bonus>Stacking</Bonus>
+         <AType>NotNeeded</AType>
+      </Effect>
+   </Augment>
 </Augments>

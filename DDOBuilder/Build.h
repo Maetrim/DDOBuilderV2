@@ -25,6 +25,8 @@
 #include "WeaponGroup.h"
 #include "WeaponTypes.h"
 #include "StackTracking.h"
+#include "SpellListAddition.h"
+#include "Spell.h"
 
 class Augment;
 class Build;
@@ -242,6 +244,11 @@ class Build :
         void TrainSpell(const std::string& ct, size_t level, const std::string& spellName);
         void RevokeSpell(const std::string& ct, size_t level, const std::string& spellName, bool bSuppressLog);
         bool IsSpellTrained(const std::string& spellName) const;
+        void ApplySpellEffects();
+        void ApplySpellEffects(const std::string& spellName);
+        void RevokeSpellEffects(const std::string& spellName);
+        Spell AdditionalClassSpell(const std::string& className, const std::string& spellName) const;
+        void AppendSpellListAdditions(std::list<Spell>& spells, const std::string& ct, int spellLevel);
 
         void SetModifiedFlag(BOOL modified);
         void ApplyFeatEffects(const Feat & feat);
@@ -383,8 +390,8 @@ class Build :
         void NotifyBuildAutomaticFeatsChanged(size_t level);
         void NotifyNewDC(const DC& dc);
         void NotifyRevokeDC(const DC& dc);
-        void NotifyItemEffect(const std::string& itemName, Effect effect);
-        void NotifyItemEffectRevoked(const std::string& itemName, Effect effect);
+        void NotifyItemEffect(const std::string& itemName, Effect effect, InventorySlotType ist);
+        void NotifyItemEffectRevoked(const std::string& itemName, Effect effect, InventorySlotType ist);
         void NotifyItemWeaponEffect(const std::string& itemName, Effect effect, WeaponType wt, InventorySlotType ist);
         void NotifyItemWeaponEffectRevoked(const std::string& itemName, Effect effect, WeaponType wt, InventorySlotType ist);
         void NotifyGearChanged(InventorySlotType slot);
@@ -412,17 +419,20 @@ class Build :
         void RevokeSetBonus(const std::string& set, const std::string& name);
         void ApplyItem(const Item& item, InventorySlotType ist);
         void RevokeItem(const Item& item, InventorySlotType ist);
-        void ApplyWeaponEffects(const Item& item);
-        void RevokeWeaponEffects(const Item& item);
+        void ApplyWeaponEffects(const Item& item, InventorySlotType ist);
+        void RevokeWeaponEffects(const Item& item, InventorySlotType ist);
         void ApplyArmorEffects(const Item& item);
         void RevokeArmorEffects(const Item& item);
         void ApplyAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel, WeaponType wt);
         void RevokeAugment(const Augment& augment, const ItemAugment& itemAugment, const std::string& itemName, size_t itemLevel, WeaponType wt);
-        void ApplyItemEffect(const std::string& name, const Effect& effect);
-        void RevokeItemEffect(const std::string& name, const Effect& effect);
+        void ApplyItemEffect(const std::string& name, const Effect& effect, InventorySlotType ist);
+        void RevokeItemEffect(const std::string& name, const Effect& effect, InventorySlotType ist);
         size_t AddSetBonusStack(const std::string& set);
         size_t RevokeSetBonusStack(const std::string& set);
         void VerifySpecialFeats();
+        void AddSpellListAddition(const Effect& effect);
+        void RevokeSpellListAddition(const Effect& effect);
+        bool IsSpellInSpellListAdditionList(const std::string& ct, size_t spellLevel, const std::string& spellName) const;
 
         Life * m_pLife;
         int m_racialTreeSpend;
@@ -433,6 +443,7 @@ class Build :
         std::list<ExclusionGroup> m_exclusiveEnhancements;
         std::list<StackTracking> m_setBonusStacks;
         std::list<WeaponGroup> m_weaponGroups;
+        std::vector<SpellListAddition> m_additionalSpells;
 
         friend class CStancesPane;
         friend class CStanceButton;

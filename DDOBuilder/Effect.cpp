@@ -866,7 +866,10 @@ bool Effect::operator==(const Effect & other) const
             && (m_Bonus != "Unique");
 }
 
-bool Effect::IsActive(const Character& c, WeaponType wt) const
+bool Effect::IsActive(
+        const Character& c,
+        WeaponType wtMain,
+        WeaponType wtOffhand) const
 {
     bool bActive = true;
     if (HasRequirementsToBeActive())
@@ -874,7 +877,7 @@ bool Effect::IsActive(const Character& c, WeaponType wt) const
         const Build* pBuild = c.ActiveBuild();
         if (pBuild != NULL)
         {
-            bActive = RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, wt, Weapon_Unknown);
+            bActive = RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, wtMain, wtOffhand);
         }
     }
     return bActive;
@@ -1250,4 +1253,9 @@ void Effect::ReplaceLastItem(const std::string& newEntry)
 void Effect::SetIsItemSpecific()
 {
     Set_IsItemSpecific();
+}
+
+void Effect::SetApplyAsItemEffect()
+{
+    Set_ApplyAsItemEffect();
 }

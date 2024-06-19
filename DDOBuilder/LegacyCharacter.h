@@ -75,4 +75,6 @@ class LegacyCharacter :
 
         DL_DECLARE_ACCESS(LegacyCharacter_PROPERTIES)
         DL_DECLARE_VARIABLES(LegacyCharacter_PROPERTIES)
+
+        friend class CDDOBuilderApp;
 };

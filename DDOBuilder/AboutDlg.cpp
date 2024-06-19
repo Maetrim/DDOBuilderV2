@@ -55,6 +55,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "In alphabetical order:\r\n"
         "\r\n"
         "Aaumini, "
+        "Arcanaverse, "
         "Belenian, "
         "BrentAuble, "
         "BuckGB, "
@@ -89,6 +90,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Warsaga, "
         "YoureNotDead, "
         "Vyder, "
+        "zenith90210, "
         "zilgabex");
     m_bugReporters.SetSel((DWORD)-1);    // nothing starts selected
 }

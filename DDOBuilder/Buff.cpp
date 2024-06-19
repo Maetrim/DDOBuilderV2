@@ -77,13 +77,27 @@ CString Buff::MakeDescription() const
         if (HasValue1())
         {
             CString value;
-            value.Format("%+d", static_cast<int>(Value1()));
+            if (HasNegativeValues())
+            {
+                value.Format("%+d", -static_cast<int>(Value1()));
+            }
+            else
+            {
+                value.Format("%+d", static_cast<int>(Value1()));
+            }
             str.Replace("%v1", value);
         }
         if (HasValue2())
         {
             CString value;
-            value.Format("%+d", static_cast<int>(Value2()));
+            if (HasNegativeValues())
+            {
+                value.Format("%+d", -static_cast<int>(Value2()));
+            }
+            else
+            {
+                value.Format("%+d", static_cast<int>(Value2()));
+            }
             str.Replace("%v2", value);
         }
         if (HasBonusType())
@@ -119,7 +133,7 @@ CString Buff::MakeDescription() const
     return description;
 }
 
-void Buff::UpdatedEffects(std::list<Effect>* effects) const
+void Buff::UpdatedEffects(std::list<Effect>* effects, bool bNegativeValues) const
 {
     if (HasBonusType())
     {
@@ -156,9 +170,27 @@ void Buff::UpdatedEffects(std::list<Effect>* effects) const
         for (auto&& eit : *effects)
         {
             if (index % 2 == 0)
-                eit.SetAmount(Value1());
+            {
+                if (bNegativeValues)
+                {
+                    eit.SetAmount(-Value1());
+                }
+                else
+                {
+                    eit.SetAmount(Value1());
+                }
+            }
             else
-                eit.SetAmount(Value2());
+            {
+                if (bNegativeValues)
+                {
+                    eit.SetAmount(-Value2());
+                }
+                else
+                {
+                    eit.SetAmount(Value2());
+                }
+            }
             ++index;
             if (HasRequirementsToUse())
             {
@@ -171,7 +203,14 @@ void Buff::UpdatedEffects(std::list<Effect>* effects) const
         // value1 applies to all effects
         for (auto&& eit : *effects)
         {
-            eit.SetAmount(Value1());
+            if (bNegativeValues)
+            {
+                eit.SetAmount(-Value1());
+            }
+            else
+            {
+                eit.SetAmount(Value1());
+            }
             if (HasRequirementsToUse())
             {
                 eit.SetRequirements(RequirementsToUse());

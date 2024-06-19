@@ -62,6 +62,7 @@ void SpendInTree::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(SpendInTree_PROPERTIES)
+    TranslateNamesFromV1();
     // also make sure every loaded TrainedEnhancement has the correct
     // cached cost values for the enhancements it references
     m_pointsSpent = 0;
@@ -329,4 +330,27 @@ TreeType SpendInTree::Type() const
 void SpendInTree::SetSpent(size_t apsSpent)
 {
     m_pointsSpent = apsSpent;
+}
+
+void SpendInTree::TranslateNamesFromV1()
+{
+    static std::string nameTranslations[] =
+    {
+        // old tree name                        new tree name
+        "Ravager",                              "Ravager (Barbarian)",
+        "Ravager (Ftr)",                        "Ravager (Fighter)"
+    };
+    size_t count = sizeof(nameTranslations) / sizeof(std::string);
+    if (count % 2 != 0)
+    {
+        throw "Must be an multiple of 2";
+    }
+    for (size_t i = 0; i < count; i += 2)
+    {
+        if (m_TreeName == nameTranslations[i])
+        {
+            m_TreeName = nameTranslations[i + 1];
+            break;
+        }
+    }
 }

@@ -220,7 +220,6 @@ enum EffectType
     Effect_WeaponAttackBonusCriticalClass,
     Effect_WeaponDamageBonusClass,
     Effect_WeaponDamageBonusCriticalClass,
-    Effect_Weapon_KeenClass,
     Effect_WeaponCriticalMultiplierClass,
     Effect_WeaponCriticalRangeClass,
     Effect_Weapon_EnchantmentClass,
@@ -440,7 +439,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_WeaponAttackBonusCriticalClass, L"WeaponAttackBonusCriticalClass"},
     {Effect_WeaponDamageBonusClass, L"WeaponDamageBonusClass"},
     {Effect_WeaponDamageBonusCriticalClass, L"WeaponDamageBonusCriticalClass"},
-    {Effect_Weapon_KeenClass, L"Weapon_KeenClass"},
     {Effect_WeaponCriticalMultiplierClass, L"WeaponCriticalMultiplierClass"},
     {Effect_WeaponCriticalRangeClass, L"WeaponCriticalRangeClass"},
     {Effect_Weapon_EnchantmentClass, L"Weapon_EnchantmentClass"},
@@ -517,7 +515,7 @@ class Effect :
         void SetDisplayName(const std::string displayName);
         bool VerifyObject(std::stringstream * ss) const;
 
-        bool IsActive(const Character & c, WeaponType wt) const;
+        bool IsActive(const Character& c, WeaponType wtMain, WeaponType wtOffhand) const;
         double TotalAmount(bool allowTruncate) const;
         size_t EffectStacks() const;
         void AddEffectStack();
@@ -543,6 +541,7 @@ class Effect :
         void SetRequirements(const Requirements& req);
         void ReplaceLastItem(const std::string& newEntry);
         void SetIsItemSpecific();
+        void SetApplyAsItemEffect();
 
         bool operator==(const Effect & other) const;
 

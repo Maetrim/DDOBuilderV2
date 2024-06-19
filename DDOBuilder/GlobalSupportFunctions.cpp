@@ -796,10 +796,15 @@ const EnhancementTreeItem * FindEnhancement(
     return item;
 }
 
-Spell FindClassSpellByName(const std::string& ct, const std::string& name)
+Spell FindClassSpellByName(const Build* pBuild, const std::string& ct, const std::string& name)
 {
     const ::Class& c = FindClass(ct);
     Spell spell = c.FindSpell(name);
+    if (spell.Name() != name)
+    {
+        // check to see if its a dynamic spell addition
+        spell = pBuild->AdditionalClassSpell(ct, name);
+    }
     return spell;
 }
 
@@ -2264,4 +2269,25 @@ bool SearchForText(std::string source, const std::string& find)
         [](char c) {return static_cast<char>(std::tolower(c)); });
     bool bTextPresent = (source.find(find.c_str()) != std::string::npos);
     return bTextPresent;
+}
+
+std::vector<Spell> FilterSpells(std::string& ct, int level)
+{
+    std::vector<Spell> availableSpells;
+    // return the list of spells for this class at this level
+    // note that negative spell levels can be given to get the list of
+    // automatically assigned spells at that level (e.g. -1 = all 1st level
+    // auto assigned spells)
+    const Class& c = FindClass(ct);
+    const std::list<Spell>& spellsAtLevel = c.Spells(abs(level));
+
+    for (auto&& sit: spellsAtLevel)
+    {
+        if (sit.Level() == level)
+        {
+            Spell spell = FindSpellByName(sit.Name());
+            availableSpells.push_back(spell);
+        }
+    }
+    return availableSpells;
 }

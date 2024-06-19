@@ -60,5 +60,6 @@ const XmlLib::enumMapEntry<SkillType> skillTypeMap[] =
     {Skill_Tumble,          L"Tumble"},
     {Skill_UMD,             L"Use Magic Device"},
     {Skill_All,             L"All"},
+    {Skill_SpellCraft,      L"Spell Craft"},    // translate old builds
     {SkillType(0), NULL}
 };

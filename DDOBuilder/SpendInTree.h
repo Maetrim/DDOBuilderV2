@@ -51,6 +51,7 @@ class SpendInTree :
         DL_DECLARE_VARIABLES(SpendInTree_PROPERTIES)
     private:
         bool EnoughPointsSpentAtLowerTiers(size_t minSpent, size_t cost) const;
+        void TranslateNamesFromV1();
 
         size_t m_pointsSpent;       // run time only as prices can change between runs on enhancement updates
         TreeType m_type;

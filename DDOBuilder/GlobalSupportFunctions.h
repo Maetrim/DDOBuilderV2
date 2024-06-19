@@ -83,8 +83,8 @@ const EnhancementTreeItem* FindEnhancement(const std::string& internalName, std:
 const EnhancementTree& GetEnhancementTree(const std::string& treeName);
 size_t ClassIndex(const std::string& className);
 const Class & ClassFromIndex(size_t index);
-Spell FindClassSpellByName(const std::string& ct, const std::string& name);
-Spell FindSpellByName(const std::string& ct, bool bSuppressError = false);
+Spell FindClassSpellByName(const Build* pBuild, const std::string& ct, const std::string& name);
+Spell FindSpellByName(const std::string& spell, bool bSuppressError = false);
 Spell FindItemClickieByName(const std::string& ct, bool bSuppressError = false);
 const Item& FindItem(const std::string& itemName);
 
@@ -203,3 +203,4 @@ void MakeIconTransparent(const CString& iconFilename, bool bPlusTopLeft);
 std::string ReplaceAll(std::string str, const std::string& from, const std::string& to);
 bool DarkModeEnabled();
 bool SearchForText(std::string source, const std::string& find);
+std::vector<Spell> FilterSpells(std::string& ct, int level);

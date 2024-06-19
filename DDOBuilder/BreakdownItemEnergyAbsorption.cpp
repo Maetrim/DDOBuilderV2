@@ -107,7 +107,7 @@ double BreakdownItemEnergyAbsorption::SumItems(
     while (it != effects.end())
     {
         // only count the active items in the total
-        if ((*it).IsActive(*m_pCharacter, m_weapon))
+        if ((*it).IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
         {
             if (!(*it).HasPercent())
             {

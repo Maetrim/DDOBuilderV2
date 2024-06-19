@@ -2969,6 +2969,12 @@ void CBreakdownsPane::UpdateGearChanged(
     if (slot == Inventory_Weapon1
             || slot == Inventory_Weapon2)
     {
+        WeaponType wtMain = pBuild->ActiveGearSet().Weapon1();
+        WeaponType wtOffhand = pBuild->ActiveGearSet().Weapon2();
+        for (auto&& it: m_items)
+        {
+            it->SetWeaponTypes(wtMain, wtOffhand);
+        }
         // m_pWeaponEffects holds the actual breakdowns, we just tell it
         // to re-create them based on the selected items
         m_pWeaponEffects->WeaponsChanged(pBuild->ActiveGearSet());

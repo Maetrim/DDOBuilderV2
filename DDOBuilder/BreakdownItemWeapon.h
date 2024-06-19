@@ -49,6 +49,7 @@ class BreakdownItemWeapon :
 
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
+        virtual void SetWeaponTypes(WeaponType wtMain, WeaponType wtOffhand) override;
 
         // EffectCallbackItem
         virtual void ClassChanged(Build*, const std::string& classFrom, const std::string& classTo, size_t level) override;

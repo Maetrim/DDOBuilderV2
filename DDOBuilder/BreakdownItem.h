@@ -96,6 +96,8 @@ class BreakdownItem :
         void AddAbility(AbilityType ability, const Requirements& requirements, WeaponType wt);
         void RemoveFirstAbility(AbilityType ability, const Requirements& requirements, WeaponType wt);
 
+        virtual void SetWeaponTypes(WeaponType wtMain, WeaponType wtOffhand);
+
         void SetWeapon(WeaponType wt, size_t weaponCriticalMultiplier);
         WeaponType Weapon() const;
 
@@ -160,14 +162,16 @@ class BreakdownItem :
         std::list<Effect> m_otherEffects;       // these always stack
         std::list<Effect> m_effects;            // these always stack
         std::list<Effect> m_itemEffects;        // highest of a given type counts
+        WeaponType m_wtMain;
+        WeaponType m_wtOffhand;
     private:
-        void AddActiveItems(const std::list<Effect> & effects, CListCtrl * pControl, bool bShowMultiplier);
-        void AddActivePercentageItems(const std::list<Effect> & effects, CListCtrl * pControl);
-        void AddDeactiveItems(const std::list<Effect> & effects, CListCtrl * pControl, bool bShowMultiplier);
-        virtual double SumItems(const std::list<Effect> & effects, bool bApplyMultiplier) const;
-        void AddEffect(std::list<Effect> * effectList, const Effect & effect);
-        void RevokeEffect(std::list<Effect> * effectList, const Effect & effect);
-        MfcControls::CTreeListCtrl * m_pTreeList;
+        void AddActiveItems(const std::list<Effect>& effects, CListCtrl * pControl, bool bShowMultiplier);
+        void AddActivePercentageItems(const std::list<Effect>& effects, CListCtrl * pControl);
+        void AddDeactiveItems(const std::list<Effect>& effects, CListCtrl * pControl, bool bShowMultiplier);
+        virtual double SumItems(const std::list<Effect>& effects, bool bApplyMultiplier) const;
+        void AddEffect(std::list<Effect> * effectList, const Effect& effect);
+        void RevokeEffect(std::list<Effect> * effectList, const Effect& effect);
+        MfcControls::CTreeListCtrl* m_pTreeList;
         HTREEITEM m_hItem;
         BreakdownType m_type;
         mutable bool m_bHasNonStackingEffects;

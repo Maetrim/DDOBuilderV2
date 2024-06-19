@@ -1499,7 +1499,7 @@ BOOL CDDOBuilderApp::WriteProfileBinary(LPCTSTR lpszSection, LPCTSTR lpszEntry, 
     return bResult;
 }
 
-void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCharacter)
+void CDDOBuilderApp::ConvertToNewDataStructure(LegacyCharacter& importedCharacter)
 {
     // create a new life with a single build to receive the imported character data
     CWnd* pWnd = AfxGetApp()->m_pMainWnd;
@@ -1530,9 +1530,9 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
         pBuild->Set_BuildPoints(importedCharacter.BuildPoints());
         pBuild->m_pLife->Set_Tomes(importedCharacter.Tomes());
         GetLog().AddLogEntry("Skill Tomes imported.");
-        if (importedCharacter.HasClass1()) pBuild->SetClass1(importedCharacter.Class1());
-        if (importedCharacter.HasClass2()) pBuild->SetClass2(importedCharacter.Class2());
-        if (importedCharacter.HasClass3()) pBuild->SetClass3(importedCharacter.Class3());
+        if (importedCharacter.HasClass1() && importedCharacter.Class1() != Class_Unknown) pBuild->SetClass1(importedCharacter.Class1());
+        if (importedCharacter.HasClass2() && importedCharacter.Class2() != Class_Unknown) pBuild->SetClass2(importedCharacter.Class2());
+        if (importedCharacter.HasClass3() && importedCharacter.Class3() != Class_Unknown) pBuild->SetClass3(importedCharacter.Class3());
         // need to set level up classes and feats before enhancements
         for (auto&& sfit: importedCharacter.SpecialFeats().Feats())
         {
@@ -1549,8 +1549,20 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
             }
             ++level;
         }
+        if (importedCharacter.HasTier5Tree())
+        {
+            LegacyEnhancementSelectedTrees trees = importedCharacter.SelectedTrees();
+            trees.SetTier5Tree(importedCharacter.Tier5Tree());
+            importedCharacter.Set_SelectedTrees(trees);
+        }
         pBuild->Enhancement_SetSelectedTrees(importedCharacter.SelectedTrees());
         pBuild->Set_EnhancementTreeSpend(importedCharacter.EnhancementTreeSpend());
+        if (importedCharacter.HasU51Destiny_Tier5Tree())
+        {
+            LegacyDestinySelectedTrees trees = importedCharacter.DestinyTrees();
+            trees.SetTier5Tree(importedCharacter.U51Destiny_Tier5Tree());
+            importedCharacter.Set_DestinyTrees(trees);
+        }
         pBuild->Destiny_SetSelectedTrees(importedCharacter.DestinyTrees());
         pBuild->Set_DestinyTreeSpend(importedCharacter.DestinyTreeSpend());
         pBuild->Set_ReaperTreeSpend(importedCharacter.ReaperTreeSpend());
@@ -1590,10 +1602,12 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
             // weapon filigrees now
             gearSet.SetNumFiligrees(gsit.SentientIntelligence().NumFiligrees());
             size_t fi = 0;
-            for (auto&& fit: gsit.SentientIntelligence().Filigrees())
+            std::list<WeaponFiligree> wfs = gsit.SentientIntelligence().Filigrees();
+            for (auto&& fit: wfs)
             {
                 if (fit.Name() != "")
                 {
+                    fit.TranslateOldNamesFromV1();
                     const Filigree& fili = FindFiligreeByNameComponents(fit.Name());
                     if (fili.Name() == "")
                     {
@@ -1611,10 +1625,12 @@ void CDDOBuilderApp::ConvertToNewDataStructure(const LegacyCharacter& importedCh
             }
             // artifact filigrees
             fi = 0;
-            for (auto&& fit : gsit.SentientIntelligence().ArtifactFiligrees())
+            std::list<ArtifactFiligree> afs = gsit.SentientIntelligence().ArtifactFiligrees();
+            for (auto&& fit : afs)
             {
                 if (fit.Name() != "")
                 {
+                    fit.TranslateOldNamesFromV1();
                     const Filigree& fili = FindFiligreeByNameComponents(fit.Name());
                     if (fili.Name() == "")
                     {

@@ -424,6 +424,28 @@ void BreakdownItemWeapon::UpdateTotalChanged(
     Populate();
 }
 
+void BreakdownItemWeapon::SetWeaponTypes(
+        WeaponType wtMain,
+        WeaponType wtOffhand) 
+{
+    BreakdownItem::SetWeaponTypes(wtMain, wtOffhand);
+    m_baseDamage.SetWeaponTypes(wtMain, wtOffhand);
+    m_attackBonus.SetWeaponTypes(wtMain, wtOffhand);
+    m_damageBonus.SetWeaponTypes(wtMain, wtOffhand);
+    //m_otherDamageEffects.SetWeaponTypes(wtMain, wtOffhand);
+    m_criticalThreatRange.SetWeaponTypes(wtMain, wtOffhand);
+    //m_vorpalRange.SetWeaponTypes(wtMain, wtOffhand);
+    m_criticalAttackBonus.SetWeaponTypes(wtMain, wtOffhand);
+    m_criticalDamageBonus.SetWeaponTypes(wtMain, wtOffhand);
+    //m_otherCriticalDamageEffects.SetWeaponTypes(wtMain, wtOffhand);
+    m_criticalMultiplier.SetWeaponTypes(wtMain, wtOffhand);
+    m_criticalMultiplier19To20.SetWeaponTypes(wtMain, wtOffhand);
+    m_drBypass.SetWeaponTypes(wtMain, wtOffhand);
+    m_attackSpeed.SetWeaponTypes(wtMain, wtOffhand);
+    m_ghostTouch.SetWeaponTypes(wtMain, wtOffhand);
+    m_trueSeeing.SetWeaponTypes(wtMain, wtOffhand);
+}
+
 void BreakdownItemWeapon::ClassChanged(
     Build* pBuild, const std::string& classFrom, const std::string& classTo, size_t level)
 {

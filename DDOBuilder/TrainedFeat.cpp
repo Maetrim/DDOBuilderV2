@@ -62,6 +62,7 @@ void TrainedFeat::EndElement()
     SaxContentElement::EndElement();
     DL_END(TrainedFeat_PROPERTIES)
 
+    TranslateOldFeatNames();
     // translate old feat slot names of V1 builder to thier new names in V2
     if (m_Type == "AasimarBond") m_Type = "Aasimar Bond";
     if (m_Type == "AlchemistBonus") m_Type = "Alchemist Bonus Feat";
@@ -90,6 +91,7 @@ void TrainedFeat::EndElement()
     if (m_Type == "MonkBonus") m_Type = "Monk Bonus";
     if (m_Type == "MonkBonus6") m_Type = "Monk Bonus";
     if (m_Type == "MonkPhilosophy") m_Type = "Monk Philosophy";
+    if (m_Type == "PDKBonus") m_Type = "Purple Dragon Knight Bonus Feat";
     if (m_Type == "RogueSpecialAbility") m_Type = "Superior Draconic Aura";
     if (m_Type == "TruePact") m_Type = "True Patron";
     if (m_Type == "WarlockPactAbility") m_Type = "Pact Ability";
@@ -136,4 +138,126 @@ size_t TrainedFeat::Count() const
 void TrainedFeat::IncrementCount()
 {
     ++m_count;
+}
+
+void TrainedFeat::TranslateOldFeatNames()
+{
+    static std::string nameTranslations[] =
+    {
+        // old feat name                        new feat name
+        "Air Domain Tier I",                    "Domain of Air",
+        "Air Domain Tier II",                   "Improved Domain of Air",
+        "Air Domain Tier III",                  "Greater Domain of Air",
+        "Air Domain Tier IV",                   "Master of the Domain of Air",
+
+        "Animal Domain Tier I",                 "Domain of Animals",
+        "Animal Domain Tier II",                "Improved Domain of Animals",
+        "Animal Domain Tier III",               "Greater Domain of Animals",
+        "Animal Domain Tier IV",                "Master of the Domain of Animals",
+
+        "Chaos Domain Tier I",                  "Domain of Chaos",
+        "Chaos Domain Tier II",                 "Improved Domain of Chaos",
+        "Chaos Domain Tier III",                "Greater Domain of Chaos",
+        "Chaos Domain Tier IV",                 "Master of the Domain of Chaos",
+
+        "Death Domain Tier I",                  "Domain of Death",
+        "Death Domain Tier II",                 "Improved Domain of Death",
+        "Death Domain Tier III",                "Greater Domain of Death",
+        "Death Domain Tier IV",                 "Master of the Domain of Death",
+
+        "Destruction Domain Tier I",            "Domain of Destruction",
+        "Destruction Domain Tier II",           "Improved Domain of Destruction",
+        "Destruction Domain Tier III",          "Greater Domain of Destruction",
+        "Destruction Domain Tier IV",           "Master of the Domain of Destruction",
+
+        "Earth Domain Tier I",                  "Domain of Earth",
+        "Earth Domain Tier II",                 "Improved Domain of Earth",
+        "Earth Domain Tier III",                "Greater Domain of Earth",
+        "Earth Domain Tier IV",                 "Master of the Domain of Earth",
+
+        "Fire Domain Tier I",                   "Domain of Fire",
+        //"Improved Domain of Fire",              "Improved Domain of Fire",
+        //"Greater Domain of Fire",               "Greater Domain of Fire",
+        "Fire Domain Tier IV",                  "Master of the Domain of Fire",
+
+        "Good Domain Tier I",                   "Domain of Good",
+        "Good Domain Tier II",                  "Improved Domain of Good",
+        "Good Domain Tier III",                 "Greater Domain of Good",
+        "Good Domain Tier IV",                  "Master of the Domain of Good",
+
+        "Healing Domain Tier I",                "Domain of Healing",
+        "Healing Domain Tier II",               "Improved Domain of Healing",
+        "Healing Domain Tier III",              "Greater Domain of Healing",
+        "Healing Domain Tier IV",               "Master of the Domain of Healing",
+
+        "Knowledge Domain Tier I",              "Domain of Knowledge",
+        "Knowledge Domain Tier II",             "Improved Domain of Knowledge",
+        "Knowledge Domain Tier III",            "Greater Domain of Knowledge",
+        "Knowledge Domain Tier IV",             "Master of the Domain of Knowledge",
+
+        "Law Domain Tier I",                    "Domain of Law",
+        "Law Domain Tier II",                   "Improved Domain of Law",
+        "Law Domain Tier III",                  "Greater Domain of Law",
+        "Law Domain Tier IV",                   "Master of the Domain of Law",
+
+        "Luck Domain Tier I",                   "Domain of Luck",
+        "Luck Domain Tier II",                  "Improved Domain of Luck",
+        "Luck Domain Tier III",                 "Greater Domain of Luck",
+        "Luck Domain Tier IV",                  "Master of the Domain of Luck",
+
+        "Magic Domain Tier I",                  "Domain of Magic",
+        "Magic Domain Tier II",                 "Improved Domain of Magic",
+        "Magic Domain Tier III",                "Greater Domain of Magic",
+        "Magic Domain Tier IV",                 "Master of the Domain of Magic",
+
+        "Protection Domain Tier I",             "Domain of Protection",
+        "Protection Domain Tier II",            "Improved Domain of Protection",
+        "Protection Domain Tier III",           "Greater Domain of Protection",
+        "Protection Domain Tier IV",            "Master of the Domain of Protection",
+
+        "Strength Domain Tier I",               "Domain of Strength",
+        "Strength Domain Tier II",              "Improved Domain of Strength",
+        "Strength Domain Tier III",             "Greater Domain of Strength",
+        "Strength Domain Tier IV",              "Master of the Domain of Strength",
+
+        "Sun Domain Tier I",                    "Domain of Sun",
+        "Sun Domain Tier II",                   "Improved Domain of Sun",
+        "Sun Domain Tier III",                  "Greater Domain of Sun",
+        "Sun Domain Tier IV",                   "Master of the Domain of Sun",
+
+        "Trickery Domain Tier I",               "Domain of Trickery",
+        "Trickery Domain Tier II",              "Improved Domain of Trickery",
+        "Trickery Domain Tier III",             "Greater Domain of Trickery",
+        "Trickery Domain Tier IV",              "Master of the Domain of Trickery",
+
+        "War Domain Tier I",                    "Domain of War",
+        "War Domain Tier II",                   "Improved Domain of War",
+        "War Domain Tier III",                  "Greater Domain of War",
+        "War Domain Tier IV",                   "Master of the Domain of War",
+
+        "Water Domain Tier I",                  "Domain of Water",
+        "Water Domain Tier II",                 "Improved Domain of Water",
+        "Water Domain Tier III",                "Greater Domain of Water",
+        "Water Domain Tier IV",                 "Master of the Domain of Water",
+
+        "Warlock: Pact: Fey",                   "Pact: Fey",
+        "Warlock: Pact: Fiend",                 "Pact: Fiend",
+        "Warlock: Pact: Great Old One",         "Pact: Great Old One",
+        "Warlock: Pact: Celestial",             "Pact: Celestial",
+        "Warlock: Pact: The Abyss",             "Pact: The Abyss",
+        "Warlock: Pact: The Carceri Storm",     "Pact: The Carceri Storm"
+    };
+    size_t count = sizeof(nameTranslations) / sizeof(std::string);
+    if (count % 2 != 0)
+    {
+        throw "Must be an multiple of 2";
+    }
+    for (size_t i = 0; i < count; i += 2)
+    {
+        if (m_FeatName == nameTranslations[i])
+        {
+            m_FeatName = nameTranslations[i + 1];
+            break;
+        }
+    }
 }

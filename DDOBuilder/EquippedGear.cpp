@@ -973,3 +973,23 @@ void EquippedGear::UpdateItem(
         default: ASSERT(FALSE); break;
     }
 }
+
+WeaponType EquippedGear::Weapon1() const
+{
+    WeaponType wt = Weapon_Empty;
+    if (HasItemInSlot(Inventory_Weapon1))
+    {
+        wt = MainHand().Weapon();
+    }
+    return wt;
+}
+
+WeaponType EquippedGear::Weapon2() const
+{
+    WeaponType wt = Weapon_Empty;
+    if (HasItemInSlot(Inventory_Weapon2))
+    {
+        wt = OffHand().Weapon();
+    }
+    return wt;
+}

@@ -23,7 +23,9 @@ BreakdownItem::BreakdownItem(
     m_weapon(Weapon_Unknown),
     m_weaponCriticalMultiplier(0),
     m_bAddEnergies(true),
-    m_bHasNonStackingEffects(false)
+    m_bHasNonStackingEffects(false),
+    m_wtMain(Weapon_Unknown),
+    m_wtOffhand(Weapon_Unknown)
 {
 }
 
@@ -198,7 +200,7 @@ void BreakdownItem::AddActiveItems(
     for (auto&& it: effects)
     {
         // only add active items when it has an active stance flag
-        if (it.IsActive(*m_pCharacter, m_weapon)
+        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand)
                 && !it.HasPercent())
         {
             // only list it if its non-zero
@@ -260,7 +262,7 @@ void BreakdownItem::AddActivePercentageItems(
     for (auto&& it : effects)
     {
         // only add active items when it has an active stance flag and is a percentage
-        if (it.IsActive(*m_pCharacter, m_weapon)
+        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand)
                 && it.HasPercent())
         {
             // only list it if its non-zero
@@ -318,7 +320,7 @@ void BreakdownItem::AddDeactiveItems(
     for (auto&& it : effects)
     {
         // only add inactive items when it has a stance flag
-        if (!it.IsActive(*m_pCharacter, m_weapon))
+        if (!it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
         {
             // only list it if its non-zero
             double total = it.TotalAmount(false);
@@ -379,7 +381,7 @@ double BreakdownItem::SumItems(
     for (auto&& it : effects)
     {
         // only add active items when it has an active stance flag
-        if (it.IsActive(*m_pCharacter, m_weapon))
+        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
         {
             if (!it.HasPercent())
             {
@@ -412,7 +414,7 @@ double BreakdownItem::DoPercentageEffects(
     for (auto&& it : effects)
     {
         // only count the active items in the total
-        if (it.IsActive(*m_pCharacter, m_weapon))
+        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
         {
             if (it.HasPercent())
             {
@@ -686,10 +688,13 @@ void BreakdownItem::RemoveNonStacking(
         }
         if (removeIt)
         {
-            // add the item to be removed into the non stacking list
-            nonStackingEffects->push_back((*sit));
+            // add the item to be removed into the non stacking list if not zero
+            if ((*sit).TotalAmount(false) > 0)
+            {
+                nonStackingEffects->push_back((*sit));
+                m_bHasNonStackingEffects = true;
+            }
             sit = effects->erase(sit);      // remove from source list
-            m_bHasNonStackingEffects = true;
         }
         else
         {
@@ -1120,6 +1125,12 @@ void BreakdownItem::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)
 void BreakdownItem::SetHTreeItem(HTREEITEM hItem)
 {
     m_hItem = hItem;
+}
+
+void BreakdownItem::SetWeaponTypes(WeaponType wtMain, WeaponType wtOffhand)
+{
+    m_wtMain = wtMain;
+    m_wtOffhand = wtOffhand;
 }
 
 void BreakdownItem::SetWeapon(WeaponType wt, size_t weaponCriticalMultiplier)

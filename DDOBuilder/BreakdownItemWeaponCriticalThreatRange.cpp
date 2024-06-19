@@ -53,7 +53,8 @@ bool BreakdownItemWeaponCriticalThreatRange::AffectsUs(const Effect & effect) co
 {
     bool isUs = false;
     if (effect.IsType(Effect_Weapon_CriticalRange)
-            || effect.IsType(Effect_Weapon_Keen))
+            || effect.IsType(Effect_Weapon_Keen)
+            || effect.IsType(Effect_WeaponCriticalRangeClass))
     {
         // if its the right effect its for us as our holder class determines whether
         // it is the right weapon target type

@@ -36,6 +36,8 @@ class TrainedFeat :
         DL_DECLARE_ACCESS(TrainedFeat_PROPERTIES)
         DL_DECLARE_VARIABLES(TrainedFeat_PROPERTIES)
 
+    private:
+        void TranslateOldFeatNames();
         size_t m_count;
         friend class FeatsListObject;
 };

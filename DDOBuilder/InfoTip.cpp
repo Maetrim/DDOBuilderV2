@@ -823,7 +823,10 @@ void CInfoTip::AppendFilledAugment(
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
     {
-        pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", true);
+        if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
+        {
+            pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", true);
+        }
     }
     pHeader->SetTitle(slot.Type().c_str());
 
@@ -854,11 +857,19 @@ void CInfoTip::AppendFilledAugment(
                     txt.Format("/%+.0f", pAugment->LevelValue2()[slot.SelectedLevelIndex()]);
                 }
             }
+            else if (pAugment->HasLevelValue())
+            {
+                txt.Format(" %+.0f", pAugment->LevelValue()[slot.SelectedLevelIndex()]);
+                augmentName += txt;
+                if (pAugment->HasDualValues())
+                {
+                    txt.Format("/%+.0f", pAugment->LevelValue2()[slot.SelectedLevelIndex()]);
+                }
+            }
             else
             {
                 txt.Format("Augment %s has missing Levels field", pAugment->Name().c_str());
             }
-            augmentName += txt;
         }
         else
         {
@@ -904,7 +915,10 @@ void CInfoTip::AppendAugment(
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
     {
-        pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", true);
+        if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
+        {
+            pHeader->LoadIcon("DataFiles\\AugmentImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", true);
+        }
     }
     pHeader->SetTitle(pAugment->Name().c_str());
     if (pAugment->HasMinLevel())

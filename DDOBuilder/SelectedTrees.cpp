@@ -44,6 +44,7 @@ void SelectedTrees::EndElement()
     DL_END(SelectedTrees_PROPERTIES)
     // ensure we have the right number of elements after load
     m_TreeName.resize(m_nMaxTrees, f_noSelection);
+    TranslateNamesFromV1();
 }
 
 void SelectedTrees::Write(XmlLib::SaxWriter * writer) const
@@ -136,3 +137,29 @@ void SelectedTrees::ClearTier5Tree()
     Clear_Tier5Tree();
 }
 
+void SelectedTrees::TranslateNamesFromV1()
+{
+    static std::string nameTranslations[] =
+    {
+        // old tree name                        new tree name
+        "Ravager",                              "Ravager (Barbarian)",
+        "Ravager (Ftr)",                        "Ravager (Fighter)",
+        "Arch-Mage",                            "Archmage"
+    };
+    size_t count = sizeof(nameTranslations) / sizeof(std::string);
+    if (count % 2 != 0)
+    {
+        throw "Must be an multiple of 2";
+    }
+    for (auto&& it: m_TreeName)
+    {
+        for (size_t i = 0; i < count; i += 2)
+        {
+            if (it == nameTranslations[i])
+            {
+                it = nameTranslations[i + 1];
+                break;
+            }
+        }
+    }
+}

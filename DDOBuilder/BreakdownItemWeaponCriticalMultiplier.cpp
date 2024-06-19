@@ -84,6 +84,13 @@ bool BreakdownItemWeaponCriticalMultiplier::AffectsUs(const Effect & effect) con
         // it is the right weapon target type
         isUs = true;
     }
+    if (effect.IsType(Effect_WeaponCriticalMultiplierClass)
+        && Type() == Breakdown_WeaponCriticalMultiplier)
+    {
+        // if its the right effect its for us as our holder class determines whether
+        // it is the right weapon target type
+        isUs = true;
+    }
     return isUs;
 }
 
