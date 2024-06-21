@@ -888,7 +888,7 @@ size_t Build::BaseClassLevels(
     // return the number of levels trained as the given class up to the specified level
     size_t baseClassLevels = 0;
     std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
-    for (size_t i = 0; i <= level && i < MAX_CLASS_LEVEL; ++i)
+    for (size_t i = 0; i <= level && i < m_Levels.size(); ++i)
     {
         std::string levelClass = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
         std::string baseClass = FindClass(levelClass).GetBaseClass();
@@ -925,7 +925,7 @@ size_t Build::ClassLevels(
     // return the number of levels trained as the given class up to the specified level
     size_t classLevels = 0;
     std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
-    for (size_t i = 0 ; i <= level && i < MAX_CLASS_LEVEL; ++i)
+    for (size_t i = 0 ; i <= level && i < m_Levels.size(); ++i)
     {
         std::string levelClass = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
         if (levelClass == ct
