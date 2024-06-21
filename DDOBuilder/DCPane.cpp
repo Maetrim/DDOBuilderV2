@@ -70,7 +70,8 @@ void CDCPane::OnInitialUpdate()
 void CDCPane::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    if (m_dcButtons.size() > 0)
+    int lastY = 0;
+   if (m_dcButtons.size() > 0)
     {
         CRect wndClient;
         GetClientRect(&wndClient);
@@ -85,6 +86,7 @@ void CDCPane::OnSize(UINT nType, int cx, int cy)
             m_dcButtons[i]->MoveWindow(itemRect, TRUE);
             // move rectangle across for next set of controls
             itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
+            lastY = itemRect.bottom + c_controlSpacing;
             if (itemRect.right > (wndClient.right - c_controlSpacing))
             {
                 // oops, not enough space in client area here
@@ -98,7 +100,7 @@ void CDCPane::OnSize(UINT nType, int cx, int cy)
     {
         m_dcButtons[i]->Invalidate(TRUE);
     }
-    SetScaleToFitSize(CSize(cx, cy));
+    SetScrollSizes(MM_TEXT, CSize(cx, max(cy, lastY)));
 }
 
 LRESULT CDCPane::OnNewDocument(WPARAM wParam, LPARAM lParam)

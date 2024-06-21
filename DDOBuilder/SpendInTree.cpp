@@ -338,7 +338,8 @@ void SpendInTree::TranslateNamesFromV1()
     {
         // old tree name                        new tree name
         "Ravager",                              "Ravager (Barbarian)",
-        "Ravager (Ftr)",                        "Ravager (Fighter)"
+        "Ravager (Ftr)",                        "Ravager (Fighter)",
+        "Arch-Mage",                            "Archmage"
     };
     size_t count = sizeof(nameTranslations) / sizeof(std::string);
     if (count % 2 != 0)

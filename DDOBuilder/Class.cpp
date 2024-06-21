@@ -479,7 +479,12 @@ std::list<Spell> Class::Spells(Build* pBuild, size_t spellLevel, bool bIncludeFi
         auto it = m_classSpells.begin();
         std::advance(it, spellLevel - 1);
 
-         spells = *it;
+        spells = *it;
+        // ensure spells have a SP cost
+        for (auto&& sit: spells)
+        {
+            if (!sit.HasCost()) sit.SetCost(spellLevel * 5);
+        }
         if (!bIncludeFixedSpells)
         {
             // remove any automatic feats (negative levels)

@@ -938,7 +938,7 @@ bool Requirement::EvaluateItemInSlot(const Build& build) const
         }
         else
         {
-            throw "NYI";
+            // "NYI";
         }
     }
     else

@@ -405,6 +405,11 @@ CString Spell::ActualMaxCasterLevelText(const SpellDamage& sd) const
     return totalText;
 }
 
+void Spell::SetCost(int cost)
+{
+    Set_Cost(cost);
+}
+
 void Spell::SetIconIndex(size_t index)
 {
     m_iconIndex = index;

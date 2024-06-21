@@ -1066,7 +1066,7 @@ void CInfoTip::SetFavorItem(
 void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
 {
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
-    pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.Icon(), true);
+    pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.HasIcon() ? spell.Icon() : "", true);
     pHeader->SetTitle(spell.Name().c_str());
     if (spell.HasSchool())
     {

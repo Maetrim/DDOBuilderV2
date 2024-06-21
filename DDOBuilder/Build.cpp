@@ -888,7 +888,7 @@ size_t Build::BaseClassLevels(
     // return the number of levels trained as the given class up to the specified level
     size_t baseClassLevels = 0;
     std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
-    for (size_t i = 0; i <= level; ++i)
+    for (size_t i = 0; i <= level && i < MAX_CLASS_LEVEL; ++i)
     {
         std::string levelClass = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
         std::string baseClass = FindClass(levelClass).GetBaseClass();
@@ -925,7 +925,7 @@ size_t Build::ClassLevels(
     // return the number of levels trained as the given class up to the specified level
     size_t classLevels = 0;
     std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
-    for (size_t i = 0 ; i <= level; ++i)
+    for (size_t i = 0 ; i <= level && i < MAX_CLASS_LEVEL; ++i)
     {
         std::string levelClass = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
         if (levelClass == ct
@@ -2894,7 +2894,8 @@ void Build::Enhancement_SetSelectedTrees(const LegacyEnhancementSelectedTrees& t
         {
             // old tree name                        new tree name
             "Ravager",                              "Ravager (Barbarian)",
-            "Ravager (Ftr)",                        "Ravager (Fighter)"
+            "Ravager (Ftr)",                        "Ravager (Fighter)",
+            "Arch-Mage",                            "Archmage"
         };
         size_t count = sizeof(nameTranslations) / sizeof(std::string);
         if (count % 2 != 0)

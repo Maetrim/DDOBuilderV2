@@ -4,7 +4,6 @@
 #include "GlobalSupportFunctions.h"
 
 #include "Augment.h"
-#include "LogPane.h"
 #include "DDOBuilder.h"
 #include "MainFrm.h"
 #include "EnhancementTree.h"
@@ -2291,6 +2290,7 @@ std::vector<Spell> FilterSpells(Build *pBuild, std::string& ct, int level)
         if (sit.Level() == level)
         {
             Spell spell = FindSpellByName(sit.Name());
+            spell.SetCost(abs(level) * 5);
             availableSpells.push_back(spell);
         }
     }

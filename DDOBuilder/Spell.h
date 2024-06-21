@@ -36,6 +36,7 @@ class Spell :
         int ActualMaxCasterLevel(const SpellDamage& sd) const;
         CString ActualCasterLevelText(const SpellDamage& sd) const;
         CString ActualMaxCasterLevelText(const SpellDamage& sd) const;
+        void SetCost(int cost);
 
         void SetIconIndex(size_t index);
         size_t IconIndex() const;

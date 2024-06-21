@@ -15,6 +15,7 @@
 #include "SpellSchoolTypes.h"
 #include "TacticalTypes.h"
 #include "WeaponTypes.h"
+#include "LogPane.h"
 
 class Augment;
 class Bonus;
@@ -123,7 +124,7 @@ CString EnumEntryText(const T & t, const XmlLib::enumMapEntry<T> * m)
     }
     if (p->name == NULL) // stopped at end of list
     {
-        THROW("EnumEntryText failed to find entry");
+        AfxMessageBox("EnumEntryText failed to find entry", MB_ICONERROR);
     }
     XmlLib::SaxString entry = p->name;
     CString asAscii = ((std::string)entry).c_str();
@@ -146,9 +147,15 @@ T TextToEnumEntry(const std::string& name, const XmlLib::enumMapEntry<T> * m, bo
     if (bThrowOnNotFound
             && p->name == NULL) // stopped at end of list
     {
-        THROW("TextToEnumEntry failed to find entry");
+        std::stringstream ss;
+        ss << "TextToEnumEntry failed to find entry name " << name;
+        GetLog().AddLogEntry(name.c_str());
+        return static_cast<T>(0);
     }
-    return p->value;
+    else
+    {
+        return p->value;
+    }
 }
 
 size_t TrainedCount(

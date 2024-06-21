@@ -145,12 +145,12 @@ void CSLAControl::OnPaint()
             std::advance(it, fs);
             const Spell & spell = FindSpellByName((*it).Name());
             CImage spellImage;
-            HRESULT result = LoadImageFile(
+            HRESULT result = spell.HasIcon() ? LoadImageFile(
                     "DataFiles\\SpellImages\\",
                     spell.Icon().c_str(),
                     &spellImage,
                     CSize(32, 32),
-                    false);
+                    false) : S_FALSE;
             if (result != S_OK)
             {
                 result = LoadImageFile(

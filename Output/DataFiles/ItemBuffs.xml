@@ -619,7 +619,7 @@ acid damage by two seconds.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>Lawful</Item>
-      <Item>Chaotic</Item>
+      <Item>Chaos</Item>
       <Item>Good</Item>
       <Item>Evil</Item>
     </Effect>
@@ -2453,6 +2453,10 @@ acid damage by two seconds.</DisplayText>
   </Buff>
   <!--B-->
   <Buff>
+    <Type>Balanced Ki Strike</Type>
+    <DisplayText>Balanced Ki Strike: When you activate your Light:Light:Light or Dark:Dark:Dark Finishing Move, you benefit from a increased Melee Power for a short time.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>BaneOfTheDepths</Type>
     <DisplayText>Bane of the Depths: Your Negative, Poison and Cold spells automatically apply the effects of Bane to enemies struck.</DisplayText>
   </Buff>
@@ -3849,6 +3853,21 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Confounding Enchantment: The shifting nature of the magic that enchants this ring makes the effect hard to determine. Random: +1 Exceptional bonus to one of Strength, Dexterity, Constitution, Intelligence, Wisdom or Charisma. (Not modelled)</DisplayText>
   </Buff>
   <Buff>
+    <Type>Constitution Poison, Lesser</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Constitution Poison, Lesser: The deadly poison coating this weapon deals an extra 1 to 6 points of constitution damage when you score a critical hit on an enemy. Some creatures may be immune or resistant to ability damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>All</Item>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Constitution</Damage>
+      </Dice>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Constitution Poison, Virulent</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Constitution Poison, Virulent: The deadly poison coating this weapon deals one point of constitution damage every time it strikes an enemy, and an additional 1 to 6 points of constitution damage when it scores a critical hit. Some creatures may be immune or resistant to ability damage.</DisplayText>
@@ -3870,6 +3889,18 @@ BLOOD BLOOD! GIVE ME BLOOD!
         <Sides size="1">6</Sides>
         <Damage>Constitution</Damage>
       </Dice>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Constitution Skills - Exceptional</Type>
+    <DisplayText>Constitution Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Constitution based skills of: Concentration</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Concentration</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -15735,6 +15766,54 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Protection from Evil +2</Type>
+    <DisplayText>Protection from Evil +2: You have a +2 Deflection bonus to AC, and a +2 Resistance bonus to Saves vs Evil Monsters.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Resistance</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Protection from Evil +4</Type>
+    <DisplayText>Protection from Evil +4: You have a +4 Deflection bonus to AC, and a +4 Resistance bonus to Saves vs Evil Monsters.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Resistance</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Protection from Evil +6</Type>
+    <DisplayText>Protection from Evil +6: You have a +6 Deflection bonus to AC, and a +6 Resistance bonus to Saves vs Evil Monsters.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Resistance</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Power</Type>
     <DisplayText>Power %i1: This item grants the wearer %v1 maximum spell points. Favored Souls and Sorcerers gain double spell points from this item.</DisplayText>
     <Effect>
@@ -16408,6 +16487,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Amount size="1">2</Amount>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>RiposteRiposte</Type>
+    <DisplayText>Riposte: When its wearer is successfully attacked in melee, this shield occasionally allows him or her to make an immediate counterattack, dealing bludgeoning damage to the offending enemy.</DisplayText>
   </Buff>
   <Buff>
     <Type>Riposte VI</Type>
@@ -17574,6 +17657,10 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Amount size="1">0</Amount>
       <Item>Sunder</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shattermantle</Type>
+    <DisplayText>Shattermantle: Translucent, writhing energy and blue sparks can be seen raging within this weapon. When a shattermantle weapon strikes a foe that has spell resistance, the value of that spell resistance is reduced by 3 for 9 seconds. A foe can only have its SR reduced by one Shattermantle effect at a time.</DisplayText>
   </Buff>
   <Buff>
     <Type>Sheltering</Type>
@@ -18815,6 +18902,23 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Static Attraction</Type>
     <DisplayText>Static Attraction: This weapon attracts the static electricity in the air, and over time will charge with magic while held in your main hand. Every five seconds, this weapon gains a charge of Static Electricity, up to a maxiumum of 3, providing a +10 Exceptional bonus to Electric Spell Power and a +5% Exceptional bonus to Electric Spell Lore. When you cast an Electric spell, all stacks are consumed.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Strength Sapping</Type>
+    <DisplayText>Strength Sapping: Every time this weapon deals damage, the target must succeed on a Fortitude save (DC 15) or become exhausted.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Strength Skills - Exceptional</Type>
+    <DisplayText>Strength Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Strength based skills of: Jump and Swim</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Jump</Item>
+      <Item>Swim</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>SonicLore</Type>
@@ -21334,6 +21438,14 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Weaken Construct</Type>
+    <DisplayText>Weaken Construct: While wearing this item, your attacks cause constructs to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Weaken Undead</Type>
+    <DisplayText>Weaken Undead: While wearing this item, your attacks cause undead creatures to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Weakening</Type>
     <DisplayText>Weakening: This weapon drains the enemies' melee power. -1 Strength on a successful hit.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
@@ -21345,14 +21457,6 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
-  </Buff>
-  <Buff>
-    <Type>Weaken Undead</Type>
-    <DisplayText>Weaken Undead: While wearing this item, your attacks cause undead creatures to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</DisplayText>
-  </Buff>
-  <Buff>
-    <Type>Weakening</Type>
-    <DisplayText>Weaken Construct: While wearing this item, your attacks cause constructs to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</DisplayText>
   </Buff>
   <Buff>
     <Type>Weakening 1</Type>
@@ -21452,6 +21556,20 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
           <Item>Thrown</Item>
         </Requirement>
       </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Wisdom Skills - Exceptional</Type>
+    <DisplayText>Wisdom Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Wisdom based skills of: Heal, Listen and Spot</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>Heal</Item>
+      <Item>Listen</Item>
+      <Item>Spot</Item>
     </Effect>
   </Buff>
   <Buff>
