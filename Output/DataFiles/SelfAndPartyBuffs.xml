@@ -18,7 +18,8 @@
     <Description>Multiple targets are filled with courage, granting a +1 Morale bonus on to-hit rolls
 and saves versus fear. Bless counters and dispels Bane.</Description>
     <Effect>
-      <Type>AttackBonus</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
       <Bonus>Morale</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
@@ -202,7 +203,7 @@ to AC and Reflex saves.</Description>
       <ApplyAsItemEffect />
     </Effect>
     <Effect>
-      <Type>Alacrity</Type>
+      <Type>Weapon_Alacrity</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">15</Amount>
@@ -281,16 +282,16 @@ save or be blinded.</Description>
 weapons, or shields, and lasts until the rest.</Description>
     <Icon>MastersTouch</Icon>
     <Effect>
-      <Type>WeaponProficiency</Type>
+      <Type>WeaponProficiencyClass</Type>
       <Bonus>Morale</Bonus>
       <AType>NotNeeded</AType>
-      <WeaponClass>Simple</WeaponClass>
+      <Item>Simple</Item>
     </Effect>
     <Effect>
-      <Type>WeaponProficiency</Type>
+      <Type>WeaponProficiencyClass</Type>
       <Bonus>Morale</Bonus>
       <AType>NotNeeded</AType>
-      <WeaponClass>Martial</WeaponClass>
+      <Item>Martial</Item>
     </Effect>
   </OptionalBuff>
   <OptionalBuff>
@@ -477,7 +478,7 @@ equal to your caster level, and a +2 Natural Armor bonus to AC, with an addition
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
-      <DR>Adamantine</DR>
+      <Item>Adamantine</Item>
     </Effect>
   </OptionalBuff>
   <OptionalBuff>
@@ -522,17 +523,19 @@ your spells.</Description>
       <Bonus>Penalty</Bonus>
       <AType>Simple</AType>
       <Amount size="1">-2</Amount>
-      <School>All</School>
+      <Item>All</Item>
     </Effect>
     <Effect>
-      <Type>WeaponProficiency</Type>
+      <Type>WeaponProficiencyClass</Type>
       <Bonus>Alchemical</Bonus>
-      <WeaponClass>Simple</WeaponClass>
+      <AType>NotNeeded</AType>
+      <Item>Simple</Item>
     </Effect>
     <Effect>
-      <Type>WeaponProficiency</Type>
+      <Type>WeaponProficiencyClass</Type>
       <Bonus>Alchemical</Bonus>
-      <WeaponClass>Martial</WeaponClass>
+      <AType>NotNeeded</AType>
+      <Item>Martial</Item>
     </Effect>
     <Effect>
       <Type>OverrideBAB</Type>
@@ -706,7 +709,8 @@ duration of your song.</Description>
     <Description>You gain a +2 attack bonus, +1 Fortitude save bonus and temporary hit points.
 +10 Healing/Repair/Negative Amplification</Description>
     <Effect>
-      <Type>AttackBonus</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
       <Bonus>Stacking</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -733,7 +737,8 @@ duration of your song.</Description>
     <Icon>InspireHeroics</Icon>
     <Description>You gain a +4 Morale bonus to saves and a +4% dodge.</Description>
     <Effect>
-      <Type>AttackBonus</Type>
+      <Type>Weapon_AttackBonus</Type>
+      <Type>Weapon_AttackBonusCritical</Type>
       <Bonus>Morale</Bonus>
       <AType>Simple</AType>
       <Amount size="1">4</Amount>
@@ -769,10 +774,10 @@ and Sonic damage</Description>
     <Description>You and nearby allies gain DR [2/4/6]/- and [2/4/6] Music bonus to PRR.</Description>
     <Effect>
       <Type>DR</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Music</Bonus>
       <AType>Simple</AType>
       <Amount size="1">6</Amount>
-      <DR>-</DR>
+      <Item>-</Item>
     </Effect>
     <Effect>
       <Type>PRR</Type>
@@ -807,7 +812,8 @@ and Inspire Courage grants an additional +[3/6/9] Universal Spell Power.</Descri
     <Effect>
       <Type>MovementSpeed</Type>
       <Bonus>Action Boost</Bonus>
-      <AmountVector size="3">5 10 15</AmountVector>
+      <AType>Stacks</AType>
+      <Amount size="3">5 10 15</Amount>
     </Effect>
   </OptionalBuff>
   <OptionalBuff>
@@ -816,23 +822,19 @@ and Inspire Courage grants an additional +[3/6/9] Universal Spell Power.</Descri
     <Description>You and nearby allies gain +[2/4/6]% Music bonus to melee damage, ranged damage,
 and spell critical chance.</Description>
     <Effect>
-      <Type>DamageBonus</Type>
+      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_DamageBonusCritical</Type>
       <Bonus>Music</Bonus>
-      <AmountVector size="3">2 4 6</AmountVector>
-      <Percent />
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <Type>Seeker</Type>
-      <Bonus>Music</Bonus>
-      <AmountVector size="3">2 4 6</AmountVector>
+      <AType>Stacks</AType>
+      <Amount size="3">2 4 6</Amount>
       <Percent />
       <Item>All</Item>
     </Effect>
     <Effect>
       <Type>SpellLore</Type>
       <Bonus>Music</Bonus>
-      <AmountVector size="3">2 4 6</AmountVector>
+      <AType>Stacks</AType>
+      <Amount size="3">2 4 6</Amount>
       <Item>All</Item>
     </Effect>
   </OptionalBuff>
@@ -858,7 +860,7 @@ point costs for the duration of the song.</Description>
       <Bonus>Morale</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <School>All</School>
+      <Item>All</Item>
     </Effect>
   </OptionalBuff>
   <!--Monk Finishers-->
@@ -964,11 +966,11 @@ point costs for the duration of the song.</Description>
       <Amount size="1">20</Amount>
     </Effect>
     <Effect>
-      <Type>Alacrity</Type>
+      <Type>WeaponAlacrityClass</Type>
       <Bonus>Penalty</Bonus>
       <AType>Simple</AType>
       <Amount size="1">-5</Amount>
-      <WeaponClass>Melee</WeaponClass>
+      <Item>Melee</Item>
     </Effect>
   </OptionalBuff>
   <OptionalBuff>
@@ -1289,7 +1291,7 @@ damage per hit for one hour.</Description>
       <Dice>
         <Number size="1">1</Number>
         <Sides size="1">6</Sides>
-        <Item>Light</Item>
+        <Damage>Light</Damage>
       </Dice>
     </Effect>
   </OptionalBuff>
@@ -1320,28 +1322,7 @@ damage per hit for one hour.</Description>
     <Icon>Potion</Icon>
     <Description>When used, grants +2 Alchemical bonus to Attack and Damage rolls for 10 minutes.</Description>
     <Effect>
-      <Type>AttackBonus</Type>
-      <Bonus>Alchemical</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">2</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <Type>DamageBonus</Type>
-      <Bonus>Alchemical</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">2</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <Type>CriticalAttackBonus</Type>
-      <Bonus>Alchemical</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">2</Amount>
-      <Item>All</Item>
-    </Effect>
-    <Effect>
-      <Type>Seeker</Type>
+      <Type>Weapon_AttackAndDamage</Type>
       <Bonus>Alchemical</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -1563,7 +1544,12 @@ damage per hit for one hour.</Description>
       <Bonus>Stacking</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <Stance>Shield</Stance>
+       <Requirements>
+          <Requirement>
+             <Type>Stance</Type>
+             <Item>Shield</Item>
+          </Requirement>
+       </Requirements>
     </Effect>
   </OptionalBuff>
   <OptionalBuff>
@@ -1579,7 +1565,7 @@ damage per hit for one hour.</Description>
       <Item>All</Item>
     </Effect>
     <Effect>
-      <Type>WeaponOtherCriticalDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Alchemical</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
@@ -1592,13 +1578,13 @@ damage per hit for one hour.</Description>
     <Icon>StoneOfChange</Icon>
     <Description>+1d4 Force damage of each successful critical hit</Description>
     <Effect>
-      <Type>WeaponOtherCriticalDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Stacking</Bonus>
       <Item>All</Item>
       <Dice>
         <Number size="1">1</Number>
         <Sides size="1">4</Sides>
-        <Item>Force</Item>
+        <Damage>Force</Damage>
       </Dice>
     </Effect>
   </OptionalBuff>
@@ -1641,7 +1627,7 @@ your character level</Description>
       <Amount size="1">4</Amount>
     </Effect>
     <Effect>
-      <Type>Alacrity</Type>
+      <Type>Weapon_Alacrity</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
@@ -1870,7 +1856,7 @@ a base attack bonus equal to a Fighter of the same level.</Description>
   </OptionalBuff>
   <!--Legacy guild buffs that still work-->
   <OptionalBuff>
-    <Name>Fatesinger: Inspire Transcenence</Name>
+    <Name>Fatesinger: Inspire Transcendence</Name>
     <Icon>InspireCourage</Icon>
     <Description>+1 to all Spell DCs, +1 to the DC of all Tactical Feats,
 +3 Spell Resistance and True Seeing.</Description>
@@ -1879,16 +1865,16 @@ a base attack bonus equal to a Fighter of the same level.</Description>
       <Bonus>Destiny</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <School>All</School>
+      <Item>All</Item>
     </Effect>
     <Effect>
       <Type>TacticalDC</Type>
       <Bonus>Destiny</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <Tactical>Trip</Tactical>
-      <Tactical>Stun</Tactical>
-      <Tactical>Sunder</Tactical>
+      <Item>Trip</Item>
+      <Item>Stun</Item>
+      <Item>Sunder</Item>
     </Effect>
     <Effect>
       <Type>SpellResistance</Type>
@@ -1965,10 +1951,10 @@ to Constitution, and a -2 penalty to Dexterity.</Description>
              <Requirement>
                 <Type>Stance</Type>
                 <Item>Plague Wolf</Item>
+             </Requirement>
              <Requirement>
                 <Type>Stance</Type>
                 <Item>Blighted Wolf</Item>
-             </Requirement>
              </Requirement>
           </RequiresOneOf>
        </Requirements>
@@ -2008,10 +1994,10 @@ to Constitution, and a -2 penalty to Dexterity.</Description>
              <Requirement>
                 <Type>Stance</Type>
                 <Item>Plague Wolf</Item>
+             </Requirement>
              <Requirement>
                 <Type>Stance</Type>
                 <Item>Blighted Wolf</Item>
-             </Requirement>
              </Requirement>
           </RequiresOneOf>
        </Requirements>
@@ -2181,28 +2167,28 @@ Damage Multiplier. This does not apply to shields, orbs or Rune Arms.</Descripti
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <WeaponClass>Melee</WeaponClass>
+      <Item>Melee</Item>
     </Effect>
     <Effect>
       <Type>Weapon_CriticalMultiplier</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <WeaponClass>Melee</WeaponClass>
+      <Item>Melee</Item>
     </Effect>
     <Effect>
       <Type>Weapon_CriticalRange</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <WeaponClass>Ranged</WeaponClass>
+      <Item>Ranged</Item>
     </Effect>
     <Effect>
       <Type>Weapon_CriticalMultiplier</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <WeaponClass>Ranged</WeaponClass>
+      <Item>Ranged</Item>
     </Effect>
   </OptionalBuff>
 </SelfAndPartyBuffs>

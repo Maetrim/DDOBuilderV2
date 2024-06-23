@@ -613,8 +613,9 @@ Cooldown: [12/8/6] seconds.</Description>
     <EnhancementTreeItem>
       <InternalName>WMPowerInChaos</InternalName>
       <Name>Wild Mage: Power in Chaos</Name>
-      <Description>Toggle: You gain +100 Universal Spell Power, but are able to receive Very Bad and
-Bad Surges. Cooldown: 6 seconds.</Description>
+      <Description>Toggle: You gain +2 Caster Level and Max Caster Level with all spells, but are able
+to receive Very Bad and Bad Surges even if you have Chaos Control I or II.
+Cooldown: 6 seconds.</Description>
       <Icon>WMPowerInChaos</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
@@ -632,14 +633,17 @@ Bad Surges. Cooldown: 6 seconds.</Description>
       <Stance>
         <Name>Power in Chaos</Name>
         <Icon>WMPowerInChaos</Icon>
-        <Description>Toggle: You gain +100 Universal Spell Power, but are able to receive Very Bad and Bad Surges.</Description>
+        <Description>Toggle: You gain +2 Caster Level and Max Caster Level with all spells, but are able
+to receive Very Bad and Bad Surges even if you have Chaos Control I or II.</Description>
         <Group>User</Group>
       </Stance>
       <Effect>
-        <Type>UniversalSpellPower</Type>
+        <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>Alchemist</Item>
         <AType>Simple</AType>
-        <Amount size="1">100</Amount>
+        <Amount size="1">2</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>

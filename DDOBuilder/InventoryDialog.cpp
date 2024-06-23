@@ -55,7 +55,7 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_tooltipItem(Inventory_Unknown),
     m_filigreeIndex(0),
     m_bIsArtifactFiligree(false),
-    m_tooltipFiligree(c_noSelection)
+    m_tooltipFiligree(c_noFiligreeSelection)
 {
     //{{AFX_DATA_INIT(CInventoryDialog)
     //}}AFX_DATA_INIT
@@ -127,6 +127,8 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     LoadImageFile("DataFiles\\UIImages\\", "SpellSlotTrainable", &m_imagesJewel, CSize(34, 34), true);
     LoadImageFile("DataFiles\\UIImages\\", "RareUnchecked", &m_imagesFiligree, CSize(34, 48), true);
     LoadImageFile("DataFiles\\UIImages\\", "RareChecked", &m_imagesFiligreeRare, CSize(34, 48), true);
+    LoadImageFile("DataFiles\\UIImages\\", "CoreClickieHighlight", &m_imagesItemHighlight, CSize(40, 40), true);
+    LoadImageFile("DataFiles\\UIImages\\", "FiligreeHighlight", &m_imagesFiligreeHighlight, CSize(38, 52), true);
     MakeGrayScale(&m_imageBackgroundDisabled, c_transparentColour);
 }
 
@@ -144,6 +146,16 @@ void CInventoryDialog::SetGearSet(
     m_pBuild = pBuild;
     m_gearSet = gear;
     Invalidate();
+}
+
+void CInventoryDialog::HighlightSetBonusItems(
+        const std::string& setBonusName)
+{
+    if (m_setBonusName != setBonusName)
+    {
+        m_setBonusName = setBonusName;
+        Invalidate();   // need to re-draw
+    }
 }
 
 BOOL CInventoryDialog::OnInitDialog()
@@ -256,6 +268,19 @@ void CInventoryDialog::OnPaint()
                     augmentRect += CPoint(augmentRect.Width(), 0);
                 }
             }
+            if (m_setBonusName != "")
+            {
+                // if this item has this set bonus, we need to highlight the item
+                if (item.HasSetBonus(m_setBonusName))
+                {
+                    m_imagesItemHighlight.TransparentBlt(
+                        memoryDc.GetSafeHdc(),
+                        p.x-4,
+                        p.y-4,
+                        40,
+                        40);
+                }
+            }
         }
     }
     // now paint the Jewel and Filigrees
@@ -318,6 +343,16 @@ void CInventoryDialog::OnPaint()
                         filigreeLocation.cy+1,
                         32,
                         32);
+                // if this item has this set bonus, we need to highlight the item
+                if (filigree.HasSetBonus(m_setBonusName))
+                {
+                    m_imagesFiligreeHighlight.TransparentBlt(
+                        memoryDc.GetSafeHdc(),
+                        filigreeLocation.cx - 2,
+                        filigreeLocation.cy - 2,
+                        38,
+                        52);
+                }
             }
             else
             {
@@ -378,6 +413,16 @@ void CInventoryDialog::OnPaint()
                             filigreeLocation.cy+1,
                             32,
                             32);
+                // if this item has this set bonus, we need to highlight the item
+                    if (filigree.HasSetBonus(m_setBonusName))
+                    {
+                        m_imagesFiligreeHighlight.TransparentBlt(
+                            memoryDc.GetSafeHdc(),
+                            filigreeLocation.cx - 2,
+                            filigreeLocation.cy - 2,
+                            38,
+                            52);
+                    }
                 }
                 else
                 {
@@ -806,7 +851,7 @@ void CInventoryDialog::HideTip()
         m_showingFiligreeTip = false;
         m_showingAugmentTip = false;
         m_tooltipItem = Inventory_Unknown;
-        m_tooltipFiligree = c_noSelection;
+        m_tooltipFiligree = c_noFiligreeSelection;
     }
 }
 

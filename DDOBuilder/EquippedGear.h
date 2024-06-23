@@ -48,6 +48,7 @@ class EquippedGear :
         void SetArtifactFiligreeRare(size_t fi, bool isRare);
 
         bool ImportFromFile(const CString& filename);
+        bool ImportFromClipboard();
 
         WeaponType Weapon1() const;
         WeaponType Weapon2() const;
@@ -91,8 +92,10 @@ class EquippedGear :
         DL_DECLARE_VARIABLES(EquippedGear_PROPERTIES)
 
         size_t ExtractLine(CString* line, size_t pif, char* buffer, size_t bufferSize);
-        bool ProcessLine(CString line);
-        void ApplyItemAugment(Item* pItem, CString augmentText);
+        bool ProcessFileLine(CString line);
+        bool ProcessClipboardLine(CString line, size_t pif, char* buffer, size_t uSize);
+        void ApplyFileItemAugment(Item* pItem, CString augmentText);
+        void ApplyClipboardItemAugment(Item* pItem, CString augmentText);
         void UpdateItem(InventorySlotType slot, const Item& item);
 
         friend class CEquipmentPane;

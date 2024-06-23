@@ -177,6 +177,10 @@
 #define HID_EDIT_FORUMEXPORT                    0x1804F
 #define HID_NOT_SELECTABLE                      0x18050
 #define HID_DOCK_SELF                           0x18051
+#define HID_LIFE_EXPORTTONEWFILE                0x18052
+#define HID_LIFE_COPYTOCLIPBOARD                0x18053
+#define HID_LIFE_PASTEFROMCLIPBOARD             0x18054
+#define HID_GEAR_IMPORTFROMCLIPBOARD            0x18055
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064
@@ -191,6 +195,7 @@
 #define HIDR_THEME_MENU                         0x200C8
 #define HIDR_LEVEL_SELECT_MENU                  0x2013E
 #define HIDR_SELECT_FAVOR_MENU                  0x2014E
+#define HIDR_POPUP_MENUS                        0x201A3
  
 // Dialogs (IDD_*) 
 #define HIDD_ABOUTBOX                           0x20064

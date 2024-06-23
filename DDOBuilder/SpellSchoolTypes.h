@@ -23,6 +23,7 @@ enum SpellSchoolType
     SpellSchool_GlobalDC,
     SpellSchool_InnateAttack,
     SpellSchool_RuneArm,
+    SpellSchool_BreathWeapon,
     // special entry for enumeration
     SpellSchool_Count
 };
@@ -42,5 +43,6 @@ const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
     {SpellSchool_GlobalDC,      L"Global DC"},
     {SpellSchool_InnateAttack,  L"Innate Attack"},
     {SpellSchool_RuneArm,       L"Rune Arm"},
+    {SpellSchool_BreathWeapon,  L"Breath Weapon"},
     {SpellSchoolType(0), NULL}
 };

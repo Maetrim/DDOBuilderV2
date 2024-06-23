@@ -79,6 +79,8 @@ class Life :
         void EnableSelfAndPartyBuff(const std::string& name);
         void DisableSelfAndPartyBuff(const std::string& name);
 
+        void UpdateBuildLifePointers();
+
         void NotifyActiveBuildChanged();
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

@@ -6,6 +6,7 @@
 #include "GlobalSupportFunctions.h"
 #include "DDOBuilderDoc.h"
 #include "LogPane.h"
+#include "XmlLib\SaxReader.h"
 
 // CBuildsPane
 namespace
@@ -46,8 +47,12 @@ BEGIN_MESSAGE_MAP(CBuildsPane, CFormView)
     ON_NOTIFY(TVN_ENDLABELEDIT, IDC_TREE_BUILDS, &CBuildsPane::OnEndlabeleditTreeBuilds)
     ON_NOTIFY(NM_DBLCLK, IDC_TREE_BUILDS, &CBuildsPane::OnDblclkTreeBuilds)
     ON_NOTIFY(NM_CLICK, IDC_TREE_BUILDS, &CBuildsPane::OnClickTreeBuilds)
+    ON_NOTIFY(NM_RCLICK, IDC_TREE_BUILDS, &CBuildsPane::OnRButtonDownTreeBuilds)
     ON_UPDATE_COMMAND_UI_RANGE(ID_LEVELSELECT_1, ID_LEVELSELECT_40, &CBuildsPane::OnUpdateBuildLevel)
     ON_MESSAGE(WM_USER, OnStartLabelEdit)
+    ON_UPDATE_COMMAND_UI(ID_LIFE_COPYTOCLIPBOARD, &CBuildsPane::OnUpdateCopyLifeToClipboard)
+    ON_UPDATE_COMMAND_UI(ID_LIFE_PASTEFROMCLIPBOARD, &CBuildsPane::OnUpdatePasteLife)
+    ON_COMMAND(ID_LIFE_PASTEFROMCLIPBOARD, &CBuildsPane::OnPasteLife)
 END_MESSAGE_MAP()
 
 CBuildsPane::CBuildsPane() :
@@ -557,6 +562,59 @@ void CBuildsPane::OnClickTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult)
     }
 }
 
+void CBuildsPane::OnRButtonDownTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    UNREFERENCED_PARAMETER(pNMHDR);
+    CPoint mouse;
+    GetCursorPos(&mouse);
+    m_treeBuilds.ScreenToClient(&mouse);
+    UINT uFlags = 0;
+    HTREEITEM hItem = m_treeBuilds.HitTest(mouse, &uFlags);
+    if (hItem != NULL)
+    {
+        DWORD itemData = m_treeBuilds.GetItemData(hItem);
+        TreeEntryItem type = ExtractType(itemData);
+        if (type == TEI_Build || type == TEI_Life)
+        {
+            // display a pop-up menu to allow the user to select action
+            // this build to be at
+            CMenu menuLevelSelect;
+            menuLevelSelect.LoadMenu(IDR_POPUP_MENUS);
+            CMenu* pMenu = menuLevelSelect.GetSubMenu(0); // lives pop-up actions
+            // find where to display it
+            CRect rectItem;
+            m_treeBuilds.GetItemRect(hItem, &rectItem, FALSE);
+            m_treeBuilds.ClientToScreen(&rectItem);
+            int x = rectItem.left;
+            int y = rectItem.bottom + 1;
+            CWinAppEx* pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+            m_hPopupMenuItem = hItem;
+            UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
+                pMenu->GetSafeHmenu(),
+                x,
+                y,
+                this);
+            if (sel != 0)
+            {
+                switch (sel)
+                {
+                    case ID_LIFE_EXPORTTONEWFILE:
+                        SaveLifeToNewFile(itemData);
+                        break;
+                    case ID_LIFE_COPYTOCLIPBOARD:
+                        CopyLifeToClipboard(itemData);
+                        break;
+                    case ID_LIFE_PASTEFROMCLIPBOARD:
+                        OnPasteLife();
+                        break;
+                }
+            }
+            m_hPopupMenuItem = NULL;
+        }
+    }
+    *pResult = 0;
+}
+
 void CBuildsPane::OnDblclkTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
 {
     UNREFERENCED_PARAMETER(pNMHDR);
@@ -575,7 +633,7 @@ void CBuildsPane::OnDblclkTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
         {
             size_t lifeIndex = ExtractLifeIndex(itemData);
             size_t buildIndex = ExtractBuildIndex(itemData);
-            // display a popup menu to allow the user to select the level they want
+            // display a pop-up menu to allow the user to select the level they want
             // this build to be at
             CMenu menuLevelSelect;
             menuLevelSelect.LoadMenu(IDR_LEVEL_SELECT_MENU);
@@ -644,4 +702,144 @@ void CBuildsPane::OnUpdateBuildLevel(CCmdUI* pCmdUI)
     pCmdUI->SetCheck(menuItemLevel == buildLevel);
     // disable item for levels not yet supported in game
     pCmdUI->Enable(menuItemLevel <= MAX_GAME_LEVEL);
+}
+
+void CBuildsPane::OnUpdatePasteLife(CCmdUI* pCmdUi)
+{
+    // can paste if we have data of the correct format available on the clipboard
+    Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
+    bool enable = pBuild != NULL
+        && ::IsClipboardFormatAvailable(CF_CUSTOM_LIFE);
+    pCmdUi->Enable(m_bLoadComplete && enable);
+}
+
+void CBuildsPane::OnUpdateCopyLifeToClipboard(CCmdUI* pCmdUi)
+{
+    pCmdUi->Enable(m_bLoadComplete);
+}
+
+void CBuildsPane::CopyLifeToClipboard(DWORD itemData)
+{
+    size_t lifeIndex = ExtractLifeIndex(itemData);
+    const Life& life = m_pCharacter->GetLife(lifeIndex);
+    // copy the current gear set to the clipboard as xml text using a custom
+    // clipboard format to preserve any other data present on the clipboard
+    HGLOBAL hData = NULL;
+    // write the life as XML text
+    XmlLib::SaxWriter writer;
+    life.Write(&writer);
+    std::string xmlText = writer.Text();
+
+    // read the file into a global memory handle
+    hData = GlobalAlloc(GMEM_MOVEABLE, xmlText.size() + 1); // space for \0
+    if (hData != NULL)
+    {
+        char* buffer = (char*)GlobalLock(hData);
+        strcpy_s(buffer, xmlText.size() + 1, xmlText.data());
+        GlobalUnlock(hData);
+    }
+    if (::OpenClipboard(NULL))
+    {
+        ::EmptyClipboard();
+        ::SetClipboardData(CF_CUSTOM_LIFE, hData);
+        ::CloseClipboard();
+    }
+    else
+    {
+        AfxMessageBox("Failed to open the clipboard.", MB_ICONERROR);
+    }
+}
+
+void CBuildsPane::OnPasteLife()
+{
+    if (::IsClipboardFormatAvailable(CF_CUSTOM_LIFE))
+    {
+        if (::OpenClipboard(NULL))
+        {
+            // is the data in the right format
+            HGLOBAL hGlobal = ::GetClipboardData(CF_CUSTOM_LIFE);
+            if (hGlobal != NULL)
+            {
+                // get the data as text from the clipboard
+                std::string xmlText;
+                char* buffer = (char*)::GlobalLock(hGlobal);
+                xmlText = buffer;
+                GlobalUnlock(hGlobal);
+                ::CloseClipboard();
+
+                // parse the XML text and read into a local object
+                Life life(m_pCharacter);
+                XmlLib::SaxReader reader(&life, life.ElementName());
+                bool ok = reader.ParseText(xmlText);
+                if (ok)
+                {
+                    GetLog().AddLogEntry("Life pasted from clipboard");
+                    m_pCharacter->AppendLife(life);
+                    PopulateBuildsList();
+                    // when pasted we do not change the selection
+                }
+                else
+                {
+                    // something is wrong with the data on the clipboard
+                    AfxMessageBox("Failed to read data from clipboard.", MB_ICONERROR);
+                }
+            }
+        }
+        else
+        {
+            AfxMessageBox("Failed to open the clipboard.", MB_ICONERROR);
+        }
+    }
+    else
+    {
+        // no data of correct format on the clipboard
+        AfxMessageBox("No Life available on the clipboard.", MB_ICONERROR);
+    }
+}
+
+void CBuildsPane::SaveLifeToNewFile(DWORD itemData)
+{
+    CFileDialog filedlg(
+        FALSE,
+        NULL,
+        NULL,
+        OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+        "DDOBuilder Files (*.DDOBuild)|*.DDOBuild||",
+        this);
+    if (filedlg.DoModal() == IDOK)
+    {
+        std::string filename = (LPCTSTR)filedlg.GetPathName();
+        if (filename.find(".DDOBuild") == std::string::npos)
+        {
+            filename += ".DDOBuild";
+        }
+        size_t lifeIndex = ExtractLifeIndex(itemData);
+        const Life& life = m_pCharacter->GetLife(lifeIndex);
+        CDDOBuilderDoc cTempDoc;
+        Character cNew(&cTempDoc);
+        cNew.AppendLife(life);
+        try
+        {
+            const XmlLib::SaxString f_saxElementName = L"DDOBuilderCharacterData"; // root element name to look for
+            XmlLib::SaxWriter writer;
+            writer.Open(filename);
+            writer.StartDocument(f_saxElementName);
+            cNew.Write(&writer);
+            writer.EndDocument();
+            std::stringstream ss;
+            ss << "Life exported to file \"" << filename << "\"";
+            GetLog().AddLogEntry(ss.str().c_str());
+        }
+        catch (const std::exception& e)
+        {
+            std::string errorMessage = e.what();
+            // document has failed to save. Tell the user what we can about it
+            CString text;
+            text.Format("The document %s\n"
+                "failed to save. The XML parser reported the following problem:\n"
+                "\n", filename.c_str());
+            text += errorMessage.c_str();
+            AfxMessageBox(text, MB_ICONERROR);
+        }
+    }
 }

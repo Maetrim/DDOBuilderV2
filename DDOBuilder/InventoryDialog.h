@@ -78,6 +78,7 @@ class CInventoryDialog :
         CInventoryDialog(CWnd* pParent);
 
         void SetGearSet(Build* pBuild, const EquippedGear & gear);
+        void HighlightSetBonusItems(const std::string& setBonusName);
 
     ///////////////////////////////////////////////////////////////////
     // MFC
@@ -135,6 +136,8 @@ class CInventoryDialog :
         CImage m_imagesJewel;
         CImage m_imagesFiligree;
         CImage m_imagesFiligreeRare;
+        CImage m_imagesItemHighlight;
+        CImage m_imagesFiligreeHighlight;
         std::vector<InventoryHitBox> m_hitBoxesInventory;
         std::vector<FiligreeHitBox> m_hitBoxesFiligrees;
         std::vector<FiligreeHitBox> m_hitBoxesArtifactFiligrees;
@@ -150,6 +153,7 @@ class CInventoryDialog :
         CMenu m_filigreeMenu;
         CMenu m_personalityMenu;
         int m_tooltipFiligree;
+        std::string m_setBonusName;
 };
 
 //{{AFX_INSERT_LOCATION}}

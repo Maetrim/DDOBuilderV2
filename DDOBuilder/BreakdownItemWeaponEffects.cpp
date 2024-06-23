@@ -506,6 +506,7 @@ void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
                 Breakdown_MainHand,
                 gear.ItemInSlot(Inventory_Weapon1),
                 Inventory_Weapon1);
+        m_pMainHandWeapon->LinkUp();
     }
     else
     {
@@ -525,6 +526,7 @@ void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
                 Breakdown_OffHand,
                 gear.ItemInSlot(Inventory_Weapon2),
                 Inventory_Weapon2);
+        m_pOffHandWeapon->LinkUp();
     }
     m_pTreeList->Expand(m_hItem, TVE_EXPAND);
     m_pTreeList->RedrawWindow();    // ensure view updates
@@ -677,7 +679,7 @@ BreakdownItem * BreakdownItemWeaponEffects::GetWeaponBreakdown(bool bMainhand, B
         pBI = m_pMainHandWeapon->GetWeaponBreakdown(bt);
     }
     if (!bMainhand
-            && m_pMainHandWeapon != NULL)
+            && m_pOffHandWeapon != NULL)
     {
         pBI = m_pOffHandWeapon->GetWeaponBreakdown(bt);
     }

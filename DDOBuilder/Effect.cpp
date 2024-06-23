@@ -96,7 +96,6 @@ XmlLib::SaxContentElementInterface * Effect::StartElement(
             SaxContentElement::StartElement(name, attributes);
 
     DL_START(Effect_PROPERTIES)
-
     return subHandler;
 }
 

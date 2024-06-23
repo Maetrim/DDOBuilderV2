@@ -421,9 +421,9 @@ Cooldown: 30 Seconds</Description>
          <InternalName>ScoundrelAshImprisonment</InternalName>
          <Description>Your Fiendish Arpeggio attempts to turn your target to Ash.
 This acts similarly to a Flesh to Stone Spell, and affects anything your
-Fascinate can affect. 
+Fascinate can affect.
 Bosses are immune and instead take -4 AC and 25% Fortification penalties.
-DC (1d20+Perform Skill) vs Will
+DC (1d20 + Perform Skill) vs Will
 Duration: 20 seconds</Description>
          <Icon>ScoundrelAshImprisonment</Icon>
          <XPosition>0</XPosition>
@@ -431,6 +431,20 @@ Duration: 20 seconds</Description>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
+         <DC>
+            <Name>Tiefling Scoundrel: Ash Imprisonment</Name>
+            <Description>our Fiendish Arpeggio attempts to turn your target to Ash.
+This acts similarly to a Flesh to Stone Spell, and affects anything your
+Fascinate can affect.
+Bosses are immune and instead take -4 AC and 25% Fortification penalties.
+DC (1d20 + Perform Skill) vs Will
+Duration: 20 seconds</Description>
+            <Icon>ScoundrelAshImprisonment</Icon>
+            <DCType>Negate</DCType>
+            <DCVersus>Will</DCVersus>
+            <Other>1d20</Other>
+            <Skill>Perform</Skill>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tiefling Scoundrel: Infernal Resistance II</Name>

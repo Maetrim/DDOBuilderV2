@@ -480,19 +480,20 @@ bool BreakdownItemSave::AddDivineGrace()
         // Divine Grace is capped at 2+(3 x paladin level).
         // For multi-classing, this means 2 levels of Paladin would at best
         // grant a max of +8 to saves (2 + {3x2}). 
-        int maxBonus = pBuild->ClassLevels("Paladin", pBuild->Level()-1) * 3 + 2;
+        int maxBonusPaladin = pBuild->ClassLevels("Paladin", pBuild->Level() - 1) * 3 + 2;
+        int maxBonusSacredFist = pBuild->ClassLevels("Sacred Fist", pBuild->Level()-1) * 3 + 2;
         BreakdownItem* pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
         ASSERT(pBI != NULL);
         pBI->AttachObserver(this); // watch for any changes
         int bonus = BaseStatToBonus(pBI->Total());
-        bonus = min(bonus, maxBonus);
+        bonus = min(bonus, max(maxBonusPaladin, maxBonusSacredFist));
         if (bonus > 0) // only add to list if not negative
         {
             // should now have the best option
             CString text;
             text.Format(
                     "Divine Grace (Charisma) (Capped @ %d)",
-                    maxBonus);
+                    max(maxBonusPaladin, maxBonusSacredFist));
             Effect feat(
                     Effect_SaveBonus,
                     (LPCTSTR)text,

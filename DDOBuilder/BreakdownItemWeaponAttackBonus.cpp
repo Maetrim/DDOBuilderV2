@@ -5,6 +5,7 @@
 
 #include "GlobalSupportFunctions.h"
 #include "Character.h"
+#include "BreakdownItemWeaponEffects.h"
 
 const std::string c_TWF = "Two Weapon Fighting";
 const std::string c_OTWF = "Oversized Two Weapon Fighting";
@@ -97,10 +98,10 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
         // armor or shields
 
         // also apply any armor check penalty
-        BreakdownItem * pBI = FindBreakdown(Breakdown_ArmorCheckPenalty);
-        ASSERT(pBI != NULL);
-        pBI->AttachObserver(this);  // need to know about changes to this effect
-        double total = max(0, pBI->Total()); // ACP cannot be a bonus!
+        BreakdownItem* pBACP = FindBreakdown(Breakdown_ArmorCheckPenalty);
+        ASSERT(pBACP != NULL);
+        pBACP->AttachObserver(this);  // need to know about changes to this effect
+        double total = max(0, pBACP->Total()); // ACP cannot be a bonus!
         if (total != 0)
         {
             Effect acp(
@@ -111,15 +112,37 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             AddOtherEffect(acp);
         }
 
+        // add any weapon enchantment
+        BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+        BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+        if (pBIW != NULL)
+        {
+            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+            if (pBWE != NULL)
+            {
+                pBWE->AttachObserver(this);  // need to know about changes to this effect
+                total = pBWE->Total();
+                if (total != 0)
+                {
+                    Effect we(
+                            Effect_Unknown,         // doesn't matter
+                            "Weapon Enchantment",
+                            "Weapon Enchantment",
+                            total);
+                    AddOtherEffect(we);
+                }
+            }
+        }
+
         // by default all weapons use Strength as their base stat for attack bonus
         // but other stats may also be allowed for this particular weapon. look through
         // the list of those available and get the one with the largest value
         AbilityType ability = LargestStatBonus();
         if (ability != Ability_Unknown)
         {
-            pBI = FindBreakdown(StatToBreakdown(ability));
-            ASSERT(pBI != NULL);
-            int bonus = BaseStatToBonus(pBI->Total());
+            BreakdownItem* pBStat = FindBreakdown(StatToBreakdown(ability));
+            ASSERT(pBStat != NULL);
+            int bonus = BaseStatToBonus(pBStat->Total());
             if (bonus != 0) // only add to list if non zero
             {
                 // should now have the best option
@@ -187,11 +210,6 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
         // weapon enchantments affect us if specific weapon
         isUs = true;
     }
-    if (effect.IsType(Effect_Weapon_Enchantment))
-    {
-        // weapon enchantments affect us if specific weapon
-        isUs = true;
-    }
     if (m_bCriticalEffects)
     {
         if (effect.IsType(Effect_Weapon_AttackBonusCritical))
@@ -223,6 +241,20 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
         }
     }
     return isUs;
+}
+
+void BreakdownItemWeaponAttackBonus::LinkUp()
+{
+    BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+    BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+    if (pBIW != NULL)
+    {
+        BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+        if (pBWE != NULL)
+        {
+            pBWE->AttachObserver(this);  // need to know about changes to this effect
+        }
+    }
 }
 
 void BreakdownItemWeaponAttackBonus::ClassChanged(

@@ -1227,3 +1227,22 @@ void BreakdownItem::UpdateSliderEffects(const std::string& sliderName, int newVa
         Populate();
     }
 }
+
+bool BreakdownItem::IsBonusTypePresent(
+        const std::list<Effect>& effectsList,
+    const std::string& bonusType)
+{
+    bool bPresent = false;
+    for (auto&& it: effectsList)
+    {
+        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
+        {
+            if (it.Bonus() == bonusType)
+            {
+                bPresent = true;
+                break;
+            }
+        }
+    }
+    return bPresent;
+}

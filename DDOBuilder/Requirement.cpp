@@ -88,7 +88,6 @@ XmlLib::SaxContentElementInterface * Requirement::StartElement(
             SaxContentElement::StartElement(name, attributes);
 
     DL_START(Requirement_PROPERTIES)
-
     return subHandler;
 }
 
@@ -906,13 +905,13 @@ bool Requirement::EvaluateWeaponTypesEquipped(
     bool bRet = false;
     std::string w1 = m_Item.front();
     WeaponType wt1 = TextToEnumEntry(w1.c_str(), weaponTypeMap, false);
-    bRet = (wtMain == wt1);
+    bRet = (wtMain == wt1 || wt1 == Weapon_All);
     if (m_Item.size() > 1)
     {
         std::string w2;
         w2 = m_Item.back();
         WeaponType wt2 = TextToEnumEntry(w2.c_str(), weaponTypeMap, false);
-        bRet &= (wtOffhand == wt2);
+        bRet &= (wtOffhand == wt2 || wt2 == Weapon_All);
     }
 
     return bRet;

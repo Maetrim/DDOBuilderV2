@@ -38,6 +38,8 @@ class EquipmentSlot :
                 DL_FLAG(_, Trinket) \
                 DL_FLAG(_, Weapon1) \
                 DL_FLAG(_, Weapon2) \
+                DL_FLAG(_, CosmeticWeapon1) \
+                DL_FLAG(_, CosmeticWeapon2) \
                 DL_FLAG(_, CosmeticArmor) \
                 DL_FLAG(_, CosmeticCloak) \
                 DL_FLAG(_, CosmeticHelm)

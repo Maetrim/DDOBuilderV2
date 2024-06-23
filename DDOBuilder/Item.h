@@ -44,6 +44,7 @@ class Item :
         size_t RealCriticalThreatRange() const;
         bool FindEffect(EffectType et) const;
         int BuffValue(EffectType et) const;
+        bool HasSetBonus(const std::string& setBonusName) const;
 
         void SetAugments(const std::vector<ItemAugment>& augments);
     protected:

@@ -79,6 +79,19 @@ std::list<Effect> Filigree::RareEffects() const
     return effects;
 }
 
+bool Filigree::HasSetBonus(const std::string& setBonusName) const
+{
+    bool bHasSetBonus = false;
+    for (auto&& sbit: m_SetBonus)
+    {
+        if (sbit == setBonusName)
+        {
+            bHasSetBonus = true;
+        }
+    }
+    return bHasSetBonus;
+}
+
 bool Filigree::operator<(const Filigree & other) const
 {
     bool bBefore = false;

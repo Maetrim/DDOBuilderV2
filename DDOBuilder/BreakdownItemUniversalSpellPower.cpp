@@ -4,7 +4,8 @@
 #include "BreakdownItemUniversalSpellPower.h"
 #include "BreakdownItemSkill.h"
 #include "GlobalSupportFunctions.h"
-//#include "BreakdownItemWeaponEffects.h"
+#include "Character.h"
+#include "BreakdownItemWeaponEffects.h"
 
 BreakdownItemUniversalSpellPower::BreakdownItemUniversalSpellPower(
         CBreakdownsPane* pPane,
@@ -23,45 +24,62 @@ BreakdownItemUniversalSpellPower::~BreakdownItemUniversalSpellPower()
 void BreakdownItemUniversalSpellPower::CreateOtherEffects()
 {
     m_otherEffects.clear();
-    //if (m_pCharacter != NULL)
-    //{
-    //    // Battle engineer core 6: 
-    //    // Your equipped weapon in your main hand is now a Spellcasting Implement,
-    //    // providing a +3 Implement bonus to Universal Spell Power for every +1
-    //    // Enhancement bonus on the weapon.
-    //    // find the main hand weapon breakdown
-    //    if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement)
-    //            || m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
-    //    {
-    //        // get the main hand weapon breakdown
-    //        BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
-    //        BreakdownItemWeaponEffects * pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
-    //        if (pBIW != NULL)
-    //        {
-    //            pBI = pBIW->GetWeaponBreakdown(true, Breakdown_WeaponAttackBonus);
-    //            if (pBI != NULL)
-    //            {
-    //                int weaponPlus = (int)pBI->GetEffectValue(Bonus_weaponEnchantment);
-    //                // this is increased by battle engineer cores by +3
-    //                weaponPlus += 3;
-
-    //                // Enchant weapon past life feat can be active
-    //                size_t count = m_pCharacter->GetSpecialFeatTrainedCount("Past Life: Arcane Sphere: Enchant Weapon");
-    //                if (m_pCharacter->IsStanceActive("Enchant Weapon", Weapon_Unknown))
-    //                {
-    //                    weaponPlus += count;
-    //                }
-    //                ActiveEffect implementBonus(
-    //                        Bonus_implement,
-    //                        "Battle Engineer: Master Engineer",
-    //                        weaponPlus,
-    //                        3,          // +3 per weapon plus
-    //                        "");        // no tree
-    //                AddOtherEffect(implementBonus);
-    //            }
-    //        }
-    //    }
-    //}
+    if (m_pCharacter != NULL)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        BreakdownItem* pBIIYH = FindBreakdown(Breakdown_ImplementInYourHands);
+        if (pBIIYH != NULL && pBIIYH->Total() > 0)
+        {
+            pBIIYH->AttachObserver(this);   // we need to know about changes
+            // ??? Do not add the bonus if we already have an Implement bonus present
+            if (!IsBonusTypePresent(m_itemEffects, "Implement"))
+            {
+                // we do need to list an implement bonus for our main hands weapon
+                // based on its weapon plus
+                // get the main hand weapon breakdown
+                BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+                BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+                if (pBIW != NULL)
+                {
+                    pBI = pBIW->GetWeaponBreakdown(true, Breakdown_WeaponEnchantment);
+                    if (pBI != NULL)
+                    {
+                        int weaponPlus = static_cast<int>(pBI->Total());
+                        Effect implementBonusEffect(
+                            Effect_Weapon_Enchantment,
+                            "Implement in your hands",
+                            "Implement",
+                            weaponPlus * 3);
+                        AddOtherEffect(implementBonusEffect);
+                    }
+                }
+            }
+        }
+        if (pBuild->IsEnhancementTrained("U51DraconicIncarnationConduit", "", TT_epicDestiny)
+                && pBuild->IsStanceActive("Quarterstaff"))
+        {
+            BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+            BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIW != NULL)
+            {
+                pBI = pBIW->GetWeaponBreakdown(true, Breakdown_WeaponEnchantment);
+                if (pBI != NULL)
+                {
+                    pBI->AttachObserver(this);
+                    int weaponPlus = static_cast<int>(pBI->Total());
+                    if (weaponPlus > 0)
+                    {
+                        Effect implementBonusDoubling(
+                            Effect_Weapon_Enchantment,
+                            "Conduit + Quarterstaff",
+                            "Destiny",
+                            weaponPlus * 3);
+                        AddOtherEffect(implementBonusDoubling);
+                    }
+                }
+            }
+        }
+    }
 }
 
 void BreakdownItemUniversalSpellPower::UpdateTotalChanged(
@@ -73,92 +91,42 @@ void BreakdownItemUniversalSpellPower::UpdateTotalChanged(
     CreateOtherEffects();
 }
 
-/*void BreakdownItemUniversalSpellPower::UpdateEnhancementTrained(
-        Character * charData,
-        const std::string& enhancementName,
-        const std::string& selection,
-        bool isTier5)
+void BreakdownItemUniversalSpellPower::EnhancementTrained(
+    Build* pBuild,
+    const EnhancementItemParams& item)
 {
-    BreakdownItemSimple::UpdateEnhancementTrained(
-            charData,
-            enhancementName,
-            selection,
-            isTier5);
-    // check for "Battle Engineer: Master Engineer"  being trained specifically
-    if (enhancementName == "BECore6")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
+    CreateOtherEffects();
+    BreakdownItemSimple::EnhancementTrained(pBuild, item);
 }
 
-void BreakdownItemUniversalSpellPower::UpdateEnhancementRevoked(
-        Character * charData,
-        const std::string& enhancementName,
-        const std::string& selection,
-        bool isTier5)
+void BreakdownItemUniversalSpellPower::EnhancementRevoked(
+    Build* pBuild,
+    const EnhancementItemParams& item)
 {
-    BreakdownItemSimple::UpdateEnhancementRevoked(
-            charData,
-            enhancementName,
-            selection,
-            isTier5);
-    // check for "Battle Engineer: Master Engineer"  being revoked specifically
-    if (enhancementName == "BECore6"
-            || enhancementName == "BomCore2")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
+    CreateOtherEffects();
+    BreakdownItemSimple::EnhancementRevoked(pBuild, item);
 }
 
-void BreakdownItemUniversalSpellPower::UpdateGearChanged(Character * charData, InventorySlotType slot)
+void BreakdownItemUniversalSpellPower::StanceActivated(
+    Build* pBuild,
+    const std::string& stanceName)
 {
-    BreakdownItemSimple::UpdateGearChanged(
-            charData,
-            slot);
-    if (slot == Inventory_Weapon1)
-    {
-        // if "Battle Engineer: Master Engineer" is trained, the implement bonus may have changed
-        if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement)
-                || m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
-        {
-            // need to re-create other effects list
-            CreateOtherEffects();
-            Populate();
-        }
-    }
+    CreateOtherEffects();
+    BreakdownItemSimple::StanceActivated(pBuild, stanceName);
 }
 
-void BreakdownItemUniversalSpellPower::UpdateStanceActivated(
-        Character * charData,
-        const std::string& stanceName)
+void BreakdownItemUniversalSpellPower::StanceDeactivated(
+    Build* pBuild,
+    const std::string& stanceName)
 {
-    BreakdownItemSimple::UpdateStanceActivated(
-            charData,
-            stanceName);
-    if (stanceName == "Enchant Weapon")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
+    CreateOtherEffects();
+    BreakdownItemSimple::StanceDeactivated(pBuild, stanceName);
 }
 
-void BreakdownItemUniversalSpellPower::UpdateStanceDeactivated(
-        Character * charData,
-        const std::string& stanceName)
+void BreakdownItemUniversalSpellPower::GearChanged(
+    Build* pBuild,
+    InventorySlotType slot)
 {
-    BreakdownItemSimple::UpdateStanceDeactivated(
-            charData,
-            stanceName);
-    if (stanceName == "Enchant Weapon")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
+    CreateOtherEffects();
+    BreakdownItemSimple::GearChanged(pBuild, slot);
 }
-*/

@@ -487,3 +487,45 @@ int Item::BuffValue(EffectType et) const
     return value;
 }
 
+bool Item::HasSetBonus(
+    const std::string& setBonusName) const
+{
+    bool bHasSetBonus = false;
+    bool bNativeSetBonusSuppressed = false;
+    // we need to check all out augment slots for set bonus first
+    // as its possible one of those could have one that suppresses the
+    // items fixed set bonuses (if any)
+    for (auto&& ait: m_Augments)
+    {
+        if (ait.HasSelectedAugment())
+        {
+            CString augmentName(ait.SelectedAugment().c_str());
+            // augment name may need to be updated to include the actual bonus value
+            const Augment& augment = FindAugmentByName((LPCTSTR)augmentName, this);
+            for (auto&& sbit : augment.SetBonus())
+            {
+                if (sbit == setBonusName)
+                {
+                    bHasSetBonus = true;
+                }
+            }
+            if (augment.HasSuppressSetBonus())
+            {
+                bNativeSetBonusSuppressed = true;
+            }
+        }
+    }
+    // now check the native set bonuses if not suppressed
+    if (!bNativeSetBonusSuppressed)
+    {
+        for (auto&& sbit: m_SetBonus)
+        {
+            if (sbit == setBonusName)
+            {
+                bHasSetBonus = true;
+            }
+        }
+    }
+    return bHasSetBonus;
+}
+

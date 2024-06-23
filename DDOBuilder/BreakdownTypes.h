@@ -312,6 +312,7 @@ enum BreakdownType
     // weapon breakdowns
     Breakdown_WeaponEffectHolder,
     Breakdown_Weapon,
+    Breakdown_WeaponEnchantment,
     Breakdown_WeaponBaseDamage,
     Breakdown_WeaponAttackBonus,
     Breakdown_WeaponDamageBonus,

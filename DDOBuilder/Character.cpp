@@ -157,6 +157,14 @@ void Character::DeleteLife(size_t lifeIndex)
     m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
 }
 
+size_t Character::AppendLife(const Life& life)
+{
+    m_Lives.push_back(life);
+    m_Lives.back().UpdateBuildLifePointers();
+    m_pDocument->SetModifiedFlag(TRUE);
+    return m_Lives.size() - 1;    // 0 based
+}
+
 size_t Character::AddBuild(size_t lifeIndex)
 {
     size_t buildIndex = m_uiActiveBuildIndex;

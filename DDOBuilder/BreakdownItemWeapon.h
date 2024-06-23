@@ -39,6 +39,7 @@ class BreakdownItemWeapon :
         bool IsCentering() const;
         void AddForumExportData(std::stringstream & forumExport);
         BreakdownItem * GetWeaponBreakdown(BreakdownType bt);
+        void LinkUp();
 
         // required overrides
         virtual CString Title() const override;
@@ -78,6 +79,7 @@ class BreakdownItemWeapon :
         CString m_title;
         BasicDice m_damageDice;
 
+        BreakdownItemSimple m_weaponEnchantment;            // +1 .. +15 and other effects that enhance it
         BreakdownItemSimple m_baseDamage;                   // The X of X[2d6]
         BreakdownItemWeaponAttackBonus m_attackBonus;       // Basic +Hit
         BreakdownItemWeaponDamageBonus m_damageBonus;       // Basic +Damage

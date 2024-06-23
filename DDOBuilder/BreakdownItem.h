@@ -90,6 +90,7 @@ class BreakdownItem :
         virtual double Total() const;
         virtual double CappedTotal() const;
         virtual double ReplacementTotal() const { return Total(); };
+        virtual void LinkUp() {};
 
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);
@@ -152,6 +153,7 @@ class BreakdownItem :
                     && weapon == other.weapon;
             }
         };
+        bool IsBonusTypePresent(const std::list<Effect>& effectsList, const std::string& bonusType);
         std::vector<AbilityStance> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
         std::vector<AbilityStance> m_baseAbility; // restore list on change of character
         bool m_bHasWeapon;

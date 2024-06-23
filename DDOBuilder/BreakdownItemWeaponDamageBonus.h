@@ -23,6 +23,8 @@ class BreakdownItemWeaponDamageBonus :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
 
+        virtual void LinkUp() override;
+
         // EffectCallbackItem
         virtual void ClassChanged(Build*, const std::string& classFrom, const std::string& classTo, size_t level) override;
         virtual void FeatEffectApplied(Build*, const Effect& effect) override;

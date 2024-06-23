@@ -14,6 +14,7 @@ class Filigree :
 
         std::list<Effect> NormalEffects() const;
         std::list<Effect> RareEffects() const;
+        bool HasSetBonus(const std::string& setBonusName) const;
 
         void SetFilename(const std::string&) {};
 

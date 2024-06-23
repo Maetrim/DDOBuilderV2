@@ -44,6 +44,7 @@ class Character :
         size_t AddLife();
         size_t AddImportLife();
         void DeleteLife(size_t lifeIndex);
+        size_t AppendLife(const Life& life);
 
         // build support
         size_t AddBuild(size_t lifeIndex);

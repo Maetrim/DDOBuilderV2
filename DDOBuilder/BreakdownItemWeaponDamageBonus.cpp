@@ -4,6 +4,7 @@
 #include "BreakdownItemWeaponDamageBonus.h"
 
 #include "GlobalSupportFunctions.h"
+#include "BreakdownItemWeaponEffects.h"
 
 BreakdownItemWeaponDamageBonus::BreakdownItemWeaponDamageBonus(
         BreakdownType type,
@@ -92,6 +93,26 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                 AddOtherEffect(abilityBonus);
             }
         }
+        // add any weapon enchantment
+        BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+        BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+        if (pBIW != NULL)
+        {
+            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+            if (pBWE != NULL)
+            {
+                double total = pBWE->Total();
+                if (total != 0)
+                {
+                    Effect we(
+                        Effect_Unknown,         // doesn't matter
+                        "Weapon Enchantment",
+                        "Weapon Enchantment",
+                        total);
+                    AddOtherEffect(we);
+                }
+            }
+        }
     }
 }
 
@@ -109,11 +130,6 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
         isUs = true;
     }
     if (effect.IsType(Effect_Weapon_DamageAbility))
-    {
-        // weapon enchantments affect us if specific weapon
-        isUs = true;
-    }
-    if (effect.IsType(Effect_Weapon_Enchantment))
     {
         // weapon enchantments affect us if specific weapon
         isUs = true;
@@ -149,6 +165,20 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
         }
     }
     return isUs;
+}
+
+void BreakdownItemWeaponDamageBonus::LinkUp()
+{
+    BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+    BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+    if (pBIW != NULL)
+    {
+        BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+        if (pBWE != NULL)
+        {
+            pBWE->AttachObserver(this);  // need to know about changes to this effect
+        }
+    }
 }
 
 void BreakdownItemWeaponDamageBonus::ClassChanged(

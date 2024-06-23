@@ -19,6 +19,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_damageDice(damageDice),
+    m_weaponEnchantment(pPane, Breakdown_WeaponEnchantment, Effect_Weapon_Enchantment, "Weapon Enhancement", treeList, NULL, false),
     m_baseDamage(pPane, Breakdown_WeaponBaseDamage, Effect_Weapon_BaseDamage, "Base Damage", treeList, NULL, false),
     m_attackBonus(Breakdown_WeaponAttackBonus, Effect_Weapon_AttackBonus, "Attack Bonus", treeList, NULL, slot == Inventory_Weapon2, false),
     m_damageBonus(Breakdown_WeaponDamageBonus, Effect_Weapon_DamageBonus, "Damage Bonus", treeList, NULL, slot == Inventory_Weapon2, false),
@@ -36,6 +37,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_weaponCriticalMuliplier(weaponCriticalMultiplier)
 {
     SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_weaponEnchantment.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_baseDamage.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_attackBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_damageBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
@@ -53,6 +55,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_drBypass.SetWeapon(weaponType, weaponCriticalMultiplier);
 
     // we need to update if any of our sub-items update also
+    m_weaponEnchantment.AttachObserver(this);
     m_baseDamage.AttachObserver(this);
     m_attackBonus.AttachObserver(this);
     m_damageBonus.AttachObserver(this);
@@ -69,8 +72,9 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_trueSeeing.AttachObserver(this);
     m_drBypass.AttachObserver(this);
 
-    std::string strDamageDice = (LPCTSTR)m_damageDice.DiceAsText();
 
+    AddTreeItem("Weapon Enhancement", "", &m_weaponEnchantment);           // no breakdown, just a dice number
+    std::string strDamageDice = (LPCTSTR)m_damageDice.DiceAsText();
     AddTreeItem("Weapon Dice", strDamageDice, NULL);           // no breakdown, just a dice number
     AddTreeItem("Base Damage", "", &m_baseDamage);
     AddTreeItem("Attack Bonus", "", &m_attackBonus);
@@ -95,6 +99,7 @@ BreakdownItemWeapon::~BreakdownItemWeapon()
 void BreakdownItemWeapon::BuildChanged(Character* charData)
 {
     BreakdownItem::BuildChanged(charData);
+    m_weaponEnchantment.BuildChanged(charData);
     m_baseDamage.BuildChanged(charData);
     m_attackBonus.BuildChanged(charData);
     m_damageBonus.BuildChanged(charData);
@@ -142,6 +147,7 @@ bool BreakdownItemWeapon::IsCentering() const
 void BreakdownItemWeapon::SetCharacter(Character * pCharacter)
 {
     BreakdownItem::BuildChanged(pCharacter);
+    m_weaponEnchantment.BuildChanged(pCharacter);        // we handle this for them
     m_baseDamage.BuildChanged(pCharacter);        // we handle this for them
     m_attackBonus.BuildChanged(pCharacter);        // we handle this for them
     m_damageBonus.BuildChanged(pCharacter);        // we handle this for them
@@ -223,6 +229,7 @@ void BreakdownItemWeapon::FeatEffectApplied(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
+        m_weaponEnchantment.FeatEffectApplied(pBuild, effect);
         m_baseDamage.FeatEffectApplied(pBuild, effect);
         m_attackBonus.FeatEffectApplied(pBuild, effect);
         m_damageBonus.FeatEffectApplied(pBuild, effect);
@@ -249,6 +256,7 @@ void BreakdownItemWeapon::FeatEffectRevoked(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
+        m_weaponEnchantment.FeatEffectRevoked(pBuild, effect);
         m_baseDamage.FeatEffectRevoked(pBuild, effect);
         m_attackBonus.FeatEffectRevoked(pBuild, effect);
         m_damageBonus.FeatEffectRevoked(pBuild, effect);
@@ -275,6 +283,7 @@ void BreakdownItemWeapon::ItemEffectApplied(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
+        m_weaponEnchantment.ItemEffectApplied(pBuild, effect);
         m_baseDamage.ItemEffectApplied(pBuild, effect);
         m_attackBonus.ItemEffectApplied(pBuild, effect);
         m_damageBonus.ItemEffectApplied(pBuild, effect);
@@ -301,6 +310,7 @@ void BreakdownItemWeapon::ItemEffectRevoked(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
+        m_weaponEnchantment.ItemEffectRevoked(pBuild, effect);
         m_baseDamage.ItemEffectRevoked(pBuild, effect);
         m_attackBonus.ItemEffectRevoked(pBuild, effect);
         m_damageBonus.ItemEffectRevoked(pBuild, effect);
@@ -324,6 +334,7 @@ void BreakdownItemWeapon::EnhancementTrained(
     const EnhancementItemParams& item)
 {
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.EnhancementTrained(pBuild, item);
     m_baseDamage.EnhancementTrained(pBuild, item);
     m_attackBonus.EnhancementTrained(pBuild, item);
     m_damageBonus.EnhancementTrained(pBuild, item);
@@ -346,6 +357,7 @@ void BreakdownItemWeapon::EnhancementRevoked(
     const EnhancementItemParams& item)
 {
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.EnhancementRevoked(pBuild, item);
     m_baseDamage.EnhancementRevoked(pBuild, item);
     m_attackBonus.EnhancementRevoked(pBuild, item);
     m_damageBonus.EnhancementRevoked(pBuild, item);
@@ -371,6 +383,7 @@ void BreakdownItemWeapon::EnhancementEffectApplied(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
+        m_weaponEnchantment.EnhancementEffectApplied(pBuild, effect);
         m_baseDamage.EnhancementEffectApplied(pBuild, effect);
         m_attackBonus.EnhancementEffectApplied(pBuild, effect);
         m_damageBonus.EnhancementEffectApplied(pBuild, effect);
@@ -397,6 +410,7 @@ void BreakdownItemWeapon::EnhancementEffectRevoked(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
+        m_weaponEnchantment.EnhancementEffectRevoked(pBuild, effect);
         m_baseDamage.EnhancementEffectRevoked(pBuild, effect);
         m_attackBonus.EnhancementEffectRevoked(pBuild, effect);
         m_damageBonus.EnhancementEffectRevoked(pBuild, effect);
@@ -429,6 +443,7 @@ void BreakdownItemWeapon::SetWeaponTypes(
         WeaponType wtOffhand) 
 {
     BreakdownItem::SetWeaponTypes(wtMain, wtOffhand);
+    m_weaponEnchantment.SetWeaponTypes(wtMain, wtOffhand);
     m_baseDamage.SetWeaponTypes(wtMain, wtOffhand);
     m_attackBonus.SetWeaponTypes(wtMain, wtOffhand);
     m_damageBonus.SetWeaponTypes(wtMain, wtOffhand);
@@ -451,6 +466,7 @@ void BreakdownItemWeapon::ClassChanged(
 {
     BreakdownItem::ClassChanged(pBuild, classFrom, classTo, level);
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.ClassChanged(pBuild, classFrom, classTo, level);
     m_baseDamage.ClassChanged(pBuild, classFrom, classTo, level);
     m_attackBonus.ClassChanged(pBuild, classFrom, classTo, level);
     m_damageBonus.ClassChanged(pBuild, classFrom, classTo, level);
@@ -474,6 +490,7 @@ void BreakdownItemWeapon::ClassChanged(
 //{
 //    BreakdownItem::UpdateAPSpentInTreeChanged(pBuild, treeName);
 //    // pass through to all our sub breakdowns
+//    m_weaponEnchantment.UpdateAPSpentInTreeChanged(pBuild, treeName);
 //    m_baseDamage.UpdateAPSpentInTreeChanged(pBuild, treeName);
 //    m_attackBonus.UpdateAPSpentInTreeChanged(pBuild, treeName);
 //    m_damageBonus.UpdateAPSpentInTreeChanged(pBuild, treeName);
@@ -499,6 +516,7 @@ void BreakdownItemWeapon::ClassChanged(
 //{
 //    BreakdownItem::UpdateEnhancementTrained(pBuild, selection, isTier5);
 //    // pass through to all our sub breakdowns
+//    m_weaponEnchantment.UpdateEnhancementTrained(pBuild, selection, isTier5);
 //    m_baseDamage.UpdateEnhancementTrained(pBuild, selection, isTier5);
 //    m_attackBonus.UpdateEnhancementTrained(pBuild, selection, isTier5);
 //    m_damageBonus.UpdateEnhancementTrained(pBuild, selection, isTier5);
@@ -530,6 +548,7 @@ void BreakdownItemWeapon::ClassChanged(
 //{
 //    BreakdownItem::UpdateEnhancementRevoked(pBuild, selection, isTier5);
 //    // pass through to all our sub breakdowns
+//    m_weaponEnchantment.UpdateEnhancementRevoked(pBuild, selection, isTier5);
 //    m_baseDamage.UpdateEnhancementRevoked(pBuild, selection, isTier5);
 //    m_attackBonus.UpdateEnhancementRevoked(pBuild, selection, isTier5);
 //    m_damageBonus.UpdateEnhancementRevoked(pBuild, selection, isTier5);
@@ -559,6 +578,7 @@ void BreakdownItemWeapon::FeatTrained(
 {
     BreakdownItem::FeatTrained(pBuild, featName);
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.FeatTrained(pBuild, featName);
     m_baseDamage.FeatTrained(pBuild, featName);
     m_attackBonus.FeatTrained(pBuild, featName);
     m_damageBonus.FeatTrained(pBuild, featName);
@@ -582,6 +602,7 @@ void BreakdownItemWeapon::FeatRevoked(
 {
     BreakdownItem::FeatRevoked(pBuild, featName);
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.FeatRevoked(pBuild, featName);
     m_baseDamage.FeatRevoked(pBuild, featName);
     m_attackBonus.FeatRevoked(pBuild, featName);
     m_damageBonus.FeatRevoked(pBuild, featName);
@@ -606,6 +627,7 @@ void BreakdownItemWeapon::SliderChanged(
 {
     BreakdownItem::SliderChanged(pBuild, sliderName, newValue);
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.SliderChanged(pBuild, sliderName, newValue);
     m_baseDamage.SliderChanged(pBuild, sliderName, newValue);
     m_attackBonus.SliderChanged(pBuild, sliderName, newValue);
     m_damageBonus.SliderChanged(pBuild, sliderName, newValue);
@@ -629,6 +651,7 @@ void BreakdownItemWeapon::StanceActivated(
 {
     BreakdownItem::StanceActivated(pBuild, stanceName);
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.StanceActivated(pBuild, stanceName);
     m_baseDamage.StanceActivated(pBuild, stanceName);
     m_attackBonus.StanceActivated(pBuild, stanceName);
     m_damageBonus.StanceActivated(pBuild, stanceName);
@@ -652,6 +675,7 @@ void BreakdownItemWeapon::StanceDeactivated(
 {
     BreakdownItem::StanceDeactivated(pBuild, stanceName);
     // pass through to all our sub breakdowns
+    m_weaponEnchantment.StanceDeactivated(pBuild, stanceName);
     m_baseDamage.StanceDeactivated(pBuild, stanceName);
     m_attackBonus.StanceDeactivated(pBuild, stanceName);
     m_damageBonus.StanceDeactivated(pBuild, stanceName);
@@ -720,51 +744,94 @@ BreakdownItem * BreakdownItemWeapon::GetWeaponBreakdown(BreakdownType bt)
 {
     UNREFERENCED_PARAMETER(bt);
     BreakdownItem * pBI = NULL;
-    //switch (bt)
-    //{
-    //case Breakdown_WeaponBaseDamage:
-    //    pBI = &m_baseDamage;
-    //    break;
-    //case Breakdown_WeaponAttackBonus:
-    //    pBI = &m_attackBonus;
-    //    break;
-    //case Breakdown_WeaponDamageBonus:
-    //    pBI = &m_damageBonus;
-    //    break;
+    switch (bt)
+    {
+    case Breakdown_WeaponEnchantment:
+        pBI = &m_weaponEnchantment;
+        break;
+    case Breakdown_WeaponBaseDamage:
+        pBI = &m_baseDamage;
+        break;
+    case Breakdown_WeaponAttackBonus:
+        pBI = &m_attackBonus;
+        break;
+    case Breakdown_WeaponDamageBonus:
+        pBI = &m_damageBonus;
+        break;
     //case Breakdown_WeaponOtherDamageEffects:
     //    pBI = &m_otherDamageEffects;
     //    break;
-    //case Breakdown_WeaponCriticalAttackBonus:
-    //    pBI = &m_criticalAttackBonus;
-    //    break;
-    //case Breakdown_WeaponCriticalDamageBonus:
-    //    pBI = &m_criticalDamageBonus;
-    //    break;
+    case Breakdown_WeaponCriticalAttackBonus:
+        pBI = &m_criticalAttackBonus;
+        break;
+    case Breakdown_WeaponCriticalDamageBonus:
+        pBI = &m_criticalDamageBonus;
+        break;
     //case Breakdown_WeaponCriticalOtherDamageEffects:
     //    pBI = &m_otherCriticalDamageEffects;
     //    break;
-    //case Breakdown_WeaponCriticalThreatRange:
-    //    pBI = &m_criticalThreatRange;
-    //    break;
-    //case Breakdown_WeaponCriticalMultiplier:
-    //    pBI = &m_criticalMultiplier;
-    //    break;
-    //case Breakdown_WeaponCriticalMultiplier19To20:
-    //    pBI = &m_criticalMultiplier19To20;
-    //    break;
-    //case Breakdown_WeaponAttackSpeed:
-    //    pBI = &m_attackSpeed;
-    //    break;
-    //case Breakdown_WeaponGhostTouch:
-    //    pBI = &m_ghostTouch;
-    //    break;
-    //case Breakdown_WeaponTrueSeeing:
-    //    pBI = &m_trueSeeing;
-    //    break;
-    //case Breakdown_DRBypass:
-    //    pBI = &m_drBypass;
-    //    break;
-    //}
+    case Breakdown_WeaponCriticalThreatRange:
+        pBI = &m_criticalThreatRange;
+        break;
+    case Breakdown_WeaponCriticalMultiplier:
+        pBI = &m_criticalMultiplier;
+        break;
+    case Breakdown_WeaponCriticalMultiplier19To20:
+        pBI = &m_criticalMultiplier19To20;
+        break;
+    case Breakdown_WeaponAttackSpeed:
+        pBI = &m_attackSpeed;
+        break;
+    case Breakdown_WeaponGhostTouch:
+        pBI = &m_ghostTouch;
+        break;
+    case Breakdown_WeaponTrueSeeing:
+        pBI = &m_trueSeeing;
+        break;
+    case Breakdown_DRBypass:
+        pBI = &m_drBypass;
+        break;
+    }
     return pBI;
 }
+
+void BreakdownItemWeapon::LinkUp()
+{
+    // make sure all items are correctly monitoring each other as required
+    m_weaponEnchantment.LinkUp();
+    m_baseDamage.LinkUp();
+    m_attackBonus.LinkUp();
+    m_damageBonus.LinkUp();
+    //m_otherDamageEffects.LinkUp();
+    m_criticalThreatRange.LinkUp();
+    //m_vorpalRange.LinkUp();
+    m_criticalAttackBonus.LinkUp();
+    m_criticalDamageBonus.LinkUp();
+    //m_otherCriticalDamageEffects.LinkUp();
+    m_criticalMultiplier.LinkUp();
+    m_criticalMultiplier19To20.LinkUp();
+    m_drBypass.LinkUp();
+    m_attackSpeed.LinkUp();
+    m_ghostTouch.LinkUp();
+    m_trueSeeing.LinkUp();
+
+    // also ensure all items have been created correctly
+    m_weaponEnchantment.CreateOtherEffects();
+    m_baseDamage.CreateOtherEffects();
+    m_attackBonus.CreateOtherEffects();
+    m_damageBonus.CreateOtherEffects();
+    //m_otherDamageEffects.CreateOtherEffects();
+    m_criticalThreatRange.CreateOtherEffects();
+    //m_vorpalRange.CreateOtherEffects();
+    m_criticalAttackBonus.CreateOtherEffects();
+    m_criticalDamageBonus.CreateOtherEffects();
+    //m_otherCriticalDamageEffects.CreateOtherEffects();
+    m_criticalMultiplier.CreateOtherEffects();
+    m_criticalMultiplier19To20.CreateOtherEffects();
+    m_drBypass.CreateOtherEffects();
+    m_attackSpeed.CreateOtherEffects();
+    m_ghostTouch.CreateOtherEffects();
+    m_trueSeeing.CreateOtherEffects();
+}
+
 

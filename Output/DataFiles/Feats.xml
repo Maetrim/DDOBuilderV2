@@ -11727,7 +11727,7 @@ extra damage or debuffs on the enemy you hit.)</Description>
   <Feat>
     <Name>Inherent Melee Power</Name>
     <Description>Chrism Of Melee Power - Entwined with the words of this thick book is a
-powerful magical effect that grants a permanent +1 inherent bonus to Melee Power,
+powerful magical effect that grants a permanent +1 Inherent bonus to Melee Power,
 in the form of a free Feat</Description>
     <MaxTimesAcquire>4</MaxTimesAcquire>
     <Acquire>Special</Acquire>
@@ -11742,7 +11742,7 @@ in the form of a free Feat</Description>
   <Feat>
     <Name>Inherent Ranged Power</Name>
     <Description>Chrism Of Ranged Power - Entwined with the words of this thick book is a
-powerful magical effect that grants a permanent +1 inherent bonus to Ranged Power,
+powerful magical effect that grants a permanent +1 Inherent bonus to Ranged Power,
 in the form of a free Feat.</Description>
     <MaxTimesAcquire>4</MaxTimesAcquire>
     <Acquire>Special</Acquire>
@@ -11757,7 +11757,7 @@ in the form of a free Feat.</Description>
   <Feat>
     <Name>Inherent Magical Resistance</Name>
     <Description>Chrism Of Magic Resistance - Entwined with the words of this thick book is a
-powerful magical effect that grants a permanent +1 inherent bonus to Magical
+powerful magical effect that grants a permanent +1 Inherent bonus to Magical
 Resistance Rating, in the form of a free Feat.</Description>
     <MaxTimesAcquire>4</MaxTimesAcquire>
     <Acquire>Special</Acquire>
@@ -11772,7 +11772,7 @@ Resistance Rating, in the form of a free Feat.</Description>
   <Feat>
     <Name>Inherent Racial Action Point</Name>
     <Description>Chrism Of Racial Knowledge - Entwined with the words of this thick book is a
-powerful magical effect that grants a permanent +1 inherent bonus to Racial
+powerful magical effect that grants a permanent +1 Inherent bonus to Racial
 Action Points, in the form of a free Feat.</Description>
     <MaxTimesAcquire>3</MaxTimesAcquire>
     <Acquire>Special</Acquire>
@@ -11781,13 +11781,13 @@ Action Points, in the form of a free Feat.</Description>
       <Type>RAPBonus</Type>
       <Bonus>Feat</Bonus>
       <AType>Stacks</AType>
-      <Amount size="3">1 2 3</Amount>
+      <Amount size="10">1 2 3 4 5 6 7 8 9 10</Amount>
     </Effect>
   </Feat>
   <Feat>
     <Name>Inherent Universal Action Point</Name>
     <Description>Chrism Of Universal Knowledge - Entwined with the words of this thick book is a
-powerful magical effect that grants a permanent +1 inherent bonus to Universal
+powerful magical effect that grants a permanent +1 Inherent bonus to Universal
 Action Points, in the form of a free Feat.</Description>
     <MaxTimesAcquire>2</MaxTimesAcquire>
     <Acquire>Special</Acquire>
@@ -11816,7 +11816,7 @@ grants a permanent +[1/2/3] Point(s) to spend in your Epic Destinies.</Descripti
   <Feat>
     <Name>Inherent Spell Power</Name>
     <Description>Chrism Of Spell Power - Entwined with the words of this thick book is a
-powerful magical effect that grants a permanent +1 inherent bonus to Universal
+powerful magical effect that grants a permanent +1 Inherent bonus to Universal
 Spell Power, in the form of a free Feat.</Description>
     <MaxTimesAcquire>4</MaxTimesAcquire>
     <Acquire>Special</Acquire>
@@ -11831,7 +11831,7 @@ Spell Power, in the form of a free Feat.</Description>
   <Feat>
     <Name>Inherent Physical Resistance</Name>
     <Description>Chrism Of Physical Resistance - Entwined with the words of this thick book
-is a powerful magical effect that grants a permanent +1 inherent bonus to
+is a powerful magical effect that grants a permanent +1 Inherent bonus to
 Physical Resistance Rating, in the form of a free Feat.</Description>
     <MaxTimesAcquire>4</MaxTimesAcquire>
     <Acquire>Special</Acquire>
@@ -11846,7 +11846,7 @@ Physical Resistance Rating, in the form of a free Feat.</Description>
   <Feat>
     <Name>Inherent Fate Point</Name>
     <Description>Chrism Of Future Fate - Entwined with the words of this thick book is a
-powerful magical effect that grants a permanent +1 inherent bonus to Fate Points,
+powerful magical effect that grants a permanent +1 Inherent bonus to Fate Points,
 in the form of a free Feat.</Description>
     <Acquire>Special</Acquire>
     <Icon>TomeOfFate</Icon>
@@ -12043,6 +12043,19 @@ in the form of a free Feat.</Description>
 You are proficient with Quarterstaves and gain +1 to hit with them.
 Quarterstaves are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12052,6 +12065,29 @@ Quarterstaves are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Bladeforged</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Follower Of Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Blood of Vol</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Olladra</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Onatar</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Silver Flame</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Sovereign Host</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
@@ -12086,6 +12122,19 @@ Quarterstaves are considered as a favored weapon.</Description>
 You are proficient with Daggers and gain +1 to hit with them.
 Daggers are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12095,6 +12144,29 @@ Daggers are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Bladeforged</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Follower Of Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Aureon</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Olladra</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Onatar</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Silver Flame</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Sovereign Host</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
@@ -12129,6 +12201,19 @@ Daggers are considered as a favored weapon.</Description>
 You are proficient with Great Swords and gain +1 to hit with them.
 Great Swords are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <RequiresOneOf>
         <Requirement>
@@ -12172,6 +12257,19 @@ Great Swords are considered as a favored weapon.</Description>
 You are proficient with Sickles and gain +1 to hit with them.
 Sickles are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12181,6 +12279,29 @@ Sickles are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Bladeforged</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Follower Of Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Aureon</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Blood of Vol</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Onatar</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Silver Flame</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Sovereign Host</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
@@ -12215,6 +12336,19 @@ Sickles are considered as a favored weapon.</Description>
 You are proficient with Warhammers and gain +1 to hit with them.
 Warhammers considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12224,6 +12358,29 @@ Warhammers considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Bladeforged</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Follower Of Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Aureon</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Blood of Vol</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Olladra</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Silver Flame</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Sovereign Host</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
@@ -12258,6 +12415,19 @@ Warhammers considered as a favored weapon.</Description>
 You are proficient with Longbows and gain +1 to hit with them.
 Longbows are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12267,6 +12437,29 @@ Longbows are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Bladeforged</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Follower Of Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Aureon</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Blood of Vol</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Olladra</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Onatar</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Sovereign Host</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
@@ -12301,6 +12494,19 @@ Longbows are considered as a favored weapon.</Description>
 You are proficient with Longswords and gain +1 to hit with them.
 Longbows are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12310,6 +12516,29 @@ Longbows are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Bladeforged</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Follower Of Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Aureon</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Blood of Vol</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Olladra</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of Onatar</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Follower of the Silver Flame</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
@@ -12344,6 +12573,19 @@ Longbows are considered as a favored weapon.</Description>
 You are proficient with Scimitars and gain +1 to hit with them.
 Scimitars are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <RequiresOneOf>
         <Requirement>
@@ -12391,6 +12633,19 @@ Scimitars are considered as a favored weapon.</Description>
 You are proficient with Shortswords and gain +1 to hit with them.
 Shortswords are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>Race</Type>
@@ -12428,11 +12683,39 @@ Shortswords are considered as a favored weapon.</Description>
 You are proficient with heavy maces and gain +1 to hit with them.
 Heavy maces are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
         <Item>Forgotten Realms</Item>
       </Requirement>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Favored By Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Amaunator</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Helm</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Silvanus</Item>
+        </Requirement>
+      </RequiresNoneOf>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>Amaunator</Icon>
@@ -12465,6 +12748,19 @@ Heavy maces are considered as a favored weapon.</Description>
 You are proficient with Bastard swords and gain +1 to hit with them.
 Bastard swords are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12474,6 +12770,21 @@ Bastard swords are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Morninglord</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Favored By Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Amaunator</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Helm</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Silvanus</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>
@@ -12508,6 +12819,19 @@ Bastard swords are considered as a favored weapon.</Description>
 You are proficient with mauls and gain +1 to hit with them.
 Mauls are considered as a favored weapon.</Description>
     <Group>Follower Of</Group>
+     <ConditionalGroup>
+         <Group>Standard</Group>
+         <Group>Epic Feat</Group>
+         <Group>Human Bonus Feat</Group>
+         <Group>Purple Dragon Knight Bonus Feat</Group>
+        <Requirements>
+           <Requirement>
+             <Type>Class</Type>
+             <Item>Sacred Fist</Item>
+             <Value>1</Value>
+           </Requirement>
+        </Requirements>
+     </ConditionalGroup>
     <Requirements>
       <Requirement>
         <Type>StartingWorld</Type>
@@ -12517,6 +12841,21 @@ Mauls are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Morninglord</Item>
+        </Requirement>
+      </RequiresNoneOf>
+      <RequiresNoneOf>
+         <DisplayDescription>No other Favored By Feat</DisplayDescription>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Amaunator</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Helm</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Favored by Silvanus</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>

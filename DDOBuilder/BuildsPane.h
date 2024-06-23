@@ -28,14 +28,17 @@ public:
     afx_msg void OnButtonDeleteBuild();
     afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
-    afx_msg LRESULT OnDarkModeChange(WPARAM, LPARAM);
     afx_msg void OnSelchangedTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBeginlabeleditTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnEndlabeleditTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnClickTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnRButtonDownTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnUpdateBuildLevel(CCmdUI* pCmdUI);
     afx_msg LRESULT OnStartLabelEdit(WPARAM, LPARAM);
+    afx_msg void OnUpdateCopyLifeToClipboard(CCmdUI* pCmdUi);
+    afx_msg void OnUpdatePasteLife(CCmdUI* pCmdUi);
+    afx_msg void OnPasteLife();
 
     virtual void DoDataExchange(CDataExchange* pDX) override;
     virtual void OnInitialUpdate() override;
@@ -57,6 +60,8 @@ private:
         size_t lifeIndex,
         size_t buildIndex);
     void SelectTreeItem(DWORD itemData);
+    void CopyLifeToClipboard(DWORD itemData);
+    void SaveLifeToNewFile(DWORD itemData);
 
     CButton m_buttonNewLife;
     CButton m_buttonDeleteLife;

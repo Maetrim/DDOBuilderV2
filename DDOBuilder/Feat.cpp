@@ -38,6 +38,8 @@ Feat::Feat(const Feat& other) :
     m_Icon = other.m_Icon;
     m_hasIcon = other.m_hasIcon;
     m_Group = other.m_Group;
+    m_hasConditionalGroups = other.m_hasConditionalGroups;
+    m_ConditionalGroups = other.m_ConditionalGroups;
     m_Sphere = other.m_Sphere;
     m_hasSphere = other.m_hasSphere;
     m_RequirementsToTrain = other.m_RequirementsToTrain;

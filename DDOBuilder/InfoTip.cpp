@@ -982,7 +982,7 @@ void CInfoTip::AppendAugment(
     if (pAugment->HasMinLevel())
     {
         CString text;
-        text.Format("Augment Level: %d", pAugment->HasMinLevel());
+        text.Format("Augment Level: %d", pAugment->MinLevel());
         pHeader->SetCost(text);
     }
     else if (pAugment->HasChooseLevel())

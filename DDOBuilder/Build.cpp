@@ -94,6 +94,7 @@ Build::Build(Life * pParentLife) :
     m_GearSetups.push_back(gear);
     m_ActiveGear = "Standard";
     SetupDefaultWeaponGroups();
+    UpdateCachedClassLevels();
 }
 
 DL_DEFINE_ACCESS(Build_PROPERTIES)
@@ -128,6 +129,7 @@ void Build::EndElement()
     m_hasActiveGear = true;
     // notes text is not saved as \r\n's replace all text
     m_Notes = ReplaceAll(m_Notes, "\n", "\r\n");
+    UpdateCachedClassLevels();
 }
 
 void Build::Write(XmlLib::SaxWriter * writer) const
@@ -135,6 +137,11 @@ void Build::Write(XmlLib::SaxWriter * writer) const
     writer->StartElement(ElementName(), VersionAttributes());
     DL_WRITE(Build_PROPERTIES)
     writer->EndElement();
+}
+
+void Build::SetLifePointer(Life* pLife)
+{
+    m_pLife = pLife;
 }
 
 CString Build::UIDescription(size_t buildIndex) const
@@ -588,6 +595,7 @@ void Build::SetClass1(const std::string& ct)
             std::advance(it, level);
             (*it).Set_Class(Class1());
             UpdateSkillPoints(level);
+            UpdateCachedClassLevels();
             NotifyClassChanged(classFrom, Class1(), level);    // must be done before feat updates to keep spell lists kosher
         }
     }
@@ -637,6 +645,7 @@ void Build::SetClass2(const std::string& ct)
             std::advance(it, level);
             (*it).Set_Class(Class2());
             UpdateSkillPoints(level);
+            UpdateCachedClassLevels();
             NotifyClassChanged(classFrom, Class2(), level);    // must be done before feat updates to keep spell lists kosher
         }
     }
@@ -680,6 +689,7 @@ void Build::SetClass3(const std::string& ct)
             std::advance(it, level);
             (*it).Set_Class(Class3());
             UpdateSkillPoints(level);
+            UpdateCachedClassLevels();
             NotifyClassChanged(classFrom, Class3(), level);    // must be done before feat updates to keep spell lists kosher
         }
     }
@@ -724,6 +734,7 @@ void Build::SetClass(size_t level, const std::string& ct)
                     << ct.c_str() << "\"";
         }
         GetLog().AddLogEntry(ss.str().c_str()); // and finally log it
+        UpdateCachedClassLevels();
         UpdateSkillPoints(level);
         SetModifiedFlag(TRUE);
     }
@@ -904,16 +915,13 @@ size_t Build::BaseClassLevels(
 
 std::vector<size_t> Build::ClassLevels(size_t level) const
 {
-    const std::list<::Class> & classes = Classes();
+    const std::list<::Class>& classes = Classes();
     std::vector<size_t> levels(classes.size(), 0);
-    std::list<::Class>::const_iterator cci = classes.begin();
-    size_t classIndex = 0;
-    while (cci != classes.end())
+    for (auto&& it: m_cachedClassLevels[level])
     {
-        size_t classLevels = ClassLevels((*cci).Name(), level);
-        levels[classIndex] = classLevels;
-        ++cci;
-        ++classIndex;
+        const std::string& c = it.first;
+        const ::Class& cl = FindClass(c);
+        levels[cl.Index()] = it.second;
     }
     return levels;
 }
@@ -924,16 +932,19 @@ size_t Build::ClassLevels(
 {
     // return the number of levels trained as the given class up to the specified level
     size_t classLevels = 0;
-    std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
-    for (size_t i = 0 ; i <= level && i < m_Levels.size(); ++i)
+    if (ct == "All")
     {
-        std::string levelClass = (*clit).HasClass() ? (*clit).Class() : Class_Unknown;
-        if (levelClass == ct
-                || ct == "All")
+        // just return the total class level for "All"
+        classLevels = level + 1;
+    }
+    else
+    {
+        auto it = m_cachedClassLevels[level].find(ct);
+        if (it != m_cachedClassLevels[level].end())
         {
-            ++classLevels;
+            // class is present, get the cached value
+            classLevels = it->second;
         }
-        ++clit;
     }
     return classLevels;
 }
@@ -1150,13 +1161,21 @@ bool Build::IsFeatTrainable(
         bool bHasGroupStandard = false;
         // must be a member of this group to be listed
         bCanTrain = false;
-        const std::list<std::string> & groups = feat.Group();
-        std::list<std::string>::const_iterator git = groups.begin();
-        while (git != groups.end())
+        for (auto&& git: feat.Group())
         {
-            bCanTrain |= ((*git) == type);
-            bHasGroupStandard |= ((*git) == "Standard");
-            ++git;
+            bCanTrain |= (git == type);
+            bHasGroupStandard |= (git == "Standard");
+        }
+        if (!bCanTrain && feat.HasConditionalGroups())
+        {
+            if (feat.ConditionalGroups().RequirementsToUse().Met(*this, level, includeTomes, Weapon_Unknown, Weapon_Unknown))
+            {
+                for (auto&& git : feat.ConditionalGroups().Group())
+                {
+                    bCanTrain |= (git == type);
+                    bHasGroupStandard |= (git == "Standard");
+                }
+            }
         }
         if (!bShowUnavailable)
         {
@@ -5482,5 +5501,30 @@ void Build::AppendSpellListAdditions(
         }
     }
     spells.sort();
+}
+
+void Build::UpdateCachedClassLevels()
+{
+    std::map<std::string, int> cacheAtCurrentLevel;
+    std::list<LevelTraining>::const_iterator clit = m_Levels.begin();
+    for (size_t level = 0; level < MAX_GAME_LEVEL; ++level)
+    {
+        if (clit != m_Levels.end())
+        {
+            std::string c = clit->HasClass() ? clit->Class() : Class_Unknown;
+            if (cacheAtCurrentLevel.find(c) != cacheAtCurrentLevel.end())
+            {
+                // already present, increment the class count
+                cacheAtCurrentLevel[c] = cacheAtCurrentLevel[c] + 1;
+            }
+            else
+            {
+                // first encounter for this class, add an entry
+                cacheAtCurrentLevel[c] = 1;
+            }
+            ++clit;
+        }
+        m_cachedClassLevels[level] = cacheAtCurrentLevel;
+    }
 }
 

@@ -27,6 +27,7 @@
 #include "StackTracking.h"
 #include "SpellListAddition.h"
 #include "Spell.h"
+#include <map>
 
 class Augment;
 class Build;
@@ -85,8 +86,11 @@ class Build :
     public Subject<BuildObserver>
 {
     public:
-        Build(Life * pParentLife);
-        void Write(XmlLib::SaxWriter * writer) const;
+        Build(Life* pParentLife);
+        void Write(XmlLib::SaxWriter* writer) const;
+
+        void SetLifePointer(Life* pLife);
+
         CString UIDescription(size_t buildIndex) const;
         std::string ComplexUIDescription() const;
 
@@ -433,6 +437,7 @@ class Build :
         void AddSpellListAddition(const Effect& effect);
         void RevokeSpellListAddition(const Effect& effect);
         bool IsSpellInSpellListAdditionList(const std::string& ct, size_t spellLevel, const std::string& spellName) const;
+        void UpdateCachedClassLevels();
 
         Life * m_pLife;
         int m_racialTreeSpend;
@@ -444,6 +449,7 @@ class Build :
         std::list<StackTracking> m_setBonusStacks;
         std::list<WeaponGroup> m_weaponGroups;
         std::vector<SpellListAddition> m_additionalSpells;
+        std::map<std::string, int> m_cachedClassLevels[MAX_GAME_LEVEL]; // each entry has a max of 5 entries, "class name" and count
 
         friend class CStancesPane;
         friend class CStanceButton;

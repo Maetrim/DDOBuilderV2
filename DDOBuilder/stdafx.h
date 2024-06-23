@@ -88,6 +88,7 @@ const std::string c_noTreeSelection = "No selection";
 extern bool g_bShowIgnoredItems;
 extern bool g_bShowZeroBreakdown;
 const int c_noSelection = -1;
+const int c_noFiligreeSelection = 0;
 
 enum TreeType
 {
@@ -100,6 +101,10 @@ enum TreeType
     TT_allEnhancement,
     TT_allEnhancementMinusSpent
 };
+
+// custom clipboard formats used
+#define CF_CUSTOM_GEAR                  CF_PRIVATEFIRST
+#define CF_CUSTOM_LIFE                  CF_PRIVATEFIRST+1
 
 #ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
 #define DWMWA_USE_IMMERSIVE_DARK_MODE 20

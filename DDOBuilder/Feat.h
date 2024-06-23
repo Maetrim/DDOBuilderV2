@@ -5,6 +5,7 @@
 #include "XmlLib\DLMacros.h"
 
 #include "AutomaticAcquisition.h"
+#include "ConditionalGroup.h"
 #include "DC.h"
 #include "Effect.h"
 #include "FeatAcquisitionTypes.h"
@@ -55,6 +56,7 @@ class Feat :
                 DL_OBJECT_LIST(_, SubItem, SubItems) \
                 DL_STRING(_, Icon) \
                 DL_STRING_LIST(_, Group) \
+                DL_OPTIONAL_OBJECT(_, ConditionalGroup, ConditionalGroups) \
                 DL_OPTIONAL_STRING(_, Sphere) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OBJECT_LIST(_, AutomaticAcquisition, AutomaticAssignment) \
@@ -63,6 +65,7 @@ class Feat :
                 DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_OBJECT_LIST(_, DC, DCs) \
                 DL_OBJECT_LIST(_, Effect, Effects)
+        //***DONT FORGET TO UPDATE THE COPY CONSTRUCTOR***
 
         DL_DECLARE_ACCESS(Feat_PROPERTIES)
         DL_DECLARE_VARIABLES(Feat_PROPERTIES)
