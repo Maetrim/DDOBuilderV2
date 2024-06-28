@@ -50,142 +50,169 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        // all weapon to hits include BAB, which may be changed by a
-        // enhancement
-        BreakdownItem * pBBAB = FindBreakdown(Breakdown_BAB);
-        ASSERT(pBBAB != NULL);
-        pBBAB->AttachObserver(this);  // need to know about changes to this effect
-        double amount = pBBAB->Total();
-        if (amount > 0)
+        if (!m_bCriticalEffects)
         {
-            Effect amountTrained(
-                    Effect_Unknown,         // doesn't matter
-                    "Base Attack Bonus",
-                    "Base",
-                    amount);
-            AddOtherEffect(amountTrained);
-        }
-        // must be proficient with the weapon
-        if (!m_pCharacter->ActiveBuild()->IsWeaponInGroup("Proficiency", m_weapon))
-        {
-            // non-proficient penalty
-            Effect nonProficient(
-                Effect_Unknown,         // doesn't matter
-                "Non proficient penalty",
-                "Penalty",
-                -4);
-            AddOtherEffect(nonProficient);
-        }
-
-        // attack penalty due to negative levels
-        BreakdownItem* pNL = FindBreakdown(Breakdown_NegativeLevels);
-        if (pNL != NULL)
-        {
-            pNL->AttachObserver(this); // need to know about changes
-            int negLevels = static_cast<int>(pNL->Total());
-            if (negLevels != 0)
+            // all weapon to hits include BAB, which may be changed by a
+            // enhancement
+            BreakdownItem * pBBAB = FindBreakdown(Breakdown_BAB);
+            ASSERT(pBBAB != NULL);
+            pBBAB->AttachObserver(this);  // need to know about changes to this effect
+            double amount = pBBAB->Total();
+            if (amount > 0)
             {
-                Effect negLevelsEffect(
-                    Effect_Unknown,
-                    "Negative Levels",
-                    "Negative Levels",
-                    -1 * negLevels);          // -1 per neg level
-                AddOtherEffect(negLevelsEffect);
+                Effect amountTrained(
+                        Effect_Unknown,         // doesn't matter
+                        "Base Attack Bonus",
+                        "Base",
+                        amount);
+                AddOtherEffect(amountTrained);
             }
-        }
-
-        //TBD - Not penalty applied if you are proficient with your
-        // armor or shields
-
-        // also apply any armor check penalty
-        BreakdownItem* pBACP = FindBreakdown(Breakdown_ArmorCheckPenalty);
-        ASSERT(pBACP != NULL);
-        pBACP->AttachObserver(this);  // need to know about changes to this effect
-        double total = max(0, pBACP->Total()); // ACP cannot be a bonus!
-        if (total != 0)
-        {
-            Effect acp(
-                    Effect_Unknown,         // doesn't matter
-                    "Armor check penalty",
-                    "Penalty",
-                    -total);
-            AddOtherEffect(acp);
-        }
-
-        // add any weapon enchantment
-        BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
-        BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
-        if (pBIW != NULL)
-        {
-            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
-            if (pBWE != NULL)
+            // must be proficient with the weapon
+            if (!m_pCharacter->ActiveBuild()->IsWeaponInGroup("Proficiency", m_weapon))
             {
-                pBWE->AttachObserver(this);  // need to know about changes to this effect
-                total = pBWE->Total();
-                if (total != 0)
+                // non-proficient penalty
+                Effect nonProficient(
+                    Effect_Unknown,         // doesn't matter
+                    "Non proficient penalty",
+                    "Penalty",
+                    -4);
+                AddOtherEffect(nonProficient);
+            }
+
+            // attack penalty due to negative levels
+            BreakdownItem* pNL = FindBreakdown(Breakdown_NegativeLevels);
+            if (pNL != NULL)
+            {
+                pNL->AttachObserver(this); // need to know about changes
+                int negLevels = static_cast<int>(pNL->Total());
+                if (negLevels != 0)
                 {
-                    Effect we(
-                            Effect_Unknown,         // doesn't matter
-                            "Weapon Enchantment",
-                            "Weapon Enchantment",
-                            total);
-                    AddOtherEffect(we);
+                    Effect negLevelsEffect(
+                        Effect_Unknown,
+                        "Negative Levels",
+                        "Negative Levels",
+                        -1 * negLevels);          // -1 per neg level
+                    AddOtherEffect(negLevelsEffect);
                 }
             }
-        }
 
-        // by default all weapons use Strength as their base stat for attack bonus
-        // but other stats may also be allowed for this particular weapon. look through
-        // the list of those available and get the one with the largest value
-        AbilityType ability = LargestStatBonus();
-        if (ability != Ability_Unknown)
-        {
-            BreakdownItem* pBStat = FindBreakdown(StatToBreakdown(ability));
-            ASSERT(pBStat != NULL);
-            int bonus = BaseStatToBonus(pBStat->Total());
-            if (bonus != 0) // only add to list if non zero
+            //TBD - Not penalty applied if you are proficient with your
+            // armor or shields
+
+            // also apply any armor check penalty
+            BreakdownItem* pBACP = FindBreakdown(Breakdown_ArmorCheckPenalty);
+            ASSERT(pBACP != NULL);
+            pBACP->AttachObserver(this);  // need to know about changes to this effect
+            double total = max(0, pBACP->Total()); // ACP cannot be a bonus!
+            if (total != 0)
             {
-                // should now have the best option
-                std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
-                Effect abilityBonus(
-                        Effect_AbilityBonus,
-                        bonusName,
-                        "Ability",
+                Effect acp(
+                        Effect_Unknown,         // doesn't matter
+                        "Armor check penalty",
+                        "Penalty",
+                        -total);
+                AddOtherEffect(acp);
+            }
+
+            // add any weapon enchantment
+            BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+            BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIW != NULL)
+            {
+                BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+                if (pBWE != NULL)
+                {
+                    pBWE->AttachObserver(this);  // need to know about changes to this effect
+                    total = pBWE->Total();
+                    if (total != 0)
+                    {
+                        Effect we(
+                                Effect_Unknown,         // doesn't matter
+                                "Weapon Enchantment",
+                                "Weapon Enchantment",
+                                total);
+                        AddOtherEffect(we);
+                    }
+                }
+            }
+
+            // by default all weapons use Strength as their base stat for attack bonus
+            // but other stats may also be allowed for this particular weapon. look through
+            // the list of those available and get the one with the largest value
+            AbilityType ability = LargestStatBonus();
+            if (ability != Ability_Unknown)
+            {
+                BreakdownItem* pBStat = FindBreakdown(StatToBreakdown(ability));
+                ASSERT(pBStat != NULL);
+                int bonus = BaseStatToBonus(pBStat->Total());
+                if (bonus != 0) // only add to list if non zero
+                {
+                    // should now have the best option
+                    std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                    Effect abilityBonus(
+                            Effect_AbilityBonus,
+                            bonusName,
+                            "Ability",
+                            bonus);
+                    AddOtherEffect(abilityBonus);
+                }
+            }
+
+            Build* pBuild = m_pCharacter->ActiveBuild();
+            if (pBuild->IsStanceActive("Two Weapon Fighting"))
+            {
+                int bonus = 0;
+                // they are two weapon fighting, apply attack penalties to this weapon
+                if (pBuild->IsFeatTrained(c_TWF))
+                {
+                    // -4/-4 penalty when TWF with light off hand weapon
+                    bonus = -4;
+                }
+                else
+                {
+                    // -6/-10 penalty when no TWF
+                    bonus = m_bOffhandWeapon ? -10: -6;
+                }
+                // heavy weapon off hand weapon penalty
+                WeaponType wtOffhand = pBuild->OffhandWeapon();
+                if (pBuild->IsWeaponInGroup("Light", wtOffhand)
+                        || m_pCharacter->ActiveBuild()->IsFeatTrained(c_OTWF))
+                {
+                    // 2 less penalty if off hand weapon is light
+                    // or over sized TWF is trained
+                    bonus += 2;
+                }
+                Effect twf(
+                        Effect_Unknown,
+                        "TWF attack penalty",
+                        "Penalty",
                         bonus);
-                AddOtherEffect(abilityBonus);
+                AddOtherEffect(twf);
             }
         }
-
-        Build* pBuild = m_pCharacter->ActiveBuild();
-        if (pBuild->IsStanceActive("Two Weapon Fighting"))
+        else
         {
-            int bonus = 0;
-            // they are two weapon fighting, apply attack penalties to this weapon
-            if (pBuild->IsFeatTrained(c_TWF))
+            // add the base weapon attack bonus
+            BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+            BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIW != NULL)
             {
-                // -4/-4 penalty when TWF with light off hand weapon
-                bonus = -4;
+                BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponAttackBonus);
+                if (pBWE != NULL)
+                {
+                    pBWE->AttachObserver(this);  // need to know about changes to this effect
+                    double total = pBWE->Total();
+                    if (total != 0)
+                    {
+                        Effect we(
+                            Effect_Unknown,         // doesn't matter
+                            "Standard Attack Bonus",
+                            "Base",
+                            total);
+                        AddOtherEffect(we);
+                    }
+                }
             }
-            else
-            {
-                // -6/-10 penalty when no TWF
-                bonus = m_bOffhandWeapon ? -10: -6;
-            }
-            // heavy weapon off hand weapon penalty
-            WeaponType wtOffhand = pBuild->OffhandWeapon();
-            if (pBuild->IsWeaponInGroup("Light", wtOffhand)
-                    || m_pCharacter->ActiveBuild()->IsFeatTrained(c_OTWF))
-            {
-                // 2 less penalty if off hand weapon is light
-                // or over sized TWF is trained
-                bonus += 2;
-            }
-            Effect twf(
-                    Effect_Unknown,
-                    "TWF attack penalty",
-                    "Penalty",
-                    bonus);
-            AddOtherEffect(twf);
         }
     }
 }
@@ -201,33 +228,18 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
         // it is the right weapon target type
         isUs = true;
     }
-    if (effect.IsType(Effect_Weapon_AttackAndDamage))
+    if (!m_bCriticalEffects)
     {
-        isUs = true;
-    }
-    if (effect.IsType(Effect_Weapon_AttackAbility))
-    {
-        // weapon enchantments affect us if specific weapon
-        isUs = true;
-    }
-    if (m_bCriticalEffects)
-    {
-        if (effect.IsType(Effect_Weapon_AttackBonusCritical))
+        if (effect.IsType(Effect_Weapon_AttackAndDamage))
         {
             isUs = true;
         }
-        if (effect.IsType(Effect_WeaponAttackBonusCriticalClass))
+        if (effect.IsType(Effect_Weapon_AttackAbility))
         {
+            // weapon enchantments affect us if specific weapon
             isUs = true;
         }
-        if (effect.IsType(Effect_WeaponAttackBonusCriticalDamageType))
-        {
-            isUs = true;
-        }
-    }
-    else
-    {
-        if (effect.IsType(Effect_Weapon_AttackBonus))
+        if (effect.IsType(Effect_Weapon_Attack))
         {
             isUs = true;
         }
@@ -236,6 +248,25 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
             isUs = true;
         }
         if (effect.IsType(Effect_WeaponAttackBonusDamageType))
+        {
+            isUs = true;
+        }
+    }
+    else
+    {
+        if (effect.IsType(Effect_Weapon_AttackCritical))
+        {
+            isUs = true;
+        }
+        if (effect.IsType(Effect_Weapon_AttackAndDamageCritical))
+        {
+            isUs = true;
+        }
+        if (effect.IsType(Effect_WeaponAttackBonusCriticalClass))
+        {
+            isUs = true;
+        }
+        if (effect.IsType(Effect_WeaponAttackBonusCriticalDamageType))
         {
             isUs = true;
         }
@@ -249,10 +280,21 @@ void BreakdownItemWeaponAttackBonus::LinkUp()
     BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
     if (pBIW != NULL)
     {
-        BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
-        if (pBWE != NULL)
+        if (m_effect == Effect_Weapon_Attack)
         {
-            pBWE->AttachObserver(this);  // need to know about changes to this effect
+            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+            if (pBWE != NULL)
+            {
+                pBWE->AttachObserver(this);  // need to know about changes to this effect
+            }
+        }
+        else
+        {
+            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponAttackBonus);
+            if (pBWE != NULL)
+            {
+                pBWE->AttachObserver(this);  // need to know about changes to this effect
+            }
         }
     }
 }

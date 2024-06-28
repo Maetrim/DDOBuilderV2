@@ -124,8 +124,7 @@
     <DisplayText>%b1 Accuracy %v1: Passive: %v1 %b1 bonus to attack rolls </DisplayText>
     <Ignore>Competence</Ignore>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -1597,8 +1596,7 @@ acid damage by two seconds.</DisplayText>
     <DisplayText>%b1 Attack Bonus %v1: Provides a %v1 %b1 bonus to your attack rolls.</DisplayText>
     <Ignore>Competence</Ignore>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -1671,6 +1669,19 @@ acid damage by two seconds.</DisplayText>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">12</Amount>
+      <Item>Pierce</Item>
+      <Item>Bludgeon</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Axeblock VII</Type>
+    <DisplayText>Axeblock VII: Passive: Reduces physical damage taken by 14, except from Bludgeoning or Piercing weapons. (Damage Reduction: 14/Pierce, Bludgeon)</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">14</Amount>
       <Item>Pierce</Item>
       <Item>Bludgeon</Item>
     </Effect>
@@ -4678,8 +4689,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>%b1 Damage Bonus %v1: Provides a %v1 %b1 bonus to damage.</DisplayText>
     <Ignore>Competence</Ignore>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -4795,8 +4805,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>%b1 Deadly %v1: %v1 %b1 bonus to weapon damage.</DisplayText>
     <Ignore>Competence</Ignore>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -5821,8 +5830,7 @@ Greater: Insightful Fortification +25%</DisplayText>
     <Type>Druidic Survival Mastery</Type>
     <DisplayText>Druidic Survival Mastery: While in Wild Shape, you receive a Primal bonus to damage equal to half the number of Wilderness Lore feats you have.</DisplayText>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Primal</Bonus>
       <Amount size="32">0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16</Amount>
       <AType>FeatCount</AType>
@@ -6630,8 +6638,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       </Requirements>
     </Effect>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Stacking</Bonus>
       <AType>Simple</AType>
       <Amount size="1">5</Amount>
@@ -9525,7 +9532,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Effect>
       <Type>SaveBonus</Type>
       <Type>SkillBonus</Type>
-      <Bonus>Not Set</Bonus>
+      <Bonus>Luck</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>All</Item>
@@ -10113,8 +10120,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Greater Heroism</Type>
     <DisplayText>Greater Heroism: Passive: +4 Morale bonus to all your attack rolls, saving throws, and skill checks.</DisplayText>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SkillBonus</Type>
       <Type>SaveBonus</Type>
       <Bonus>Morale</Bonus>
@@ -10175,8 +10181,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Greater Marksmanship</Type>
     <DisplayText>Greater Marksmanship: This item is enchanted to enhance your skill with ranged weapons. You gain a +3 Competence Bonus to Ranged Attack and a +2 Competence Bonus to Ranged Damage.</DisplayText>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+      <Type>Weapon_Attack</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">3</Amount>
@@ -10190,8 +10195,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Item>Shortbow</Item>
     </Effect>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -10672,8 +10676,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Heroism</Type>
     <DisplayText>Heroism: Passive: +2 Morale bonus to all your attack rolls, saving throws, and skill checks.</DisplayText>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SaveBonus</Type>
       <Type>SkillBonus</Type>
       <Bonus>Morale</Bonus>
@@ -12198,8 +12201,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Improved Heroism</Type>
     <DisplayText>Improved Heroism: Passive: +3 Morale bonus to all your attack rolls, saving throws, and skill checks.</DisplayText>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SkillBonus</Type>
       <Type>SaveBonus</Type>
       <Bonus>Morale</Bonus>
@@ -12842,7 +12844,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Legendary Elemental Energy</Type>
     <DisplayText>Legendary Elemental Energy: Harnessing a small amount of power and potential of the raw elements, this item gives you a +150 bonus to your maximum spell points. This stacks with all bonuses except for Legendary Elemental Energy.</DisplayText>
     <Effect>
-      <Type>Hitpoints</Type>
+      <Type>SpellPoints</Type>
       <Bonus>Legendary Elemental Energy</Bonus>
       <AType>Simple</AType>
       <Amount size="1">150</Amount>
@@ -13260,8 +13262,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Lesser Heroism</Type>
     <DisplayText>Lesser Heroism: Passive: +1 Morale bonus to all your attack rolls, saving throws, and skill checks.</DisplayText>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SkillBonus</Type>
       <Type>SaveBonus</Type>
       <Bonus>Morale</Bonus>
@@ -13952,8 +13953,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Marksmanship</Type>
     <DisplayText>Marksmanship: This item is enchanted to enhance your skill with ranged weapons. When using ranged weapons you gain +2 to your attack rolls and +1 to your damage.</DisplayText>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+      <Type>Weapon_Attack</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -13967,8 +13967,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Item>Shortbow</Item>
     </Effect>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
@@ -14001,8 +14000,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Masterwork: This weapon is more finely crafted than normal, providing a +1 Enhancement bonus on attack rolls.</DisplayText>
     <Effect>
       <DisplayName>Masterwork Weapon</DisplayName>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
@@ -16083,8 +16081,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Item>Strength</Item>
     </Effect>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Size</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -17607,8 +17604,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Sed-zik, The Water-Change: +5 Luck Bonus to Attack/Saves, +10 MRR Cap</DisplayText>
     <Effect>
       <Type>SaveBonus</Type>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Bonus>Luck</Bonus>
       <AType>Simple</AType>
       <Amount size="1">5</Amount>
@@ -17643,8 +17639,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>%b1 Seeker %v1: Provides a %v1 %b1 bonus to confirm critical hits, and a %v1 %b1 bonus to critical hit damage (before multipliers are applied).</DisplayText>
     <Ignore>Competence</Ignore>
     <Effect>
-      <Type>Weapon_AttackBonusCritical</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_AttackAndDamageCritical</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -19856,8 +19851,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <Type>Superior Heroism</Type>
     <DisplayText>Superior Heroism: Passive: +5 Morale bonus to all your attack rolls, saving throws, and skill checks.</DisplayText>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SkillBonus</Type>
       <Type>SaveBonus</Type>
       <Bonus>Morale</Bonus>
@@ -20061,7 +20055,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>TemperanceOfBelief</Type>
-    <DisplayText>Temperance of Belief : You have a +1 Quality bonus to Magical Resistance Rating per Religious Lore feat.</DisplayText>
+    <DisplayText>Temperance of Belief: You have a +1 Quality bonus to Magical Resistance Rating per Religious Lore feat.</DisplayText>
     <Effect>
       <Type>MRR</Type>
       <Bonus>Quality</Bonus>

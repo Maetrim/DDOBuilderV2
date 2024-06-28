@@ -813,8 +813,9 @@ void Life::DisableSelfAndPartyBuff(const std::string& name)
     m_pCharacter->SetModifiedFlag(TRUE);
 }
 
-void Life::UpdateBuildLifePointers()
+void Life::UpdateBuildLifePointers(Character* pCharacter)
 {
+    m_pCharacter = pCharacter;
     for (auto&& it: m_Builds)
     {
         it.SetLifePointer(this);

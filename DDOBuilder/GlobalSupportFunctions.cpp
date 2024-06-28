@@ -1518,55 +1518,6 @@ const Gem& FindSentientGemByName(const std::string& name)
     return badGem;
 }
 
-
-std::list<Augment> CompatibleAugments(const std::string& name, size_t maxLevel)
-{
-    std::list<Augment> compatibleAugments;
-    const std::list<Augment> & augments = Augments();
-    std::list<Augment>::const_iterator it = augments.begin();
-    while (it != augments.end())
-    {
-        bool bAdded = false;
-        if ((*it).IsCompatibleWithSlot(name)
-                || ((*it).Name() == " No Augment"))
-        {
-            // must be the right level or lower
-            if ((*it).HasMinLevel() && (*it).MinLevel() <= maxLevel)
-            {
-                compatibleAugments.push_back((*it));
-                bAdded = true;
-            }
-            if ((*it).HasChooseLevel()
-                && (*it).HasLevelValue()
-                && !bAdded)
-            {
-                // cannith selection item
-                compatibleAugments.push_back((*it));
-                bAdded = true;
-            }
-            // or it must have a selectable level <= max level
-            if ((*it).HasChooseLevel()
-                && (*it).HasLevels()
-                && !bAdded)
-            {
-                std::vector<int> levels = (*it).Levels();
-                bool bInclude = false;
-                for (auto&& lit : levels)
-                {
-                    bInclude |= (lit <= static_cast<int>(maxLevel));
-                }
-                if (bInclude)
-                {
-                    compatibleAugments.push_back((*it));
-                    bAdded = true;
-                }
-            }
-        }
-        ++it;
-    }
-    return compatibleAugments;
-}
-
 const SetBonus& FindSetBonus(const std::string& name)
 {
     static SetBonus badSetBonus;
@@ -2346,3 +2297,61 @@ size_t WeaponBaseCriticalRange(WeaponType wt)
     return baseRange;
 }
 
+
+std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t maxLevel)
+{
+    std::list<Augment> compatibleAugments;
+    if (aug.ItemSpecificAugments().size() > 0)
+    {
+        compatibleAugments = aug.ItemSpecificAugments();
+    }
+    else
+    {
+        std::string name = aug.Type();
+        const std::list<Augment>& augments = Augments();
+        std::list<Augment>::const_iterator it = augments.begin();
+        while (it != augments.end())
+        {
+            bool bAdded = false;
+            if ((*it).IsCompatibleWithSlot(name))
+            {
+                // must be the right level or lower
+                if ((*it).HasMinLevel() && (*it).MinLevel() <= maxLevel)
+                {
+                    compatibleAugments.push_back((*it));
+                    bAdded = true;
+                }
+                if ((*it).HasChooseLevel()
+                    && (*it).HasLevelValue()
+                    && !bAdded)
+                {
+                    // cannith selection item
+                    compatibleAugments.push_back((*it));
+                    bAdded = true;
+                }
+                // or it must have a selectable level <= max level
+                if ((*it).HasChooseLevel()
+                    && (*it).HasLevels()
+                    && !bAdded)
+                {
+                    std::vector<int> levels = (*it).Levels();
+                    bool bInclude = false;
+                    for (auto&& lit : levels)
+                    {
+                        bInclude |= (lit <= static_cast<int>(maxLevel));
+                    }
+                    if (bInclude)
+                    {
+                        compatibleAugments.push_back((*it));
+                        bAdded = true;
+                    }
+                }
+            }
+            ++it;
+        }
+    }
+    // always include a "No Augment option"
+    const Augment& noAugment = FindAugmentByName(" No Augment", NULL);
+    compatibleAugments.push_front(noAugment);
+    return compatibleAugments;
+}

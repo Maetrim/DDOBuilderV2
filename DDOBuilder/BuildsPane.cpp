@@ -601,6 +601,9 @@ void CBuildsPane::OnRButtonDownTreeBuilds(NMHDR* pNMHDR, LRESULT* pResult)
                     case ID_LIFE_EXPORTTONEWFILE:
                         SaveLifeToNewFile(itemData);
                         break;
+                    case ID_LIFE_IMPORTLIVESFROMOTHER:
+                        ImportLivesFromOtherFile();
+                        break;
                     case ID_LIFE_COPYTOCLIPBOARD:
                         CopyLifeToClipboard(itemData);
                         break;
@@ -840,6 +843,52 @@ void CBuildsPane::SaveLifeToNewFile(DWORD itemData)
                 "\n", filename.c_str());
             text += errorMessage.c_str();
             AfxMessageBox(text, MB_ICONERROR);
+        }
+    }
+}
+
+void CBuildsPane::ImportLivesFromOtherFile()
+{
+    CFileDialog filedlg(
+        TRUE,
+        NULL,
+        NULL,
+        OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+        "DDOBuilder Files (*.DDOBuild)|*.DDOBuild||",
+        this);
+    if (filedlg.DoModal() == IDOK)
+    {
+        std::string filename = (LPCTSTR)filedlg.GetPathName();
+        CDDOBuilderDoc cTempDoc;
+        if (TRUE == cTempDoc.LoadIndirect(filename.c_str()))
+        {
+            CString text;
+            text.Format("Loaded document \"%s\".", filename.c_str());
+            GetLog().AddLogEntry(text);
+            const std::list<Life>& lives = cTempDoc.GetCharacter()->Lives();
+            if (lives.size() > 0)
+            {
+                size_t li = 1;
+                for (auto&& lit: lives)
+                {
+                    m_pCharacter->AppendLife(lit);
+                    text.Format("...Imported life %d, with %d builds.", li, lit.Builds().size());
+                    GetLog().AddLogEntry(text);
+                    ++li;
+                }
+                PopulateBuildsList();
+                m_pCharacter->SetModifiedFlag(TRUE);
+            }
+            else
+            {
+                GetLog().AddLogEntry("...No Lives present in file.");
+            }
+        }
+        else
+        {
+            CString text;
+            text.Format("The document \"%s\" failed to load.", filename.c_str());
+            GetLog().AddLogEntry(text);
         }
     }
 }

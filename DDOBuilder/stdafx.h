@@ -88,7 +88,7 @@ const std::string c_noTreeSelection = "No selection";
 extern bool g_bShowIgnoredItems;
 extern bool g_bShowZeroBreakdown;
 const int c_noSelection = -1;
-const int c_noFiligreeSelection = 0;
+const int c_noFiligreeSelection = -2;
 
 enum TreeType
 {

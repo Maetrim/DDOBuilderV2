@@ -135,7 +135,8 @@ CString Buff::MakeDescription() const
 
 void Buff::UpdatedEffects(std::list<Effect>* effects, bool bNegativeValues) const
 {
-    if (HasBonusType())
+    if (HasBonusType()
+            && m_BonusType != "")
     {
         // set the bonus type for all the effects
         for (auto&& eit : *effects)

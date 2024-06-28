@@ -188,20 +188,23 @@ enum EffectType
     // weapon effects for specified weapons in Item(s)
     Effect_Weapon_Alacrity,
     Effect_Weapon_AttackAbility,
-    Effect_Weapon_AttackBonus,
-    Effect_Weapon_AttackBonusCritical,
-    Effect_Weapon_AttackAndDamage,
-    Effect_Weapon_AttackAndDamageCritical,
     Effect_Weapon_BaseDamage,
     Effect_Weapon_CriticalMultiplier,
     Effect_Weapon_CriticalMultiplier19To20,
     Effect_Weapon_CriticalRange,
     Effect_Weapon_DamageAbility,
-    Effect_Weapon_DamageBonus,
-    Effect_Weapon_DamageBonusCritical,
     Effect_Weapon_Enchantment,
     Effect_Weapon_Keen,
     Effect_Weapon_VorpalRange,
+
+    // weapon attack/damage bonuses
+    Effect_Weapon_Attack,
+    Effect_Weapon_AttackAndDamage,
+    Effect_Weapon_Damage,
+
+    Effect_Weapon_AttackCritical,
+    Effect_Weapon_DamageCritical,
+    Effect_Weapon_AttackAndDamageCritical,
 
     Effect_Weapon_OtherDamageBonus,
     Effect_Weapon_OtherDamageBonusCritical,
@@ -407,20 +410,22 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     // weapon effects for specified weapons in Item(s)
     {Effect_Weapon_Alacrity, L"Weapon_Alacrity"},
     {Effect_Weapon_AttackAbility, L"Weapon_AttackAbility"},
-    {Effect_Weapon_AttackBonus, L"Weapon_AttackBonus"},
-    {Effect_Weapon_AttackBonusCritical, L"Weapon_AttackBonusCritical"},
-    {Effect_Weapon_AttackAndDamage, L"Weapon_AttackAndDamage"},
-    {Effect_Weapon_AttackAndDamageCritical, L"Weapon_AttackAndDamageCritical"},
     {Effect_Weapon_BaseDamage, L"Weapon_BaseDamage"},
     {Effect_Weapon_CriticalMultiplier, L"Weapon_CriticalMultiplier"},
     {Effect_Weapon_CriticalMultiplier19To20, L"Weapon_CriticalMultiplier19To20"},
     {Effect_Weapon_CriticalRange, L"Weapon_CriticalRange"},
     {Effect_Weapon_DamageAbility, L"Weapon_DamageAbility"},
-    {Effect_Weapon_DamageBonus, L"Weapon_DamageBonus"},
-    {Effect_Weapon_DamageBonusCritical, L"Weapon_DamageBonusCritical"},
     {Effect_Weapon_Enchantment, L"Weapon_Enchantment"},
     {Effect_Weapon_Keen, L"Weapon_Keen"},
     {Effect_Weapon_VorpalRange, L"Weapon_VorpalRange"},
+
+    {Effect_Weapon_Attack, L"Weapon_Attack" },
+    {Effect_Weapon_AttackAndDamage, L"Weapon_AttackAndDamage"},
+    {Effect_Weapon_Damage, L"Weapon_Damage"},
+
+    {Effect_Weapon_AttackCritical, L"Weapon_AttackCritical"},
+    {Effect_Weapon_DamageCritical, L"Weapon_DamageCritical"},
+    {Effect_Weapon_AttackAndDamageCritical, L"Weapon_AttackAndDamageCritical"},
 
     {Effect_Weapon_OtherDamageBonus, L"WeaponOtherDamageBonus"},
     {Effect_Weapon_OtherDamageBonusCritical, L"WeaponOtherDamageBonusCritical"},
@@ -544,6 +549,7 @@ class Effect :
         void SetApplyAsItemEffect();
         void SetWeapon1();
         void SetWeapon2();
+        void SetStackSource(const std::string& source);
 
         bool operator==(const Effect & other) const;
 

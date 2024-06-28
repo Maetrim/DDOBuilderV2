@@ -181,6 +181,7 @@
 #define HID_LIFE_COPYTOCLIPBOARD                0x18053
 #define HID_LIFE_PASTEFROMCLIPBOARD             0x18054
 #define HID_GEAR_IMPORTFROMCLIPBOARD            0x18055
+#define HID_LIFE_IMPORTLIVESFROMOTHER           0x18056
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064

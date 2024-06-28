@@ -82,6 +82,34 @@ BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
     return ok;
 }
 
+BOOL CDDOBuilderDoc::LoadIndirect(LPCTSTR lpszPathName)
+{
+    m_character.AboutToLoad();
+    CWaitCursor longOperation;
+    // set up a reader with this as the expected root node
+    XmlLib::SaxReader reader(this, f_saxElementName);
+    // read in the xml from a file (fully qualified path)
+    bool ok = reader.Open(lpszPathName);
+    if (ok)
+    {
+        std::stringstream ss;
+        ss << "Document \"" << lpszPathName << "\" loaded.";
+        GetLog().AddLogEntry(ss.str().c_str());
+    }
+    else
+    {
+        std::string errorMessage = reader.ErrorMessage();
+        // document has failed to load. Tell the user what we can about it
+        CString text;
+        text.Format("The document %s\n"
+            "failed to load. The XML parser reported the following problem:\n"
+            "\n", lpszPathName);
+        text += errorMessage.c_str();
+        AfxMessageBox(text, MB_ICONERROR);
+    }
+    return ok;
+}
+
 BOOL CDDOBuilderDoc::OnSaveDocument(LPCTSTR lpszPathName)
 {
     bool ok = false;

@@ -31,19 +31,19 @@
   </Augment>
   <Augment>
     <Name>Silverscale</Name>
-    <Description>+56 Enhancement bonus to each Positive/Negative/Repair Amplification</Description>
+    <Description>+56 bonus to each Positive(Competence)/Negative(Profane)/Repair(Enhancement) Amplification</Description>
     <MinLevel>31</MinLevel>
     <Type>IoD: Armor: Scale Slot</Type>
     <Icon>ScaleSilver</Icon>
     <Effect>
       <Type>HealingAmplification</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">56</Amount>
     </Effect>
     <Effect>
       <Type>NegativeHealingAmplification</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Profane</Bonus>
       <AType>Simple</AType>
       <Amount size="1">56</Amount>
     </Effect>
@@ -129,11 +129,6 @@ Evil damage.</Description>
     <Icon>ScaleLightOrange</Icon>
     <Effect>
       <Type>Doublestrike</Type>
-      <Bonus>Profane</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">3</Amount>
-    </Effect>
-    <Effect>
       <Type>Doubleshot</Type>
       <Bonus>Profane</Bonus>
       <AType>Simple</AType>
@@ -560,8 +555,7 @@ Evil damage.</Description>
     <Type>IoD: Accessory: Fang Slot</Type>
     <Icon>Fang</Icon>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+      <Type>Weapon_Attack</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">21</Amount>
@@ -575,8 +569,7 @@ Evil damage.</Description>
     <Type>IoD: Accessory: Artifact Fang Slot</Type>
     <Icon>Fang</Icon>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+      <Type>Weapon_Attack</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">23</Amount>
@@ -590,8 +583,7 @@ Evil damage.</Description>
     <Type>IoD: Accessory: Fang Slot</Type>
     <Icon>Fang</Icon>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">11</Amount>
@@ -605,8 +597,7 @@ Evil damage.</Description>
     <Type>IoD: Accessory: Artifact Fang Slot</Type>
     <Icon>Fang</Icon>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">12</Amount>
@@ -660,7 +651,7 @@ sneak attack.</Description>
     <Type>IoD: Accessory: Fang Slot</Type>
     <Icon>Fang</Icon>
     <Effect>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_AttackAndDamageCritical</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">14</Amount>
@@ -674,7 +665,7 @@ sneak attack.</Description>
     <Type>IoD: Accessory: Artifact Fang Slot</Type>
     <Icon>Fang</Icon>
     <Effect>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_AttackAndDamageCritical</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">15</Amount>
@@ -1240,7 +1231,7 @@ sneak attack.</Description>
   </Augment>
   <Augment>
     <Name>Horn: +12 Resistance</Name>
-    <Description>+12 resistance bonus to all saves</Description>
+    <Description>+12 Resistance bonus to all saves (Bug game only gives +11)</Description>
     <MinLevel>31</MinLevel>
     <Type>IoD: Accessory: Horn Slot</Type>
     <Type>IoD: Accessory: Artifact Horn Slot</Type>
@@ -1249,7 +1240,7 @@ sneak attack.</Description>
       <Type>SaveBonus</Type>
       <Bonus>Resistance</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">12</Amount>
+      <Amount size="1">11</Amount>
       <Item>All</Item>
     </Effect>
   </Augment>
@@ -1390,7 +1381,7 @@ On Hit: +15d6 Acid Damage</Description>
         <Damage>Acid</Damage>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
     <Effect>
       <Type>DRBypass</Type>
@@ -1398,7 +1389,7 @@ On Hit: +15d6 Acid Damage</Description>
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Crystal</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
     <Effect>
       <Type>DRBypass</Type>
@@ -1406,7 +1397,7 @@ On Hit: +15d6 Acid Damage</Description>
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Byeshk</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <Augment>
@@ -1506,7 +1497,7 @@ On Hit: +15d6 Cold Damage</Description>
         <Damage>Cold</Damage>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
     <Effect>
       <Type>DRBypass</Type>
@@ -1514,7 +1505,7 @@ On Hit: +15d6 Cold Damage</Description>
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Cold Iron</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <Augment>
@@ -1535,7 +1526,7 @@ On Hit: +15d6 Electric Damage</Description>
         <Damage>Electric</Damage>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
     <Effect>
       <Type>DRBypass</Type>
@@ -1543,7 +1534,7 @@ On Hit: +15d6 Electric Damage</Description>
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Silver</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <Augment>
@@ -1564,7 +1555,7 @@ On Hit: +15d6 Fire Damage</Description>
         <Damage>Fire</Damage>
       </Dice>
       <Item>All</Item>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
     <Effect>
       <Type>DRBypass</Type>
@@ -1572,7 +1563,7 @@ On Hit: +15d6 Fire Damage</Description>
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Adamantine</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <!--Weapon Fang Augments-->
@@ -1596,7 +1587,7 @@ Your attacks and spells have a small chance to deal a large amount of Fire damag
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Good</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <Augment>
@@ -1612,7 +1603,7 @@ Attacks and spells have a chance to inflict 10 stacks of Cold damage over time.<
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Chaotic</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <Augment>
@@ -1656,7 +1647,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Evil</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <Augment>
@@ -1678,7 +1669,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
       <AType>NotNeeded</AType>
       <Item>All</Item>
       <Value>Lawful</Value>
-      <IsItemSpecific/>
+      <IsItemSpecific />
     </Effect>
   </Augment>
   <!--Weapon Claw Augments-->
@@ -1690,7 +1681,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Acid</Item>
@@ -1704,7 +1695,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Cold</Item>
@@ -1718,7 +1709,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Electric</Item>
@@ -1732,7 +1723,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Fire</Item>
@@ -1746,7 +1737,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Light/Alignment</Item>
@@ -1760,7 +1751,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Negative</Item>
@@ -1774,7 +1765,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Positive</Item>
@@ -1788,7 +1779,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Repair</Item>
@@ -1802,7 +1793,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Sonic</Item>
@@ -1816,7 +1807,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Icon>Claw</Icon>
     <Effect>
       <Type>SpellPower</Type>
-      <Bonus>Enhancement</Bonus>
+      <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">149</Amount>
       <Item>Force/Untyped</Item>
@@ -1857,7 +1848,7 @@ On quarterstaff also +5 Exceptional bonus to Spell Critical Chance.</Description
     <Type>IoD: Weapon: Claw Slot</Type>
     <Icon>Claw</Icon>
     <Effect>
-3      <Type>AbilityBonus</Type>
+      <Type>AbilityBonus</Type>
       <Bonus>Exceptional</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>

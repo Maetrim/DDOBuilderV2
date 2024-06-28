@@ -698,6 +698,18 @@ void CInfoTip::SetItem(
             text += entry;
         }
 
+        if (pItem->HasShieldBonus())
+        {
+            entry.Format("\r\nShield Bonus: %d", pItem->ShieldBonus());
+            text += entry;
+        }
+
+        if (pItem->HasDamageReduction())
+        {
+            entry.Format("\r\nDamage Reduction(DR): %d", pItem->DamageReduction());
+            text += entry;
+        }
+
         InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
         pDescription->SetText(text);
         m_tipItems.push_back(pDescription);

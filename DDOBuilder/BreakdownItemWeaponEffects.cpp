@@ -29,8 +29,8 @@ BreakdownItemWeaponEffects::BreakdownItemWeaponEffects(
 
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Alacrity, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackAbility, this);
-    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackBonus, this);
-    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackBonusCritical, this);
+    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Attack, this);
+    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackCritical, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackAndDamage, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackAndDamageCritical, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_BaseDamage, this);
@@ -38,8 +38,8 @@ BreakdownItemWeaponEffects::BreakdownItemWeaponEffects(
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_CriticalMultiplier19To20, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_CriticalRange, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_DamageAbility, this);
-    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_DamageBonus, this);
-    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_DamageBonusCritical, this);
+    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Damage, this);
+    m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_DamageCritical, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Enchantment, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Keen, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_VorpalRange, this);
@@ -270,17 +270,11 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         {
         case Effect_Weapon_Alacrity:
         case Effect_Weapon_AttackAbility:
-        case Effect_Weapon_AttackBonus:
-        case Effect_Weapon_AttackBonusCritical:
-        case Effect_Weapon_AttackAndDamage:
-        case Effect_Weapon_AttackAndDamageCritical:
         case Effect_Weapon_BaseDamage:
         case Effect_Weapon_CriticalMultiplier:
         case Effect_Weapon_CriticalMultiplier19To20:
         case Effect_Weapon_CriticalRange:
         case Effect_Weapon_DamageAbility:
-        case Effect_Weapon_DamageBonus:
-        case Effect_Weapon_DamageBonusCritical:
         case Effect_Weapon_Enchantment:
         case Effect_Weapon_Keen:
         case Effect_Weapon_VorpalRange:
@@ -289,6 +283,14 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         case Effect_WeaponDamageBonusCriticalStat:
         case Effect_WeaponDamageBonusStat:
         case Effect_DRBypass:
+
+        case Effect_Weapon_Attack:
+        case Effect_Weapon_AttackAndDamage:
+        case Effect_Weapon_Damage:
+
+        case Effect_Weapon_AttackCritical:
+        case Effect_Weapon_AttackAndDamageCritical:
+        case Effect_Weapon_DamageCritical:
             // look for the individual weapon type
             for (auto&& iit : effect.Item())
             {

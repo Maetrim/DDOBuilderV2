@@ -548,21 +548,23 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 }
                 break;*/
             case Effect_Weapon_Alacrity:
-            case Effect_Weapon_AttackBonus:
-            case Effect_Weapon_AttackBonusCritical:
-            case Effect_Weapon_AttackAndDamage:
-            case Effect_Weapon_AttackAndDamageCritical:
             case Effect_Weapon_BaseDamage:
             case Effect_Weapon_CriticalMultiplier:
             case Effect_Weapon_CriticalMultiplier19To20:
             case Effect_Weapon_CriticalRange:
-            case Effect_Weapon_DamageBonus:
-            case Effect_Weapon_DamageBonusCritical:
             case Effect_Weapon_Enchantment:
             case Effect_Weapon_Keen:
             case Effect_Weapon_VorpalRange:
             case Effect_Weapon_OtherDamageBonus:
             case Effect_Weapon_OtherDamageBonusCritical:
+
+            case Effect_Weapon_Attack:
+            case Effect_Weapon_AttackAndDamage:
+            case Effect_Weapon_Damage:
+
+            case Effect_Weapon_AttackCritical:
+            case Effect_Weapon_AttackAndDamageCritical:
+            case Effect_Weapon_DamageCritical:
                 if (m_Item.size() == 0)
                 {
                     (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect missing weapon value\n";
@@ -704,7 +706,8 @@ bool Effect::CheckAType(
         }
         else
         {
-            if (TextToEnumEntry(StackSource(), abilityTypeMap, false) == Ability_Unknown)
+            if (TextToEnumEntry(StackSource(), abilityTypeMap, false) == Ability_Unknown
+                    && TextToEnumEntry(StackSource(), abilitySnapshotTypeMap, false) == Ability_Unknown)
             {
                 (*ss) << "Ability effect has bad enum value\n";
                 ok = false;
@@ -1027,34 +1030,66 @@ double Effect::TotalAmount(bool allowTruncate) const
         case Amount_AbilityValue:
             // stack source is the ability value
             {
-                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap);
-                total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
+                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap, false);
+                AbilityType snapshotAbility = TextToEnumEntry(StackSource(), abilitySnapshotTypeMap, false);
+                if (ability != Ability_Unknown)
+                {
+                    total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
+                }
+                else
+                {
+                    total = m_pBuild->SnapshotAbilityValue(snapshotAbility);
+                }
                 break;
             }
         case Amount_AbilityMod:
             // stack source is the ability mod value
             {
-                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap);
-                BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
-                total = pBreakdown->Total();
+                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap, false);
+                AbilityType snapshotAbility = TextToEnumEntry(StackSource(), abilitySnapshotTypeMap, false);
+                if (ability != Ability_Unknown)
+                {
+                    BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
+                    total = pBreakdown->Total();
+                }
+                else
+                {
+                    total = m_pBuild->SnapshotAbilityValue(snapshotAbility);
+                }
                 total = BaseStatToBonus(total);
                 break;
             }
         case Amount_HalfAbilityMod:
             // stack source is half the ability mod value
             {
-                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap);
-                BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
-                total = pBreakdown->Total();
+                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap, false);
+                AbilityType snapshotAbility = TextToEnumEntry(StackSource(), abilitySnapshotTypeMap, false);
+                if (ability != Ability_Unknown)
+                {
+                    BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
+                    total = pBreakdown->Total();
+                }
+                else
+                {
+                    total = m_pBuild->SnapshotAbilityValue(snapshotAbility);
+                }
                 total = (int)(BaseStatToBonus(total) / 2.0);
                 break;
             }
         case Amount_ThirdAbilityMod:
             // stack source is third the ability mod value
             {
-                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap);
-                BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
-                total = pBreakdown->Total();
+                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap, false);
+                AbilityType snapshotAbility = TextToEnumEntry(StackSource(), abilitySnapshotTypeMap, false);
+                if (ability != Ability_Unknown)
+                {
+                    BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(ability));
+                    total = pBreakdown->Total();
+                }
+                else
+                {
+                    total = m_pBuild->SnapshotAbilityValue(snapshotAbility);
+                }
                 total = (int)(BaseStatToBonus(total) / 3.0);
                 break;
             }
@@ -1120,7 +1155,9 @@ bool Effect::UpdateAbilityEffects(AbilityType at)
             || m_AType == Amount_ThirdAbilityMod)
     {
         AbilityType eat = TextToEnumEntry(StackSource(), abilityTypeMap, false);
-        if (eat == at)
+        AbilityType eats = TextToEnumEntry(StackSource(), abilitySnapshotTypeMap, false);
+        if (eat == at
+            || eats == at)
         {
             //BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(at));
             //if (pBreakdown != NULL)
@@ -1267,4 +1304,9 @@ void Effect::SetWeapon1()
 void Effect::SetWeapon2()
 {
     Set_Weapon2();
+}
+
+void Effect::SetStackSource(const std::string& source)
+{
+    Set_StackSource(source);
 }

@@ -86,7 +86,13 @@ class EquippedGear :
                 DL_OPTIONAL_STRING(_, Personality) \
                 DL_SIMPLE(_, size_t, NumFiligrees, 0) \
                 DL_OBJECT_LIST(_, WeaponFiligree, Filigrees) \
-                DL_OBJECT_LIST(_, ArtifactFiligree, ArtifactFiligrees)
+                DL_OBJECT_LIST(_, ArtifactFiligree, ArtifactFiligrees) \
+                DL_OPTIONAL_SIMPLE(_, int, SnapshotStrength, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, SnapshotIntelligence, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, SnapshotWisdom, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, SnapshotDexterity, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, SnapshotConstitution, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, SnapshotCharisma, 0)
 
         DL_DECLARE_ACCESS(EquippedGear_PROPERTIES)
         DL_DECLARE_VARIABLES(EquippedGear_PROPERTIES)
@@ -99,4 +105,5 @@ class EquippedGear :
         void UpdateItem(InventorySlotType slot, const Item& item);
 
         friend class CEquipmentPane;
+        friend class Build;
 };

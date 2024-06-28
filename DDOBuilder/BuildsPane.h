@@ -62,6 +62,7 @@ private:
     void SelectTreeItem(DWORD itemData);
     void CopyLifeToClipboard(DWORD itemData);
     void SaveLifeToNewFile(DWORD itemData);
+    void ImportLivesFromOtherFile();
 
     CButton m_buttonNewLife;
     CButton m_buttonDeleteLife;

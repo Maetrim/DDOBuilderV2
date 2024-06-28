@@ -46,70 +46,96 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-
-        // by default all weapons use Strength as their base stat for bonus damage
-        // but other stats may also be allowed for this particular weapon. look through
-        // the list of those available and get the one with the largest value
-        AbilityType ability = LargestStatBonus();
-        if (ability != Ability_Unknown)
+        if (!m_bCriticalEffects)
         {
-            double multiplier = 1.0;        // assume
-            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
-            ASSERT(pBI != NULL);
-            int bonus = BaseStatToBonus(pBI->Total());
-            if (m_bOffhandWeapon)
+            // by default all weapons use Strength as their base stat for bonus damage
+            // but other stats may also be allowed for this particular weapon. look through
+            // the list of those available and get the one with the largest value
+            AbilityType ability = LargestStatBonus();
+            if (ability != Ability_Unknown)
             {
-                pBI = FindBreakdown(Breakdown_DamageAbilityMultiplierOffhand);
-                multiplier = pBI->Total();
-            }
-            else
-            {
-                pBI = FindBreakdown(Breakdown_DamageAbilityMultiplier);
-                multiplier = pBI->Total();
-            }
-            if (bonus != 0) // only add to list if non zero
-            {
-                // should now have the best option
-                std::string bonusName;
-                if (multiplier != 1.0)
+                double multiplier = 1.0;        // assume
+                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
+                ASSERT(pBI != NULL);
+                int bonus = BaseStatToBonus(pBI->Total());
+                if (m_bOffhandWeapon)
                 {
-                    CString text;
-                    text.Format(
-                            "%d%% of Ability bonus (%s)",
-                            (int)(multiplier * 100),
-                            (LPCTSTR)EnumEntryText(ability, abilityTypeMap));
-                    bonusName = text;
-                    bonus = (int)(bonus * multiplier);
+                    pBI = FindBreakdown(Breakdown_DamageAbilityMultiplierOffhand);
+                    multiplier = pBI->Total();
                 }
                 else
                 {
-                    bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                    pBI = FindBreakdown(Breakdown_DamageAbilityMultiplier);
+                    multiplier = pBI->Total();
                 }
-                Effect abilityBonus(
-                        Effect_AbilityBonus,
-                        bonusName,
-                        "Ability",
-                        bonus);
-                AddOtherEffect(abilityBonus);
+                if (bonus != 0) // only add to list if non zero
+                {
+                    // should now have the best option
+                    std::string bonusName;
+                    if (multiplier != 1.0)
+                    {
+                        CString text;
+                        text.Format(
+                                "%d%% of Ability bonus (%s)",
+                                (int)(multiplier * 100),
+                                (LPCTSTR)EnumEntryText(ability, abilityTypeMap));
+                        bonusName = text;
+                        bonus = (int)(bonus * multiplier);
+                    }
+                    else
+                    {
+                        bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                    }
+                    Effect abilityBonus(
+                            Effect_AbilityBonus,
+                            bonusName,
+                            "Ability",
+                            bonus);
+                    AddOtherEffect(abilityBonus);
+                }
+            }
+            // add any weapon enchantment
+            BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+            BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIW != NULL)
+            {
+                BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+                if (pBWE != NULL)
+                {
+                    double total = pBWE->Total();
+                    if (total != 0)
+                    {
+                        Effect we(
+                            Effect_Unknown,         // doesn't matter
+                            "Weapon Enchantment",
+                            "Weapon Enchantment",
+                            total);
+                        AddOtherEffect(we);
+                    }
+                }
             }
         }
-        // add any weapon enchantment
-        BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
-        BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
-        if (pBIW != NULL)
+        else
         {
-            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
-            if (pBWE != NULL)
+            // add the base weapon damage bonus
+            BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+            BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIW != NULL)
             {
-                double total = pBWE->Total();
-                if (total != 0)
+                BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponDamageBonus);
+                if (pBWE != NULL)
                 {
-                    Effect we(
-                        Effect_Unknown,         // doesn't matter
-                        "Weapon Enchantment",
-                        "Weapon Enchantment",
-                        total);
-                    AddOtherEffect(we);
+                    pBWE->AttachObserver(this);  // need to know about changes to this effect
+                    double total = pBWE->Total();
+                    if (total != 0)
+                    {
+                        Effect we(
+                            Effect_Unknown,         // doesn't matter
+                            "Standard Damage Bonus",
+                            "Base",
+                            total);
+                        AddOtherEffect(we);
+                    }
                 }
             }
         }
@@ -125,33 +151,18 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
         // it is the right weapon target type
         isUs = true;
     }
-    if (effect.IsType(Effect_Weapon_AttackAndDamage))
+    if (!m_bCriticalEffects)
     {
-        isUs = true;
-    }
-    if (effect.IsType(Effect_Weapon_DamageAbility))
-    {
-        // weapon enchantments affect us if specific weapon
-        isUs = true;
-    }
-    if (m_bCriticalEffects)
-    {
-        if (effect.IsType(Effect_Weapon_DamageBonusCritical))
+        if (effect.IsType(Effect_Weapon_AttackAndDamage))
         {
             isUs = true;
         }
-        if (effect.IsType(Effect_WeaponDamageBonusCriticalClass))
+        if (effect.IsType(Effect_Weapon_DamageAbility))
         {
+            // weapon enchantments affect us if specific weapon
             isUs = true;
         }
-        if (effect.IsType(Effect_WeaponDamageBonusCriticalDamageType))
-        {
-            isUs = true;
-        }
-    }
-    else
-    {
-        if (effect.IsType(Effect_Weapon_DamageBonus))
+        if (effect.IsType(Effect_Weapon_Damage))
         {
             isUs = true;
         }
@@ -160,6 +171,25 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
             isUs = true;
         }
         if (effect.IsType(Effect_WeaponDamageBonusDamageType))
+        {
+            isUs = true;
+        }
+    }
+    else
+    {
+        if (effect.IsType(Effect_Weapon_DamageCritical))
+        {
+            isUs = true;
+        }
+        if (effect.IsType(Effect_Weapon_AttackAndDamageCritical))
+        {
+            isUs = true;
+        }
+        if (effect.IsType(Effect_WeaponDamageBonusCriticalClass))
+        {
+            isUs = true;
+        }
+        if (effect.IsType(Effect_WeaponDamageBonusCriticalDamageType))
         {
             isUs = true;
         }
@@ -173,10 +203,21 @@ void BreakdownItemWeaponDamageBonus::LinkUp()
     BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
     if (pBIW != NULL)
     {
-        BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
-        if (pBWE != NULL)
+        if (m_effect == Effect_Weapon_Damage)
         {
-            pBWE->AttachObserver(this);  // need to know about changes to this effect
+            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponEnchantment);
+            if (pBWE != NULL)
+            {
+                pBWE->AttachObserver(this);  // need to know about changes to this effect
+            }
+        }
+        else
+        {
+            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(!m_bOffhandWeapon, Breakdown_WeaponDamageBonus);
+            if (pBWE != NULL)
+            {
+                pBWE->AttachObserver(this);  // need to know about changes to this effect
+            }
         }
     }
 }

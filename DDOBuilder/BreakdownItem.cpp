@@ -684,11 +684,15 @@ void BreakdownItem::RemoveNonStacking(
                 {
                     if ((*sit).Bonus() == (*tit).Bonus())
                     {
-                        if ((*sit).HasPercent() == (*tit).HasPercent())
+                        // its the same bonus type, so it may be affected by stacking rules
+                        // look up the bonus type
+                        if (((*sit).HasValue() == (*tit).HasValue())
+                                || ((*sit).HasValue() && ((*sit).Value() == (*tit).Value())))
                         {
-                            // its the same bonus type, so it may be affected by stacking rules
-                            // look up the bonus type
-                            removeIt |= ((*sit).TotalAmount(false) <= (*tit).TotalAmount(false));
+                            if ((*sit).HasPercent() == (*tit).HasPercent())
+                            {
+                                removeIt |= (fabs((*sit).TotalAmount(false)) <= fabs((*tit).TotalAmount(false)));
+                            }
                         }
                     }
                 }
@@ -698,7 +702,7 @@ void BreakdownItem::RemoveNonStacking(
         if (removeIt)
         {
             // add the item to be removed into the non stacking list if not zero
-            if ((*sit).TotalAmount(false) > 0)
+            if (fabs((*sit).TotalAmount(false)) > 0)
             {
                 nonStackingEffects->push_back((*sit));
                 m_bHasNonStackingEffects = true;

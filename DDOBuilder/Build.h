@@ -28,6 +28,7 @@
 #include "SpellListAddition.h"
 #include "Spell.h"
 #include <map>
+#include "BreakdownItem.h"
 
 class Augment;
 class Build;
@@ -83,7 +84,8 @@ class BuildObserver :
 
 class Build :
     public XmlLib::SaxContentElement,
-    public Subject<BuildObserver>
+    public Subject<BuildObserver>,
+    public BreakdownObserver
 {
     public:
         Build(Life* pParentLife);
@@ -249,8 +251,8 @@ class Build :
         void RevokeSpell(const std::string& ct, size_t level, const std::string& spellName, bool bSuppressLog);
         bool IsSpellTrained(const std::string& spellName) const;
         void ApplySpellEffects();
-        void ApplySpellEffects(const std::string& spellName);
-        void RevokeSpellEffects(const std::string& spellName);
+        void ApplySpellEffects(const std::string& ct, const std::string& spellName);
+        void RevokeSpellEffects(const std::string& ct, const std::string& spellName);
         Spell AdditionalClassSpell(const std::string& className, const std::string& spellName) const;
         void AppendSpellListAdditions(std::list<Spell>& spells, const std::string& ct, int spellLevel);
 
@@ -305,6 +307,8 @@ class Build :
         void SetGear(const std::string& name, InventorySlotType slot, const Item & item);
         void ClearGearInSlot(const std::string& name, InventorySlotType slot);
         void SetNumFiligrees(size_t count);
+        void SetGearSetSnapshot(const std::string& setName);
+        int SnapshotAbilityValue(AbilityType at) const;
 
         const std::list<StackTracking>& ActiveSets() const;
 
@@ -360,6 +364,7 @@ class Build :
                 DL_OBJECT_LIST(_, DestinySpendInTree, DestinyTreeSpend) \
                 DL_STRING(_, ActiveGear) \
                 DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
+                DL_OPTIONAL_STRING(_, GearSetSnapshot) \
                 DL_OBJECT(_, FeatsListObject, FavorFeats) \
                 DL_OBJECT_LIST(_, CompletedQuest, CompletedQuests) \
                 DL_STRING(_, Notes)
@@ -439,6 +444,9 @@ class Build :
         bool IsSpellInSpellListAdditionList(const std::string& ct, size_t spellLevel, const std::string& spellName) const;
         void UpdateCachedClassLevels();
 
+        // BreakdownObserver
+        virtual void UpdateTotalChanged(BreakdownItem* pBI, BreakdownType bt) override;
+
         Life * m_pLife;
         int m_racialTreeSpend;
         int m_universalTreeSpend;
@@ -450,6 +458,7 @@ class Build :
         std::list<WeaponGroup> m_weaponGroups;
         std::vector<SpellListAddition> m_additionalSpells;
         std::map<std::string, int> m_cachedClassLevels[MAX_GAME_LEVEL]; // each entry has a max of 5 entries, "class name" and count
+        bool m_bSwitchingBuildsOrGear;
 
         friend class CStancesPane;
         friend class CStanceButton;

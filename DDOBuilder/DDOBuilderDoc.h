@@ -15,6 +15,8 @@ public:
     virtual void Serialize(CArchive& ar) override;
     virtual ~CDDOBuilderDoc();
 
+    BOOL LoadIndirect(LPCTSTR lpszPathName);
+
     Character* GetCharacter() { return &m_character;}
 
 protected: // create from serialization only

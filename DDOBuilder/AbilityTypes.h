@@ -46,3 +46,16 @@ const XmlLib::enumMapEntry<AbilityType> abilityShortTypeMap[] =
     {Ability_All, L"All"},
     {AbilityType(0), NULL}
 };
+
+const XmlLib::enumMapEntry<AbilityType> abilitySnapshotTypeMap[] =
+{
+    {Ability_Unknown, L"Unknown"},
+    {Ability_Charisma, L"SnapshotCharisma"},
+    {Ability_Constitution, L"SnapshotConstitution"},
+    {Ability_Dexterity, L"SnapshotDexterity"},
+    {Ability_Intelligence, L"SnapshotIntelligence"},
+    {Ability_Strength, L"SnapshotStrength"},
+    {Ability_Wisdom, L"SnapshotWisdom"},
+    {Ability_All, L"All"},
+    {AbilityType(0), NULL}
+};

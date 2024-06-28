@@ -995,6 +995,18 @@ void WikiItemFileProcessor::AddArmorFields(const std::map<std::string, std::stri
         size_t asf = atoi(field.c_str());
         m_item.Set_ArcaneSpellFailure(asf);
     }
+    if (itemFields.find("Shield Bonus") != itemFields.end())
+    {
+        std::string field = itemFields.at("Shield Bonus");
+        size_t sb = atoi(field.c_str());
+        m_item.Set_ShieldBonus(sb);
+    }
+    if (itemFields.find("Damage Reduction") != itemFields.end())
+    {
+        std::string field = itemFields.at("Damage Reduction");
+        size_t dr = atoi(field.c_str());
+        m_item.Set_DamageReduction(dr);
+    }
 }
 
 void WikiItemFileProcessor::AddAttackMods(const std::map<std::string, std::string>& itemFields)

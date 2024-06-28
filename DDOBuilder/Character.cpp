@@ -160,7 +160,7 @@ void Character::DeleteLife(size_t lifeIndex)
 size_t Character::AppendLife(const Life& life)
 {
     m_Lives.push_back(life);
-    m_Lives.back().UpdateBuildLifePointers();
+    m_Lives.back().UpdateBuildLifePointers(this);
     m_pDocument->SetModifiedFlag(TRUE);
     return m_Lives.size() - 1;    // 0 based
 }

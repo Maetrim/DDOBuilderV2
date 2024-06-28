@@ -139,6 +139,7 @@ void CSelfAndPartyBuffsPane::UpdateActiveBuildChanged(Character* pChar)
     Build* pBuild = pChar->ActiveBuild();
     if (pBuild != NULL)
     {
+        CheckSelectedItems();
     }
 }
 

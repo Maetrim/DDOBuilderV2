@@ -224,11 +224,24 @@ and may only trigger once every 60 seconds.</Description>
                </Requirement>
             </Requirements>
          </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Primal</Bonus>
+        <AType>FeatCount</AType>
+        <Amount size="42">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41</Amount>
+        <StackSource>Wilderness Lore</StackSource>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Invisibility</Item>
+               </Requirement>
+            </Requirements>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Dark Hunter: Death Stalker</Name>
          <InternalName>DHCore5</InternalName>
-         <Description>+25% Sneak Speed. While you are sneaking, you gain a 5% enhancement damage bonus
+         <Description>+25% Sneak Speed. While you are sneaking, you gain a 5% Enhancement damage bonus
 to your melee, ranged and unarmed attacks. This lingers for 10 seconds after you
 leave Stealth.</Description>
          <Icon>DHDeathStalker</Icon>
@@ -274,12 +287,13 @@ leave Stealth.</Description>
             </Requirements>
          </Effect>
          <Effect>
-            <Type>Weapon_DamageBonus</Type>
-            <Type>Weapon_DamageBonusCritical</Type>
+            <Type>Weapon_Damage</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">5</Amount>
             <Item>All</Item>
+            <Percent/>
+            <ApplyAsItemEffect/>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -451,8 +465,7 @@ Passive: +[5/10/15] Hit Points</Description>
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackBonus</Type>
-            <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
@@ -525,8 +538,7 @@ This damage scales with the higher of Melee or Ranged Power.</Description>
             <Item>Spot</Item>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackBonus</Type>
-            <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
@@ -612,8 +624,7 @@ This damage scales with the higher of Melee or Ranged Power.</Description>
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackBonus</Type>
-            <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
@@ -771,8 +782,7 @@ Cooldown: 12 seconds.</Description>
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackBonus</Type>
-            <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
@@ -955,8 +965,7 @@ Duration: [20/30/40] seconds.</Description>
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackBonus</Type>
-            <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>

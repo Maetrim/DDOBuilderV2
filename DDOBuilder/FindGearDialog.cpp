@@ -331,15 +331,7 @@ void CFindGearDialog::PopulateAugmentList(
     combo->LockWindowUpdate();
     combo->ResetContent();
     // get all the augments compatible with this slot type
-    std::list<Augment> augments;
-    if (augment.ItemSpecificAugments().size() > 0)
-    {
-        augments = augment.ItemSpecificAugments();
-    }
-    else
-    {
-        augments = CompatibleAugments(augment.Type(), m_pBuild->Level());
-    }
+    std::list<Augment> augments = CompatibleAugments(augment, m_pBuild->Level());
     std::list<Augment>::const_iterator it = augments.begin();
     std::string selectedAugment = augment.HasSelectedAugment()
         ? augment.SelectedAugment()

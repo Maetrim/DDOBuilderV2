@@ -436,15 +436,7 @@ void CItemSelectDialog::PopulateAugmentList(
     combo->LockWindowUpdate();
     combo->ResetContent();
     // get all the augments compatible with this slot type
-    std::list<Augment> augments;
-    if (augment.ItemSpecificAugments().size() > 0)
-    {
-        augments = augment.ItemSpecificAugments();
-    }
-    else
-    {
-        augments = CompatibleAugments(augment.Type(), m_pBuild->Level());
-    }
+    std::list<Augment> augments = CompatibleAugments(augment, m_pBuild->Level());
     std::list<Augment>::const_iterator it = augments.begin();
     std::string selectedAugment = augment.HasSelectedAugment()
             ? augment.SelectedAugment()
@@ -1123,8 +1115,15 @@ void CItemSelectDialog::SetupFilterCombobox()
     }
     else if (m_slot == Inventory_Weapon1)
     {
-        m_comboFilter.AddString("All");
-        m_comboFilter.SetItemData(0, 0);
+        if (m_levelRange > 10)
+        {
+            // default to no item type selected when >10 levels are being displayed for
+            m_comboFilter.AddString("Select an item type...");
+            m_comboFilter.SetItemData(0, Weapon_None);
+            m_weaponType = Weapon_None;
+        }
+        int index = m_comboFilter.AddString("All");
+        m_comboFilter.SetItemData(index, Weapon_All);
         // any weapon
         for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
         {
@@ -1133,7 +1132,7 @@ void CItemSelectDialog::SetupFilterCombobox()
                     || m_pBuild->IsWeaponInGroup("Thrown", (WeaponType)i))
             {
                 // we can add this one
-                int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
+                index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
                 m_comboFilter.SetItemData(index, i);
                 if ((WeaponType)i == m_weaponType)
                 {
@@ -1154,8 +1153,15 @@ void CItemSelectDialog::SetupFilterCombobox()
         }
         else
         {
-            m_comboFilter.AddString("All");
-            m_comboFilter.SetItemData(0, 0);
+            if (m_levelRange > 10)
+            {
+                // default to no item type selected when >10 levels are being displayed for
+                m_comboFilter.AddString("Select an item type...");
+                m_comboFilter.SetItemData(0, Weapon_None);
+                m_weaponType = Weapon_None;
+            }
+            int index = m_comboFilter.AddString("All");
+            m_comboFilter.SetItemData(index, Weapon_All);
             // any single handed weapon, orb, shield or rune-arm
             // any one handed weapon
             for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
@@ -1167,7 +1173,7 @@ void CItemSelectDialog::SetupFilterCombobox()
                         || (i == Weapon_RuneArm && m_pBuild->IsGrantedFeat("Artificer Rune Arm Use"))))
                 {
                     // we can add this one
-                    int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
+                    index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
                     m_comboFilter.SetItemData(index, i);
                     if ((WeaponType)i == m_weaponType)
                     {

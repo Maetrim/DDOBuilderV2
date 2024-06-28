@@ -13,6 +13,7 @@ enum WeaponType
 {
     Weapon_Unknown = 0,
     Weapon_All,
+    Weapon_None,            // only used in item select dialog
     Weapon_StartOfList,
 
     Weapon_BastardSword = Weapon_StartOfList,

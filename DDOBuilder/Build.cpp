@@ -63,7 +63,8 @@ Build::Build(Life * pParentLife) :
     m_universalTreeSpend(0),
     m_classTreeSpend(0),
     m_destinyTreeSpend(0),
-    m_previousGuildLevel(0)
+    m_previousGuildLevel(0),
+    m_bSwitchingBuildsOrGear(false)
 {
     DL_INIT(Build_PROPERTIES)
     // make sure we have Level() default LevelTraining objects in the list
@@ -198,6 +199,7 @@ std::string Build::ComplexUIDescription() const
 
 void Build::BuildNowActive()
 {
+    m_bSwitchingBuildsOrGear = true; // stop snapshots being corrupted
     // ensure all gear sets have images setup
     for (auto&& git : m_GearSetups)
     {
@@ -205,6 +207,16 @@ void Build::BuildNowActive()
     }
     SetupDefaultWeaponGroups();
     VerifySpecialFeats();
+
+    // make sure we are observing the ability breakdowns for snapshot values to be updated
+    for (size_t i = Breakdown_Strength; i <= Breakdown_Charisma; ++i)
+    {
+        BreakdownItem* pBI = FindBreakdown(static_cast<BreakdownType>(i));
+        if (pBI != NULL)
+        {
+            pBI->AttachObserver(this);
+        }
+    }
     // make sure we are correctly tracking how many APs have been spent
     // in each tree type
     m_racialTreeSpend = 0;
@@ -300,6 +312,13 @@ void Build::BuildNowActive()
     //UpdateGreensteelStances();
     //NotifyAllSelfAndPartyBuffs();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
+    m_bSwitchingBuildsOrGear = false;
+    UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
+    UpdateTotalChanged(NULL, Breakdown_Intelligence);
+    UpdateTotalChanged(NULL, Breakdown_Wisdom);
+    UpdateTotalChanged(NULL, Breakdown_Dexterity);
+    UpdateTotalChanged(NULL, Breakdown_Constitution);
+    UpdateTotalChanged(NULL, Breakdown_Charisma);
 }
 
 void Build::SetLevel(size_t level)
@@ -1908,7 +1927,7 @@ void Build::TrainSpell(
     std::stringstream ss;
     ss << "Trained class \"" << ct << "\" spell \"" << spellName << "\" at spell level " << level;
     GetLog().AddLogEntry(ss.str().c_str());
-    ApplySpellEffects(spellName);
+    ApplySpellEffects(ct, spellName);
 }
 
 void Build::RevokeSpell(
@@ -1944,7 +1963,7 @@ void Build::RevokeSpell(
         ss << "Revoked class \"" << ct << "\" spell \"" << spellName << "\" at spell level " << level;
         GetLog().AddLogEntry(ss.str().c_str());
     }
-    RevokeSpellEffects(spellName);
+    RevokeSpellEffects(ct, spellName);
 }
 
 bool Build::IsSpellTrained(
@@ -1972,28 +1991,36 @@ void Build::ApplySpellEffects()
     // apply any effects from any trained spells (always assumed to be active)
     for (auto&& tsit: m_TrainedSpells)
     {
-        ApplySpellEffects(tsit.SpellName());
+        ApplySpellEffects(tsit.Class(), tsit.SpellName());
     }
 }
 
-void Build::ApplySpellEffects(const std::string& spellName)
+void Build::ApplySpellEffects(const std::string& ct, const std::string& spellName)
 {
     const Spell& spell = FindSpellByName(spellName);
     for (auto&& seit: spell.Effects())
     {
         Effect copy = seit;
+        if (copy.AType() == Amount_ClassLevel)
+        {
+            copy.SetStackSource(ct);
+        }
         copy.SetDisplayName(std::string("Spell: ") + spellName);
         copy.SetApplyAsItemEffect();
         NotifyEnhancementEffectApplied(copy);
     }
 }
 
-void Build::RevokeSpellEffects(const std::string& spellName)
+void Build::RevokeSpellEffects(const std::string& ct, const std::string& spellName)
 {
     const Spell& spell = FindSpellByName(spellName);
     for (auto&& seit : spell.Effects())
     {
         Effect copy = seit;
+        if (copy.AType() == Amount_ClassLevel)
+        {
+            copy.SetStackSource(ct);
+        }
         copy.SetDisplayName(std::string("Spell: ") + spellName);
         copy.SetApplyAsItemEffect();
         NotifyEnhancementEffectRevoked(copy);
@@ -3674,16 +3701,25 @@ void Build::Reaper_ResetEnhancementTree(std::string treeName)
 // gear support
 void Build::AddGearSet(const EquippedGear & gear)
 {
+    m_bSwitchingBuildsOrGear = true;
     // add the new gear set to the end of the list
     m_GearSetups.push_back(gear);
     SetModifiedFlag(TRUE);
     std::stringstream ss;
     ss << "Gear set \"" << gear.Name() << "\" created.";
     GetLog().AddLogEntry(ss.str().c_str());
+    m_bSwitchingBuildsOrGear = false;
+    UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
+    UpdateTotalChanged(NULL, Breakdown_Intelligence);
+    UpdateTotalChanged(NULL, Breakdown_Wisdom);
+    UpdateTotalChanged(NULL, Breakdown_Dexterity);
+    UpdateTotalChanged(NULL, Breakdown_Constitution);
+    UpdateTotalChanged(NULL, Breakdown_Charisma);
 }
 
 void Build::DeleteGearSet(const std::string& name)
 {
+    m_bSwitchingBuildsOrGear = true;
     RevokeGearEffects();        // always for active gear (one being deleted)
     std::stringstream ss;
     ss << "Gear set \"" << name << "\" deleted.";
@@ -3713,6 +3749,13 @@ void Build::DeleteGearSet(const std::string& name)
     }
     ApplyGearEffects();         // always for active gear
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
+    m_bSwitchingBuildsOrGear = false;
+    UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
+    UpdateTotalChanged(NULL, Breakdown_Intelligence);
+    UpdateTotalChanged(NULL, Breakdown_Wisdom);
+    UpdateTotalChanged(NULL, Breakdown_Dexterity);
+    UpdateTotalChanged(NULL, Breakdown_Constitution);
+    UpdateTotalChanged(NULL, Breakdown_Charisma);
     SetModifiedFlag(TRUE);
     GetLog().AddLogEntry(ss.str().c_str());
 }
@@ -3751,11 +3794,19 @@ EquippedGear Build::GetGearSet(const std::string& name) const
 
 void Build::SetActiveGearSet(const std::string& name)
 {
+    m_bSwitchingBuildsOrGear = true;
     RevokeGearEffects();        // always for active gear
     Set_ActiveGear(name);
     ApplyGearEffects();         // always for active gear
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
     SetModifiedFlag(TRUE);
+    m_bSwitchingBuildsOrGear = false;
+    UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
+    UpdateTotalChanged(NULL, Breakdown_Intelligence);
+    UpdateTotalChanged(NULL, Breakdown_Wisdom);
+    UpdateTotalChanged(NULL, Breakdown_Dexterity);
+    UpdateTotalChanged(NULL, Breakdown_Constitution);
+    UpdateTotalChanged(NULL, Breakdown_Charisma);
 }
 
 EquippedGear Build::ActiveGearSet() const
@@ -3765,6 +3816,7 @@ EquippedGear Build::ActiveGearSet() const
 
 void Build::SetNumFiligrees(size_t count)
 {
+    m_bSwitchingBuildsOrGear = true;
     // first revoke all gear effects as the gear is about to change
     RevokeGearEffects();        // always for active gear
     // update the gear
@@ -3782,6 +3834,58 @@ void Build::SetNumFiligrees(size_t count)
     // now apply the gear effects if its the active gear set
     ApplyGearEffects();         // always for active gear
     SetModifiedFlag(TRUE);
+    m_bSwitchingBuildsOrGear = false;
+    UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
+    UpdateTotalChanged(NULL, Breakdown_Intelligence);
+    UpdateTotalChanged(NULL, Breakdown_Wisdom);
+    UpdateTotalChanged(NULL, Breakdown_Dexterity);
+    UpdateTotalChanged(NULL, Breakdown_Constitution);
+    UpdateTotalChanged(NULL, Breakdown_Charisma);
+}
+
+void Build::SetGearSetSnapshot(const std::string& setName)
+{
+    std::string old = GearSetSnapshot();
+    Set_GearSetSnapshot(setName);
+    std::stringstream ss;
+    ss << "Gear Set Snapshot changed from \"" << old << "\" to \"" <<  setName.c_str() << "\"";
+    GetLog().AddLogEntry(ss.str().c_str());
+    SetModifiedFlag(TRUE);
+    NotifyAbilityValueChanged(Ability_Strength);
+    NotifyAbilityValueChanged(Ability_Intelligence);
+    NotifyAbilityValueChanged(Ability_Wisdom);
+    NotifyAbilityValueChanged(Ability_Dexterity);
+    NotifyAbilityValueChanged(Ability_Constitution);
+    NotifyAbilityValueChanged(Ability_Charisma);
+}
+
+int Build::SnapshotAbilityValue(AbilityType at) const
+{
+    int total = 0;
+    if (HasGearSetSnapshot())
+    {
+        EquippedGear gear = GetGearSet(GearSetSnapshot());
+        switch (at)
+        {
+            case Ability_Strength:      total = gear.SnapshotStrength(); break;
+            case Ability_Intelligence:  total = gear.SnapshotIntelligence(); break;
+            case Ability_Wisdom:        total = gear.SnapshotWisdom(); break;
+            case Ability_Dexterity:     total = gear.SnapshotDexterity(); break;
+            case Ability_Constitution:  total = gear.SnapshotConstitution(); break;
+            case Ability_Charisma:      total = gear.SnapshotCharisma(); break;
+        }
+    }
+    else
+    {
+        // if we do not have a snapshot, we fall back to the current breakdown total
+        BreakdownType bt = StatToBreakdown(at);
+        BreakdownItem* pBI = FindBreakdown(bt);
+        if (pBI != NULL)
+        {
+            total = static_cast<int>(pBI->Total());
+        }
+    }
+    return total;
 }
 
 void Build::UpdateGearToLatestVersions()
@@ -3811,11 +3915,17 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, Item original)
     // no name if not found
     if (foundItem.Name() == original.Name())
     {
+        int originalLevel = original.MinLevel();
         // this is the item we want to copy
         newVersion = foundItem;
         AddSpecialSlots(slot, newVersion); // only adds if they are missing
-            // now copy across specific fields from the source item
+        // now copy across specific fields from the source item
         newVersion.CopyUserSetValues(original);
+        if (original.HasUserSetsLevel())
+        {
+            // retain item level if its cannith crafted
+            newVersion.Set_MinLevel(originalLevel);
+        }
         // make sure all the selected augments are valid
         std::vector<ItemAugment> originalAugments = original.Augments();
         std::vector<ItemAugment> newAugments = newVersion.Augments();
@@ -4007,8 +4117,9 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
     return foundItem;
 }
 
-void Build::UpdateActiveGearSet(const EquippedGear & newGear)
+void Build::UpdateActiveGearSet(const EquippedGear& newGear)
 {
+    m_bSwitchingBuildsOrGear = true;
     // first revoke all gear effects as the gear is about to change
     RevokeGearEffects();        // always for active gear
     // update the gear
@@ -4026,6 +4137,13 @@ void Build::UpdateActiveGearSet(const EquippedGear & newGear)
     // now apply the gear effects if its the active gear set
     ApplyGearEffects();         // always for active gear
     SetModifiedFlag(TRUE);
+    m_bSwitchingBuildsOrGear = false;
+    UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
+    UpdateTotalChanged(NULL, Breakdown_Intelligence);
+    UpdateTotalChanged(NULL, Breakdown_Wisdom);
+    UpdateTotalChanged(NULL, Breakdown_Dexterity);
+    UpdateTotalChanged(NULL, Breakdown_Constitution);
+    UpdateTotalChanged(NULL, Breakdown_Charisma);
 }
 
 void Build::SetGear(
@@ -4395,6 +4513,7 @@ void Build::ApplyAugment(
                 eit.ReplaceLastItem((LPCTSTR)weapon);
             }
         }
+        eit.SetApplyAsItemEffect();
         NotifyItemEffect(name, eit, Inventory_Unknown);
         ++effectIndex;
     }
@@ -4574,6 +4693,7 @@ void Build::RevokeAugment(
                 eit.ReplaceLastItem((LPCTSTR)weapon);
             }
         }
+        eit.SetApplyAsItemEffect();
         NotifyItemEffectRevoked(name, eit, Inventory_Unknown);
         ++effectIndex;
     }
@@ -4958,6 +5078,17 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
         effect.SetIsItemSpecific();
         NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
+    if (item.HasShieldBonus())
+    {
+        Effect effect(
+            Effect_ACBonus,
+            item.Name(),
+            "Shield",
+            item.ShieldBonus());
+        effect.AddItem(wt);
+        effect.SetIsItemSpecific();
+        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
+    }
 }
 
 void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
@@ -5006,6 +5137,17 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
         effect.SetAType(Amount_NotNeeded);
         effect.AddItem(wt);
         effect.AddValue((LPCTSTR)EnumEntryText(itDr, drTypeMap));
+        effect.SetIsItemSpecific();
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
+    }
+    if (item.HasShieldBonus())
+    {
+        Effect effect(
+            Effect_ACBonus,
+            item.Name(),
+            "Shield",
+            item.ShieldBonus());
+        effect.AddItem(wt);
         effect.SetIsItemSpecific();
         NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
     }
@@ -5525,6 +5667,41 @@ void Build::UpdateCachedClassLevels()
             ++clit;
         }
         m_cachedClassLevels[level] = cacheAtCurrentLevel;
+    }
+}
+
+void Build::UpdateTotalChanged(BreakdownItem* /*could be NULL*/, BreakdownType bt)
+{
+    if (!m_bSwitchingBuildsOrGear)
+    {
+        if (m_GearSetups.size() > 0)
+        {
+            BreakdownItem* pBI = FindBreakdown(bt);
+            if (pBI != NULL)
+            {
+                int total = static_cast<int>(pBI->Total());
+                // update the gear set snapshot value
+                std::list<EquippedGear>::iterator it = m_GearSetups.begin();
+                bool found = false;
+                while (!found && it != m_GearSetups.end())
+                {
+                    if ((*it).Name() == ActiveGear())
+                    {
+                        switch (bt)
+                        {
+                            case Breakdown_Strength:        it->Set_SnapshotStrength(total); break;
+                            case Breakdown_Intelligence:    it->Set_SnapshotIntelligence(total); break;
+                            case Breakdown_Wisdom:          it->Set_SnapshotWisdom(total); break;
+                            case Breakdown_Dexterity:       it->Set_SnapshotDexterity(total); break;
+                            case Breakdown_Constitution:    it->Set_SnapshotConstitution(total); break;
+                            case Breakdown_Charisma:        it->Set_SnapshotCharisma(total); break;
+                        }
+                        found = true;
+                    }
+                    ++it;
+                }
+            }
+        }
     }
 }
 

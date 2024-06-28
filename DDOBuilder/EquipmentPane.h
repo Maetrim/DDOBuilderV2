@@ -50,6 +50,7 @@ class CEquipmentPane :
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnGearSetSnapshotSelEndOk();
         DECLARE_MESSAGE_MAP()
 
         // InventoryObserver overrides
@@ -80,6 +81,7 @@ class CEquipmentPane :
         void DestroyAllSets();
         void AddSetBonusStack(const SetBonus& setBonus);
         void RevokeSetBonusStack(const SetBonus& setBonus);
+        void PopulateSnapshotGearset();
 
         CComboBox m_comboGearSelections;
         CMFCButton m_buttonNew;
@@ -90,6 +92,8 @@ class CEquipmentPane :
         CMFCButton m_buttonImportClipboard;
         CStatic m_staticNumFiligrees;
         CComboBox m_comboNumFiligrees;
+        CStatic m_staticSnapshot;
+        CComboBox m_comboSnapshot;
         CInventoryDialog* m_inventoryView;
         std::vector<CSetBonusButton*> m_setbuttons;
         const CSetBonusButton* m_pTooltipItem;

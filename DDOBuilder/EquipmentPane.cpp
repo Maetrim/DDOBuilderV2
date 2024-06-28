@@ -66,6 +66,8 @@ void CEquipmentPane::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_BUTTON_IMPORT_CLIPBOARD, m_buttonImportClipboard);
     DDX_Control(pDX, IDC_STATIC_NUM_FILIGREES, m_staticNumFiligrees);
     DDX_Control(pDX, IDC_COMBO_NUM_FILLIGREES, m_comboNumFiligrees);
+    DDX_Control(pDX, IDC_STATIC_SNAPSHOT, m_staticSnapshot);
+    DDX_Control(pDX, IDC_COMBO_GEAR_SNAPSHOT, m_comboSnapshot);
 }
 
 #pragma warning(push)
@@ -95,6 +97,7 @@ BEGIN_MESSAGE_MAP(CEquipmentPane, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_IMPORT_CLIPBOARD, OnGearImportClipboard)
     ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
     ON_CBN_SELENDOK(IDC_COMBO_NUM_FILLIGREES, OnGearNumFiligreesSelEndOk)
+    ON_CBN_SELENDOK(IDC_COMBO_GEAR_SNAPSHOT, OnGearSetSnapshotSelEndOk)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CEquipmentPane::OnTtnNeedText)
@@ -173,6 +176,7 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         // | |                               | |                       |            |
         // | |                               | |                       |            |
         // | +-------------------------------+ +-----------------------+            |
+        // | [Gear Set Snapshot][Drop List]                                         |
         // +------------------------------------------------------------------------+
         CRect rctCombo;
         CRect rctNew;
@@ -183,6 +187,8 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         CRect rctImportClipboard;
         CRect rctNumFiligrees;
         CRect rctNumFiligreesCombo;
+        CRect rctStaticSnapshot;
+        CRect rctSnapshotCombo;
 
         m_comboGearSelections.GetWindowRect(&rctCombo);
         m_buttonNew.GetWindowRect(&rctNew);
@@ -193,6 +199,8 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         m_buttonImportClipboard.GetWindowRect(&rctImportClipboard);
         m_staticNumFiligrees.GetWindowRect(rctNumFiligrees);
         m_comboNumFiligrees.GetWindowRect(rctNumFiligreesCombo);
+        m_staticSnapshot.GetWindowRect(&rctStaticSnapshot);
+        m_comboSnapshot.GetWindowRect(&rctSnapshotCombo);
 
         rctCombo -= rctCombo.TopLeft();
         rctNew -= rctNew.TopLeft();
@@ -203,6 +211,8 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         rctImportClipboard -= rctImportClipboard.TopLeft();
         rctNumFiligrees -= rctNumFiligrees.TopLeft();
         rctNumFiligreesCombo -= rctNumFiligreesCombo.TopLeft();
+        rctStaticSnapshot -= rctStaticSnapshot.TopLeft();
+        rctSnapshotCombo -= rctSnapshotCombo.TopLeft();
 
         rctCombo += CPoint(c_controlSpacing, c_controlSpacing);
         rctNew += CPoint(rctCombo.right + c_controlSpacing, c_controlSpacing);
@@ -222,6 +232,10 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
                 rctDelete.bottom + c_controlSpacing,
                 c_controlSpacing + 418,
                 rctDelete.bottom + c_controlSpacing + 385);
+
+        rctStaticSnapshot += CPoint(c_controlSpacing, rctInventory.bottom + c_controlSpacing);
+        rctSnapshotCombo += CPoint(rctStaticSnapshot.right + c_controlSpacing, rctInventory.bottom + c_controlSpacing);
+
         m_comboGearSelections.MoveWindow(rctCombo);
         m_buttonNew.MoveWindow(rctNew);
         m_buttonCopy.MoveWindow(rctCopy);
@@ -232,6 +246,8 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         m_staticNumFiligrees.MoveWindow(rctNumFiligrees);
         m_comboNumFiligrees.MoveWindow(rctNumFiligreesCombo);
         m_inventoryView->MoveWindow(rctInventory);
+        m_staticSnapshot.MoveWindow(rctStaticSnapshot);
+        m_comboSnapshot.MoveWindow(rctSnapshotCombo);
 
         if (m_setbuttons.size() > 0)
         {
@@ -256,7 +272,7 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
                     MM_TEXT,
                     CSize(
                             rctInventory.right + c_controlSpacing,
-                            itemRect.bottom + c_controlSpacing));
+                            rctStaticSnapshot.bottom + c_controlSpacing));
         }
         else
         {
@@ -264,7 +280,7 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
                     MM_TEXT,
                     CSize(
                             rctInventory.right + c_controlSpacing,
-                            rctInventory.bottom + c_controlSpacing));
+                            rctStaticSnapshot.bottom + c_controlSpacing));
         }
     }
 }
@@ -303,6 +319,7 @@ LRESULT CEquipmentPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
         }
     }
     PopulateCombobox();
+    PopulateSnapshotGearset();
     PopulateGear();
     EnableControls();
     return 0L;
@@ -324,6 +341,12 @@ BOOL CEquipmentPane::OnEraseBkgnd(CDC* pDC)
         IDC_BUTTON_COPY,
         IDC_BUTTON_PASTE,
         IDC_BUTTON_DELETE,
+        IDC_BUTTON_IMPORT,
+        IDC_BUTTON_IMPORT_CLIPBOARD,
+        IDC_STATIC_NUM_FILIGREES,
+        IDC_COMBO_NUM_FILLIGREES,
+        IDC_STATIC_SNAPSHOT,
+        IDC_COMBO_GEAR_SNAPSHOT,
         0 // end marker
     };
 
@@ -425,6 +448,7 @@ void CEquipmentPane::EnableControls()
         m_buttonImportClipboard.EnableWindow(FALSE);
         m_staticNumFiligrees.EnableWindow(FALSE);
         m_comboNumFiligrees.EnableWindow(FALSE);
+        m_comboSnapshot.EnableWindow(FALSE);
     }
     else
     {
@@ -439,6 +463,7 @@ void CEquipmentPane::EnableControls()
         m_buttonImportClipboard.EnableWindow(IsClipboardFormatAvailable(CF_TEXT));
         m_staticNumFiligrees.EnableWindow(TRUE);
         m_comboNumFiligrees.EnableWindow(TRUE);
+        m_comboSnapshot.EnableWindow(setups.size() > 0);
     }
 }
 
@@ -620,6 +645,7 @@ void CEquipmentPane::OnGearNew()
             // new entry starts selected
             m_comboGearSelections.SetCurSel(index);
             PopulateGear();
+            PopulateSnapshotGearset();
             // have the correct enable state
             EnableControls();
         }
@@ -718,6 +744,7 @@ void CEquipmentPane::OnGearPaste()
                             // new entry starts selected
                             m_comboGearSelections.SetCurSel(index);
                             PopulateGear();
+                            PopulateSnapshotGearset();
                             // have the correct enable state
                             EnableControls();
                         }
@@ -766,6 +793,7 @@ void CEquipmentPane::OnGearDelete()
         {
             pBuild->DeleteGearSet((LPCTSTR)name);
             PopulateCombobox();
+            PopulateSnapshotGearset();  // snapshot may become invalid
             // have the correct enable state
             EnableControls();
             // now show correct gear in inventory window
@@ -814,6 +842,7 @@ void CEquipmentPane::OnGearImportFile()
                     // new entry starts selected
                     m_comboGearSelections.SetCurSel(index);
                     PopulateGear();
+                    PopulateSnapshotGearset();
                     // have the correct enable state
                     EnableControls();
                     CString text;
@@ -862,6 +891,7 @@ void CEquipmentPane::OnGearImportClipboard()
                 // new entry starts selected
                 m_comboGearSelections.SetCurSel(index);
                 PopulateGear();
+                PopulateSnapshotGearset();
                 // have the correct enable state
                 EnableControls();
                 CString text;
@@ -1087,6 +1117,7 @@ void CEquipmentPane::UpdateActiveLifeChanged(Character*)
     }
     Invalidate();
     PopulateCombobox();
+    PopulateSnapshotGearset();
     EnableControls();
 }
 
@@ -1114,6 +1145,7 @@ void CEquipmentPane::UpdateActiveBuildChanged(Character*)
     }
     Invalidate();
     PopulateCombobox();
+    PopulateSnapshotGearset();
     EnableControls();
 }
 
@@ -1168,6 +1200,9 @@ BOOL CEquipmentPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
     case IDC_COMBO_NUM_FILLIGREES:
         m_tipText = "Set how many Weapon filigree slots you have for this gear set.";
         break;
+    case IDC_COMBO_GEAR_SNAPSHOT:
+        m_tipText = "The gear set who's ability values will be used when calculating Trance effects";
+        break;
     default:
         m_tipText = "";
         break;
@@ -1177,4 +1212,41 @@ BOOL CEquipmentPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
     TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
     pTTTA->lpszText = m_tipText.GetBuffer();
     return TRUE;
+}
+
+void CEquipmentPane::PopulateSnapshotGearset()
+{
+    m_comboSnapshot.LockWindowUpdate();
+    m_comboSnapshot.ResetContent();
+    if (m_pCharacter != NULL)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            std::string snapshot = pBuild->HasGearSetSnapshot() ? pBuild->GearSetSnapshot() : "";
+            int sel = CB_ERR;        // assume no selection
+            const std::list<EquippedGear>& gearSets = pBuild->GearSetups();
+            for (auto&& gsit: gearSets)
+            {
+                int index = m_comboSnapshot.AddString(gsit.Name().c_str());
+                if (gsit.Name() == snapshot)
+                {
+                    sel = index;
+                }
+            }
+            m_comboSnapshot.SetCurSel(sel);
+        }
+    }
+    m_comboSnapshot.UnlockWindowUpdate();
+}
+
+void CEquipmentPane::OnGearSetSnapshotSelEndOk()
+{
+    int sel = m_comboSnapshot.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        CString entry;
+        m_comboSnapshot.GetLBText(sel, entry);
+        m_pCharacter->ActiveBuild()->SetGearSetSnapshot((LPCTSTR)entry);
+    }
 }

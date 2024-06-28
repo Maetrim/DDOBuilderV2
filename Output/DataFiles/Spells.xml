@@ -47,7 +47,7 @@ Energy types available are: acid, cold, electricity, fire, or sonic.</Descriptio
     <Name>Resistance</Name>
     <Description>Imbues the ally with magical energy that protects from harm,
 granting him a +1 resistance bonus on saves (+2 at 6th level, +3 at 9th level).</Description>
-    <Icon>resistance</Icon>
+    <Icon>Resistance</Icon>
     <School>Abjuration</School>
     <Enlarge/>
     <Extend/>
@@ -1079,8 +1079,7 @@ An item can have only one temporary item enchantment at a time.</Description>
       <ApplyAsItemEffect/>
     </Effect>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_Attack</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
@@ -1854,7 +1853,7 @@ player races except for warforged, and more creatures.</Description>
     <School>Enchantment</School>
     <Extend/>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SkillBonus</Type>
       <Bonus>Circumstance</Bonus>
       <AType>Simple</AType>
@@ -2053,8 +2052,7 @@ and skill checks.</Description>
     <Extend/>
     <Quicken/>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SaveBonus</Type>
       <Type>SkillBonus</Type>
       <Bonus>Morale</Bonus>
@@ -2327,8 +2325,7 @@ weapon damage rolls.</Description>
     <Extend/>
     <Quicken/>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_AttackAndDamage</Type>
       <Type>SaveBonus</Type>
       <Type>SkillBonus</Type>
       <Bonus>Morale</Bonus>
@@ -2392,7 +2389,7 @@ In addition the recipient gains a +1 enhancement bonus to attack rolls, plus a
       <ApplyAsItemEffect/>
     </Effect>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_Attack</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
@@ -2645,8 +2642,7 @@ caster level and immunity to fear.</Description>
     <Extend/>
     <Quicken/>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SkillBonus</Type>
       <Type>SaveBonus</Type>
       <Bonus>Morale</Bonus>
@@ -2891,8 +2887,7 @@ max 5 at caster level 20. Bless counters and dispels Bane.</Description>
     <Quicken/>
     <MaxCasterLevel>20</MaxCasterLevel>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_AttackBonusCritical</Type>
+        <Type>Weapon_Attack</Type>
       <Bonus>Morale</Bonus>
       <AType>ClassLevel</AType>
       <StackSource>Unknown</StackSource>
@@ -2930,8 +2925,7 @@ by +1 for every 3 caster levels beyond level 3.
     <Quicken/>
     <MaxCasterLevel>9</MaxCasterLevel>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_AttackAndDamage</Type>
       <Bonus>Luck</Bonus>
       <AType>ClassLevel</AType>
       <StackSource>Unknown</StackSource>
@@ -3248,8 +3242,7 @@ caster level 20.</Description>
     <Extend/>
     <Quicken/>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_AttackAndDamage</Type>
       <Type>SaveBonus</Type>
       <Type>SkillBonus</Type>
       <Bonus>Luck</Bonus>
@@ -3411,7 +3404,7 @@ and saves.</Description>
     <Extend/>
     <Quicken/>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_Attack</Type>
       <Type>ACBonus</Type>
       <Type>SaveBonus</Type>
       <Bonus>Luck</Bonus>
@@ -4635,8 +4628,7 @@ Strength and damage.</Description>
       <Item>Strength</Item>
     </Effect>
     <Effect>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Size</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
@@ -4652,8 +4644,7 @@ Strength and damage.</Description>
     </Effect>
     <Effect>
       <DisplayName>Double Ram's Might</DisplayName>
-      <Type>Weapon_DamageBonus</Type>
-      <Type>Weapon_DamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Size</Bonus>
       <AType>Stacks</AType>
       <Amount size="4">0 0 0 2</Amount>
@@ -6297,7 +6288,7 @@ for 1 minute per caster level.</Description>
   <!--Paladin level 2's-->
   <Spell>
     <Name>Angelskin</Name>
-    <Description>The caster gains +1 racial bonus to Physical and Magical Resistance Rating per caster level.</Description>
+    <Description>The caster gains +1 Racial bonus to Physical and Magical Resistance Rating per caster level.</Description>
     <Icon>Angelskin</Icon>
     <School>Abjuration</School>
     <Extend/>
@@ -6342,12 +6333,19 @@ shields, orbs or Rune Arms.</Description>
     <Effect>
       <Type>WeaponCriticalRangeClass</Type>
       <Type>WeaponCriticalMultiplierClass</Type>
-      <Type>Weapon_Enchantment</Type>
       <Bonus>Competence</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
       <Item>Melee</Item>
       <Item>Ranged</Item>
+      <ApplyAsItemEffect/>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
       <ApplyAsItemEffect/>
     </Effect>
   </Spell>
@@ -8624,8 +8622,7 @@ thereafter, this bonus increases by 1. Requires 3 trained ranks (not total mod)
 of the Perform skill to use.</Description>
     <Icon>InspireCourage</Icon>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
-      <Type>Weapon_DamageBonus</Type>
+      <Type>Weapon_AttackAndDamage</Type>
       <Bonus>Morale</Bonus>
       <AType>ClassLevel</AType>
       <StackSource>Unknown</StackSource>
@@ -8647,7 +8644,7 @@ saves and a +4% dodge. Requires 18 trained ranks (not total mod) of the Perform
 skill to use.</Description>
     <Icon>InspireHeroics</Icon>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_Attack</Type>
       <Bonus>Morale</Bonus>
       <AType>Simple</AType>
       <Amount size="1">4</Amount>
@@ -10444,7 +10441,7 @@ rolls, saving throws, and skill checks. This lasts for 1 minute per Caster Level
     <Icon>LiquidCourage</Icon>
     <School>Transmutation</School>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SaveBonus</Type>
       <Type>SkillBonus</Type>
       <Bonus>Morale</Bonus>
@@ -10773,7 +10770,7 @@ This lasts for 7 minutes.</Description>
     <Icon>GreaterLiquidCourage</Icon>
     <School>Transmutation</School>
     <Effect>
-      <Type>Weapon_AttackBonus</Type>
+        <Type>Weapon_Attack</Type>
       <Type>SaveBonus</Type>
       <Type>SkillBonus</Type>
       <Bonus>Morale</Bonus>

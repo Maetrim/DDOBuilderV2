@@ -30,8 +30,8 @@ class Life :
     public Subject<LifeObserver>
 {
     public:
-        Life(Character * pCharacter);
-        void Write(XmlLib::SaxWriter * writer) const;
+        Life(Character* pCharacter);
+        void Write(XmlLib::SaxWriter* writer) const;
 
         CString UIDescription(size_t index) const;
         void SetName(const std::string& name);
@@ -46,8 +46,8 @@ class Life :
         AbilityType SetAbilityLevelUp(size_t level, AbilityType ability);
 
         // build support
-        const Build & GetBuild(size_t buildIndex) const;
-        Build * GetBuildPointer(size_t buildIndex);
+        const Build& GetBuild(size_t buildIndex) const;
+        Build* GetBuildPointer(size_t buildIndex);
         const Build* GetBuildPointer(size_t buildIndex) const;
         size_t AddBuild(size_t buildIndex);
         void DeleteBuild(size_t buildIndex);
@@ -79,7 +79,7 @@ class Life :
         void EnableSelfAndPartyBuff(const std::string& name);
         void DisableSelfAndPartyBuff(const std::string& name);
 
-        void UpdateBuildLifePointers();
+        void UpdateBuildLifePointers(Character* pCharacter);
 
         void NotifyActiveBuildChanged();
     protected:
@@ -132,7 +132,7 @@ class Life :
         void CountBonusRacialAP();
         void CountBonusUniversalAP();
 
-        Character * m_pCharacter;
+        Character* m_pCharacter;
         int m_bonusRacialActionPoints;
         int m_bonusUniversalActionPoints;
         int m_bonusDestinyActionPoints;
