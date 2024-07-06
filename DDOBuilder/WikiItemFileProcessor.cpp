@@ -1158,7 +1158,14 @@ void WikiItemFileProcessor::AddItemEffects(const std::map<std::string, std::stri
 bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
 {
     bool bRecognised = false;
-    bRecognised |= AddCommonEffect(line, "ArmorEnchantment", "enhancement bonus to Armor Class", "Enhancement", "", 60);
+    if (IsShield(m_item.Weapon()))
+    {
+        bRecognised |= AddCommonEffect(line, "ShieldEnchantment", "enhancement bonus to Armor Class", "Enhancement", "", 60);
+    }
+    else
+    {
+        bRecognised |= AddCommonEffect(line, "ArmorEnchantment", "enhancement bonus to Armor Class", "Enhancement", "", 60);
+    }
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ArmorBonus", "Armor Bonus", "Armor", "", 10);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "CommandCommand", "Command Command", "", "", 10);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Command", "Command ", "", "", 5);

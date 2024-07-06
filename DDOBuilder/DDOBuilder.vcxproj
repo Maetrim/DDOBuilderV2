@@ -592,6 +592,7 @@ echo.
     <ClInclude Include="BreakdownItemUniversalSpellPower.h" />
     <ClInclude Include="BreakdownItemWeapon.h" />
     <ClInclude Include="BreakdownItemWeaponAttackBonus.h" />
+    <ClInclude Include="BreakdownItemWeaponAttackSpeed.h" />
     <ClInclude Include="BreakdownItemWeaponCriticalMultiplier.h" />
     <ClInclude Include="BreakdownItemWeaponCriticalThreatRange.h" />
     <ClInclude Include="BreakdownItemWeaponDamageBonus.h" />
@@ -737,6 +738,7 @@ echo.
     <ClInclude Include="SpecialFeatsPane.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="SpellDamage.h" />
+    <ClInclude Include="SpellDC.h" />
     <ClInclude Include="SpellDice.h" />
     <ClInclude Include="SpellLikeAbilityPage.h" />
     <ClInclude Include="SpellListAddition.h" />
@@ -904,6 +906,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="BreakdownItemUniversalSpellPower.cpp" />
     <ClCompile Include="BreakdownItemWeapon.cpp" />
     <ClCompile Include="BreakdownItemWeaponAttackBonus.cpp" />
+    <ClCompile Include="BreakdownItemWeaponAttackSpeed.cpp" />
     <ClCompile Include="BreakdownItemWeaponCriticalMultiplier.cpp" />
     <ClCompile Include="BreakdownItemWeaponCriticalThreatRange.cpp" />
     <ClCompile Include="BreakdownItemWeaponDamageBonus.cpp" />
@@ -1036,8 +1039,12 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <ClCompile Include="SlotUpgrade.cpp" />
     <ClCompile Include="SortHeaderCtrl.cpp" />
     <ClCompile Include="SpecialFeatsPane.cpp" />
-    <ClCompile Include="Spell.cpp" />
+    <ClCompile Include="Spell.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreprocessToFile>
+    </ClCompile>
     <ClCompile Include="SpellDamage.cpp" />
+    <ClCompile Include="SpellDC.cpp" />
     <ClCompile Include="SpellDice.cpp" />
     <ClCompile Include="SpellLikeAbilityPage.cpp" />
     <ClCompile Include="SpellListAddition.cpp" />

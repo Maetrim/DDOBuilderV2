@@ -3336,10 +3336,8 @@ void Build::ActivateStance(
 }
 
 void Build::DeactivateStance(
-    const Stance& stance,
-    StanceGroup* pStanceGroup)
+    const Stance& stance)
 {
-    UNREFERENCED_PARAMETER(pStanceGroup);
     // deactivate the stance if active
     if (IsStanceActive(stance.Name()))
     {
@@ -3355,10 +3353,8 @@ void Build::DeactivateStance(
 }
 
 void Build::DisableStance(
-    const Stance& stance,
-    StanceGroup* pStanceGroup)
+    const Stance& stance)
 {
-    UNREFERENCED_PARAMETER(pStanceGroup);
     // deactivate the stance if active
     if (IsStanceActive(stance.Name()))
     {
@@ -3533,13 +3529,24 @@ void Build::Destiny_RevokeEnhancement(
         //??NotifyAPSpentInTreeChanged(treeName);
         SetModifiedFlag(TRUE);
         std::stringstream ss;
-        ss << "Revoked destiny enhancement from tree \""
+        if (pTreeItem != NULL)
+        {
+            ss << "Revoked destiny enhancement from tree \""
                 << treeName
                 << "\": Rank "
                 << ranks
                 << " of \""
                 << pTreeItem->DisplayName(revokedEnhancementSelection)
                 << "\"";
+        }
+        else
+        {
+            ss << "Revoked destiny enhancement from tree \""
+                << treeName
+                << "\": Rank "
+                << ranks
+                << " of \"Unknown enhancement\"";
+        }
         GetLog().AddLogEntry(ss.str().c_str());
     }
 }
@@ -3655,13 +3662,24 @@ void Build::Reaper_RevokeEnhancement(
         SetModifiedFlag(TRUE);
         const EnhancementTreeItem* pTreeItem = FindEnhancement(treeName, enhancementName);
         std::stringstream ss;
-        ss << "Revoked Reaper enhancement from tree \""
+        if (pTreeItem != NULL)
+        {
+            ss << "Revoked Reaper enhancement from tree \""
                 << treeName
                 << "\": Rank "
                 << ranks
                 << " of \""
                 << pTreeItem->DisplayName(revokedEnhancementSelection)
                 << "\"";
+        }
+        else
+        {
+            ss << "Revoked Reaper enhancement from tree \""
+                << treeName
+                << "\": Rank "
+                << ranks
+                << " of \"Unknown enhancement\"";
+        }
         GetLog().AddLogEntry(ss.str().c_str());
     }
 }
@@ -4026,10 +4044,11 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
                                 if (aug.HasLevelValue())
                                 {
                                     // switch to the index that matches the value
+                                    int wantedValue = static_cast<int>(originalAugments[i].HasValue() ? originalAugments[i].Value() : 0);
                                     const std::vector<double>& levelValue = aug.LevelValue();
                                     for (size_t index = 0; index < levelValue.size(); ++index)
                                     {
-                                        if (levelValue[index] == originalAugments[i].Value())
+                                        if (levelValue[index] == wantedValue)
                                         {
                                             levelIndex = index;
                                             bFoundIndex = true;

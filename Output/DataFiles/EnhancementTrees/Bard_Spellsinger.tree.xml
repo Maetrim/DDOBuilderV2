@@ -1,118 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
+  <EnhancementTree>
+    <Name>Spellsinger</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Bard</Item>
+      </Requirement>
+    </Requirements>
+    <Background>BardBackground</Background>
+    <Icon>Bard</Icon>
+    <!--Core Items-->
+    <EnhancementTreeItem>
       <Name>Spellsinger</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Bard</Item>
-         </Requirement>
-      </Requirements>
-      <Background>BardBackground</Background>
-      <Icon>Bard</Icon>
-      <!--Core Items-->
-      <EnhancementTreeItem>
-         <Name>Spellsinger</Name>
-         <InternalName>SSCore1</InternalName>
-         <Description>Each AP spent in Spellsinger grants +1 Universal Spell Power.
+      <InternalName>SSCore1</InternalName>
+      <Description>Each AP spent in Spellsinger grants +1 Universal Spell Power.
 Each Spellsinger Core Ability including this one allows you to sing Bardic
 Inspiration as if you had 1 additional Bard level.</Description>
-         <Icon>SSSpellsinger</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <DisplayName>Spellsinger: Universal Spell power per action point</DisplayName>
-            <Bonus>Enhancement</Bonus>
-            <Type>UniversalSpellPower</Type>
-            <AType>APCount</AType>
-            <Amount size="1">1</Amount>
-            <StackSource>Spellsinger</StackSource>
-         </Effect>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Music of the Sewers</Name>
-         <InternalName>SSCore2</InternalName>
-         <Description>Your Fascinate gains the power to mesmerize Oozes.
+      <Icon>SSSpellsinger</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <DisplayName>Spellsinger: Universal Spell power per action point</DisplayName>
+        <Bonus>Enhancement</Bonus>
+        <Type>UniversalSpellPower</Type>
+        <AType>APCount</AType>
+        <Amount size="1">1</Amount>
+        <StackSource>Spellsinger</StackSource>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Music of the Sewers</Name>
+      <InternalName>SSCore2</InternalName>
+      <Description>Your Fascinate gains the power to mesmerize Oozes.
 They stop acting and behave like they have been fascinated.
 Unlike truly fascinated creatures, however, they are not susceptible
 to suggestion.
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
 +1 Diplomacy, Listen, Perform and Use Magic Device.
 +2% critical chance with Sonic and Positive spells.</Description>
-         <Icon>SSMusicOfTheSewers</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSCore1</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Diplomacy</Item>
-            <Item>Listen</Item>
-            <Item>Perform</Item>
-            <Item>Use Magic Device</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Enchantment</Item>
-            <Item>Evocation</Item>
-            <Item>Illusion</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Sonic</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Music of the Dead</Name>
-         <InternalName>SSCore3</InternalName>
-         <Description>Your Fascinate gains the power to mesmerize Undead.
+      <Icon>SSMusicOfTheSewers</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSCore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Diplomacy</Item>
+        <Item>Listen</Item>
+        <Item>Perform</Item>
+        <Item>Use Magic Device</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Enchantment</Item>
+        <Item>Evocation</Item>
+        <Item>Illusion</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Sonic</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Music of the Dead</Name>
+      <InternalName>SSCore3</InternalName>
+      <Description>Your Fascinate gains the power to mesmerize Undead.
 They stop acting and behave like they have been fascinated.
 Unlike truly fascinated creatures, however, they are not susceptible
 to suggestion.
@@ -122,68 +122,68 @@ bonus to Negative Healing Amplification.
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
 +1 Diplomacy, Listen, Perform and Use Magic Device.
 +2% critical chance with Sonic and Positive spells.</Description>
-         <Icon>SSMusicOfTheDead</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSCore2</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>6</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Diplomacy</Item>
-            <Item>Listen</Item>
-            <Item>Perform</Item>
-            <Item>Use Magic Device</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Enchantment</Item>
-            <Item>Evocation</Item>
-            <Item>Illusion</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Sonic</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SongNegativeHealingAmp</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Music of the Makers</Name>
-         <InternalName>SSCore4</InternalName>
-         <Description>Your Fascinate gains the power to mesmerize Constructs.
+      <Icon>SSMusicOfTheDead</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSCore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Diplomacy</Item>
+        <Item>Listen</Item>
+        <Item>Perform</Item>
+        <Item>Use Magic Device</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Enchantment</Item>
+        <Item>Evocation</Item>
+        <Item>Illusion</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Sonic</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SongNegativeHealingAmp</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Music of the Makers</Name>
+      <InternalName>SSCore4</InternalName>
+      <Description>Your Fascinate gains the power to mesmerize Constructs.
 They stop acting and behave like they have been fascinated.
 Unlike truly fascinated creatures, however, they are not susceptible
 to suggestion.
@@ -194,1187 +194,1227 @@ Your Inspire Greatness now provides a +10 Music bonus to Repair Amplification.
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
 +1 Diplomacy, Listen, Perform and Use Magic Device.
 +2% critical chance with Sonic and Positive spells.</Description>
-         <Icon>SSMusicOfTheMakers</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSCore3</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Diplomacy</Item>
-            <Item>Listen</Item>
-            <Item>Perform</Item>
-            <Item>Use Magic Device</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Enchantment</Item>
-            <Item>Evocation</Item>
-            <Item>Illusion</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Sonic</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SongRepairAmp</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Virtuoso</Name>
-         <InternalName>SSCore5</InternalName>
-         <Description>You regenerate 1 Song every 5 minutes.
+      <Icon>SSMusicOfTheMakers</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Diplomacy</Item>
+        <Item>Listen</Item>
+        <Item>Perform</Item>
+        <Item>Use Magic Device</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Enchantment</Item>
+        <Item>Evocation</Item>
+        <Item>Illusion</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Sonic</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SongRepairAmp</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Virtuoso</Name>
+      <InternalName>SSCore5</InternalName>
+      <Description>You regenerate 1 Song every 5 minutes.
 +2 Songs per rest. You sing your Bardic Inspiration as if you had two more Bard
 levels (for a total of 3 for this enhancement)
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
 +1 Diplomacy, Listen, Perform and Use Magic Device.
 +2% critical chance with Sonic and Positive spells.</Description>
-         <Icon>SSVirtuoso</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSCore4</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>18</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Diplomacy</Item>
-            <Item>Listen</Item>
-            <Item>Perform</Item>
-            <Item>Use Magic Device</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Enchantment</Item>
-            <Item>Evocation</Item>
-            <Item>Illusion</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Sonic</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">90</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Maestro of Life and Death</Name>
-         <InternalName>SSCore6</InternalName>
-         <Description>Your songs can fill allies with healing energy or strike down those that
+      <Icon>SSVirtuoso</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSCore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Diplomacy</Item>
+        <Item>Listen</Item>
+        <Item>Perform</Item>
+        <Item>Use Magic Device</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Enchantment</Item>
+        <Item>Evocation</Item>
+        <Item>Illusion</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Sonic</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">90</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Maestro of Life and Death</Name>
+      <InternalName>SSCore6</InternalName>
+      <Description>Your songs can fill allies with healing energy or strike down those that
 oppose you. You gain the Heal and Wail of the Banshee spells as level 6 Bard spells.
 +4 Charisma
 +25 Universal Spell Power
 +1 Diplomacy, Listen, Perform and Use Magic Device.
 +2% critical chance with Sonic and Positive spells.</Description>
-         <Icon>SSMaestroOfLifeAndDeath</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
+      <Icon>SSMaestroOfLifeAndDeath</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>SSCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>SSCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Diplomacy</Item>
+        <Item>Listen</Item>
+        <Item>Perform</Item>
+        <Item>Use Magic Device</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Sonic</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Charisma</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>GrantSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Heal</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">6 40 15</Amount>
+        <Item>Bard</Item>
+      </Effect>
+      <Effect>
+        <Type>GrantSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Wail of the Banshee</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">6 50 -1</Amount>
+        <Item>Bard</Item>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Haunting Melody</Name>
+      <InternalName>SSHauntingMelody</InternalName>
+      <Description>You rework Fascinate with haunting notes, intoxicating yet unnerving.
+Fascinated creatures are Haunted for [20/40/60] seconds.
+Haunted: -2 on all Saving Throws, Skill checks and attack rolls.</Description>
+      <Icon>SSHauntingMelody</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Studies</Name>
+      <InternalName>SSStudies</InternalName>
+      <Description>Choose either Magical Studies or Musical Studies to advance your training:</Description>
+      <Icon>SSStudies</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Magical Studies</Name>
+          <Description>+[30/60/100] maximum Spell Points.
+Rank 3: You gain the Magical Training feat.</Description>
+          <Icon>SSMagicalStudies</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">30 60 100</Amount>
+          </Effect>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Magical Training</Item>
+            <AType>NotNeeded</AType>
+            <Rank>3</Rank>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Musical Studies</Name>
+          <Description>+[1/2/3] Bard Songs per rest</Description>
+          <Icon>SSMusicalStudies</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SongCount</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Lingering Songs</Name>
+      <InternalName>SSLingeringSongs</InternalName>
+      <Description>You sing your Bardic Inspiration as if you had [2/4/6] more levels of Bard.</Description>
+      <Icon>SSLingeringSongs</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">60 120 180</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Spell Like Ability I</Name>
+      <InternalName>SSSonicBlast</InternalName>
+      <Description>Choose either Sonic Blast or Sure Light Wounds:
+Metamagic Feats can be used at no additional cost.</Description>
+      <Icon>SSSonicBlast</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>SSSonicBlast</Item>
+          <Item>Sonic Blast</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Sonic Blast</Name>
+          <Description>Spell-Like Ability: Sonic Blast.
+Activation cost: 6/5/4 SP.
+Cooldown: 12/8/4 seconds.
+Metamagic Feats can be used at no additional cost.</Description>
+          <Icon>SSSonicBlast</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
             <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSCore5</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>20</Value>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Bard</Item>
+              <Value>1</Value>
             </Requirement>
             <Requirement>
               <Type>Exclusive</Type>
-              <Item>SSCore6</Item>
-              <Item>Capstone Enhancement</Item>
+              <Item>SSSonicBlast</Item>
+              <Item>Sonic Blast</Item>
             </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>SSCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Diplomacy</Item>
-            <Item>Listen</Item>
-            <Item>Perform</Item>
-            <Item>Use Magic Device</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Sonic</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">4</Amount>
-            <Item>Charisma</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">25</Amount>
-            <Item>All</Item>
-         </Effect>
-         <Effect>
-            <Type>GrantSpell</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Heal</Item>
-            <AType>SpellInfo</AType>
-            <Amount size="3">6 40 15</Amount>
-            <Item>Bard</Item>
-         </Effect>
-         <Effect>
-            <Type>GrantSpell</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Wail of the Banshee</Item>
-            <AType>SpellInfo</AType>
-            <Amount size="3">6 50 -1</Amount>
-            <Item>Bard</Item>
-         </Effect>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Haunting Melody</Name>
-         <InternalName>SSHauntingMelody</InternalName>
-         <Description>You rework Fascinate with haunting notes, intoxicating yet unnerving.
-Fascinated creatures are Haunted for [20/40/60] seconds.
-Haunted: -2 on all Saving Throws, Skill checks and attack rolls.</Description>
-         <Icon>SSHauntingMelody</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Studies</Name>
-         <InternalName>SSStudies</InternalName>
-         <Description>Choose either Magical Studies or Musical Studies to advance your training:</Description>
-         <Icon>SSStudies</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Magical Studies</Name>
-               <Description>+[30/60/100] maximum Spell Points.
-Rank 3: You gain the Magical Training feat.</Description>
-               <Icon>SSMagicalStudies</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>SpellPoints</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">30 60 100</Amount>
-               </Effect>
-               <Effect>
-                  <Type>GrantFeat</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Magical Training</Item>
-                  <AType>NotNeeded</AType>
-                  <Rank>3</Rank>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Musical Studies</Name>
-               <Description>+[1/2/3] Bard Songs per rest</Description>
-               <Icon>SSMusicalStudies</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>SongCount</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">1 2 3</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Lingering Songs</Name>
-         <InternalName>SSLingeringSongs</InternalName>
-         <Description>You sing your Bardic Inspiration as if you had [2/4/6] more levels of Bard.</Description>
-         <Icon>SSLingeringSongs</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">60 120 180</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Sonic Blast</Name>
-         <InternalName>SSSonicBlast</InternalName>
-         <Description>Spell-Like Ability: Sonic Blast.
-Activation cost: [6/5/4] SP.
-Cooldown: [12/8/4] seconds.
-Metamagic Feats can be used at no additional cost.</Description>
-         <Icon>SSSonicBlast</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>1</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>SSSonicBlast</Item>
-               <Item>Sonic Blast</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
+          </Requirements>
+          <Effect>
             <Type>ExclusionGroup</Type>
             <Bonus>Enhancement</Bonus>
             <AType>NotNeeded</AType>
             <Item>SSSonicBlast</Item>
             <Item>Sonic Blast</Item>
-         </Effect>
-         <Effect>
+          </Effect>
+          <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Sonic Blast</Item>
             <AType>SpellInfo</AType>
             <Amount size="3">0 0 0</Amount>
             <Item>Bard</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Charlatan</Name>
-         <InternalName>SSCharlatan</InternalName>
-         <Description>+[1/2/3] Concentration, Haggle and Perform</Description>
-         <Icon>SSCharlatan</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Cure Light Wounds</Name>
+          <Description>Spell-Like Ability: Cure Light Wounds.
+Activation cost: 6/5/4 SP.
+Cooldown: 12/8/4 seconds.
+Metamagic Feats can be used at no additional cost.</Description>
+          <Icon>CureLightWounds</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Concentration</Item>
-            <Item>Haggle</Item>
-            <Item>Perform</Item>
+            <Item>Cure Light Wounds</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Bard</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Charlatan</Name>
+      <InternalName>SSCharlatan</InternalName>
+      <Description>+[1/2/3] Concentration, Haggle and Perform</Description>
+      <Icon>SSCharlatan</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Concentration</Item>
+        <Item>Haggle</Item>
+        <Item>Perform</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Sharp Note</Name>
+      <InternalName>SSSharpNote</InternalName>
+      <Description>Your Fascinate ability now also grants nearby allies a +[1/2/3] bonus to
+damage for 60 seconds</Description>
+      <Icon>SSSharpNote</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Flicker/Willful</Name>
+      <InternalName>SSFlickerWillfull</InternalName>
+      <Description>Choose either Flicker or Willful to protect you</Description>
+      <Icon>SSFlickerWillfull</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Flicker</Name>
+          <Description>When you are damaged you have a 5% chance of turning invisible for [2/4/6] seconds</Description>
+          <Icon>SSFlicker</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Willful</Name>
+          <Description>+[1/2/3] Will Saving Throws.</Description>
+          <Icon>SSWillfull</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Will</Item>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Sharp Note</Name>
-         <InternalName>SSSharpNote</InternalName>
-         <Description>Your Fascinate ability now also grants nearby allies a +[1/2/3] bonus to
-damage for 60 seconds</Description>
-         <Icon>SSSharpNote</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Flicker/Willful</Name>
-         <InternalName>SSFlickerWillfull</InternalName>
-         <Description>Choose either Flicker or Willful to protect you</Description>
-         <Icon>SSFlickerWillfull</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Flicker</Name>
-               <Description>When you are damaged you have a 5% chance of turning invisible for [2/4/6] seconds</Description>
-               <Icon>SSFlicker</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Willful</Name>
-               <Description>+[1/2/3] Will Saving Throws.</Description>
-               <Icon>SSWillfull</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Will</Item>
-                  <AType>Stacks</AType>
-                  <Amount size="3">1 2 3</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Spell Like Ability</Name>
-         <InternalName>SSMultipleEnhancementSelector</InternalName>
-         <Description>Choose either Reverberate or Suggestion:
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Spell Like Ability II</Name>
+      <InternalName>SSMultipleEnhancementSelector</InternalName>
+      <Description>Choose either Reverberate or Suggestion:
 Metamagic Feats can be used at no additional cost.</Description>
-         <Icon>SSMultipleEnhancementSelector</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Reverberate</Name>
-               <Description>Gain SLA "Reverberate" - Wrack the target's body with internal sonic booms,
+      <Icon>SSMultipleEnhancementSelector</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Reverberate</Name>
+          <Description>Gain SLA "Reverberate" - Wrack the target's body with internal sonic booms,
 dealing 1 to 10 sonic damage +1 per three caster levels (up to caster level 18)
 every 2 seconds for a duration of 16 seconds. This spell can stack on the target
 up to three times, increasing the damage with each stack.
 Activation cost: [20/15/10] SP
 Cooldown: 9 seconds.</Description>
-               <Icon>SSReverberate</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SSMultipleEnhancementSelector</Item>
-                     <Item>Reverberate</Item>
-                  </Requirement>
-               </Requirements>
-               <Clickie/>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SSMultipleEnhancementSelector</Item>
-                  <Item>Reverberate</Item>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Reverberate</Item>
-                  <AType>SpellInfo</AType>
-                  <Amount size="3">0 0 0</Amount>
-                  <Item>Bard</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Suggestion</Name>
-               <Description>You gain Suggestion as an SLA
-Activation cost: [13/11/9] SP
-Cooldown: [20/15/10] seconds</Description>
-               <Icon>SSSuggestion</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Suggestion</Item>
-                  <AType>SpellInfo</AType>
-                  <Amount size="3">0 0 0</Amount>
-                  <Item>Bard</Item>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Wand and Scroll Mastery</Name>
-         <InternalName>SSWandAndScrollMastery</InternalName>
-         <Description>+[25/50/75]% to the effectiveness of your wands, scrolls, and other items
-that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
-         <Icon>SSWandAndScrollMastery</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
+          <Icon>SSReverberate</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>2</Value>
+              <Type>Exclusive</Type>
+              <Item>SSMultipleEnhancementSelector</Item>
+              <Item>Reverberate</Item>
             </Requirement>
-             <Requirement>
-                 <Type>Exclusive</Type>
-                 <Item>SSWandAndScrollMastery</Item>
-                 <Item>Wand and Scroll Mastery</Item>
-             </Requirement>
-         </Requirements>
-         <Effect>
+          </Requirements>
+          <Clickie />
+          <Effect>
             <Type>ExclusionGroup</Type>
             <Bonus>Enhancement</Bonus>
             <AType>NotNeeded</AType>
-            <Item>SSWandAndScrollMastery</Item>
-            <Item>Wand and Scroll Mastery</Item>
-         </Effect>
-         <Effect>
-            <Type>TacticalDC</Type>
+            <Item>SSMultipleEnhancementSelector</Item>
+            <Item>Reverberate</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Wands</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Marigold Crown</Name>
-         <InternalName>SSMarigoldCrown</InternalName>
-         <Description>Gain +1 to the DCs of your Enchantment, Illusion or Evocation spells.</Description>
-         <Icon>SSMarigoldCrown</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Blue Marigold Crown</Name>
-               <Description>+1 to DC's of Illusion spells.</Description>
-               <Icon>SSBlueMarigoldCrown</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellDC</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Illusion</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Violet Marigold Crown</Name>
-               <Description>+1 to DC's of Evocation spells.</Description>
-               <Icon>SSVioletMarigoldCrown</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellDC</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Evocation</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Yellow Marigold Crown</Name>
-               <Description>+1 to DC's of Enchantment spells.</Description>
-               <Icon>SSYellowMarigoldCrown</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellDC</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Enchantment</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Enthrallment</Name>
-         <InternalName>SSEnthrallment</InternalName>
-         <Description>Expend a use of Bardic Music to enthrall multiple enemies.
+            <Item>Reverberate</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Bard</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Suggestion</Name>
+          <Description>You gain Suggestion as an SLA
+Activation cost: [13/11/9] SP
+Cooldown: [20/15/10] seconds</Description>
+          <Icon>SSSuggestion</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Suggestion</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Bard</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Wand and Scroll Mastery</Name>
+      <InternalName>SSWandAndScrollMastery</InternalName>
+      <Description>+[25/50/75]% to the effectiveness of your wands, scrolls, and other items
+that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
+      <Icon>SSWandAndScrollMastery</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>SSWandAndScrollMastery</Item>
+          <Item>Wand and Scroll Mastery</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>SSWandAndScrollMastery</Item>
+        <Item>Wand and Scroll Mastery</Item>
+      </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Wands</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Marigold Crown</Name>
+      <InternalName>SSMarigoldCrown</InternalName>
+      <Description>Gain +1 to the DCs of your Enchantment, Illusion or Evocation spells.</Description>
+      <Icon>SSMarigoldCrown</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Blue Marigold Crown</Name>
+          <Description>+1 to DC's of Illusion spells.</Description>
+          <Icon>SSBlueMarigoldCrown</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Illusion</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Violet Marigold Crown</Name>
+          <Description>+1 to DC's of Evocation spells.</Description>
+          <Icon>SSVioletMarigoldCrown</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Evocation</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Yellow Marigold Crown</Name>
+          <Description>+1 to DC's of Enchantment spells.</Description>
+          <Icon>SSYellowMarigoldCrown</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Enchantment</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Enthrallment</Name>
+      <InternalName>SSEnthrallment</InternalName>
+      <Description>Expend a use of Bardic Music to enthrall multiple enemies.
 Enthralled enemies stop what they are doing and have a chance of breaking free
 when damaged. Enthralled enemies suffer a -2 penalty to attack rolls and Will
 saves for 24 seconds plus 6 seconds per bard level, even after being disrupted
 from their reverie. This ability uses a Perform check as Will save DC.</Description>
-         <Icon>SSEnthrallment</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <DC>
-            <Name>Spellsinger: Enthrallment</Name>
-            <Description>Expend a use of Bardic Music to enthrall multiple enemies.
+      <Icon>SSEnthrallment</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <DC>
+        <Name>Spellsinger: Enthrallment</Name>
+        <Description>Expend a use of Bardic Music to enthrall multiple enemies.
 Enthralled enemies stop what they are doing and have a chance of breaking free
 when damaged. Enthralled enemies suffer a -2 penalty to attack rolls and Will
 saves for 24 seconds plus 6 seconds per bard level, even after being disrupted
 from their reverie.</Description>
-            <Icon>SSEnthrallment</Icon>
-            <DCType>Enthrallment</DCType>
-            <DCVersus>Will</DCVersus>
-            <Skill>Perform</Skill>
-         </DC>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Reviving Verse</Name>
-         <InternalName>SSMultipleEnhancementSelectorII</InternalName>
-         <Description>Choose permanent bonuses for yourself, or improvements to Inspire Courage.</Description>
-         <Icon>SSMultipleEnhancementSelectorII</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Raucous Refrain</Name>
-               <Description>Inspiring Melody: When you use your Bardic Inspiration, your target
+        <Icon>SSEnthrallment</Icon>
+        <DCType>Enthrallment</DCType>
+        <DCVersus>Will</DCVersus>
+        <Skill>Perform</Skill>
+      </DC>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Reviving Verse</Name>
+      <InternalName>SSMultipleEnhancementSelectorII</InternalName>
+      <Description>Choose permanent bonuses for yourself, or improvements to Inspire Courage.</Description>
+      <Icon>SSMultipleEnhancementSelectorII</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Raucous Refrain</Name>
+          <Description>Inspiring Melody: When you use your Bardic Inspiration, your target
 gains a +[1/2/3] Morale bonus to save vs. Sleep, Paralysis, Exhaustion and
 Energy Drain for the duration of your song.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-               <Icon>SSRaucousRefrain</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>SongDuration</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">30</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Reviving Verse</Name>
-               <Description>+[1/2/3] saving throws vs. Sleep, Paralysis, Exhaustion and Energy Drain</Description>
-               <Icon>SSRevivingVerse</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Shout</Name>
-         <InternalName>SSShout</InternalName>
-         <Description>Choose a spell like ability:</Description>
-         <Icon>SSShout</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>SSShout</Item>
-               <Item>Shout</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Shout</Name>
-               <Description>Spell-Like Ability: Shout.
+          <Icon>SSRaucousRefrain</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">30</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Reviving Verse</Name>
+          <Description>+[1/2/3] saving throws vs. Sleep, Paralysis, Exhaustion and Energy Drain</Description>
+          <Icon>SSRevivingVerse</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Shout</Name>
+      <InternalName>SSShout</InternalName>
+      <Description>Choose a spell like ability:</Description>
+      <Icon>SSShout</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>SSShout</Item>
+          <Item>Shout</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Shout</Name>
+          <Description>Spell-Like Ability: Shout.
 Activation cost: [15/12/9] SP
 Cooldown: [12/9/6] seconds
 Metamagic Feats can be used at no additional cost.</Description>
-               <Icon>SSShout</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SSShout</Item>
-                  <Item>Shout</Item>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Shout</Item>
-                  <AType>SpellInfo</AType>
-                  <Amount size="3">0 0 0</Amount>
-                  <Item>Bard</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Cure Moderate Wounds, Mass</Name>
-               <Description>Cure Light Wounds, Mass
+          <Icon>SSShout</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SSShout</Item>
+            <Item>Shout</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Shout</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Bard</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Cure Moderate Wounds, Mass</Name>
+          <Description>Cure Light Wounds, Mass
 Activation cost: [15/12/9] SP.
 Cooldown: [12/9/6] seconds.</Description>
-               <Icon>CureModerateWoundsMass</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Cure Light Wounds, Mass</Item>
-                  <AType>SpellInfo</AType>
-                  <Amount size="3">0 0 0</Amount>
-                  <Item>Bard</Item>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Spell Song Trance</Name>
-         <InternalName>SSSpellSongTrance</InternalName>
-         <Description>Inspiration Melody: When you use your Bardic Inspiration, you grant
+          <Icon>CureModerateWoundsMass</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Cure Light Wounds, Mass</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Bard</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Spell Song Trance</Name>
+      <InternalName>SSSpellSongTrance</InternalName>
+      <Description>Inspiration Melody: When you use your Bardic Inspiration, you grant
 a +1 Morale bonus to spell DC's and 10% Morale discount on spell point costs
 to your target for the duration of the song.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-         <Icon>SSSpellSongTrance</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Charisma I</Name>
-         <InternalName>SSCharisma</InternalName>
-         <Description>+1 Charisma</Description>
-         <Icon>Charisma</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Charisma</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Sustaining Song</Name>
-         <InternalName>SSSustainingSong</InternalName>
-         <Description>Inspiration Melody: When you use you Bardic Inspiration, you apply a temporary
+      <Icon>SSSpellSongTrance</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Charisma I</Name>
+      <InternalName>SSCharisma</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Charisma</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Sustaining Song</Name>
+      <InternalName>SSSustainingSong</InternalName>
+      <Description>Inspiration Melody: When you use you Bardic Inspiration, you apply a temporary
 fast-healing effect to your target for the duration of your song.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-         <Icon>SSSustainingSong</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
+      <Icon>SSSustainingSong</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Spell Penetration</Name>
+      <InternalName>SSMultipleEnhancementSelectorIII</InternalName>
+      <Description>Choose Spell Penetration for yourself or for others.</Description>
+      <Icon>SSMultipleEnhancementSelectorIII</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Aid</Name>
+          <Description>When you Inspire Competence on an ally, they gain +[1/2/3] Spell
+Penetration for the duration of your song.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
+          <Icon>SSArcaneAid</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
             <Type>SongDuration</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Spell Penetration</Name>
-         <InternalName>SSMultipleEnhancementSelectorIII</InternalName>
-         <Description>Choose Spell Penetration for yourself or for others.</Description>
-         <Icon>SSMultipleEnhancementSelectorIII</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Arcane Aid</Name>
-               <Description>When you Inspire Competence on an ally, they gain +[1/2/3] Spell
-Penetration for the duration of your song.
-Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-               <Icon>SSArcaneAid</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>SongDuration</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">30</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SongSpellPenetration</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">1 2 3</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Spell Penetration</Name>
-               <Description>+[1/2/3] to your level when trying to overcome enemy's Spell Resistance</Description>
-               <Icon>SpellPenetration</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>SpellPenetrationBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">1 2 3</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Frolic</Name>
-         <InternalName>SSFrolic</InternalName>
-         <Description>Inspiration Melody: When you use your Bardic Inspiration, your target
+          </Effect>
+          <Effect>
+            <Type>SongSpellPenetration</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Spell Penetration</Name>
+          <Description>+[1/2/3] to your level when trying to overcome enemy's Spell Resistance</Description>
+          <Icon>SpellPenetration</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Frolic</Name>
+      <InternalName>SSFrolic</InternalName>
+      <Description>Inspiration Melody: When you use your Bardic Inspiration, your target
 gains Freedom of Movement for the duration of the song.
 (This is a musical effect and cannot be dispelled).
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-         <Icon>SSFrolic</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Song of Arcane Might</Name>
-         <InternalName>SSSongOfArcaneMight</InternalName>
-         <Description>Inspiration Melody: When you use your Bardic Inspiration, your target gains
+      <Icon>SSFrolic</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Song of Arcane Might</Name>
+      <InternalName>SSSongOfArcaneMight</InternalName>
+      <Description>Inspiration Melody: When you use your Bardic Inspiration, your target gains
 a +1 Morale bonus to caster level for all spells for the duration of your song.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-         <Icon>SSSongOfArcaneMight</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSSpellSongTrance</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-         <Effect>
-            <Type>SongCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Charisma II</Name>
-         <InternalName>SSCharismaII</InternalName>
-         <Description>+1 Charisma</Description>
-         <Icon>Charisma</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Charisma</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Song of Capering</Name>
-         <InternalName>SSSongOfCapering</InternalName>
-         <Description>Expend a use of Bardic Music to make a single enemy to dance helplessly.
+      <Icon>SSSongOfArcaneMight</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSSpellSongTrance</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>SongCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Charisma II</Name>
+      <InternalName>SSCharismaII</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Charisma</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Song of Capering</Name>
+      <InternalName>SSSongOfCapering</InternalName>
+      <Description>Expend a use of Bardic Music to make a single enemy to dance helplessly.
 This effect lasts for 6 seconds plus 2 seconds per Bard level.
 A successful Will save negates this effect.</Description>
-         <Icon>SSSongOfCapering</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSSustainingSong</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Advanced Musical Studies</Name>
-         <InternalName>SSAdvancedStudies</InternalName>
-         <Description>+3 Bard Songs per rest. +200 maximum Spell Points.
-The spell Hold Monster, Mass is added to your Bard Spell book at level 5.</Description>
-         <Icon>SSAdvancedStudies</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>5</Value>
-            </Requirement>
-         <Requirement>
+      <Icon>SSSongOfCapering</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
           <Type>Level</Type>
           <Value>12</Value>
         </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">200</Amount>
-         </Effect>
-         <Effect>
-            <Type>SongCount</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
-            <Type>GrantSpell</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Hold Monster, Mass</Item>
-            <AType>SpellInfo</AType>
-            <Amount size="3">5 40 15</Amount>
-            <Item>Bard</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Prodigy</Name>
-         <InternalName>SSProdigy</InternalName>
-         <Description>+[1/2/2] Concentration and Perform
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSSustainingSong</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Advanced Musical Studies</Name>
+      <InternalName>SSAdvancedStudies</InternalName>
+      <Description>+3 Bard Songs per rest. +200 maximum Spell Points.
+The spell Hold Monster, Mass is added to your Bard Spell book at level 5.</Description>
+      <Icon>SSAdvancedStudies</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">200</Amount>
+      </Effect>
+      <Effect>
+        <Type>SongCount</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>GrantSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Hold Monster, Mass</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">5 40 15</Amount>
+        <Item>Bard</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Prodigy</Name>
+      <InternalName>SSProdigy</InternalName>
+      <Description>+[1/2/2] Concentration and Perform
 +[1/2/2] Spell Penetration
 +[1/2/2] to DCs of your Enchantment spells
 Rank 3: Inspiration Melody: When you use your Bardic Inspiration, your target
 gains a moderate amount of temporary spell points.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-         <Icon>SSProdigy</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Concentration</Item>
-            <Item>Perform</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 2</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPenetrationBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 2</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 2</Amount>
-            <Item>Enchantment</Item>
-         </Effect>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">0 0 30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Spell Song Vigor</Name>
-         <InternalName>SSSpellSongVigor</InternalName>
-         <Description>Inspiration Melody: When you use your Bardic Inspiration, you apply
+      <Icon>SSProdigy</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Concentration</Item>
+        <Item>Perform</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 2</Amount>
+        <Item>Enchantment</Item>
+      </Effect>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 0 30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Spell Song Vigor</Name>
+      <InternalName>SSSpellSongVigor</InternalName>
+      <Description>Inspiration Melody: When you use your Bardic Inspiration, you apply
 an effect to your target that restores spell points over time for the duration
 of your song.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
-         <Icon>SSSpellSongVigor</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SSSongOfArcaneMight</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Spellsinger: Horn of Thunder</Name>
-         <InternalName>SSMultipleEnhancementSelectorIV</InternalName>
-         <Description>Spell-Like Ability: Horn of Thunder.
+      <Icon>SSSpellSongVigor</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SSSongOfArcaneMight</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SongDuration</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Spellsinger: Horn of Thunder</Name>
+      <InternalName>SSMultipleEnhancementSelectorIV</InternalName>
+      <Description>Spell-Like Ability: Horn of Thunder.
 Activation cost: [30/25/20] SP
 Cooldown: [20/16/12] seconds.
 Blast your foes with 1d4 Sonic and 1d4 Electric damage per caster level.
 Sonic damage is doubled vs. Oozes, as the thunderous pressure disrupts
 their amorphous structure. Creatures making a Reflex save take half damage.
 Max caster level: 25. Affects liches.</Description>
-         <Icon>SSHornOfThunder</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Bard</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Horn of Thunder</Item>
-            <AType>SpellInfo</AType>
-            <Amount size="3">0 0 0</Amount>
-            <Item>Bard</Item>
-         </Effect>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+      <Icon>SSHornOfThunder</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Bard</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Horn of Thunder</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Bard</Item>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

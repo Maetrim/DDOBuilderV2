@@ -565,6 +565,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             case Effect_Weapon_AttackCritical:
             case Effect_Weapon_AttackAndDamageCritical:
             case Effect_Weapon_DamageCritical:
+            case Effect_ShieldEnchantment:
                 if (m_Item.size() == 0)
                 {
                     (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect missing weapon value\n";

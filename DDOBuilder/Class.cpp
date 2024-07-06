@@ -528,3 +528,10 @@ Spell Class::FindSpell(const std::string& name) const
     }
     return spell;
 }
+
+size_t Class::MaxSpellLevel(size_t classLevel) const
+{
+    classLevel = min(classLevel, MAX_CLASS_LEVEL);
+    std::vector<size_t> spells = SpellSlotsAtLevel(classLevel);
+    return spells.size();
+}

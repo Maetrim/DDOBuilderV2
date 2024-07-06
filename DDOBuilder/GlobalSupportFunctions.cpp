@@ -826,10 +826,26 @@ Spell FindSpellByName(const std::string& name, bool bSuppressError)
         }
         ++si;
     }
+    if (spell.Name() == "")
+    {
+        // look through the clickies
+        const std::list<Spell>& clickies = ItemClickies();
+        si = clickies.begin();
+        while (si != clickies.end())
+        {
+            if ((*si).Name() == name)
+            {
+                spell = (*si);
+                break;  // found, no need to check the rest
+            }
+            ++si;
+        }
+    }
+
     if (spell.Name() == "" && !bSuppressError)
     {
         CString errMsg;
-        errMsg.Format("Spell %s not found in Spells.xml file", name.c_str());
+        errMsg.Format("Spell %s not found in Spells.xml file or ItemClickies.xml", name.c_str());
         GetLog().AddLogEntry(errMsg);
     }
     return spell;
@@ -2355,3 +2371,19 @@ std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t maxLevel)
     compatibleAugments.push_front(noAugment);
     return compatibleAugments;
 }
+
+bool IsShield(WeaponType wt)
+{
+    bool isShield = false;
+    switch (wt)
+    {
+        case Weapon_ShieldBuckler:
+        case Weapon_ShieldSmall:
+        case Weapon_ShieldLarge:
+        case Weapon_ShieldTower:
+            isShield = true;
+            break;
+    }
+    return isShield;
+}
+

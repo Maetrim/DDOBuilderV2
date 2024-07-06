@@ -220,6 +220,15 @@ void RequirementsBase::AddItemRequirements(
                     infoTip.push_back(pRequirements);
                 }
                 break;
+            case Requirement_FeatAnySource:
+                {
+                    InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+                    CString reqFeat("Required Feat: ");
+                    reqFeat += it.Item().front().c_str();
+                    pRequirements->AddRequirement(reqFeat, true);  // red highlighted line
+                    infoTip.push_back(pRequirements);
+                }
+                break;
             default:
                 ASSERT(FALSE);
                 break;

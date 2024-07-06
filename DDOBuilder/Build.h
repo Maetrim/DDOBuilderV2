@@ -152,8 +152,8 @@ class Build :
 
         // stances
         void ActivateStance(const Stance& stance, StanceGroup* pStanceGroup);
-        void DeactivateStance(const Stance& stance, StanceGroup* pStanceGroup);
-        void DisableStance(const Stance& stance, StanceGroup* pStanceGroup);
+        void DeactivateStance(const Stance& stance);
+        void DisableStance(const Stance& stance);
         bool IsStanceActive(const std::string& name, WeaponType wt = Weapon_Unknown) const;
         void StanceSliderChanged(const std::string& sliderName, int newValue);
 

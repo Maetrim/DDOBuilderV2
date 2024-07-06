@@ -12,6 +12,7 @@
 #include "BreakdownItemWeaponCriticalMultiplier.h"
 #include "BreakdownItemWeaponDRBypass.h"
 #include "BreakdownItemWeaponOtherDamageEffects.h"
+#include "BreakdownItemWeaponAttackSpeed.h"
 #include "WeaponDamageTypes.h"
 #include "BasicDice.h"
 #include "InventorySlotTypes.h"
@@ -92,7 +93,7 @@ class BreakdownItemWeapon :
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier19To20;
         BreakdownItemWeaponDRBypass m_drBypass;
-        BreakdownItemSimple m_attackSpeed;
+        BreakdownItemWeaponAttackSpeed m_attackSpeed;
         BreakdownItemSimple m_ghostTouch;
         BreakdownItemSimple m_trueSeeing;
         size_t m_weaponCriticalMuliplier;

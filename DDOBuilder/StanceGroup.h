@@ -23,8 +23,6 @@ public:
     void CreateWindows(CWnd* pParent, UINT& nextControlId);
     void AddStance(Character* pCharacter, const Stance& stance, const std::string& group, CWnd* pParent, UINT& nextControlId);
     bool RevokeStance(const Stance& stance, const std::string& group);
-    bool ActivateStance(const std::string& stanceName);
-    bool DeactivateStance(const std::string& stanceName);
     void DeactivateOtherStancesExcept(const std::string& stanceName, Build* pBuild);
     void DestroyAll();
     CStanceButton* GetStance(const std::string& stanceName);

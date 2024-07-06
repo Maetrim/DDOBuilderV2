@@ -860,7 +860,14 @@ against all Rage effects.</Description>
       <Description>While using Combat Expertise mode, you suffer -5 to your attack rolls but
 gain +10% feat bonus to Armor Class. Spells have three times their normal
 cooldown when this mode is active.</Description>
-      <Group>Defensive Combat Stance</Group>
+         <IncompatibleStance>Resilience</IncompatibleStance>
+         <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
     </Stance>
     <Effect>
         <Type>Weapon_Attack</Type>
@@ -1058,7 +1065,14 @@ positive energy healing. In addition, you now take 50% damage from rust effects.
       <Icon>DefensiveFighting</Icon>
       <Description>While using Defensive Fighting mode, you gain a 5% bonus to AC
 and a -5% penalty to-hit. Casting a spell ends this mode.</Description>
-      <Group>Defensive Combat Stance</Group>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Resilience</IncompatibleStance>
+         <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
     </Stance>
     <Acquire>Automatic</Acquire>
     <Icon>DefensiveFighting</Icon>
@@ -2685,9 +2699,9 @@ Does not function in animal forms.</Description>
   </Feat>
   <Feat>
     <Name>Greater Single Weapon Fighting</Name>
-    <Description>Your Single-Weapon Fighting bonus is increased to a +30% Combat Style bonus
-to attack speed and +2 additional Melee Power (for a total of 6) and 50% more of
-your appropriate ability score to your damage (similar to Two-Handed Fighting).</Description>
+    <Description>Your Single-Weapon Fighting bonus is increased to a +30% Combat Style bonus to attack
+speed and +2 additional Melee Power (for a total of 6) and 50% more of your
+appropriate ability score to your damage (similar to Two-Handed Fighting).</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -2723,7 +2737,7 @@ your appropriate ability score to your damage (similar to Two-Handed Fighting).<
     <Effect>
       <Type>WeaponAlacrityClass</Type>
       <Bonus>Combat Style</Bonus>
-      <Item>OneHanded</Item>
+      <Item>One Handed</Item>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
       <Requirements>
@@ -3953,7 +3967,7 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
     <Effect>
       <Type>WeaponAlacrityClass</Type>
       <Bonus>Feat</Bonus>
-      <Item>OneHanded</Item>
+      <Item>One Handed</Item>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
       <Requirements>
@@ -6825,7 +6839,7 @@ If you have an Orb or Runearm in your Offhand, gain +1 Imbue Dice</Description>
           </Requirement>
           <Requirement>
             <Type>Stance</Type>
-            <Item>Rune Arm</Item>
+            <Item>RuneArm</Item>
           </Requirement>
         </RequiresOneOf>
       </Requirements>
@@ -6908,7 +6922,10 @@ Two-handed weapons get twice that damage bonus.</Description>
       <Description>Reduces your hit bonus by 5, or your Base Attack Bonus, whichever is lower.
 Then your successful attacks will have their damage increased by the same amount.
 Two-handed weapons get twice that damage bonus.</Description>
-      <Group>Active Combat Stance</Group>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Resilience</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
     </Stance>
     <Requirements>
       <Requirement>
@@ -6939,7 +6956,7 @@ Two-handed weapons get twice that damage bonus.</Description>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">5</Amount>
-      <Item>OneHanded</Item>
+      <Item>One Handed</Item>
       <Requirements>
         <Requirement>
           <Type>Stance</Type>
@@ -7079,7 +7096,14 @@ fortification against your attacks by 25%.</Description>
       <Icon>Precision</Icon>
       <Description>While using Precision mode, you gain +5% to hit and reduces the target's
 fortification against your attacks by 25%.</Description>
-      <Group>Active Combat Stance</Group>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Resilience</IncompatibleStance>
+         <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
     </Stance>
     <Effect>
         <Type>Weapon_Attack</Type>
@@ -7304,7 +7328,14 @@ active. Cannot be used while raged.</Description>
       <Icon>Resilience</Icon>
       <Description>You gain a +4 to all saving throws.
 Spells have three times their normal cooldown when this mode is active.</Description>
-      <Group>Active Combat Stance</Group>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
     </Stance>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
@@ -7686,9 +7717,9 @@ Also gives +6 ranged power.</Description>
   </Feat>
   <Feat>
     <Name>Single Weapon Fighting</Name>
-    <Description>While Single Weapon Fighting, you gain +10% Combat Style bonus to attack
-speed and 2 Melee Power. Requires fighting with a single one-handed weapon,
-and wielding only an orb, runearm, or nothing in your off hand.</Description>
+    <Description>While Single Weapon Fighting, you gain +10% Combat Style bonus to attack speed and
+2 Melee Power. Requires fighting with a single one-handed weapon, and wielding
+only an orb, runearm, or nothing in your off hand.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -7722,7 +7753,7 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
     <Effect>
       <Type>WeaponAlacrityClass</Type>
       <Bonus>Combat Style</Bonus>
-      <Item>OneHanded</Item>
+      <Item>One Handed</Item>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
       <Requirements>
@@ -12583,6 +12614,10 @@ Scimitars are considered as a favored weapon.</Description>
         <Requirement>
           <Type>Race</Type>
           <Item>Wood Elf</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Race</Type>
+          <Item>Eladrin</Item>
         </Requirement>
       </RequiresOneOf>
     </Requirements>

@@ -20,6 +20,7 @@ class SetBonus;
 class Stance;
 class Spell;
 class SpellDamage;
+class SpellDC;
 class SubItem;
 class LevelTraining;
 
@@ -99,6 +100,7 @@ class CInfoTip :
         void AppendFeatInfo(const Build& build, const std::string& feat, const Requirements& req);
         void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks, bool bSuppressed);
         void AppendDCInfo(const Build& build, const DC& dc);
+        void AppendDCInfo(const Build& build, const Spell& spell, const SpellDC& dc);
         void AppendSpellItem(const Build& build, const Spell& spell);
         void AppendSpellDamageEffect(const Build& build, const Spell& spell, const SpellDamage& sd);
         void AppendSLA(const Spell& spell, int nSpellLevel, int nCharges, int nRecharge);

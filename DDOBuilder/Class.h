@@ -35,6 +35,7 @@ class Class :
         void AddSmallClassImage(CImageList * pImageList) const;
         void AddLargeClassImage(CImageList * pImageList) const;
         void AddFeatSlots(const Build& build, size_t classLevel, std::vector<FeatSlot> * tfts, size_t totalLevel) const;
+        size_t MaxSpellLevel(size_t classLevel) const;
 
         std::list<Feat> ImprovedHeroicDurabilityFeats() const;
 

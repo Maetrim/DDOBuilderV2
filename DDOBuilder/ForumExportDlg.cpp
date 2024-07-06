@@ -1481,14 +1481,11 @@ void CForumExportDlg::AddSpellList(
         forumExport << std::left << (*it).SpellName();
         // spell school
         Spell spell = FindSpellByName((*it).SpellName());
+        //??spell.UpdateSpell();
         forumExport.width(15);
         forumExport << std::left << EnumEntryText(spell.School(), spellSchoolTypeMap);
         // show the spell DC also
-        size_t spellDC = spell.SpellDC(
-                *m_pBuild,
-                ct,
-                spellLevel,
-                maxSpellLevel);
+        size_t spellDC = spell.DC(*m_pBuild);
         forumExport.width(3);
         forumExport << std::right << spellDC;
         forumExport << "\r\n";

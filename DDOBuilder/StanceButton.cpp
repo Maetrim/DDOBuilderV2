@@ -103,9 +103,9 @@ bool CStanceButton::Evaluate(Character* charData)
                 if (m_bSelected)
                     pBuild->ActivateStance(m_stance, pSG);
                 else if (m_bDisabled)
-                    pBuild->DisableStance(m_stance, pSG);
+                    pBuild->DisableStance(m_stance);
                 else
-                    pBuild->DeactivateStance(m_stance, pSG);
+                    pBuild->DeactivateStance(m_stance);
             }
         }
     }

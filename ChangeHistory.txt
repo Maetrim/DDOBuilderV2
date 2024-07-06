@@ -1,3 +1,239 @@
+Build 2.0.0.32
+
+---Spell Singer Tier 1 Spell Like Ability now has all its options (Sonic Blast / Cure Light Wounds) (Reported by Novatron)
+---Set bonus "Legendary Fried & Frozen Frenzy" now applies its 19-20 critical multiplier at 2 pieces not 3 (Reported by Refutor)
+---"Assassin: Lethality" should now correctly award +1 Critical Multiplier to One Handed weapons (Reported by Refutor)
+---"Assassin: Toxin Affinity" now has its correct requirement of "Assassin: Venomed Blades"
+---Stances can now explicitly state which stances they are incompatible with, and will auto turn those off when enabled
+---All "Feat" Combat Stances moves to the "User" section and now use the "Incompatible Stance" method, same as V1 (Reported by Lanta_Nan and tevwoods)
+---Armor AC % bonuses should now also include the armors Enhancement value (Reported by Lanta_Nan)
+---Shield AC % bonuses should now also include the shields Enhancement value (includes any bonuses to shield enchantment) (Reported by Lanta_Nan)
+---"Shield Enchantment" broken out into its own effect
+---"Weapon Enchantment" and "Shield Enchantment" effects will only affect the correct weapon type
+---Spells "Greater Color Spray" and "Color Spray" are now correctly in the Illusion School (Reported by heartmanpd)
+---Cannith crafting will now correctly set the augment levels at item setup, not just after item load. (Reported by Kenaustin)
+---"Black Dragon Bolt" spell image will now show correctly during spell selection
+---A crash when revoking unknown Destiny enhancements was fixed (bad destiny import from V1) (Reported by Howiedoohan)
+---Enhancement "Tabaxi Trailblazer: Improved Instincts" is now correctly single rank (Reported by SpartanKiller13)
+---A new "SpellDC" object type was added. Regular DC objects reduced to only handle Tactical type DCs
+---Feat "Stunning Fist" now has its correct requirement of "Flurry of Blows"
+---All duplicate "Death Ward, Mass" removed
+---Duplicate "Curative Admixture: Remove Disease" removed
+---Duplicate "Curative Admixture: Remove Poison" removed
+---Duplicate "Curative Admixture: Remove Curse" removed
+---Duplicate "Symbol of Fear" removed
+---Duplicate "Fire Shield (Fire)" removed
+---Duplicate "Wholeness of Spirit" removed
+---"Follower of the Undying Court" can now be selected by Eladrins
+---"Spellsinger: Spell Like Ability I" option "Cure Light Wounds" now has its icon
+---Debug ASSERT fixed in V1 Augment import
+---Importing a V1 file will now correctly setup the builds internal cached class levels object
+---Enhancement "Bombardier: Efficient Metamagics II" is not correctly 2ap/rank (Reported by MIvanIsten)
+---All Dinosaur bone augments that affect Negative spell power now also affect poison spell power (Reported by ericcater)
+---All weapon breakdowns for attack speed will now correctly track Effect_WeaponAlacrityClass effects (Reported by zenith90210)
+---"Offhand Versatility" will now correctly award 1 imbue dice when a rune arm is equipped and SWF (Reported by zenith90210)
+---All Effect_WeaponAlacrityClass that affected the "One Handed" weapon group will now work (Reported by zenith90210)
+---Items will now show any required feats to be in use in their tooltips
+---Rune Arms will no longer try and show damage dice in their tooltips
+---Cannith Crafting Fixes: (Reported by Jokersir2)
+------Vitality van now go in an Cannith Armor Prefix slot
+------Disease Ward in now a Bracers Prefix, not a suffix option
+------Disease Ward in now a Cannith Cloak Prefix option
+------Disease Ward in no longer a Cannith Belt Prefix option
+------Disease Ward in no longer a Cannith Ring Prefix option
+------Insightful Search in now a Cannith Goggles Extra option
+------Insightful Search in now a Cannith Helmet Extra option
+------Insightful Spot in now a Cannith Goggles Extra option
+------Insightful Spot in now a Cannith Helmet Extra option
+------Insightful Spot in now a Cannith Necklace Extra option
+------Insightful Vertigo is now a Cannith Gloves Extra option (removed from Prefix also)
+------Insightful Vertigo removed from Cannith Belt Suffix
+---Spell DC values (for the 1st DC only for that spell) will be exported (VALUES CURRENTLY WRONG)
+---Spell DC should now be displayed for spell for which I have implemented the relevant DC entry:
+------Curative Admixture: Cure Light Wounds
+------Grease
+------Static Shock
+------Fire Trap
+------Curative Admixture: Cure Moderate Wounds
+------Elemental Prod
+------Lightning Sphere
+------Curative Admixture: Cure Serious Wounds
+------Blast Rod
+------Lightning Bolt
+------Lightning Motes
+------Thundering Armor
+------Blade Barrier
+------Tactical Detonation
+------Cure Light Wounds
+------Detect Secret Doors
+------Charm Person
+------Hypnotism
+------Otto's Resistible Dance
+------Sleep
+------Sonic Blast
+------Cause Fear
+------Cure Moderate Wounds
+------Glitterdust
+------Daze Monster
+------Hold Person
+------Suggestion
+------Soundburst
+------Hypnotic Pattern
+------Blindness
+------Scare
+------Dispel Magic
+------Cure Serious Wounds
+------Charm Monster
+------Crushing Despair
+------Deep Slumber
+------Fear
+------Slow
+------Break Enchantment
+------Cure Critical Wounds
+------Dominate Person
+------Hold Monster
+------Otto's Sphere of Dancing
+------Shout
+------Greater Dispel Magic
+------Cure Light Wounds, Mass
+------Suggestion, Mass
+------Mind Fog
+------Cure Moderate Wounds, Mass
+------Charm Monster, Mass
+------Otto's Irresistible Dance
+------Greater Shout
+------Bane
+------Command
+------Doom
+------Inflict Light Wounds
+------Close Wounds
+------Deific Vengeance
+------Inflict Moderate Wounds
+------Glyph of Warding
+------Bestow Curse
+------Contagion
+------Inflict Serious Wounds
+------Dismissal
+------Panacea
+------Chaos Hammer
+------Holy Smite
+------Order's Wrath
+------Symbol of Flame
+------Unholy Blight
+------Inflict Critical Wounds
+------Poison
+------Greater Command
+------Flame Strike
+------Inflict Light Wounds, Mass
+------Slay Living
+------Symbol of Pain
+------Banishment
+------Greater Glyph of Warding
+------Cometfall
+------Heal
+------Symbol of Persuasion
+------Harm
+------Inflict Moderate Wounds, Mass
+------Symbol of Fear
+------Undeath to Death
+------Cure Serious Wounds, Mass
+------Symbol of Stunning
+------Destruction
+------Inflict Serious Wounds, Mass
+------Symbol of Weakness
+------Holy Aura
+------Cure Critical Wounds, Mass
+------Fire Storm
+------Inflict Critical Wounds, Mass
+------Heal, Mass
+------Implosion
+------Charm Animal
+------Faerie Fire
+------Entangle
+------Animal Trance
+------Hold Animal
+------Flaming Sphere
+------Gust of Wind
+------Sleet Storm
+------Dominate Animal
+------Call Lightning
+------Salt Ray
+------Quench
+------Snare
+------Spike Growth
+------Enveloping Swarm
+------Call Lightning Storm
+------Wall of Fire
+------Fire Seeds
+------Creeping Doom
+------Body of the Sun
+------Sunbeam
+------Howl of Terror
+------Earthquake
+------Sunburst
+------Finger of Death
+------Ice Flowers
+------Storm of Vengeance
+------Niac's Cold Ray
+------Acid Spray
+------Burning Hands
+------Chill Touch
+------Disrupt Undead
+------Web
+------Electric Loop
+------Scorch
+------Snowball Swarm
+------Command Undead
+------Ghoul Touch
+------Knock
+------Ooze Puppet
+------Chaos Sphere
+------Acid Blast
+------Stinking Cloud
+------Fireball
+------Frost Lance
+------Halt Undead
+------Ray of Exhaustion
+------Acid Rain
+------Phantasmal Killer
+------Negative Energy Burst
+------Cloudkill
+------Feeblemind
+------Ball Lightning
+------Cone of Cold
+------Cyclonic Blast
+------Chain Lightning
+------Otiluke's Freezing Sphere
+------Circle of Death
+------Necrotic Ray
+------Disintegrate
+------Flesh to Stone
+------Hold Person, Mass
+------Delayed Blast Fireball
+------Prismatic Spray
+------Control Undead
+------Incendiary Cloud
+------Trap the Soul
+------Acid Well
+------Iceberg
+------Thunderstroke
+------Dominate Monster
+------Hold Monster, Mass
+------Meteor Swarm
+------Wail of the Banshee
+------Rend the Soul
+------Silence Creature
+------Evard's Black Tentacles
+------Binding Chain
+------Illusory Mark of Flame
+------Illusory Symbol of Stunning
+------Healing Word
+------Elemental Damage
+---Reviewed and modified the spell description text for layout for all spells as SpellDC objects added to them
+---SLA spells will now be checked for spells listed in the SLA page
+---Spells which had effects added for them:
+------Enchant Weapons
+
 Build 2.0.0.31
 
 ---Follower Of and Deity feats will now fill with a placeholder feat if you cannot train a feat at that level due to a Follower/Deity feat being trained in a standard feat slot earlier in the build

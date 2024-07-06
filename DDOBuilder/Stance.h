@@ -36,7 +36,8 @@ class Stance :
                 DL_STRING(_, Description) \
                 DL_OPTIONAL_STRING(_, Group) \
                 DL_FLAG(_, AutoControlled) \
-                DL_OPTIONAL_OBJECT(_, Requirements, ActiveRequirements)
+                DL_OPTIONAL_OBJECT(_, Requirements, ActiveRequirements) \
+                DL_STRING_LIST(_, IncompatibleStance)
 
         DL_DECLARE_ACCESS(Stance_PROPERTIES)
         DL_DECLARE_VARIABLES(Stance_PROPERTIES)

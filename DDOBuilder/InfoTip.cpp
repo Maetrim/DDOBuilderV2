@@ -16,6 +16,7 @@
 #include "LevelTraining.h"
 #include "Patron.h"
 #include "SetBonus.h"
+#include "SpellDC.h"
 #include "SubItem.h"
 #include "InfoTipItem.h"
 #include "BreakdownItem.h"
@@ -645,7 +646,8 @@ void CInfoTip::SetItem(
         }
     }
 
-    if (pItem->HasWeapon())
+    if (pItem->HasWeapon()
+            && pItem->HasDamageDice())
     {
         CString text;
         CString entry;
@@ -1108,7 +1110,7 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
     // add any spell DCs
     for (auto&& dcit : spell.DCs())
     {
-        AppendDCInfo(build, dcit);
+        AppendDCInfo(build, spell, dcit);
     }
     // add any spell damage items
     for (auto&& sdit : spell.SpellDamageEffects())
@@ -1449,6 +1451,21 @@ void CInfoTip::AppendDCInfo(
             "%s DC: %s",
             dc.DCType().c_str(),
             dc.DCBreakdown(&build).c_str());
+    InfoTipItem_DC* pDC = new InfoTipItem_DC;
+    pDC->SetText(text);
+    m_tipItems.push_back(pDC);
+}
+
+void CInfoTip::AppendDCInfo(
+    const Build& build,
+    const Spell& spell,
+    const SpellDC& dc)
+{
+    CString text;
+    text.Format(
+        "%s DC: %s",
+        dc.DCType().c_str(),
+        dc.SpellDCBreakdown(&build, spell).c_str());
     InfoTipItem_DC* pDC = new InfoTipItem_DC;
     pDC->SetText(text);
     m_tipItems.push_back(pDC);

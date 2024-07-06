@@ -142,18 +142,6 @@ bool StanceGroup::RevokeStance(
     return bFound;
 }
 
-bool StanceGroup::ActivateStance(
-        const std::string& /*stanceName*/)
-{
-    return false;
-}
-
-bool StanceGroup::DeactivateStance(
-        const std::string& /*stanceName*/)
-{
-    return false;
-}
-
 void StanceGroup::DeactivateOtherStancesExcept(
     const std::string& stanceName,
     Build* pBuild)
@@ -164,7 +152,7 @@ void StanceGroup::DeactivateOtherStancesExcept(
         {
             if (pBuild->IsStanceActive(sbit->GetStance().Name(), Weapon_Unknown))
             {
-                pBuild->DeactivateStance(sbit->GetStance(), this);
+                pBuild->DeactivateStance(sbit->GetStance());
             }
         }
     }

@@ -213,3 +213,4 @@ bool SearchForText(std::string source, const std::string& find);
 std::vector<Spell> FilterSpells(Build* pBuild, std::string& ct, int level);
 size_t WeaponBaseCriticalRange(WeaponType wt);
 std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t level);
+bool IsShield(WeaponType wt);

@@ -428,31 +428,31 @@ void CStancesPane::UpdateRevokeStance(Build*, const Stance& stance)
 }
 
 void CStancesPane::UpdateStanceActivated(
-        Build*,
+        Build* pBuild,
         const std::string& stanceName)
 {
-    for (auto&& sgi : m_stanceGroups)
+    const CStanceButton* pButton = GetStance(stanceName);
+    if (pButton != NULL)
     {
-        bool found = sgi->ActivateStance(stanceName);
-        if (found)
+        const Stance& stance = pButton->GetStance();
+        for (auto&& sit: stance.IncompatibleStance())
         {
-            break;
+            const CStanceButton* pDSButton = GetStance(sit);
+            if (pDSButton != NULL)
+            {
+                const Stance& DSstance = pDSButton->GetStance();
+                pBuild->DeactivateStance(DSstance);
+                CStanceButton* pStance = const_cast<CStanceButton*>(pDSButton);
+                pStance->SetSelected(false);
+            }
         }
     }
 }
 
 void CStancesPane::UpdateStanceDeactivated(
         Build*,
-        const std::string& stanceName)
+        const std::string&)
 {
-    for (auto&& sgi : m_stanceGroups)
-    {
-        bool found = sgi->DeactivateStance(stanceName);
-        if (found)
-        {
-            break;
-        }
-    }
 }
 
 void CStancesPane::UpdateStanceDisabled(
@@ -504,16 +504,6 @@ void CStancesPane::UpdateItemEffectApplied(
         Build*,
         const Effect& effect)
 {
-    // see if this is an activate stance effect
-    if (effect.IsType(Effect_ActivateStance))
-    {
-        {
-            for (auto&& sgi : m_stanceGroups)
-            {
-                sgi->ActivateStance(effect.Item().front());
-            }
-        }
-    }
     UpdateSliders(effect, true);
 }
 
@@ -550,7 +540,7 @@ void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
             }
             else if (pStance->IsSelected())
             {
-                m_pCharacter->ActiveBuild()->DeactivateStance(pStance->GetStance(), pStanceGroup);
+                m_pCharacter->ActiveBuild()->DeactivateStance(pStance->GetStance());
                 pStance->SetSelected(false);
                 m_pDocument->SetModifiedFlag(TRUE);
             }
@@ -568,7 +558,7 @@ void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
                         if (pOtherStance != pStance
                             && pOtherStance->IsSelected())
                         {
-                            m_pCharacter->ActiveBuild()->DeactivateStance(pOtherStance->GetStance(), pStanceGroup);
+                            m_pCharacter->ActiveBuild()->DeactivateStance(pOtherStance->GetStance());
                             pOtherStance->SetSelected(false);
                         }
                     }

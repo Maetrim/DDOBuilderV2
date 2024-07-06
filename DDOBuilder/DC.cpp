@@ -137,16 +137,6 @@ int DC::CalculateDC(const Build * build) const
         ++mait;
     }
     value += modAbilityBonus;
-    // add any casting stat breakdown
-    if (HasCastingStatMod())
-    {
-        const ::Class& c = FindClass(m_class);
-        AbilityType at = c.ClassCastingStat();
-        BreakdownType bt = StatToBreakdown(at);
-        BreakdownItem* pBI = FindBreakdown(bt);
-        int abilityBonus = BaseStatToBonus(pBI->Total());
-        value += abilityBonus;
-    }
     // add any skill breakdown bonus
     if (m_hasSkill)
     {
@@ -330,18 +320,6 @@ std::string DC::DCBreakdown(const Build * build) const
             }
             ss << ")";
         }
-    }
-    // add any casting stat breakdown
-    if (HasCastingStatMod())
-    {
-        const ::Class& c = FindClass(m_class);
-        AbilityType at = c.ClassCastingStat();
-        BreakdownType bt = StatToBreakdown(at);
-        BreakdownItem* pBI = FindBreakdown(bt);
-        int abilityBonus = BaseStatToBonus(pBI->Total());
-        std::string name = EnumEntryText(at, abilityTypeMap);
-        name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
-        ss << " + " << name << " Mod(" << abilityBonus << ")";
     }
     // add any skill breakdown bonus
     if (m_hasSkill)

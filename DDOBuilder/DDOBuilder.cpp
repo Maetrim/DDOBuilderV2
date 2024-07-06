@@ -1246,6 +1246,24 @@ void CDDOBuilderApp::VerifySpells()
     {
         sit.VerifyObject();
     }
+    // make sure we do not have any spell duplicates
+    std::list<Spell>::const_iterator it = m_spells.begin();
+    while (it != m_spells.end())
+    {
+        std::list<Spell>::const_iterator nit = it;
+        nit++;
+        while (nit != m_spells.end())
+        {
+            if ((*it).Name() == (*nit).Name())
+            {
+                std::stringstream ss;
+                ss << "===Duplicate spell " << (*nit).Name() << "=====";
+                GetLog().AddLogEntry(ss.str().c_str());
+            }
+            ++nit;
+        }
+        ++it;
+    }
 }
 
 void CDDOBuilderApp::VerifyItems()
@@ -1613,6 +1631,7 @@ void CDDOBuilderApp::ConvertToNewDataStructure(LegacyCharacter& importedCharacte
         }
         pBuild->Set_Levels(importedCharacter.Levels());
         pBuild->Set_Level(importedCharacter.Levels().size());
+        pBuild->UpdateCachedClassLevels();
         size_t level = 0;
         for (auto&& lit: importedCharacter.Levels())
         {

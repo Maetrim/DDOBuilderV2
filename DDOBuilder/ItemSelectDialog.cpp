@@ -218,6 +218,15 @@ BOOL CItemSelectDialog::OnInitDialog()
 
 Item CItemSelectDialog::SelectedItem()
 {
+    std::vector<ItemAugment> augments = m_item.Augments();
+    for (auto&& ait: augments)
+    {
+        if (ait.Type().find("Cannith") != std::string::npos)
+        {
+            ait.SetSelectedLevelIndex(m_item.MinLevel());
+        }
+    }
+    m_item.SetAugments(augments);
     return m_item;
 }
 

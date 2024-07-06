@@ -3,10 +3,9 @@
 // An XML object wrapper that holds information on a spell
 #pragma once
 #include "XmlLib\DLMacros.h"
-#include "DamageTypes.h"
 #include "SpellSchoolTypes.h"
 #include "Effect.h"
-#include "DC.h"
+#include "SpellDC.h"
 #include "SpellDamage.h"
 
 class Build;
@@ -25,7 +24,7 @@ class Spell :
         size_t MetamagicCount() const;
         void VerifyObject() const;
 
-        size_t SpellDC(const Build& build, const std::string& ct, size_t spellLevel, size_t maxSpellLevel) const;
+        size_t DC(const Build& build) const;
         const std::string& Class() const;
         void SetClass(const std::string& ct);
         std::list<Effect> UpdatedEffects(size_t castingLevel) const;
@@ -56,7 +55,7 @@ class Spell :
                 DL_OPTIONAL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_SIMPLE(_, int, Cost, 0) \
                 DL_OBJECT_LIST(_, Effect, Effects) \
-                DL_OBJECT_LIST(_, DC, DCs) \
+                DL_OBJECT_LIST(_, ::SpellDC, DCs) \
                 DL_OBJECT_LIST(_, SpellDamage, SpellDamageEffects) \
                 DL_FLAG(_, Accelerate) \
                 DL_FLAG(_, Embolden) \

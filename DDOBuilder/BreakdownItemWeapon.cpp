@@ -19,7 +19,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_damageDice(damageDice),
-    m_weaponEnchantment(pPane, Breakdown_WeaponEnchantment, Effect_Weapon_Enchantment, "Weapon Enhancement", treeList, NULL, false),
+    m_weaponEnchantment(pPane, Breakdown_WeaponEnchantment, IsShield(weaponType) ? Effect_ShieldEnchantment : Effect_Weapon_Enchantment, IsShield(weaponType) ? "Shield Enhancement" : "Weapon Enhancement", treeList, NULL, false),
     m_baseDamage(pPane, Breakdown_WeaponBaseDamage, Effect_Weapon_BaseDamage, "Base Damage", treeList, NULL, false),
     m_attackBonus(Breakdown_WeaponAttackBonus, Effect_Weapon_Attack, "Attack Bonus", treeList, NULL, slot == Inventory_Weapon2, false),
     m_damageBonus(Breakdown_WeaponDamageBonus, Effect_Weapon_Damage, "Damage Bonus", treeList, NULL, slot == Inventory_Weapon2, false),
@@ -30,7 +30,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalThreatRange(Breakdown_WeaponCriticalThreatRange, treeList, NULL),
     m_criticalMultiplier(Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL),
     m_criticalMultiplier19To20(Breakdown_WeaponCriticalMultiplier19To20, treeList, NULL, &m_criticalMultiplier),
-    m_attackSpeed(pPane, Breakdown_WeaponAttackSpeed, Effect_Weapon_Alacrity, "Attack Speed", treeList, NULL, false),
+    m_attackSpeed(pPane, Breakdown_WeaponAttackSpeed, Effect_Weapon_Alacrity, "Attack Speed", treeList, NULL),
     m_ghostTouch(pPane, Breakdown_WeaponGhostTouch, Effect_GhostTouch, "Ghost Touch", treeList, NULL, false),
     m_trueSeeing(pPane, Breakdown_WeaponTrueSeeing, Effect_TrueSeeing, "True Seeing", treeList, NULL, false),
     m_drBypass(pPane, Breakdown_DRBypass, treeList, NULL),
@@ -73,7 +73,14 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_drBypass.AttachObserver(this);
 
 
-    AddTreeItem("Weapon Enhancement", "", &m_weaponEnchantment);           // no breakdown, just a dice number
+    if (IsShield(weaponType))
+    {
+        AddTreeItem("Shield Enhancement", "", &m_weaponEnchantment);
+    }
+    else
+    {
+        AddTreeItem("Weapon Enhancement", "", &m_weaponEnchantment);
+    }
     std::string strDamageDice = (LPCTSTR)m_damageDice.DiceAsText();
     AddTreeItem("Weapon Dice", strDamageDice, NULL);           // no breakdown, just a dice number
     AddTreeItem("Base Damage", "", &m_baseDamage);
@@ -833,5 +840,3 @@ void BreakdownItemWeapon::LinkUp()
     m_ghostTouch.CreateOtherEffects();
     m_trueSeeing.CreateOtherEffects();
 }
-
-

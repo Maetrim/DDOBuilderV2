@@ -1130,6 +1130,14 @@ BOOL CFindGearDialog::PreTranslateMessage(MSG* pMsg)
 
 void CFindGearDialog::OnButtonEquipIt()
 {
+    std::vector<ItemAugment> augments = m_item.Augments();
+    for (auto&& ait : augments)
+    {
+        if (ait.Type().find("Cannith") != std::string::npos)
+        {
+            ait.SetSelectedLevelIndex(m_item.MinLevel());
+        }
+    }
     InventorySlotType slot = Inventory_Unknown;
     // determine which slot(s) this item can equip to
     std::vector<InventorySlotType> slots;

@@ -27,6 +27,7 @@ BreakdownItemWeaponEffects::BreakdownItemWeaponEffects(
     m_pPane->RegisterBuildCallbackEffect(Effect_TrueSeeing, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_DRBypass, this);
 
+    m_pPane->RegisterBuildCallbackEffect(Effect_ShieldEnchantment, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Alacrity, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_AttackAbility, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_Attack, this);
@@ -268,6 +269,7 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         EffectType t = effect.Type().front();
         switch (t)
         {
+        case Effect_ShieldEnchantment:
         case Effect_Weapon_Alacrity:
         case Effect_Weapon_AttackAbility:
         case Effect_Weapon_BaseDamage:
@@ -529,6 +531,7 @@ void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
                 gear.ItemInSlot(Inventory_Weapon2),
                 Inventory_Weapon2);
         m_pOffHandWeapon->LinkUp();
+        FindBreakdown(Breakdown_AC)->LinkUp();
     }
     m_pTreeList->Expand(m_hItem, TVE_EXPAND);
     m_pTreeList->RedrawWindow();    // ensure view updates

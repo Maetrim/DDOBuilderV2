@@ -5,6 +5,7 @@
 #include "BreakdownsPane.h"
 
 #include "GlobalSupportFunctions.h"
+#include "BreakdownItemWeaponEffects.h"
 
 BreakdownItemAC::BreakdownItemAC(
         CBreakdownsPane* pPane,
@@ -112,11 +113,12 @@ void BreakdownItemAC::CreateOtherEffects()
             {
                 pBI->AttachObserver(this);      // need to know about changes
                 double percentBonus = pBI->Total();
-                double value = GetEffectValue("Armor");
-                int amount = (int)((value * percentBonus) / 100.0);
+                double valueArmor = GetEffectValue("Armor");
+                double valueEnhancement = GetEffectValue("Enhancement");
+                int amount = (int)(((valueArmor + valueEnhancement) * percentBonus) / 100.0);
                 std::stringstream ss;
-                ss << "Armor " << percentBonus << "% Bonus";
-                // now add a percentage of that
+                ss << "Armor " << percentBonus << "% Bonus of " << (valueArmor + valueEnhancement) << " (Armor + Enhancement)";
+                    // now add a percentage of that
                 Effect feat(
                     Effect_Unknown,
                         ss.str(),
@@ -124,22 +126,41 @@ void BreakdownItemAC::CreateOtherEffects()
                         amount);
                 AddOtherEffect(feat);
             }
-            pBI = FindBreakdown(Breakdown_BonusShieldAC);
-            if (pBI != NULL)
+
+            // add any shield enhancement (must have a shield equipped)
+            if (pBuild->IsStanceActive("Shield"))
             {
-                pBI->AttachObserver(this);      // need to know about changes
-                double percentBonus = pBI->Total();
-                double value = GetEffectValue("Shield");
-                int amount = (int)((value * percentBonus) / 100.0);
-                std::stringstream ss;
-                ss << "Shield " << percentBonus << "% Bonus";
-                // now add a percentage of that
-                Effect feat(
-                        Effect_Unknown,
-                        ss.str(),
-                        ss.str(),
-                        amount);
-                AddOtherEffect(feat);
+                pBI = FindBreakdown(Breakdown_BonusShieldAC);
+                if (pBI != NULL)
+                {
+                    pBI->AttachObserver(this);      // need to know about changes
+                    double percentBonus = pBI->Total();
+                    if (percentBonus > 0)
+                    {
+                        double valueShield = GetEffectValue("Shield");
+                        double valueEnhancement = 0;
+                        pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+                        BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+                        if (pBIW != NULL)
+                        {
+                            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(false, Breakdown_WeaponEnchantment);
+                            if (pBWE != NULL)
+                            {
+                                valueEnhancement = pBWE->Total();
+                            }
+                        }
+                        int amount = (int)(((valueShield + valueEnhancement) * percentBonus) / 100.0);
+                        std::stringstream ss;
+                        ss << "Shield " << percentBonus << "% Bonus of " << (valueShield + valueEnhancement) << " (Shield(" << valueShield << ") + Enhancement(" << valueEnhancement << "))";
+                            // now add a percentage of that
+                        Effect feat(
+                                Effect_Unknown,
+                                ss.str(),
+                                ss.str(),
+                                amount);
+                        AddOtherEffect(feat);
+                    }
+                }
             }
             pBI = FindBreakdown(Breakdown_NaturalArmor);
             if (pBI != NULL)
@@ -168,4 +189,38 @@ void BreakdownItemAC::UpdateTotalChanged(BreakdownItem * item, BreakdownType typ
     BreakdownItem::UpdateTotalChanged(item, type);
     // our Dex bonus to AC may have changed. Update
     CreateOtherEffects();
+}
+
+void BreakdownItemAC::LinkUp()
+{
+    BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+    BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+    if (pBIW != NULL)
+    {
+        // AC needs to know when Shield enhancement bonus changes
+        BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(false, Breakdown_WeaponEnchantment);
+        if (pBWE != NULL)
+        {
+            pBWE->AttachObserver(this);  // need to know about changes to this effect
+        }
+        CreateOtherEffects();
+    }
+}
+
+void BreakdownItemAC::StanceActivated(Build* pBuild, const std::string& stanceName)
+{
+    if (stanceName == "Shield")
+    {
+        CreateOtherEffects();
+    }
+    BreakdownItem::StanceActivated(pBuild, stanceName);
+}
+
+void BreakdownItemAC::StanceDeactivated(Build* pBuild, const std::string& stanceName)
+{
+    if (stanceName == "Shield")
+    {
+        CreateOtherEffects();
+    }
+    BreakdownItem::StanceDeactivated(pBuild, stanceName);
 }

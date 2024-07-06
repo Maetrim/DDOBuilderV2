@@ -25,6 +25,10 @@ class BreakdownItemAC :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
 
+        virtual void LinkUp() override;
+
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
+        virtual void StanceActivated(Build* pBuild, const std::string& stanceName) override;
+        virtual void StanceDeactivated(Build* pBuild, const std::string& stanceName) override;
 };
