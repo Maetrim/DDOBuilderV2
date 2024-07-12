@@ -53,7 +53,8 @@ void BreakdownItemMDB::CreateOtherEffects()
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
-            m_bNoLimit = pBuild->IsStanceActive("Cloth Armor");
+            m_bNoLimit = pBuild->IsStanceActive("Cloth Armor")
+                    && !pBuild->IsStanceActive("Tower Shield");
         }
     }
 }

@@ -152,6 +152,68 @@ CString SpellDamage::DiceDamageText() const
     return fullText;
 }
 
+CString SpellDamage::AverageDamageText(
+        size_t casterLevel) const
+{
+    CString txt;
+
+    double spellPower = 1.0;        // assume
+    CString spellPowerName("Unknown");
+    if (HasSpellPower())
+    {
+        SpellPowerType spt = SpellPower();
+        spellPowerName = EnumEntryText(spt, spellPowerTypeMap);
+        BreakdownItem* pBI = FindBreakdown(SpellPowerToBreakdown(spt));
+        if (pBI != NULL)
+        {
+            // make sure we use the highest of any replacement spell power also
+            spellPower = ((int)pBI->ReplacementTotal() / 100.0);
+        }
+    }
+
+    txt = DamageDice().AverageDamageText(1 + spellPower, casterLevel);
+    txt.Replace("Average Damage: ", "");
+    return txt;
+}
+
+CString SpellDamage::CriticalDamageText(
+        size_t casterLevel) const
+{
+    CString txt;
+
+    double spellPower = 1.0;        // assume
+    double spellCriticalChance = 0.0;
+    double spellCriticalMultiplier = 2.0;       // default 2* damage
+    CString spellPowerName("Unknown");
+    if (HasSpellPower())
+    {
+        SpellPowerType spt = SpellPower();
+        spellPowerName = EnumEntryText(spt, spellPowerTypeMap);
+        BreakdownItem* pBI = FindBreakdown(SpellPowerToBreakdown(spt));
+        if (pBI != NULL)
+        {
+            // make sure we use the highest of any replacement spell power also
+            spellPower = ((int)pBI->ReplacementTotal() / 100.0);
+        }
+        pBI = FindBreakdown(SpellPowerToCriticalChanceBreakdown(spt));
+        if (pBI != NULL)
+        {
+            // make sure we use the highest of any replacement spell power also
+            spellCriticalChance = pBI->ReplacementTotal();
+        }
+        pBI = FindBreakdown(SpellPowerToCriticalMultiplierBreakdown(spt));
+        if (pBI != NULL)
+        {
+            // make sure we use the highest of any replacement spell power also
+            spellCriticalMultiplier += (pBI->ReplacementTotal() / 100.0);
+        }
+    }
+
+    txt = DamageDice().CriticalDamageText(1 + spellPower, casterLevel, spellCriticalMultiplier);
+    txt.Replace("Average Critical Damage: ", "");
+    return txt;
+}
+
 bool SpellDamage::VerifyObject(std::stringstream* ss, bool bHasMaxcasterLevel) const
 {
     bool ok = true;

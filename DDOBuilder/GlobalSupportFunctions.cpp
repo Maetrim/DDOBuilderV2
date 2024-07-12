@@ -1315,27 +1315,6 @@ BreakdownType MaxCasterLevelSchoolToBreakdown(SpellSchoolType school)
     return bt;
 }
 
-BreakdownType MaxDamageTypeToBreakdown(DamageType dt)
-{
-    BreakdownType bt = Breakdown_Unknown;
-    switch (dt)
-    {
-    case Damage_Acid: bt = Breakdown_MaxCasterLevel_Spell_Acid; break;
-    case Damage_Cold: bt = Breakdown_MaxCasterLevel_Spell_Cold; break;
-    case Damage_Electric: bt = Breakdown_MaxCasterLevel_Spell_Electric; break;
-    case Damage_Evil: bt = Breakdown_MaxCasterLevel_Spell_Evil; break;
-    case Damage_Fire: bt = Breakdown_MaxCasterLevel_Spell_Fire; break;
-    case Damage_Force: bt = Breakdown_MaxCasterLevel_Spell_Force; break;
-    case Damage_Negative:bt = Breakdown_MaxCasterLevel_Spell_Negative; break;
-    case Damage_Positive: bt = Breakdown_MaxCasterLevel_Spell_Positive; break;
-    case Damage_Sonic: bt = Breakdown_MaxCasterLevel_Spell_Sonic; break;
-    case Damage_Ceruleite: bt = Breakdown_MaxCasterLevel_Ceruleite; break;
-    case Damage_Crimsonite: bt = Breakdown_MaxCasterLevel_Crimsonite; break;
-    case Damage_Gildleaf: bt = Breakdown_MaxCasterLevel_Gildleaf; break;
-    }
-    return bt;
-}
-
 BreakdownType SpellPowerToBreakdown(SpellPowerType sp)
 {
     BreakdownType bt = Breakdown_Unknown;
@@ -1404,27 +1383,6 @@ BreakdownType SpellPowerToCriticalMultiplierBreakdown(SpellPowerType sp)
     case SpellPower_Repair:         bt = Breakdown_SpellCriticalMultiplierRepair; break;
     case SpellPower_Rust:           bt = Breakdown_SpellCriticalMultiplierRust; break;
     case SpellPower_Sonic:          bt = Breakdown_SpellCriticalMultiplierSonic; break;
-    }
-    return bt;
-}
-
-BreakdownType DamageTypeToBreakdown(DamageType dt)
-{
-    BreakdownType bt = Breakdown_Unknown;
-    switch (dt)
-    {
-    case Damage_Acid: bt = Breakdown_CasterLevel_Spell_Acid; break;
-    case Damage_Cold: bt = Breakdown_CasterLevel_Spell_Cold; break;
-    case Damage_Electric: bt = Breakdown_CasterLevel_Spell_Electric; break;
-    case Damage_Evil: bt = Breakdown_CasterLevel_Spell_Evil; break;
-    case Damage_Fire: bt = Breakdown_CasterLevel_Spell_Fire; break;
-    case Damage_Force: bt = Breakdown_CasterLevel_Spell_Force; break;
-    case Damage_Negative:bt = Breakdown_CasterLevel_Spell_Negative; break;
-    case Damage_Positive: bt = Breakdown_CasterLevel_Spell_Positive; break;
-    case Damage_Sonic: bt = Breakdown_CasterLevel_Spell_Sonic; break;
-    case Damage_Ceruleite: bt = Breakdown_CasterLevel_Ceruleite; break;
-    case Damage_Crimsonite: bt = Breakdown_CasterLevel_Crimsonite; break;
-    case Damage_Gildleaf: bt = Breakdown_CasterLevel_Gildleaf; break;
     }
     return bt;
 }

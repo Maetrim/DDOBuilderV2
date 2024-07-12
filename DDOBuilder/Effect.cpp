@@ -746,6 +746,25 @@ bool Effect::CheckAType(
             }
         }
         break;
+    case Amount_ClassCasterLevel:
+        // expect a single Item thats a class and 20 Amount Items
+        *bRequiresAmount = true;                    // Amount specifies amount at each class level
+        *requiredAmountElements = MAX_CLASS_LEVEL + 1; // 20 elements expected
+        if (!HasStackSource())
+        {
+            (*ss) << "ClassCasterLevel effect missing StackSource field\n";
+            ok = false;
+        }
+        else
+        {
+            const ::Class & c = FindClass(StackSource());
+            if (c.Name() == "")
+            {
+                (*ss) << "ClassCasterLevel effect has bad class StackSource field\n";
+                ok = false;
+            }
+        }
+        break;
     case Amount_TotalLevel:
         *bRequiresAmount = true;                            // Amount specifies amount at each level
         *requiredAmountElements = MAX_BUILDER_LEVEL;        // 40 elements expected
@@ -929,6 +948,22 @@ std::string Effect::StacksAsString() const
         ss << m_pBuild->ClassLevels(StackSource(), m_pBuild->Level() - 1);
         ss << " " << StackSource();
         break;
+    case Amount_ClassCasterLevel:
+        {
+            const ::Class& c = FindClass(StackSource());
+            BreakdownItem* pBI = FindBreakdown(static_cast<BreakdownType>(Breakdown_CasterLevel_First + c.Index()));
+            if (pBI != NULL)
+            {
+                int level = static_cast<int>(pBI->Total());
+                level = min(level, MAX_CLASS_LEVEL);
+                ss << level << " " << StackSource() << " Caster Levels";
+            }
+            else
+            {
+                ss << "Not Found";
+            }
+        }
+        break;
     case Amount_APCount:
         ss << m_pBuild->APSpentInTree(StackSource()) << " APs";
         break;
@@ -1009,6 +1044,35 @@ double Effect::TotalAmount(bool allowTruncate) const
                     GetLog().AddLogEntry(ss.str().c_str());
                 }
                 size_t level = m_pBuild->ClassLevels(StackSource(), m_pBuild->Level()-1);
+                // vector lookup
+                int vi = min(level, m_Amount.size() - 1);
+                if (vi < 0
+                    || level > m_Amount.size())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" has incorrect Amount vector size. Stacks present are " << level;
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                total = m_Amount[vi] * m_stacks;
+                break;
+            }
+        case Amount_ClassCasterLevel:
+            // StackSource specifies the class in question
+            {
+                if (!HasStackSource())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" missing StackSource";
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                size_t level = 0;
+                const ::Class& c = FindClass(StackSource());
+                BreakdownItem* pBI = FindBreakdown(static_cast<BreakdownType>(Breakdown_CasterLevel_First + c.Index()));
+                if (pBI != NULL)
+                {
+                    level = static_cast<size_t>(pBI->Total());
+                    level = min(level, MAX_CLASS_LEVEL);
+                }
                 // vector lookup
                 int vi = min(level, m_Amount.size() - 1);
                 if (vi < 0

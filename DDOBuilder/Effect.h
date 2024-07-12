@@ -463,6 +463,7 @@ enum AmountType
     Amount_Stacks,              // look up based on number of stacks of this effect
     Amount_TotalLevel,          // index into vector based on total character level (0 based)
     Amount_ClassLevel,          // index into vector based on class level (0 based)
+    Amount_ClassCasterLevel,    // index into vector based on class caster level (0 based)
     Amount_APCount,             // stacks based on AP spent in tree "Item"
     Amount_AbilityValue,        // Stacks are equal to the specific abilities total value
     Amount_AbilityMod,          // Stacks are equal to the specific abilities mod value
@@ -484,6 +485,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_Stacks, L"Stacks"},
     {Amount_TotalLevel, L"TotalLevel"},
     {Amount_ClassLevel, L"ClassLevel"},     // Item is the class name
+    {Amount_ClassCasterLevel, L"ClassCasterLevel"}, // Item is the class name
     {Amount_APCount, L"APCount"},           // Item is the tree name
     {Amount_AbilityValue, L"AbilityValue"}, // Item is the ability name
     {Amount_AbilityMod, L"AbilityMod"},     // Item is the ability name

@@ -35,7 +35,7 @@ CString BreakdownItemClassCasterLevel::Title() const
     }
     else
     {
-        text.Format("Max %s Caster level", m_class.c_str());
+        text.Format("Bonus Max %s Caster level", m_class.c_str());
     }
     return text;
 }
@@ -59,19 +59,34 @@ void BreakdownItemClassCasterLevel::CreateOtherEffects()
         if (pLife != NULL
             && pBuild != NULL)
         {
-            size_t classLevels = pBuild->ClassLevels(m_class, pBuild->Level()-1);
-            if (classLevels != 0)
+            if (m_effectType == Effect_CasterLevel)
             {
-                CString text;
-                text.Format("%s(%d)",
-                        m_class.c_str(),
-                        classLevels);
-                Effect levels(
-                        Effect_Unknown,
-                        (LPCTSTR)text,
-                        (LPCTSTR)text,
-                        classLevels);
-                AddOtherEffect(levels);
+                size_t classLevels = pBuild->ClassLevels(m_class, pBuild->Level()-1);
+                if (classLevels != 0)
+                {
+                    CString text;
+                    text.Format("%s(%d)",
+                            m_class.c_str(),
+                            classLevels);
+                    Effect levels(
+                            Effect_Unknown,
+                            (LPCTSTR)text,
+                            (LPCTSTR)text,
+                            classLevels);
+                    AddOtherEffect(levels);
+                    if (pBuild->IsEnhancementTrained("WMUnstableSorcery", "Mixed Magics", TT_enhancement))
+                    {
+                        size_t maxLevel = min(MAX_CLASS_LEVEL, pBuild->Level());
+                        text.Format("Wild Mage: Mixed Magics(%d)",
+                            maxLevel - classLevels);
+                        Effect wmlevels(
+                            Effect_Unknown,
+                            (LPCTSTR)text,
+                            (LPCTSTR)text,
+                            maxLevel - classLevels);
+                        AddOtherEffect(wmlevels);
+                    }
+                }
             }
         }
     }
@@ -111,3 +126,30 @@ void BreakdownItemClassCasterLevel::BuildLevelChanged(Build* pBuild)
     CreateOtherEffects();
     BreakdownItem::BuildLevelChanged(pBuild);
 }
+
+void BreakdownItemClassCasterLevel::EnhancementTrained(
+        Build* pBuild,
+        const EnhancementItemParams& item)
+{
+    BreakdownItem::EnhancementTrained(pBuild, item);
+    if (m_effectType == Effect_CasterLevel
+            && item.selection == "Mixed Magics")
+    {
+        CreateOtherEffects();
+        Populate();
+    }
+}
+
+void BreakdownItemClassCasterLevel::EnhancementRevoked(
+        Build* pBuild,
+        const EnhancementItemParams& item)
+{
+    BreakdownItem::EnhancementRevoked(pBuild, item);
+    if (m_effectType == Effect_CasterLevel
+        && item.selection == "Mixed Magics")
+    {
+        CreateOtherEffects();
+        Populate();
+    }
+}
+

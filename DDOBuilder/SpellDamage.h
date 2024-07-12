@@ -19,6 +19,8 @@ class SpellDamage :
         CString SpellDamageText(const Build& build, size_t casterLevel) const;
 
         bool VerifyObject(std::stringstream* ss, bool bHasMaxcasterLevel) const;
+        CString AverageDamageText(size_t casterLevel) const;
+        CString CriticalDamageText(size_t casterLevel) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

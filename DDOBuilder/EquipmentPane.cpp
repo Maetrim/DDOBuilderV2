@@ -517,7 +517,8 @@ void CEquipmentPane::UpdateSlotLeftClicked(
                 // no tooltips while a dialog is displayed
                 GetMouseHook()->SaveState();
                 CItemSelectDialog dlg(this, slot, item, pBuild);
-                if (dlg.DoModal() == IDOK)
+                if (dlg.DoModal() == IDOK
+                        && item.Name() != "")
                 {
                     pBuild->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
                     m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());

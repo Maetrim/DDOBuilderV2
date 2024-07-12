@@ -1,197 +1,392 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
+  <EnhancementTree>
+    <Name>Fire Savant</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Sorcerer</Item>
+      </Requirement>
+    </Requirements>
+    <Background>SorcererBackground</Background>
+    <Icon>Sorcerer</Icon>
+    <!--Core Items-->
+    <EnhancementTreeItem>
       <Name>Fire Savant</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Sorcerer</Item>
-         </Requirement>
-      </Requirements>
-      <Background>SorcererBackground</Background>
-      <Icon>Sorcerer</Icon>
-      <!--Core Items-->
-      <EnhancementTreeItem>
-         <Name>Fire Savant</Name>
-         <InternalName>FSCore1</InternalName>
-         <Description> Every point you spend in the Fire Savant enhancement tree provides +0.75 Universal Spell Power.
+      <InternalName>FSCore1</InternalName>
+      <Description> Every point you spend in the Fire Savant enhancement tree provides +0.75 Universal Spell Power.
 Passive: +10 Fire Spell Power 
 +1 Caster Level when casting Fire spells 
 -10 Cold Spell Power 
 -1 Caster Level when casting Cold or Water spells. 
 Selecting this enhancement will prevent you from spending points in the Water Savant enhancement tree.</Description>
-         <Icon>FSFireSavant</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-            <RequiresNoneOf>
-               <Requirement>
-                  <Type>Enhancement</Type>
-                  <Item>WSCore1</Item>
-               </Requirement>
-            </RequiresNoneOf>
-         </Requirements>
-         <Effect>
-            <DisplayName>Fire Savant: Spell power per action point</DisplayName>
-            <Type>UniversalSpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <StackSource>Fire Savant</StackSource>
-            <AType>APCount</AType>
-            <Amount size="1">0.75</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Fire Affinity</Name>
-         <InternalName>FSCore2</InternalName>
-         <Description>Passive: +10 Fire Spell Power 
+      <Icon>FSFireSavant</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>WSCore1</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Effect>
+        <DisplayName>Fire Savant: Spell power per action point</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <StackSource>Fire Savant</StackSource>
+        <AType>APCount</AType>
+        <Amount size="1">0.75</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <!--Fire Spells-->
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+        <!--Cold Spells-->
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Fire Affinity</Name>
+      <InternalName>FSCore2</InternalName>
+      <Description>Passive: +10 Fire Spell Power 
 +1 Caster Level when casting Fire spells 
 -10 Cold Spell Power 
 -1 Caster Level when casting Cold or Water spells.</Description>
-         <Icon>FSFireAffinity</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSCore1</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Greater Fire Affinity</Name>
-         <InternalName>FSCore3</InternalName>
-         <Description>Passive: +10 Fire Spell Power 
+      <Icon>FSFireAffinity</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSCore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <!--Fire Spells-->
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+        <!--Cold Spells-->
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Greater Fire Affinity</Name>
+      <InternalName>FSCore3</InternalName>
+      <Description>Passive: +10 Fire Spell Power 
 +1 Caster Level when casting Fire spells 
 +1 Maximum Caster Level when casting Fire spells 
 -10 Cold Spell Power 
 -1 Caster Level when casting Cold or Water spells.</Description>
-         <Icon>FSGreaterFireAffinity</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSCore2</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>6</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Immolation</Name>
-         <InternalName>FSCore4</InternalName>
-         <Description>Passive: On Fire Spell Cast: Your target gains one stack of Burning
+      <Icon>FSGreaterFireAffinity</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSCore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <!--Fire Spells-->
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+        <!--Cold Spells-->
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Immolation</Name>
+      <InternalName>FSCore4</InternalName>
+      <Description>Passive: On Fire Spell Cast: Your target gains one stack of Burning
 (Target takes 1d6 fire damage every 2 seconds for 6 seconds. This effect can stack 20 times,
 and loses one stack on expiration.) 
 +10 Fire Spell Power 
@@ -199,121 +394,251 @@ and loses one stack on expiration.)
 +1 Maximum Caster Level when casting Fire spells 
 -10 Cold Spell Power 
 -1 Caster Level when casting Cold or Water spells.</Description>
-         <Icon>FSImmolation</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSCore3</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Elemental Persistence</Name>
-         <InternalName>FSCore5</InternalName>
-         <Description>Passive: Immunity to Paralysis 
+      <Icon>FSImmolation</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSCore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <!--Fire Spells-->
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+        <!--Cold Spells-->
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Elemental Persistence</Name>
+      <InternalName>FSCore5</InternalName>
+      <Description>Passive: Immunity to Paralysis 
  +10 Fire Spell Power 
  +1 Caster Level when casting Fire spells 
  +1 Maximum Caster Level when casting Fire spells 
  -10 Cold Spell Power 
  -1 Caster Level when casting Cold or Water spells.</Description>
-         <Icon>FSElementalPersistence</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSCore4</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>18</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-         </Effect>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Paralysis</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Elemental Apotheosis: Fire</Name>
-         <InternalName>FSCore6</InternalName>
-         <Description>Activate this ability to transform into a Fire Elemental.
+      <Icon>FSElementalPersistence</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSCore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Paralysis</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <!--Fire Spells-->
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+        <!--Cold Spells-->
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Elemental Apotheosis: Fire</Name>
+      <InternalName>FSCore6</InternalName>
+      <Description>Activate this ability to transform into a Fire Elemental.
 While in elemental form, you gain +100% fortification. If you are a Warforged,
 you are no longer considered a Living Construct, and so are immune to Repair spells,
 but can be healed normally by Positive Energy spells. 
@@ -332,40 +657,40 @@ You also gain the following passive benefits, even while not in elemental form:
 +1 Maximum Caster Level when casting Fire spells 
 -10 Cold Spell Power 
 -1 Caster Level when casting Cold or Water spells.</Description>
-         <Icon>FSElementalApotheosisFire</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSCore5</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>20</Value>
-            </Requirement>
+      <Icon>FSElementalApotheosisFire</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>20</Value>
+        </Requirement>
         <Requirement>
           <Type>Exclusive</Type>
           <Item>FSCore6</Item>
           <Item>Capstone Enhancement</Item>
         </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>FSCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Stance>
-            <Name>Fire Elemental</Name>
-            <Icon>FSElementalApotheosisFire</Icon>
-            <Description>While in elemental form, you gain +100% fortification. If you are a Warforged,
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>FSCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <Stance>
+        <Name>Fire Elemental</Name>
+        <Icon>FSElementalApotheosisFire</Icon>
+        <Description>While in elemental form, you gain +100% fortification. If you are a Warforged,
 you are no longer considered a Living Construct, and so are immune to Repair spells,
 but can be healed normally by Positive Energy spells. 
 While in Fire Elemental form, you also gain an additional +20 Fire Spell Power,
@@ -373,1225 +698,1406 @@ While in Fire Elemental form, you also gain an additional +20 Fire Spell Power,
 for Fire spells, but your air, earth, and water spells have a -3 penalty to caster
 level and max caster level. You also gain a +10 racial bonus to Fire resistance,
 +20 Physical Resistance Rating, and a -10 penalty to cold resistance.</Description>
-            <Group>Major Form</Group>
-         </Stance>
-         <Effect>
-            <DisplayName>Fire Elemental Form</DisplayName>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <DisplayName>Fire Elemental Form</DisplayName>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Fortification</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">100</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">20</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">20</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Charisma</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Fire Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Cold</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Burning Hands</Name>
-         <InternalName>FSBurningHands</InternalName>
-         <Description>Spell Like Ability: Burning Hands
+        <Group>Major Form</Group>
+      </Stance>
+      <Effect>
+        <DisplayName>Fire Elemental Form</DisplayName>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+        <!--Fire Spells-->
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+      </Effect>
+      <Effect>
+        <DisplayName>Fire Elemental Form</DisplayName>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+        <!--Acid Spells-->
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <!--Cold Spells-->
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+        <!--Electric Spells-->
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+      </Effect>
+      <Effect>
+        <Type>Fortification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Charisma</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Fire Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Cold</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <!--Fire Spells-->
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+        <!--Cold Spells-->
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Burning Hands</Name>
+      <InternalName>FSBurningHands</InternalName>
+      <Description>Spell Like Ability: Burning Hands
 Activation Cost: [4/3/2] Spell Points.
 Cooldown: [12/8/4] seconds.
 You may cast the spell Burning Hands at will as a Spell-Like Ability. You may use
 Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
 spent in this enhancement will reduce the cooldown and Spell Point Cost of this
 Spell-Like Ability.</Description>
-         <Icon>FSBurningHands</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <ExtraLongArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Burning Hands</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Intensity</Name>
-         <InternalName>FSIntensity</InternalName>
-         <Description>You gain +[2/4/6] to your Haggle and Intimidation skills.
+      <Icon>FSBurningHands</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <ExtraLongArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Burning Hands</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Sorcerer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Intensity</Name>
+      <InternalName>FSIntensity</InternalName>
+      <Description>You gain +[2/4/6] to your Haggle and Intimidation skills.
 Rank 3: as well as +1 to your Will Saving Throw.</Description>
-         <Icon>FSIntensity</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Haggle</Item>
-            <Item>Intimidate</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">2 4 6</Amount>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Will</Item>
-            <AType>Simple</AType>
-            <Rank>3</Rank>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: One with the Inferno</Name>
-         <InternalName>FSOneWithTheInferno</InternalName>
-         <Description>You gain a +[3/6/10] bonus to your Fire Resistance.</Description>
-         <Icon>FSOneWithTheInferno</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">3 6 10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Spell Critical: Fire I</Name>
-         <InternalName>FSSpellCriticalFireI</InternalName>
-         <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalFire</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Conflagration</Name>
-         <InternalName>FSConflagration</InternalName>
-         <Description>Whenever you cast a Fire damage spell, you gain +5 to your Fire Spell Power
+      <Icon>FSIntensity</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Haggle</Item>
+        <Item>Intimidate</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Will</Item>
+        <AType>Simple</AType>
+        <Rank>3</Rank>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: One with the Inferno</Name>
+      <InternalName>FSOneWithTheInferno</InternalName>
+      <Description>You gain a +[3/6/10] bonus to your Fire Resistance.</Description>
+      <Icon>FSOneWithTheInferno</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">3 6 10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Spell Critical: Fire I</Name>
+      <InternalName>FSSpellCriticalFireI</InternalName>
+      <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalFire</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Conflagration</Name>
+      <InternalName>FSConflagration</InternalName>
+      <Description>Whenever you cast a Fire damage spell, you gain +5 to your Fire Spell Power
 for 6 seconds. This stacks up to [1/3/5] times.</Description>
-         <Icon>FSConflagration</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Conflagration</Item>
-            <AType>Slider</AType>
-            <Amount size="3">0 0 5</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount size="1">5</Amount>
-            <Item>Fire</Item>
-            <AType>SliderValue</AType>
-            <StackSource>Conflagration</StackSource>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Efficient Metamagic I</Name>
-         <InternalName>FSEfficientMetamagicI</InternalName>
-         <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of
+      <Icon>FSConflagration</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Conflagration</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">5</Amount>
+        <Item>Fire</Item>
+        <AType>SliderValue</AType>
+        <StackSource>Conflagration</StackSource>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Efficient Metamagic I</Name>
+      <InternalName>FSEfficientMetamagicI</InternalName>
+      <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of
 using that Metamagic.</Description>
-         <Icon>EfficientMetamagic</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicI</Item>
-                     <Item>Efficient Empower Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Empower Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicI</Item>
-                  <Item>Efficient Empower Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-2 -4 -6</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Empower</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Enlarge</Name>
-               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
-               <Icon>EfficientEnlarge</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicI</Item>
-                     <Item>Efficient Enlarge Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Enlarge Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicI</Item>
-                  <Item>Efficient Enlarge Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Enlarge</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Maximize</Name>
-               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
-               <Icon>EfficientMaximize</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicI</Item>
-                     <Item>Efficient Maximize Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Maximize Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicI</Item>
-                  <Item>Efficient Maximize Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-3 -6 -9</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Maximize</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicI</Item>
-                     <Item>Efficient Quicken Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Quicken Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicI</Item>
-                  <Item>Efficient Quicken Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Quicken</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Pierce Fire Resistance</Name>
-         <InternalName>FSPierceFireResistance</InternalName>
-         <Description>Your Fire damage spells now bypass [5/10/15] points of your target's resistance to those damage types, if any.</Description>
-         <Icon>FSPierceFireResistance</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicI</Item>
+              <Item>Efficient Empower Spell</Item>
             </Requirement>
             <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSOneWithTheInferno</Item>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
             </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Spell Critical: Fire II</Name>
-         <InternalName>FSSpellCriticalFireII</InternalName>
-         <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalFire</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSSpellCriticalFireI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Fanning the Flames</Name>
-         <InternalName>FSFanningTheFlames</InternalName>
-         <Description>Whenever you cast a Fire damage spell, you have a [10/20/30]% chance to gain 3 Temporary Spell Points.</Description>
-         <Icon>FSFanningTheFlames</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSConflagration</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Efficient Metamagic II</Name>
-         <InternalName>FSEfficientMetamagicII</InternalName>
-         <Description>Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic.</Description>
-         <Icon>EfficientMetamagic</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSEfficientMetamagicI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicII</Item>
-                     <Item>Efficient Empower Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Empower Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicII</Item>
-                  <Item>Efficient Empower Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-2 -4 -6</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Empower</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Enlarge</Name>
-               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
-               <Icon>EfficientEnlarge</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicII</Item>
-                     <Item>Efficient Enlarge Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Enlarge Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicII</Item>
-                  <Item>Efficient Enlarge Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Enlarge</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Maximize</Name>
-               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
-               <Icon>EfficientMaximize</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicII</Item>
-                     <Item>Efficient Maximize Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Maximize Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicII</Item>
-                  <Item>Efficient Maximize Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-3 -6 -9</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Maximize</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>FSEfficientMetamagicII</Item>
-                     <Item>Efficient Quicken Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Quicken Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>FSEfficientMetamagicII</Item>
-                  <Item>Efficient Quicken Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Quicken</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Spell Penetration</Name>
-         <InternalName>FSSpellPenetration</InternalName>
-         <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
-         <Icon>SpellPenetration</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPenetrationBonus</Type>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicI</Item>
+            <Item>Efficient Empower Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
             <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicI</Item>
+              <Item>Efficient Enlarge Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicI</Item>
+            <Item>Efficient Enlarge Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Enlarge</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicI</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicI</Item>
+            <Item>Efficient Maximize Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicI</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicI</Item>
+            <Item>Efficient Quicken Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Pierce Fire Resistance</Name>
+      <InternalName>FSPierceFireResistance</InternalName>
+      <Description>Your Fire damage spells now bypass [5/10/15] points of your target's resistance to those damage types, if any.</Description>
+      <Icon>FSPierceFireResistance</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSOneWithTheInferno</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Spell Critical: Fire II</Name>
+      <InternalName>FSSpellCriticalFireII</InternalName>
+      <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalFire</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSSpellCriticalFireI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Fanning the Flames</Name>
+      <InternalName>FSFanningTheFlames</InternalName>
+      <Description>Whenever you cast a Fire damage spell, you have a [10/20/30]% chance to gain 3 Temporary Spell Points.</Description>
+      <Icon>FSFanningTheFlames</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSConflagration</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Efficient Metamagic II</Name>
+      <InternalName>FSEfficientMetamagicII</InternalName>
+      <Description>Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic.</Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSEfficientMetamagicI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicII</Item>
+            <Item>Efficient Empower Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicII</Item>
+              <Item>Efficient Enlarge Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicII</Item>
+            <Item>Efficient Enlarge Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Enlarge</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicII</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicII</Item>
+            <Item>Efficient Maximize Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>FSEfficientMetamagicII</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>FSEfficientMetamagicII</Item>
+            <Item>Efficient Quicken Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Spell Penetration</Name>
+      <InternalName>FSSpellPenetration</InternalName>
+      <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
+      <Icon>SpellPenetration</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Spell Critical: Fire III</Name>
+      <InternalName>FSSpellCriticalFireIII</InternalName>
+      <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalFire</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSSpellCriticalFireII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Ability I</Name>
+      <InternalName>FSAbilityScoreI</InternalName>
+      <Description>Choose either Strength or Charisma</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Strength</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Spell Critical: Fire III</Name>
-         <InternalName>FSSpellCriticalFireIII</InternalName>
-         <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalFire</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSSpellCriticalFireII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
+            <Item>Charisma</Item>
             <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Ability I</Name>
-         <InternalName>FSAbilityScoreI</InternalName>
-         <Description>Choose either Strength or Charisma</Description>
-         <Icon>StrCha</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Strength</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Charisma</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Scorch</Name>
-         <InternalName>FSScortch</InternalName>
-         <Description>Spell Like Ability: Scorch.
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Scorch</Name>
+      <InternalName>FSScortch</InternalName>
+      <Description>Spell Like Ability: Scorch.
 Activation Cost: [8/6/4] Spell Points.
 Cooldown: [15/10/5] seconds.
 You may cast the spell Scorch at will as a Spell-Like Ability. You may use
 Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
 spent in this enhancement will reduce the cooldown and Spell Point Cost of this
 Spell-Like Ability.</Description>
-         <Icon>FSScortch</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSBurningHands</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
+      <Icon>FSScortch</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSBurningHands</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Scorch</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Sorcerer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Efficient Heighten</Name>
+      <InternalName>FSEfficientHeighten</InternalName>
+      <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened level.</Description>
+      <Icon>EfficientHeighten</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>FSEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSEfficientMetamagicII</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Heighten Spell</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>FSEfficientHeighten</Item>
+        <Item>Efficient Heighten Spell</Item>
+      </Effect>
+      <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">-1 -2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Heighten</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Fire Guard</Name>
+      <InternalName>FSFireGuard</InternalName>
+      <Description>Enemies that attack you in melee take 3d6 Fire damage.</Description>
+      <Icon>FSFireGuard</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Spell Critical: Fire IV</Name>
+      <InternalName>FSSpellCriticalFireIV</InternalName>
+      <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalFire</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSSpellCriticalFireIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Ability II</Name>
+      <InternalName>FSAbilityScoreII</InternalName>
+      <Description>Choose either Strength or Charisma</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSAbilityScoreI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Scorch</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Efficient Heighten</Name>
-         <InternalName>FSEfficientHeighten</InternalName>
-         <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened level.</Description>
-         <Icon>EfficientHeighten</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>2</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>FSEfficientHeighten</Item>
-               <Item>Efficient Heighten Spell</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSEfficientMetamagicII</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Feat</Type>
-               <Item>Heighten Spell</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExclusionGroup</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
-            <Item>FSEfficientHeighten</Item>
-            <Item>Efficient Heighten Spell</Item>
-         </Effect>
-         <Effect>
-            <Type>AdditionalSpellPointCost</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="2">-1 -2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Heighten</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Fire Guard</Name>
-         <InternalName>FSFireGuard</InternalName>
-         <Description>Enemies that attack you in melee take 3d6 Fire damage.</Description>
-         <Icon>FSFireGuard</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Spell Critical: Fire IV</Name>
-         <InternalName>FSSpellCriticalFireIV</InternalName>
-         <Description>Your Fire damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalFire</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSSpellCriticalFireIII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
+            <Item>Strength</Item>
             <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Ability II</Name>
-         <InternalName>FSAbilityScoreII</InternalName>
-         <Description>Choose either Strength or Charisma</Description>
-         <Icon>StrCha</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSAbilityScoreI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Strength</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Charisma</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Fireball</Name>
-         <InternalName>FSFireball</InternalName>
-         <Description>Spell Like Ability: Fireball.
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Charisma</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Fireball</Name>
+      <InternalName>FSFireball</InternalName>
+      <Description>Spell Like Ability: Fireball.
 Activation Cost: [12/8/6] Spell Points.
 Cooldown: [18/12/6] seconds.
 You may cast the spell Fireball at will as a Spell-Like Ability. You may use
 Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
 spent in this enhancement will reduce the cooldown and Spell Point Cost of this
 Spell-Like Ability.</Description>
-         <Icon>FSFireball</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSScortch</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fireball</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Awaken Elemental Weakness: Fire</Name>
-         <InternalName>FSAwakenElementalWeaknessFire</InternalName>
-         <Description>You are able to curse an enemy, increasing Fire damage they take by 15%.
+      <Icon>FSFireball</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSScortch</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fireball</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Sorcerer</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Awaken Elemental Weakness: Fire</Name>
+      <InternalName>FSAwakenElementalWeaknessFire</InternalName>
+      <Description>You are able to curse an enemy, increasing Fire damage they take by 15%.
 Activation Cost: 5 Spell Points.
 Cooldown: 20 seconds.</Description>
-         <Icon>FSAwakenElementalWeaknessFire</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Heat Death</Name>
-         <InternalName>FSHeatDeath</InternalName>
-         <Description>You raise the internal temperature of a living target to lethal levels.
+      <Icon>FSAwakenElementalWeaknessFire</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Heat Death</Name>
+      <InternalName>FSHeatDeath</InternalName>
+      <Description>You raise the internal temperature of a living target to lethal levels.
 The target must succeed on a Fortitude save (DC: 10 + Max[Con/Cha] + Sorcerer Level)
 or take 2,000 points of fire damage as its blood (or other internal fluid) boils in a horrific
 manner. Fire creatures are immune to this effect.
 Activation Cost: 50 Spell Points.
 Cooldown: 1 minute.</Description>
-         <Icon>FSHeatDeath</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>FSFireGuard</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Heat Death</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-         <DC>
-            <Name>Fire Savant: Heat Death</Name>
-            <Description>You raise the internal temperature of a living target to lethal levels.
+      <Icon>FSHeatDeath</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>FSFireGuard</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Heat Death</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Sorcerer</Item>
+      </Effect>
+      <DC>
+        <Name>Fire Savant: Heat Death</Name>
+        <Description>You raise the internal temperature of a living target to lethal levels.
 The target must succeed on a Fortitude save.</Description>
-            <Icon>FSHeatDeath</Icon>
-            <DCType>Heat Death</DCType>
-            <DCVersus>Fortitude</DCVersus>
-            <Amount size="1">10</Amount>
-            <ClassLevel>Sorcerer</ClassLevel>
-            <ModAbility>Constitution</ModAbility>
-            <ModAbility>Charisma</ModAbility>
-         </DC>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Evocation Focus</Name>
-         <InternalName>FSEvocationFocus</InternalName>
-         <Description>You have trained extensively in Evocation magic, granting a +1 bonus to your spell DCs of that school.</Description>
-         <Icon>FSEvocationFocus</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
+        <Icon>FSHeatDeath</Icon>
+        <DCType>Heat Death</DCType>
+        <DCVersus>Fortitude</DCVersus>
+        <Amount size="1">10</Amount>
+        <ClassLevel>Sorcerer</ClassLevel>
+        <ModAbility>Constitution</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+      </DC>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Evocation Focus</Name>
+      <InternalName>FSEvocationFocus</InternalName>
+      <Description>You have trained extensively in Evocation magic, granting a +1 bonus to your spell DCs of that school.</Description>
+      <Icon>FSEvocationFocus</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Evocation</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Fire Savant: Elemental Diversification</Name>
+      <InternalName>FSElementalDiversification</InternalName>
+      <Description>Choose one</Description>
+      <Icon>FSElementalDiversification</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Power of Acid</Name>
+          <Description>You have extensively practiced with Acid magic, granting an additional +15 Acid Spell Power. </Description>
+          <Icon>FSPowerOfAcid</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Evocation</Item>
+            <Item>Acid</Item>
             <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fire Savant: Elemental Diversification</Name>
-         <InternalName>FSElementalDiversification</InternalName>
-         <Description>Choose one</Description>
-         <Icon>FSElementalDiversification</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Power of Acid</Name>
-               <Description>You have extensively practiced with Acid magic, granting an additional +15 Acid Spell Power. </Description>
-               <Icon>FSPowerOfAcid</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Acid</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">15</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Power of Force</Name>
-               <Description>You have extensively practiced with Force magic, granting an additional +10 Force Spell Power. </Description>
-               <Icon>FSPowerOfForce</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Force/Untyped</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">10</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Power of Lightning</Name>
-               <Description>You have extensively practiced with Electric magic, granting an additional +15 Electric and Sonic Spell Power.</Description>
-               <Icon>FSPowerOfLightning</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Electric</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">15</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+            <Amount size="1">15</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Power of Force</Name>
+          <Description>You have extensively practiced with Force magic, granting an additional +10 Force Spell Power. </Description>
+          <Icon>FSPowerOfForce</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Power of Lightning</Name>
+          <Description>You have extensively practiced with Electric magic, granting an additional +15 Electric and Sonic Spell Power.</Description>
+          <Icon>FSPowerOfLightning</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Electric</Item>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

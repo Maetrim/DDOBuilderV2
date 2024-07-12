@@ -96,44 +96,44 @@ class CForumExportDlg : public CDialogEx
     private:
         void PopulateConfigureExportList();
         void PopulateExport();
-        void AddCharacterHeader(std::stringstream & forumExport);
-        void AddPastLives(std::stringstream & forumExport);
-        void AddSpecialFeats(std::stringstream & forumExport);
+        void AddCharacterHeader(std::stringstream& forumExport);
+        void AddPastLives(std::stringstream& forumExport);
+        void AddSpecialFeats(std::stringstream& forumExport);
         void AddFeats(
-                std::stringstream & forumExport,
-                const std::string & heading,
+                std::stringstream& forumExport,
+                const std::string& heading,
                 const std::string& featType,
-                const std::list<TrainedFeat> & feats) const;
-        void AddAbilityValues(std::stringstream & forumExport, AbilityType ability);
+                const std::list<TrainedFeat>& feats) const;
+        void AddAbilityValues(std::stringstream& forumExport, AbilityType ability);
         void AddTableEntryBreakdown(
                 std::stringstream& forumExport,
                 const std::string& header,
                 const std::string& sub,
                 BreakdownType bt);
         void AddBreakdown(
-                std::stringstream & forumExport,
-                const std::string & header,
+                std::stringstream& forumExport,
+                const std::string& header,
                 size_t width,
                 BreakdownType bt);
-        void AddSaves(std::stringstream & forumExport);
-        void AddFeatSelections(std::stringstream & forumExport, bool bIncludeSkills);
-        void AddGrantedFeats(std::stringstream & forumExport);
-        void AddAutomaticFeats(std::stringstream & forumExport);
-        void AddConsolidatedFeats(std::stringstream & forumExport);
-        void AddSelfAndPartyBuffs(std::stringstream & forumExport);
-        void AddActiveStances(std::stringstream & forumExport);
-        void AddSkills(std::stringstream & forumExport);
-        void AddSkillsAtLevel(size_t level, std::stringstream & forumExport);
-        void AddEnergyResistances(std::stringstream & forumExport);
-        void AddEnergyResistances(std::stringstream & forumExport, const std::string & name, BreakdownType bt1, BreakdownType bt2);
-        void AddEnhancements(std::stringstream & forumExport);
-        void AddEnhancementTree(std::stringstream & forumExport);
-        void AddEpicDestinyTree(std::stringstream & forumExport);
-        void AddReaperTrees(std::stringstream & forumExport);
-        void AddSpellPowers(std::stringstream & forumExport);
+        void AddSaves(std::stringstream& forumExport);
+        void AddFeatSelections(std::stringstream& forumExport, bool bIncludeSkills);
+        void AddGrantedFeats(std::stringstream& forumExport);
+        void AddAutomaticFeats(std::stringstream& forumExport);
+        void AddConsolidatedFeats(std::stringstream& forumExport);
+        void AddSelfAndPartyBuffs(std::stringstream& forumExport);
+        void AddActiveStances(std::stringstream& forumExport);
+        void AddSkills(std::stringstream& forumExport);
+        void AddSkillsAtLevel(size_t level, std::stringstream& forumExport);
+        void AddEnergyResistances(std::stringstream& forumExport);
+        void AddEnergyResistances(std::stringstream& forumExport, const std::string& name, BreakdownType bt1, BreakdownType bt2);
+        void AddEnhancements(std::stringstream& forumExport);
+        void AddEnhancementTree(std::stringstream& forumExport);
+        void AddEpicDestinyTree(std::stringstream& forumExport);
+        void AddReaperTrees(std::stringstream& forumExport);
+        void AddSpellPowers(std::stringstream& forumExport);
         void AddSpellPower(
-                std::stringstream & forumExport,
-                const std::string & label,
+                std::stringstream& forumExport,
+                const std::string& label,
                 BreakdownType btPower,
                 BreakdownType btCrit,
                 BreakdownType btMult);
@@ -143,20 +143,20 @@ class CForumExportDlg : public CDialogEx
             BreakdownType btPower,
             BreakdownType btCrit,
             BreakdownType btMult);
-        void AddSpells(std::stringstream & forumExport);
-        void AddSpellList(std::stringstream & forumExport, const std::string& ct, const std::list<TrainedSpell> & spellList, size_t spellLevel, size_t maxSpellLevel) const;
-        void AddSLAs(std::stringstream & forumExport);
-        void AddWeaponDamage(std::stringstream & forumExport);
-        void AddTacticalDCs(std::stringstream & forumExport);
-        void AddGear(std::stringstream & forumExport);
-        void AddAlternateGear(std::stringstream & forumExport);
-        void AddSimpleGear(std::stringstream & forumExport);
+        void AddSpells(std::stringstream& forumExport);
+        void AddSpellList(std::stringstream& forumExport, const std::list<TrainedSpell>& spellList, size_t spellLevel) const;
+        void AddSLAs(std::stringstream& forumExport);
+        void AddWeaponDamage(std::stringstream& forumExport);
+        void AddTacticalDCs(std::stringstream& forumExport);
+        void AddGear(std::stringstream& forumExport);
+        void AddAlternateGear(std::stringstream& forumExport);
+        void AddSimpleGear(std::stringstream& forumExport);
 
-        void AddEnhancementTree(std::stringstream & forumExport, const SpendInTree& treeSpend);
-        void AddEpicDestinyTree(std::stringstream & forumExport, const SpendInTree& treeSpend);
-        void AddReaperTree(std::stringstream & forumExport, const SpendInTree& treeSpend);
+        void AddEnhancementTree(std::stringstream& forumExport, const SpendInTree& treeSpend);
+        void AddEpicDestinyTree(std::stringstream& forumExport, const SpendInTree& treeSpend);
+        void AddReaperTree(std::stringstream& forumExport, const SpendInTree& treeSpend);
 
-        void ExportGear(const EquippedGear & gear, std::stringstream & forumExport, bool bSimple);
+        void ExportGear(const EquippedGear& gear, std::stringstream& forumExport, bool bSimple);
         std::list<std::string> GetLevelEntries(size_t level, bool bIncludeSkills);
 
         Build* m_pBuild;

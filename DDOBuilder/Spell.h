@@ -31,10 +31,10 @@ class Spell :
         void UpdateSpell(const ClassSpell& cs, const std::string& ct);
         void UpdateSpell(const FixedSpell& fs, const std::string& ct);
 
-        int ActualCasterLevel(const SpellDamage& sd) const;
-        int ActualMaxCasterLevel(const SpellDamage& sd) const;
-        CString ActualCasterLevelText(const SpellDamage& sd) const;
-        CString ActualMaxCasterLevelText(const SpellDamage& sd) const;
+        int ActualCasterLevel(const Build& build, const SpellDamage& sd) const;
+        int ActualMaxCasterLevel(const Build& build, const SpellDamage& sd) const;
+        CString ActualCasterLevelText(const Build& build, const SpellDamage& sd) const;
+        CString ActualMaxCasterLevelText(const Build& build, const SpellDamage& sd) const;
         void SetCost(int cost);
 
         void SetIconIndex(size_t index);

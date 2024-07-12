@@ -1654,13 +1654,6 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
     m_itemBreakdownTree.SetItemData(hClassCasterLevels, 0);
     AddClassCasterLevels(hClassCasterLevels);
 
-    HTREEITEM hEnergyCasterLevels = m_itemBreakdownTree.InsertItem(
-            "Energy Caster Levels", 
-            hParent,
-            TVI_LAST);
-    m_itemBreakdownTree.SetItemData(hEnergyCasterLevels, 0);
-    AddEnergyCasterLevels(hEnergyCasterLevels);
-
     HTREEITEM hSchoolCasterLevels = m_itemBreakdownTree.InsertItem(
             "School Caster Levels", 
             hParent,
@@ -2216,7 +2209,7 @@ void CBreakdownsPane::AddClassCasterLevels(HTREEITEM hParent)
             m_items.push_back(pClassCasterLevel);
             // also add the max caster level option as a child of the item just added
             std::stringstream maxss;
-            maxss << "Max " << cit.Name() << " Caster Level";
+            maxss << "Bonus Max " << cit.Name() << " Caster Level";
             HTREEITEM hMaxItem = m_itemBreakdownTree.InsertItem(
                     maxss.str().c_str(),
                     hItem,
@@ -2232,64 +2225,6 @@ void CBreakdownsPane::AddClassCasterLevels(HTREEITEM hParent)
             m_items.push_back(pMaxClassCasterLevel);
         }
     }
-}
-
-void CBreakdownsPane::AddEnergyCasterLevels(HTREEITEM hParent)
-{
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Acid, Breakdown_MaxCasterLevel_Spell_Acid, Energy_Acid);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Cold, Breakdown_MaxCasterLevel_Spell_Cold, Energy_Cold);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Electric, Breakdown_MaxCasterLevel_Spell_Electric, Energy_Electric);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Evil, Breakdown_MaxCasterLevel_Spell_Evil, Energy_Evil);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Fire, Breakdown_MaxCasterLevel_Spell_Fire, Energy_Fire);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Force, Breakdown_MaxCasterLevel_Spell_Force, Energy_Force);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Negative, Breakdown_MaxCasterLevel_Spell_Negative, Energy_Negative);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Poison, Breakdown_MaxCasterLevel_Spell_Poison, Energy_Poison);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Positive, Breakdown_MaxCasterLevel_Spell_Positive, Energy_Positive);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Spell_Sonic, Breakdown_MaxCasterLevel_Spell_Sonic, Energy_Sonic);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Ceruleite, Breakdown_MaxCasterLevel_Ceruleite, Energy_Ceruleite);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Crimsonite, Breakdown_MaxCasterLevel_Crimsonite, Energy_Crimsonite);
-    AddEnergyCasterLevels(hParent, Breakdown_CasterLevel_Gildleaf, Breakdown_MaxCasterLevel_Gildleaf, Energy_Gildleaf);
-}
-
-void CBreakdownsPane::AddEnergyCasterLevels(
-        HTREEITEM hParent,
-        BreakdownType ecl,
-        BreakdownType emcl,
-        EnergyType et)
-{
-    CString nameCasterLevel;
-    CString nameMaxCasterLevel;
-    CString energyName = EnumEntryText(et, energyTypeMap);
-    nameCasterLevel.Format("%s Spell Caster Level", (LPCTSTR)energyName);
-    nameMaxCasterLevel.Format("%s Max Spell Caster Level", (LPCTSTR)energyName);
-
-    HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-            nameCasterLevel,
-            hParent,
-            TVI_LAST);
-    BreakdownItem * pEnergy = new BreakdownItemEnergyCasterLevel(
-            this,
-            Effect_CasterLevel,
-            et,
-            ecl,
-            &m_itemBreakdownTree,
-            hItem);
-    m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEnergy);
-    m_items.push_back(pEnergy);
-    // Max caster level shown as child of main element
-    HTREEITEM hMaxItem = m_itemBreakdownTree.InsertItem(
-            nameMaxCasterLevel,
-            hItem,
-            TVI_LAST);
-    BreakdownItem * pMaxEnergy = new BreakdownItemEnergyCasterLevel(
-            this,
-            Effect_MaxCasterLevel,
-            et,
-            emcl,
-            &m_itemBreakdownTree,
-            hMaxItem);
-    m_itemBreakdownTree.SetItemData(hMaxItem, (DWORD)(void*)pMaxEnergy);
-    m_items.push_back(pMaxEnergy);
 }
 
 void CBreakdownsPane::AddSchoolCasterLevels(HTREEITEM hParent)

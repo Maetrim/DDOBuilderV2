@@ -77,8 +77,11 @@ int SpellDC::CalculateSpellDC(const Build * build, const Spell& spell) const
                 AbilityType at = c.ClassCastingStat();
                 BreakdownType bt = StatToBreakdown(at);
                 BreakdownItem* pBI = FindBreakdown(bt);
-                int abilityBonus = BaseStatToBonus(pBI->Total());
-                value += abilityBonus;
+                if (pBI != NULL)
+                {
+                    int abilityBonus = BaseStatToBonus(pBI->Total());
+                    value += abilityBonus;
+                }
             }
             // add any casting stat breakdown
             if (spell.HasLevel())
@@ -155,10 +158,17 @@ std::string SpellDC::SpellDCBreakdown(const Build * build, const Spell& spell) c
                 AbilityType at = c.ClassCastingStat();
                 BreakdownType bt = StatToBreakdown(at);
                 BreakdownItem* pBI = FindBreakdown(bt);
-                int abilityBonus = BaseStatToBonus(pBI->Total());
-                std::string name = EnumEntryText(at, abilityTypeMap);
-                name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
-                ss << " + " << name << " Mod(" << abilityBonus << ")";
+                if (pBI != NULL)
+                {
+                    int abilityBonus = BaseStatToBonus(pBI->Total());
+                    std::string name = EnumEntryText(at, abilityTypeMap);
+                    name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
+                    ss << " + " << name << " Mod(" << abilityBonus << ")";
+                }
+                else
+                {
+                    ss << " + Unknown Mod(0)";
+                }
             }
             // add any casting stat breakdown
             if (spell.HasLevel())

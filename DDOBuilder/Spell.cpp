@@ -7,6 +7,7 @@
 #include "LogPane.h"
 #include "Build.h"
 #include "ClassSpell.h"
+#include "Class.h"
 #include "BreakdownItem.h"
 //#include "BreakdownItemAbility.h"
 //#include "BreakdownItemSpellSchool.h"
@@ -178,7 +179,7 @@ void Spell::SetClass(const std::string& ct)
     m_class = ct;
 }
 
-int Spell::ActualCasterLevel(const SpellDamage& sd) const
+int Spell::ActualCasterLevel(const Build& build, const SpellDamage& sd) const
 {
     // work out the actual caster level
     size_t classCasterLevel = 0;
@@ -197,20 +198,12 @@ int Spell::ActualCasterLevel(const SpellDamage& sd) const
             classCasterLevel += static_cast<int>(pBI->Total());
         }
     }
-    if (sd.HasDamage())
-    {
-        // this damage type may also have bonus/negative caster levels to apply
-        DamageType dt = sd.Damage();
-        pBI = FindBreakdown(DamageTypeToBreakdown(dt));
-        if (pBI != NULL)
-        {
-            classCasterLevel += static_cast<int>(pBI->Total());
-        }
-    }
+    int bonus = build.BonusCasterLevels(Name());
+    classCasterLevel += bonus;
     return classCasterLevel;
 }
 
-int Spell::ActualMaxCasterLevel(const SpellDamage& sd) const
+int Spell::ActualMaxCasterLevel(const Build& build, const SpellDamage& sd) const
 {
     int maxCasterLevel = 0;
     BreakdownItem* pBI = NULL;
@@ -219,6 +212,13 @@ int Spell::ActualMaxCasterLevel(const SpellDamage& sd) const
         maxCasterLevel = MaxCasterLevel();
         // also need to add any options that increase the max caster level here
         // any school level bonuses
+        const ::Class& c = FindClass(Class());
+        pBI = FindBreakdown(static_cast<BreakdownType>(Breakdown_MaxCasterLevel_First + c.Index()));
+        if (pBI != NULL)
+        {
+            int classCasterLevelBonus = static_cast<int>(pBI->Total());
+            maxCasterLevel += classCasterLevelBonus;
+        }
         if (HasSchool())
         {
             pBI = FindBreakdown(MaxCasterLevelSchoolToBreakdown(School()));
@@ -227,21 +227,13 @@ int Spell::ActualMaxCasterLevel(const SpellDamage& sd) const
                 maxCasterLevel += static_cast<int>(pBI->Total());
             }
         }
-        if (sd.HasDamage())
-        {
-            // this damage type may also have bonus/negative caster levels to apply
-            DamageType dt = sd.Damage();
-            pBI = FindBreakdown(MaxDamageTypeToBreakdown(dt));
-            if (pBI != NULL)
-            {
-                maxCasterLevel += static_cast<int>(pBI->Total());
-            }
-        }
+        int bonus = build.BonusMaxCasterLevels(Name());
+        maxCasterLevel += bonus;
     }
     return maxCasterLevel;
 }
 
-CString Spell::ActualCasterLevelText(const SpellDamage& sd) const
+CString Spell::ActualCasterLevelText(const Build& build, const SpellDamage& sd) const
 {
     // work out the actual caster level
     CString totalText;
@@ -253,7 +245,7 @@ CString Spell::ActualCasterLevelText(const SpellDamage& sd) const
     if (pBI != NULL)
     {
         classCasterLevel = static_cast<int>(pBI->Total());
-        totalText.Format("Class Caster Level: %d", classCasterLevel);
+        totalText.Format("Class Caster Level (%d)", classCasterLevel);
     }
     // include any school caster level bonus
     if (HasSchool())
@@ -270,24 +262,15 @@ CString Spell::ActualCasterLevelText(const SpellDamage& sd) const
             classCasterLevel += schoolCasterLevel;
         }
     }
-    // include any damage type caster levels
-    if (sd.HasDamage())
+    int bonus = build.BonusCasterLevels(Name());
+    if (bonus != 0)
     {
-        // this damage type may also have bonus/negative caster levels to apply
-        DamageType dt = sd.Damage();
-        pBI = FindBreakdown(DamageTypeToBreakdown(dt));
-        if (pBI != NULL)
-        {
-            damageCasterLevel = static_cast<int>(pBI->Total());
-        }
-        if (damageCasterLevel != 0)
-        {
-            t.Format(" + Damage type Bonus(%+d)", damageCasterLevel);
-            totalText += t;
-            classCasterLevel += damageCasterLevel;
-        }
+        t.Format(" + Spell Specific Bonus(%+d)", bonus);
+        totalText += t;
+        classCasterLevel += bonus;
     }
-    int maxCasterLevel = ActualMaxCasterLevel(sd);
+
+    int maxCasterLevel = ActualMaxCasterLevel(build, sd);
     if (classCasterLevel > maxCasterLevel)
     {
         t.Format(" = %d (Capped from %d)\r\n", maxCasterLevel, classCasterLevel);
@@ -300,7 +283,7 @@ CString Spell::ActualCasterLevelText(const SpellDamage& sd) const
     return totalText;
 }
 
-CString Spell::ActualMaxCasterLevelText(const SpellDamage& sd) const
+CString Spell::ActualMaxCasterLevelText(const Build& build, const SpellDamage& sd) const
 {
     CString totalText;
     int maxCasterLevel = 0;
@@ -313,7 +296,20 @@ CString Spell::ActualMaxCasterLevelText(const SpellDamage& sd) const
         CString mcl;
         maxCasterLevel = MaxCasterLevel();
 
-        mcl.Format("Max Caster Level = %d", maxCasterLevel);
+        mcl.Format("Max Caster Level(%d)", maxCasterLevel);
+
+        const ::Class& c = FindClass(Class());
+        pBI = FindBreakdown(static_cast<BreakdownType>(Breakdown_MaxCasterLevel_First + c.Index()));
+        if (pBI != NULL)
+        {
+            int classCasterLevelBonus = static_cast<int>(pBI->Total());
+            if (classCasterLevelBonus != 0)
+            {
+                t.Format(" + Epic MCL Bonus(%+d)", classCasterLevelBonus);
+                mcl += t;
+            }
+            maxCasterLevel += classCasterLevelBonus;
+        }
         // also need to add any options that increase the max caster level here
         // any school level bonuses
         if (HasSchool())
@@ -330,22 +326,12 @@ CString Spell::ActualMaxCasterLevelText(const SpellDamage& sd) const
             }
             maxCasterLevel += schoolLevelBonus;
         }
-        // include any damage type caster levels
-        if (sd.HasDamage())
+        int bonus = build.BonusMaxCasterLevels(Name());
+        if (bonus != 0)
         {
-            // this damage type may also have bonus/negative caster levels to apply
-            DamageType dt = sd.Damage();
-            pBI = FindBreakdown(MaxDamageTypeToBreakdown(dt));
-            if (pBI != NULL)
-            {
-                damageLevelBonus = static_cast<int>(pBI->Total());
-            }
-            if (damageLevelBonus != 0)
-            {
-                t.Format(" + Damage type Bonus(%+d)", damageLevelBonus);
-                mcl += t;
-                maxCasterLevel += damageLevelBonus;
-            }
+            t.Format(" + Spell Specific Bonus(%+d)", bonus);
+            mcl += t;
+            maxCasterLevel += bonus;
         }
         t.Format(" = %d", maxCasterLevel);
         mcl += t;

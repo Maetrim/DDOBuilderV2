@@ -98,12 +98,6 @@ class CBreakdownsPane :
 
         void AddKiBreakdowns(HTREEITEM hParent);
         void AddClassCasterLevels(HTREEITEM hParent);
-        void AddEnergyCasterLevels(HTREEITEM hParent);
-        void AddEnergyCasterLevels(
-                HTREEITEM hParent,
-                BreakdownType ecl,
-                BreakdownType emcl,
-                EnergyType et);
         void AddSchoolCasterLevels(HTREEITEM hParent);
         void AddSchoolCasterLevels(
             HTREEITEM hParent,

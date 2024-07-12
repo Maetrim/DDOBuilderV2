@@ -31,6 +31,7 @@ private:
     void CreateItem(const std::map<std::string, std::string>& itemFields, bool bMinorArtifact);
     bool SetItemSlot(const std::map<std::string, std::string>& itemFields);
     void AddArmorFields(const std::map<std::string, std::string>& itemFields);
+    void UpdateArmorBonus();
     void AddAttackMods(const std::map<std::string, std::string>& itemFields);
     void AddDamageMods(const std::map<std::string, std::string>& itemFields);
     void AddDamageDice(const std::map<std::string, std::string>& itemFields);

@@ -29,7 +29,9 @@ class BreakdownItemClassCasterLevel :
     protected:
         virtual void ClassChanged(Build *, const std::string& classFrom, const std::string& classTo, size_t level) override;
         virtual void BuildLevelChanged(Build*) override;
-private:
+        virtual void EnhancementTrained(Build*, const EnhancementItemParams& item) override;
+        virtual void EnhancementRevoked(Build*, const EnhancementItemParams& item) override;
+    private:
         std::string m_class;
         EffectType m_effectType;
 };

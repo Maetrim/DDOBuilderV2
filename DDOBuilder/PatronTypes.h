@@ -27,6 +27,7 @@ enum PatronType
     Patron_TheSummerCourt,
     Patron_TheTwelve,
     Patron_TheYugoloth,
+    Patron_CormanthorElves,
     Patron_TotalFavor,
 
     Patron_Count,
@@ -55,6 +56,7 @@ const XmlLib::enumMapEntry<PatronType> patronTypeMap[] =
     {Patron_TheSummerCourt,         L"The Summer Court"},
     {Patron_TheTwelve,              L"The Twelve"},
     {Patron_TheYugoloth,            L"The Yugoloth"},
+    {Patron_CormanthorElves,        L"Cormanthor Elves"},
     {Patron_TotalFavor,             L"Total Favor"},
     {Patron_None,                   L"None"},
     {PatronType(0),                 NULL}

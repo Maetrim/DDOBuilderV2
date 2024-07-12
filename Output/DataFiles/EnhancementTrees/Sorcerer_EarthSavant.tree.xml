@@ -1,328 +1,617 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
+  <EnhancementTree>
+    <Name>Earth Savant</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Sorcerer</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Sorcerer</Icon>
+    <Background>SorcererBackground</Background>
+    <!--Core Items-->
+    <EnhancementTreeItem>
       <Name>Earth Savant</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Sorcerer</Item>
-         </Requirement>
-      </Requirements>
-      <Background>SorcererBackground</Background>
-      <Icon>Sorcerer</Icon>
-      <!--Core Items-->
-      <EnhancementTreeItem>
-         <Name>Earth Savant</Name>
-         <InternalName>ESCore1</InternalName>
-         <Description>Every point you spend in the Earth Savant enhancement tree provides +0.75 Universal Spell Power.
+      <InternalName>ESCore1</InternalName>
+      <Description>Every point you spend in the Earth Savant enhancement tree provides +0.75 Universal Spell Power.
 Passive: +10 Acid Spell Power 
 +1 Caster Level when casting Acid and Earth spells 
 -10 Electric and Sonic Spell Power 
 -1 Caster Level when casting Electric, Sonic, and Air spells. 
 Selecting this enhancement will prevent you from spending points in the Air Savant enhancement tree.</Description>
-         <Icon>ESEarthSavant</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-            <RequiresNoneOf>
-               <Requirement>
-                  <Type>Enhancement</Type>
-                  <Item>ASCore1</Item>
-               </Requirement>
-            </RequiresNoneOf>
-         </Requirements>
-         <Effect>
-            <DisplayName>Earth Savant: Spell power per action point</DisplayName>
-            <Bonus>Enhancement</Bonus>
-            <Type>UniversalSpellPower</Type>
-            <StackSource>Earth Savant</StackSource>
-            <AType>APCount</AType>
-            <Amount size="1">0.75</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-            <Item>Acid</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Earth Affinity</Name>
-         <InternalName>ESCore2</InternalName>
-         <Description>Passive: +10 Acid Spell Power 
+      <Icon>ESEarthSavant</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>ASCore1</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Effect>
+        <DisplayName>Earth Savant: Spell power per action point</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>APCount</AType>
+        <Amount size="1">0.75</Amount>
+        <StackSource>Earth Savant</StackSource>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Reverberate</Item>
+        <Item>Soundburst SLA</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Earth Affinity</Name>
+      <InternalName>ESCore2</InternalName>
+      <Description>Passive: +10 Acid Spell Power 
 +1 Caster Level when casting Acid and Earth spells 
 -10 Electric and Sonic Spell Power 
 -1 Caster Level when casting Electric, Sonic, and Air spells.</Description>
-         <Icon>ESEarthAffinity</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESCore1</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Greater Earth Affinity</Name>
-         <InternalName>ESCore3</InternalName>
-         <Description>Passive: +10 Acid Spell Power 
+      <Icon>ESEarthAffinity</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESCore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Reverberate</Item>
+        <Item>Soundburst SLA</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Greater Earth Affinity</Name>
+      <InternalName>ESCore3</InternalName>
+      <Description>Passive: +10 Acid Spell Power 
 +1 Caster Level when casting Acid and Earth spells 
 +1 Maximum Caster Level when casting Acid and Earth spells 
 -10 Electric and Sonic Spell Power 
 -1 Caster Level when casting Electric, Sonic, and Air spells.</Description>
-         <Icon>ESGreaterEarthAffinity</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESCore2</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>6</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Crumbling</Name>
-         <InternalName>ESCore4</InternalName>
-         <Description>Passive:
+      <Icon>ESGreaterEarthAffinity</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESCore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Reverberate</Item>
+        <Item>Soundburst SLA</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Crumbling</Name>
+      <InternalName>ESCore4</InternalName>
+      <Description>Passive:
 On Acid Spell Cast: Your target gains one stack of Armor Destruction
 +10 Acid Spell Power 
 +1 Caster Level when casting Acid and Earth spells 
 +1 Maximum Caster Level when casting Acid and Earth spells 
 -10 Electric and Sonic Spell Power 
 -1 Caster Level when casting Electric, Sonic, and Air spells.</Description>
-         <Icon>ESCrumbling</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESCore3</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: One With Stone</Name>
-         <InternalName>ESCore5</InternalName>
-         <Description>Passive: Immunity to Petrification 
+      <Icon>ESCrumbling</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESCore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Reverberate</Item>
+        <Item>Soundburst SLA</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: One With Stone</Name>
+      <InternalName>ESCore5</InternalName>
+      <Description>Passive: Immunity to Petrification 
 +10 Acid Spell Power 
 +1 Caster Level when casting Acid and Earth spells 
 +1 Maximum Caster Level when casting Acid and Earth spells 
 -10 Electric and Sonic Spell Power 
 -1 Caster Level when casting Electric, Sonic, and Air spells.</Description>
-         <Icon>ESOneWithStone</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESCore4</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>18</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Petrification</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Elemental Apotheosis: Earth</Name>
-         <InternalName>ESCore6</InternalName>
-         <Description>Activate this ability to transform into an Earth Elemental.
+      <Icon>ESOneWithStone</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESCore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Petrification</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Reverberate</Item>
+        <Item>Soundburst SLA</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Elemental Apotheosis: Earth</Name>
+      <InternalName>ESCore6</InternalName>
+      <Description>Activate this ability to transform into an Earth Elemental.
 While in elemental form, you gain +100% fortification. If you are a Warforged,
 you are no longer considered a Living Construct, and so are immune to Repair spells,
 but can be healed normally by Positive Energy spells.
@@ -340,40 +629,17 @@ You also gain the following passive benefits, even while not in elemental form: 
 +1 Maximum Caster Level when casting Acid and Earth spells 
 -10 Electric and Sonic Spell Power 
 -1 Caster Level when casting Electric, Sonic, and Air spells.</Description>
-         <Icon>ESElementalApotheosisEarth</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESCore5</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>20</Value>
-            </Requirement>
-        <Requirement>
-          <Type>Exclusive</Type>
-          <Item>ESCore6</Item>
-          <Item>Capstone Enhancement</Item>
-        </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>ESCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Stance>
-            <Name>Earth Elemental</Name>
-            <Icon>ESElementalApotheosisEarth</Icon>
-            <Description>While in elemental form, you gain +100% fortification. If you are a Warforged,
+      <Icon>ESElementalApotheosisEarth</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Clickie/>
+      <Stance>
+        <Name>Earth Elemental</Name>
+        <Icon>ESElementalApotheosisEarth</Icon>
+        <Description>While in elemental form, you gain +100% fortification. If you are a Warforged,
 you are no longer considered a Living Construct, and so are immune to Repair spells,
 but can be healed normally by Positive Energy spells.
 While in Earth Elemental form, you also gain an additional +20 Acid Spell Power,
@@ -381,1215 +647,1421 @@ While in Earth Elemental form, you also gain an additional +20 Acid Spell Power,
 for Acid and Earth spells, but your air, fire, and water spells have a -3 penalty to
 caster level and max caster level. You also gain a +10 racial bonus to acid resistance,
 +25 Physical Resistance Rating, and a -10 penalty to electrical resistance.</Description>
-            <Group>Major Form</Group>
-         </Stance>
-         <Effect>
-            <DisplayName>Earth Elemental Form</DisplayName>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Earth Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <DisplayName>Earth Elemental Form</DisplayName>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <Item>Cold</Item>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Earth Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Fortification</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">100</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Earth Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">20</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Earth Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Earth Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Earth Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">25</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Earth Elemental</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Charisma</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">-10</Amount>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Electric</Item>
-            <Item>Sonic</Item>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Acid Spray</Name>
-         <InternalName>ESAcidSpray</InternalName>
-         <Description>Spell Like Ability: Acid Spray
+        <Group>Major Form</Group>
+      </Stance>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>ESCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>ESCore6</Item>
+        <Item>Capstone Enhancement</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <DisplayName>Earth Elemental Form</DisplayName>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Earth Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Earth Elemental Form</DisplayName>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Creeping Cold</Item>
+        <Item>Ice Storm</Item>
+        <Item>Cold Breath</Item>
+        <Item>Fire Shield (Cold)</Item>
+        <Item>Greater Creeping Cold</Item>
+        <Item>Ice Flowers</Item>
+        <Item>Niac's Cold Ray</Item>
+        <Item>Freezing Bolt</Item>
+        <Item>Snowball Swarm</Item>
+        <Item>Frost Lance</Item>
+        <Item>Cone of Cold</Item>
+        <Item>Niac's Biting Cold</Item>
+        <Item>Otiluke's Freezing Sphere</Item>
+        <Item>Polar Ray</Item>
+        <Item>Iceberg</Item>
+        <Item>Tsunami</Item>
+        <Item>Ice Storm: White Dragon Breath</Item>
+        <Item>Vial of Frost</Item>
+        <Item>Vial Smash: Cold</Item>
+        <Item>Cold Spike</Item>
+        <Item>Bitter Frost Burst</Item>
+        <Item>Frost Concentration</Item>
+        <Item>Vein Freeze</Item>
+        <Item>Multivial of Frost</Item>
+        <Item>Frost Obliteration</Item>
+        <Item>Fire Trap</Item>
+        <Item>Flame Arrow</Item>
+        <Item>Tactical Detonation</Item>
+        <Item>Symbol of Flame</Item>
+        <Item>Flame Strike</Item>
+        <Item>Fire Storm</Item>
+        <Item>Produce Flame</Item>
+        <Item>Flaming Sphere</Item>
+        <Item>Wall of Fire</Item>
+        <Item>Fire Seeds</Item>
+        <Item>Fire Shield</Item>
+        <Item>Body of the Sun</Item>
+        <Item>Burning Hands</Item>
+        <Item>Flaming Bolt</Item>
+        <Item>Scorch</Item>
+        <Item>Scorching Ray</Item>
+        <Item>Fireball</Item>
+        <Item>Burning Blood</Item>
+        <Item>Delayed Blast Fireball</Item>
+        <Item>Incendiary Cloud</Item>
+        <Item>Meteor Swarm</Item>
+        <Item>Illusory Mark of Flame</Item>
+        <Item>Hellball</Item>
+        <Item>Fire Shield (Fire)</Item>
+        <Item>Celestial Bombardment</Item>
+        <Item>Fire Storm: Red Dragon Breath</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <Item>Vial of Flame</Item>
+        <Item>Vial Smash: Fire</Item>
+        <Item>Melt Armor</Item>
+        <Item>Flame Concentration</Item>
+        <Item>Molotov Cocktail</Item>
+        <Item>Cindersmoke</Item>
+        <Item>Multivial of Flame</Item>
+        <Item>Fiery Obliteration</Item>
+        <Item>Flame Pillar</Item>
+        <Item>Holy Fireball</Item>
+        <Item>Incinerating Wave</Item>
+        <Item>Ki Explosion</Item>
+        <Item>Scorching Summer</Item>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Reverberate</Item>
+        <Item>Soundburst SLA</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Earth Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Fortification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Earth Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Earth Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Earth Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Earth Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Earth Elemental</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Charisma</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enveloping Swarm</Item>
+        <Item>Creeping Doom</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Acid Spray</Item>
+        <Item>Caustic Bolt</Item>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Acid Blast</Item>
+        <Item>Acid Rain</Item>
+        <Item>Burning Blood</Item>
+        <Item>Cloudkill</Item>
+        <Item>Acid Fog</Item>
+        <Item>Black Dragon Bolt</Item>
+        <Item>Acid Well</Item>
+        <Item>Hellball</Item>
+        <Item>Acid Storm: Black Dragon Breath</Item>
+        <Item>Vial of Acid</Item>
+        <Item>Vial Smash: Acid</Item>
+        <Item>Corrode Weapons</Item>
+        <Item>Acid Concentration</Item>
+        <Item>Caustic Solvent</Item>
+        <Item>Caustic Overload</Item>
+        <Item>Multivial of Acid</Item>
+        <Item>Caustic Obliteration</Item>
+        <Item>Blighted Breath</Item>
+        <Item>Autumn Decay</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>CasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Static Shock</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Blast Rod</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Call Lightning</Item>
+        <Item>Call Lightning Storm</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Electric Loop</Item>
+        <Item>Ball Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Lightning Storm: Blue Dragon Breath</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Voltaic Obliteration</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Shout</Item>
+        <Item>Greater Shout</Item>
+        <Item>Hellball</Item>
+        <Item>Horn of Thunder</Item>
+        <Item>Reverberate</Item>
+        <Item>Soundburst SLA</Item>
+        <Item>Fiendish Arpeggio</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Acid Spray</Name>
+      <InternalName>ESAcidSpray</InternalName>
+      <Description>Spell Like Ability: Acid Spray
 Activation Cost: [4/3/2] Spell Points.
 Cooldown: [12/8/4] seconds.
 You may cast the spell Acid Spray at will as a Spell-Like Ability. You may
 use Metamagic Feats with Spell-Like Abilities at no additional cost. Further
 points spend in this enhancement reduce the cooldown and Spell Point Cost of this
 Spell-Like Ability.</Description>
-         <Icon>ESAcidSpray</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ExtraLongArrowUp/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid Spray</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Stability</Name>
-         <InternalName>ESStability</InternalName>
-         <Description>You gain +[2/4/6] to your Balance and Concentration skills.
+      <Icon>ESAcidSpray</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ExtraLongArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid Spray</Item>
+        <Item>Sorcerer</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Stability</Name>
+      <InternalName>ESStability</InternalName>
+      <Description>You gain +[2/4/6] to your Balance and Concentration skills.
 Rank 3: +1 to your Fortitude Saving Throw.</Description>
-         <Icon>ESStability</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Balance</Item>
-            <Item>Concentration</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">2 4 6</Amount>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fortitude</Item>
-            <AType>Simple</AType>
-            <Rank>3</Rank>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: One with the Soil</Name>
-         <InternalName>ESOneWithTheSoil</InternalName>
-         <Description>You gain a +[3/6/10] bonus to your Acid Resistance.</Description>
-         <Icon>ESOneWithTheSoil</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">3 6 10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Spell Critical: Acid I</Name>
-         <InternalName>ESSpellCriticalAcidI</InternalName>
-         <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalAcid</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Erosion</Name>
-         <InternalName>ESErosion</InternalName>
-         <Description>Whenever you cast an Acid damage spell, you gain +5 to your Acid
+      <Icon>ESStability</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Balance</Item>
+        <Item>Concentration</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fortitude</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Rank>3</Rank>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: One with the Soil</Name>
+      <InternalName>ESOneWithTheSoil</InternalName>
+      <Description>You gain a +[3/6/10] bonus to your Acid Resistance.</Description>
+      <Icon>ESOneWithTheSoil</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">3 6 10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Spell Critical: Acid I</Name>
+      <InternalName>ESSpellCriticalAcidI</InternalName>
+      <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalAcid</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Erosion</Name>
+      <InternalName>ESErosion</InternalName>
+      <Description>Whenever you cast an Acid damage spell, you gain +5 to your Acid
 Spell Power for 6 seconds. This stacks up to [1/3/5] times.</Description>
-         <Icon>ESErosion</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
+      <Icon>ESErosion</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Erosion</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 5</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>SliderValue</AType>
+        <Amount size="1">5</Amount>
+        <StackSource>Erosion</StackSource>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Efficient Metamagic I</Name>
+      <InternalName>ESEfficientMetamagicI</InternalName>
+      <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of using that Metamagic. </Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>1</Value>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicI</Item>
+              <Item>Efficient Empower Spell</Item>
             </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>CreateSlider</Type>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Erosion</Item>
-            <AType>Slider</AType>
-            <Amount size="3">0 0 5</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
+            <Item>ESEfficientMetamagicI</Item>
+            <Item>Efficient Empower Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount size="1">5</Amount>
-            <Item>Acid</Item>
-            <AType>SliderValue</AType>
-            <StackSource>Erosion</StackSource>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Efficient Metamagic I</Name>
-         <InternalName>ESEfficientMetamagicI</InternalName>
-         <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of using that Metamagic. </Description>
-         <Icon>EfficientMetamagic</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicI</Item>
-                     <Item>Efficient Empower Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Empower Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicI</Item>
-                  <Item>Efficient Empower Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-2 -4 -6</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Empower</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Enlarge</Name>
-               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
-               <Icon>EfficientEnlarge</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicI</Item>
-                     <Item>Efficient Enlarge Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Enlarge Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicI</Item>
-                  <Item>Efficient Enlarge Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Enlarge</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Maximize</Name>
-               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
-               <Icon>EfficientMaximize</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicI</Item>
-                     <Item>Efficient Maximize Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Maximize Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicI</Item>
-                  <Item>Efficient Maximize Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-3 -6 -9</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Maximize</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicI</Item>
-                     <Item>Efficient Quicken Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Quicken Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicI</Item>
-                  <Item>Efficient Quicken Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Quicken</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Pierce Acid Resistance</Name>
-         <InternalName>ESPierceAcidResistance</InternalName>
-         <Description>Your Acid damage spells now bypass [5/10/15] points of your target's resistance to those damage types, if any.</Description>
-         <Icon>ESPierceAcidResistance</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicI</Item>
+              <Item>Efficient Enlarge Spell</Item>
             </Requirement>
             <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESOneWithTheSoil</Item>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
             </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Spell Critical: Acid II</Name>
-         <InternalName>ESSpellCriticalAcidII</InternalName>
-         <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalAcid</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESSpellCriticalAcidI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Devouring Earth</Name>
-         <InternalName>ESDevouringEarth</InternalName>
-         <Description>Whenever you cast an Acid damage spell, you have a [10/20/30]% chance to gain 3 Temporary Spell Points.</Description>
-         <Icon>ESDevouringEarth</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESErosion</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Efficient Metamagic II</Name>
-         <InternalName>ESEfficientMetamagicII</InternalName>
-         <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of using that Metamagic. </Description>
-         <Icon>EfficientMetamagic</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESEfficientMetamagicI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicII</Item>
-                     <Item>Efficient Empower Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Empower Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicII</Item>
-                  <Item>Efficient Empower Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-2 -4 -6</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Empower</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Enlarge</Name>
-               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
-               <Icon>EfficientEnlarge</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicII</Item>
-                     <Item>Efficient Enlarge Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Enlarge Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicII</Item>
-                  <Item>Efficient Enlarge Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Enlarge</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Maximize</Name>
-               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
-               <Icon>EfficientMaximize</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicII</Item>
-                     <Item>Efficient Maximize Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Maximize Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicII</Item>
-                  <Item>Efficient Maximize Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-3 -6 -9</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Maximize</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>ESEfficientMetamagicII</Item>
-                     <Item>Efficient Quicken Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Quicken Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>ESEfficientMetamagicII</Item>
-                  <Item>Efficient Quicken Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Quicken</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Spell Penetration</Name>
-         <InternalName>ESSpellPenetration</InternalName>
-         <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
-         <Icon>SpellPenetration</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPenetrationBonus</Type>
+            <Item>ESEfficientMetamagicI</Item>
+            <Item>Efficient Enlarge Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
             <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Enlarge</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicI</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>ESEfficientMetamagicI</Item>
+            <Item>Efficient Maximize Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicI</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>ESEfficientMetamagicI</Item>
+            <Item>Efficient Quicken Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Pierce Acid Resistance</Name>
+      <InternalName>ESPierceAcidResistance</InternalName>
+      <Description>Your Acid damage spells now bypass [5/10/15] points of your target's resistance to those damage types, if any.</Description>
+      <Icon>ESPierceAcidResistance</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESOneWithTheSoil</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Spell Critical: Acid II</Name>
+      <InternalName>ESSpellCriticalAcidII</InternalName>
+      <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalAcid</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESSpellCriticalAcidI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Devouring Earth</Name>
+      <InternalName>ESDevouringEarth</InternalName>
+      <Description>Whenever you cast an Acid damage spell, you have a [10/20/30]% chance to gain 3 Temporary Spell Points.</Description>
+      <Icon>ESDevouringEarth</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESErosion</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Efficient Metamagic II</Name>
+      <InternalName>ESEfficientMetamagicII</InternalName>
+      <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of using that Metamagic. </Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESEfficientMetamagicI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>ESEfficientMetamagicII</Item>
+            <Item>Efficient Empower Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicII</Item>
+              <Item>Efficient Enlarge Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>ESEfficientMetamagicII</Item>
+            <Item>Efficient Enlarge Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Enlarge</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicII</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>ESEfficientMetamagicII</Item>
+            <Item>Efficient Maximize Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>ESEfficientMetamagicII</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>ESEfficientMetamagicII</Item>
+            <Item>Efficient Quicken Spell</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Spell Penetration</Name>
+      <InternalName>ESSpellPenetration</InternalName>
+      <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
+      <Icon>SpellPenetration</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Spell Critical: Acid III</Name>
+      <InternalName>ESSpellCriticalAcidIII</InternalName>
+      <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalAcid</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESSpellCriticalAcidII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Ability I</Name>
+      <InternalName>ESAbilityScoreI</InternalName>
+      <Description>Choose either Charisma or Constitution</Description>
+      <Icon>ChaCon</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Charisma</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Spell Critical: Acid III</Name>
-         <InternalName>ESSpellCriticalAcidIII</InternalName>
-         <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalAcid</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESSpellCriticalAcidII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
+            <Item>Constitution</Item>
             <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Ability I</Name>
-         <InternalName>ESAbilityScoreI</InternalName>
-         <Description>Choose either Charisma or Constitution</Description>
-         <Icon>ChaCon</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Charisma</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Constitution</Name>
-               <Description>+1 Constitution</Description>
-               <Icon>Constitution</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Constitution</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Acid Arrow</Name>
-         <InternalName>ESAcidArrow</InternalName>
-         <Description>Spell Like Ability: Acid Arrow.
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Acid Arrow</Name>
+      <InternalName>ESAcidArrow</InternalName>
+      <Description>Spell Like Ability: Acid Arrow.
 Activation Cost: [8/6/4] Spell Points.
 Cooldown: [15/10/5] seconds.
 You may cast the spell Melf's Acid Arrow at will as a Spell-Like Ability. You may
 use Metamagic Feats with Spell-Like Abilities at no additional cost. Further
 points spend in this enhancement reduce the cooldown and Spell Point Cost of this
 Spell-Like Ability.</Description>
-         <Icon>ESAcidArrow</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
+      <Icon>ESAcidArrow</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESAcidSpray</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Melf's Acid Arrow</Item>
+        <Item>Sorcerer</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Efficient Heighten</Name>
+      <InternalName>ESEfficientHeighten</InternalName>
+      <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened level.</Description>
+      <Icon>EfficientHeighten</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>ESEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Heighten Spell</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESEfficientMetamagicII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>ESEfficientHeighten</Item>
+        <Item>Efficient Heighten Spell</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">-1 -2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Heighten</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Earthen Armor</Name>
+      <InternalName>ESEarthenArmor</InternalName>
+      <Description>Gain a +[3/6] stacking bonus to your Armor Class.</Description>
+      <Icon>ESEarthenArmor</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">3 6</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Spell Critical: Acid IV</Name>
+      <InternalName>ESSpellCriticalAcidIV</InternalName>
+      <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>SpellCriticalAcid</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESSpellCriticalAcidIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Ability II</Name>
+      <InternalName>ESAbilityScoreII</InternalName>
+      <Description>Choose either Charisma or Constitution</Description>
+      <Icon>ChaCon</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESAbilityScoreI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Melf's Acid Arrow</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Efficient Heighten</Name>
-         <InternalName>ESEfficientHeighten</InternalName>
-         <Description>Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened level.</Description>
-         <Icon>EfficientHeighten</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>2</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>ESEfficientHeighten</Item>
-               <Item>Efficient Heighten Spell</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Feat</Type>
-               <Item>Heighten Spell</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESEfficientMetamagicII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExclusionGroup</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
-            <Item>ESEfficientHeighten</Item>
-            <Item>Efficient Heighten Spell</Item>
-         </Effect>
-         <Effect>
-            <Type>AdditionalSpellPointCost</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="2">-1 -2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Heighten</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Earthen Armor</Name>
-         <InternalName>ESEarthenArmor</InternalName>
-         <Description>Gain a +[3/6] stacking bonus to your Armor Class.</Description>
-         <Icon>ESEarthenArmor</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>2</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="2">3 6</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Spell Critical: Acid IV</Name>
-         <InternalName>ESSpellCriticalAcidIV</InternalName>
-         <Description>Your Acid damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>SpellCriticalAcid</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESSpellCriticalAcidIII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid</Item>
+            <Item>Charisma</Item>
             <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Ability II</Name>
-         <InternalName>ESAbilityScoreII</InternalName>
-         <Description>Choose either Charisma or Constitution</Description>
-         <Icon>ChaCon</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESAbilityScoreI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Charisma</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Constitution</Name>
-               <Description>+1 Constitution</Description>
-               <Icon>Constitution</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Constitution</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Acid Blast</Name>
-         <InternalName>ESAcidBlast</InternalName>
-         <Description>Spell Like Ability: Acid Blast.
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Constitution</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Acid Blast</Name>
+      <InternalName>ESAcidBlast</InternalName>
+      <Description>Spell Like Ability: Acid Blast.
 Activation Cost: [12/8/6] Spell Points.
 Cooldown: [18/12/6] seconds.
 You may cast the spell Acid Blast at will as a Spell-Like Ability. You may use
 Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
 spent in this enhancement will reduce the cooldown and Spell Point Cost of this
 Spell-Like Ability.</Description>
-         <Icon>ESAcidBlast</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESAcidArrow</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Acid Blast</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Awaken Elemental Weakness: Acid</Name>
-         <InternalName>ESAwakenElementalWeaknessAcid</InternalName>
-         <Description>You are able to curse an enemy, increasing Acid damage they take by 15%.
+      <Icon>ESAcidBlast</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESAcidArrow</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Acid Blast</Item>
+        <Item>Sorcerer</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Awaken Elemental Weakness: Acid</Name>
+      <InternalName>ESAwakenElementalWeaknessAcid</InternalName>
+      <Description>You are able to curse an enemy, increasing Acid damage they take by 15%.
 Activation Cost: 5 Spell Points.
 Cooldown: 20 seconds.</Description>
-         <Icon>ESAwakenElementalWeaknessAcid</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Earthgrab</Name>
-         <InternalName>ESEarthGrab</InternalName>
-         <Description>Earthen hands grasp your foe, rendering them helpless and dealing
+      <Icon>ESAwakenElementalWeaknessAcid</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Earthgrab</Name>
+      <InternalName>ESEarthGrab</InternalName>
+      <Description>Earthen hands grasp your foe, rendering them helpless and dealing
 bludgeoning damage over time on a failed Reflex save
 (DC: 10 + Max[Con/Cha] Modifier + Sorcerer Level).
 Activation Cost: 15 Spell Points.
 Cooldown: 15 seconds.</Description>
-         <Icon>ESEarthGrab</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ESEarthenArmor</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Earth Grab</Item>
-            <AType>SpellInfo</AType>
-            <Amount size="3">0 0 0</Amount>
-            <Item>Sorcerer</Item>
-         </Effect>
-         <DC>
-            <Name>Earth Savant: Earthgrab</Name>
-            <Description>Earthen hands grasp your foe, rendering them helpless and dealing
+      <Icon>ESEarthGrab</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ESEarthenArmor</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Earth Grab</Item>
+        <Item>Sorcerer</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+      </Effect>
+      <DC>
+        <Name>Earth Savant: Earthgrab</Name>
+        <Description>Earthen hands grasp your foe, rendering them helpless and dealing
 bludgeoning damage over time on a failed Reflex save.</Description>
-            <Icon>ESEarthGrab</Icon>
-            <DCType>Earthgrab</DCType>
-            <DCVersus>Reflex</DCVersus>
-            <Amount size="1">10</Amount>
-            <ClassLevel>Sorcerer</ClassLevel>
-            <ModAbility>Constitution</ModAbility>
-            <ModAbility>Charisma</ModAbility>
-         </DC>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Conjuration Focus</Name>
-         <InternalName>ESConjurationFocus</InternalName>
-         <Description>You have trained extensively in Conjuration magic, granting
+        <Icon>ESEarthGrab</Icon>
+        <DCType>Earthgrab</DCType>
+        <DCVersus>Reflex</DCVersus>
+        <Amount size="1">10</Amount>
+        <ModAbility>Constitution</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <ClassLevel>Sorcerer</ClassLevel>
+      </DC>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Conjuration Focus</Name>
+      <InternalName>ESConjurationFocus</InternalName>
+      <Description>You have trained extensively in Conjuration magic, granting
 a +1 bonus to your spell DCs of that school.</Description>
-         <Icon>ESConjurationFocus</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
+      <Icon>ESConjurationFocus</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Conjuration</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Earth Savant: Elemental Diversification</Name>
+      <InternalName>ESElementalDiversification</InternalName>
+      <Description>Choose one</Description>
+      <Icon>ASElementalDiversification</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Sorcerer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Power of Flame</Name>
+          <Description>You have extensively practiced with Fire magic, granting an additional +15 Fire Spell Power. </Description>
+          <Icon>ASPowerOfFlame</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Conjuration</Item>
+            <Item>Fire</Item>
             <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Earth Savant: Elemental Diversification</Name>
-         <InternalName>ESElementalDiversification</InternalName>
-         <Description>Choose one</Description>
-         <Icon>ASElementalDiversification</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Sorcerer</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Power of Flame</Name>
-               <Description>You have extensively practiced with Fire magic, granting an additional +15 Fire Spell Power. </Description>
-               <Icon>ASPowerOfFlame</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Fire</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">15</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Power of Force</Name>
-               <Description>You have extensively practiced with Force magic, granting an additional +10 Force Spell Power. </Description>
-               <Icon>ASPowerOfForce</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Force/Untyped</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">10</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Power of Frost</Name>
-               <Description>You have extensively practiced with Cold magic, granting an additional +15 Cold Spell Power.</Description>
-               <Icon>ASPowerOfFrost</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Cold</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">15</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+            <Amount size="1">15</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Power of Force</Name>
+          <Description>You have extensively practiced with Force magic, granting an additional +10 Force Spell Power. </Description>
+          <Icon>ASPowerOfForce</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force/Untyped</Item>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Power of Frost</Name>
+          <Description>You have extensively practiced with Cold magic, granting an additional +15 Cold Spell Power.</Description>
+          <Icon>ASPowerOfFrost</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Cold</Item>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

@@ -562,6 +562,7 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
             m_item.m_SlotUpgrades.clear();
             AddItemEffects(itemFields);
         }
+        UpdateArmorBonus();
         if (m_item.HasWeapon()
             && m_item.Weapon() == Weapon_Unknown)
         {
@@ -1006,6 +1007,26 @@ void WikiItemFileProcessor::AddArmorFields(const std::map<std::string, std::stri
         std::string field = itemFields.at("Damage Reduction");
         size_t dr = atoi(field.c_str());
         m_item.Set_DamageReduction(dr);
+    }
+}
+
+void WikiItemFileProcessor::UpdateArmorBonus()
+{
+    if (m_item.HasArmorBonus())
+    {
+        // need to subtract the items enhancement value from the current armor bonus
+        int ab = m_item.ArmorBonus();
+        int enhancementValue = 0;
+        // now find any armor Enhancement bonus buff if present
+        for (auto&& ibit : m_item.Buffs())
+        {
+            if (ibit.Type() == "ArmorEnchantment")
+            {
+                enhancementValue = static_cast<int>(ibit.Value1());
+            }
+        }
+        ab -= enhancementValue;
+        m_item.Set_ArmorBonus(ab);
     }
 }
 
@@ -2225,7 +2246,6 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Nightshade Venom", "Nightshade Venom", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Nightsinger", "Nightsinger Nightsinger", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Whirlwind Ward", "Whirlwind Ward", "", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Trace of Madness", "Trace of Madness", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Metal Fatigue", "Metal Fatigue", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ram's Might", "Ram's Might Ram's Might", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Inflict Blight", "Inflict Blight", "", "");

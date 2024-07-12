@@ -181,8 +181,6 @@ BreakdownType TacticalToBreakdown(TacticalType tactical);
 BreakdownType SchoolToBreakdown(SpellSchoolType school);
 BreakdownType CasterLevelSchoolToBreakdown(SpellSchoolType school);
 BreakdownType MaxCasterLevelSchoolToBreakdown(SpellSchoolType school);
-BreakdownType DamageTypeToBreakdown(DamageType dt);
-BreakdownType MaxDamageTypeToBreakdown(DamageType dt);
 BreakdownType SpellPowerToBreakdown(SpellPowerType sp);
 BreakdownType SpellPowerToCriticalChanceBreakdown(SpellPowerType sp);
 BreakdownType SpellPowerToCriticalMultiplierBreakdown(SpellPowerType sp);

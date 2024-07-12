@@ -7390,7 +7390,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Effect>
       <Type>GrantFeat</Type>
       <Bonus>Enhancement</Bonus>
-      <Item>Cold Iron</Item>
+      <Item>Pierce Cold Iron</Item>
       <AType>NotNeeded</AType>
     </Effect>
   </Buff>
@@ -7709,7 +7709,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>FireLore</Type>
-    <DisplayText>%b1 Fire Lore %v1: Passive: Your Fire spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
+    <DisplayText>%b1 Fire Lore %v1%: Passive: Your Fire spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellLore</Type>
@@ -12168,7 +12168,47 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">3</Amount>
-      <Item>Fire</Item>
+      <!--Fire Spells-->
+      <Item>Fire Trap</Item>
+      <Item>Flame Arrow</Item>
+      <Item>Tactical Detonation</Item>
+      <Item>Symbol of Flame</Item>
+      <Item>Flame Strike</Item>
+      <Item>Fire Storm</Item>
+      <Item>Produce Flame</Item>
+      <Item>Flaming Sphere</Item>
+      <Item>Wall of Fire</Item>
+      <Item>Fire Seeds</Item>
+      <Item>Fire Shield</Item>
+      <Item>Body of the Sun</Item>
+      <Item>Burning Hands</Item>
+      <Item>Flaming Bolt</Item>
+      <Item>Scorch</Item>
+      <Item>Scorching Ray</Item>
+      <Item>Fireball</Item>
+      <Item>Burning Blood</Item>
+      <Item>Delayed Blast Fireball</Item>
+      <Item>Incendiary Cloud</Item>
+      <Item>Meteor Swarm</Item>
+      <Item>Illusory Mark of Flame</Item>
+      <Item>Hellball</Item>
+      <Item>Fire Shield (Fire)</Item>
+      <Item>Celestial Bombardment</Item>
+      <Item>Fire Storm: Red Dragon Breath</Item>
+      <Item>Fiendish Arpeggio</Item>
+      <Item>Vial of Flame</Item>
+      <Item>Vial Smash: Fire</Item>
+      <Item>Melt Armor</Item>
+      <Item>Flame Concentration</Item>
+      <Item>Molotov Cocktail</Item>
+      <Item>Cindersmoke</Item>
+      <Item>Multivial of Flame</Item>
+      <Item>Fiery Obliteration</Item>
+      <Item>Flame Pillar</Item>
+      <Item>Holy Fireball</Item>
+      <Item>Incinerating Wave</Item>
+      <Item>Ki Explosion</Item>
+      <Item>Scorching Summer</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -15506,13 +15546,14 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Potency</Type>
-    <DisplayText>%b1 Potency %v1: %v1 %b1 bonus to Universal spell power.</DisplayText>
+    <DisplayText>%b1 Potency %v1: %v1 %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
-      <Type>UniversalSpellPower</Type>
+      <Type>SpellPower</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -15996,7 +16037,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>%b1 Radiance Lore %v1%: Passive: Your Light and Aligned spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
-      <Type>SpellPower</Type>
+      <Type>SpellLore</Type>
       <Bonus>Not Set</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -19662,7 +19703,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>%b1 Strength of Purpose: You gain a %v1 %b1 Bonus to Unconsciousness Range, and regenerate 16 Hit Points using Positive Healing every 10 seconds.</DisplayText>
     <Ignore>Enhancement</Ignore>
     <Effect>
-      <Type>MovementSpeed</Type>
+      <Type>UnconsciousRange</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
@@ -20558,10 +20599,6 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       </Dice>
       <Item>All</Item>
     </Effect>
-  </Buff>
-  <Buff>
-    <Type>Trace of Madness</Type>
-    <DisplayText>Trace of Madness: You can almost hear faint, panicked voices when this item is close to you. Perhaps the latent power of this item's hint of madness could be brought out by some catalyst.</DisplayText>
   </Buff>
   <Buff>
     <Type>Transform Kinetic Energy</Type>

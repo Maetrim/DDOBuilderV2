@@ -223,7 +223,7 @@ Item CItemSelectDialog::SelectedItem()
     {
         if (ait.Type().find("Cannith") != std::string::npos)
         {
-            ait.SetSelectedLevelIndex(m_item.MinLevel());
+            ait.SetSelectedLevelIndex(m_item.MinLevel()-1);
         }
     }
     m_item.SetAugments(augments);

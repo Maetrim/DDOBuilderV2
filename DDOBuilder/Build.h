@@ -245,6 +245,7 @@ class Build :
         bool IsGrantedFeat(const std::string& featName) const;
         size_t FeatTrainedCount(const std::string& featName) const;
 
+        // spells
         void UpdateSpells();
         std::list<TrainedSpell> TrainedSpells(const std::string& ct, size_t level) const;
         void TrainSpell(const std::string& ct, size_t level, const std::string& spellName);
@@ -255,6 +256,8 @@ class Build :
         void RevokeSpellEffects(const std::string& ct, const std::string& spellName);
         Spell AdditionalClassSpell(const std::string& className, const std::string& spellName) const;
         void AppendSpellListAdditions(std::list<Spell>& spells, const std::string& ct, int spellLevel);
+        int BonusCasterLevels(const std::string& spellName) const;
+        int BonusMaxCasterLevels(const std::string& spellName) const;
 
         void SetModifiedFlag(BOOL modified);
         void ApplyFeatEffects(const Feat & feat);
@@ -443,6 +446,12 @@ class Build :
         void RevokeSpellListAddition(const Effect& effect);
         bool IsSpellInSpellListAdditionList(const std::string& ct, size_t spellLevel, const std::string& spellName) const;
         void UpdateCachedClassLevels();
+        void AddSpellCasterLevelEffect(const Effect& effect);
+        void AddSpellMaxCasterLevelEffect(const Effect& effect);
+        void RemoveSpellCasterLevelEffect(const Effect& effect);
+        void RemoveSpellMaxCasterLevelEffect(const Effect& effect);
+        void AddEffectToList(std::list<Effect>& list, const Effect& effect);
+        void RemoveEffectFromList(std::list<Effect>& list, const Effect& effect);
 
         // BreakdownObserver
         virtual void UpdateTotalChanged(BreakdownItem* pBI, BreakdownType bt) override;
@@ -458,6 +467,8 @@ class Build :
         std::list<WeaponGroup> m_weaponGroups;
         std::vector<SpellListAddition> m_additionalSpells;
         std::map<std::string, int> m_cachedClassLevels[MAX_GAME_LEVEL]; // each entry has a max of 5 entries, "class name" and count
+        std::list<Effect> m_spellCasterLevels;
+        std::list<Effect> m_spellMaxCasterLevels;
         bool m_bSwitchingBuildsOrGear;
 
         friend class CStancesPane;

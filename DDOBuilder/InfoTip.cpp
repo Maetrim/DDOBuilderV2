@@ -1154,9 +1154,9 @@ void CInfoTip::AppendSpellDamageEffect(
     pRequirements->AddRequirement(sdt, false);  // red highlighted line
     m_tipItems.push_back(pRequirements);
 
-    CString mcl = spell.ActualMaxCasterLevelText(sd);
-    CString cl = spell.ActualCasterLevelText(sd);
-    int castLevel = min(spell.ActualMaxCasterLevel(sd), spell.ActualCasterLevel(sd));
+    CString mcl = spell.ActualMaxCasterLevelText(build, sd);
+    CString cl = spell.ActualCasterLevelText(build, sd);
+    int castLevel = min(spell.ActualMaxCasterLevel(build, sd), spell.ActualCasterLevel(build, sd));
     CString tsd = sd.SpellDamageText(build, castLevel);
 
     CString tipText = mcl;
