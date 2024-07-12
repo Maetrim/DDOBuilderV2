@@ -518,7 +518,7 @@ void CEquipmentPane::UpdateSlotLeftClicked(
                 GetMouseHook()->SaveState();
                 CItemSelectDialog dlg(this, slot, item, pBuild);
                 if (dlg.DoModal() == IDOK
-                        && item.Name() != "")
+                        && dlg.SelectedItem().Name() != "")
                 {
                     pBuild->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
                     m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());

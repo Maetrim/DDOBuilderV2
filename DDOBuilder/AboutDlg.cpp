@@ -60,6 +60,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "BrentAuble, "
         "BuckGB, "
         "Cardo, "
+        "canicus, "
         "CBDunk, "
         "Crolug, "
         "d3x-dt3, "
