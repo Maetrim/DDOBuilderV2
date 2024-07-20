@@ -5183,6 +5183,15 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
         effect.SetIsItemSpecific();
         NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
+    if (item.HasArcaneSpellFailure())
+    {
+        Effect effect(
+            Effect_ArcaneSpellFailureShields,
+            "Shield Arcane Spell Failure",
+            "Shield",
+            item.ArcaneSpellFailure());
+        NotifyItemEffect(item.Name(), effect, ist);
+    }
 }
 
 void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
@@ -5265,6 +5274,15 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
             item.ShieldBonus());
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
+    }
+    if (item.HasArcaneSpellFailure())
+    {
+        Effect effect(
+            Effect_ArcaneSpellFailureShields,
+            "Shield Arcane Spell Failure",
+            "Shield",
+            item.ArcaneSpellFailure());
         NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
     }
 }

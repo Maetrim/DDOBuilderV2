@@ -12,10 +12,14 @@ BreakdownItemAC::BreakdownItemAC(
         BreakdownType type,
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem) :
-    BreakdownItem(type, treeList, hItem)
+    BreakdownItem(type, treeList, hItem),
+    m_bCreatingOtherEffects(false)
 {
     // register ourselves for effects that affect us
     pPane->RegisterBuildCallbackEffect(Effect_ACBonus, this);
+    pPane->RegisterBuildCallbackEffect(Effect_EnchantArmor, this);
+    // note that shield enchantment is handled by the weapons breakdowns
+    // and total values are then read from them later
 }
 
 BreakdownItemAC::~BreakdownItemAC()
@@ -114,15 +118,15 @@ void BreakdownItemAC::CreateOtherEffects()
                 pBI->AttachObserver(this);      // need to know about changes
                 double percentBonus = pBI->Total();
                 double valueArmor = GetEffectValue("Armor");
-                double valueEnhancement = GetEffectValue("Enhancement");
-                int amount = (int)(((valueArmor + valueEnhancement) * percentBonus) / 100.0);
+                double valueEnhancement = GetEffectValue("Armor Enhancement");
+                int amount = static_cast<int>(((valueArmor + valueEnhancement) * percentBonus) / 100.0 + 0.5); // round up also
                 std::stringstream ss;
-                ss << "Armor " << percentBonus << "% Bonus of " << (valueArmor + valueEnhancement) << " (Armor + Enhancement)";
+                ss << "Armor " << percentBonus << "% Bonus of " << (valueArmor + valueEnhancement) << " (Armor(" << valueArmor << ") + Enhancement(" << valueEnhancement << "))";
                     // now add a percentage of that
                 Effect feat(
-                    Effect_Unknown,
+                        Effect_Unknown,
                         ss.str(),
-                        ss.str(),
+                        "Stacking",
                         amount);
                 AddOtherEffect(feat);
             }
@@ -137,7 +141,7 @@ void BreakdownItemAC::CreateOtherEffects()
                     double percentBonus = pBI->Total();
                     if (percentBonus > 0)
                     {
-                        double valueShield = GetEffectValue("Shield");
+                        double valueShield = GetEffectValue("Shield Enhancement");
                         double valueEnhancement = 0;
                         pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
                         BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
@@ -148,15 +152,25 @@ void BreakdownItemAC::CreateOtherEffects()
                             {
                                 valueEnhancement = pBWE->Total();
                             }
+                            // need to also subtract the shield base enhancement value to stop
+                            // bonus counting twice
+                            Item item = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon2);
+                            for (auto&& ibit : item.Buffs())
+                            {
+                                if (ibit.Type() == "ShieldEnchantment")
+                                {
+                                    valueEnhancement -= static_cast<int>(ibit.Value1());
+                                }
+                            }
                         }
-                        int amount = (int)(((valueShield + valueEnhancement) * percentBonus) / 100.0);
+                        int amount = static_cast<int>(((valueShield + valueEnhancement) * percentBonus) / 100.0 + 0.5); // round up also
                         std::stringstream ss;
                         ss << "Shield " << percentBonus << "% Bonus of " << (valueShield + valueEnhancement) << " (Shield(" << valueShield << ") + Enhancement(" << valueEnhancement << "))";
                             // now add a percentage of that
                         Effect feat(
                                 Effect_Unknown,
                                 ss.str(),
-                                ss.str(),
+                                "Stacking",
                                 amount);
                         AddOtherEffect(feat);
                     }
@@ -204,6 +218,16 @@ void BreakdownItemAC::LinkUp()
             pBWE->AttachObserver(this);  // need to know about changes to this effect
         }
         CreateOtherEffects();
+    }
+}
+
+void BreakdownItemAC::EffectAdded()
+{
+    if (!m_bCreatingOtherEffects)
+    {
+        m_bCreatingOtherEffects = true; // avoid recursion
+        CreateOtherEffects();
+        m_bCreatingOtherEffects = false;
     }
 }
 

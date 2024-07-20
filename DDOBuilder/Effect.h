@@ -98,6 +98,7 @@ enum EffectType
     Effect_KiHit,
     Effect_KiMaximum,
     Effect_KiPassive,
+    Effect_LOHRegenRate,
     Effect_MaxCasterLevel,
     Effect_MaxCasterLevelSpell,
     Effect_MaxDexBonus,
@@ -320,6 +321,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_KiHit, L"KiHit"},
     {Effect_KiMaximum, L"KiMaximum"},
     {Effect_KiPassive, L"KiPassive"},
+    {Effect_LOHRegenRate, L"LOHRegenRate"},
     {Effect_MaxCasterLevel, L"MaxCasterLevel"},
     {Effect_MaxCasterLevelSpell, L"MaxCasterLevelSpell"},
     {Effect_MaxDexBonus, L"MaxDexBonus"},
@@ -462,6 +464,7 @@ enum AmountType
     Amount_Simple,              // its just a direct single number (vector size is 1)
     Amount_Stacks,              // look up based on number of stacks of this effect
     Amount_TotalLevel,          // index into vector based on total character level (0 based)
+    Amount_BaseClassLevel,      // index into vector based on class level (0 based)
     Amount_ClassLevel,          // index into vector based on class level (0 based)
     Amount_ClassCasterLevel,    // index into vector based on class caster level (0 based)
     Amount_APCount,             // stacks based on AP spent in tree "Item"
@@ -484,6 +487,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_Simple, L"Simple"},
     {Amount_Stacks, L"Stacks"},
     {Amount_TotalLevel, L"TotalLevel"},
+    {Amount_BaseClassLevel, L"BaseClassLevel"},
     {Amount_ClassLevel, L"ClassLevel"},     // Item is the class name
     {Amount_ClassCasterLevel, L"ClassCasterLevel"}, // Item is the class name
     {Amount_APCount, L"APCount"},           // Item is the tree name

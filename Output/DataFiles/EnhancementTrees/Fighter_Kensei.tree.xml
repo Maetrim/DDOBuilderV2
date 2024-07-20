@@ -3020,7 +3020,8 @@ On Damage: If the target is below 30% health, deal 500 damage that scales with
       <EnhancementTreeItem>
          <InternalName>KenseiWeaponGroupSecializationV</InternalName>
          <Name>Kensei: Weapon Master</Name>
-         <Description>+3 to hit and damage with all weapons</Description>
+         <Description>+3 to hit and damage with all weapons. +25% Competence bonus to maximum hit points
+if you selected a melee weapon in the first core.</Description>
          <Icon>KenseiFocus</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -3049,6 +3050,28 @@ On Damage: If the target is below 30% health, deal 500 damage that scales with
             <Item>All</Item>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">25</Amount>
+            <ApplyAsItemEffect/>
+            <Percent/>
+            <Requirements>
+               <RequiresNoneOf>
+                  <Requirement>
+                     <Type>Enhancement</Type>
+                     <Item>KenseiCore1</Item>
+                     <Item>Kensei Focus: Archery</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Enhancement</Type>
+                     <Item>KenseiCore1</Item>
+                     <Item>Kensei Focus: Crossbows</Item>
+                  </Requirement>
+               </RequiresNoneOf>
+            </Requirements>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

@@ -18,6 +18,7 @@ class Augment :
         bool IsCompatibleWithSlot(const std::string& augmentType) const;
         void AddImage(CImageList * pIL) const;
         bool operator<(const Augment & other) const;
+        std::string CompoundDescription() const;
 
         void VerifyObject() const;
 

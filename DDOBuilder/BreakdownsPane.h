@@ -95,6 +95,7 @@ class CBreakdownsPane :
         void CreateEnergyResistancesBreakdowns();
         void CreateWeaponBreakdowns();
         void CreateHirelingBreakdowns();
+        void CreateChargesBreakdowns();
 
         void AddKiBreakdowns(HTREEITEM hParent);
         void AddClassCasterLevels(HTREEITEM hParent);

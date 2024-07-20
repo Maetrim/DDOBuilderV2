@@ -292,6 +292,7 @@ void CBreakdownsPane::CreateBreakdowns()
     CreateMagicalBreakdowns();
     CreateSongBreakdowns();
     CreateTurnUndeadBreakdowns();
+    CreateChargesBreakdowns();
     CreateEnergyResistancesBreakdowns();
     CreateHirelingBreakdowns();
     CreateWeaponBreakdowns();
@@ -2512,6 +2513,61 @@ void CBreakdownsPane::CreateHirelingBreakdowns()
             hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pConcealment);
         m_items.push_back(pConcealment);
+    }
+}
+
+void CBreakdownsPane::CreateChargesBreakdowns()
+{
+    // insert the charges root tree item
+    HTREEITEM hParent = m_itemBreakdownTree.InsertItem(
+        "Actions with Charges",
+        0,
+        TVI_ROOT);
+    m_itemBreakdownTree.SetItemData(hParent, 0);
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Lay On Hands Charges",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pLOHC = new BreakdownItemSimple(
+            this,
+            Breakdown_LayOnHands,
+            Effect_ExtraLayOnHands,
+            "Lay On Hands Charges",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pLOHC);
+        m_items.push_back(pLOHC);
+        {
+            HTREEITEM hLOHRegenRate = m_itemBreakdownTree.InsertItem(
+                "Regeneration Rate (Once every n Seconds)",
+                hItem,
+                TVI_LAST);
+            BreakdownItem* pLOHRR = new BreakdownItemSimple(
+                this,
+                Breakdown_LOHRegenerationRate,
+                Effect_LOHRegenRate,
+                "Regeneration Rate (Once every n Seconds)",
+                &m_itemBreakdownTree,
+                hLOHRegenRate);
+            m_itemBreakdownTree.SetItemData(hLOHRegenRate, (DWORD)(void*)pLOHRR);
+            m_items.push_back(pLOHRR);
+        }
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Rage Charges",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pRC = new BreakdownItemSimple(
+            this,
+            Breakdown_Rages,
+            Effect_ExtraRage,
+            "Rage Charges",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRC);
+        m_items.push_back(pRC);
     }
 }
 

@@ -972,7 +972,7 @@ void CInfoTip::AppendFilledAugment(
     m_tipItems.push_back(pHeader);
 
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
-    pDescription->SetText(pAugment->Description().c_str());
+    pDescription->SetText(pAugment->CompoundDescription().c_str());
     m_tipItems.push_back(pDescription);
 
     for (auto&& sbit : pAugment->SetBonus())
@@ -1024,7 +1024,7 @@ void CInfoTip::AppendAugment(
     m_tipItems.push_back(pHeader);
 
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
-    pDescription->SetText(pAugment->Description().c_str());
+    pDescription->SetText(pAugment->CompoundDescription().c_str());
     m_tipItems.push_back(pDescription);
 
     for (auto&& sbit : pAugment->SetBonus())

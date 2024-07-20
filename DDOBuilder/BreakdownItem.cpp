@@ -788,6 +788,7 @@ void BreakdownItem::AddEffect(
         // this effect also required the item in question to also update its manually added effects
         CreateOtherEffects();
     }
+    EffectAdded(); // generally does nothing
     Populate();
 }
 

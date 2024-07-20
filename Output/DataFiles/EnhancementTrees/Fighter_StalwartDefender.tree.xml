@@ -182,13 +182,13 @@ Passive: You gain a +10% Quality bonus to Maximum Hit Points.</Description>
          </Effect>
          <Effect>
             <Type>Immunity</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Stacking</Bonus>
             <AType>NotNeeded</AType>
             <Item>Fear</Item>
          </Effect>
          <Effect>
             <Type>Immunity</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Stacking</Bonus>
             <AType>NotNeeded</AType>
             <Item>Knockdown</Item>
          </Effect>
@@ -669,9 +669,25 @@ to all Saving Throws.</Description>
          </Requirements>
          <Effect>
             <Type>EnchantArmor</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Armor Enhancement</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
+            <Requirements>
+               <RequiresOneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Heavy Armor</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Medium Armor</Item>
+                  </Requirement>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Light Armor</Item>
+                  </Requirement>
+               </RequiresOneOf>
+            </Requirements>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1231,12 +1247,6 @@ Note: This stacks with Reinforced Defense from Sacred Defender.</Description>
                   <Bonus>Enhancement</Bonus>
                   <AType>Stacks</AType>
                   <Amount size="3">15 30 50</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Stalwart Defense</Item>
-                     </Requirement>
-                  </Requirements>
                </Effect>
             </EnhancementSelection>
          </Selector>

@@ -727,6 +727,25 @@ bool Effect::CheckAType(
         *bRequiresAmount = true;           // no values
         *requiredAmountElements = 1;        // 1 element expected
         break;
+    case Amount_BaseClassLevel:
+        // expect a single Item thats a class and 20 Amount Items
+        *bRequiresAmount = true;                    // Amount specifies amount at each class level
+        *requiredAmountElements = MAX_CLASS_LEVEL + 1; // 20 elements expected
+        if (!HasStackSource())
+        {
+            (*ss) << "BaseClassLevel effect missing StackSource field\n";
+            ok = false;
+        }
+        else
+        {
+            const ::Class & c = FindClass(StackSource());
+            if (c.Name() == "")
+            {
+                (*ss) << "BaseClassLevel effect has bad class StackSource field\n";
+                ok = false;
+            }
+        }
+        break;
     case Amount_ClassLevel:
         // expect a single Item thats a class and 20 Amount Items
         *bRequiresAmount = true;                    // Amount specifies amount at each class level
@@ -738,7 +757,7 @@ bool Effect::CheckAType(
         }
         else
         {
-            const ::Class & c = FindClass(StackSource());
+            const ::Class& c = FindClass(StackSource());
             if (c.Name() == "")
             {
                 (*ss) << "ClassLevel effect has bad class StackSource field\n";
@@ -944,6 +963,10 @@ std::string Effect::StacksAsString() const
     case Amount_TotalLevel:
         ss << m_pBuild->Level() << " Levels";
         break;
+    case Amount_BaseClassLevel:
+        ss << m_pBuild->BaseClassLevels(StackSource(), m_pBuild->Level() - 1);
+        ss << " " << StackSource();
+        break;
     case Amount_ClassLevel:
         ss << m_pBuild->ClassLevels(StackSource(), m_pBuild->Level() - 1);
         ss << " " << StackSource();
@@ -1024,6 +1047,28 @@ double Effect::TotalAmount(bool allowTruncate) const
                 size_t level = m_pBuild->Level();
                 // vector lookup
                 int vi = min(level - 1, m_Amount.size() - 1);
+                if (vi < 0
+                    || level > m_Amount.size())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" has incorrect Amount vector size. Stacks present are " << level;
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                total = m_Amount[vi] * m_stacks;
+                break;
+            }
+        case Amount_BaseClassLevel:
+            // StackSource specifies the class in question
+            {
+                if (!HasStackSource())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" missing StackSource";
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                size_t level = m_pBuild->BaseClassLevels(StackSource(), m_pBuild->Level()-1);
+                // vector lookup
+                int vi = min(level, m_Amount.size() - 1);
                 if (vi < 0
                     || level > m_Amount.size())
                 {

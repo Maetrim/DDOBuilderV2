@@ -91,6 +91,7 @@ class BreakdownItem :
         virtual double CappedTotal() const;
         virtual double ReplacementTotal() const { return Total(); };
         virtual void LinkUp() {};
+        virtual void EffectAdded() {};
 
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);

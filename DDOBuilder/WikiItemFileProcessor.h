@@ -32,6 +32,8 @@ private:
     bool SetItemSlot(const std::map<std::string, std::string>& itemFields);
     void AddArmorFields(const std::map<std::string, std::string>& itemFields);
     void UpdateArmorBonus();
+    void UpdateShieldBonus();
+    void UpdateItemEffectTypes();    // fixes any specific issues
     void AddAttackMods(const std::map<std::string, std::string>& itemFields);
     void AddDamageMods(const std::map<std::string, std::string>& itemFields);
     void AddDamageDice(const std::map<std::string, std::string>& itemFields);

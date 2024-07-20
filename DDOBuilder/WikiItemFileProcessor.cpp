@@ -563,6 +563,8 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
             AddItemEffects(itemFields);
         }
         UpdateArmorBonus();
+        UpdateShieldBonus();
+        UpdateItemEffectTypes();    // fixes any specific issues
         if (m_item.HasWeapon()
             && m_item.Weapon() == Weapon_Unknown)
         {
@@ -1030,6 +1032,41 @@ void WikiItemFileProcessor::UpdateArmorBonus()
     }
 }
 
+void WikiItemFileProcessor::UpdateShieldBonus()
+{
+//    if (m_item.HasShieldBonus())
+//    {
+//        // need to subtract the items enhancement value from the current shield bonus
+//        int sb = m_item.ShieldBonus();
+//        int enhancementValue = 0;
+//        // now find any armor Enhancement bonus buff if present
+//        for (auto&& ibit : m_item.Buffs())
+//        {
+//            if (ibit.Type() == "ShieldEnchantment")
+//            {
+//                enhancementValue = static_cast<int>(ibit.Value1());
+//            }
+//        }
+//        sb -= enhancementValue;
+//        m_item.Set_ShieldBonus(sb);
+//    }
+}
+
+void WikiItemFileProcessor::UpdateItemEffectTypes()
+{
+    for (auto&& ibit : m_item.m_Buffs)
+    {
+        if (ibit.Type() == "ArmorEnchantment")
+        {
+            ibit.Set_BonusType("Armor Enhancement");
+        }
+        if (ibit.Type() == "ShieldEnchantment")
+        {
+            ibit.Set_BonusType("Shield Enhancement");
+        }
+    }
+}
+
 void WikiItemFileProcessor::AddAttackMods(const std::map<std::string, std::string>& itemFields)
 {
     if (itemFields.find("Attack Mod") != itemFields.end())
@@ -1181,11 +1218,11 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     bool bRecognised = false;
     if (IsShield(m_item.Weapon()))
     {
-        bRecognised |= AddCommonEffect(line, "ShieldEnchantment", "enhancement bonus to Armor Class", "Enhancement", "", 60);
+        bRecognised |= AddCommonEffect(line, "ShieldEnchantment", "enhancement bonus to Armor Class", "Shield Enhancement", "", 60);
     }
     else
     {
-        bRecognised |= AddCommonEffect(line, "ArmorEnchantment", "enhancement bonus to Armor Class", "Enhancement", "", 60);
+        bRecognised |= AddCommonEffect(line, "ArmorEnchantment", "enhancement bonus to Armor Class", "Armor Enhancement", "", 60);
     }
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ArmorBonus", "Armor Bonus", "Armor", "", 10);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "CommandCommand", "Command Command", "", "", 10);

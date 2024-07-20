@@ -265,6 +265,11 @@ enum BreakdownType
     // melee power
     Breakdown_MeleePower,
     Breakdown_RangedPower,
+    // Enhancements with charges
+    Breakdown_LayOnHands,
+    Breakdown_Rages,
+    // others
+    Breakdown_LOHRegenerationRate,
     // hirelings
     Breakdown_HirelingAbilityBonus,
     Breakdown_HirelingHitpoints,

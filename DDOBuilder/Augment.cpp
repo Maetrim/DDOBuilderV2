@@ -97,6 +97,18 @@ bool Augment::operator<(const Augment & other) const
     return (Name() < other.Name());
 }
 
+std::string Augment::CompoundDescription() const
+{
+    std::string description;
+    description = Description();
+    for (auto it: EffectDescription())
+    {
+        description += "\r\n";
+        description += it;
+    }
+    return description;
+}
+
 void Augment::VerifyObject() const
 {
     bool ok = true;
