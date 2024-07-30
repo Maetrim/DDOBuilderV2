@@ -126,6 +126,7 @@ bool EnhancementTreeItem::MeetRequirements(
                 build,
                 level,
                 false,
+                Inventory_Unknown,
                 Weapon_Unknown,
                 Weapon_Unknown);
         }
@@ -157,6 +158,7 @@ bool EnhancementTreeItem::MeetRequirements(
                                     build,
                                     level,
                                     false,
+                                    Inventory_Unknown,
                                     Weapon_Unknown,
                                     Weapon_Unknown);
                         }

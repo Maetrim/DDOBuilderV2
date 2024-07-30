@@ -7,6 +7,7 @@
 #include "AlignmentTypes.h"
 #include "RequirementTypes.h"
 #include "SkillTypes.h"
+#include "InventorySlotTypes.h"
 #include "WeaponTypes.h"
 
 class Build;
@@ -29,6 +30,7 @@ class Requirement :
                 const Build & build,
                 size_t level,
                 bool includeTomes,
+                InventorySlotType slot = Inventory_Unknown,
                 WeaponType wtMainHand = Weapon_Unknown,
                 WeaponType wtOffHand = Weapon_Unknown) const;
         bool CanTrainEnhancement(
@@ -75,7 +77,7 @@ class Requirement :
         bool EvaluateFeatAnySource(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateWeaponGroupMember(const Build& build, WeaponType wtMain, WeaponType wtOffhand, bool bMainhand) const;
         bool EvaluateWeaponTypesEquipped(const Build& build, WeaponType wtMain, WeaponType wtOffhand) const;
-            bool EvaluateItemInSlot(const Build& build) const;
+        bool EvaluateItemInSlot(const Build& build) const;
         bool EvaluateLevel(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateNotConstruct(const Build& build) const;
         bool EvaluateRace(const Build& build, size_t level, bool includeTomes) const;
@@ -84,6 +86,8 @@ class Requirement :
         bool EvaluateSpecificLevel(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateStance(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateStartingWorld(const Build& build) const;
+        bool EvaluateMaterialType(const Build& build) const;
+        bool EvaluateItemSlot(InventorySlotType slot) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

@@ -84,6 +84,7 @@ class BreakdownItem :
         virtual CString Title() const = 0;
         virtual CString Value() const = 0;
         virtual double Multiplier() const;
+        virtual InventorySlotType ItemSlot() const;
         void Populate();            // updates the HTREEITEM
         void PopulateBreakdownControl(CListCtrl * pControl);
         void AddItems(CListCtrl* pControl);
@@ -105,6 +106,7 @@ class BreakdownItem :
 
         double GetEffectValue(const std::string& bonusType) const;
     protected:
+        void SetInventorySlotType(InventorySlotType ist);
         void AddOtherEffect(const Effect & effect);
         void AddFeatEffect(const Effect & effect);
         void AddEnhancementEffect(const Effect & effect);
@@ -167,6 +169,7 @@ class BreakdownItem :
         std::list<Effect> m_itemEffects;        // highest of a given type counts
         WeaponType m_wtMain;
         WeaponType m_wtOffhand;
+        InventorySlotType m_slot;
     private:
         void AddActiveItems(const std::list<Effect>& effects, CListCtrl * pControl, bool bShowMultiplier);
         void AddActivePercentageItems(const std::list<Effect>& effects, CListCtrl * pControl);

@@ -638,7 +638,7 @@ void CForumExportDlg::AddGrantedFeats(std::stringstream& forumExport)
             while (it != grantedFeats.end())
             {
                 if (!(*it).HasRequirementsToBeActive()
-                        || (*it).RequirementsToBeActive().Met(*m_pBuild, m_pBuild->Level() - 1, true, Weapon_Unknown, Weapon_Unknown))
+                        || (*it).RequirementsToBeActive().Met(*m_pBuild, m_pBuild->Level() - 1, true, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown))
                 {
                     forumExport << (*it).Item().front();
                     forumExport << "\r\n";

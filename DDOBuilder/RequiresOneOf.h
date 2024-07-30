@@ -3,6 +3,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "WeaponTypes.h"
+#include "InventorySlotTypes.h"
 
 class Build;
 class Requirement;
@@ -18,6 +19,7 @@ class RequiresOneOf :
                 const Build & build,
                 size_t level,
                 bool includeTomes,
+                InventorySlotType slot,
                 WeaponType wtMainHand,
                 WeaponType wtOffhand) const;
         bool CanTrainEnhancement(

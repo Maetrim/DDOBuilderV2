@@ -1,3 +1,334 @@
+Build 2.0.0.36
+
+The start build level is now default level 34
+
+New U69 Feats:
+---Patience
+---Eerie Aim
+---Paranoid
+---Inspiring Bond
+---Defensive Tumble
+---Trick Shot
+
+New U69 Epic Destiny Feats
+---Titan's Blood
+---Guarded Actions
+---Arcane Actions
+---Channel Power
+---Reverberating Shout
+---Face Me
+
+---Item "Hallowsphere" now has its set bonus (Reported by Kalibano)
+---Erroneous -10 to spell DCs from the school bonus removed (carry over from how V1 handled spell DCs) (Reported by Mummykiller)
+---Missing item icons for TOEE items harvested and set
+---"Unyielding Sentinel: Endless Vigil" effect fixed
+---All Heroic/Epic/Legendary Elder's Knowledge spell critical chance was made Universal not spell power specific (Reported by Mummykiller)
+---Duplicate "Wild Strike" spell removed (Matched Wildstrike), enhancements updated to use correct version
+---Item "Legendary Core of a War Machine" now has its missing Orange augment slot (Reported by Nyreb)
+---Enhancement "Arcanotechnician: Arcane Mechanism" bonus spell power effects will now correctly apply while using a Rune Arm (Reported by Refutor)
+---Favor Fixes (All reported by Guntharm)
+------Quest "Precious Cargo" added
+------Quest "The Fall of Truth" added
+------Quest "Total Chaos" at level 22 added
+------Quest "The Bounty Hunter" now base 5 favor, not 4
+------Quest "Under the Cover of Darkness" now base 2 favor, not 3
+------Quest "The Lost Thread" now base 8 favor, not 7
+------Quest "Catastrophe" is now correctly an "Agents of Argonnessen" quest
+------Quest "Stealer of Souls" now has a casual option
+---"Slave Pits of the Undercity" now has the correct Levels vector size
+---Seasons Herald "Elder of Winter" now correctly applies to Cold spell power (Reported by Mummykiller)
+---"Stormsinger: Efficient Metamagic I" and "Stormsinger: Efficient Metamagic II" now correctly have 3 ranks each (Reported by Mummykiller)
+---"Vistani: Rapid Attack" description and effects fixed (Reported by christhemisss)
+---Missing Druid spells added to class: (Reported by Rehmlah)
+------Thorn Strike
+------Merfolk's Blessing
+------Greater Maul
+------Thorn Bloom
+------Thorn Wave
+------Grasping Thorns
+------Insidious Spores
+------Thorn Lance
+------Stormrage
+------Tsunami
+---Augment "Fire I: Devotion" now has the correct description (Reported by Mummykiller)
+---Equipped shields will now provide an MRR bonus as per data in the page https://ddowiki.com/page/Magical_Resistance_Rating (Reported by christhemisss)
+---Armor PRR bonuses based on BAB will now correctly apply when the relevant feat is Granted (Reported by christhemisss)
+---"Dark Restoration Lore" now correctly applies to Positive spell power (Reported by christhemisss)
+---All "Battle Trance" bonuses now correctly apply as item effects and no longer erroneously always stack (Reported for Dragon Lord by Tevwoods)
+---Non stacking effects with total of 0 will now be correctly shown when the Development option is enabled
+---Ram's Might and Animal growth will now be correctly doubled with "Fury of the Wild: Spirit of the Beast" (Reported by tevwoods)
+---All items now have a "Material" field.
+---New requirement type "MaterialType" added
+---All wiki files re-parsed to update items with "Material" type fields
+---The spell "Shillelagh" will now only correctly apply to wooden weapons
+---"Season's Herald: Wellspring" will now correctly double the effects of the "Shillelagh" spell for wooden weapons (Reported by tevwoods)
+---Item tooltips will now show the items material
+---New requirement type "ItemSlot", effect for current item has to be from item in specified slot
+---"Better Offhanded" effect should now work correctly
+---Reviewed and modified the "Warlock Pact" feat requirements based on alignment (Reported by Droomar)
+---"Half-Elf: Action Surge" options will now only apply if the "Action Boost" stance is active (Reported by Mummykiller)
+---Spells can now define stances
+---The Alchemist "Evolution" spells now have a stance selection option
+---"Shiradi Champion: Lore of the Hunt" will now correctly apply to Thrown weapons (Reported by christhemisss)
+---Spell Review for available metamagics (modified list - ~256 spells were wrong): (Prompted by a Mummykiller report)
+------Curative Admixture: Cure Moderate Wounds
+------Curative Admixture: Cure Serious Wounds
+------Lightning Motes
+------Sonic Blast
+------Feather Fall
+------See Invisibility
+------Otto's Sphere of Dancing
+------Shadow Walk
+------Seek Eternal Rest
+------Inflict Serious Wounds
+------Chaos Hammer
+------Holy Smite
+------Order's Wrath
+------Symbol of Flame
+------Unholy Blight
+------Flame Strike
+------Cometfall
+------Destruction
+------Fire Storm
+------Symbol of Death
+------Implosion
+------Celestial Bombardment
+------Divine Wrath
+------Magic Fang
+------Creepi1ng Cold
+------Sleet Storm
+------Call Lightning
+------Salt Ray
+------Spike Growth
+------Lesser Vigor, Mass
+------Ice Storm
+------Greater Vigor
+------Call Lightning Storm
+------Wall of Fire
+------Pack Aptitude
+------Cold Breath
+------Fire Seeds
+------Vigor, Mass
+------Greater Creeping Cold
+------Word of Balance
+------Creeping Doom
+------Greater Vigor, Mass
+------Freezing Spray
+------Sunbeam
+------Howl of Terror
+------Earthquake
+------Sunburst
+------Finger of Death
+------Ice Flowers
+------Storm of Vengeance
+------Righteous Command
+------Wild Instincts
+------Niac's Cold Ray
+------Acid Spray
+------Burning Hands
+------Caustic Bolt
+------Freezing Bolt
+------Flaming Bolt
+------Shocking Bolt
+------Magic Missile
+------Shocking Grasp
+------Chill Touch
+------Disrupt Undead
+------Ray of Enfeeblement
+------Melf's Acid Arrow
+------Web
+------Electric Loop
+------Scorch
+------Scorching Ray
+------Snowball Swarm
+------Command Undead
+------Ghoul Touch
+------Lesser Death Aura
+------Ooze Puppet
+------Chaos Sphere
+------Acid Blast
+------Chain Missiles
+------Fireball
+------Frost Lance
+------Halt Undead
+------Ray of Exhaustion
+------Acid Rain
+------Phantasmal Killer
+------Burning Blood
+------Death Aura
+------Enervation
+------Negative Energy Burst
+------Cloudkill
+------Feeblemind
+------Ball Lightning
+------Cone of Cold
+------Cyclonic Blast
+------Eladar's Electric Surge
+------Niac's Biting Cold
+------Prismatic Ray
+------Acid Fog
+------Chain Lightning
+------Otiluke's Freezing Sphere
+------Circle of Death
+------Necrotic Ray
+------Symbol of Fear
+------Disintegrate
+------Flesh to Stone
+------Hold Person, Mass
+------Delayed Blast Fireball
+------Prismatic Spray
+------Control Undead
+------Black Dragon Bolt
+------Incendiary Cloud
+------Trap the Soul
+------Polar Ray
+------Horrid Wilting
+------Acid Well
+------Iceberg
+------Thunderstroke
+------Mordenkainen's Disjunction
+------Dominate Monster
+------Hold Monster, Mass
+------Meteor Swarm
+------Wail of the Banshee
+------Rend the Soul
+------Silence Creature
+------Evard's Black Tentacles
+------Ruin
+------Greater Ruin
+------Epic Mage Armor
+------Hellball
+------Spirit Blades
+------Hurl Through Hell (Spell DC added)
+------Color Spray
+------Greater Color Spray
+------Sun Bolt
+------Horn of Thunder
+------Reverberate
+------Arcane Bolt
+------Necrotic Touch
+------Necrotic Bolt
+------Necrotic Blast
+------Divine Wrath
+------Soundburst SLA
+------Arcane Tempest
+------Tsunami
+------Curative Admixture: Cure Critical Wounds
+------Mass Frog
+------Vial of Venom
+------Vial of Flame
+------Vial of Acid
+------Vial of Frost
+------Vial of Sparks
+------Empty Bottle
+------Rapid Condensation
+------Fine Dust
+------Sleep Powder
+------Stiffen Skin
+------Elemental Skin
+------Gills Extract
+------Feathers Extract
+------Lesser Restorative Draught
+------Lesser Evolution
+------Curative Admixture: Inflict Light Wounds
+------Vial Smash: Fire
+------Vial Smash: Cold
+------Vial Smash: Electric
+------Vial Smash: Acid
+------Vial Smash: Poison
+------Bottled Boost: Attack
+------Bottled Boost: Defense
+------Flash Powder
+------Alluring Elixir
+------Augment Armor
+------Bottled Boost: Spell
+------Cold Spike
+------Corrode Weapons
+------Curative Admixture: Inflict Moderate Wounds
+------Curative Admixture: Remove Curse
+------Curative Admixture: Remove Paralysis
+------Glue Bomb
+------Greater Venom Vial
+------Lesser Heartseeker Poison Imbue
+------Lesser Ice Chill Poison Imbue
+------Lesser Soulshatter Poison Imbue
+------Lesser Voidmind Poison Imbue
+------Liquid Courage
+------Melt Armor
+------Restorative Draught
+------Salt Crystals
+------Venom Concentration
+------Voltaic Backlash
+------Acid Concentration
+------Bitter Frost Burst
+------Bottled Boost: Double
+------Caustic Solvent
+------Choking Smog
+------Curative Admixture: Inflict Serious Wounds
+------Displacement Draught
+------Evolution
+------Flame Concentration
+------Flash Freeze
+------Frost Concentration
+------Greater Liquid Courage
+------Greater Restorative Draught
+------Heartstopper Poison
+------Invisibility Potion
+------Iron Shavings
+------Melt Lock
+------Molotov Cocktail
+------Quicksilver Potion
+------Sparks Concentration
+------Voltaic Induction
+------Bottled Boost: Power
+------Bottled Boost: Sprint
+------Caustic Overload
+------Cindersmoke
+------Corrosive Dust
+------Curative Admixture: Inflict Critical Wounds
+------Flesh to Gold
+------Heartseeker Poison Imbue
+------Ice Chill Poison Imbue
+------Hypnotic Combination
+------Sanctified Vial
+------Smoke Bomb
+------Soulshatter Poison Imbue
+------Stoneskin Potion
+------Vein Freeze
+------Voidmind Poison Imbue
+------Voltaic Burst
+------Bottled Boost: Haste
+------Flashbang
+------Flesh to Gold, Mass
+------Greater Elemental Weapons
+------Greater Evolution
+------Greater Stoneskin
+------Multivial of Acid
+------Multivial of Flame
+------Multivial of Frost
+------Multivial of Poison
+------Multivial of Sparks
+------Poison Breath
+------Turn to Frog
+------Curative Admixture: Harm
+------Curative Admixture: Heal
+------Dust of Confusion
+------Elemental Combination
+------Gold Breath
+------Goldskin Potion
+------Greater Heartseeker Poison Imbue
+------Greater Ice Chill Poison Imbue
+------Greater Soulshatter Poison Imbue
+------Greater Voidmind Poison Imbue
+------Venom Vial
+------Weird
+------Thorn Strike
+------Thorn Bloom
+------Jaws of Doom
+------Thorn Lance
+------Channel Entropy
+------Wild Strike
+
 Build 2.0.0.35
 
 ---"Insightful Tendon Slice" will no longer incorrectly be craftable to a "Cannith Goggles Extra" slot (Reported by Stoner81)

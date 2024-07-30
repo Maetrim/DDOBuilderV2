@@ -401,7 +401,7 @@ void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct)
                 std::vector<Spell> autoSpells = FilterSpells(pBuild, m_class, autoSpellLevel);
                 for (size_t si = 0; si < autoSpells.size(); ++si)
                 {
-                    FixedSpell spell(autoSpells[si].Name(), i + 1, autoSpells[si].Cost(), autoSpells[si].MaxCasterLevel());
+                    FixedSpell spell(autoSpells[si].Name(), i + 1, autoSpells[si].Cost(), autoSpells[si].HasMaxCasterLevel() ? autoSpells[si].MaxCasterLevel() : 0);
                     m_fixedSpells[i].push_back(spell);
                 }
             }

@@ -1222,7 +1222,7 @@ bool Build::IsFeatTrainable(
         }
         if (!bCanTrain && feat.HasConditionalGroups())
         {
-            if (feat.ConditionalGroups().RequirementsToUse().Met(*this, level, includeTomes, Weapon_Unknown, Weapon_Unknown))
+            if (feat.ConditionalGroups().RequirementsToUse().Met(*this, level, includeTomes, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown))
             {
                 for (auto&& git : feat.ConditionalGroups().Group())
                 {
@@ -1262,6 +1262,7 @@ bool Build::IsFeatTrainable(
                     level,
                     //currentFeats,
                     includeTomes,
+                    Inventory_Unknown,
                     Weapon_Unknown,
                     Weapon_Unknown);
         }
@@ -2041,9 +2042,16 @@ void Build::ApplySpellEffects(const std::string& ct, const std::string& spellNam
         {
             copy.SetStackSource(ct);
         }
-        copy.SetDisplayName(std::string("Spell: ") + spellName);
+        if (!copy.HasDisplayName())
+        {
+            copy.SetDisplayName(std::string("Spell: ") + spellName);
+        }
         copy.SetApplyAsItemEffect();
         NotifyEnhancementEffectApplied(copy);
+    }
+    for (auto&& ssit: spell.Stances())
+    {
+        NotifyNewStance(ssit);
     }
 }
 
@@ -2058,9 +2066,16 @@ void Build::RevokeSpellEffects(const std::string& ct, const std::string& spellNa
         {
             copy.SetStackSource(ct);
         }
-        copy.SetDisplayName(std::string("Spell: ") + spellName);
+        if (!copy.HasDisplayName())
+        {
+            copy.SetDisplayName(std::string("Spell: ") + spellName);
+        }
         copy.SetApplyAsItemEffect();
         NotifyEnhancementEffectRevoked(copy);
+    }
+    for (auto&& ssit : spell.Stances())
+    {
+        NotifyRevokeStance(ssit);
     }
 }
 
@@ -2131,14 +2146,14 @@ std::list<TrainedFeat> Build::AutomaticFeats(
         std::list<AutomaticAcquisition>::const_iterator aait = aa.begin();
         while (!acquire && aait != aa.end())
         {
-            acquire |= (*aait).Met(*this, level, true, Weapon_Unknown, Weapon_Unknown);
+            acquire |= (*aait).Met(*this, level, true, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown);
             if (acquire
                     && !(*aait).HasIgnoreRequirements())
             {
                 if (fit.second.HasRequirementsToTrain())
                 {
                     // must also meet the standard feat requirements
-                    acquire = fit.second.RequirementsToTrain().Met(*this, level, true, Weapon_Unknown, Weapon_Unknown);
+                    acquire = fit.second.RequirementsToTrain().Met(*this, level, true, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown);
                 }
             }
             ++aait;
@@ -2219,7 +2234,7 @@ void Build::VerifyGear()
             bool bRemoveItem = (item.MinLevel() > Level());
             if (item.HasRequirementsToUse())
             {
-                if (!item.RequirementsToUse().Met(*this, Level()-1, true, item.HasWeapon() ? item.Weapon() : Weapon_Unknown, Weapon_Unknown))
+                if (!item.RequirementsToUse().Met(*this, Level()-1, true, (InventorySlotType)i, item.HasWeapon() ? item.Weapon() : Weapon_Unknown, Weapon_Unknown))
                 {
                     bRemoveItem |= true;
                 }
@@ -5785,7 +5800,7 @@ int Build::BonusCasterLevels(const std::string& spellName) const
     for (auto&& eit: m_spellCasterLevels)
     {
         if (!eit.HasRequirementsToBeActive()
-            || eit.RequirementsToBeActive().Met(*this, Level(), true, MainHandWeapon(), OffhandWeapon()))
+            || eit.RequirementsToBeActive().Met(*this, Level(), true, Inventory_Unknown, MainHandWeapon(), OffhandWeapon()))
         {
             // does this effect include this spell?
             bool bAffectsSpell = false;
@@ -5811,7 +5826,7 @@ int Build::BonusMaxCasterLevels(const std::string& spellName) const
     for (auto&& eit: m_spellMaxCasterLevels)
     {
         if (!eit.HasRequirementsToBeActive()
-            || eit.RequirementsToBeActive().Met(*this, Level(), true, MainHandWeapon(), OffhandWeapon()))
+            || eit.RequirementsToBeActive().Met(*this, Level(), true, Inventory_Unknown, MainHandWeapon(), OffhandWeapon()))
         {
             // does this effect include this spell?
             bool bAffectsSpell = false;

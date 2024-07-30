@@ -99,7 +99,7 @@ bool EnhancementTree::MeetRequirements(
     bool met = true;
     if (HasRequirementsToTrain())
     {
-        met = m_RequirementsToTrain.Met(build, level, false, Weapon_Unknown, Weapon_Unknown);
+        met = m_RequirementsToTrain.Met(build, level, false, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown);
     }
     return met;
 }

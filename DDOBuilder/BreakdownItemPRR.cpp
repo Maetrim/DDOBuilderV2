@@ -68,7 +68,8 @@ void BreakdownItemPRR::CreateOtherEffects()
             // of the stances, so we only need to check them
 
             if (pBuild->IsStanceActive("Light Armor")
-                    && pBuild->IsFeatTrained("Light Armor Proficiency"))
+                && (pBuild->IsFeatTrained("Light Armor Proficiency")
+                    || pBuild->IsGrantedFeat("Light Armor Proficiency")))
             {
                 Effect prr(
                         Effect_Unknown,
@@ -87,7 +88,8 @@ void BreakdownItemPRR::CreateOtherEffects()
                 AddOtherEffect(prr);
             }
             if (pBuild->IsStanceActive("Medium Armor")
-                    && pBuild->IsFeatTrained("Medium Armor Proficiency"))
+                    && (pBuild->IsFeatTrained("Medium Armor Proficiency")
+                        || pBuild->IsGrantedFeat("Medium Armor Proficiency")))
             {
                 Effect prr(
                         Effect_Unknown,
@@ -97,7 +99,8 @@ void BreakdownItemPRR::CreateOtherEffects()
                 AddOtherEffect(prr);
             }
             if (pBuild->IsStanceActive("Heavy Armor")
-                    && pBuild->IsFeatTrained("Heavy Armor Proficiency"))
+                && (pBuild->IsFeatTrained("Heavy Armor Proficiency")
+                    || pBuild->IsGrantedFeat("Heavy Armor Proficiency")))
             {
                 Effect prr(
                         Effect_Unknown,
@@ -167,5 +170,27 @@ void BreakdownItemPRR::FeatRevoked(Build* pBuild, const std::string& feat)
     CreateOtherEffects();           // armor PRR bonuses may have changed
     // and finally call the base class
     BreakdownItem::FeatRevoked(pBuild, feat);
+    Populate();
+}
+
+void BreakdownItemPRR::EnhancementEffectApplied(Build* pBuild, const Effect& effect)
+{
+    if (effect.IsType(Effect_GrantFeat))
+    {
+        CreateOtherEffects();           // armor PRR bonuses may have changed
+    }
+    // and finally call the base class
+    BreakdownItem::EnhancementEffectApplied(pBuild, effect);
+    Populate();
+}
+
+void BreakdownItemPRR::EnhancementEffectRevoked(Build* pBuild, const Effect& effect)
+{
+    if (effect.IsType(Effect_GrantFeat))
+    {
+        CreateOtherEffects();           // armor PRR bonuses may have changed
+    }
+    // and finally call the base class
+    BreakdownItem::EnhancementEffectRevoked(pBuild, effect);
     Populate();
 }

@@ -474,4 +474,5 @@ class Build :
         friend class CStancesPane;
         friend class CStanceButton;
         friend class CDDOBuilderApp;
+        friend class CGrantedFeatsPane;
 };

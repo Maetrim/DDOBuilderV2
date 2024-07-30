@@ -1417,6 +1417,175 @@ with no save. This may only trigger once every 12 seconds.</Description>
       <Acquire>Train</Acquire>
       <Icon>WindThroughTheTrees</Icon>
     </Feat>
+    <!--U69 Epic Destiny feats-->
+    <Feat>
+      <Name>Titan's Blood</Name>
+      <Description>You gain a +10% Legendary Bonus to Maximum Hit Points.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>34</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Percent/>
+        <ApplyAsItemEffect/>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Guarded Actions</Name>
+      <Description>Whenever you use an Action Boost, you take 20% less damage for 6 seconds.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+    </Feat>
+    <Feat>
+      <Name>Arcane Actions</Name>
+      <Description>Whenever you use an Action Boost, you gain a +100 Competence Bonus to Universal
+Spell Power and +2 to Spell Penetration for 3 seconds</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Action Boost</Item>
+            </Requirement>
+         </Requirements>
+        <Percent/>
+      </Effect>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Action Boost</Item>
+            </Requirement>
+         </Requirements>
+        <Percent/>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Channel Power</Name>
+      <Description>After blocking with an Orb or Staff for at least 3 seconds, you gain a +100 Competence
+Bonus to Universal Spell Power and +4 to all Spell DCs for 3 seconds.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blocking</Item>
+            </Requirement>
+         </Requirements>
+        <Percent/>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>All</Item>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Blocking</Item>
+            </Requirement>
+         </Requirements>
+        <Percent/>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Reverberating Shout</Name>
+      <Description>Activate to shout at all nearby creatures, Intimidating them unless they make a Will
+Saving Throw (DC equal to your Intimidate skill). This works on all creature
+types, including those normally immune to Intimidate.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ActiveStub</Icon>
+      <DC>
+        <Name>Reverberating Shout</Name>
+        <Description>Activate to shout at all nearby creatures, Intimidating them unless they make a Will
+Saving Throw (DC equal to your Intimidate skill). This works on all creature
+types, including those normally immune to Intimidate.</Description>
+        <Icon>BurstOfGlacialWrath</Icon>
+        <DCType>Intimidate</DCType>
+        <DCVersus>?</DCVersus>
+        <Skill>Intimidate</Skill>
+      </DC>
+    </Feat>
+    <Feat>
+      <Name>Face Me</Name>
+      <Description>Whenever you use an Action Boost, your threat generation is increased by 200% for 6 seconds.</Description>
+      <Group>Epic Destiny Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>ThreatBonusMelee</Type>
+        <Type>ThreatBonusRanged</Type>
+        <Type>ThreatBonusSpell</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">200</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Action Boost</Item>
+            </Requirement>
+         </Requirements>
+        <Percent/>
+      </Effect>
+    </Feat>
     <!--Epic feats-->
     <Feat>
       <Name>Arcane Insight</Name>
@@ -4033,6 +4202,139 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
+      </Effect>
+    </Feat>
+    <!--U69 Epic feats-->
+    <Feat>
+      <Name>Patience</Name>
+      <Description>Your attack speed is reduced by 10%, but you gain +1 Critical Multiplier with all weapons</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>Weapon_Alacrity</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">-10</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Eerie Aim</Name>
+      <Description>You gain +5% Dodge Bypass and +5% Deflection Bypass.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>DodgeBypass</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>MissileDeflectionBypass</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Paranoid</Name>
+      <Description>You automatically Spot almost all traps as you approach them.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+    </Feat>
+    <Feat>
+      <Name>Inspiring Bond</Name>
+      <Description>When your Hirelings or Pets die, after 2.5 seconds they are automatically resurrected
+and heal to full health. This can occur only once for each creature every 3 minutes.
+In addition, your Hirelings, Pets, and Summons gain +25 Physical Resistance
+Rating and Magical Resistance Rating.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>HirelingPRR</Type>
+        <Type>HirelingMRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Defensive Tumble</Name>
+      <Description>When you Tumble, for the next 3 seconds you take 20% less damage from all sources
+(except Bane). In addition, the bonus to Reflex Saving Throws you receive while
+actively Tumbling is now also applied to Fortitude and Will saving throws while
+Tumbling.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+    </Feat>
+    <Feat>
+      <Name>Trick Shot</Name>
+      <Description>When you Tumble, you gain +40 Ranged Power for 4 seconds.</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>21</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PassiveStub</Icon>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">40</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Tumble</Item>
+            </Requirement>
+         </Requirements>
       </Effect>
     </Feat>
     <!--Scion feats-->

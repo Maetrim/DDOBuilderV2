@@ -77,7 +77,7 @@ bool CStanceButton::Evaluate(Character* charData)
         {
             WeaponType wtMainHand = pBuild->MainHandWeapon();
             WeaponType wtOffHand = pBuild->OffhandWeapon();
-            bool bState = m_stance.ActiveRequirements().Met(*pBuild, pBuild->Level()-1, false, wtMainHand, wtOffHand);
+            bool bState = m_stance.ActiveRequirements().Met(*pBuild, pBuild->Level()-1, false, Inventory_Unknown, wtMainHand, wtOffHand);
             if (m_stance.HasGroup()
                 && m_stance.Group() == "Auto")
             {

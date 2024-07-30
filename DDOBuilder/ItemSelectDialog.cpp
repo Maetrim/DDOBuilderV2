@@ -298,7 +298,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
             // some items have requirements to be able to use, see if they are met
             if ((*it).HasRequirementsToUse())
             {
-                if (!(*it).RequirementsToUse().Met(*m_pBuild, m_pBuild->Level()-1, true, (*it).HasWeapon() ? (*it).Weapon() : Weapon_Unknown, Weapon_Unknown))
+                if (!(*it).RequirementsToUse().Met(*m_pBuild, m_pBuild->Level()-1, true, m_slot, (*it).HasWeapon() ? (*it).Weapon() : Weapon_Unknown, Weapon_Unknown))
                 {
                     canSelect = false;
                 }

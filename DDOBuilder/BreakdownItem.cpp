@@ -25,7 +25,8 @@ BreakdownItem::BreakdownItem(
     m_bAddEnergies(true),
     m_bHasNonStackingEffects(false),
     m_wtMain(Weapon_Unknown),
-    m_wtOffhand(Weapon_Unknown)
+    m_wtOffhand(Weapon_Unknown),
+    m_slot(Inventory_Unknown)
 {
 }
 
@@ -71,7 +72,7 @@ void BreakdownItem::AddItems(CListCtrl * pControl)
     // knows which duplicate effects they have in place
     AddDeactiveItems(m_otherEffects, pControl, true);
     AddDeactiveItems(m_effects, pControl, true);
-    AddDeactiveItems(m_itemEffects, pControl, true);
+    AddDeactiveItems(inactiveEffects, pControl, true);
     if (inactiveStart != pControl->GetItemCount())
     {
         // blank item between active and inactive
@@ -199,9 +200,8 @@ void BreakdownItem::AddActiveItems(
     // add all the breakdown items from this particular list
     for (auto&& it: effects)
     {
-        // only add active items when it has an active stance flag
-        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand)
-                && !it.HasPercent())
+        // all items given to us are guaranteed active
+        if (!it.HasPercent())
         {
             // only list it if its non-zero
             double total = it.TotalAmount(false);
@@ -267,9 +267,8 @@ void BreakdownItem::AddActivePercentageItems(
     // add all the breakdown items from this particular list
     for (auto&& it : effects)
     {
-        // only add active items when it has an active stance flag and is a percentage
-        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand)
-                && it.HasPercent())
+        // all items given to us are guaranteed active
+        if (it.HasPercent())
         {
             // only list it if its non-zero
             double total = it.TotalAmount(false);
@@ -325,8 +324,8 @@ void BreakdownItem::AddDeactiveItems(
     // add all inactive breakdown items from this particular list
     for (auto&& it : effects)
     {
-        // only add inactive items when it has a stance flag
-        if (!it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
+        // only add inactive items
+        if (!it.IsActive(*m_pCharacter, m_slot, m_wtMain, m_wtOffhand))
         {
             // only list it if its non-zero
             double total = it.TotalAmount(false);
@@ -387,7 +386,7 @@ double BreakdownItem::SumItems(
     for (auto&& it : effects)
     {
         // only add active items when it has an active stance flag
-        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
+        if (it.IsActive(*m_pCharacter, m_slot, m_wtMain, m_wtOffhand))
         {
             if (!it.HasPercent())
             {
@@ -420,7 +419,7 @@ double BreakdownItem::DoPercentageEffects(
     for (auto&& it : effects)
     {
         // only count the active items in the total
-        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
+        if (it.IsActive(*m_pCharacter, m_slot, m_wtMain, m_wtOffhand))
         {
             if (it.HasPercent())
             {
@@ -449,6 +448,16 @@ double BreakdownItem::Multiplier() const
 {
     // by default all items have a multiplier of 1
     return 1.0;
+}
+
+void BreakdownItem::SetInventorySlotType(InventorySlotType ist)
+{
+    m_slot = ist;
+}
+
+InventorySlotType BreakdownItem::ItemSlot() const
+{
+    return m_slot;
 }
 
 void BreakdownItem::AddAbility(
@@ -524,6 +533,7 @@ AbilityType BreakdownItem::LargestStatBonus()
                 *m_pCharacter->ActiveBuild(),
                 m_pCharacter->ActiveBuild()->Level()-1,
                 true,
+                ItemSlot(),
                 Weapon(),
                 Weapon_Unknown);
         if (active)
@@ -642,7 +652,7 @@ void BreakdownItem::RemoveInactive(
     {
         // only add inactive items when it has a stance flag
         if ((*it).HasRequirementsToBeActive()
-                && !(*it).RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, Weapon(), Weapon_Unknown))
+                && !(*it).RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, ItemSlot(), Weapon(), Weapon_Unknown))
         {
             // add the item to be removed into the inactive list
             inactiveEffects->push_back((*it));
@@ -702,7 +712,8 @@ void BreakdownItem::RemoveNonStacking(
         if (removeIt)
         {
             // add the item to be removed into the non stacking list if not zero
-            if (fabs((*sit).TotalAmount(false)) > 0)
+            if (fabs((*sit).TotalAmount(false)) > 0
+                    || g_bShowZeroBreakdown)
             {
                 nonStackingEffects->push_back((*sit));
                 m_bHasNonStackingEffects = true;
@@ -1240,7 +1251,7 @@ bool BreakdownItem::IsBonusTypePresent(
     bool bPresent = false;
     for (auto&& it: effectsList)
     {
-        if (it.IsActive(*m_pCharacter, m_wtMain, m_wtOffhand))
+        if (it.IsActive(*m_pCharacter, m_slot, m_wtMain, m_wtOffhand))
         {
             if (it.Bonus() == bonusType)
             {

@@ -19,7 +19,7 @@ WeaponType WeaponGroupRequirements::Type() const
 
 bool WeaponGroupRequirements::RequirementsMet(const Build& build) const
 {
-    return m_requirements.Met(build, build.Level() - 1, true, m_weaponType, Weapon_Unknown);
+    return m_requirements.Met(build, build.Level() - 1, true, Inventory_Unknown, m_weaponType, Weapon_Unknown);
 }
 
 bool WeaponGroupRequirements::operator==(const WeaponGroupRequirements& other) const

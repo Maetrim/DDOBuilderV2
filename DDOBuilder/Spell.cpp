@@ -181,6 +181,7 @@ void Spell::SetClass(const std::string& ct)
 
 int Spell::ActualCasterLevel(const Build& build, const SpellDamage& sd) const
 {
+    UNREFERENCED_PARAMETER(sd);
     // work out the actual caster level
     size_t classCasterLevel = 0;
     BreakdownItem* pBI = NULL;
@@ -205,6 +206,7 @@ int Spell::ActualCasterLevel(const Build& build, const SpellDamage& sd) const
 
 int Spell::ActualMaxCasterLevel(const Build& build, const SpellDamage& sd) const
 {
+    UNREFERENCED_PARAMETER(sd);
     int maxCasterLevel = 0;
     BreakdownItem* pBI = NULL;
     if (HasMaxCasterLevel())
@@ -240,7 +242,6 @@ CString Spell::ActualCasterLevelText(const Build& build, const SpellDamage& sd) 
     CString t;
     int classCasterLevel = 0;
     int schoolCasterLevel = 0;
-    int damageCasterLevel = 0;
     BreakdownItem* pBI = CasterLevelBreakdown(Class());
     if (pBI != NULL)
     {
@@ -285,6 +286,7 @@ CString Spell::ActualCasterLevelText(const Build& build, const SpellDamage& sd) 
 
 CString Spell::ActualMaxCasterLevelText(const Build& build, const SpellDamage& sd) const
 {
+    UNREFERENCED_PARAMETER(sd);
     CString totalText;
     int maxCasterLevel = 0;
     BreakdownItem* pBI = NULL;
@@ -292,7 +294,6 @@ CString Spell::ActualMaxCasterLevelText(const Build& build, const SpellDamage& s
     if (HasMaxCasterLevel())
     {
         int schoolLevelBonus = 0;
-        int damageLevelBonus = 0;
         CString mcl;
         maxCasterLevel = MaxCasterLevel();
 

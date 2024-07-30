@@ -22,6 +22,7 @@ class RequirementsBase :
                 const Build & build,
                 size_t level,
                 bool includeTomes,
+                InventorySlotType slot,
                 WeaponType wtMainHand,
                 WeaponType wtOffhand) const;
         bool CanTrainEnhancement(

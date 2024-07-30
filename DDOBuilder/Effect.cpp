@@ -909,6 +909,7 @@ bool Effect::operator==(const Effect & other) const
 
 bool Effect::IsActive(
         const Character& c,
+        InventorySlotType slot,
         WeaponType wtMain,
         WeaponType wtOffhand) const
 {
@@ -918,7 +919,7 @@ bool Effect::IsActive(
         const Build* pBuild = c.ActiveBuild();
         if (pBuild != NULL)
         {
-            bActive = RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, wtMain, wtOffhand);
+            bActive = RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, slot, wtMain, wtOffhand);
         }
     }
     return bActive;

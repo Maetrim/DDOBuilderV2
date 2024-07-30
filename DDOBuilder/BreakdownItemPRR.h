@@ -29,6 +29,8 @@ class BreakdownItemPRR :
         // BuildObserver overrides
         virtual void FeatTrained(Build*, const std::string&) override;
         virtual void FeatRevoked(Build*, const std::string&) override;
+        virtual void EnhancementEffectApplied(Build*, const Effect& effect) override;
+        virtual void EnhancementEffectRevoked(Build*, const Effect& effect) override;
 
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;

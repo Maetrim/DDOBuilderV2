@@ -1185,10 +1185,16 @@ spells have a 7% chance to paralyze living creatures for 6 seconds.</Description
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Requirements>
-          <Requirement>
-            <Type>GroupMember</Type>
-            <Item>Ranged</Item>
-          </Requirement>
+            <RequiresOneOf>
+              <Requirement>
+                <Type>GroupMember</Type>
+                <Item>Ranged</Item>
+              </Requirement>
+              <Requirement>
+                <Type>GroupMember</Type>
+                <Item>Thrown</Item>
+              </Requirement>
+            </RequiresOneOf>
         </Requirements>
       </Effect>
     </EnhancementTreeItem>

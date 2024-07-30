@@ -29,8 +29,10 @@ enum RequirementType
     Requirement_FeatAnySource,              // must have this feat from any source (except equipment)
     Requirement_GroupMember,                // weapon has to be a member of this named group type (group does not have to exist)
     Requirement_GroupMember2,               // off hand weapon has to be a member of this named group type (group does not have to exist)
+    Requirement_ItemSlot,                   // item must be in this slot
     Requirement_ItemTypeInSlot,             // specific item type needs to be in a specified slot
     Requirement_Level,                      // must be at least this level
+    Requirement_MaterialType,               // weapon has to have this material type, on specified item slot
     Requirement_NotConstruct,               // Race must NOT be a construct
     Requirement_Race,                       // must have at least one of listed Races
     Requirement_RaceConstruct,              // Race must be a construct
@@ -64,8 +66,10 @@ const XmlLib::enumMapEntry<RequirementType> requirementTypeMap[] =
     {Requirement_FeatAnySource,             L"FeatAnySource"},
     {Requirement_GroupMember,               L"GroupMember"},
     {Requirement_GroupMember2,              L"GroupMember2"},
+    {Requirement_ItemSlot,                  L"ItemSlot"},
     {Requirement_ItemTypeInSlot,            L"ItemTypeInSlot"},
     {Requirement_Level,                     L"Level"},
+    {Requirement_MaterialType,              L"MaterialType"},
     {Requirement_NotConstruct,              L"NotConstruct"},
     {Requirement_Race,                      L"Race"},
     {Requirement_RaceConstruct,             L"RaceConstruct"},

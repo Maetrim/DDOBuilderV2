@@ -524,7 +524,7 @@ class Effect :
         void SetDisplayName(const std::string displayName);
         bool VerifyObject(std::stringstream * ss) const;
 
-        bool IsActive(const Character& c, WeaponType wtMain, WeaponType wtOffhand) const;
+        bool IsActive(const Character& c, InventorySlotType slot, WeaponType wtMain, WeaponType wtOffhand) const;
         double TotalAmount(bool allowTruncate) const;
         size_t EffectStacks() const;
         void AddEffectStack();

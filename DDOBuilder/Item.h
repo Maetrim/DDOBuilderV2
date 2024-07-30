@@ -82,6 +82,7 @@ class Item :
                 DL_OPTIONAL_SIMPLE(_, int, ArcaneSpellFailure, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, ShieldBonus, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, DamageReduction, 0) \
+                DL_OPTIONAL_STRING(_, Material) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, Buff, Buffs) \
                 DL_STRING_LIST(_, SetBonus) \

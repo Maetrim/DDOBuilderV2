@@ -263,6 +263,28 @@ bool Requirement::VerifyObject(
                 }
             }
             break;
+        case Requirement_ItemSlot:
+            // first item is the slot
+            if (m_Item.size() == 0)
+            {
+                (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " missing Slot item field\n";
+                ok = false;
+            }
+            else if (m_Item.size() != 1)
+            {
+                (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " erroneous number of item fields\n";
+                ok = false;
+            }
+            else
+            {
+                auto it = m_Item.front();
+                if (TextToEnumEntry(it, InventorySlotTypeMap, false) == Inventory_Unknown)
+                {
+                    (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " has bad item field\n";
+                    ok = false;
+                }
+            }
+            break;
         case Requirement_Level:
         case Requirement_SpecificLevel:
             requiresValueField = true;  // just a Value field required
@@ -283,6 +305,21 @@ bool Requirement::VerifyObject(
                         (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad Race item field\n";
                     }
                 }
+            }
+            break;
+        case Requirement_MaterialType:
+            if (m_Item.size() == 2)
+            {
+                if (TextToEnumEntry(m_Item.back(), InventorySlotTypeMap, false) == Inventory_Unknown)
+                {
+                    (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " has bad slot field\n";
+                    ok = false;
+                }
+            }
+            else
+            {
+                (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " has erroneous item field\n";
+                ok = false;
             }
             break;
         case Requirement_NotConstruct:
@@ -412,6 +449,7 @@ bool Requirement::Met(
         const Build & build,
         size_t level,  // this is 0 based
         bool includeTomes,
+        InventorySlotType slot,
         WeaponType wtMainHand,
         WeaponType wtOffHand) const
 {
@@ -437,7 +475,9 @@ bool Requirement::Met(
     case Requirement_GroupMember:       met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, true); break;
     case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, false); break;
     case Requirement_ItemTypeInSlot:    met = EvaluateItemInSlot(build); break;
+    case Requirement_ItemSlot:          met = EvaluateItemSlot(slot); break;
     case Requirement_Level:             met = EvaluateLevel(build, level, includeTomes); break;
+    case Requirement_MaterialType:      met = EvaluateMaterialType(build); break;
     case Requirement_NotConstruct:      met = EvaluateNotConstruct(build); break;
     case Requirement_Race:              met = EvaluateRace(build, level, includeTomes); break;
     case Requirement_RaceConstruct:     met = EvaluateRaceConstruct(build); break;
@@ -522,6 +562,7 @@ bool Requirement::MetHardRequirements(
     //case Requirement_GroupMember2:  met = false; break;
     //case Requirement_ItemTypeInSlot:met = false; break;
     case Requirement_Level:         met = EvaluateLevel(build, level, includeTomes); break;
+    //case Requirement_MaterialType:  met = EvaluateMaterialType(build); break;
     case Requirement_NotConstruct:  met = EvaluateNotConstruct(build); break;
     case Requirement_Race:          met = EvaluateRace(build, level, includeTomes); break;
     case Requirement_RaceConstruct: met = EvaluateRaceConstruct(build); break;
@@ -1039,6 +1080,32 @@ bool Requirement::EvaluateStartingWorld(
     const Race& race = FindRace(build.Race());
     StartingWorldType swt = TextToEnumEntry(m_Item.front(), startingWorldTypeMap);
     bool met = (swt == race.StartingWorld());
+    return met;
+}
+
+bool Requirement::EvaluateMaterialType(
+        const Build& build) const
+{
+    bool met = false;
+    InventorySlotType ist = TextToEnumEntry(m_Item.back(), InventorySlotTypeMap, false);
+    if (ist != Inventory_Unknown)
+    {
+        if (build.ActiveGearSet().HasItemInSlot(ist))
+        {
+            ::Item item = build.ActiveGearSet().ItemInSlot(ist);
+            if (item.HasMaterial())
+            {
+                met = (item.Material() == m_Item.front());
+            }
+        }
+    }
+    return met;
+}
+
+bool Requirement::EvaluateItemSlot(InventorySlotType slot) const
+{
+    InventorySlotType ist = TextToEnumEntry(m_Item.front(), InventorySlotTypeMap, false);
+    bool met = (slot == ist);
     return met;
 }
 

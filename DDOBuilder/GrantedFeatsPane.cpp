@@ -129,7 +129,7 @@ bool CGrantedFeatsPane::IsGrantedFeat(const std::string& featName) const
                     feat.SetRequirements(empty);
                 }
                 if (feat.Name() == featName
-                        && feat.RequirementsToTrain().Met(*pBuild, pBuild->Level()-1, true, Weapon_Unknown, Weapon_Unknown))
+                        && feat.RequirementsToTrain().Met(*pBuild, pBuild->Level()-1, true, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown))
                 {
                     isGranted = true;
                 }
@@ -293,7 +293,7 @@ void CGrantedFeatsPane::PopulateGrantedFeatsList()
                     Requirements empty;
                     feat.SetRequirements(empty);
                 }
-                if (feat.RequirementsToTrain().Met(*pBuild, pBuild->Level()-1, true, Weapon_Unknown, Weapon_Unknown))
+                if (feat.RequirementsToTrain().Met(*pBuild, pBuild->Level()-1, true, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown))
                 {
                     // its active
                     activeGrantedFeats.push_back(feat);
@@ -357,7 +357,7 @@ void CGrantedFeatsPane::AddGrantedFeatEffect(const Effect& effect)
         // the effects for the granted feat
         std::string featName = effect.Item().front();
         if (effect.HasRequirementsToBeActive()
-                && !effect.RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, Weapon_Unknown, Weapon_Unknown))
+                && !effect.RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown))
         {
             // the feat although granted is inactive as its requirements were not met
             m_grantedNotifyState.push_back(false);
@@ -367,6 +367,7 @@ void CGrantedFeatsPane::AddGrantedFeatEffect(const Effect& effect)
             // this feat is not currently trained, we need to notify about its
             // effects
             const Feat & feat = FindFeat(featName);
+            pBuild->NotifyFeatTrained(featName);
             pBuild->ApplyFeatEffects(feat);
             m_grantedNotifyState.push_back(true);
         }
@@ -416,7 +417,7 @@ void CGrantedFeatsPane::RevokeGrantedFeatEffect(const Effect& effect)
         // granted feat was removed, remove its effects if it was active
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (!effect.HasRequirementsToBeActive()
-                || effect.RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, Weapon_Unknown, Weapon_Unknown))
+                || effect.RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, Inventory_Unknown, Weapon_Unknown, Weapon_Unknown))
         {
             std::string featName = effect.Item().front();
             if (!pBuild->IsFeatTrained(featName))
@@ -424,6 +425,7 @@ void CGrantedFeatsPane::RevokeGrantedFeatEffect(const Effect& effect)
                 // this feat is not currently trained, we need to notify about its
                 // effects
                 const Feat & feat = FindFeat(featName);
+                pBuild->NotifyFeatRevoked(featName);
                 pBuild->RevokeFeatEffects(feat);
             }
         }

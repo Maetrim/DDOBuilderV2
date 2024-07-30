@@ -55,6 +55,7 @@ bool RequiresOneOf::Met(
         const Build & build,
         size_t level,
         bool includeTomes,
+        InventorySlotType slot,
         WeaponType wtMainHand,
         WeaponType wtOffHand) const
 {
@@ -67,6 +68,7 @@ bool RequiresOneOf::Met(
                 build,
                 level,
                 includeTomes,
+                slot,
                 wtMainHand,
                 wtOffHand);
         ++it;

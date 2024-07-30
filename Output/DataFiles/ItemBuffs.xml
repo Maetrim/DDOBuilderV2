@@ -2564,7 +2564,6 @@ takes 100 damage.</DisplayText>
     <DisplayText>Better Offhanded: While this item is in your offhand, it gains +2[W].</DisplayText>
     <ApplyToWeaponOnly />
     <Effect>
-      <!--This effect doesn't work properly. Awarded if any item is in offhand-->
       <DisplayName>Better Offhanded</DisplayName>
       <Type>Weapon_BaseDamage</Type>
       <Bonus>Enhancement</Bonus>
@@ -2572,11 +2571,10 @@ takes 100 damage.</DisplayText>
       <AType>Simple</AType>
       <Item>All</Item>
       <Requirements>
-        <Requirement>
-          <Type>ItemTypeInSlot</Type>
-          <Item>Weapon2</Item>
-          <Item>All</Item>
-        </Requirement>
+         <Requirement>
+            <Type>ItemSlot</Type>
+            <Item>Weapon2</Item>
+         </Requirement>
       </Requirements>
     </Effect>
   </Buff>
@@ -4718,6 +4716,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Amount size="1">0</Amount>
       <Item>Negative</Item>
       <Item>Poison</Item>
+      <Item>Positive</Item>
     </Effect>
   </Buff>
   <Buff>

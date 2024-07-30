@@ -304,7 +304,7 @@ double BreakdownItemSpellPower::IterateList(
         if ((*it).IsType(Effect_SpellPowerReplacement))
         {
             // effects requirements must be met
-            if ((*it).IsActive(*m_pCharacter, Weapon_Unknown, Weapon_Unknown))
+            if ((*it).IsActive(*m_pCharacter, m_slot, Weapon_Unknown, Weapon_Unknown))
             {
                 // look through the list of overrides in this
                 auto eiit = (*it).Item().begin();
@@ -342,7 +342,7 @@ void BreakdownItemSpellPower::AppendList(
         if ((*it).IsType(Effect_SpellPowerReplacement))
         {
             // effects requirements must be met
-            if ((*it).IsActive(*m_pCharacter, Weapon_Unknown, Weapon_Unknown))
+            if ((*it).IsActive(*m_pCharacter, m_slot, Weapon_Unknown, Weapon_Unknown))
             {
                 // look through the list of overrides in this
                 auto eiit = (*it).Item().begin();

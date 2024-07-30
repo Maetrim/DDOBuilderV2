@@ -178,6 +178,7 @@ void WikiItemFileProcessor::ExtractFields(
         "Item Type",                ">Item Type",                   "\">",      "<",
         "Name",                     "firstHeading",                 "main\">",  "<",
         "Material",                 ">Material",                    "title=\"", "\"",
+        "Material",                 ">Made from",                   "title=\"", "\"",
         "Maximum Dexterity Bonus",  ">Maximum Dexterity Bonus\n",   "\">",      "<",
         "Maximum Dexterity Bonus",  ">Max Dex Bonus\n",             "\">",      "<",
         "Minimum Level",            ">Minimum level\n",             "\">",      "<",
@@ -510,6 +511,10 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         if (itemFields.find("Drop Location") != itemFields.end())
         {
             m_item.Set_DropLocation(itemFields.at("Drop Location"));
+        }
+        if (itemFields.find("Material") != itemFields.end())
+        {
+            m_item.Set_Material(itemFields.at("Material"));
         }
         if (itemFields.find("Description") != itemFields.end())
         {

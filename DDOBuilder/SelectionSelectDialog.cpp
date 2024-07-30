@@ -122,6 +122,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
                     m_build,
                     m_build.Level()-1,
                     true,          // do include tomes
+                    Inventory_Unknown,
                     Weapon_Unknown,
                     Weapon_Unknown);
         }

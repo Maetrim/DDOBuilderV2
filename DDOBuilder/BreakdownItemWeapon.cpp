@@ -36,6 +36,24 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_drBypass(pPane, Breakdown_DRBypass, treeList, NULL),
     m_weaponCriticalMuliplier(weaponCriticalMultiplier)
 {
+    SetInventorySlotType(slot);
+    m_weaponEnchantment.SetInventorySlotType(slot);
+    m_baseDamage.SetInventorySlotType(slot);
+    m_attackBonus.SetInventorySlotType(slot);
+    m_damageBonus.SetInventorySlotType(slot);
+    //m_otherDamageEffects.SetInventorySlotType(slot);
+    ////////m_vorpalRange.SetInventorySlotType(slot);
+    m_criticalThreatRange.SetInventorySlotType(slot);
+    m_criticalAttackBonus.SetInventorySlotType(slot);
+    m_criticalDamageBonus.SetInventorySlotType(slot);
+    //m_otherCriticalDamageEffects.SetInventorySlotType(slot);
+    m_criticalMultiplier.SetInventorySlotType(slot);
+    m_criticalMultiplier19To20.SetInventorySlotType(slot);
+    m_attackSpeed.SetInventorySlotType(slot);
+    m_ghostTouch.SetInventorySlotType(slot);
+    m_trueSeeing.SetInventorySlotType(slot);
+    m_drBypass.SetInventorySlotType(slot);
+
     SetWeapon(weaponType, weaponCriticalMultiplier);
     m_weaponEnchantment.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_baseDamage.SetWeapon(weaponType, weaponCriticalMultiplier);

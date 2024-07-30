@@ -645,6 +645,14 @@ void CInfoTip::SetItem(
             }
         }
     }
+    if (pItem->HasMaterial())
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        CString material;
+        material.Format("Made from: %s", pItem->Material().c_str());
+        pRequirements->AddRequirement(material, true);
+        m_tipItems.push_back(pRequirements);
+    }
 
     if (pItem->HasWeapon()
             && pItem->HasDamageDice())

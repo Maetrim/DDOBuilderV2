@@ -7,6 +7,7 @@
 #include "Effect.h"
 #include "SpellDC.h"
 #include "SpellDamage.h"
+#include "Stance.h"
 
 class Build;
 class ClassSpell;
@@ -57,6 +58,7 @@ class Spell :
                 DL_OBJECT_LIST(_, Effect, Effects) \
                 DL_OBJECT_LIST(_, ::SpellDC, DCs) \
                 DL_OBJECT_LIST(_, SpellDamage, SpellDamageEffects) \
+                DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_FLAG(_, Accelerate) \
                 DL_FLAG(_, Embolden) \
                 DL_FLAG(_, Empower) \

@@ -64,6 +64,7 @@ bool RequirementsBase::Met(
         const Build & build,
         size_t level,
         bool includeTomes,
+        InventorySlotType slot,
         WeaponType wtMainHand,
         WeaponType wtOffhand) const
 {
@@ -72,21 +73,21 @@ bool RequirementsBase::Met(
     auto itR = m_Requires.begin();
     while (met && itR != m_Requires.end())
     {
-        met = (*itR).Met(build, level, includeTomes, wtMainHand, wtOffhand);
+        met = (*itR).Met(build, level, includeTomes, slot, wtMainHand, wtOffhand);
         ++itR;
     }
     // evaluate all Requires OneOf items
     auto itOO = m_OneOf.begin();
     while (met && itOO != m_OneOf.end())
     {
-        met = (*itOO).Met(build, level, includeTomes, wtMainHand, wtOffhand);
+        met = (*itOO).Met(build, level, includeTomes, slot, wtMainHand, wtOffhand);
         ++itOO;
     }
     // evaluate all Requires NoneOf items
     auto itNO = m_NoneOf.begin();
     while (met && itNO != m_NoneOf.end())
     {
-        met = (*itNO).Met(build, level, includeTomes, wtMainHand, wtOffhand);
+        met = (*itNO).Met(build, level, includeTomes, slot, wtMainHand, wtOffhand);
         ++itNO;
     }
     return met;
