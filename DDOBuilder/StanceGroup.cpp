@@ -193,6 +193,12 @@ CStanceButton* StanceGroup::GetStance(size_t index)
     return (*it);
 }
 
+const CStanceButton* StanceGroup::GetStance(size_t index) const
+{
+    std::list<CStanceButton*>::const_iterator it = m_stanceButtons.begin();
+    std::advance(it, index);
+    return (*it);
+}
 
 void StanceGroup::AddActiveStances(std::vector<CStanceButton*>* stances)
 {

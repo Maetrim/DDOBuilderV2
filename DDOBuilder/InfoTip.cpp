@@ -593,10 +593,11 @@ void CInfoTip::SetStanceItem(const Stance& item)
 void CInfoTip::SetSetBonusItem(
     const SetBonus& item,
     size_t numStacks,
-    bool bSuppressed)
+    bool bSuppressed,
+    const Build* pBuild)
 {
     ClearOldTipItems();
-    AppendSetBonusDescription(item.Type(), numStacks, bSuppressed);
+    AppendSetBonusDescription(item.Type(), numStacks, bSuppressed, pBuild);
 }
 
 void CInfoTip::SetItem(
@@ -831,7 +832,7 @@ void CInfoTip::SetItem(
     }
     for (auto&& sbit : pItem->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, bSetSuppressed);
+        AppendSetBonusDescription(sbit, 0, bSetSuppressed, pBuild);
     }
     if (!pItem->Description().empty())
     {
@@ -879,7 +880,7 @@ void CInfoTip::SetFiligree(
 
     for (auto&& sbit : pFiligree->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, false);
+        AppendSetBonusDescription(sbit, 0, false, NULL);
     }
 }
 
@@ -985,7 +986,7 @@ void CInfoTip::AppendFilledAugment(
 
     for (auto&& sbit : pAugment->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, false);
+        AppendSetBonusDescription(sbit, 0, false, NULL);
     }
 }
 
@@ -1037,7 +1038,7 @@ void CInfoTip::AppendAugment(
 
     for (auto&& sbit : pAugment->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, false);
+        AppendSetBonusDescription(sbit, 0, false, NULL);
     }
 }
 
@@ -1381,7 +1382,8 @@ void CInfoTip::SetDCItem(
 void CInfoTip::AppendSetBonusDescription(
     const std::string& setBonusName,
     size_t numStacks,
-    bool bSuppressed)
+    bool bSuppressed,
+    const Build* pBuild)
 {
     const SetBonus& setBonus = FindSetBonus(setBonusName);
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
@@ -1404,6 +1406,13 @@ void CInfoTip::AppendSetBonusDescription(
         pHeader->SetCost(str);
     }
     m_tipItems.push_back(pHeader);
+    if (setBonus.HasAdditionalDescription())
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        bool met = pBuild != NULL ? pBuild->IsStanceActive(setBonus.Type()) : false;
+        pRequirements->AddRequirement(setBonus.AdditionalDescription().c_str(), met);
+        m_tipItems.push_back(pRequirements);
+    }
 
     InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
     pRequirements->CreateSetBonusStrings(setBonus, numStacks);

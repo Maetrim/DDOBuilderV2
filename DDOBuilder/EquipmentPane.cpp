@@ -1102,7 +1102,7 @@ void CEquipmentPane::SetTooltipText(
         CPoint tipAlternate)
 {
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-    m_tooltip.SetSetBonusItem(item.GetSetBonus(), item.NumStacks(), false);
+    m_tooltip.SetSetBonusItem(item.GetSetBonus(), item.NumStacks(), false, m_pCharacter->ActiveBuild());
     m_tooltip.Show();
 }
 

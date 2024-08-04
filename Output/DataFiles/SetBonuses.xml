@@ -5,7 +5,14 @@
     <Icon>?</Icon>
     <Buff>
       <EquippedCount>2</EquippedCount>
-      <Description>TBD</Description>
+      <Description>+5 Melee Power, 5% Doublestrike, Your Sneak Attacks do additional Bane damage</Description>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>Doublestrike</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
     </Buff>
   </SetBonus>
   <SetBonus>
@@ -13,7 +20,14 @@
     <Icon>?</Icon>
     <Buff>
       <EquippedCount>2</EquippedCount>
-      <Description>TBD</Description>
+      <Description>+10 Melee Power, 10% Doublestrike, Your Sneak Attacks do additional Bane damage</Description>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>Doublestrike</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
     </Buff>
   </SetBonus>
   <!--Korthos Island sets-->
@@ -6935,27 +6949,144 @@
   <SetBonus>
     <Type>Ethereal</Type>
     <Icon>Ethereal</Icon>
+    <AdditionalDescription>Requires Ethereal dominance to be active</AdditionalDescription>
     <IgnoreForParse />
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>1% Incorporeal miss chance, +0.5% per additional augment</Description>
+      <Effect>
+        <Type>Incorporeality</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>SetBonusCount</AType>
+        <StackSource>Ethereal</StackSource>
+        <Amount size="41">0 0 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5 18 18.5 19 20 20.5</Amount>
+        <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Ethereal</Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+    </Buff>
   </SetBonus>
   <SetBonus>
     <Type>Dominion</Type>
     <Icon>Dominion</Icon>
+    <AdditionalDescription>Requires Dominion dominance to be active</AdditionalDescription>
     <IgnoreForParse />
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>3% Spell Points bonus, +1% per additional augment</Description>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>SetBonusCount</AType>
+        <StackSource>Dominion</StackSource>
+        <Amount size="41">0 0 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43</Amount>
+        <Percent/>
+        <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Dominion</Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+    </Buff>
   </SetBonus>
   <SetBonus>
     <Type>Material</Type>
     <Icon>Material</Icon>
+    <AdditionalDescription>Requires Material dominance to be active</AdditionalDescription>
     <IgnoreForParse />
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>1% Physical Damage, +1% per additional augment</Description>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>SetBonusCount</AType>
+        <StackSource>Material</StackSource>
+        <Amount size="41">0 0 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5 18 18.5 19 20 20.5</Amount>
+        <Percent/>
+        <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Material</Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>5% Spell critical damage, +2% per additional augment</Description>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>SetBonusCount</AType>
+        <StackSource>Material</StackSource>
+        <Amount size="41">0 0 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Material</Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+    </Buff>
   </SetBonus>
   <SetBonus>
     <Type>Escalation</Type>
     <Icon>Escalation</Icon>
+    <AdditionalDescription>Requires Escalation dominance to be active</AdditionalDescription>
     <IgnoreForParse />
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>1% Dodge Cap, +1% per 3 additional augment</Description>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>SetBonusCount</AType>
+        <StackSource>Escalation</StackSource>
+        <Amount size="41">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 8 8 8 9 9 9 10 10 10 11 11 11 12 12 12 13 13 13</Amount>
+        <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Escalation</Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+    </Buff>
   </SetBonus>
   <SetBonus>
     <Type>Opposition</Type>
     <Icon>Opposition</Icon>
+    <AdditionalDescription>Requires Opposition dominance to be active</AdditionalDescription>
     <IgnoreForParse />
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>3% bonus to Max Hitpoints, +1% per additional augment</Description>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Legendary</Bonus>
+        <AType>SetBonusCount</AType>
+        <StackSource>Opposition</StackSource>
+        <Amount size="41">0 0 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41</Amount>
+        <Percent/>
+        <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Opposition</Item>
+            </Requirement>
+         </Requirements>
+      </Effect>
+    </Buff>
   </SetBonus>
   <!--Augment Set Bonuses-->
   <SetBonus>

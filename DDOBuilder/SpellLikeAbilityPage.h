@@ -16,6 +16,7 @@ class CSpellLikeAbilityPage :
         ~CSpellLikeAbilityPage();
 
         void SetCharacter(Character * pCharacter);
+        CSLAControl* Control();
 
     protected:
         // CharacterObserver

@@ -77,18 +77,18 @@ void CStancesPane::OnInitialUpdate()
 }
 
 void CStancesPane::PositionWindow(
-        CWnd * pWnd,
-        CRect * itemRect,
+        CWnd* pWnd,
+        CRect* itemRect,
         int maxX)
 {
     pWnd->MoveWindow(itemRect, TRUE);
-    *itemRect += CPoint(itemRect->Width() + c_controlSpacing, 0);
+   *itemRect += CPoint(itemRect->Width() + c_controlSpacing, 0);
     if (itemRect->right > maxX)
     {
         // oops, not enough space in client area here
         // move down and start the next row of controls
-        *itemRect -= CPoint(itemRect->left, 0);
-        *itemRect += CPoint(c_controlSpacing, itemRect->Height() + c_controlSpacing);
+       *itemRect -= CPoint(itemRect->left, 0);
+       *itemRect += CPoint(c_controlSpacing, itemRect->Height() + c_controlSpacing);
     }
     pWnd->Invalidate(TRUE);
 }
@@ -139,7 +139,7 @@ void CStancesPane::OnSize(UINT nType, int cx, int cy)
             sliderBottom + c_windowSize);
         for (auto&& sgi : m_stanceGroups)
         {
-            PositionStanceGroup(*sgi, &groupRect, &itemRect, cx);
+            PositionStanceGroup(*sgi,&groupRect,&itemRect, cx);
         }
         // show scroll bars if required
         SetScrollSizes(
@@ -156,9 +156,9 @@ void CStancesPane::PositionStanceGroup(
 {
     // user stance header first
     PositionWindow(sg.GroupLabel(), pGroupRect, maxX);
-    *pItemRect -= pItemRect->TopLeft();
-    *pItemRect += pGroupRect->TopLeft();
-// move each stance button
+   *pItemRect -= pItemRect->TopLeft();
+   *pItemRect += pGroupRect->TopLeft();
+    // move each stance button
     size_t numButtons = sg.NumButtons();
     bool bAutoGroup = sg.GroupName() == "Auto";
     for (size_t i = 0; i < numButtons; ++i)
@@ -182,8 +182,8 @@ void CStancesPane::PositionStanceGroup(
         {
             // all non-auto group items are always shown
             PositionWindow(sg.StanceButton(i), pItemRect, maxX);
-            *pGroupRect -= pGroupRect->TopLeft();
-            *pGroupRect += pItemRect->TopLeft();
+           *pGroupRect -= pGroupRect->TopLeft();
+           *pGroupRect += pItemRect->TopLeft();
         }
     }
 }
@@ -229,10 +229,10 @@ LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     }
 
     // wParam is the document pointer
-    CDocument * pDoc = (CDocument*)(wParam);
+    CDocument* pDoc = (CDocument*)(wParam);
     m_pDocument = pDoc;
     // lParam is the character pointer
-    Character * pCharacter = (Character *)(lParam);
+    Character* pCharacter = (Character*)(lParam);
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
@@ -309,7 +309,7 @@ void CStancesPane::CreateStanceWindows()
         }
     }
     // add the auto controlled stances for each race type. These are added dynamically
-    const std::list<Race> & races = Races();
+    const std::list<Race>& races = Races();
     for (auto&& rit: races)
     {
         CString name = rit.Name().c_str();
@@ -334,9 +334,20 @@ void CStancesPane::CreateStanceWindows()
         race.AddRequirement(r);
         AddStance(race);
     }
+    // create the Legendary Greensteel control stances
+    Stance dominion("Dominion", "Dominion", "Your Legendary Greensteel Items have Dominion Dominance", "Auto", true);
+    AddStance(dominion);
+    Stance escalation("Escalation", "Escalation", "Your Legendary Greensteel Items have Escalation Dominance", "Auto", true);
+    AddStance(escalation);
+    Stance opposition("Opposition", "Opposition", "Your Legendary Greensteel Items have Opposition Dominance", "Auto", true);
+    AddStance(opposition);
+    Stance ethereal("Ethereal", "Ethereal", "Your Legendary Greensteel Items have Ethereal Dominance", "Auto", true);
+    AddStance(ethereal);
+    Stance material("Material", "Material", "Your Legendary Greensteel Items have Material Dominance", "Auto", true);
+    AddStance(material);
 }
 
-void CStancesPane::AddStance(const Stance & stance)
+void CStancesPane::AddStance(const Stance& stance)
 {
     std::string group = "User";     // assume in user group
     if (stance.HasGroup())
@@ -368,7 +379,7 @@ void CStancesPane::AddStance(const Stance & stance)
     }
 }
 
-void CStancesPane::RevokeStance(const Stance & stance)
+void CStancesPane::RevokeStance(const Stance& stance)
 {
     std::string group = "User";     // assume in user group
     if (stance.HasGroup())
@@ -388,7 +399,7 @@ void CStancesPane::RevokeStance(const Stance & stance)
                 // if the group is now empty, we need to remove it
                 // unless it is the "User" or "Auto" group
                 if (group != "User"
-                        && group != "Auto")
+                       && group != "Auto")
                 {
                     (*sgit)->DestroyAll();
                     delete (*sgit);
@@ -470,7 +481,7 @@ void CStancesPane::UpdateStanceDisabled(
 
 void CStancesPane::UpdateFeatEffectApplied(
         Build* pBuild,
-        const Effect & effect)
+        const Effect& effect)
 {
     // all handled the same way
     UpdateItemEffectApplied(pBuild, effect);
@@ -478,14 +489,14 @@ void CStancesPane::UpdateFeatEffectApplied(
 
 void CStancesPane::UpdateFeatEffectRevoked(
         Build*,
-        const Effect & effect)
+        const Effect& effect)
 {
     UpdateSliders(effect, false);
 }
 
 void CStancesPane::UpdateEnhancementEffectApplied(
         Build* pBuild,
-        const Effect & effect)
+        const Effect& effect)
 {
     // all handled the same way
     UpdateItemEffectApplied(pBuild, effect);
@@ -494,7 +505,7 @@ void CStancesPane::UpdateEnhancementEffectApplied(
 
 void CStancesPane::UpdateEnhancementEffectRevoked(
         Build*,
-        const Effect & effect)
+        const Effect& effect)
 {
     UpdateSliders(effect, false);
     UpdateStanceStates();
@@ -556,7 +567,7 @@ void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
                     {
                         CStanceButton* pOtherStance = pStanceGroup->GetStance(si);
                         if (pOtherStance != pStance
-                            && pOtherStance->IsSelected())
+                           && pOtherStance->IsSelected())
                         {
                             m_pCharacter->ActiveBuild()->DeactivateStance(pOtherStance->GetStance());
                             pOtherStance->SetSelected(false);
@@ -577,10 +588,10 @@ void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
 void CStancesPane::OnMouseMove(UINT, CPoint point)
 {
     // determine which stance the mouse may be over
-    CWnd * pWnd = ChildWindowFromPoint(point);
-    CStanceButton * pStance = dynamic_cast<CStanceButton*>(pWnd);
+    CWnd* pWnd = ChildWindowFromPoint(point);
+    CStanceButton* pStance = dynamic_cast<CStanceButton*>(pWnd);
     if (pStance != NULL
-            && pStance != m_pTooltipItem)
+           && pStance != m_pTooltipItem)
     {
         CRect itemRect;
         pStance->GetWindowRect(&itemRect);
@@ -592,7 +603,7 @@ void CStancesPane::OnMouseMove(UINT, CPoint point)
     else
     {
         if (m_showingTip
-                && pStance != m_pTooltipItem)
+               && pStance != m_pTooltipItem)
         {
             // no longer over the same item
             HideTip();
@@ -607,7 +618,7 @@ LRESULT CStancesPane::OnMouseLeave(WPARAM, LPARAM)
     return 0;
 }
 
-void CStancesPane::ShowTip(const CStanceButton & item, CRect itemRect)
+void CStancesPane::ShowTip(const CStanceButton& item, CRect itemRect)
 {
     if (m_showingTip)
     {
@@ -630,7 +641,7 @@ void CStancesPane::ShowTip(const CStanceButton & item, CRect itemRect)
 void CStancesPane::HideTip()
 {
     // tip not shown if not over an assay
-    if (m_tipCreated && m_showingTip)
+    if (m_tipCreated&& m_showingTip)
     {
         m_tooltip.Hide();
         m_showingTip = false;
@@ -639,7 +650,7 @@ void CStancesPane::HideTip()
 }
 
 void CStancesPane::SetTooltipText(
-        const CStanceButton & item,
+        const CStanceButton& item,
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
@@ -648,7 +659,7 @@ void CStancesPane::SetTooltipText(
     m_tooltip.Show();
 }
 
-void CStancesPane::DestroyStances(std::vector<CStanceButton *> & items)
+void CStancesPane::DestroyStances(std::vector<CStanceButton*>& items)
 {
     for (size_t i = 0; i < items.size(); ++i)
     {
@@ -686,9 +697,9 @@ void CStancesPane::DestroyAllStances()
     }
 }
 
-const std::vector<CStanceButton *> & CStancesPane::UserStances() const
+const std::vector<CStanceButton*>& CStancesPane::UserStances() const
 {
-    static std::vector<CStanceButton *> activeStances;
+    static std::vector<CStanceButton*> activeStances;
     activeStances.clear();
     //for (auto&& sgi : m_stanceGroups)
     //{
@@ -697,9 +708,9 @@ const std::vector<CStanceButton *> & CStancesPane::UserStances() const
     return activeStances;
 }
 
-const std::vector<CStanceButton *> & CStancesPane::AutoStances() const
+const std::vector<CStanceButton*>& CStancesPane::AutoStances() const
 {
-    static std::vector<CStanceButton *> activeStances;
+    static std::vector<CStanceButton*> activeStances;
     activeStances.clear();
     //for (auto&& sgi : m_stanceGroups)
     //{
@@ -708,9 +719,9 @@ const std::vector<CStanceButton *> & CStancesPane::AutoStances() const
     return activeStances;
 }
 
-const CStanceButton * CStancesPane::GetStance(const std::string& stanceName)
+const CStanceButton* CStancesPane::GetStance(const std::string& stanceName)
 {
-    const CStanceButton * pButton = NULL;
+    const CStanceButton* pButton = NULL;
     for (auto&& sgi : m_stanceGroups)
     {
         pButton = sgi->GetStance(stanceName);
@@ -722,10 +733,10 @@ const CStanceButton * CStancesPane::GetStance(const std::string& stanceName)
     return pButton;
 }
 
-void CStancesPane::OnHScroll(UINT, UINT nPos, CScrollBar * pScrollbar)
+void CStancesPane::OnHScroll(UINT, UINT nPos, CScrollBar* pScrollbar)
 {
     if (m_pCharacter != NULL
-            && pScrollbar != NULL)  // must not be the window scroll bar
+           && pScrollbar != NULL)  // must not be the window scroll bar
     {
         // find which control has changed and update if required
         UINT id = pScrollbar->GetDlgCtrlID();
@@ -745,7 +756,7 @@ void CStancesPane::OnHScroll(UINT, UINT nPos, CScrollBar * pScrollbar)
     }
 }
 
-void CStancesPane::UpdateSliders(const Effect & effect, bool bApply)
+void CStancesPane::UpdateSliders(const Effect& effect, bool bApply)
 {
     if (effect.IsType(Effect_CreateSlider))
     {
@@ -780,12 +791,12 @@ void CStancesPane::UpdateSliders(const Effect & effect, bool bApply)
 }
 
 std::list<SliderItem>::iterator CStancesPane::GetSlider(
-        const Effect & effect,
+        const Effect& effect,
         bool bCreateIfMissing)
 {
     bool bFound = false;
     std::list<SliderItem>::iterator it = m_sliders.begin();
-    while (!bFound && it != m_sliders.end())
+    while (!bFound&& it != m_sliders.end())
     {
         if ((*it).m_name == effect.Item().front())
         {
@@ -796,7 +807,7 @@ std::list<SliderItem>::iterator CStancesPane::GetSlider(
             ++it;
         }
     }
-    if (!bFound && bCreateIfMissing)
+    if (!bFound&& bCreateIfMissing)
     {
         // add a new entry to the end
         SliderItem slider;
@@ -842,7 +853,7 @@ std::list<SliderItem>::iterator CStancesPane::GetSlider(UINT controlId)
 {
     bool bFound = false;
     std::list<SliderItem>::iterator it = m_sliders.begin();
-    while (!bFound && it != m_sliders.end())
+    while (!bFound&& it != m_sliders.end())
     {
         if ((*it).m_sliderControlId == controlId)
         {
@@ -857,18 +868,18 @@ std::list<SliderItem>::iterator CStancesPane::GetSlider(UINT controlId)
     return it;
 }
 
-const SliderItem * CStancesPane::GetSlider(
+const SliderItem* CStancesPane::GetSlider(
         const std::string& name) const
 {
-    const SliderItem * pSlider = NULL;
+    const SliderItem* pSlider = NULL;
     bool bFound = false;
     std::list<SliderItem>::const_iterator it = m_sliders.begin();
-    while (!bFound && it != m_sliders.end())
+    while (!bFound&& it != m_sliders.end())
     {
         if ((*it).m_name == name)
         {
             bFound = true;  // this is the droid we're looking for
-            pSlider = &(*it);
+            pSlider =&(*it);
         }
         else
         {
@@ -887,13 +898,13 @@ bool CStancesPane::IsStanceActive(const std::string& name, WeaponType wt) const
     // "<number>% <stance name>"
     size_t percentPos = name.find("%");
     if (percentPos != std::string::npos
-            && percentPos + 2 <= name.length()) // don't crash on badly formatted stance name
+           && percentPos + 2 <= name.length()) // don't crash on badly formatted stance name
     {
         // this is a special stance
         int value = atoi(name.c_str());
         // identify the slider stance in question
         std::string stanceName = name.substr(name.find('%') + 2, 50);
-        const SliderItem * pSlider = GetSlider(stanceName);
+        const SliderItem* pSlider = GetSlider(stanceName);
         if (pSlider != NULL)
         {
             // if the value is negative its an under comparison else its an over
@@ -999,7 +1010,7 @@ StanceGroup* CStancesPane::CreateStanceGroup(
     for (auto&& sgit: m_stanceGroups)
     {
         if (sgit->GroupName() != "User"
-            && sgit->GroupName() != "Auto")
+           && sgit->GroupName() != "Auto")
         {
             orderedStanceGroups.push_back(sgit);
         }
@@ -1011,4 +1022,126 @@ StanceGroup* CStancesPane::CreateStanceGroup(
     // now assign the ordered group list
     m_stanceGroups = orderedStanceGroups;
     return sg;
+}
+
+void CStancesPane::UpdateGreensteelStances()
+{
+    Stance dominion("Dominion", "Dominion", "Dominion", "Auto", true);
+    Stance escalation("Escalation", "Escalation", "Escalation", "Auto", true);
+    Stance opposition("Opposition", "Opposition", "Opposition", "Auto", true);
+    Stance ethereal("Ethereal", "Ethereal", "Ethereal", "Auto", true);
+    Stance material("Material", "Material", "Material", "Auto", true);
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
+    {
+        StanceGroup* asg = GetStanceGroup("Auto");
+        // active stance is based on:
+        // Must have at least 2 Greensteel items equipped
+        EquippedGear gear = pBuild->ActiveGearSet();
+        size_t greensteelItemCount = 0;
+        for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+        {
+            // only equipment items count towards Greensteel set bonuses
+            if (gear.HasItemInSlot((InventorySlotType)i)
+               && i != Inventory_Weapon1
+               && i != Inventory_Weapon2)
+            {
+                Item item = gear.ItemInSlot((InventorySlotType)i);
+                if (item.HasIsGreensteel())
+                {
+                    ++greensteelItemCount;
+                }
+            }
+        }
+        if (greensteelItemCount >= 2)
+        {
+            // Must have a dominant stance to be enabled
+            // count can be found by seeing how many stacks a given stance has
+            size_t dominionCount = pBuild->SetBonusCount("Dominion");
+            size_t escalationCount = pBuild->SetBonusCount("Escalation");
+            size_t oppositionCount = pBuild->SetBonusCount("Opposition");
+            size_t etherealCount = pBuild->SetBonusCount("Ethereal");
+            size_t materialCount = pBuild->SetBonusCount("Material");
+            if (dominionCount > max(escalationCount, oppositionCount))
+            {
+                pBuild->ActivateStance(dominion, asg);
+            }
+            else
+            {
+                pBuild->DeactivateStance(dominion);
+            }
+            if (escalationCount > max(dominionCount, oppositionCount))
+            {
+                pBuild->ActivateStance(escalation, asg);
+            }
+            else
+            {
+                pBuild->DeactivateStance(escalation);
+            }
+            if (oppositionCount > max(dominionCount, escalationCount))
+            {
+                if (dominionCount == escalationCount)
+                {
+                    pBuild->ActivateStance(opposition, asg);
+                }
+                else
+                {
+                    // Opposition dominance only occurs when ALL augments are "Opposition"
+                    // any other type present and the bonus does not apply
+                    pBuild->DeactivateStance(opposition);
+                }
+            }
+            else
+            {
+                pBuild->DeactivateStance(opposition);
+            }
+            // requires 4 or more item for material/ethereal dominance set bonus
+            if (greensteelItemCount >= 4)
+            {
+                // its either material or ethereal dominance
+                if (etherealCount > 0&& etherealCount > materialCount)
+                {
+                    pBuild->ActivateStance(ethereal, asg);
+                }
+                else
+                {
+                    pBuild->DeactivateStance(ethereal);
+                }
+                if (materialCount > 0&& materialCount > etherealCount)
+                {
+                    pBuild->ActivateStance(material, asg);
+                }
+                else
+                {
+                    pBuild->DeactivateStance(material);
+                }
+            }
+            else
+            {
+                pBuild->DeactivateStance(ethereal);
+                pBuild->DeactivateStance(material);
+            }
+        }
+        else
+        {
+            // one or less items equipped, Greensteel set bonus's disabled
+            pBuild->DeactivateStance(dominion);
+            pBuild->DeactivateStance(escalation);
+            pBuild->DeactivateStance(opposition);
+            pBuild->DeactivateStance(ethereal);
+            pBuild->DeactivateStance(material);
+        }
+        if (IsWindow(GetSafeHwnd()))
+        {
+            // now force an on size event to position everything
+            CRect rctWnd;
+            GetClientRect(&rctWnd);
+            OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+        }
+    }
+}
+
+const std::list<StanceGroup*>& CStancesPane::Groups() const
+{
+    return m_stanceGroups;
 }

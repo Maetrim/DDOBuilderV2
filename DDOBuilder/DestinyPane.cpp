@@ -419,7 +419,6 @@ void CDestinyPane::CreateEnhancementWindows()
                 dlg->ShowWindow(SW_SHOW);
                 m_treeViews.push_back(dlg);
             }
-            // TBD this is just so they all get shown for now
             m_visibleTrees.push_back(m_visibleTrees.size());
         }
         UnlockWindowUpdate();

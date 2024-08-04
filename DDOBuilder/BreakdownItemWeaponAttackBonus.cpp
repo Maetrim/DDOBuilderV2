@@ -239,6 +239,11 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
             // weapon enchantments affect us if specific weapon
             isUs = true;
         }
+        if (effect.IsType(Effect_WeaponAttackAbilityClass))
+        {
+            // weapon enchantments affect us if specific weapon
+            isUs = true;
+        }
         if (effect.IsType(Effect_Weapon_Attack))
         {
             isUs = true;
@@ -319,7 +324,8 @@ void BreakdownItemWeaponAttackBonus::FeatEffectApplied(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.IsType(Effect_Weapon_AttackAbility))
+        if (effect.IsType(Effect_Weapon_AttackAbility)
+            || effect.IsType(Effect_WeaponAttackAbilityClass))
         {
             // add to the list of available stats for this weapon
             AbilityType at = TextToEnumEntry(effect.Item().front(), abilityTypeMap);
@@ -351,7 +357,8 @@ void BreakdownItemWeaponAttackBonus::FeatEffectRevoked(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.IsType(Effect_Weapon_AttackAbility))
+        if (effect.IsType(Effect_Weapon_AttackAbility)
+            || effect.IsType(Effect_WeaponAttackAbilityClass))
         {
             // add to the list of available stats for this weapon
             AbilityType at = TextToEnumEntry(effect.Item().front(), abilityTypeMap);
@@ -383,7 +390,8 @@ void BreakdownItemWeaponAttackBonus::ItemEffectApplied(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.IsType(Effect_Weapon_AttackAbility))
+        if (effect.IsType(Effect_Weapon_AttackAbility)
+            || effect.IsType(Effect_WeaponAttackAbilityClass))
         {
             // add to the list of available stats for this weapon
             AbilityType at = TextToEnumEntry(effect.Item().front(), abilityTypeMap);
@@ -415,7 +423,8 @@ void BreakdownItemWeaponAttackBonus::ItemEffectRevoked(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.IsType(Effect_Weapon_AttackAbility))
+        if (effect.IsType(Effect_Weapon_AttackAbility)
+            || effect.IsType(Effect_WeaponAttackAbilityClass))
         {
             // add to the list of available stats for this weapon
             AbilityType at = TextToEnumEntry(effect.Item().front(), abilityTypeMap);
@@ -447,7 +456,8 @@ void BreakdownItemWeaponAttackBonus::EnhancementEffectApplied(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.IsType(Effect_Weapon_AttackAbility))
+        if (effect.IsType(Effect_Weapon_AttackAbility)
+            || effect.IsType(Effect_WeaponAttackAbilityClass))
         {
             // add to the list of available stats for this weapon
             AbilityType at = TextToEnumEntry(effect.Item().front(), abilityTypeMap);
@@ -479,7 +489,8 @@ void BreakdownItemWeaponAttackBonus::EnhancementEffectRevoked(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.IsType(Effect_Weapon_AttackAbility))
+        if (effect.IsType(Effect_Weapon_AttackAbility)
+            || effect.IsType(Effect_WeaponAttackAbilityClass))
         {
             // add to the list of available stats for this weapon
             AbilityType at = TextToEnumEntry(effect.Item().front(), abilityTypeMap);

@@ -25,6 +25,8 @@
 #include "BreakdownItem.h"
 #include "LegacyEnhancementSelectedTrees.h"
 #include "LegacyDestinySelectedTrees.h"
+#include "SpellsPane.h"
+#include "SpellsPage.h"
 
 #define DL_ELEMENT Build
 
@@ -88,7 +90,7 @@ Build::Build(Life * pParentLife) :
     m_Class1 = Class_Unknown;
     m_Class2 = Class_Unknown;
     m_Class3 = Class_Unknown;
-    UpdateFeats();
+    UpdateFeats(false);
     UpdateSkillPoints();
     // by default they start with 1 gear layout called "Standard"
     EquippedGear gear("Standard");  // with no items yet selected
@@ -143,6 +145,11 @@ void Build::Write(XmlLib::SaxWriter * writer) const
 void Build::SetLifePointer(Life* pLife)
 {
     m_pLife = pLife;
+}
+
+Life* Build::GetLife()
+{
+    return m_pLife;
 }
 
 CString Build::UIDescription(size_t buildIndex) const
@@ -253,7 +260,7 @@ void Build::BuildNowActive()
         m_destinyTreeSpend += tit.Spent();
     }
     // needs to be before Notify to avoid multiple feat notifications
-    UpdateFeats();
+    UpdateFeats(false);
     m_pLife->NotifyActiveBuildChanged();
     // first notify all the feat effects for this builds level (trained and automatic)
     std::list<TrainedFeat> feats = CurrentFeats(Level());
@@ -312,7 +319,7 @@ void Build::BuildNowActive()
     ApplySelfAndPartyBuffs();
     m_previousGuildLevel = 0;   // ensure all effects apply
     ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
-    //UpdateGreensteelStances();
+    UpdateGreensteelStances();
     //NotifyAllSelfAndPartyBuffs();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
     m_bSwitchingBuildsOrGear = false;
@@ -364,7 +371,8 @@ void Build::SetLevel(size_t level)
         }
         m_Levels.push_back(lt);
     }
-    UpdateFeats();
+    UpdateCachedClassLevels();
+    UpdateFeats(true);
     UpdateSkillPoints();
     UpdateSpells();
     VerifyTrainedFeats();
@@ -654,7 +662,7 @@ void Build::SetClass1(const std::string& ct)
         }
     }
     UpdateSpells();
-    UpdateFeats();
+    UpdateFeats(true);
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
     VerifyGear();
@@ -704,7 +712,7 @@ void Build::SetClass2(const std::string& ct)
         }
     }
     UpdateSpells();
-    UpdateFeats();
+    UpdateFeats(true);
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
     VerifyGear();
@@ -748,7 +756,7 @@ void Build::SetClass3(const std::string& ct)
         }
     }
     UpdateSpells();
-    UpdateFeats();
+    UpdateFeats(true);
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
     VerifyGear();
@@ -793,7 +801,7 @@ void Build::SetClass(size_t level, const std::string& ct)
         SetModifiedFlag(TRUE);
     }
     UpdateSpells();
-    UpdateFeats();
+    UpdateFeats(true);
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
     VerifyGear();
@@ -820,7 +828,8 @@ bool Build::RevokeClass(const std::string& ct)
     }
     if (hadRevoke)
     {
-        UpdateFeats();
+        UpdateCachedClassLevels();
+        UpdateFeats(true);
         VerifyTrainedFeats();
         VerifyGear();
     }
@@ -1370,7 +1379,7 @@ void Build::TrainFeat(
 
         NotifyFeatTrained(featName);
         // some automatic feats may have changed due to the trained feat
-        UpdateFeats();
+        UpdateFeats(true);
         // a feat change can invalidate a feat selection at a later level
         VerifyTrainedFeats();
         SetModifiedFlag(TRUE);
@@ -1948,6 +1957,30 @@ std::list<TrainedSpell> Build::TrainedSpells(
     return spells;
 }
 
+std::list<TrainedSpell> Build::FixedSpells(
+    const std::string& classType,
+    size_t level) const
+{
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    CSpellsPane* pSpellsPane = dynamic_cast<CSpellsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CSpellsPane)));
+    // return the list of trained spells for this class at this level
+    std::list<TrainedSpell> spells;
+    if (pSpellsPane != NULL)
+    {
+        CSpellsPage* pClassSpells = pSpellsPane->GetClassSpells(classType);
+        if (pClassSpells != NULL)
+        {
+            CSpellsControl* pControl = pClassSpells->SpellsControl();
+            if (pControl != NULL)
+            {
+                spells = pControl->FixedSpells(level);
+            }
+        }
+    }
+    return spells;
+}
+
 void Build::TrainSpell(
         const std::string& ct,
         size_t level,
@@ -2079,7 +2112,7 @@ void Build::RevokeSpellEffects(const std::string& ct, const std::string& spellNa
     }
 }
 
-void Build::UpdateFeats()
+void Build::UpdateFeats(bool bApplyEffects)
 {
     // we start with any special feats (past lives etc)
     std::list<TrainedFeat> allFeats = SpecialFeats();
@@ -2087,7 +2120,7 @@ void Build::UpdateFeats()
     // also, update each level with the trainable feat types
     for (size_t level = 0; level < Level(); ++level)
     {
-        UpdateFeats(level, &allFeats);
+        UpdateFeats(level, &allFeats, bApplyEffects);
     }
     NotifyBuildAutomaticFeatsChanged((size_t)-1);
     //KeepGrantedFeatsUpToDate();
@@ -2095,7 +2128,8 @@ void Build::UpdateFeats()
 
 void Build::UpdateFeats(
         size_t level,
-        std::list<TrainedFeat>* allFeats)
+        std::list<TrainedFeat>* allFeats,
+        bool bApplyEffects)
 {
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     std::advance(it, level);
@@ -2111,18 +2145,24 @@ void Build::UpdateFeats(
     // have the automatic feats at this level changed?
     if (automaticFeats != oldFeats)
     {
-        // first revoke the feats at this level then apply the new ones
-        for (auto&& ofit: oldFeats)
+        if (bApplyEffects)
         {
-            const Feat & feat = FindFeat(ofit.FeatName());
-            RevokeFeatEffects(feat);
+            // first revoke the feats at this level then apply the new ones
+            for (auto&& ofit: oldFeats)
+            {
+                const Feat & feat = FindFeat(ofit.FeatName());
+                RevokeFeatEffects(feat);
+            }
         }
         (*it).Set_AutomaticFeats(automaticFeats);
-        // now apply the new automatic feats
-        for (auto&& afit: automaticFeats)
+        if (bApplyEffects)
         {
-            const Feat & feat = FindFeat(afit.FeatName());
-            ApplyFeatEffects(feat);
+            // now apply the new automatic feats
+            for (auto&& afit: automaticFeats)
+            {
+                const Feat & feat = FindFeat(afit.FeatName());
+                ApplyFeatEffects(feat);
+            }
         }
         NotifyBuildAutomaticFeatsChanged(level);
     }
@@ -2256,7 +2296,7 @@ void Build::VerifyGear()
     }
     if (revokeOccurred)
     {
-        //UpdateGreensteelStances();      // only on gear changes
+        UpdateGreensteelStances();      // only on gear changes
     }
 }
 
@@ -2886,10 +2926,10 @@ void Build::TrainSpecialFeat(const std::string& featName)
         {
             // either of the completionist feats may now be available
             std::list<TrainedFeat> allFeats = SpecialFeats();
-            UpdateFeats(0, &allFeats);      // racial completionist state may have changed
+            UpdateFeats(0, &allFeats, true);      // racial completionist state may have changed
             if (Level() >= 3)
             {
-                UpdateFeats(2, &allFeats);      // completionist state may have changed
+                UpdateFeats(2, &allFeats, true);      // completionist state may have changed
             }
         }
     }
@@ -2947,10 +2987,10 @@ void Build::RevokeSpecialFeat(const std::string& featName, bool bOverride)
     {
         // either of the completionist feats may no longer be available
         std::list<TrainedFeat> allFeats = SpecialFeats();
-        UpdateFeats(0, &allFeats);      // racial completionist state may have changed
+        UpdateFeats(0, &allFeats, true);      // racial completionist state may have changed
         if (Level() >= 3)
         {
-            UpdateFeats(2, &allFeats);      // completionist state may have changed
+            UpdateFeats(2, &allFeats, true);      // completionist state may have changed
         }
     }
 }
@@ -4298,7 +4338,7 @@ void Build::SetGear(
         }
     }
     NotifyGearChanged(slot);
-    //UpdateGreensteelStances();
+    UpdateGreensteelStances();
     SetModifiedFlag(TRUE);
 }
 
@@ -4944,6 +4984,19 @@ const std::list<StackTracking>& Build::ActiveSets() const
     return m_setBonusStacks;
 }
 
+int Build::SetBonusCount(const std::string& setName) const
+{
+    int count = 0;
+    for (auto&& it: m_setBonusStacks)
+    {
+        if (it.Name() == setName)
+        {
+            count = static_cast<int>(it.Stacks());
+        }
+    }
+    return count;
+}
+
 void Build::SetupDefaultWeaponGroups()
 {
     m_weaponGroups.clear();
@@ -5141,6 +5194,16 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
         effect.SetIsItemSpecific();
         NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
+    {
+        Effect effect(
+            Effect_Weapon_VorpalRange,
+            "Base Vorpal Range",
+            "Base",
+            1);
+        effect.AddItem(wt);
+        effect.SetIsItemSpecific();
+        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
+    }
     if (item.HasCriticalMultiplier())
     {
         Effect effect(
@@ -5230,6 +5293,16 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
                 "Base Weapon Range",
                 "Base",
                 item.CriticalThreatRange());
+        effect.AddItem(wt);
+        effect.SetIsItemSpecific();
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
+    }
+    {
+        Effect effect(
+            Effect_Weapon_VorpalRange,
+            "Base Vorpal Range",
+            "Base",
+            1);
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
         NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
@@ -5972,5 +6045,16 @@ void Build::RemoveEffectFromList(std::list<Effect>& list, const Effect& effect)
         {
             ++it;
         }
+    }
+}
+
+void Build::UpdateGreensteelStances()
+{
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    CStancesPane* pStancesPane = dynamic_cast<CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
+    if (pStancesPane != NULL)
+    {
+        pStancesPane->UpdateGreensteelStances();
     }
 }

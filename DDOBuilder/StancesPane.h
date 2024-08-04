@@ -12,8 +12,8 @@ struct SliderItem
 public:
     UINT m_sliderControlId;
     std::string m_name;
-    CStatic * m_label;
-    CSliderCtrl * m_slider;
+    CStatic* m_label;
+    CSliderCtrl* m_slider;
     size_t m_creationCount;
     int m_position;
     int m_sliderMin;
@@ -57,13 +57,16 @@ class CStancesPane :
 #endif
 #endif
         virtual void OnInitialUpdate();
-        const std::vector<CStanceButton *> & UserStances() const;
-        const std::vector<CStanceButton *> & AutoStances() const;
+        const std::vector<CStanceButton*>& UserStances() const;
+        const std::vector<CStanceButton*>& AutoStances() const;
         StanceGroup* GetStanceGroup(CStanceButton* pButton);
         StanceGroup* GetStanceGroup(const std::string& name);
-        const CStanceButton * GetStance(const std::string& stanceName);
+        const CStanceButton* GetStance(const std::string& stanceName);
         bool IsStanceActive(const std::string& name, WeaponType wt) const;
-        const SliderItem * GetSlider(const std::string& name) const;
+        const SliderItem* GetSlider(const std::string& name) const;
+        void UpdateGreensteelStances();
+        const std::list<StanceGroup*>& Groups() const;
+
     protected:
         CStancesPane();           // protected constructor used by dynamic creation
         virtual ~CStancesPane();
@@ -75,7 +78,7 @@ class CStancesPane :
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
-        afx_msg void OnHScroll(UINT sbCode, UINT nPos, CScrollBar * pScrollbar);
+        afx_msg void OnHScroll(UINT sbCode, UINT nPos, CScrollBar* pScrollbar);
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -102,32 +105,32 @@ class CStancesPane :
         virtual void UpdateGearChanged(Build*, InventorySlotType) override;
 
         void CreateStanceWindows();
-        void AddStance(const Stance & stance);
-        void RevokeStance(const Stance & stance);
+        void AddStance(const Stance& stance);
+        void RevokeStance(const Stance& stance);
         void DestroyAllStances();
         void UpdateStanceStates();
         void DestroyStances(std::vector<CStanceButton*>& items);
 
-        void PositionWindow(CWnd * pWnd, CRect * itemRect, int maxX);
-        void ShowTip(const CStanceButton & item, CRect itemRect);
+        void PositionWindow(CWnd* pWnd, CRect* itemRect, int maxX);
+        void ShowTip(const CStanceButton& item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const CStanceButton & item, CPoint tipTopLeft, CPoint tipAlternate);
-        void UpdateSliders(const Effect & effect, bool bApply);
-        std::list<SliderItem>::iterator GetSlider(const Effect & effect, bool bCreateIfMissing);
+        void SetTooltipText(const CStanceButton& item, CPoint tipTopLeft, CPoint tipAlternate);
+        void UpdateSliders(const Effect& effect, bool bApply);
+        std::list<SliderItem>::iterator GetSlider(const Effect& effect, bool bCreateIfMissing);
         std::list<SliderItem>::iterator GetSlider(UINT controlId);
 
         StanceGroup* CreateStanceGroup(const std::string& strName, bool singleSelection);
         void PositionStanceGroup(StanceGroup& sg, CRect* pGroupRect, CRect* pItemRect, int maxX);
 
-        CDocument * m_pDocument;
-        Character * m_pCharacter;
+        CDocument* m_pDocument;
+        Character* m_pCharacter;
         std::list<SliderItem> m_sliders;
         CStatic m_staticHiddenSizer;
         std::list<StanceGroup*> m_stanceGroups;
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
-        const CStanceButton * m_pTooltipItem;
+        const CStanceButton* m_pTooltipItem;
         UINT m_nextStanceId;
         UINT m_nextSliderId;
         bool m_bHadInitialUpdate;

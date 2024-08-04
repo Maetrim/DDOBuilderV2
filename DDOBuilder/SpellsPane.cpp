@@ -136,6 +136,43 @@ LRESULT CSpellsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     return 0L;
 }
 
+CSpellLikeAbilityPage* CSpellsPane::GetSLAPage()
+{
+    CSpellLikeAbilityPage* pPage = NULL;
+    for (size_t i = 0; i < m_pagePointers.size(); ++i)
+    {
+        if (m_pagePointers[i] != NULL)
+        {
+            CSpellLikeAbilityPage* pSLAPage = dynamic_cast<CSpellLikeAbilityPage*>(m_pagePointers[i]);
+            if (pSLAPage != NULL)
+            {
+                pPage = pSLAPage;
+            }
+        }
+    }
+    return pPage;
+}
+
+CSpellsPage* CSpellsPane::GetClassSpells(const std::string& classType)
+{
+    CSpellsPage* pPage = NULL;
+    for (size_t i = 0; i < m_pagePointers.size(); ++i)
+    {
+        if (m_pagePointers[i] != NULL)
+        {
+            CSpellsPage* pSpellsPage = dynamic_cast<CSpellsPage*>(m_pagePointers[i]);
+            if (pSpellsPage != NULL)
+            {
+                if (pSpellsPage->IsClassType(classType))
+                {
+                    pPage = pSpellsPage;
+                }
+            }
+        }
+    }
+    return pPage;
+}
+
 BOOL CSpellsPane::OnEraseBkgnd(CDC* pDC)
 {
     static int controlsNotToBeErased[] =

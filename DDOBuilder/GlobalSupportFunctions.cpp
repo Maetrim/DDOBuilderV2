@@ -2184,6 +2184,25 @@ std::string ReplaceAll(
     return str;
 }
 
+std::string ExtractBlock(std::string str, const std::string& from, const std::string& to)
+{
+    std::string strRet;
+    size_t start_pos = 0;
+    start_pos = str.find(from, start_pos);
+    if (start_pos != std::string::npos)
+    {
+        size_t end_pos = str.find(to, start_pos);
+        if (end_pos != std::string::npos)
+        {
+            // we found both the start and end tags
+            // we are interested in. Return full content from
+            // start to end
+            strRet = str.substr(start_pos, end_pos - start_pos + to.size());
+        }
+    }
+    return strRet;
+}
+
 bool DarkModeEnabled()
 {
     bool bDarkMode = (theApp.m_nAppLook == ID_VIEW_APPLOOK_OFF_2007_BLACK);

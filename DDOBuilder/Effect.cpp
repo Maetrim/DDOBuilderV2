@@ -998,6 +998,9 @@ std::string Effect::StacksAsString() const
     case Amount_SliderValue:
         ss << m_stacks;
         break;
+    case Amount_SetBonusCount:
+        ss << m_pBuild->SetBonusCount(StackSource()) << " Set Bonus Count";
+        break;
     }
     return ss.str();
 }
@@ -1097,6 +1100,28 @@ double Effect::TotalAmount(bool allowTruncate) const
                 {
                     std::stringstream ss;
                     ss << "Effect \"" << DisplayName() << "\" has incorrect Amount vector size. Stacks present are " << level;
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                total = m_Amount[vi] * m_stacks;
+                break;
+            }
+        case Amount_SetBonusCount:
+            // StackSource specifies the set bonus in question
+            {
+                if (!HasStackSource())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" missing StackSource";
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                size_t count = m_pBuild->SetBonusCount(StackSource());
+                // vector lookup
+                int vi = min(count, m_Amount.size() - 1);
+                if (vi < 0
+                    || count > m_Amount.size())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" has incorrect Amount vector size. Stacks present are " << count;
                     GetLog().AddLogEntry(ss.str().c_str());
                 }
                 total = m_Amount[vi] * m_stacks;

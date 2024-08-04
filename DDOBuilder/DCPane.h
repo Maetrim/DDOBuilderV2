@@ -9,7 +9,6 @@
 
 class CDCPane :
     public CFormView,
-    public CharacterObserver,
     public LifeObserver,
     public BuildObserver
 {
@@ -25,6 +24,7 @@ class CDCPane :
 #endif
         virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
         virtual void OnInitialUpdate();
+        void BuildChanging();
 
         const std::vector<CDCButton *> & DCs() const;
     protected:
@@ -40,9 +40,6 @@ class CDCPane :
         DECLARE_MESSAGE_MAP()
 
     private:
-        // CharacterObserver
-        virtual void UpdateActiveBuildChanged(Character * pCharacter) override;
-
         // BuildObserver
         virtual void UpdateNewDC(Build* pBuild, const DC& dc) override;
         virtual void UpdateRevokeDC(Build* pBuild, const DC& dc) override;

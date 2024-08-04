@@ -125,11 +125,6 @@ void CBreakdownsPane::UpdateBreakdown()
 LRESULT CBreakdownsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
-    if (m_pCharacter != NULL)
-    {
-        m_pCharacter->DetachObserver(this);
-        m_pCharacter = NULL;
-    }
     // wParam is the document pointer
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
@@ -137,16 +132,12 @@ LRESULT CBreakdownsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     {
         m_pCharacter = pCharacter;
         // let all the breakdown items know about the document change
+        BuildChanging();
         for (auto&& iit: m_items)
         {
             iit->BuildChanged(m_pCharacter);
         }
-        if (pCharacter != NULL)
-        {
-            // need to know about gear changes
-            pCharacter->AttachObserver(this);
-        }
-        else
+        if (pCharacter == NULL)
         {
             if (IsWindow(m_itemBreakdownList.GetSafeHwnd()))
             {
@@ -161,27 +152,7 @@ LRESULT CBreakdownsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     return 0L;
 }
 
-void CBreakdownsPane::UpdateActiveLifeChanged(Character*)
-{
-    Life* pLife = m_pCharacter->ActiveLife();
-    Build* pBuild = m_pCharacter->ActiveBuild();
-    if (pLife != NULL
-        && pBuild != NULL)
-    {
-        pLife->AttachObserver(this);
-        pBuild->AttachObserver(this);
-        for (auto&& iit : m_items)
-        {
-            iit->BuildChanged(m_pCharacter);
-        }
-        for (auto&& iit : m_items)
-        {
-            iit->BuildChangeComplete();
-        }
-    }
-}
-
-void CBreakdownsPane::UpdateActiveBuildChanged(Character* pCharacter)
+void CBreakdownsPane::BuildChanging()
 {
     Life* pLife = m_pCharacter->ActiveLife();
     Build* pBuild = m_pCharacter->ActiveBuild();
@@ -201,7 +172,7 @@ void CBreakdownsPane::UpdateActiveBuildChanged(Character* pCharacter)
     }
     if (m_pWeaponEffects != NULL)
     {
-        m_pWeaponEffects->SetCharacter(pCharacter);
+        m_pWeaponEffects->SetCharacter(m_pCharacter);
     }
 }
 

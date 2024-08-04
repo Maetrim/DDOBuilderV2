@@ -18,6 +18,7 @@ class CSpellsPage :
         void SetTrainableSpells(const std::vector<size_t> & spellsPerLevel);
 
         CSpellsControl * SpellsControl();
+        bool IsClassType(const std::string& ct) const;
 
     protected:
         virtual void UpdateFeatEffectApplied(Build*, const Effect& effect) override;

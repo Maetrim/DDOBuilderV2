@@ -91,6 +91,7 @@ class CForumExportDlg : public CDialogEx
         afx_msg void OnItemchangedListConfigureExport(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnMoveUp();
         afx_msg void OnMoveDown();
+        afx_msg void OnSelchangeComboFormat();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
     private:
@@ -156,11 +157,25 @@ class CForumExportDlg : public CDialogEx
         void AddEpicDestinyTree(std::stringstream& forumExport, const SpendInTree& treeSpend);
         void AddReaperTree(std::stringstream& forumExport, const SpendInTree& treeSpend);
 
+        void ApplyFormatSelection(std::string* pContent);
+        void ConvertToPlainText(std::string& content);
+        std::string ConvertTable(std::string tableText);
+
+        struct TableData
+        {
+            std::vector<std::string> data;
+        };
+
+        void ExtractTableRowData(std::string rowText, TableData* pData);
+        void AddHeader(std::string& tableText, const std::vector<size_t>& columnWidths);
+        void AddRow(std::string& tableText, const TableData& rowData, const std::vector<size_t>& columnWidths);
+
         void ExportGear(const EquippedGear& gear, std::stringstream& forumExport, bool bSimple);
         std::list<std::string> GetLevelEntries(size_t level, bool bIncludeSkills);
 
         Build* m_pBuild;
         CListCtrl m_listConfigureExport;
+        CComboBox m_comboFormat;
         CEdit m_editExport;
         CButton m_buttonMoveUp;
         CButton m_buttonMoveDown;
@@ -168,5 +183,6 @@ class CForumExportDlg : public CDialogEx
         bool m_bShowSection[FES_Count];
         ForumExportSections m_SectionOrder[FES_Count];
         bool m_bPopulatingControl;
+        int m_exportType;
 };
 

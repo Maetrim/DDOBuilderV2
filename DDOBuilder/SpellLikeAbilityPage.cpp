@@ -162,3 +162,9 @@ void CSpellLikeAbilityPage::UpdateEnhancementEffectRevoked(
         m_slas.RevokeSLA(effect.Item().front());
     }
 }
+
+CSLAControl* CSpellLikeAbilityPage::Control()
+{
+    return &m_slas;
+}
+

@@ -13,12 +13,17 @@
 #include "GrantedFeatsPane.h"
 #include "EnhancementTreeItem.h"
 #include "SetBonus.h"
+#include "DCPane.h"
+#include "SpellsPane.h"
+#include "SpellLikeAbilityPage.h"
+#include "StancesPane.h"
 #include <numeric>
 
 CForumExportDlg::CForumExportDlg(Build* pBuild) :
     CDialogEx(CForumExportDlg::IDD),
     m_pBuild(pBuild),
-    m_bPopulatingControl(false)
+    m_bPopulatingControl(false),
+    m_exportType(0) // default to Forum BB code
 {
     // read section order and display states from the registry
     for (size_t i = 0; i < FES_Count; ++i)
@@ -30,6 +35,7 @@ CForumExportDlg::CForumExportDlg(Build* pBuild) :
         m_bShowSection[i] = (AfxGetApp()->GetProfileInt("ForumExport", shown, 1) != 0);
         m_SectionOrder[i] = (ForumExportSections)(AfxGetApp()->GetProfileInt("ForumExport", section, i));
     }
+    m_exportType = AfxGetApp()->GetProfileInt("ForumExport", "ExportFormat", m_exportType);
 }
 
 CForumExportDlg::~CForumExportDlg()
@@ -50,6 +56,7 @@ void CForumExportDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_LIST_SECTIONS, m_listConfigureExport);
+    DDX_Control(pDX, IDC_COMBO_FORMAT, m_comboFormat);
     DDX_Control(pDX, IDC_EDIT_EXPORT, m_editExport);
     DDX_Control(pDX, IDC_BUTTON_PROMOTE, m_buttonMoveUp);
     DDX_Control(pDX, IDC_BUTTON_DEMOTE, m_buttonMoveDown);
@@ -59,11 +66,17 @@ BEGIN_MESSAGE_MAP(CForumExportDlg, CDialogEx)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_SECTIONS, OnItemchangedListConfigureExport)
     ON_BN_CLICKED(IDC_BUTTON_PROMOTE, OnMoveUp)
     ON_BN_CLICKED(IDC_BUTTON_DEMOTE, OnMoveDown)
+    ON_CBN_SELCHANGE(IDC_COMBO_FORMAT,&CForumExportDlg::OnSelchangeComboFormat)
 END_MESSAGE_MAP()
 
 BOOL CForumExportDlg::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
+
+    m_comboFormat.ResetContent();
+    m_comboFormat.AddString("Forum BB Code");
+    m_comboFormat.AddString("Plain Text");
+    m_comboFormat.SetCurSel(m_exportType);
 
     // need non-proportional font for the edit control
     LOGFONT lf;
@@ -136,15 +149,15 @@ void CForumExportDlg::OnItemchangedListConfigureExport(NMHDR* pNMHDR, LRESULT* p
         BOOL newCheckState = ((pNMListView->uNewState& LVIS_STATEIMAGEMASK)>>12) - 1;
 
         if (oldCheckState != -1
-               && newCheckState != -1
-               && oldCheckState != newCheckState)
+              && newCheckState != -1
+              && oldCheckState != newCheckState)
         {
             m_bShowSection[pNMListView->iItem] = !m_bShowSection[pNMListView->iItem];
             PopulateExport();
         }
 
         if ((pNMListView->uChanged& LVIF_STATE) 
-               && (pNMListView->uNewState& LVIS_SELECTED))
+              && (pNMListView->uNewState& LVIS_SELECTED))
         {
             // item selection has changed, select it
             int sel = pNMListView->iItem;
@@ -153,7 +166,7 @@ void CForumExportDlg::OnItemchangedListConfigureExport(NMHDR* pNMHDR, LRESULT* p
             m_buttonMoveDown.EnableWindow(sel < FES_Count - 1);
         }
     }
-    *pResult = 0;
+   *pResult = 0;
 }
 
 void CForumExportDlg::PopulateExport()
@@ -246,6 +259,7 @@ void CForumExportDlg::PopulateExport()
     // string on all odd character positions from the start of each line
     std::string generatedData = forumExport.str();
     FormatExportData(&generatedData);
+    ApplyFormatSelection(&generatedData);
     // need to retain the control scroll position
     int pos = m_editExport.GetFirstVisibleLine();
     m_editExport.SetWindowText(generatedData.c_str());
@@ -262,7 +276,7 @@ void CForumExportDlg::OnOK()
     {
         HGLOBAL clipbuffer = ::GlobalAlloc(GMEM_DDESHARE, clipboardText.GetLength()+1);
         ASSERT(clipbuffer != NULL);
-        char *buffer = (char*)::GlobalLock(clipbuffer);
+        char*buffer = (char*)::GlobalLock(clipbuffer);
         strcpy_s(buffer, clipboardText.GetLength()+1, clipboardText);
         ::GlobalUnlock(clipbuffer);
         ::EmptyClipboard();
@@ -346,10 +360,10 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream& forumExport)
     AddBreakdown(forumExport, "      SR: ", 10, Breakdown_SpellResistance);
     AddBreakdown(forumExport, "      BAB: ", 14, Breakdown_BAB);
     forumExport << "\r\n";
-    BreakdownItem * pDR = FindBreakdown(Breakdown_DR);
+    BreakdownItem* pDR = FindBreakdown(Breakdown_DR);
     forumExport << "DR: " << pDR->Value();
     forumExport << "\r\n";
-    BreakdownItem * pImmunities = FindBreakdown(Breakdown_Immunities);
+    BreakdownItem* pImmunities = FindBreakdown(Breakdown_Immunities);
     forumExport << "Immunities: " << pImmunities->Value();
     forumExport << "\r\n\r\n";
 }
@@ -430,7 +444,8 @@ void CForumExportDlg::AddSpecialFeats(std::stringstream& forumExport)
         }
         // sort the feats before output
         feats.sort();
-        AddFeats(forumExport, "Special Feats", "SpecialFeat", feats);
+        AddFeats(forumExport, "Special Feats", "Special", feats);
+        AddFeats(forumExport, "Favor Feats", "Favor", feats);
         forumExport << "\r\n";
     }
 }
@@ -486,14 +501,14 @@ void CForumExportDlg::AddSaves(std::stringstream& forumExport)
     AddTableEntryBreakdown(forumExport, "", "vs Spell", Breakdown_SaveSpell);
     AddTableEntryBreakdown(forumExport, "", "vs Magic", Breakdown_SaveMagic);
     forumExport << "[/TABLE]\r\n";
-    forumExport << "Marked with a * is no fail on a 1 if required DC met\r\n";
+    forumExport << "Marked with a* is no fail on a 1 if required DC met\r\n";
     forumExport << "\r\n";
 }
 
 void CForumExportDlg::AddAbilityValues(std::stringstream& forumExport, AbilityType ability)
 {
     size_t baseValue = m_pBuild->BaseAbilityValue(ability);
-    BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
+    BreakdownItem* pBI = FindBreakdown(StatToBreakdown(ability));
     size_t buffedValue = (size_t)pBI->Total();      // whole numbers only
     size_t tomeValue = m_pBuild->TomeAtLevel(ability, m_pBuild->Level()-1);
     // get the stat name and limit to first 3 character
@@ -542,13 +557,13 @@ void CForumExportDlg::AddBreakdown(
         size_t width,
         BreakdownType bt)
 {
-    BreakdownItem * pBI = FindBreakdown(bt);
+    BreakdownItem* pBI = FindBreakdown(bt);
     int value = static_cast<int>(pBI->CappedTotal());      // whole numbers only
     if (bt == Breakdown_MRR)
     {
-        BreakdownItem * pBIMRRCap = FindBreakdown(Breakdown_MRRCap);
+        BreakdownItem* pBIMRRCap = FindBreakdown(Breakdown_MRRCap);
         if (pBIMRRCap->Total() > 0
-               && pBIMRRCap->Total() < pBI->Total())
+              && pBIMRRCap->Total() < pBI->Total())
         {
             // show that the MRR value is capped
             CString text;
@@ -570,7 +585,7 @@ void CForumExportDlg::AddBreakdown(
         forumExport << header;
         forumExport.width(width);
         forumExport << std::right << value;
-        BreakdownItemSave * pBIS = dynamic_cast<BreakdownItemSave *>(pBI);
+        BreakdownItemSave* pBIS = dynamic_cast<BreakdownItemSave*>(pBI);
         if (pBIS != NULL)
         {
             if (pBIS->HasNoFailOn1())
@@ -625,8 +640,7 @@ void CForumExportDlg::AddGrantedFeats(std::stringstream& forumExport)
 {
     CWnd* pWnd = AfxGetMainWnd();
     CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-    const CGrantedFeatsPane* pGrantedFeatsPane =
-        dynamic_cast<const CGrantedFeatsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CGrantedFeatsPane)));
+    const CGrantedFeatsPane* pGrantedFeatsPane = dynamic_cast<const CGrantedFeatsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CGrantedFeatsPane)));
     if (pGrantedFeatsPane != NULL)
     {
         const std::list<Effect>& grantedFeats = pGrantedFeatsPane->GrantedFeats();
@@ -795,66 +809,45 @@ void CForumExportDlg::AddConsolidatedFeats(std::stringstream& forumExport)
 
 void CForumExportDlg::AddActiveStances(std::stringstream& forumExport)
 {
-    UNREFERENCED_PARAMETER(forumExport);
-    //CWnd * pWnd = AfxGetMainWnd();
-    //CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-    //const CStancesPane* pStancesView = pMainWnd->GetStancesView();
-    //if (pStancesView != NULL)
-    //{
-    //    const std::vector<CStanceButton *>& userStances =
-    //            pStancesView->ActiveUserStances();
-    //    const std::vector<CStanceButton *>& autoStances =
-    //            pStancesView->ActiveAutoStances();
-    //    bool first = true;
-    //    for (size_t i = 0; i < userStances.size(); ++i)
-    //    {
-    //        if (first)
-    //        {
-    //            forumExport << "Active User Controlled Stances\r\n";
-    //            forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //        }
-    //        // this is an active stance
-    //        const Stance& stance = userStances[i]->GetStance();
-    //        forumExport << stance.Name();
-    //        forumExport << "\r\n";
-    //        first = false;
-    //    }
-    //    first = true;
-    //    for (size_t i = 0; i < autoStances.size(); ++i)
-    //    {
-    //        if (first)
-    //        {
-    //            forumExport << "\r\n";
-    //            forumExport << "Active Auto Controlled Stances\r\n";
-    //            forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //        }
-    //        // this is an active stance
-    //        const Stance& stance = autoStances[i]->GetStance();
-    //        forumExport << stance.Name();
-    //        forumExport << "\r\n";
-    //        first = false;
-    //    }
-    //    if (!first)
-    //    {
-    //        forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //        forumExport << "\r\n";
-    //    }
-    //}
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    CStancesPane* pStancePane = dynamic_cast<CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
+    if (pStancePane != NULL)
+    {
+        forumExport << "Active Stances\r\n";
+        forumExport << "------------------------------------------------------------------------------------------\r\n";
+        const std::list<StanceGroup*>& groups = pStancePane->Groups();
+        for (auto&& git: groups)
+        {
+            size_t count = git->NumButtons();
+            for (size_t i = 0; i < count; ++i)
+            {
+                const CStanceButton* pSB = git->GetStance(i);
+                if (pSB->IsSelected())
+                {
+                    forumExport << git->GroupName() << ": ";
+                    forumExport << pSB->Name() << "\r\n";
+                }
+            }
+        }
+        forumExport << "------------------------------------------------------------------------------------------\r\n";
+        forumExport << "\r\n";
+    }
 }
 
 void CForumExportDlg::AddSelfAndPartyBuffs(std::stringstream& forumExport)
 {
     UNREFERENCED_PARAMETER(forumExport);
-    //forumExport << "Self and Party Buffs\r\n";
-    //forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //const std::list<std::string>& buffs = m_pBuild->SelfAndPartyBuffs();
-    //std::list<std::string>::const_iterator it = buffs.begin();
-    //while (it != buffs.end())
-    //{
-    //    forumExport << (*it) << "\r\n";
-    //    ++it;
-    //}
-    //forumExport << "\r\n";
+    forumExport << "Self and Party Buffs\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    const std::list<std::string>& buffs = m_pBuild->GetLife()->SelfAndPartyBuffs();
+    std::list<std::string>::const_iterator it = buffs.begin();
+    while (it != buffs.end())
+    {
+        forumExport << (*it) << "\r\n";
+        ++it;
+    }
+    forumExport << "\r\n";
 }
 
 void CForumExportDlg::AddSkills(std::stringstream& forumExport)
@@ -959,7 +952,7 @@ void CForumExportDlg::AddSkills(std::stringstream& forumExport)
         forumExport << std::fixed << std::right << tome;
         // now add the total for this skill
         BreakdownType bt = SkillToBreakdown((SkillType)skill);
-        BreakdownItem * pBI = FindBreakdown(bt);
+        BreakdownItem* pBI = FindBreakdown(bt);
         forumExport.width(7);              // xxx.y
         forumExport << std::fixed << std::right << pBI->Total();
         forumExport << "\r\n";     // end of this skill line
@@ -1012,7 +1005,7 @@ void CForumExportDlg::AddSkillsAtLevel(size_t level, std::stringstream& forumExp
     for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
     {
         if (skillRanks[skill] > 0
-               && c.IsClassSkill((SkillType)skill))
+              && c.IsClassSkill((SkillType)skill))
         {
             if (numAdded > 0)
             {
@@ -1036,7 +1029,7 @@ void CForumExportDlg::AddSkillsAtLevel(size_t level, std::stringstream& forumExp
     for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
     {
         if (skillRanks[skill] > 0
-               && !c.IsClassSkill((SkillType)skill))
+              && !c.IsClassSkill((SkillType)skill))
         {
             if (numAdded > 0)
             {
@@ -1100,9 +1093,9 @@ void CForumExportDlg::AddEnergyResistances(
 {
     forumExport << "[TR][TD]";
     forumExport << name << "[/TD][TD]";
-    BreakdownItem * pB1 = FindBreakdown(bt1);
+    BreakdownItem* pB1 = FindBreakdown(bt1);
     forumExport << (int)pB1->Total() << "[/TD][TD]";
-    BreakdownItem * pB2 = FindBreakdown(bt2);
+    BreakdownItem* pB2 = FindBreakdown(bt2);
     forumExport << (int)pB2->Total() << "%[/TD][/TR]\r\n";
 }
 
@@ -1132,10 +1125,10 @@ void CForumExportDlg::AddEnhancements(std::stringstream& forumExport)
             // this is a tree we have to list
             SpendInTree* treeSpend = m_pBuild->FindSpendInTree(treeName);
             if (treeSpend != NULL
-                   && treeSpend->Spent() > 0)
+                  && treeSpend->Spent() > 0)
             {
                 // tree can be selected and have no enhancements trained, thus not be present
-                AddEnhancementTree(forumExport, *treeSpend);
+                AddEnhancementTree(forumExport,*treeSpend);
             }
         }
     }
@@ -1163,10 +1156,10 @@ void CForumExportDlg::AddEpicDestinyTree(
             // this is a tree we have to list
             SpendInTree* treeSpend = m_pBuild->FindSpendInTree(treeName);
             if (treeSpend != NULL
-                   && treeSpend->Spent() > 0)
+                  && treeSpend->Spent() > 0)
             {
                 // tree can be selected and have no enhancements trained, thus not be present
-                AddEpicDestinyTree(forumExport, *treeSpend);
+                AddEpicDestinyTree(forumExport,*treeSpend);
             }
         }
     }
@@ -1182,19 +1175,19 @@ void CForumExportDlg::AddReaperTrees(std::stringstream& forumExport)
     if (treeSpend != NULL)
     {
         // tree can be selected and have no enhancements trained, thus not be present
-        AddReaperTree(forumExport, *treeSpend);
+        AddReaperTree(forumExport,*treeSpend);
     }
     treeSpend = m_pBuild->FindSpendInTree("Dire Thaumaturge");
     if (treeSpend != NULL)
     {
         // tree can be selected and have no enhancements trained, thus not be present
-        AddReaperTree(forumExport, *treeSpend);
+        AddReaperTree(forumExport,*treeSpend);
     }
     treeSpend = m_pBuild->FindSpendInTree("Grim Barricade");
     if (treeSpend != NULL)
     {
         // tree can be selected and have no enhancements trained, thus not be present
-        AddReaperTree(forumExport, *treeSpend);
+        AddReaperTree(forumExport,*treeSpend);
     }
 }
 
@@ -1212,7 +1205,7 @@ void CForumExportDlg::AddEnhancementTree(
     std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
     while (it != enhancements.end())
     {
-        const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+        const EnhancementTreeItem* item = FindEnhancement((*it).EnhancementName());
         if (item != NULL)
         {
             // show the tier of the enhancement
@@ -1261,7 +1254,7 @@ void CForumExportDlg::AddEpicDestinyTree(
     std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
     while (it != enhancements.end())
     {
-        const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+        const EnhancementTreeItem* item = FindEnhancement((*it).EnhancementName());
         if (item != NULL)
         {
             // show the tier of the enhancement
@@ -1310,7 +1303,7 @@ void CForumExportDlg::AddReaperTree(
     std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
     while (it != enhancements.end())
     {
-        const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+        const EnhancementTreeItem* item = FindEnhancement((*it).EnhancementName());
         if (item != NULL)
         {
             // show the tier of the enhancement
@@ -1375,18 +1368,18 @@ void CForumExportDlg::AddSpellPower(
     forumExport << label;
     // spell power
     forumExport << "          ";
-    BreakdownItem * pBPower = FindBreakdown(btPower);
+    BreakdownItem* pBPower = FindBreakdown(btPower);
     forumExport.width(4);
     forumExport << std::right << (int)pBPower->Total();
     // spell critical chance
     forumExport << "     ";
-    BreakdownItem * pBCrit = FindBreakdown(btCrit);
+    BreakdownItem* pBCrit = FindBreakdown(btCrit);
     forumExport.width(3);
     forumExport << std::right << (int)pBCrit->Total();
     forumExport << "%";
     // multiplier
     forumExport << "               ";
-    BreakdownItem * pBMult = FindBreakdown(btMult);
+    BreakdownItem* pBMult = FindBreakdown(btMult);
     forumExport.width(3);
     forumExport << std::right << (int)pBMult->Total();
     forumExport << "\r\n";
@@ -1439,15 +1432,13 @@ void CForumExportDlg::AddSpells(std::stringstream& forumExport)
                     "[/TR]\r\n";
                 for (size_t spellLevel = 0; spellLevel < spellSlots.size(); ++spellLevel)
                 {
-                    //// now output each fixed spell
-                    //std::list<TrainedSpell> fixedSpells = m_pBuild->FixedSpells(
-                    //        c.Name(), spellLevel); // 0 based
-                    //AddSpellList(
-                    //        forumExport,
-                    //        c.Name(),
-                    //        fixedSpells,
-                    //        spellLevel,
-                    //        spellSlots.size());
+                    // now output each fixed spell
+                    std::list<TrainedSpell> fixedSpells = m_pBuild->FixedSpells(
+                            c.Name(), spellLevel); // 0 based
+                    AddSpellList(
+                            forumExport,
+                            fixedSpells,
+                            spellLevel);
                     // now output each selected spell
                     std::list<TrainedSpell> trainedSpells = m_pBuild->TrainedSpells(
                             c.Name(), spellLevel + 1); // 1 based
@@ -1527,44 +1518,42 @@ void CForumExportDlg::AddSpellList(
 
 void CForumExportDlg::AddSLAs(std::stringstream& forumExport)
 {
-    UNREFERENCED_PARAMETER(forumExport);
-    forumExport << "TBD - SLA EXPORT REWORK REQUIRED\r\n";
-    //bool first = true;
-    //// find the SLA control view and ask it for the list of SLAs
-    //CWnd * pWnd = AfxGetMainWnd();
-    //CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-    //const CSLAControl * slaControl = pMainWnd->GetSLAControl();
-    //if (slaControl != NULL)
-    //{
-    //    const std::list<SLA>& slas = slaControl->SLAs();
-    //    std::list<SLA>::const_iterator it = slas.begin();
-    //    while (it != slas.end())
-    //    {
-    //        if (first)
-    //        {
-    //            forumExport << "Spell Like / Special Abilities\r\n";
-    //            forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //            first = false;
-    //        }
-    //        forumExport.width(44);
-    //        forumExport << std::left << (*it).Name();
-    //        forumExport << "\r\n";
-    //        ++it;
-    //    }
-    //}
-    //if (!first)
-    //{
-    //    forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //    forumExport << "\r\n";
-    //}
+    bool first = true;
+    // find the SLA control view and ask it for the list of SLAs
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    CSpellsPane* pSpellsPane = dynamic_cast<CSpellsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CSpellsPane)));
+    if (pSpellsPane != NULL)
+    {
+        CSpellLikeAbilityPage* pSLAPage = pSpellsPane->GetSLAPage();
+        const std::list<SLA>& slas = pSLAPage->Control()->SLAs();
+        std::list<SLA>::const_iterator it = slas.begin();
+        while (it != slas.end())
+        {
+            if (first)
+            {
+                forumExport << "Spell Like / Special Abilities\r\n";
+                forumExport << "------------------------------------------------------------------------------------------\r\n";
+                first = false;
+            }
+            forumExport.width(44);
+            forumExport << std::left << (*it).Name();
+            forumExport << "\r\n";
+            ++it;
+        }
+    }
+    if (!first)
+    {
+        forumExport << "------------------------------------------------------------------------------------------\r\n";
+        forumExport << "\r\n";
+    }
 }
 
 void CForumExportDlg::AddWeaponDamage(std::stringstream& forumExport)
 {
-    forumExport << "TBD - WEAPON DAMAGE REWORK REQUIRED\r\n";
     forumExport << "Weapon Damage\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
-    BreakdownItem * pBI = FindBreakdown(Breakdown_MeleePower);
+    BreakdownItem* pBI = FindBreakdown(Breakdown_MeleePower);
     forumExport << "Melee Power:  " << pBI->Total() << "\r\n";
     AddBreakdown(forumExport, "Doublestrike: ", 1, Breakdown_DoubleStrike);
     forumExport << "%\r\n";
@@ -1604,7 +1593,7 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream& forumExport)
         pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
         if (pBI != NULL)
         {
-            BreakdownItemWeaponEffects * pBIWE = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            BreakdownItemWeaponEffects* pBIWE = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
             if (pBIWE != NULL)
             {
                 pBIWE->AddForumExportData(forumExport);
@@ -1616,37 +1605,26 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream& forumExport)
 
 void CForumExportDlg::AddTacticalDCs(std::stringstream& forumExport)
 {
-    UNREFERENCED_PARAMETER(forumExport);
-    forumExport << "TBD - TACTICAL DC REWORK REQUIRED\r\n";
-    //CWnd * pWnd = AfxGetMainWnd();
-    //CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-    //const CDCView * pDCView = pMainWnd->GetDCView();
-    //if (pDCView != NULL)
-    //{
-    //    const std::vector<CDCButton *>& dcs = pDCView->DCs();
-    //    bool first = true;
-    //    for (size_t i = 0; i < dcs.size(); ++i)
-    //    {
-    //        if (first)
-    //        {
-    //            forumExport << "Tactical DCs\r\n";
-    //            forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //        }
-    //        // this is an active stance
-    //        const DC& dc = dcs[i]->GetDCItem();
-    //        forumExport.fill(' ');
-    //        forumExport.width(35);
-    //        forumExport << std::left << dc.Name();
-    //        forumExport << dc.DCBreakdown(m_pBuild);
-    //        forumExport << "\r\n";
-    //        first = false;
-    //    }
-    //    if (!first)
-    //    {
-    //        forumExport << "------------------------------------------------------------------------------------------\r\n";
-    //        forumExport << "\r\n";
-    //    }
-    //}
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    CDCPane* pDCPane = dynamic_cast<CDCPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CDCPane)));
+    if (pDCPane != NULL)
+    {
+        const std::vector<CDCButton*>& dcs = pDCPane->DCs();
+        forumExport << "[SIZE=3][TABLE]";
+        forumExport << "[TR][TD]Tactical DC[/TD][TD]Value[/TD][TD]Evaluation[/TD][/TR]\r\n";
+        for (size_t i = 0; i < dcs.size(); ++i)
+        {
+            // this is an active stance
+            const DC& dc = dcs[i]->GetDCItem();
+            forumExport << "[TR][TD]" << dc.Name() << "[/TD][TD]";
+            std::string dcText = dc.DCBreakdown(m_pBuild);
+            dcText = ReplaceAll(dcText, " : ", "[/TD][TD]");
+            forumExport << dcText;
+            forumExport << "[/TD][/TR]\r\n";
+        }
+        forumExport << "[/TABLE][/SIZE]\r\n";
+    }
 }
 
 void CForumExportDlg::AddGear(std::stringstream& forumExport)
@@ -1675,7 +1653,7 @@ void CForumExportDlg::ExportGear(
         {
             forumExport << "[TR][TD]";
             forumExport << EnumEntryText((InventorySlotType)gi, InventorySlotTypeMap);
-            forumExport << "[/TD][TD][COLOR=rgb(184,49,47)]Restricted by another item in this gear set[/COLOR][/TD][TD][/TD]\r\n";
+            forumExport << "[/TD][TD][COLOR=rgb(184, 49, 47)]Restricted by another item in this gear set[/COLOR][/TD][TD][/TD]\r\n";
         }
         else if (gear.HasItemInSlot((InventorySlotType)gi))
         {
@@ -1733,7 +1711,7 @@ void CForumExportDlg::ExportGear(
                     size_t mpos = type.find("Mythic");
                     size_t rpos = type.find("Reaper");
                     if (mpos != std::string::npos
-                           && rpos != std::string::npos)
+                          && rpos != std::string::npos)
                     {
                         forumExport << "[TR][TD][/TD][TD]";
                         forumExport << augments[i].Type();
@@ -1957,7 +1935,7 @@ std::list<std::string> CForumExportDlg::GetLevelEntries(
         for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
         {
             if (skillRanks[skill] > 0
-               && c.IsClassSkill((SkillType)skill))
+              && c.IsClassSkill((SkillType)skill))
             {
                 if (numAdded > 0)
                 {
@@ -1982,7 +1960,7 @@ std::list<std::string> CForumExportDlg::GetLevelEntries(
         for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
         {
             if (skillRanks[skill] > 0
-               && !c.IsClassSkill((SkillType)skill))
+              && !c.IsClassSkill((SkillType)skill))
             {
                 if (numAdded > 0)
                 {
@@ -2003,4 +1981,169 @@ std::list<std::string> CForumExportDlg::GetLevelEntries(
         }
     }
     return lines;
+}
+
+void CForumExportDlg::OnSelchangeComboFormat()
+{
+    int sel = m_comboFormat.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        m_exportType = sel;
+        // save the new default
+        AfxGetApp()->WriteProfileInt("ForumExport", "ExportFormat", m_exportType);
+        PopulateExport();
+    }
+}
+
+void CForumExportDlg::ApplyFormatSelection(std::string* pContent)
+{
+    switch (m_exportType)
+    {
+        case 0: break;      // BB code export format, which it is already in
+        case 1: {
+                    std::string copy(*pContent);
+                    ConvertToPlainText(copy);
+                   *pContent = copy;
+                }
+                break;
+    }
+}
+
+void CForumExportDlg::ConvertToPlainText(std::string& content)
+{
+    // first lose all the standard formatting we do not need
+    content = ReplaceAll(content, "[font=courier]\r\n", "");
+    content = ReplaceAll(content, "[/font]\r\n", "");
+    content = ReplaceAll(content, "[code]\r\n", "");
+    content = ReplaceAll(content, "[/code]\r\n", "");
+    content = ReplaceAll(content, "[COLOR=rgb(184, 49, 47)]", "");
+    content = ReplaceAll(content, "[COLOR=rgb(65, 168, 95)]", "");
+    content = ReplaceAll(content, "[COLOR=rgb(250, 197, 28)]", "");
+    content = ReplaceAll(content, "[COLOR=rgb(65,168,95)]", "");
+    content = ReplaceAll(content, "[/COLOR]", "");
+    content = ReplaceAll(content, "[SIZE=6]", "");
+    content = ReplaceAll(content, "[SIZE=5]", "");
+    content = ReplaceAll(content, "[SIZE=4]", "");
+    content = ReplaceAll(content, "[SIZE=3]", "");
+    content = ReplaceAll(content, "[/SIZE]", "");
+    // now we need to convert any tables present
+    std::string tableText = ExtractBlock(content, "[TABLE]", "[/TABLE]");
+    while (tableText != "")
+    {
+        std::string newText = ConvertTable(tableText);
+        content = ReplaceAll(content, tableText, newText);
+        // intialise for next loop
+        tableText = ExtractBlock(content, "[TABLE]", "[/TABLE]");
+    }
+}
+
+std::string CForumExportDlg::ConvertTable(std::string tableText)
+{
+    // clear the table format codes
+    tableText = ReplaceAll(tableText, "[TABLE]\r\n", "");
+    tableText = ReplaceAll(tableText, "[TABLE]", "");
+    tableText = ReplaceAll(tableText, "[/TABLE]", "");
+    std::string rowText = ExtractBlock(tableText, "[TR]", "[/TR]");
+    std::vector<TableData> rowData;
+    while (rowText != "")
+    {
+        TableData data;
+        ExtractTableRowData(rowText,&data);
+        rowData.push_back(data);
+        tableText = ReplaceAll(tableText, rowText, "");
+        // intialise for next loop
+        rowText = ExtractBlock(tableText, "[TR]", "[/TR]");
+    }
+    // make sure all rowData entries are the same size
+    size_t numColumns = 0;
+    for (auto&& it: rowData)
+    {
+        numColumns = max(numColumns, it.data.size());
+    }
+    for (auto&& it : rowData)
+    {
+        while (it.data.size() < numColumns)
+        {
+            it.data.push_back("");  // add an empty column
+        }
+    }
+    // now generate the table text
+    std::string table;
+    if (rowData.size() > 0)
+    {
+        // measure the max width of each column
+        std::vector<size_t> columnWidths;
+        columnWidths.resize(rowData[0].data.size(), 0);
+        for (auto&& it : rowData)
+        {
+            size_t columnIndex = 0;
+            for (auto&& cit: it.data)
+            {
+                columnWidths[columnIndex] = max(columnWidths[columnIndex], cit.size());
+                ++columnIndex;
+            }
+        }
+        for (size_t i = 0; i < rowData.size(); ++i)
+        {
+            if (rowData[i].data[0].size() > 0)
+            {
+                AddHeader(table, columnWidths);
+            }
+            AddRow(table, rowData[i], columnWidths);
+        }
+        AddHeader(table, columnWidths);
+    }
+    return table;
+}
+
+void CForumExportDlg::ExtractTableRowData(std::string rowText, TableData* pData)
+{
+    rowText = ReplaceAll(rowText, "[TR]", "");
+    rowText = ReplaceAll(rowText, "[/TR]", "");
+    std::string entry = ExtractBlock(rowText, "[TD]", "[/TD]");
+    while (entry != "")
+    {
+        std::string content(entry);
+        content = ReplaceAll(content, "[TD]", "");
+        content = ReplaceAll(content, "[/TD]", "");
+        pData->data.push_back(content);
+        rowText = ReplaceAll(rowText, entry, "");
+        // intialise for next loop
+        entry = ExtractBlock(rowText, "[TD]", "[/TD]");
+    }
+}
+
+void CForumExportDlg::AddHeader(
+    std::string& tableText,
+    const std::vector<size_t>& columnWidths)
+{
+    for (auto&& it: columnWidths)
+    {
+        tableText += "+";
+        for (size_t i = 0; i < it; ++i)
+        {
+            tableText += "-";
+        }
+    }
+    tableText += "+\r\n";
+}
+
+void CForumExportDlg::AddRow(
+    std::string& tableText,
+    const TableData& rowData,
+    const std::vector<size_t>& columnWidths)
+{
+    size_t columnIndex = 0;
+    for (auto&& it : columnWidths)
+    {
+        tableText += "|";
+        tableText += rowData.data[columnIndex];
+        size_t length = rowData.data[columnIndex].size();
+        for (size_t i = length; i < it; ++i)
+        {
+            tableText += " ";
+        }
+        ++columnIndex;
+    }
+    tableText += "|\r\n";
 }

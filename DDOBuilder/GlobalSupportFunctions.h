@@ -206,6 +206,7 @@ void FormatExportData(std::string* exportData);
 void FormatExportData(CString* exportData);
 void MakeIconTransparent(const CString& iconFilename, bool bPlusTopLeft);
 std::string ReplaceAll(std::string str, const std::string& from, const std::string& to);
+std::string ExtractBlock(std::string str, const std::string& from, const std::string& to);
 bool DarkModeEnabled();
 bool SearchForText(std::string source, const std::string& find);
 std::vector<Spell> FilterSpells(Build* pBuild, std::string& ct, int level);

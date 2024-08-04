@@ -475,6 +475,7 @@ enum AmountType
     Amount_Slider,              // Defining a slider initial value and range
     Amount_SliderValue,         // Stacks are equal to the specified slider value
     Amount_FeatCount,           // Stacks are equal to the number times a specific feat has been trained
+    Amount_SetBonusCount,       // Stacks are equal to the count of the specified set bonus
     Amount_SLA,                 // Item SLA, caster level, charges, recharge/day
     Amount_SpellInfo,           // 3 entries that specify spell level, cost and MCL
     Amount_Dice,                // Damage Dice are defined
@@ -498,6 +499,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_Slider, L"Slider"},             // Item is the Slider name
     {Amount_SliderValue, L"SliderValue"},   // Item is the Slider name
     {Amount_FeatCount, L"FeatCount"},       // Item is the Feat name
+    {Amount_SetBonusCount, L"SetBonusCount"},   // Item is the set bonus name
     {Amount_SLA, L"SLA"},                   // item is the SLA name
     {Amount_SpellInfo, L"SpellInfo"},      // item is spell name and then class
     {Amount_Dice, L"Dice"},

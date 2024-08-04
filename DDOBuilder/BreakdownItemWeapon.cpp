@@ -24,6 +24,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackBonus(Breakdown_WeaponAttackBonus, Effect_Weapon_Attack, "Attack Bonus", treeList, NULL, slot == Inventory_Weapon2, false),
     m_damageBonus(Breakdown_WeaponDamageBonus, Effect_Weapon_Damage, "Damage Bonus", treeList, NULL, slot == Inventory_Weapon2, false),
     //m_otherDamageEffects(pPane, Breakdown_WeaponOtherDamageEffects, treeList, NULL, false),
+    m_vorpalRange(Breakdown_WeaponVorpalRange, treeList, NULL),
     m_criticalAttackBonus(Breakdown_WeaponCriticalAttackBonus, Effect_Weapon_AttackCritical, "Critical Attack Bonus", treeList, NULL, slot == Inventory_Weapon2, true),
     m_criticalDamageBonus(Breakdown_WeaponCriticalDamageBonus, Effect_Weapon_DamageCritical, "Critical Damage Bonus", treeList, NULL, slot == Inventory_Weapon2, true),
     //m_otherCriticalDamageEffects(pPane, Breakdown_WeaponCriticalOtherDamageEffects, treeList, NULL, false),
@@ -42,7 +43,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackBonus.SetInventorySlotType(slot);
     m_damageBonus.SetInventorySlotType(slot);
     //m_otherDamageEffects.SetInventorySlotType(slot);
-    ////////m_vorpalRange.SetInventorySlotType(slot);
+    m_vorpalRange.SetInventorySlotType(slot);
     m_criticalThreatRange.SetInventorySlotType(slot);
     m_criticalAttackBonus.SetInventorySlotType(slot);
     m_criticalDamageBonus.SetInventorySlotType(slot);
@@ -60,7 +61,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_damageBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
     //m_otherDamageEffects.SetWeapon(weaponType, weaponCriticalMultiplier);
-    ////////m_vorpalRange.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_vorpalRange.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_criticalThreatRange.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_criticalAttackBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_criticalDamageBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
@@ -78,7 +79,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackBonus.AttachObserver(this);
     m_damageBonus.AttachObserver(this);
     //m_otherDamageEffects.AttachObserver(this);
-    ////////m_vorpalRange.AttachObserver(this);
+    m_vorpalRange.AttachObserver(this);
     m_criticalThreatRange.AttachObserver(this);
     m_criticalAttackBonus.AttachObserver(this);
     m_criticalDamageBonus.AttachObserver(this);
@@ -108,6 +109,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     AddTreeItem("Critical Attack Bonus", "", &m_criticalAttackBonus);
     AddTreeItem("Critical Damage Bonus", "", &m_criticalDamageBonus);
     //AddTreeItem("Other Critical Damage Effects", "", &m_otherCriticalDamageEffects);
+    AddTreeItem("Vorpal Range", "", &m_vorpalRange);
     AddTreeItem("Critical Threat Range", "", &m_criticalThreatRange);
     AddTreeItem("Critical Multiplier", "", &m_criticalMultiplier);
     AddTreeItem("Critical Multiplier (19-20)", "", &m_criticalMultiplier19To20);
@@ -129,7 +131,7 @@ void BreakdownItemWeapon::BuildChanged(Character* charData)
     m_attackBonus.BuildChanged(charData);
     m_damageBonus.BuildChanged(charData);
     //m_otherDamageEffects.BuildChanged(charData);
-    ////////m_vorpalRange.BuildChanged(charData);
+    m_vorpalRange.BuildChanged(charData);
     m_criticalThreatRange.BuildChanged(charData);
     m_criticalAttackBonus.BuildChanged(charData);
     m_criticalDamageBonus.BuildChanged(charData);
@@ -177,7 +179,7 @@ void BreakdownItemWeapon::SetCharacter(Character * pCharacter)
     m_attackBonus.BuildChanged(pCharacter);        // we handle this for them
     m_damageBonus.BuildChanged(pCharacter);        // we handle this for them
     //m_otherDamageEffects.BuildChanged(pCharacter);
-    ///////m_vorpalRange.BuildChanged(pCharacter);        // we handle this for them
+    m_vorpalRange.BuildChanged(pCharacter);        // we handle this for them
     m_criticalThreatRange.BuildChanged(pCharacter);        // we handle this for them
     m_criticalAttackBonus.BuildChanged(pCharacter);        // we handle this for them
     m_criticalDamageBonus.BuildChanged(pCharacter);        // we handle this for them
@@ -259,7 +261,7 @@ void BreakdownItemWeapon::FeatEffectApplied(
         m_attackBonus.FeatEffectApplied(pBuild, effect);
         m_damageBonus.FeatEffectApplied(pBuild, effect);
         //m_otherDamageEffects.FeatEffectApplied(pBuild, effect);
-        ///////m_vorpalRange.FeatEffectApplied(pBuild, effect);
+        m_vorpalRange.FeatEffectApplied(pBuild, effect);
         m_criticalThreatRange.FeatEffectApplied(pBuild, effect);
         m_criticalAttackBonus.FeatEffectApplied(pBuild, effect);
         m_criticalDamageBonus.FeatEffectApplied(pBuild, effect);
@@ -286,7 +288,7 @@ void BreakdownItemWeapon::FeatEffectRevoked(
         m_attackBonus.FeatEffectRevoked(pBuild, effect);
         m_damageBonus.FeatEffectRevoked(pBuild, effect);
         //m_otherDamageEffects.FeatEffectRevoked(pBuild, effect);
-        ///////m_vorpalRange.FeatEffectRevoked(pBuild, effect);
+        m_vorpalRange.FeatEffectRevoked(pBuild, effect);
         m_criticalThreatRange.FeatEffectRevoked(pBuild, effect);
         m_criticalAttackBonus.FeatEffectRevoked(pBuild, effect);
         m_criticalDamageBonus.FeatEffectRevoked(pBuild, effect);
@@ -313,7 +315,7 @@ void BreakdownItemWeapon::ItemEffectApplied(
         m_attackBonus.ItemEffectApplied(pBuild, effect);
         m_damageBonus.ItemEffectApplied(pBuild, effect);
         //m_otherDamageEffects.ItemEffectApplied(pBuild, effect);
-        ///////m_vorpalRange.ItemEffectApplied(pBuild, effect);
+        m_vorpalRange.ItemEffectApplied(pBuild, effect);
         m_criticalThreatRange.ItemEffectApplied(pBuild, effect);
         m_criticalAttackBonus.ItemEffectApplied(pBuild, effect);
         m_criticalDamageBonus.ItemEffectApplied(pBuild, effect);
@@ -340,7 +342,7 @@ void BreakdownItemWeapon::ItemEffectRevoked(
         m_attackBonus.ItemEffectRevoked(pBuild, effect);
         m_damageBonus.ItemEffectRevoked(pBuild, effect);
         //m_otherDamageEffects.ItemEffectRevoked(pBuild, effect);
-        ////////m_vorpalRange.ItemEffectRevoked(pBuild, effect);
+        m_vorpalRange.ItemEffectRevoked(pBuild, effect);
         m_criticalThreatRange.ItemEffectRevoked(pBuild, effect);
         m_criticalAttackBonus.ItemEffectRevoked(pBuild, effect);
         m_criticalDamageBonus.ItemEffectRevoked(pBuild, effect);
@@ -364,7 +366,7 @@ void BreakdownItemWeapon::EnhancementTrained(
     m_attackBonus.EnhancementTrained(pBuild, item);
     m_damageBonus.EnhancementTrained(pBuild, item);
     //m_otherDamageEffects.EnhancementTrained(pBuild, item);
-    ////////m_vorpalRange.EnhancementTrained(pBuild, item);
+    m_vorpalRange.EnhancementTrained(pBuild, item);
     m_criticalThreatRange.EnhancementTrained(pBuild, item);
     m_criticalAttackBonus.EnhancementTrained(pBuild, item);
     m_criticalDamageBonus.EnhancementTrained(pBuild, item);
@@ -387,7 +389,7 @@ void BreakdownItemWeapon::EnhancementRevoked(
     m_attackBonus.EnhancementRevoked(pBuild, item);
     m_damageBonus.EnhancementRevoked(pBuild, item);
     //m_otherDamageEffects.EnhancementRevoked(pBuild, item);
-    ////////m_vorpalRange.EnhancementRevoked(pBuild, item);
+    m_vorpalRange.EnhancementRevoked(pBuild, item);
     m_criticalThreatRange.EnhancementRevoked(pBuild, item);
     m_criticalAttackBonus.EnhancementRevoked(pBuild, item);
     m_criticalDamageBonus.EnhancementRevoked(pBuild, item);
@@ -413,7 +415,7 @@ void BreakdownItemWeapon::EnhancementEffectApplied(
         m_attackBonus.EnhancementEffectApplied(pBuild, effect);
         m_damageBonus.EnhancementEffectApplied(pBuild, effect);
         //m_otherDamageEffects.EnhancementEffectApplied(pBuild, effect);
-        ////////m_vorpalRange.EnhancementEffectApplied(pBuild, effect);
+        m_vorpalRange.EnhancementEffectApplied(pBuild, effect);
         m_criticalThreatRange.EnhancementEffectApplied(pBuild, effect);
         m_criticalAttackBonus.EnhancementEffectApplied(pBuild, effect);
         m_criticalDamageBonus.EnhancementEffectApplied(pBuild, effect);
@@ -440,7 +442,7 @@ void BreakdownItemWeapon::EnhancementEffectRevoked(
         m_attackBonus.EnhancementEffectRevoked(pBuild, effect);
         m_damageBonus.EnhancementEffectRevoked(pBuild, effect);
         //m_otherDamageEffects.EnhancementEffectRevoked(pBuild, effect);
-        ////////m_vorpalRange.EnhancementEffectRevoked(pBuild, effect);
+        m_vorpalRange.EnhancementEffectRevoked(pBuild, effect);
         m_criticalThreatRange.EnhancementEffectRevoked(pBuild, effect);
         m_criticalAttackBonus.EnhancementEffectRevoked(pBuild, effect);
         m_criticalDamageBonus.EnhancementEffectRevoked(pBuild, effect);
@@ -474,7 +476,7 @@ void BreakdownItemWeapon::SetWeaponTypes(
     m_damageBonus.SetWeaponTypes(wtMain, wtOffhand);
     //m_otherDamageEffects.SetWeaponTypes(wtMain, wtOffhand);
     m_criticalThreatRange.SetWeaponTypes(wtMain, wtOffhand);
-    //m_vorpalRange.SetWeaponTypes(wtMain, wtOffhand);
+    m_vorpalRange.SetWeaponTypes(wtMain, wtOffhand);
     m_criticalAttackBonus.SetWeaponTypes(wtMain, wtOffhand);
     m_criticalDamageBonus.SetWeaponTypes(wtMain, wtOffhand);
     //m_otherCriticalDamageEffects.SetWeaponTypes(wtMain, wtOffhand);
@@ -496,7 +498,7 @@ void BreakdownItemWeapon::ClassChanged(
     m_attackBonus.ClassChanged(pBuild, classFrom, classTo, level);
     m_damageBonus.ClassChanged(pBuild, classFrom, classTo, level);
     //m_otherDamageEffects.ClassChanged(pBuild, classFrom, classTo, level);
-    /////////m_vorpalRange.ClassChanged(pBuild, classFrom, classTo, level);
+    m_vorpalRange.ClassChanged(pBuild, classFrom, classTo, level);
     m_criticalThreatRange.ClassChanged(pBuild, classFrom, classTo, level);
     m_criticalAttackBonus.ClassChanged(pBuild, classFrom, classTo, level);
     m_criticalDamageBonus.ClassChanged(pBuild, classFrom, classTo, level);
@@ -509,94 +511,6 @@ void BreakdownItemWeapon::ClassChanged(
     m_drBypass.ClassChanged(pBuild, classFrom, classTo, level);
 }
 
-//void BreakdownItemWeapon::UpdateAPSpentInTreeChanged(
-//        Character * pBuild,
-//        const std::string & treeName)
-//{
-//    BreakdownItem::UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    // pass through to all our sub breakdowns
-//    m_weaponEnchantment.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_baseDamage.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_attackBonus.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_damageBonus.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_otherDamageEffects.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    //m_vorpalRange.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_criticalThreatRange.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_criticalAttackBonus.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_criticalDamageBonus.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_otherCriticalDamageEffects.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_criticalMultiplier.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_criticalMultiplier19To20.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_attackSpeed.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_ghostTouch.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_trueSeeing.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//    m_drBypass.UpdateAPSpentInTreeChanged(pBuild, treeName);
-//}
-//
-//void BreakdownItemWeapon::UpdateEnhancementTrained(
-//        Character * pBuild,
-//        const std::string & enhancementName,
-//        const std::string & selection,
-//        bool isTier5)
-//{
-//    BreakdownItem::UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    // pass through to all our sub breakdowns
-//    m_weaponEnchantment.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_baseDamage.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_attackBonus.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_damageBonus.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_otherDamageEffects.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    //m_vorpalRange.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_criticalThreatRange.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_criticalAttackBonus.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_criticalDamageBonus.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_otherCriticalDamageEffects.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_criticalMultiplier.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_criticalMultiplier19To20.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_attackSpeed.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_ghostTouch.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_trueSeeing.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    m_drBypass.UpdateEnhancementTrained(pBuild, selection, isTier5);
-//    if (enhancementName == "KenseiOneWithTheBlade"
-//            || enhancementName == "KenseiExoticWeaponMastery")
-//    {
-//        // these two enhancements can affect the centering state
-//        Populate();
-//    }
-//}
-//
-//void BreakdownItemWeapon::UpdateEnhancementRevoked(
-//        Character * pBuild,
-//        const std::string & enhancementName,
-//        const std::string & selection,
-//        bool isTier5)
-//{
-//    BreakdownItem::UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    // pass through to all our sub breakdowns
-//    m_weaponEnchantment.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_baseDamage.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_attackBonus.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_damageBonus.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_otherDamageEffects.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    //m_vorpalRange.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_criticalThreatRange.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_criticalAttackBonus.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_criticalDamageBonus.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_otherCriticalDamageEffects.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_criticalMultiplier.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_criticalMultiplier19To20.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_attackSpeed.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_ghostTouch.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_trueSeeing.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    m_drBypass.UpdateEnhancementRevoked(pBuild, selection, isTier5);
-//    if (enhancementName == "KenseiOneWithTheBlade"
-//            || enhancementName == "KenseiExoticWeaponMastery")
-//    {
-//        // these two enhancements can affect the centering state
-//        Populate();
-//    }
-//}
-
 void BreakdownItemWeapon::FeatTrained(
         Build* pBuild,
         const std::string& featName)
@@ -608,7 +522,7 @@ void BreakdownItemWeapon::FeatTrained(
     m_attackBonus.FeatTrained(pBuild, featName);
     m_damageBonus.FeatTrained(pBuild, featName);
     //m_otherDamageEffects.FeatTrained(pBuild, featName);
-    ////////m_vorpalRange.FeatTrained(pBuild, featName);
+    m_vorpalRange.FeatTrained(pBuild, featName);
     //m_criticalThreatRange.FeatTrained(pBuild, featName);
     m_criticalAttackBonus.FeatTrained(pBuild, featName);
     m_criticalDamageBonus.FeatTrained(pBuild, featName);
@@ -632,7 +546,7 @@ void BreakdownItemWeapon::FeatRevoked(
     m_attackBonus.FeatRevoked(pBuild, featName);
     m_damageBonus.FeatRevoked(pBuild, featName);
     //m_otherDamageEffects.FeatRevoked(pBuild, featName);
-    /////////m_vorpalRange.FeatRevoked(pBuild, featName);
+    m_vorpalRange.FeatRevoked(pBuild, featName);
     m_criticalThreatRange.FeatRevoked(pBuild, featName);
     m_criticalAttackBonus.FeatRevoked(pBuild, featName);
     m_criticalDamageBonus.FeatRevoked(pBuild, featName);
@@ -657,7 +571,7 @@ void BreakdownItemWeapon::SliderChanged(
     m_attackBonus.SliderChanged(pBuild, sliderName, newValue);
     m_damageBonus.SliderChanged(pBuild, sliderName, newValue);
     //m_otherDamageEffects.SliderChanged(pBuild, sliderName, newValue);
-    /////////m_vorpalRange.SliderChanged(pBuild, sliderName, newValue);
+    m_vorpalRange.SliderChanged(pBuild, sliderName, newValue);
     m_criticalThreatRange.SliderChanged(pBuild, sliderName, newValue);
     m_criticalAttackBonus.SliderChanged(pBuild, sliderName, newValue);
     m_criticalDamageBonus.SliderChanged(pBuild, sliderName, newValue);
@@ -681,7 +595,7 @@ void BreakdownItemWeapon::StanceActivated(
     m_attackBonus.StanceActivated(pBuild, stanceName);
     m_damageBonus.StanceActivated(pBuild, stanceName);
     //m_otherDamageEffects.StanceActivated(pBuild, stanceName);
-    /////////m_vorpalRange.StanceActivated(pBuild, stanceName);
+    m_vorpalRange.StanceActivated(pBuild, stanceName);
     m_criticalThreatRange.StanceActivated(pBuild, stanceName);
     m_criticalAttackBonus.StanceActivated(pBuild, stanceName);
     m_criticalDamageBonus.StanceActivated(pBuild, stanceName);
@@ -705,7 +619,7 @@ void BreakdownItemWeapon::StanceDeactivated(
     m_attackBonus.StanceDeactivated(pBuild, stanceName);
     m_damageBonus.StanceDeactivated(pBuild, stanceName);
     //m_otherDamageEffects.StanceDeactivated(pBuild, stanceName);
-    /////////m_vorpalRange.StanceDeactivated(pBuild, stanceName);
+    m_vorpalRange.StanceDeactivated(pBuild, stanceName);
     m_criticalThreatRange.StanceDeactivated(pBuild, stanceName);
     m_criticalAttackBonus.StanceDeactivated(pBuild, stanceName);
     m_criticalDamageBonus.StanceDeactivated(pBuild, stanceName);
@@ -721,48 +635,45 @@ void BreakdownItemWeapon::StanceDeactivated(
 void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)
 {
     UNREFERENCED_PARAMETER(forumExport);
-    //forumExport << Title() << "\r\n";
-    //CString valueRegular;
-    //// regular hit value
-    //valueRegular.Format(
-    //        "On Hit         %.2f[%s]+%d %s\r\n",
-    //        m_baseDamage.Total(),
-    //        m_damageDice.Description(1).c_str(),
-    //        (int)m_damageBonus.Total(),
-    //        m_otherDamageEffects.Value());
-    //forumExport << valueRegular;
-    //// critical hit value
-    //CString valueCrit;
-    //valueCrit.Format(
-    //        "Critical %s (%.2f[%s]+%d) * %d %s\r\n",
-    //        m_criticalThreatRange.Value(),
-    //        m_baseDamage.Total(),
-    //        m_damageDice.Description(1).c_str(),
-    //        (int)m_criticalDamageBonus.Total(),
-    //        (int)m_criticalMultiplier.Total(),
-    //        m_otherCriticalDamageEffects.Value());
-    //valueCrit.Replace("-20", "-18");
-    //forumExport << valueCrit;
-    //CString valueCrit1920;
-    //valueCrit1920.Format(
-    //        "Critical 19-20 (%.2f[%s]+%d) * %d %s\r\n",
-    //        m_baseDamage.Total(),
-    //        m_damageDice.Description(1).c_str(),
-    //        (int)m_criticalDamageBonus.Total(),
-    //        (int)m_criticalMultiplier19To20.Total(),
-    //        m_otherCriticalDamageEffects.Value());
-    //forumExport << valueCrit1920;
-    //forumExport << "DR Bypass: " << m_drBypass.Value();
-    //forumExport << "\r\n";
-    //if (m_ghostTouch.Total() > 0)
-    //{
-    //    forumExport << "You bypass Incorporeality miss chance with this weapon\r\n";
-    //}
-    //if (m_trueSeeing.Total() > 0)
-    //{
-    //    forumExport << "You bypass Concealment miss chance with this weapon\r\n";
-    //}
-    //forumExport << "\r\n";
+    forumExport << Title() << "\r\n";
+    CString valueRegular;
+    // regular hit value
+    valueRegular.Format(
+            "On Hit         %.2f[%s]+%d\r\n",
+            m_baseDamage.Total(),
+            (LPCTSTR)m_damageDice.DiceAsText(),
+            (int)m_damageBonus.Total());
+    forumExport << valueRegular;
+    // critical hit value
+    CString valueCrit;
+    valueCrit.Format(
+            "Critical %s (%.2f[%s]+%d) * %d\r\n",
+            (LPCTSTR)m_criticalThreatRange.Value(),
+            m_baseDamage.Total(),
+            (LPCTSTR)m_damageDice.DiceAsText(),
+            (int)m_criticalDamageBonus.Total(),
+            (int)m_criticalMultiplier.Total());
+    valueCrit.Replace("-20", "-18");
+    forumExport << valueCrit;
+    CString valueCrit1920;
+    valueCrit1920.Format(
+            "Critical 19-20 (%.2f[%s]+%d) * %d\r\n",
+            m_baseDamage.Total(),
+            (LPCTSTR)m_damageDice.DiceAsText(),
+            (int)m_criticalDamageBonus.Total(),
+            (int)m_criticalMultiplier19To20.Total());
+    forumExport << valueCrit1920;
+    forumExport << "DR Bypass: " << m_drBypass.Value();
+    forumExport << "\r\n";
+    if (m_ghostTouch.Total() > 0)
+    {
+        forumExport << "You bypass Incorporeality miss chance with this weapon\r\n";
+    }
+    if (m_trueSeeing.Total() > 0)
+    {
+        forumExport << "You bypass Concealment miss chance with this weapon\r\n";
+    }
+    forumExport << "\r\n";
 }
 
 BreakdownItem * BreakdownItemWeapon::GetWeaponBreakdown(BreakdownType bt)
@@ -795,6 +706,9 @@ BreakdownItem * BreakdownItemWeapon::GetWeaponBreakdown(BreakdownType bt)
     //case Breakdown_WeaponCriticalOtherDamageEffects:
     //    pBI = &m_otherCriticalDamageEffects;
     //    break;
+    case Breakdown_WeaponVorpalRange:
+        pBI = &m_vorpalRange;
+        break;
     case Breakdown_WeaponCriticalThreatRange:
         pBI = &m_criticalThreatRange;
         break;
@@ -829,7 +743,7 @@ void BreakdownItemWeapon::LinkUp()
     m_damageBonus.LinkUp();
     //m_otherDamageEffects.LinkUp();
     m_criticalThreatRange.LinkUp();
-    //m_vorpalRange.LinkUp();
+    m_vorpalRange.LinkUp();
     m_criticalAttackBonus.LinkUp();
     m_criticalDamageBonus.LinkUp();
     //m_otherCriticalDamageEffects.LinkUp();
@@ -847,7 +761,7 @@ void BreakdownItemWeapon::LinkUp()
     m_damageBonus.CreateOtherEffects();
     //m_otherDamageEffects.CreateOtherEffects();
     m_criticalThreatRange.CreateOtherEffects();
-    //m_vorpalRange.CreateOtherEffects();
+    m_vorpalRange.CreateOtherEffects();
     m_criticalAttackBonus.CreateOtherEffects();
     m_criticalDamageBonus.CreateOtherEffects();
     //m_otherCriticalDamageEffects.CreateOtherEffects();

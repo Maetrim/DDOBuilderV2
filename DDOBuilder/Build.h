@@ -49,18 +49,18 @@ class BuildObserver :
     public Observer<Build>
 {
     public:
-        virtual void UpdateBuildLevelChanged(Build *) {};
-        virtual void UpdateClassChoiceChanged(Build *) {};
-        virtual void UpdateClassChanged(Build *, const std::string& classFrom, const std::string& classTo, size_t level) {UNREFERENCED_PARAMETER(classFrom);UNREFERENCED_PARAMETER(classTo);UNREFERENCED_PARAMETER(level);};
-        virtual void UpdateFeatTrained(Build *, const std::string& featName) {UNREFERENCED_PARAMETER(featName);};
-        virtual void UpdateFeatRevoked(Build *, const std::string& featName) {UNREFERENCED_PARAMETER(featName);};
+        virtual void UpdateBuildLevelChanged(Build*) {};
+        virtual void UpdateClassChoiceChanged(Build*) {};
+        virtual void UpdateClassChanged(Build*, const std::string& classFrom, const std::string& classTo, size_t level) {UNREFERENCED_PARAMETER(classFrom);UNREFERENCED_PARAMETER(classTo);UNREFERENCED_PARAMETER(level);};
+        virtual void UpdateFeatTrained(Build*, const std::string& featName) {UNREFERENCED_PARAMETER(featName);};
+        virtual void UpdateFeatRevoked(Build*, const std::string& featName) {UNREFERENCED_PARAMETER(featName);};
         virtual void UpdateFeatEffectApplied(Build*, const Effect& effect) {UNREFERENCED_PARAMETER(effect);};
         virtual void UpdateFeatEffectRevoked(Build*, const Effect& effect) {UNREFERENCED_PARAMETER(effect);};
-        virtual void UpdateStanceActivated(Build *, const std::string& stanceName) {UNREFERENCED_PARAMETER(stanceName);};
-        virtual void UpdateStanceDeactivated(Build *, const std::string& stanceName) {UNREFERENCED_PARAMETER(stanceName);};
+        virtual void UpdateStanceActivated(Build*, const std::string& stanceName) {UNREFERENCED_PARAMETER(stanceName);};
+        virtual void UpdateStanceDeactivated(Build*, const std::string& stanceName) {UNREFERENCED_PARAMETER(stanceName);};
         virtual void UpdateStanceDisabled(Build*, const std::string& stanceName) { UNREFERENCED_PARAMETER(stanceName); };
         virtual void UpdateSliderChanged(Build*, const std::string& sliderName, int newValue) { UNREFERENCED_PARAMETER(sliderName); UNREFERENCED_PARAMETER(newValue); };
-        virtual void UpdateSkillSpendChanged(Build *, size_t level, SkillType skill) {UNREFERENCED_PARAMETER(level);UNREFERENCED_PARAMETER(skill);};
+        virtual void UpdateSkillSpendChanged(Build*, size_t level, SkillType skill) {UNREFERENCED_PARAMETER(level);UNREFERENCED_PARAMETER(skill);};
         virtual void UpdateAbilityValueChanged(Build*, AbilityType ability) {UNREFERENCED_PARAMETER(ability);};
         virtual void UpdateEnhancementTrained(Build*, const EnhancementItemParams& item) {UNREFERENCED_PARAMETER(item);};
         virtual void UpdateEnhancementRevoked(Build*, const EnhancementItemParams& item) {UNREFERENCED_PARAMETER(item);};
@@ -92,6 +92,7 @@ class Build :
         void Write(XmlLib::SaxWriter* writer) const;
 
         void SetLifePointer(Life* pLife);
+        Life* GetLife();
 
         CString UIDescription(size_t buildIndex) const;
         std::string ComplexUIDescription() const;
@@ -207,7 +208,7 @@ class Build :
         size_t BonusRacialActionPoints() const;
         size_t BonusUniversalActionPoints() const;
         int APSpentInTree(const std::string& treeName) const;
-        const TrainedEnhancement * IsTrained(
+        const TrainedEnhancement* IsTrained(
                 const std::string& enhancementName,
                 const std::string& selection) const;
 
@@ -219,13 +220,13 @@ class Build :
         bool IsFeatTrainable(
                 size_t level,
                 const std::string& type,
-                const Feat & feat,
+                const Feat& feat,
                 bool includeTomes,
                 bool alreadyTrained = false,
                 bool bIgnoreEpicOnly = false) const;
         std::list<TrainedFeat> SpecialFeats() const;
         std::vector<FeatSlot> TrainableFeatTypeAtLevel(size_t level) const;
-        const LevelTraining & LevelData(size_t level) const;
+        const LevelTraining& LevelData(size_t level) const;
         size_t BaseAttackBonus(size_t level) const;
         size_t AbilityAtLevel(AbilityType ability, size_t level, bool includeTomes) const;
         int LevelUpsAtLevel(AbilityType ability, size_t level) const;
@@ -238,8 +239,8 @@ class Build :
                 const std::string& type,
                 size_t level,
                 bool autoTrained = false);
-        void UpdateFeats();
-        void UpdateFeats(size_t level, std::list<TrainedFeat>* allFeats);
+        void UpdateFeats(bool bApplyEffects);
+        void UpdateFeats(size_t level, std::list<TrainedFeat>* allFeats, bool bApplyEffects);
         void AutoTrainSingleSelectionFeats();
         void VerifyTrainedFeats();
         bool IsGrantedFeat(const std::string& featName) const;
@@ -248,6 +249,7 @@ class Build :
         // spells
         void UpdateSpells();
         std::list<TrainedSpell> TrainedSpells(const std::string& ct, size_t level) const;
+        std::list<TrainedSpell> FixedSpells(const std::string& ct, size_t level) const;
         void TrainSpell(const std::string& ct, size_t level, const std::string& spellName);
         void RevokeSpell(const std::string& ct, size_t level, const std::string& spellName, bool bSuppressLog);
         bool IsSpellTrained(const std::string& spellName) const;
@@ -260,8 +262,8 @@ class Build :
         int BonusMaxCasterLevels(const std::string& spellName) const;
 
         void SetModifiedFlag(BOOL modified);
-        void ApplyFeatEffects(const Feat & feat);
-        void RevokeFeatEffects(const Feat & feat);
+        void ApplyFeatEffects(const Feat& feat);
+        void RevokeFeatEffects(const Feat& feat);
 
         void Destiny_SetSelectedTrees(const Destiny_SelectedTrees& trees);
         void Destiny_SetSelectedTrees(const LegacyDestinySelectedTrees& trees);
@@ -300,20 +302,21 @@ class Build :
         Item GetLatestVersionOfItem(InventorySlotType slot, Item original);
         Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original);
         void VerifyGear();
-        void AddGearSet(const EquippedGear & gear);
+        void AddGearSet(const EquippedGear& gear);
         void DeleteGearSet(const std::string& name);
         bool DoesGearSetExist(const std::string& name) const;
         void SetActiveGearSet(const std::string& name);
         EquippedGear GetGearSet(const std::string& name) const;
         EquippedGear ActiveGearSet() const;
-        void UpdateActiveGearSet(const EquippedGear & newGear);
-        void SetGear(const std::string& name, InventorySlotType slot, const Item & item);
+        void UpdateActiveGearSet(const EquippedGear& newGear);
+        void SetGear(const std::string& name, InventorySlotType slot, const Item& item);
         void ClearGearInSlot(const std::string& name, InventorySlotType slot);
         void SetNumFiligrees(size_t count);
         void SetGearSetSnapshot(const std::string& setName);
         int SnapshotAbilityValue(AbilityType at) const;
 
         const std::list<StackTracking>& ActiveSets() const;
+        int SetBonusCount(const std::string& setName) const;
 
         // weapon groups
         void SetupDefaultWeaponGroups();
@@ -344,9 +347,9 @@ class Build :
         bool operator<(const Build& other) const;
 
     protected:
-        XmlLib::SaxContentElementInterface * StartElement(
-                const XmlLib::SaxString & name,
-                const XmlLib::SaxAttributes & attributes);
+        XmlLib::SaxContentElementInterface* StartElement(
+                const XmlLib::SaxString& name,
+                const XmlLib::SaxAttributes& attributes);
 
         virtual void EndElement();
 
@@ -452,11 +455,12 @@ class Build :
         void RemoveSpellMaxCasterLevelEffect(const Effect& effect);
         void AddEffectToList(std::list<Effect>& list, const Effect& effect);
         void RemoveEffectFromList(std::list<Effect>& list, const Effect& effect);
+        void UpdateGreensteelStances();
 
         // BreakdownObserver
         virtual void UpdateTotalChanged(BreakdownItem* pBI, BreakdownType bt) override;
 
-        Life * m_pLife;
+        Life* m_pLife;
         int m_racialTreeSpend;
         int m_universalTreeSpend;
         int m_classTreeSpend;

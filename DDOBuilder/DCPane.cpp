@@ -105,11 +105,7 @@ void CDCPane::OnSize(UINT nType, int cx, int cy)
 
 LRESULT CDCPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
-    if (m_pCharacter != NULL)
-    {
-        m_pCharacter->DetachObserver(this);
-        DestroyAllDCs();
-    }
+    DestroyAllDCs();
 
     // wParam is the document pointer
     CDocument * pDoc = (CDocument*)(wParam);
@@ -117,10 +113,6 @@ LRESULT CDCPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
     m_pCharacter = pCharacter;
-    if (m_pCharacter != NULL)
-    {
-        m_pCharacter->AttachObserver(this);
-    }
     return 0L;
 }
 
@@ -306,12 +298,12 @@ const std::vector<CDCButton *> & CDCPane::DCs() const
     return m_dcButtons;
 }
 
-void CDCPane::UpdateActiveBuildChanged(Character* pChar)
+void CDCPane::BuildChanging()
 {
     DestroyAllDCs();
 
-    Life *pLife = pChar->ActiveLife();
-    Build *pBuild = pChar->ActiveBuild();
+    Life *pLife = m_pCharacter->ActiveLife();
+    Build *pBuild = m_pCharacter->ActiveBuild();
     if (pLife != NULL
         && pBuild != NULL)
     {

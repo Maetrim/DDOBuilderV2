@@ -294,6 +294,7 @@ enum BreakdownType
     Breakdown_WeaponAttackBonus,
     Breakdown_WeaponDamageBonus,
     Breakdown_WeaponOtherDamageEffects,
+    Breakdown_WeaponVorpalRange,
     Breakdown_WeaponCriticalThreatRange,
     Breakdown_WeaponCriticalAttackBonus,
     Breakdown_WeaponCriticalDamageBonus,

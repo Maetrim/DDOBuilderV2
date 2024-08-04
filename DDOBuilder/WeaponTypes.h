@@ -120,7 +120,7 @@ const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
     {Weapon_ShieldLarge, L"Large Shield"},
     {Weapon_ShieldTower, L"Tower Shield"},
     {Weapon_Orb, L"Orb"},
-    {Weapon_RuneArm, L"RuneArm"},
+    {Weapon_RuneArm, L"Rune Arm"},
     {Weapon_Collar, L"Collar"},
     {Weapon_Empty, L"Empty"},
     {Weapon_ReplacedDynamically, L"ReplacedDynamically"},
@@ -139,5 +139,6 @@ const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
     {Weapon_Longsword, L"Long Sword"},
     {Weapon_Shortsword, L"Short Sword"},
     {Weapon_Warhammer, L"War Hammer"},
+    {Weapon_RuneArm, L"RuneArm"},
     {WeaponType(0), NULL}
 };

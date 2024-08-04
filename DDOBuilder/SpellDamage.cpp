@@ -173,6 +173,7 @@ CString SpellDamage::AverageDamageText(
 
     txt = DamageDice().AverageDamageText(1 + spellPower, casterLevel);
     txt.Replace("Average Damage: ", "");
+    txt.Replace("\r\n", "");
     return txt;
 }
 
@@ -211,6 +212,7 @@ CString SpellDamage::CriticalDamageText(
 
     txt = DamageDice().CriticalDamageText(1 + spellPower, casterLevel, spellCriticalMultiplier);
     txt.Replace("Average Critical Damage: ", "");
+    txt.Replace("\r\n", "");
     return txt;
 }
 

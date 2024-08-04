@@ -19,7 +19,6 @@ class BreakdownItemWeaponEffects;
 
 class CBreakdownsPane :
     public CFormView,
-    public CharacterObserver,
     public LifeObserver,
     public BuildObserver,
     BreakdownObserver
@@ -32,6 +31,7 @@ class CBreakdownsPane :
         BreakdownItem * FindBreakdown(BreakdownType type) const;
         void RegisterBuildCallbackEffect(EffectType type, EffectCallbackItem* pItem);
         void UpdateBreakdown();
+        void BuildChanging();
 
     protected:
         CBreakdownsPane();           // protected constructor used by dynamic creation
@@ -50,10 +50,6 @@ class CBreakdownsPane :
         afx_msg void OnButtonClipboardCopy();
         DECLARE_MESSAGE_MAP()
     private:
-        // Character Observer overrides
-        virtual void UpdateActiveLifeChanged(Character*) override;
-        virtual void UpdateActiveBuildChanged(Character*) override;
-
         // LifeObserver overrides
         virtual void UpdateRaceChanged(Life*, const std::string&) override;
         virtual void UpdateAbilityTomeChanged(Life*, AbilityType) override;

@@ -105,6 +105,11 @@ CSpellsControl * CSpellsPage::SpellsControl()
     return &m_spells;
 }
 
+bool CSpellsPage::IsClassType(const std::string& ct) const
+{
+    return (ct == m_classType);
+}
+
 //void CSpellsPage::UpdateSpellRevoked(
 //        Character * charData,
 //        const TrainedSpell & spell)

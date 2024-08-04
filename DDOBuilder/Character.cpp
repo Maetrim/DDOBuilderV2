@@ -6,6 +6,9 @@
 #include "DDOBuilderDoc.h"
 #include "LogPane.h"
 #include "GlobalSupportFunctions.h"
+#include "MainFrm.h"
+#include "BreakdownsPane.h"
+#include "DCPane.h"
 
 #define DL_ELEMENT Character
 
@@ -246,6 +249,18 @@ void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex)
         m_ActiveLifeIndex = lifeIndex;
         m_ActiveBuildIndex = buildIndex;
 
+        CWnd* pWnd = AfxGetMainWnd();
+        CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+        CBreakdownsPane* pBDPane = dynamic_cast<CBreakdownsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CBreakdownsPane)));
+        if (NULL != pBDPane)
+        {
+            pBDPane->BuildChanging();
+        }
+        CDCPane* pDCPane = dynamic_cast<CDCPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CDCPane)));
+        if (NULL != pDCPane)
+        {
+            pDCPane->BuildChanging();
+        }
         if (ActiveBuild() != NULL)
         {
             std::stringstream ss;

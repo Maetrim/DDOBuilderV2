@@ -49,11 +49,17 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
 
 void BreakdownItem::AddItems(CListCtrl * pControl)
 {
-    // add all the items
-    AddActiveItems(m_otherEffects, pControl, false);
-    AddActiveItems(m_effects, pControl, false);
-    std::list<Effect> itemEffects = m_itemEffects;
     std::list<Effect> inactiveEffects;
+    // add all the items
+    std::list<Effect> otherEffects = m_otherEffects;
+    RemoveInactive(&otherEffects, &inactiveEffects);
+    AddActiveItems(otherEffects, pControl, false);
+
+    std::list<Effect> effects = m_effects;
+    RemoveInactive(&effects, &inactiveEffects);
+    AddActiveItems(effects, pControl, false);
+
+    std::list<Effect> itemEffects = m_itemEffects;
     std::list<Effect> nonStackingEffects;
     std::list<Effect> temporaryEffects;
     RemoveInactive(&itemEffects, &inactiveEffects);
@@ -62,16 +68,16 @@ void BreakdownItem::AddItems(CListCtrl * pControl)
     AddActiveItems(itemEffects, pControl, true);
 
     // finally add the active percentage items
-    AddActivePercentageItems(m_otherEffects, pControl);
-    AddActivePercentageItems(m_effects, pControl);
+    AddActivePercentageItems(otherEffects, pControl);
+    AddActivePercentageItems(effects, pControl);
     AddActivePercentageItems(itemEffects, pControl);
     AddActiveItems(temporaryEffects, pControl, false);
 
     int inactiveStart = pControl->GetItemCount();
     // also show inactive and non stack effects if we have any so user
     // knows which duplicate effects they have in place
-    AddDeactiveItems(m_otherEffects, pControl, true);
-    AddDeactiveItems(m_effects, pControl, true);
+    //AddDeactiveItems(m_otherEffects, pControl, true);
+    //AddDeactiveItems(m_effects, pControl, true);
     AddDeactiveItems(inactiveEffects, pControl, true);
     if (inactiveStart != pControl->GetItemCount())
     {
@@ -643,9 +649,6 @@ void BreakdownItem::RemoveInactive(
         std::list<Effect> * effects,
         std::list<Effect> * inactiveEffects) const
 {
-    // add all inactive breakdown items from this particular list
-    inactiveEffects->clear(); // ensure empty
-
     const Build* pBuild = m_pCharacter->ActiveBuild();
     std::list<Effect>::iterator it = effects->begin();
     while (it != effects->end())

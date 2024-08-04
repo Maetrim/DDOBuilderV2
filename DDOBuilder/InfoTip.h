@@ -55,7 +55,8 @@ class CInfoTip :
         void SetSetBonusItem(
                 const SetBonus& item,
                 size_t numStacks,
-                bool bSuppressed);
+                bool bSuppressed,
+                const Build* pBuild);
         void SetItem(
                 const Item * pItem,
                 const Build* pBuild);
@@ -98,7 +99,7 @@ class CInfoTip :
         void ClearOldTipItems();
         void AppendSubItem(const SubItem& item);
         void AppendFeatInfo(const Build& build, const std::string& feat, const Requirements& req);
-        void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks, bool bSuppressed);
+        void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks, bool bSuppressed, const Build* pBuild);
         void AppendDCInfo(const Build& build, const DC& dc);
         void AppendDCInfo(const Build& build, const Spell& spell, const SpellDC& dc);
         void AppendSpellItem(const Build& build, const Spell& spell);

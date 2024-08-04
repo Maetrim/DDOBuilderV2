@@ -13,6 +13,7 @@
 #include "BreakdownItemWeaponDRBypass.h"
 #include "BreakdownItemWeaponOtherDamageEffects.h"
 #include "BreakdownItemWeaponAttackSpeed.h"
+#include "BreakdownItemWeaponVorpalRange.h"
 #include "WeaponDamageTypes.h"
 #include "BasicDice.h"
 #include "InventorySlotTypes.h"
@@ -68,12 +69,6 @@ class BreakdownItemWeapon :
         virtual void SliderChanged(Build* charData, const std::string& sliderName, int newValue) override;
         virtual void StanceActivated(Build* pBuild, const std::string& stanceName) override;
         virtual void StanceDeactivated(Build* pBuild, const std::string& stanceName) override;
-        //// Character overrides
-        //virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
-        //virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;
-        //virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
-        //virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
-        //virtual void UpdateAPSpentInTreeChanged(Character * charData, const std::string & treeName) override;
     private:
          void AddTreeItem(const std::string & entry, const std::string & total, BreakdownItem * pBreakdown);
 
@@ -86,7 +81,7 @@ class BreakdownItemWeapon :
         BreakdownItemWeaponDamageBonus m_damageBonus;       // Basic +Damage
         //BreakdownItemWeaponOtherDamageEffects m_otherDamageEffects; // e.g. +2d6 Light Damage
         BreakdownItemWeaponCriticalThreatRange m_criticalThreatRange;
-        ////////BreakdownItemWeaponVorpalRange m_vorpalRange;       // typically 20, can be extended
+        BreakdownItemWeaponVorpalRange m_vorpalRange;       // typically 20, can be extended
         BreakdownItemWeaponAttackBonus m_criticalAttackBonus;
         BreakdownItemWeaponDamageBonus m_criticalDamageBonus;
         //BreakdownItemWeaponOtherDamageEffects m_otherCriticalDamageEffects; // e.g. +2d6 Light Damage

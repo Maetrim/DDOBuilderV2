@@ -27,6 +27,7 @@ public:
     void DestroyAll();
     CStanceButton* GetStance(const std::string& stanceName);
     CStanceButton* GetStance(size_t index);
+    const CStanceButton* GetStance(size_t index) const;
     void AddActiveStances(std::vector<CStanceButton*>* stances);
     bool HasStance(CStanceButton* pButton);
 private:

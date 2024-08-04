@@ -455,7 +455,7 @@ void Life::SetRace(const std::string& race)
     {
         // all builds need to update their skill points
         bit.UpdateSkillPoints();
-        bit.UpdateFeats();
+        bit.UpdateFeats(true);
         bit.VerifyGear();
     }
     NotifyRaceChanged(race);

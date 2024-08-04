@@ -78,7 +78,12 @@ for a total of +16.</Description>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Item>All</Item>
-        <!---TBD specify main hand weapon only-->
+        <Requirements>
+          <Requirement>
+            <Type>ItemSlot</Type>
+            <Item>Weapon1</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamageCritical</Type>
@@ -139,22 +144,22 @@ is charged to Charge Tier 3, for a total of +24.</Description>
         <Bonus>Armor Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Heavy Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Medium Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Heavy Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Medium Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>PRR</Type>
@@ -219,7 +224,12 @@ for a total of +32.</Description>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Item>All</Item>
-        <!---TBD specify main hand weapon only-->
+        <Requirements>
+          <Requirement>
+            <Type>ItemSlot</Type>
+            <Item>Weapon1</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamageCritical</Type>
@@ -300,22 +310,22 @@ it is charged to Charge Tier 5, for a total of +40.</Description>
         <Bonus>Armor Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Heavy Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Medium Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Heavy Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Medium Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>PRR</Type>
@@ -393,29 +403,34 @@ to Universal Spell Power for every +1 Enhancement bonus on the weapon.</Descript
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Item>All</Item>
-        <!---TBD specify main hand weapon only-->
+        <Requirements>
+          <Requirement>
+            <Type>ItemSlot</Type>
+            <Item>Weapon1</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>EnchantArmor</Type>
         <Bonus>Armor Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Heavy Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Medium Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Heavy Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Medium Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>ImplementInYourHands</Type>
@@ -1462,16 +1477,6 @@ Cooldown: 30 seconds.</Description>
           <Type>Enhancement</Type>
           <Item>BEWeaponTrainingIV</Item>
         </Requirement>
-        <RequiresNoneOf>
-          <Requirement>
-            <Type>Enhancement</Type>
-            <Item>WarforgedWeaponAttachment</Item>
-          </Requirement>
-          <Requirement>
-            <Type>Enhancement</Type>
-            <Item>BladeforgedWeaponAttachment</Item>
-          </Requirement>
-        </RequiresNoneOf>
       </Requirements>
       <Selector>
         <EnhancementSelection>

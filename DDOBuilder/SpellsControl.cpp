@@ -743,7 +743,7 @@ std::list<TrainedSpell> CSpellsControl::FixedSpells(size_t level) const
     std::list<FixedSpell>::const_iterator fsit = m_fixedSpells[level].begin();
     while (fsit != m_fixedSpells[level].end())
     {
-        TrainedSpell ts((*fsit).Name(), (*fsit).Level(), m_class);
+        TrainedSpell ts(m_class, (*fsit).Level(), (*fsit).Name());
         fixedSpells.push_back(ts);
         ++fsit;
     }

@@ -8,6 +8,7 @@
 class CSpellsPage;
 class CSLAControl;
 class CSpellsControl;
+class CSpellLikeAbilityPage;
 
 class CSpellsPane :
     public CFormView,
@@ -20,6 +21,9 @@ class CSpellsPane :
 
         virtual void OnInitialUpdate();
         virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+        CSpellLikeAbilityPage* GetSLAPage();
+        CSpellsPage* GetClassSpells(const std::string& classType);
+
     protected:
         CSpellsPane();           // protected constructor used by dynamic creation
         virtual ~CSpellsPane();
