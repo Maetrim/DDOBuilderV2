@@ -845,6 +845,8 @@ std::list<SliderItem>::iterator CStancesPane::GetSlider(
         CRect rctWindow;
         GetClientRect(&rctWindow);
         OnSize(SIZE_RESTORED, rctWindow.Width(), rctWindow.Height());
+        // make sure all effects start with the correct number of stacks
+        m_pCharacter->ActiveBuild()->StanceSliderChanged((*it).m_name, (*it).m_position);
     }
     return it;
 }

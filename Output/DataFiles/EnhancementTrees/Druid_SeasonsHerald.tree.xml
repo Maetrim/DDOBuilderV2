@@ -1,1047 +1,1084 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Season's Herald</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Druid</Item>
-         </Requirement>
-      </Requirements>
-      <Icon>Druid</Icon>
-      <Background>DruidBackground</Background>
-      <!--Core Items-->
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Child of Summer</Name>
-         <InternalName>SHCore1</InternalName>
-         <Description>You gain the ability Child of Summer: Activate to grant +5 Spell power when casting
+  <EnhancementTree>
+    <Name>Season's Herald</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Druid</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Druid</Icon>
+    <Background>DruidBackground</Background>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Child of Summer</Name>
+      <InternalName>SHCore1</InternalName>
+      <Description>You gain the ability Child of Summer: Activate to grant +5 Spell power when casting
 Fire, Light, Sonic, Force and Positive spells per core in this tree (Max: 30).
 Lasts until death or a change of season.
 Fire Elemental form changes you to this season automatically.
 Passive: +1 Universal Spell Power per AP spent in this tree.</Description>
-         <Icon>SHChildOfSummer</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Stance>
-            <Name>Child of Summer</Name>
-            <Icon>SHChildOfSummer</Icon>
-            <Description>Activate to grant +5 Spell power when casting Fire, Light, Sonic, Force
+      <Icon>SHChildOfSummer</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Stance>
+        <Name>Child of Summer</Name>
+        <Icon>SHChildOfSummer</Icon>
+        <Description>Activate to grant +5 Spell power when casting Fire, Light, Sonic, Force
 and Positive spells per core in this tree (Max: 30). Lasts until death
 or the a change of season. Fire Elemental form changes you to this season
 automatically.</Description>
-         </Stance>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <DisplayName>Seasons Herald: Spell power per action point</DisplayName>
-            <Type>UniversalSpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>APCount</AType>
-            <Amount size="1">1</Amount>
-            <StackSource>Season's Herald</StackSource>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Sonic</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Elder of Winter</Name>
-         <InternalName>SHCore2</InternalName>
-         <Description>Elder of Winter: You gain Child of Winter: Activate to gain +5 Spell power when casting
+      </Stance>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <DisplayName>Seasons Herald: Spell power per action point</DisplayName>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>APCount</AType>
+        <Amount size="1">1</Amount>
+        <StackSource>Season's Herald</StackSource>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Sonic</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Elder of Winter</Name>
+      <InternalName>SHCore2</InternalName>
+      <Description>Elder of Winter: You gain Child of Winter: Activate to gain +5 Spell power when casting
 Water, Acid, Earth and Electric spells per core in this tree (Max: 30).
 Lasts until death or season change. Water elemental form changes you into this season automatically.
 Passive: Your caster level is increased by 1 in your season.</Description>
-         <Icon>SHElderOfWinter</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Stance>
-            <Name>Elder of Winter</Name>
-            <Icon>SHElderOfWinter</Icon>
-            <Description>Activate to gain +5 Spell power when casting Water, Acid, Earth and
+      <Icon>SHElderOfWinter</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Stance>
+        <Name>Elder of Winter</Name>
+        <Icon>SHElderOfWinter</Icon>
+        <Description>Activate to gain +5 Spell power when casting Water, Acid, Earth and
 Electric spells per core in this tree (Max: 30).
 Lasts until death or season change. Water elemental form changes you into this season
 automatically.</Description>
-         </Stance>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHCore1</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Sonic</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Fire</Item>
-            <Item>Light</Item>
-            <Item>Sonic</Item>
-            <Item>Force</Item>
-            <Item>Positive</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Wellspring</Name>
-         <InternalName>SHCore3</InternalName>
-         <Description>+1 max caster level for spells appropriate to your season.
+      </Stance>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Sonic</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Fire</Item>
+        <Item>Light</Item>
+        <Item>Sonic</Item>
+        <Item>Force</Item>
+        <Item>Positive</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Wellspring</Name>
+      <InternalName>SHCore3</InternalName>
+      <Description>+1 max caster level for spells appropriate to your season.
 The effects of your Shillelagh spell are doubled.</Description>
-         <Icon>SHWellspring</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
+      <Icon>SHWellspring</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Fire</Item>
+        <Item>Light</Item>
+        <Item>Sonic</Item>
+        <Item>Force</Item>
+        <Item>Positive</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Shillelagh + Season's Herald: Wellspring Main Hand</DisplayName>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">0 1</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>ItemSlot</Type>
+            <Item>Weapon1</Item>
+          </Requirement>
+          <RequiresOneOf>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>6</Value>
+              <Type>MaterialType</Type>
+              <Item>Wood</Item>
+              <Item>Weapon1</Item>
             </Requirement>
             <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHCore2</Item>
+              <Type>MaterialType</Type>
+              <Item>Densewood</Item>
+              <Item>Weapon1</Item>
             </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Fire</Item>
-            <Item>Light</Item>
-            <Item>Sonic</Item>
-            <Item>Force</Item>
-            <Item>Positive</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-          <Effect>
-            <DisplayName>Shillelagh + Season's Herald: Wellspring Main Hand</DisplayName>
-            <Type>Weapon_BaseDamage</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="2">0 1</Amount>
-            <Item>All</Item>
-            <ApplyAsItemEffect/>
-             <Requirements>
-                <Requirement>
-                   <Type>ItemSlot</Type>
-                   <Item>Weapon1</Item>
-                </Requirement>
-                <Requirement>
-                  <Type>MaterialType</Type>
-                  <Item>Wood</Item>
-                  <Item>Weapon1</Item>
-                </Requirement>
-             </Requirements>
-          </Effect>
-          <Effect>
-            <DisplayName>Shillelagh + Season's Herald: Wellspring Off Hand</DisplayName>
-            <Type>Weapon_BaseDamage</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="2">0 1</Amount>
-            <Item>All</Item>
-            <ApplyAsItemEffect/>
-             <Requirements>
-                <Requirement>
-                   <Type>ItemSlot</Type>
-                   <Item>Weapon2</Item>
-                </Requirement>
-                <Requirement>
-                  <Type>MaterialType</Type>
-                  <Item>Wood</Item>
-                  <Item>Weapon2</Item>
-                </Requirement>
-             </Requirements>
-          </Effect>
-          <Effect>
-            <DisplayName>Shillelagh Quarterstaff + Season's Herald: Wellspring</DisplayName>
-            <Type>Weapon_BaseDamage</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="2">0 2</Amount>
-            <Item>Quarterstaff</Item>
-            <ApplyAsItemEffect/>
-             <Requirements>
-                <Requirement>
-                  <Type>MaterialType</Type>
-                  <Item>Wood</Item>
-                  <Item>Weapon1</Item>
-                </Requirement>
-             </Requirements>
-          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Sunburst</Name>
-         <InternalName>SHCore4</InternalName>
-         <Description>A globe of searing radiance explodes to blast targets for 6d6 light damage
+            <Requirement>
+              <Type>MaterialType</Type>
+              <Item>Darkwood</Item>
+              <Item>Weapon1</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Shillelagh + Season's Herald: Wellspring Off Hand</DisplayName>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">0 1</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>ItemSlot</Type>
+            <Item>Weapon2</Item>
+          </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>MaterialType</Type>
+              <Item>Wood</Item>
+              <Item>Weapon2</Item>
+            </Requirement>
+            <Requirement>
+              <Type>MaterialType</Type>
+              <Item>Densewood</Item>
+              <Item>Weapon2</Item>
+            </Requirement>
+            <Requirement>
+              <Type>MaterialType</Type>
+              <Item>Darkwood</Item>
+              <Item>Weapon2</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Shillelagh Quarterstaff + Season's Herald: Wellspring</DisplayName>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">0 2</Amount>
+        <Item>Quarterstaff</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>MaterialType</Type>
+              <Item>Wood</Item>
+              <Item>Weapon1</Item>
+            </Requirement>
+            <Requirement>
+              <Type>MaterialType</Type>
+              <Item>Densewood</Item>
+              <Item>Weapon1</Item>
+            </Requirement>
+            <Requirement>
+              <Type>MaterialType</Type>
+              <Item>Darkwood</Item>
+              <Item>Weapon1</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Sunburst</Name>
+      <InternalName>SHCore4</InternalName>
+      <Description>A globe of searing radiance explodes to blast targets for 6d6 light damage
 in addition to blinding them. Oozes and Undead take 1d3+3 per caster level damage.
 A successful Reflex save reduces the damage by half and negates the blindness.
 Light fearing undead may be instantly destroyed by this spell.</Description>
-         <Icon>SHSunburst</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHCore3</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Sunburst</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Druid</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Sonic</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Storm of Vengeance</Name>
-         <InternalName>SHCore5</InternalName>
-         <Description>Conjures a storm with a massive thunderclap, deafening enemies, dousing them in acid rain
+      <Icon>SHSunburst</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Sunburst</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Sonic</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Storm of Vengeance</Name>
+      <InternalName>SHCore5</InternalName>
+      <Description>Conjures a storm with a massive thunderclap, deafening enemies, dousing them in acid rain
 and lancing them with lightning bolts. Enemies within the cloud when it is first
 conjured are deafened for 3 seconds per caster level. Enemies within the storm
 take 1d3 acid damage per caster level every two seconds. Every 4 seconds, a
 random enemy within the storm takes 1d6 Electric damage for every caster level
 (a successful Reflex save for half).</Description>
-         <Icon>SHStormOfVengeance</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>18</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHCore4</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Storm of Vengeance</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Druid</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Sonic</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Hierophant</Name>
-         <InternalName>SHCore6</InternalName>
-         <Description>You are wise and skilled in the art of wielding divine magic to summon aid
+      <Icon>SHStormOfVengeance</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>18</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Storm of Vengeance</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Sonic</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Hierophant</Name>
+      <InternalName>SHCore6</InternalName>
+      <Description>You are wise and skilled in the art of wielding divine magic to summon aid
 and change the world around you.
 Gain +2 Wisdom and Constitution.
 Your Transmutation and Evocation spells gain +1 to their DCs.
 You gain a +1 bonus caster level and max caster level in both seasons.</Description>
-         <Icon>SHHierophant</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>20</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHCore5</Item>
-            </Requirement>
+      <Icon>SHHierophant</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHCore5</Item>
+        </Requirement>
         <Requirement>
           <Type>Exclusive</Type>
           <Item>SHCore6</Item>
           <Item>Capstone Enhancement</Item>
         </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>SHCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Sonic</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Wisdom</Item>
-            <Item>Constitution</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Evocation</Item>
-            <Item>Transmutation</Item>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Fire</Item>
-            <Item>Light</Item>
-            <Item>Sonic</Item>
-            <Item>Force</Item>
-            <Item>Positive</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Beguile</Name>
-         <InternalName>SHBeguile</InternalName>
-         <Description>Whenever you successfully attack an enemy or cast a spell on one there is
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>SHCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Sonic</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Wisdom</Item>
+        <Item>Constitution</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Evocation</Item>
+        <Item>Transmutation</Item>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Fire</Item>
+        <Item>Light</Item>
+        <Item>Sonic</Item>
+        <Item>Force</Item>
+        <Item>Positive</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Beguile</Name>
+      <InternalName>SHBeguile</InternalName>
+      <Description>Whenever you successfully attack an enemy or cast a spell on one there is
 a 50% chance to Beguile that enemy [1/0-2/0-3] times for [3/0-6/0-9] seconds.
 Beguile: -2% attack speed, -2 Spell power.
 Beguile stacks up to 25 times, and one stack fades every few seconds.
 Up to one enemy can be affected each second (by up to [1/2/3] stacks)</Description>
-         <Icon>SHBeguile</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Shared Spirit</Name>
-         <InternalName>SHSharedSpirit</InternalName>
-         <Description>Your wolf companion gains [3/6/10]% to its max health.
+      <Icon>SHBeguile</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Shared Spirit</Name>
+      <InternalName>SHSharedSpirit</InternalName>
+      <Description>Your wolf companion gains [3/6/10]% to its max health.
 You gain [1/2/3] universal spell power.</Description>
-         <Icon>SHSharedSpirit</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>UniversalSpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Produce Flame</Name>
-         <InternalName>SHProduceFlame</InternalName>
-         <Description>Flames as bright as a torch appear in your open hand and launch towards your foes.
+      <Icon>SHSharedSpirit</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Produce Flame</Name>
+      <InternalName>SHProduceFlame</InternalName>
+      <Description>Flames as bright as a torch appear in your open hand and launch towards your foes.
 They deal 1d2+2 Fire damage per caster level, up to 15d2+30 at caster level 15.
 Spell point cost: [6/5/3]
 Cooldown: [10/6/4] seconds</Description>
-         <Icon>SHProduceFlame</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Produce Flame</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Druid</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Wax and Wane I</Name>
-         <InternalName>SHWaxAndWaneI</InternalName>
-         <Description>+2% additional critical chance with spells associated with your current season.
+      <Icon>SHProduceFlame</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Produce Flame</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Wax and Wane I</Name>
+      <InternalName>SHWaxAndWaneI</InternalName>
+      <Description>+2% additional critical chance with spells associated with your current season.
 This is cumulative with Season's Herald.
 Winter: Acid, Cold, Electric, Earth and Water
 Summer: Fire, Light, Positive, Force and Sonic</Description>
-         <Icon>SHWaxAndWane</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
+      <Icon>SHWaxAndWane</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Positive</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Druidic Wisdom</Name>
+      <InternalName>SHDruidicWisdom</InternalName>
+      <Description>+[1/2/3] Diplomacy, Heal and Spellcraft.</Description>
+      <Icon>SHDruidicWisdom</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Diplomacy</Item>
+        <Item>Heal</Item>
+        <Item>Spellcraft</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Improved Metamagics I</Name>
+      <InternalName>SHImprovedMetamagicsI</InternalName>
+      <Description>Improves a selected Metamagic ability.</Description>
+      <Icon>SHImprovedMetamagics</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>1</Value>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsI</Item>
+              <Item>Efficient Empower Spell</Item>
             </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Positive</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Druidic Wisdom</Name>
-         <InternalName>SHDruidicWisdom</InternalName>
-         <Description>+[1/2/3] Diplomacy, Heal and Spellcraft.</Description>
-         <Icon>SHDruidicWisdom</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>1</Value>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
             </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsI</Item>
+            <Item>Efficient Empower Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostEmpower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Item>Diplomacy</Item>
-            <Item>Heal</Item>
-            <Item>Spellcraft</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Improved Metamagics I</Name>
-         <InternalName>SHImprovedMetamagicsI</InternalName>
-         <Description>Improves a selected Metamagic ability.</Description>
-         <Icon>SHImprovedMetamagics</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>2</Value>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsI</Item>
+              <Item>Efficient Enlarge Spell</Item>
             </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsI</Item>
-                     <Item>Efficient Empower Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Empower Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsI</Item>
-                  <Item>Efficient Empower Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-2 -4 -6</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Empower</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Enlarge</Name>
-               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
-               <Icon>EfficientEnlarge</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsI</Item>
-                     <Item>Efficient Enlarge Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Enlarge Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsI</Item>
-                  <Item>Efficient Enlarge Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Enlarge</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Maximize</Name>
-               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points.</Description>
-               <Icon>EfficientMaximize</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsI</Item>
-                     <Item>Efficient Maximize Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Maximize Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsI</Item>
-                  <Item>Efficient Maximize Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-3 -6 -9</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Maximize</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsI</Item>
-                     <Item>Efficient Quicken Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Quicken Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsI</Item>
-                  <Item>Efficient Quicken Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Quicken</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Improved Metamagics II</Name>
-         <InternalName>SHImprovedMetamagicsII</InternalName>
-         <Description>Improves a Metamagic ability.</Description>
-         <Icon>SHImprovedMetamagics</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>2</Value>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
             </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsII</Item>
-                     <Item>Efficient Empower Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Empower Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsII</Item>
-                  <Item>Efficient Empower Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-2 -4 -6</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Empower</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Enlarge</Name>
-               <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
-               <Icon>EfficientEnlarge</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsII</Item>
-                     <Item>Efficient Enlarge Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Enlarge Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsII</Item>
-                  <Item>Efficient Enlarge Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Enlarge</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Maximize</Name>
-               <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points.</Description>
-               <Icon>EfficientMaximize</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsII</Item>
-                     <Item>Efficient Maximize Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Maximize Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsII</Item>
-                  <Item>Efficient Maximize Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-3 -6 -9</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Maximize</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Exclusive</Type>
-                     <Item>SHImprovedMetamagicsII</Item>
-                     <Item>Efficient Quicken Spell</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Quicken Spell</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>ExclusionGroup</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>NotNeeded</AType>
-                  <Item>SHImprovedMetamagicsII</Item>
-                  <Item>Efficient Quicken Spell</Item>
-               </Effect>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Stacks</AType>
-                  <Amount size="3">-1 -2 -4</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Quicken</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Creeping Cold</Name>
-         <InternalName>SHCreepingCold</InternalName>
-         <Description>Deals on-going cold damage to the target every 2 seconds for 12 seconds.
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsI</Item>
+            <Item>Efficient Enlarge Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostEnlarge</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Enlarge</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points.</Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsI</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsI</Item>
+            <Item>Efficient Maximize Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostMaximize</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsI</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsI</Item>
+            <Item>Efficient Quicken Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostQuicken</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Improved Metamagics II</Name>
+      <InternalName>SHImprovedMetamagicsII</InternalName>
+      <Description>Improves a Metamagic ability.</Description>
+      <Icon>SHImprovedMetamagics</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsII</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Empower Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsII</Item>
+            <Item>Efficient Empower Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostEmpower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-2 -4 -6</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Empower</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points. </Description>
+          <Icon>EfficientEnlarge</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsII</Item>
+              <Item>Efficient Enlarge Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Enlarge Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsII</Item>
+            <Item>Efficient Enlarge Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostEnlarge</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Enlarge</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points.</Description>
+          <Icon>EfficientMaximize</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsII</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Maximize Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsII</Item>
+            <Item>Efficient Maximize Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostMaximize</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-3 -6 -9</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Maximize</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SHImprovedMetamagicsII</Item>
+              <Item>Efficient Quicken Spell</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Quicken Spell</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>SHImprovedMetamagicsII</Item>
+            <Item>Efficient Quicken Spell</Item>
+          </Effect>
+          <Effect>
+            <Type>MetamagicCostQuicken</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">-1 -2 -4</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Quicken</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Creeping Cold</Name>
+      <InternalName>SHCreepingCold</InternalName>
+      <Description>Deals on-going cold damage to the target every 2 seconds for 12 seconds.
 The damage starts small and grows larger as the spell continues.
 Each phase lasts 4 seconds.
 Phase 1: 1d4+2 damage per 3 caster levels (Max +12 at 18)
@@ -1049,678 +1086,678 @@ Phase 2: 2d4+4 damage per 3 caster levels (Max +24 at 18)
 Phase 3: 3d4+6 damage per 3 caster levels (Max +36 at 18).
 Spell point cost: [6/5/3]
 Cooldown: [12/10/8] seconds</Description>
-         <Icon>SHCreepingCold</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHProduceFlame</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Creeping Cold</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Druid</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Wax and Wane II</Name>
-         <InternalName>SHWaxAndWaneII</InternalName>
-         <Description>+2% additional critical chance with spells associated with your current season.
+      <Icon>SHCreepingCold</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHProduceFlame</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Creeping Cold</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Wax and Wane II</Name>
+      <InternalName>SHWaxAndWaneII</InternalName>
+      <Description>+2% additional critical chance with spells associated with your current season.
 This is cumulative with Season's Herald.
 Winter: Acid, Cold, Electric, Earth and Water
 Summer: Fire, Light, Positive, Force and Sonic</Description>
-         <Icon>SHWaxAndWane</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHWaxAndWaneI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Positive</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Action Boost: Spell Power</Name>
-         <InternalName>SHActionBoostSpellpower</InternalName>
-         <Description>Activate to gain a +[10/20/30] Action Boost bonus to Universal Spell power for 20 seconds.</Description>
-         <Icon>SHActionBoostSpellpower</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Autumn Winds</Name>
-         <InternalName>SHAutumnWinds</InternalName>
-         <Description>Toggle to be shielded by the autumn winds. Under this effect gain
+      <Icon>SHWaxAndWane</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHWaxAndWaneI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Positive</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Action Boost: Spell Power</Name>
+      <InternalName>SHActionBoostSpellpower</InternalName>
+      <Description>Activate to gain a +[10/20/30] Action Boost bonus to Universal Spell power for 20 seconds.</Description>
+      <Icon>SHActionBoostSpellpower</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Autumn Winds</Name>
+      <InternalName>SHAutumnWinds</InternalName>
+      <Description>Toggle to be shielded by the autumn winds. Under this effect gain
 Feather Fall, +3 Dodge and a 10% chance to knock down any enemy who strikes
 you in melee.
 Activation cost: 8 Spell points</Description>
-         <Icon>SHAutumnWinds</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Stance>
-            <Name>Autumn Winds</Name>
-            <Icon>SHAutumnWinds</Icon>
-            <Description>Toggle to be shielded by the autumn winds. Under this effect gain
+      <Icon>SHAutumnWinds</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Stance>
+        <Name>Autumn Winds</Name>
+        <Icon>SHAutumnWinds</Icon>
+        <Description>Toggle to be shielded by the autumn winds. Under this effect gain
 Feather Fall, +3 Dodge and a 10% chance to knock down any enemy who strikes
 you in melee.
 Activation cost: 8 Spell points</Description>
-         </Stance>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Autumn Winds</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Efficient Metamagic: Heighten</Name>
-         <InternalName>SHEfficientHeighten</InternalName>
-         <Description>Using the Heighten Spell feat costs you [1/2] fewer spell points per level of heightening.</Description>
-         <Icon>SHEfficientHeighten</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>2</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>SHEfficientHeighten</Item>
-               <Item>Efficient Heighten Spell</Item>
-            </Requirement>
-            <Requirement>
-               <Type>Feat</Type>
-               <Item>Heighten Spell</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExclusionGroup</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
-            <Item>SHEfficientHeighten</Item>
-            <Item>Efficient Heighten Spell</Item>
-         </Effect>
-         <Effect>
-            <Type>AdditionalSpellPointCost</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="2">-1 -2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Heighten</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Call Lightning</Name>
-         <InternalName>SHCallLightning</InternalName>
-         <Description>Calls forth a bolt of Lightning, which strikes your target for 1d5+5 Electric damage
+      </Stance>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Autumn Winds</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Efficient Metamagic: Heighten</Name>
+      <InternalName>SHEfficientHeighten</InternalName>
+      <Description>Using the Heighten Spell feat costs you [1/2] fewer spell points per level of heightening.</Description>
+      <Icon>SHEfficientHeighten</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>SHEfficientHeighten</Item>
+          <Item>Efficient Heighten Spell</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Heighten Spell</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>SHEfficientHeighten</Item>
+        <Item>Efficient Heighten Spell</Item>
+      </Effect>
+      <Effect>
+        <Type>MetamagicCostHeighten</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="2">-1 -2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Heighten</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Call Lightning</Name>
+      <InternalName>SHCallLightning</InternalName>
+      <Description>Calls forth a bolt of Lightning, which strikes your target for 1d5+5 Electric damage
 for every caster level up to 15. A successful Reflex save reduces damage by half.</Description>
-         <Icon>SHCallLightning</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHCreepingCold</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Call Lightning</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Druid</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Wax and Wane III</Name>
-         <InternalName>SHWaxAndWaneIII</InternalName>
-         <Description>+2% additional critical chance with spells associated with your current season.
+      <Icon>SHCallLightning</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHCreepingCold</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Call Lightning</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Wax and Wane III</Name>
+      <InternalName>SHWaxAndWaneIII</InternalName>
+      <Description>+2% additional critical chance with spells associated with your current season.
 This is cumulative with Season's Herald.
 Winter: Acid, Cold, Electric, Earth and Water
 Summer: Fire, Light, Positive, Force and Sonic</Description>
-         <Icon>SHWaxAndWane</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHWaxAndWaneII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Positive</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: +1 Wisdom</Name>
-         <InternalName>SHAbilityI</InternalName>
-         <Description>+1 Wisdom</Description>
-         <Icon>Wisdom</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Wisdom</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Spring's Resurgence</Name>
-         <InternalName>ShSpringsResurgence</InternalName>
-         <Description>Fill an ally with the energy of spring. When that ally falls below 50%
+      <Icon>SHWaxAndWane</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHWaxAndWaneII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Positive</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: +1 Wisdom</Name>
+      <InternalName>SHAbilityI</InternalName>
+      <Description>+1 Wisdom</Description>
+      <Icon>Wisdom</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Wisdom</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Spring's Resurgence</Name>
+      <InternalName>ShSpringsResurgence</InternalName>
+      <Description>Fill an ally with the energy of spring. When that ally falls below 50%
 hit points, they and any other allies near them are healed by 20d6 positive
 energy and receive a +2 primal bonus to attack rolls.
 Lasts 5 minutes or until triggered.
 Spell point cost: [8/6/4]
 Cooldown: [8/4/2] seconds.</Description>
-         <Icon>ShSpringsResurgence</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Strength of the Solstice</Name>
-         <InternalName>SHStrengthOfTheSolstice</InternalName>
-         <Description>+1 to the DCs of your Evocation and Transmutation spells.</Description>
-         <Icon>SHStrengthOfTheSolstice</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Evocation</Item>
-            <Item>Transmutation</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Salt Ray</Name>
-         <InternalName>SHSaltRay</InternalName>
-         <Description>A thin shaft of whirling salt crystals lances out from your crooked finger to
+      <Icon>ShSpringsResurgence</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Strength of the Solstice</Name>
+      <InternalName>SHStrengthOfTheSolstice</InternalName>
+      <Description>+1 to the DCs of your Evocation and Transmutation spells.</Description>
+      <Icon>SHStrengthOfTheSolstice</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Evocation</Item>
+        <Item>Transmutation</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Salt Ray</Name>
+      <InternalName>SHSaltRay</InternalName>
+      <Description>A thin shaft of whirling salt crystals lances out from your crooked finger to
 strike and shred your foe. Your target takes 1d6 Force damage per 2 caster levels,
 for a maximum of 5d6 at caster level 10. Targets are also stunned. Fortitude save
 negates the stun.</Description>
-         <Icon>SHSaltRay</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHCallLightning</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Salt Ray</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Druid</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Wax and Wane IV</Name>
-         <InternalName>SHWaxAndWaneIV</InternalName>
-         <Description>+2% additional critical chance with spells associated with your current season.
+      <Icon>SHSaltRay</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHCallLightning</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Salt Ray</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Wax and Wane IV</Name>
+      <InternalName>SHWaxAndWaneIV</InternalName>
+      <Description>+2% additional critical chance with spells associated with your current season.
 This is cumulative with Season's Herald.
 Winter: Acid, Cold, Electric, Earth and Water
 Summer: Fire, Light, Positive, Force and Sonic</Description>
-         <Icon>SHWaxAndWane</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHWaxAndWaneIII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Positive</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Sonic</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: +1 Wisdom</Name>
-         <InternalName>SHAbilityII</InternalName>
-         <Description>+1 Wisdom</Description>
-         <Icon>Wisdom</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHAbilityI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Wisdom</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Crown of Summer</Name>
-         <InternalName>SHCrownOfSummer</InternalName>
-         <Description>A target of your choice is filled with the light and vitality of summer.
+      <Icon>SHWaxAndWane</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHWaxAndWaneIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Positive</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Sonic</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: +1 Wisdom</Name>
+      <InternalName>SHAbilityII</InternalName>
+      <Description>+1 Wisdom</Description>
+      <Icon>Wisdom</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHAbilityI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Wisdom</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Crown of Summer</Name>
+      <InternalName>SHCrownOfSummer</InternalName>
+      <Description>A target of your choice is filled with the light and vitality of summer.
 That target gains +15% enhancement bonus to Healing Amplification,
 +15 melee power and +10 ranged power. Only one target can have the crown at a time.
 Spell point cost: 1
 Cooldown: 6 seconds.</Description>
-         <Icon>SHCrownOfSummer</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Elemental Mastery</Name>
-         <InternalName>SHElementalMastery</InternalName>
-         <Description>Elemental Master. Gain [5/10/15] additional spell power in your season.
+      <Icon>SHCrownOfSummer</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Elemental Mastery</Name>
+      <InternalName>SHElementalMastery</InternalName>
+      <Description>Elemental Master. Gain [5/10/15] additional spell power in your season.
 Rank 3: Druid level 17 or above:
 Changing into Fire Elemental form now grants you a brief version of Anger of the Noon Day Sun effect.
 Changing into Water Elemental Form grants you  a similar version of Icy Mantle.
 This is not affected by meta magics.</Description>
-         <Icon>SHElementalMastery</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">5 10 15</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Child of Summer</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Fire</Item>
-            <Item>Light/Alignment</Item>
-            <Item>Sonic</Item>
-            <Item>Force/Untyped</Item>
-            <Item>Positive</Item>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">5 10 15</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Elder of Winter</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Acid</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Word of Balance</Name>
-         <InternalName>SHWordOfBalance</InternalName>
-         <Description>You utter elder words of balance, judging those who stray too far from the path
+      <Icon>SHElementalMastery</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Child of Summer</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Fire</Item>
+        <Item>Light/Alignment</Item>
+        <Item>Sonic</Item>
+        <Item>Force/Untyped</Item>
+        <Item>Positive</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Elder of Winter</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Acid</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Word of Balance</Name>
+      <InternalName>SHWordOfBalance</InternalName>
+      <Description>You utter elder words of balance, judging those who stray too far from the path
 of neutrality. Targets with an alignment one step away from True Neutral take
 1d4+4 Bane damage for every 2 caster levels up to 20. Target who are two steps
 away take twice that. True Neutrals are not affected by this spell.</Description>
-         <Icon>SHWordOfBalance</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SHSaltRay</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Word of Balance</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>Druid</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Time and Tide</Name>
-         <InternalName>SHTimeAndTide</InternalName>
-         <Description>+1 caster level and +1 max caster level for spells in both seasons.</Description>
-         <Icon>SHTimeAndTide</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Fire</Item>
-            <Item>Light</Item>
-            <Item>Sonic</Item>
-            <Item>Force</Item>
-            <Item>Positive</Item>
-            <Item>Acid</Item>
-            <Item>Cold</Item>
-            <Item>Electric</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Season's Herald: Winter's Heart</Name>
-         <InternalName>SHWintersHeart</InternalName>
-         <Description>Activate: Gain 8 times your Wisdom in temporary hit points for 30 seconds.
+      <Icon>SHWordOfBalance</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>SHSaltRay</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Word of Balance</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Time and Tide</Name>
+      <InternalName>SHTimeAndTide</InternalName>
+      <Description>+1 caster level and +1 max caster level for spells in both seasons.</Description>
+      <Icon>SHTimeAndTide</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Fire</Item>
+        <Item>Light</Item>
+        <Item>Sonic</Item>
+        <Item>Force</Item>
+        <Item>Positive</Item>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Season's Herald: Winter's Heart</Name>
+      <InternalName>SHWintersHeart</InternalName>
+      <Description>Activate: Gain 8 times your Wisdom in temporary hit points for 30 seconds.
 Activation cost: 12 Spell points
 Cooldown: 1 minute</Description>
-         <Icon>SHWintersHeart</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Druid</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+      <Icon>SHWintersHeart</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Druid</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

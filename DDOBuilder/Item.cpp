@@ -24,7 +24,8 @@ Item::Item() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_Slots(L"EquipmentSlot"),
     m_RestrictedSlots(L"RestrictedSlots"),
-    m_iconIndex(0)          // defaults to no image
+    m_iconIndex(0),         // defaults to no image
+    m_bIsRaindItem(false)
 {
     DL_INIT(Item_PROPERTIES)
 }
@@ -33,7 +34,8 @@ Item::Item(const XmlLib::SaxString & objectName) :
     XmlLib::SaxContentElement(objectName, f_verCurrent),
     m_Slots(L"EquipmentSlot"),
     m_RestrictedSlots(L"RestrictedSlots"),
-    m_iconIndex(0)          // defaults to no image
+    m_iconIndex(0),         // defaults to no image
+    m_bIsRaindItem(false)
 {
     DL_INIT(Item_PROPERTIES)
 }
@@ -268,6 +270,10 @@ bool Item::ContainsSearchText(const std::string& searchText, const Build* pBuild
         bHasSearchText |= SearchForText(Name(), parsedItem);
         bHasSearchText |= SearchForText(ItemType(), parsedItem);
         bHasSearchText |= SearchForText(Description(), parsedItem);
+        if (HasMaterial())
+        {
+            bHasSearchText |= SearchForText(Material(), parsedItem);
+        }
         if (HasMinorArtifact())
         {
             bHasSearchText |= SearchForText("Minor Artifact", parsedItem);
@@ -417,6 +423,16 @@ void Item::AddBuff(const Buff& b)
 void Item::SetAugments(const std::vector<ItemAugment>& augments)
 {
     Set_Augments(augments);
+}
+
+bool Item::IsRaidItem() const
+{
+    return m_bIsRaindItem;
+}
+
+void Item::SetIsRaidItem(bool bIsRaidItem)
+{
+    m_bIsRaindItem = bIsRaidItem;
 }
 
 size_t Item::RealCriticalThreatRange() const

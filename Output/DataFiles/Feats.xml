@@ -1400,10 +1400,11 @@ controlling effect.</Description>
     <Description>While this metamagic feat is active, you gain 75 Spell Power while casting
 spells affected by Empower Healing, but they consume 10 additional spell points.</Description>
     <Stance>
-      <Name>Empower Healing</Name>
+      <Name>Empower Healing Spell</Name>
       <Icon>EmpowerHealingSpell</Icon>
       <Description>While this metamagic feat is active, you gain 75 Spell Power while casting
 spells affected by Empower Healing, but they consume 10 additional spell points.</Description>
+        <Group>Metamagics</Group>
     </Stance>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
@@ -1467,16 +1468,10 @@ spells affected by Empower Healing, but they consume 10 additional spell points.
       </Requirements>
     </Effect>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostEmpowerHealing</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Empower Healing</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -1486,10 +1481,11 @@ casting spells affected by Empower Spell, but they consume 15 additional spell p
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Stance>
-      <Name>Empower</Name>
+      <Name>Empower Spell</Name>
       <Icon>EmpowerSpell</Icon>
       <Description>While this metamagic feat is active, you gain 75 Spell Power while
 casting spells affected by Empower Spell, but they consume 15 additional spell points.</Description>
+        <Group>Metamagics</Group>
     </Stance>
     <Requirements>
       <RequiresOneOf>
@@ -1565,16 +1561,10 @@ casting spells affected by Empower Spell, but they consume 15 additional spell p
       </Requirements>
     </Effect>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostEmpower</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">15</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Empower</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -1622,10 +1612,11 @@ consume 10 additional spell points.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Stance>
-      <Name>Enlarge</Name>
+      <Name>Enlarge Spell</Name>
       <Icon>EnlargeSpell</Icon>
       <Description>While this metamagic feat is active, spells have twice the range,
 but they consume 10 additional spell points.</Description>
+        <Group>Metamagics</Group>
     </Stance>
     <Requirements>
       <RequiresOneOf>
@@ -1689,16 +1680,10 @@ but they consume 10 additional spell points.</Description>
     <Acquire>Train</Acquire>
     <Icon>EnlargeSpell</Icon>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostEnlarge</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Enlarge</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -1775,16 +1760,10 @@ required, but spells consume 2 additional spell points.</Description>
     <Acquire>Train</Acquire>
     <Icon>EschewMaterials</Icon>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostEschewMaterials</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Eschew Materials</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -2134,10 +2113,11 @@ but they consume 10 additional spell points.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Stance>
-      <Name>Extend</Name>
+      <Name>Extend Spell</Name>
       <Icon>ExtendSpell</Icon>
       <Description>While this metamagic feat is active, spells with durations last twice as long,
 but they consume 10 additional spell points.</Description>
+        <Group>Metamagics</Group>
     </Stance>
     <Requirements>
       <RequiresOneOf>
@@ -2201,16 +2181,10 @@ but they consume 10 additional spell points.</Description>
     <Acquire>Train</Acquire>
     <Icon>ExtendSpell</Icon>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostExtend</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Extend</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -3202,15 +3176,16 @@ in physical resistance when wearing heavy armor.</Description>
     <Name>Heighten Spell</Name>
     <Description>While this metamagic feat is active, your spells are raised to the
 highest spell level your character can cast, making them more difficult to
-resist, but increasing their spell point cost.</Description>
+resist, but increasing their spell point cost by 5 per level raised.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Stance>
-      <Name>Heighten</Name>
+      <Name>Heighten Spell</Name>
       <Icon>HeightenSpell</Icon>
       <Description>While this metamagic feat is active, your spells are raised to the
 highest spell level your character can cast, making them more difficult to
-resist, but increasing their spell point cost.</Description>
+resist, but increasing their spell point cost by 5 per level raised.</Description>
+        <Group>Metamagics</Group>
     </Stance>
     <Requirements>
       <RequiresOneOf>
@@ -3274,18 +3249,10 @@ resist, but increasing their spell point cost.</Description>
     <Acquire>Train</Acquire>
     <Icon>HeightenSpell</Icon>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostHeighten</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">10</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Heighten</Item>
-        </Requirement>
-      </Requirements>
-      <!--Double check cost here-->
-      <!--How to increase spell DC levels - handled in C++-->
+      <Amount size="1">5</Amount>
     </Effect>
   </Feat>
   <Feat>
@@ -3430,6 +3397,14 @@ item effects that double threat range like keen and impact.</Description>
       <Amount size="3">0 2 4</Amount>
       <ApplyAsItemEffect />
       <Item>Light Mace</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 2 4</Amount>
+      <ApplyAsItemEffect />
       <Item>Light Hammer</Item>
     </Effect>
   </Feat>
@@ -3464,8 +3439,23 @@ and impact.</Description>
       <Amount size="3">0 1 2</Amount>
       <ApplyAsItemEffect />
       <Item>Dagger</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 1 2</Amount>
+      <ApplyAsItemEffect />
       <Item>Shortsword</Item>
-      <Item>Rapier</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 1 2</Amount>
+      <ApplyAsItemEffect />
       <Item>Light Pick</Item>
     </Effect>
     <Effect>
@@ -3549,7 +3539,23 @@ This feat does not stack with item effects that double threat range like keen an
       <Amount size="3">0 2 4</Amount>
       <ApplyAsItemEffect />
       <Item>Kama</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 2 4</Amount>
+      <ApplyAsItemEffect />
       <Item>Sickle</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 2 4</Amount>
+      <ApplyAsItemEffect />
       <Item>Hand Axe</Item>
     </Effect>
   </Feat>
@@ -3592,8 +3598,32 @@ This feat does not stack with item effects that double threat range like keen an
       <Amount size="3">0 2 4</Amount>
       <ApplyAsItemEffect />
       <Item>Dart</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 2 4</Amount>
+      <ApplyAsItemEffect />
       <Item>Shuriken</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 2 4</Amount>
+      <ApplyAsItemEffect />
       <Item>Throwing Axe</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+      <Type>Weapon_CriticalRange</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="3">0 2 4</Amount>
+      <ApplyAsItemEffect />
       <Item>Throwing Hammer</Item>
     </Effect>
   </Feat>
@@ -6372,10 +6402,11 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Stance>
-      <Name>Maximize</Name>
+      <Name>Maximize Spell</Name>
       <Icon>MaximizeSpell</Icon>
       <Description>While this metamagic feat is active, you gain 150 Spell Power while
 casting spells affected by Maximize Spell, but they consume 25 additional spell points.</Description>
+        <Group>Metamagics</Group>
     </Stance>
     <Requirements>
       <RequiresOneOf>
@@ -6451,16 +6482,10 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
       </Requirements>
     </Effect>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostMaximize</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">25</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Maximize</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -7221,10 +7246,11 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Stance>
-      <Name>Quicken</Name>
+      <Name>Quicken Spell</Name>
       <Icon>QuickenSpell</Icon>
       <Description> While this metamagic feat is active, spells cast twice as fast and cannot
 be interrupted by enemy attacks, but they consume 10 additional spell points.</Description>
+        <Group>Metamagics</Group>
     </Stance>
     <Requirements>
       <RequiresOneOf>
@@ -7288,16 +7314,10 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
     <Acquire>Train</Acquire>
     <Icon>QuickenSpell</Icon>
     <Effect>
-      <Type>AdditionalSpellPointCost</Type>
+      <Type>MetamagicCostQuicken</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
-      <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Quicken</Item>
-        </Requirement>
-      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -14846,6 +14866,13 @@ Rank 2 (300): Not reachable</Description>
     <Icon>Yugoloth</Icon>
   </Feat>
   <Feat>
+    <Name>Myth Drannor Favor Rewards</Name>
+    <Description>Rank 1 (75): Not reachable</Description>
+    <MaxTimesAcquire>1</MaxTimesAcquire>
+    <Acquire>Favor</Acquire>
+    <Icon>MythDrannor</Icon>
+  </Feat>
+  <Feat>
     <Name>Total Favor Rewards</Name>
     <Description>Rank 1 (400): Access to Warforged race
 Rank 2 (1000): Start with a Level 4 character
@@ -15031,8 +15058,16 @@ spell points.</Description>
     <Stance>
       <Name>Accelerate Spell</Name>
       <Icon>AccelerateSpell</Icon>
-      <Description>While this Metamagic feat is active, the projectiles of spells affected by Accelerate Spell fly faster and with less of an arc, but consume 5 additional spell points.</Description>
+      <Description>While this Metamagic feat is active, the projectiles of spells affected by Accelerate
+Spell fly faster and with less of an arc, but consume 5 additional spell points.</Description>
+        <Group>Metamagics</Group>
     </Stance>
+    <Effect>
+      <Type>MetamagicCostAccelerate</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+    </Effect>
   </Feat>
   <Feat>
     <Name>Spiked Chain Attack</Name>

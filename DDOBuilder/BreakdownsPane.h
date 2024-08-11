@@ -92,6 +92,7 @@ class CBreakdownsPane :
         void CreateWeaponBreakdowns();
         void CreateHirelingBreakdowns();
         void CreateChargesBreakdowns();
+        void CreateMetamagicBreakdowns(HTREEITEM hParent);
 
         void AddKiBreakdowns(HTREEITEM hParent);
         void AddClassCasterLevels(HTREEITEM hParent);

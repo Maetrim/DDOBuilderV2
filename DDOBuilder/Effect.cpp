@@ -720,8 +720,22 @@ bool Effect::CheckAType(
         *requiredAmountElements = 3;        // 3 elements expected
         break;
     case Amount_SliderValue:
-        *bRequiresAmount = true;           // no values
+        *bRequiresAmount = true;            // has values
         *requiredAmountElements = 1;        // 1 element expected
+        break;
+    case Amount_SliderValueLookup:
+        *bRequiresAmount = true;            // has values
+        *requiredAmountElements = 1;        // 1 element expected
+        if (!HasStackSource())
+        {
+            (*ss) << "SliderValueLookup effect missing StackSource field\n";
+            ok = false;
+        }
+        if (Items().size() == 0)
+        {
+            (*ss) << "SliderValueLookup effect missing Item field\n";
+            ok = false;
+        }
         break;
     case Amount_APCount:
         *bRequiresAmount = true;           // no values
@@ -794,6 +808,15 @@ bool Effect::CheckAType(
         // unknown Amount field size, checked at run time when effects stack
         break;
 
+    case Amount_SetBonusCount:
+        *bRequiresAmount = true;                    // Amount specifies amount at each stack level
+        // unknown Amount field size, checked at run time when effects stack
+        if (!HasStackSource())
+        {
+            (*ss) << "Effect missing StackSource\n";
+            ok = false;
+        }
+        break;
     case Amount_FeatCount:
         *bRequiresAmount = true;                    // Amount specifies amount at each stack level
         // unknown Amount field size, checked at run time when effects stack
@@ -937,9 +960,10 @@ void Effect::AddEffectStack()
 
 bool Effect::RevokeEffectStack()
 {
-    if (m_AType == Amount_SliderValue)
+    if (m_AType == Amount_SliderValue
+        || m_AType == Amount_SliderValueLookup)
     {
-    // have to clear all stack for this effect type
+        // have to clear all stack for this effect type
         m_stacks = 0;
     }
     else
@@ -996,6 +1020,7 @@ std::string Effect::StacksAsString() const
     case Amount_AbilityMod:
     case Amount_Slider:
     case Amount_SliderValue:
+    case Amount_SliderValueLookup:
         ss << m_stacks;
         break;
     case Amount_SetBonusCount:
@@ -1246,6 +1271,27 @@ double Effect::TotalAmount(bool allowTruncate) const
         case Amount_SliderValue:
             total = m_Amount[0] * m_stacks;
             break;
+        case Amount_SliderValueLookup:
+            {
+                if (!HasStackSource())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" missing StackSource";
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                size_t level = m_pBuild->ClassLevels(StackSource(), m_pBuild->Level() - 1);
+                // vector lookup
+                int vi = min(level, m_Amount.size() - 1);
+                if (vi < 0
+                    || level > m_Amount.size())
+                {
+                    std::stringstream ss;
+                    ss << "Effect \"" << DisplayName() << "\" has incorrect Amount vector size. Stacks present are " << level;
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                total = m_Amount[vi] * m_stacks;
+            }
+            break;
         case Amount_Dice:
             if (!HasDamageDice())
             {
@@ -1348,6 +1394,12 @@ bool Effect::UpdateSliderEffects(const std::string& sliderName, int newValue)
     // check for slider is the stack count
     if (m_AType == Amount_SliderValue
         && sliderName == StackSource())
+    {
+        bUpdate = true;
+        m_stacks = newValue;
+    }
+    else if (m_AType == Amount_SliderValueLookup
+        && sliderName == Item().front())
     {
         bUpdate = true;
         m_stacks = newValue;

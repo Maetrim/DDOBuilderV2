@@ -863,8 +863,8 @@ Cooldown: 1 minute</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Kinetic Charge</Name>
       <InternalName>RMKineticCharge</InternalName>
-      <Description>Kinetic Charge
-You charge up energy through successive hits with your melee attacks.
+      <Description>Kinetic Charge: You charge up energy through successive hits with your melee attacks.
+
 Passive: Any time you hit an opponent in melee, you have a chance of gaining a
 stack of Kinetic Charge. Each stack grants +1 Shield Bonus to Armor Class
 per 3 Artificer levels (stacks up to five times). Stacks decay by one every 15
@@ -887,20 +887,22 @@ for 10 seconds.</Description>
           <Value>4</Value>
         </Requirement>
       </Requirements>
+       <!--effect created before slider to get correct initialization-->
+       <Effect>
+          <Type>ACBonus</Type>
+          <Bonus>Shield</Bonus>
+          <Amount size="21">0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7</Amount>
+          <AType>SliderValueLookup</AType>
+          <StackSource>Artificer</StackSource>
+          <Item>Kinetic Charge</Item>
+          <ApplyAsItemEffect/>
+       </Effect>
        <Effect>
           <Type>CreateSlider</Type>
           <Bonus>Enhancement</Bonus>
           <Item>Kinetic Charge</Item>
           <AType>Slider</AType>
-          <Amount size="3">0 5 0</Amount>
-       </Effect>
-       <Effect>
-          <Type>ACBonus</Type>
-          <Bonus>Shield</Bonus>
-          <Amount size="21">0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7</Amount>
-          <AType>ClassLevel</AType>
-          <StackSource>Artificer</StackSource>
-          <ApplyAsItemEffect/>
+          <Amount size="3">0 0 5</Amount>
        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>

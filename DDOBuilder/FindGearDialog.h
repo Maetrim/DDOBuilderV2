@@ -47,7 +47,9 @@ class CFindGearDialog : public CDialog
         afx_msg void OnButtonEquipIt();
         afx_msg void OnItemLevelSelect();
         afx_msg void OnSelEndLevelRange();
-public:
+        afx_msg void OnButtonIgnoreRaidItems();
+        afx_msg void OnButtonClearFilter();
+    public:
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -82,11 +84,12 @@ public:
             MAX_Upgrades = 4,
         };
         CEdit m_editSearchText;
-        CButton m_buttonFilter;
+        CButton m_clearFilter;
         CListCtrl m_availableItemsCtrl;
         CSortHeaderCtrl m_sortHeader;
         CComboBox m_comboLevelRange;
         CComboBox m_comboItemLevel;
+        CButton m_buttonIgnoreRaidItems;
         CStatic m_staticAugments;
         CStatic m_augmentType[MAX_Augments];
         CComboBoxTooltip m_comboAugmentDropList[MAX_Augments];

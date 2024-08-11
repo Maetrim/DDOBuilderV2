@@ -47,6 +47,8 @@ class Item :
         bool HasSetBonus(const std::string& setBonusName) const;
 
         void SetAugments(const std::vector<ItemAugment>& augments);
+        bool IsRaidItem() const;
+        void SetIsRaidItem(bool bIsRaidItem);
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -97,6 +99,7 @@ class Item :
 
         size_t m_iconIndex;
         std::string m_filename;
+        bool m_bIsRaindItem;
 
         friend class WikiItemFileProcessor;
         friend class CItemSelectDialog;

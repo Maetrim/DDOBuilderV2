@@ -20,7 +20,6 @@ enum EffectType
     Effect_AbilityBonus,
     Effect_ACBonus,
     Effect_ACBonusShield,
-    Effect_AdditionalSpellPointCost,
     Effect_AddGroupWeapon,
     Effect_ArcaneSpellFailure,
     Effect_ArcaneSpellFailureShields,
@@ -185,6 +184,20 @@ enum EffectType
     Effect_UniversalSpellPower,
     Effect_WildsurgeChance,
 
+    Effect_SpellPointCostPercent,
+    // metamagic costs
+    Effect_MetamagicCostAccelerate,
+    Effect_MetamagicCostEschewMaterials,
+    Effect_MetamagicCostEmbolden,
+    Effect_MetamagicCostEmpower,
+    Effect_MetamagicCostEmpowerHealing,
+    Effect_MetamagicCostEnlarge,
+    Effect_MetamagicCostExtend,
+    Effect_MetamagicCostHeighten,
+    Effect_MetamagicCostIntensify,
+    Effect_MetamagicCostMaximize,
+    Effect_MetamagicCostQuicken,
+
     // weapon effects for specified weapons in Item(s)
     Effect_Weapon_Alacrity,
     Effect_Weapon_AttackAbility,
@@ -242,7 +255,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_AbilityBonus, L"AbilityBonus"},
     {Effect_ACBonus, L"ACBonus"},
     {Effect_ACBonusShield, L"ACBonusShield"},
-    {Effect_AdditionalSpellPointCost, L"AdditionalSpellPointCost"},
     {Effect_AddGroupWeapon, L"AddGroupWeapon"},
     {Effect_ArcaneSpellFailure, L"ArcaneSpellFailure"},
     {Effect_ArcaneSpellFailureShields, L"ArcaneSpellFailureShields"},
@@ -407,6 +419,19 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_UniversalSpellPower, L"UniversalSpellPower"},
     {Effect_WildsurgeChance, L"WildsurgeChance"},
 
+    {Effect_SpellPointCostPercent, L"SpellPointCostPercent"},
+    // metamagic costs
+    {Effect_MetamagicCostEschewMaterials, L"MetamagicCostEschewMaterials"},
+    {Effect_MetamagicCostEmbolden, L"MetamagicCostEmbolden"},
+    {Effect_MetamagicCostEmpower, L"MetamagicCostEmpower"},
+    {Effect_MetamagicCostEmpowerHealing, L"MetamagicCostEmpowerHealing"},
+    {Effect_MetamagicCostEnlarge, L"MetamagicCostEnlarge"},
+    {Effect_MetamagicCostExtend, L"MetamagicCostExtend"},
+    {Effect_MetamagicCostHeighten, L"MetamagicCostHeighten"},
+    {Effect_MetamagicCostIntensify, L"MetamagicCostIntensify"},
+    {Effect_MetamagicCostMaximize, L"MetamagicCostMaximize"},
+    {Effect_MetamagicCostQuicken, L"MetamagicCostQuicken"},
+
     // weapon effects for specified weapons in Item(s)
     {Effect_Weapon_Alacrity, L"Weapon_Alacrity"},
     {Effect_Weapon_AttackAbility, L"Weapon_AttackAbility"},
@@ -474,6 +499,7 @@ enum AmountType
     Amount_ThirdAbilityMod,     // Stacks are equal to the specific abilities mod value / 3
     Amount_Slider,              // Defining a slider initial value and range
     Amount_SliderValue,         // Stacks are equal to the specified slider value
+    Amount_SliderValueLookup,   // Stacks are equal to the specified slider value multiplied by a look up value
     Amount_FeatCount,           // Stacks are equal to the number times a specific feat has been trained
     Amount_SetBonusCount,       // Stacks are equal to the count of the specified set bonus
     Amount_SLA,                 // Item SLA, caster level, charges, recharge/day
@@ -498,6 +524,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_ThirdAbilityMod, L"ThirdAbilityMod"},     // Item is the ability name
     {Amount_Slider, L"Slider"},             // Item is the Slider name
     {Amount_SliderValue, L"SliderValue"},   // Item is the Slider name
+    {Amount_SliderValueLookup, L"SliderValueLookup"},   // Item is a Slider name, and StackSource used to looup the value used
     {Amount_FeatCount, L"FeatCount"},       // Item is the Feat name
     {Amount_SetBonusCount, L"SetBonusCount"},   // Item is the set bonus name
     {Amount_SLA, L"SLA"},                   // item is the SLA name

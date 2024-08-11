@@ -13,6 +13,10 @@ StanceGroup::StanceGroup(
     m_groupName(groupName),
     m_bSingleSelection(bSingleSelection)
 {
+    if (groupName == "Metamagics")
+    {
+        m_bSingleSelection = false;
+    }
     if (NULL == (HFONT)sm_smallFont)
     {
         // shown in a small font

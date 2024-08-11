@@ -1491,6 +1491,16 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
                 reinterpret_cast<WPARAM>(pLoadedImages),
                 0L);
     }
+    // flag all items which drop in a raid so they can be excluded if required
+    const std::list<Quest>& quests = pApp->Quests();
+    std::vector<std::string> raidQuests;
+    for (auto&& qit : quests)
+    {
+        if (qit.HasIsRaid())
+        {
+            raidQuests.push_back(qit.Name());
+        }
+    }
     {
         // all the items are in the same folder
         std::string localPath(folderPath);
@@ -1511,6 +1521,19 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
                     iit.SetIconIndex(pApp->m_itemImagesMap[icon]);
                 }
             }
+            bool isRaidItem = false;
+            if (iit.HasDropLocation())
+            {
+                for (auto&& rqit: raidQuests)
+                {
+                    if (iit.DropLocation().find(rqit) != std::string::npos)
+                    {
+                        isRaidItem = true;
+                        break;
+                    }
+                }
+            }
+            iit.SetIsRaidItem(isRaidItem);
         }
         CString* pLoadedItems = new CString;
         pLoadedItems->Format("Items Loaded: %d", pApp->m_items.size());

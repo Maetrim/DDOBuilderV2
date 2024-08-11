@@ -144,17 +144,12 @@ std::list<Effect> Spell::UpdatedEffects(size_t castingLevel) const
     return effects;
 }
 
-void Spell::UpdateSpell(const ClassSpell& cs, const std::string& ct)
+void Spell::UpdateSpell(const ClassSpell& cs, const std::string& ct, int spellLevel)
 {
     SetClass(ct);
     Set_Level(cs.Level());
-    if (cs.HasCost()) Set_Cost(cs.Cost());
+    if (cs.HasCost()) Set_Cost(cs.Cost()); else Set_Cost(5 * spellLevel);
     if (cs.HasMaxCasterLevel()) Set_MaxCasterLevel(cs.MaxCasterLevel());
-    //for (auto&& dcit : m_DCs)
-    //{
-    //    dcit.SetClass(ct);
-    //    dcit.SetSpellLevel(cs.Level());
-    //}
 }
 
 void Spell::UpdateSpell(const FixedSpell& fs, const std::string& ct)
@@ -163,10 +158,6 @@ void Spell::UpdateSpell(const FixedSpell& fs, const std::string& ct)
     Set_Level(fs.Level());
     Set_Cost(fs.Cost());
     if (fs.MaxCasterLevel() >= 0) Set_MaxCasterLevel(fs.MaxCasterLevel());
-    //for (auto&& dcit : m_DCs)
-    //{
-    //    dcit.SetClass(ct);
-    //}
 }
 
 const std::string& Spell::Class() const
@@ -344,6 +335,102 @@ CString Spell::ActualMaxCasterLevelText(const Build& build, const SpellDamage& s
 void Spell::SetCost(int cost)
 {
     Set_Cost(cost);
+}
+
+int Spell::TotalCost(const Build& build) const
+{
+    // determine the total cost to cast this spell based on what metamagics are
+    // currently enabled. Note that SLAs get metamagics at no additional cost
+    int cost = Cost();              // base cost
+    // check each possible metamagic to see if it is active and add the cost is required
+    if (HasAccelerate() && build.IsStanceActive("Accelerate Spell"))
+    {
+        BreakdownItem *pBI = FindBreakdown(Breakdown_Accelerate);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasEmbolden() && build.IsStanceActive("Embolden Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Embolden);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasEmpower() && build.IsStanceActive("Empower Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Empower);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasEmpowerHealing() && build.IsStanceActive("Empower Healing Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_EmpowerHealing);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasEnlarge() && build.IsStanceActive("Enlarge Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Enlarge);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasExtend() && build.IsStanceActive("Extend Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Extend);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasHeighten() && build.IsStanceActive("Heighten Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Heighten);
+        if (pBI != NULL)
+        {
+            // Special: This is amount per spell level of heightening
+            const ::Class& c = FindClass(Class());
+            size_t maxLevel = c.MaxSpellLevel(build.Level());
+            size_t heightenedLevels = maxLevel - Level();
+            if (heightenedLevels > 0)
+            {
+                cost += (pBI->Total() * heightenedLevels);
+            }
+        }
+    }
+    if (HasIntensify() && build.IsStanceActive("Intensify Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Intensify);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasMaximize() && build.IsStanceActive("Maximize Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Maximize);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    if (HasQuicken() && build.IsStanceActive("Quicken Spell"))
+    {
+        BreakdownItem* pBI = FindBreakdown(Breakdown_Quicken);
+        if (pBI != NULL)
+        {
+            cost += pBI->Total();
+        }
+    }
+    return cost;
 }
 
 void Spell::SetIconIndex(size_t index)

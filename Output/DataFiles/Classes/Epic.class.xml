@@ -1454,8 +1454,8 @@ with no save. This may only trigger once every 12 seconds.</Description>
     </Feat>
     <Feat>
       <Name>Arcane Actions</Name>
-      <Description>Whenever you use an Action Boost, you gain a +100 Competence Bonus to Universal
-Spell Power and +2 to Spell Penetration for 3 seconds</Description>
+      <Description>Whenever you use an Action Boost, you gain a +50 Competence Bonus to Universal
+Spell Power and +2 Imbue Dice for 6 seconds</Description>
       <Group>Epic Destiny Feat</Group>
       <Requirements>
         <Requirement>
@@ -1469,7 +1469,7 @@ Spell Power and +2 to Spell Penetration for 3 seconds</Description>
         <Type>UniversalSpellPower</Type>
         <Bonus>Competence</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">100</Amount>
+        <Amount size="1">50</Amount>
          <Requirements>
             <Requirement>
                <Type>Stance</Type>
@@ -1479,7 +1479,7 @@ Spell Power and +2 to Spell Penetration for 3 seconds</Description>
         <Percent/>
       </Effect>
       <Effect>
-        <Type>SpellPenetrationBonus</Type>
+        <Type>ImbueDice</Type>
         <Bonus>Competence</Bonus>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
@@ -1933,6 +1933,7 @@ Passive: +140 Maximum Spell Points</Description>
         <Icon>EmboldenSpell</Icon>
         <Description>While this metamagic feat is active, you gain +2 to the DC of spells
 affected by Embolden Spell, but they consume 10 additional spell points.</Description>
+        <Group>Metamagics</Group>
       </Stance>
       <Group>Epic Feat</Group>
       <Requirements>
@@ -1957,7 +1958,7 @@ affected by Embolden Spell, but they consume 10 additional spell points.</Descri
         </Requirements>
       </Effect>
       <Effect>
-        <Type>AdditionalSpellPointCost</Type>
+        <Type>MetamagicCostEmbolden</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
@@ -2103,7 +2104,7 @@ every epic level.</Description>
         <Amount size="1">6</Amount>
       </Effect>
       <Effect>
-        <Type>AdditionalSpellPointCost</Type>
+        <Type>SpellPointCostPercent</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">-1</Amount>
@@ -3454,6 +3455,7 @@ Passive: +140 Maximum Spell Points</Description>
         <Description>While this metamagic feat is active, you gain 75 Spell Power while casting
 spells affected by Intensify Spell, but they cost 15 additional spell points.
 This bonus stacks with Empower.</Description>
+        <Group>Metamagics</Group>
       </Stance>
       <Group>Epic Feat</Group>
       <Requirements>
@@ -3477,7 +3479,7 @@ This bonus stacks with Empower.</Description>
         </Requirements>
       </Effect>
       <Effect>
-        <Type>AdditionalSpellPointCost</Type>
+        <Type>MetamagicCostIntensify</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
@@ -4236,7 +4238,7 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
     </Feat>
     <Feat>
       <Name>Eerie Aim</Name>
-      <Description>You gain +5% Dodge Bypass and +5% Deflection Bypass.</Description>
+      <Description>You gain +5% Dodge Bypass +5% Deflection Bypass, and +10 to Attack.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -4258,10 +4260,18 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
       </Effect>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>All</Item>
+      </Effect>
     </Feat>
     <Feat>
       <Name>Paranoid</Name>
-      <Description>You automatically Spot almost all traps as you approach them.</Description>
+      <Description>You take 10% less damage from Traps, and you automatically Spot almost all traps
+as you approach them.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -4298,9 +4308,9 @@ Rating and Magical Resistance Rating.</Description>
     <Feat>
       <Name>Defensive Tumble</Name>
       <Description>When you Tumble, for the next 3 seconds you take 20% less damage from all sources
-(except Bane). In addition, the bonus to Reflex Saving Throws you receive while
-actively Tumbling is now also applied to Fortitude and Will saving throws while
-Tumbling.</Description>
+(except Bane). In addition, your Tumble charges recharge 0.5 seconds faster,
+and the bonus to Reflex Saving Throws you receive while actively Tumbling is
+now also applied to Fortitude and Will saving throws while Tumbling.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -4313,7 +4323,8 @@ Tumbling.</Description>
     </Feat>
     <Feat>
       <Name>Trick Shot</Name>
-      <Description>When you Tumble, you gain +40 Ranged Power for 4 seconds.</Description>
+      <Description>When you Tumble, you gain +40 Ranged Power for 4 seconds.
+In addition, your Tumble charges recharge 0.5 seconds faster</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>

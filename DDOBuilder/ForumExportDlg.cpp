@@ -670,10 +670,11 @@ void CForumExportDlg::AddAutomaticFeats(std::stringstream& forumExport)
 {
     // list all the automatic feats gained at each level
     forumExport << "Automatic Feats\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
-    forumExport << "Level Class            Feats\r\n";
+    forumExport << "[TABLE]";
+    forumExport << "[TR][TD]Level[/TD][TD]Class[/TD][TD]Feats[/TD][/TR]\r\n";
     for (size_t level = 0; level < m_pBuild->Level(); ++level)
     {
+        forumExport << "[TR][TD]";
         const LevelTraining& levelData = m_pBuild->LevelData(level);
         std::vector<size_t> classLevels = m_pBuild->ClassLevels(level);
         std::string cn = levelData.HasClass() ? levelData.Class() : Class_Unknown;
@@ -682,44 +683,51 @@ void CForumExportDlg::AddAutomaticFeats(std::stringstream& forumExport)
         className.Format("%s(%d)",
                 cn.c_str(),
                 levelData.HasClass() ? classLevels[c.Index()] : 0);
-        forumExport.width(3);
-        forumExport << std::right << (level + 1) << "   ";
-        forumExport.fill(' ');
-        forumExport.width(17);
-        forumExport << std::left << className;
+        forumExport << (level + 1) << "[/TD][TD]" << className << "[/TD]";
         // now add the automatic feats
         const std::list<TrainedFeat>& feats = levelData.AutomaticFeats();
-        std::list<TrainedFeat>::const_iterator it = feats.begin();
-        bool first = true;
-        while (it != feats.end())
+        if (feats.size() > 0)
         {
-            if (!first)
+            std::list<TrainedFeat>::const_iterator it = feats.begin();
+            bool bFirst = true;
+            while (it != feats.end())
             {
-                forumExport << "                       ";
+                if (!bFirst)
+                {
+                    forumExport << "[TR][TD][/TD][TD][/TD]";
+                }
+                forumExport << "[TD]" << (*it).FeatName() << "[/TD]";
+                forumExport << "[/TR]\r\n";
+                ++it;
+                bFirst = false;
             }
-            forumExport << (*it).FeatName();
-            forumExport << "\r\n";
-            ++it;
-            first = false;
         }
-        if (first)
+        else
         {
-            forumExport << "\r\n";
+            forumExport << "[TD][/TD][/TR]\r\n";
         }
     }
-    forumExport << "\r\n";
+    forumExport << "[/TABLE]\r\n";
 }
 
 void CForumExportDlg::AddConsolidatedFeats(std::stringstream& forumExport)
 {
-    forumExport << "[code]\r\n";
     forumExport << "Class and Feat Selection (Consolidated)\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
-    forumExport << "Level Class            Feats\r\n";
+    forumExport << "[TABLE]";
+    forumExport << "[TR][TD]Level[/TD][TD]Class[/TD][TD]Feats[/TD][/TR]\r\n";
     for (size_t level = 0; level < m_pBuild->Level(); ++level)
     {
-        bool first = true;
+        forumExport << "[TR][TD]";
+        bool bFirst = true;
         const LevelTraining& levelData = m_pBuild->LevelData(level);
+        std::vector<size_t> classLevels = m_pBuild->ClassLevels(level);
+        std::string cn = levelData.HasClass() ? levelData.Class() : Class_Unknown;
+        const Class& c = FindClass(cn);
+        CString className;
+        className.Format("%s(%d)",
+                cn.c_str(),
+                levelData.HasClass() ? classLevels[c.Index()] : 0);
+        forumExport << (level + 1) << "[/TD][TD]" << className << "[/TD]";
         if (level == 0)
         {
             std::string expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
@@ -727,33 +735,27 @@ void CForumExportDlg::AddConsolidatedFeats(std::stringstream& forumExport)
             bool requiresHeartOfWood = race.HasIconicClass() ? race.IconicClass() != expectedClass : false;
             if (requiresHeartOfWood)
             {
-                forumExport << "                       Level 1 Requires a +1 Heart of Wood to switch out of Iconic Class\r\n";
-                first = false;
+                forumExport << "[TD][COLOR=rgb(184, 49, 47)]Requires a +1 Heart of Wood to switch out of Iconic Class[/COLOR][/TD]\r\n";
+                bFirst = false;
             }
         }
-        std::vector<size_t> classLevels = m_pBuild->ClassLevels(level);
-        std::string cn = levelData.HasClass() ? levelData.Class() : Class_Unknown;
-        const Class& c = FindClass(cn);
-        CString className;
-        className.Format("%s(%d)",
-                cn.c_str(),
-                levelData.HasClass() ? classLevels[c.Index()] : 0);
-        forumExport.width(2);
-        forumExport << std::left << (level + 1) << "    ";
-        forumExport.fill(' ');
-        forumExport.width(17);
-        forumExport << std::left << className;
         // now add the trainable feat types and their selections
         std::vector<FeatSlot> trainable = m_pBuild->TrainableFeatTypeAtLevel(level);
         if (trainable.size() > 0)
         {
             for (size_t tft = 0; tft < trainable.size(); ++tft)
             {
-                CString label = trainable[tft].FeatType().c_str();
-                label += ": ";
+                if (!bFirst)
+                {
+                    forumExport << "[TR][TD][/TD][TD][/TD]";
+                }
+                CString label = "[TD][COLOR=rgb(65, 168, 95)]";
+                label += trainable[tft].FeatType().c_str();
+                label += ": [/COLOR]";
                 TrainedFeat tf = m_pBuild->GetTrainedFeat(
-                        level,
-                        trainable[tft].FeatType());
+                    level,
+                    trainable[tft].FeatType());
+                label += "[COLOR=rgb(184, 49, 47)]";
                 if (tf.FeatName().empty())
                 {
                     label += "Empty Feat Slot";
@@ -765,46 +767,51 @@ void CForumExportDlg::AddConsolidatedFeats(std::stringstream& forumExport)
                     {
                         label += " (Requires Feat Swap with Fred)";
                     }
+                    if (tf.HasAlternateFeatName())
+                    {
+                        label += " Alternate: ";
+                        label += tf.AlternateFeatName().c_str();
+                    }
                 }
-                if (tft > 0)
-                {
-                    forumExport << "                       ";
-                }
-                forumExport << label;
-                forumExport << "\r\n";
+                label += "[/COLOR][/TD][/TR]";
+                forumExport << (LPCTSTR)label;
             }
-            first = false;
+            bFirst = false;
         }
         // also need to show ability adjustment on every 4th level
         AbilityType ability = m_pBuild->AbilityLevelUp(level + 1);
         if (ability != Ability_Unknown)
         {
-            if (trainable.size() > 0)
+            if (!bFirst)
             {
-                forumExport << "                       ";
+                forumExport << "[TR][TD][/TD][TD][/TD]";
             }
             forumExport << EnumEntryText(ability, abilityTypeMap);
-            forumExport << ": +1 Level up\r\n";
-            first = false;
+            forumExport << "[TD][COLOR=rgb(250, 197, 28)]";
+            forumExport << EnumEntryText(ability, abilityTypeMap);
+            forumExport << ": +1 Level up[/COLOR][/TD][/TR]\r\n";
+            bFirst = false;
         }
         // now add the automatic feats
         const std::list<TrainedFeat>& feats = levelData.AutomaticFeats();
         std::list<TrainedFeat>::const_iterator it = feats.begin();
         while (it != feats.end())
         {
-            if (!first)
+            if (!bFirst)
             {
-                forumExport << "                       ";
+                forumExport << "[TR][TD][/TD][TD][/TD]";
             }
-            forumExport << "Automatic: " << (*it).FeatName();
-            forumExport << "\r\n";
+            forumExport << "[TD]Automatic: " << (*it).FeatName() << "[/TD]";
+            forumExport << "[/TR]\r\n";
             ++it;
-            first = false;
+            bFirst = false;
         }
-        forumExport << "\r\n";
+        if (bFirst)
+        {
+            forumExport << "[TD][/TD][/TR]\r\n";
+        }
     }
-    forumExport << "\r\n";
-    forumExport << "[/code]\r\n";
+    forumExport << "[/TABLE]\r\n";
 }
 
 void CForumExportDlg::AddActiveStances(std::stringstream& forumExport)
@@ -2107,7 +2114,7 @@ void CForumExportDlg::ExtractTableRowData(std::string rowText, TableData* pData)
         content = ReplaceAll(content, "[TD]", "");
         content = ReplaceAll(content, "[/TD]", "");
         pData->data.push_back(content);
-        rowText = ReplaceAll(rowText, entry, "");
+        rowText = ReplaceFirst(rowText, entry, "");
         // intialise for next loop
         entry = ExtractBlock(rowText, "[TD]", "[/TD]");
     }

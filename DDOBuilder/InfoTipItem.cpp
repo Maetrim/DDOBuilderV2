@@ -363,7 +363,7 @@ void InfoTipItem_Requirements::CreateSetBonusStrings(
     {
         CString entry;
         entry.Format("    %d: %s", bit.EquippedCount(), bit.Description().c_str());
-        AddRequirement(entry, (numStacks > 0) ? (bit.EquippedCount() <= numStacks) : true);
+        AddRequirement(entry, bit.EquippedCount() <= numStacks);
     }
 }
 

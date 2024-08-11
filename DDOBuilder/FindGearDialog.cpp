@@ -6,6 +6,7 @@
 #include "Build.h"
 #include "GlobalSupportFunctions.h"
 #include "MouseHook.h"
+#include "EnableBuddyButton.h"
 
 // CFindGearDialog dialog
 
@@ -46,7 +47,7 @@ void CFindGearDialog::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_EDIT_TEXT, m_editSearchText);
-    DDX_Control(pDX, IDC_BUTTON_FILTER, m_buttonFilter);
+    DDX_Control(pDX, IDC_BUTTON_CLEAR_FILTER, m_clearFilter);
     DDX_Control(pDX, IDC_ITEM_LIST, m_availableItemsCtrl);
     DDX_Control(pDX, IDC_EQUIP_IT, m_buttonEquipIt);
     if (!pDX->m_bSaveAndValidate)
@@ -55,6 +56,7 @@ void CFindGearDialog::DoDataExchange(CDataExchange* pDX)
     }
     DDX_Control(pDX, IDC_COMBO_WITHINLEVELS, m_comboLevelRange);
     DDX_Control(pDX, IDC_COMBO_ITEMLEVEL, m_comboItemLevel);
+    DDX_Control(pDX, IDC_CHECK_IGNORERAIDITEMS, m_buttonIgnoreRaidItems);
     DDX_Control(pDX, IDC_STATIC_AUGMENTS, m_staticAugments);
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
@@ -95,6 +97,8 @@ BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_EN_KILLFOCUS(IDC_EDIT_TEXT, OnSearchTextKillFocus)
     ON_CBN_SELENDOK(IDC_COMBO_ITEMLEVEL, OnItemLevelSelect)
     ON_CBN_SELENDOK(IDC_COMBO_WITHINLEVELS, OnSelEndLevelRange)
+    ON_BN_CLICKED(IDC_CHECK_IGNORERAIDITEMS, OnButtonIgnoreRaidItems)
+    ON_BN_CLICKED(IDC_BUTTON_CLEAR_FILTER, OnButtonClearFilter)
 END_MESSAGE_MAP()
 
 // CFindGearDialog message handlers
@@ -105,6 +109,14 @@ BOOL CFindGearDialog::OnInitDialog()
 
     m_tooltip.Create(this);
     m_tipCreated = true;
+
+    int iState = AfxGetApp()->GetProfileInt("ItemSelectDialog", "ExcludeRaidItems", 0);
+    if (iState != 0)
+    {
+        m_buttonIgnoreRaidItems.SetCheck(BST_CHECKED);
+    }
+
+    EnableBuddyButton(m_editSearchText.GetSafeHwnd(), m_clearFilter.GetSafeHwnd(), BBS_RIGHT);
 
     // add list control columns
     m_availableItemsCtrl.InsertColumn(0, "Item Name", LVCFMT_LEFT, 226);
@@ -174,16 +186,26 @@ void CFindGearDialog::PopulateAvailableItemList()
     searchText.MakeLower(); // case less text match
 
     int minItemLevel = m_pBuild->Level() - m_levelRange;
+    bool bIgnoreRaidItems = (m_buttonIgnoreRaidItems.GetCheck() == BST_CHECKED);
 
     const std::list<Item> & allItems = Items();
     m_availableItems.clear();
     std::list<Item>::const_iterator it = allItems.begin();
     while (it != allItems.end())
     {
+        if (bIgnoreRaidItems && it->IsRaidItem())
+        {
+            // ignore this raid item
+            ++it;
+            continue;
+        }
         bool canSelect = true;
         // exclude weapons
         if (!(*it).CanEquipToSlot(Inventory_Weapon1)
                 && !(*it).CanEquipToSlot(Inventory_Weapon2)
+                && !(*it).CanEquipToSlot(Inventory_CosmeticArmor)
+                && !(*it).CanEquipToSlot(Inventory_CosmeticCloak)
+                && !(*it).CanEquipToSlot(Inventory_CosmeticHelm)
                 && (*it).MinLevel() <= m_pBuild->Level()
                 && (static_cast<int>((*it).MinLevel()) >= minItemLevel || (*it).MinLevel() == 0))
         {
@@ -582,8 +604,17 @@ void CFindGearDialog::OnAugmentSelect(UINT nID)
             }
             if (!augments[augmentIndex].HasSelectedLevelIndex())
             {
-                // default to the first option if not selected
-                augments[augmentIndex].SetSelectedLevelIndex(0);
+                // default to the highest selectable option if not selected
+                const std::vector<int>& levels = augment.Levels();
+                size_t index = 0;
+                for (size_t i = 0; i < levels.size(); ++i)
+                {
+                    if (levels[i] < static_cast<int>(m_pBuild->Level()))
+                    {
+                        index = i;
+                    }
+                }
+                augments[augmentIndex].SetSelectedLevelIndex(index);
             }
             PopulateAugmentList(
                 &m_comboAugmentDropList[augmentIndex],
@@ -1118,7 +1149,7 @@ BOOL CFindGearDialog::PreTranslateMessage(MSG* pMsg)
             && pMsg->wParam == VK_RETURN
             && GetFocus() == &m_editSearchText)
     {
-        m_buttonFilter.SetFocus();
+        m_availableItemsCtrl.SetFocus();
         handled = TRUE;
     }
     if (!handled)
@@ -1257,3 +1288,15 @@ void CFindGearDialog::SetupItemLevel(size_t maxLevel, size_t currentLevel, bool 
     m_comboItemLevel.UnlockWindowUpdate();
 }
 
+void CFindGearDialog::OnButtonIgnoreRaidItems()
+{
+    int ignoreRaidItems = (m_buttonIgnoreRaidItems.GetCheck() == BST_CHECKED) ? 1 : 0;
+    AfxGetApp()->WriteProfileInt("ItemSelectDialog", "ExcludeRaidItems", ignoreRaidItems);
+    PopulateAvailableItemList();
+}
+
+void CFindGearDialog::OnButtonClearFilter()
+{
+    m_editSearchText.SetWindowText("");
+    OnSearchTextKillFocus();
+}

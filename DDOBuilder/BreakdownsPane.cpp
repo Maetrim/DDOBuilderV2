@@ -1619,6 +1619,22 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSR);
         m_items.push_back(pSR);
     }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Spell Cost Reduction Percent",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pSR = new BreakdownItemSimple(
+            this,
+            Breakdown_SpellCostReduction,
+            Effect_SpellPointCostPercent,
+            "Spell Cost Reduction Percent",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSR);
+        m_items.push_back(pSR);
+    }
+    CreateMetamagicBreakdowns(hParent);
     HTREEITEM hClassCasterLevels = m_itemBreakdownTree.InsertItem(
             "Class Caster Levels", 
             hParent,
@@ -2539,6 +2555,181 @@ void CBreakdownsPane::CreateChargesBreakdowns()
             hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRC);
         m_items.push_back(pRC);
+    }
+}
+
+void CBreakdownsPane::CreateMetamagicBreakdowns(HTREEITEM hParent)
+{
+    // insert the charges root tree item
+    HTREEITEM hGroupParent = m_itemBreakdownTree.InsertItem(
+        "Metamagic Costs",
+        0,
+        hParent);
+    m_itemBreakdownTree.SetItemData(hParent, 0);
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Accelerate Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Accelerate,
+            Effect_MetamagicCostAccelerate,
+            "Accelerate Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Eschew Material Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Eschewmaterials,
+            Effect_MetamagicCostEschewMaterials,
+            "Eschew Materials",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Embolden Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Embolden,
+            Effect_MetamagicCostEmbolden,
+            "Embolden Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Empower Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Empower,
+            Effect_MetamagicCostEmpower,
+            "Empower Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Empower Healing Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_EmpowerHealing,
+            Effect_MetamagicCostEmpowerHealing,
+            "Empower Healing Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Enlarge Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Enlarge,
+            Effect_MetamagicCostEnlarge,
+            "Enlarge Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Extend Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Extend,
+            Effect_MetamagicCostExtend,
+            "Extend Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Heighten Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Heighten,
+            Effect_MetamagicCostHeighten,
+            "Heighten Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Intensify Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Intensify,
+            Effect_MetamagicCostIntensify,
+            "Intensify Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Maximize Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Maximize,
+            Effect_MetamagicCostMaximize,
+            "Maximize Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Quicken Cost",
+            hGroupParent,
+            TVI_LAST);
+        BreakdownItem* pMeta = new BreakdownItemSimple(
+            this,
+            Breakdown_Quicken,
+            Effect_MetamagicCostQuicken,
+            "Quicken Spell",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMeta);
+        m_items.push_back(pMeta);
     }
 }
 

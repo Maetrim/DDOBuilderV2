@@ -29,7 +29,7 @@ class Spell :
         const std::string& Class() const;
         void SetClass(const std::string& ct);
         std::list<Effect> UpdatedEffects(size_t castingLevel) const;
-        void UpdateSpell(const ClassSpell& cs, const std::string& ct);
+        void UpdateSpell(const ClassSpell& cs, const std::string& ct, int spellLevel);
         void UpdateSpell(const FixedSpell& fs, const std::string& ct);
 
         int ActualCasterLevel(const Build& build, const SpellDamage& sd) const;
@@ -37,6 +37,7 @@ class Spell :
         CString ActualCasterLevelText(const Build& build, const SpellDamage& sd) const;
         CString ActualMaxCasterLevelText(const Build& build, const SpellDamage& sd) const;
         void SetCost(int cost);
+        int TotalCost(const Build& build) const;
 
         void SetIconIndex(size_t index);
         size_t IconIndex() const;

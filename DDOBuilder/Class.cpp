@@ -463,7 +463,7 @@ void Class::CreateSpellLists()
     {
         std::string spellName = csit.Name();
         Spell spell = FindSpellByName(spellName);
-        spell.UpdateSpell(csit, Name());
+        spell.UpdateSpell(csit, Name(), csit.Level());
         m_classSpells[abs(csit.Level()) - 1].push_back(spell);
     }
     // were done with all class spells, clear data that is no longer required

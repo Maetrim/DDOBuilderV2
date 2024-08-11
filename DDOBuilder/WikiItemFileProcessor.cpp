@@ -2418,6 +2418,8 @@ bool WikiItemFileProcessor::AddAugmentSlots(const std::string& line)
     bRecognised |= AddAugmentSlot(line, "Red Augment Slot");
     bRecognised |= AddAugmentSlot(line, "Purple Augment Slot");
     bRecognised |= AddAugmentSlot(line, "Orange Augment Slot");
+    bRecognised |= AddAugmentSlot(line, "Sun Augment Slot");
+    bRecognised |= AddAugmentSlot(line, "Moon Augment Slot");
     return bRecognised;
 }
 

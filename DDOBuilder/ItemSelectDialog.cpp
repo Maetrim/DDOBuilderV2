@@ -8,6 +8,7 @@
 #include "MouseHook.h"
 #include "Race.h"
 #include "Augment.h"
+#include "EnableBuddyButton.h"
 
 // CItemSelectDialog dialog
 
@@ -70,7 +71,7 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_FILTER, m_comboFilter);
     DDX_Control(pDX, IDC_ITEM_TYPE, m_staticType);
     DDX_Control(pDX, IDC_EDIT_TEXT, m_editSearchText);
-    DDX_Control(pDX, IDC_BUTTON_FILTER, m_buttonFilter);
+    DDX_Control(pDX, IDC_BUTTON_CLEAR_FILTER, m_clearFilter);
     DDX_Control(pDX, IDC_ITEM_LIST, m_availableItemsCtrl);
     if (!pDX->m_bSaveAndValidate)
     {
@@ -78,6 +79,7 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     }
     DDX_Control(pDX, IDC_COMBO_WITHINLEVELS, m_comboLevelRange);
     DDX_Control(pDX, IDC_COMBO_ITEMLEVEL, m_comboItemLevel);
+    DDX_Control(pDX, IDC_CHECK_IGNORERAIDITEMS, m_buttonIgnoreRaidItems);
     DDX_Control(pDX, IDC_STATIC_AUGMENTS, m_staticAugments);
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
@@ -119,6 +121,8 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_EN_KILLFOCUS(IDC_EDIT_TEXT, OnSearchTextKillFocus)
     ON_CBN_SELENDOK(IDC_COMBO_ITEMLEVEL, OnItemLevelSelect)
     ON_CBN_SELENDOK(IDC_COMBO_WITHINLEVELS, OnSelEndLevelRange)
+    ON_BN_CLICKED(IDC_CHECK_IGNORERAIDITEMS, OnButtonIgnoreRaidItems)
+    ON_BN_CLICKED(IDC_BUTTON_CLEAR_FILTER, OnButtonClearFilter)
 END_MESSAGE_MAP()
 #pragma warning(default: 26454)
 
@@ -130,6 +134,14 @@ BOOL CItemSelectDialog::OnInitDialog()
 
     m_tooltip.Create(this);
     m_tipCreated = true;
+
+    int iState = AfxGetApp()->GetProfileInt("ItemSelectDialog", "ExcludeRaidItems", 0);
+    if (iState != 0)
+    {
+        m_buttonIgnoreRaidItems.SetCheck(BST_CHECKED);
+    }
+
+    EnableBuddyButton(m_editSearchText.GetSafeHwnd(), m_clearFilter.GetSafeHwnd(), BBS_RIGHT);
 
     // show item type of selection
     CString text;
@@ -241,6 +253,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
     searchText.MakeLower(); // case less text match
 
     int minItemLevel = m_pBuild->Level() - m_levelRange;
+    bool bIgnoreRaidItems = (m_buttonIgnoreRaidItems.GetCheck() == BST_CHECKED);
 
     // need to know how many levels and of what classes they have trained
     std::vector<size_t> classLevels = m_pBuild->ClassLevels(m_pBuild->Level()-1);
@@ -255,6 +268,12 @@ void CItemSelectDialog::PopulateAvailableItemList()
     std::list<Item>::const_iterator it = allItems.begin();
     while (it != allItems.end())
     {
+        if (bIgnoreRaidItems && it->IsRaidItem())
+        {
+            // ignore this raid item
+            ++it;
+            continue;
+        }
         // may not qualify due to current level
         if ((*it).MinLevel() <= m_pBuild->Level()
             && (*it).CanEquipToSlot(m_slot)
@@ -696,8 +715,17 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
             }
             if (!augments[augmentIndex].HasSelectedLevelIndex())
             {
-                // default to the first option if not selected
-                augments[augmentIndex].SetSelectedLevelIndex(0);
+                // default to the highest selectable option if not selected
+                const std::vector<int>& levels = augment.Levels();
+                size_t index = 0;
+                for (size_t i = 0; i < levels.size(); ++i)
+                {
+                    if (levels[i] < static_cast<int>(m_pBuild->Level()))
+                    {
+                        index = i;
+                    }
+                }
+                augments[augmentIndex].SetSelectedLevelIndex(index);
             }
             PopulateAugmentList(
                 &m_comboAugmentDropList[augmentIndex],
@@ -1340,7 +1368,7 @@ BOOL CItemSelectDialog::PreTranslateMessage(MSG* pMsg)
             && pMsg->wParam == VK_RETURN
             && GetFocus() == &m_editSearchText)
     {
-        m_buttonFilter.SetFocus();
+        m_availableItemsCtrl.SetFocus();
         handled = TRUE;
     }
     if (!handled)
@@ -1373,4 +1401,17 @@ void CItemSelectDialog::OnSelEndLevelRange()
         m_levelRange = atoi(text);
         PopulateAvailableItemList();
     }
+}
+
+void CItemSelectDialog::OnButtonIgnoreRaidItems()
+{
+    int ignoreRaidItems = (m_buttonIgnoreRaidItems.GetCheck() == BST_CHECKED) ? 1: 0;
+    AfxGetApp()->WriteProfileInt("ItemSelectDialog", "ExcludeRaidItems", ignoreRaidItems);
+    PopulateAvailableItemList();
+}
+
+void CItemSelectDialog::OnButtonClearFilter()
+{
+    m_editSearchText.SetWindowText("");
+    OnSearchTextKillFocus();
 }

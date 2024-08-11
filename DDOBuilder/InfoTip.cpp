@@ -178,60 +178,6 @@ void CInfoTip::OnPaint()
         it->Draw(&dc, rect);
         rect.top += it->Size().cy;
     }
-    //dc.SelectObject(m_boldFont);
-    //// draw the icon
-    //m_image.TransparentBlt(
-    //        dc.GetSafeHdc(),
-    //        CRect(c_controlSpacing, c_controlSpacing, c_controlSpacing + 32, c_controlSpacing + 32),
-    //        CRect(0, 0, 32, 32));
-    //// render the title in bold
-    //CRect rcTitle(c_controlSpacing + 32 + c_controlSpacing, c_controlSpacing, rc.right, rc.bottom);
-    //dc.DrawText(m_title, rcTitle, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //CSize sizeCost = dc.GetTextExtent(m_cost);
-    //CSize sizeRanks = dc.GetTextExtent(m_ranks);
-    //dc.TextOut(rc.right - c_controlSpacing - sizeCost.cx, c_controlSpacing, m_cost);
-    //COLORREF old = dc.SetTextColor(RGB(0,128, 0));
-    //dc.TextOut(rc.right - c_controlSpacing - sizeRanks.cx, c_controlSpacing + sizeCost.cy, m_ranks);
-    //dc.SetTextColor(old);
-
-    //dc.SelectObject(m_standardFont);
-    //// optional requirements list shown above description, 1 per line
-    //int top = c_controlSpacing + max(sizeRanks.cy * 2, 32) + c_controlSpacing;
-    //ASSERT(m_requirements.size() == m_bRequirementMet.size());
-    //for (size_t ri = 0; ri < m_requirements.size(); ++ri)
-    //{
-    //    // text drawn in green or red depending on whether the requirement is met or not
-    //    dc.SetTextColor(m_bRequirementMet[ri] ? RGB(0, 128, 0) : RGB(255, 0, 0));
-    //    CRect rctRequirement(c_controlSpacing, top, rc.right, rc.bottom);
-    //    dc.TextOut(c_controlSpacing, top, m_requirements[ri]);
-    //    top += dc.GetTextExtent(m_requirements[ri]).cy;
-    //}
-    //dc.SetTextColor(RGB(0, 0, 0));    // ensure black for the rest
-    //// optional Effect Descriptions list shown above description, these can word wrap
-    //for (size_t ed = 0; ed < m_effectDescriptions.size(); ++ed)
-    //{
-    //    CRect rctEd;
-    //    // measure
-    //    dc.DrawText(m_effectDescriptions[ed], &rctEd, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //    rctEd += CPoint(2, top);
-    //    dc.DrawText(m_effectDescriptions[ed], &rctEd, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //    CString text;
-    //    if (m_effectDescriptions[ed].Find(':') >= 0)
-    //    {
-    //        text = m_effectDescriptions[ed].Left(m_effectDescriptions[ed].Find(':'));   // get the effect name to draw in bold
-    //    }
-    //    else
-    //    {
-    //        // draw all text in bold
-    //        text = m_effectDescriptions[ed];
-    //    }
-    //    rctEd += CPoint(1, 0);
-    //    dc.DrawText(text, &rctEd, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //    top += rctEd.Height();
-    //}
-    //CRect rcDescription(c_controlSpacing, top, rc.right, rc.bottom);
-    //dc.DrawText(m_description, &rcDescription, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //// Clean up GDI
     dc.RestoreDC(-1);
 }
 
@@ -251,78 +197,6 @@ BOOL CInfoTip::GetWindowSize(CDC* pDC, CSize * size)
     pDC->RestoreDC(-1);
     width = max(10, width);
     *size = CSize(width, height);
-    //ASSERT(pDC != NULL);
-    //// an enhancement item looks like this:
-    //// +---------------------------------------------------+
-    //// | +----+ Enhancement name                    Cost x |
-    //// | |icon|                                    Ranks n |
-    //// | +----+                                            |
-    //// | [requirements list if any]                        |
-    //// | [EffectDescription1 (if any)                     ]|
-    //// | [EffectDescription2                              ]|
-    //// | [EffectDescription..n                            ]|
-    //// | +------------------------------------------------+|
-    //// | |Description                                     ||
-    //// | +------------------------------------------------+|
-    //// +---------------------------------------------------+
-    //CRect rcWnd(0, 0, 0, 0);
-    //// border space first
-    //rcWnd.InflateRect(c_controlSpacing, c_controlSpacing, c_controlSpacing, c_controlSpacing);
-    //pDC->SaveDC();
-    //pDC->SelectObject(m_boldFont);
-    //// Calculate the area for the tip text
-    //CRect rcTitle;
-    //pDC->DrawText(m_title, &rcTitle, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //rcWnd.bottom += max(rcTitle.Height() * 2, 32) + c_controlSpacing;      // 2 lines or icon height
-
-    //pDC->SelectObject(m_standardFont);
-    //CRect rcRanks;
-    //pDC->DrawText(m_ranks, &rcRanks, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //size_t topWidth = 32 + c_controlSpacing + rcTitle.Width() + c_controlSpacing + rcRanks.Width();
-
-    //// optional requirements list shown above description, 1 per line
-    //ASSERT(m_requirements.size() == m_bRequirementMet.size());
-    //for (size_t ri = 0; ri < m_requirements.size(); ++ri)
-    //{
-    //    CRect rctRequirement;
-    //    pDC->DrawText(m_requirements[ri], &rctRequirement, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //    topWidth = max(topWidth, (size_t)rctRequirement.Width());
-    //    rcWnd.InflateRect(
-    //            0,
-    //            0,
-    //            0,
-    //            rctRequirement.Height());
-    //}
-    //// optional Effect Descriptions list shown above description, these can word wrap
-    //for (size_t ed = 0; ed < m_effectDescriptions.size(); ++ed)
-    //{
-    //    CRect rctEd;
-    //    pDC->DrawText(m_effectDescriptions[ed], &rctEd, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    //    topWidth = max(topWidth, (size_t)rctEd.Width());
-    //    rcWnd.InflateRect(
-    //            0,
-    //            0,
-    //            0,
-    //            rctEd.Height());
-    //}
-    //CRect rcDescription;
-    //pDC->DrawText(m_description, &rcDescription, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-
-    //// now work out the total window size
-    //size_t bottomWidth = rcDescription.Width();
-    //rcWnd.InflateRect(
-    //        0,
-    //        0,
-    //        max(topWidth, bottomWidth),
-    //        rcDescription.Height());
-    //// Set the window size
-    //if (size != NULL)
-    //{
-    //    size->cx = rcWnd.Width();
-    //    size->cy = rcWnd.Height();
-    //}
-    //pDC->RestoreDC(-1);
-
     return TRUE;
 }
 
@@ -389,7 +263,7 @@ void CInfoTip::SetEnhancementTreeItem(
                     static_cast<int>(eit.Amount()[0]),
                     static_cast<size_t>(eit.Amount()[1]),
                     static_cast<size_t>(eit.Amount()[2]));
-                spell.UpdateSpell(cs, eit.Item().back()); // 2nd item is class
+                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[spellName] = 1; // value doesn't matter
             }
@@ -404,7 +278,7 @@ void CInfoTip::SetEnhancementTreeItem(
                     static_cast<int>(eit.Amount()[0]),
                     static_cast<size_t>(eit.Amount()[1]),
                     static_cast<size_t>(eit.Amount()[2]));
-                spell.UpdateSpell(cs, eit.Item().back()); // 2nd item is class
+                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[slaName] = 1; // value doesn't matter
             }
@@ -478,7 +352,7 @@ void CInfoTip::SetEnhancementSelectionItem(
                     static_cast<int>(eit.Amount()[0]),
                     static_cast<size_t>(eit.Amount()[1]),
                     static_cast<size_t>(eit.Amount()[2]));
-                spell.UpdateSpell(cs, eit.Item().back()); // 2nd item is class
+                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[spellName] = 1; // value doesn't matter
             }
@@ -493,7 +367,7 @@ void CInfoTip::SetEnhancementSelectionItem(
                     static_cast<int>(eit.Amount()[0]),
                     static_cast<size_t>(eit.Amount()[1]),
                     static_cast<size_t>(eit.Amount()[2]));
-                spell.UpdateSpell(cs, eit.Item().back()); // 2nd item is class
+                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[slaName] = 1; // value doesn't matter
             }
@@ -832,7 +706,7 @@ void CInfoTip::SetItem(
     }
     for (auto&& sbit : pItem->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, bSetSuppressed, pBuild);
+        AppendSetBonusDescription(sbit, pBuild->SetBonusCount(sbit), bSetSuppressed, pBuild);
     }
     if (!pItem->Description().empty())
     {
@@ -1100,7 +974,7 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
     if (spell.HasCost())
     {
         CString cost;
-        cost.Format("SP Cost: %d", spell.Cost());
+        cost.Format("SP Cost: %d", spell.TotalCost(build));
         pHeader->SetCost(cost);
     }
     m_tipItems.push_back(pHeader);
@@ -1314,30 +1188,6 @@ void CInfoTip::SetLevelItem(
     }
     m_tipItems.push_back(pRequirements);
 }
-
-//void CInfoTip::SetSelfBuff(const std::string& name)
-//{
-//    OptionalBuff buff = FindOptionalBuff(name);
-//    m_effectDescriptions.clear();
-//    m_image.Destroy();
-//    if (S_OK != LoadImageFile(IT_spell, buff.HasIcon() ? buff.Icon() : "", &m_image, false))
-//    {
-//        // see if its a enhancement icon we need to use
-//        if (S_OK != LoadImageFile(IT_enhancement, buff.HasIcon() ? buff.Icon() : "", &m_image, false))
-//        {
-//             LoadImageFile(IT_feat, buff.HasIcon() ? buff.Icon() : "", &m_image);
-//        }
-//    }
-//    m_image.SetTransparentColor(c_transparentColour);
-//    m_title = buff.Name().c_str();
-//    m_description = buff.Description().c_str();
-//    // actual carriage return are actual \n in text, convert to correct character
-//    GenerateLineBreaks(&m_title);
-//    GenerateLineBreaks(&m_description);
-//    m_requirements.clear();
-//    m_bRequirementMet.clear();
-//    m_cost = "";
-//}
 
 void CInfoTip::SetDCItem(
         const Build& build,

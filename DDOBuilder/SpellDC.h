@@ -4,6 +4,7 @@
 #include "XmlLib\DLMacros.h"
 
 #include "SpellSchoolTypes.h"
+#include "AbilityTypes.h"
 
 class Build;
 class Spell;
@@ -33,6 +34,7 @@ class SpellDC :
                 DL_OPTIONAL_SIMPLE(_, size_t, Amount, 0) \
                 DL_OPTIONAL_STRING(_, Other) \
                 DL_FLAG(_, CastingStatMod) \
+                DL_ENUM_LIST(_, AbilityType, ModAbility, Ability_Unknown, abilityTypeMap) \
                 DL_ENUM_LIST(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap)
 
         DL_DECLARE_ACCESS(SpellDC_PROPERTIES)

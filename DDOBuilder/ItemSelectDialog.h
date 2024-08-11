@@ -50,6 +50,8 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnSearchTextKillFocus();
         afx_msg void OnItemLevelSelect();
         afx_msg void OnSelEndLevelRange();
+        afx_msg void OnButtonIgnoreRaidItems();
+        afx_msg void OnButtonClearFilter();
     public:
         DECLARE_MESSAGE_MAP()
 
@@ -86,10 +88,11 @@ class CItemSelectDialog : public CDialog
         CStatic m_staticType;
         CComboBox m_comboFilter;
         CEdit m_editSearchText;
-        CButton m_buttonFilter;
+        CButton m_clearFilter;
         CListCtrl m_availableItemsCtrl;
         CSortHeaderCtrl m_sortHeader;
         CComboBox m_comboLevelRange;
+        CButton m_buttonIgnoreRaidItems;
         CComboBox m_comboItemLevel;
         CStatic m_staticAugments;
         CStatic m_augmentType[MAX_Augments];

@@ -66,9 +66,9 @@ int SpellDC::CalculateSpellDC(const Build * build, const Spell& spell) const
     {
         value = Amount();
     }
-    else
+    // add any casting stat breakdown
+    if (HasCastingStatMod())
     {
-        // add any casting stat breakdown
         if (spell.Class() != "")
         {
             const ::Class& c = FindClass(spell.Class());
@@ -97,16 +97,34 @@ int SpellDC::CalculateSpellDC(const Build * build, const Spell& spell) const
                 }
             }
         }
-        // spell school bonuses, all of these get added if present
-        std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
-        while (sit != m_School.end())
+    }
+    if (ModAbility().size() > 0)
+    {
+        // use the largest of any ModAbility values
+        int modAbilityBonus = 0;
+        std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
+        while (mait != m_ModAbility.end())
         {
-            BreakdownType bt = SchoolToBreakdown(*sit);
-            BreakdownItem * pBI = FindBreakdown(bt);
-            int schoolBonus = (int)pBI->Total();
-            value += schoolBonus;
-            ++sit;
+            BreakdownType bt = StatToBreakdown(*mait);
+            BreakdownItem* pBI = FindBreakdown(bt);
+            int abilityBonus = BaseStatToBonus(pBI->Total());
+            if (abilityBonus > modAbilityBonus)
+            {
+                modAbilityBonus = abilityBonus;
+            }
+            ++mait;
         }
+        value += modAbilityBonus;
+    }
+    // spell school bonuses, all of these get added if present
+    std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
+    while (sit != m_School.end())
+    {
+        BreakdownType bt = SchoolToBreakdown(*sit);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int schoolBonus = (int)pBI->Total();
+        value += schoolBonus;
+        ++sit;
     }
     return value;
 }
@@ -126,7 +144,7 @@ std::string SpellDC::SpellDCBreakdown(const Build * build, const Spell& spell) c
         }
         ss << Amount();
     }
-    else
+    if (HasCastingStatMod())
     {
         const ::Class& c = FindClass(spell.Class());
         if (m_hasOther)
@@ -182,17 +200,37 @@ std::string SpellDC::SpellDCBreakdown(const Build * build, const Spell& spell) c
                 }
             }
         }
-        // spell school bonuses, all of these get added if present
-        std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
-        while (sit != m_School.end())
+    }
+    if (m_ModAbility.size() > 0)
+    {
+        ss << " + Max Mod(";
+        std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
+        while (mait != m_ModAbility.end())
         {
-            ss << " + ";
-            BreakdownType bt = SchoolToBreakdown(*sit);
-            BreakdownItem * pBI = FindBreakdown(bt);
-            int schoolBonus = (int)pBI->Total();
-            ss << EnumEntryText(*sit, spellSchoolTypeMap) << "(" << schoolBonus << ")";
-            ++sit;
+            BreakdownType bt = StatToBreakdown(*mait);
+            BreakdownItem* pBI = FindBreakdown(bt);
+            int abilityBonus = BaseStatToBonus(pBI->Total());
+            if (mait != m_ModAbility.begin())
+            {
+                ss << ", ";
+            }
+            std::string name = EnumEntryText(*mait, abilityTypeMap);
+            name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
+            ss << name << "(" << abilityBonus << ")";
+            ++mait;
         }
+        ss << ")";
+    }
+    // spell school bonuses, all of these get added if present
+    std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
+    while (sit != m_School.end())
+    {
+        ss << " + ";
+        BreakdownType bt = SchoolToBreakdown(*sit);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int schoolBonus = (int)pBI->Total();
+        ss << EnumEntryText(*sit, spellSchoolTypeMap) << "(" << schoolBonus << ")";
+        ++sit;
     }
     std::string description = ss.str();
     return description;
