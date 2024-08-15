@@ -421,6 +421,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
 
     {Effect_SpellPointCostPercent, L"SpellPointCostPercent"},
     // metamagic costs
+    {Effect_MetamagicCostAccelerate, L"MetamagicCostAccelerate"},
     {Effect_MetamagicCostEschewMaterials, L"MetamagicCostEschewMaterials"},
     {Effect_MetamagicCostEmbolden, L"MetamagicCostEmbolden"},
     {Effect_MetamagicCostEmpower, L"MetamagicCostEmpower"},

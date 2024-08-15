@@ -43,16 +43,6 @@ CString BreakdownItemSpellSchool::Value() const
 void BreakdownItemSpellSchool::CreateOtherEffects()
 {
     m_otherEffects.clear();
-    if (m_spellSchoolType != SpellSchool_GlobalDC)
-    {
-        // all spell DC's start at a base of 10
-        Effect amountTrained(
-                Effect_Unknown,
-                "Base DC",
-                "Base DC",
-                10);
-        AddOtherEffect(amountTrained);
-    }
 }
 
 bool BreakdownItemSpellSchool::AffectsUs(const Effect & effect) const

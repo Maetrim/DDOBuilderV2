@@ -48,6 +48,7 @@ class CFindGearDialog : public CDialog
         afx_msg void OnItemLevelSelect();
         afx_msg void OnSelEndLevelRange();
         afx_msg void OnButtonIgnoreRaidItems();
+        afx_msg void OnButtonIgnoreMinorArtifacts();
         afx_msg void OnButtonClearFilter();
     public:
         DECLARE_MESSAGE_MAP()
@@ -90,6 +91,7 @@ class CFindGearDialog : public CDialog
         CComboBox m_comboLevelRange;
         CComboBox m_comboItemLevel;
         CButton m_buttonIgnoreRaidItems;
+        CButton m_buttonIgnoreMinorArtifacts;
         CStatic m_staticAugments;
         CStatic m_augmentType[MAX_Augments];
         CComboBoxTooltip m_comboAugmentDropList[MAX_Augments];

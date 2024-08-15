@@ -1221,7 +1221,7 @@ void WikiItemFileProcessor::AddItemEffects(const std::map<std::string, std::stri
 bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
 {
     bool bRecognised = false;
-    if (IsShield(m_item.Weapon()))
+    if (m_item.HasWeapon() && IsShield(m_item.Weapon()))
     {
         bRecognised |= AddCommonEffect(line, "ShieldEnchantment", "enhancement bonus to Armor Class", "Shield Enhancement", "", 60);
     }
@@ -1253,6 +1253,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MinorActionBoostEnhancement", "Minor Action Boost Enhancement", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserActionBoostEnhancement", "Lesser Action Boost Enhancement", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ActionBoostEnhancement", "Action Boost Enhancement", "Equipment", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Turning", "Greater Turning Greater Turning", "Equipment", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Energy Siphon IV", "Energy Siphon IV", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Energy Siphon VI", "Energy Siphon VI", "Equipment", "");
@@ -1262,6 +1263,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Energy Siphon X", "Energy Siphon X", "Equipment", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "The Golden Curse", "The Golden Curse The Golden Curse", "Equipment", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Undying", "Undying", "Enhancement", "");
 
     // rune arm charging
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MaximumChargeTierV", "Maximum Charge Tier V", "Equipment", "");
@@ -1352,11 +1354,15 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Nimbleness", "Greater Nimbleness", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Superior Nimbleness", "Superior Nimbleness", "", "", 5);
 
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Conditioning", "Legendary Conditioning", "Legendary", "", 5);
+
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Stormreaver's Thunderclap", "Stormreaver's Thunderclap", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "3rd Degree Burns", "3rd Degree Burns", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Cursed Maelstrom", "Cursed Maelstrom", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Brazen Brilliance", "Brazen Brilliance Brazen Brilliance", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Banishing", "Banishing Banishing", "", "", 5);
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Druidic Survival Mastery", "Druidic Survival Mastery", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dampened", "Dampened Dampened", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Suppressed Power", "Suppressed Power Suppressed Power", "", "", 5);
@@ -1377,6 +1383,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Forged Lightning", "Forged Lightning Forged Lightning", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Polycurse", "Polycurse Polycurse", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "AirGuard", "Air Guard Air Guard", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Nullmagic Guard", "Nullmagic Guard", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bodyfeeder", "Bodyfeeder Bodyfeeder", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "DisintegrationGuard", "Disintegration Guard Disintegration Guard", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EarthgrabGuard", "Earthgrab Guard Earthgrab Guard", "", "", 5);
@@ -1467,6 +1474,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "UndeadGuard", "Undead Guard", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ice Guard II", "Ice Guard II", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Arcane Augmentation I", "Lesser Arcane Augmentation I", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Arcane Casting Dexterity", "Greater Arcane Casting Dexterity", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Arcane Casting Dexterity", "Arcane Casting Dexterity", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lesser Arcane Casting Dexterity", "Lesser Arcane Casting Dexterity", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Antimagic Spike", "Antimagic Spike", "", "", 5);
@@ -1519,6 +1527,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Lightningstorm Guard", "Legendary Lightningstorm Guard", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lightning Storm Guard", "Lightning Storm Guard", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Freezing Ice Guard", "Freezing Ice Guard Freezing Ice Guard", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Freezing Gale", "Legendary Freezing Gale", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Minor Freezing Ice", "Minor Freezing Ice", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Freezing Ice", "Freezing Ice", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Epic Freezing Ice", "Epic Freezing Ice", "", "", 5);
@@ -1593,10 +1602,19 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "TrueSeeing", "True Seeing", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Fearsome", "Fearsome Fearsome", "", "");
 
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Distant Incite", "Distant Incite", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Mystic Incite", "Insightful Mystic Incite", "Insightful", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Mystic Incite", "Mystic Incite", "Enhancement", "");
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Sinister Chill", "Sinister Chill Sinister Chill", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Sight Beyond Sight", "Sight Beyond Sight", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Thorn of the Rose", "Thorn of the Rose", "", "");
+
     // efficient metamagics
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EfficientEmboldenII", "Efficient Metamagic - Embolden II", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EfficientEmpowerHealingII", "Efficient Metamagic - Empower Healing II", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EfficientEmpowerII", "Efficient Metamagic - Empower II", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "EfficientEmpowerI", "Efficient Metamagic - Empower I", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EfficientEnlargeII", "Efficient Metamagic - Enlarge II", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EfficientExtendII", "Efficient Metamagic - Extend II", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "EfficientIntensifyII", "Efficient Metamagic - Intensify II", "", "");
@@ -1779,7 +1797,9 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Coruscating4", "Coruscating 4", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Coruscating5", "Coruscating 5", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Coruscating6", "Coruscating 6", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Coruscating7", "Coruscating 7", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Incandescence", "Incandescence Incandescence", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impactful7", "Impactful 7", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impactful6", "Impactful 6", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impactful5", "Impactful 5", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impactful4", "Impactful 4", "Enhancement", "");
@@ -1814,12 +1834,14 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic Blast 3", "Anarchic Blast 3", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic Blast 4", "Anarchic Blast 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic Blast 6", "Anarchic Blast 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic Blast 7", "Anarchic Blast 7", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic", "Anarchic Anarchic", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic 2", "Anarchic 2", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic 3", "Anarchic 3", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic 4", "Anarchic 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic 5", "Anarchic 5", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic 6", "Anarchic 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Anarchic 7", "Anarchic 7", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FlamingBlastVI", "Flaming Blast 6", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FlamingBlastV", "Flaming Blast 5", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FlamingBlastIV", "Flaming Blast 4", "Enhancement", "");
@@ -1887,6 +1909,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Force Blast 3", "Force Blast 3", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Force Blast 4", "Force Blast 4", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Force Blast 6", "Force Blast 6", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Force Blast 7", "Force Blast 7", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy Burst 6", "Unholy Burst 6", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy 2", "Unholy 2", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy 3", "Unholy 3", "", "All");
@@ -1973,6 +1996,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lifedrinker", "Lifedrinker Lifedrinker", "", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Everbright", "Everbright", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Eversight", "Eversight Eversight", "", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ribcracker VIII", "Ribcracker VIII", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ribcracker VI", "Ribcracker VI", "Enhancement", "All");
@@ -1991,12 +2015,14 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Gashing 13", "Gashing 13", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Gashing 14", "Gashing 14", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Gashing 15", "Gashing 15", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Gashing 16", "Gashing 16", "Enhancement", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slashing 2", "Slashing 2", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slashing 3", "Slashing 3", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slashing 4", "Slashing 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slashing 5", "Slashing 5", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slashing 6", "Slashing 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slashing 7", "Slashing 7", "Enhancement", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Smashing 4", "Smashing 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Smashing 5", "Smashing 5", "Enhancement", "All");
@@ -2025,6 +2051,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blazing 13", "Blazing 13", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blazing 14", "Blazing 14", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blazing 15", "Blazing 15", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blazing 16", "Blazing 16", "Enhancement", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Piercing 2", "Piercing 2", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Piercing 3", "Piercing 3", "Enhancement", "All");
@@ -2176,6 +2203,13 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Human Bane 4", "Human Bane 4", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Human Bane 6", "Human Bane 6", "Enhancement", "");
 
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar Guard VIII", "Solar Guard VIII", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar Guard VII", "Solar Guard VII", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar Guard VI", "Solar Guard VI", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar Guard V", "Solar Guard V", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar Guard IV", "Solar Guard IV", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar Guard III", "Solar Guard III", "Enhancement", "");
+
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar VI", "Solar VI", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar V", "Solar V", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Solar IV", "Solar IV", "Enhancement", "");
@@ -2187,6 +2221,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Entropic 3", "Entropic 3", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Entropic 4", "Entropic 4", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Entropic 6", "Entropic 6", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Entropic 7", "Entropic 7", "Enhancement", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shrieking Bolt", "Shrieking Bolt", "Enhancement", "");
 
@@ -2195,6 +2230,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Slay Living", "Legendary Slay Living Legendary Slay Living", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slay Living", "Slay Living Slay Living", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Calamitous Blows", "Calamitous Blows", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blood Rage", "Blood Rage Blood Rage", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Enhanced Bloodrage", "Enhanced Bloodrage", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bloodrage Defense", "Bloodrage Defense", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Rune-fueled Warding", "Rune-fueled Warding", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Rune-fueled Warding", "Rune-fueled Warding", "Enhancement", "");
@@ -2213,6 +2250,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Wondrous Craftsmanship", "Wondrous Craftsmanship", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blunt Trauma", "Blunt Trauma", "Enhancement", "");
 
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyLongsword", "Proficiency: Longsword", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyBastardSword", "Feat : Proficiency: Bastard Sword", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyGreatClub", "Proficiency: Greatclub", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyKhopesh", "Proficiency : Khopesh", "Enhancement", "");
@@ -2228,6 +2266,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatWindThroughTheTrees", "Feat : Wind through the Trees", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatElusiveTarge", "Feat : Elusive TargetFeat", "Enhancement", "");
 
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Kick 'Em While They're Down", "Kick 'Em While They're Down", "Enhancement", "");
     // class requirements are in the Enhancements list
     if (!bRecognised) bRecognised |= AddClassRequirements(line);
 
@@ -2292,6 +2331,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ram's Might", "Ram's Might Ram's Might", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Inflict Blight", "Inflict Blight", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Mother Night's Embrace", "Mother Night's Embrace", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Marksmanship", "Greater Marksmanship Greater Marksmanship", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Marksmanship", "Marksmanship Marksmanship", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Soundproof", "Soundproof Soundproof", "", "");
 
@@ -2321,6 +2361,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Sonic Guard +3", "Sonic Guard +3", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vulnerability Guard", "Vulnerability Guard Vulnerability Guard", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Guardbreaking", "Guardbreaking Guardbreaking", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Melodic Guard", "Melodic Guard Melodic Guard", "Enhancement", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Improved Bashing", "Improved Bashing Improved Bashing", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bashing", "Bashing Bashing", "Enhancement", "");
@@ -2404,6 +2445,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= line.find("and/or") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("automatically hit your enemy with a Shield Bash attack") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("Passive: The DC of the saving throw to resist your Stunning Blow and Stunning Fist combat") != std::string::npos;
+    if (!bRecognised) bRecognised |= line.find("Becomes Bound to Character on Acquire Bound to Character on Acquire") != std::string::npos;
 
     return bRecognised;
 }

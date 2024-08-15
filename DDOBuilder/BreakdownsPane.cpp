@@ -1799,7 +1799,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
     {
         // spell schools
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Spell School DCs",
+                "Spell School Bonus DCs",
                 hParent,
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);

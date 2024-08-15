@@ -690,7 +690,7 @@ void CInfoTip::SetItem(
                 CString augmentName(ait.SelectedAugment().c_str());
                 // augment name may need to be updated to include the actual bonus value
                 const Augment& augment = FindAugmentByName((LPCTSTR)augmentName, pItem);
-                AppendFilledAugment(pItem->MinLevel(), ait, &augment);
+                AppendFilledAugment(pItem->MinLevel(), ait, &augment, *pBuild);
                 if (augment.HasSuppressSetBonus())
                 {
                     bSetSuppressed = true;
@@ -737,7 +737,8 @@ void CInfoTip::SetSelfBuff(const std::string& name)
 }
 
 void CInfoTip::SetFiligree(
-        const Filigree * pFiligree)
+        const Filigree * pFiligree,
+        const Build& build)
 {
     ClearOldTipItems();
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
@@ -754,21 +755,24 @@ void CInfoTip::SetFiligree(
 
     for (auto&& sbit : pFiligree->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, false, NULL);
+        size_t numStacks = build.SetBonusCount(sbit);
+        AppendSetBonusDescription(sbit, numStacks, false, NULL);
     }
 }
 
 void CInfoTip::SetAugment(
-    const Augment* pAugment)
+    const Augment* pAugment,
+    const Build& build)
 {
     ClearOldTipItems();
-    AppendAugment(pAugment);
+    AppendAugment(pAugment, build);
 }
 
 void CInfoTip::AppendFilledAugment(
     int itemLevel,
     const ItemAugment& slot,
-    const Augment* pAugment)
+    const Augment* pAugment,
+    const Build& build)
 {
     size_t minLevel = 0;
     if (pAugment->HasMinLevel())
@@ -860,12 +864,13 @@ void CInfoTip::AppendFilledAugment(
 
     for (auto&& sbit : pAugment->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, false, NULL);
+        AppendSetBonusDescription(sbit, build.SetBonusCount(sbit), false, NULL);
     }
 }
 
 void CInfoTip::AppendAugment(
-    const Augment* pAugment)
+    const Augment* pAugment,
+    const Build& build)
 {
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
@@ -912,7 +917,7 @@ void CInfoTip::AppendAugment(
 
     for (auto&& sbit : pAugment->SetBonus())
     {
-        AppendSetBonusDescription(sbit, 0, false, NULL);
+        AppendSetBonusDescription(sbit, build.SetBonusCount(sbit), false, NULL);
     }
 }
 

@@ -872,7 +872,7 @@ void CInventoryDialog::SetTooltipText(
         bool rightAlign)
 {
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
-    m_tooltip.SetFiligree(&filigree);
+    m_tooltip.SetFiligree(&filigree, *m_pBuild);
     m_tooltip.Show();
 }
 

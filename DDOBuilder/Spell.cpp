@@ -348,7 +348,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem *pBI = FindBreakdown(Breakdown_Accelerate);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasEmbolden() && build.IsStanceActive("Embolden Spell"))
@@ -356,7 +356,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_Embolden);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasEmpower() && build.IsStanceActive("Empower Spell"))
@@ -364,7 +364,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_Empower);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasEmpowerHealing() && build.IsStanceActive("Empower Healing Spell"))
@@ -372,7 +372,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_EmpowerHealing);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasEnlarge() && build.IsStanceActive("Enlarge Spell"))
@@ -380,7 +380,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_Enlarge);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasExtend() && build.IsStanceActive("Extend Spell"))
@@ -388,7 +388,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_Extend);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasHeighten() && build.IsStanceActive("Heighten Spell"))
@@ -402,7 +402,7 @@ int Spell::TotalCost(const Build& build) const
             size_t heightenedLevels = maxLevel - Level();
             if (heightenedLevels > 0)
             {
-                cost += (pBI->Total() * heightenedLevels);
+                cost += (static_cast<int>(pBI->Total()) * heightenedLevels);
             }
         }
     }
@@ -411,7 +411,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_Intensify);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasMaximize() && build.IsStanceActive("Maximize Spell"))
@@ -419,7 +419,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_Maximize);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     if (HasQuicken() && build.IsStanceActive("Quicken Spell"))
@@ -427,7 +427,7 @@ int Spell::TotalCost(const Build& build) const
         BreakdownItem* pBI = FindBreakdown(Breakdown_Quicken);
         if (pBI != NULL)
         {
-            cost += pBI->Total();
+            cost += static_cast<int>(pBI->Total());
         }
     }
     return cost;

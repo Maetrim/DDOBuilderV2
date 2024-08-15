@@ -725,7 +725,7 @@ bool Effect::CheckAType(
         break;
     case Amount_SliderValueLookup:
         *bRequiresAmount = true;            // has values
-        *requiredAmountElements = 1;        // 1 element expected
+        *requiredAmountElements = 3;        // 3 elements expected
         if (!HasStackSource())
         {
             (*ss) << "SliderValueLookup effect missing StackSource field\n";

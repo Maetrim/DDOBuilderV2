@@ -769,6 +769,49 @@ acid damage by two seconds.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Anarchic Blast 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Anarchic Blast 7: This weapon is a chaotic conduit, dealing 7d6 Chaos damage on a successful hit, and an additional 7d6 Chaos damage on a critical hit. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaos</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaos</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Chaos</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Anarchic</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Anarchic: This weapon is chaotic and used to undermine the righteous, dealing an additional 2d6 chaos damage on each hit. This effect makes the weapon chaotic aligned. (Lawful characters wielding this weapon will suffer one negative level.)</DisplayText>
@@ -1104,6 +1147,40 @@ acid damage by two seconds.</DisplayText>
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaos</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Chaos</Value>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Anarchic 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Anarchic 7: This weapon is chaotic and used to undermine the righteous, dealing an additional 7d6 chaos damage on each hit. This effect makes the weapon chaotic aligned. (Lawful characters wielding this weapon will suffer one negative level.)</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
         <Sides size="1">6</Sides>
         <Damage>Chaos</Damage>
       </Dice>
@@ -2794,6 +2871,21 @@ takes 100 damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Blazing 16</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Blazing 16: This effect causes the edges of this weapon to coruscate, dealing 16d6 Light damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Light</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Bleed</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Bleed: This weapon is cruelly sharp and will do an additional 1 to 8 damage to targets that are vulnerable to bleeding.</DisplayText>
@@ -4195,15 +4287,15 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
-    <Type>Coruscating6</Type>
+    <Type>Coruscating7</Type>
     <ApplyToWeaponOnly />
-    <DisplayText>Coruscating 6: This effect causes the edges of this weapon to coruscate, dealing 6d6 Light damage on each hit.</DisplayText>
+    <DisplayText>Coruscating 7: This effect causes the edges of this weapon to coruscate, dealing 7d6 Light damage on each hit.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Equipment</Bonus>
       <Dice>
-        <Number size="1">6</Number>
+        <Number size="1">7</Number>
         <Sides size="1">6</Sides>
         <Damage>Light</Damage>
       </Dice>
@@ -5175,6 +5267,17 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Effect>
       <Type>ThreatBonusRanged</Type>
       <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Distant Incite</Type>
+    <DisplayText>Distant Incite %v1: %v1% bonus to increased threat generation from ranged damage</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>ThreatBonusRanged</Type>
+      <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
     </Effect>
@@ -6782,6 +6885,22 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Entropic 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Entropic 7: This weapon is intensely powerful, and crackles with destructive, unpredictable magic. It deals an additional 7d6 untyped damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Epic Giant Bane</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Epic Giant Bane: A bane weapon excels at attacking one type or subtype of creature. Against Giants, this weapon's effective enhancement bonus is +8 better than its normal enhancement bonus. It deals an extra 6 to 36 points of damage against the foe.</DisplayText>
@@ -7688,7 +7807,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>Finesse</Type>
-    <DisplayText>Finesse %v1: This weapon has a small Air Elemental bound to it. The wielder can use a finesse weapon as if they had the Weapon Finesse feat. In addition, the weapon grants a +%v1 enhancement bonus to the wielder's Dexterity score.</DisplayText>
+    <DisplayText>Finesse %v1: This weapon has a small Air Elemental bound to it. The wielder can use a finesse weapon as if they had the Weapon Finesse feat. In addition, the weapon grants a %v1 enhancement bonus to the wielder's Dexterity score.</DisplayText>
     <Effect>
       <Type>AbilityBonus</Type>
       <Bonus>Enhancement</Bonus>
@@ -8257,6 +8376,31 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">12</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Force Blast 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Force Blast 7: This weapon ripples with intense force, dealing 7d6 Force damage on a successful hit, and an additional 7d6 Force damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">14</Number>
         <Sides size="1">6</Sides>
         <Damage>Force</Damage>
       </Dice>
@@ -8928,6 +9072,21 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Not Set</Bonus>
       <Dice>
         <Number size="1">15</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Slash</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Gashing 16</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Gashing 16: The edges of this weapon are sharpened beyond belief, dealing an additional 16d6 slashing damage on each critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">16</Number>
         <Sides size="1">6</Sides>
         <Damage>Slash</Damage>
       </Dice>
@@ -12037,6 +12196,21 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Impactful7</Type>
+    <DisplayText>Impactful 7: This effect causes the edges of this weapon to ripple with force, dealing 7d6 force damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Force</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Impellent</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Impellent: This weapon is pulsing with magical force. It deals an additional 2 to 12 force damage on a successful hit.</DisplayText>
@@ -12857,6 +13031,17 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <!--TBD Missing effects-->
   </Buff>
   <Buff>
+    <Type>Legendary Conditioning</Type>
+    <DisplayText>Legendary Conditioning %v1% : You have a %v1% %b1 bonus to Maximum Hit Points.</DisplayText>
+    <Effect>
+      <Type>Hitpoints</Type>
+      <Bonus>Legendary</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Percent/>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Legendary Cursespewing</Type>
     <DisplayText>Legendary Cursespewing : On Vorpal Hit : Your enemy is cursed with a -4 Morale penalty on attack rolls, saving throws, and skill checks. This painful curse also causes the victim to take 6d6+6 damage every two seconds for a duration of twelve seconds. Additional vorpal strikes while the curse is active will extend the duration by another twelve seconds.</DisplayText>
   </Buff>
@@ -12907,6 +13092,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Legendary Entangling Yarn</Type>
     <DisplayText>Legendary Entangling Yarn: Enemies struck by this weapon have a small chance to be tangled up in its enchanted yarn, becoming Entangled and preventing all movement for 9 seconds. A DC 110 Reflex Save negates this effect.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Freezing Gale</Type>
+    <DisplayText>Legendary Freezing Gale: This weapon is imbued with a frigid wrath. On an attack roll of 20 which is confirmed as a critical hit this freezing power will be released, dealing damage to the target and all enemies near it for 30d6 + 90 cold damage. A successful Will save (DC 100) reduces this by half.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Freezing Ice</Type>
@@ -14113,6 +14302,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Melodic Guard</Type>
+    <DisplayText>Melodic Guard: When being hit there is a chance for the opponent to dance.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Melody: Bulwark</Type>
     <DisplayText>Melody Bulwark: Your Inspire Greatness grants you and your allies an additional +3 PRR.</DisplayText>
     <Effect>
@@ -14467,6 +14660,17 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Effect>
       <Type>ThreatBonusSpell</Type>
       <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Mystic Incite</Type>
+    <DisplayText>%b1 Mystic Incite %v1: %v1 bonus to increased threat generation from spell damage</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>ThreatBonusSpell</Type>
+      <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
     </Effect>
@@ -15694,7 +15898,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Power of the Silver Flame</Type>
-    <DisplayText>%b1 Power of the Silver Flame +%v1: Passive: +%v1 %b1 bonus to Positive, Light, and Alignment Spell Power.</DisplayText>
+    <DisplayText>%b1 Power of the Silver Flame %v1: Passive: %v1 %b1 bonus to Positive, Light, and Alignment Spell Power.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellPower</Type>
@@ -15707,7 +15911,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Power of the Thunderstorm</Type>
-    <DisplayText>%b1 Power of the Thunderstorm +%v1: Passive: +%v1 %b1 bonus to Sonic and Electric Spell Power.</DisplayText>
+    <DisplayText>%b1 Power of the Thunderstorm %v1: Passive: %v1 %b1 bonus to Sonic and Electric Spell Power.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellPower</Type>
@@ -15983,6 +16187,21 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Purple Dragon Knight: This item in one of two pieces of the Purple Dragon Knight set. When both items are equipped you gain a 10% additional threat generation, and a +1 Exceptional bonus to hit.</DisplayText>
   </Buff>
   <!--Q-->
+  <Buff>
+    <Type>Quality Nimble Skills</Type>
+    <DisplayText>Quality Nimble Skills Bonus %v1: %v1 Quality bonus to Balance, Hide, Move Silently, Open Lock and Tumble.</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Quality</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Balance</Item>
+      <Item>Hide</Item>
+      <Item>Move Silently</Item>
+      <Item>Open Lock</Item>
+      <Item>Tumble</Item>
+    </Effect>
+  </Buff>
   <Buff>
     <Type>Quenched</Type>
     <DisplayText>Quenched: Your Cold and Lightning spells apply the debuff portion of Quench with no save.</DisplayText>
@@ -18523,6 +18742,22 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Slashing 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Slashing 7: The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Slash</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Slay Living</Type>
     <DisplayText>Slay Living: This weapon stores a dark and sinister power deep within. When the weapon is used, this power occasionally comes to the surface, attempting to instantly snuff out the life force of the enemy.</DisplayText>
   </Buff>
@@ -18790,12 +19025,20 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Solar Guard IV: When Hit in Melee: Deals 4 to 16 Light damage to your attacker.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Solar Guard V</Type>
+    <DisplayText>Solar Guard V: When Hit in Melee: Deals 5 to 20 Light damage to your attacker.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Solar Guard VI</Type>
     <DisplayText>Solar Guard VI: When Hit in Melee: Deals 6 to 24 Light damage to your attacker.</DisplayText>
   </Buff>
   <Buff>
     <Type>Solar Guard VII</Type>
     <DisplayText>Solar Guard VII: When Hit in Melee: Deals 7 to 28 Light damage to your attacker.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Solar Guard VIII</Type>
+    <DisplayText>Solar Guard VIII: When Hit in Melee: Deals 8 to 32 Light damage to your attacker.</DisplayText>
   </Buff>
   <Buff>
     <Type>Solar I</Type>
@@ -19202,7 +19445,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Soul of the Elements</Type>
-    <DisplayText>While you are centered, this item grants you a bonus depending on your current monk stance.</DisplayText>
+    <DisplayText>Soul of the Elements: While you are centered, this item grants you a bonus depending on your current monk stance.</DisplayText>
   </Buff>
   <Buff>
     <Type>Soul Tear</Type>
@@ -20465,7 +20708,7 @@ On Critical Hit : 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Thunderstorm Lore</Type>
-    <DisplayText>%b1 Thunderstorm Lore +%v1: Passive: Your Sonic and Lightning spells gain a +%v1 %b1 bonus to their chance to critical hit.</DisplayText>
+    <DisplayText>%b1 Thunderstorm Lore %v1: Passive: Your Sonic and Lightning spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellLore</Type>

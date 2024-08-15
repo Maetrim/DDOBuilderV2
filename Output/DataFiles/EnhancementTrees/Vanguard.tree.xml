@@ -1,9 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
   <EnhancementTree>
     <Name>Vanguard</Name>
     <Version>1</Version>
-    <!--Vanguard is both a fighter and paladin tree, shared between the classes-->
     <Requirements>
       <RequiresOneOf>
         <Requirement>
@@ -16,8 +14,8 @@
         </Requirement>
       </RequiresOneOf>
     </Requirements>
-    <Background>FighterBackground</Background>
     <Icon>FighterPaladin</Icon>
+    <Background>FighterBackground</Background>
     <!--Core Items-->
     <EnhancementTreeItem>
       <Name>Vanguard: To the Fore!</Name>
@@ -30,7 +28,7 @@ and with your shield bash attacks.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>0</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <RequiresOneOf>
           <Requirement>
@@ -48,6 +46,7 @@ and with your shield bash attacks.</Description>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Requirements>
@@ -56,7 +55,6 @@ and with your shield bash attacks.</Description>
             <Item>Sword and Board</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -69,7 +67,7 @@ and with your shield bash attacks.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <Requirement>
           <Type>Enhancement</Type>
@@ -112,7 +110,7 @@ While you have a shield equipped, +5% Combat Style bonus to melee attack speed.<
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <Requirement>
           <Type>Enhancement</Type>
@@ -146,6 +144,7 @@ While you have a shield equipped, +5% Combat Style bonus to melee attack speed.<
       <Effect>
         <Type>Weapon_Alacrity</Type>
         <Bonus>Combat Style</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
         <Requirements>
@@ -154,7 +153,6 @@ While you have a shield equipped, +5% Combat Style bonus to melee attack speed.<
             <Item>Sword and Board</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -171,7 +169,7 @@ Your shield gains +1[W].</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <Requirement>
           <Type>Enhancement</Type>
@@ -205,6 +203,7 @@ Your shield gains +1[W].</Description>
       <Effect>
         <Type>Weapon_Alacrity</Type>
         <Bonus>Combat Style</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
         <Requirements>
@@ -213,17 +212,16 @@ Your shield gains +1[W].</Description>
             <Item>Sword and Board</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Weapon_BaseDamage</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
         <Item>Buckler</Item>
         <Item>Small Shield</Item>
         <Item>Large Shield</Item>
         <Item>Tower Shield</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -239,7 +237,7 @@ Attack Speed.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <Requirement>
           <Type>Enhancement</Type>
@@ -262,27 +260,28 @@ Attack Speed.</Description>
         <Type>Weapon_CriticalRange</Type>
         <Type>Weapon_CriticalMultiplier</Type>
         <Bonus>Competence</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-        <ApplyAsItemEffect />
         <Item>Buckler</Item>
         <Item>Small Shield</Item>
         <Item>Large Shield</Item>
         <Item>Tower Shield</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <ApplyAsItemEffect/>
       </Effect>
       <Effect>
         <Type>Weapon_BaseDamage</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
         <Item>Buckler</Item>
         <Item>Small Shield</Item>
         <Item>Large Shield</Item>
         <Item>Tower Shield</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
       </Effect>
       <Effect>
         <Type>Weapon_Alacrity</Type>
         <Bonus>Combat Style</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
         <Requirements>
@@ -291,7 +290,6 @@ Attack Speed.</Description>
             <Item>Sword and Board</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -315,6 +313,11 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
           <Type>Enhancement</Type>
           <Item>VanguardCore5</Item>
         </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>VanguardCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -327,34 +330,18 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
             <Value>20</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Exclusive</Type>
-          <Item>VanguardCore6</Item>
-          <Item>Capstone Enhancement</Item>
-        </Requirement>
       </Requirements>
       <Effect>
         <Type>ExclusionGroup</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>NotNeeded</AType>
         <Item>VanguardCore6</Item>
         <Item>Capstone Enhancement</Item>
+        <AType>NotNeeded</AType>
       </Effect>
-      <DC>
-        <Name>Vanguard: Shield Champion: Stun</Name>
-        <Description>Your shield bashes stuns enemies 10% of the time.
-DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
-        <Icon>VanguardShieldChampion</Icon>
-        <DCType>Stun</DCType>
-        <DCVersus>Will</DCVersus>
-        <Amount size="1">10</Amount>
-        <HalfClassLevel>All</HalfClassLevel>
-        <ModAbility>Strength</ModAbility>
-        <Tactical>Stun</Tactical>
-      </DC>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
         <Requirements>
@@ -363,7 +350,6 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
             <Item>Sword and Board</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Doublestrike</Type>
@@ -380,16 +366,17 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
       <Effect>
         <Type>Weapon_BaseDamage</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
         <Item>Buckler</Item>
         <Item>Small Shield</Item>
         <Item>Large Shield</Item>
         <Item>Tower Shield</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
       </Effect>
       <Effect>
         <Type>Weapon_Alacrity</Type>
         <Bonus>Combat Style</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
         <Requirements>
@@ -398,8 +385,19 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
             <Item>Sword and Board</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
+      <DC>
+        <Name>Vanguard: Shield Champion: Stun</Name>
+        <Description>Your shield bashes stuns enemies 10% of the time.
+DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
+        <Icon>VanguardShieldChampion</Icon>
+        <DCType>Stun</DCType>
+        <DCVersus>Will</DCVersus>
+        <Amount size="1">10</Amount>
+        <ModAbility>Strength</ModAbility>
+        <Tactical>Stun</Tactical>
+        <HalfClassLevel>All</HalfClassLevel>
+      </DC>
       <DC>
         <Name>Vanguard: Shield Champion</Name>
         <Description>Shield bash stuns 10% of the time</Description>
@@ -407,9 +405,9 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
         <DCType>Stun</DCType>
         <DCVersus>Will?</DCVersus>
         <Amount size="1">10</Amount>
-        <HalfClassLevel>All</HalfClassLevel>
         <ModAbility>Strength</ModAbility>
         <Tactical>Stun</Tactical>
+        <HalfClassLevel>All</HalfClassLevel>
       </DC>
     </EnhancementTreeItem>
     <!--Tier 1-->
@@ -423,7 +421,7 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
-      <ArrowUp />
+      <ArrowUp/>
       <Requirements>
         <RequiresOneOf>
           <Requirement>
@@ -441,6 +439,7 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Requirements>
@@ -449,7 +448,6 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
             <Item>Shield</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>ACBonus</Type>
@@ -509,7 +507,7 @@ increased by [2/4/6] points for [3/6/12] seconds.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
-      <Clickie />
+      <Clickie/>
       <Requirements>
         <RequiresOneOf>
           <Requirement>
@@ -602,8 +600,12 @@ Reduces total penalty to skills from armor and shield by [1/2/3] points.</Descri
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <ArrowUp />
+      <ArrowUp/>
       <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>VanguardShieldSpecializationI</Item>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -616,17 +618,13 @@ Reduces total penalty to skills from armor and shield by [1/2/3] points.</Descri
             <Value>2</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>VanguardShieldSpecializationI</Item>
-        </Requirement>
       </Requirements>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -693,7 +691,7 @@ DC(10 + highest ability modifier + character level + stunning bonuses).</Descrip
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie />
+      <Clickie/>
       <Requirements>
         <RequiresOneOf>
           <Requirement>
@@ -715,7 +713,6 @@ DC(10 + highest ability modifier + character level + stunning bonuses).</Descrip
         <DCType>Stun</DCType>
         <DCVersus>Fortitude</DCVersus>
         <Amount size="1">10</Amount>
-        <ClassLevel>All</ClassLevel>
         <ModAbility>Strength</ModAbility>
         <ModAbility>Dexterity</ModAbility>
         <ModAbility>Constitution</ModAbility>
@@ -723,6 +720,7 @@ DC(10 + highest ability modifier + character level + stunning bonuses).</Descrip
         <ModAbility>Wisdom</ModAbility>
         <ModAbility>Charisma</ModAbility>
         <Tactical>Stun</Tactical>
+        <ClassLevel>All</ClassLevel>
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -781,7 +779,7 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie />
+      <Clickie/>
       <Stance>
         <Name>Vanguard: Power</Name>
         <Icon>VanguardActionBoostMeleePower</Icon>
@@ -826,8 +824,12 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowUp />
+      <ArrowUp/>
       <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>VanguardShieldSpecializationII</Item>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -840,17 +842,13 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
             <Value>3</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>VanguardShieldSpecializationII</Item>
-        </Requirement>
       </Requirements>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -937,13 +935,13 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
       <Effect>
         <Type>Weapon_CriticalRange</Type>
         <Bonus>Competence</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
         <Item>Buckler</Item>
         <Item>Small Shield</Item>
         <Item>Large Shield</Item>
         <Item>Tower Shield</Item>
-        <ApplyAsItemEffect />
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <ApplyAsItemEffect/>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1036,7 +1034,12 @@ to your attacker. Scales with Melee Power.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
+      <ArrowUp/>
       <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>VanguardShieldSpecializationIII</Item>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -1049,17 +1052,13 @@ to your attacker. Scales with Melee Power.</Description>
             <Value>4</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>VanguardShieldSpecializationIII</Item>
-        </Requirement>
       </Requirements>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1127,7 +1126,7 @@ a shield attack that hits enemies around you.
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>20</MinSpent>
-      <Clickie />
+      <Clickie/>
       <Requirements>
         <RequiresOneOf>
           <Requirement>
@@ -1171,9 +1170,9 @@ critical hits (before weapon multipliers).</Description>
       <Effect>
         <Type>Weapon_AttackAndDamageCritical</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>All</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1240,8 +1239,16 @@ critical hits (before weapon multipliers).</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
+      <Tier5/>
       <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>VanguardShieldSpecializationIV</Item>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -1254,17 +1261,13 @@ critical hits (before weapon multipliers).</Description>
             <Value>5</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>12</Value>
-        </Requirement>
       </Requirements>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">3</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1299,8 +1302,12 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
+      <Tier5/>
       <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -1313,10 +1320,6 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
             <Value>5</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>12</Value>
-        </Requirement>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1334,9 +1337,13 @@ bonus to trip attacks).</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
-      <Clickie />
+      <Clickie/>
+      <Tier5/>
       <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -1349,10 +1356,6 @@ bonus to trip attacks).</Description>
             <Value>5</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>12</Value>
-        </Requirement>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1365,8 +1368,12 @@ bonus to trip attacks).</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
+      <Tier5/>
       <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -1379,10 +1386,6 @@ bonus to trip attacks).</Description>
             <Value>5</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>12</Value>
-        </Requirement>
       </Requirements>
       <Effect>
         <Type>MeleePower</Type>
@@ -1403,8 +1406,12 @@ You gain a +25% Competence bonus to Maximum Hit Points.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5 />
+      <Tier5/>
       <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
         <RequiresOneOf>
           <Requirement>
             <Type>ClassMinLevel</Type>
@@ -1417,26 +1424,22 @@ You gain a +25% Competence bonus to Maximum Hit Points.</Description>
             <Value>5</Value>
           </Requirement>
         </RequiresOneOf>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>12</Value>
-        </Requirement>
       </Requirements>
       <Effect>
         <Type>Weapon_CriticalMultiplier19To20</Type>
         <Bonus>Competence</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
-        <ApplyAsItemEffect />
+        <ApplyAsItemEffect/>
       </Effect>
       <Effect>
         <Type>Hitpoints</Type>
         <Bonus>Competence</Bonus>
         <AType>Simple</AType>
         <Amount size="1">25</Amount>
-        <Percent />
-        <ApplyAsItemEffect />
+        <Percent/>
+        <ApplyAsItemEffect/>
       </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>

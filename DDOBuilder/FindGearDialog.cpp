@@ -57,6 +57,7 @@ void CFindGearDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_WITHINLEVELS, m_comboLevelRange);
     DDX_Control(pDX, IDC_COMBO_ITEMLEVEL, m_comboItemLevel);
     DDX_Control(pDX, IDC_CHECK_IGNORERAIDITEMS, m_buttonIgnoreRaidItems);
+    DDX_Control(pDX, IDC_CHECK_IGNOREARTIFACTS, m_buttonIgnoreMinorArtifacts);
     DDX_Control(pDX, IDC_STATIC_AUGMENTS, m_staticAugments);
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
@@ -98,6 +99,7 @@ BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_CBN_SELENDOK(IDC_COMBO_ITEMLEVEL, OnItemLevelSelect)
     ON_CBN_SELENDOK(IDC_COMBO_WITHINLEVELS, OnSelEndLevelRange)
     ON_BN_CLICKED(IDC_CHECK_IGNORERAIDITEMS, OnButtonIgnoreRaidItems)
+    ON_BN_CLICKED(IDC_CHECK_IGNOREARTIFACTS, OnButtonIgnoreMinorArtifacts)
     ON_BN_CLICKED(IDC_BUTTON_CLEAR_FILTER, OnButtonClearFilter)
 END_MESSAGE_MAP()
 
@@ -114,6 +116,11 @@ BOOL CFindGearDialog::OnInitDialog()
     if (iState != 0)
     {
         m_buttonIgnoreRaidItems.SetCheck(BST_CHECKED);
+    }
+    iState = AfxGetApp()->GetProfileInt("ItemSelectDialog", "ExcludeMinorArtifacts", 0);
+    if (iState != 0)
+    {
+        m_buttonIgnoreMinorArtifacts.SetCheck(BST_CHECKED);
     }
 
     EnableBuddyButton(m_editSearchText.GetSafeHwnd(), m_clearFilter.GetSafeHwnd(), BBS_RIGHT);
@@ -187,6 +194,7 @@ void CFindGearDialog::PopulateAvailableItemList()
 
     int minItemLevel = m_pBuild->Level() - m_levelRange;
     bool bIgnoreRaidItems = (m_buttonIgnoreRaidItems.GetCheck() == BST_CHECKED);
+    bool bIgnoreMinorArtifacts = (m_buttonIgnoreMinorArtifacts.GetCheck() == BST_CHECKED);
 
     const std::list<Item> & allItems = Items();
     m_availableItems.clear();
@@ -196,6 +204,12 @@ void CFindGearDialog::PopulateAvailableItemList()
         if (bIgnoreRaidItems && it->IsRaidItem())
         {
             // ignore this raid item
+            ++it;
+            continue;
+        }
+        if (bIgnoreMinorArtifacts && it->HasMinorArtifact())
+        {
+            // ignore this minor artifact
             ++it;
             continue;
         }
@@ -984,7 +998,7 @@ void CFindGearDialog::SetTooltipText(
         bool rightAlign)
 {
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
-    m_tooltip.SetAugment(&augment);
+    m_tooltip.SetAugment(&augment, *m_pBuild);
     m_tooltip.Show();
     m_showingTip = true;
 }
@@ -1292,6 +1306,13 @@ void CFindGearDialog::OnButtonIgnoreRaidItems()
 {
     int ignoreRaidItems = (m_buttonIgnoreRaidItems.GetCheck() == BST_CHECKED) ? 1 : 0;
     AfxGetApp()->WriteProfileInt("ItemSelectDialog", "ExcludeRaidItems", ignoreRaidItems);
+    PopulateAvailableItemList();
+}
+
+void CFindGearDialog::OnButtonIgnoreMinorArtifacts()
+{
+    int ignoreMinorArtifacts = (m_buttonIgnoreMinorArtifacts.GetCheck() == BST_CHECKED) ? 1: 0;
+    AfxGetApp()->WriteProfileInt("ItemSelectDialog", "ExcludeMinorArtifacts", ignoreMinorArtifacts);
     PopulateAvailableItemList();
 }
 

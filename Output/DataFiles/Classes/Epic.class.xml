@@ -1429,7 +1429,7 @@ with no save. This may only trigger once every 12 seconds.</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>TitansBlood</Icon>
       <Effect>
         <Type>Hitpoints</Type>
         <Bonus>Legendary</Bonus>
@@ -1450,7 +1450,7 @@ with no save. This may only trigger once every 12 seconds.</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>GuardedActions</Icon>
     </Feat>
     <Feat>
       <Name>Arcane Actions</Name>
@@ -1464,7 +1464,7 @@ Spell Power and +2 Imbue Dice for 6 seconds</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>ArcaneActions</Icon>
       <Effect>
         <Type>UniversalSpellPower</Type>
         <Bonus>Competence</Bonus>
@@ -1504,7 +1504,7 @@ Bonus to Universal Spell Power and +4 to all Spell DCs for 3 seconds.</Descripti
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>ChannelPower</Icon>
       <Effect>
         <Type>UniversalSpellPower</Type>
         <Bonus>Competence</Bonus>
@@ -1534,10 +1534,11 @@ Bonus to Universal Spell Power and +4 to all Spell DCs for 3 seconds.</Descripti
       </Effect>
     </Feat>
     <Feat>
-      <Name>Reverberating Shout</Name>
-      <Description>Activate to shout at all nearby creatures, Intimidating them unless they make a Will
-Saving Throw (DC equal to your Intimidate skill). This works on all creature
-types, including those normally immune to Intimidate.</Description>
+      <Name>Intimidating Shout</Name>
+      <Description>Active: Shout at all nearby creatures, Intimidating them (Save vs Will, DC DC equal
+to your Intimidate skill). This works on all creature types, including those
+normally immune to Intimidate.
+Cooldown: 30 seconds</Description>
       <Group>Epic Destiny Feat</Group>
       <Requirements>
         <Requirement>
@@ -1546,15 +1547,15 @@ types, including those normally immune to Intimidate.</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>ActiveStub</Icon>
+      <Icon>IntimidatingShout</Icon>
       <DC>
-        <Name>Reverberating Shout</Name>
-        <Description>Activate to shout at all nearby creatures, Intimidating them unless they make a Will
-Saving Throw (DC equal to your Intimidate skill). This works on all creature
-types, including those normally immune to Intimidate.</Description>
-        <Icon>BurstOfGlacialWrath</Icon>
+        <Name>Intimidating Shout</Name>
+      <Description>Active: Shout at all nearby creatures, Intimidating them (Save vs Will, DC DC equal
+to your Intimidate skill). This works on all creature types, including those
+normally immune to Intimidate.</Description>
+        <Icon>IntimidatingShout</Icon>
         <DCType>Intimidate</DCType>
-        <DCVersus>?</DCVersus>
+        <DCVersus>Will</DCVersus>
         <Skill>Intimidate</Skill>
       </DC>
     </Feat>
@@ -1569,7 +1570,7 @@ types, including those normally immune to Intimidate.</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>FaceMe</Icon>
       <Effect>
         <Type>ThreatBonusMelee</Type>
         <Type>ThreatBonusRanged</Type>
@@ -4218,7 +4219,7 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>Patience</Icon>
       <Effect>
         <Type>Weapon_Alacrity</Type>
         <Bonus>Feat</Bonus>
@@ -4247,7 +4248,7 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>EerieAim</Icon>
       <Effect>
         <Type>DodgeBypass</Type>
         <Bonus>Feat</Bonus>
@@ -4280,14 +4281,17 @@ as you approach them.</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>Paranoid</Icon>
     </Feat>
     <Feat>
       <Name>Inspiring Bond</Name>
       <Description>When your Hirelings or Pets die, after 2.5 seconds they are automatically resurrected
 and heal to full health. This can occur only once for each creature every 3 minutes.
-In addition, your Hirelings, Pets, and Summons gain +25 Physical Resistance
-Rating and Magical Resistance Rating.</Description>
+(If that Hireling or Pet has an effect that blocks Resurrection, it will wait
+to attempt this Resurrection until that effect is gone).
+
+Passive: Your Hirelings, Pets, and Summons gain +25 Physical Resistance Rating
+and Magical Resistance Rating.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -4296,7 +4300,7 @@ Rating and Magical Resistance Rating.</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>InspiringBond</Icon>
       <Effect>
         <Type>HirelingPRR</Type>
         <Type>HirelingMRR</Type>
@@ -4308,9 +4312,9 @@ Rating and Magical Resistance Rating.</Description>
     <Feat>
       <Name>Defensive Tumble</Name>
       <Description>When you Tumble, for the next 3 seconds you take 20% less damage from all sources
-(except Bane). In addition, your Tumble charges recharge 0.5 seconds faster,
-and the bonus to Reflex Saving Throws you receive while actively Tumbling is
-now also applied to Fortitude and Will saving throws while Tumbling.</Description>
+(except Bane). In addition, the bonus to Reflex Saving Throws you receive while
+actively Tumbling is now also applied to Fortitude and Will saving throws while
+Tumbling. Finally, your Tumble charges recharge 0.5 seconds faster.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -4319,7 +4323,7 @@ now also applied to Fortitude and Will saving throws while Tumbling.</Descriptio
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>DefensiveTumble</Icon>
     </Feat>
     <Feat>
       <Name>Trick Shot</Name>
@@ -4333,7 +4337,7 @@ In addition, your Tumble charges recharge 0.5 seconds faster</Description>
         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>TrickShot</Icon>
       <Effect>
         <Type>RangedPower</Type>
         <Bonus>Feat</Bonus>
