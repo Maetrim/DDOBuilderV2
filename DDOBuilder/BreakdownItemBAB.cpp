@@ -71,13 +71,13 @@ void BreakdownItemBAB::CreateOtherEffects()
             if (count > 0)
             {
                 // have at least 1 enhancement that boosts BAB to Character level
-                // note that BAB is capped at maximum 25
+                // note that BAB is capped at maximum MAX_BAB
                 size_t currentBab = pBuild->BaseAttackBonus(pBuild->Level()-1);
                 Effect amountTrained(
                         Effect_Unknown,
                         "BAB boost to character level (max 25)",
                         "BAB boost to character level (max 25)",
-                        min(25, pBuild->Level()) - currentBab);
+                        min(MAX_BAB, pBuild->Level()) - currentBab);
                 AddOtherEffect(amountTrained);
             }
         }

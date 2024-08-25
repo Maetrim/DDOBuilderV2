@@ -43,6 +43,7 @@ void LegacyCharacter::EndElement()
     m_hasLevel36 = true;
     m_hasLevel40 = true;
     m_hasDestinyTrees = true;    // assume for  very old files to load
+    m_hasNotes = true;
     SaxContentElement::EndElement();
     DL_END(LegacyCharacter_PROPERTIES)
 }

@@ -32,6 +32,11 @@ BEGIN_MESSAGE_MAP(CNotesPane, CFormView)
     ON_EN_CHANGE(IDC_EDIT_NOTES, OnNotesChanged)
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_WM_ERASEBKGND()
+    ON_COMMAND(ID_EDIT_CUT, OnEditCut)
+    ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
+    ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
+    ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
+    ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 END_MESSAGE_MAP()
 
 void CNotesPane::OnInitialUpdate()
@@ -116,3 +121,44 @@ BOOL CNotesPane::OnEraseBkgnd(CDC* pDC)
 
     return OnEraseBackground(this, pDC, controlsNotToBeErased);
 }
+
+void CNotesPane::OnEditCut()
+{
+    if (GetFocus() == &m_editNotes)
+    {
+        m_editNotes.Cut();
+    }
+}
+
+void CNotesPane::OnEditCopy()
+{
+    if (GetFocus() == &m_editNotes)
+    {
+        m_editNotes.Copy();
+    }
+}
+
+void CNotesPane::OnEditPaste()
+{
+    if (GetFocus() == &m_editNotes)
+    {
+        m_editNotes.Paste();
+    }
+}
+
+void CNotesPane::OnEditRedo()
+{
+    if (GetFocus() == &m_editNotes)
+    {
+        //m_editNotes.Redo();
+    }
+}
+
+void CNotesPane::OnEditUndo()
+{
+    if (GetFocus() == &m_editNotes)
+    {
+        m_editNotes.Undo();
+    }
+}
+

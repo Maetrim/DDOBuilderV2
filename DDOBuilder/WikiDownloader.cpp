@@ -22,28 +22,39 @@ WikiDownloader::~WikiDownloader()
 {
 }
 
+void WikiDownloader::Start(CString link)
+{
+    m_knownUrls[(LPCTSTR)link] = m_pageIndex++;
+    m_pagesToProcess.push_back((LPCTSTR)link);
+    Start();
+}
+
 void WikiDownloader::Start()
 {
     GetLog().AddLogEntry("Starting download of ddowiki file...");
-    // from the top level url, we want to get all the hrefs with "Category:" present
-    // we ignore all the others. After that All the category pages are then parsed
-    // looking only for links that have "page/Item" present
-    m_knownUrls["https://www.ddowiki.com/page/Items"] = m_pageIndex++;
-    m_pagesToProcess.push_back("https://www.ddowiki.com/page/Items");
-
     CWnd* pWnd = AfxGetMainWnd();
     CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(pWnd);
     pFrameWnd->BeginProgress("Downloading wiki files...");
 
-    std::string url = m_pagesToProcess.front();
-    m_pagesToProcess.pop_front();
-    if (!DownloadUrl(url))
+    std::string url;
+    if (m_pageIndex == 0)
     {
-        GetLog().AddLogEntry("Page download failed....aborted.");
-    }
-    else
-    {
-        ParseDownloadedFile(url, "page/Category:");
+        // from the top level url, we want to get all the hrefs with "Category:" present
+        // we ignore all the others. After that All the category pages are then parsed
+        // looking only for links that have "page/Item" present
+        m_knownUrls["https://www.ddowiki.com/page/Items"] = m_pageIndex++;
+        m_pagesToProcess.push_back("https://www.ddowiki.com/page/Items");
+
+        url = m_pagesToProcess.front();
+        m_pagesToProcess.pop_front();
+        if (!DownloadUrl(url))
+        {
+            GetLog().AddLogEntry("Page download failed....aborted.");
+        }
+        else
+        {
+            ParseDownloadedFile(url, "page/Category:");
+        }
     }
 
     int lastPercent = -1;

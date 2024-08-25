@@ -6,7 +6,9 @@
 #include "FeatsClassControl.h"
 
 class CClassAndFeatPane :
-    public CFormView
+    public CFormView,
+    public CharacterObserver,
+    public BuildObserver
 {
     public:
         enum { IDD = IDD_CLASS_AND_FEAT_PANE };
@@ -32,10 +34,19 @@ class CClassAndFeatPane :
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg void OnHScroll(UINT, UINT, CScrollBar*);
         afx_msg void OnVScroll( UINT, UINT, CScrollBar* );
+        afx_msg void OnComboBuildLevelSelect();
         DECLARE_MESSAGE_MAP()
+
+
+        // CharacterObserver overrides
+        virtual void UpdateActiveBuildChanged(Character*) override;
+        // BuildObserver overrides
+        virtual void UpdateBuildLevelChanged(Build*) override;
 
     private:
         CDocument * m_pDocument;
         Character * m_pCharacter;
+        CComboBox m_comboBuildLevel;
         CFeatsClassControl m_featsAndClasses;
+        bool m_bHadInitialise;
 };

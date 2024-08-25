@@ -181,6 +181,7 @@
 #define HID_LIFE_PASTEFROMCLIPBOARD             0x18054
 #define HID_GEAR_IMPORTFROMCLIPBOARD            0x18055
 #define HID_LIFE_IMPORTLIVESFROMOTHER           0x18056
+#define HID_DEVELOPMENT_CRAWLSPECIFICWIKILINK   0x18057
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064
@@ -230,6 +231,7 @@
 #define HIDD_FAVOR_PANE                         0x20142
 #define HIDD_NOTES_PANE                         0x20143
 #define HIDD_SELFANDPARTYBUFFS_PANE             0x2014F
+#define HIDD_DIALOG_WIKILINK                    0x20150
  
 // Frame Controls (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.

@@ -692,6 +692,7 @@ bool Effect::CheckAType(
     case Amount_NotNeeded:
         // no Amount fields required, other m_Item checked elsewhere
         break;
+    case Amount_BAB:
     case Amount_Simple:
         *bRequiresAmount = true;            // its a a direct number * stacks
         *requiredAmountElements = 1;        // single element
@@ -725,7 +726,7 @@ bool Effect::CheckAType(
         break;
     case Amount_SliderValueLookup:
         *bRequiresAmount = true;            // has values
-        *requiredAmountElements = 3;        // 3 elements expected
+        *requiredAmountElements = 21;        // 3 elements expected
         if (!HasStackSource())
         {
             (*ss) << "SliderValueLookup effect missing StackSource field\n";
@@ -782,7 +783,7 @@ bool Effect::CheckAType(
     case Amount_ClassCasterLevel:
         // expect a single Item thats a class and 20 Amount Items
         *bRequiresAmount = true;                    // Amount specifies amount at each class level
-        *requiredAmountElements = MAX_CLASS_LEVEL + 1; // 20 elements expected
+        *requiredAmountElements = MAX_BUILDER_LEVEL; // 41 elements expected
         if (!HasStackSource())
         {
             (*ss) << "ClassCasterLevel effect missing StackSource field\n";
@@ -1003,7 +1004,7 @@ std::string Effect::StacksAsString() const
             if (pBI != NULL)
             {
                 int level = static_cast<int>(pBI->Total());
-                level = min(level, MAX_CLASS_LEVEL);
+                level = min(level, MAX_BUILDER_LEVEL);
                 ss << level << " " << StackSource() << " Caster Levels";
             }
             else
@@ -1025,6 +1026,21 @@ std::string Effect::StacksAsString() const
         break;
     case Amount_SetBonusCount:
         ss << m_pBuild->SetBonusCount(StackSource()) << " Set Bonus Count";
+        break;
+    case Amount_BAB:
+        {
+            BreakdownItem* pBI = FindBreakdown(Breakdown_BAB);
+            if (pBI != NULL)
+            {
+                int bab = static_cast<int>(pBI->Total());
+                bab = min(bab, MAX_BAB);
+                ss << bab << " " << StackSource() << " BAB";
+            }
+            else
+            {
+                ss << "Not Found";
+            }
+        }
         break;
     }
     return ss.str();
@@ -1055,6 +1071,30 @@ double Effect::TotalAmount(bool allowTruncate) const
                 }
                 case 1: total = m_Amount[0] * m_stacks;
                     break;
+            }
+            break;
+        case Amount_BAB:
+            // it a straight value * stacks
+            {
+                size_t stacks = 0;
+                BreakdownItem* pBI = FindBreakdown(Breakdown_BAB);
+                if (pBI != NULL)
+                {
+                    int bab = static_cast<int>(pBI->Total());
+                    stacks = min(bab, MAX_BAB);
+                }
+                switch (m_Amount.size())
+                {
+                    default:
+                    {
+                        std::stringstream ss;
+                        ss << "Effect \"" << DisplayName() << "\" has missing/bad Amount field.";
+                        GetLog().AddLogEntry(ss.str().c_str());
+                        break;
+                    }
+                    case 1: total = m_Amount[0] * stacks;
+                        break;
+                }
             }
             break;
         case Amount_Stacks:
@@ -1167,7 +1207,7 @@ double Effect::TotalAmount(bool allowTruncate) const
                 if (pBI != NULL)
                 {
                     level = static_cast<size_t>(pBI->Total());
-                    level = min(level, MAX_CLASS_LEVEL);
+                    level = min(level, MAX_BUILDER_LEVEL);
                 }
                 // vector lookup
                 int vi = min(level, m_Amount.size() - 1);

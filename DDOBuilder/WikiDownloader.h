@@ -10,6 +10,7 @@ class WikiDownloader
         WikiDownloader();
         ~WikiDownloader();
 
+        void Start(CString link);
         void Start();
 
     private:

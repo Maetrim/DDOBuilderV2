@@ -289,13 +289,19 @@
         <Type>Weapon_Attack</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">5</Amount>
+        <Amount size="1">10</Amount>
         <Item>All</Item>
         <Requirements>
-          <Requirement>
-            <Type>WeaponClassMainHand</Type>
-            <Item>Ranged</Item>
-          </Requirement>
+           <RequiresOneOf>
+               <Requirement>
+                  <Type>WeaponClassMainHand</Type>
+                  <Item>Ranged</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>WeaponClassMainHand</Type>
+                  <Item>Thrown</Item>
+               </Requirement>
+           </RequiresOneOf>
         </Requirements>
       </Effect>
       <Effect>
@@ -304,10 +310,16 @@
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
         <Requirements>
-          <Requirement>
-            <Type>WeaponClassMainHand</Type>
-            <Item>Ranged</Item>
-          </Requirement>
+           <RequiresOneOf>
+               <Requirement>
+                  <Type>WeaponClassMainHand</Type>
+                  <Item>Ranged</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>WeaponClassMainHand</Type>
+                  <Item>Thrown</Item>
+               </Requirement>
+           </RequiresOneOf>
         </Requirements>
       </Effect>
     </Feat>

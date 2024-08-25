@@ -53,6 +53,7 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnButtonIgnoreRaidItems();
         afx_msg void OnButtonIgnoreMinorArtifacts();
         afx_msg void OnButtonClearFilter();
+        afx_msg void OnAugmentDropDown(UINT nID);
     public:
         DECLARE_MESSAGE_MAP()
 

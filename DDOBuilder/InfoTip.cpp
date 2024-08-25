@@ -991,6 +991,23 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
         m_tipItems.push_back(pMeta);
     }
 
+    if (spell.HasMaxCasterLevel())
+    {
+        CString casterLevel;
+        casterLevel.Format("Caster Level: %d (Max %d)", spell.ActualCasterLevel(build), spell.ActualMaxCasterLevel(build));
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement(casterLevel, false);  // red highlighted line
+        m_tipItems.push_back(pRequirements);
+    }
+    else
+    {
+        CString casterLevel;
+        casterLevel.Format("Caster Level: %d", spell.ActualCasterLevel(build));
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement(casterLevel, false);  // red highlighted line
+        m_tipItems.push_back(pRequirements);
+    }
+
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
     pDescription->SetText(spell.Description().c_str());
     m_tipItems.push_back(pDescription);
@@ -1042,9 +1059,9 @@ void CInfoTip::AppendSpellDamageEffect(
     pRequirements->AddRequirement(sdt, false);  // red highlighted line
     m_tipItems.push_back(pRequirements);
 
-    CString mcl = spell.ActualMaxCasterLevelText(build, sd);
-    CString cl = spell.ActualCasterLevelText(build, sd);
-    int castLevel = min(spell.ActualMaxCasterLevel(build, sd), spell.ActualCasterLevel(build, sd));
+    CString mcl = spell.ActualMaxCasterLevelText(build);
+    CString cl = spell.ActualCasterLevelText(build);
+    int castLevel = min(spell.ActualMaxCasterLevel(build), spell.ActualCasterLevel(build));
     CString tsd = sd.SpellDamageText(build, castLevel);
 
     CString tipText = mcl;

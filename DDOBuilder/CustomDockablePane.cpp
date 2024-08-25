@@ -85,8 +85,8 @@ void CCustomDockablePane::SetView(CView* v, bool r)
 }
 
 void CCustomDockablePane::SetDocumentAndCharacter(
-        CDocument * pDoc,
-        Character * pCharacter)
+        CDocument* pDoc,
+        Character* pCharacter)
 {
     m_document = pDoc;
     m_pCharacter = pCharacter;
@@ -166,7 +166,6 @@ void CCustomDockablePane::DrawCaption(CDC* pDC, CRect rectCaption)
     pDC->Draw3dRect(rctIcon,
                 ::GetSysColor(COLOR_BTNHIGHLIGHT),
                 ::GetSysColor(COLOR_BTNSHADOW));
-    //pDC->DrawEdge()
     // make sure we don't over draw the icon we just drew
     rectCaption.left += ::GetSystemMetrics(SM_CXSMICON) + 4;
     // let the base class draw the rest
@@ -188,11 +187,6 @@ CTabbedPane* CCustomDockablePane::CreateTabbedPane()
 void CCustomDockablePane::OnAfterChangeParent(CWnd* pWndOldParent)
 {
     CDockablePane::OnAfterChangeParent(pWndOldParent);
-    //CWnd *pWnd = GetParent();
-    //if (pWnd->GetRuntimeClass() == RUNTIME_CLASS(CCustomMultiPaneFrameWnd))
-    //{
-    //    pWnd->SetIcon(m_hIcon, FALSE);
-    //}
 }
 
 void CCustomDockablePane::OnContextMenu(CWnd* pWnd, CPoint point)
@@ -216,7 +210,7 @@ int CCustomDockablePane::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT 
     return MA_NOACTIVATE;
 }
 
-void CCustomDockablePane::OnWindowPosChanging(WINDOWPOS * pos)
+void CCustomDockablePane::OnWindowPosChanging(WINDOWPOS* pos)
 {
     // ensure tooltip locations are correct on window move
     CDockablePane::OnWindowPosChanging(pos);

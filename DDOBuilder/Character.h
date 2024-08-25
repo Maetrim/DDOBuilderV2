@@ -31,7 +31,7 @@ class Character :
         void ToggleShowEpicOnly();
         void ToggleShowUnavailable();
 
-        void SetActiveBuild(size_t lifeIndex, size_t buildIndex);
+        void SetActiveBuild(size_t lifeIndex, size_t buildIndex, bool bOverride = false);
         Build* ActiveBuild();  // can be NULL
         const Build* ActiveBuild() const; // can be NULL
         void SetActiveBuildIndex(size_t buildIndex);

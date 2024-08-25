@@ -53,6 +53,7 @@ BEGIN_MESSAGE_MAP(CBuildsPane, CFormView)
     ON_UPDATE_COMMAND_UI(ID_LIFE_COPYTOCLIPBOARD, &CBuildsPane::OnUpdateCopyLifeToClipboard)
     ON_UPDATE_COMMAND_UI(ID_LIFE_PASTEFROMCLIPBOARD, &CBuildsPane::OnUpdatePasteLife)
     ON_COMMAND(ID_LIFE_PASTEFROMCLIPBOARD, &CBuildsPane::OnPasteLife)
+    ON_COMMAND_RANGE(ID_LEVELSELECT_1, ID_LEVELSELECT_40, OnSetBuildLevel)
 END_MESSAGE_MAP()
 
 CBuildsPane::CBuildsPane() :
@@ -229,6 +230,20 @@ void CBuildsPane::UpdateActiveBuildPositionChanged(Character*)
             m_pCharacter->ActiveLifeIndex(),
             m_pCharacter->ActiveBuildIndex());
     SelectTreeItem(selItemData);
+    PopulateBuildsList();
+}
+
+void CBuildsPane::UpdateBuildLevelChanged(Build*)
+{
+    PopulateBuildsList();
+}
+
+void CBuildsPane::UpdateClassChanged(
+    Build*,
+    const std::string&,
+    const std::string&,
+    size_t)
+{
     PopulateBuildsList();
 }
 
@@ -450,6 +465,11 @@ void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
                 break;
         }
         m_pCharacter->SetActiveBuild(lifeIndex, buildIndex);
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            pBuild->AttachObserver(this);
+        }
     }
     else
     {
@@ -460,6 +480,11 @@ void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
         if (m_pCharacter != NULL)
         {
             m_pCharacter->SetActiveBuild(m_pCharacter->ActiveLifeIndex(), m_pCharacter->ActiveBuildIndex());
+            Build* pBuild = m_pCharacter->ActiveBuild();
+            if (pBuild != NULL)
+            {
+                pBuild->AttachObserver(this);
+            }
         }
     }
     *pResult = 0;
@@ -661,9 +686,6 @@ void CBuildsPane::OnDblclkTreeBuilds(NMHDR *pNMHDR, LRESULT *pResult)
                 int buildLevel = m_pCharacter->GetBuildLevel(lifeIndex, buildIndex);
                 if (selectedLevel != buildLevel)
                 {
-                    CString logEntry;
-                    logEntry.Format("Build changed from level %d to level %d", buildLevel, selectedLevel);
-                    GetLog().AddLogEntry(logEntry);
                     // update the build
                     m_pCharacter->SetBuildLevel(lifeIndex, buildIndex, selectedLevel);
                     // update our UI element
@@ -697,14 +719,38 @@ LRESULT CBuildsPane::OnStartLabelEdit(WPARAM, LPARAM)
 void CBuildsPane::OnUpdateBuildLevel(CCmdUI* pCmdUI)
 {
     // show a check mark against the builds current level selection
-    DWORD itemData = m_treeBuilds.GetItemData(m_hPopupMenuItem);
-    size_t lifeIndex = ExtractLifeIndex(itemData);
-    size_t buildIndex = ExtractBuildIndex(itemData);
-    int buildLevel = m_pCharacter->GetBuildLevel(lifeIndex, buildIndex);
-    int menuItemLevel = (pCmdUI->m_nID - ID_LEVELSELECT_1) + 1;
-    pCmdUI->SetCheck(menuItemLevel == buildLevel);
-    // disable item for levels not yet supported in game
-    pCmdUI->Enable(menuItemLevel <= MAX_GAME_LEVEL);
+    if (m_hPopupMenuItem != NULL)
+    {
+        DWORD itemData = m_treeBuilds.GetItemData(m_hPopupMenuItem);
+        size_t lifeIndex = ExtractLifeIndex(itemData);
+        size_t buildIndex = ExtractBuildIndex(itemData);
+        int buildLevel = m_pCharacter->GetBuildLevel(lifeIndex, buildIndex);
+        int menuItemLevel = (pCmdUI->m_nID - ID_LEVELSELECT_1) + 1;
+        pCmdUI->SetCheck(menuItemLevel == buildLevel);
+        // disable item for levels not yet supported in game
+        pCmdUI->Enable(menuItemLevel <= MAX_GAME_LEVEL);
+    }
+    else
+    {
+        int buildLevel = m_pCharacter->ActiveBuild()->Level();
+        int menuItemLevel = (pCmdUI->m_nID - ID_LEVELSELECT_1) + 1;
+        pCmdUI->SetCheck(menuItemLevel == buildLevel);
+        // disable item for levels not yet supported in game
+        pCmdUI->Enable(menuItemLevel <= MAX_GAME_LEVEL);
+    }
+}
+
+void CBuildsPane::OnSetBuildLevel(UINT nID)
+{
+    int selectedLevel = (nID - ID_LEVELSELECT_1) + 1; // 1 based
+    int buildLevel = m_pCharacter->ActiveBuild()->Level();
+    if (selectedLevel != buildLevel)
+    {
+        // update the build
+        m_pCharacter->ActiveBuild()->SetLevel(selectedLevel);
+        // update our UI element
+        PopulateBuildsList();
+    }
 }
 
 void CBuildsPane::OnUpdatePasteLife(CCmdUI* pCmdUi)
@@ -892,3 +938,10 @@ void CBuildsPane::ImportLivesFromOtherFile()
         }
     }
 }
+
+void CBuildsPane::ReselectCurrentItem()
+{
+    m_pCharacter->SetActiveBuild(
+        m_pCharacter->ActiveLifeIndex(), m_pCharacter->ActiveBuildIndex(), true);
+}
+

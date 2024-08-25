@@ -170,9 +170,8 @@ void Spell::SetClass(const std::string& ct)
     m_class = ct;
 }
 
-int Spell::ActualCasterLevel(const Build& build, const SpellDamage& sd) const
+int Spell::ActualCasterLevel(const Build& build) const
 {
-    UNREFERENCED_PARAMETER(sd);
     // work out the actual caster level
     size_t classCasterLevel = 0;
     BreakdownItem* pBI = NULL;
@@ -195,9 +194,8 @@ int Spell::ActualCasterLevel(const Build& build, const SpellDamage& sd) const
     return classCasterLevel;
 }
 
-int Spell::ActualMaxCasterLevel(const Build& build, const SpellDamage& sd) const
+int Spell::ActualMaxCasterLevel(const Build& build) const
 {
-    UNREFERENCED_PARAMETER(sd);
     int maxCasterLevel = 0;
     BreakdownItem* pBI = NULL;
     if (HasMaxCasterLevel())
@@ -226,7 +224,7 @@ int Spell::ActualMaxCasterLevel(const Build& build, const SpellDamage& sd) const
     return maxCasterLevel;
 }
 
-CString Spell::ActualCasterLevelText(const Build& build, const SpellDamage& sd) const
+CString Spell::ActualCasterLevelText(const Build& build) const
 {
     // work out the actual caster level
     CString totalText;
@@ -262,7 +260,7 @@ CString Spell::ActualCasterLevelText(const Build& build, const SpellDamage& sd) 
         classCasterLevel += bonus;
     }
 
-    int maxCasterLevel = ActualMaxCasterLevel(build, sd);
+    int maxCasterLevel = ActualMaxCasterLevel(build);
     if (classCasterLevel > maxCasterLevel)
     {
         t.Format(" = %d (Capped from %d)\r\n", maxCasterLevel, classCasterLevel);
@@ -275,9 +273,8 @@ CString Spell::ActualCasterLevelText(const Build& build, const SpellDamage& sd) 
     return totalText;
 }
 
-CString Spell::ActualMaxCasterLevelText(const Build& build, const SpellDamage& sd) const
+CString Spell::ActualMaxCasterLevelText(const Build& build) const
 {
-    UNREFERENCED_PARAMETER(sd);
     CString totalText;
     int maxCasterLevel = 0;
     BreakdownItem* pBI = NULL;

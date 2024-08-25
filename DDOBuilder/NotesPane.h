@@ -23,6 +23,11 @@ protected:
     afx_msg void OnNotesChanged();
     afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg void OnEditCut();
+    afx_msg void OnEditCopy();
+    afx_msg void OnEditPaste();
+    afx_msg void OnEditRedo();
+    afx_msg void OnEditUndo();
 
     DECLARE_DYNCREATE(CNotesPane)
     DECLARE_MESSAGE_MAP()

@@ -115,11 +115,27 @@ BOOL CDDOBuilderDoc::OnSaveDocument(LPCTSTR lpszPathName)
     bool ok = false;
     try
     {
+        // we do a 2 stage save to avoid file corruption
+        char pathdrive[_MAX_DRIVE];
+        char pathfolder[_MAX_PATH];
+        _splitpath_s(lpszPathName,
+            pathdrive, _MAX_DRIVE,
+            pathfolder, _MAX_PATH,
+            NULL, 0,        // filename
+            NULL, 0);       // extension
+        std::string filePath = pathdrive;
+        filePath += pathfolder;
+        char tempFilename[_MAX_PATH];
+        GetTempFileName(filePath.c_str(), "DDO", 0, tempFilename);
+
         XmlLib::SaxWriter writer;
-        writer.Open(lpszPathName);
+        writer.Open(tempFilename);
         writer.StartDocument(f_saxElementName);
         m_character.Write(&writer);
         writer.EndDocument();
+
+        // saved, now rename and delete
+        MoveFileEx(tempFilename, lpszPathName, MOVEFILE_REPLACE_EXISTING);
         ok = true;
     }
     catch (const std::exception & e)

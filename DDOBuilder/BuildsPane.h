@@ -13,7 +13,8 @@ enum TreeEntryItem
 
 class CBuildsPane :
     public CFormView,
-    CharacterObserver
+    CharacterObserver,
+    BuildObserver
 {
 public:
     CBuildsPane();           // protected constructor used by dynamic creation
@@ -39,6 +40,7 @@ public:
     afx_msg void OnUpdateCopyLifeToClipboard(CCmdUI* pCmdUi);
     afx_msg void OnUpdatePasteLife(CCmdUI* pCmdUi);
     afx_msg void OnPasteLife();
+    afx_msg void OnSetBuildLevel(UINT nID);
 
     virtual void DoDataExchange(CDataExchange* pDX) override;
     virtual void OnInitialUpdate() override;
@@ -48,8 +50,18 @@ public:
     Build* OnNewImportLife();
     void PopulateBuildsList();
 
+    void ReselectCurrentItem();
+
     // CharacterObserver
     virtual void UpdateActiveBuildPositionChanged(Character*) override;
+
+    // Build observer
+    virtual void UpdateBuildLevelChanged(Build* pBuild) override;
+    virtual void UpdateClassChanged(
+        Build* pBuild,
+        const std::string& classFrom,
+        const std::string& classTo,
+        size_t level) override;
 
     DECLARE_DYNCREATE(CBuildsPane)
     DECLARE_MESSAGE_MAP()

@@ -1480,8 +1480,8 @@ void CForumExportDlg::AddSpellList(
         size_t mcl = 0;
         if (spell.SpellDamageEffects().size() > 0)
         {
-            cl = spell.ActualCasterLevel(*m_pBuild, spell.SpellDamageEffects().front());
-            mcl = spell.ActualMaxCasterLevel(*m_pBuild, spell.SpellDamageEffects().front());
+            cl = spell.ActualCasterLevel(*m_pBuild);
+            mcl = spell.ActualMaxCasterLevel(*m_pBuild);
             // CL and MCL
             if (mcl > 0)
             {

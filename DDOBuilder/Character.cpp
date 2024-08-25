@@ -238,10 +238,11 @@ void Character::SetGuildLevel(size_t level)
     }
 }
 
-void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex)
+void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex, bool bOverride)
 {
     if (m_uiActiveLifeIndex != lifeIndex
-            || m_uiActiveBuildIndex != buildIndex)
+            || m_uiActiveBuildIndex != buildIndex
+            || bOverride)
     {
         CWaitCursor longOperation;
         m_uiActiveLifeIndex = lifeIndex;

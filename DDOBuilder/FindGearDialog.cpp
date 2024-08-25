@@ -101,6 +101,8 @@ BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_BN_CLICKED(IDC_CHECK_IGNORERAIDITEMS, OnButtonIgnoreRaidItems)
     ON_BN_CLICKED(IDC_CHECK_IGNOREARTIFACTS, OnButtonIgnoreMinorArtifacts)
     ON_BN_CLICKED(IDC_BUTTON_CLEAR_FILTER, OnButtonClearFilter)
+    ON_CONTROL_RANGE(CBN_DROPDOWN, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments - 1, OnAugmentDropDown)
+    ON_CONTROL_RANGE(CBN_DROPDOWN, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Augments - 1, OnAugmentDropDown)
 END_MESSAGE_MAP()
 
 // CFindGearDialog message handlers
@@ -1320,4 +1322,32 @@ void CFindGearDialog::OnButtonClearFilter()
 {
     m_editSearchText.SetWindowText("");
     OnSearchTextKillFocus();
+}
+
+void CFindGearDialog::OnAugmentDropDown(UINT nID)
+{
+    // Reset the dropped width
+    CComboBox* pCombo = static_cast<CComboBox*>(GetDlgItem(nID));
+
+    int nNumEntries = pCombo->GetCount();
+    int nWidth = 0;
+    CString str;
+
+    CClientDC dc(this);
+    int nSave = dc.SaveDC();
+    dc.SelectObject(GetFont());
+
+    int nScrollWidth = ::GetSystemMetrics(SM_CXVSCROLL);
+    for (int i = 0; i < nNumEntries; i++)
+    {
+        pCombo->GetLBText(i, str);
+        int nLength = dc.GetTextExtent(str).cx + nScrollWidth;
+        nWidth = max(nWidth, nLength);
+    }
+
+    // Add margin space to the calculations
+    nWidth += dc.GetTextExtent("0").cx;
+
+    dc.RestoreDC(nSave);
+    pCombo->SetDroppedWidth(nWidth);
 }

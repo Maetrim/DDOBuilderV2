@@ -125,13 +125,12 @@ every three Barbarian levels thereafter.</Description>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">10.0</Amount>
-        <ApplyAsItemEffect />
       </Effect>
     </Feat>
     <Feat>
       <Name>Greater Rage</Name>
-      <Description>The bonuses of the Barbarian's rage increase to a total of +6 strength,
-+6 constitution and +3 to will saving throws but the Barbarian still incurs a
+      <Description>The bonuses of the Barbarian's rage increase to a total of +6 Strength,
++6 Constitution and +3 to Will saving throws but the Barbarian still incurs a
 reduction of its Armor Class by 2. Fatigue penalties remain the same as regular
 Rage. Enhances the regular Barbarian Rage feat. +10 Physical Resistance Rating
 when wearing Medium armor. +10 Melee Power while the rage is active.</Description>
@@ -149,46 +148,30 @@ when wearing Medium armor. +10 Melee Power while the rage is active.</Descriptio
         <Type>AbilityBonus</Type>
         <Bonus>Rage</Bonus>
         <Item>Strength</Item>
-        <AType>Stacks</AType>
-        <Amount size="4">4 6 8 10</Amount>
-        <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Rage</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
-        </Requirements>
-        <ApplyAsItemEffect />
-      </Effect>
-      <Effect>
-        <DisplayName>Barbarian Rage</DisplayName>
-        <Type>AbilityBonus</Type>
-        <Bonus>Rage</Bonus>
         <Item>Constitution</Item>
         <AType>Stacks</AType>
         <Amount size="4">4 6 8 10</Amount>
         <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Shifter Rage + Rage Feats</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Strength</Item>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+        <Requirements>
           <RequiresOneOf>
             <Requirement>
               <Type>Stance</Type>
               <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Rage</Item>
             </Requirement>
             <Requirement>
               <Type>Stance</Type>
@@ -201,29 +184,15 @@ when wearing Medium armor. +10 Melee Power while the rage is active.</Descriptio
       <Effect>
         <DisplayName>Barbarian Rage</DisplayName>
         <Type>SaveBonus</Type>
-        <Bonus>Rage</Bonus>
+        <Bonus>Morale</Bonus>
         <Item>Will</Item>
         <AType>Stacks</AType>
         <Amount size="4">2 3 4 5</Amount>
         <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
             <Requirement>
               <Type>Stance</Type>
               <Item>Rage</Item>
             </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
         </Requirements>
         <ApplyAsItemEffect />
       </Effect>
@@ -332,7 +301,7 @@ the morale bonus on Will saves he also receives during his rage.</Description>
       <Name>Mighty Rage</Name>
       <Description>Upon reaching level 20, a Barbarian's rage grows stronger.
 When raging, your base bonus to Strength and Constitution are increased to +8
-and your morale bonus to Will saves is increased to +4.</Description>
+and your Morale bonus to Will saves is increased to +4.</Description>
       <Acquire>Automatic</Acquire>
       <Icon>Rage</Icon>
       <AutomaticAcquisition>
@@ -347,46 +316,30 @@ and your morale bonus to Will saves is increased to +4.</Description>
         <Type>AbilityBonus</Type>
         <Bonus>Rage</Bonus>
         <Item>Strength</Item>
-        <AType>Stacks</AType>
-        <Amount size="4">4 6 8 10</Amount>
-        <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Rage</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
-        </Requirements>
-        <ApplyAsItemEffect />
-      </Effect>
-      <Effect>
-        <DisplayName>Barbarian Rage</DisplayName>
-        <Type>AbilityBonus</Type>
-        <Bonus>Rage</Bonus>
         <Item>Constitution</Item>
         <AType>Stacks</AType>
         <Amount size="4">4 6 8 10</Amount>
         <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Shifter Rage + Rage Feats</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Strength</Item>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+        <Requirements>
           <RequiresOneOf>
             <Requirement>
               <Type>Stance</Type>
               <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Rage</Item>
             </Requirement>
             <Requirement>
               <Type>Stance</Type>
@@ -399,29 +352,15 @@ and your morale bonus to Will saves is increased to +4.</Description>
       <Effect>
         <DisplayName>Barbarian Rage</DisplayName>
         <Type>SaveBonus</Type>
-        <Bonus>Rage</Bonus>
+        <Bonus>Morale</Bonus>
         <Item>Will</Item>
         <AType>Stacks</AType>
         <Amount size="4">2 3 4 5</Amount>
         <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
             <Requirement>
               <Type>Stance</Type>
               <Item>Rage</Item>
             </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
         </Requirements>
         <ApplyAsItemEffect />
       </Effect>
@@ -457,81 +396,29 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
         <Type>AbilityBonus</Type>
         <Bonus>Rage</Bonus>
         <Item>Strength</Item>
-        <AType>Stacks</AType>
-        <Amount size="4">4 6 8 10</Amount>
-        <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Rage</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
-        </Requirements>
-        <ApplyAsItemEffect />
-      </Effect>
-      <Effect>
-        <DisplayName>Barbarian Rage</DisplayName>
-        <Type>AbilityBonus</Type>
-        <Bonus>Rage</Bonus>
         <Item>Constitution</Item>
         <AType>Stacks</AType>
         <Amount size="4">4 6 8 10</Amount>
         <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
             <Requirement>
               <Type>Stance</Type>
               <Item>Rage</Item>
             </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
         </Requirements>
         <ApplyAsItemEffect />
       </Effect>
       <Effect>
         <DisplayName>Barbarian Rage</DisplayName>
         <Type>SaveBonus</Type>
-        <Bonus>Rage</Bonus>
+        <Bonus>Morale</Bonus>
         <Item>Will</Item>
         <AType>Stacks</AType>
         <Amount size="4">2 3 4 5</Amount>
         <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
             <Requirement>
               <Type>Stance</Type>
               <Item>Rage</Item>
             </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
         </Requirements>
         <ApplyAsItemEffect />
       </Effect>
@@ -539,27 +426,13 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
         <DisplayName>Barbarian Rage</DisplayName>
         <Type>ACBonus</Type>
         <Bonus>Rage</Bonus>
-        <AType>Stacks</AType>
+        <AType>Simple</AType>
         <Amount size="1">-2</Amount>
         <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
             <Requirement>
               <Type>Stance</Type>
               <Item>Rage</Item>
             </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
         </Requirements>
         <ApplyAsItemEffect />
       </Effect>
@@ -583,46 +456,30 @@ Bonus to Will Saving Throws while raging.</Description>
         <Type>AbilityBonus</Type>
         <Bonus>Rage</Bonus>
         <Item>Strength</Item>
-        <AType>Stacks</AType>
-        <Amount size="4">4 6 8 10</Amount>
-        <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Rage</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
-        </Requirements>
-        <ApplyAsItemEffect />
-      </Effect>
-      <Effect>
-        <DisplayName>Barbarian Rage</DisplayName>
-        <Type>AbilityBonus</Type>
-        <Bonus>Rage</Bonus>
         <Item>Constitution</Item>
         <AType>Stacks</AType>
         <Amount size="4">4 6 8 10</Amount>
         <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Shifter Rage + Rage Feats</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Bonus>Rage</Bonus>
+        <Item>Strength</Item>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+        <Requirements>
           <RequiresOneOf>
             <Requirement>
               <Type>Stance</Type>
               <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Rage</Item>
             </Requirement>
             <Requirement>
               <Type>Stance</Type>
@@ -635,29 +492,15 @@ Bonus to Will Saving Throws while raging.</Description>
       <Effect>
         <DisplayName>Barbarian Rage</DisplayName>
         <Type>SaveBonus</Type>
-        <Bonus>Rage</Bonus>
+        <Bonus>Morale</Bonus>
         <Item>Will</Item>
         <AType>Stacks</AType>
         <Amount size="4">2 3 4 5</Amount>
         <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Beasthide Shifter: Shifted Form</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Wildhunt Shifter: Shifted Form</Item>
-            </Requirement>
             <Requirement>
               <Type>Stance</Type>
               <Item>Rage</Item>
             </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Razorclaw Shifter: Shifted Form</Item>
-            </Requirement>
-          </RequiresOneOf>
         </Requirements>
         <ApplyAsItemEffect />
       </Effect>

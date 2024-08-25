@@ -1682,7 +1682,10 @@ void CDDOBuilderApp::ConvertToNewDataStructure(LegacyCharacter& importedCharacte
         pBuild->Set_DestinyTreeSpend(importedCharacter.DestinyTreeSpend());
         pBuild->Set_ReaperTreeSpend(importedCharacter.ReaperTreeSpend());
         pBuild->Set_TrainedSpells(importedCharacter.TrainedSpells());
-        pBuild->SetNotes(importedCharacter.Notes());
+        std::string notes = importedCharacter.Notes();
+        // notes text is not saved as \r\n's replace all text
+        notes = ReplaceAll(notes, "\n", "\r\n");
+        pBuild->SetNotes(notes);
         std::list<EquippedGear> gearSets;
         for (auto&& gsit: importedCharacter.GearSetups())
         {
@@ -1765,7 +1768,8 @@ void CDDOBuilderApp::ConvertToNewDataStructure(LegacyCharacter& importedCharacte
         }
         pBuild->Set_GearSetups(gearSets);
         pBuild->SetActiveGearSet(importedCharacter.ActiveGear());
-        pBuild->BuildNowActive();
-        pBuildsPane->PopulateBuildsList();
+        //pBuild->BuildNowActive();
+        //pBuildsPane->PopulateBuildsList();
+        pBuildsPane->ReselectCurrentItem();
     }
 }

@@ -333,52 +333,60 @@ void Build::BuildNowActive()
 
 void Build::SetLevel(size_t level)
 {
-    if (level < m_Level)
+    if (level != m_Level)
     {
-        RevokeLostLevelFeats(level, m_Level);
-    }
-    m_Level = level;
-    // throw away any extra levels we now may have
-    while (m_Levels.size() > level)
-    {
-        m_Levels.pop_back();
-    }
-    // now add any new levels that are required
-    // assume an unknown class if we have multiple classes
-    // already selected. Else default to the single class
-    std::string defaultClass = Class_Unknown;
-    if (Class2() == Class_Unknown
-            && Class3() == Class_Unknown)
-    {
-        defaultClass = Class1();
-    }
-    while (m_Levels.size() < level)
-    {
-        LevelTraining lt;
-        if (m_Levels.size() < MAX_CLASS_LEVEL)
+        CString logEntry;
+        logEntry.Format("Build changed from level %d to level %d", m_Level, level);
+        GetLog().AddLogEntry(logEntry);
+        SetModifiedFlag(TRUE);
+
+        if (level < m_Level)
         {
-            lt.Set_Class(defaultClass);
+            RevokeLostLevelFeats(level, m_Level);
         }
-        else if (m_Levels.size() < MAX_CLASS_LEVEL + MAX_EPIC_LEVEL)
+        m_Level = level;
+        // throw away any extra levels we now may have
+        while (m_Levels.size() > level)
         {
-            // need to add epic
-            lt.Set_Class(Class_Epic);
+            m_Levels.pop_back();
         }
-        else
+        // now add any new levels that are required
+        // assume an unknown class if we have multiple classes
+        // already selected. Else default to the single class
+        std::string defaultClass = Class_Unknown;
+        if (Class2() == Class_Unknown
+                && Class3() == Class_Unknown)
         {
-            // need to add legendary
-            lt.Set_Class(Class_Legendary);
+            defaultClass = Class1();
         }
-        m_Levels.push_back(lt);
+        while (m_Levels.size() < level)
+        {
+            LevelTraining lt;
+            if (m_Levels.size() < MAX_CLASS_LEVEL)
+            {
+                lt.Set_Class(defaultClass);
+            }
+            else if (m_Levels.size() < MAX_CLASS_LEVEL + MAX_EPIC_LEVEL)
+            {
+                // need to add epic
+                lt.Set_Class(Class_Epic);
+            }
+            else
+            {
+                // need to add legendary
+                lt.Set_Class(Class_Legendary);
+            }
+            m_Levels.push_back(lt);
+        }
+        UpdateCachedClassLevels();
+        UpdateFeats(true);
+        UpdateSkillPoints();
+        UpdateSpells();
+        VerifyTrainedFeats();
+        AutoTrainSingleSelectionFeats();
+        VerifyGear();
+        NotifyBuildLevelChanged();
     }
-    UpdateCachedClassLevels();
-    UpdateFeats(true);
-    UpdateSkillPoints();
-    UpdateSpells();
-    VerifyTrainedFeats();
-    AutoTrainSingleSelectionFeats();
-    VerifyGear();
-    NotifyBuildLevelChanged();
 }
 
 void Build::SetName(const std::string& name)
@@ -580,6 +588,11 @@ void Build::NotifyItemWeaponEffect(
     {
         effect.SetDisplayName(itemName);
     }
+    if (ist ==Inventory_Weapon2)
+    {
+        // ensure multiple identical weapon effects don't stack
+        effect.SetDisplayName(effect.DisplayName() + " ");
+    }
     if (effect.IsType(Effect_AddGroupWeapon))
     {
         AddWeaponToGroup(effect);
@@ -600,6 +613,11 @@ void Build::NotifyItemWeaponEffectRevoked(
     if (!effect.HasDisplayName())
     {
         effect.SetDisplayName(itemName);
+    }
+    if (ist == Inventory_Weapon2)
+    {
+        // ensure multiple identical weapon effects don't stack
+        effect.SetDisplayName(effect.DisplayName() + " ");
     }
     if (effect.IsType(Effect_AddGroupWeapon))
     {
@@ -4535,7 +4553,7 @@ void Build::ApplyItem(const Item& item, InventorySlotType ist)
             // there is an augment in this position
             const Augment& augment = ait.GetSelectedAugment();
             bSuppressSetBonuses |= augment.HasSuppressSetBonus();
-            ApplyAugment(augment, ait, item.Name(), item.MinLevel(), item.HasWeapon() ? item.Weapon() : Weapon_Unknown);
+            ApplyAugment(augment, ait, item.Name(), item.MinLevel(), item.HasWeapon() ? item.Weapon() : Weapon_Unknown, ist);
         }
     }
     // apply any item set bonuses if not suppressed
@@ -4553,12 +4571,18 @@ void Build::ApplyAugment(
         const ItemAugment& itemAugment,
         const std::string& itemName,
         size_t itemLevel,
-        WeaponType wt)
+        WeaponType wt,
+        InventorySlotType ist)
 {
     // name is:
     // <item>:<augment type>:<Augment name>
     std::stringstream ss;
     ss << itemName << " : " << itemAugment.Type() << " : " << augment.Name();
+    if (ist == Inventory_Weapon2)
+    {
+        // ensure identical weapon effects don't stack
+        ss << " ";
+    }
     // now notify the augments effects
     std::string name;
     name = ss.str();
@@ -4715,7 +4739,7 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
             // there is an augment in this position
             const Augment & augment = ait.GetSelectedAugment();
             bSuppressSetBonuses |= augment.HasSuppressSetBonus();
-            RevokeAugment(augment, ait, item.Name(), item.MinLevel(), item.HasWeapon() ? item.Weapon() : Weapon_Unknown);
+            RevokeAugment(augment, ait, item.Name(), item.MinLevel(), item.HasWeapon() ? item.Weapon() : Weapon_Unknown, ist);
         }
     }
     if (!bSuppressSetBonuses)
@@ -4733,12 +4757,18 @@ void Build::RevokeAugment(
         const ItemAugment& itemAugment,
         const std::string& itemName,
         size_t itemLevel,
-        WeaponType wt)
+        WeaponType wt,
+        InventorySlotType ist)
 {
     // name is:
     // <item>:<augment type>:<Augment name>
     std::stringstream ss;
     ss << itemName << " : " << itemAugment.Type()  << " : " << augment.Name();
+    if (ist == Inventory_Weapon2)
+    {
+        // ensure identical weapon effects don't stack
+        ss << " ";
+    }
     // now revoke the augments effects
     std::string name;
     name = ss.str();

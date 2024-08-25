@@ -33,6 +33,7 @@
 #include "CItemImageDialog.h"
 #include "CWeaponImageDialog.h"
 #include "CMFCVisualManagerOffice2007DarkMode.h"
+#include "WikiLinkDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -63,12 +64,14 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_COMMAND_RANGE(ID_DOCKING_WINDOWS_START, ID_DOCKING_WINDOWS_END, OnDockPane)
     ON_COMMAND(ID_DEVELOPMENT_SHOW0VALUEBREAKDOWNENTRIES, &CMainFrame::OnDevelopmentShow0ValueBreakdowns)
     ON_COMMAND(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnDevelopmentRunwWikiItemCrawler)
+    ON_COMMAND(ID_DEVELOPMENT_CRAWLSPECIFICWIKILINK, &CMainFrame::OnDevelopmentCrawlSpecificWikiLink)
     ON_COMMAND(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnDevelopmentProcessWikiFiles)
     ON_COMMAND(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnDevelopmentProcessSpecificWikiFile)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnDevelopmentUpdateItemImages)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_SHOW0VALUEBREAKDOWNENTRIES, &CMainFrame::OnUpdateDevelopmentShow0ValueBreakdowns)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_CRAWLSPECIFICWIKILINK, &CMainFrame::OnUpdateDevelopmentCrawlSpecificWikiLink)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSWIKIFILES, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateItemImages)
@@ -889,6 +892,17 @@ void CMainFrame::OnDevelopmentRunwWikiItemCrawler()
     }
 }
 
+void CMainFrame::OnDevelopmentCrawlSpecificWikiLink()
+{
+    CWikiLinkDlg dlg;
+    if (IDOK == dlg.DoModal())
+    {
+        CString link = dlg.GetLink();
+        WikiDownloader wiki;
+        wiki.Start(link);
+    }
+}
+
 void CMainFrame::OnDevelopmentProcessWikiFiles()
 {
     UINT ret = AfxMessageBox(
@@ -923,6 +937,11 @@ void CMainFrame::OnDevelopmentUpdateWeaponImages()
 }
 
 void CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}
+
+void CMainFrame::OnUpdateDevelopmentCrawlSpecificWikiLink(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
 }

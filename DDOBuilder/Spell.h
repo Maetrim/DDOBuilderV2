@@ -32,10 +32,10 @@ class Spell :
         void UpdateSpell(const ClassSpell& cs, const std::string& ct, int spellLevel);
         void UpdateSpell(const FixedSpell& fs, const std::string& ct);
 
-        int ActualCasterLevel(const Build& build, const SpellDamage& sd) const;
-        int ActualMaxCasterLevel(const Build& build, const SpellDamage& sd) const;
-        CString ActualCasterLevelText(const Build& build, const SpellDamage& sd) const;
-        CString ActualMaxCasterLevelText(const Build& build, const SpellDamage& sd) const;
+        int ActualCasterLevel(const Build& build) const;
+        int ActualMaxCasterLevel(const Build& build) const;
+        CString ActualCasterLevelText(const Build& build) const;
+        CString ActualMaxCasterLevelText(const Build& build) const;
         void SetCost(int cost);
         int TotalCost(const Build& build) const;
 

@@ -507,6 +507,7 @@ enum AmountType
     Amount_SpellInfo,           // 3 entries that specify spell level, cost and MCL
     Amount_Dice,                // Damage Dice are defined
     Amount_CriticialDice,       // Damage Dice are defined, look up based on crit multiplier
+    Amount_BAB,                 // amount is multiplied by BAB value
 };
 const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
 {
@@ -532,6 +533,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_SpellInfo, L"SpellInfo"},      // item is spell name and then class
     {Amount_Dice, L"Dice"},
     {Amount_CriticialDice, L"CriticalDice"},
+    {Amount_BAB, L"BAB"},
     {AmountType(0), NULL}
 };
 

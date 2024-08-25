@@ -1400,6 +1400,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Petrification Immunity", "Petrification Immunity", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Demonic Curse", "Demonic Curse Demonic Curse", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Demonic Shield", "Demonic Shield Demonic Shield", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Demonic Shield", "Legendary Demonic Shield", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Improved Demonic Shield", "Improved Demonic Shield Improved Demonic Shield", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Demonic Retribution", "Demonic Retribution Demonic Retribution", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Improved Quelling Strikes", "Improved Quelling Strikes", "", "", 5);

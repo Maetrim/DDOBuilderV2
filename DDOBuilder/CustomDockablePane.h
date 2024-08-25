@@ -15,7 +15,7 @@ class CCustomDockablePane :
         DECLARE_MESSAGE_MAP()
 
         afx_msg void OnSize(UINT nType, int cx, int cy);
-        afx_msg void OnWindowPosChanging(WINDOWPOS * pos);
+        afx_msg void OnWindowPosChanging(WINDOWPOS* pos);
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
         afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
         afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
@@ -29,17 +29,17 @@ class CCustomDockablePane :
         void SetView(CView*, bool resizeWithPane = true);
         CView* GetView() {return m_view;}
 
-        void SetDocumentAndCharacter(CDocument * pDoc, Character * pCharacter);
+        void SetDocumentAndCharacter(CDocument* pDoc, Character* pCharacter);
 
     protected:
-        CDocument * m_document;
-        Character * m_pCharacter;
+        CDocument* m_document;
+        Character* m_pCharacter;
 
     private:
         void AdjustLayout();
 
         // Members
-        CView * m_view;
+        CView* m_view;
         bool m_resizeViewWithPane;
         UINT m_viewId;
         HICON m_hIcon;
