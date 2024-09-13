@@ -18,6 +18,9 @@ class LevelTraining :
                 const std::string& type,
                 size_t level,
                 bool featSwapWarning);
+        void TrainAlternateFeat(
+            const std::string& featName,
+            const std::string& type);
         std::string RevokeFeat(const std::string& type);
         void RevokeAllFeats(const std::string& type);
         std::string FeatName(const std::string& type) const;

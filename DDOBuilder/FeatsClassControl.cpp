@@ -37,7 +37,8 @@ CFeatsClassControl::CFeatsClassControl() :
     m_showingTip(false),
     m_tipCreated(false),
     m_tooltipItem(HT_None, CRect(0, 0, 0, 0), 0, 0),
-    m_featSelectItem(HT_None, CRect(0, 0, 0, 0), 0, 0)
+    m_featSelectItem(HT_None, CRect(0, 0, 0, 0), 0, 0),
+    m_bAlternateFeat(false)
 {
 }
 
@@ -81,6 +82,7 @@ BEGIN_MESSAGE_MAP(CFeatsClassControl, CWnd)
     ON_WM_MOUSEMOVE()
     ON_WM_LBUTTONUP()
     ON_WM_RBUTTONUP()
+    ON_WM_MBUTTONUP()
     ON_REGISTERED_MESSAGE(UWM_UPDATE, UpdateControl)
     ON_CBN_SELENDOK(IDC_COMBO_FEATSELECT, OnFeatSelectOk)
     ON_CBN_SELENDCANCEL(IDC_COMBO_FEATSELECT, OnFeatSelectCancel)
@@ -169,6 +171,7 @@ void CFeatsClassControl::SetupControl()
     if (!m_tipCreated)
     {
         m_tooltip.Create(this);
+        m_tooltip2.Create(this, true);
         m_tipCreated = true;
     }
     if (!IsWindow(m_featSelector.GetSafeHwnd()))
@@ -557,8 +560,8 @@ void CFeatsClassControl::DrawFeat(
     if (tfts.size() > featIndex)
     {
         // add the hit check location for this feat
-        HitCheckItem feat(HT_Feat, rctItem, level, featIndex);
-        m_hitChecks.push_back(feat);
+        HitCheckItem featLocation(HT_Feat, rctItem, level, featIndex);
+        m_hitChecks.push_back(featLocation);
 
         // if we have an actual trained feat, draw it
         TrainedFeat tf = m_pCharacter->ActiveBuild()->GetTrainedFeat(
@@ -567,27 +570,68 @@ void CFeatsClassControl::DrawFeat(
         // name is blank if no feat currently trained
         if (tf.FeatName() != "")
         {
-            // draw the selected feat
-            // first draw its icon
-            const Feat& foundFeat = FindFeat(tf.FeatName());
-            int imageIndex = foundFeat.FeatImageIndex();
-            CPoint pos = rctItem.TopLeft();
-            pos.x += 2;
-            pos.y += 1;
-            Feat::FeatImageList().Draw(
+            // does this tf have an alternate?
+            if (tf.HasAlternateFeatName())
+            {
+                // draw the alternate and the main feat item
+                const Feat& altFoundFeat = FindFeat(tf.AlternateFeatName());
+                int imageIndex = altFoundFeat.FeatImageIndex();
+                CPoint pos = rctItem.TopLeft();
+                pos.x += 2;
+                pos.y += 1;
+                Feat::FeatImageList().Draw(
                     pDC,
                     imageIndex,
                     pos,
                     ILD_TRANSPARENT);
-            CString displayText = tf.FeatName().c_str();
-            displayText += "\r\n";
-            displayText += tfts[featIndex].FeatType().c_str();
-            // show the feat name
-            rctItem.left += 36; // space away from the icon
-            CRect rctDummy(rctItem);
-            int height = pDC->DrawText(displayText, rctDummy, DT_END_ELLIPSIS | DT_CALCRECT);
-            rctItem.top += (rctItem.Height() - height) / 2; // center vertically
-            pDC->DrawText(displayText, rctItem, DT_END_ELLIPSIS);
+                // now draw the main feat icon
+                const Feat& feat = FindFeat(tf.FeatName());
+                imageIndex = feat.FeatImageIndex();
+                pos = rctItem.TopLeft();
+                pos.x += 18;        // half way across previous icon
+                pos.y += 1;
+                Feat::FeatImageList().Draw(
+                    pDC,
+                    imageIndex,
+                    pos,
+                    ILD_TRANSPARENT);
+                CString text = tfts[featIndex].FeatType().c_str();
+                CString displayText = feat.Name().c_str();
+                displayText += "\r\n";
+                displayText += text;
+                displayText += " Alternate: ";
+                displayText += altFoundFeat.Name().c_str();
+                // show the feat name
+                rctItem.left += 54; // space away from the icon
+                CRect rctDummy(rctItem);
+                int height = pDC->DrawText(displayText, rctDummy, DT_END_ELLIPSIS | DT_CALCRECT);
+                rctItem.top += (rctItem.Height() - height) / 2; // center vertically
+                pDC->DrawText(displayText, rctItem, DT_END_ELLIPSIS);
+            }
+            else
+            {
+                // draw the selected feat
+                // first draw its icon
+                const Feat& foundFeat = FindFeat(tf.FeatName());
+                int imageIndex = foundFeat.FeatImageIndex();
+                CPoint pos = rctItem.TopLeft();
+                pos.x += 2;
+                pos.y += 1;
+                Feat::FeatImageList().Draw(
+                        pDC,
+                        imageIndex,
+                        pos,
+                        ILD_TRANSPARENT);
+                CString displayText = tf.FeatName().c_str();
+                displayText += "\r\n";
+                displayText += tfts[featIndex].FeatType().c_str();
+                // show the feat name
+                rctItem.left += 36; // space away from the icon
+                CRect rctDummy(rctItem);
+                int height = pDC->DrawText(displayText, rctDummy, DT_END_ELLIPSIS | DT_CALCRECT);
+                rctItem.top += (rctItem.Height() - height) / 2; // center vertically
+                pDC->DrawText(displayText, rctItem, DT_END_ELLIPSIS);
+            }
         }
         else
         {
@@ -718,6 +762,19 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
                         m_tooltip.Show();
                         m_showingTip = true;
                         m_tooltipItem = ht;
+                        if (tf.HasAlternateFeatName())
+                        {
+                            CDC* pDC = GetDC();
+                            CSize windowSize;
+                            m_tooltip.GetWindowSize(pDC, &windowSize);
+                            ReleaseDC(pDC);
+                            const Feat& altfeat = FindFeat(tf.AlternateFeatName());
+                            tipTopLeft += CPoint(0, windowSize.cy + 5);
+                            tipAlternate -= CPoint(0, windowSize.cy + 5);
+                            m_tooltip2.SetOrigin(tipTopLeft, tipAlternate, false);
+                            m_tooltip2.SetFeatItem(*m_pCharacter->ActiveBuild(), &altfeat, false, ht.Level(), false);
+                            m_tooltip2.Show();
+                        }
                     }
                 }
             }
@@ -845,6 +902,7 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
                 }
                 ++it;
             }
+            m_bAlternateFeat = false;
             m_featSelector.SetCurSel(sel);
             m_featSelector.UnlockWindowUpdate();
             m_featSelector.SetCanRemoveItems();
@@ -860,6 +918,78 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
             m_featSelector.ShowDropDown();
         }
         break;
+    }
+}
+
+void CFeatsClassControl::OnMButtonUp(UINT nFlags, CPoint point)
+{
+    UNREFERENCED_PARAMETER(nFlags);
+    // the middle button allows selection of an alternate feat only
+    // for a previously trained feat
+    GetCursorPos(&point);
+    ScreenToClient(&point);
+    HitCheckItem ht = HitCheck(point);
+    if (ht.Type() == HT_Feat)
+    {
+        std::vector<FeatSlot> tfts = m_availableFeats[ht.Level()];
+        TrainedFeat tf = m_pCharacter->ActiveBuild()->GetTrainedFeat(
+            ht.Level(),
+            tfts[ht.Data()].FeatType());
+        if (tf.FeatName() != "")
+        {
+            m_featSelectItem = ht;
+            // get a list of the available feats at current level that the user can train
+            std::vector<Feat> availableFeats = m_pCharacter->ActiveBuild()->TrainableFeats(
+                tfts[ht.Data()].FeatType(),
+                ht.Level(),
+                tf.FeatName());
+            // include a "No Selection" feat, if > 1 feat in list
+            // (i.e. user cannot un-train single feat selections)
+            if (availableFeats.size() > 1
+                && tf.FeatName() != "")         // must already have a selection also
+            {
+                Feat feat(" No Selection",     // space causes to appear at top of list
+                    "Clears the current feat selection",
+                    "NoSelection");
+                availableFeats.push_back(feat);
+            }
+            std::sort(availableFeats.begin(), availableFeats.end());
+
+            // lock the window to stop flickering while updates are done
+            m_featSelector.LockWindowUpdate();
+            m_featSelector.SetImageList(NULL);
+            m_featSelector.ResetContent();
+            m_featSelector.SetImageList(&Feat::FeatImageList());
+
+            // now add the feat names to the combo control
+            int sel = CB_ERR;
+            std::vector<Feat>::iterator it = availableFeats.begin();
+            while (it != availableFeats.end())
+            {
+                const Feat& foundFeat = FindFeat((*it).Name());
+                int featImageIndex = foundFeat.FeatImageIndex();
+                size_t pos = m_featSelector.AddString((*it).Name().c_str());
+                m_featSelector.SetItemData(pos, featImageIndex);
+                if (tf.FeatName() == (*it).Name())
+                {
+                    sel = pos;
+                }
+                ++it;
+            }
+            m_bAlternateFeat = true;
+            m_featSelector.SetCurSel(sel);
+            m_featSelector.UnlockWindowUpdate();
+            // position the drop list combo over the feat selection position
+            CRect comboRect(ht.Rect());
+            comboRect.bottom = comboRect.top + 960;   // 20 items visible in drop list
+            m_featSelector.MoveWindow(comboRect);
+            m_featSelector.SetCurSel(sel);
+            m_featSelector.SetDroppedWidth(350); // wider to show extra text
+            // set control visible to the user
+            m_featSelector.ShowWindow(SW_SHOW);
+            m_featSelector.SetFocus();
+            m_featSelector.ShowDropDown();
+        }
     }
 }
 
@@ -1187,34 +1317,46 @@ void CFeatsClassControl::OnFeatSelectOk()
         CString featName;
         m_featSelector.GetLBText(sel, featName);
         Feat feat = FindFeat((LPCTSTR)featName);
-        if (m_pCharacter->ShowUnavailable() && featName != " No Selection")
+        if (m_bAlternateFeat)
         {
-            // need to evaluate the feat properly
-            m_pCharacter->ToggleShowUnavailable();
-            if (m_pCharacter->ActiveBuild()->IsFeatTrainable(
-                        m_featSelectItem.Level(),
-                        tfts[m_featSelectItem.Data()].FeatType(), feat, true))
+            // just train it
+            m_pCharacter->ActiveBuild()->TrainAlternateFeat(
+                (LPCTSTR)featName,
+                tfts[m_featSelectItem.Data()].FeatType(),
+                m_featSelectItem.Level());
+            Invalidate();
+        }
+        else
+        {
+            if (m_pCharacter->ShowUnavailable() && featName != " No Selection")
             {
+                // need to evaluate the feat properly
+                m_pCharacter->ToggleShowUnavailable();
+                if (m_pCharacter->ActiveBuild()->IsFeatTrainable(
+                            m_featSelectItem.Level(),
+                            tfts[m_featSelectItem.Data()].FeatType(), feat, true))
+                {
+                    m_pCharacter->ActiveBuild()->TrainFeat(
+                        (LPCTSTR)featName,
+                        tfts[m_featSelectItem.Data()].FeatType(),
+                        m_featSelectItem.Level());
+                }
+                else
+                {
+                    // tried to select an untrainable feat
+                    ::MessageBeep(MB_OK);
+                }
+                // restore
+                m_pCharacter->ToggleShowUnavailable();
+            }
+            else
+            {
+                // just train it
                 m_pCharacter->ActiveBuild()->TrainFeat(
                     (LPCTSTR)featName,
                     tfts[m_featSelectItem.Data()].FeatType(),
                     m_featSelectItem.Level());
             }
-            else
-            {
-                // tried to select an untrainable feat
-                ::MessageBeep(MB_OK);
-            }
-            // restore
-            m_pCharacter->ToggleShowUnavailable();
-        }
-        else
-        {
-            // just train it
-            m_pCharacter->ActiveBuild()->TrainFeat(
-                (LPCTSTR)featName,
-                tfts[m_featSelectItem.Data()].FeatType(),
-                m_featSelectItem.Level());
         }
     }
 }
@@ -1234,6 +1376,7 @@ LRESULT CFeatsClassControl::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
     if (m_showingTip)
     {
         m_tooltip.Hide();
+        m_tooltip2.Hide();
     }
     if (wParam >= 0)
     {
@@ -1283,6 +1426,7 @@ void CFeatsClassControl::HideTip()
     if (m_tipCreated && m_showingTip)
     {
         m_tooltip.Hide();
+        m_tooltip2.Hide();
         m_showingTip = false;
     }
 }
@@ -1337,4 +1481,3 @@ LRESULT CFeatsClassControl::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
     }
     return 0;
 }
-

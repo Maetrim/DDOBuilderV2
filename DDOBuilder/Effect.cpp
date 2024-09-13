@@ -783,7 +783,7 @@ bool Effect::CheckAType(
     case Amount_ClassCasterLevel:
         // expect a single Item thats a class and 20 Amount Items
         *bRequiresAmount = true;                    // Amount specifies amount at each class level
-        *requiredAmountElements = MAX_BUILDER_LEVEL; // 41 elements expected
+        *requiredAmountElements = MAX_BUILDER_LEVEL + 1; // 41 elements expected
         if (!HasStackSource())
         {
             (*ss) << "ClassCasterLevel effect missing StackSource field\n";

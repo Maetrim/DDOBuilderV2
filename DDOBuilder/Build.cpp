@@ -1330,6 +1330,16 @@ std::list<TrainedFeat> Build::SpecialFeats() const
     return allSpecialFeats;
 }
 
+void Build::TrainAlternateFeat(
+    const std::string& featName,
+    const std::string& type,
+    size_t level)
+{
+    std::list<LevelTraining>::iterator it = m_Levels.begin();
+    std::advance(it, level);
+    (*it).TrainAlternateFeat(featName, type);
+}
+
 void Build::TrainFeat(
         const std::string& featName,
         const std::string& type,
@@ -2014,7 +2024,7 @@ void Build::TrainSpell(
     std::stringstream ss;
     ss << "Trained class \"" << ct << "\" spell \"" << spellName << "\" at spell level " << level;
     GetLog().AddLogEntry(ss.str().c_str());
-    ApplySpellEffects(ct, spellName);
+    ApplySpellEffects(spell);
 }
 
 void Build::RevokeSpell(
@@ -2050,7 +2060,7 @@ void Build::RevokeSpell(
         ss << "Revoked class \"" << ct << "\" spell \"" << spellName << "\" at spell level " << level;
         GetLog().AddLogEntry(ss.str().c_str());
     }
-    RevokeSpellEffects(ct, spellName);
+    RevokeSpellEffects(spell);
 }
 
 bool Build::IsSpellTrained(
@@ -2078,48 +2088,57 @@ void Build::ApplySpellEffects()
     // apply any effects from any trained spells (always assumed to be active)
     for (auto&& tsit: m_TrainedSpells)
     {
-        ApplySpellEffects(tsit.Class(), tsit.SpellName());
+        ApplySpellEffects(tsit);
     }
 }
 
-void Build::ApplySpellEffects(const std::string& ct, const std::string& spellName)
+void Build::ApplySpellEffects(const TrainedSpell& ts)
 {
-    const Spell& spell = FindSpellByName(spellName);
-    for (auto&& seit: spell.Effects())
+    const Spell& spell = FindSpellByName(ts.SpellName());
+    // we need to ignore this spell if it is a carry over from a class change
+    const ::Class& c = FindClass(ts.Class());
+    size_t classLevels = ClassLevels(ts.Class(), min(MAX_CLASS_LEVEL, Level()));
+    std::vector<size_t> slots = c.SpellSlotsAtLevel(classLevels);
+    if (slots.size() >= ts.Level()
+            && slots[ts.Level()-1] > 0)
     {
-        Effect copy = seit;
-        if (copy.AType() == Amount_ClassLevel
-                || copy.AType() == Amount_ClassCasterLevel)
+        for (auto&& seit: spell.Effects())
         {
-            copy.SetStackSource(ct);
+            Effect copy = seit;
+            if (copy.AType() == Amount_ClassLevel
+                    || copy.AType() == Amount_ClassCasterLevel)
+            {
+                copy.SetStackSource(ts.Class());
+            }
+            if (!copy.HasDisplayName())
+            {
+                copy.SetDisplayName(std::string("Spell: ") + ts.SpellName());
+            }
+            copy.SetApplyAsItemEffect();
+            NotifyEnhancementEffectApplied(copy);
         }
-        if (!copy.HasDisplayName())
+        for (auto&& ssit: spell.Stances())
         {
-            copy.SetDisplayName(std::string("Spell: ") + spellName);
+            NotifyNewStance(ssit);
         }
-        copy.SetApplyAsItemEffect();
-        NotifyEnhancementEffectApplied(copy);
-    }
-    for (auto&& ssit: spell.Stances())
-    {
-        NotifyNewStance(ssit);
     }
 }
 
-void Build::RevokeSpellEffects(const std::string& ct, const std::string& spellName)
+void Build::RevokeSpellEffects(const TrainedSpell& ts)
 {
-    const Spell& spell = FindSpellByName(spellName);
+    // ok to notify about things that don't exist, they just get ignored
+    const Spell& spell = FindSpellByName(ts.SpellName());
     for (auto&& seit : spell.Effects())
     {
         Effect copy = seit;
         if (copy.AType() == Amount_ClassLevel
                 || copy.AType() == Amount_ClassCasterLevel)
         {
-            copy.SetStackSource(ct);
+            copy.SetStackSource(ts.Class());
         }
         if (!copy.HasDisplayName())
         {
-            copy.SetDisplayName(std::string("Spell: ") + spellName);
+            copy.SetDisplayName(std::string("Spell: ") + ts.SpellName());
         }
         copy.SetApplyAsItemEffect();
         NotifyEnhancementEffectRevoked(copy);

@@ -13,6 +13,7 @@
 #include "Class.h"
 #include "SpellSchoolTypes.h"
 #include "EnergyTypes.h"
+#include <algorithm>
 
 namespace
 {
@@ -963,14 +964,14 @@ void WikiItemFileProcessor::AddArmorFields(const std::map<std::string, std::stri
         if (m_item.Armor() != Armor_Cloth)
         {
             std::string field = itemFields.at("Armor Bonus");
-            size_t armor = atoi(field.c_str());
+            int armor = atoi(field.c_str());
             m_item.Set_ArmorBonus(armor);
         }
     }
     if (itemFields.find("Armor Bonus CP") != itemFields.end())
     {
         std::string field = itemFields.at("Armor Bonus CP");
-        size_t armor = atoi(field.c_str());
+        int armor = atoi(field.c_str());
         m_item.Set_ArmorBonus(armor);
     }
     if (itemFields.find("Armor Bonus MB") != itemFields.end())
@@ -2065,6 +2066,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poisonous 4", "Poisonous 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poisonous 5", "Poisonous 5", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poisonous 6", "Poisonous 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poisonous 7", "Poisonous 7", "Enhancement", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison VIII", "Poison VIII", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Poison VII", "Poison VII", "Enhancement", "All");
@@ -2232,7 +2234,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slay Living", "Slay Living Slay Living", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Calamitous Blows", "Calamitous Blows", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Blood Rage", "Blood Rage Blood Rage", "Enhancement", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Enhanced Bloodrage", "Enhanced Bloodrage", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Enhanced Bloodrage", "Enhanced Bloodrage", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bloodrage Defense", "Bloodrage Defense", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Rune-fueled Warding", "Rune-fueled Warding", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Rune-fueled Warding", "Rune-fueled Warding", "Enhancement", "");
@@ -3798,25 +3800,30 @@ bool WikiItemFileProcessor::ProcessDeception(const std::string& line, const std:
 {
     bool bProcessed = false;
     CString searchText("Deception");
-    if (bonus != "Enhancement")
-    {
-        searchText.Format("%s Deception", bonus.c_str());
-    }
     size_t pos = line.find(searchText);
-    if (pos != std::string::npos    // must be found
-        && pos < 3)                 // and close to start of the line
+    if (pos != std::string::npos )   // must be found
     {
-        CString txt = line.c_str();
-        txt.Replace(searchText, "");
-        double v1 = atof(txt);
-        txt = txt.Right(txt.GetLength() - txt.Find("bonus to hit and") - 16);
-        double v2 = atof(txt);
-        Buff b;
-        b.Set_Type("Deception");
-        b.Set_BonusType(bonus);
-        b.Set_Value1(v1);
-        b.Set_Value1(v2);
-        bProcessed = true;
+        if (bonus != "Enhancement")
+        {
+            searchText.Format("%s Deception", bonus.c_str());
+        }
+        pos = line.find(searchText);
+        if (pos != std::string::npos    // must be found
+            && pos < 3)                 // and close to start of the line
+        {
+            CString txt = line.c_str();
+            txt.Replace(searchText, "");
+            double v1 = atof(txt);
+            txt = txt.Right(txt.GetLength() - txt.Find("bonus to hit and") - 16);
+            double v2 = atof(txt);
+            Buff b;
+            b.Set_Type("Deception");
+            b.Set_BonusType(bonus);
+            b.Set_Value1(v1);
+            b.Set_Value2(v2);
+            m_item.AddBuff(b);
+            bProcessed = true;
+        }
     }
     return bProcessed;
 }

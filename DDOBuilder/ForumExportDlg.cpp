@@ -765,11 +765,11 @@ void CForumExportDlg::AddConsolidatedFeats(std::stringstream& forumExport)
                     label += tf.FeatName().c_str();
                     if (tf.HasFeatSwapWarning())
                     {
-                        label += " (Requires Feat Swap with Fred)";
+                        label += "[/COLOR][COLOR=rgb(147, 101, 184)] (Requires Feat Swap with Fred)[/COLOR][COLOR=rgb(184, 49, 47)]";
                     }
                     if (tf.HasAlternateFeatName())
                     {
-                        label += " Alternate: ";
+                        label += "[/COLOR][COLOR=rgb(250, 197, 28)] Alternate: [/COLOR][COLOR=rgb(184, 49, 47)]";
                         label += tf.AlternateFeatName().c_str();
                     }
                 }
@@ -869,10 +869,14 @@ void CForumExportDlg::AddSkills(std::stringstream& forumExport)
     // Use Magic Device                                                             xxx        xxx
     // -----------------------------------------------------------------------------------------
     // Available Points 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-    forumExport << "[code]\r\n";
-    forumExport << "-----------------------------------------------------------------------------------------------\r\n";
-    forumExport << "Skill Points    ";
     size_t maxHeroicLevel = min(m_pBuild->Level(), MAX_CLASS_LEVEL);
+    forumExport << "[code]\r\n";
+    forumExport << "-----------------------------------";
+    for (size_t li = 0; li < maxHeroicLevel; ++li)
+    {
+        forumExport << "---";
+    }
+    forumExport << "\r\nSkill Points    ";
     for (size_t level = 0; level < maxHeroicLevel; ++level)
     {
         const LevelTraining& levelData = m_pBuild->LevelData(level);
@@ -1900,11 +1904,11 @@ std::list<std::string> CForumExportDlg::GetLevelEntries(
                 label += tf.FeatName().c_str();
                 if (tf.HasFeatSwapWarning())
                 {
-                    label += " (Requires Feat Swap with Fred)";
+                    label += "[/COLOR][COLOR=rgb(147, 101, 184)] (Requires Feat Swap with Fred)[/COLOR][COLOR=rgb(184, 49, 47)]";
                 }
                 if (tf.HasAlternateFeatName())
                 {
-                    label += " Alternate: ";
+                    label += "[/COLOR][COLOR=rgb(250, 197, 28)] Alternate: [/COLOR][COLOR=rgb(184, 49, 47)]";
                     label += tf.AlternateFeatName().c_str();
                 }
             }

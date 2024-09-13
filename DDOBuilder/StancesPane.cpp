@@ -438,6 +438,28 @@ void CStancesPane::UpdateRevokeStance(Build*, const Stance& stance)
     RevokeStance(stance);
 }
 
+void CStancesPane::UpdateFeatTrained(
+    Build*,
+    const std::string& featName)
+{
+    if (featName == "Mithral Body"
+        || featName == "Adamantine Body")
+    {
+        UpdateStanceStates();
+    }
+}
+
+void CStancesPane::UpdateFeatRevoked(
+    Build*,
+    const std::string& featName)
+{
+    if (featName == "Mithral Body"
+        || featName == "Adamantine Body")
+    {
+        UpdateStanceStates();
+    }
+}
+
 void CStancesPane::UpdateStanceActivated(
         Build* pBuild,
         const std::string& stanceName)

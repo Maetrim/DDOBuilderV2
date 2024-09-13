@@ -18,6 +18,7 @@ class TrainedFeat :
         // these are used for forum export only
         size_t Count() const;
         void IncrementCount();
+        void SetAlternateFeat(const std::string& featName);
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

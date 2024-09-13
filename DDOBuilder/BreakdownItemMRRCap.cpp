@@ -117,3 +117,30 @@ void BreakdownItemMRRCap::GearChanged(Build* pBuild, InventorySlotType slot)
         Populate();
     }
 }
+
+void BreakdownItemMRRCap::FeatTrained(
+    Build* pBuild,
+    const std::string& feat)
+{
+    BreakdownItem::FeatTrained(pBuild, feat);
+    if (feat == "Mithral Body"
+        || feat == "Adamantine Body")
+    {
+        CreateOtherEffects();
+        Populate();
+    }
+}
+
+void BreakdownItemMRRCap::FeatRevoked(
+    Build* pBuild,
+    const std::string& feat)
+{
+    BreakdownItem::FeatRevoked(pBuild, feat);
+    if (feat == "Mithral Body"
+        || feat == "Adamantine Body")
+    {
+        CreateOtherEffects();
+        Populate();
+    }
+}
+

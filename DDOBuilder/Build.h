@@ -234,6 +234,10 @@ class Build :
 
         bool IsFeatTrained(const std::string& featName) const;
         TrainedFeat GetTrainedFeat(size_t level, const std::string& type) const;
+        void TrainAlternateFeat(
+            const std::string& featName,
+            const std::string& type,
+            size_t level);
         void TrainFeat(
                 const std::string& featName,
                 const std::string& type,
@@ -254,8 +258,8 @@ class Build :
         void RevokeSpell(const std::string& ct, size_t level, const std::string& spellName, bool bSuppressLog);
         bool IsSpellTrained(const std::string& spellName) const;
         void ApplySpellEffects();
-        void ApplySpellEffects(const std::string& ct, const std::string& spellName);
-        void RevokeSpellEffects(const std::string& ct, const std::string& spellName);
+        void ApplySpellEffects(const TrainedSpell& ts);
+        void RevokeSpellEffects(const TrainedSpell& ts);
         Spell AdditionalClassSpell(const std::string& className, const std::string& spellName) const;
         void AppendSpellListAdditions(std::list<Spell>& spells, const std::string& ct, int spellLevel);
         int BonusCasterLevels(const std::string& spellName) const;

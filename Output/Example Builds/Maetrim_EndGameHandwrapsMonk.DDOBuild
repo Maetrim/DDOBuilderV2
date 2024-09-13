@@ -155,6 +155,7 @@
           <Stances>Centered</Stances>
           <Stances>Handwraps</Stances>
           <Stances>Razorclaw Shifter </Stances>
+          <Stances>Two Weapon Fighting</Stances>
         </ActiveStances>
         <Destiny_SelectedTrees>
           <TreeName>Grandmaster of Flowers</TreeName>
@@ -250,59 +251,45 @@
         <ActiveGear>Standard</ActiveGear>
         <EquippedGear>
           <Name>Standard</Name>
-          <Armor>
+          <Necklace>
             <NoAutoUpdate/>
-            <Name>Disciple's Robe</Name>
-            <Icon>Cloth_2e</Icon>
-            <Description>This simple outfit has been handed down from master to disciple for generations.
-It is said to increase your inner calm and focus.</Description>
-            <DropLocation>The Grotto, After defeating the High Priestess</DropLocation>
+            <Name>Necklace of Contemplation</Name>
+            <Icon>Necklace_1</Icon>
+            <Description>This magical necklace gives the wearer a sense of calm, allowing them to concentrate
+more easily in battle, increasing his vitality, and his ability to hit slightly.</Description>
+            <DropLocation>Caverns of Korromar, R'zzix the Beholder and Oglethorpe the Prospector chests</DropLocation>
             <MinLevel>1</MinLevel>
             <EquipmentSlot>
-              <Armor/>
+              <Necklace/>
             </EquipmentSlot>
-            <Requirements>
-              <RequiresNoneOf>
-                <Requirement>
-                  <Type>Race</Type>
-                  <Item>Bladeforged</Item>
-                  <Value>1</Value>
-                </Requirement>
-                <Requirement>
-                  <Type>Race</Type>
-                  <Item>Warforged</Item>
-                  <Value>1</Value>
-                </Requirement>
-              </RequiresNoneOf>
-            </Requirements>
-            <Armor>Cloth</Armor>
-            <Effect>
-              <Type>ItemClickie</Type>
-              <Bonus>Equipment</Bonus>
-              <Item>Mage Armor</Item>
-              <AType>SLA</AType>
-              <Amount size="3">1 1 1</Amount>
-            </Effect>
+            <Material>Leather</Material>
             <Buff>
               <Type>SkillBonus</Type>
-              <Value1>1</Value1>
+              <Value1>5</Value1>
               <BonusType>Competence</BonusType>
               <Description1>Concentration</Description1>
               <Item>Concentration</Item>
             </Buff>
             <Buff>
-              <Type>Starter</Type>
+              <Type>FalseLife</Type>
+              <Value1>10</Value1>
+              <BonusType>False Life</BonusType>
+            </Buff>
+            <Buff>
+              <Type>AttackBonus</Type>
+              <Value1>1</Value1>
+              <BonusType>Competence</BonusType>
             </Buff>
             <ItemAugment>
               <Type>Mythic</Type>
             </ItemAugment>
             <ItemAugment>
-              <Type>Reaper Armor</Type>
+              <Type>Reaper Necklace</Type>
             </ItemAugment>
             <ItemAugment>
               <Type>Deck Curse</Type>
             </ItemAugment>
-          </Armor>
+          </Necklace>
           <MainHand>
             <Name>Soren's Handwraps</Name>
             <Icon>HandWraps_1s</Icon>
@@ -324,6 +311,7 @@ been enchanted to slightly burn opponents with acid.</Description>
             </BaseDice>
             <CriticalMultiplier>2</CriticalMultiplier>
             <CriticalThreatRange>1</CriticalThreatRange>
+            <Material>Cloth</Material>
             <Buff>
               <Type>AcidTouch</Type>
               <BonusType>Enhancement</BonusType>
@@ -352,6 +340,7 @@ type of up to 1500. Total capacity: 4500.</Description>
             <EquipmentSlot>
               <Quiver/>
             </EquipmentSlot>
+            <Material>Category:No Material items</Material>
             <Buff>
               <Type>RangedAlacrity</Type>
               <Value1>10</Value1>
@@ -437,6 +426,12 @@ type of up to 1500. Total capacity: 4500.</Description>
           <ArtifactFiligree>
             <Name/>
           </ArtifactFiligree>
+          <SnapshotStrength>20</SnapshotStrength>
+          <SnapshotIntelligence>26</SnapshotIntelligence>
+          <SnapshotWisdom>45</SnapshotWisdom>
+          <SnapshotDexterity>38</SnapshotDexterity>
+          <SnapshotConstitution>36</SnapshotConstitution>
+          <SnapshotCharisma>22</SnapshotCharisma>
         </EquippedGear>
         <FavorFeats/>
         <Notes/>
@@ -6462,6 +6457,7 @@ type of up to 1500. Total capacity: 4500.</Description>
           <Stances>Deadly Instinct</Stances>
           <Stances>Centered</Stances>
           <Stances>Handwraps</Stances>
+          <Stances>Two Weapon Fighting</Stances>
         </ActiveStances>
         <Destiny_SelectedTrees>
           <TreeName>Grandmaster of Flowers</TreeName>
@@ -6484,10 +6480,82 @@ type of up to 1500. Total capacity: 4500.</Description>
           <TreeName>No selection</TreeName>
         </Reaper_SelectedTrees>
         <EnhancementSpendInTree>
+          <TreeName>Falconry</TreeName>
+          <TreeVersion>1</TreeVersion>
+          <TrainedEnhancement>
+            <EnhancementName>FalconCore1</EnhancementName>
+            <Selection>Summon Falcon</Selection>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconOutInNature</EnhancementName>
+            <Ranks>3</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconRugged</EnhancementName>
+            <Ranks>3</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconKillerInstinctI</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconActionBoostSprint</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconCore2</EnhancementName>
+            <Selection>Wisdom</Selection>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconWatchTheCenter</EnhancementName>
+            <Ranks>3</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconCore3</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconConditioning</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconKillerInstinctII</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconCoordinatedStrikes</EnhancementName>
+            <Selection>Coordinated Strike</Selection>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconDeadlyInstinct</EnhancementName>
+            <Ranks>3</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconNoMercy</EnhancementName>
+            <Ranks>3</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconExposeWeakness</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+        </EnhancementSpendInTree>
+        <EnhancementSpendInTree>
           <TreeName>Aasimar</TreeName>
           <TreeVersion>1</TreeVersion>
           <TrainedEnhancement>
             <EnhancementName>AasimarCore1</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>AasimarCore2</EnhancementName>
+            <Selection>+1 Wisdom</Selection>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>AasimarCore3</EnhancementName>
             <Ranks>1</Ranks>
           </TrainedEnhancement>
           <TrainedEnhancement>
@@ -6505,7 +6573,7 @@ type of up to 1500. Total capacity: 4500.</Description>
           </TrainedEnhancement>
           <TrainedEnhancement>
             <EnhancementName>Counsel</EnhancementName>
-            <Ranks>3</Ranks>
+            <Ranks>1</Ranks>
           </TrainedEnhancement>
           <TrainedEnhancement>
             <EnhancementName>FightTheWickedII</EnhancementName>
@@ -6520,54 +6588,12 @@ type of up to 1500. Total capacity: 4500.</Description>
             <Ranks>1</Ranks>
           </TrainedEnhancement>
           <TrainedEnhancement>
-            <EnhancementName>Blessing</EnhancementName>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
             <EnhancementName>DivineForm</EnhancementName>
             <Selection>Fallen</Selection>
             <Ranks>1</Ranks>
           </TrainedEnhancement>
-        </EnhancementSpendInTree>
-        <EnhancementSpendInTree>
-          <TreeName>Falconry</TreeName>
-          <TreeVersion>1</TreeVersion>
           <TrainedEnhancement>
-            <EnhancementName>FalconCore1</EnhancementName>
-            <Selection>Summon Falcon</Selection>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconRugged</EnhancementName>
-            <Ranks>3</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconOutInNature</EnhancementName>
-            <Ranks>3</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconPracticedAccuracy</EnhancementName>
-            <Ranks>2</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconCore2</EnhancementName>
-            <Selection>Wisdom</Selection>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconActionBoostSprint</EnhancementName>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconKillerInstinctII</EnhancementName>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconConditioning</EnhancementName>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>FalconCore3</EnhancementName>
+            <EnhancementName>ImprovedRecoveryIII</EnhancementName>
             <Ranks>1</Ranks>
           </TrainedEnhancement>
         </EnhancementSpendInTree>
@@ -6581,27 +6607,6 @@ type of up to 1500. Total capacity: 4500.</Description>
           <TrainedEnhancement>
             <EnhancementName>ShintaoElementalCurativesI</EnhancementName>
             <Selection>Difficulty at the Beginning</Selection>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>ShintaoDeftStrikes</EnhancementName>
-            <Ranks>2</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>ShintaoExemplar</EnhancementName>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>ShintaoElementalKiStrikes</EnhancementName>
-            <Selection>Unbalancing Strike</Selection>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>ShintaoCore2</EnhancementName>
-            <Ranks>1</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
-            <EnhancementName>ShintaoIronSkin</EnhancementName>
             <Ranks>1</Ranks>
           </TrainedEnhancement>
         </EnhancementSpendInTree>
@@ -6697,53 +6702,37 @@ type of up to 1500. Total capacity: 4500.</Description>
         <EquippedGear>
           <Name>Standard</Name>
           <Helmet>
-            <NoAutoUpdate/>
-            <Name>Helm of Frost</Name>
-            <Icon>Helmet_10a</Icon>
-            <Description>This helm has a chill about it and is cold where it touches your skin. Nevertheless
-it will protect you from harmful cold magic, and allows you to release some
-of that energy against foes.</Description>
-            <DropLocation>The Chronoscope, End chest</DropLocation>
-            <MinLevel>5</MinLevel>
+            <Name>Dread Stalker's Skullcap</Name>
+            <Icon>Helmet_1a</Icon>
+            <Description>The lenses fused into this mask tint the world a dusty red.</Description>
+            <DropLocation>Spiders and Flies, end chest</DropLocation>
+            <MinLevel>7</MinLevel>
             <EquipmentSlot>
               <Helmet/>
             </EquipmentSlot>
-            <Effect>
-              <Type>ItemClickie</Type>
-              <Bonus>Equipment</Bonus>
-              <Item>Frost Lance</Item>
-              <AType>SLA</AType>
-              <Amount size="3">5 3 3</Amount>
-            </Effect>
+            <Material>Gold</Material>
             <Buff>
-              <Type>Glaciation</Type>
-              <Value1>59</Value1>
-              <BonusType>Equipment</BonusType>
-              <Description1>Cold</Description1>
-              <Item>Cold</Item>
+              <Type>TrueSeeing</Type>
             </Buff>
             <Buff>
               <Type>AbilityBonus</Type>
-              <Value1>4</Value1>
-              <BonusType>Enhancement</BonusType>
-              <Description1>Charisma</Description1>
-              <Item>Charisma</Item>
+              <Value1>2</Value1>
+              <BonusType>Insightful</BonusType>
+              <Description1>Dexterity</Description1>
+              <Item>Dexterity</Item>
             </Buff>
             <Buff>
-              <Type>MagicalSheltering</Type>
-              <Value1>9</Value1>
-              <BonusType>Enhancement</BonusType>
+              <Type>ParryingNumber</Type>
+              <Value1>2</Value1>
+              <BonusType>Insightful</BonusType>
             </Buff>
             <Buff>
-              <Type>EnergyResistance</Type>
-              <Value1>14</Value1>
-              <BonusType>Enhancement</BonusType>
-              <Description1>Cold</Description1>
-              <Item>Cold</Item>
+              <Type>Shield</Type>
+              <Value1>5</Value1>
             </Buff>
-            <SetBonus>Might of the Abishai</SetBonus>
+            <SetBonus>The Dread Isle's Curse</SetBonus>
             <ItemAugment>
-              <Type>Yellow</Type>
+              <Type>Blue</Type>
             </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
@@ -6765,6 +6754,7 @@ of that energy against foes.</Description>
             <EquipmentSlot>
               <Necklace/>
             </EquipmentSlot>
+            <Material>Flesh</Material>
             <Buff>
               <Type>Exceptional Prudent Skills</Type>
               <Value1>2</Value1>
@@ -6791,24 +6781,40 @@ of that energy against foes.</Description>
             </ItemAugment>
           </Necklace>
           <Trinket>
-            <Name>Voice of the Master</Name>
-            <Icon>Trinket_34</Icon>
-            <Description>A comforting and inspiring presence surrounds you as you hold this carving.
-A short chain of adamantine connects the carved head to a curiously shaped
-polyhedron with 20's carved on each side.</Description>
-            <DropLocation>Delera's Tomb, End reward</DropLocation>
-            <MinLevel>5</MinLevel>
+            <NoAutoUpdate/>
+            <Name>Red Raptor Feather</Name>
+            <Icon>Trinket_56a</Icon>
+            <Description>A red plumed feather from a raptor of the Isle of Dread.</Description>
+            <DropLocation>Captive of the Hidden God, end chest</DropLocation>
+            <MinLevel>7</MinLevel>
             <EquipmentSlot>
               <Trinket/>
             </EquipmentSlot>
+            <Material>Flesh</Material>
             <Buff>
-              <Type>Heroic Inspiration</Type>
+              <Type>Deception</Type>
+              <Value1>3</Value1>
+              <Value2>5</Value2>
+              <BonusType>Enhancement</BonusType>
             </Buff>
             <Buff>
-              <Type>GoodLuck</Type>
+              <Type>Deception</Type>
               <Value1>1</Value1>
-              <BonusType>Luck</BonusType>
+              <Value2>2</Value2>
+              <BonusType>Insightful</BonusType>
             </Buff>
+            <Buff>
+              <Type>Assassinate</Type>
+              <Value1>5</Value1>
+              <BonusType>Enhancement</BonusType>
+            </Buff>
+            <Buff>
+              <Type>Blurry</Type>
+            </Buff>
+            <SetBonus>The Dread Isle's Curse</SetBonus>
+            <ItemAugment>
+              <Type>Blue</Type>
+            </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
             </ItemAugment>
@@ -6820,42 +6826,38 @@ polyhedron with 20's carved on each side.</Description>
             </ItemAugment>
           </Trinket>
           <Cloak>
-            <Name>Cloak of Winter</Name>
-            <Icon>Cloak_8</Icon>
-            <Description>This cloak appears to be made of once-living foliage.</Description>
-            <DropLocation>Combatting Corruption, End chest</DropLocation>
-            <MinLevel>5</MinLevel>
+            <Name>Sailcloth Cloak</Name>
+            <Icon>Cloak_24b</Icon>
+            <Description>This cloak appears to have been fashioned from the sail of a seaworthy vessel.</Description>
+            <DropLocation>Under the Cover of Darkness, end chest</DropLocation>
+            <MinLevel>3</MinLevel>
             <EquipmentSlot>
               <Cloak/>
             </EquipmentSlot>
+            <Material>Cloth</Material>
             <Buff>
-              <Type>Absorption</Type>
-              <Value1>16</Value1>
+              <Type>AbilityBonus</Type>
+              <Value1>3</Value1>
               <BonusType>Enhancement</BonusType>
-              <Description1>Cold</Description1>
-              <Item>Cold</Item>
+              <Description1>Dexterity</Description1>
+              <Item>Dexterity</Item>
             </Buff>
             <Buff>
-              <Type>FalseLife</Type>
-              <Value1>14</Value1>
-              <BonusType>Enhancement</BonusType>
+              <Type>Accuracy</Type>
+              <Value1>5</Value1>
+              <BonusType>Competence</BonusType>
             </Buff>
             <Buff>
-              <Type>Ice Barrier</Type>
+              <Type>Deadly</Type>
+              <Value1>3</Value1>
+              <BonusType>Competence</BonusType>
             </Buff>
-            <Buff>
-              <Type>Lifesealed</Type>
-              <Value1>16</Value1>
-              <BonusType>Enhancement</BonusType>
-            </Buff>
-            <SetBonus>Seasons of the Feywild</SetBonus>
+            <SetBonus>Saltmarsh Explorer</SetBonus>
             <ItemAugment>
               <Type>Blue</Type>
             </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
-              <SelectedAugment>Mythic Shield Boost</SelectedAugment>
-              <Value>1</Value>
             </ItemAugment>
             <ItemAugment>
               <Type>Reaper Cloak</Type>
@@ -6868,11 +6870,12 @@ polyhedron with 20's carved on each side.</Description>
             <Name>Belt of the Blue Abishai</Name>
             <Icon>Belt_4f</Icon>
             <Description>This belt seems to be attuned to elemental power.</Description>
-            <DropLocation>The Chronoscope, end chest, and The Chronoscope (Legendary), optional chests</DropLocation>
+            <DropLocation>The Chronoscope, and The Chronoscope (Legendary), optional chests</DropLocation>
             <MinLevel>5</MinLevel>
             <EquipmentSlot>
               <Belt/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>AbilityBonus</Type>
               <Value1>1</Value1>
@@ -6911,117 +6914,50 @@ polyhedron with 20's carved on each side.</Description>
           </Belt>
           <Goggles>
             <NoAutoUpdate/>
-            <UserSetsLevel/>
-            <Name>Cannith Crafted Goggles</Name>
-            <Icon>Goggles_1</Icon>
-            <Description>This is a Cannith crafted set of goggles.</Description>
-            <MinLevel>0</MinLevel>
+            <Name>Goggles of Time-Sensing</Name>
+            <Icon>Goggles_4a</Icon>
+            <Description>A strange, complex pair of goggles that allows the wearer to view the passage
+of time more slowly than normal. Through this awareness the actions of the
+wearer and his or her allies can occasionally be hastened.</Description>
+            <DropLocation>The Chronoscope, End reward</DropLocation>
+            <MinLevel>5</MinLevel>
             <EquipmentSlot>
               <Goggles/>
             </EquipmentSlot>
+            <Material>Leather</Material>
+            <Effect>
+              <Type>ItemClickie</Type>
+              <Bonus>Equipment</Bonus>
+              <Item>Haste</Item>
+              <AType>SLA</AType>
+              <Amount size="3">5 3 3</Amount>
+            </Effect>
+            <Buff>
+              <Type>AbilityBonus</Type>
+              <Value1>4</Value1>
+              <BonusType>Enhancement</BonusType>
+              <Description1>Wisdom</Description1>
+              <Item>Wisdom</Item>
+            </Buff>
+            <Buff>
+              <Type>SkillBonus</Type>
+              <Value1>7</Value1>
+              <BonusType>Competence</BonusType>
+              <Description1>Spot</Description1>
+              <Item>Spot</Item>
+            </Buff>
+            <Buff>
+              <Type>SkillBonus</Type>
+              <Value1>7</Value1>
+              <BonusType>Competence</BonusType>
+              <Description1>Search</Description1>
+              <Item>Search</Item>
+            </Buff>
             <ItemAugment>
-              <Type>Cannith Goggles Prefix</Type>
-              <SelectedAugment>Underwater Action</SelectedAugment>
+              <Type>Yellow</Type>
             </ItemAugment>
             <ItemAugment>
-              <Type>Cannith Goggles Suffix</Type>
-              <SelectedAugment>True Sight</SelectedAugment>
-            </ItemAugment>
-            <ItemAugment>
-              <Type>Cannith Goggles Extra</Type>
-            </ItemAugment>
-            <ItemAugment>
-              <Type>Add Augment 1</Type>
-              <Augment>
-                <Name>Adds a Colorless augment slot</Name>
-                <Description>Adds a Colorless augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Colorless</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Red augment slot</Name>
-                <Description>Adds a Red augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Red</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Blue augment slot</Name>
-                <Description>Adds a Blue augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Blue</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Yellow augment slot</Name>
-                <Description>Adds a Yellow augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Yellow</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Purple augment slot</Name>
-                <Description>Adds a Purple augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Purple</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Orange augment slot</Name>
-                <Description>Adds a Orange augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Orange</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Green augment slot</Name>
-                <Description>Adds a Green augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Green</GrantAugment>
-              </Augment>
-            </ItemAugment>
-            <ItemAugment>
-              <Type>Add Augment 2</Type>
-              <Augment>
-                <Name>Adds a Colorless augment slot</Name>
-                <Description>Adds a Colorless augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Colorless</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Red augment slot</Name>
-                <Description>Adds a Red augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Red</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Blue augment slot</Name>
-                <Description>Adds a Blue augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Blue</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Yellow augment slot</Name>
-                <Description>Adds a Yellow augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Yellow</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Purple augment slot</Name>
-                <Description>Adds a Purple augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Purple</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Orange augment slot</Name>
-                <Description>Adds a Orange augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Orange</GrantAugment>
-              </Augment>
-              <Augment>
-                <Name>Adds a Green augment slot</Name>
-                <Description>Adds a Green augment slot to this item</Description>
-                <MinLevel>5</MinLevel>
-                <GrantAugment>Green</GrantAugment>
-              </Augment>
-            </ItemAugment>
-            <ItemAugment>
-              <Type>Deck Curse</Type>
+              <Type>Colorless</Type>
             </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
@@ -7029,36 +6965,48 @@ polyhedron with 20's carved on each side.</Description>
             <ItemAugment>
               <Type>Reaper Goggles</Type>
             </ItemAugment>
+            <ItemAugment>
+              <Type>Deck Curse</Type>
+            </ItemAugment>
           </Goggles>
           <Gloves>
-            <Name>Charged Gauntlets</Name>
-            <Icon>Gloves_9</Icon>
-            <Description>These gloves channel powerful electric energy into enemies that you strike.</Description>
-            <DropLocation>The Chronoscope, End reward</DropLocation>
-            <MinLevel>5</MinLevel>
+            <NoAutoUpdate/>
+            <Name>Birchlore Gauntlets</Name>
+            <Icon>Gloves_7b</Icon>
+            <Description>These gloves are patterned to look like the bark of a birch tree.</Description>
+            <DropLocation>Spiders and Flies, end chest</DropLocation>
+            <MinLevel>7</MinLevel>
             <EquipmentSlot>
               <Gloves/>
             </EquipmentSlot>
-            <Buff>
-              <Type>Shocking Blow</Type>
-            </Buff>
+            <Material>Cloth</Material>
             <Buff>
               <Type>AbilityBonus</Type>
-              <Value1>4</Value1>
+              <Value1>5</Value1>
               <BonusType>Enhancement</BonusType>
-              <Description1>Strength</Description1>
-              <Item>Strength</Item>
+              <Description1>Wisdom</Description1>
+              <Item>Wisdom</Item>
             </Buff>
             <Buff>
-              <Type>EnergyResistance</Type>
-              <Value1>14</Value1>
-              <BonusType>Enhancement</BonusType>
-              <Description1>Electric</Description1>
-              <Item>Electric</Item>
+              <Type>HealingLore</Type>
+              <Value1>10</Value1>
+              <BonusType>Equipment</BonusType>
             </Buff>
-            <SetBonus>Might of the Abishai</SetBonus>
+            <Buff>
+              <Type>Devotion</Type>
+              <Value1>66</Value1>
+              <BonusType>Equipment</BonusType>
+              <Description1>Positive</Description1>
+              <Item>Positive</Item>
+            </Buff>
+            <Buff>
+              <Type>Vitality</Type>
+              <Value1>15</Value1>
+              <BonusType>Vitality</BonusType>
+            </Buff>
+            <SetBonus>The Dread Isle's Curse</SetBonus>
             <ItemAugment>
-              <Type>Yellow</Type>
+              <Type>Blue</Type>
             </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
@@ -7071,33 +7019,44 @@ polyhedron with 20's carved on each side.</Description>
             </ItemAugment>
           </Gloves>
           <Boots>
-            <Name>Windriders</Name>
-            <Icon>Boots_11d</Icon>
-            <Description>Ride the wind.</Description>
-            <DropLocation>Needle in a Fey Stack, End chest</DropLocation>
-            <MinLevel>5</MinLevel>
+            <Name>Beachcombers</Name>
+            <Icon>Boots_10</Icon>
+            <Description>Light, airy, and full of black sand.</Description>
+            <DropLocation>Whispers of Return, end chest</DropLocation>
+            <MinLevel>7</MinLevel>
             <EquipmentSlot>
               <Boots/>
             </EquipmentSlot>
+            <Material>Cloth</Material>
+            <Buff>
+              <Type>AbilityBonus</Type>
+              <Value1>5</Value1>
+              <BonusType>Enhancement</BonusType>
+              <Description1>Dexterity</Description1>
+              <Item>Dexterity</Item>
+            </Buff>
             <Buff>
               <Type>Speed</Type>
-              <Value1>15</Value1>
+              <Value1>17</Value1>
               <Value2>5</Value2>
               <BonusType>Enhancement</BonusType>
             </Buff>
             <Buff>
               <Type>Dodge</Type>
-              <Value1>4</Value1>
+              <Value1>5</Value1>
               <BonusType>Enhancement</BonusType>
             </Buff>
-            <SetBonus>Seasons of the Feywild</SetBonus>
+            <Buff>
+              <Type>ReflexSave</Type>
+              <Value1>5</Value1>
+              <BonusType>Resistance</BonusType>
+            </Buff>
+            <SetBonus>The Dread Isle's Curse</SetBonus>
             <ItemAugment>
               <Type>Blue</Type>
             </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
-              <SelectedAugment>Mythic Shield Boost</SelectedAugment>
-              <Value>1</Value>
             </ItemAugment>
             <ItemAugment>
               <Type>Reaper Boot</Type>
@@ -7107,48 +7066,40 @@ polyhedron with 20's carved on each side.</Description>
             </ItemAugment>
           </Boots>
           <Bracers>
-            <NoAutoUpdate/>
-            <Name>Scorched Bracers</Name>
-            <Icon>Bracers_4a</Icon>
-            <Description>A pair of bracers that guards the wearer against magic flames. They seem to
-have been tested vigorously until the protection was perfected.</Description>
-            <DropLocation>The Chronoscope, End Chest</DropLocation>
-            <MinLevel>5</MinLevel>
+            <Name>Admiral's Wristwatch</Name>
+            <Icon>Bracers_19</Icon>
+            <Description>This bracer features a small watch and an intricate compass sewn into the lining.
+It's perfect for finding your way in the storms.</Description>
+            <DropLocation>Plundering Pirates' Point, End chest</DropLocation>
+            <MinLevel>7</MinLevel>
             <EquipmentSlot>
               <Bracers/>
             </EquipmentSlot>
-            <Effect>
-              <Type>ItemClickie</Type>
-              <Bonus>Equipment</Bonus>
-              <Item>Fireball</Item>
-              <AType>SLA</AType>
-              <Amount size="3">5 3 3</Amount>
-            </Effect>
+            <Material>Gold</Material>
             <Buff>
-              <Type>Combustion</Type>
-              <Value1>59</Value1>
-              <BonusType>Equipment</BonusType>
-              <Description1>Fire</Description1>
-              <Item>Fire</Item>
+              <Type>HealingAmplification</Type>
+              <Value1>17</Value1>
+              <BonusType>Competence</BonusType>
             </Buff>
             <Buff>
-              <Type>ArmorBonus</Type>
+              <Type>ArmorPiercing</Type>
+              <Value1>7</Value1>
+              <BonusType>Enhancement</BonusType>
+            </Buff>
+            <Buff>
+              <Type>Accuracy</Type>
+              <Value1>7</Value1>
+              <BonusType>Competence</BonusType>
+            </Buff>
+            <Buff>
+              <Type>Deadly</Type>
               <Value1>4</Value1>
-              <BonusType>Armor</BonusType>
+              <BonusType>Competence</BonusType>
             </Buff>
-            <Buff>
-              <Type>PhysicalSheltering</Type>
-              <Value1>9</Value1>
-              <BonusType>Enhancement</BonusType>
-            </Buff>
-            <Buff>
-              <Type>EnergyResistance</Type>
-              <Value1>14</Value1>
-              <BonusType>Enhancement</BonusType>
-              <Description1>Fire</Description1>
-              <Item>Fire</Item>
-            </Buff>
-            <SetBonus>Might of the Abishai</SetBonus>
+            <SetBonus>The Dread Isle's Curse</SetBonus>
+            <ItemAugment>
+              <Type>Blue</Type>
+            </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
             </ItemAugment>
@@ -7160,11 +7111,11 @@ have been tested vigorously until the protection was perfected.</Description>
             </ItemAugment>
           </Bracers>
           <Armor>
-            <Name>Ship-Mage's Attire</Name>
-            <Icon>Cloth_3</Icon>
-            <Description>This purple robe is heavy, made for a caster to endure the elements.</Description>
-            <DropLocation>The Final Enemy, end chest</DropLocation>
-            <MinLevel>3</MinLevel>
+            <Name>Stalker's Outfit</Name>
+            <Icon>Cloth_6</Icon>
+            <Description>This nimble outfit appears to contain patches of Dinosaur leather.</Description>
+            <DropLocation>All Hail the King, end chest</DropLocation>
+            <MinLevel>7</MinLevel>
             <EquipmentSlot>
               <Armor/>
             </EquipmentSlot>
@@ -7183,28 +7134,40 @@ have been tested vigorously until the protection was perfected.</Description>
               </RequiresNoneOf>
             </Requirements>
             <Armor>Cloth</Armor>
+            <Material>Cloth</Material>
             <Buff>
               <Type>ArmorEnchantment</Type>
-              <Value1>2</Value1>
-              <BonusType>Enhancement</BonusType>
+              <Value1>3</Value1>
+              <BonusType>Armor Enhancement</BonusType>
             </Buff>
             <Buff>
-              <Type>Ghostly</Type>
+              <Type>AbilityBonus</Type>
+              <Value1>5</Value1>
               <BonusType>Enhancement</BonusType>
+              <Description1>Constitution</Description1>
+              <Item>Constitution</Item>
             </Buff>
             <Buff>
-              <Type>FalseLife</Type>
-              <Value1>11</Value1>
-              <BonusType>Enhancement</BonusType>
+              <Type>SpellResistance</Type>
+              <Value1>7</Value1>
+              <BonusType>Insightful</BonusType>
             </Buff>
-            <SetBonus>Saltmarsh Explorer</SetBonus>
+            <Buff>
+              <Type>Dodge</Type>
+              <Value1>1</Value1>
+              <BonusType>Quality</BonusType>
+            </Buff>
+            <Buff>
+              <Type>Fortification</Type>
+              <Value1>33</Value1>
+              <BonusType>Insightful</BonusType>
+            </Buff>
+            <SetBonus>The Dread Isle's Curse</SetBonus>
             <ItemAugment>
               <Type>Blue</Type>
             </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
-              <SelectedAugment>Mythic Shield Boost</SelectedAugment>
-              <Value>2</Value>
             </ItemAugment>
             <ItemAugment>
               <Type>Reaper Armor</Type>
@@ -7214,13 +7177,14 @@ have been tested vigorously until the protection was perfected.</Description>
             </ItemAugment>
           </Armor>
           <MainHand>
-            <Name>Scorching Wraps</Name>
-            <Icon>HandWraps_1l</Icon>
-            <Description>These cloth handwraps, favored by the minotaur brawler Scorchtusk, were enchanted
-so that his blows will strike with the power of the flame. They're also 'enchanted'
-with nails. Pointy-ends out.</Description>
-            <DropLocation>Three-Barrel Cove (heroic), Scorchtusk 's Chest (Rare Encounter)</DropLocation>
-            <MinLevel>4</MinLevel>
+            <Name>Flamesalt Handwraps</Name>
+            <Icon>HandWraps_1w</Icon>
+            <Description>This weapon's steel has partially corroded due to the salt in the air, which
+interfered with the forging process. It seems to have enhanced the weapon's
+with a subtle magic, making it equivalent to Flametouched Iron, at the cost
+of some of the steel's natural durability.</Description>
+            <DropLocation>Captain Xendros, Turn in 5 Quartermaster's Chits</DropLocation>
+            <MinLevel>5</MinLevel>
             <EquipmentSlot>
               <Weapon1/>
             </EquipmentSlot>
@@ -7228,8 +7192,8 @@ with nails. Pointy-ends out.</Description>
             <AttackModifier>Strength</AttackModifier>
             <DamageModifier>Strength</DamageModifier>
             <DRBypass>Bludgeon</DRBypass>
+            <DRBypass>Good</DRBypass>
             <DRBypass>Magic</DRBypass>
-            <DRBypass>Pierce</DRBypass>
             <WeaponDamage>1</WeaponDamage>
             <BaseDice>
               <Number>1</Number>
@@ -7237,24 +7201,36 @@ with nails. Pointy-ends out.</Description>
             </BaseDice>
             <CriticalMultiplier>2</CriticalMultiplier>
             <CriticalThreatRange>1</CriticalThreatRange>
+            <Material>Cloth</Material>
             <Buff>
               <Type>WeaponEnchantment</Type>
-              <Value1>2</Value1>
+              <Value1>1</Value1>
               <BonusType>Weapon Enchantment</BonusType>
             </Buff>
             <Buff>
-              <Type>Flaming Burst</Type>
-              <BonusType>Enhancement</BonusType>
-            </Buff>
-            <Buff>
-              <Type>Spiked</Type>
-            </Buff>
-            <Buff>
-              <Type>Bleed</Type>
+              <Type>Chilling 2</Type>
               <BonusType>Enhancement</BonusType>
               <Description1>All</Description1>
               <Item>All</Item>
             </Buff>
+            <Buff>
+              <Type>Monstrous Humanoid Bane 2</Type>
+              <BonusType>Enhancement</BonusType>
+              <Description1>All</Description1>
+              <Item>All</Item>
+            </Buff>
+            <Buff>
+              <Type>Weakening 1</Type>
+              <BonusType>Enhancement</BonusType>
+              <Description1>All</Description1>
+              <Item>All</Item>
+            </Buff>
+            <Buff>
+              <Type>Flametouched Iron</Type>
+            </Buff>
+            <ItemAugment>
+              <Type>Red</Type>
+            </ItemAugment>
             <ItemAugment>
               <Type>Mythic</Type>
             </ItemAugment>
@@ -7277,6 +7253,7 @@ type of up to 1500. Total capacity: 4500.</Description>
             <EquipmentSlot>
               <Quiver/>
             </EquipmentSlot>
+            <Material>Category:No Material items</Material>
             <Buff>
               <Type>RangedAlacrity</Type>
               <Value1>10</Value1>
@@ -7296,6 +7273,7 @@ type of up to 1500. Total capacity: 4500.</Description>
             <EquipmentSlot>
               <Ring/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>Command</Type>
               <Value1>3</Value1>
@@ -7329,34 +7307,31 @@ type of up to 1500. Total capacity: 4500.</Description>
             </ItemAugment>
           </Ring1>
           <Ring2>
-            <Name>Lionheart Ring</Name>
-            <Icon>Ring_26a</Icon>
-            <Description>Be brave, be valiant, and above all else - be kind.</Description>
-            <DropLocation>The Thornwright, End Chest</DropLocation>
+            <Name>Duskbone Ring</Name>
+            <Icon>Ring_21</Icon>
+            <Description>This bone ring reeks of death.</Description>
+            <DropLocation>Combatting Corruption, End chest</DropLocation>
             <MinLevel>5</MinLevel>
             <EquipmentSlot>
               <Ring/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
-              <Type>Stunning</Type>
+              <Type>Vertigo</Type>
               <Value1>4</Value1>
               <BonusType>Enhancement</BonusType>
             </Buff>
             <Buff>
-              <Type>MinorActionBoostEnhancement</Type>
-              <BonusType>Equipment</BonusType>
+              <Type>Ethereal</Type>
             </Buff>
             <Buff>
-              <Type>ArmorPiercing</Type>
+              <Type>ProfaneLifeforce</Type>
+              <Value1>12</Value1>
+              <BonusType>Profane</BonusType>
+            </Buff>
+            <Buff>
+              <Type>Hardened Exterior</Type>
               <Value1>2</Value1>
-              <BonusType>Insightful</BonusType>
-            </Buff>
-            <Buff>
-              <Type>AbilityBonus</Type>
-              <Value1>1</Value1>
-              <BonusType>Insightful</BonusType>
-              <Description1>Constitution</Description1>
-              <Item>Constitution</Item>
             </Buff>
             <SetBonus>Seasons of the Feywild</SetBonus>
             <ItemAugment>
@@ -7464,6 +7439,12 @@ type of up to 1500. Total capacity: 4500.</Description>
           <ArtifactFiligree>
             <Name/>
           </ArtifactFiligree>
+          <SnapshotStrength>32</SnapshotStrength>
+          <SnapshotIntelligence>36</SnapshotIntelligence>
+          <SnapshotWisdom>98</SnapshotWisdom>
+          <SnapshotDexterity>67</SnapshotDexterity>
+          <SnapshotConstitution>84</SnapshotConstitution>
+          <SnapshotCharisma>40</SnapshotCharisma>
         </EquippedGear>
         <FavorFeats>
           <TrainedFeat>
@@ -10584,6 +10565,7 @@ type of up to 1500. Total capacity: 4500.</Description>
           <Stances>Deadly Instinct</Stances>
           <Stances>Centered</Stances>
           <Stances>Handwraps</Stances>
+          <Stances>Two Weapon Fighting</Stances>
         </ActiveStances>
         <Destiny_SelectedTrees>
           <TreeName>Grandmaster of Flowers</TreeName>
@@ -10926,11 +10908,12 @@ type of up to 1500. Total capacity: 4500.</Description>
             <Description>This helm has a chill about it and is cold where it touches your skin. Nevertheless
 it will protect you from harmful cold magic, and allows you to release some
 of that energy against foes.</Description>
-            <DropLocation>The Chronoscope, End chest</DropLocation>
+            <DropLocation>The Chronoscope, end chest, and The Chronoscope (Legendary), heroic chest</DropLocation>
             <MinLevel>5</MinLevel>
             <EquipmentSlot>
               <Helmet/>
             </EquipmentSlot>
+            <Material>Leather</Material>
             <Effect>
               <Type>ItemClickie</Type>
               <Bonus>Equipment</Bonus>
@@ -10982,11 +10965,12 @@ of that energy against foes.</Description>
             <Name>Nightforge Gorget</Name>
             <Icon>Necklace_20</Icon>
             <Description>This metal collar protects its wearer's throat and neck from injury.</Description>
-            <DropLocation>A Relic of a Sovereign Past, Turn in 10 Adamantine Ore </DropLocation>
+            <DropLocation>A Relic of a Sovereign Past, Turn in 10 Adamantine Ore</DropLocation>
             <MinLevel>9</MinLevel>
             <EquipmentSlot>
               <Necklace/>
             </EquipmentSlot>
+            <Material>Adamantine</Material>
             <Buff>
               <Type>Fortification</Type>
               <Value1>100</Value1>
@@ -11015,6 +10999,7 @@ of that energy against foes.</Description>
             <EquipmentSlot>
               <Trinket/>
             </EquipmentSlot>
+            <Material>Flesh</Material>
             <Buff>
               <Type>Deception</Type>
               <Value1>3</Value1>
@@ -11060,6 +11045,7 @@ of that energy against foes.</Description>
             <EquipmentSlot>
               <Cloak/>
             </EquipmentSlot>
+            <Material>Cloth</Material>
             <Buff>
               <Type>Deathblock</Type>
               <BonusType>Enhancement</BonusType>
@@ -11098,11 +11084,12 @@ of that energy against foes.</Description>
             <Name>Belt of the Blue Abishai</Name>
             <Icon>Belt_4f</Icon>
             <Description>This belt seems to be attuned to elemental power.</Description>
-            <DropLocation>The Chronoscope, end chest, and The Chronoscope (Legendary), optional chests</DropLocation>
+            <DropLocation>The Chronoscope, and The Chronoscope (Legendary), optional chests</DropLocation>
             <MinLevel>5</MinLevel>
             <EquipmentSlot>
               <Belt/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>AbilityBonus</Type>
               <Value1>1</Value1>
@@ -11152,10 +11139,12 @@ of that energy against foes.</Description>
             <ItemAugment>
               <Type>Cannith Goggles Prefix</Type>
               <SelectedAugment>Underwater Action</SelectedAugment>
+              <SelectedLevelIndex>-1</SelectedLevelIndex>
             </ItemAugment>
             <ItemAugment>
               <Type>Cannith Goggles Suffix</Type>
               <SelectedAugment>True Sight</SelectedAugment>
+              <SelectedLevelIndex>-1</SelectedLevelIndex>
             </ItemAugment>
             <ItemAugment>
               <Type>Cannith Goggles Extra</Type>
@@ -11269,6 +11258,7 @@ of that energy against foes.</Description>
             <EquipmentSlot>
               <Gloves/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>Assassinate</Type>
               <Value1>6</Value1>
@@ -11314,6 +11304,7 @@ of that energy against foes.</Description>
             <EquipmentSlot>
               <Boots/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>Freedom of Movement</Type>
             </Buff>
@@ -11359,6 +11350,7 @@ by a decorative silver lattice.</Description>
             <EquipmentSlot>
               <Bracers/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>Heroism</Type>
             </Buff>
@@ -11412,10 +11404,11 @@ by a decorative silver lattice.</Description>
               </RequiresNoneOf>
             </Requirements>
             <Armor>Cloth</Armor>
+            <Material>Cloth</Material>
             <Buff>
               <Type>ArmorEnchantment</Type>
               <Value1>3</Value1>
-              <BonusType>Enhancement</BonusType>
+              <BonusType>Armor Enhancement</BonusType>
             </Buff>
             <Buff>
               <Type>AbilityBonus</Type>
@@ -11457,7 +11450,7 @@ by a decorative silver lattice.</Description>
             <Name>Barovian Handwraps</Name>
             <Icon>HandWraps_1a</Icon>
             <Description>This weapon was designed to help those lost in the mists.</Description>
-            <DropLocation>Blue Water Inn, Turn in 40 Vistani Talismans </DropLocation>
+            <DropLocation>Blue Water Inn, Turn in 40 Vistani Talismans</DropLocation>
             <MinLevel>10</MinLevel>
             <EquipmentSlot>
               <Weapon1/>
@@ -11476,6 +11469,7 @@ by a decorative silver lattice.</Description>
             </BaseDice>
             <CriticalMultiplier>2</CriticalMultiplier>
             <CriticalThreatRange>1</CriticalThreatRange>
+            <Material>Cloth</Material>
             <Buff>
               <Type>WeaponEnchantment</Type>
               <Value1>5</Value1>
@@ -11530,6 +11524,7 @@ type of up to 1500. Total capacity: 4500.</Description>
             <EquipmentSlot>
               <Quiver/>
             </EquipmentSlot>
+            <Material>Category:No Material items</Material>
             <Buff>
               <Type>RangedAlacrity</Type>
               <Value1>10</Value1>
@@ -11549,6 +11544,7 @@ type of up to 1500. Total capacity: 4500.</Description>
             <EquipmentSlot>
               <Ring/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>Command</Type>
               <Value1>3</Value1>
@@ -11590,6 +11586,7 @@ type of up to 1500. Total capacity: 4500.</Description>
             <EquipmentSlot>
               <Ring/>
             </EquipmentSlot>
+            <Material>Steel</Material>
             <Buff>
               <Type>Stunning</Type>
               <Value1>4</Value1>
@@ -11717,6 +11714,12 @@ type of up to 1500. Total capacity: 4500.</Description>
           <ArtifactFiligree>
             <Name/>
           </ArtifactFiligree>
+          <SnapshotStrength>32</SnapshotStrength>
+          <SnapshotIntelligence>36</SnapshotIntelligence>
+          <SnapshotWisdom>98</SnapshotWisdom>
+          <SnapshotDexterity>67</SnapshotDexterity>
+          <SnapshotConstitution>84</SnapshotConstitution>
+          <SnapshotCharisma>40</SnapshotCharisma>
         </EquippedGear>
         <FavorFeats/>
         <Notes/>
@@ -46847,11 +46850,6 @@ Masters.</Description>
             <Ranks>1</Ranks>
           </TrainedEnhancement>
           <TrainedEnhancement>
-            <EnhancementName>FalconStrikeForTheEyes</EnhancementName>
-            <Selection>Go for the Eyes Strike</Selection>
-            <Ranks>3</Ranks>
-          </TrainedEnhancement>
-          <TrainedEnhancement>
             <EnhancementName>FalconCore4</EnhancementName>
             <Selection>Wisdom</Selection>
             <Ranks>1</Ranks>
@@ -46866,6 +46864,11 @@ Masters.</Description>
           </TrainedEnhancement>
           <TrainedEnhancement>
             <EnhancementName>FalconExposeWeakness</EnhancementName>
+            <Ranks>1</Ranks>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>FalconCoordinatedStrikes</EnhancementName>
+            <Selection>Coordinated Strike</Selection>
             <Ranks>1</Ranks>
           </TrainedEnhancement>
           <TrainedEnhancement>
@@ -46980,6 +46983,11 @@ Masters.</Description>
           </TrainedEnhancement>
           <TrainedEnhancement>
             <EnhancementName>ShintaoKukanDo</EnhancementName>
+            <Ranks>1</Ranks>
+            <IsTier5/>
+          </TrainedEnhancement>
+          <TrainedEnhancement>
+            <EnhancementName>ShintaoRiseOfThePhoenix</EnhancementName>
             <Ranks>1</Ranks>
             <IsTier5/>
           </TrainedEnhancement>
@@ -47751,6 +47759,12 @@ This belt is made of Direwolf hide, and can take quite a beating. Rumor has it t
             <Material>Leather</Material>
             <Buff>
               <Type>SuperiorReinforcedFists</Type>
+            </Buff>
+            <Buff>
+              <Type>Deception</Type>
+              <Value1>10</Value1>
+              <Value2>15</Value2>
+              <BonusType>Enhancement</BonusType>
             </Buff>
             <Buff>
               <Type>Seeker</Type>
@@ -48753,6 +48767,12 @@ This belt is made of Direwolf hide, and can take quite a beating. Rumor has it t
               <Type>SuperiorReinforcedFists</Type>
             </Buff>
             <Buff>
+              <Type>Deception</Type>
+              <Value1>10</Value1>
+              <Value2>15</Value2>
+              <BonusType>Enhancement</BonusType>
+            </Buff>
+            <Buff>
               <Type>Seeker</Type>
               <Value1>6</Value1>
               <BonusType>Insightful</BonusType>
@@ -49730,6 +49750,12 @@ This belt is made of Direwolf hide, and can take quite a beating. Rumor has it t
               <Type>SuperiorReinforcedFists</Type>
             </Buff>
             <Buff>
+              <Type>Deception</Type>
+              <Value1>10</Value1>
+              <Value2>15</Value2>
+              <BonusType>Enhancement</BonusType>
+            </Buff>
+            <Buff>
               <Type>Seeker</Type>
               <Value1>6</Value1>
               <BonusType>Insightful</BonusType>
@@ -50700,6 +50726,12 @@ This belt is made of Direwolf hide, and can take quite a beating. Rumor has it t
             <Material>Leather</Material>
             <Buff>
               <Type>SuperiorReinforcedFists</Type>
+            </Buff>
+            <Buff>
+              <Type>Deception</Type>
+              <Value1>10</Value1>
+              <Value2>15</Value2>
+              <BonusType>Enhancement</BonusType>
             </Buff>
             <Buff>
               <Type>Seeker</Type>
@@ -52200,12 +52232,12 @@ Masters.</Description>
           <ArtifactFiligree>
             <Name/>
           </ArtifactFiligree>
-          <SnapshotStrength>36</SnapshotStrength>
-          <SnapshotIntelligence>40</SnapshotIntelligence>
-          <SnapshotWisdom>102</SnapshotWisdom>
-          <SnapshotDexterity>71</SnapshotDexterity>
-          <SnapshotConstitution>88</SnapshotConstitution>
-          <SnapshotCharisma>44</SnapshotCharisma>
+          <SnapshotStrength>32</SnapshotStrength>
+          <SnapshotIntelligence>36</SnapshotIntelligence>
+          <SnapshotWisdom>98</SnapshotWisdom>
+          <SnapshotDexterity>67</SnapshotDexterity>
+          <SnapshotConstitution>84</SnapshotConstitution>
+          <SnapshotCharisma>40</SnapshotCharisma>
         </EquippedGear>
         <EquippedGear>
           <Name>Trance Gear Set</Name>
@@ -52424,6 +52456,12 @@ This belt is made of Direwolf hide, and can take quite a beating. Rumor has it t
             <Material>Leather</Material>
             <Buff>
               <Type>SuperiorReinforcedFists</Type>
+            </Buff>
+            <Buff>
+              <Type>Deception</Type>
+              <Value1>10</Value1>
+              <Value2>15</Value2>
+              <BonusType>Enhancement</BonusType>
             </Buff>
             <Buff>
               <Type>Seeker</Type>
@@ -54533,23 +54571,11 @@ Masters.</Description>
           <LevelTrainedAt>0</LevelTrainedAt>
         </TrainedFeat>
       </SpecialFeats>
-      <SelfAndPartyBuffs>Long Lasting Potion of 15 Melee Power</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Long Lasting Elixir of Strength</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Long Lasting Elixir of Intelligence</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Long Lasting Elixir of Dexterity</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Long Lasting Elixir of Charisma</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Long Lasting Elixir of Constitution</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Long Lasting Elixir of Wisdom</SelfAndPartyBuffs>
       <SelfAndPartyBuffs>Nightshield</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Displacement</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Stone of Change: Resistance Ritual</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Stone of Change: Alchemical Armor Eldritch Ritual</SelfAndPartyBuffs>
       <SelfAndPartyBuffs>Long Lasting Elixir of Dexterity</SelfAndPartyBuffs>
       <SelfAndPartyBuffs>Long Lasting Elixir of Wisdom</SelfAndPartyBuffs>
       <SelfAndPartyBuffs>Long Lasting Elixir of Constitution</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Bard: Inspire Excellence</SelfAndPartyBuffs>
       <SelfAndPartyBuffs>Nightshield</SelfAndPartyBuffs>
-      <SelfAndPartyBuffs>Deadly Weapons</SelfAndPartyBuffs>
     </Life>
     <GuildLevel>200</GuildLevel>
     <ApplyGuildBuffs>1</ApplyGuildBuffs>

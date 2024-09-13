@@ -6790,6 +6790,13 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Item>Hide</Item>
       <Item>Move Silently</Item>
     </Effect>
+    <Effect>
+      <Type>Incorporeality</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>All</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Enhanced Ki</Type>
@@ -13312,7 +13319,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Lesser Displacement: Equipping this item causes light to distort around you. Attacks from enemies have a 25% chance to miss you due to concealment.</DisplayText>
     <Effect>
       <Type>Displacement</Type>
-      <Bonus>Equipment</Bonus>
+      <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">25</Amount>
     </Effect>
@@ -14279,11 +14286,11 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>%b1 Melee Alacrity %v1%: Gain %v1% %b1 bonus to Melee attack speed. Does not stack with the Haste spell.</DisplayText>
     <Ignore>Enhancement</Ignore>
     <Effect>
-      <Type>Weapon_Alacrity</Type>
+      <Type>WeaponAlacrityClass</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
-      <Item>%i1</Item>
+      <Item>Melee</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -15755,6 +15762,22 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Poisonous 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Poisonous 7: This effect causes the edges of this weapon to drip with a vile venom, dealing 7d6 poison damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Poison</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Polycurse</Type>
     <DisplayText>Polycurse: This weapon is enchanted with many diverse curses. On a critical hit an enemy may be hit with one of these effects at random: Blindness, Exhaustion, Bestow Curse, or Enervation.</DisplayText>
   </Buff>
@@ -16385,6 +16408,30 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>RangedSpeedRomanNumeralXV</Type>
+    <DisplayText>Ranged Speed XV: Passive: %v1% Enhancement bonus to movement speed, %v2% Enhancement bonus to ranged attack speed.</DisplayText>
+    <Effect>
+      <Type>MovementSpeed</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>Weapon_Alacrity</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Dart</Item>
+      <Item>Great Crossbow</Item>
+      <Item>Heavy Crossbow</Item>
+      <Item>Light Crossbow</Item>
+      <Item>Longbow</Item>
+      <Item>Repeating Heavy Crossbow</Item>
+      <Item>Repeating Light Crossbow</Item>
+      <Item>Shortbow</Item>
     </Effect>
   </Buff>
   <Buff>

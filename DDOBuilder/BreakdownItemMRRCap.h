@@ -26,6 +26,8 @@ class BreakdownItemMRRCap :
         virtual void StanceActivated(Build* pBuild, const std::string& stanceName) override;
         virtual void StanceDeactivated(Build* pBuild, const std::string& stanceName) override;
         virtual void GearChanged(Build* pBuild, InventorySlotType slot) override;
-    private:
+        virtual void FeatTrained(Build*, const std::string&) override;
+        virtual void FeatRevoked(Build*, const std::string&) override;
+private:
         CString m_title;
 };

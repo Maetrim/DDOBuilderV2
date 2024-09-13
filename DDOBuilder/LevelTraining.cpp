@@ -62,6 +62,19 @@ void LevelTraining::TrainFeat(
     m_TrainedFeats.push_back(tf);
 }
 
+void LevelTraining::TrainAlternateFeat(
+    const std::string& featName,
+    const std::string& type)
+{
+    for (auto&& it : m_TrainedFeats)
+    {
+        if (it.Type() == type)
+        {
+            it.SetAlternateFeat(featName);
+        }
+    }
+}
+
 std::string LevelTraining::RevokeFeat(const std::string& type)
 {
     std::string revokedFeat;

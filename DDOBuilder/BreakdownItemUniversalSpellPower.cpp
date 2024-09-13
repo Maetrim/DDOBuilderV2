@@ -31,7 +31,7 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
         if (pBIIYH != NULL && pBIIYH->Total() > 0)
         {
             pBIIYH->AttachObserver(this);   // we need to know about changes
-            // ??? Do not add the bonus if we already have an Implement bonus present
+            // Do not add the bonus if we already have an Implement bonus present
             if (!IsBonusTypePresent(m_itemEffects, "Implement"))
             {
                 // we do need to list an implement bonus for our main hands weapon
@@ -49,7 +49,7 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
                             Effect_Weapon_Enchantment,
                             "Implement in your hands",
                             "Implement",
-                            weaponPlus * 3);
+                            weaponPlus);    // not 3*, see https://ddowiki.com/page/Implement_bonus
                         AddOtherEffect(implementBonusEffect);
                     }
                 }

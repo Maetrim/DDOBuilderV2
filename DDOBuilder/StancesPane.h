@@ -93,6 +93,8 @@ class CStancesPane :
         virtual void UpdateClassChanged(Build*, const std::string& classFrom, const std::string& classTo, size_t level) override;
         virtual void UpdateNewStance(Build*, const Stance&) override;
         virtual void UpdateRevokeStance(Build*, const Stance&) override;
+        virtual void UpdateFeatTrained(Build*, const std::string& featName) override;
+        virtual void UpdateFeatRevoked(Build*, const std::string& featName) override;
         virtual void UpdateStanceActivated(Build*, const std::string& stanceName) override;
         virtual void UpdateStanceDeactivated(Build*, const std::string& stanceName) override;
         virtual void UpdateStanceDisabled(Build*, const std::string& stanceName) override;

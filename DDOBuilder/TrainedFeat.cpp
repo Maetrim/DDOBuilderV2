@@ -143,6 +143,11 @@ void TrainedFeat::IncrementCount()
     ++m_count;
 }
 
+void TrainedFeat::SetAlternateFeat(const std::string& featName)
+{
+    Set_AlternateFeatName(featName);
+}
+
 void TrainedFeat::TranslateOldFeatNames()
 {
     static std::string nameTranslations[] =
@@ -248,7 +253,16 @@ void TrainedFeat::TranslateOldFeatNames()
         "Warlock: Pact: Great Old One",         "Pact: Great Old One",
         "Warlock: Pact: Celestial",             "Pact: Celestial",
         "Warlock: Pact: The Abyss",             "Pact: The Abyss",
-        "Warlock: Pact: The Carceri Storm",     "Pact: The Carceri Storm"
+        "Warlock: Pact: The Carceri Storm",     "Pact: The Carceri Storm",
+
+        "Past Life: Bard (Stormsinger)",        "Past Life: Bard - Stormsinger",
+        "Past Life: Cleric (Dark Apostate)",    "Past Life: Cleric - Dark Apostate",
+        "Past Life: Druid (Blight Caster)",     "Past Life: Druid - Blight Caster",
+        "Past Life: Fighter (Dragon Lord)",     "Past Life: Fighter - Dragon Lord",
+        "Past Life: Paladin (Sacred Fist)",     "Past Life: Paladin - Sacred Fist",
+        "Past Life: Ranger (Dark Hunter)",      "Past Life: Ranger - Dark Hunter",
+        "Past Life: Sorcerer (Wild Mage)",      "Past Life: Sorcerer - Wild Mage",
+        "Past Life: Warlock (Acolyte of the Skin)", "Past Life: Warlock - Acolyte of the Skin"
     };
     size_t count = sizeof(nameTranslations) / sizeof(std::string);
     if (count % 2 != 0)

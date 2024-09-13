@@ -141,7 +141,7 @@ void BreakdownItemAC::CreateOtherEffects()
                     double percentBonus = pBI->Total();
                     if (percentBonus > 0)
                     {
-                        double valueShield = GetEffectValue("Shield Enhancement");
+                        double valueShield = GetEffectValue("Shield");
                         double valueEnhancement = 0;
                         pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
                         BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);

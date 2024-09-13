@@ -25,7 +25,8 @@
 
 CInfoTip::CInfoTip() :
     m_origin(CPoint(0, 0)),
-    m_bRightAlign(false)
+    m_bRightAlign(false),
+    m_bAlternate(false)
 {
 }
 
@@ -49,7 +50,7 @@ BEGIN_MESSAGE_MAP(CInfoTip, CWnd)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-BOOL CInfoTip::Create(CWnd* pParentWnd) 
+BOOL CInfoTip::Create(CWnd* pParentWnd, bool bAlternate) 
 {
     // Must have a parent
     ASSERT(pParentWnd != NULL);
@@ -66,6 +67,7 @@ BOOL CInfoTip::Create(CWnd* pParentWnd)
             pParentWnd->GetSafeHwnd(), 
             NULL, 
             NULL);
+    m_bAlternate = bAlternate;
 
     return bSuccess;
 }
@@ -383,7 +385,7 @@ void CInfoTip::SetEnhancementSelectionItem(
 void CInfoTip::SetFeatItem(
         const Build& build,
         const Feat* pItem,
-        bool /*featSwapWarning*/,
+        bool featSwapWarning,
         size_t /*level*/,
         bool /*grantedFeat*/)
 {
@@ -403,6 +405,20 @@ void CInfoTip::SetFeatItem(
     {
         InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
         pRequirements->AddRequirement("This Feat is in your ignore list (Right click to restore it).", false);
+        m_tipItems.push_back(pRequirements);
+    }
+
+    if (m_bAlternate)
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement("This is an alternate feat selection.", false);
+        m_tipItems.push_back(pRequirements);
+    }
+
+    if (featSwapWarning)
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement("Requires a feat swap with Fred the Mindflayer.", false);
         m_tipItems.push_back(pRequirements);
     }
 

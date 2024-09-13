@@ -31,7 +31,7 @@ class CInfoTip :
         CInfoTip();
         virtual ~CInfoTip();
 
-        BOOL Create(CWnd* parent);
+        BOOL Create(CWnd* parent, bool bAlternate = false);
 
         void SetEnhancementTreeItem(
                 const Build& build,
@@ -89,9 +89,9 @@ class CInfoTip :
         void SetOrigin(CPoint origin, CPoint alternate, bool rightAlign);
         void Show();
         void Hide();
+        BOOL GetWindowSize(CDC* pDC, CSize* size);
 
     protected:
-        BOOL GetWindowSize(CDC* pDC, CSize* size);
         //{{AFX_MSG(CInfoTip)
         afx_msg void OnPaint();
         //}}AFX_MSG
@@ -113,4 +113,5 @@ class CInfoTip :
         CPoint m_alternate;
         bool m_bRightAlign;
         std::vector<InfoTipItem*> m_tipItems;
+        bool m_bAlternate;
 };

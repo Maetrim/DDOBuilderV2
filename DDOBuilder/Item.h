@@ -76,9 +76,9 @@ class Item :
                 DL_OPTIONAL_OBJECT(_, BaseDice, DamageDice) \
                 DL_OPTIONAL_SIMPLE(_, size_t, CriticalMultiplier, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, CriticalThreatRange, 0) \
-                DL_OPTIONAL_SIMPLE(_, size_t, ArmorBonus, 0) \
-                DL_OPTIONAL_SIMPLE(_, size_t, MithralBody, 0) \
-                DL_OPTIONAL_SIMPLE(_, size_t, AdamantineBody, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, ArmorBonus, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, MithralBody, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, AdamantineBody, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, MaximumDexterityBonus, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, ArmorCheckPenalty, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, ArcaneSpellFailure, 0) \
