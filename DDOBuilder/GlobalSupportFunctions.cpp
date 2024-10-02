@@ -1326,7 +1326,8 @@ BreakdownType SpellPowerToBreakdown(SpellPowerType sp)
     case SpellPower_Electric:       bt = Breakdown_SpellPowerElectric; break;
     case SpellPower_Evil:           bt = Breakdown_SpellPowerEvil; break;
     case SpellPower_Fire:           bt = Breakdown_SpellPowerFire; break;
-    case SpellPower_ForceUntyped:   bt = Breakdown_SpellPowerForceUntyped; break;
+    case SpellPower_Force:          bt = Breakdown_SpellPowerForce; break;
+    case SpellPower_Lawful:         bt = Breakdown_SpellPowerLawful; break;
     case SpellPower_LightAlignment: bt = Breakdown_SpellPowerLightAlignment; break;
     case SpellPower_Negative:       bt = Breakdown_SpellPowerNegative; break;
     case SpellPower_Physical:       bt = Breakdown_SpellPowerPhysical; break;
@@ -1335,6 +1336,7 @@ BreakdownType SpellPowerToBreakdown(SpellPowerType sp)
     case SpellPower_Repair:         bt = Breakdown_SpellPowerRepair; break;
     case SpellPower_Rust:           bt = Breakdown_SpellPowerRust; break;
     case SpellPower_Sonic:          bt = Breakdown_SpellPowerSonic; break;
+    case SpellPower_Untyped:        bt = Breakdown_SpellPowerUntyped; break;
     }
     return bt;
 }
@@ -1350,7 +1352,8 @@ BreakdownType SpellPowerToCriticalChanceBreakdown(SpellPowerType sp)
     case SpellPower_Electric:       bt = Breakdown_SpellCriticalChanceElectric; break;
     case SpellPower_Evil:           bt = Breakdown_SpellCriticalChanceEvil; break;
     case SpellPower_Fire:           bt = Breakdown_SpellCriticalChanceFire; break;
-    case SpellPower_ForceUntyped:   bt = Breakdown_SpellCriticalChanceForceUntyped; break;
+    case SpellPower_Force:          bt = Breakdown_SpellCriticalChanceForce; break;
+    case SpellPower_Lawful:         bt = Breakdown_SpellCriticalChanceLawful; break;
     case SpellPower_LightAlignment: bt = Breakdown_SpellCriticalChanceLightAlignment; break;
     case SpellPower_Negative:       bt = Breakdown_SpellCriticalChanceNegative; break;
     case SpellPower_Physical:       bt = Breakdown_SpellCriticalChancePhysical; break;
@@ -1359,6 +1362,7 @@ BreakdownType SpellPowerToCriticalChanceBreakdown(SpellPowerType sp)
     case SpellPower_Repair:         bt = Breakdown_SpellCriticalChanceRepair; break;
     case SpellPower_Rust:           bt = Breakdown_SpellCriticalChanceRust; break;
     case SpellPower_Sonic:          bt = Breakdown_SpellCriticalChanceSonic; break;
+    case SpellPower_Untyped:        bt = Breakdown_SpellCriticalChanceUntyped; break;
     }
     return bt;
 }
@@ -1374,7 +1378,8 @@ BreakdownType SpellPowerToCriticalMultiplierBreakdown(SpellPowerType sp)
     case SpellPower_Electric:       bt = Breakdown_SpellCriticalMultiplierElectric; break;
     case SpellPower_Evil:           bt = Breakdown_SpellCriticalMultiplierEvil; break;
     case SpellPower_Fire:           bt = Breakdown_SpellCriticalMultiplierFire; break;
-    case SpellPower_ForceUntyped:   bt = Breakdown_SpellCriticalMultiplierForceUntyped; break;
+    case SpellPower_Force:          bt = Breakdown_SpellCriticalMultiplierForce; break;
+    case SpellPower_Lawful:         bt = Breakdown_SpellCriticalMultiplierLawful; break;
     case SpellPower_LightAlignment: bt = Breakdown_SpellCriticalMultiplierLightAlignment; break;
     case SpellPower_Negative:       bt = Breakdown_SpellCriticalMultiplierNegative; break;
     case SpellPower_Physical:       bt = Breakdown_SpellCriticalMultiplierPhysical; break;
@@ -1383,6 +1388,7 @@ BreakdownType SpellPowerToCriticalMultiplierBreakdown(SpellPowerType sp)
     case SpellPower_Repair:         bt = Breakdown_SpellCriticalMultiplierRepair; break;
     case SpellPower_Rust:           bt = Breakdown_SpellCriticalMultiplierRust; break;
     case SpellPower_Sonic:          bt = Breakdown_SpellCriticalMultiplierSonic; break;
+    case SpellPower_Untyped:        bt = Breakdown_SpellCriticalMultiplierUntyped; break;
     }
     return bt;
 }
@@ -2305,7 +2311,7 @@ size_t WeaponBaseCriticalRange(WeaponType wt)
 }
 
 
-std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t maxLevel)
+std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t maxLevel, const std::string& selectedAugment)
 {
     std::list<Augment> compatibleAugments;
     if (aug.ItemSpecificAugments().size() > 0)
@@ -2314,13 +2320,14 @@ std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t maxLevel)
     }
     else
     {
+        bool bMatchingColourOnly = AfxGetApp()->GetProfileInt("ItemSelectDialog", "AugmentsMatchColourOnly", 0);
         std::string name = aug.Type();
         const std::list<Augment>& augments = Augments();
         std::list<Augment>::const_iterator it = augments.begin();
         while (it != augments.end())
         {
             bool bAdded = false;
-            if ((*it).IsCompatibleWithSlot(name))
+            if ((*it).IsCompatibleWithSlot(name, bMatchingColourOnly, selectedAugment))
             {
                 // must be the right level or lower
                 if ((*it).HasMinLevel() && (*it).MinLevel() <= maxLevel)

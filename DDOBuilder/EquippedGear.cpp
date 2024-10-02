@@ -1030,7 +1030,7 @@ void EquippedGear::ApplyFileItemAugment(Item* pItem, CString augmentText)
         {
             // this augment has no selection, see if we can place this augment here
             // first find the list of compatible augments for this augment slot
-            std::list<Augment> compatibleAugments = CompatibleAugments(augments[i], pItem->MinLevel());
+            std::list<Augment> compatibleAugments = CompatibleAugments(augments[i], pItem->MinLevel(), "");
             std::list<Augment>::const_iterator it = compatibleAugments.begin();
             while (!bPlaced && it != compatibleAugments.end())
             {
@@ -1153,7 +1153,7 @@ void EquippedGear::ApplyClipboardItemAugment(Item* pItem, CString augmentText)
             {
                 // this augment has no selection, see if we can place this augment here
                 // first find the list of compatible augments for this augment slot
-                std::list<Augment> compatibleAugments = CompatibleAugments(augments[i], pItem->MinLevel());
+                std::list<Augment> compatibleAugments = CompatibleAugments(augments[i], pItem->MinLevel(), "");
                 std::list<Augment>::const_iterator it = compatibleAugments.begin();
                 while (!bPlaced && it != compatibleAugments.end())
                 {

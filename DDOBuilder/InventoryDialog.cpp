@@ -467,6 +467,8 @@ void CInventoryDialog::OnPaint()
 void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnLButtonDown(nFlags, point);
+    static bool bJustSetFiligree = false;
+    static size_t sMenuCount = 0;
     InventorySlotType slotClicked = FindItemByPoint(NULL);
     if (slotClicked != Inventory_Unknown)
     {
@@ -507,13 +509,16 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                         CreateFiligreeMenu(filigreeIndex, isArtifactFiligree, clickedFiligree.empty());
                         ClientToScreen(&itemRect);
                         CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+                        ++sMenuCount;
                         UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
                                 m_filigreeMenu.GetSafeHmenu(),
                                 itemRect.left,
                                 itemRect.top,
                                 this);
-                        if (sel > c_noMenuSelection)    // sel is 0 if menu is canceled
+                        if (sel > c_noMenuSelection && !bJustSetFiligree)    // sel is 0 if menu is canceled
                         {
+                            --sMenuCount;
+                            bJustSetFiligree = (sMenuCount > 0);
                             if (sel == c_clearMenuOption)   // clear augment option
                             {
                                 if (isArtifactFiligree)
@@ -551,6 +556,11 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     }
                                 }
                             }
+                        }
+                        else if (bJustSetFiligree)
+                        {
+                            sMenuCount--;
+                            bJustSetFiligree = (sMenuCount != 0);
                         }
                     }
                     else

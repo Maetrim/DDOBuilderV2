@@ -1358,7 +1358,7 @@ void CForumExportDlg::AddSpellPowers(std::stringstream& forumExport)
     AddSpellPowerToTable(forumExport, "Electric       ", Breakdown_SpellPowerElectric, Breakdown_SpellCriticalChanceElectric, Breakdown_SpellCriticalMultiplierElectric);
     AddSpellPowerToTable(forumExport, "Evil           ", Breakdown_SpellPowerEvil, Breakdown_SpellCriticalChanceEvil, Breakdown_SpellCriticalMultiplierEvil);
     AddSpellPowerToTable(forumExport, "Fire           ", Breakdown_SpellPowerFire, Breakdown_SpellCriticalChanceFire, Breakdown_SpellCriticalMultiplierFire);
-    AddSpellPowerToTable(forumExport, "Force/Untyped  ", Breakdown_SpellPowerForceUntyped, Breakdown_SpellCriticalChanceForceUntyped, Breakdown_SpellCriticalMultiplierForceUntyped);
+    AddSpellPowerToTable(forumExport, "Force/Untyped  ", Breakdown_SpellPowerForce, Breakdown_SpellCriticalChanceForce, Breakdown_SpellCriticalMultiplierForce);
     AddSpellPowerToTable(forumExport, "Negative       ", Breakdown_SpellPowerNegative, Breakdown_SpellCriticalChanceNegative, Breakdown_SpellCriticalMultiplierNegative);
     AddSpellPowerToTable(forumExport, "Physical       ", Breakdown_SpellPowerPhysical, Breakdown_SpellCriticalChancePhysical, Breakdown_SpellCriticalMultiplierPhysical);
     AddSpellPowerToTable(forumExport, "Poison         ", Breakdown_SpellPowerPoison, Breakdown_SpellCriticalChancePoison, Breakdown_SpellCriticalMultiplierPoison);
@@ -1366,6 +1366,7 @@ void CForumExportDlg::AddSpellPowers(std::stringstream& forumExport)
     AddSpellPowerToTable(forumExport, "Repair         ", Breakdown_SpellPowerRepair, Breakdown_SpellCriticalChanceRepair, Breakdown_SpellCriticalMultiplierRepair);
     AddSpellPowerToTable(forumExport, "Rust           ", Breakdown_SpellPowerRust, Breakdown_SpellCriticalChanceRust, Breakdown_SpellCriticalMultiplierRust);
     AddSpellPowerToTable(forumExport, "Sonic          ", Breakdown_SpellPowerSonic, Breakdown_SpellCriticalChanceSonic, Breakdown_SpellCriticalMultiplierSonic);
+    AddSpellPowerToTable(forumExport, "Untyped        ", Breakdown_SpellPowerUntyped, Breakdown_SpellCriticalChanceUntyped, Breakdown_SpellCriticalMultiplierUntyped);
     forumExport << "[/TABLE][/SIZE]\r\n";
 }
 

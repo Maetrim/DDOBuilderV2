@@ -1544,35 +1544,35 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
     // Warlock Eldritch blast
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Eldritch Blast Dice",
-                hParent,
-                TVI_LAST);
-        BreakdownItem * pEB = new BreakdownItemPactDice(
-                this,
-                Breakdown_EldritchBlastDice,
-                Effect_EldritchBlast,
-                "Eldritch Blast Dice",
-                &m_itemBreakdownTree,
-                hItem,
-                8);         // d8's
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEB);
-        m_items.push_back(pEB);
-    }
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Eldritch Pact Blast Pact Dice",
+                "Eldritch Blast D8s",
                 hParent,
                 TVI_LAST);
         BreakdownItem * pPD = new BreakdownItemPactDice(
                 this,
-                Breakdown_EldritchBlastPactDice,
-                Effect_PactDice,
-                "Eldritch Blast Pact Dice",
+                Breakdown_EldritchBlastD8,
+                Effect_EldritchBlastD8,
+                "Eldritch Blast (D8's)",
+                &m_itemBreakdownTree,
+                hItem,
+                8);         // d8's
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pPD);
+        m_items.push_back(pPD);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Eldritch Blast D6s",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pEB = new BreakdownItemPactDice(
+                this,
+                Breakdown_EldritchBlastD6,
+                Effect_EldritchBlastD6,
+                "Eldritch Blast (D6's)",
                 &m_itemBreakdownTree,
                 hItem,
                 6);         // d6's
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pPD);
-        m_items.push_back(pPD);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEB);
+        m_items.push_back(pEB);
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
@@ -1708,7 +1708,8 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellPower(Breakdown_SpellPowerElectric, SpellPower_Electric, "Electric Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerEvil, SpellPower_Evil, "Evil Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerFire, SpellPower_Fire, "Fire Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerForce, SpellPower_Force, "Force Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerLawful, SpellPower_Lawful, "Lawful Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerNegative, SpellPower_Negative, "Negative Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerPhysical, SpellPower_Physical, "Physical Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerPoison, SpellPower_Poison, "Poison Spell power", hItem);
@@ -1716,6 +1717,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellPower(Breakdown_SpellPowerRepair, SpellPower_Repair, "Repair Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerRust, SpellPower_Rust, "Rust Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerSonic, SpellPower_Sonic, "Sonic Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerUntyped, SpellPower_Untyped, "Untyped Spell power", hItem);
     }
 
     {
@@ -1747,7 +1749,8 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceElectric, SpellPower_Electric, "Electric Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceEvil, SpellPower_Evil, "Evil Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceFire, SpellPower_Fire, "Fire Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceForce, SpellPower_Force, "Force Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceLawful, SpellPower_Lawful, "Lawful Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceNegative, SpellPower_Negative, "Negative Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChancePoison, SpellPower_Poison, "Poison Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChancePhysical, SpellPower_Physical, "Physical Critical Chance", hItem);
@@ -1755,6 +1758,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRepair, SpellPower_Repair, "Repair Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRust, SpellPower_Rust, "Rust Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceSonic, SpellPower_Sonic, "Sonic Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceUntyped, SpellPower_Untyped, "Untyped Critical Chance", hItem);
     }
 
     {
@@ -1786,7 +1790,8 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierElectric, SpellPower_Electric, "Electric Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierEvil, SpellPower_Evil, "Evil Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierFire, SpellPower_Fire, "Fire Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierForce, SpellPower_Force, "Force Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierLawful, SpellPower_Lawful, "Lawful Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierNegative, SpellPower_Negative, "Negative Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierPhysical, SpellPower_Physical, "Physical Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierPoison, SpellPower_Poison, "Poison Critical Multiplier", hItem);
@@ -1794,6 +1799,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRepair, SpellPower_Repair, "Repair Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRust, SpellPower_Rust, "Rust Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierSonic, SpellPower_Sonic, "Sonic Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierUntyped, SpellPower_Untyped, "Untyped Critical Multiplier", hItem);
     }
 
     {

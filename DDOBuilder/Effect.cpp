@@ -177,7 +177,8 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                     auto it = m_Item.begin();
                     while (it != m_Item.end())
                     {
-                        if (TextToEnumEntry((*it), abilityTypeMap, false) == Ability_Unknown)
+                        if (TextToEnumEntry((*it), abilityTypeMap, false) == Ability_Unknown
+                            && (*it) != "Unknown")
                         {
                             (*ss) << "Ability effect has bad enum value\n";
                             ok = false;
@@ -927,8 +928,7 @@ bool Effect::operator==(const Effect & other) const
             && (m_hasDamageDice == other.m_hasDamageDice)
             && (m_DamageDice == other.m_DamageDice)
             && (m_hasDamage == other.m_hasDamage)
-            && (m_Damage == other.m_Damage)
-            && (m_Bonus != "Unique");
+            && (m_Damage == other.m_Damage);
 }
 
 bool Effect::IsActive(

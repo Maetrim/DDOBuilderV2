@@ -167,10 +167,6 @@ int DC::CalculateDC(const Build * build) const
         BreakdownType bt = SchoolToBreakdown(*sit);
         BreakdownItem * pBI = FindBreakdown(bt);
         int schoolBonus = (int)pBI->Total();
-        if (*sit != SpellSchool_GlobalDC)
-        {
-            schoolBonus -= 10;  // ignore base 10 in schools
-        }
         value += schoolBonus;
         ++sit;
     }
@@ -371,10 +367,6 @@ std::string DC::DCBreakdown(const Build * build) const
         BreakdownType bt = SchoolToBreakdown(*sit);
         BreakdownItem * pBI = FindBreakdown(bt);
         int schoolBonus = (int)pBI->Total();
-        if (*sit != SpellSchool_GlobalDC)
-        {
-            schoolBonus -= 10;
-        }
         ss << EnumEntryText(*sit, spellSchoolTypeMap) << "(" << schoolBonus << ")";
         ++sit;
     }

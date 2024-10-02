@@ -766,7 +766,8 @@ void BreakdownItem::AddEffect(
     std::list<Effect>::iterator it = effectList->begin();
     while (!found && it != effectList->end())
     {
-        if (effect == (*it))
+        if (effect == (*it)
+                && effect.Bonus() != "Unique")
         {
             // it is an existing effect, add another stack
             found = true;

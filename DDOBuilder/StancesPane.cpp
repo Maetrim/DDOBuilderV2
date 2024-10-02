@@ -266,7 +266,9 @@ BOOL CStancesPane::OnEraseBkgnd(CDC* pDC)
 void CStancesPane::CreateStanceWindows()
 {
     m_nextStanceId = IDC_SPECIALFEAT_0;
-    // create all the stances defined in the Stances.xml file
+    CreateStanceGroup("User", false);
+    CreateStanceGroup("Auto", false);
+// create all the stances defined in the Stances.xml file
     const std::list<Stance>& stances = Stances();
     for (auto&& sit : stances)
     {

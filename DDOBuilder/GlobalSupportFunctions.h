@@ -212,5 +212,5 @@ bool DarkModeEnabled();
 bool SearchForText(std::string source, const std::string& find);
 std::vector<Spell> FilterSpells(Build* pBuild, std::string& ct, int level);
 size_t WeaponBaseCriticalRange(WeaponType wt);
-std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t level);
+std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t level, const std::string& selectedAugment);
 bool IsShield(WeaponType wt);

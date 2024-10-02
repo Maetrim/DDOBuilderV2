@@ -734,6 +734,7 @@ void CDDOBuilderApp::VerifyLoadedData()
     VerifyAugments();
     VerifyFiligrees();
     VerifyItems();
+    VerifyBuffs();
     //VerifyOptionalBuffs();
     VerifySetBonuses();
     VerifyStances();
@@ -1271,6 +1272,14 @@ void CDDOBuilderApp::VerifyItems()
     for (auto&& iit : m_items)
     {
         iit.VerifyObject();
+    }
+}
+
+void CDDOBuilderApp::VerifyBuffs()
+{
+    for (auto&& ibit : m_itemBuffs)
+    {
+        ibit.VerifyObject();
     }
 }
 

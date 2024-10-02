@@ -54,7 +54,7 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnButtonIgnoreMinorArtifacts();
         afx_msg void OnButtonClearFilter();
         afx_msg void OnAugmentDropDown(UINT nID);
-    public:
+        afx_msg void OnAugmentsMatchSpecificColourOnly();
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -97,6 +97,7 @@ class CItemSelectDialog : public CDialog
         CButton m_buttonIgnoreRaidItems;
         CButton m_buttonIgnoreMinorArtifacts;
         CComboBox m_comboItemLevel;
+        CButton m_buttonAugmentsMatchColoursOnly;
         CStatic m_staticAugments;
         CStatic m_augmentType[MAX_Augments];
         CComboBoxTooltip m_comboAugmentDropList[MAX_Augments];

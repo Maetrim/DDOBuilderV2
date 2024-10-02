@@ -41,7 +41,7 @@ private:
     void AddItemEffects(const std::map<std::string, std::string>& itemFields);
     bool ProcessEnchantmentLine(const std::string& line);
     bool AddAugmentSlots(const std::string& line);
-    bool AddAugmentSlot(const std::string& line, const std::string& searchText);
+    bool AddAugmentSlot(const std::string& line, const std::string& searchText, const std::string& colour, const std::string& defaultSel);
     bool AddSetBonuses(const std::string& line);
     bool AddClassRequirements(const std::string& line);
 

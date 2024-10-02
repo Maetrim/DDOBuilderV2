@@ -3462,21 +3462,11 @@ void Build::ActivateStance(
         m_Stances.AddActiveStance(stance.Name());
         NotifyStanceActivated(stance.Name());
         // now revoke any stances that cannot be active at the same time as this stance
-        // these stances are in the same stance group which is not "User"
-        if (pStanceGroup->GroupName() != "User"
-                && pStanceGroup->GroupName() != "Auto")
+        // these stances are in the same stance group which is not single selection
+        if (pStanceGroup->IsSingleSelection())
         {
             pStanceGroup->DeactivateOtherStancesExcept(stance.Name(), this);
         }
-
-        //const std::list<std::string>& incompatibles = stance.IncompatibleStance();
-        //std::list<std::string>::const_iterator isit = incompatibles.begin();
-        //while (isit != incompatibles.end())
-        //{
-            //m_Stances.RevokeStance((*isit));
-            //NotifyStanceDeactivated((*isit));
-            //++isit;
-        //}
     }
 }
 

@@ -58,6 +58,7 @@ void CFindGearDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_ITEMLEVEL, m_comboItemLevel);
     DDX_Control(pDX, IDC_CHECK_IGNORERAIDITEMS, m_buttonIgnoreRaidItems);
     DDX_Control(pDX, IDC_CHECK_IGNOREARTIFACTS, m_buttonIgnoreMinorArtifacts);
+    DDX_Control(pDX, IDC_CHECK_SPECIFIC_COLOUR_ONLY, m_buttonAugmentsMatchColoursOnly);
     DDX_Control(pDX, IDC_STATIC_AUGMENTS, m_staticAugments);
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
@@ -103,6 +104,7 @@ BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_BN_CLICKED(IDC_BUTTON_CLEAR_FILTER, OnButtonClearFilter)
     ON_CONTROL_RANGE(CBN_DROPDOWN, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments - 1, OnAugmentDropDown)
     ON_CONTROL_RANGE(CBN_DROPDOWN, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Augments - 1, OnAugmentDropDown)
+    ON_BN_CLICKED(IDC_CHECK_SPECIFIC_COLOUR_ONLY, OnAugmentsMatchSpecificColourOnly)
 END_MESSAGE_MAP()
 
 // CFindGearDialog message handlers
@@ -123,6 +125,11 @@ BOOL CFindGearDialog::OnInitDialog()
     if (iState != 0)
     {
         m_buttonIgnoreMinorArtifacts.SetCheck(BST_CHECKED);
+    }
+    iState = AfxGetApp()->GetProfileInt("ItemSelectDialog", "AugmentsMatchColourOnly", 0);
+    if (iState != 0)
+    {
+        m_buttonAugmentsMatchColoursOnly.SetCheck(BST_CHECKED);
     }
 
     EnableBuddyButton(m_editSearchText.GetSafeHwnd(), m_clearFilter.GetSafeHwnd(), BBS_RIGHT);
@@ -369,11 +376,11 @@ void CFindGearDialog::PopulateAugmentList(
     combo->LockWindowUpdate();
     combo->ResetContent();
     // get all the augments compatible with this slot type
-    std::list<Augment> augments = CompatibleAugments(augment, m_pBuild->Level());
-    std::list<Augment>::const_iterator it = augments.begin();
     std::string selectedAugment = augment.HasSelectedAugment()
         ? augment.SelectedAugment()
         : "";
+    std::list<Augment> augments = CompatibleAugments(augment, m_pBuild->Level(), selectedAugment);
+    std::list<Augment>::const_iterator it = augments.begin();
 
     // note that this list can be sorted
     {
@@ -1350,4 +1357,11 @@ void CFindGearDialog::OnAugmentDropDown(UINT nID)
 
     dc.RestoreDC(nSave);
     pCombo->SetDroppedWidth(nWidth);
+}
+
+void CFindGearDialog::OnAugmentsMatchSpecificColourOnly()
+{
+    int augmentsMatchOnly = (m_buttonAugmentsMatchColoursOnly.GetCheck() == BST_CHECKED) ? 1 : 0;
+    AfxGetApp()->WriteProfileInt("ItemSelectDialog", "AugmentsMatchColourOnly", augmentsMatchOnly);
+    PopulateAvailableItemList();
 }

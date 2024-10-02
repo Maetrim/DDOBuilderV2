@@ -51,7 +51,7 @@ class CFindGearDialog : public CDialog
         afx_msg void OnButtonIgnoreMinorArtifacts();
         afx_msg void OnButtonClearFilter();
         afx_msg void OnAugmentDropDown(UINT nID);
-    public:
+        afx_msg void OnAugmentsMatchSpecificColourOnly();
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -94,6 +94,7 @@ class CFindGearDialog : public CDialog
         CButton m_buttonIgnoreRaidItems;
         CButton m_buttonIgnoreMinorArtifacts;
         CStatic m_staticAugments;
+        CButton m_buttonAugmentsMatchColoursOnly;
         CStatic m_augmentType[MAX_Augments];
         CComboBoxTooltip m_comboAugmentDropList[MAX_Augments];
         CEdit m_augmentValues[MAX_Augments];

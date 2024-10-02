@@ -130,6 +130,7 @@ private:
     void VerifyStances();
     void VerifySpells();
     void VerifyItems();
+    void VerifyBuffs();
     void VerifySentientGems();
     void VerifyWeaponGroups();
     void VerifyItemClickies();

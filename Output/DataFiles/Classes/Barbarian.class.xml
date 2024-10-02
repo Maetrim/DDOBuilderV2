@@ -18,6 +18,7 @@ Strength and Constitution.</Description>
     <ClassSkill>Jump</ClassSkill>
     <ClassSkill>Listen</ClassSkill>
     <ClassSkill>Swim</ClassSkill>
+    <Alignment>Neutral Good</Alignment>
     <Alignment>True Neutral</Alignment>
     <Alignment>Chaotic Neutral</Alignment>
     <Alignment>Chaotic Good</Alignment>
@@ -529,7 +530,7 @@ This bonus increases every three Barbarian levels thereafter.</Description>
     </Feat>
     <Feat>
       <Name>Uncanny Dodge</Name>
-      <Description>Activate this ability to gain a temporary 25% Dodge bonus and a +4 reflex
+      <Description>Activate this ability to gain a temporary 25% Dodge bonus and a +4 Reflex
 save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4,
 6, 8, 12, 16 and 20.</Description>
       <MaxTimesAcquire>6</MaxTimesAcquire>
@@ -538,73 +539,68 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4,
       <AutomaticAcquisition>
         <RequiresOneOf>
           <Requirement>
-            <Type>Class</Type>
+            <Type>ClassAtLevel</Type>
             <Item>Barbarian</Item>
             <Value>4</Value>
           </Requirement>
           <Requirement>
-            <Type>Class</Type>
-            <Item>Barbarian</Item>
-            <Value>6</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Barbarian</Item>
-            <Value>8</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Barbarian</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Barbarian</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Barbarian</Item>
-            <Value>20</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
+            <Type>ClassAtLevel</Type>
             <Item>Rogue</Item>
             <Value>4</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Rogue</Item>
-            <Value>6</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Rogue</Item>
-            <Value>8</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Rogue</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Rogue</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>Class</Type>
-            <Item>Rogue</Item>
-            <Value>20</Value>
           </Requirement>
         </RequiresOneOf>
       </AutomaticAcquisition>
-      <Effect>
-        <Type>DodgeBonus</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
+    <Stance>
+      <Name>Uncanny Dodge</Name>
+      <Icon>UncannyDodge</Icon>
+      <Description>Activate this ability to gain a temporary 25% Dodge bonus and a +4 Reflex
+save bonus.</Description>
+    </Stance>
+    <Effect>
+      <DisplayName>[Improved] Uncanny Dodge (Barbarian)</DisplayName>
+      <Type>DodgeBonus</Type>
+      <Bonus>Feat</Bonus>
+      <Amount size="21">0 0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</Amount>
+      <AType>ClassLevel</AType>
+      <StackSource>Barbarian</StackSource>
+    </Effect>
+    <Effect>
+      <DisplayName>[Improved] Uncanny Dodge (Rogue)</DisplayName>
+      <Type>DodgeBonus</Type>
+      <Bonus>Feat</Bonus>
+      <Amount size="21">0 0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</Amount>
+      <AType>ClassLevel</AType>
+      <StackSource>Rogue</StackSource>
+    </Effect>
+    <Effect>
+      <DisplayName>Active Uncanny Dodge bonus</DisplayName>
+      <Type>DodgeBonus</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">25</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Uncanny Dodge</Item>
+        </Requirement>
+      </Requirements>
+      <ApplyAsItemEffect/>
+    </Effect>
+    <Effect>
+      <DisplayName>Active Uncanny Dodge Reflex save bonus</DisplayName>
+      <Type>SaveBonus</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+      <Item>Reflex</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Uncanny Dodge</Item>
+        </Requirement>
+      </Requirements>
+      <ApplyAsItemEffect/>
+    </Effect>
     </Feat>
     <Feat>
       <Name>Past Life: Barbarian</Name>

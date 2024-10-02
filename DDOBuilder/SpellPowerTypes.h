@@ -17,7 +17,9 @@ enum SpellPowerType
     SpellPower_Electric,
     SpellPower_Evil,
     SpellPower_Fire,
-    SpellPower_ForceUntyped,
+    SpellPower_Force,
+    SpellPower_Good,
+    SpellPower_Lawful,
     SpellPower_LightAlignment,
     SpellPower_Negative,
     SpellPower_Physical,
@@ -26,6 +28,7 @@ enum SpellPowerType
     SpellPower_Repair,
     SpellPower_Rust,
     SpellPower_Sonic,
+    SpellPower_Untyped,
 };
 const XmlLib::enumMapEntry<SpellPowerType> spellPowerTypeMap[] =
 {
@@ -37,7 +40,9 @@ const XmlLib::enumMapEntry<SpellPowerType> spellPowerTypeMap[] =
     {SpellPower_Electric,       L"Electric"},
     {SpellPower_Evil,           L"Evil"},
     {SpellPower_Fire,           L"Fire"},
-    {SpellPower_ForceUntyped,   L"Force/Untyped"},
+    {SpellPower_Force,          L"Force"},
+    {SpellPower_Good,           L"Good"},
+    {SpellPower_Lawful,         L"Lawful"},
     {SpellPower_LightAlignment, L"Light/Alignment"},
     {SpellPower_Negative,       L"Negative"},
     {SpellPower_Physical,       L"Physical"},
@@ -46,5 +51,6 @@ const XmlLib::enumMapEntry<SpellPowerType> spellPowerTypeMap[] =
     {SpellPower_Repair,         L"Repair"},
     {SpellPower_Rust,           L"Rust"},
     {SpellPower_Sonic,          L"Sonic"},
+    {SpellPower_Untyped,        L"Untyped"},
     {SpellPowerType(0), NULL}
 };

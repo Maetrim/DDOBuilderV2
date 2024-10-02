@@ -15,7 +15,7 @@ class Augment :
         Augment(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
-        bool IsCompatibleWithSlot(const std::string& augmentType) const;
+        bool IsCompatibleWithSlot(const std::string& augmentType, bool bMatchingColourOnly, const std::string& selectedAugment) const;
         void AddImage(CImageList * pIL) const;
         bool operator<(const Augment & other) const;
         std::string CompoundDescription() const;
