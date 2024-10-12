@@ -13654,6 +13654,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Legendary Magma Surge Guard: This item stores the immeasurable heat of the planet's molten mantle. When the wearer of this item is successfully attacked in melee, superheated magma occasionally surges to the surface, causing a tremendous amount of Fire damage to the attacker.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Negation</Type>
+    <DisplayText>Legendary Negation: Attacks and offensive spells have a chance to inflict 1d3 Negative Levels. Cooldown: 30 seconds.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Nightmare Guard</Type>
     <DisplayText>Legendary Nightmare Guard: On being hit or missed, this item has a chance to attempt to fear your enemy, ripping the life from them as if they were struck with a Phantasmal Killer spell. Enemies must make a DC 100 Will save versus the Fear or a DC 100 Fortitude save versus Death or be slain. Even if they make their save versus Death, they may still be feared.</DisplayText>
   </Buff>
@@ -18807,6 +18811,31 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Shadow Striker</Type>
+    <DisplayText>Shadow Striker: Passive: +3% Profane bonus to Doublestrike and Doubleshot. (Doublestrike/Doubleshot is a chance to score an additional hit with a melee/ranged attack.) +15% Enhancement Bonus to Melee Attack Speed. +20% Enhancement Bonus to Ranged Attack Speed.</DisplayText>
+    <Effect>
+      <Type>Doublestrike</Type>
+      <Type>Doubleshot</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+    </Effect>
+    <Effect>
+      <Type>WeaponAlacrityClass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Melee</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponAlacrityClass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Melee</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Shatter</Type>
     <DisplayText>%b1 Shatter %v1: This effect gives a %v1 %b1 bonus to the DC to resist the character's Sunder and Improved Sunder attempts.</DisplayText>
     <Ignore>Enhancement</Ignore>
@@ -21856,6 +21885,10 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Touch of the Mournlands: This staff, once wielded by the Lord of Blades himself, taints each wound with the power of the Mournlands. Prolonged exposure will make the target more and more difficult to heal and repair, cutting their Healing and Repair Amplification, and also interferes with their ability to use magic by occasionally Quelling enemies on a Vorpal strike.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Touched by Wild Magic</Type>
+    <DisplayText>Touched by Wild Magic: See beyond your fate and destiny. This deck of Tarokka Cards is beyond your comprehension.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Toxic</Type>
     <DisplayText>Toxic: This weapon oozes with magical poisons from a dozen esoteric sources. Occasionally, these toxins will erupt on your target, unleashing a vile fog that will dissolve your foes with acid, and will additionally deal constitution damage to enemies whom are not immune to poison. Weak foes may be killed outright by this Toxic Cloud.</DisplayText>
   </Buff>
@@ -23129,6 +23162,18 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
         <Bonus size="1">3</Bonus>
         <Damage>Constitution</Damage>
       </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Wrath of the Zealot</Type>
+    <DisplayText>Wrath of the Zealot: You gain a Sacred bonus to Damage equal to half your Religious Lore feats.</DisplayText>
+    <Effect>
+      <Type>Weapon_Damage</Type>
+      <Bonus>Sacred</Bonus>
+      <AType>FeatCount</AType>
+      <StackSource>Religious Lore</StackSource>
+      <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
       <Item>All</Item>
     </Effect>
   </Buff>

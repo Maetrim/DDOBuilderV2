@@ -469,7 +469,6 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         m_item.m_AttackModifier.clear();
         m_item.m_DamageModifier.clear();
         m_item.m_DRBypass.clear();
-        m_item.Clear_IsGreensteel();
         m_item.Clear_MinorArtifact();
         m_item.Clear_RequirementsToUse();
         m_item.m_RequirementsToUse = Requirements();
@@ -501,7 +500,7 @@ void WikiItemFileProcessor::CreateItem(const std::map<std::string, std::string>&
         }
         m_item.Set_MinLevel(minLevel);
         // set the item slot type.
-        if (!m_item.HasNoAutoUpdate() && false == SetItemSlot(itemFields))
+        if (false == SetItemSlot(itemFields))
         {
             // no equipment slot for this item, its not real
             ::DeleteFile(itemFilename.c_str());
@@ -1250,6 +1249,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unnatural", "Unnatural Unnatural", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dragontouched", "Dragontouched", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "UniversalSpellPower", "Exceptional Universal Spell Power", "Exceptional", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shadow Striker", "Shadow Striker Shadow Striker", "Profane", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MinorActionBoostEnhancement", "Minor Action Boost Enhancement", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserActionBoostEnhancement", "Lesser Action Boost Enhancement", "Equipment", "");
@@ -1356,6 +1356,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Superior Nimbleness", "Superior Nimbleness", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Conditioning", "Legendary Conditioning", "Legendary", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Negation", "Legendary Negation Legendary Negation", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Stormreaver's Thunderclap", "Stormreaver's Thunderclap", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "3rd Degree Burns", "3rd Degree Burns", "", "", 5);
@@ -1571,6 +1572,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "DeceptionFixed", "Deception Deception", "Enhancement", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Darkwood", "Darkwood Darkwood", "Enhancement", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Densewood", "Densewood Densewood", "Enhancement", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Breath Weapon Focus", "Breath Weapon Focus", "", "");
 
     if (!bRecognised)
     {
@@ -2273,8 +2275,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatPreciseShot", "Feat : Precise Shot", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatWeaponFocusThrown", "Feat : Weapon Focus: Thrown", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatWindThroughTheTrees", "Feat : Wind through the Trees", "Enhancement", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatElusiveTarge", "Feat : Elusive TargetFeat", "Enhancement", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatFirstBlood", "Feat : First BloodFeat", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatElusiveTarget", "Feat : Elusive Target Feat", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatFirstBlood", "Feat : First Blood Feat", "Enhancement", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Kick 'Em While They're Down", "Kick 'Em While They're Down", "Enhancement", "");
     // class requirements are in the Enhancements list
@@ -2357,7 +2359,6 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Heroism", "Greater Heroism Greater Heroism: Passive", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Hardened Exterior", "Hardened Exterior", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Don't Count Me Out!", "Don't Count Me Out!", "", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Breath Weapon Focus", "Breath Weapon Focus", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Heroic Inspiration", "Heroic Inspiration", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Greater Elemental Spell Power", "Greater Elemental Spell Power", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Elemental Spell Power", "Elemental Spell Power", "", "");
@@ -2387,6 +2388,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dazing IV", "Dazing IV", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dazing VII", "Dazing VII", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Touched by Wild Magic", "Touched by Wild Magic", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Wrath of the Zealot", "Wrath of the Zealot", "Enhancement", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Heightened Awareness", "Heightened Awareness", "Insightful", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Hallowed", "Hallowed", "Equipment", "", 5);
