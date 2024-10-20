@@ -49,6 +49,98 @@ void Life::EndElement()
     DL_END(Life_PROPERTIES)
 }
 
+void Life::LoadComplete()
+{
+    // handle file upgrades here after load completes
+
+    // after load if we have any level up options, this is an older file
+    // format and these items need to move down into the Build objects
+    if (HasLevel4())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(4, Level4(), true);
+        }
+        Clear_Level4();
+    }
+    if (HasLevel8())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(8, Level8(), true);
+        }
+        Clear_Level8();
+    }
+    if (HasLevel12())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(12, Level12(), true);
+        }
+        Clear_Level12();
+    }
+    if (HasLevel16())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(16, Level16(), true);
+        }
+        Clear_Level16();
+    }
+    if (HasLevel20())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(20, Level20(), true);
+        }
+        Clear_Level20();
+    }
+    if (HasLevel24())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(24, Level24(), true);
+        }
+        Clear_Level24();
+    }
+    if (HasLevel28())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(28, Level28(), true);
+        }
+        Clear_Level28();
+    }
+    if (HasLevel32())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(32, Level32(), true);
+        }
+        Clear_Level32();
+    }
+    if (HasLevel36())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(36, Level36(), true);
+        }
+        Clear_Level36();
+    }
+    if (HasLevel40())
+    {
+        for (auto& bit : m_Builds)
+        {
+            bit.SetAbilityLevelUp(40, Level40(), true);
+        }
+        Clear_Level40();
+    }
+    for (auto& bit: m_Builds)
+    {
+        bit.LoadComplete();
+    }
+}
+
 void Life::Write(XmlLib::SaxWriter * writer) const
 {
     writer->StartElement(ElementName(), VersionAttributes());
@@ -158,53 +250,6 @@ void Life::SetBuildLevel(size_t buildIndex, size_t level)
         ++index;
     }
     m_pCharacter->SetActiveBuildIndex(index);
-}
-
-int Life::LevelUpsAtLevel(AbilityType ability, size_t level) const
-{
-    size_t levelUps = 0;
-    // add on level ups on 4,8,12,16,20,24 and 28
-    if (Level4() == ability && level >= 3)
-    {
-        ++levelUps;
-    }
-    if (Level8() == ability && level >= 7)
-    {
-        ++levelUps;
-    }
-    if (Level12() == ability && level >= 11)
-    {
-        ++levelUps;
-    }
-    if (Level16() == ability && level >= 15)
-    {
-        ++levelUps;
-    }
-    if (Level20() == ability && level >= 19)
-    {
-        ++levelUps;
-    }
-    if (Level24() == ability && level >= 23)
-    {
-        ++levelUps;
-    }
-    if (Level28() == ability && level >= 27)
-    {
-        ++levelUps;
-    }
-    if (Level32() == ability && level >= 31)
-    {
-        ++levelUps;
-    }
-    if (Level36() == ability && level >= 35)
-    {
-        ++levelUps;
-    }
-    if (Level40() == ability && level >= 39)
-    {
-        ++levelUps;
-    }
-    return levelUps;
 }
 
 int Life::TomeAtLevel(
@@ -465,61 +510,6 @@ void Life::SetAlignment(AlignmentType alignment)
 {
     Set_Alignment(alignment);
     NotifyAlignmentChanged(alignment);
-}
-
-AbilityType Life::SetAbilityLevelUp(
-        size_t level,
-        AbilityType ability)
-{
-    AbilityType old = Ability_Unknown;
-    switch (level)
-    {
-    case 4:
-        old = Level4();
-        Set_Level4(ability);
-        break;
-    case 8:
-        old = Level8();
-        Set_Level8(ability);
-        break;
-    case 12:
-        old = Level12();
-        Set_Level12(ability);
-        break;
-    case 16:
-        old = Level16();
-        Set_Level16(ability);
-        break;
-    case 20:
-        old = Level20();
-        Set_Level20(ability);
-        break;
-    case 24:
-        old = Level24();
-        Set_Level24(ability);
-        break;
-    case 28:
-        old = Level28();
-        Set_Level28(ability);
-        break;
-    case 32:
-        old = Level32();
-        Set_Level32(ability);
-        break;
-    case 36:
-        old = Level36();
-        Set_Level36(ability);
-        break;
-    case 40:
-        old = Level40();
-        Set_Level40(ability);
-        break;
-    default:
-        ASSERT(FALSE);      // invalid level up level
-        break;
-    }
-    //m_pDocument->SetModifiedFlag(TRUE);
-    return old;
 }
 
 size_t Life::GetSpecialFeatTrainedCount(

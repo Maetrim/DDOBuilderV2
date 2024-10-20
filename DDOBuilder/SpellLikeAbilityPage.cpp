@@ -100,6 +100,7 @@ void CSpellLikeAbilityPage::UpdateActiveBuildChanged(Character*)
     {
         pBuild->AttachObserver(this);
     }
+    m_slas.ClearSLAs();
 }
 
 void CSpellLikeAbilityPage::UpdateFeatEffectApplied(

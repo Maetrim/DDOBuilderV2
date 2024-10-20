@@ -466,7 +466,7 @@ size_t CFeatsClassControl::DrawLevelLine(
         const std::string& ct = m_pCharacter->ActiveBuild()->Class(cc);
         // only drawn if it matches current class selection
         if (ct == classSelection
-                || (classSelection == Class_Unknown && cc == 0)
+                || (classSelection == Class_Unknown && m_numClassColumns == 1)
                 || (classSelection == Class_Epic && cc == 0)
                 || (classSelection == Class_Legendary && cc == 0))
         {
@@ -1240,22 +1240,14 @@ void CFeatsClassControl::UpdateFeatTrained(
         Build *,
         const std::string&)
 {
-    if (!m_bUpdatePending)
-    {
-        PostMessage(UWM_UPDATE, 0, 0L);
-        m_bUpdatePending = true;
-    }
+    Invalidate();
 }
 
 void CFeatsClassControl::UpdateFeatRevoked(
         Build *,
         const std::string&)
 {
-    if (!m_bUpdatePending)
-    {
-        PostMessage(UWM_UPDATE, 0, 0L);
-        m_bUpdatePending = true;
-    }
+    Invalidate();
 }
 
 void CFeatsClassControl::UpdateAbilityValueChanged(Build*, AbilityType ability)

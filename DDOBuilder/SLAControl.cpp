@@ -258,10 +258,17 @@ LRESULT CSLAControl::OnMouseLeave(WPARAM, LPARAM)
     return 0;
 }
 
+void CSLAControl::ClearSLAs()
+{
+    m_SLAs.clear();
+    m_hitBoxes.clear();
+}
+
 void CSLAControl::SetCharacter(Character * pCharacter)
 {
     m_pCharacter = pCharacter;
     m_SLAs.clear();
+    m_hitBoxes.clear();
     if (m_pCharacter == NULL)
     {
         // no character == no SLAs to display

@@ -32,6 +32,7 @@ class Life :
     public:
         Life(Character* pCharacter);
         void Write(XmlLib::SaxWriter* writer) const;
+        void LoadComplete();
 
         CString UIDescription(size_t index) const;
         void SetName(const std::string& name);
@@ -43,7 +44,6 @@ class Life :
         void SetAbilityTome(AbilityType ability, size_t value);
         size_t AbilityTomeValue(AbilityType ability) const;
         int TomeAtLevel(AbilityType ability, size_t level) const;
-        AbilityType SetAbilityLevelUp(size_t level, AbilityType ability);
 
         // build support
         const Build& GetBuild(size_t buildIndex) const;
@@ -52,7 +52,6 @@ class Life :
         size_t AddBuild(size_t buildIndex);
         void DeleteBuild(size_t buildIndex);
         void SetBuildLevel(size_t buildIndex, size_t level);
-        int LevelUpsAtLevel(AbilityType ability, size_t level) const;
 
         void UpdateSkillPoints();
         void VerifyTrainedFeats();
@@ -99,16 +98,16 @@ class Life :
                 DL_SIMPLE(_, size_t, IntTome, 0) \
                 DL_SIMPLE(_, size_t, WisTome, 0) \
                 DL_SIMPLE(_, size_t, ChaTome, 0) \
-                DL_ENUM(_, AbilityType, Level4, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level8, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level12, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level16, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level20, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level24, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level28, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level32, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level36, Ability_Strength, abilityTypeMap) \
-                DL_ENUM(_, AbilityType, Level40, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level4, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level8, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level12, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level16, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level20, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level24, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level28, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level32, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level36, Ability_Strength, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, Level40, Ability_Strength, abilityTypeMap) \
                 DL_OBJECT(_, SkillTomes, Tomes) \
                 DL_THIS_OBJECT_LIST(_, Build, Builds) \
                 DL_OBJECT(_, FeatsListObject, SpecialFeats) \

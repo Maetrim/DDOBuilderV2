@@ -72,15 +72,19 @@ void CClassAndFeatPane::OnSize(UINT nType, int cx, int cy)
     CFormView::OnSize(nType, cx, cy);
     if (IsWindow(m_featsAndClasses.GetSafeHwnd()))
     {
+        int scrollX = GetScrollPos(SB_HORZ);
+        int scrollY = GetScrollPos(SB_VERT);
         CRect rctStatic;
         CRect rctCombo;
         GetDlgItem(IDC_STATIC_BUILD_LEVEL)->GetWindowRect(&rctStatic);
         m_comboBuildLevel.GetWindowRect(rctCombo);
         rctStatic -= rctStatic.TopLeft();
         rctStatic += CPoint(c_controlSpacing, c_controlSpacing);
+        rctStatic -= CPoint(scrollX, scrollY);
         GetDlgItem(IDC_STATIC_BUILD_LEVEL)->MoveWindow(rctStatic);
         rctCombo -= rctCombo.TopLeft();
         rctCombo += CPoint(rctStatic.right + c_controlSpacing, c_controlSpacing);
+        rctCombo -= CPoint(scrollX, scrollY);
         m_comboBuildLevel.MoveWindow(rctCombo);
         CSize requiredSize = m_featsAndClasses.RequiredSize();
         if (requiredSize == CSize(0, 0))
@@ -88,12 +92,11 @@ void CClassAndFeatPane::OnSize(UINT nType, int cx, int cy)
             // no size, make it fit the window under the level controls
             requiredSize = CSize(cx, cy);
         }
-        int scrollX = GetScrollPos(SB_HORZ);
-        int scrollY = GetScrollPos(SB_VERT);
         CRect rctControl(0, rctStatic.bottom + c_controlSpacing, requiredSize.cx, rctStatic.bottom + c_controlSpacing + requiredSize.cy);
+        int requiredScrollSize = requiredSize.cy + rctStatic.Height() + c_controlSpacing * 2;
         rctControl -= CPoint(scrollX, scrollY);
         m_featsAndClasses.MoveWindow(rctControl, TRUE);
-        SetScrollSizes(MM_TEXT, CSize(rctControl.right, rctControl.bottom));
+        SetScrollSizes(MM_TEXT, CSize(rctControl.right, requiredScrollSize));
     }
 }
 

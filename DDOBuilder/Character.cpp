@@ -66,6 +66,14 @@ void Character::AboutToLoad()
     m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
 }
 
+void Character::LoadComplete()
+{
+    for (auto& lit : m_Lives)
+    {
+        lit.LoadComplete();
+    }
+}
+
 bool Character::ShowUnavailable() const
 {
     return m_bShowUnavailableFeats;

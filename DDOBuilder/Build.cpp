@@ -116,6 +116,19 @@ XmlLib::SaxContentElementInterface * Build::StartElement(
 
 void Build::EndElement()
 {
+    if (!m_hasLevel4)
+    {
+        m_hasLevel4 = true;
+        m_hasLevel8 = true;
+        m_hasLevel12 = true;
+        m_hasLevel16 = true;
+        m_hasLevel20 = true;
+        m_hasLevel24 = true;
+        m_hasLevel28 = true;
+        m_hasLevel32 = true;
+        m_hasLevel36 = true;
+        m_hasLevel40 = true;
+    }
     m_hasNotes = true;
     SaxContentElement::EndElement();
     DL_END(Build_PROPERTIES)
@@ -140,6 +153,11 @@ void Build::Write(XmlLib::SaxWriter * writer) const
     writer->StartElement(ElementName(), VersionAttributes());
     DL_WRITE(Build_PROPERTIES)
     writer->EndElement();
+}
+
+void Build::LoadComplete()
+{
+    // handle file upgrades here after load completes
 }
 
 void Build::SetLifePointer(Life* pLife)
@@ -798,32 +816,35 @@ void Build::SetClass(size_t level, const std::string& ct)
         std::list<LevelTraining>::iterator it = m_Levels.begin();
         std::advance(it, level);
         classFrom = (*it).HasClass() ? (*it).Class() : Class_Unknown;
-        (*it).Set_Class(ct);
-        // add the log entry
-        std::stringstream ss;
-        if (classFrom != Class_Unknown)
+        if (ct != classFrom)
         {
-            ss << "Changed the class at level " << level + 1
-                    << " from \"" << classFrom.c_str() << "\" to \""
-                    << ct.c_str() << "\"";
+            (*it).Set_Class(ct);
+            // add the log entry
+            std::stringstream ss;
+            if (classFrom != Class_Unknown)
+            {
+                ss << "Changed the class at level " << level + 1
+                        << " from \"" << classFrom.c_str() << "\" to \""
+                        << ct.c_str() << "\"";
+            }
+            else
+            {
+                ss << "Set the class at level " << level + 1
+                        << " to \""
+                        << ct.c_str() << "\"";
+            }
+            GetLog().AddLogEntry(ss.str().c_str()); // and finally log it
+            UpdateCachedClassLevels();
+            UpdateSkillPoints(level);
+            SetModifiedFlag(TRUE);
+            UpdateSpells();
+            UpdateFeats(true);
+            VerifyTrainedFeats();
+            AutoTrainSingleSelectionFeats();
+            VerifyGear();
+            NotifyClassChanged(classFrom, ct, level); //?? check spells not messed up
         }
-        else
-        {
-            ss << "Set the class at level " << level + 1
-                    << " to \""
-                    << ct.c_str() << "\"";
-        }
-        GetLog().AddLogEntry(ss.str().c_str()); // and finally log it
-        UpdateCachedClassLevels();
-        UpdateSkillPoints(level);
-        SetModifiedFlag(TRUE);
     }
-    UpdateSpells();
-    UpdateFeats(true);
-    VerifyTrainedFeats();
-    AutoTrainSingleSelectionFeats();
-    VerifyGear();
-    NotifyClassChanged(classFrom, ct, level); //?? check spells not messed up
 }
 
 bool Build::RevokeClass(const std::string& ct)
@@ -1064,7 +1085,49 @@ std::string Build::BaseClassAtLevel(size_t level) const
 
 int Build::LevelUpsAtLevel(AbilityType ability, size_t level) const
 {
-    return m_pLife->LevelUpsAtLevel(ability, level);
+    size_t levelUps = 0;
+    // add on level ups on 4,8,12,16,20,24,28,32,36 and 40
+    if (Level4() == ability && level >= 3)
+    {
+        ++levelUps;
+    }
+    if (Level8() == ability && level >= 7)
+    {
+        ++levelUps;
+    }
+    if (Level12() == ability && level >= 11)
+    {
+        ++levelUps;
+    }
+    if (Level16() == ability && level >= 15)
+    {
+        ++levelUps;
+    }
+    if (Level20() == ability && level >= 19)
+    {
+        ++levelUps;
+    }
+    if (Level24() == ability && level >= 23)
+    {
+        ++levelUps;
+    }
+    if (Level28() == ability && level >= 27)
+    {
+        ++levelUps;
+    }
+    if (Level32() == ability && level >= 31)
+    {
+        ++levelUps;
+    }
+    if (Level36() == ability && level >= 35)
+    {
+        ++levelUps;
+    }
+    if (Level40() == ability && level >= 39)
+    {
+        ++levelUps;
+    }
+    return levelUps;
 }
 
 void Build::RevokeLostLevelFeats(size_t targetLevel, size_t currentLevel)
@@ -2701,74 +2764,63 @@ size_t Build::ChaTome() const
     return m_pLife->ChaTome();
 }
 
-AbilityType Build::Level4() const
+void Build::SetAbilityLevelUp(size_t level, AbilityType ability, bool bSuppressNotify)
 {
-    return m_pLife->Level4();
-}
-
-AbilityType Build::Level8() const
-{
-    return m_pLife->Level8();
-}
-
-AbilityType Build::Level12() const
-{
-    return m_pLife->Level12();
-}
-
-AbilityType Build::Level16() const
-{
-    return m_pLife->Level16();
-}
-
-AbilityType Build::Level20() const
-{
-    return m_pLife->Level20();
-}
-
-AbilityType Build::Level24() const
-{
-    return m_pLife->Level24();
-}
-
-AbilityType Build::Level28() const
-{
-    return m_pLife->Level28();
-}
-
-AbilityType Build::Level32() const
-{
-    return m_pLife->Level32();
-}
-
-AbilityType Build::Level36() const
-{
-    return m_pLife->Level36();
-}
-
-AbilityType Build::Level40() const
-{
-    return m_pLife->Level40();
-}
-
-void Build::SetAbilityLevelUp(size_t level, AbilityType ability)
-{
-    AbilityType old = m_pLife->SetAbilityLevelUp(level, ability);
+    AbilityType old = AbilityLevelUp(level);
     if (old != ability)
     {
-        // add the log entry
-        std::stringstream ss;
-        ss << "Ability level up at level " << level
-                << " changed from \"" << EnumEntryText(old, abilityTypeMap)
-                << "\" to \"" << EnumEntryText(ability, abilityTypeMap) << "\"";
-        GetLog().AddLogEntry(ss.str().c_str());
-        if (ability == Ability_Intelligence
-            || old == Ability_Intelligence)
+        switch (level)
         {
-            UpdateSkillPoints();
+            case 4:
+                Set_Level4(ability);
+                break;
+            case 8:
+                Set_Level8(ability);
+                break;
+            case 12:
+                Set_Level12(ability);
+                break;
+            case 16:
+                Set_Level16(ability);
+                break;
+            case 20:
+                Set_Level20(ability);
+                break;
+            case 24:
+                Set_Level24(ability);
+                break;
+            case 28:
+                Set_Level28(ability);
+                break;
+            case 32:
+                Set_Level32(ability);
+                break;
+            case 36:
+                Set_Level36(ability);
+                break;
+            case 40:
+                Set_Level40(ability);
+                break;
+            default:
+                ASSERT(FALSE);      // invalid level up level
+                break;
         }
-        NotifyAbilityValueChanged(old);
-        NotifyAbilityValueChanged(ability);
+        if (!bSuppressNotify)
+        {
+            // add the log entry
+            std::stringstream ss;
+            ss << "Ability level up at level " << level
+                    << " changed from \"" << EnumEntryText(old, abilityTypeMap)
+                    << "\" to \"" << EnumEntryText(ability, abilityTypeMap) << "\"";
+            GetLog().AddLogEntry(ss.str().c_str());
+            if (ability == Ability_Intelligence
+                || old == Ability_Intelligence)
+            {
+                UpdateSkillPoints();
+            }
+            NotifyAbilityValueChanged(old);
+            NotifyAbilityValueChanged(ability);
+        }
     }
 }
 

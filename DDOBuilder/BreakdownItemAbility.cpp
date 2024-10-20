@@ -76,7 +76,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                 AddOtherEffect(tome);
             }
             // level ups
-            amount = pLife->LevelUpsAtLevel(m_ability, pBuild->Level()-1);
+            amount = pBuild->LevelUpsAtLevel(m_ability, pBuild->Level()-1);
             if (amount > 0)
             {
                 Effect levelUps(Effect_AbilityBonus, "Level Up", "Level Up", static_cast<double>(amount));

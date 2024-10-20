@@ -25,6 +25,7 @@ class Character :
         Character(CDDOBuilderDoc* pDoc);
         void Write(XmlLib::SaxWriter* writer) const;
         void AboutToLoad();
+        void LoadComplete();
 
         bool ShowUnavailable() const;
         bool ShowEpicOnly() const;

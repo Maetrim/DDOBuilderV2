@@ -90,6 +90,7 @@ class Build :
     public:
         Build(Life* pParentLife);
         void Write(XmlLib::SaxWriter* writer) const;
+        void LoadComplete();
 
         void SetLifePointer(Life* pLife);
         Life* GetLife();
@@ -138,17 +139,7 @@ class Build :
         size_t ChaTome() const;
 
         // ability point spend
-        AbilityType Level4() const;
-        AbilityType Level8() const;
-        AbilityType Level12() const;
-        AbilityType Level16() const;
-        AbilityType Level20() const;
-        AbilityType Level24() const;
-        AbilityType Level28() const;
-        AbilityType Level32() const;
-        AbilityType Level36() const;
-        AbilityType Level40() const;
-        void SetAbilityLevelUp(size_t level, AbilityType ability);
+        void SetAbilityLevelUp(size_t level, AbilityType ability, bool bSuppressNotify = false);
         AbilityType AbilityLevelUp(size_t level) const;
 
         // stances
@@ -377,7 +368,17 @@ class Build :
                 DL_OPTIONAL_STRING(_, GearSetSnapshot) \
                 DL_OBJECT(_, FeatsListObject, FavorFeats) \
                 DL_OBJECT_LIST(_, CompletedQuest, CompletedQuests) \
-                DL_STRING(_, Notes)
+                DL_STRING(_, Notes) \
+                DL_ENUM(_, AbilityType, Level4, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level8, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level12, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level16, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level20, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level24, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level28, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level32, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level36, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level40, Ability_Strength, abilityTypeMap)
 
         DL_DECLARE_ACCESS(Build_PROPERTIES)
         DL_DECLARE_VARIABLES(Build_PROPERTIES)

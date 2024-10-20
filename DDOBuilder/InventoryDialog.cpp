@@ -506,6 +506,9 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     if (clickedFiligree.empty()
                             || !isRareSection)
                     {
+                        CString txt;
+                        txt.Format("sMenuCount = %d\r\n", sMenuCount);
+                        ::OutputDebugString((LPCTSTR)txt);
                         CreateFiligreeMenu(filigreeIndex, isArtifactFiligree, clickedFiligree.empty());
                         ClientToScreen(&itemRect);
                         CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
@@ -515,9 +518,11 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                 itemRect.left,
                                 itemRect.top,
                                 this);
+                        ::OutputDebugString("Complete\r\n");
                         if (sel > c_noMenuSelection && !bJustSetFiligree)    // sel is 0 if menu is canceled
                         {
                             --sMenuCount;
+                            ::OutputDebugString("Selection\r\n");
                             bJustSetFiligree = (sMenuCount > 0);
                             if (sel == c_clearMenuOption)   // clear augment option
                             {
@@ -561,6 +566,10 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                         {
                             sMenuCount--;
                             bJustSetFiligree = (sMenuCount != 0);
+                        }
+                        else
+                        {
+                            sMenuCount--;
                         }
                     }
                     else

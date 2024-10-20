@@ -76,6 +76,8 @@ class CSLAControl :
         CSLAControl();
         virtual ~CSLAControl();
 
+        void ClearSLAs();
+
         void SetCharacter(Character * pCharacter);
         void AddSLA(const std::string & slaName, size_t stacks);
         void RevokeSLA(const std::string & slaName);

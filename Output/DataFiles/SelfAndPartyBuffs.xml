@@ -651,8 +651,7 @@ to Healing Amplification, +15 Melee power and +10 Ranged power.</Description>
   <OptionalBuff>
     <Name>Bard: Inspire Courage</Name>
     <Icon>InspireCourage</Icon>
-    <Description>You are granted a +4 Morale bonus to saves against fear effects and a +1 Morale bonus
-on attack and weapon damage rolls before Enhancements.</Description>
+    <Description>You and nearby allies benefit from +1 to hit, damage, saves vs Fear, and +3 to Universal Spell Power.</Description>
     <Effect>
       <Type>Weapon_AttackAndDamage</Type>
       <Bonus>Morale</Bonus>
@@ -666,6 +665,12 @@ on attack and weapon damage rolls before Enhancements.</Description>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
       <Item>Fear</Item>
+    </Effect>
+    <Effect>
+      <Type>UniversalSpellPower</Type>
+      <Bonus>Music</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
     </Effect>
   </OptionalBuff>
   <OptionalBuff>
@@ -701,26 +706,23 @@ duration of your song.</Description>
   <OptionalBuff>
     <Name>Bard: Inspire Greatness</Name>
     <Icon>InspireCourage</Icon>
-    <Description>You gain a +2 attack bonus, +1 Fortitude save bonus and temporary hit points.
-+10 Healing/Repair/Negative Amplification</Description>
+    <Description>Allies and yourself benefit from +20 Temporary Hit Points, +3 Physical Resistance Rating,
+and +10 Healing Amplification as long as you are not incapacitated and they are
+within the Ballad.</Description>
     <Effect>
-        <Type>Weapon_Attack</Type>
-      <Bonus>Stacking</Bonus>
+      <Type>Hitpoints</Type>
+      <Bonus>Temporary</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">2</Amount>
-      <Item>All</Item>
+      <Amount size="1">20</Amount>
     </Effect>
     <Effect>
-      <Type>SaveBonus</Type>
-      <Bonus>Stacking</Bonus>
+      <Type>PRR</Type>
+      <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">1</Amount>
-      <Item>Fortitude</Item>
+      <Amount size="1">3</Amount>
     </Effect>
     <Effect>
       <Type>HealingAmplification</Type>
-      <Type>NegativeHealingAmplification</Type>
-      <Type>RepairAmplification</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
@@ -729,19 +731,20 @@ duration of your song.</Description>
   <OptionalBuff>
     <Name>Bard: Inspire Heroics</Name>
     <Icon>InspireHeroics</Icon>
-    <Description>You gain a +4 Morale bonus to saves and a +4% dodge.</Description>
+    <Description>+4 Music bonus to Armor Class, +4% Music bonus to Dodge, and +4 Music bonus to all Saves.</Description>
     <Effect>
-        <Type>Weapon_Attack</Type>
-      <Bonus>Morale</Bonus>
+      <Type>ACBonus</Type>
+      <Type>DodgeBonus</Type>
+      <Bonus>Music</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Music</Bonus>
       <AType>Simple</AType>
       <Amount size="1">4</Amount>
       <Item>All</Item>
-    </Effect>
-    <Effect>
-      <Type>DodgeBonus</Type>
-      <Bonus>Morale</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">4</Amount>
     </Effect>
   </OptionalBuff>
   <OptionalBuff>

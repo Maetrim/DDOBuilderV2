@@ -95,6 +95,7 @@ void CStancesPane::PositionWindow(
 
 void CStancesPane::OnSize(UINT nType, int cx, int cy)
 {
+    SetScrollPos(SB_VERT, 0, FALSE);
     CWnd::OnSize(nType, cx, cy);
     if (m_stanceGroups.size() > 0)
     {
@@ -236,9 +237,6 @@ LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
-        CreateStanceGroup("User", false);
-        CreateStanceGroup("Auto", false);
-
         m_pCharacter->AttachObserver(this);
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
@@ -265,6 +263,7 @@ BOOL CStancesPane::OnEraseBkgnd(CDC* pDC)
 
 void CStancesPane::CreateStanceWindows()
 {
+    DestroyAllStances();
     m_nextStanceId = IDC_SPECIALFEAT_0;
     CreateStanceGroup("User", false);
     CreateStanceGroup("Auto", false);
