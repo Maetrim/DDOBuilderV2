@@ -48,7 +48,7 @@ This timer is shared with Half-Elven Social Grace's Diplomacy.
 Diplomacy allows you to attempt to encourage enemies to find targets other
 than yourself.
 
-Passive: +2% Dodge, +3 Diplomacy skill.
+Passive: +2% Dodge, +3 Diplomacy skill, +5% Doubleshot.
 If you are a Half-Elf, this Diplomacy bonus is instead +10.
 Cooldown: 1 Minute</Description>
          <Icon>HitTheStreets</Icon>
@@ -74,6 +74,12 @@ Cooldown: 1 Minute</Description>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
          </Effect>
          <Effect>
             <!--Two stacks-->
@@ -639,10 +645,11 @@ Cooldown: 2 Minutes</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shoot First</Name>
-               <Description>Shoot First: Bow or Crossbow Attack: +3[W] damage.
-On successful damage, this causes your opponent to take "Shot Wound".
-(Cooldown: 6 seconds) Note: Shot Wound deals 1d6 damage per Character Level
-every 2 seconds for 12 seconds. This damage scales with 200% Ranged Power.</Description>
+               <Description>Deals: +40% Damage
+Shoot First: Bow or Crossbow Attack: On successful damage, this causes your opponent
+to take "Shot Wound". (Cooldown: 6 seconds) Note: Shot Wound deals 1d6 damage per
+Character Level every 2 seconds for 12 seconds. This damage scales with 200%
+Ranged Power.</Description>
                <Icon>WhatFirst</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
@@ -869,7 +876,8 @@ stack of Shot Wound, they take a Crushing Despair effect for 30 seconds.</Descri
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shoot Later</Name>
-               <Description>Bow or Crossbow Attack: +5[W]. This attack has +2 Critical Threat Range and Multiplier.
+               <Description>Deals: +60% Damage
+Bow or Crossbow Attack: This attack has +2 Critical Threat Range and Multiplier.
 Cooldown: 15 seconds.</Description>
                <Icon>ShootLater</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -1215,7 +1223,7 @@ This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
             <EnhancementSelection>
                <Name>Jaded</Name>
                <Description>You gain +1 Imbue Dice and all enemies take 1d8 per Imbue dice.
-+10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
++10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating Crossbows</Description>
                <Icon>Jaded</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1228,7 +1236,7 @@ This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
             <EnhancementSelection>
                <Name>Optimistic</Name>
                <Description>+2 Imbue Dice.
-+10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
++10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating Crossbows</Description>
                <Icon>InquisitorsPath</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1243,7 +1251,7 @@ This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
                <Description>+1 Imbue Dice.
 Damage from Law on your Side is now Chaos damage, with non-Chaotic creatures
 taking d8s of damage, and Chaotic creatures taking d4s of damage.
-+10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
++10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating Crossbows</Description>
                <Icon>Vigilante</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1261,10 +1269,22 @@ taking d8s of damage, and Chaotic creatures taking d4s of damage.
             <Amount size="1">10</Amount>
          </Effect>
          <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>GroupMember</Type>
+                  <Item>Crossbow</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
             <Type>Weapon_Alacrity</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
-            <Amount size="1">30</Amount>
+            <Amount size="1">15</Amount>
             <Item>Light Crossbow</Item>
             <Item>Heavy Crossbow</Item>
             <Item>Great Crossbow</Item>

@@ -2463,7 +2463,7 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
     </Feat>
     <Feat>
       <Name>Expanded Clip</Name>
-      <Description>Your repeating crossbows have 1 extra shot in their clips.</Description>
+      <Description>You gain +33% stacking Doubleshot with Repeating Crossbows.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -2478,6 +2478,18 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ExpandedClip</Icon>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">33</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>GroupMember</Type>
+                  <Item>RepeatingCrossbow</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
     </Feat>
     <Feat>
       <Name>Epic Barbarian Damage Reduction</Name>
@@ -3615,6 +3627,35 @@ Passive: +140 Maximum Spell Points</Description>
         <Item>Lightning Sphere</Item>
         <Item>Blast Rod</Item>
         <Item>Lightning Motes</Item>
+      </Effect>
+    </Feat>
+    <Feat>
+      <Name>Master of Chaos</Name>
+      <Description>Your Chaos Bolt, Chaos Sphere, and Wildstrike spells gain +10 to their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfChaos</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">140</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Chaos Bolt</Item>
+        <Item>Chaos Sphere</Item>
+        <Item>Wildstrike</Item>
       </Effect>
     </Feat>
     <Feat>
