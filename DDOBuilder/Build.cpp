@@ -242,6 +242,7 @@ void Build::BuildNowActive()
             pBI->AttachObserver(this);
         }
     }
+    BreakdownItem::SetLockState(true);
     // make sure we are correctly tracking how many APs have been spent
     // in each tree type
     m_racialTreeSpend = 0;
@@ -338,9 +339,9 @@ void Build::BuildNowActive()
     m_previousGuildLevel = 0;   // ensure all effects apply
     ApplyGuildBuffs(m_pLife->ApplyGuildBuffs());
     UpdateGreensteelStances();
-    //NotifyAllSelfAndPartyBuffs();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
     m_bSwitchingBuildsOrGear = false;
+    BreakdownItem::SetLockState(false);
     UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
     UpdateTotalChanged(NULL, Breakdown_Intelligence);
     UpdateTotalChanged(NULL, Breakdown_Wisdom);
@@ -2245,6 +2246,7 @@ void Build::UpdateFeats(
     // have the automatic feats at this level changed?
     if (automaticFeats != oldFeats)
     {
+        (*it).Set_AutomaticFeats(automaticFeats);
         if (bApplyEffects)
         {
             // first revoke the feats at this level then apply the new ones
@@ -2254,7 +2256,6 @@ void Build::UpdateFeats(
                 RevokeFeatEffects(feat);
             }
         }
-        (*it).Set_AutomaticFeats(automaticFeats);
         if (bApplyEffects)
         {
             // now apply the new automatic feats
@@ -2446,6 +2447,7 @@ void Build::ApplyFeatEffects(const Feat & feat)
     {
         NotifyFeatEffectApplied(eit);
     }
+    NotifyFeatTrained(feat.Name());
 }
 
 void Build::RevokeFeatEffects(const Feat & feat)

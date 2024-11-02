@@ -176,6 +176,18 @@ void CBreakdownsPane::BuildChanging()
     }
 }
 
+void CBreakdownsPane::UpdateAllBreakdowns()
+{
+    for (auto&& bit: m_items)
+    {
+        bit->Populate();
+    }
+    if (m_pWeaponEffects != NULL)
+    {
+        m_pWeaponEffects->PopulateStartValues();
+    }
+}
+
 void CBreakdownsPane::OnInitialUpdate()
 {
     if (!m_bHadInitialUpdate)
@@ -3446,26 +3458,48 @@ void CBreakdownsPane::UpdateEnhancementEffectRevoked(
 
 void CBreakdownsPane::UpdateFeatTrained(Build* pBuild, const std::string& featName)
 {
-    // this needs to be passed through to all breakdowns
-    for (auto&& bcit: m_mapBuildCallbacks)
+    // only "Lore" feats need to be passed on to breakdowns
+    if (featName.find("Lore") != std::string::npos)
     {
-        std::list<EffectCallbackItem*> callbacks = bcit.second;
-        for (auto&& cit : callbacks)
+        // this needs to be passed through to all breakdowns
+        for (auto&& bcit: m_mapBuildCallbacks)
         {
-            cit->FeatTrained(pBuild, featName);
+            std::list<EffectCallbackItem*> callbacks = bcit.second;
+            for (auto&& cit : callbacks)
+            {
+                if (cit != m_pWeaponEffects)
+                {
+                    cit->FeatTrained(pBuild, featName);
+                }
+            }
+        }
+        if (m_pWeaponEffects != NULL)
+        {
+            m_pWeaponEffects->FeatTrained(pBuild, featName);
         }
     }
 }
 
 void CBreakdownsPane::UpdateFeatRevoked(Build* pBuild, const std::string& featName)
 {
-    // this needs to be passed through to all breakdowns
-    for (auto&& bcit: m_mapBuildCallbacks)
+    // only "Lore" feats need to be passed on to breakdowns
+    if (featName.find("Lore") != std::string::npos)
     {
-        std::list<EffectCallbackItem*> callbacks = bcit.second;
-        for (auto&& cit : callbacks)
+        // this needs to be passed through to all breakdowns
+        for (auto&& bcit: m_mapBuildCallbacks)
         {
-            cit->FeatRevoked(pBuild, featName);
+            std::list<EffectCallbackItem*> callbacks = bcit.second;
+            for (auto&& cit : callbacks)
+            {
+                if (cit != m_pWeaponEffects)
+                {
+                    cit->FeatRevoked(pBuild, featName);
+                }
+            }
+        }
+        if (m_pWeaponEffects != NULL)
+        {
+            m_pWeaponEffects->FeatRevoked(pBuild, featName);
         }
     }
 }

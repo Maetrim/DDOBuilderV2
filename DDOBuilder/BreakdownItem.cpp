@@ -11,6 +11,8 @@
 #include "StancesPane.h"
 #include "MainFrm.h"
 
+bool BreakdownItem::s_bUpdatesLocked = false;
+
 BreakdownItem::BreakdownItem(
         BreakdownType type,
         MfcControls::CTreeListCtrl * treeList,
@@ -24,6 +26,7 @@ BreakdownItem::BreakdownItem(
     m_weaponCriticalMultiplier(0),
     m_bAddEnergies(true),
     m_bHasNonStackingEffects(false),
+    m_dCachedTotal(-999),
     m_wtMain(Weapon_Unknown),
     m_wtOffhand(Weapon_Unknown),
     m_slot(Inventory_Unknown)
@@ -32,6 +35,25 @@ BreakdownItem::BreakdownItem(
 
 BreakdownItem::~BreakdownItem()
 {
+}
+
+void BreakdownItem::SetLockState(bool bLock)
+{
+    s_bUpdatesLocked = bLock;
+    if (!bLock)
+    {
+        CWnd* pWnd = AfxGetMainWnd();
+        CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+        CBreakdownsPane* pBreakdownsPane = dynamic_cast<CBreakdownsPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CBreakdownsPane)));
+        pBreakdownsPane->UpdateAllBreakdowns();
+        CStancesPane* pStancesPane = dynamic_cast<CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
+        pStancesPane->UpdateStanceStates(true);
+    }
+}
+
+bool BreakdownItem::GetLockState()
+{
+    return s_bUpdatesLocked;
 }
 
 void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
@@ -133,24 +155,30 @@ BreakdownType BreakdownItem::Type() const
 
 void BreakdownItem::Populate()
 {
-    Total();    // ensure active percentage items have numbers
-    NotifyTotalChanged();
-    if (m_pTreeList != NULL)
+    if (!s_bUpdatesLocked)
     {
-        CString title(Title());
-        if (title != "")
+        double t = Total();    // ensure active percentage items have numbers
+        if (m_pTreeList != NULL)
         {
-            m_pTreeList->SetItemText(m_hItem, 0, title);
+            CString title(Title());
+            if (title != "")
+            {
+                m_pTreeList->SetItemText(m_hItem, 0, title);
+            }
+            m_pTreeList->SetItemText(m_hItem, 1, Value());
+            m_pTreeList->SetItemColor(m_hItem, m_bHasNonStackingEffects
+                    ? COLORREF(RGB(255, 0, 0))
+                    : COLORREF(RGB(0, 0, 0)));
+            if (m_pTreeList->GetSelectedItem() == m_hItem)
+            {
+                // force an update if the actively viewed item has changed
+                m_pTreeList->SelectItem(m_pTreeList->GetSelectedItem());
+            }
         }
-        m_pTreeList->SetItemText(m_hItem, 1, Value());
-        m_pTreeList->SetItemColor(m_hItem, m_bHasNonStackingEffects
-                ? COLORREF(RGB(255, 0, 0))
-                : COLORREF(RGB(0, 0, 0)));
-
-        if (m_pTreeList->GetSelectedItem() == m_hItem)
+        if (t != m_dCachedTotal)
         {
-            // force an update if the actively viewed item has changed
-            m_pTreeList->SelectItem(m_pTreeList->GetSelectedItem());
+            m_dCachedTotal = t;
+            NotifyTotalChanged();
         }
     }
 }
@@ -651,11 +679,13 @@ void BreakdownItem::RemoveInactive(
 {
     const Build* pBuild = m_pCharacter->ActiveBuild();
     std::list<Effect>::iterator it = effects->begin();
+    WeaponType wt1 = pBuild->ActiveGearSet().Weapon1();
+    WeaponType wt2 = pBuild->ActiveGearSet().Weapon2();
     while (it != effects->end())
     {
         // only add inactive items when it has a stance flag
         if ((*it).HasRequirementsToBeActive()
-                && !(*it).RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, ItemSlot(), Weapon(), Weapon_Unknown))
+                && !(*it).RequirementsToBeActive().Met(*pBuild, pBuild->Level()-1, true, ItemSlot(), wt1, wt2))
         {
             // add the item to be removed into the inactive list
             inactiveEffects->push_back((*it));
@@ -863,18 +893,6 @@ void BreakdownItem::GearChanged(Build* pBuild, InventorySlotType slot)
     UNREFERENCED_PARAMETER(pBuild);
     UNREFERENCED_PARAMETER(slot);
 }
-
-//void BreakdownItem::UpdateFeatTrained(Character * charData, const std::string& featName)
-//{
-//    // just repopulate
-//    Populate();
-//}
-//
-//void BreakdownItem::UpdateFeatRevoked(Character * charData, const std::string& featName)
-//{
-//    // just repopulate
-//    Populate();
-//}
 
 void BreakdownItem::NotifyTotalChanged()
 {

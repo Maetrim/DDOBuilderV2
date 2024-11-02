@@ -3346,10 +3346,9 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Type>Bloody Thorns</Type>
     <DisplayText>Bloody Thorns: This powerful item is a dangerous weapon to those well-versed in Nature. You receive a Primal bonus to Damage for every four of your Wilderness Lore feats.</DisplayText>
     <Effect>
-      <Type>WeaponOtherDamageBonus</Type>
-      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Type>Weapon_Damage</Type>
       <Bonus>Primal</Bonus>
-      <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+      <Amount size="21">0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5</Amount>
       <AType>FeatCount</AType>
       <StackSource>Wilderness Lore</StackSource>
       <Item>All</Item>
@@ -6723,6 +6722,23 @@ Greater: Insightful Fortification +25%</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Electrifying7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Electrifying 7: This effect causes the edges of this weapon to arc with electricity, dealing 7d6 Lightning damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>ElectricVulnerability</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Electric Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.). This effect may only occur on-hit once every second.</DisplayText>
@@ -8223,18 +8239,18 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Type>WeaponOtherDamageBonusCritical</Type>
       <Bonus>Not Set</Bonus>
       <AType>NotNeeded</AType>
-    <Effect>
-      <Type>DRBypass</Type>
-      <Bonus>Equipment</Bonus>
-      <AType>NotNeeded</AType>
-      <Value>Adamantine</Value>
-      <Item>All</Item>
-    </Effect>
       <Dice>
         <Number size="1">15</Number>
         <Sides size="1">6</Sides>
         <Damage>Fire</Damage>
       </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Adamantine</Value>
       <Item>All</Item>
     </Effect>
   </Buff>
@@ -18921,6 +18937,14 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Shield Spikes</Type>
     <DisplayText>Shield Spikes: This effect causes this shield to do an extra 6d6 Piercing damage when it is used to shield bash.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Shield Spikes D3</Type>
+    <DisplayText>Shield Spikes: This effect causes this shield to do an extra 3d6 Piercing damage when it is used to shield bash.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Shield Spikes D7</Type>
+    <DisplayText>Shield Spikes: This effect causes this shield to do an extra 7d6 Piercing damage when it is used to shield bash.</DisplayText>
   </Buff>
   <Buff>
     <Type>Shielded by Moonlight</Type>

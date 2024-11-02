@@ -41,6 +41,7 @@ class BreakdownItemWeapon :
         bool IsCentering() const;
         void AddForumExportData(std::stringstream & forumExport);
         BreakdownItem * GetWeaponBreakdown(BreakdownType bt);
+        void PopulateStartValues();
         void LinkUp();
 
         // required overrides

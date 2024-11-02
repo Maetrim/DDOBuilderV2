@@ -1233,6 +1233,9 @@ BreakdownType SchoolToBreakdown(SpellSchoolType school)
         case SpellSchool_Evocation:
             bt = Breakdown_SpellSchoolEvocation;
             break;
+        case SpellSchool_Fear:
+            bt = Breakdown_SpellSchoolFear;
+            break;
         case SpellSchool_Illusion:
             bt = Breakdown_SpellSchoolIllusion;
             break;

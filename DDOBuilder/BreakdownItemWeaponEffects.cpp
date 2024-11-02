@@ -354,6 +354,30 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
     return isUs;
 }
 
+void BreakdownItemWeaponEffects::FeatTrained(Build* pBuild, const std::string& feat)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->FeatTrained(pBuild, feat);
+    }
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->FeatTrained(pBuild, feat);
+    }
+}
+
+void BreakdownItemWeaponEffects::FeatRevoked(Build* pBuild, const std::string& feat)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->FeatRevoked(pBuild, feat);
+    }
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->FeatRevoked(pBuild, feat);
+    }
+}
+
 void BreakdownItemWeaponEffects::FeatEffectApplied(
         Build*,
         const Effect& effect)
@@ -657,7 +681,6 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
                     weeit);
         }
     }
-
     return pWeaponBreakdown;
 }
 
@@ -672,6 +695,18 @@ void BreakdownItemWeaponEffects::AddForumExportData(std::stringstream & forumExp
     {
         forumExport << "Off Hand: ";
         m_pOffHandWeapon->AddForumExportData(forumExport);
+    }
+}
+
+void BreakdownItemWeaponEffects::PopulateStartValues()
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        m_pMainHandWeapon->PopulateStartValues();
+    }
+    if (m_pOffHandWeapon != NULL)
+    {
+        m_pOffHandWeapon->PopulateStartValues();
     }
 }
 

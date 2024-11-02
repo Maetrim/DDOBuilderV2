@@ -69,22 +69,23 @@ void CClassAndFeatPane::OnInitialUpdate()
 
 void CClassAndFeatPane::OnSize(UINT nType, int cx, int cy)
 {
+    static CSize s_lastSize = CSize(0, 0);
     CFormView::OnSize(nType, cx, cy);
     if (IsWindow(m_featsAndClasses.GetSafeHwnd()))
     {
         int scrollX = GetScrollPos(SB_HORZ);
         int scrollY = GetScrollPos(SB_VERT);
+        SetScrollPos(SB_HORZ, 0, FALSE);
+        SetScrollPos(SB_VERT, 0, FALSE);
         CRect rctStatic;
         CRect rctCombo;
         GetDlgItem(IDC_STATIC_BUILD_LEVEL)->GetWindowRect(&rctStatic);
         m_comboBuildLevel.GetWindowRect(rctCombo);
         rctStatic -= rctStatic.TopLeft();
         rctStatic += CPoint(c_controlSpacing, c_controlSpacing);
-        rctStatic -= CPoint(scrollX, scrollY);
         GetDlgItem(IDC_STATIC_BUILD_LEVEL)->MoveWindow(rctStatic);
         rctCombo -= rctCombo.TopLeft();
         rctCombo += CPoint(rctStatic.right + c_controlSpacing, c_controlSpacing);
-        rctCombo -= CPoint(scrollX, scrollY);
         m_comboBuildLevel.MoveWindow(rctCombo);
         CSize requiredSize = m_featsAndClasses.RequiredSize();
         if (requiredSize == CSize(0, 0))
@@ -93,10 +94,18 @@ void CClassAndFeatPane::OnSize(UINT nType, int cx, int cy)
             requiredSize = CSize(cx, cy);
         }
         CRect rctControl(0, rctStatic.bottom + c_controlSpacing, requiredSize.cx, rctStatic.bottom + c_controlSpacing + requiredSize.cy);
-        int requiredScrollSize = requiredSize.cy + rctStatic.Height() + c_controlSpacing * 2;
-        rctControl -= CPoint(scrollX, scrollY);
         m_featsAndClasses.MoveWindow(rctControl, TRUE);
-        SetScrollSizes(MM_TEXT, CSize(rctControl.right, requiredScrollSize));
+        SetScrollSizes(MM_TEXT, CSize(rctControl.right, rctControl.bottom));
+        if (s_lastSize == CSize(rctControl.right, rctControl.bottom))
+        {
+            SetScrollPos(SB_VERT, scrollY, TRUE);
+            SetScrollPos(SB_HORZ, scrollX, TRUE);
+        }
+        else
+        {
+            Invalidate(TRUE);
+        }
+        s_lastSize = CSize(rctControl.right, rctControl.bottom);
     }
 }
 

@@ -681,7 +681,7 @@ Cooldown: 30 seconds</Description>
         <Amount size="3">100 0 100</Amount>
       </Effect>
       <Effect>
-        <Type>Weapon_CriticalMultiplier</Type>
+        <Type>Weapon_CriticalMultiplier19To20</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
@@ -692,6 +692,7 @@ Cooldown: 30 seconds</Description>
             <Item>-50% Hitpoints</Item>
           </Requirement>
         </Requirements>
+        <ApplyAsItemEffect/>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -980,7 +981,7 @@ Cooldown: [48/36/24] seconds.</Description>
     <EnhancementTreeItem>
       <Name>Occult Slayer: Bond of Destruction</Name>
       <InternalName>OSBondOfDestruction</InternalName>
-         <Description>Your Bond of Retribution no longer has a health requirement.
+      <Description>Your Bond of Retribution no longer has a health requirement.
 Passive: +10% Quality bonus to Hit Points</Description>
       <Icon>OSBondOfDestruction</Icon>
       <XPosition>0</XPosition>
@@ -1004,6 +1005,15 @@ Passive: +10% Quality bonus to Hit Points</Description>
           <Item>OSBondOfRetribution</Item>
         </Requirement>
       </Requirements>
+      <Effect>
+        <DisplayName>Occult Slayer: Bond of Retribution with Bond of Destruction</DisplayName>
+        <Type>Weapon_CriticalMultiplier19To20</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect/>
+      </Effect>
        <Effect>
           <Type>Hitpoints</Type>
           <Bonus>Quality</Bonus>

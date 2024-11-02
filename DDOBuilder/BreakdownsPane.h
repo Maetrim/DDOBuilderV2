@@ -32,6 +32,7 @@ class CBreakdownsPane :
         void RegisterBuildCallbackEffect(EffectType type, EffectCallbackItem* pItem);
         void UpdateBreakdown();
         void BuildChanging();
+        void UpdateAllBreakdowns();
 
     protected:
         CBreakdownsPane();           // protected constructor used by dynamic creation

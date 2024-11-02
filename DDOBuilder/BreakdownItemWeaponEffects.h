@@ -37,10 +37,13 @@ class BreakdownItemWeaponEffects :
         void WeaponsChanged(const EquippedGear& gear);
         bool AreWeaponsCentering() const;
         void AddForumExportData(std::stringstream& forumExport);
+        void PopulateStartValues();
 
         BreakdownItem * GetWeaponBreakdown(bool bMainhand, BreakdownType bt);
 
         // EffectCallbackItem
+        virtual void FeatTrained(Build*, const std::string&) override;
+        virtual void FeatRevoked(Build*, const std::string&) override;
         virtual void FeatEffectApplied(Build*, const Effect& effect) override;
         virtual void FeatEffectRevoked(Build*, const Effect& effect) override;
         virtual void ItemEffectApplied(Build*, const Effect& effect) override;

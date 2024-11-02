@@ -734,6 +734,26 @@ BreakdownItem * BreakdownItemWeapon::GetWeaponBreakdown(BreakdownType bt)
     return pBI;
 }
 
+void BreakdownItemWeapon::PopulateStartValues()
+{
+    m_weaponEnchantment.Populate();
+    m_baseDamage.Populate();
+    m_attackBonus.Populate();
+    m_damageBonus.Populate();
+    //m_otherDamageEffects.Populate();
+    m_criticalThreatRange.Populate();
+    m_vorpalRange.Populate();
+    m_criticalAttackBonus.Populate();
+    m_criticalDamageBonus.Populate();
+    //m_otherCriticalDamageEffects.Populate();
+    m_criticalMultiplier.Populate();
+    m_criticalMultiplier19To20.Populate();
+    m_drBypass.Populate();
+    m_attackSpeed.Populate();
+    m_ghostTouch.Populate();
+    m_trueSeeing.Populate();
+}
+
 void BreakdownItemWeapon::LinkUp()
 {
     // make sure all items are correctly monitoring each other as required

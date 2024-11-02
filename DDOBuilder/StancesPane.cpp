@@ -17,6 +17,7 @@ IMPLEMENT_DYNCREATE(CStancesPane, CFormView)
 CStancesPane::CStancesPane() :
     CFormView(CStancesPane::IDD),
     m_pCharacter(NULL),
+    m_pLastBuild(NULL),
     m_pDocument(NULL),
     m_showingTip(false),
     m_tipCreated(false),
@@ -95,57 +96,60 @@ void CStancesPane::PositionWindow(
 
 void CStancesPane::OnSize(UINT nType, int cx, int cy)
 {
-    SetScrollPos(SB_VERT, 0, FALSE);
-    CWnd::OnSize(nType, cx, cy);
-    if (m_stanceGroups.size() > 0)
+    if (!BreakdownItem::GetLockState())
     {
-        // [Slider Label][Slider Control.........]
-        // [User] [][][][][][][][][][][][][][][][]
-        // [Auto] [][][][][][][][][][][][][][][][]
-        CRect wndClient;
-        GetClientRect(&wndClient);
-        int sliderBottom = c_controlSpacing;
-        // work out the right hand end of the slider controls
-        int sliderEnd = c_windowSize + c_controlSpacing;
-        while (sliderEnd < cx - (c_windowSize + c_controlSpacing))
+        SetScrollPos(SB_VERT, 0, FALSE);
+        CWnd::OnSize(nType, cx, cy);
+        if (m_stanceGroups.size() > 0)
         {
-            sliderEnd += (c_windowSize + c_controlSpacing);
+            // [Slider Label][Slider Control.........]
+            // [User] [][][][][][][][][][][][][][][][]
+            // [Auto] [][][][][][][][][][][][][][][][]
+            CRect wndClient;
+            GetClientRect(&wndClient);
+            int sliderBottom = c_controlSpacing;
+            // work out the right hand end of the slider controls
+            int sliderEnd = c_windowSize + c_controlSpacing;
+            while (sliderEnd < cx - (c_windowSize + c_controlSpacing))
+            {
+                sliderEnd += (c_windowSize + c_controlSpacing);
+            }
+            // do all the sliders
+            std::list<SliderItem>::iterator si = m_sliders.begin();
+            CRect rctSizer;
+            m_staticHiddenSizer.GetWindowRect(rctSizer);
+            rctSizer -= rctSizer.TopLeft();
+            while (si != m_sliders.end())
+            {
+                CRect rctLabel(c_controlSpacing, sliderBottom, c_controlSpacing + 100, sliderBottom + rctSizer.Height());
+                CRect rctSlider(rctLabel.right + c_controlSpacing, sliderBottom, sliderEnd, sliderBottom + rctSizer.Height());
+                // now position the controls
+                (*si).m_label->MoveWindow(rctLabel, TRUE);
+                (*si).m_slider->MoveWindow(rctSlider, TRUE);
+                (*si).m_label->ShowWindow(SW_SHOW);
+                (*si).m_slider->ShowWindow(SW_SHOW);
+                sliderBottom = rctSlider.bottom + c_controlSpacing;
+                ++si;
+            }
+            CRect groupRect(
+                c_controlSpacing,
+                sliderBottom,
+                c_windowSizeGroupX + c_controlSpacing,
+                sliderBottom + c_windowSize);
+            CRect itemRect(
+                c_controlSpacing,
+                sliderBottom,
+                c_windowSize + c_controlSpacing,
+                sliderBottom + c_windowSize);
+            for (auto&& sgi : m_stanceGroups)
+            {
+                PositionStanceGroup(*sgi,&groupRect,&itemRect, cx);
+            }
+            // show scroll bars if required
+            SetScrollSizes(
+                MM_TEXT,
+                CSize(cx, itemRect.bottom + c_controlSpacing));
         }
-        // do all the sliders
-        std::list<SliderItem>::iterator si = m_sliders.begin();
-        CRect rctSizer;
-        m_staticHiddenSizer.GetWindowRect(rctSizer);
-        rctSizer -= rctSizer.TopLeft();
-        while (si != m_sliders.end())
-        {
-            CRect rctLabel(c_controlSpacing, sliderBottom, c_controlSpacing + 100, sliderBottom + rctSizer.Height());
-            CRect rctSlider(rctLabel.right + c_controlSpacing, sliderBottom, sliderEnd, sliderBottom + rctSizer.Height());
-            // now position the controls
-            (*si).m_label->MoveWindow(rctLabel, TRUE);
-            (*si).m_slider->MoveWindow(rctSlider, TRUE);
-            (*si).m_label->ShowWindow(SW_SHOW);
-            (*si).m_slider->ShowWindow(SW_SHOW);
-            sliderBottom = rctSlider.bottom + c_controlSpacing;
-            ++si;
-        }
-        CRect groupRect(
-            c_controlSpacing,
-            sliderBottom,
-            c_windowSizeGroupX + c_controlSpacing,
-            sliderBottom + c_windowSize);
-        CRect itemRect(
-            c_controlSpacing,
-            sliderBottom,
-            c_windowSize + c_controlSpacing,
-            sliderBottom + c_windowSize);
-        for (auto&& sgi : m_stanceGroups)
-        {
-            PositionStanceGroup(*sgi,&groupRect,&itemRect, cx);
-        }
-        // show scroll bars if required
-        SetScrollSizes(
-            MM_TEXT,
-            CSize(cx, itemRect.bottom + c_controlSpacing));
     }
 }
 
@@ -226,7 +230,6 @@ LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
             pBuild->DetachObserver(this);
         }
         m_pCharacter->DetachObserver(this);
-        DestroyAllStances();
     }
 
     // wParam is the document pointer
@@ -239,13 +242,17 @@ LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     {
         m_pCharacter->AttachObserver(this);
         Build* pBuild = m_pCharacter->ActiveBuild();
-        if (pBuild != NULL)
+        if (pBuild != m_pLastBuild)
         {
-            m_pCharacter->ActiveLife()->AttachObserver(this);
-            pBuild->AttachObserver(this);
+            m_pLastBuild = pBuild;
+            if (pBuild != NULL)
+            {
+                m_pCharacter->ActiveLife()->AttachObserver(this);
+                pBuild->AttachObserver(this);
+            }
+            CreateStanceWindows();
+            UpdateStanceStates();
         }
-        CreateStanceWindows();
-        UpdateStanceStates();
     }
     return 0L;
 }
@@ -267,7 +274,7 @@ void CStancesPane::CreateStanceWindows()
     m_nextStanceId = IDC_SPECIALFEAT_0;
     CreateStanceGroup("User", false);
     CreateStanceGroup("Auto", false);
-// create all the stances defined in the Stances.xml file
+    // create all the stances defined in the Stances.xml file
     const std::list<Stance>& stances = Stances();
     for (auto&& sit : stances)
     {
@@ -949,14 +956,17 @@ bool CStancesPane::IsStanceActive(const std::string& name, WeaponType wt) const
 
 void CStancesPane::UpdateActiveBuildChanged(Character*)
 {
-    DestroyAllStances();
     Build* pBuild = m_pCharacter->ActiveBuild();
     if (pBuild != NULL)
     {
-        m_pCharacter->ActiveLife()->AttachObserver(this);
-        pBuild->AttachObserver(this);
-        CreateStanceWindows();
-        UpdateStanceStates();
+        if (m_pLastBuild != pBuild)
+        {
+            m_pLastBuild = pBuild;
+            m_pCharacter->ActiveLife()->AttachObserver(this);
+            pBuild->AttachObserver(this);
+            CreateStanceWindows();
+            UpdateStanceStates();
+        }
     }
 }
 
@@ -970,44 +980,46 @@ void CStancesPane::UpdateRaceChanged(Life*, const std::string&)
     UpdateStanceStates();
 }
 
-void CStancesPane::UpdateStanceStates()
+void CStancesPane::UpdateStanceStates(bool bForce)
 {
-    bool bChanged = false;
-    // update auto controlled stances first
-    for (auto&& sgi : m_stanceGroups)
+    if (!BreakdownItem::GetLockState())
     {
-        if (sgi->GroupName() == "Auto")
+        bool bChanged = false;
+        // update auto controlled stances first
+        for (auto&& sgi : m_stanceGroups)
         {
-            size_t stanceCount = sgi->NumButtons();
-            for (size_t index = 0; index < stanceCount; ++index)
+            if (sgi->GroupName() == "Auto")
             {
-                CStanceButton* pStanceButton = sgi->GetStance(index);
-                bChanged |= pStanceButton->Evaluate(m_pCharacter);
+                size_t stanceCount = sgi->NumButtons();
+                for (size_t index = 0; index < stanceCount; ++index)
+                {
+                    CStanceButton* pStanceButton = sgi->GetStance(index);
+                    bChanged |= pStanceButton->Evaluate(m_pCharacter);
+                }
             }
         }
-    }
-    // now update all the other stances
-    for (auto&& sgi : m_stanceGroups)
-    {
-        if (sgi->GroupName() != "Auto")
+        // now update all the other stances
+        for (auto&& sgi : m_stanceGroups)
         {
-            size_t stanceCount = sgi->NumButtons();
-            for (size_t index = 0; index < stanceCount; ++index)
+            if (sgi->GroupName() != "Auto")
             {
-                CStanceButton* pStanceButton = sgi->GetStance(index);
-                bChanged |= pStanceButton->Evaluate(m_pCharacter);
+                size_t stanceCount = sgi->NumButtons();
+                for (size_t index = 0; index < stanceCount; ++index)
+                {
+                    CStanceButton* pStanceButton = sgi->GetStance(index);
+                    bChanged |= pStanceButton->Evaluate(m_pCharacter);
+                }
             }
         }
-    }
-    if (bChanged)
-    {
-        // now force an on size event to position everything
-        CRect rctWnd;
-        GetClientRect(&rctWnd);
-        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+        if (bChanged || bForce)
+        {
+            // now force an on size event to position everything
+            CRect rctWnd;
+            GetClientRect(&rctWnd);
+            OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+        }
     }
 }
-
 
 StanceGroup* CStancesPane::CreateStanceGroup(
         const std::string& strName,

@@ -66,6 +66,7 @@ class CStancesPane :
         const SliderItem* GetSlider(const std::string& name) const;
         void UpdateGreensteelStances();
         const std::list<StanceGroup*>& Groups() const;
+        void UpdateStanceStates(bool bForce = false);
 
     protected:
         CStancesPane();           // protected constructor used by dynamic creation
@@ -110,7 +111,6 @@ class CStancesPane :
         void AddStance(const Stance& stance);
         void RevokeStance(const Stance& stance);
         void DestroyAllStances();
-        void UpdateStanceStates();
         void DestroyStances(std::vector<CStanceButton*>& items);
 
         void PositionWindow(CWnd* pWnd, CRect* itemRect, int maxX);
@@ -126,6 +126,7 @@ class CStancesPane :
 
         CDocument* m_pDocument;
         Character* m_pCharacter;
+        Build* m_pLastBuild;
         std::list<SliderItem> m_sliders;
         CStatic m_staticHiddenSizer;
         std::list<StanceGroup*> m_stanceGroups;

@@ -50,6 +50,9 @@ class BreakdownItem :
                 HTREEITEM hItem);
         virtual ~BreakdownItem();
 
+        static void SetLockState(bool bLock);
+        static bool GetLockState();
+
         virtual void BuildChanged(Character * charData);
         virtual void BuildChangeComplete();
 
@@ -181,6 +184,9 @@ class BreakdownItem :
         HTREEITEM m_hItem;
         BreakdownType m_type;
         mutable bool m_bHasNonStackingEffects;
+
+        static bool s_bUpdatesLocked;
+        double m_dCachedTotal;
 
         friend class BreakdownItemWeapon;
 };

@@ -529,7 +529,7 @@ void BreakdownItemWeaponAttackBonus::FeatTrained(
     Build* pBuild,
     const std::string& featName)
 {
-    UNREFERENCED_PARAMETER(pBuild);
+    BreakdownItem::FeatTrained(pBuild, featName);
     // TWF and Oversized TWF affect attack penalty
     if (featName == c_TWF
             || featName == c_OTWF)
@@ -542,7 +542,7 @@ void BreakdownItemWeaponAttackBonus::FeatRevoked(
     Build* pBuild,
     const std::string& featName)
 {
-    UNREFERENCED_PARAMETER(pBuild);
+    BreakdownItem::FeatRevoked(pBuild, featName);
     // TWF and Oversized TWF affect attack penalty
     if (featName == c_TWF
         || featName == c_OTWF)

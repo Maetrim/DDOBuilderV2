@@ -1017,6 +1017,11 @@ std::string Effect::StacksAsString() const
         ss << m_pBuild->APSpentInTree(StackSource()) << " APs";
         break;
     case Amount_FeatCount:
+        {
+            size_t count = m_pBuild->FeatTrainedCount(StackSource());
+            ss << count << "(" << StackSource() << ")";
+        }
+        break;
     case Amount_AbilityValue:
     case Amount_AbilityMod:
     case Amount_Slider:
@@ -1381,30 +1386,7 @@ bool Effect::UpdateAbilityEffects(AbilityType at)
         if (eat == at
             || eats == at)
         {
-            //BreakdownItem* pBreakdown = FindBreakdown(StatToBreakdown(at));
-            //if (pBreakdown != NULL)
-            //{
-            //    double value = 0;
-            //    switch (m_AType)
-            //    {
-            //        case Amount_AbilityValue:
-            //            value = pBreakdown->Total();
-            //            break;
-            //        case Amount_AbilityMod:
-            //            value = pBreakdown->Total();
-            //            value = (int)(BaseStatToBonus(total));
-            //            break;
-            //        case Amount_HalfAbilityMod:
-            //            value = pBreakdown->Total();
-            //            value = (int)(BaseStatToBonus(total) / 2.0);
-            //            break;
-            //        case Amount_ThirdAbilityMod:
-            //            value = pBreakdown->Total();
-            //            value = (int)(BaseStatToBonus(total) / 3.0);
-            //            break;
-            //    }
-                bUpdate = true;
-            //}
+            bUpdate = true;
         }
     }
     return bUpdate;

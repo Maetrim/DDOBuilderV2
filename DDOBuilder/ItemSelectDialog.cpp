@@ -321,6 +321,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
             case Inventory_Weapon1:
             case Inventory_Weapon2:
                 canSelect = (m_weaponType == Weapon_Unknown)
+                        || (m_weaponType == Weapon_All)
                         || (m_weaponType == (*it).Weapon());
                 break;
             }
