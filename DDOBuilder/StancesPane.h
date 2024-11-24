@@ -57,8 +57,6 @@ class CStancesPane :
 #endif
 #endif
         virtual void OnInitialUpdate();
-        const std::vector<CStanceButton*>& UserStances() const;
-        const std::vector<CStanceButton*>& AutoStances() const;
         StanceGroup* GetStanceGroup(CStanceButton* pButton);
         StanceGroup* GetStanceGroup(const std::string& name);
         const CStanceButton* GetStance(const std::string& stanceName);

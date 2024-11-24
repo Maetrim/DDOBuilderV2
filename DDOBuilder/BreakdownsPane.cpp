@@ -3192,6 +3192,10 @@ void CBreakdownsPane::UpdateTotalChanged(
 void CBreakdownsPane::UpdateBuildLevelChanged(Build* pBuild)
 {
     // this needs to be passed through to all breakdowns
+    for (auto&& iit: m_items)
+    {
+        iit->BuildLevelChanged(pBuild);
+    }
     for (auto&& bcit: m_mapBuildCallbacks)
     {
         std::list<EffectCallbackItem*> callbacks = bcit.second;
@@ -3209,6 +3213,10 @@ void CBreakdownsPane::UpdateClassChanged(
         size_t level)
 {
     // this needs to be passed through to all breakdowns
+    for (auto&& iit: m_items)
+    {
+        iit->ClassChanged(pBuild, classFrom, classTo, level);
+    }
     for (auto&& bcit: m_mapBuildCallbacks)
     {
         std::list<EffectCallbackItem*> callbacks = bcit.second;
@@ -3521,6 +3529,10 @@ void CBreakdownsPane::UpdateSkillSpendChanged(Build* pBuild, size_t level, Skill
 void CBreakdownsPane::UpdateRaceChanged(Life* pLife, const std::string& race)
 {
     // this needs to be passed through to all breakdowns
+    for (auto&& iit: m_items)
+    {
+        iit->RaceChanged(pLife, race);
+    }
     for (auto&& bcit: m_mapBuildCallbacks)
     {
         std::list<EffectCallbackItem*> callbacks = bcit.second;

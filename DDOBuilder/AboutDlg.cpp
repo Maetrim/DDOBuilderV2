@@ -80,7 +80,9 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Droomar, "
         "Duncanthrax, "
         "ericcater, "
+        "Eunostos, "
         "fitzabir, "
+        "ghouleater, "
         "Graceana, "
         "Guntharm, "
         "Gus, "
@@ -140,7 +142,8 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "YoureNotDead, "
         "ydufraisse, "
         "zenith90210, "
-        "zilgabex");
+        "zilgabex, "
+        "Zoe Kestral");
     m_bugReporters.SetSel((DWORD)-1);    // nothing starts selected
 }
 

@@ -727,28 +727,6 @@ void CStancesPane::DestroyAllStances()
     }
 }
 
-const std::vector<CStanceButton*>& CStancesPane::UserStances() const
-{
-    static std::vector<CStanceButton*> activeStances;
-    activeStances.clear();
-    //for (auto&& sgi : m_stanceGroups)
-    //{
-        //sgi.AddActiveStances(&activeStances);
-    //}
-    return activeStances;
-}
-
-const std::vector<CStanceButton*>& CStancesPane::AutoStances() const
-{
-    static std::vector<CStanceButton*> activeStances;
-    activeStances.clear();
-    //for (auto&& sgi : m_stanceGroups)
-    //{
-        //sgi.AddActiveStances(&activeStances);
-    //}
-    return activeStances;
-}
-
 const CStanceButton* CStancesPane::GetStance(const std::string& stanceName)
 {
     const CStanceButton* pButton = NULL;

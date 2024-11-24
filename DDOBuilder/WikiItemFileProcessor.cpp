@@ -2988,7 +2988,7 @@ bool WikiItemFileProcessor::ProcessWizardryRomanNumeral(
         text.Format("Wizardry %s", numeral.c_str());
     }
     size_t pos = line.find((LPCTSTR)text, 0);
-    if (pos != std::string::npos)
+    if (pos != std::string::npos && pos <= 3)
     {
         Buff b;
         b.Set_Type("Wizardry");
@@ -3064,7 +3064,7 @@ bool WikiItemFileProcessor::ProcessSpellFocusRomanNumeral(const std::string& lin
         searchText.Format("Spell Focus %s", numeral.c_str());
     }
     size_t pos = line.find((LPCTSTR)searchText, 0);
-    if (pos != std::string::npos)
+    if (pos != std::string::npos && pos <= 3)
     {
         Buff b;
         b.Set_Type("SpellFocus");
@@ -3091,7 +3091,7 @@ bool WikiItemFileProcessor::ProcessSpellFocusRomanNumeral(const std::string& lin
             }
         }
         pos = line.find((LPCTSTR)searchText, 0);
-        if (pos != std::string::npos)
+        if (pos != std::string::npos && pos <= 3)
         {
             Buff b;
             b.Set_Type("SchoolFocus");
@@ -3186,7 +3186,7 @@ bool WikiItemFileProcessor::ProcessParryingRomanNumeral(const std::string& line,
         searchText.Format("Parrying %s", numeral.c_str());
     }
     size_t pos = line.find((LPCTSTR)searchText, 0);
-    if (pos != std::string::npos)
+    if (pos != std::string::npos && pos <= 3)
     {
         Buff b;
         b.Set_Type("Parrying");
@@ -3212,7 +3212,7 @@ bool WikiItemFileProcessor::ProcessPowerNumeral(const std::string& line, const s
         searchText.Format("Power %s", numeral.c_str());
     }
     size_t pos = line.find((LPCTSTR)searchText, 0);
-    if (pos != std::string::npos)
+    if (pos != std::string::npos && pos <= 3)
     {
         Buff b;
         b.Set_Type("Power");
@@ -3238,7 +3238,7 @@ bool WikiItemFileProcessor::ProcessSpellPenetrationNumeral(const std::string& li
         searchText.Format("Spell Penetration %s", numeral.c_str());
     }
     size_t pos = line.find((LPCTSTR)searchText, 0);
-    if (pos != std::string::npos)
+    if (pos != std::string::npos && pos <= 3)
     {
         Buff b;
         b.Set_Type("SpellPenetrationNumeral");
@@ -3264,7 +3264,7 @@ bool WikiItemFileProcessor::ProcessSpellLoreNumeral(const std::string& line, con
         searchText.Format("Spell Lore %s", numeral.c_str());
     }
     size_t pos = line.find((LPCTSTR)searchText, 0);
-    if (pos != std::string::npos)
+    if (pos != std::string::npos && pos <= 3)
     {
         Buff b;
         b.Set_Type("SpellLoreNumeral");
