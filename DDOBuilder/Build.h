@@ -247,7 +247,7 @@ class Build :
         std::list<TrainedSpell> FixedSpells(const std::string& ct, size_t level) const;
         void TrainSpell(const std::string& ct, size_t level, const std::string& spellName);
         void RevokeSpell(const std::string& ct, size_t level, const std::string& spellName, bool bSuppressLog);
-        bool IsSpellTrained(const std::string& spellName) const;
+        bool IsSpellTrained(const std::string& ct, const std::string& spellName) const;
         void ApplySpellEffects();
         void ApplySpellEffects(const TrainedSpell& ts);
         void RevokeSpellEffects(const TrainedSpell& ts);

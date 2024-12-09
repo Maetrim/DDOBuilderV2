@@ -1651,7 +1651,7 @@ void CDDOBuilderApp::ConvertToNewDataStructure(LegacyCharacter& importedCharacte
         pBuild->SetAbilityLevelUp(36, importedCharacter.Level36());
         pBuild->SetAbilityLevelUp(40, importedCharacter.Level40());
         pBuild->Set_BuildPoints(importedCharacter.BuildPoints());
-        pBuild->m_pLife->Set_Tomes(importedCharacter.Tomes());
+        pBuild->m_pLife->m_pCharacter->Set_Tomes(importedCharacter.Tomes());
         GetLog().AddLogEntry("Skill Tomes imported.");
         if (importedCharacter.HasClass1() && importedCharacter.Class1() != Class_Unknown) pBuild->SetClass1(importedCharacter.Class1());
         if (importedCharacter.HasClass2() && importedCharacter.Class2() != Class_Unknown) pBuild->SetClass2(importedCharacter.Class2());

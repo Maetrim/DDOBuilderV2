@@ -158,6 +158,8 @@ void Build::Write(XmlLib::SaxWriter * writer) const
 void Build::LoadComplete()
 {
     // handle file upgrades here after load completes
+
+    // clear away any bad TrainedSpell objects we may have
 }
 
 void Build::SetLifePointer(Life* pLife)
@@ -173,9 +175,10 @@ Life* Build::GetLife()
 CString Build::UIDescription(size_t buildIndex) const
 {
     // Ui description is based on class levels
+    const ::Race& race = FindRace(Race());
     std::string complexDescription = ComplexUIDescription();
     CString strDescription;
-    strDescription.Format("Build %d: Level %d - %s", buildIndex + 1, m_Level, complexDescription.c_str());
+    strDescription.Format("B%d: L%d - %s - %s", buildIndex + 1, m_Level, race.ShortName().c_str(), complexDescription.c_str());
     return strDescription;
 }
 
@@ -193,11 +196,14 @@ std::string Build::ComplexUIDescription() const
         if (cit > 0)
         {
             const ::Class & c = ClassFromIndex(ci);
-            // we have levels trained in this class, add it
-            ClassEntry data;
-            data.type = c.Name();
-            data.levels = cit;
-            classes.push_back(data);
+            if (!c.HasNotHeroic())
+            {
+                // we have levels trained in this class, add it
+                ClassEntry data;
+                data.type = c.Name();
+                data.levels = cit;
+                classes.push_back(data);
+            }
         }
         ci++;
     }
@@ -218,6 +224,20 @@ std::string Build::ComplexUIDescription() const
             << cit.type;
         ci++;
     }
+    // now add the Epic and Legendary levels if present
+    size_t numEpicLevels = ClassLevels("Epic", Level()-1);
+    if (numEpicLevels > 0)
+    {
+        // 2nd or following items separated by a ","
+        ss << ", E" << numEpicLevels;
+    }
+    size_t numLegendaryLevels = ClassLevels("Legendary", Level()-1);
+    if (numLegendaryLevels > 0)
+    {
+        // 2nd or following items separated by a ","
+        ss << ", L" << numLegendaryLevels;
+    }
+
     // e.g. "10 Epic, 8 Fighter, 6 Monk, 6 Ranger"
     return ss.str();
 }
@@ -2128,13 +2148,15 @@ void Build::RevokeSpell(
 }
 
 bool Build::IsSpellTrained(
+        const std::string& ct,
         const std::string& spellName) const
 {
     bool found = false;
     std::vector<TrainedSpell>::const_iterator it = m_TrainedSpells.begin();
     while (!found && it != m_TrainedSpells.end())
     {
-        if ((*it).SpellName() == spellName)
+        if ((*it).Class() == ct
+            && (*it).SpellName() == spellName)
         {
             found = true;
             break;

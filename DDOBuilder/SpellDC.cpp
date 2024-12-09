@@ -86,7 +86,7 @@ int SpellDC::CalculateSpellDC(const Build * build, const Spell& spell) const
             // add any casting stat breakdown
             if (spell.HasLevel())
             {
-                if (spell.HasHeighten() && build->IsStanceActive("Heighten"))
+                if (spell.HasHeighten() && build->IsStanceActive("Heighten Spell"))
                 {
                     size_t amount = c.MaxSpellLevel(build->Level());
                     value += amount;
@@ -189,7 +189,7 @@ std::string SpellDC::SpellDCBreakdown(const Build * build, const Spell& spell) c
             {
                 size_t amount = spell.Level();
                 ss << " + SpellLevel(" << amount << ")";
-                if (spell.HasHeighten() && build->IsStanceActive("Heighten"))
+                if (spell.HasHeighten() && build->IsStanceActive("Heighten Spell"))
                 {
                     size_t classLevels = build->ClassLevels(spell.Class(), build->Level());
                     size_t maxAmount = c.MaxSpellLevel(classLevels);

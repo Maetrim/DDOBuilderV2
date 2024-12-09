@@ -41,6 +41,12 @@ class Life :
         void SetAlignment(AlignmentType alignment);
 
         // ability tomes
+        size_t StrTome() const;
+        size_t DexTome() const;
+        size_t ConTome() const;
+        size_t IntTome() const;
+        size_t WisTome() const;
+        size_t ChaTome() const;
         void SetAbilityTome(AbilityType ability, size_t value);
         size_t AbilityTomeValue(AbilityType ability) const;
         int TomeAtLevel(AbilityType ability, size_t level) const;
@@ -69,6 +75,7 @@ class Life :
         size_t GetSpecialFeatTrainedCount(const std::string& featName) const;
         void TrainSpecialFeat(const std::string& featName);
         void RevokeSpecialFeat(const std::string& featName);
+        const FeatsListObject& SpecialFeats() const;
 
         // guild buffs
         bool ApplyGuildBuffs() const;
@@ -92,12 +99,6 @@ class Life :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Race) \
                 DL_ENUM(_, AlignmentType, Alignment, Alignment_LawfulGood, alignmentTypeMap) \
-                DL_SIMPLE(_, size_t, StrTome, 0) \
-                DL_SIMPLE(_, size_t, DexTome, 0) \
-                DL_SIMPLE(_, size_t, ConTome, 0) \
-                DL_SIMPLE(_, size_t, IntTome, 0) \
-                DL_SIMPLE(_, size_t, WisTome, 0) \
-                DL_SIMPLE(_, size_t, ChaTome, 0) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Level4, Ability_Strength, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Level8, Ability_Strength, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Level12, Ability_Strength, abilityTypeMap) \
@@ -108,9 +109,7 @@ class Life :
                 DL_OPTIONAL_ENUM(_, AbilityType, Level32, Ability_Strength, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Level36, Ability_Strength, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Level40, Ability_Strength, abilityTypeMap) \
-                DL_OBJECT(_, SkillTomes, Tomes) \
                 DL_THIS_OBJECT_LIST(_, Build, Builds) \
-                DL_OBJECT(_, FeatsListObject, SpecialFeats) \
                 DL_STRING_LIST(_, SelfAndPartyBuffs) \
                 DL_FLAG(_, TreeCollapsed)
 
@@ -135,6 +134,15 @@ class Life :
         int m_bonusRacialActionPoints;
         int m_bonusUniversalActionPoints;
         int m_bonusDestinyActionPoints;
+        // backwards compatibility (moved to Character from Life)
+        FeatsListObject m_SpecialFeats;
+        size_t m_StrTome;
+        size_t m_DexTome;
+        size_t m_ConTome;
+        size_t m_IntTome;
+        size_t m_WisTome;
+        size_t m_ChaTome;
+        SkillTomes m_SkillTomes;
 
         friend class Build;
         friend class CDDOBuilderApp;

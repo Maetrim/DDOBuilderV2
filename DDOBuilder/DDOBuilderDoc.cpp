@@ -50,6 +50,8 @@ BOOL CDDOBuilderDoc::OnNewDocument()
 
 BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
 {
+    // default to a new empty character
+    m_character = Character(this);
     m_character.AboutToLoad();
     CWaitCursor longOperation;
     // set up a reader with this as the expected root node

@@ -607,7 +607,7 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                 for (auto&& it: spells)
                 {
                     if (it.Name() == currentSelection
-                            || !pBuild->IsSpellTrained(it.Name()))
+                            || !pBuild->IsSpellTrained(m_class, it.Name()))
                     {
                         size_t pos = m_comboSpellSelect.AddString(it.Name().c_str());
                         m_comboSpellSelect.SetItemData(pos, it.IconIndex());

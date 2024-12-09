@@ -37,6 +37,20 @@ class Character :
         const Build* ActiveBuild() const; // can be NULL
         void SetActiveBuildIndex(size_t buildIndex);
 
+        // ability tomes
+        void SetAbilityTome(AbilityType ability, size_t value);
+        size_t AbilityTomeValue(AbilityType ability) const;
+        int TomeAtLevel(AbilityType ability, size_t level) const;
+
+        // special feats
+        size_t GetSpecialFeatTrainedCount(const std::string& featName) const;
+        void TrainSpecialFeat(const std::string& featName);
+        bool RevokeSpecialFeat(const std::string& featName);
+
+        // skill tomes
+        void SetSkillTome(SkillType skill, size_t value);
+        size_t SkillTomeValue(SkillType skill, size_t level) const;
+
         // life support
         Life* ActiveLife(); // can be NULL
         const Life* ActiveLife() const; // can be NULL
@@ -65,6 +79,9 @@ class Character :
         // quest favor tracking
         std::list<CompletedQuest> CompletedQuests() const;
 
+        // upgrade support
+        void AddSpecialFeats(const FeatsListObject& featsToAdd);
+
 protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -73,6 +90,14 @@ protected:
         virtual void EndElement();
 
         #define Character_PROPERTIES(_) \
+                DL_SIMPLE(_, size_t, StrTome, 0) \
+                DL_SIMPLE(_, size_t, DexTome, 0) \
+                DL_SIMPLE(_, size_t, ConTome, 0) \
+                DL_SIMPLE(_, size_t, IntTome, 0) \
+                DL_SIMPLE(_, size_t, WisTome, 0) \
+                DL_SIMPLE(_, size_t, ChaTome, 0) \
+                DL_OBJECT(_, FeatsListObject, SpecialFeats) \
+                DL_OBJECT(_, SkillTomes, Tomes) \
                 DL_THIS_OBJECT_LIST(_, Life, Lives) \
                 DL_OPTIONAL_SIMPLE(_, size_t, GuildLevel, 0) \
                 DL_OPTIONAL_SIMPLE(_, bool, ApplyGuildBuffs, 0) \
@@ -89,4 +114,5 @@ protected:
         size_t m_uiActiveBuildIndex;
         bool m_bShowEpicOnly;
         bool m_bShowUnavailableFeats;
+        friend class CDDOBuilderApp;
 };

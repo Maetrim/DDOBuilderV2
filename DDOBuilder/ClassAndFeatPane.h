@@ -33,7 +33,7 @@ class CClassAndFeatPane :
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg void OnHScroll(UINT, UINT, CScrollBar*);
-        afx_msg void OnVScroll( UINT, UINT, CScrollBar* );
+        afx_msg void OnVScroll(UINT, UINT, CScrollBar*);
         afx_msg void OnComboBuildLevelSelect();
         DECLARE_MESSAGE_MAP()
 
@@ -49,4 +49,6 @@ class CClassAndFeatPane :
         CComboBox m_comboBuildLevel;
         CFeatsClassControl m_featsAndClasses;
         bool m_bHadInitialise;
+        bool m_bDone1stResize;
+        int m_nOffset;
 };

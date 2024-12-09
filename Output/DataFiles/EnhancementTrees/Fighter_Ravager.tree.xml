@@ -133,7 +133,7 @@ Vulnerable Will for 15 seconds, regardless of the Crushing Despair saving throw.
     <EnhancementTreeItem>
       <InternalName>DLRavCore4</InternalName>
       <Name>Ravager: Pain Touch II</Name>
-       <Description>+5 Melee Power. You gain +30 Maximum Hit Points, +2 intimidate, and +10 Healing
+       <Description>+5 Melee Power. You gain +30 Maximum Hit Points, +2 Intimidate, and +10 Healing
 Amplification</Description>
        <Icon>RavPainTouch</Icon>
       <XPosition>3</XPosition>
@@ -182,12 +182,11 @@ Amplification</Description>
       <InternalName>DLRavCore5</InternalName>
       <Name>Ravager: Subsiding Fury</Name>
       <Description>When you use Second Wind, you gain 3 stacks of Fury.
+Passive: You gain +50 Maximum Hit Points, +2 Intimidate, and +10 Healing
+Amplification.
 
 Fury: +1 Rage bonus to attack and damage. This effect stacks up to 6 times and
-one stack fades every 6 seconds.
-
-Passive: You gain +50 Maximum Hit Points, +2 Intimidate, and +10 Healing
-Amplification.</Description>
+one stack fades every 6 seconds.</Description>
       <Icon>RavSubsidingFury</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -386,7 +385,9 @@ Cooldown: 6 seconds</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Draconic Power Attack</Name>
       <InternalName>DLRavDraconicPowerAttack</InternalName>
-      <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.</Description>
+      <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
+Note: Stacks with Improved Power Attack. Damage is doubled when Two Handed
+Fighting or fighting in an animal form.</Description>
       <Icon>RavBarbarianPowerAttack</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
@@ -424,6 +425,41 @@ Cooldown: 6 seconds</Description>
         </Requirements>
         <Item>All</Item>
       </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+           <Requirement>
+              <Type>Stance</Type>
+              <Item>Power Attack</Item>
+           </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Winter Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blighted Wolf</Item>
+            </Requirement>
+           <Requirement>
+              <Type>Stance</Type>
+              <Item>Two Handed Fighting</Item>
+           </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Ravager: Extra Action Boost</Name>
@@ -447,8 +483,8 @@ Cooldown: 6 seconds</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Fear me!</Name>
       <InternalName>DLRavFearMe</InternalName>
-      <Description>When you Intimidate, affected enemies are Shaken for 6 seconds (-2 penalty on Attack
-rolls, Saving Throws, and Skill checks).</Description>
+      <Description>When you Intimidate, affected enemies are Shaken for 6 seconds.
+Shaken: -2 penalty on Attack rolls, Saving Throws, and Skill checks.</Description>
       <Icon>RavFearMe</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -470,7 +506,7 @@ rolls, Saving Throws, and Skill checks).</Description>
     <EnhancementTreeItem>
       <Name>Ravager: Mutilate</Name>
       <InternalName>DLRavMutilate</InternalName>
-      <Description>Hate additionally deals 1d[4/6/8] Charisma damage and [2/4/6]d6 Bane damage.
+      <Description>Hate additionally deals 1d[4/6/8] Charisma damage and 1d[4/6/8] Bane damage.
 The bane damage scales with 200% Melee Power. Charisma damage from this attack
 can only affect a creature once every 10 seconds.</Description>
       <Icon>RavMutilate</Icon>
@@ -519,7 +555,8 @@ This gain scales with 100% Melee Power</Description>
       <Name>Ravager: Cruel Cut</Name>
       <InternalName>DLRavCruelCut</InternalName>
       <Description>Melee Attack: Deals [1/2/3]d6 extra Constitution damage as long as you damage your
-target.
+target. Rank 3 of Cruel Cut now adds +1d6 of additional Constitution damage for
+every 2 Character Levels you have.
 Cooldown: 6 seconds
 
 (Monsters with zero in any ability score are considered Helpless and receive
@@ -610,7 +647,9 @@ Cooldown: 12 seconds</Description>
       <Description>Cruel Cut additionally inflicts [1/2/3] stacks of Festering Wound. Each stack deals
 1d6 Poison damage that scales with 200% Melee Power every 2 seconds, to a maximum
 of 10 stacks. In addition, enemies hit by Cruel Cut have their Positive Energy
-healing is reduced by 50% for 5 seconds.</Description>
+healing reduced by 50% for 5 seconds.
+Rank 3: Festering Wound becomes Greater Festering Wound and gains an additional
+1d6 Poison Damage for every 10 Character Levels you have. Also affects bosses.</Description>
       <Icon>RavFesteringWound</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
@@ -736,7 +775,10 @@ This damage scales with 100% Melee Power.</Description>
       <InternalName>DLRavDismember</InternalName>
       <Description>When you use Cruel Cut, you gain +5 Melee Power for 10 seconds. In addition, targets
 hit by Cruel Cut take 6d[4/6/8] Slashing damage which scales with 200% Melee Power
-and have their movement slowed by 50% for 5 seconds.</Description>
+and have their movement slowed by 50% for 5 seconds.
+Rank 3: Your Slashing Damage from Dismember increases by +1d8 for every 2 Character
+Levels you have. (Movement and attack speed debuffs last for 5 seconds each and
+affect bosses.)</Description>
       <Icon>RavDismember</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
@@ -938,6 +980,7 @@ You gain a +25% Competence bonus to Maximum Hit Points.</Description>
         <AType>Stacks</AType>
         <Amount size="2">1 2</Amount>
         <Item>All</Item>
+        <ApplyAsItemEffect/>
       </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>

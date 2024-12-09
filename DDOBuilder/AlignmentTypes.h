@@ -41,6 +41,8 @@ const XmlLib::enumMapEntry<AlignmentType> alignmentTypeMap[] =
     {Alignment_LawfulEvil,      L"Lawful Evil"},
     {Alignment_NeutralEvil,     L"Neutral Evil"},
     {Alignment_ChaoticEvil,     L"Chaotic Evil"},
+    // for backwards compatability on V1 import
+    {Alignment_TrueNeutral,     L"Neutral"},
     {AlignmentType(0), NULL}
 };
 

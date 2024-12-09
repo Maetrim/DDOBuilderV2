@@ -21,6 +21,7 @@ namespace
 
 Character::Character(CDDOBuilderDoc * pDoc) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_SpecialFeats(L"SpecialFeats"),
     m_pDocument(pDoc),
     m_uiActiveLifeIndex(10000), // large number that will never occur naturally
     m_uiActiveBuildIndex(10000),// large number that will never occur naturally
@@ -47,6 +48,14 @@ XmlLib::SaxContentElementInterface * Character::StartElement(
 void Character::EndElement()
 {
     SaxContentElement::EndElement();
+    m_hasStrTome = true;
+    m_hasDexTome = true;
+    m_hasConTome = true;
+    m_hasIntTome = true;
+    m_hasWisTome = true;
+    m_hasChaTome = true;
+    m_hasSpecialFeats = true;
+    m_hasTomes = true;
     DL_END(Character_PROPERTIES)
 }
 
@@ -128,20 +137,10 @@ void Character::SetLifeName(
 
 size_t Character::AddLife()
 {
-    Life* pCurrentLife = ActiveLife();
     m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
     m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
-    // all new lives start with a default build
+    // all new lives start with a default build. they auto inherit Tomes and Special feats
     Life life(this);
-    // add all past lives from the previously selected life to this one
-    if (pCurrentLife != NULL)
-    {
-        const FeatsListObject& specialFeats = pCurrentLife->SpecialFeats();
-        for (auto&& fit: specialFeats.Feats())
-        {
-            life.TrainSpecialFeat(fit.FeatName());
-        }
-    }
     m_Lives.push_back(life);
     m_Lives.back().AddBuild(0);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -294,6 +293,158 @@ void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex, bool bOverri
     }
 }
 
+void Character::SetAbilityTome(AbilityType ability, size_t value)
+{
+    if (value != AbilityTomeValue(ability))
+    {
+        switch (ability)
+        {
+        case Ability_Strength:
+            Set_StrTome(value);
+            break;
+        case Ability_Dexterity:
+            Set_DexTome(value);
+            break;
+        case Ability_Constitution:
+            Set_ConTome(value);
+            break;
+        case Ability_Intelligence:
+            Set_IntTome(value);
+            break;
+        case Ability_Wisdom:
+            Set_WisTome(value);
+            break;
+        case Ability_Charisma:
+            Set_ChaTome(value);
+            break;
+        default:
+            ASSERT(FALSE);
+            break;
+        }
+    }
+}
+
+size_t Character::AbilityTomeValue(AbilityType ability) const
+{
+    size_t value = 0;
+    switch (ability)
+    {
+    case Ability_Strength:
+        value = StrTome();
+        break;
+    case Ability_Dexterity:
+        value = DexTome();
+        break;
+    case Ability_Constitution:
+        value = ConTome();
+        break;
+    case Ability_Intelligence:
+        value = IntTome();
+        break;
+    case Ability_Wisdom:
+        value = WisTome();
+        break;
+    case Ability_Charisma:
+        value = ChaTome();
+        break;
+    }
+    return value;
+}
+
+size_t Character::GetSpecialFeatTrainedCount(
+        const std::string& featName) const
+{
+    // return the count of how many times this particular feat has
+    // been trained.
+    size_t count = 0;
+    const std::list<TrainedFeat>& specialFeats = SpecialFeats().Feats();
+    for (auto&& sfit: specialFeats)
+    {
+        if (sfit.FeatName() == featName)
+        {
+            ++count;    // it is present, count it
+        }
+    }
+    // also need to check the builds favor feats
+    const Build* pBuild = ActiveBuild();
+    if (pBuild != NULL)
+    {
+        const std::list<TrainedFeat>& favorFeats = pBuild->FavorFeats().Feats();
+        for (auto&& ffit : favorFeats)
+        {
+            if (ffit.FeatName() == featName)
+            {
+                ++count;    // it is present, count it
+            }
+        }
+    }
+    return count;
+}
+
+void Character::TrainSpecialFeat(
+        const std::string& featName)
+{
+    const Feat& feat = FindFeat(featName);
+    // just add a copy of the feat name to the current list
+    TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
+    m_SpecialFeats.Add(tf);
+    m_hasSpecialFeats = true;
+}
+
+bool Character::RevokeSpecialFeat(
+        const std::string& featName)
+{
+    // just remove the first copy of the feat name from the current list
+    std::list<TrainedFeat> trainedFeats = SpecialFeats().Feats();
+    std::list<TrainedFeat>::iterator it = trainedFeats.begin();
+    bool found = false;
+    while (!found && it != trainedFeats.end())
+    {
+        if ((*it).FeatName() == featName)
+        {
+            // this is the first occurrence, remove it
+            it = trainedFeats.erase(it);
+            found = true;
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    if (found)
+    {
+        FeatsListObject flo(L"SpecialFeats", trainedFeats);
+        Set_SpecialFeats(flo);
+    }
+    return found;
+}
+
+void Character::SetSkillTome(SkillType skill, size_t value)
+{
+    m_Tomes.SetSkillTome(skill, value);
+}
+
+size_t Character::SkillTomeValue(SkillType skill, size_t level) const
+{
+    // max tome value for level applies
+    // +1 and +2 Tomes will be applied at level 1 and higher
+    // +3 Tomes will be applied at level 3 and higher
+    // +4 Tomes will be applied at level 7 and higher
+    // +5 Tomes will be applied at level 11 and higher
+    size_t maxTome = 2;
+    if (level >= 3) ++maxTome;
+    if (level >= 7) ++maxTome;
+    if (level >= 11) ++maxTome;
+    if (level >= 15) ++maxTome;     // assumed progression
+    if (level >= 19) ++maxTome;
+    if (level >= 23) ++maxTome;
+    if (level >= 27) ++maxTome;
+    if (level >= 31) ++maxTome;
+    size_t value = m_Tomes.SkillTomeValue(skill);
+    value = min(maxTome, value);
+    return value;
+}
+
 Life* Character::ActiveLife()
 {
     Life* pLife = NULL;
@@ -403,3 +554,13 @@ std::list<CompletedQuest> Character::CompletedQuests() const
     }
     return runQuests;
 }
+
+void Character::AddSpecialFeats(const FeatsListObject& featsToAdd)
+{
+    const std::list<TrainedFeat>& feats = featsToAdd.Feats();
+    for (auto&& fit: feats)
+    {
+        TrainSpecialFeat(fit.FeatName());
+    }
+}
+

@@ -279,6 +279,7 @@ void CSpellsPane::DetermineSpellViews()
                         CSpellsPage * page = dynamic_cast<CSpellsPage *>(m_pagePointers[ci+1]);
                         if (page != NULL)
                         {
+                            page->SetCharacter(m_pCharacter);   // clears old fixed spells
                             page->SetTrainableSpells(spellSlots);
                         }
                     }

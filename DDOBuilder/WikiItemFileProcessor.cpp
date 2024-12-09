@@ -114,7 +114,7 @@ void WikiItemFileProcessor::Start()
 
 void WikiItemFileProcessor::ProcessSpecificFile()
 {
-    CFileDialog dlg(TRUE, NULL, NULL, OFN_FILEMUSTEXIST | OFN_LONGNAMES, "*.*");
+    CFileDialog dlg(TRUE, NULL, NULL, OFN_FILEMUSTEXIST | OFN_LONGNAMES, "All Files (*.*)|*.*||");
     if (dlg.DoModal() == IDOK)
     {
         CString filename = dlg.GetPathName();
@@ -3554,7 +3554,7 @@ bool WikiItemFileProcessor::ProcessNaturalArmor(const std::string& line, const s
 {
     bool bProcessed = false;
     CString searchText;
-    if (bonus != "Resistance")
+    if (bonus != "Natural Armor")
     {
         searchText.Format("%s Natural Armor", bonus.c_str());
         bProcessed = AddCommonEffect(line, "NaturalArmor", (LPCSTR)searchText, bonus, "");

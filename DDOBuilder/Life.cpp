@@ -23,7 +23,13 @@ Life::Life(Character * pCharacter) :
     m_pCharacter(pCharacter),
     m_bonusRacialActionPoints(0),
     m_bonusUniversalActionPoints(0),
-    m_bonusDestinyActionPoints(0)
+    m_bonusDestinyActionPoints(0),
+    m_StrTome(0),
+    m_DexTome(0),
+    m_ConTome(0),
+    m_IntTome(0),
+    m_WisTome(0),
+    m_ChaTome(0)
 {
     DL_INIT(Life_PROPERTIES)
     m_Race = "Human";
@@ -39,6 +45,46 @@ XmlLib::SaxContentElementInterface * Life::StartElement(
             SaxContentElement::StartElement(name, attributes);
 
     DL_START(Life_PROPERTIES)
+
+    // backwards compatibility
+    if (subHandler == NULL && !wasFlag)
+    {
+        if (m_SpecialFeats.SaxElementIsSelf(name, attributes))
+        {
+            subHandler = &m_SpecialFeats;
+        }
+    }
+    if (subHandler == NULL && !wasFlag && name == L"StrTome")
+    {
+        subHandler = HandleSimpleElement(&m_StrTome);
+    }
+    if (subHandler == NULL && !wasFlag && name == L"DexTome")
+    {
+        subHandler = HandleSimpleElement(&m_DexTome);
+    }
+    if (subHandler == NULL && !wasFlag && name == L"ConTome")
+    {
+        subHandler = HandleSimpleElement(&m_ConTome);
+    }
+    if (subHandler == NULL && !wasFlag && name == L"IntTome")
+    {
+        subHandler = HandleSimpleElement(&m_IntTome);
+    }
+    if (subHandler == NULL && !wasFlag && name == L"WisTome")
+    {
+        subHandler = HandleSimpleElement(&m_WisTome);
+    }
+    if (subHandler == NULL && !wasFlag && name == L"ChaTome")
+    {
+        subHandler = HandleSimpleElement(&m_ChaTome);
+    }
+    if (subHandler == NULL && !wasFlag)
+    {
+        if (m_SkillTomes.SaxElementIsSelf(name, attributes))
+        {
+            subHandler = &m_SkillTomes;
+        }
+    }
 
     return subHandler;
 }
@@ -138,6 +184,46 @@ void Life::LoadComplete()
     for (auto& bit: m_Builds)
     {
         bit.LoadComplete();
+    }
+    // special feats, Ability Tomes and Skill tomes all moved from this
+    // level to the Character level
+    if (m_SpecialFeats.Feats().size() > 0)
+    {
+        // need to move these loaded feats up to the character level
+        m_pCharacter->AddSpecialFeats(m_SpecialFeats);
+        m_SpecialFeats = FeatsListObject(L"SpecialFeats");
+    }
+    if (m_pCharacter->AbilityTomeValue(Ability_Strength) < m_StrTome)
+    {
+        m_pCharacter->SetAbilityTome(Ability_Strength, m_StrTome);
+    }
+    if (m_pCharacter->AbilityTomeValue(Ability_Dexterity) < m_DexTome)
+    {
+        m_pCharacter->SetAbilityTome(Ability_Dexterity, m_DexTome);
+    }
+    if (m_pCharacter->AbilityTomeValue(Ability_Constitution) < m_ConTome)
+    {
+        m_pCharacter->SetAbilityTome(Ability_Constitution, m_ConTome);
+    }
+    if (m_pCharacter->AbilityTomeValue(Ability_Intelligence) < m_IntTome)
+    {
+        m_pCharacter->SetAbilityTome(Ability_Intelligence, m_IntTome);
+    }
+    if (m_pCharacter->AbilityTomeValue(Ability_Wisdom) < m_WisTome)
+    {
+        m_pCharacter->SetAbilityTome(Ability_Wisdom, m_WisTome);
+    }
+    if (m_pCharacter->AbilityTomeValue(Ability_Charisma) < m_ChaTome)
+    {
+        m_pCharacter->SetAbilityTome(Ability_Charisma, m_ChaTome);
+    }
+    for (size_t i = Skill_Unknown + 1; i < Skill_Count; ++i)
+    {
+        size_t value = m_SkillTomes.SkillTomeValue(static_cast<SkillType>(i));
+        if (value > m_pCharacter->SkillTomeValue(static_cast<SkillType>(i), MAX_GAME_LEVEL))
+        {
+            m_pCharacter->SetSkillTome(static_cast<SkillType>(i), value);
+        }
     }
 }
 
@@ -322,34 +408,41 @@ int Life::TomeAtLevel(
     return tv;
 }
 
+size_t Life::StrTome() const
+{
+    return m_pCharacter->StrTome();
+}
+
+size_t Life::DexTome() const
+{
+    return m_pCharacter->DexTome();
+}
+
+size_t Life::ConTome() const
+{
+    return m_pCharacter->ConTome();
+}
+
+size_t Life::IntTome() const
+{
+    return m_pCharacter->IntTome();
+}
+
+size_t Life::WisTome() const
+{
+    return m_pCharacter->WisTome();
+}
+
+size_t Life::ChaTome() const
+{
+    return m_pCharacter->ChaTome();
+}
+
 void Life::SetAbilityTome(AbilityType ability, size_t value)
 {
-    if (value != AbilityTomeValue(ability))
+    if (value != m_pCharacter->AbilityTomeValue(ability))
     {
-        switch (ability)
-        {
-        case Ability_Strength:
-            Set_StrTome(value);
-            break;
-        case Ability_Dexterity:
-            Set_DexTome(value);
-            break;
-        case Ability_Constitution:
-            Set_ConTome(value);
-            break;
-        case Ability_Intelligence:
-            Set_IntTome(value);
-            break;
-        case Ability_Wisdom:
-            Set_WisTome(value);
-            break;
-        case Ability_Charisma:
-            Set_ChaTome(value);
-            break;
-        default:
-            ASSERT(FALSE);
-            break;
-        }
+        m_pCharacter->SetAbilityTome(ability, value);
         // if Intelligence has changed, update the available skill points
         if (ability == Ability_Intelligence)
         {
@@ -364,29 +457,7 @@ void Life::SetAbilityTome(AbilityType ability, size_t value)
 
 size_t Life::AbilityTomeValue(AbilityType ability) const
 {
-    size_t value = 0;
-    switch (ability)
-    {
-    case Ability_Strength:
-        value = StrTome();
-        break;
-    case Ability_Dexterity:
-        value = DexTome();
-        break;
-    case Ability_Constitution:
-        value = ConTome();
-        break;
-    case Ability_Intelligence:
-        value = IntTome();
-        break;
-    case Ability_Wisdom:
-        value = WisTome();
-        break;
-    case Ability_Charisma:
-        value = ChaTome();
-        break;
-    }
-    return value;
+    return m_pCharacter->AbilityTomeValue(ability);
 }
 
 void Life::UpdateSkillPoints()
@@ -468,29 +539,13 @@ int Life::BonusDestinyActionPoints() const
 
 void Life::SetSkillTome(SkillType skill, size_t value)
 {
-    m_Tomes.SetSkillTome(skill, value);
+    m_pCharacter->SetSkillTome(skill, value);
     NotifySkillTomeChanged(skill);
 }
 
 size_t Life::SkillTomeValue(SkillType skill, size_t level) const
 {
-    // max tome value for level applies
-    // +1 and +2 Tomes will be applied at level 1 and higher
-    // +3 Tomes will be applied at level 3 and higher
-    // +4 Tomes will be applied at level 7 and higher
-    // +5 Tomes will be applied at level 11 and higher
-    size_t maxTome = 2;
-    if (level >= 3) ++maxTome;
-    if (level >= 7) ++maxTome;
-    if (level >= 11) ++maxTome;
-    if (level >= 15) ++maxTome;     // assumed progression
-    if (level >= 19) ++maxTome;
-    if (level >= 23) ++maxTome;
-    if (level >= 27) ++maxTome;
-    if (level >= 31) ++maxTome;
-    size_t value = m_Tomes.SkillTomeValue(skill);
-    value = min(maxTome, value);
-    return value;
+    return m_pCharacter->SkillTomeValue(skill, level);
 }
 
 void Life::SetRace(const std::string& race)
@@ -515,42 +570,15 @@ void Life::SetAlignment(AlignmentType alignment)
 size_t Life::GetSpecialFeatTrainedCount(
         const std::string& featName) const
 {
-    // return the count of how many times this particular feat has
-    // been trained.
-    size_t count = 0;
-    const std::list<TrainedFeat>& specialFeats = SpecialFeats().Feats();
-    for (auto&& sfit: specialFeats)
-    {
-        if (sfit.FeatName() == featName)
-        {
-            ++count;    // it is present, count it
-        }
-    }
-    // also need to check the builds favor feats
-    const Build* pBuild = m_pCharacter->ActiveBuild();
-    if (pBuild != NULL)
-    {
-        const std::list<TrainedFeat>& favorFeats = pBuild->FavorFeats().Feats();
-        for (auto&& ffit : favorFeats)
-        {
-            if (ffit.FeatName() == featName)
-            {
-                ++count;    // it is present, count it
-            }
-        }
-    }
-    return count;
+    return m_pCharacter->GetSpecialFeatTrainedCount(featName);
 }
 
 void Life::TrainSpecialFeat(
         const std::string& featName)
 {
-    const Feat& feat = FindFeat(featName);
-    // just add a copy of the feat name to the current list
-    TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
-    m_SpecialFeats.Add(tf);
-    m_hasSpecialFeats = true;
+    m_pCharacter->TrainSpecialFeat(featName);
 
+    const Feat& feat = FindFeat(featName);
     // notify about the feat effects
     ApplyFeatEffects(feat);
 
@@ -562,11 +590,6 @@ void Life::TrainSpecialFeat(
     ss << "Trained the special feat \"" << featName.c_str() << "\"";
     GetLog().AddLogEntry(ss.str().c_str());
 
-    // number of past lives affects how many build points they have to spend
-    //DetermineBuildPoints();
-    //DetermineFatePoints();
-    //DetermineEpicCompletionist();
-
     // special feats may change the number of action points available
     CountBonusRacialAP();
     CountBonusUniversalAP();
@@ -575,27 +598,9 @@ void Life::TrainSpecialFeat(
 void Life::RevokeSpecialFeat(
         const std::string& featName)
 {
-    // just remove the first copy of the feat name from the current list
-    std::list<TrainedFeat> trainedFeats = SpecialFeats().Feats();
-    std::list<TrainedFeat>::iterator it = trainedFeats.begin();
-    bool found = false;
-    while (!found && it != trainedFeats.end())
-    {
-        if ((*it).FeatName() == featName)
-        {
-            // this is the first occurrence, remove it
-            it = trainedFeats.erase(it);
-            found = true;
-        }
-        else
-        {
-            ++it;
-        }
-    }
+    bool found = m_pCharacter->RevokeSpecialFeat(featName);
     if (found)
     {
-        FeatsListObject flo(L"SpecialFeats", trainedFeats);
-        Set_SpecialFeats(flo);
         // notify about the feat effects
         const Feat & feat = FindFeat(featName);
         RevokeFeatEffects(feat);
@@ -604,25 +609,15 @@ void Life::RevokeSpecialFeat(
         std::stringstream ss;
         ss << "Revoked the special feat \"" << featName.c_str() << "\"";
         GetLog().AddLogEntry(ss.str().c_str());
-        //m_pDocument->SetModifiedFlag(TRUE);
-        //// number of past lives affects how many build points they have to spend
-        //DetermineBuildPoints();
-        //DetermineFatePoints();
-        //DetermineEpicCompletionist();
-        //// special feats may change the number of action points available
+        // special feats may change the number of action points available
         CountBonusRacialAP();
         CountBonusUniversalAP();
-        //if (feat.Acquire() == FeatAcquisition_RacialPastLife)
-        //{
-        //    std::list<TrainedFeat> allFeats = SpecialFeats().Feats();
-        //    UpdateFeats(0, &allFeats);      // racial completionist state may have changed
-        //}
-        //if (feat.Acquire() == FeatAcquisition_HeroicPastLife)
-        //{
-        //    // revoking a special feat in theory can invalidate a feat selection (e.g. completionist)
-        //    VerifyTrainedFeats();
-        //}
     }
+}
+
+const FeatsListObject& Life::SpecialFeats() const
+{
+    return m_pCharacter->SpecialFeats();
 }
 
 void Life::ApplyFeatEffects(const Feat& feat)

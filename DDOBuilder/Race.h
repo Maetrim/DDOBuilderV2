@@ -34,6 +34,7 @@ class Race :
 
         #define Race_PROPERTIES(_) \
                 DL_STRING(_, Name) \
+                DL_STRING(_, ShortName) \
                 DL_STRING(_, Description) \
                 DL_FLAG(_, IsConstruct) \
                 DL_ENUM(_, StartingWorldType, StartingWorld, StartingWorld_Unknown, startingWorldTypeMap) \
