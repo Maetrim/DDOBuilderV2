@@ -59,6 +59,7 @@ public:
     const std::list<Augment>& Augments() const;
     const std::list<Filigree>& Filigrees() const;
     const std::list<Item>& Items() const;
+    const std::list<Item>& ItemsForSlot(InventorySlotType ist) const;
     CImageList& ItemImageList();
     CImageList& SpellImageList();
     const std::list<SetBonus>& SetBonuses() const;
@@ -171,6 +172,7 @@ private:
     std::list<Quest> m_quests;
     std::list<Patron> m_patrons;
     std::list<std::string> m_ignoreList;
+    std::list<Item> m_itemsForSlot[Inventory_FinalDrawnItem];
     CImageList m_itemImages;
     CImageList m_spellImages;
     std::map<std::string, int> m_itemImagesMap;

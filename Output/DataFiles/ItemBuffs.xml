@@ -3760,6 +3760,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Carrying Capacity</Type>
+    <DisplayText>Carrying Capacity %v1: You gain a %v1 %b1 Bonus to Carrying Capacity, increasing your Carrying Capacity as if you had an additional %v1 Strength.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Cerulean Wave</Type>
     <DisplayText>Cerulean Wave: This powerful magical implement hums in your hands and resonates with icy magic. Spells you cast have a chance of freezing your targets in a block of solid ice. DC: 35</DisplayText>
   </Buff>
@@ -3955,6 +3959,40 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Chilling 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Chilling 7: This effect causes the edges of this weapon to become frozen to the touch, dealing 7d6 Ice damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Chilling 8</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Chilling 8: This effect causes the edges of this weapon to become frozen to the touch, dealing 8d6 Ice damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">8</Number>
         <Sides size="1">6</Sides>
         <Damage>Cold</Damage>
       </Dice>
@@ -11597,15 +11635,15 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
-    <Type>Holy Burst 6</Type>
+    <Type>Holy Burst 2</Type>
     <ApplyToWeaponOnly />
-    <DisplayText>Holy Burst 6: This weapon sings of virtue, dealing 6d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.</DisplayText>
+    <DisplayText>Holy Burst 2: This weapon sings of virtue, dealing 2d6 Good damage on a successful hit to Evil enemies, and 4d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Bonus>Not Set</Bonus>
       <AType>NotNeeded</AType>
       <Dice>
-        <Number size="1">6</Number>
+        <Number size="1">2</Number>
         <Sides size="1">6</Sides>
         <Damage>Good</Damage>
       </Dice>
@@ -11622,7 +11660,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Not Set</Bonus>
       <AType>NotNeeded</AType>
       <Dice>
-        <Number size="1">14</Number>
+        <Number size="1">4</Number>
         <Sides size="1">6</Sides>
         <Damage>Good</Damage>
       </Dice>
@@ -11681,6 +11719,180 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">9</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Good</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Holy Burst 6</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Holy Burst 6: This weapon sings of virtue, dealing 6d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Good</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Holy Burst 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Holy Burst 7: This weapon sings of virtue, dealing 7d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Good</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Holy Burst 8</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Holy Burst 8: This weapon sings of virtue, dealing 8d6 Good damage on a successful hit to Evil enemies, and 16d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Good</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Evil</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
         <Sides size="1">6</Sides>
         <Damage>Good</Damage>
       </Dice>
@@ -12463,6 +12675,60 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Icy Blast 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Icy Blast 7: This weapon is sheathed in icy cold, dealing 7d6 Cold damage on a successful hit, and an additional 7d6 Cold damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Icy Blast 8</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Icy Blast 8: This weapon is sheathed in icy cold, dealing 8d6 Cold damage on a successful hit, and an additional 8d6 Cold damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">8</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Cold</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Icy Burst</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Icy Burst: This weapon is sheathed in icy cold, and deals 1 to 6 cold damage each hit. Critical hits deal an additional 1 to 10 cold damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</DisplayText>
@@ -12720,6 +12986,42 @@ BLOOD BLOOD! GIVE ME BLOOD!
           <Item>Outsider</Item>
         </Requirement>
       </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Improved Cold Augmentation IX</Type>
+    <DisplayText>Improved Cold Augmentation IX: Increases the wearer's caster level when casting ninth level or lower Cold spells by three.</DisplayText>
+    <Effect>
+      <Type>CasterLevelSpell</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <!--Cold Spells-->
+      <Item>Creeping Cold</Item>
+      <Item>Ice Storm</Item>
+      <Item>Cold Breath</Item>
+      <Item>Fire Shield (Cold)</Item>
+      <Item>Greater Creeping Cold</Item>
+      <Item>Ice Flowers</Item>
+      <Item>Niac's Cold Ray</Item>
+      <Item>Freezing Bolt</Item>
+      <Item>Snowball Swarm</Item>
+      <Item>Frost Lance</Item>
+      <Item>Cone of Cold</Item>
+      <Item>Niac's Biting Cold</Item>
+      <Item>Otiluke's Freezing Sphere</Item>
+      <Item>Polar Ray</Item>
+      <Item>Iceberg</Item>
+      <Item>Tsunami</Item>
+      <Item>Ice Storm: White Dragon Breath</Item>
+      <Item>Vial of Frost</Item>
+      <Item>Vial Smash: Cold</Item>
+      <Item>Cold Spike</Item>
+      <Item>Bitter Frost Burst</Item>
+      <Item>Frost Concentration</Item>
+      <Item>Vein Freeze</Item>
+      <Item>Multivial of Frost</Item>
+      <Item>Frost Obliteration</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -14524,6 +14826,38 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">6</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Maiming7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Maiming 7: This weapon has a twisted haft or grip and spikes along its blade, head, or point. When you score a critical hit with this weapon, it does an additional +7d8 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">8</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Maiming8</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Maiming 8: This weapon has a twisted haft or grip and spikes along its blade, head, or point. When you score a critical hit with this weapon, it does an additional +8d8 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">8</Number>
         <Sides size="1">8</Sides>
         <Damage>Untyped</Damage>
       </Dice>
@@ -17948,7 +18282,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Evil Shot I</Type>
-    <DisplayText>Rune Arm Imbue: Evil Shot I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d2 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Evil Shot I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d2 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -17964,7 +18298,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Evil Shot II</Type>
-    <DisplayText>Rune Arm Imbue: Evil Shot II: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Evil Shot II: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -17980,7 +18314,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Evil Shot IV</Type>
-    <DisplayText>Rune Arm Imbue: Evil Shot IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Evil Shot IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -17996,7 +18330,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Evil Shot VI</Type>
-    <DisplayText>Rune Arm Imbue: Evil Shot VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Evil Shot VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of Evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -18028,7 +18362,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Force II</Type>
-    <DisplayText>Rune Arm Imbue: Force II: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of Force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Force II: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of Force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -18044,7 +18378,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Force III</Type>
-    <DisplayText>Rune Arm Imbue: Force III: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d4 points of Force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Force III: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d4 points of Force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -18283,8 +18617,24 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Rune Arm Imbue - Sonic I</Type>
+    <DisplayText>Rune Arm Imbue - Sonic I: Wearing this Rune Arm will imbue any weapon you wield, dealing 1 to 2 points of untyped damage per hit. Fire creatures take double damage. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">1</Number>
+        <Sides size="1">2</Sides>
+        <Damage>Untyped</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Rune Arm Imbue - Sonic IV</Type>
-    <DisplayText>Rune Arm Imbue: Sonic IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of untyped damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Sonic IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d6 points of untyped damage per hit. Fire creatures take double damage. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -18293,14 +18643,14 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Dice>
         <Number size="1">2</Number>
         <Sides size="1">6</Sides>
-        <Damage>Sonic</Damage>
+        <Damage>Untyped</Damage>
       </Dice>
       <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Sonic VI</Type>
-    <DisplayText>Rune Arm Imbue: Sonic VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of untyped damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Sonic VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of untyped damage per hit. Fire creatures take double damage. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -18309,14 +18659,14 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Dice>
         <Number size="1">2</Number>
         <Sides size="1">10</Sides>
-        <Damage>Sonic</Damage>
+        <Damage>Untyped</Damage>
       </Dice>
       <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Tidal Shot II</Type>
-    <DisplayText>Rune Arm Imbue: Tidal Shot II: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of Untyped damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Tidal Shot II: Wearing this Rune Arm will imbue any weapon you wield, dealing 1d4 points of Untyped damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -18332,7 +18682,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Rune Arm Imbue - Tidal Shot VI</Type>
-    <DisplayText>Rune Arm Imbue: Tidal Shot VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of Untyped damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
+    <DisplayText>Rune Arm Imbue - Tidal Shot VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of Untyped damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher).</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Type>WeaponOtherDamageBonusCritical</Type>
@@ -20929,6 +21279,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <Type>StrengthOfPurpose</Type>
     <DisplayText>%b1 Strength of Purpose: You gain a %v1 %b1 Bonus to Unconsciousness Range, and regenerate 16 Hit Points using Positive Healing every 10 seconds.</DisplayText>
     <Ignore>Enhancement</Ignore>
+    <NegativeValues/>
     <Effect>
       <Type>UnconsciousRange</Type>
       <Bonus>Enhancement</Bonus>
@@ -22145,7 +22496,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <Type>Undying</Type>
     <DisplayText>%b1 Undying %v1: Bound to service beyond death, you gain a %v1 %b1 bonus to your Incapacitation range.</DisplayText>
     <Ignore>Enhancement</Ignore>
-    <NegativeValues />
+    <NegativeValues/>
     <Effect>
       <Type>UnconsciousRange</Type>
       <Bonus>Enhancement</Bonus>
@@ -22311,6 +22662,54 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Evil</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Evil</Value>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Unholy 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Unholy 7: This weapon is used by the wicked to smite the pure, dealing an additional 7d6 evil damage on each hit. This effect makes the weapon evil aligned. Good characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Evil</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Evil</Value>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Unholy 8</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Unholy 8: This weapon is used by the wicked to smite the pure, dealing an additional 8d6 evil damage on each hit. This effect makes the weapon evil aligned. Good characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">8</Number>
         <Sides size="1">6</Sides>
         <Damage>Evil</Damage>
       </Dice>

@@ -1536,6 +1536,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Minor Freezing Ice", "Minor Freezing Ice", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Freezing Ice", "Freezing Ice", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Epic Freezing Ice", "Epic Freezing Ice", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Freezing Ice", "Legendary Freezing Ice", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "DR 5/Adamantine", "DR Damage Reduction 5/Adamantine", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "DR 15/Adamantine", "DR Damage Reduction 15/Adamantine", "", "", 5);
@@ -1892,8 +1893,13 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Icy Blast 2", "Icy Blast 2", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Icy Blast 4", "Icy Blast 4", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Icy Blast 6", "Icy Blast 6", "Enhancement", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Holy Burst 6", "Holy Burst 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Icy Blast 7", "Icy Blast 7", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Icy Blast 8", "Icy Blast 8", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Holy Burst 2", "Holy Burst 2", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Holy Burst 4", "Holy Burst 4", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Holy Burst 6", "Holy Burst 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Holy Burst 7", "Holy Burst 7", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Holy Burst 8", "Holy Burst 8", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Holy Burst", "Holy Burst Holy Burst", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ooze Bane", "Ooze Bane Ooze Bane", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ooze Bane 2", "Ooze Bane 2", "", "All");
@@ -1925,6 +1931,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy 4", "Unholy 4", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy 5", "Unholy 5", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy 6", "Unholy 6", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy 7", "Unholy 7", "", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unholy 8", "Unholy 8", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Evil Blast 4", "Evil Blast 4", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Evil Blast 6", "Evil Blast 6", "", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Freezing 4", "Freezing 4", "", "All");
@@ -2089,6 +2097,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Chilling 4", "Chilling 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Chilling 5", "Chilling 5", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Chilling 6", "Chilling 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Chilling 7", "Chilling 7", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Chilling 8", "Chilling 8", "Enhancement", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Monstrous Humanoid Bane 2", "Monstrous Humanoid Bane 2", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Monstrous Humanoid Bane 3", "Monstrous Humanoid Bane 3", "Enhancement", "All");
@@ -2157,6 +2167,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Maiming4", "Maiming 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Maiming5", "Maiming 5", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Maiming6", "Maiming 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Maiming7", "Maiming 7", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Maiming8", "Maiming 8", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "GreaterMaiming", "Greater Maiming", "Enhancement", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "SonicBlast3", "Sonic Blast 3", "Enhancement", "All");
@@ -2653,6 +2665,7 @@ bool WikiItemFileProcessor::ProcessBonusType(const std::string& line, const std:
     if (!bProcessed) bProcessed = ProcessSkill(line, bonus);
     if (!bProcessed) bProcessed = ProcessAlluringSkills(line, bonus);
     if (!bProcessed) bProcessed = ProcessAstuteSkills(line, bonus);
+    if (!bProcessed) bProcessed = ProcessCarryingCapacity(line, bonus);
 
     return bProcessed;
 }
@@ -3934,6 +3947,24 @@ bool WikiItemFileProcessor::ProcessKeen(const std::string& line)
         }
     }
     return bRecognised;
+}
+
+bool WikiItemFileProcessor::ProcessCarryingCapacity(
+    const std::string& line,
+    const std::string& bonus)
+{
+    bool bProcessed = false;
+    CString searchText;
+    if (bonus != "Enhancement")
+    {
+        searchText.Format("%s Carrying Capacity", bonus.c_str());
+        bProcessed = AddCommonEffect(line, "Carrying Capacity", (LPCSTR)searchText, bonus, "");
+    }
+    else
+    {
+        bProcessed = AddCommonEffect(line, "Carrying Capacity", "Carrying Capacity", bonus, "");
+    }
+    return bProcessed;
 }
 
 bool WikiItemFileProcessor::AddCommonEffect(

@@ -666,6 +666,11 @@ const std::list<Item>& CDDOBuilderApp::Items() const
     return m_items;
 }
 
+const std::list<Item>& CDDOBuilderApp::ItemsForSlot(InventorySlotType ist) const
+{
+    return m_itemsForSlot[ist];
+}
+
 const std::list<Patron>& CDDOBuilderApp::Patrons() const
 {
     return m_patrons;
@@ -1550,6 +1555,17 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
                 UWM_LOG_MESSAGE,
                 reinterpret_cast<WPARAM>(pLoadedItems),
                 0L);
+        // move copies of the items into their own list per item type
+        for (auto&& iit: pApp->m_items)
+        {
+            for (size_t index = Inventory_Arrows; index < Inventory_FinalDrawnItem; ++index)
+            {
+                if (iit.CanEquipToSlot(static_cast<InventorySlotType>(index)))
+                {
+                    pApp->m_itemsForSlot[index].push_back(iit);
+                }
+            }
+        }
     }
     CoUninitialize();
     pApp->m_bItemLoadThreadRunning = false;
@@ -1657,10 +1673,7 @@ void CDDOBuilderApp::ConvertToNewDataStructure(LegacyCharacter& importedCharacte
         if (importedCharacter.HasClass2() && importedCharacter.Class2() != Class_Unknown) pBuild->SetClass2(importedCharacter.Class2());
         if (importedCharacter.HasClass3() && importedCharacter.Class3() != Class_Unknown) pBuild->SetClass3(importedCharacter.Class3());
         // need to set level up classes and feats before enhancements
-        for (auto&& sfit: importedCharacter.SpecialFeats().Feats())
-        {
-            pBuild->TrainSpecialFeat(sfit.FeatName());
-        }
+        pBuild->m_pLife->m_pCharacter->AddSpecialFeats(importedCharacter.SpecialFeats());
         pBuild->Set_Levels(importedCharacter.Levels());
         pBuild->Set_Level(importedCharacter.Levels().size());
         pBuild->UpdateCachedClassLevels();

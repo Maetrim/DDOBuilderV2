@@ -62,6 +62,7 @@ const std::list<SetBonus>& SetBonuses();
 const std::list<Stance>& Stances();
 const std::list<Spell>& Spells();
 const std::list<Item>& Items();
+const std::list<Item>& ItemsForSlot(InventorySlotType ist);
 const std::list<Quest>& Quests();
 const std::list<Patron>& Patrons();
 const std::list<GuildBuff>& GuildBuffs();

@@ -279,10 +279,10 @@ void CItemSelectDialog::PopulateAvailableItemList()
 
     const Race& race = FindRace(m_pBuild->Race());
     // filter the list of items loaded to those that match the slot type
-    const std::list<Item> & allItems = Items();
+    const std::list<Item> & slotItems = ItemsForSlot(m_slot);
     m_availableItems.clear();
-    std::list<Item>::const_iterator it = allItems.begin();
-    while (it != allItems.end())
+    std::list<Item>::const_iterator it = slotItems.begin();
+    while (it != slotItems.end())
     {
         if (bIgnoreRaidItems && it->IsRaidItem())
         {

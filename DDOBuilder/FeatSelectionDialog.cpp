@@ -102,10 +102,13 @@ LRESULT CFeatSelectionDialog::OnNewDocument(WPARAM wParam, LPARAM lParam)
 
 void CFeatSelectionDialog::SetupControls()
 {
-    if (m_pCharacter != NULL
-            && m_pCharacter->ActiveBuild() != NULL)
+    if (m_pCharacter != NULL)
     {
-        size_t trainedCount = m_pCharacter->ActiveBuild()->GetSpecialFeatTrainedCount(m_feat.Name());
+        size_t trainedCount = 0;
+        if (m_pCharacter->ActiveBuild() != NULL)
+            trainedCount = m_pCharacter->ActiveBuild()->GetSpecialFeatTrainedCount(m_feat.Name());
+        else
+            trainedCount = m_pCharacter->GetSpecialFeatTrainedCount(m_feat.Name());
         CString text;
         text.Format("%d", trainedCount);
         m_featButton.m_bTopImage = true;

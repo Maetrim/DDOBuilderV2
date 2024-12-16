@@ -126,6 +126,11 @@ const std::list<Item>& Items()
     return theApp.Items();
 }
 
+const std::list<Item>& ItemsForSlot(InventorySlotType ist)
+{
+    return theApp.ItemsForSlot(ist);
+}
+
 CImageList& ItemsImages()
 {
     return theApp.ItemImageList();

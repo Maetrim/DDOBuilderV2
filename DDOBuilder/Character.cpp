@@ -558,9 +558,35 @@ std::list<CompletedQuest> Character::CompletedQuests() const
 void Character::AddSpecialFeats(const FeatsListObject& featsToAdd)
 {
     const std::list<TrainedFeat>& feats = featsToAdd.Feats();
+    // we need to compact the feats to a single entry for each and the count
+    // we then see if the Character level already has the same or less
+    // number of these feats. If its less, we update the Character level count
+    // to match the new maximum only
+    std::map<std::string, size_t> counts;
     for (auto&& fit: feats)
     {
-        TrainSpecialFeat(fit.FeatName());
+        if (counts.find(fit.FeatName()) != counts.end())
+        {
+            counts[fit.FeatName()]++;
+        }
+        else
+        {
+            counts[fit.FeatName()] = 1;
+        }
+    }
+
+    for (auto&& cit: counts)
+    {
+        size_t trainedCount = GetSpecialFeatTrainedCount(cit.first);
+        size_t newCount = cit.second;
+        if (newCount > trainedCount)
+        {
+            while (trainedCount < newCount)
+            {
+                TrainSpecialFeat(cit.first);
+                trainedCount++;
+            }
+        }
     }
 }
 

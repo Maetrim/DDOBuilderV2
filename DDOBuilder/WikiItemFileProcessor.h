@@ -104,6 +104,7 @@ private:
     bool ProcessSneakAttack(const std::string& line, const std::string& bonus);
     bool ProcessCombatAction(const std::string& line, const std::string& bonus, const std::string& type);
     bool ProcessKeen(const std::string& line);
+    bool ProcessCarryingCapacity(const std::string& line, const std::string& bonus);
 
     bool AddCommonEffect(const std::string& line, const std::string& buffName, const std::string& searchText, const std::string& bonus, const std::string& item, size_t minStartPos = 5);
 
