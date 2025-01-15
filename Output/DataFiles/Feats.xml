@@ -1827,6 +1827,25 @@ required, but spells consume 2 additional spell points.</Description>
       </Effect>
   </Feat>
   <Feat>
+    <Name>Eschew Materials </Name>
+    <Description>While this metamagic feat is active, normal material components are not
+required, but spells consume 2 additional spell points.</Description>
+    <Stance>
+      <Name>Eschew Materials</Name>
+      <Icon>EschewMaterials</Icon>
+      <Description>While this metamagic feat is active, normal material components are not
+required, but spells consume 2 additional spell points.</Description>
+    </Stance>
+    <Acquire>Automatic</Acquire>
+    <Icon>EschewMaterials</Icon>
+    <Effect>
+      <Type>MetamagicCostEschewMaterials</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+  </Feat>
+  <Feat>
     <Name>Evasion</Name>
     <Description>When you make a successful Reflex save to avoid damage, you suffer no
 damage instead of half damage.</Description>
@@ -5096,6 +5115,11 @@ drops below 12.</Description>
         <Requirement>
           <Type>BaseClassAtLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassAtLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>

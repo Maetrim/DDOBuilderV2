@@ -1750,26 +1750,24 @@ bool CanEquipTo2ndWeapon(
 
 void BreakUpLongLines(CString& line)
 {
-    if (line.Find("\n") < 0)
+    int slashN = line.Find("\n");
+    size_t pos = (slashN < 0 ? 75 : slashN);
+    size_t length = line.GetLength();
+    while (pos < length)
     {
-        size_t length = line.GetLength();
-        size_t pos = 75;        // assume 7 characters in
-        while (pos < length)
+        // look for the first space character from pos onwards
+        if (line.GetAt(pos) == ' ' || line.GetAt(pos) == '\n')
         {
-            // look for the first space character from pos onwards
-            if (line.GetAt(pos) == ' ')
-            {
-                // change the space to a "\n"
-                line.SetAt(pos, '\n');
-                pos += 75;          // move a standard line length from there
-            }
-            else
-            {
-                ++pos;
-            }
+            // change the space to a "\n"
+            line.SetAt(pos, '\n');
+            pos += 75;          // move a standard line length from there
         }
-        line.Replace("\n", "\r\n");
+        else
+        {
+            ++pos;
+        }
     }
+    line.Replace("\n", "\r\n");
 }
 
 void AddToIgnoreList(const std::string& name)

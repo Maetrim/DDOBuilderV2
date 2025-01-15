@@ -78,6 +78,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateWeaponImages)
     ON_COMMAND(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnEditIgnorelistActive)
     ON_UPDATE_COMMAND_UI(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnUpdateEditIgnorelistActive)
+    ON_COMMAND(ID_VIEW_RESETSCREENLAYOUT, OnResetScreenLayout)
     ON_REGISTERED_MESSAGE(UWM_STARTPROGRESS, OnStartProgress)
     ON_REGISTERED_MESSAGE(UWM_SETPROGRESS, OnSetProgress)
     ON_REGISTERED_MESSAGE(UWM_ENDPROGRESS, OnEndProgress)
@@ -1071,4 +1072,21 @@ void CMainFrame::OnDevelopmentShow0ValueBreakdowns()
 void CMainFrame::OnUpdateDevelopmentShow0ValueBreakdowns(CCmdUI* pCmdUI)
 {
     pCmdUI->SetCheck(g_bShowZeroBreakdown);
+}
+
+void CMainFrame::OnResetScreenLayout()
+{
+    // if the user has messed up their screen layout and lost windows of the
+    // sides they need to be able to recover these. We need to do a layout reset
+    // of all window locations. This is done by loading the layout profile
+    // from "DefaultWorkspace" in the DDOBuilder.ini file
+    CWinApp * pApp = AfxGetApp();
+    CWinAppEx * pAppEx = dynamic_cast<CWinAppEx*>(pApp);
+    if (pApp != NULL)
+    {
+        ShowWindow(SW_HIDE);    // hide windows while update occurs
+        pAppEx->LoadState(this, "DefaultWorkspace");
+        ShowWindow(SW_SHOW);
+        pAppEx->SaveState(this, "Workspace");
+    }
 }

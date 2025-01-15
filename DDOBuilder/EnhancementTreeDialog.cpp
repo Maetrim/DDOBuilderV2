@@ -88,7 +88,7 @@ void CEnhancementTreeDialog::InitialiseStaticImages()
         LoadImageFile(folderPath, "PassiveNotAllowed", &s_imageBorders[IBE_PassiveNotAllowed], CSize(43, 53));
         LoadImageFile(folderPath, "ActiveNotAvailable", &s_imageBorders[IBE_ActiveNotAvailable], CSize(43, 53));
         LoadImageFile(folderPath, "ActiveNotAllowed", &s_imageBorders[IBE_ActiveNotAllowed], CSize(43, 53));
-        LoadImageFile(folderPath, "CorePassiveAvailable", &s_imageBorders[IBE_CorePassiveAvailable], CSize(50, 50));
+        LoadImageFile(folderPath, "CorePassiveAvailable", &s_imageBorders[IBE_CorePassiveAvailable], CSize(51, 50));
         LoadImageFile(folderPath, "CoreActiveAvailable", &s_imageBorders[IBE_CoreActiveAvailable], CSize(48, 48));
         LoadImageFile(folderPath, "ResetTreeEnabled", &s_imageBorders[IBE_ResetTreeEnabled], CSize(79, 24));
         LoadImageFile(folderPath, "ResetTreeEnabled", &s_imageBorders[IBE_ResetTreeDisabled], CSize(79, 24));
@@ -538,7 +538,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     if (isTrainable && isAllowed)
     {
         // available outline is larger
-        itemRect.InflateRect(5, 5, 5, 5);
+        itemRect.InflateRect(7, 6, 6, 6);
         VERIFY(s_imageBorders[item.HasClickie() ? IBE_CoreActiveAvailable : IBE_CorePassiveAvailable].TransparentBlt(
                 pDC->GetSafeHdc(),
                 itemRect.left,

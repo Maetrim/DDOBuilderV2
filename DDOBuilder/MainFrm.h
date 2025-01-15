@@ -69,6 +69,7 @@ protected:
     afx_msg void OnUpdateDevelopmentUpdateWeaponImages(CCmdUI* pCmdUI);
     afx_msg void OnEditIgnorelistActive();
     afx_msg void OnUpdateEditIgnorelistActive(CCmdUI* pCmdUI);
+    afx_msg void OnResetScreenLayout();
     afx_msg LRESULT OnStartProgress(WPARAM wp, LPARAM lp);
     afx_msg LRESULT OnSetProgress(WPARAM wp, LPARAM lp);
     afx_msg LRESULT OnEndProgress(WPARAM wp, LPARAM lp);

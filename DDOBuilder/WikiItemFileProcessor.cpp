@@ -2299,7 +2299,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ReinforcedFists", "Reinforced Fists", "", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Raging Resilience", "Raging Resilience", "", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Power in Pact", "Power in Pact", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Power in Pact", "Power in Pact", "Enhancement", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bewildering", "Bewildering", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Web Immunity", "Web Immunity", "", "");
@@ -2415,7 +2415,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Limb Chopper", "Limb Chopper", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Flametouched Iron", "Flametouched Iron", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bone Paws", "Bone Paws", "", "", 5);
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Elemental Resistance", "Elemental Resistance", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Elemental Resistance", "Elemental Resistance", "Enhancement", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Royalty's Frigid Response", "Royalty's Frigid Response", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vorpal Lethargy", "On Vorpal: Applies a stack of Lethargy", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Evil Characters", "Evil characters wielding this weapon", "", "", 5);
