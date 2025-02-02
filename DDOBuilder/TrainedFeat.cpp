@@ -262,7 +262,9 @@ void TrainedFeat::TranslateOldFeatNames()
         "Past Life: Paladin (Sacred Fist)",     "Past Life: Paladin - Sacred Fist",
         "Past Life: Ranger (Dark Hunter)",      "Past Life: Ranger - Dark Hunter",
         "Past Life: Sorcerer (Wild Mage)",      "Past Life: Sorcerer - Wild Mage",
-        "Past Life: Warlock (Acolyte of the Skin)", "Past Life: Warlock - Acolyte of the Skin"
+        "Past Life: Warlock (Acolyte of the Skin)", "Past Life: Warlock - Acolyte of the Skin",
+
+        "Amaunator's Brilliance",               "Amaunator's Flames"
     };
     size_t count = sizeof(nameTranslations) / sizeof(std::string);
     if (count % 2 != 0)

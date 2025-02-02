@@ -432,7 +432,6 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 }
                 break;
             case Effect_WeaponProficiencyClass:
-            case Effect_WeaponBaseDamageBonusClass:
                 if (m_Item.size() == 0)
                 {
                     (*ss) << "WeaponProficiencyClass missing enum value\n";

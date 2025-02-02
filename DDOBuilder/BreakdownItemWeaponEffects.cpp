@@ -50,7 +50,6 @@ BreakdownItemWeaponEffects::BreakdownItemWeaponEffects(
     m_pPane->RegisterBuildCallbackEffect(Effect_Weapon_OtherDamageBonusCriticalClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponAlacrityClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponAttackAbilityClass, this);
-    m_pPane->RegisterBuildCallbackEffect(Effect_WeaponBaseDamageBonusClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponDamageAbilityClass, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponDamageBonusCriticalStat, this);
     m_pPane->RegisterBuildCallbackEffect(Effect_WeaponDamageBonusStat, this);
@@ -326,7 +325,6 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         case Effect_Weapon_OtherDamageBonusCriticalClass:
         case Effect_WeaponAlacrityClass:
         case Effect_WeaponAttackAbilityClass:
-        case Effect_WeaponBaseDamageBonusClass:
         case Effect_WeaponDamageAbilityClass:
         case Effect_WeaponProficiencyClass:
         case Effect_WeaponAttackBonusClass:

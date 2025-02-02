@@ -1199,15 +1199,19 @@ void WikiItemFileProcessor::AddItemEffects(const std::map<std::string, std::stri
             // its a single line, just add it
             enchantmentLines.push_back(enchantments);
         }
+        bool bHadSetBonusOrAugmentSlot = false;
         for (auto&& it : enchantmentLines)
         {
             bool bProcessed = AddSetBonuses(it);
             if (!bProcessed) bProcessed = AddAugmentSlots(it);
-            if (!bProcessed && m_item.Augments().size() > 0) break; // rest of items are bad set bonus/augment items
-            if (!bProcessed) bProcessed = ProcessEnchantmentLine(it);
-            if (!bProcessed)
+            bHadSetBonusOrAugmentSlot |= bProcessed;
+            if (!bHadSetBonusOrAugmentSlot)
             {
-                if (m_item.SetBonus().size() == 0)
+                // once we have had a set bonus or augment slot. Only set bonuses or augment slots can now occur
+                // no longer check for item enhancements, plus any set bonus/augment carry over tooltip
+                // text will no longer cause an erroneous buff to be added.
+                if (!bProcessed) bProcessed = ProcessEnchantmentLine(it);
+                if (!bProcessed)
                 {
                     CString text;
                     text.Format("...Line \"%s\" not processed.", it.c_str());

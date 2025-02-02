@@ -1183,7 +1183,7 @@ and a -5% penalty to-hit. Casting a spell ends this mode.</Description>
     <Group>Epic Feat</Group>
     <Requirements>
       <Requirement>
-        <Type>ClassMinLevel</Type>
+        <Type>BaseClassMinLevel</Type>
         <Item>Monk</Item>
         <Value>1</Value>
       </Requirement>
@@ -1528,6 +1528,11 @@ casting spells affected by Empower Spell, but they consume 15 additional spell p
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -3824,10 +3829,16 @@ be healed by spells from the healing sub-school, such as cure light wounds.</Des
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Warforged</Item>
-      </Requirement>
+       <RequiresOneOf>
+         <Requirement>
+           <Type>Race</Type>
+           <Item>Bladeforged</Item>
+         </Requirement>
+         <Requirement>
+           <Type>Race</Type>
+           <Item>Warforged</Item>
+         </Requirement>
+       </RequiresOneOf>
       <Requirement>
         <Type>BAB</Type>
         <Value>6</Value>
@@ -6546,6 +6557,11 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
           <Value>1</Value>
         </Requirement>
         <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Druid</Item>
           <Value>1</Value>
@@ -7105,11 +7121,28 @@ you gain +1 Critical Threat Range.</Description>
     <Icon>PointBlankShot</Icon>
     <Effect>
       <Type>WeaponAttackBonusClass</Type>
-      <Type>WeaponBaseDamageBonusClass</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
       <Item>Ranged</Item>
+    </Effect>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Dart</Item>
+      <Item>Great Crossbow</Item>
+      <Item>Heavy Crossbow</Item>
+      <Item>Light Crossbow</Item>
+      <Item>Longbow</Item>
+      <Item>Repeating Heavy Crossbow</Item>
+      <Item>Repeating Light Crossbow</Item>
+      <Item>Shortbow</Item>
+      <Item>Shuriken</Item>
+      <Item>Throwing Axe</Item>
+      <Item>Throwing Dagger</Item>
+      <Item>Throwing Hammer</Item>
     </Effect>
     <Effect>
       <Type>PointBlankShotRange</Type>
@@ -7406,6 +7439,11 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -9708,6 +9746,11 @@ receiving an additional +1 bonus on save DCs.</Description>
           <Value>1</Value>
         </Requirement>
         <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Druid</Item>
           <Value>1</Value>
@@ -9855,6 +9898,11 @@ receiving an additional +1 bonus on save DCs.</Description>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -10080,6 +10128,11 @@ receiving an additional +1 bonus on save DCs.</Description>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -10931,7 +10984,7 @@ you wield them.</Description>
     <Requirements>
       <RequiresOneOf>
         <Requirement>
-          <Type>ClassMinLevel</Type>
+          <Type>BaseClassMinLevel</Type>
           <Item>Monk</Item>
           <Value>1</Value>
         </Requirement>
@@ -13438,7 +13491,7 @@ Feat Exchange rules and costs).</Description>
         </Requirement>
         <Requirement>
           <Type>Feat</Type>
-          <Item>Amaunator's Brilliance</Item>
+          <Item>Amaunator's Flames</Item>
         </Requirement>
         <Requirement>
           <Type>Feat</Type>
@@ -14120,9 +14173,11 @@ enemies. Duration: 10 minutes</Description>
     <Icon>Vulkoor</Icon>
   </Feat>
   <Feat>
-    <Name>Amaunator's Brilliance</Name>
-    <Description>You are a devoted follower of Amaunator and your faith has been rewarded.
-Activate this ability to turn on your Fire Shield (Fire).</Description>
+    <Name>Amaunator's Flames</Name>
+    <Description>You are a devoted follower of Amaunator, and your faith has been rewarded.
+Toggling this on gives you Amaunator's Flames: You are wreathed in flames that
+deal 1d8 fire damage enemies who hit you, and provide a Sacred bonus that
+reduces 25% cold damage.</Description>
     <Group>Deity</Group>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
@@ -14151,13 +14206,25 @@ Activate this ability to turn on your Fire Shield (Fire).</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>AmaunatorsBrilliance</Icon>
+    <Stance>
+      <Name>Amaunator's Flames</Name>
+      <Icon>AmaunatorsBrilliance</Icon>
+      <Description>Toggling this on gives you Amaunator's Flames: You are wreathed in flames that
+deal 1d8 fire damage enemies who hit you, and provide a Sacred bonus that
+reduces 25% cold damage.</Description>
+    </Stance>
     <Effect>
-      <Type>SpellLikeAbility</Type>
-      <Bonus>Feat</Bonus>
-      <Item>Fire Shield (Fire)</Item>
-      <AType>SpellInfo</AType>
-      <Amount size="3">0 0 0</Amount>
-      <Item>None</Item>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">25</Amount>
+      <Item>Cold</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Amaunator's Flames</Item>
+        </Requirement>
+      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -14376,7 +14443,7 @@ different feat if you can move the feats as your build needs them.</Description>
         </Requirement>
         <Requirement>
           <Type>Feat</Type>
-          <Item>Amaunator's Brilliance</Item>
+          <Item>Amaunator's Flames</Item>
         </Requirement>
         <Requirement>
           <Type>Feat</Type>

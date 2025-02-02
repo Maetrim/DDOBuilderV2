@@ -227,7 +227,6 @@ enum EffectType
     // weapon effects for specified classes of weapons in Item(s) (Such as Melee)
     Effect_WeaponAlacrityClass,
     Effect_WeaponAttackAbilityClass,
-    Effect_WeaponBaseDamageBonusClass,
     Effect_WeaponDamageAbilityClass,
     Effect_WeaponDamageBonusCriticalStat,
     Effect_WeaponDamageBonusStat,
@@ -461,7 +460,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     // weapon effects for specified classes of weapons in Item(s) (Such as Melee)
     {Effect_WeaponAlacrityClass, L"WeaponAlacrityClass"},
     {Effect_WeaponAttackAbilityClass, L"WeaponAttackAbilityClass" },
-    {Effect_WeaponBaseDamageBonusClass, L"WeaponBaseDamageBonusClass"},
     {Effect_WeaponDamageAbilityClass, L"WeaponDamageAbilityClass" },
     {Effect_WeaponDamageBonusCriticalStat, L"WeaponDamageBonusCriticalStat" },
     {Effect_WeaponDamageBonusStat, L"WeaponDamageBonusStat" },

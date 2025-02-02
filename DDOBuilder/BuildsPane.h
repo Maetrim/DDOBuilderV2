@@ -14,6 +14,7 @@ enum TreeEntryItem
 class CBuildsPane :
     public CFormView,
     CharacterObserver,
+    LifeObserver,
     BuildObserver
 {
 public:
@@ -54,6 +55,9 @@ public:
 
     // CharacterObserver
     virtual void UpdateActiveBuildPositionChanged(Character*) override;
+
+    // Life observer
+    virtual void UpdateRaceChanged(Life*, const std::string&) override;
 
     // Build observer
     virtual void UpdateBuildLevelChanged(Build* pBuild) override;

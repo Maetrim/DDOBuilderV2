@@ -233,6 +233,13 @@ void CBuildsPane::UpdateActiveBuildPositionChanged(Character*)
     PopulateBuildsList();
 }
 
+void CBuildsPane::UpdateRaceChanged(
+    Life*,
+    const std::string&)
+{
+    PopulateBuildsList();
+}
+
 void CBuildsPane::UpdateBuildLevelChanged(Build*)
 {
     PopulateBuildsList();
@@ -470,6 +477,11 @@ void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
         {
             pBuild->AttachObserver(this);
         }
+        Life* pLife = m_pCharacter->ActiveLife();
+        if (pLife != NULL)
+        {
+            pLife->AttachObserver(this);
+        }
     }
     else
     {
@@ -484,6 +496,11 @@ void CBuildsPane::OnSelchangedTreeBuilds(NMHDR *, LRESULT *pResult)
             if (pBuild != NULL)
             {
                 pBuild->AttachObserver(this);
+            }
+            Life* pLife = m_pCharacter->ActiveLife();
+            if (pLife != NULL)
+            {
+                pLife->AttachObserver(this);
             }
         }
     }

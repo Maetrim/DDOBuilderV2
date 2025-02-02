@@ -1,7 +1,7 @@
 // BuildInfo.h
 //
 #define BUILDINFO_COMPANY "RIGamortis Software"
-#define BUILDINFO_YEAR "2024"
+#define BUILDINFO_YEAR "2025"
 #define BUILDINFO_COPYRIGHT "© Maetrim"
 #define BUILDINFO_PRODUCT "DDOBuilder"
 
@@ -10,7 +10,7 @@
 #define BUILDINFO_VERSION_MAJOR 2
 #define BUILDINFO_VERSION_MINOR 0
 #define BUILDINFO_VERSION_MODIF 0
-#define BUILDINFO_VERSION_BUILD 50
+#define BUILDINFO_VERSION_BUILD 51
 
 // Macro used to make combination strings automatically from the above
 // -------------------------------------------------------------------
