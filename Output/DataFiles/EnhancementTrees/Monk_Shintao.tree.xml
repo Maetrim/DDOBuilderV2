@@ -173,18 +173,6 @@ Your attacks while Centered gain the Byeshk damage trait.</Description>
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
       </Effect>
-      <!--3 stacks to get correct stacking
-    <Effect>
-      <DisplayName>Shintao Monk - 3 Piece bonus</DisplayName>
-      <Type>DRBypass</Type>
-      <Type>DRBypass</Type>
-      <Type>DRBypass</Type>
-      <Bonus>Exceptional</Bonus>
-      <Item>Good</Item>
-      <AType>Stacks</AType>
-      <Amount size="8">0 0 0 0 0 1 1 1</Amount>
-      <ApplyAsItemEffect/>
-    </Effect>-->
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Shintao: Argent Fist</Name>
@@ -612,7 +600,7 @@ Rank 3: The cooldown for Bluff, Diplomacy, and Intimidate are reduced by 10%.</D
       <Name>Shintao: Shintao Studies II</Name>
       <InternalName>ShintaoStudiesII</InternalName>
       <Description>+1 to Attack and +2 Damage while Centered.</Description>
-      <Icon>ShintaoStudiesII</Icon>
+      <Icon>ShintaoStudiesI</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -853,7 +841,7 @@ Centered Melee Attack: You gain a [5/15/25]% Morale bonus to Doublestrike for
       <Name>Shintao: Shintao Studies III</Name>
       <InternalName>ShintaoStudiesIII</InternalName>
       <Description>+1 to Attack and + 2 to Damage while Centered.</Description>
-      <Icon>ShintaoStudiesII</Icon>
+      <Icon>ShintaoStudiesI</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -949,7 +937,7 @@ fortification by 25%. A successful Will save negates this effect.</Description>
       <Name>Shintao: Hands of Mercy</Name>
       <InternalName>ShintaoHandsOfMercy</InternalName>
       <Description>Select an option.</Description>
-      <Icon>ShintaoStudiesII</Icon>
+      <Icon>ShintaoHandsOfMercy</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -974,29 +962,51 @@ positive energy healing done to the target, reducing its fortification by 25%.
 This attack automatically counts as a Critical Hit.
 Periodic Fortitude saves (14 + [Str/Dex/Wis] Modifier + Monk Level + Stun bonuses)
 to negate.</Description>
-          <Icon>ShintaoStudiesII</Icon>
+          <Icon>HandOfHarm</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Dark: Forbidden Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Hand of Healing</Name>
           <Description>You heal all nearby allies for 1d4 plus 1d4 per Monk level.
 Cooldown: 9 seconds.</Description>
-          <Icon>ShintaoStudiesII</Icon>
+          <Icon>ShintaoHandsOfMercy</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Harmonious Balance: Fists of Light</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Light: Enlightening Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Shintao: Dismissing Strike</Name>
-      <InternalName>ShintaoDismissingStrike</InternalName>
-      <Description>Ki Melee Attack: You perform a melee attack that attempts to force an extra
-planar enemy back to its proper plane. A successful Will save negates this
-effect (DC = 10 + Wisdom Modifier + Monk level + Stun bonuses).
-Cost: 25 Ki
-Cooldown: 15 seconds</Description>
-      <Icon>ShintaoDismissingStrike</Icon>
+      <Name>Shintao: Fists of Light</Name>
+      <InternalName>ShintaoFistsOfLight</InternalName>
+      <Description>Choose an option</Description>
+      <Icon>ShintaoFistsOfLight</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -1010,6 +1020,60 @@ Cooldown: 15 seconds</Description>
           <Value>3</Value>
         </Requirement>
       </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Dismissing Strike</Name>
+          <Description>Ki Melee Attack: You perform a melee attack that attempts to force an extra
+planar enemy back to its proper plane. A successful Will save negates this
+effect (DC = 10 + Wisdom Modifier + Monk level + Stun bonuses).
+Cost: 25 Ki
+Cooldown: 15 seconds</Description>
+          <Icon>ShintaoDismissingStrike</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Dark: Forbidden Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Fists of Light</Name>
+          <Description>Deals: +15% Damage
+Cooldown: 3 seconds
+You have chosen to follow the path if light. You seek to be in harmony with
+the world, and your training will reflect your philosophy. You can activate
+this ability to channel energy into your attack, dealing 4 to 24 additional
+Light damage, and applying a healing shield to your target which heals your
+allies that strike your target. On a vorpal strike (natural 20 followed by
+critical confirmation), you deal an additional 1 to 50 positive energy damage
+to undead. Both sets os damage scale with melee power.</Description>
+          <Icon>ShintaoFistsOfLight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Harmonious Balance: Fists of Light</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Light: Enlightening Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
       <DC>
         <Name>Shintao: Dismissing Strike</Name>
         <Description>Ki Melee Attack: You perform a melee attack that attempts to force an extra
@@ -1078,7 +1142,7 @@ Cooldown: 15 seconds</Description>
       <Name>Shintao: Shintao Studies IV</Name>
       <InternalName>ShintaoStudiesIV</InternalName>
       <Description>+1 to Attack and +2 to Damage while Centered.</Description>
-      <Icon>ShintaoStudiesII</Icon>
+      <Icon>ShintaoStudiesI</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -1168,13 +1232,12 @@ Will saves to avoid this fate.</Description>
       <Name>Shintao: Greater Hands of Mercy</Name>
       <InternalName>ShintaoGreaterHandsOfMercy</InternalName>
       <Description>Select an option.</Description>
-      <Icon>ShintaoStudiesII</Icon>
+      <Icon>ShintaoGreaterHandsOfMercy</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <ArrowUp />
       <Requirements>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
@@ -1190,40 +1253,28 @@ Will saves to avoid this fate.</Description>
         <EnhancementSelection>
           <Name>Greater Hand of Harm</Name>
           <Description>Targets affected by your Hand of Harm are also Blinded and Nauseated until they save.</Description>
-          <Icon>ShintaoStudiesII</Icon>
+          <Icon>GreaterHandOfHarm</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Requirements>
-             <RequiresOneOf>
-               <Requirement>
-                  <Type>Feat</Type>
-                  <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>Enhancement</Type>
-                  <Item>U51GrandmasterOfFlowersCore4</Item>
-                  <Item>Dark: Forbidden Philosophy</Item>
-               </Requirement>
-             </RequiresOneOf>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoHandsOfMercy</Item>
+               <Item>Hand of Harm</Item>
+            </Requirement>
           </Requirements>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Greater Hand of Healing</Name>
           <Description>Your hand of Healing now applies a Lesser Restoration effect and removes Blindness,
 Curses, and Diseases.</Description>
-          <Icon>ShintaoStudiesII</Icon>
+          <Icon>ShintaoGreaterHandsOfMercy</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Requirements>
-             <RequiresOneOf>
-               <Requirement>
-                  <Type>Feat</Type>
-                  <Item>Path of Harmonious Balance: Fists of Light</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>Enhancement</Type>
-                  <Item>U51GrandmasterOfFlowersCore4</Item>
-                  <Item>Light: Enlightening Philosophy</Item>
-               </Requirement>
-             </RequiresOneOf>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>ShintaoHandsOfMercy</Item>
+               <Item>Hand of Healing</Item>
+            </Requirement>
           </Requirements>
         </EnhancementSelection>
       </Selector>
@@ -1417,10 +1468,6 @@ critically hit.</Description>
         <Requirement>
           <Type>Level</Type>
           <Value>12</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>ShintaoGreaterHandsOfMercy</Item>
         </Requirement>
       </Requirements>
     </EnhancementTreeItem>
