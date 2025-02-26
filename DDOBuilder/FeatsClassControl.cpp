@@ -1326,7 +1326,11 @@ void CFeatsClassControl::OnFeatSelectOk()
                 m_pCharacter->ToggleShowUnavailable();
                 if (m_pCharacter->ActiveBuild()->IsFeatTrainable(
                             m_featSelectItem.Level(),
-                            tfts[m_featSelectItem.Data()].FeatType(), feat, true))
+                            tfts[m_featSelectItem.Data()].FeatType(),
+                            feat,
+                            true,
+                            false,
+                            true))
                 {
                     m_pCharacter->ActiveBuild()->TrainFeat(
                         (LPCTSTR)featName,

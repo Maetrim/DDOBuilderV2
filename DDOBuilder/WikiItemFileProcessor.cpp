@@ -1577,7 +1577,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "DeceptionFixed", "Deception Deception", "Enhancement", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Darkwood", "Darkwood Darkwood", "Enhancement", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Densewood", "Densewood Densewood", "Enhancement", "", 5);
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Breath Weapon Focus", "Breath Weapon Focus", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Breath Weapon Focus", "Breath Weapon Focus", "Equipment", "");
 
     if (!bRecognised)
     {

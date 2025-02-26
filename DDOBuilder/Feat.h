@@ -4,6 +4,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 
+#include "Attack.h"
 #include "AutomaticAcquisition.h"
 #include "ConditionalGroup.h"
 #include "DC.h"
@@ -62,6 +63,7 @@ class Feat :
                 DL_OBJECT_LIST(_, AutomaticAcquisition, AutomaticAssignment) \
                 DL_ENUM(_, FeatAcquisitionType, Acquire, FeatAcquisition_Unknown, featAcquisitionMap) \
                 DL_OPTIONAL_SIMPLE(_, size_t, MaxTimesAcquire, 1) \
+                DL_OBJECT_LIST(_, Attack, Attacks) \
                 DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_OBJECT_LIST(_, DC, DCs) \
                 DL_OBJECT_LIST(_, Effect, Effects)

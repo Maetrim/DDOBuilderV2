@@ -18,6 +18,7 @@
 #include "ClassAndFeatPane.h"
 #include "DCPane.h"
 #include "DestinyPane.h"
+#include "DPSPane.h"
 #include "EquipmentPane.h"
 #include "EnhancementsPane.h"
 #include "FavorPane.h"
@@ -360,6 +361,13 @@ BOOL CMainFrame::CreateDockingWindows()
             RUNTIME_CLASS(CSelfAndPartyBuffsPane),
             ID_DOCK_SELFANDPARTYBUFFS);
     pSelfAndPartyBuffsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    CCustomDockablePane* pDPSPane = CreateDockablePane(
+            "DPS",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CDPSPane),
+            ID_DOCK_DPS);
+    pDPSPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // Builds pane must be created last, so that panes are initialised
     // correctly in order after a file load event
@@ -742,7 +750,7 @@ CCustomDockablePane* CMainFrame::GetPane(UINT nID)
         case ID_DOCK_FAVOR:             pRTC = RUNTIME_CLASS(CFavorPane); break;
         case ID_DOCK_NOTES:             pRTC = RUNTIME_CLASS(CNotesPane); break;
         case ID_DOCK_SELFANDPARTYBUFFS: pRTC = RUNTIME_CLASS(CSelfAndPartyBuffsPane); break;
-        case ID_DOCK_UNUSED17:
+        case ID_DOCK_DPS:               pRTC = RUNTIME_CLASS(CDPSPane); break;
         case ID_DOCK_UNUSED18:
         case ID_DOCK_UNUSED19:
         case ID_DOCK_UNUSED20:          break;

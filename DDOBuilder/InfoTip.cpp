@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "InfoTip.h"
 
+#include "Attack.h"
 #include "Augment.h"
 #include "Build.h"
 #include "Class.h"
@@ -101,6 +102,12 @@ void CInfoTip::Show()
         {
             // move the tip above the origin position to ensure content visible
             m_origin.y = m_alternate.y - windowSize.cy; // alternate position
+            if (m_origin.y < 0)
+            {
+                // extends off the top also, bump right and move down so all is visible
+                m_origin.y = 0;
+                m_origin.x += 60;
+            }
         }
     }
     else
@@ -981,16 +988,32 @@ void CInfoTip::SetFavorItem(
     m_tipItems.push_back(pDescription);
 }
 
+void CInfoTip::SetAttack(const Attack& attack)
+{
+    ClearOldTipItems();
+}
+
 void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
 {
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.HasIcon() ? spell.Icon() : "", true);
     pHeader->SetTitle(spell.Name().c_str());
-    if (spell.HasSchool())
+    if (spell.School().size() > 0)
     {
-        CString school;
-        school.Format("School: %s", (LPCTSTR)EnumEntryText(spell.School(), spellSchoolTypeMap));
-        pHeader->SetRank(school);
+        bool bFirst = true;
+        CString schools("School: ");
+        for (auto&& sit: spell.School())
+        {
+            CString school;
+            school = EnumEntryText(sit, spellSchoolTypeMap);
+            if (!bFirst)
+            {
+                schools += ", ";
+            }
+            bFirst = false;
+            schools += school;
+        }
+        pHeader->SetRank(schools);
     }
     if (spell.HasCost())
     {

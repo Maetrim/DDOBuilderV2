@@ -19,6 +19,7 @@ class Selector :
 
         std::list<Effect> GetEffects(const std::string& selection, size_t rank) const;
         std::list<Stance> GetStances(const std::string&selection, size_t rank) const;
+        std::list<Attack> Attacks(const std::string& selection) const;
 
         std::list<DC> EffectDCs(const std::string& selection) const;
         std::list<Stance> Stances(const std::string& selection) const;

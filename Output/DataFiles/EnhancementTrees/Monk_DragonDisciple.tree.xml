@@ -16,8 +16,9 @@
       <InternalName>MDDCore1</InternalName>
       <Description>While you are centered, you can use your Wisdom modifier to hit.
 You are centered with one-handed Clubs and Sceptres. Each core ability in this
-tree grants you +3 Melee Power, +3 Universal Spell Power, and +3 MRR.</Description>
-      <Icon>PassiveStub</Icon>
+tree grants you +3 Melee Power, +3 Universal Spell Power, and +3 Magical
+Resistance Rating.</Description>
+      <Icon>MDDDraconicStudies</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -59,7 +60,7 @@ tree grants you +3 Melee Power, +3 Universal Spell Power, and +3 MRR.</Descripti
 You gain +2 to your Spellcraft skill and +2 to Attack. At Dragon Disciple levels
 9 and 15 these bonuses increase by +1. While you are Centered, you can use your
 Wisdom modifier to damage.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDWayOfTheMightyDragonI</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -118,8 +119,9 @@ Wisdom modifier to damage.</Description>
       <Name>Dragon Disciple: Way of the Mighty Dragon II</Name>
       <InternalName>MDDCore3</InternalName>
       <Description>Your Way of the Mighty Dragon now includes +2% Doublestrike.
-At Dragon Disciple levels 9 and 15 this bonus increases by +1. You gain True Seeing.</Description>
-      <Icon>PassiveStub</Icon>
+At Dragon Disciple levels 9 and 15 this bonus increases by +1%.
+You gain True Seeing.</Description>
+      <Icon>MDDWayOfTheMightyDragonII</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -163,10 +165,11 @@ At Dragon Disciple levels 9 and 15 this bonus increases by +1. You gain True See
       <Name>Dragon Disciple: Fist of the Dragon</Name>
       <InternalName>MDDCore4</InternalName>
       <Description>Centered Melee Attack: Channel Draconic strength and the power of your weapons
-into your fist, hitting a single target +50% Damage. If you have a Power in Practice
-Imbue enabled, you deal 1d4 damage per Character Level of that imbue's element
-that scales with 100% Spell Power. (Uses Rune Arm Slam animation). Cooldown: 12 seconds.</Description>
-      <Icon>ActiveStub</Icon>
+into your fist, hitting a single target with +50% Damage. If you have a Power in Practice
+Imbue enabled, you deal 1d4 damage per Character Level of that imbue's element.
+This scales with 100% Spell Power.
+Cooldown: 12 seconds.</Description>
+      <Icon>MDDFistOfTheDragon</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -198,7 +201,7 @@ that scales with 100% Spell Power. (Uses Rune Arm Slam animation). Cooldown: 12 
       <InternalName>MDDCore5</InternalName>
       <Description>Your Way of the Mighty Dragon now includes +3 Critical Confirmation and Critical
 Damage and +3 Imbue Dice. +5 Maximum Caster Level with Lesser Draconic Burst.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDWayOfTheMightyDragonIII</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -240,7 +243,11 @@ Damage and +3 Imbue Dice. +5 Maximum Caster Level with Lesser Draconic Burst.</D
       <Effect>
         <Type>MaxCasterLevelSpell</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Lesser Draconic Burst</Item>
+        <Item>Lesser Draconic Burst: Acid</Item>
+        <Item>Lesser Draconic Burst: Cold</Item>
+        <Item>Lesser Draconic Burst: Electric</Item>
+        <Item>Lesser Draconic Burst: Fire</Item>
+        <Item>Lesser Draconic Burst: Poison</Item>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
       </Effect>
@@ -248,13 +255,15 @@ Damage and +3 Imbue Dice. +5 Maximum Caster Level with Lesser Draconic Burst.</D
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Draconic Apotheosis</Name>
       <InternalName>MDDCore6</InternalName>
-      <Description>Active: For 20 seconds, you take 50% less damage from Fire, Cold, Electric, Acid,
-and Poison, gain +2 to all Ability Scores, gain immunity to Sleep and Paralysis,
-+1 Critical Threat Range with all weapons, +5% Spell Critical Damage, and Acolyte's
-Breath and Devastation both deal double damage. Cost: 100 Ki. 2 minute cooldown.
-Passive: +2 Wisdom, +2 Dexterity, +12 Melee Power, and +12 Universal Spell Power.
-+5 Maximum Caster Level with Lesser Draconic Burst.</Description>
-      <Icon>ActiveStub</Icon>
+      <Description>On Activation: For 20 seconds, you take 50% less damage from Fire, Cold, Electric, Acid,
+and Poison, gain +2 to all Ability Scores, immunity to Sleep and Paralysis,
++1 Critical Multiplier on a 19-20, +5% Spell Critical Damage, and Acolyte's
+Breath and Devastation both deal double damage.
+Cost: 100 Ki.
+Cooldown: 2 minutes.
+Passive: +4 Wisdom, +3 Imbue Dice, +12 Melee Power, and +12 Universal Spell Power.
++10 Maximum Caster Level with Lesser Draconic Burst and Draconic Burst.</Description>
+      <Icon>MDDDraconicApotheosis</Icon>
       <XPosition>5</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -296,17 +305,17 @@ Passive: +2 Wisdom, +2 Dexterity, +12 Melee Power, and +12 Universal Spell Power
         <Type>AbilityBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Item>Wisdom</Item>
-        <Item>Dexterity</Item>
         <AType>Simple</AType>
-        <Amount size="1">2</Amount>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
       </Effect>
       <Effect>
         <Type>MeleePower</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">12</Amount>
-      </Effect>
-      <Effect>
         <Type>UniversalSpellPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
@@ -315,9 +324,18 @@ Passive: +2 Wisdom, +2 Dexterity, +12 Melee Power, and +12 Universal Spell Power
       <Effect>
         <Type>MaxCasterLevelSpell</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Lesser Draconic Burst</Item>
+        <Item>Lesser Draconic Burst: Acid</Item>
+        <Item>Lesser Draconic Burst: Cold</Item>
+        <Item>Lesser Draconic Burst: Electric</Item>
+        <Item>Lesser Draconic Burst: Fire</Item>
+        <Item>Lesser Draconic Burst: Poison</Item>
+        <Item>Draconic Burst: Acid</Item>
+        <Item>Draconic Burst: Cold</Item>
+        <Item>Draconic Burst: Electric</Item>
+        <Item>Draconic Burst: Fire</Item>
+        <Item>Draconic Burst: Poison</Item>
         <AType>Simple</AType>
-        <Amount size="1">5</Amount>
+        <Amount size="1">10</Amount>
       </Effect>
     </EnhancementTreeItem>
     <!--Tier 1-->
@@ -331,10 +349,10 @@ Deals 1d6+1 [element] damage per caster level (max 5d6+5 at caster level 5).
 A successful Reflex save reduces damage by half, DC 10 + WIS mod + Evocation bonuses
 (Acid uses Conjuration) + Breath Weapon bonuses. 4 second cooldown, costs 5 Ki,
 must be Centered to use.</Description>
-      <Icon>ActiveStub</Icon>
+      <Icon>MDDLesserDraconicBurst</Icon>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
+      <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie/>
@@ -346,39 +364,72 @@ must be Centered to use.</Description>
           <Value>1</Value>
         </Requirement>
       </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Lesser Draconic Burst: Acid</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Lesser Draconic Burst: Cold</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Lesser Draconic Burst: Electric</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Lesser Draconic Burst: Fire</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Lesser Draconic Burst: Poison</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Power in Practice</Name>
       <InternalName>MDDPowerInPractice</InternalName>
-      <Description>You gain five Imbue Toggles, each in one of the Draconic elements, which all share
-a single cooldown. Imbue Toggle: While you are Centered, your Draconic Studies
-embolden your weapon strikes, which deal 1d6 [Fire, Cold, Electric, Acid, or Poison]
-damage on each hit. This damage scales with 100% of the relevant Spell Power.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>Taking this enhancement grants you five Imbue Toggles, in Fire, Cold, Electric,
+Acid and Poison. Imbue Toggle: While you are Centered, your Draconic Studies
+embolden your weapon strikes, which deal 1d6 damage of the relevant element on
+each hit. This damage scales with 100% of the relevant Spell Power.</Description>
+      <Icon>MDDPowerInPractice</Icon>
       <XPosition>1</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
+      <Clickie/>
       <Stance>
         <Name>Power in Practice: Acid</Name>
-        <Icon>PassiveStub</Icon>
+        <Icon>MDDPowerInPracticeAcid</Icon>
         <Description>Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
 strikes, which deal 1d6 Acid damage on each hit. This damage scales with 100%
 of the Acid Spell Power.</Description>
         <Group>Imbue</Group>
       </Stance>
       <Stance>
-        <Name>Power in Practice: Cold</Name>
-        <Icon>PassiveStub</Icon>
-        <Description>Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
-strikes, which deal 1d6 Cold damage on each hit. This damage scales with 100%
-of the Cold Spell Power.</Description>
-        <Group>Imbue</Group>
-      </Stance>
-      <Stance>
         <Name>Power in Practice: Electric</Name>
-        <Icon>PassiveStub</Icon>
+        <Icon>MDDPowerInPracticeElectric</Icon>
         <Description>Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
 strikes, which deal 1d6 Electric damage on each hit. This damage scales with 100%
 of the Electric Spell Power.</Description>
@@ -386,15 +437,23 @@ of the Electric Spell Power.</Description>
       </Stance>
       <Stance>
         <Name>Power in Practice: Fire</Name>
-        <Icon>PassiveStub</Icon>
+        <Icon>MDDPowerInPracticeFire</Icon>
         <Description>Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
 strikes, which deal 1d6 Fire damage on each hit. This damage scales with 100%
 of the Fire Spell Power.</Description>
         <Group>Imbue</Group>
       </Stance>
       <Stance>
+        <Name>Power in Practice: Ice</Name>
+        <Icon>MDDPowerInPracticeIce</Icon>
+        <Description>Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
+strikes, which deal 1d6 Cold damage on each hit. This damage scales with 100%
+of the Cold Spell Power.</Description>
+        <Group>Imbue</Group>
+      </Stance>
+      <Stance>
         <Name>Power in Practice: Poison</Name>
-        <Icon>PassiveStub</Icon>
+        <Icon>MDDPowerInPracticePoison</Icon>
         <Description>Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
 strikes, which deal 1d6 Poison damage on each hit. This damage scales with 100%
 of the Poison Spell Power.</Description>
@@ -412,7 +471,7 @@ of the Poison Spell Power.</Description>
       <Name>Dragon Disciple: Study of Scales</Name>
       <InternalName>MDDStudyOfScales</InternalName>
       <Description>+[1/2/3] Fortitude Saving Throws.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDStudyOfScales</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -436,8 +495,8 @@ of the Poison Spell Power.</Description>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Draconic Devotion I</Name>
       <InternalName>MDDDraconicDevotionI</InternalName>
-      <Description>While Centered,+8 Universal Spell Power.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>While Centered, you gain +8 Universal Spell Power.</Description>
+      <Icon>MDDDraconicDevotionI</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -464,11 +523,11 @@ of the Poison Spell Power.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Dragon Disciple: Skills</Name>
-      <InternalName>MDDSkills</InternalName>
+      <Name>Dragon Disciple: Heart of the Dragon</Name>
+      <InternalName>MDDHeartOfTheDragon</InternalName>
       <Description>+[1/2/3] Spellcraft, Heal, and Listen.
 Rank 3: +3 Magical Resistance Rating.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDHeartOfTheDragon</Icon>
       <XPosition>4</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -502,18 +561,18 @@ Rank 3: +3 Magical Resistance Rating.</Description>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Acolyte's Breath</Name>
       <InternalName>MDDAcolytesBreath</InternalName>
-      <Description>You gain five SLAs, each in one of the Draconic elements, which all share a single
-cooldown. Active Breath Attack SLA: Cone that deals 1d6 + 3 [Fire, Cold, Electric,
-Acid, or Poison] damage per caster level (Reflex save for half).
-Counts as Evocation spell, except Acid is Conjuration; gets full Metamagic feats,
-No SR, DC 10 + WIS mod + Evocation bonuses (Acid uses Conjuration) + Breath Weapon bonuses.
-Scales with 100% of spell power. Activation Cost: 10 Ki, must be Centered.
-Cooldown: 25 seconds</Description>
-      <Icon>ActiveStub</Icon>
+      <Description>Taking this enhancement grants you five SLAs, in Fire, Cold, Electric, Acid,
+and Poison. All five share a single cooldown.
+Centered Ki Breath Attack SLA: You channel Ki to bring forth Draconic power
+in a small burst, hitting all enemies very close to you. Deals 1d6+3 damage
+of the relevant element per caster level. A successful Reflex save reduces
+damage by half. DC 10 + WIS mod + (Evocation, Conjuration, Transmutation
+depending on element) + Breath Weapon bonuses.</Description>
+      <Icon>MDDAcolytesBreath</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie/>
       <ArrowUp/>
@@ -528,16 +587,56 @@ Cooldown: 25 seconds</Description>
           <Item>MDDLesserDraconicBurst</Item>
         </Requirement>
       </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acolyte's Breath: Black</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acolyte's Breath: Blue</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acolyte's Breath: Green</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acolyte's Breath: Red</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Acolyte's Breath: White</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Power Begets Power</Name>
       <InternalName>MDDPowerBegetsPower</InternalName>
       <Description>Your melee strikes with weapons generate +2 Ki.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDPowerBegetsPower</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Requirements>
         <Requirement>
@@ -563,10 +662,10 @@ Cooldown: 25 seconds</Description>
       <Name>Dragon Disciple: Discipleship I</Name>
       <InternalName>MDDDiscipleshipI</InternalName>
       <Description>+1 Imbue Dice.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDDiscipleshipI</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Requirements>
@@ -587,7 +686,7 @@ Cooldown: 25 seconds</Description>
       <Name>Dragon Disciple: Innate Arcana</Name>
       <InternalName>MDDInnateArcana</InternalName>
       <Description>Your studies have increased your maximum Spell Points by +[30/60/90].</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDInnateArcana</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -611,7 +710,8 @@ Cooldown: 25 seconds</Description>
       <Name>Dragon Disciple: Action Boost: Doublestrike</Name>
       <InternalName>MDDActionBoostDoublestrike</InternalName>
       <Description>You gain a +[10/20/30]% Action Boost bonus to Doublestrike for 20 seconds.
-Usable 5 times per rest.</Description>
+Usable 5 times per rest.
+Cooldown: 30 seconds</Description>
       <Icon>SFActionBoostDoublestrike</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
@@ -631,17 +731,18 @@ Usable 5 times per rest.</Description>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Draconic Burst</Name>
       <InternalName>MDDDraconicBurst</InternalName>
-      <Description>You gain five SLAs, each in one of the Draconic elements, which all share a single
-cooldown. You channel Ki to bring forth your Dragon's element in a small burst,
-hitting all enemies close to you. Deals 1d6+2 [element] damage per caster level
-(max 10d6+10 at caster level 20). A successful reflex save reduces damage by half,
-DC 10 + WIS mod + Evocation bonuses (Acid uses Conjuration) + Breath Weapon bonuses.
-4 second cooldown, costs 5 Ki, must be Centered to use.</Description>
-      <Icon>ActiveStub</Icon>
+      <Description>Taking this enhancement grants you five SLAs, in Fire, Cold, Electric, Acid,
+and Poison. All five share a single cooldown.
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's
+element in a small burst, hitting all enemies close to you. Deals 1d6+3 damage
+of the relevant element per caster level. A successful Reflex save reduces
+damage by half, DC 10 + WIS mod + (Evocation, Conjuration or Transmutation)
+bonuses + Breath Weapon bonuses.</Description>
+      <Icon>MDDDraconicBurst</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie/>
       <ArrowUp/>
@@ -656,17 +757,58 @@ DC 10 + WIS mod + Evocation bonuses (Acid uses Conjuration) + Breath Weapon bonu
           <Item>MDDAcolytesBreath</Item>
         </Requirement>
       </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Burst: Acid</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Burst: Cold</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Burst: Electric</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Burst: Fire</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Burst: Poison</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Way of the Dragon</Name>
       <InternalName>MDDWayOfTheDragon</InternalName>
-      <Description>Select option</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>Select a Way based on your choice of Light or Dark Monk Path.</Description>
+      <Icon>MDDWayOfTheDragon</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
+      <Clickie/>
       <Requirements>
         <Requirement>
           <Type>Class</Type>
@@ -678,18 +820,47 @@ DC 10 + WIS mod + Evocation bonuses (Acid uses Conjuration) + Breath Weapon bonu
         <EnhancementSelection>
           <Name>Channel the Enlightened Dragon</Name>
           <Description>Activate: You and nearby allies become immune to Daze, Stun, and Sleep for 60 seconds.
-(90 second cooldown, costs 10 Ki)</Description>
-          <Icon>ActiveStub</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+Cooldown: 90 seconds.
+Cost: 10 Ki</Description>
+          <Icon>MDDWayOfTheDragon</Icon>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie/>
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Harmonious Balance: Fists of Light</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Light: Enlightening Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Channel the Raging Dragon</Name>
-          <Description>Activate: Nearby allies gain a +2 Untyped bonus to attack, saves, and skills
-for 60 seconds. (90 second cooldown, costs 10 Ki)</Description>
-          <Icon>ActiveStub</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <Description>Activate: Nearby allies gain a +2 Untyped bonus to Attack, Saving Throws,
+and Skills for 60 seconds.
+Cooldown: 90 seconds
+Cost: 10 Ki</Description>
+          <Icon>MDDRagingDragon</Icon>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie/>
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Dark: Forbidden Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -698,26 +869,18 @@ for 60 seconds. (90 second cooldown, costs 10 Ki)</Description>
       <InternalName>MDDClearYourMind</InternalName>
       <Description>Battle Trance: While Centered, you gain an Insight bonus to Attack, Damage and
 the DCs of Tactical feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.
-Cooldown: 20 seconds. Activation Cost: 30 Ki.
+Cooldown: 20 seconds.
+Activation Cost: 35 Ki.
 The effects of this Trance are dispelled if you are no longer Centered.
 Antirequisite: This ability can not be trained if you have any other Battle Trance
 ability (e.g. Know the Angles).</Description>
-      <Icon>ActiveStub</Icon>
+      <Icon>MDDClearYourMind</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie/>
-      <Stance>
-        <Name>Clear Your Mind</Name>
-        <Icon>PassiveStub</Icon>
-        <Description>Battle Trance: While Centered, you gain an Insight bonus to Attack, Damage and
-the DCs of Tactical feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.
-Cooldown: 20 seconds. Activation Cost: 30 Ki.
-The effects of this Trance are dispelled if you are no longer Centered.</Description>
-        <Group>Battle Trance</Group>
-      </Stance>
       <Requirements>
         <Requirement>
           <Type>Class</Type>
@@ -737,13 +900,55 @@ The effects of this Trance are dispelled if you are no longer Centered.</Descrip
         <Item>Battle Trance</Item>
         <AType>NotNeeded</AType>
       </Effect>
+      <Stance>
+        <Name>Clear Your Mind</Name>
+        <Icon>MDDClearYourMind</Icon>
+        <Description>Battle Trance: While Centered, you gain an Insight bonus to Attack, Damage and
+the DCs of Tactical feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.
+Cooldown: 20 seconds. Activation Cost: 30 Ki.
+The effects of this Trance are dispelled if you are no longer Centered.</Description>
+        <Group>Battle Trance</Group>
+      </Stance>
+         <Effect>
+            <DisplayName>Dragon Disciple: Clear Your Mind (Wis Mod / 2)</DisplayName>
+            <Type>TacticalDC</Type>
+            <Bonus>Insightful</Bonus>
+            <StackSource>SnapshotWisdom</StackSource>
+            <AType>HalfAbilityMod</AType>
+            <Item>Trip</Item>
+            <Item>Sunder</Item>
+            <Item>Stun</Item>
+            <Item>General</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Clear Your Mind</Item>
+               </Requirement>
+            </Requirements>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Dragon Disciple: Clear Your Mind (Wis Mod / 2)</DisplayName>
+            <Type>Weapon_Damage</Type>
+            <Bonus>Insightful</Bonus>
+            <StackSource>SnapshotWisdom</StackSource>
+            <AType>HalfAbilityMod</AType>
+            <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Clear Your Mind</Item>
+               </Requirement>
+            </Requirements>
+            <ApplyAsItemEffect/>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Draconic Devotion II</Name>
       <InternalName>MDDDraconicDevotionII</InternalName>
       <Description>While Centered, +8 Universal Spell Power and +1% Universal Spell Critical Chance.
 Your Breath Attacks apply Shaken to affected enemies for 6 seconds.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDDraconicDevotionII</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -784,7 +989,7 @@ Your Breath Attacks apply Shaken to affected enemies for 6 seconds.</Description
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Ability I</Name>
       <InternalName>MDDAbilityI</InternalName>
-      <Description>Choose an ability to enhance.</Description>
+      <Description>Select +1 to one Ability Score.</Description>
       <Icon>HMAbilityScore</Icon>
       <XPosition>4</XPosition>
       <YPosition>3</YPosition>
@@ -886,11 +1091,11 @@ Your Breath Attacks apply Shaken to affected enemies for 6 seconds.</Description
       <Description>Your Lesser Draconic Bursts now apply 2 stacks of Vulnerability to affected targets.
 Your Draconic Bursts now apply a stack of Weakened Will, Feeble Fortitude, and
 Reduced Reflexes to affected targets.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDSecretPower</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <ArrowUp/>
       <Requirements>
@@ -908,8 +1113,9 @@ Reduced Reflexes to affected targets.</Description>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Tranquility in Strife</Name>
       <InternalName>MDDTranquilityInStrife</InternalName>
-      <Description>Pick a weapon set to become Centered with.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>Select an aspect of the Dragon that will unlock new Melee Weapons you can be
+Centered with.</Description>
+      <Icon>MDDTranquilityInStrife</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -924,37 +1130,9 @@ Reduced Reflexes to affected targets.</Description>
       </Requirements>
       <Selector>
         <EnhancementSelection>
-          <Name>Dragon's Tooth</Name>
-          <Description>You are now Centered with Light and Heavy Pick.</Description>
-          <Icon>PassiveStub</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AddGroupWeapon</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Centered</Item>
-            <Item>Light Pick</Item>
-            <Item>Heavy Pick</Item>
-            <AType>NotNeeded</AType>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Dragon's Tail</Name>
-          <Description>You are now Centered with Light Hammer and Warhammer.</Description>
-          <Icon>PassiveStub</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AddGroupWeapon</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Centered</Item>
-            <Item>Light Hammer</Item>
-            <Item>Warhammer</Item>
-            <AType>NotNeeded</AType>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
           <Name>Dragon's Claw</Name>
           <Description>You are now Centered with Handaxe, Battle Axe, and Sickle.</Description>
-          <Icon>PassiveStub</Icon>
+          <Icon>MDDDragonsClaw</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
             <Type>AddGroupWeapon</Type>
@@ -967,11 +1145,32 @@ Reduced Reflexes to affected targets.</Description>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Dragon's Divinity</Name>
-          <Description>You are now Centered with any Melee Weapon that is a Favored Weapon for you.
-(Note: Still working on the tech for this one. May be cut if it doesn't pan out.)</Description>
-          <Icon>PassiveStub</Icon>
+          <Name>Dragon's Tail</Name>
+          <Description>You are now Centered with Light Hammer and Warhammer.</Description>
+          <Icon>MDDDragonsTail</Icon>
           <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Centered</Item>
+            <Item>Light Hammer</Item>
+            <Item>Warhammer</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dragon's Tooth</Name>
+          <Description>You are now Centered with Light and Heavy Pick.</Description>
+          <Icon>MDDTranquilityInStrife</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Centered</Item>
+            <Item>Light Pick</Item>
+            <Item>Heavy Pick</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -979,11 +1178,11 @@ Reduced Reflexes to affected targets.</Description>
       <Name>Dragon Disciple: Discipleship II</Name>
       <InternalName>MDDDiscipleshipII</InternalName>
       <Description>+2 Imbue Die and +3 to Breath Weapon DCs.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDDiscipleshipII</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <Requirements>
         <Requirement>
@@ -1010,7 +1209,7 @@ Reduced Reflexes to affected targets.</Description>
       <Name>Dragon Disciple: Draconic Devotion III</Name>
       <InternalName>MDDDraconicDevotionIII</InternalName>
       <Description>While Centered, +8 Universal Spell Power and +2% Universal Spell Critical Chance.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDDraconicDevotionIII</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -1051,7 +1250,7 @@ Reduced Reflexes to affected targets.</Description>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Ability II</Name>
       <InternalName>MDDAbilityII</InternalName>
-      <Description>Choose an ability to enhance.</Description>
+      <Description>Select +1 to one Ability Score.</Description>
       <Icon>HMAbilityScore</Icon>
       <XPosition>4</XPosition>
       <YPosition>4</YPosition>
@@ -1150,18 +1349,17 @@ Reduced Reflexes to affected targets.</Description>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Draconic Devastation</Name>
       <InternalName>MDDDraconicDevastation</InternalName>
-      <Description>You gain five SLAs, each in one of the Draconic elements, which all share a single
-cooldown. Active Breath Attack SLA: Cone that deals 1d6+6 [element] damage per
-caster level (Reflex save for half). Affected enemies who are Shaken become Afraid
-and have their movement speed reduced by 90% for 6 seconds. Counts as Evocation
-spell except Acid is Conjuration; gets full Metamagic feats, No SR,
-DC 10 + WIS mod + Evocation bonuses (Acid uses Conjuration) + Breath Weapon bonuses.
-Scales with 100% of spell power. Activation Cost: 15 Ki, must be Centered.
-Cooldown: 25 seconds.</Description>
-      <Icon>ActiveStub</Icon>
+      <Description>Taking this enhancement grants you file SLAs, in Fire, Cold, Electric, Acid,
+and Poison. All five share a single cooldown.
+Centered Ki Breath Attack SLA: Cone that deals 1d6+6 damage of the relevant
+element per caster level. A successful Reflex save reduces damage by half,
+DC 10 + WIS mod + (Evocation, Conjuration or Transmutation depending on element)
+bonuses + Breath Weapon bonuses. Affected enemies who are Shaken become Afraid
+and have their movement speed reduced by 90% for 6 seconds.</Description>
+      <Icon>MDDDraconicDevastation</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Clickie/>
@@ -1181,16 +1379,57 @@ Cooldown: 25 seconds.</Description>
           <Item>MDDSecretPower</Item>
         </Requirement>
       </Requirements>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Devastation: Black</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Devastation: Blue</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Devastation: Green</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Devastation: Red</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Draconic Devastation: White</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="3">0 0 0</Amount>
+            <Item>Dragon Disciple</Item>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Peace in Destruction</Name>
       <InternalName>MDDPeaceInDestruction</InternalName>
-      <Description>While Centered, you gain +1 Competence Bonus to Critical Multiplier.
-Passive: You gain a +25% Competence bonus to maximum hit points.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>While Centered, you gain +1 Competence Bonus to Critical Threat Range and
+Critical Multiplier.
+Passive: You gain a +25% Competence bonus to Maximum Hit Points.</Description>
+      <Icon>MDDPeaceInDestruction</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5/>
@@ -1206,6 +1445,7 @@ Passive: You gain a +25% Competence bonus to maximum hit points.</Description>
         </Requirement>
       </Requirements>
       <Effect>
+        <Type>Weapon_CriticalRange</Type>
         <Type>Weapon_CriticalMultiplier</Type>
         <Bonus>Competence</Bonus>
         <Item>Handwraps</Item>
@@ -1217,6 +1457,7 @@ Passive: You gain a +25% Competence bonus to maximum hit points.</Description>
             <Item>Centered</Item>
           </Requirement>
         </Requirements>
+        <ApplyAsItemEffect/>
       </Effect>
       <Effect>
         <Type>Hitpoints</Type>
@@ -1230,8 +1471,8 @@ Passive: You gain a +25% Competence bonus to maximum hit points.</Description>
     <EnhancementTreeItem>
       <Name>Dragon Disciple: Perfect Disciple</Name>
       <InternalName>MDDPerfectDisciple</InternalName>
-      <Description>+2 Breath Weapon DCs and +2 Evocation DCs.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>+2 Breath Weapon DCs and +2 Evocation, Conjuration, and Transmutation DCs.</Description>
+      <Icon>MDDPerfectDisciple</Icon>
       <XPosition>2</XPosition>
       <YPosition>5</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -1254,6 +1495,8 @@ Passive: You gain a +25% Competence bonus to maximum hit points.</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Breath Weapon</Item>
         <Item>Evocation</Item>
+        <Item>Conjuration</Item>
+        <Item>Transmutation</Item>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
       </Effect>
@@ -1262,10 +1505,10 @@ Passive: You gain a +25% Competence bonus to maximum hit points.</Description>
       <Name>Dragon Disciple: Shining Scales</Name>
       <InternalName>MDDShiningScales</InternalName>
       <Description>You gain +30 MRR cap.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>MDDShiningScales</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5/>
@@ -1291,11 +1534,11 @@ Passive: You gain a +25% Competence bonus to maximum hit points.</Description>
       <Name>Dragon Disciple: Perfect Breathing</Name>
       <InternalName>MDDPerfectBreathing</InternalName>
       <Description>+4% Universal Spell Critical Chance.
-Your Acolyte's Breath and Devastation have their cooldown reduced by 33%.</Description>
-      <Icon>PassiveStub</Icon>
+Your Acolyte's Breath and Draconic Devastation have their cooldown reduced by 33%.</Description>
+      <Icon>MDDFlawlessBreathing</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5/>

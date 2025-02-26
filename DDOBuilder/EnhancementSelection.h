@@ -2,6 +2,7 @@
 //
 #pragma once
 #include "XmlLib\DLMacros.h"
+#include "Attack.h"
 #include "DC.h"
 #include "EnhancementSelection.h"
 #include "Effect.h"
@@ -50,6 +51,7 @@ class EnhancementSelection :
                 DL_OPTIONAL_SIMPLE(_, size_t, Ranks, 0) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OBJECT_LIST(_, Stance, Stances) \
+                DL_OBJECT_LIST(_, Attack, Attacks) \
                 DL_OBJECT_LIST(_, Effect, Effects) \
                 DL_OBJECT_LIST(_, DC, EffectDC)
 

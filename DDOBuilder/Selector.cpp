@@ -147,6 +147,21 @@ std::list<Stance> Selector::GetStances(
     return stances;
 }
 
+std::list<Attack> Selector::Attacks(const std::string& selection) const
+{
+    std::list<Attack> attacks;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            attacks = (*it).Attacks();
+        }
+        ++it;
+    }
+    return attacks;
+}
+
 std::list<DC> Selector::EffectDCs(const std::string& selection) const
 {
     std::list<DC> dcs;

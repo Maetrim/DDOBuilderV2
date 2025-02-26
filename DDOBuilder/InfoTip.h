@@ -3,6 +3,7 @@
 #pragma once
 #include <vector>
 
+class Attack;
 class Augment;
 class Build;
 class DC;
@@ -81,6 +82,7 @@ class CInfoTip :
         void SetFavorItem(
                 const Patron& patron,
                 int favorTier);
+        void SetAttack(const Attack& attack);
         //void SetSelfBuff(const std::string& name);
         void SetDCItem(
                 const Build& build,

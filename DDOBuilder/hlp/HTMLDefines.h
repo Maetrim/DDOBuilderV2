@@ -56,7 +56,7 @@
 #define HID_DOCK_FAVOR                          0x10BC7
 #define HID_DOCK_NOTES                          0x10BC8
 #define HID_DOCK_SELFANDPARTYBUFFS              0x10BC9
-#define HID_DOCK_UNUSED17                       0x10BCA
+#define HID_DOCK_DPS                            0x10BCA
 #define HID_DOCK_UNUSED18                       0x10BCB
 #define HID_DOCK_UNUSED19                       0x10BCC
 #define HID_DOCK_UNUSED20                       0x10BCD
@@ -183,6 +183,7 @@
 #define HID_LIFE_IMPORTLIVESFROMOTHER           0x18056
 #define HID_DEVELOPMENT_CRAWLSPECIFICWIKILINK   0x18057
 #define HID_VIEW_RESETSCREENLAYOUT              0x1805E
+#define HID_BUTTON32863                         0x1805F
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064
@@ -228,11 +229,14 @@
 #define HIDD_FORUM_EXPORT_DIALOG                0x2008F
 #define HIDD_FIND_GEAR_DIALOG                   0x20090
 #define HIDD_ITEM_SELECT                        0x200DC
-#define HIDD_DIALOG_SETITEMIMAGES               0x20141
-#define HIDD_FAVOR_PANE                         0x20142
 #define HIDD_NOTES_PANE                         0x20143
 #define HIDD_SELFANDPARTYBUFFS_PANE             0x2014F
 #define HIDD_DIALOG_WIKILINK                    0x20150
+#define HIDD_DPS_PANE                           0x20151
+#define HIDD_DIALOG_SETITEMIMAGES               0x201A4
+#define HIDD_FAVOR_PANE                         0x201A5
+#define HIDD_NAME_GEAR_SET1                     0x201A6
+#define HIDD_NAME_ATTACKCHAIN                   0x201A6
  
 // Frame Controls (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.

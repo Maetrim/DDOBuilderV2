@@ -3,6 +3,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "DC.h"
+#include "Attack.h"
 #include "Effect.h"
 #include "Requirements.h"
 #include "Selector.h"
@@ -64,6 +65,8 @@ class EnhancementTreeItem :
         size_t MinSpent(const std::string& selection) const;
         size_t Ranks(const std::string& selection) const;
 
+        std::list<Attack> Attacks(const std::string& selection) const;
+
         bool VerifyObject(
                 std::stringstream * ss,
                 const std::list<EnhancementTree> & trees) const;
@@ -95,6 +98,7 @@ class EnhancementTreeItem :
                 DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OPTIONAL_OBJECT(_, Selector, Selections) \
+                DL_OBJECT_LIST(_, Attack, Attacks) \
                 DL_OBJECT_LIST(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, DC, EffectDC)
 

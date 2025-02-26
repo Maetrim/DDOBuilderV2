@@ -131,7 +131,7 @@ at the cost of -2 Constitution.</Description>
     <Group>Epic Feat</Group>
     <Requirements>
       <Requirement>
-        <Type>ClassMinLevel</Type>
+        <Type>BaseClassMinLevel</Type>
         <Item>Monk</Item>
         <Value>1</Value>
       </Requirement>
@@ -142,14 +142,6 @@ at the cost of -2 Constitution.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>AdeptOfForms</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Monk</Item>
-        <Value>6</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <DisplayName>Mountain Stance: Constitution</DisplayName>
       <Bonus>Feat</Bonus>
@@ -444,6 +436,15 @@ attack repeatedly until your target is defeated, or activated once by right-clic
         <Value>1</Value>
       </Requirement>
     </AutomaticAcquisition>
+    <Attack>
+       <Name>Basic Attack</Name>
+       <Description>You attack with your weapon</Description>
+       <Icon>Attack</Icon>
+       <Cooldown size="1">0</Cooldown>
+       <ThisAttack>
+          <!--No special entries as its just standard damage-->
+       </ThisAttack>
+    </Attack>
     <!--As this is a feat all characters gain, its used as a placeholder for adding some special effects and stances-->
     <Effect>
       <DisplayName>Standard Death at</DisplayName>
@@ -667,6 +668,12 @@ ability scores, increased health and increased fortification.</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>AugmentSummoning</Icon>
+     <Requirements>
+        <Requirement>
+           <Type>Feat</Type>
+           <Item>Magical Training</Item>
+        </Requirement>
+     </Requirements>
     <Effect>
       <Type>HirelingAbilityBonus</Type>
       <Bonus>Feat</Bonus>
@@ -746,14 +753,6 @@ strike harder. You add your Strength modifier to bow damage.</Description>
       </RequiresOneOf>
     </Requirements>
     <Acquire>Train</Acquire>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Icon>BowStrength</Icon>
     <Effect>
       <Type>WeaponDamageAbilityClass</Type>
@@ -815,9 +814,10 @@ a +1 to Will saves and a +2 bonus on Intimidate checks.</Description>
   </Feat>
   <Feat>
     <Name>Cleave</Name>
-    <Description>Tactical Melee Cleave: Activate this ability to attack one or more
-enemies in an arc in front of you. This attack deals +1[W] damage.
-This attack can doublestrike and is affected by your Attack Speed.</Description>
+    <Description>This attack deals +20% damage.
+Activate this feat to attack one or more enemies in an arc in front of you.
+Cleave counts a full attack, dealing full special effect damage to all targets
+hit. This attack can doublestrike and is affected by your Attack Speed.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -828,6 +828,16 @@ This attack can doublestrike and is affected by your Attack Speed.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>Cleave</Icon>
+    <Attack>
+       <Name>Cleave</Name>
+       <Description>Activate this feat to attack one or more enemies in an arc in front of you. This attack deals +20% damage.
+This attack can doublestrike and is affected by your Attack Speed.</Description>
+       <Icon>Cleave</Icon>
+       <Cooldown size="1">5</Cooldown>
+       <ThisAttack>
+          <BonusDamagePercent size="1">20</BonusDamagePercent>
+       </ThisAttack>
+    </Attack>
   </Feat>
   <Feat>
     <Name>Combat Casting</Name>
@@ -854,6 +864,11 @@ This attack can doublestrike and is affected by your Attack Speed.</Description>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -1051,18 +1066,6 @@ You have a 5% arcane spell failure chance.</Description>
       </RequiresNoneOf>
     </Requirements>
     <Acquire>Automatic</Acquire>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Bladeforged</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Warforged</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Icon>WarforgedFeat</Icon>
     <Effect>
       <Type>ArcaneSpellFailure</Type>
@@ -1203,13 +1206,6 @@ and a -5% penalty to-hit. Casting a spell ends this mode.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
-    <AutomaticAcquisition>
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>3</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Icon>Diehard</Icon>
   </Feat>
   <Feat>
@@ -1267,40 +1263,6 @@ controlled, or dominated enemy that is under your control to dispel the
 controlling effect.</Description>
     <MaxTimesAcquire>1</MaxTimesAcquire>
     <Acquire>Automatic</Acquire>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Icon>DismissCharm</Icon>
     <Effect>
       <Type>SpellLikeAbility</Type>
@@ -1315,23 +1277,6 @@ controlling effect.</Description>
     <Name>Dismiss Rage</Name>
     <Description>Activate this ability to prematurely end your Barbarian/Shifter rage.</Description>
     <Acquire>Automatic</Acquire>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassMinLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Shifter</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Razorclaw Shifter</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Icon>DismissRage</Icon>
     <Effect>
       <Type>SpellLikeAbility</Type>
@@ -1369,30 +1314,6 @@ controlling effect.</Description>
     <Description>Elves have keen senses and gain a +2 bonus to Listen, Search and Spot checks.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>ElvenFeats</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Drow</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Eladrin</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Eladrin Chaosmancer</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Wood Elf</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>SkillBonus</Type>
       <Bonus>Feat</Bonus>
@@ -1612,30 +1533,6 @@ casting spells affected by Empower Spell, but they consume 15 additional spell p
 on saves against enchantments.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>ElvenFeats</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Drow</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Eladrin</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Eladrin Chaosmancer</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Wood Elf</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>SaveBonus</Type>
       <Bonus>Feat</Bonus>
@@ -1677,6 +1574,11 @@ but they consume 10 additional spell points.</Description>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -1773,6 +1675,11 @@ required, but spells consume 2 additional spell points.</Description>
           <Value>1</Value>
         </Requirement>
         <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Druid</Item>
           <Value>1</Value>
@@ -1856,30 +1763,6 @@ required, but spells consume 2 additional spell points.</Description>
 damage instead of half damage.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>Evasion</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>9</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>2</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>2</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Sacred Fist</Item>
-          <Value>2</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Exotic Weapon Proficiency: Bastard Sword</Name>
@@ -1982,14 +1865,6 @@ Great crossbows may knock opponents to the ground on a confirmed attack roll of 
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ExoticWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Artificer</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -2015,25 +1890,6 @@ Great crossbows may knock opponents to the ground on a confirmed attack roll of 
       </Requirement>
     </Requirements>
     <Acquire>Train</Acquire>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Razorclaw Shifter</Item>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Sacred Fist</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Icon>ExoticWeaponProficiency</Icon>
     <Effect>
       <Type>AddGroupWeapon</Type>
@@ -2056,14 +1912,6 @@ Great crossbows may knock opponents to the ground on a confirmed attack roll of 
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ExoticWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Monk</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -2108,14 +1956,6 @@ proficient wielder.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ExoticWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Artificer</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -2139,14 +1979,6 @@ proficient wielder.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ExoticWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Artificer</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -2168,20 +2000,6 @@ proficient wielder.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ExoticWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Drow</Item>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -2223,6 +2041,11 @@ but they consume 10 additional spell points.</Description>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -2372,7 +2195,7 @@ at the cost of -2 Constitution.</Description>
     <Group>Epic Feat</Group>
     <Requirements>
       <Requirement>
-        <Type>ClassMinLevel</Type>
+        <Type>BaseClassMinLevel</Type>
         <Item>Monk</Item>
         <Value>1</Value>
       </Requirement>
@@ -2387,14 +2210,6 @@ at the cost of -2 Constitution.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>GrandmasterOfForms</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Monk</Item>
-        <Value>18</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <DisplayName>Mountain Stance: Constitution</DisplayName>
       <Bonus>Feat</Bonus>
@@ -2650,18 +2465,6 @@ at the cost of -2 Constitution.</Description>
 +2 Use Magic Device, Proficient with Light Hammers, Throwing Hammers and Warhammers.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>GnomishProficiences</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Gnome</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Deep Gnome</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>SkillBonus</Type>
       <Bonus>Feat</Bonus>
@@ -2682,11 +2485,13 @@ at the cost of -2 Constitution.</Description>
   </Feat>
   <Feat>
     <Name>Great Cleave</Name>
-    <Description>Activate this ability to attack one or more enemies in a wide arc in
-front of you. This attack deals +4[W] damage.
-Great Cleave also counts a full attack, dealing full special effect damage to
-all targets hit. This attack can doublestrike and is affected by your Attack
-Speed. Cooldown: 5 seconds.</Description>
+    <Description>This attack deals +40% damage.
+This feat attacks enemies in a wider arc than Cleave. Great Cleave has a
+greater chance to hit more enemies than Cleave.
+This feat has a cooldown of 5 seconds.
+Like Cleave, Great Cleave also counts a full attack, dealing full special
+effect damage to all targets hit. This attack can doublestrike and is affected
+by your Attack Speed.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -2701,6 +2506,15 @@ Speed. Cooldown: 5 seconds.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>GreatCleave</Icon>
+    <Attack>
+       <Name>Great Cleave</Name>
+       <Description>This attack deals +40% damage.</Description>
+       <Icon>GreatCleave</Icon>
+       <Cooldown size="1">5</Cooldown>
+       <ThisAttack>
+          <BonusDamagePercent size="1">40</BonusDamagePercent>
+       </ThisAttack>
+    </Attack>
   </Feat>
   <Feat>
     <Name>Great Fortitude</Name>
@@ -3171,7 +2985,7 @@ your Ability Score bonus to damage improves by 25%</Description>
   <Feat>
     <Name>Greater Two Weapon Fighting</Name>
     <Description>Increases the chance to produce off hand attacks when fighting with
-two weapons (or as an unarmed monk) by an additional 20% to 80%.</Description>
+two weapons (or as an unarmed Monk) by an additional 20% to 80%.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -3191,14 +3005,6 @@ two weapons (or as an unarmed monk) by an additional 20% to 80%.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>GreaterTwoWeaponFighting</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>11</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>OffHandAttackBonus</Type>
       <Bonus>Feat</Bonus>
@@ -3243,31 +3049,6 @@ in physical resistance when wearing heavy armor.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>HeavyArmorProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Heighten Spell</Name>
@@ -3392,38 +3173,6 @@ This bonus can only stack up to 100%.</Description>
     <Description>Elves and Half-Elves are naturally immune to magical sleep effects.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>Elf</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Drow</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Eladrin</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Eladrin Chaosmancer</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Half-Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Wood Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Morninglord</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Immunity</Type>
       <Bonus>Feat</Bonus>
@@ -3778,14 +3527,6 @@ reduction by 1/Adamantine.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ImprovedEvasion</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Monk</Item>
-        <Value>9</Value>
-      </Requirement>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Reflex no fail on a 1</Name>
@@ -3802,8 +3543,8 @@ reduction by 1/Adamantine.</Description>
   </Feat>
   <Feat>
     <Name>Improved Feint</Name>
-    <Description>Tactical Melee Attack: A melee attack which also Bluffs enemies, enabling
-sneak attacks for a short period of time. This attack deals +2[W] damage.</Description>
+    <Description>Tactical Melee Attack: A melee attack which also Bluffs enemies, enabling sneak
+attacks for a short period of time. This attack deals +20% damage.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -3820,6 +3561,20 @@ sneak attacks for a short period of time. This attack deals +2[W] damage.</Descr
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ImprovedFeint</Icon>
+    <Attack>
+       <Name>Improved Feint</Name>
+       <Description>Tactical Melee Attack: A melee attack which also Bluffs enemies, enabling sneak
+attacks for a short period of time. This attack deals +20% damage.</Description>
+       <Icon>ImprovedFeint</Icon>
+       <Cooldown size="1">6</Cooldown>
+       <ThisAttack>
+          <BonusDamagePercent size="1">20</BonusDamagePercent>
+       </ThisAttack>
+       <FollowOn>
+          <Duration size="1">4</Duration>
+          <AllowSneakAttack/>
+       </FollowOn>
+    </Attack>
   </Feat>
   <Feat>
     <Name>Improved Fortification</Name>
@@ -3996,14 +3751,6 @@ Also reduces Ranged Damage by 20% while active.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ImprovedPreciseShot</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>11</Value>
-      </Requirement>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Improved Shield Bash</Name>
@@ -4399,7 +4146,7 @@ your Ability Score bonus to damage improves by 25%</Description>
   <Feat>
     <Name>Improved Two Weapon Fighting</Name>
     <Description>Increases the chance to produce off hand attacks when fighting with
-two weapons (or as an unarmed monk) by an additional 20% to 60%.</Description>
+two weapons (or as an unarmed Monk) by an additional 20% to 60%.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -4419,14 +4166,6 @@ two weapons (or as an unarmed monk) by an additional 20% to 60%.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ImprovedTwoWeaponFighting</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>6</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>OffHandAttackBonus</Type>
       <Bonus>Feat</Bonus>
@@ -4447,20 +4186,6 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
 4, 6, 8, 12, 16 and 20.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>ImprovedUncannyDodge</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>8</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>8</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Stance>
       <Name>Improved Uncanny Dodge</Name>
       <Icon>ImprovedUncannyDodge</Icon>
@@ -4502,20 +4227,6 @@ save bonus.</Description>
     <Description>Activate this ranger ability to befriend an animal or beast.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>ImprovedWildEmpathy</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>7</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>7</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Infernal Ancestry</Name>
@@ -4525,18 +4236,6 @@ You have a +2 bonus to hit and damage against Lawful and Good Outsiders.
 You are Immune to Fear.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>InfernalAncestry</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Tiefling</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Tiefling Scoundrel</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>EnergyResistance</Type>
       <Bonus>Feat</Bonus>
@@ -4579,14 +4278,6 @@ You are Immune to Fear.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>InsightfulReflexes</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Alchemist</Item>
-        <Value>2</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>SaveBonusAbility</Type>
       <Bonus>Feat</Bonus>
@@ -4960,88 +4651,12 @@ physical resistance when wearing light armor.</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>LightArmorProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Light Fortification</Name>
     <Description>Warforged have a 25% immunity to critical hits and sneak attacks.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>WarforgedFeat</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Warforged</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Bladeforged</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Fortification</Type>
       <Bonus>Feat</Bonus>
@@ -5110,61 +4725,6 @@ drops below 12.</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MagicalTraining</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Disciple</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Stormsinger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>SpellPoints</Type>
       <Bonus>Feat</Bonus>
@@ -5208,14 +4768,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>Manyshot</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>6</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Doubleshot</Type>
       <Bonus>Feat</Bonus>
@@ -5242,35 +4794,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5286,35 +4809,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5330,35 +4824,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5374,35 +4839,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5418,35 +4854,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5462,40 +4869,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5511,35 +4884,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5555,35 +4899,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5599,40 +4914,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5648,35 +4929,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5692,43 +4944,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Wood Elf</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5744,53 +4959,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Stormsinger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Wood Elf</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5806,35 +4974,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5850,57 +4989,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Drow</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Wood Elf</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5916,35 +5004,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -5960,49 +5019,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Drow</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -6018,53 +5034,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Elf</Item>
-        </Requirement>
-        <Requirement>
-          <Type>Race</Type>
-          <Item>Wood Elf</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -6080,35 +5049,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -6124,35 +5064,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -6168,40 +5079,6 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>MartialWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -6249,7 +5126,7 @@ at the cost of -2 Constitution.</Description>
     <Group>Epic Feat</Group>
     <Requirements>
       <Requirement>
-        <Type>ClassMinLevel</Type>
+        <Type>BaseClassMinLevel</Type>
         <Item>Monk</Item>
         <Value>1</Value>
       </Requirement>
@@ -6264,14 +5141,6 @@ at the cost of -2 Constitution.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>MasterOfForms</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Monk</Item>
-        <Value>12</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <DisplayName>Mountain Stance: Constitution</DisplayName>
       <Bonus>Feat</Bonus>
@@ -6647,56 +5516,6 @@ physical resistance when wearing medium armor.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>MediumArmorProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dark Hunter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Mental Toughness</Name>
@@ -6725,6 +5544,11 @@ Also increases your spell critical chance by 1%.</Description>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
           <Value>1</Value>
         </Requirement>
         <Requirement>
@@ -7290,14 +6114,6 @@ or 25 with Deepwood Stalker enhancement</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>PreciseShot</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>4</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>CreateSlider</Type>
       <Bonus>Enhancement</Bonus>
@@ -7521,14 +6337,6 @@ Dual Crossbows reload 20% Faster.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>RapidReload</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Artificer</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Rapid Shot</Name>
@@ -7549,14 +6357,6 @@ You gain Ranged Power equal to 1.5 your BAB with Longbows and Shortbows.</Descri
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>RapidShot</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>2</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>WeaponAlacrityClass</Type>
       <Bonus>Feat</Bonus>
@@ -7896,55 +6696,6 @@ Failure). In general, the larger the shield, the greater the chance of failure.<
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>ShieldProficiencyGeneral</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8083,13 +6834,6 @@ equal to your Dexterity.)</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ShurikenExpertise</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Drow</Item>
-      </Requirement>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Simple Weapon Proficiency: Club</Name>
@@ -8098,90 +6842,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8197,90 +6857,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8296,80 +6872,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8385,85 +6887,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8479,75 +6902,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8563,85 +6917,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8657,75 +6932,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8741,75 +6947,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8825,90 +6962,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -8924,80 +6977,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -9013,80 +6992,6 @@ equal to your Dexterity.)</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -9103,85 +7008,6 @@ or when attacking from an animal form.</Description>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
     <Icon>SimpleWeaponProficiency</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dragon Lord</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Fighter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -9560,20 +7386,6 @@ Some creatures may be immune to the bleeding or wounding effect.</Description>
 Armor Class and a +4 bonus on Hide checks. -4 penalty to Intimidate.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>SmallSizeBonus</Icon>
-    <AutomaticAcquisition>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Deep Gnome</Item>
-      </Requirement>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Gnome</Item>
-      </Requirement>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Halfling</Item>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Weapon_Attack</Type>
       <Bonus>Size</Bonus>
@@ -10210,6 +8022,11 @@ receiving an additional +1 bonus on save DCs.</Description>
           <Value>1</Value>
         </Requirement>
         <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Druid</Item>
           <Value>1</Value>
@@ -10261,16 +8078,6 @@ receiving an additional +1 bonus on save DCs.</Description>
 saves against spell effects.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>SpellSave</Icon>
-    <AutomaticAcquisition>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Drow</Item>
-      </Requirement>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Dwarf</Item>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>SaveBonus</Type>
       <Bonus>Feat</Bonus>
@@ -10391,7 +8198,7 @@ Cooldown: One minute.</Description>
     <Group>Epic Feat</Group>
     <Requirements>
       <Requirement>
-        <Type>ClassMinLevel</Type>
+        <Type>BaseClassMinLevel</Type>
         <Item>Monk</Item>
         <Value>6</Value>
       </Requirement>
@@ -10410,20 +8217,6 @@ Cooldown: One minute.</Description>
 death - you are immune to the spawn effect of most undead.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>TimelessBody</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>15</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Monk</Item>
-          <Value>17</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Immunity</Type>
       <Bonus>Feat</Bonus>
@@ -10463,14 +8256,6 @@ Failure). In general, the larger the shield, the greater the chance of failure.<
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>TowerShieldProficiency</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Fighter</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Weapon_Attack</Type>
       <Bonus>Feat</Bonus>
@@ -10497,25 +8282,6 @@ Failure). In general, the larger the shield, the greater the chance of failure.<
     <Description>A Rogue or Artificer can detect and disable difficult traps.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>TrapFinding</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Dark Hunter</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Rogue</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Trip</Name>
@@ -10549,20 +8315,6 @@ A successful Balance check negates this effect.</Description>
     <Description>Character can turn undead (Charisma modifier +3) times per day.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>TurnUndead</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-          <Value>4</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <DC>
       <Name>Turn Undead</Name>
       <Description>Attempts to drive away nearby undead or force them to cower.</Description>
@@ -10729,14 +8481,6 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>TwoWeaponFighting</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>BaseClassAtLevel</Type>
-        <Item>Ranger</Item>
-        <Value>2</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>OffHandAttackBonus</Type>
       <Bonus>Feat</Bonus>
@@ -10763,16 +8507,6 @@ If you transform into a different type of creature, you will lose these benefits
 until you return to your Warforged form.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>WarforgedFeat</Icon>
-    <AutomaticAcquisition>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Bladeforged</Item>
-      </Requirement>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Warforged</Item>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Immunity</Type>
       <Bonus>Feat</Bonus>
@@ -10977,7 +8711,7 @@ and +2 stacking Ranged Power.</Description>
   </Feat>
   <Feat>
     <Name>Whirling Steel Strike</Name>
-    <Description>You treat longswords as if they were monk weapons, remaining centered when
+    <Description>You treat longswords as if they were Monk weapons, remaining centered when
 you wield them.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
@@ -11052,20 +8786,6 @@ This attack deals +2[W] damage.</Description>
 effectively mesmerizing them.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>WildEmpathy</Icon>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Druid</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-          <Value>1</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Effect>
       <Type>SpellLikeAbility</Type>
       <Bonus>Feat</Bonus>
@@ -12194,72 +9914,6 @@ in the form of a free Feat.</Description>
     <Description>Represents your knowledge of the wilderness</Description>
     <MaxTimesAcquire>20</MaxTimesAcquire>
     <Acquire>Automatic</Acquire>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Barbarian</Item>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Druid</Item>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Ranger</Item>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>3</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>5</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>7</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>9</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>11</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>13</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>15</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>17</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>19</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Icon>WildernessLore</Icon>
   </Feat>
   <Feat>
@@ -12267,30 +9921,6 @@ in the form of a free Feat.</Description>
     <Description>Represents your knowledge of the Arcane</Description>
     <MaxTimesAcquire>20</MaxTimesAcquire>
     <Acquire>Automatic</Acquire>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Alchemist</Item>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Artificer</Item>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Sorcerer</Item>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Wizard</Item>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Icon>ArcaneLore</Icon>
   </Feat>
   <Feat>
@@ -12298,72 +9928,6 @@ in the form of a free Feat.</Description>
     <Description>Represents your knowledge of the Religion</Description>
     <MaxTimesAcquire>20</MaxTimesAcquire>
     <Acquire>Automatic</Acquire>
-    <AutomaticAcquisition>
-      <RequiresOneOf>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Cleric</Item>
-        </Requirement>
-        <Requirement>
-          <Type>ClassAtLevel</Type>
-          <Item>Favored Soul</Item>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Paladin</Item>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>1</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>3</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>5</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>7</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>9</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>11</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>13</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>15</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>17</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassAtLevel</Type>
-          <Item>Bard</Item>
-          <Value>19</Value>
-        </Requirement>
-      </RequiresOneOf>
-    </AutomaticAcquisition>
     <Icon>ReligiousLore</Icon>
   </Feat>
   <!--Follower of feats-->
@@ -13259,13 +10823,6 @@ different feat if you can move the feats as your build needs them.</Description>
 considered as a favored weapon. You gain +1 to hit with Favored Weapons.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>FollowerOfThePathOfLight</Icon>
-    <AutomaticAcquisition>
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Sacred Fist</Item>
-        <Value>1</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>AddGroupWeapon</Type>
       <Bonus>Feat</Bonus>
@@ -13397,13 +10954,6 @@ Exotic Favored Weapons gain +1 to Attack and Damage.</Description>
 considered to be wearing Heavy Armor for the purpose of the Sacred Defender tree.</Description>
     <Acquire>Automatic</Acquire>
     <Icon>FollowerOfThePathOfLight</Icon>
-    <AutomaticAcquisition>
-      <Requirement>
-        <Type>ClassMinLevel</Type>
-        <Item>Sacred Fist</Item>
-        <Value>6</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Effect>
       <Type>Weapon_AttackAbility</Type>
       <Type>Weapon_DamageAbility</Type>
@@ -15239,14 +12789,6 @@ Shares a cooldown with Manyshot.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>MultitudeOfMissiles</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Alchemist</Item>
-        <Value>6</Value>
-      </Requirement>
-    </AutomaticAcquisition>
   </Feat>
   <Feat>
     <Name>Simple Thrown Weapon Expertise</Name>
@@ -15308,14 +12850,6 @@ spell points.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>AccelerateSpell</Icon>
-    <AutomaticAcquisition>
-      <IgnoreRequirements />
-      <Requirement>
-        <Type>ClassAtLevel</Type>
-        <Item>Dark Hunter</Item>
-        <Value>9</Value>
-      </Requirement>
-    </AutomaticAcquisition>
     <Stance>
       <Name>Accelerate Spell</Name>
       <Icon>AccelerateSpell</Icon>
@@ -15351,12 +12885,6 @@ Spell fly faster and with less of an arc, but consume 5 additional spell points.
 Racial Enhancements may add to this attack.
 12 second cooldown.</Description>
     <Acquire>Automatic</Acquire>
-    <AutomaticAcquisition>
-      <Requirement>
-        <Type>Race</Type>
-        <Item>Shadar-Kai</Item>
-      </Requirement>
-    </AutomaticAcquisition>
     <Icon>SpikedChainAttack</Icon>
   </Feat>
   <!--U51 Destiny Tree Claimed Feats-->

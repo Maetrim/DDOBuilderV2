@@ -20,8 +20,8 @@
 // HitPoints     - The number of hit points this class gets per level
 // ClassSkill    - List of skills which are class skills for this class
 // Alignment     - List of allowed alignments this class must have (Or "Any" for all)
-// Fortitude     - The type of fortitude save for this class (type 1 or 2)
-// Reflex        - The type of reflex save for this class (type 1 or 2)
+// Fortitude     - The type of Fortitude save for this class (type 1 or 2)
+// Reflex        - The type of Reflex save for this class (type 1 or 2)
 // Will          - The type of will save for this class (type 1 or 2)
 // SpellPointsPerLevel - Vector of actual spell points for that many levels in this class (size 21)
 // CastingStat   - The main state used for DC calculation (list if use highest)
@@ -29,6 +29,7 @@
 // Level1..Level20 - Number of spell slots at each level for spell casting classes
 // BAB           - The amount of BAB awarded for each level in this class (size 21)
 // ClassSpells   - The spells this class has at each spell level (-ve are auto assigned spells)
+// AutoFeats     - List of feats gained at specific class levels
 // FeatSlots     - List of trainable feats slots and types for this class
 
 #define DL_ELEMENT Class
@@ -534,4 +535,17 @@ size_t Class::MaxSpellLevel(size_t classLevel) const
     classLevel = min(classLevel, MAX_CLASS_LEVEL);
     std::vector<size_t> spells = SpellSlotsAtLevel(classLevel);
     return spells.size();
+}
+
+const std::list<std::string>& Class::GetAutoFeats(size_t level) const
+{
+    static std::list<std::string> empty;
+    for (auto&& afi: m_AutoFeats)
+    {
+        if (afi.Level() == level)
+        {
+            return afi.Feats();
+        }
+    }
+    return empty;
 }

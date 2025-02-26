@@ -103,8 +103,8 @@ Build::Build(Life * pParentLife) :
 DL_DEFINE_ACCESS(Build_PROPERTIES)
 
 XmlLib::SaxContentElementInterface * Build::StartElement(
-        const XmlLib::SaxString & name,
-        const XmlLib::SaxAttributes & attributes)
+        const XmlLib::SaxString& name,
+        const XmlLib::SaxAttributes& attributes)
 {
     XmlLib::SaxContentElementInterface * subHandler =
             SaxContentElement::StartElement(name, attributes);
@@ -130,6 +130,7 @@ void Build::EndElement()
         m_hasLevel40 = true;
     }
     m_hasNotes = true;
+    m_hasActiveAttackChain = true;  // "Blank name is fine"
     SaxContentElement::EndElement();
     DL_END(Build_PROPERTIES)
     // as a build has a default number of LevelTraining objects setup in the constructor
@@ -178,7 +179,11 @@ CString Build::UIDescription(size_t buildIndex) const
     const ::Race& race = FindRace(Race());
     std::string complexDescription = ComplexUIDescription();
     CString strDescription;
-    strDescription.Format("B%d: L%d - %s - %s", buildIndex + 1, m_Level, race.ShortName().c_str(), complexDescription.c_str());
+    strDescription.Format("B%d: L%d - %s - %s",
+            buildIndex + 1,
+            m_Level,
+            race.ShortName().c_str(),
+            complexDescription.c_str());
     return strDescription;
 }
 
@@ -195,7 +200,7 @@ std::string Build::ComplexUIDescription() const
     {
         if (cit > 0)
         {
-            const ::Class & c = ClassFromIndex(ci);
+            const ::Class& c = ClassFromIndex(ci);
             if (!c.HasNotHeroic())
             {
                 // we have levels trained in this class, add it
@@ -306,7 +311,7 @@ void Build::BuildNowActive()
     for (auto&& fit: feats)
     {
         // get the list of effects this feat has
-        const Feat & feat = FindFeat(fit.FeatName());
+        const Feat& feat = FindFeat(fit.FeatName());
         ApplyFeatEffects(feat);
     }
     // notify all enhancement effects from all trees and update trained element costs
@@ -430,6 +435,9 @@ void Build::SetLevel(size_t level)
 
 void Build::SetName(const std::string& name)
 {
+    std::stringstream ss;
+    ss << "Name changed from \"" << m_pLife->Name() << "\" to \"" << name << "\"";
+    GetLog().AddLogEntry(ss.str().c_str());
     m_pLife->SetName(name);
 }
 
@@ -684,6 +692,16 @@ void Build::NotifyRevokeSetBonusStack(const SetBonus& setBonus)
     NotifyAll(&BuildObserver::UpdateRevokeSetBonusStack, this, setBonus);
 }
 
+void Build::NotifyNewAttack(const Attack& attack)
+{
+    NotifyAll(&BuildObserver::UpdateNewAttack, this, attack);
+}
+
+void Build::NotifyRevokeAttack(const Attack& attack)
+{
+    NotifyAll(&BuildObserver::UpdateRevokeAttack, this, attack);
+}
+
 void Build::SetClass1(const std::string& ct)
 {
     std::string classFrom = Class1();
@@ -914,7 +932,7 @@ std::vector<FeatSlot> Build::TrainableFeatTypeAtLevel(size_t level) const
     std::vector<FeatSlot> tft;
 
     // add any racial feat slots
-    const ::Race & race = FindRace(Build::Race());
+    const ::Race& race = FindRace(Build::Race());
     race.AddFeatSlots(level, &tft);
 
     // see if we are at a level we can train a general standard feat choice
@@ -943,19 +961,19 @@ std::vector<FeatSlot> Build::TrainableFeatTypeAtLevel(size_t level) const
     return tft;
 }
 
-const LevelTraining & Build::LevelData(size_t level) const
+const LevelTraining& Build::LevelData(size_t level) const
 {
     ASSERT(level < m_Levels.size());
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
     std::advance(it, level);  // point to level of interest
-    const LevelTraining & data = (*it);
+    const LevelTraining& data = (*it);
     return data;
 }
 
 size_t Build::BaseAttackBonus(size_t level) const
 {
     size_t bab = 0;
-    const std::list<::Class> & classes = Classes();
+    const std::list<::Class>& classes = Classes();
     std::list<::Class>::const_iterator cci = classes.begin();
     while (cci != classes.end())
     {
@@ -1223,8 +1241,8 @@ TrainedFeat Build::GetTrainedFeat(
     // find the specific trained feat at level by type
     TrainedFeat feat;       // blank if no feat found
 
-    const LevelTraining & lt = LevelData(level);
-    const std::list<TrainedFeat> & tfs = lt.TrainedFeats();
+    const LevelTraining& lt = LevelData(level);
+    const std::list<TrainedFeat>& tfs = lt.TrainedFeats();
     std::list<TrainedFeat>::const_iterator it = tfs.begin();
     bool found = false;
     while (!found && it != tfs.end())
@@ -1277,7 +1295,7 @@ std::list<TrainedFeat> Build::CurrentFeats(size_t level) const
     std::list<TrainedFeat> currentFeats;
 
     // first add any special feats (Past lives etc)
-    const std::list<TrainedFeat> & specialFeats = Build::SpecialFeats();
+    const std::list<TrainedFeat>& specialFeats = Build::SpecialFeats();
     currentFeats.insert(currentFeats.end(), specialFeats.begin(), specialFeats.end());
 
     // now add the automatic and the trained feats at each level up to the level wanted
@@ -1285,13 +1303,13 @@ std::list<TrainedFeat> Build::CurrentFeats(size_t level) const
     std::list<LevelTraining>::const_iterator ldit = m_Levels.begin();
     while (currentLevel <= level && ldit != m_Levels.end())
     {
-        const LevelTraining & levelData = (*ldit);
+        const LevelTraining& levelData = (*ldit);
         // add the automatic feats for this level
-        const std::list<TrainedFeat> & autoFeats = levelData.AutomaticFeats();
+        const std::list<TrainedFeat>& autoFeats = levelData.AutomaticFeats();
         currentFeats.insert(currentFeats.end(), autoFeats.begin(), autoFeats.end());
 
         // add the trained feats for this level
-        const std::list<TrainedFeat> & trainedFeats = levelData.TrainedFeats();
+        const std::list<TrainedFeat>& trainedFeats = levelData.TrainedFeats();
         currentFeats.insert(currentFeats.end(), trainedFeats.begin(), trainedFeats.end());
 
         ++currentLevel;
@@ -1303,7 +1321,7 @@ std::list<TrainedFeat> Build::CurrentFeats(size_t level) const
 bool Build::IsFeatTrainable(
         size_t level,
         const std::string& type,
-        const Feat & feat,
+        const Feat& feat,
         bool includeTomes,
         bool alreadyTrained,
         bool bIgnoreEpicOnly) const
@@ -1430,7 +1448,7 @@ void Build::TrainFeat(
         size_t level,
         bool autoTrained)
 {
-    const Feat & feat = FindFeat(featName);
+    const Feat& feat = FindFeat(featName);
 
     bool featSwapWarning = false;
     if (level == 0)
@@ -1458,7 +1476,7 @@ void Build::TrainFeat(
         std::string lostFeat = (*it).RevokeFeat(type);
         if (!lostFeat.empty())
         {
-            const Feat & lfeat = FindFeat(lostFeat);
+            const Feat& lfeat = FindFeat(lostFeat);
             RevokeFeatEffects(lfeat);
         }
         // create the log entry
@@ -1621,7 +1639,7 @@ const TrainedEnhancement * Build::IsTrained(
     while (pItem == NULL
             && eit != m_EnhancementTreeSpend.end())
     {
-        const std::list<TrainedEnhancement> & te = (*eit).Enhancements();
+        const std::list<TrainedEnhancement>& te = (*eit).Enhancements();
         std::list<TrainedEnhancement>::const_iterator teit = te.begin();
         while (pItem == NULL
                 && teit != te.end())
@@ -1647,7 +1665,7 @@ const TrainedEnhancement * Build::IsTrained(
         while (pItem == NULL
                 && rit != m_ReaperTreeSpend.end())
         {
-            const std::list<TrainedEnhancement> & te = (*rit).Enhancements();
+            const std::list<TrainedEnhancement>& te = (*rit).Enhancements();
             std::list<TrainedEnhancement>::const_iterator teit = te.begin();
             while (pItem == NULL
                     && teit != te.end())
@@ -1674,7 +1692,7 @@ const TrainedEnhancement * Build::IsTrained(
         while (pItem == NULL
                 && dit != m_DestinyTreeSpend.end())
         {
-            const std::list<TrainedEnhancement> & te = (*dit).Enhancements();
+            const std::list<TrainedEnhancement>& te = (*dit).Enhancements();
             std::list<TrainedEnhancement>::const_iterator teit = te.begin();
             while (pItem == NULL
                     && teit != te.end())
@@ -1708,7 +1726,7 @@ bool Build::IsClassSkill(
     {
         if ((*it).HasClass())
         {
-            const ::Class & ct = FindClass((*it).Class());
+            const ::Class& ct = FindClass((*it).Class());
             if (ct.IsClassSkill(skill))
             {
                 // ok, it is a class skill
@@ -1808,9 +1826,9 @@ size_t Build::SpentAtLevel(
         size_t level) const
 {
     size_t spent = 0;
-    const LevelTraining & levelData = LevelData(level);
+    const LevelTraining& levelData = LevelData(level);
     // count points spent in this skill at this level
-    const std::list<TrainedSkill> & trainedSkills = levelData.TrainedSkills();
+    const std::list<TrainedSkill>& trainedSkills = levelData.TrainedSkills();
     std::list<TrainedSkill>::const_iterator tsit = trainedSkills.begin();
     while (tsit != trainedSkills.end())
     {
@@ -1835,8 +1853,8 @@ double Build::SkillAtLevel(
     {
         // full point per spend if its a class skill at this level
         // half point per spend if its a cross class skill at this level
-        const LevelTraining & ld = (*it);
-        const ::Class & ct = FindClass(ld.HasClass() ? ld.Class() : Class_Unknown);
+        const LevelTraining& ld = (*it);
+        const ::Class& ct = FindClass(ld.HasClass() ? ld.Class() : Class_Unknown);
         bool isClassSkill = ct.IsClassSkill(skill);
         size_t spent = SpentAtLevel(skill, li);
         if (isClassSkill)
@@ -1878,7 +1896,7 @@ void Build::UpdateSkillPoints()
     for (size_t level = 0; level < MAX_CLASS_LEVEL && level < Level(); ++level)
     {
         std::string ct = (*it).HasClass() ? (*it).Class() : Class_Unknown;
-        const ::Class & c = FindClass(ct);
+        const ::Class& c = FindClass(ct);
         size_t available = c.SkillPoints(
                 Race(),
                 AbilityAtLevel(Ability_Intelligence, level, (level != 0)),  // include tomes for level 2 onward
@@ -1898,7 +1916,7 @@ void Build::UpdateSkillPoints(size_t level)
         std::list<LevelTraining>::iterator it = m_Levels.begin();
         std::advance(it, level);
         std::string ct = (*it).HasClass() ? (*it).Class() : Class_Unknown;
-        const ::Class & c = FindClass(ct);
+        const ::Class& c = FindClass(ct);
         size_t available = c.SkillPoints(
                 Race(),
                 AbilityAtLevel(Ability_Intelligence, level, (level != 0)),  // include tomes for level 2 onward
@@ -1926,12 +1944,12 @@ void Build::VerifyTrainedFeats()
     while (it != m_Levels.end())
     {
         bool redoLevel = false;     // true if have to check feats at this level again
-        const std::list<TrainedFeat> & feats = (*it).TrainedFeats();
+        const std::list<TrainedFeat>& feats = (*it).TrainedFeats();
         std::list<TrainedFeat>::const_iterator fit = feats.begin();
         while (!redoLevel && fit != feats.end())
         {
             // is this feat trainable at this level?
-            const Feat & feat = FindFeat((*fit).FeatName());
+            const Feat& feat = FindFeat((*fit).FeatName());
             if (!IsFeatTrainable(level, (*fit).Type(), feat, true, true, true))
             {
                 // no longer trainable, remove it from the list
@@ -1968,7 +1986,7 @@ void Build::VerifyTrainedFeats()
             while (fit != feats.end())
             {
                 // is this feat trainable at this level?
-                const Feat & feat = FindFeat((*fit).FeatName());
+                const Feat& feat = FindFeat((*fit).FeatName());
                 if (IsFeatTrainable(level, (*fit).Type(), feat, true, false))
                 {
                     // slot must be empty
@@ -2007,7 +2025,7 @@ void Build::VerifyTrainedFeats()
     std::list<TrainedFeat>::const_iterator fit = feats.begin();
     while (fit != feats.end())
     {
-        const Feat & feat = FindFeat((*fit).FeatName());
+        const Feat& feat = FindFeat((*fit).FeatName());
         RevokeFeatEffects(feat);
         NotifyFeatRevoked(feat.Name());
         // add log entry
@@ -2026,7 +2044,7 @@ void Build::UpdateSpells()
     // level than the current class assignments allow. If we do,
     // revoke the spells over the maximum size
     std::vector<size_t> classLevels = ClassLevels(Level()-1);
-    const std::list<::Class> & classes = Classes();
+    const std::list<::Class>& classes = Classes();
     for (auto&& ci : classes)
     {
         // get the number of spells available for this class at this level
@@ -2259,7 +2277,7 @@ void Build::UpdateFeats(
     std::list<TrainedFeat> oldFeats = (*it).AutomaticFeats();
 
     // add the trained feats for this level as they can affect the available automatic feats
-    const std::list<TrainedFeat> & trainedFeats = (*it).TrainedFeats();
+    const std::list<TrainedFeat>& trainedFeats = (*it).TrainedFeats();
     allFeats->insert(allFeats->end(), trainedFeats.begin(), trainedFeats.end());
 
     std::list<TrainedFeat> automaticFeats = AutomaticFeats(level, *allFeats);
@@ -2274,7 +2292,7 @@ void Build::UpdateFeats(
             // first revoke the feats at this level then apply the new ones
             for (auto&& ofit: oldFeats)
             {
-                const Feat & feat = FindFeat(ofit.FeatName());
+                const Feat& feat = FindFeat(ofit.FeatName());
                 RevokeFeatEffects(feat);
             }
         }
@@ -2283,7 +2301,7 @@ void Build::UpdateFeats(
             // now apply the new automatic feats
             for (auto&& afit: automaticFeats)
             {
-                const Feat & feat = FindFeat(afit.FeatName());
+                const Feat& feat = FindFeat(afit.FeatName());
                 ApplyFeatEffects(feat);
             }
         }
@@ -2297,6 +2315,18 @@ std::list<TrainedFeat> Build::AutomaticFeats(
 {
     // determine which feats are automatically gained at this level/class and race
     std::list<TrainedFeat> feats;
+
+    // first add any race specific granted feats (at level 1)
+    if (level == 0)
+    {
+        const ::Race& r = FindRace(Build::Race());
+        for (auto&& gfit: r.GrantedFeat())
+        {
+            TrainedFeat feat(gfit, "Automatic", level);
+            feats.push_back(feat);
+        }
+    }
+
     // need to know how many and of what classes have been trained up to here
     std::vector<size_t> classLevels = ClassLevels(level);
     const std::map<std::string, Feat>& allFeats = StandardFeats();
@@ -2338,6 +2368,27 @@ std::list<TrainedFeat> Build::AutomaticFeats(
             }
         }
     }
+
+    // new mechanism where the class has a specific list of feats that should be trained
+    // at the current class level.
+    std::string activeClass = ClassAtLevel(level);
+    const ::Class& c = FindClass(activeClass);
+    const std::list<std::string>& autoFeats = c.GetAutoFeats(classLevels[c.Index()]);
+    for (auto&& fi: autoFeats)
+    {
+        // first count how many times this feat has been acquired already
+        size_t count = TrainedCount(currentFeats, fi);
+        // by default unless specified by the feat otherwise, any feat
+        // can only be acquired once
+        const Feat& feat = FindFeat(fi);
+        if (count < feat.MaxTimesAcquire()) // MaxTimesAcquire defaults to 1 if not specified in the file
+        {
+            // this feat is automatic at this level, train it!
+            TrainedFeat tf(fi, "Automatic", level);
+            feats.push_back(tf);
+        }
+    }
+    feats.sort(); // ensure all Automatic feats are in alphabetical order
     return feats;
 }
 
@@ -2356,16 +2407,16 @@ void Build::AutoTrainSingleSelectionFeats()
                 if (tf.FeatName() == "")
                 {
                     std::vector<Feat> availableFeats = TrainableFeats(
-                        tfts[i].FeatType(),
-                        level,
-                        "");
+                            tfts[i].FeatType(),
+                            level,
+                            "");
                     if (availableFeats.size() == 1)
                     {
                         TrainFeat(
-                            availableFeats[0].Name(),
-                            tfts[i].FeatType(),
-                            level,
-                            true);
+                                availableFeats[0].Name(),
+                                tfts[i].FeatType(),
+                                level,
+                                true);
                         // add log entry
                         std::stringstream ss;
                         ss << "Auto trained feat at level " << level + 1
@@ -2448,32 +2499,34 @@ void Build::NotifySliderChanged(const std::string& sliderName, int newValue)
     NotifyAll(&BuildObserver::UpdateSliderChanged, this, sliderName, newValue);
 }
 
-void Build::ApplyFeatEffects(const Feat & feat)
+void Build::ApplyFeatEffects(const Feat& feat)
 {
     // if we have just trained a feat that is also a stance
     // add a stance selection button for each
-    const std::list<Stance> & stances = feat.Stances();
+    const std::list<Stance>& stances = feat.Stances();
     for (auto&& sit: stances)
     {
         NotifyNewStance(sit);
     }
     // if we have any DC objects notify about them
-    const std::list<DC> & dcs = feat.DCs();
+    const std::list<DC>& dcs = feat.DCs();
     for (auto&& dcit: dcs)
     {
         NotifyNewDC(dcit);
     }
     // apply the feats effects
-    const std::list<Effect> & effects = feat.Effects();
+    const std::list<Effect>& effects = feat.Effects();
     for (auto&& eit : effects)
     {
         NotifyFeatEffectApplied(eit);
     }
+    ApplyAllAttacks(feat.Attacks());
     NotifyFeatTrained(feat.Name());
 }
 
-void Build::RevokeFeatEffects(const Feat & feat)
+void Build::RevokeFeatEffects(const Feat& feat)
 {
+    RevokeAllAttacks(feat.Attacks());
     // revoke the feats effects
     const std::list<Effect>& effects = feat.Effects();
     for (auto&& eit : effects)
@@ -2481,13 +2534,13 @@ void Build::RevokeFeatEffects(const Feat & feat)
         NotifyFeatEffectRevoked(eit);
     }
     // revoke any stances this feat has
-    const std::list<Stance> & stances = feat.Stances();
+    const std::list<Stance>& stances = feat.Stances();
     for (auto&& sit : stances)
     {
         NotifyRevokeStance(sit);
     }
     // if we have any DC objects notify about them
-    const std::list<DC> & dcs = feat.DCs();
+    const std::list<DC>& dcs = feat.DCs();
     for (auto&& dcit: dcs)
     {
         NotifyRevokeDC(dcit);
@@ -2644,18 +2697,16 @@ void Build::NotifyAbilityValueChanged(AbilityType ability)
 
 void Build::NotifyEnhancementTrained(const EnhancementItemParams& item)
 {
-    NotifyAll(
-        &BuildObserver::UpdateEnhancementTrained,
-        this,
-        item);
+    NotifyAll(&BuildObserver::UpdateEnhancementTrained,
+            this,
+            item);
 }
 
 void Build::NotifyEnhancementRevoked(const EnhancementItemParams& item)
 {
-    NotifyAll(
-        &BuildObserver::UpdateEnhancementRevoked,
-        this,
-        item);
+    NotifyAll(&BuildObserver::UpdateEnhancementRevoked,
+            this,
+            item);
 }
 void Build::NotifyEnhancementEffectApplied(
     const Effect& effect)
@@ -2870,15 +2921,15 @@ AbilityType Build::AbilityLevelUp(size_t level) const
 
 size_t Build::BaseAbilityValue(AbilityType ability) const
 {
-    const AbilitySpend & as = BuildPoints();
-    const ::Race & race = FindRace(Race());
+    const AbilitySpend& as = BuildPoints();
+    const ::Race& race = FindRace(Race());
     size_t value = 8 + race.RacialModifier(ability) + as.GetAbilitySpend(ability);
     return value;
 }
 
 void Build::SpendOnAbility(AbilityType ability)
 {
-    const AbilitySpend & as = BuildPoints();
+    const AbilitySpend& as = BuildPoints();
     size_t nextCost = as.NextPointsSpentCost(ability);
     // add the log entry
     std::stringstream ss;
@@ -2896,7 +2947,7 @@ void Build::SpendOnAbility(AbilityType ability)
 
 void Build::RevokeSpendOnAbility(AbilityType ability)
 {
-    const AbilitySpend & as = BuildPoints();
+    const AbilitySpend& as = BuildPoints();
     size_t lastCost = as.LastPointsSpentCost(ability);
     // add the log entry
     std::stringstream ss;
@@ -2921,11 +2972,11 @@ size_t Build::BuildPointsPastLifeCount() const
     //   Epic past lives do not add to build points
     //   Iconic past lives indirectly do, as you also get a heroic past life
     size_t numPastLifeFeats = 0;
-    const std::list<TrainedFeat> & feats = SpecialFeats();
+    const std::list<TrainedFeat>& feats = SpecialFeats();
     std::list<TrainedFeat>::const_iterator it = feats.begin();
     while (it != feats.end())
     {
-        const Feat & feat = FindFeat((*it).FeatName());
+        const Feat& feat = FindFeat((*it).FeatName());
         if (feat.Acquire() == FeatAcquisition_HeroicPastLife
                 || feat.Acquire() == FeatAcquisition_RacialPastLife)
         {
@@ -2946,8 +2997,8 @@ size_t Build::DetermineBuildPoints()
     // no past lives gives a choice between build point entries [0] and [1]
     // 1 past lives gives [2]
     // 2+ past lives gives entry [3]
-    const ::Race & race = FindRace(Race()); // ask the race for its build point
-    const std::vector<size_t> & buildPointsVector = race.BuildPoints();
+    const ::Race& race = FindRace(Race()); // ask the race for its build point
+    const std::vector<size_t>& buildPointsVector = race.BuildPoints();
     size_t buildPoints = 0;
     switch (numPastLifeFeats)
     {
@@ -2977,8 +3028,8 @@ size_t Build::DetermineBuildPoints()
 
 void Build::SetBuildPoints(size_t buildPoints)
 {
-    const ::Race & race = FindRace(Race()); // ask the race for its build point
-    const std::vector<size_t> & buildPointsVector = race.BuildPoints();
+    const ::Race& race = FindRace(Race()); // ask the race for its build point
+    const std::vector<size_t>& buildPointsVector = race.BuildPoints();
     if (buildPoints == buildPointsVector[0])
     {
         m_BuildPoints.ClearChampion();
@@ -3269,8 +3320,8 @@ void Build::Enhancement_RevokeEnhancement(
         size_t ranks = 0;
         size_t spent = pItem->RevokeEnhancement(
                 enhancementName,
-                &revokedEnhancementSelection,
-                &ranks);
+               &revokedEnhancementSelection,
+               &ranks);
         const EnhancementTree& eTree = EnhancementTree::GetTree(treeName);
         if (eTree.Name() == "")
         {
@@ -3434,6 +3485,8 @@ void Build::ApplyEnhancementEffects(
             }
         }
 
+        // apply any attacks
+        ApplyAllAttacks(pItem->Attacks(selection));
         // apply any stances
         std::list<Stance> stances = pItem->GetStances(selection, rank);
         for (auto&& sit : stances)
@@ -3503,6 +3556,9 @@ void Build::RevokeEnhancementEffects(
                 }
             }
         }
+
+        // revoke any attacks
+        RevokeAllAttacks(pItem->Attacks(selection));
 
         // revoke any stances
         std::list<Stance> stances = pItem->GetStances(selection, rank);
@@ -3646,7 +3702,7 @@ void Build::Destiny_TrainEnhancement(
     {
         // no tree item available for this tree, its a first time spend
         // create an object to handle this tree
-        const EnhancementTree & eTree = GetEnhancementTree(treeName);
+        const EnhancementTree& eTree = GetEnhancementTree(treeName);
         DestinySpendInTree tree;
         tree.SetTree(treeName, eTree.Version());  // need to track version of tree spent in
         m_DestinyTreeSpend.push_back(tree);
@@ -3660,7 +3716,7 @@ void Build::Destiny_TrainEnhancement(
             cost,
             pTreeItem->MinSpent(selection),
             pTreeItem->HasTier5(),
-            &ranks);
+           &ranks);
     m_destinyTreeSpend += spent;
     // track whether this is a tier 5 enhancement
     ASSERT(pTreeItem != NULL);
@@ -3712,8 +3768,8 @@ void Build::Destiny_RevokeEnhancement(
         size_t ranks = 0;
         int spent = pItem->RevokeEnhancement(
                 enhancementName,
-                &revokedEnhancementSelection,
-                &ranks);
+               &revokedEnhancementSelection,
+               &ranks);
         m_destinyTreeSpend -= spent;
 
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
@@ -3805,7 +3861,7 @@ void Build::Reaper_TrainEnhancement(
 {
     // Find the tree tracking amount spent and enhancements trained
     SpendInTree * pItem = FindSpendInTree(treeName);
-    const EnhancementTree & eTree = GetEnhancementTree(treeName);
+    const EnhancementTree& eTree = GetEnhancementTree(treeName);
     if (pItem == NULL)
     {
         // no tree item available for this tree, its a first time spend
@@ -3822,7 +3878,7 @@ void Build::Reaper_TrainEnhancement(
             cost,
             pTreeItem->MinSpent(selection),
             pTreeItem->HasTier5(),
-            &ranks);
+           &ranks);
     // now notify all and sundry about the enhancement effects
     ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
     EnhancementItemParams item;
@@ -3857,8 +3913,8 @@ void Build::Reaper_RevokeEnhancement(
         size_t ranks = 0;
         pItem->RevokeEnhancement(
                 enhancementName,
-                &revokedEnhancementSelection,
-                &ranks);
+               &revokedEnhancementSelection,
+               &ranks);
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
         RevokeEnhancementEffects(treeName, enhancementName, revokedEnhancementSelection, ranks);
@@ -3928,7 +3984,7 @@ void Build::Reaper_ResetEnhancementTree(std::string treeName)
 }
 
 // gear support
-void Build::AddGearSet(const EquippedGear & gear)
+void Build::AddGearSet(const EquippedGear& gear)
 {
     m_bSwitchingBuildsOrGear = true;
     // add the new gear set to the end of the list
@@ -4379,7 +4435,7 @@ void Build::UpdateActiveGearSet(const EquippedGear& newGear)
 void Build::SetGear(
         const std::string& name,
         InventorySlotType slot,
-        const Item & item)
+        const Item& item)
 {
     if (name == ActiveGear())
     {
@@ -4535,7 +4591,7 @@ void Build::RevokeFiligree(
             }
         }
         // revoke any filigree stances
-        //const std::list<Stance> & stances = filigree.StanceData();
+        //const std::list<Stance>& stances = filigree.StanceData();
         //std::list<Stance>::const_iterator sit = stances.begin();
         //while (sit != stances.end())
         //{
@@ -4822,7 +4878,7 @@ void Build::RevokeItem(const Item& item, InventorySlotType ist)
         if (ait.HasSelectedAugment())
         {
             // there is an augment in this position
-            const Augment & augment = ait.GetSelectedAugment();
+            const Augment& augment = ait.GetSelectedAugment();
             bSuppressSetBonuses |= augment.HasSuppressSetBonus();
             RevokeAugment(augment, ait, item.Name(), item.MinLevel(), item.HasWeapon() ? item.Weapon() : Weapon_Unknown, ist);
         }
@@ -5008,7 +5064,7 @@ void Build::ApplySetBonus(
     NotifyNewSetBonusStack(setObject);
 
     //// they may also have regular stance objects
-    //const std::vector<Stance> & stances = setObject.Stances();
+    //const std::vector<Stance>& stances = setObject.Stances();
     //std::vector<Stance>::const_iterator sit = stances.begin();
     //while (sit != stances.end())
     //{
@@ -5032,7 +5088,7 @@ void Build::RevokeSetBonus(
     NotifyRevokeSetBonusStack(setObject);
 
     //// they may also have regular stance objects
-    //const std::vector<Stance> & stances = setObject.Stances();
+    //const std::vector<Stance>& stances = setObject.Stances();
     //std::vector<Stance>::const_iterator sit = stances.begin();
     //while (sit != stances.end())
     //{
@@ -6172,4 +6228,102 @@ void Build::UpdateGreensteelStances()
     {
         pStancesPane->UpdateGreensteelStances();
     }
+}
+
+void Build::ApplyAllAttacks(const std::list<Attack>& attacks)
+{
+    for (auto&& ait: attacks)
+    {
+        NotifyNewAttack(ait);
+    }
+}
+
+void Build::RevokeAllAttacks(const std::list<Attack>& attacks)
+{
+    for (auto&& ait: attacks)
+    {
+        NotifyRevokeAttack(ait);
+    }
+}
+
+void Build::AddAttackChain(const AttackChain& ac)
+{
+    m_AttackChains.push_back(ac);
+    // if an attack chain is added, it becomes the active attack chain
+    Set_ActiveAttackChain(ac.Name());
+    CString logEntry;
+    logEntry.Format("Attack chain \"%s\" Added.", ac.Name().c_str());
+    GetLog().AddLogEntry(logEntry);
+    SetModifiedFlag(TRUE);
+}
+
+void Build::DeleteAttackChain(const std::string& acName)
+{
+    bool bFound = false;
+    // delete attack chain by name
+    std::list<AttackChain>::iterator acit = m_AttackChains.begin();
+    while (!bFound && acit != m_AttackChains.end())
+    {
+        if ((*acit).Name() == acName)
+        {
+            m_AttackChains.erase(acit); // remove it
+            bFound = true;
+        }
+    }
+    if (bFound)
+    {
+        CString logEntry;
+        logEntry.Format("Attack chain \"%s\" deleted.", acName.c_str());
+        GetLog().AddLogEntry(logEntry);
+        SetModifiedFlag(TRUE);
+        // you can only delete the active attack chain, need to switch to another (if there is one)
+        if (m_AttackChains.size() > 0)
+        {
+            Set_ActiveAttackChain(m_AttackChains.front().Name());
+            logEntry.Format("New active attack chain is \"%s\"", m_ActiveAttackChain.c_str());
+        }
+        else
+        {
+            Set_ActiveAttackChain("");
+            logEntry.Format("There are no available attack chains to switch to.");
+        }
+        GetLog().AddLogEntry(logEntry);
+    }
+    else
+    {
+        CString logEntry;
+        logEntry.Format("Attack chain \"%s\" not found, no action taken.", acName.c_str());
+        GetLog().AddLogEntry(logEntry);
+    }
+}
+
+void Build::UpdateAttackChain(const std::string& acName, const AttackChain& ac)
+{
+    // update the attack chain
+    bool bFound = false;
+    std::list<AttackChain>::iterator acit = m_AttackChains.begin();
+    while (!bFound && acit != m_AttackChains.end())
+    {
+        if ((*acit).Name() == acName)
+        {
+            (*acit) = ac;
+            bFound = true;
+            CString logEntry;
+            logEntry.Format("Attack chain \"%s\" updated.", acName.c_str());
+            GetLog().AddLogEntry(logEntry);
+        }
+    }
+}
+
+const AttackChain& Build::GetActiveAttackChain() const
+{
+    static AttackChain empty;
+    for (auto&& acit: m_AttackChains)
+    {
+        if (acit.Name() == m_ActiveAttackChain)
+        {
+            return acit;
+        }
+    }
+    return empty;
 }

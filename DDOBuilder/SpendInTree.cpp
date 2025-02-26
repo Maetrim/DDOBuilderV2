@@ -5,6 +5,7 @@
 #include "XmlLib\SaxWriter.h"
 #include <algorithm>
 #include "GlobalSupportFunctions.h"
+#include "EnhancementTree.h"
 #include "EnhancementTreeItem.h"
 #include "LogPane.h"
 
@@ -63,33 +64,51 @@ void SpendInTree::EndElement()
     SaxContentElement::EndElement();
     DL_END(SpendInTree_PROPERTIES)
     TranslateNamesFromV1();
-    // also make sure every loaded TrainedEnhancement has the correct
-    // cached cost values for the enhancements it references
-    m_pointsSpent = 0;
-    for (auto&& teit: m_Enhancements)
+
+    const EnhancementTree & tree = GetEnhancementTree(TreeName());
+    size_t spendVersion = TreeVersion();
+    if (spendVersion != tree.Version())
     {
-        const EnhancementTreeItem* pTreeItem = FindEnhancement(TreeName(), teit.EnhancementName());
-        if (pTreeItem != NULL)
+        // looks like this tree is now out of date, have to revoke all these
+        // enhancements in this tree (i.e. just delete it)
+        std::stringstream ss;
+        ss << "All enhancements in tree \""
+            << TreeName()
+            << "\" were revoked as the tree has since been superseded";
+        GetLog().AddLogEntry(ss.str().c_str());
+        m_Enhancements.clear();
+        Set_TreeVersion(tree.Version());    // update
+    }
+    else
+    {
+        // also make sure every loaded TrainedEnhancement has the correct
+        // cached cost values for the enhancements it references
+        m_pointsSpent = 0;
+        for (auto&& teit: m_Enhancements)
         {
-            std::string selection = teit.HasSelection() ? teit.Selection() : "";
-            teit.SetCost(pTreeItem->ItemCosts(selection));
-            teit.SetRequiredAps(pTreeItem->MinSpent(selection));
-        }
-        else
-        {
-            std::vector<size_t> defaultCost(1, 1);
-            teit.SetCost(defaultCost);
-            teit.SetRequiredAps(0);
-            std::stringstream ss;
-            ss << "Trained enhancement from tree \""
-                << TreeName()
-                << "\" not found. Using default cost of 1 per rank.";
-            GetLog().AddLogEntry(ss.str().c_str());
-        }
-        // also need to track how many points are spent
-        for (size_t rank = 0; rank < teit.Ranks(); ++rank)
-        {
-            m_pointsSpent += teit.Cost(rank);
+            const EnhancementTreeItem* pTreeItem = FindEnhancement(TreeName(), teit.EnhancementName());
+            if (pTreeItem != NULL)
+            {
+                std::string selection = teit.HasSelection() ? teit.Selection() : "";
+                teit.SetCost(pTreeItem->ItemCosts(selection));
+                teit.SetRequiredAps(pTreeItem->MinSpent(selection));
+            }
+            else
+            {
+                std::vector<size_t> defaultCost(1, 1);
+                teit.SetCost(defaultCost);
+                teit.SetRequiredAps(0);
+                std::stringstream ss;
+                ss << "Trained enhancement from tree \""
+                    << TreeName()
+                    << "\" not found. Using default cost of 1 per rank.";
+                GetLog().AddLogEntry(ss.str().c_str());
+            }
+            // also need to track how many points are spent
+            for (size_t rank = 0; rank < teit.Ranks(); ++rank)
+            {
+                m_pointsSpent += teit.Cost(rank);
+            }
         }
     }
 }

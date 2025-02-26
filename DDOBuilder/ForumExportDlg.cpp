@@ -1480,7 +1480,20 @@ void CForumExportDlg::AddSpellList(
         // spell school
         Spell spell = FindSpellByName((*it).SpellName());
         spell.SetClass((*it).Class());
-        forumExport << "[TD]" << EnumEntryText(spell.School(), spellSchoolTypeMap) << "[/TD]";
+        forumExport << "[TD]";
+        bool bFirst = true;
+        for (auto&& sit: spell.School())
+        {
+            CString school;
+            school = EnumEntryText(sit, spellSchoolTypeMap);
+            if (!bFirst)
+            {
+                forumExport << ", ";
+            }
+            bFirst = false;
+            forumExport << school;
+        }
+        forumExport << "[/TD]";
         size_t cl = 0;
         size_t mcl = 0;
         if (spell.SpellDamageEffects().size() > 0)

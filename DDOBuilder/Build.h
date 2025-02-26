@@ -3,9 +3,11 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "ObserverSubject.h"
+
 #include "AbilitySpend.h"
 #include "ActiveStances.h"
 #include "AlignmentTypes.h"
+#include "AttackChain.h"
 #include "CompletedQuest.h"
 #include "DestinySpendInTree.h"
 #include "EnhancementItemParams.h"
@@ -30,6 +32,7 @@
 #include <map>
 #include "BreakdownItem.h"
 
+class Attack;
 class Augment;
 class Build;
 class DC;
@@ -80,6 +83,8 @@ class BuildObserver :
         virtual void UpdateGearChanged(Build*, InventorySlotType) {};
         virtual void UpdateNewSetBonusStack(Build*, const SetBonus&) {};
         virtual void UpdateRevokeSetBonusStack(Build*, const SetBonus&) {};
+        virtual void UpdateNewAttack(Build*, const Attack&) {};
+        virtual void UpdateRevokeAttack(Build*, const Attack&) {};
 };
 
 class Build :
@@ -339,6 +344,12 @@ class Build :
         // quests
         void SetQuestsCompletions(const std::list<CompletedQuest>& quests);
 
+        // attack chains
+        void AddAttackChain(const AttackChain& ac);
+        void DeleteAttackChain(const std::string& acName);
+        void UpdateAttackChain(const std::string& acName, const AttackChain& ac);
+        const AttackChain& GetActiveAttackChain() const;
+
         bool operator<(const Build& other) const;
 
     protected:
@@ -363,6 +374,8 @@ class Build :
                 DL_OBJECT_LIST(_, EnhancementSpendInTree, EnhancementTreeSpend) \
                 DL_OBJECT_LIST(_, ReaperSpendInTree, ReaperTreeSpend) \
                 DL_OBJECT_LIST(_, DestinySpendInTree, DestinyTreeSpend) \
+                DL_STRING(_, ActiveAttackChain) \
+                DL_OBJECT_LIST(_, AttackChain, AttackChains) \
                 DL_STRING(_, ActiveGear) \
                 DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
                 DL_OPTIONAL_STRING(_, GearSetSnapshot) \
@@ -417,6 +430,8 @@ class Build :
         void NotifyGearChanged(InventorySlotType slot);
         void NotifyNewSetBonusStack(const SetBonus& setBonus);
         void NotifyRevokeSetBonusStack(const SetBonus& setBonus);
+        void NotifyNewAttack(const Attack& attack);
+        void NotifyRevokeAttack(const Attack& attack);
 
         std::list<TrainedFeat> AutomaticFeats(
             size_t level,
@@ -461,6 +476,8 @@ class Build :
         void AddEffectToList(std::list<Effect>& list, const Effect& effect);
         void RemoveEffectFromList(std::list<Effect>& list, const Effect& effect);
         void UpdateGreensteelStances();
+        void ApplyAllAttacks(const std::list<Attack>& attacks);
+        void RevokeAllAttacks(const std::list<Attack>& attacks);
 
         // BreakdownObserver
         virtual void UpdateTotalChanged(BreakdownItem* pBI, BreakdownType bt) override;

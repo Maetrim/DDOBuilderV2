@@ -5,6 +5,7 @@
 #include "XmlLib\DLMacros.h"
 #include "AbilityTypes.h"
 #include "AlignmentTypes.h"
+#include "AutomaticFeats.h"
 #include "SaveTypes.h"
 #include "SkillTypes.h"
 #include "FeatSlot.h"
@@ -36,6 +37,7 @@ class Class :
         void AddLargeClassImage(CImageList * pImageList) const;
         void AddFeatSlots(const Build& build, size_t classLevel, std::vector<FeatSlot> * tfts, size_t totalLevel) const;
         size_t MaxSpellLevel(size_t classLevel) const;
+        const std::list<std::string>& GetAutoFeats(size_t level) const;
 
         std::list<Feat> ImprovedHeroicDurabilityFeats() const;
 
@@ -99,6 +101,7 @@ class Class :
                 DL_OPTIONAL_VECTOR(_, size_t, Level20) \
                 DL_VECTOR(_, double, BAB) \
                 DL_OBJECT_LIST(_, ClassSpell, ClassSpells) \
+                DL_OBJECT_LIST(_, AutomaticFeats, AutoFeats) \
                 DL_OBJECT_LIST(_, FeatSlot, FeatSlots) \
                 DL_OBJECT_LIST(_, Feat, ClassFeats)
 

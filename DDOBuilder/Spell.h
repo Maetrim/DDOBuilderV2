@@ -54,7 +54,7 @@ class Spell :
                 DL_STRING(_, Description) \
                 DL_OPTIONAL_STRING(_, Icon) \
                 DL_OPTIONAL_SIMPLE(_, int, Level, 0) \
-                DL_OPTIONAL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
+                DL_ENUM_LIST(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_SIMPLE(_, int, Cost, 0) \
                 DL_OBJECT_LIST(_, Effect, Effects) \
                 DL_OBJECT_LIST(_, ::SpellDC, DCs) \
