@@ -346,7 +346,7 @@ scales with the highest of 100% Positive Spell Power or 200% Melee Power.</Descr
         <Icon>MantleOfFury</Icon>
         <Description>Fury of the Wild Destiny Mantle: Gain [3/6/9]% damage against helpless targets.
 You also heal [2/4/6]d10 Hit Points every 15 seconds. This healing scales with
-the highest of Positive 100% Positive Spell Power or 200% Melee Power.</Description>
+the highest of 100% Positive Spell Power or 200% Melee Power.</Description>
         <Group>Mantle</Group>
       </Stance>
       <Effect>
@@ -508,6 +508,14 @@ Cooldown: 30 seconds.</Description>
           <Value>20</Value>
         </Requirement>
       </Requirements>
+      <Stance>
+        <Name>Primal Scream</Name>
+        <Icon>PrimalScream</Icon>
+        <Description>You and your allies gain a +2 Morale bonus to Strength, Dexterity and
+Constitution for 5 minutes. The Morale bonus cannot be refreshed until the
+previous one expires.</Description>
+        <Group>Mantle</Group>
+      </Stance>
       <Effect>
         <DisplayName>Fury of the Wild: Primal Scream</DisplayName>
         <Type>AbilityBonus</Type>
@@ -519,6 +527,12 @@ Cooldown: 30 seconds.</Description>
         <AType>Stacks</AType>
         <Amount size="3">0 2 4</Amount>
         <ApplyAsItemEffect/>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Primal Scream</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -902,6 +916,12 @@ Adrenaline and Quick are consumed.</Description>
         <AType>Stacks</AType>
         <Amount size="3">0 2 4</Amount>
         <ApplyAsItemEffect/>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Primal Scream</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>

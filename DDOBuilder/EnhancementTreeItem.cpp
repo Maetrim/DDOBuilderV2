@@ -605,6 +605,18 @@ size_t EnhancementTreeItem::Ranks(const std::string& selection) const
     return ranks;
 }
 
+std::list<Attack> EnhancementTreeItem::Attacks(const std::string& selection) const
+{
+    std::list<Attack> allAttacks = Attacks();
+    if (HasSelections())
+    {
+        // we need to look up the effects for a selection
+        std::list<Attack> selAttacks = m_Selections.Attacks(selection);
+        allAttacks.insert(allAttacks.end(), selAttacks.begin(), selAttacks.end());
+    }
+    return allAttacks;
+}
+
 std::string EnhancementTreeItem::Name(const std::string& selection) const
 {
     std::stringstream ss;

@@ -180,10 +180,10 @@ int Spell::ActualCasterLevel(const Build& build) const
     {
         classCasterLevel += static_cast<int>(pBI->Total());
     }
-    // include any school caster level bonus
-    if (HasSchool())
+    // include any school caster level bonuses
+    for (auto&& sit: School())
     {
-        pBI = FindBreakdown(CasterLevelSchoolToBreakdown(School()));
+        pBI = FindBreakdown(CasterLevelSchoolToBreakdown(sit));
         if (pBI != NULL)
         {
             classCasterLevel += static_cast<int>(pBI->Total());
@@ -210,9 +210,9 @@ int Spell::ActualMaxCasterLevel(const Build& build) const
             int classCasterLevelBonus = static_cast<int>(pBI->Total());
             maxCasterLevel += classCasterLevelBonus;
         }
-        if (HasSchool())
+        for (auto&& sit: School())
         {
-            pBI = FindBreakdown(MaxCasterLevelSchoolToBreakdown(School()));
+            pBI = FindBreakdown(MaxCasterLevelSchoolToBreakdown(sit));
             if (pBI != NULL)
             {
                 maxCasterLevel += static_cast<int>(pBI->Total());
@@ -238,9 +238,9 @@ CString Spell::ActualCasterLevelText(const Build& build) const
         totalText.Format("Class Caster Level (%d)", classCasterLevel);
     }
     // include any school caster level bonus
-    if (HasSchool())
+    for (auto&& sit: School())
     {
-        pBI = FindBreakdown(CasterLevelSchoolToBreakdown(School()));
+        pBI = FindBreakdown(CasterLevelSchoolToBreakdown(sit));
         if (pBI != NULL)
         {
             schoolCasterLevel = static_cast<int>(pBI->Total());
@@ -301,9 +301,9 @@ CString Spell::ActualMaxCasterLevelText(const Build& build) const
         }
         // also need to add any options that increase the max caster level here
         // any school level bonuses
-        if (HasSchool())
+        for (auto&& sit: School())
         {
-            pBI = FindBreakdown(MaxCasterLevelSchoolToBreakdown(School()));
+            pBI = FindBreakdown(MaxCasterLevelSchoolToBreakdown(sit));
             if (pBI != NULL)
             {
                 schoolLevelBonus = static_cast<int>(pBI->Total());

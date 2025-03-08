@@ -96,11 +96,10 @@ Cooldown: 1 Minute</Description>
          <InternalName>InquisitiveCore3</InternalName>
          <Description>+3 to Will Saving Throws.
 You no longer automatically fail Saving Throws for Fear, Enchantment or
-Illusion effects on a Natutal 1.
+Illusion effects on a Natural 1.
 You will automatically perform a Search check to locate traps and secret
 doors when you are in range to Spot them, although this Search check
-operates at a -4 penalty.
-In addition, you gain +2 Damage dice with Law on you Side.</Description>
+operates at a -4 penalty.</Description>
          <Icon>MindLikeIron</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -377,9 +376,8 @@ Spell Point Cost: [30/20/10]</Description>
          <Name>Inquisitive: Law on your side</Name>
          <InternalName>InquisitiveLawOnYourSide</InternalName>
          <Description>Imbue Toggle: Your Light and Heavy (non-repeating) Crossbow attacks
-deal 1d8 Law damage per Imbue Dice on hit to non-Lawful creatures, scaling with
-200% Ranged Power. Lawful creatures take 1d4 Law damage per Imbue Dice, scaling
-with 200% Ranged Power.</Description>
+deal 1d10 Law damage per Imbue Dice on hit to Chaotic creatures and 1d6 Law damage
+on hit to all other creatures, scaling with 200% Ranged Power.</Description>
          <Icon>LawOnYourSide</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -391,9 +389,9 @@ with 200% Ranged Power.</Description>
          <Stance>
             <Name>Law on your side</Name>
             <Icon>LawOnYourSide</Icon>
-            <Description>Your Light and Heavy (non-repeating) Crossbow attacks deal 1d8 Law damage
-on hit to non-Lawful creatures, scaling with 200% Ranged Power. Lawful creatures
-take 1d4 Law damage, scaling with 200% Ranged Power.</Description>
+            <Description>Imbue Toggle: Your Light and Heavy (non-repeating) Crossbow attacks
+deal 1d10 Law damage per Imbue Dice on hit to Chaotic creatures and 1d6 Law damage
+on hit to all other creatures, scaling with 200% Ranged Power.</Description>
             <Group>Imbue</Group>
          </Stance>
       </EnhancementTreeItem>
@@ -465,7 +463,7 @@ Rank 3: +1 to Will Saving Throws.</Description>
          <Name>Inquisitive: Wand and Scroll Mastery</Name>
          <InternalName>InquisitiveWandAndScrollMastery</InternalName>
          <Description>+[25/50/75]% damage and healing of your wands, scrolls and other items that
-cast spells. Adds +[1/2/3] to the save DC's of your offensive wands. Taking Wand
+cast spells. Adds +[1/3/6] to the save DC's of your offensive wands. Taking Wand
 and Scroll Mastery in one enhancement tree will block its availability in other
 enhancement trees.</Description>
          <Icon>WandAndScrollMastery</Icon>
@@ -497,7 +495,7 @@ enhancement trees.</Description>
             <Bonus>Enhancement</Bonus>
             <Item>Wands</Item>
             <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
+            <Amount size="3">1 3 6</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -843,7 +841,7 @@ Cooldown: 18 seconds</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: What Later?</Name>
          <InternalName>InquisitiveWhatLater</InternalName>
-         <Description>Take a followup skill to handle the situation.</Description>
+         <Description>Take a follow up skill to handle the situation.</Description>
          <Icon>WhatLater</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -1175,7 +1173,7 @@ Cooldown: 1 minute</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: Improved Uncanny Dodge</Name>
          <InternalName>InquisitiveImprovedUncannyDodge</InternalName>
-         <Description>Activate this ability to gain a temporary 50% Dodge bonus and a +6 reflex save bonus.
+         <Description>Activate this ability to gain a temporary 50% Dodge bonus and a +6 Reflex save bonus.
 This feat also grants you a 1% passive bonus to Dodge at levels 4, 6, 8, 12, 16 and 20.
 This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
          <Icon>UncannyDodge</Icon>
@@ -1223,8 +1221,9 @@ This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Jaded</Name>
-               <Description>You gain +1 Imbue Dice and all enemies take 1d8 per Imbue dice.
-+10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating Crossbows</Description>
+               <Description>Gain +10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating,
+non-Great Crossbows. +1 bonus Imbue Dice. Damage from Law on your Side is now
+1d10 Law damage and now applies to all creatures.</Description>
                <Icon>Jaded</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1236,8 +1235,8 @@ This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Optimistic</Name>
-               <Description>+2 Imbue Dice.
-+10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating Crossbows</Description>
+               <Description>Gain +10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating,
+non-Great Crossbows. +2 bonus Imbue Dice.</Description>
                <Icon>InquisitorsPath</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1249,10 +1248,9 @@ This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Vigilante</Name>
-               <Description>+1 Imbue Dice.
-Damage from Law on your Side is now Chaos damage, with non-Chaotic creatures
-taking d8s of damage, and Chaotic creatures taking d4s of damage.
-+10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating Crossbows</Description>
+               <Description>Gain +10 Ranged Power, +15% Attack Speed and +15% Doubleshot with non-Repeating,
+non-Great Crossbows. +1 bonus Imbue Dice. Damage from Law on your Side is now
+1d10 Chaos damage and now applies to all creatures.</Description>
                <Icon>Vigilante</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>

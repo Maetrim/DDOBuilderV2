@@ -14,6 +14,8 @@ public:
     virtual BOOL OnSaveDocument(LPCTSTR lpszPathName) override;
     virtual void Serialize(CArchive& ar) override;
     virtual ~CDDOBuilderDoc();
+    afx_msg void OnUpdateRevertToBackup(CCmdUI* pCmdUI);
+    afx_msg void OnRevertToBackup();
 
     BOOL LoadIndirect(LPCTSTR lpszPathName);
 
@@ -30,4 +32,5 @@ protected: // create from serialization only
     void EndElement();
 private:
     Character m_character;
+    CString m_strBackupFilename;
 };

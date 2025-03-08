@@ -465,6 +465,80 @@ in the DDO store.</Description>
       <Name>Wail of the Banshee</Name>
       <Level>6</Level>
     </ClassSpell>
+    <!--Automatic Feats-->
+     <AutomaticFeats>
+        <Level>1</Level>
+        <Feats>Dismiss Charm</Feats>
+        <Feats>Light Armor Proficiency</Feats>
+        <Feats>Magical Training</Feats>
+        <Feats>Simple Weapon Proficiency: Club</Feats>
+        <Feats>Simple Weapon Proficiency: Dagger</Feats>
+        <Feats>Simple Weapon Proficiency: Dart</Feats>
+        <Feats>Simple Weapon Proficiency: Heavy Crossbow</Feats>
+        <Feats>Simple Weapon Proficiency: Heavy Mace</Feats>
+        <Feats>Simple Weapon Proficiency: Light Crossbow</Feats>
+        <Feats>Simple Weapon Proficiency: Light Mace</Feats>
+        <Feats>Simple Weapon Proficiency: Morningstar</Feats>
+        <Feats>Simple Weapon Proficiency: Quarterstaff</Feats>
+        <Feats>Simple Weapon Proficiency: Sickle</Feats>
+        <Feats>Simple Weapon Proficiency: Throwing Dagger</Feats>
+        <Feats>Simple Weapon Proficiency: Unarmed</Feats>
+        <Feats>Warlock: Deceive Item</Feats>
+        <Feats>Warlock: Eldritch Blast Focused</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>2</Level>
+        <Feats>Pact Damage</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>4</Level>
+        <Feats>Pact Damage</Feats>
+        <Feats>Warlock: Eldritch Blast Damage</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>6</Level>
+        <Feats>Pact Damage</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>8</Level>
+        <Feats>Pact Damage</Feats>
+        <Feats>Warlock: Eldritch Blast Damage</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>10</Level>
+        <Feats>Pact Damage</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>12</Level>
+        <Feats>Pact Damage</Feats>
+        <Feats>Warlock: Eldritch Blast Damage</Feats>
+        <Feats>Warlock: Paragon's Aegis</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>13</Level>
+        <Feats>Warlock: Deceive Item</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>14</Level>
+        <Feats>Pact Damage</Feats>
+        <Feats>Warlock: Paragon's Aegis</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>16</Level>
+        <Feats>Pact Damage</Feats>
+        <Feats>Warlock: Eldritch Blast Damage</Feats>
+        <Feats>Warlock: Paragon's Aegis</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>18</Level>
+        <Feats>Pact Damage</Feats>
+        <Feats>Warlock: Paragon's Aegis</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>20</Level>
+        <Feats>Pact Damage</Feats>
+        <Feats>Warlock: Eldritch Blast Damage</Feats>
+     </AutomaticFeats>
     <!--Feat Slots-->
     <FeatSlot>
       <Level>1</Level>
@@ -673,20 +747,6 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
       <MaxTimesAcquire>2</MaxTimesAcquire>
       <Acquire>Automatic</Acquire>
       <Icon>DeceiveItem</Icon>
-      <AutomaticAcquisition>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Warlock</Item>
-            <Value>1</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Warlock</Item>
-            <Value>13</Value>
-          </Requirement>
-        </RequiresOneOf>
-      </AutomaticAcquisition>
       <Effect>
         <Type>SkillBonus</Type>
         <Bonus>Feat</Bonus>
@@ -701,41 +761,6 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
       <MaxTimesAcquire>5</MaxTimesAcquire>
       <Acquire>Automatic</Acquire>
       <Icon>EldritchBlastDamage</Icon>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>4</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>8</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>12</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>20</Value>
-         </Requirement>
-      </AutomaticAcquisition>
       <Effect>
         <Type>EldritchBlastD8</Type>
         <Bonus>Feat</Bonus>
@@ -757,13 +782,6 @@ armor, heavy armor and shields can cause Eldritch Blast to suffer Arcane Spell
 Failure.</Description>
       <Acquire>Automatic</Acquire>
       <Icon>EldritchBlastFocused</Icon>
-      <AutomaticAcquisition>
-        <Requirement>
-          <Type>BaseClass</Type>
-          <Item>Warlock</Item>
-          <Value>1</Value>
-        </Requirement>
-      </AutomaticAcquisition>
       <Effect>
         <Type>EldritchBlastD8</Type>
         <Bonus>Feat</Bonus>
@@ -1037,76 +1055,6 @@ with no save. Does not affect bosses.</Description>
       <MaxTimesAcquire>10</MaxTimesAcquire>
       <Acquire>Automatic</Acquire>
       <Icon>EldritchBlastDamage</Icon>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>2</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>4</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>6</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>8</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>10</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>12</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>14</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>18</Value>
-         </Requirement>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Item>Warlock</Item>
-            <Value>20</Value>
-         </Requirement>
-      </AutomaticAcquisition>
       <Effect>
         <Type>EldritchBlastD6</Type>
         <Bonus>Feat</Bonus>
@@ -1429,35 +1377,6 @@ This damage is halved on a successful Fortitude saving throw.</Description>
       <MaxTimesAcquire>5</MaxTimesAcquire>
       <Acquire>Automatic</Acquire>
       <Icon>ParagonsAegis</Icon>
-      <AutomaticAcquisition>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Warlock</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Warlock</Item>
-            <Value>14</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Warlock</Item>
-            <Value>18</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Warlock</Item>
-            <Value>20</Value>
-          </Requirement>
-        </RequiresOneOf>
-      </AutomaticAcquisition>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Feat</Bonus>

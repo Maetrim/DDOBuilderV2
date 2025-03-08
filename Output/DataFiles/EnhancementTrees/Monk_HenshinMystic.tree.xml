@@ -1,190 +1,277 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Henshin Mystic</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Type>Class</Type>
-            <Item>Monk</Item>
-         </Requirement>
-      </Requirements>
-      <Icon>Monk</Icon>
-      <Background>MonkBackground</Background>
-      <!--Core Items-->
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Riddle of Fire</Name>
-         <InternalName>HMCore1</InternalName>
-         <Description>Each Core Enhancement in the Henshin Mystic tree, including this one,
-grants you the following passive effects:
+  <EnhancementTree>
+    <Name>Henshin Mystic</Name>
+    <Version>2</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Monk</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Monk</Icon>
+    <Background>MonkBackground</Background>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Riddle of Fire</Name>
+      <InternalName>HMCore1</InternalName>
+      <Description>While you are Centered, you can use your Wisdom modifier to hit.
+Each Core Enhancement in the Henshin Mystic tree, including this one, grants
+you the following passive effects:
+
 +3 Melee Power 
 +2 Fire Resistance 
 +3 PRR
-+1 Imbue Dice
++1 bonus Imbue Dice
 Enemies have -2 Fire Resistance against your spells.</Description>
-         <Icon>HMRiddleOfFire</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Ki Bolt</Name>
-         <InternalName>HMCore2</InternalName>
-         <Description>Ki Spell-Like Ability: Ki Bolt
+      <Icon>HMRiddleOfFire</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Wisdom</Item>
+        <Item>All</Item>
+        <AType>NotNeeded</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Ki Bolt</Name>
+      <InternalName>HMCore2</InternalName>
+      <Description>Ki Spell-Like Ability: Ki Bolt
 Activation Cost: 5 Ki
 Cooldown: 3 seconds
-Ki Spell-Like Ability: You fir a Ki blast that deals 1d6 Fire and 1d4 Force damage
-per Caster Level to an opponent. This damage scales with 3x Melee power.
+Ki Spell-Like Ability: You fire a Ki blast that deals 1d6 Fire and 1d4 Force
+damage per Caster Level to an opponent. This damage scales with 3x Melee Power.
 The target also gains a stack of Weakened Will, Feeble Fortitude, and Reduced
 Reflexes. (-1 Saving Throws, 6 second duration. Can stack up to 5 times.)
-This ability has double normal spell range.</Description>
-         <Icon>HMKiBolt</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMCore1</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Sounding Staff</Name>
-         <InternalName>HMCore3</InternalName>
-         <Description>You gain the Quick Draw feat, which reduces the time between using Spell-Like
-Abilities and attacking. In addition, while you are centered and wielding a
-Quarterstaff, you gain +2 Ki each time you hit a creature.
+This ability has double normal spell range.
+
+Passive: While you are Centered, you can use your Wisdom modifier to damage
+and you gain +2 Ki each time you hit a creature with a melee attack.
 This stacks with all other sources of Ki generation.</Description>
-         <Icon>HMSoundingStaff</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMCore2</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>6</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>KiHit</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
-            <Type>GrantFeat</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quick Draw</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Incinerating Wave</Name>
-         <InternalName>HMCore4</InternalName>
-         <Description>Fire Ki Spell-Like Ability: Incinerating Wave
+      <Icon>HMKiBolt</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMCore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_DamageAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Wisdom</Item>
+        <Item>All</Item>
+        <AType>NotNeeded</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>KiHit</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Cauldron of Flame</Name>
+      <InternalName>HMCore3</InternalName>
+      <Description>Fire Ki Spell-Like Ability: You will flame into the world around you. Enemies
+around you take 1d2 Fire damage per Monk level every 2 seconds, increasing by
+an additional 1d2 Fire damage per Monk level every 2 seconds that you remain
+standing in the flames. This damage scales with 2x Melee Power. If you leave
+the area of the flames, this effect ends. A successful Reflex save
+(DC 10 + Monk Level + Wisdom Mod + Stunning Bonuses) reduces damage by half.
+While you remain inside your Cauldron of Flames, you personally gain PRR equal
+to your Monk level, MRR equal to your Monk level, and Dodge that ignores Dodge
+Cap equal to 5 + half your Monk Level.
+Activation Cost: 30 Ki
+Cooldown: 1 minute</Description>
+      <Icon>HMCauldronOfFlame</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMCore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Stance>
+        <Name>Cauldron Of Flame</Name>
+        <Icon>HMCauldronOfFlame</Icon>
+        <Description>You are fighting within your Cauldron of Flame</Description>
+      </Stance>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Quarterstaff</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Cauldron Of Flame</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Quarterstaff</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Cauldron Of Flame</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Quarterstaff</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Cauldron Of Flame</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Incinerating Wave</Name>
+      <InternalName>HMCore4</InternalName>
+      <Description>Fire Ki Spell-Like Ability: Incinerating Wave
 Activation Cost: 20 Ki
 Cooldown: 9 seconds
 Fire Ki Spell-Like Ability: You produce a wall of Ki flame that travels away
@@ -192,760 +279,637 @@ from you, dealing 1d6+3 Fire and Force damage per Caster Level every 2 seconds
 to all opponents near it. This damage scales with 3x Melee Power. A successful
 Reflex save (DC 10 + Monk Level + Wisdom Mod + Stunning Bonuses) reduces
 damage by half.</Description>
-         <Icon>HMIncineratingWave</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMCore3</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Cauldron Of Flame</Name>
-         <InternalName>HMCore5</InternalName>
-         <Description>Fire Ki Spell-Like Ability: Cauldron of Flame
-Activation Cost: 30 Ki
-Cooldown: 1 minute
-Fire Ki Spell-Like Ability: You will flame into the world around you. Enemies
-around you take 1d2 Fire damage per Monk level every 2 seconds, increasing by
-an additional 1d2 Fire damage per Monk level every 2 seconds that you remain
-standing in the flames. This damage scales with 2x Melee Power. If you leave the
-area of the flames, this effect ends. A successful Reflex save (DC 10 + Monk Level
-+ Wisdom Mod + Stunning Bonuses) reduces damage by half. While you remain
-inside your Cauldron of Flames, you personally gain +20 PRR, +10 MRR, and +15%
-Dodge that ignores Dodge Cap.</Description>
-         <Icon>HMCauldronOfFlame</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMCore4</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>18</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Stance>
-            <Name>Cauldron Of Flame</Name>
-            <Icon>HMCauldronOfFlame</Icon>
-            <Description>You are fighting within your Cauldron of Flame</Description>
-         </Stance>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">20</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Quarterstaff</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Cauldron Of Flame</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>MRR</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Quarterstaff</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Cauldron Of Flame</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">15</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Quarterstaff</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Cauldron Of Flame</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Serenity</Name>
-         <InternalName>HMCore6</InternalName>
-         <Description>Your understanding of things has evolved to a level that defies description.
+      <Icon>HMIncineratingWave</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMCore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Improved Cauldron</Name>
+      <InternalName>HMCore5</InternalName>
+      <Description>The cooldown on Cauldron of Flame is now halved. You may now move a small
+range outside your Cauldron without it collapsing.</Description>
+      <Icon>HMImprovedCauldron</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMCore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Serenity</Name>
+      <InternalName>HMCore6</InternalName>
+      <Description>Your understanding of things has evolved to a level that defies description.
 Passive:
 +4 Wisdom 
 +10 Concentration 
 +1 Passive Ki Generation 
 +12 Melee Power (in addition to the +3 you get for each Core, for a total of +15)
-+15% attack speed with Quarterstaves.
-While inside your Cauldron of Flame and wielding a Quarterstaff, +5 to Hit and
-Damage, +1 Critical Multiplier.</Description>
-         <Icon>HMSerenity</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMCore5</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>20</Value>
-            </Requirement>
+While inside your Cauldron of Flame and Cantered, +5 to Attack and Damage,
++1 Critical Multiplier.</Description>
+      <Icon>HMSerenity</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>20</Value>
+        </Requirement>
         <Requirement>
           <Type>Exclusive</Type>
           <Item>HMCore6</Item>
           <Item>Capstone Enhancement</Item>
         </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>HMCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Wisdom</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>KiPassive</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Cauldron Of Flame</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Quarterstaff</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Cauldron Of Flame</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Porous Soul</Name>
+      <InternalName>HMPorousSoul</InternalName>
+      <Description>Deals +10% Damage
+Cost: 10 Ki
+Cooldown: 6 seconds
+Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to draw Acid in like a sponge. On Hit: Target takes 1d6 Acid Damage
++1 Acid Damage per Monk level, and takes 10% more Acid Damage for 30 seconds.
+
+Taking this ability grants you Fire, Cold, and Electric variants of Elemental
+Words, which share a single cooldown.</Description>
+      <Icon>HMPorousSoul</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Henshin Training I</Name>
+      <InternalName>HMHenshinTrainingI</InternalName>
+      <Description>+1 to hit and damage while Centered.</Description>
+      <Icon>HMHenshinStaffTraining</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      <RequiresNoneOf>
+         <Requirement>
+            <Type>Enhancement</Type>
+            <Item>NSNinjutsuI</Item>
+         </Requirement>
+         <Requirement>
+            <Type>Enhancement</Type>
+            <Item>ShintaoStudiesI</Item>
+         </Requirement>
+      </RequiresNoneOf>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+         <Name>Henshin Mystic: Ki Shout</Name>
+         <InternalName>HMKiShout</InternalName>
+         <Description>Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
+This ability uses your Concentration skill, and shares a cooldown with the
+Intimidate skill.
+Activation Cost: 5 Ki.
+Cooldown: 6 seconds</Description>
+         <Icon>ShintaoKiShout</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Type>BaseClassMinLevel</Type>
+               <Item>Monk</Item>
+               <Value>1</Value>
+            </Requirement>
          </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>HMCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
+      <DC>
+         <Name>Ki Shout</Name>
+         <Description>Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
+This ability uses your Concentration skill, and shares a cooldown with the
+Intimidate skill.
+Activation Cost: 5 Ki. Cooldown: 6 seconds</Description>
+         <Icon>ShintaoKiShout</Icon>
+         <DCType>Intimidate</DCType>
+         <DCVersus>10+HD+Wis Mod</DCVersus>
+         <Other>d20</Other>
+         <Skill>Concentration</Skill>
+      </DC>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Exemplar</Name>
+      <InternalName>HMExemplar</InternalName>
+      <Description>+[1/2/3] Heal and Intimidate.
++[5/10/15]% Attack Speed with Quarterstaves.</Description>
+      <Icon>ShintaoExemplar</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Heal</Item>
+        <Item>Intimidate</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Alacrity</Type>
+        <Bonus>Enchantment</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Item>Quarterstaff</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Animal Forms</Name>
+      <InternalName>HMAnimalForms</InternalName>
+      <Description>You emulate a creature of nature in your training. </Description>
+      <Icon>HMAnimalForms</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Way of the Clever Monkey</Name>
+          <Description>Like a monkey, no trap in the world can catch you.
+You gain +1 to your haggle skill and all saves against traps, as well as energy
+resistance 2. At Monk levels 3, 9, and 15, the skill and save bonuses increase
+by 1 and energy resistance increases by 2. </Description>
+          <Icon>HMWayOfTheCleverMonkey</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Wisdom</Item>
-            <AType>Simple</AType>
-            <Amount size="1">4</Amount>
-         </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
+            <Item>Haggle</Item>
+            <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">15</Amount>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-         <Effect>
+            <Item>Traps</Item>
+            <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+          <Effect>
             <Type>EnergyResistance</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>Acid</Item>
+            <Item>Cold</Item>
+            <Item>Electric</Item>
             <Item>Fire</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
+            <Item>Sonic</Item>
+            <Amount size="21">0 2 2 4 4 4 4 4 4 6 6 6 6 6 6 8 8 8 8 8 8</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Way of the Elegant Crane</Name>
+          <Description>Like a crane, you strike with precision and elegance.
+You gain +1 to your Diplomacy skill, and generate 1 additional Ki on critical hits.
+Your training has left you more fragile than normal, however, and have a -1
+penalty to Fortitude saves. At Monk levels 3, 9, and 15, these bonuses and penalties
+increase by 1. </Description>
+          <Icon>HMWayOfTheElegantCrane</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Diplomacy</Item>
+            <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fortitude</Item>
+            <Amount size="21">0 -1 -1 -2 -2 -2 -2 -2 -2 -3 -3 -3 -3 -3 -3 -4 -4 -4 -4 -4 -4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Way of the Faithful Hound</Name>
+          <Description>Like a hound, you are ever vigilant and at home amidst the pack.
+You gain +1 to your Listen skill and a +2 bonus to hit flanked opponents.
+At Monk levels 3, 9, and 15, the bonuses increase by 1. </Description>
+          <Icon>HMWayOfTheFaithfulHound</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Listen</Item>
+            <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Way of the Patient Tortoise</Name>
+          <Description>Like a tortoise, you are calm at heart and worries wash over you.
+You gain +1 to your Concentration skill and 5 additional hit points.
+At Monk levels 3, 9, and 15, the skill bonus increases by 1 and hit point bonus
+increases by 5.</Description>
+          <Icon>HMWayOfThePatientTortoise</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Concentration</Item>
+            <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="21">0 5 5 10 10 10 10 10 10 15 15 15 15 15 15 20 20 20 20 20 20</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Way of the Tenacious Badger</Name>
+          <Description>Like a badger, you are most dangerous when grievously injured.
+You gain +1 to your Intimidate skill, and whenever you are below 50% health,
+your passive Ki regeneration is increased by 1 and you deal +0.25[W] additional
+damage. Your patience has suffered, however, and you generate Ki slower when
+meditating. At Monk levels 3, 9, and 15, the skill bonus increases by 1 and the
+damage bonus increases by +0.25[W].</Description>
+          <Icon>HMWayOfTheTenaciousBadger</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Hitpoints</Item>
+            <AType>Slider</AType>
+            <Amount size="3">100 0 100</Amount>
+          </Effect>
+          <Effect>
             <Type>KiPassive</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Item>Quarterstaff</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Cauldron Of Flame</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Weapon_CriticalMultiplier</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Quarterstaff</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Cauldron Of Flame</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Alacrity</Type>
-            <Bonus>Enchantment</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">15</Amount>
-            <Item>Quarterstaff</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Cauldron Of Flame</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Elemental Words I</Name>
-         <InternalName>HMElementalWordsI</InternalName>
-         <Description>Select one of four attacks that increase elemental damage taken by your opponent:
-(Activation Cost: 10 Ki. Cooldown: 15 seconds)</Description>
-         <Icon>HMElementalWords</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>All-Consuming Flame</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Fire Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to light up like tinder. On Hit: Target takes 10% more fire damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMAllConsumingFlame</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Porous Soul</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMPorousSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Static Charge</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
-sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMStaticCharge</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Winter's Touch</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMWintersTouch</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Henshin Staff Training I</Name>
-         <InternalName>HMHenshinStaffTrainingI</InternalName>
-         <Description>+1 to hit and damage with quarterstaves.</Description>
-         <Icon>HMHenshinStaffTraining</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Mystic Training</Name>
-         <InternalName>HMMysticTraining</InternalName>
-         <Description>+[1/2/3] to the DC's of your monk finishing moves</Description>
-         <Icon>HMMysticTraining</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>TacticalDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Item>Trip</Item>
-            <Item>Sunder</Item>
-            <Item>Stun</Item>
-            <Item>General</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Negotiator</Name>
-         <InternalName>HMNegotiator</InternalName>
-         <Description>+[1/2/3] Bluff, Diplomacy, and Haggle.
-Rank 3: The cooldown for your Bluff, Diplomacy, and Intimidate are reduced by 10%.</Description>
-         <Icon>HMNegotiator</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
+          </Effect>
+          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Bluff</Item>
-            <Item>Diplomacy</Item>
-            <Item>Haggle</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Animal Forms</Name>
-         <InternalName>HMAnimalForms</InternalName>
-         <Description>You emulate a creature of nature in your training. </Description>
-         <Icon>HMAnimalForms</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Way of the Clever Monkey</Name>
-               <Description>Like a monkey, no trap in the world can catch you.
-You gain +1 to your haggle skill and all saves against traps, as well as energy
-resistance 2. At monk levels 3, 9, and 15, the skill and save bonuses increase
-by 1 and energy resistance increases by 2. </Description>
-               <Icon>HMWayOfTheCleverMonkey</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Haggle</Item>
-                  <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Traps</Item>
-                  <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-               <Effect>
-                  <Type>EnergyResistance</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Acid</Item>
-                  <Item>Cold</Item>
-                  <Item>Electric</Item>
-                  <Item>Fire</Item>
-                  <Item>Sonic</Item>
-                  <Amount size="21">0 2 2 4 4 4 4 4 4 6 6 6 6 6 6 8 8 8 8 8 8</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Way of the Elegant Crane</Name>
-               <Description>Like a crane, you strike with precision and elegance.
-You gain +1 to your Diplomacy skill, and generate 1 additional Ki on critical hits.
-Your training has left you more fragile than normal, however, and have a -1
-penalty to Fortitude saves. At monk levels 3, 9, and 15, these bonuses and penalties
-increase by 1. </Description>
-               <Icon>HMWayOfTheElegantCrane</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Diplomacy</Item>
-                  <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Fortitude</Item>
-                  <Amount size="21">0 -1 -1 -2 -2 -2 -2 -2 -2 -3 -3 -3 -3 -3 -3 -4 -4 -4 -4 -4 -4</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Way of the Faithful Hound</Name>
-               <Description>Like a hound, you are ever vigilant and at home amidst the pack.
-You gain +1 to your Listen skill and a +2 bonus to hit flanked opponents.
-At monk levels 3, 9, and 15, the bonuses increase by 1. </Description>
-               <Icon>HMWayOfTheFaithfulHound</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Listen</Item>
-                  <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Way of the Patient Tortoise</Name>
-               <Description>Like a tortoise, you are calm at heart and worries wash over you.
-You gain +1 to your Concentration skill and 5 additional hit points.
-At monk levels 3, 9, and 15, the skill bonus increases by 1 and hit point bonus
-increases by 5.</Description>
-               <Icon>HMWayOfThePatientTortoise</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Concentration</Item>
-                  <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-               <Effect>
-                  <Type>Hitpoints</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Amount size="21">0 5 5 10 10 10 10 10 10 15 15 15 15 15 15 20 20 20 20 20 20</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Way of the Tenacious Badger</Name>
-               <Description>Like a badger, you are most dangerous when grievously injured.
-You gain +1 to your Intimidate skill, and whenever you are below 50% health,
-your passive Ki regeneration is increased by 1 and you deal +0.25[W] additional
-damage. Your patience has suffered, however, and you generate Ki slower when
-meditating. At monk levels 3, 9, and 15, the skill bonus increases by 1 and the
-damage bonus increases by +0.25[W].</Description>
-               <Icon>HMWayOfTheTenaciousBadger</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>CreateSlider</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Hitpoints</Item>
-                  <AType>Slider</AType>
-                  <Amount size="3">100 0 100</Amount>
-               </Effect>
-               <Effect>
-                  <Type>KiPassive</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Intimidate</Item>
-                  <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_BaseDamage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Amount size="21">0 0.25 0.25 0.5 0.5 0.5 0.5 0.5 0.5 0.75 0.75 0.75 0.75 0.75 0.75 1.0 1.0 1.0 1.0 1.0 1.0</Amount>
-                  <AType>ClassLevel</AType>
-                  <StackSource>Monk</StackSource>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>-50% Hitpoints</Item>
-                     </Requirement>
-                  </Requirements>
-                  <Item>All</Item>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Elemental Words II</Name>
-         <InternalName>HMElementalWordsII</InternalName>
-         <Description>Select one of four attacks (not previously selected) that increase elemental damage taken by your opponent:</Description>
-         <Icon>HMElementalWords</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMElementalWordsI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <Exclusions>HMElementalWordsI</Exclusions>
-            <EnhancementSelection>
-               <Name>All-Consuming Flame</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Fire Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to light up like tinder. On Hit: Target takes 10% more fire damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMAllConsumingFlame</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Porous Soul</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMPorousSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Static Charge</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
-sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMStaticCharge</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Winter's Touch</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMWintersTouch</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Henshin Staff Training II</Name>
-         <InternalName>HMHenshinStaffTrainingII</InternalName>
-         <Description>+1 to hit and +2 to damage with quarterstaves.</Description>
-         <Icon>HMHenshinStaffTraining</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMHenshinStaffTrainingI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_Attack</Type>
+            <Item>Intimidate</Item>
+            <Amount size="21">0 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
+          </Effect>
+          <Effect>
+            <Type>Weapon_BaseDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Quick Strike</Name>
-         <InternalName>HMQuickStrike</InternalName>
-         <Description>Deals +[10/20/30]% Damage
-Cooldown: [18/15/12] seconds
-Melee Quarterstaff Attack: You gain a [5/15/25]% Morale bonus to melee doublestrike
-for 10 seconds.</Description>
-         <Icon>HMQuickStrike</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Doublestrike</Type>
-            <Bonus>Morale</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">5 15 25</Amount>
+            <Amount size="21">0 0.25 0.25 0.5 0.5 0.5 0.5 0.5 0.5 0.75 0.75 0.75 0.75 0.75 0.75 1.0 1.0 1.0 1.0 1.0 1.0</Amount>
+            <AType>ClassLevel</AType>
+            <StackSource>Monk</StackSource>
             <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Quick Strike</Item>
-               </Requirement>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>-50% Hitpoints</Item>
+              </Requirement>
             </Requirements>
-            <ApplyAsItemEffect/>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
+            <Item>All</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Elemental Soul</Name>
+      <InternalName>HMElementalSoul</InternalName>
+      <Description>Taking this Enhancement grants you four Imbue Toggles, in Fire, Cold, Electric,
+and Acid. When toggled, you enhance your attacks with Ki, dealing 1d6 (Element)
+damage on hit, and an additional 1d6 Force damage on critical. You Ki spells
+also apply the (Element) portion of this damage. This damage scales with 150%
+of the highest of Melee and Ranged Power.</Description>
+      <Icon>HMElementalSoul</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Stance>
+        <Name>Elemental Soul: Fire</Name>
+        <Description>When toggled, you enhance your attacks with Ki, dealing 1d6 Fire
+damage on hit, and an additional 1d6 Force damage on critical. You Ki spells
+also apply the Fire portion of this damage. This damage scales with 150%
+of the highest of Melee and Ranged Power.</Description>
+        <Icon>MDDPowerInPracticeFire</Icon>
+        <Group>Imbue</Group>
+      </Stance>
+      <Stance>
+        <Name>Elemental Soul: Cold</Name>
+        <Description>When toggled, you enhance your attacks with Ki, dealing 1d6 Cold
+damage on hit, and an additional 1d6 Force damage on critical. You Ki spells
+also apply the Cold portion of this damage. This damage scales with 150%
+of the highest of Melee and Ranged Power.</Description>
+        <Icon>MDDPowerInPracticeIce</Icon>
+        <Group>Imbue</Group>
+      </Stance>
+      <Stance>
+        <Name>Elemental Soul: Electric</Name>
+        <Description>When toggled, you enhance your attacks with Ki, dealing 1d6 Electric
+damage on hit, and an additional 1d6 Force damage on critical. You Ki spells
+also apply the Electric portion of this damage. This damage scales with 150%
+of the highest of Melee and Ranged Power.</Description>
+        <Icon>MDDPowerInPracticeElectric</Icon>
+        <Group>Imbue</Group>
+      </Stance>
+      <Stance>
+        <Name>Elemental Soul: Acid</Name>
+        <Description>When toggled, you enhance your attacks with Ki, dealing 1d6 Acid
+damage on hit, and an additional 1d6 Force damage on critical. You Ki spells
+also apply the Acid portion of this damage. This damage scales with 150%
+of the highest of Melee and Ranged Power.</Description>
+        <Icon>MDDPowerInPracticeAcid</Icon>
+        <Group>Imbue</Group>
+      </Stance>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Henshin Training II</Name>
+      <InternalName>HMHenshinTrainingII</InternalName>
+      <Description>+1 to Attack and +2 to Damage while Centered.</Description>
+      <Icon>HMHenshinStaffTraining</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMHenshinTrainingI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
          <Name>Henshin Mystic: Elemental Ki Strikes</Name>
          <InternalName>HMElementalKiStrikes</InternalName>
          <Description>Select one of four attacks that have secondary after effects:
 (Activation Cost: 5 Ki. Cooldown: 3 seconds)</Description>
          <Icon>HMElementalKiStrikes</Icon>
-         <XPosition>3</XPosition>
+         <XPosition>2</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">2</CostPerRank>
          <Ranks>1</Ranks>
@@ -1031,769 +995,909 @@ The target receives periodic saves to attempt to break free of this effect.</Des
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Contemplation</Name>
-         <InternalName>HMContemplation</InternalName>
-         <Description>+[1/2/3] Concentration and Will Saves.
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Embrace the Void</Name>
+      <InternalName>HMEmbraceTheVoid</InternalName>
+      <Description>Gain +[1/2/3] Meditation use per rest, +[1/2/3] to Dodge Cap, and regenerate
+Ki faster while meditating. While you are meditating, you generate a protective
+shield which can absorb up to [25/50/100] damage, and is refreshed every 3 seconds.</Description>
+      <Icon>HMEmbraceTheVoid</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Contemplation</Name>
+      <InternalName>HMContemplation</InternalName>
+      <Description>+[1/2/3] Concentration and Will Saves.
 Rank 3: Your passive Ki regeneration is increased by 1.</Description>
-         <Icon>HMContemplation</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>KiPassive</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Rank>3</Rank>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Concentration</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Will</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Elemental Words III</Name>
-         <InternalName>HMElementalWordsIII</InternalName>
-         <Description>Select one of four attacks (not previously selected) that increase elemental damage taken by your opponent:</Description>
-         <Icon>HMElementalWords</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMElementalWordsII</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <Exclusions>HMElementalWordsI</Exclusions>
-            <Exclusions>HMElementalWordsII</Exclusions>
-            <EnhancementSelection>
-               <Name>All-Consuming Flame</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Fire Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to light up like tinder. On Hit: Target takes 10% more fire damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMAllConsumingFlame</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Porous Soul</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMPorousSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Static Charge</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
-sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMStaticCharge</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Winter's Touch</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMWintersTouch</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Henshin Staff Training III</Name>
-         <InternalName>HMHenshinStaffTrainingIII</InternalName>
-         <Description>+1 to hit and damage with quarterstaves.</Description>
-         <Icon>HMHenshinStaffTraining</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMHenshinStaffTrainingII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Lighting the Candle</Name>
-         <InternalName>HMLightingTheCandle</InternalName>
-         <Description>Imbue Toggle: While you are centered, you enhance your attacks with Ki flame.
-dealing +1d6 Fire damage on hit, and an additional 1d6 Force damage on critical.
-Your Ki spells also apply the Fire portion of this damage. The Fire and Force
-damage scale with Melee Power. Your Ki generation on hit is reduced by 1.</Description>
-         <Icon>HMLightingTheCandle</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>KiHit</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">-1</Amount>
-         </Effect>
-         <Stance>
-            <Name>Henshin Mystic: Lighting the Candle</Name>
-            <Description>Imbue Toggle: While you are centered, you enhance your attacks with Ki flame.
-dealing +1d6 Fire damage on hit, and an additional 1d6 Force damage on critical.</Description>
-            <Icon>HMLightingTheCandle</Icon>
-            <Group>Imbue</Group>
-         </Stance>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Embrace the Void</Name>
-         <InternalName>HMEmbraceTheVoid</InternalName>
-         <Description>Gain +[1/2/3] Meditation use per rest, +[1/2/3] to Dodge Cap, and regenerate Ki
-faster while meditating. While you are meditating, you generate a
-protective shield which can absorb up to [25/50/100] damage, and is refreshed
-every 3 seconds.</Description>
-         <Icon>HMEmbraceTheVoid</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Ability I</Name>
-         <InternalName>HMAbilityScoreI</InternalName>
-         <Description>+1 to any Ability score</Description>
-         <Icon>HMAbilityScore</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Strength</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Dexterity</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Constitution</Name>
-               <Description>+1 Constitution</Description>
-               <Icon>Constitution</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Constitution</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Intelligence</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Wisdom</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Charisma</Item>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Elemental Words IV</Name>
-         <InternalName>HMElementalWordsIV</InternalName>
-         <Description>Select one of four attacks (not previously selected) that increase elemental damage taken by your opponent:</Description>
-         <Icon>HMElementalWords</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMElementalWordsIII</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <Exclusions>HMElementalWordsI</Exclusions>
-            <Exclusions>HMElementalWordsII</Exclusions>
-            <Exclusions>HMElementalWordsIII</Exclusions>
-            <EnhancementSelection>
-               <Name>All-Consuming Flame</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Fire Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to light up like tinder. On Hit: Target takes 10% more fire damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMAllConsumingFlame</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Porous Soul</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMPorousSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Static Charge</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
-them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
-sonic damage for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMStaticCharge</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Winter's Touch</Name>
-               <Description>Deals +10% Damage
-Activation Cost: 10 Ki
-Cooldown: 15 seconds
-Water Ki Melee Attack: You strike your opponent and speak the secret words that
-cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
-for 30 seconds, and gains 2 stacks of Vulnerable.</Description>
-               <Icon>HMWintersTouch</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Henshin Staff Training IV</Name>
-         <InternalName>HMHenshinStaffTrainingIV</InternalName>
-         <Description>+1 to hit and +2 to damage with quarterstaves.</Description>
-         <Icon>HMHenshinStaffTraining</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMHenshinStaffTrainingIII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_Attack</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Focus</Name>
-         <InternalName>HMFocus</InternalName>
-         <Description>While centered, you and nearby party members gain a +10 Exceptional bonus to
-Universal Spell Power, a +5 Exceptional Bonus to hit, and a +5 Exceptional bonus
-to Melee and Ranged Power.</Description>
-         <Icon>HMFocus</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMEmbraceTheVoid</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>UniversalSpellPower</Type>
-            <Bonus>Exceptional</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Type>RangedPower</Type>
+      <Icon>HMContemplation</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>KiPassive</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Rank>3</Rank>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Concentration</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Will</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Mystic Kata</Name>
+      <InternalName>HMMysticKata</InternalName>
+      <Description>Gain an ability depending on your Light or Dark Path.</Description>
+      <Icon>HMMysticKata</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Kata of Ice</Name>
+          <Description>You perform a Melee attack that encases a tainted target in ice on a failed Will
+save for 10 seconds. (DC = 10 + [Str/Dex/Wis] Modifier + Monk Level + Stun bonuses).
+Cost: 20 Ki
+Cooldown: 9 seconds</Description>
+          <Icon>KataOfIce</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Dark: Forbidden Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Kata of Wind</Name>
+          <Description>Activate to grant you and nearby allies 20% Concealment for 60 seconds.
+Cost: 10 Ki
+Cooldown: 90 seconds</Description>
+          <Icon>KataOfWind</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Harmonious Balance: Fists of Light</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Light: Enlightening Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Henshin Training III</Name>
+      <InternalName>HMHenshinTrainingIII</InternalName>
+      <Description>+1 to Attack and + 2 to Damage while Centered.</Description>
+      <Icon>HMHenshinStaffTraining</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMHenshinTrainingII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
         <Type>Weapon_Attack</Type>
-            <Bonus>Exceptional</Bonus>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Conditioning</Name>
+      <InternalName>HMConditioning</InternalName>
+      <Description>+[1/2/3] Concentration and +[1/2/3] Fortitude Saves, +[5/10/15] Maximum Hitpoints.</Description>
+      <Icon>ShintaoConditioning</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Concentration</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Fortitude</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Clear Your Mind</Name>
+      <InternalName>HMClearYourMind</InternalName>
+      <Description>Battle Trance: While Centered, you gain an Insight bonus to Attack, Damage and
+the DC of Tactical feats equal to 1/2 of your Wisdom modifier for [30/60/120]
+seconds. The effects of this Trance are dispelled if you are no longer Centered.
+Activation Cost: 50 Ki.
+Cooldown: 20 seconds.</Description>
+      <Icon>HMClearYourMind</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>HMClearYourMind</Item>
+          <Item>Battle Trance</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>HMClearYourMind</Item>
+        <Item>Battle Trance</Item>
+      </Effect>
+      <Stance>
+        <Name>Clear Your Mind</Name>
+        <Icon>HMClearYourMind</Icon>
+        <Description>Battle Trance: While Centered, you gain an Insight bonus to Attack, Damage and
+the DC of Tactical feats equal to 1/2 of your Wisdom modifier for [30/60/120]
+seconds. Every six seconds you spend Meditating using the Meditation feat
+restores 1 charge of this ability.</Description>
+        <Group>Battle Trance</Group>
+      </Stance>
+      <Effect>
+        <DisplayName>Henshin Mystic: Clear Your Mind (Wis Mod / 2)</DisplayName>
+        <Type>TacticalDC</Type>
+        <Bonus>Insightful</Bonus>
+        <StackSource>SnapshotWisdom</StackSource>
+        <AType>HalfAbilityMod</AType>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Deadly Instinct</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <DisplayName>Henshin Mystic: Clear Your Mind (Wis Mod / 2)</DisplayName>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Insightful</Bonus>
+        <StackSource>SnapshotWisdom</StackSource>
+        <AType>HalfAbilityMod</AType>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Deadly Instinct</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Ability I</Name>
+      <InternalName>HMAbilityScoreI</InternalName>
+      <Description>+1 to any Ability score</Description>
+      <Icon>HMAbilityScore</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Item>All</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Ability II</Name>
-         <InternalName>HMAbilityScoreII</InternalName>
-         <Description>+1 to an Ability of your choice:</Description>
-         <Icon>HMAbilityScore</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Constitution</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Intelligence</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Wisdom</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Mystic Kata Upgrade</Name>
+      <InternalName>HMMysticKataUpgrade</InternalName>
+      <Description>Upgrade the Light or Dark Path Ability.</Description>
+      <Icon>HMMysticKataUpgrade</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMMysticKata</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Kata of Dark Stars</Name>
+          <Description>You use the power of the stars to set up harmonic vibrations within your enemy
+that force them to dance for 12 seconds.
+(DC = 10 + [Str/Dex/Wis] modifier + Monk Level + Stun bonuses).</Description>
+          <Icon>KataOfDarkStars</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
+              <Type>Enhancement</Type>
+              <Item>HMMysticKata</Item>
+              <Item>Kata of Ice</Item>
             </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Kata of Deep Magic</Name>
+          <Description>When you use Kata of Wind, you grant you and other allies a 25% reduction on
+Spell Point Cost for 60 seconds.</Description>
+          <Icon>KataOfDeepMagic</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMAbilityScoreI</Item>
+              <Type>Enhancement</Type>
+              <Item>HMMysticKata</Item>
+              <Item>Kata of Wind</Item>
             </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Strength</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Dexterity</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Constitution</Name>
-               <Description>+1 Constitution</Description>
-               <Icon>Constitution</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Constitution</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Intelligence</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Wisdom</Item>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Charisma</Item>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Void Strike</Name>
-         <InternalName>HMVoidStrike</InternalName>
-         <Description>Deals +30% Damage
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Henshin Training IV</Name>
+      <InternalName>HMHenshinTrainingIV</InternalName>
+      <Description>+1 to Attack and +2 to Damage while Centered.</Description>
+      <Icon>HMHenshinStaffTraining</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMHenshinTrainingIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Mantra of Soul</Name>
+      <InternalName>HMMantraOfSoul</InternalName>
+      <Description>+[5/10/20] Magical Resistance Rating.</Description>
+      <Icon>HMMantraOfSoul</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 20</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Focus</Name>
+      <InternalName>HMFocus</InternalName>
+      <Description>While Centered, you and nearby party members gain a +10 Exceptional bonus to
+Universal Spell Power, a +5 Exceptional bonus to hit, and a +5 Exceptional
+bonus to Melee and Ranged Power.</Description>
+      <Icon>HMFocus</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Item>All</Item>
+        <Amount size="1">5</Amount>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Item>All</Item>
+        <Amount size="1">5</Amount>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Ability II</Name>
+      <InternalName>HMAbilityScoreII</InternalName>
+      <Description>+1 to an Ability of your choice:</Description>
+      <Icon>HMAbilityScore</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMAbilityScoreI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Strength</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Dexterity</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Constitution</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Intelligence</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Wisdom</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Charisma</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Void Strike</Name>
+      <InternalName>HMVoidStrike</InternalName>
+      <Description>Deals +30% Damage
 Activation Cost: 10 Ki
 +1 Critical Multiplier
 +1 Critical Threat Range
 Cooldown: 3 seconds
-Void Ki Melee Attack: You have learned to make attacks backed by pure Ki energy.
+Ki Melee Attack: You have learned to make attacks backed by pure Ki energy.
 On Hit: +30% damage, +1 to Critical Threat Range and Multiplier, and 10d6 Force
 damage that scales with Melee Power. On Vorpal: Your enemy is erased from
 existence.</Description>
-         <Icon>HMVoidStrike</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMElementalWordsIV</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Henshin Staff Training V</Name>
-         <InternalName>HMHenshinStaffTrainingV</InternalName>
-         <Description>+3 to hit and damage with quarterstaves.</Description>
-         <Icon>HMHenshinStaffTraining</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>HMHenshinStaffTrainingIV</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Staff Specialization</Name>
-         <InternalName>HMStaffSpecialization</InternalName>
-         <Description>You gain a +1 Competence bonus to Critical Damage Multiplier and Threat Range
-with quarterstaves.</Description>
-         <Icon>HMStaffSpecialization</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_CriticalRange</Type>
-            <Type>Weapon_CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Self Defense</Name>
-         <InternalName>HMSelfDefense</InternalName>
-         <Description>Grants +5 MRR and MRR Cap.
+      <Icon>HMVoidStrike</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Henshin Training V</Name>
+      <InternalName>HMHenshinTrainingV</InternalName>
+      <Description>+3 to Attack and Damage.</Description>
+      <Icon>HMHenshinStaffTraining</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HMHenshinTrainingIV</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Mystic Honing</Name>
+      <InternalName>HMMysticHoning</InternalName>
+      <Description>You gain a +1 Competence bonus to Critical Damage Multiplier and Threat Range
+while Centered.</Description>
+      <Icon>HMMysticHoning</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_CriticalRange</Type>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Self Defense</Name>
+      <InternalName>HMSelfDefense</InternalName>
+      <Description>You gain +5 Magical Resistance Rating and Magical Resistance Cap.
 You gain a +25% Competence bonus to Max Hit Points</Description>
-         <Icon>SelfDefense</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>MRR</Type>
-            <Type>MRRCap</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-         </Effect>
-         <Effect>
-            <Type>Hitpoints</Type>
-            <Bonus>Competence</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">25</Amount>
-            <Percent/>
-            <ApplyAsItemEffect/>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Henshin Mystic: Balance in Dawn</Name>
-         <InternalName>HMBalanceInDawn</InternalName>
-         <Description>Select a melee attack that opposes your philosophy.</Description>
-         <Icon>HMBalanceInDawn</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Henshin Mystic: Every Light Casts a Shadow</Name>
-               <Description>Deals +20% Damage
+      <Icon>SelfDefense</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MRR</Type>
+        <Type>MRRCap</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Percent />
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Henshin Mystic: Balance in Dawn</Name>
+      <InternalName>HMBalanceInDawn</InternalName>
+      <Description>Select a melee attack that opposes your philosophy.</Description>
+      <Icon>HMBalanceInDawn</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Henshin Mystic: Every Light Casts a Shadow</Name>
+          <Description>Deals +20% Damage
 Activation Cost: 15 Ki
 Cooldown: 12 seconds
-Dark Ki Melee Attack: On Damage: Target suffers 1d4 Negative Levels.
+Ki Melee Attack: On Damage: Target suffers 1d4 Negative Levels.
 All nearby enemies suffer 1d2 Negative Levels.</Description>
-               <Icon>HMEveryLightCastsAShadow</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Path of Harmonious Balance: Fists of Light</Item>
-                  </Requirement>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Henshin Mystic: Shadows Cannot Exist Without Light</Name>
-               <Description>Deals +20% Damage
+          <Icon>HMBalanceInDawn</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Harmonious Balance: Fists of Light</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Light: Enlightening Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Henshin Mystic: Shadows Cannot Exist Without Light</Name>
+          <Description>Deals +20% Damage
 Activation Cost: 15 Ki
 Cooldown: 6 seconds
-Light Ki Melee Attack: On Damage: Target suffers 1d6 Light damage every 2 seconds
+Ki Melee Attack: On Damage: Target suffers 1d6 Light damage every 2 seconds
 for 10 seconds. This can stack up to 10 times. All allies around you receive 100
 Positive Energy healing. (This healing effect is unaffected by Spell Power.)</Description>
-               <Icon>HMShadowsCannotExistWithoutLight</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <Requirement>
-                     <Type>Feat</Type>
-                     <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
-                  </Requirement>
-               </Requirements>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+          <Icon>HMShadowsCannotExistWithoutLight</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Dark: Forbidden Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

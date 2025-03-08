@@ -202,6 +202,33 @@ after two seconds have passed. Each additional hit extends the duration of the
 acid damage by two seconds.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Acid Blast 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Acid Blast 7: This weapon is covered in a strong and deadly acid, dealing 7d6 Acid damage on a successful hit, and an additional 7d6 Acid damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">14</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Acid Guard +2</Type>
     <DisplayText>Acid Guard +2: Chance to deal 2d8 Acid damage when hit.</DisplayText>
   </Buff>
@@ -2798,11 +2825,15 @@ takes 100 damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Beyond the Soul of Stone</Type>
-    <DisplayText>Beyond the Soul of Stone: +10 Insight bonus to AC and reflex Saves.</DisplayText>
+    <DisplayText>Beyond the Soul of Stone: +10 Insight bonus to AC and Reflex Saves.</DisplayText>
   </Buff>
   <Buff>
     <Type>Beyond the Soul of Tide</Type>
     <DisplayText>Beyond the Soul of Tide: Chance on hit: trip.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Bitter Frostbite</Type>
+    <DisplayText>Bitter Frostbite: This item sends an icy chill through your opponents. Your attacks and offensive spells have a high change to deal very strong Cold damage over time.</DisplayText>
   </Buff>
   <Buff>
     <Type>Blackscale Ferocity</Type>
@@ -7922,12 +7953,6 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>FellingTheOak</Type>
     <DisplayText>Felling the Oak: On a natural 20 that is confirmed as a critical hit, this weapon will trip your opponent, forcing them to fall prone. There is no save against this effect.</DisplayText>
-    <Effect>
-      <Type>Immunity</Type>
-      <Bonus>Stacking</Bonus>
-      <AType>NotNeeded</AType>
-      <Item>Falling Damage</Item>
-    </Effect>
   </Buff>
   <Buff>
     <Type>Fetters of Unreality</Type>
@@ -11009,6 +11034,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
       </Dice>
       <Item>All</Item>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Grip of Venom</Type>
+    <DisplayText>Grip of Venom: This item inflicts a deadly poison upon your opponents. Your attacks and offensive spells have a high change to deal very strong Poison damage over time.</DisplayText>
   </Buff>
   <Buff>
     <Type>Grounded</Type>
@@ -14603,6 +14632,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Lightning Guard VII: When Hit in Melee: Deals 7 to 28 Electric damage to your attacker.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Lightning Lash</Type>
+    <DisplayText>Lightning Lash: This item lashes electricity through your opponents. Your attacks and offensive spells have a high change to deal very strong Electric damage over time.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>LightningLore</Type>
     <DisplayText>%b1 Lightning Lore %v1%: Passive: Your Electric spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
@@ -14633,6 +14666,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Limb Chopper</Type>
     <DisplayText>Limb Chopper: This potent and feared ability allows the weapon to sever the limbs of those it strikes. On an attack roll of 20 which is confirmed as a critical hit, the weapon severs an opponent's limb from its body. Some creatures, including many aberrations and all oozes, have no limbs. Others, such as golems and undead creatures, are not affected by the loss of their limbs. Most other creatures, however, have their movement slowed 75% and attacks slowed by 50% when a limb is cut off.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Lingering Acidic Burn</Type>
+    <DisplayText>Lingering Acidic Burn: This weapon splashes acid on your opponents. Your attacks have a high chance to deal very strong Acid damage over time.</DisplayText>
   </Buff>
   <Buff>
     <Type>Linguistics</Type>
@@ -15225,6 +15262,35 @@ BLOOD BLOOD! GIVE ME BLOOD!
           <Value>15</Value>
         </Requirement>
       </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Meltscale</Type>
+    <DisplayText>Meltscale: Adds Crystal and Byeshk material type. On hit: 15d6 Acid Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">15</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Byeshk</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Crystal</Value>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -17948,6 +18014,10 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Rippling Energy</Type>
+    <DisplayText>Rippling Energy: This item imbues rippling waves of energy through your opponents. Your attacks and offensive spells have a high change to deal very strong Force damage over time.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Roar</Type>
     <DisplayText>Roar: This item emits a frightening roar when melee attackers score a critical hit on the wearer, causing them to resist or be shaken with fear.</DisplayText>
   </Buff>
@@ -18769,6 +18839,10 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <Type>Runic Revitalization</Type>
     <DisplayText>Runic Revitalization: On Positive Energy Spell Cast: You have a 10% chance to gain 100 Temporary Hit Points and 50 Temporary Spell Points for 60 seconds. This effect can trigger once per 120 seconds.</DisplayText>
   </Buff>
+  <Buff>
+    <Type>Rupturing Echo</Type>
+    <DisplayText>Rupturing Echo: This item sends rippling waves of sound through your opponents. Your attacks and offensive spells have a high change to deal very strong Sonic damage over time.</DisplayText>
+  </Buff>
   <!--S-->
   <Buff>
     <Type>Sacred</Type>
@@ -19085,7 +19159,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Sed-zik, The Water-Change </Type>
-    <DisplayText>Sed-zik, The Water-Change: On unarmed vorpal: helpless paralysis poison (DC 17 fortitude save negates), then 1 to 6 DEX damage.</DisplayText>
+    <DisplayText>Sed-zik, The Water-Change: On unarmed vorpal: helpless paralysis poison (DC 17 Fortitude save negates), then 1 to 6 DEX damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Seeker</Type>
@@ -19779,6 +19853,33 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">12</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shocking Blast 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Shocking Blast 7: This weapon arcs with deadly electricity, dealing 7d6 Electric damage on a successful hit, and an additional 7d6 Electric damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">14</Number>
         <Sides size="1">6</Sides>
         <Damage>Electric</Damage>
       </Dice>
@@ -20596,6 +20697,28 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Sonic Guard +3: Chance to deal 3d8 Sonic damage when hit.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Sparkscale</Type>
+    <DisplayText>Sparkscale: Adds Silver material type. On hit: 15d6 Electric Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">15</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Electric</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Silver</Value>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>StaggeringBlow</Type>
     <DisplayText>Staggering Blow: This item is enchanted to make your attacks send enemies reeling. When you roll a 20 on an attack with a melee weapon you will knock the target down unless it makes a DC 17 Balance check.</DisplayText>
   </Buff>
@@ -20816,7 +20939,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Soul of the Elements</Type>
-    <DisplayText>Soul of the Elements: While you are centered, this item grants you a bonus depending on your current monk stance.</DisplayText>
+    <DisplayText>Soul of the Elements: While you are centered, this item grants you a bonus depending on your current Monk stance.</DisplayText>
   </Buff>
   <Buff>
     <Type>Soul Tear</Type>
@@ -22958,6 +23081,28 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Venomed Ammunition - 1d10</Type>
     <DisplayText>Venomed Ammunition - 1d10: On Ranged Attack: 1 to 10 Poison Damage</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Venomscale</Type>
+    <DisplayText>Venomscale: Adds Cold Iron material type. On hit: 15d6 Poison Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">15</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Poison</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Cold Iron</Value>
+      <Item>All</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Vermin Bane</Type>

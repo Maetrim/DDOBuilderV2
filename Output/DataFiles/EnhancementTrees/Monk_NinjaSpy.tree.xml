@@ -1,1190 +1,911 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Ninja Spy</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Type>BaseClass</Type>
-            <Item>Monk</Item>
-         </Requirement>
-      </Requirements>
-      <Background>MonkBackground</Background>
-      <Icon>Monk</Icon>
-      <!--Core Items-->
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Basic Ninja Training</Name>
-         <InternalName>NSCore1</InternalName>
-         <Description>While you are centered, you can use your Dexterity modifier to hit.
+  <EnhancementTree>
+    <Name>Ninja Spy</Name>
+    <Version>2</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Monk</Item>
+      </Requirement>
+    </Requirements>
+    <Background>MonkBackground</Background>
+    <Icon>Monk</Icon>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Basic Ninja Training</Name>
+      <InternalName>NSCore1</InternalName>
+      <Description>While you are centered, you can use your Dexterity modifier to hit.
 You are proficient with short swords and treat them as Ki weapons.
-If another ability allows you to remain centered while wielding other
-types of melee weapon, then those weapons will also get the benefit
-of Ninja Training.</Description>
-         <Icon>NSBasicNinjaTraining</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AddGroupWeapon</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
-            <Item>Proficiency</Item>
-            <Item>Shortsword</Item>
-         </Effect>
-         <Effect>
-            <Type>AddGroupWeapon</Type>
-            <Bonus>Enhancement</Bonus>
+
+If another ability allows you to remain centered while wielding other types of
+melee weapon, then those weapons will also get the benefit of Ninja Training.</Description>
+      <Icon>NSBasicNinjaTraining</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AddGroupWeapon</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>Proficiency</Item>
+        <Item>Shortsword</Item>
+      </Effect>
+      <Effect>
+        <Type>AddGroupWeapon</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Centered</Item>
+        <Item>Shortsword</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>Weapon_AttackAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
             <Item>Centered</Item>
-            <Item>Shortsword</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>Weapon_AttackAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <Item>All</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-            <AType>NotNeeded</AType>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Advanced Ninja Training</Name>
-         <InternalName>NSCore2</InternalName>
-         <Description>While you are centered, you can use your Dexterity modifier for damage.
-You also gain a chance based on your Dexterity score to throw an extra
-shuriken per attack. If another ability allows you to remain centered while
-wielding other types of melee weapon (including unarmed/handwraps), then
-those weapons will also get the benefit of Advanced Ninja Training.</Description>
-         <Icon>NSAdvancedNinjaTraining</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSCore1</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_DamageAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <Item>All</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-            <AType>NotNeeded</AType>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Shadow Veil</Name>
-         <InternalName>NSCore3</InternalName>
-         <Description>Ki Activate: You focus your Ki and draw shadows around you.
+          </Requirement>
+        </Requirements>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Advanced Ninja Training</Name>
+      <InternalName>NSCore2</InternalName>
+      <Description>While you are centered, you can use your Dexterity modifier for damage.
+You also gain Doubleshot equal to your Dexterity score while wielding a Shuriken.
+
+If another ability allows you to remain centered while wielding other types of
+melee weapon, then those weapons will also get the benefit of Advanced Ninja Training.</Description>
+      <Icon>NSAdvancedNinjaTraining</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSCore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_DamageAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>AbilityValue</AType>
+        <StackSource>Dexterity</StackSource>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Shuriken</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Shadow Veil</Name>
+      <InternalName>NSCore3</InternalName>
+      <Description>Ki Activate: You focus your Ki and draw shadows around you.
 You become invisible and 25% incorporeal for one minute.
 Actions that break invisibility do not remove the incorporeality portion
-of this effect. (Activation Cost: 15 Ki. Cooldown: 6 seconds).
-Note: Becoming uncentered for any reason immediately removes both components
-of the buff.</Description>
-         <Icon>NSShadowVeil</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSCore2</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>6</Value>
-            </Requirement>
-         </Requirements>
-         <Stance>
-            <Name>Shadow Veil</Name>
-            <Description>You become invisible and 25% incorporeal for one minute.
+of this effect.
+Activation Cost: 15 Ki.
+Cooldown: 6 seconds.</Description>
+      <Icon>NSShadowVeil</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSCore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Stance>
+        <Name>Shadow Veil</Name>
+        <Description>You become invisible and 25% incorporeal for one minute.
 Actions that break invisibility do not remove the incorporeality portion
 of this effect. (Activation Cost: 15 Ki. Cooldown: 6 seconds).</Description>
-            <Icon>NSShadowVeil</Icon>
-         </Stance>
-         <Effect>
-            <Type>Incorporeality</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">25</Amount>
-            <ApplyAsItemEffect/>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Shadow Veil</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Poisoned Darts</Name>
-         <InternalName>NSCore4</InternalName>
-         <Description>Ki Activate: You spit poisoned darts in a cone before you.
-Nearby enemies are affected by between 1 and 8 stacks of Ninja Poison.
-Magical Poison: Target takes 1d4 points of Poison damage, which scales
-with melee power; every 3 seconds for 15 seconds.
-The Target's vulnerability to poison is increased by 5%.
-This ability can stack up to 20 times.
-On timer expiration, 5 stacks of Ninja Poison are removed at a time.
-Activation Cost: 15 Ki. Cooldown: 15 seconds</Description>
-         <Icon>NSPoisonedDarts</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSCore3</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Diversion</Name>
-         <InternalName>NSCore5</InternalName>
-         <Description>Ki Activate: You turn yourself invisible and create a dummy that attracts
-the attention of nearby enemies.
-While you are centered, you gain a +1 Competence bonus to your Critical Multiplier.
-For the next 20 seconds, gain +5 Sneak Attack Dice and +5 to Assassinate DCs.
-Activation Cost: 50 Ki. Cooldown: 3 minutes</Description>
-         <Icon>NSDiversion</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSCore4</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>18</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>All</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Ninja Master</Name>
-         <InternalName>NSCore6</InternalName>
-         <Description>You gain +2 Dexterity and +2 Wisdom, +5 Sneak Attack Dice.
-Any weapons you wield while centered gains the Vorpal ability.
+        <Icon>NSShadowVeil</Icon>
+      </Stance>
+      <Effect>
+        <Type>Incorporeality</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Shadow Veil</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Poisoned Darts</Name>
+      <InternalName>NSCore4</InternalName>
+      <Description>Ki Activate: You spit poisoned darts in a cone before you.
+Nearby enemies are affected by between 4 and 8 stacks of Ninja Poison.
+
+Ninja Poison: Magical Poison: Target takes 1d4 points of Poison damage (which
+scales with Melee Power) every 3 seconds for 15 seconds. The target's
+vulnerability to poison is increased by 5%. This ability can stack up to 20 times.
+On timer expiration, 4 stacks of Ninja Poison are removed at a time.
+Activation Cost: 15 Ki.
+Cooldown: 15 seconds</Description>
+      <Icon>NSPoisonedDarts</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSCore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Diversion</Name>
+      <InternalName>NSCore5</InternalName>
+      <Description>Ki Activate: You turn yourself invisible for 1 minute, and create a dummy that
+attracts the attention of nearby enemies for 30 seconds. For the next 20 seconds,
+you also gain +5 Sneak Attack Dice and +5 Assassinate DCs.
+Activation Cost: 50 Ki.
+Cooldown: 3 minutes
+
+Passive: +5 Melee and Ranged Power</Description>
+      <Icon>NSDiversion</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie />
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSCore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Diversion</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Assassinate</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Diversion</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Ninja Master</Name>
+      <InternalName>NSCore6</InternalName>
+      <Description>You gain +2 Dexterity and +2 Wisdom, +15 Melee and Ranged Power, +5 Sneak Attack Dice,
+and +10% Fortification Bypass. Any weapon you wield while Centered gains the
+Vorpal effect. If you have Self Defense, +10 additional Melee Power.
+
 If another ability allows you to remain centered while wielding other types
 of melee weapon, then those weapons will also gain these effects.</Description>
-         <Icon>NSNinjaMaster</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSCore5</Item>
-            </Requirement>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>20</Value>
-            </Requirement>
+      <Icon>NSNinjaMaster</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>20</Value>
+        </Requirement>
         <Requirement>
           <Type>Exclusive</Type>
           <Item>NSCore6</Item>
           <Item>Capstone Enhancement</Item>
         </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>NSCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Dexterity</Item>
-            <Item>Wisdom</Item>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Ninjutsu I</Name>
-         <InternalName>NSNinjutsuI</InternalName>
-         <Description>Select one of four toggles that modify your Touch of Despair finisher:
-(Cooldown: 3 seconds)</Description>
-         <Icon>NSNinjutsu</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>NSCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Dexterity</Item>
+        <Item>Wisdom</Item>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Ninja Spy: Ninja Master = Self Defense</DisplayName>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Feat</Type>
-               <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
+               <Type>Enhancement</Type>
+               <Item>NSSelfDefense</Item>
+               <Item>Self Defense</Item>
             </Requirement>
          </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Ninja Spy: Impending Doom</Name>
-               <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
-you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSImpendingDoom</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poison Exploit</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy of
-Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed that
-scales with the higher of Melee or Ranged Power.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonExploit</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poisoned Soul</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonedSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wave of Despair</Name>
-               <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSWaveOfDespair</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Stealthy</Name>
-         <InternalName>NSStealthy</InternalName>
-         <Description>+[1/2/3] Hide and Move Silently.
-+[20/35/50]% movement speed while sneaking.
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Ninjutsu I</Name>
+      <InternalName>NSNinjutsuI</InternalName>
+      <Description>+1 to Attack and Damage while Centered.</Description>
+      <Icon>NSNinjutsu</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>HMHenshinTrainingI</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Enhancement</Type>
+            <Item>ShintaoStudiesI</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Stealthy</Name>
+      <InternalName>NSStealthy</InternalName>
+      <Description>+[1/2/3] Hide and Move Silently.
++[20/35/50]% enhancement movement speed bonus while sneaking.
 Rank 3: While centered and Sneaking, your passive Ki regeneration is increased by 1.</Description>
-         <Icon>NSStealthy</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>KiPassive</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Rank>3</Rank>
-            <Amount size="1">1</Amount>
-            <Requirements>
+      <Icon>NSStealthy</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>KiPassive</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Rank>3</Rank>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Sneaking</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Hide</Item>
+        <Item>Move Silently</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Sneak Attack Training I</Name>
+      <InternalName>NSSneakAttackTrainingI</InternalName>
+      <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
+      <Icon>NSSneakAttackTraining</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Subtlety</Name>
+      <InternalName>NSFasterSneakingI</InternalName>
+      <Description>-[20/30/40]% threat generation with melee and ranged attacks.</Description>
+      <Icon>NSSubtlety</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>NSFasterSneakingI</Item>
+          <Item>Melee Subtlety</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>NSFasterSneakingI</Item>
+        <Item>Melee Subtlety</Item>
+      </Effect>
+      <Effect>
+        <Type>ThreatBonusMelee</Type>
+        <Type>ThreatBonusRanged</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-20 -30 -40</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Acrobatic</Name>
+      <InternalName>NSAcrobatic</InternalName>
+      <Description>+[1/2/3] Balance, Jump, and Tumble. +[1/2/3]% Dodge.</Description>
+      <Icon>NSAcrobatic</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Balance</Item>
+        <Item>Jump</Item>
+        <Item>Tumble</Item>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Ninjutsu II</Name>
+      <InternalName>NSNinjutsuII</InternalName>
+      <Description>+1 to Attack and +2 Damage while Centered.</Description>
+      <Icon>NSNinjutsu</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSNinjutsuI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Agility</Name>
+      <InternalName>NSAgility</InternalName>
+      <Description>+[1/2/3] Concentration, Reflex Saves, and Maximum Dodge bonus.</Description>
+      <Icon>NSAgility</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Concentration</Item>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>Reflex</Item>
+      </Effect>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Sneak Attack Training II</Name>
+      <InternalName>NSSneakAttackTrainingII</InternalName>
+      <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
+      <Icon>NSSneakAttackTraining</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSSneakAttackTrainingI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Extra Action Boost</Name>
+      <InternalName>NSExtraActionBoost</InternalName>
+      <Description>+[1/2/3] extra action boost.</Description>
+      <Icon>NSExtraActionBoost</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Action Boost Selection</Name>
+      <InternalName>NSActionBoost</InternalName>
+      <Description>Choose between Haste and Power</Description>
+      <Icon>NSActionBoost</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Melee/Ranged Power</Name>
+          <Description>Activate to gain a +[10/20/30] Action Boost bonus to Melee/Ranged Power for 20 seconds.</Description>
+          <Icon>NSActionBoost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+                <Attack>
+                   <Name>Ninja Spy: Melee/Ranged Power</Name>
+                   <Description>Activate to gain +[10/20/30]% Action Boost bonus to Melee/Ranged power for 20 seconds.</Description>
+                   <Icon>KenseiHasteBoost</Icon>
+                   <Cooldown size="3">30 30 30</Cooldown>
+                   <FollowOn>
+                     <Duration size="3">20 20 20</Duration>
+                     <BonusMeleePower size="3">10 20 30</BonusMeleePower>
+                     <BonusRangedPower size="3">10 20 30</BonusRangedPower>
+                   </FollowOn>
+                </Attack>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Haste Boost</Name>
+          <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+          <Icon>KenseiHasteBoost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+                <Attack>
+                   <Name>Ninja Spy: Haste Boost</Name>
+                   <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+                   <Icon>KenseiHasteBoost</Icon>
+                   <Cooldown size="3">30 30 30</Cooldown>
+                   <FollowOn>
+                     <Duration size="3">20 20 20</Duration>
+                     <BonusAlacrity size="3">10 20 30</BonusAlacrity>
+                   </FollowOn>
+                </Attack>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Ninjutsu III</Name>
+      <InternalName>NSNinjutsuIII</InternalName>
+      <Description>+1 to Attack and + 2 to Damage while Centered.</Description>
+      <Icon>NSNinjutsu</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSNinjutsuII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Shadow Arts</Name>
+      <InternalName>NSShadowArts</InternalName>
+      <Description>Gain an ability depending on your Light or Dark Path</Description>
+      <Icon>NSShadowArts</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Flash Bang</Name>
+          <Description>Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
+that explodes into light, blinding opponents for 6 seconds on a failed Reflex
+save and momentarily dazing opponents on a failed Fortitude save. Both saving
+throws have DC equal to (18 + Monk Level + [Str/Dex/Wis] Modifier + Assassinate DCs).
+Activation Cost: 20 Ki.
+Cooldown: 9 seconds</Description>
+          <Icon>NSShadowArts</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
                <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
+                  <Type>Feat</Type>
+                  <Item>Path of Harmonious Balance: Fists of Light</Item>
                </Requirement>
                <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Sneaking</Item>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Light: Enlightening Philosophy</Item>
                </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Item>Hide</Item>
-            <Item>Move Silently</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Sneak Attack Training I</Name>
-         <InternalName>NSSneakAttackTrainingI</InternalName>
-         <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
-         <Icon>NSSneakAttackTraining</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackAttack</Type>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Subtlety</Name>
-         <InternalName>NSFasterSneakingI</InternalName>
-         <Description>-[20/30/40]% threat generation with melee attacks.</Description>
-         <Icon>NSSubtlety</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>1</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>NSFasterSneakingI</Item>
-               <Item>Melee Subtlety</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExclusionGroup</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
-            <Item>NSFasterSneakingI</Item>
-            <Item>Melee Subtlety</Item>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusMelee</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">-20 -30 -40</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Acrobatic</Name>
-         <InternalName>NSAcrobatic</InternalName>
-         <Description>+[1/2/3] Balance, Jump, and Tumble. +[1/2/3]% Dodge.</Description>
-         <Icon>NSAcrobatic</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Item>Balance</Item>
-            <Item>Jump</Item>
-            <Item>Tumble</Item>
-         </Effect>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Ninjutsu II</Name>
-         <InternalName>NSNinjutsuII</InternalName>
-         <Description>Select one of four toggles (not previously selected) that modify your Touch of Despair finisher.</Description>
-         <Icon>NSNinjutsu</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSNinjutsuI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Impending Doom</Name>
-               <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
-you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSImpendingDoom</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Impending Doom</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poison Exploit</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy of
-Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed that
-scales with the higher of Melee or Ranged Power.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonExploit</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Poison Exploit</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poisoned Soul</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonedSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Poisoned Soul</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wave of Despair</Name>
-               <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSWaveOfDespair</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Wave of Despair</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-         </Selector>
-         <Effect>
-            <Type>Weapon_Attack</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Agility</Name>
-         <InternalName>NSAgility</InternalName>
-         <Description>+[1/2/3] Concentration, Reflex Saves, and Maximum Dodge bonus.</Description>
-         <Icon>NSAgility</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Item>Concentration</Item>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Item>Reflex</Item>
-         </Effect>
-         <Effect>
-            <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Sneak Attack Training II</Name>
-         <InternalName>NSSneakAttackTrainingII</InternalName>
-         <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
-         <Icon>NSSneakAttackTraining</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSSneakAttackTrainingI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackAttack</Type>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Elemental Ki Strikes</Name>
-         <InternalName>NSElementalKiStrikes</InternalName>
-         <Description>Select one of four attacks that have secondary after effects:
-(Activation Cost: 5 Ki. Cooldown: 3 seconds) </Description>
-         <Icon>HMElementalKiStrikes</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Eagle Claw Attack</Name>
-               <Description>Deals +20% Damage
-Cooldown: 3 seconds
-Fire Ki Melee Attack: Your attacks can shatter objects. You strike at weak points
-in your opponents armor or hide, applying four stacks of Armor Destruction.
-(Each stack reduces Armor Class by 1 and Fortification by 1% for 20 seconds.
-This effect can stack up to 15 times.)</Description>
-               <Icon>HMEagleClawAttack</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fists of Iron</Name>
-               <Description>Deals +30% Damage
-+1 Critical Multiplier
-+1 Critical Threat Range
-Cooldown: 3 seconds
-Earth Ki Melee Attack: You have imbued your attacks with extra force.</Description>
-               <Icon>ShintaoFistsOfIron</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Knock on the Sky</Name>
-               <Description>Deals +10% Damage
-Cooldown: 3 seconds
-Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
-Your enemy deals 4% less physical damage for 30 seconds. This effect can stack up
-to 5 times. </Description>
-               <Icon>HMKnockOnTheSky</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Unbalancing Strike</Name>
-               <Description>Deals +30% Damage
-Cooldown: 3 seconds
-Water Ki Melee Attack: You have learned several joint strikes. You can attack
-these weak points of your opponent, throwing them off balance for a short period
-of time. This reduces their armor class by 2, applies a -10 penalty to their
-Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
-save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
-The target receives periodic saves to attempt to break free of this effect.</Description>
-               <Icon>HMUnbalancingStrike</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Clickie/>
-               <DC>
-                  <Name>Ninja Spy: Unbalancing Strike</Name>
-               <Description>Deals +30% Damage
-Cooldown: 3 seconds
-Water Ki Melee Attack: You have learned several joint strikes. You can attack
-these weak points of your opponent, throwing them off balance for a short period
-of time. This reduces their armor class by 2, applies a -10 penalty to their
-Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
-save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
-The target receives periodic saves to attempt to break free of this effect.</Description>
-                  <Icon>HMUnbalancingStrike</Icon>
-                  <DCType>Sneak Attack Vulnerability</DCType>
-                  <DCVersus>Reflex</DCVersus>
-                  <Amount size="1">10</Amount>
-                  <HalfClassLevel>Monk</HalfClassLevel>
-                  <ModAbility>Wisdom</ModAbility>
-                  <Tactical>Trip</Tactical>
-               </DC>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Action Boost: Melee/Ranged Power</Name>
-         <InternalName>NSActionBoost</InternalName>
-         <Description>+[10/20/30] Action Boost bonus to Melee/Ranged Power for 20 seconds.
-Usable 5 times per rest. Cooldown: 30 seconds.</Description>
-         <Icon>NSActionBoost</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Ninjutsu III</Name>
-         <InternalName>NSNinjutsuIII</InternalName>
-         <Description>Select one of four toggles (not previously selected) that modify your Touch of Despair finisher:</Description>
-         <Icon>NSNinjutsu</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSNinjutsuII</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Impending Doom</Name>
-               <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
-you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSImpendingDoom</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Impending Doom</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Impending Doom</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poison Exploit</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy
-of Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed that
-scales with the higher of Melee or Ranged Power.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonExploit</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Poison Exploit</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Poison Exploit</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poisoned Soul</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonedSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Poisoned Soul</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Poisoned Soul</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wave of Despair</Name>
-               <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.
-Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSWaveOfDespair</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Wave of Despair</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Wave of Despair</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-         </Selector>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Flash Bang</Name>
-         <InternalName>NSFlashBang</InternalName>
-         <Description>Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
-that explodes into light, blinding opponents for 6 seconds on a failed reflex
-save and momentarily dazing opponents on a failed fortitude save. Both saving
-throws have DC equal to ([10/14/18] + Monk Level + Wisdom Modifier + Assassinate).
-(Activation Cost: 20 Ki. Cooldown: 30 seconds)</Description>
-         <Icon>NSFlashBang</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Flash Bang</Item>
-            <AType>SpellInfo</AType>
-             <Amount size="3">0 0 0</Amount>
-            <Item>None</Item>
-         </Effect>
-         <DC>
+             </RequiresOneOf>
+          </Requirements>
+          <DC>
             <Name>Ninja Spy: Flash Bang (Blind)</Name>
             <Description>Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
-that explodes into light, blinding opponents for 6 seconds on a failed reflex
-save and momentarily dazing opponents on a failed fortitude save.</Description>
+that explodes into light, blinding opponents for 6 seconds on a failed Reflex
+save and momentarily dazing opponents on a failed Fortitude save.</Description>
             <Icon>HMUnbalancingStrike</Icon>
             <DCType>Dazzle</DCType>
             <DCVersus>Reflex</DCVersus>
-            <Amount size="3">10 14 18</Amount>
-            <ClassLevel>Monk</ClassLevel>
+            <Amount size="1">18</Amount>
+            <BaseClassLevel>Monk</BaseClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
             <ModAbility>Wisdom</ModAbility>
             <Tactical>Assassinate</Tactical>
-         </DC>
-         <DC>
+          </DC>
+          <DC>
             <Name>Ninja Spy: Flash Bang (Daze)</Name>
             <Description>Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
-that explodes into light, blinding opponents for 6 seconds on a failed reflex
-save and momentarily dazing opponents on a failed fortitude save.</Description>
+that explodes into light, blinding opponents for 6 seconds on a failed Reflex
+save and momentarily dazing opponents on a failed Fortitude save.</Description>
             <Icon>HMUnbalancingStrike</Icon>
             <DCType>Dazzle</DCType>
             <DCVersus>Fortitude</DCVersus>
-            <Amount size="3">10 14 18</Amount>
-            <ClassLevel>Monk</ClassLevel>
+            <Amount size="1">18</Amount>
+            <BaseClassLevel>Monk</BaseClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
             <ModAbility>Wisdom</ModAbility>
             <Tactical>Assassinate</Tactical>
-         </DC>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Sneak Attack Training III</Name>
-         <InternalName>NSSneakAttackTrainingIII</InternalName>
-         <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
-         <Icon>NSSneakAttackTraining</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSSneakAttackTrainingII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackAttack</Type>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Sting of the Ninja</Name>
-         <InternalName>NSStingOfTheNinja</InternalName>
-         <Description>Imbue Toggle: You poison your weapon with a secret mixture. While you are
-centered, you deal an additional 1d6 Poison damage on hit scaling with 100% of
+          </DC>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shadow Flurry</Name>
+          <Description>Deals +20% Damage
++2 Critical Multiplier
+Cooldown: 6 seconds
+Melee Attack: +20% damage, +2 Critical Multiplier. Target must make a saving
+throw equal to (18 + Monk Level + [Str/Dex/Wis] Modifier + Assassinate DCs) or
+have some of their energy temporarily sealed, rendering it unable to cast spells.
+The enemy makes recurring Fortitude saves to shake the effect.</Description>
+          <Icon>ShadowFlurry</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+          <Requirements>
+             <RequiresOneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Enhancement</Type>
+                  <Item>U51GrandmasterOfFlowersCore4</Item>
+                  <Item>Dark: Forbidden Philosophy</Item>
+               </Requirement>
+             </RequiresOneOf>
+          </Requirements>
+          <DC>
+            <Name>Ninja Spy: Shadow Flurry</Name>
+            <Description>Melee Attack: +20% damage, +2 Critical Multiplier. Target must make a saving
+throw equal to (18 + Monk Level + [Str/Dex/Wis] Modifier + Assassinate DCs) or
+have some of their energy temporarily sealed, rendering it unable to cast spells.
+The enemy makes recurring Fortitude saves to shake the effect.</Description>
+            <Icon>ActiveStub</Icon>
+            <DCType>Sealed energy</DCType>
+            <DCVersus>Fortitude</DCVersus>
+            <Amount size="1">18</Amount>
+            <BaseClassLevel>Monk</BaseClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
+            <ModAbility>Wisdom</ModAbility>
+            <Tactical>Assassinate</Tactical>
+          </DC>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Sneak Attack Training III</Name>
+      <InternalName>NSSneakAttackTrainingIII</InternalName>
+      <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
+      <Icon>NSSneakAttackTraining</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSSneakAttackTrainingII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Sting of the Ninja</Name>
+      <InternalName>NSStingOfTheNinja</InternalName>
+      <Description>Imbue Toggle: You poison your weapon with a secret mixture. While you are
+centered, you deal an additional 1d6 Poison damage on hit scaling with 150% of
 the higher of Melee or Ranged power, any shortsword, kama, or shuriken you wield
-will inflict your foe with a stack of Ninja Poison on critical hits.
+will inflict your foes with a stack of Ninja Poison on critical hits.
 (Magical Poison: Target takes 1d4 points of Poison damage every 3 seconds for 15
 seconds. The target's vulnerability to poison is increased by 5%. This ability
 can stack up to 20 times. On timer expiration, 5 stacks of Ninja Poison are
@@ -1193,761 +914,622 @@ removed at a time.)
 If another ability allows you to remain centered while wielding other types of
 melee weapon, then those weapons will also get the benefit of Sting of the Ninja
 if they are normally Piercing or Slashing weapons. Cooldown: 3 seconds.</Description>
-         <Icon>NSStingOfTheNinja</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Stance>
-            <Name>Ninja Spy: Sting of the Ninja</Name>
-            <Icon>NSStingOfTheNinja</Icon>
-            <Description>Imbue Toggle: You poison your weapon with a secret mixture. While you are
-centered, you deal an additional 1d6 Poison damage on hit scaling with 100% of
+      <Icon>NSStingOfTheNinja</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Stance>
+        <Name>Ninja Spy: Sting of the Ninja</Name>
+        <Icon>NSStingOfTheNinja</Icon>
+        <Description>Imbue Toggle: You poison your weapon with a secret mixture. While you are
+centered, you deal an additional 1d6 Poison damage on hit scaling with 150% of
 the higher of Melee or Ranged power, any shortsword, kama, or shuriken you wield
 will inflict your foe with a stack of Ninja Poison on critical hits.
 (Magical Poison: Target takes 1d4 points of Poison damage every 3 seconds for 15
 seconds. The target's vulnerability to poison is increased by 5%. This ability
 can stack up to 20 times. On timer expiration, 5 stacks of Ninja Poison are
 removed at a time.)</Description>
-            <Group>Imbue</Group>
-         </Stance>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Ability I</Name>
-         <InternalName>NSAbilityScoreI</InternalName>
-         <Description>Choose either Dexterity or Wisdom</Description>
-         <Icon>DexWis</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Wisdom</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Ninjutsu IV</Name>
-         <InternalName>NSNinjutsuIV</InternalName>
-         <Description>Select one of four toggles (not previously selected) that modify your Touch of Despair finisher:</Description>
-         <Icon>NSNinjutsu</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSNinjutsuIII</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Impending Doom</Name>
-               <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
-you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSImpendingDoom</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Impending Doom</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Impending Doom</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuIII</Item>
-                        <Item>Impending Doom</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poison Exploit</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy of
-Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed that
-scales with the higher of Melee or Ranged Power.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonExploit</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Poison Exploit</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Poison Exploit</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuIII</Item>
-                        <Item>Poison Exploit</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Poisoned Soul</Name>
-               <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSPoisonedSoul</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Poisoned Soul</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Poisoned Soul</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuIII</Item>
-                        <Item>Poisoned Soul</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wave of Despair</Name>
-               <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.
-Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-               <Icon>NSWaveOfDespair</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuI</Item>
-                        <Item>Wave of Despair</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuII</Item>
-                        <Item>Wave of Despair</Item>
-                     </Requirement>
-                     <Requirement>
-                        <Type>Enhancement</Type>
-                        <Item>NSNinjutsuIII</Item>
-                        <Item>Wave of Despair</Item>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-         </Selector>
-         <Effect>
-            <Type>Weapon_Attack</Type>
+        <Group>Imbue</Group>
+      </Stance>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Ability I</Name>
+      <InternalName>NSAbilityScoreI</InternalName>
+      <Description>Choose either Dexterity or Wisdom</Description>
+      <Icon>DexWis</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>Dexterity</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Deadly Exploits</Name>
-         <InternalName>NSDeadlyExploits</InternalName>
-         <Description>Your Poison Exploit now deals double damage, and scales with the higher of Melee
-or Ranged Power.</Description>
-         <Icon>NSDeadlyExploits</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Sneak Attack Training IV</Name>
-         <InternalName>NSSneakAttackTrainingIV</InternalName>
-         <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
-         <Icon>NSSneakAttackTraining</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSSneakAttackTrainingIII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackAttack</Type>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
+            <Item>Wisdom</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: No Mercy</Name>
-         <InternalName>NSNoMercy</InternalName>
-         <Description>You deal +[10/20/30]% additional damage to helpless opponents.</Description>
-         <Icon>NSNoMercy</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Ninjutsu IV</Name>
+      <InternalName>NSNinjutsuIV</InternalName>
+      <Description>+1 to Attack and +2 to Damage while Centered.</Description>
+      <Icon>NSNinjutsu</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSNinjutsuIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Shadow Arts Upgrade</Name>
+      <InternalName>NSShadowArtsUpgrade</InternalName>
+      <Description>Upgrade the Light or Dark Path Ability.</Description>
+      <Icon>ShintaoStudiesII</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSShadowArts</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Cloak of Shadows</Name>
+          <Description>After using Flash Bang, you become invisible for 3 seconds which is not broken
+by actions.</Description>
+          <Icon>CloakOfShadows2</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
             <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
+              <Type>Enhancement</Type>
+              <Item>NSShadowArts</Item>
+              <Item>Flash Bang</Item>
             </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>HelplessDamage</Type>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Poison Exploit</Name>
+          <Description>On a failed saving throw, your Shadow Flurry purges an enemy of Ninja Poison,
+dealing 1d20 + 20 Poison damage per stack of Ninja Poison removed. Scales with
+higher of Melee/Ranged Power.</Description>
+          <Icon>PoisonExploit</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>NSShadowArts</Item>
+              <Item>Shadow Flurry</Item>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Sneak Attack Training IV</Name>
+      <InternalName>NSSneakAttackTrainingIV</InternalName>
+      <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
+      <Icon>NSSneakAttackTraining</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSSneakAttackTrainingIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: No Mercy</Name>
+      <InternalName>NSNoMercy</InternalName>
+      <Description>You deal +[10/20/30]% additional damage to helpless opponents.</Description>
+      <Icon>NSNoMercy</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>HelplessDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">10 20 30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Ability II</Name>
+      <InternalName>NSAbilityScoreII</InternalName>
+      <Description>Choose either Dexterity or Wisdom</Description>
+      <Icon>DexWis</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSAbilityScoreI</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">10 20 30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Ability II</Name>
-         <InternalName>NSAbilityScoreII</InternalName>
-         <Description>Choose either Dexterity or Wisdom</Description>
-         <Icon>DexWis</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSAbilityScoreI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Wisdom</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Touch of Death</Name>
-         <InternalName>NSTouchOfDeath</InternalName>
-         <Description>Dark Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
-500 additional negative energy damage. Your opponent takes half damage on a
-successful Fortitude save (DC = 10 + Wisdom modifier + monk level + Assassinate).
-(Activation Cost: 50 Ki. Cooldown: 15 seconds)
-Passive: +3 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
-         <Icon>NSTouchOfDeath</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Feat</Type>
-               <Item>Path of Inevitable Dominion: Fists of Darkness</Item>
-            </Requirement>
-         </Requirements>
-         <DC>
-            <Name>Ninja Spy: Touch of Death</Name>
-            <Description>Deals +30% Damage
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Wisdom</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Touch of Death</Name>
+      <InternalName>NSTouchOfDeath</InternalName>
+      <Description>Deals +30% Damage
+Activation Cost: 50 Ki.
 Cooldown: 15 seconds
-Dark Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
-500 additional negative energy damage that scales with 200% Melee Power. Your
-opponent takes half damage on a successful Fortitude save.
-DC = 10 + Monk Level + Highest(Dex/Wis) + Assassinate DCs.
 
-Passive: +3 to Hit and Damage while Centered, does not apply to Handwraps or
-Quarterstaves.</Description>
-            <Icon>NSTouchOfDeath</Icon>
-            <DCType>Half Damage</DCType>
-            <DCVersus>Fortitude</DCVersus>
-            <Amount size="1">10</Amount>
-            <ClassLevel>Monk</ClassLevel>
-            <ModAbility>Wisdom</ModAbility>
-            <Tactical>Assassinate</Tactical>
-         </DC>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Deadly Striker</Name>
-         <InternalName>NSDeadlyStriker</InternalName>
-         <Description>While you are centered with any weapon (other than Handwraps or a Quarterstaff),
-you gain a +1 Competence bonus to Critical Threat Range.
-Kamas and Shuriken gain double this bonus.</Description>
-         <Icon>NSDeadlyStriker</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_CriticalRange</Type>
-            <Bonus>Competence</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Bastard Sword</Item>
-            <Item>Battle Axe</Item>
-            <Item>Club</Item>
-            <Item>Dagger</Item>
-            <Item>Dart</Item>
-            <Item>Dwarven Axe</Item>
-            <Item>Falchion</Item>
-            <Item>Great Crossbow</Item>
-            <Item>Great Axe</Item>
-            <Item>Great Club</Item>
-            <Item>Great Sword</Item>
-            <Item>Hand Axe</Item>
-            <Item>Heavy Crossbow</Item>
-            <Item>Heavy Mace</Item>
-            <Item>Heavy Pick</Item>
-            <Item>Khopesh</Item>
-            <Item>Kukri</Item>
-            <Item>Light Crossbow</Item>
-            <Item>Light Hammer</Item>
-            <Item>Light Mace</Item>
-            <Item>Light Pick</Item>
-            <Item>Longbow</Item>
-            <Item>Longsword</Item>
-            <Item>Maul</Item>
-            <Item>Morningstar</Item>
-            <Item>Rapier</Item>
-            <Item>Repeating Heavy Crossbow</Item>
-            <Item>Repeating Light Crossbow</Item>
-            <Item>Scimitar</Item>
-            <Item>Shortbow</Item>
-            <Item>Shortsword</Item>
-            <Item>Sickle</Item>
-            <Item>Throwing Axe</Item>
-            <Item>Throwing Dagger</Item>
-            <Item>Throwing Hammer</Item>
-            <Item>Unarmed</Item>
-            <Item>Warhammer</Item>
-            <Item>Buckler</Item>
-            <Item>Small Shield</Item>
-            <Item>Large Shield</Item>
-            <Item>Tower Shield</Item>
-            <Item>Orb</Item>
-            <Item>Rune Arm</Item>
-         </Effect>
-         <Effect>
-            <Type>Weapon_CriticalRange</Type>
-            <Bonus>Competence</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Centered</Item>
-               </Requirement>
-            </Requirements>
-            <Item>Kama</Item>
-            <Item>Shuriken</Item>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Crippling Strike</Name>
-         <InternalName>NSCripplingStrike</InternalName>
-         <Description>You gain the Rogue ability, Crippling Strike and +3 Assassinate DCs.
+Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
+500 additional negative energy damage that scales with 200% Melee Power.
+Your opponent takes half damage on a successful Fortitude save
+(DC = 10 + Monk level + [Dex/Wis] Modifier + Assassinate DCs).
+
+Passive: +3 to Hit and Damage while Centered.</Description>
+      <Icon>NSTouchOfDeath</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <DC>
+        <Name>Ninja Spy: Touch of Death</Name>
+        <Description>Deals +30% Damage
+Activation Cost: 50 Ki.
+Cooldown: 15 seconds
+
+Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
+500 additional negative energy damage that scales with 200% Melee Power.
+Your opponent takes half damage on a successful Fortitude save
+(DC = 10 + Monk level + [Dex/Wis] Modifier + Assassinate DCs).</Description>
+        <Icon>NSTouchOfDeath</Icon>
+        <DCType>Half Damage</DCType>
+        <DCVersus>Fortitude</DCVersus>
+        <Amount size="1">10</Amount>
+        <BaseClassLevel>Monk</BaseClassLevel>
+        <ModAbility>Dexterity</ModAbility>
+        <ModAbility>Wisdom</ModAbility>
+        <Tactical>Assassinate</Tactical>
+      </DC>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Deadly Striker</Name>
+      <InternalName>NSDeadlyStriker</InternalName>
+      <Description>While you are centered, you gain a +1 Competence bonus to Critical Threat Range
+and Multiplier. Kamas, Shortswords, and Shuriken gain an additional +1 Critical
+Threat Range.</Description>
+      <Icon>NSDeadlyStriker</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_CriticalRange</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Bastard Sword</Item>
+        <Item>Battle Axe</Item>
+        <Item>Club</Item>
+        <Item>Dagger</Item>
+        <Item>Dart</Item>
+        <Item>Dwarven Axe</Item>
+        <Item>Falchion</Item>
+        <Item>Great Crossbow</Item>
+        <Item>Great Axe</Item>
+        <Item>Great Club</Item>
+        <Item>Great Sword</Item>
+        <Item>Hand Axe</Item>
+        <Item>Heavy Crossbow</Item>
+        <Item>Heavy Mace</Item>
+        <Item>Heavy Pick</Item>
+        <Item>Khopesh</Item>
+        <Item>Kukri</Item>
+        <Item>Light Crossbow</Item>
+        <Item>Light Hammer</Item>
+        <Item>Light Mace</Item>
+        <Item>Light Pick</Item>
+        <Item>Longbow</Item>
+        <Item>Longsword</Item>
+        <Item>Maul</Item>
+        <Item>Morningstar</Item>
+        <Item>Rapier</Item>
+        <Item>Repeating Heavy Crossbow</Item>
+        <Item>Repeating Light Crossbow</Item>
+        <Item>Scimitar</Item>
+        <Item>Shortbow</Item>
+        <Item>Sickle</Item>
+        <Item>Throwing Axe</Item>
+        <Item>Throwing Dagger</Item>
+        <Item>Throwing Hammer</Item>
+        <Item>Unarmed</Item>
+        <Item>Warhammer</Item>
+        <Item>Buckler</Item>
+        <Item>Small Shield</Item>
+        <Item>Large Shield</Item>
+        <Item>Tower Shield</Item>
+        <Item>Orb</Item>
+        <Item>Rune Arm</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalRange</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+        <Item>Kama</Item>
+        <Item>Shortsword</Item>
+        <Item>Shuriken</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Crippling Strike</Name>
+      <InternalName>NSCripplingStrike</InternalName>
+      <Description>You gain +3 Assassinate DCs and the Rogue ability Crippling Strike.
 (On Sneak Attack: 2 Strength damage.)</Description>
-         <Icon>NSCripplingStrike</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>NSSneakAttackTrainingIV</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>GrantFeat</Type>
-            <Bonus>Enhancement</Bonus>
+      <Icon>NSCripplingStrike</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>NSSneakAttackTrainingIV</Item>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Feat</Type>
             <Item>Crippling Strike</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>TacticalDC</Type>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Crippling Strike</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Item>Assassinate</Item>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Archer's Focus or Self Defense</Name>
+      <InternalName>NSSelfDefense</InternalName>
+      <Description>Select between Improved Archer's Focus or Self Defense.</Description>
+      <Icon>SelfDefense</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Improved Archer's Focus</Name>
+          <Description>Your Archer's Focus stance can now stack up to 25 times instead of 15.
+Passive: +10 Ranged Power.</Description>
+          <Icon>ShintaoStudiesII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
-            <Item>Assassinate</Item>
-            <Amount size="1">3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Self Defense</Name>
-         <InternalName>NSSelfDefense</InternalName>
-         <Description>Grants +5 MRR and MRR Cap and 25% competence bonus to Hit Points</Description>
-         <Icon>SelfDefense</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
+            <Amount size="1">10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Self Defense</Name>
+          <Description>Grants +5 Magical Resistance Rating and Magical Resistance Cap.
+You gain a +25% Competence bonus to Max Hit Points.</Description>
+          <Icon>SelfDefense</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
             <Type>MRR</Type>
             <Type>MRRCap</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">5</Amount>
-         </Effect>
-         <Effect>
+          </Effect>
+          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Competence</Bonus>
             <AType>Simple</AType>
             <Amount size="1">25</Amount>
-            <Percent/>
-            <ApplyAsItemEffect/>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Ninja Spy: Shadow Double</Name>
-         <InternalName>NSShadowDouble</InternalName>
-         <Description>Deals +30% Damage
-Cooldown: 20 seconds
-Ki Melee Attack: Strike an enemy, gaining +50% doublestrike and +5 Assassinate
-DCs for 12 seconds.</Description>
-         <Icon>NSShadowDouble</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>BaseClassMinLevel</Type>
-               <Item>Monk</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+            <Percent />
+            <ApplyAsItemEffect />
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ninja Spy: Shadow Double</Name>
+      <InternalName>NSShadowDouble</InternalName>
+      <Description>Activate: You gain +50% Doublestrike, +50% Doubleshot, and +5 Assassinate DCs
+for 12 seconds.
+Activation cost: 30 Ki
+Cooldown: 20 seconds.</Description>
+      <Icon>NSShadowDouble</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Monk</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">50</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Shadow Double</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Assassinate</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Shadow Double</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

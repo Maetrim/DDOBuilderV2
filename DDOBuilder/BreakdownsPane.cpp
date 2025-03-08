@@ -91,8 +91,7 @@ BEGIN_MESSAGE_MAP(CBreakdownsPane, CFormView)
     ON_BN_CLICKED(IDC_DIVIDER, OnDividerClicked)
     ON_WM_MOUSEMOVE()
     ON_WM_LBUTTONUP()
-    ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
-    ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
+    ON_NOTIFY(HDN_ITEMCHANGED, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
     ON_BN_CLICKED(IDC_BUTTON_CLIPBOARD, OnButtonClipboardCopy)
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -165,9 +164,17 @@ void CBreakdownsPane::BuildChanging()
         {
             iit->BuildChanged(m_pCharacter);
         }
+        if (m_pWeaponEffects != NULL)
+        {
+            m_pWeaponEffects->BuildChanged(m_pCharacter);
+        }
         for (auto&& iit : m_items)
         {
             iit->BuildChangeComplete();
+        }
+        if (m_pWeaponEffects != NULL)
+        {
+            m_pWeaponEffects->BuildChangeComplete();
         }
     }
     if (m_pWeaponEffects != NULL)
@@ -331,7 +338,7 @@ void CBreakdownsPane::CreateSavesBreakdowns()
                 NULL);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pFS);
         m_items.push_back(pFS);
-        // some sub variations of fortitude for specific sub-save types
+        // some sub variations of Fortitude for specific sub-save types
         {
             HTREEITEM hSubItem = m_itemBreakdownTree.InsertItem(
                     "vs Poison",
@@ -381,7 +388,7 @@ void CBreakdownsPane::CreateSavesBreakdowns()
                 NULL);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRS);
         m_items.push_back(pRS);
-        // some sub variations of reflex for specific sub-save types
+        // some sub variations of Reflex for specific sub-save types
         {
             HTREEITEM hSubItem = m_itemBreakdownTree.InsertItem(
                     "vs Traps",

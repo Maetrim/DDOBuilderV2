@@ -47,6 +47,7 @@ Feat::Feat(const Feat& other) :
     m_AutomaticAssignment = other.m_AutomaticAssignment;
     m_Acquire = other.m_Acquire;
     m_MaxTimesAcquire = other.m_MaxTimesAcquire;
+    m_Attacks = other.m_Attacks;
     m_hasMaxTimesAcquire = other.m_hasMaxTimesAcquire;
     m_Stances = other.m_Stances;
     m_DCs = other.m_DCs;

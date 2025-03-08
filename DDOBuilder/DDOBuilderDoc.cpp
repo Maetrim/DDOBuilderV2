@@ -21,6 +21,8 @@ namespace
 IMPLEMENT_DYNCREATE(CDDOBuilderDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CDDOBuilderDoc, CDocument)
+    ON_UPDATE_COMMAND_UI(ID_FILE_REVERTTOBACKUP, &CDDOBuilderDoc::OnUpdateRevertToBackup)
+    ON_COMMAND(ID_FILE_REVERTTOBACKUP, &CDDOBuilderDoc::OnRevertToBackup)
 END_MESSAGE_MAP()
 
 CDDOBuilderDoc::CDDOBuilderDoc() :
@@ -31,6 +33,12 @@ CDDOBuilderDoc::CDDOBuilderDoc() :
 
 CDDOBuilderDoc::~CDDOBuilderDoc()
 {
+    // if we have a backup file when the doc goes away, delete it
+    if (m_strBackupFilename != "")
+    {
+        ::DeleteFile((LPCTSTR)m_strBackupFilename);
+        m_strBackupFilename = "";   // no backup anymore
+    }
 }
 
 BOOL CDDOBuilderDoc::OnNewDocument()
@@ -44,6 +52,11 @@ BOOL CDDOBuilderDoc::OnNewDocument()
     CWnd * pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
     pMF->NewDocument(this);
+    if (m_strBackupFilename != "")
+    {
+        ::DeleteFile((LPCTSTR)m_strBackupFilename);
+        m_strBackupFilename = "";   // no backup anymore
+    }
 
     return TRUE;
 }
@@ -63,13 +76,20 @@ BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
         std::stringstream ss;
         ss << "Document \"" << lpszPathName << "\" loaded.";
         GetLog().AddLogEntry(ss.str().c_str());
+        // create a backup of the file to allow a revert option
+        m_strBackupFilename = lpszPathName;
+        m_strBackupFilename += ".backup";
+        ::CopyFile(lpszPathName, (LPCTSTR)m_strBackupFilename, FALSE);
+        CString strLog;
+        strLog.Format("Backup document \"%s\" created", (LPCTSTR)m_strBackupFilename);
+        GetLog().AddLogEntry(strLog);
     }
     else
     {
         std::string errorMessage = reader.ErrorMessage();
         // document has failed to load. Tell the user what we can about it
         CString text;
-        text.Format("The document %s\n"
+        text.Format("The document \"%s\"\n"
                 "failed to load. The XML parser reported the following problem:\n"
                 "\n", lpszPathName);
         text += errorMessage.c_str();
@@ -103,7 +123,7 @@ BOOL CDDOBuilderDoc::LoadIndirect(LPCTSTR lpszPathName)
         std::string errorMessage = reader.ErrorMessage();
         // document has failed to load. Tell the user what we can about it
         CString text;
-        text.Format("The document %s\n"
+        text.Format("The document \"%s\"\n"
             "failed to load. The XML parser reported the following problem:\n"
             "\n", lpszPathName);
         text += errorMessage.c_str();
@@ -139,19 +159,36 @@ BOOL CDDOBuilderDoc::OnSaveDocument(LPCTSTR lpszPathName)
         // saved, now rename and delete
         MoveFileEx(tempFilename, lpszPathName, MOVEFILE_REPLACE_EXISTING);
         ok = true;
+        CString newBackupFilename;
+        newBackupFilename = lpszPathName;
+        newBackupFilename += ".backup";
+        if (newBackupFilename != m_strBackupFilename)
+        {
+            CString strLog;
+            strLog.Format("Old backup document \"%s\" deleted", (LPCTSTR)m_strBackupFilename);
+            GetLog().AddLogEntry(strLog);
+            // been saved under a new name, the old backup file is now obsolete
+            ::DeleteFile((LPCTSTR)m_strBackupFilename);
+            // now create the new backup file
+            m_strBackupFilename = newBackupFilename;
+            ::CopyFile(lpszPathName, (LPCTSTR)m_strBackupFilename, FALSE);
+            strLog.Format("New backup document \"%s\" created", (LPCTSTR)m_strBackupFilename);
+            GetLog().AddLogEntry(strLog);
+        }
     }
     catch (const std::exception & e)
     {
         std::string errorMessage = e.what();
         // document has failed to save. Tell the user what we can about it
         CString text;
-        text.Format("The document %s\n"
+        text.Format("The document \"%s\"\n"
                 "failed to save. The XML parser reported the following problem:\n"
                 "\n", lpszPathName);
         text += errorMessage.c_str();
         AfxMessageBox(text, MB_ICONERROR);
         ok = false;
     }
+    SetPathName(lpszPathName);
     SetModifiedFlag(FALSE);
     return ok;
 }
@@ -184,3 +221,53 @@ void CDDOBuilderDoc::EndElement()
 {
     SaxContentElement::EndElement();
 }
+
+void CDDOBuilderDoc::OnUpdateRevertToBackup(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_strBackupFilename != "");
+}
+
+void CDDOBuilderDoc::OnRevertToBackup()
+{
+    CString text;
+    text.Format("Are you sure you want to revert all changes made since this document "
+            "was first opened, or saved under a new name?");
+    int ret = AfxMessageBox(text, MB_ICONQUESTION | MB_YESNO);
+    if (ret == IDYES)
+    {
+        CString oldFilename = GetPathName();
+        // default to a new empty character
+        m_character = Character(this);
+        m_character.AboutToLoad();
+        CWaitCursor longOperation;
+        // set up a reader with this as the expected root node
+        XmlLib::SaxReader reader(this, f_saxElementName);
+        // read in the xml from backup file (fully qualified path)
+        bool ok = reader.Open((LPCTSTR)m_strBackupFilename);
+        if (ok)
+        {
+            std::stringstream ss;
+            ss << "Backup Document \"" << (LPCTSTR)m_strBackupFilename << "\" loaded.";
+            GetLog().AddLogEntry(ss.str().c_str());
+        }
+        else
+        {
+            std::string errorMessage = reader.ErrorMessage();
+            // document has failed to load. Tell the user what we can about it
+            CString text;
+            text.Format("The backup document %s\n"
+                    "failed to load. The XML parser reported the following problem:\n"
+                    "\n", m_strBackupFilename);
+            text += errorMessage.c_str();
+            AfxMessageBox(text, MB_ICONERROR);
+        }
+        m_character.LoadComplete(); // does file format upgrades etc
+        CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+        CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
+        pMF->NewDocument(this);
+        // just opened the file, its unmodified!
+        SetPathName(oldFilename); // ensure we are not using the backup filename
+        SetModifiedFlag(FALSE);
+    }
+}
+

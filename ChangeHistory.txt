@@ -1,3 +1,165 @@
+Build 2.0.0.54
+
+---Enhancement "Dragon Disciple: Way of the Mighty Dragon I" text updated and now marks you as Centered using an Orb. (Reported by Me, and Edrein)
+---"Sacred Fist: Avenging Whirlwind" now correctly states it shares a cooldown with "Whirlwind Attack" not "Great Cleave" (Reported by morrikan)
+---"Season's Herald: Wellspring" description updated (Reported by osake)
+---"Inquisitive: Mind Like Iron" description updated (Reported by KingOfBritains)
+---"Inquisitive: Law on your side" description updated (Reported by KingOfBritains)
+---"Inquisitive: Wand and Scroll Mastery" description and effects updated (Reported by KingOfBritains)
+---"Inquisitive: Inquisitor's Path" "Jaded" option updated (Reported by KingOfBritains)
+---"Inquisitive: Inquisitor's Path" "Optimistic" option updated (Reported by KingOfBritains)
+---"Inquisitive: Inquisitor's Path" "Vigilante" option updated (Reported by KingOfBritains)
+---Opening a file will now correctly set the document filename (Reported by Huntxrd)
+---Barbarian:Ravager Ability I/II will now correctly award +1 strength when Strength selected (Reported by jacko)
+---Ocean Stance will now grant +1 Passive Ki with [Grand]Master of Forms when stance active (Reported by Kalibano)
+---Fury of the Wild "Primal Scream" now has a toggle stance associated with it (Reported by jacko)
+---"Insightful Poison Ward" in cannith crafting can now correctly be selected for Necklace/Ring Extra slots (Reported by Jokersir2)
+------Reviewed Cannith Crafting options vs page "https://ddowiki.com/page/Cannith_Crafting/table_1b" (Didn't do all item types)
+------"Spell Sight" is no longer erroneously a Belt Prefix option
+------"Insightful Jump" is no longer erroneously a Belt Extra option
+------"Move Silently" is now correctly a Boots Prefix option (not suffix)
+------"Spell Sight" is now correctly a Boots Prefix option
+------All "7d8 <type> Guard" options are no longer a Boots Suffix option
+------"Insightful Jump" is now a Boots Extra option
+------"Perform" is no longer erroneously a Bracers Suffix option, now an Bracers Extra option
+------"Insightful Tendon Slice" no longer a Gloves Suffix option, now a Gloves Extra option
+------"Lesser Arcane Casting Dexterity" no longer a Gloves Suffix option
+------"Insightful Haggle/Listen" are now Helmet Extra slot options
+------"Insightful Enchantment Resistance", "Insightful Illusion Resistance", "Insightful Spell Saves" and "Insightful Heal" are now a Cannith Necklace Extra option
+------"Insightful Enchantment Resistance", "Insightful Illusion Resistance", "Insightful Spell Saves", "Insightful Diplomacy" and "Insightful Heal" are now a Cannith Ring Extra option
+---Swashbuckler: Ability I/II now has its missing effect (Reported by Kalibano)
+---All Monk tree enhancements that have a DC will now correctly use the Base Class level so will now report correctly when selected by a Dragon Disciple (Reported by Daawsomeone)
+---A crash when switching builds was fixed (Reported by huntxrd)
+---Copyright year updated (Reported by zilgabex)
+---Stance "Mantle of the Sentinel" now uses the correct icon (Reported by Daawsomeone)
+---Augment slots types "Sealed in Gloom" and "Sealed in Mist" will now be correctly processed by the item processor. Default augments set from https://ddowiki.com/page/Augmentation_Altar
+---U72 Lamannia Raid items downloaded from Wiki and added
+
+NEW FEATURE "Auto Backup and Revert": (Requested by MrEkshin)
+An Auto-backup feature to recover accidental file changes has been added. It works as follows:
+Opening any existing file will create a file in the same location with the same name with ".backup" appended.
+This file will be auto deleted if you
+    A: Close the software or
+    B: Save the current file under a new name
+        (which will also create a new auto .backup file using the new name and the setup at the time of save).
+    C: Opening any other file will remove any existing .backup file. (One for the new file is created)
+
+Selecting the "Revert to Backup" option in the File menu and saying "YES" will throw away
+the current document and reload the .backup version of the file, which would NOT contain
+any changes made and saved to the original filename. Its up to YOU to then save the recovered
+data at that point!
+
+The Revert option is disabled for any new document until you have done an actual save operation.
+
+DPS METER DEVELOPMENT
+---Basic tooltips will now show (Further enhancement required)
+---You can now delete an Attack Chain
+
+Build 2.0.0.53
+
+U72 Changes - Stuff that changed between Lamannia #2 and Live
+---Shintao tree updated to match live
+---Henshin Mystic tree updated to match live
+---Ninja Spy tree updated to match live
+---Dragon Disciple tree updated to match live
+---Grandmaster of Flowers "Aberrant Philosophy" removed
+
+Build 2.0.0.52
+
+---Buff "Felling the Oak" no longer erroneously grants falling damage immunity (Reported by Kenaustin)
+---Enhancement trees which have been superseded will now correctly revoke all enhancements on load
+---Spell objects can now list multiple Schools
+---The feats "AC Bonus: Wisdom" (monk) and "AC Bonus: Charisma" (sacred fist) bonuses no longer erroneously stack (See https://ddowiki.com/page/AC_Bonus)
+---Missing feat "Perfect Slow Fall" added (Monk/Dragon Disciple level 20)
+---Barbarian Rage feats descriptions updated to match wiki
+---Reworked how class automatic feats are assigned and moved them into lists in the Class files. Updated all relevant feats and classes.
+------Artificer
+------Barbarian
+------Bard
+---------Stormsinger (Duplicate bard feats removed)
+------Druid
+---------Blightcaster
+------Cleric
+---------Dark Apostate
+------Epic
+------Favored Soul
+------Fighter
+---------Dragon Lord
+------Legendary
+------Monk
+---------Dragon Disciple
+------Ranger
+---------Dark Hunter
+------Rogue
+------Paladin
+---------Sacred Fist
+------Sorcerer
+---------Wild Mage
+------Warlock
+---------Acolyte of the Skin
+------Wizard
+---Automatic Racial feats moved to Race files as "GrantedFeat" entries. All relevant feats updated
+---Morninglords now correctly get their racial feats as per an Elf
+---"[Legendary] Swordcrossed Topaz" will now correctly go in an Orange augment slot (Missing heroic version added) (Reported by Kalibano)
+---"[Legendary] Arrowbound Topaz" will now correctly go in an Orange augment slot (Missing heroic version added)
+---Dragonborn racial tree image size fixed
+---Heroic feats can now correctly be trained in Epic feat slots if "Epic Feats for Epic Feat slots" is enabled and "Show all feats even in untrainable" is enabled (Reported by MrEkshin)
+---Info tips alternate positions will be auto adjusted on screen when alternate position is used and would extend off top of screen.
+---Feat "Burst of Glacial Wrath" now has the correct damage text of 30d6 not 300d6 (Reported by MrEkshin)
+---Blightcaster "Thorn or Bile I" now has the correct icon when "Thorn" is selected (reported by MrEkshin)
+---"Kensei: Opportunity Attack" description fixed.
+---Feat "Cleave" description updated
+---Feat "Great Cleave" description updated
+---Feat "Improved Feint" description updated (Reported by MrEkshin)
+
+U72 Changes
+---Dragon Disciple SP per level set
+---Dragon Disciple spell slots per level set
+---Dragon Disciple spell selections per level set
+---Dragon Disciple should now get the same relevant feats as standard Monks for things such as weapon proficiency
+---Casting stat set to "Wisdom"
+---Quivering Palm feat removed for DD
+---Empty Body feat removed for DD
+---Perfect Self feat remove for DD
+---Diamond Body feat remove for DD
+---Diamond Soul feat remove for DD
+---Past life feat text and effects set
+---Requirements for feat "Past Life: Disciple of the Fist" updated
+---"Unarmed Strike" updated
+---Removed all old "Monk Finisher" feats
+
+---Enhancement tree "Shintao" updated
+---Enhancement tree "Henshin Mystic" updated
+---Enhancement tree "Ninja Spy" updated
+---Enhancement tree "Dragon Disciple" updated
+---Grandmaster of Flowers: Disciple of Philosophy options updated (options now allow Light/Dark selections in Monk trees)
+
+---New spells added:
+------Lesser Draconic Burst: Acid
+------Lesser Draconic Burst: Cold
+------Lesser Draconic Burst: Electric
+------Lesser Draconic Burst: Fire
+------Lesser Draconic Burst: Poison
+------Acolyte's Breath: Black
+------Acolyte's Breath: Blue
+------Acolyte's Breath: Green
+------Acolyte's Breath: Red
+------Acolyte's Breath: White
+------Draconic Burst: Acid
+------Draconic Burst: Cold
+------Draconic Burst: Electric
+------Draconic Burst: Fire
+------Draconic Burst: Poison
+------Draconic Devastation: Black
+------Draconic Devastation: Blue
+------Draconic Devastation: Green
+------Draconic Devastation: Red
+------Draconic Devastation: White
+
+IN DEVELOPMENT
+---A new view has been added that will allow you to calculate estimated DPS based
+---on attack sequences of your choice. Does not yet produce any results. Under construction.
+
 Build 2.0.0.51
 
 ---Feat "Amaunator's Brilliance" renamed to "Amaunator's Flames". Description and effects updated (Reported by Gemini-Dragon)

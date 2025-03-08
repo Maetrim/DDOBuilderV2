@@ -88,8 +88,7 @@ BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_LEVELAUGMENT1, IDC_COMBO_LEVELAUGMENT1 + MAX_Augments - 1, OnAugmentLevelCancel)
     ON_WM_SIZE()
     ON_WM_WINDOWPOSCHANGING()
-    ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
-    ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_LIST, OnEndtrackListItems)
+    ON_NOTIFY(HDN_ITEMCHANGED, IDC_ITEM_LIST, OnEndtrackListItems)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_ITEM_LIST, OnColumnclickListItems)
     ON_NOTIFY(NM_HOVER, IDC_ITEM_LIST, OnHoverListItems)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
@@ -147,6 +146,7 @@ BOOL CFindGearDialog::OnInitDialog()
             | LVS_EX_ONECLICKACTIVATE
             //| LVS_EX_LABELTIP); // stop hover tooltips from working
             );
+    m_availableItemsCtrl.GetHeaderCtrl()->SetDlgCtrlID(IDC_ITEM_LIST);
 
     m_comboLevelRange.ResetContent();
     m_comboLevelRange.AddString("5");

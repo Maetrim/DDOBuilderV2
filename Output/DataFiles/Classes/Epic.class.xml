@@ -14,6 +14,68 @@
     <SpellPointsPerLevel size="21">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</SpellPointsPerLevel>
     <BAB size="21">0 1.0 1.0 2.0 2.0 3.0 3.0 4.0 4.0 5.0 5.0 6.0 6.0 7.0 7.0 8.0 8.0 9.0 9.0 10.0 10.0</BAB>
     <NotHeroic/>
+    <!--Automatic Feats-->
+     <AutomaticFeats>
+        <Level>1</Level>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>2</Level>
+        <Feats>Epic Knowledge</Feats>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Saves</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>3</Level>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>4</Level>
+        <Feats>Epic Knowledge</Feats>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Saves</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>5</Level>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>6</Level>
+        <Feats>Epic Knowledge</Feats>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Saves</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>7</Level>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>8</Level>
+        <Feats>Epic Knowledge</Feats>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Saves</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>9</Level>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
+        <Level>10</Level>
+        <Feats>Epic Knowledge</Feats>
+        <Feats>Epic Power</Feats>
+        <Feats>Epic Saves</Feats>
+        <Feats>Epic Skills</Feats>
+     </AutomaticFeats>
+     <!--Feat slots-->
     <FeatSlot>
       <Level>1</Level>
       <FeatType>Epic Feat</FeatType>
@@ -1803,7 +1865,7 @@ all saving throws and +4 Armor Class.</Description>
     </Feat>
     <Feat>
       <Name>Burst of Glacial Wrath</Name>
-      <Description>Cone spell, deals 300d6 Cold Damage and freezes creatures within the cone.
+      <Description>Cone spell, deals 30d6 Cold Damage and freezes creatures within the cone.
 Spell Point Cost: 35  Target: Foe, Directional, Breakable  Spell Point Cost: 35
 Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
 (20 + the highest of your INT/WIS/CHA modifiers + Evocation bonuses) negate the freeze.
@@ -1819,7 +1881,7 @@ Passive: +140 Maximum Spell Points.</Description>
       <Icon>BurstOfGlacialWrath</Icon>
       <DC>
         <Name>Burst of Glacial Wrath</Name>
-        <Description>Cone spell, deals 300d6 Cold Damage and freezes creatures within the cone.
+        <Description>Cone spell, deals 30d6 Cold Damage and freezes creatures within the cone.
 Spell Point Cost: 35  Target: Foe, Directional, Breakable  Spell Point Cost: 35
 Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
 (20 + the highest of your INT/WIS/CHA modifiers + Evocation bonuses) negate the freeze.</Description>
@@ -2148,13 +2210,6 @@ every epic level.</Description>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
       </Effect>
-      <AutomaticAcquisition>
-        <Requirement>
-          <Type>ClassMinLevel</Type>
-          <Item>Epic</Item>
-          <Value>1</Value>
-        </Requirement>
-      </AutomaticAcquisition>
     </Feat>
     <Feat>
       <Name>Epic Knowledge</Name>
@@ -2325,35 +2380,6 @@ For a total of +5 to all casting classes at level 30.</Description>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
       </Effect>
-      <AutomaticAcquisition>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>2</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>4</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>6</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>8</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>10</Value>
-            <Item>Epic</Item>
-          </Requirement>
-        </RequiresOneOf>
-      </AutomaticAcquisition>
     </Feat>
     <Feat>
       <Name>Epic Reflexes</Name>
@@ -2421,36 +2447,6 @@ This feat can be acquired multiple times and is granted every other epic level.<
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
       </Effect>
-      <!--Granted every other epic level-->
-      <AutomaticAcquisition>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>2</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>4</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>6</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>8</Value>
-            <Item>Epic</Item>
-          </Requirement>
-          <Requirement>
-            <Type>ClassAtLevel</Type>
-            <Value>10</Value>
-            <Item>Epic</Item>
-          </Requirement>
-        </RequiresOneOf>
-      </AutomaticAcquisition>
     </Feat>
     <Feat>
       <Name>Epic Skills</Name>
@@ -2466,14 +2462,6 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
       </Effect>
-      <!--Granted every epic level-->
-      <AutomaticAcquisition>
-        <Requirement>
-          <Type>ClassMinLevel</Type>
-          <Item>Epic</Item>
-          <Value>1</Value>
-        </Requirement>
-      </AutomaticAcquisition>
     </Feat>
     <Feat>
       <Name>Expanded Clip</Name>
