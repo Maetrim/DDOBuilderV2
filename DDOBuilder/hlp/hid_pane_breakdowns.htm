@@ -3,23 +3,29 @@
 <head>
     <meta name="GENERATOR" content="Microsoft FrontPage 6.0">
     <link rel="stylesheet" type="text/css" href="hhcenter.css">
-    <title>Empty Pane</title>
+    <title>Breakdowns Pane</title>
 </head>
 
 <BODY>
-<P><A NAME="hid_pane_empty"></A><h1>Empty Pane</h1></P>
-<p>The Empty pane display can be toggled by clicking the button <img src="Images/ButtonPaneSkills.png"> in the <a href="hid_view_toolbar.htm">Standard Toolbar</a>.</p>
-<p><b>Menus: <A HREF="menu_file.htm">File menu</A>
-| <A HREF="menu_edit.htm">Edit menu</A>
-| <A HREF="menu_development.htm">Development menu</A>
-| <A HREF="menu_gear.htm">Gear menu</A>
-| <A HREF="menu_settings.htm">Settings menu</A>
-| <A HREF="menu_view.htm">View menu</A>
-| <A HREF="menu_help.htm">Help menu</A></b></p>
-<p><b>Panes: <A HREF="hid_pane_automaticfeats.htm">Automatic Feats</A>
+<P><A NAME="hid_pane_breakdowns"></A><h1>Breakdowns Pane</h1></P>
+<p>The Breakdowns pane display can be toggled by clicking the button <img src="Images/ButtonPaneBreakdowns.png"> in the <a href="hid_view_toolbar.htm">Standard Toolbar</a>.</p>
+<p><b>See also <a href="Main_index.htm">Menus</a>
+| <A HREF="menu_file.htm">File Menu</A>
+| <A HREF="menu_build.htm">Build Menu</A>
+| <A HREF="menu_edit.htm">Edit Menu</A>
+| <A HREF="menu_forumexport.htm">Forum Export Menu</A>
+| <A HREF="menu_development.htm">Development Menu</A>
+| <A HREF="menu_gear.htm">Gear Menu</A>
+| <A HREF="menu_settings.htm">Settings Menu</A>
+| <A HREF="menu_view.htm">View Menu</A>
+| <A HREF="menu_help.htm">Help Menu</A>
+| <a href="hid_view_toolbar.htm">Standard Toolbar</a></b></p>
+
+<p><b>Panes: <A HREF="main_pane.htm">Main View</A>
 | <A HREF="hid_pane_breakdowns.htm">Breakdowns</A>
 | <A HREF="hid_pane_builds.htm">Builds</A>
 | <A HREF="hid_pane_classandlevels.htm">Class and Levels</A>
+| <A HREF="hid_pane_dps.htm">DPS</A>
 | <A HREF="hid_pane_dcs.htm">DCs</A>
 | <A HREF="hid_pane_enhancements.htm">Enhancements</A>
 | <A HREF="hid_pane_epicdestinies.htm">Epic Destinies</A>
@@ -34,5 +40,64 @@
 | <A HREF="hid_pane_spellsandslas.htm">Spells and SLAs</A>
 | <A HREF="hid_pane_stances.htm">Stances</A></b></p>
 
+<img src="Images/PaneBreakdowns.png">
+<p>The Breakdowns View allows you to view the total values for many different in game parameters. 
+Some of the listed breakdowns are Gear specific and will be added or removed depending on your 
+selected <A HREF="hid_pane_gearandfiligrees.htm">gear</A> (Weapon breakdowns).</p>
+<h2>Breakdowns List</h2>
+<p>The current total value of a given breakdown is displayed in a tree structure. Expand or contract the 
+tree elements to review the breakdown totals.</p>
+<p>To find out how a given breakdown total was achieved, click the item in question and all the 
+contributions to that breakdown will be listed.</p>
+<p>If a breakdown name is displayed in RED, that breakdown has non-stacking effects and is highlighted 
+for investigation.</p>
+<h2>Contributions List</h2>
+<p>This control shows all the individual contributions and their sources that apply to the selected 
+breakdown.</p>
+<p>The <img src="Images/ButtonCopyGearSet.png"> copy button will place a table of the breakdowns contributions on the clipboard as text. For 
+example:</p>
+<p style="font-family:courier;">[font=courier][code]<br/>
+                                                                      Dexterity           69 (Mod 29)             <br/>
+                                                               Breakdown source  Stacks         Value   Bonus Type<br/>
+                                                                           Base       1            14         Base<br/>
+                                                                           Tome       1             8     Inherent<br/>
+                                                                 Past Life: Elf       3             1         Feat<br/>
+                                                            Past Life: Halfling       3             1         Feat<br/>
+                                                             Past Life: Shifter       3             1         Feat<br/>
+                                                              Past Life: Tabaxi       3             1         Feat<br/>
+                                                             Past Life: Eladrin       3             1         Feat<br/>
+                                                           Racial Completionist       1             2         Feat<br/>
+                                                                  Completionist       1             2         Feat<br/>
+                                             Reaper's Offense III: +1 Dexterity       1             1       Reaper<br/>
+                                             Legendary Waistwrap of Wild Wisdom       1             3      Profane<br/>
+        Dinosaur Bone Cloak : IoD: Accessory: Scale Slot : Scale: +14 Dexterity       1            14  Enhancement<br/>
+                            Dinosaur Bone Cloak : Yellow : +2 Festive Dexterity       1             2      Festive<br/>
+                    Dinosaur Bone Cloak : Deck Curse : Curse of Major Dexterity       1             2      Fortune<br/>
+                                             Legendary Dread Stalker's Skullcap       1             6   Insightful<br/>
+  Legendary Dread Stalker's Skullcap : Reaper Helmet : +2 Reaper Ability Scores       1             2       Reaper<br/>
+        Attuned Bone Handwraps : IoD: Weapon: Claw Slot : Shadowclaw: Dexterity       1             2  Exceptional<br/>
+                                                       Bard: Inspire Excellence       1             2   Competence<br/>
+                                               Long Lasting Elixir of Dexterity       1             2     Stacking<br/>
+                                                         Paradoxical Puzzle Box       1             2        Guild<br/>
+                                                                                                                  <br/>
+                                                                 Inactive Items                                   <br/>
+                                             Mountain Stance: Dexterity Penalty       4            -2         Feat<br/>
+                                                         Wind Stance: Dexterity       4             4         Feat<br/>
+                                 Reaper's Strength or Dexterity I: +1 Dexterity       1             1       Reaper<br/>
+                                Reaper's Strength or Dexterity II: +1 Dexterity       1             1       Reaper<br/>
+                               Reaper's Strength or Dexterity III: +1 Dexterity       1             1       Reaper<br/>
+                                Reaper's Strength or Dexterity IV: +1 Dexterity       1             1       Reaper<br/>
+                                                                                                                  <br/>
+                                                           Non-Stacking Effects                                   <br/>
+               Legendary Deepsnow Boots : Deck Curse : Curse of Major Dexterity       1             2      Fortune<br/>
+                 Legendary Nocturne Ring : Green : Globe of True Imperial Blood       1             1  Exceptional<br/>
+[/code][/font]</p>
+<p>Stacking rules for items are automatically applied because of this items can be:<br/>
+<ul><li>Active – Applies to and added to the current total</li>
+<li>Inactive – A bonus will only apply when the relevant stances are active, e.g. the Ocean stance Strength penalty only applies if the character is in Ocean stance</li>
+<li>Non-stacking effects – If you have the same bonus type from multiple sources, only the highest value applies. Any effects that do not apply due to the stacking rules are listed</li></ul></p>
+<h2>Special Breakdowns.</h2>
+<p>Some breakdowns act slightly differently to standard numeric breakdowns, such as Immunities and 
+DR (Damage Reduction). These just list specific items.</p>
 </BODY>
 </HTML>

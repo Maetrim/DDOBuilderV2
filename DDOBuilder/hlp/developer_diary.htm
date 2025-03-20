@@ -1,0 +1,552 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+    <meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+    <link rel="stylesheet" type="text/css" href="hhcenter.css">
+    <TITLE>Developer Diary - How to Maintain the Builder</TITLE>
+</HEAD>
+
+<BODY>
+<h1>Developer Diary</h1>
+<p>Hi peeps, this topic is here assuming I got hit by a bus! Poor me!</p>
+<p>Anyway, assuming nothing in the code base is completely broken, it is 
+possible to update and maintain the builder (except possibly for items - see later) 
+by just modifying data or adding new files loaded by the DDOBuilder which can be found in 
+the <b>DataFiles</b> folder.</p>
+<p>In this section of the Help I will go into detail on how to update these external 
+files to add and expand the software assuming I am no longer here to do it.</p>
+</BODY>
+
+<h2>Classes</h2>
+<p>All current classes supported by DDOBuilder are stored as external .xml files 
+that can be found in the <b>DataFiles\Classes</b> folder. All classes have 
+filenames formatted as &lt;class name&gt;.Class.xml. These filenames must pass the 
+load filter of "*.class.xml" on program startup to be loaded.</p>
+<p>You can edit existing Class files in a text or xml editor to update them, or 
+if you are adding a new Class, I recommend that you copy an existing Class file 
+that is similar to the new Class, and rename it. Note that the loading code is 
+not sensitive to the order of items in the file, so things can be added in any 
+order.</p>
+<p>A Class can/will contain some or all of the following fields:</p>
+
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Name</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The Class name that appears in the UI and is selectable by the user.</td>
+  </tr>
+  <tr>
+    <td valign="top">BaseClass</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">This optional field specifies which Class this new Class is an Archetype of.</td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">A text field that describes the Class. This text is shown in tooltips.</td>
+  </tr>
+  <tr>
+    <td valign="top">ClassSpecificFeatType</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Not used internally by the software, ignore.</td>
+  </tr>
+  <tr>
+    <td valign="top">SmallIcon</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The small Class icon name used by the software. The icon must be present in the <b>DataFiles\ClassImages</b> folder. The Small icon must have a size of 16 (x) by 15 (y) pixels.</td>
+  </tr>
+  <tr>
+    <td valign="top">LargeIcon</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The large Class icon name used by the software. The icon must be present in the <b>DataFiles\ClassImages</b> folder. The Large icon must have a size of 32 (x) by 32 (y) pixels.</td>
+  </tr>
+  <tr>
+    <td valign="top">SkillPoints</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The number of base skill points the Class gets every level trained.</td>
+  </tr>
+  <tr>
+    <td valign="top">HitPoints</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The number of base Hitpoints the Class gives per level trained.</td>
+  </tr>
+  <tr>
+    <td valign="top">ClassSkill</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each Skill that is a <b>Class Skill</b> for this Class. The text for the skill must match the internal string used for that skill in the software.</td>
+  </tr>
+  <tr>
+    <td valign="top">Alignment</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each specific Alignment that a Class is allowed to be (e.g. Paladin's can only have Lawful Good). If any alignment is allowed you can put in <b>Any</b>.</td>
+  </tr>
+  <tr>
+    <td valign="top">Fortitude</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The save type for Fortitude saves, either <b>Type1</b> (Poor progression - 6 by level 20) or <b>Type2</b> (Good progression - 12 by level 20). </td>
+  </tr>
+  <tr>
+    <td valign="top">Reflex</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The save type for Reflex saves, either <b>Type1</b> (Poor progression - 6 by level 20) or <b>Type2</b> (Good progression - 12 by level 20). </td>
+  </tr>
+  <tr>
+    <td valign="top">Will</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The save type for Will saves, either <b>Type1</b> (Poor progression - 6 by level 20) or <b>Type2</b> (Good progression - 12 by level 20). </td>
+  </tr>
+  <tr>
+    <td valign="top">SpellPointsPerLevel</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">A vector of 21 values for the awarded Spell points at the given Class level, 0 based (i.e. first entry is when you have 0 levels of this Class). Must be declared as <b>&lt;SpellPointsPerLevel size="21"&gt;0 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525&lt;/SpellPointsPerLevel&gt;</b>. This would be a list of 21 0's if the Class does not get spell points.</td>
+  </tr>
+  <tr>
+    <td valign="top">CastingStat</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">The name of the ability that spell cast DCs are based on (e.g. Charisma for Bards). If this field repeats, the highest stat value from those in the list are used for that Class (see Favored Souls).</b></td>
+  </tr>
+  <tr>
+    <td valign="top">AutoBuySkill</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each Skill that this Class will prioritise if you click the "Auto Buy" in the Skills View.</td>
+  </tr>
+  <tr>
+    <td valign="top">NoHeroic</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag used internally by the software. Typically only present in Class files for <b>Epic</b> and <b>Legendary</b>.</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Level1</b>..<b>Level20</b></td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">An entry for each Class level that specifies the number of trainable spells for this Class at that level. A typical entry may look like: &lt;Level7 size="6"&gt;4 4 2 0 0 0&lt;/Level7&gt;. This is for a Class that has a max spell level or 6, and can only train 4 level 1 spells, 4 level 2 spells, 2 level 3 spells, and no spells of other levels at Class level 7.</td>
+  </tr>
+  <tr>
+    <td valign="top">BAB</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The BAB progression for this Class. 21 entires, first entry always 0, all other entries an increase of the basic BAB for this Class (Typically 0.5, 0.75 or 1).</td>
+  </tr>
+  <tr>
+    <td valign="top">ClassSpell</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each spell that Class can select from. Each Class spell specifies a spell <b>Name</b> (this must match an entry in the Spells.xml file), an optional spell point <b>Cost</b> and a required spell <b>Level</b>. Note that a spell level can be negative to say a spell it an auto acquired spell at the positive value of the level field, (e.g. Clerics get the Cure spells automatically and thus the Cure spell entries in the Cleric Class for these spells use negative values).</td>
+  </tr>
+  <tr>
+    <td valign="top">AutomaticFeats</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each Level where Automatic feats should be awarded to a Class. This contains a <b>Level</b> field, and a list of <b>Feats</b> that should be awarded at that specific Class level. Note that Feat names must match a Feat defines in either a Class file, the Feats.xml file or a Races .xml file.</td>
+  </tr>
+  <tr>
+    <td valign="top">FeatSlot</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each feat slot that will appear as a selectable option in the Class and Feats view at that specific Class level. The FeatType field appears as text in the UI, and the first time a FeatSlot is defined, you can specify the list of Feats that are selectable in this slot. <b>FeatSlot</b>s can be set to singular (i.e. the Slot type can only ever appear once in any Class setup (see Follower Of feats)), or to AutoPopulate (the software will auto select a Feat entry for you  if there is only 1 available).</td>
+  </tr>
+  <tr>
+    <td valign="top">Feat</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each feat that must be defined for this specific Class.</td>
+  </tr>
+</table>
+
+<h2>Races</h2>
+<p>Races are also stored as external files and can be found in the <b>DataFiles\Races</b> folder. To be loaded the Race file must follow the format of &lt;Race Name&gt;.Race.xml and pass the file filter *.race.xml to be loaded.</p>
+<p>A Race can/will contain some or all of the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Name</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The Race name that appears in the UI and is selectable by the user.</td>
+  </tr>
+  <tr>
+    <td valign="top">ShortName</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The short Race name that appears in the UI.</td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">A text field that describes the Race. This text is shown in tooltips.</td>
+  </tr>
+  <tr>
+    <td valign="top">IsConstruct</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that if present specifies that this Race is Construct in nature such as Warforged.</td>
+  </tr>
+  <tr>
+    <td valign="top">StartingWorld</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">Specifies the starting world for choices such as Deity selection. Options are <b>Eberron</b> or <b>Forgotten Realms</b>.</td>
+  </tr>
+  <tr>
+    <td valign="top">NoPastLife</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">Specifies whether this Race should <b>NOT</b> be listed as a requirement for the <b>Racial Completionist</b> feat if present.</td>
+  </tr>
+  <tr>
+    <td valign="top">BuildPoints</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">A vector of 4 values that specify the number of Build Points a character of this Race will have depending on their number of past lives. (Typically 28, 32, 34, 36, except for Drow).</td>
+  </tr>
+  <tr>
+    <td valign="top">IconicClass</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">Not present for non-iconic races. This is the class that the builder will warn for if it is not level 1.</td>
+  </tr>
+  <tr>
+    <td valign="top">&lt;Ability Name&gt;</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">The racial modifier value for this ability for this Race. Only present if it is non-zero for a given Ability for that Race.</td>
+  </tr>
+  <tr>
+    <td valign="top">AutoBuySkill</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Any skills that this Race should prioritize on an auto buy action in the skills pane.</td>
+  </tr>
+  <tr>
+    <td valign="top">GrantedFeat</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">The name of each Racial feat that should be awarded at level 1. One entry for each Racial feat.</td>
+  </tr>
+  <tr>
+    <td valign="top">Feat</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">One entry for each feat that must be defined for this specific Race.</td>
+  </tr>
+</table>
+
+<h2>Enhancement Trees</h2>
+<p>Enhancement Trees are also stored as external files and can be found in the <b>DataFiles\EnhancementTrees</b> folder. To be loaded the Tree file must follow the format of &lt;Tree Name&gt;.tree.xml and pass the file filter *.tree.xml to be loaded.</p>
+<p>A Tree can/will contain some or all of the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Name</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The Tree name that appears in the UI and is selectable by the user.</td>
+  </tr>
+  <tr>
+    <td valign="top">Version</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The internal version number of the tree. This version number is saved with
+any builds that use this tree. If the version in any loaded file does not match 
+this number, all tree spend items in that tree are automatically revoked on 
+loading the file. (i.e. it forces the user to re-spend their points). This 
+version number should only ever be increased if a fundamental setup of the 
+tree has changed, e.g. in U72 the enhancement Monk trees changed sufficiently 
+that a carry over of AP spends in the older trees cannot be converted.</td>
+  </tr>
+  <tr>
+    <td valign="top">Requirements</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The requirements that must be met for this tree to be an option in the UI depending on setup factors, such as Race, Class etc.</td>
+  </tr>
+  <tr>
+    <td valign="top">IsEpicDestiny</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">Present if this tree is an Epic Destiny tree.</td>
+  </tr>
+  <tr>
+    <td valign="top">IsRacialTree</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">Present if this tree is a Racial enhancement tree.</td>
+  </tr>
+  <tr>
+    <td valign="top">IsReaperTree</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">Present if this tree is a Reaper enhancement tree.</td>
+  </tr>
+  <tr>
+    <td valign="top">IsUniversalTree</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">Present if this tree is a Universal enhancement tree.</td>
+  </tr>
+  <tr>
+    <td valign="top">Icon</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The name of the icon used for this tree. The icon must be present in the UIImages folder and be a size of 32 (x) by 32 (y) pixels.</td>
+  </tr>
+  <tr>
+    <td valign="top">Background</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The name of the background picture used for this tree. The background must be present in the UIImages solder and be a size of 299 (x) by 466 (y) pixels. typically you can pick an existing background image for these.</td>
+  </tr>
+  <tr>
+    <td valign="top">EnhancementTreeItem</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">An object that contains a list of all the Enhancement tree items that appear in the tree.</td>
+  </tr>
+</table>
+<p>Updating a tree can be done by just editing the existing x.tree.xml file. However creating a new tree from scratch is a touch more difficult. A set of Blank trees are present in the software, in the <b>Blank Trees</b> folder. If you copy this and rename it in the <b>EnhancementTrees</b> folder you can then update and create the tree. </p>
+<p>An EnhancementTreeItem can contain the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Name</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The name displayed in the UI for this Enhancement tree item</td>
+  </tr>
+  <tr>
+    <td valign="top">InternalName</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The internal name used by the software to identify this item. This MUST be a unique name across all enhancement tree supported. The software will warn you in the Log window during the load phase if it encounters a duplicate InternalName field.</td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The description text for this item. Note that this field will be auto formatted to a max line length of 80 character if there are no specific line breaks in the text. If you want the text to appear a specific way, format it with line breaks.</td>
+  </tr>
+  <tr>
+    <td valign="top">Icon</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The name of the Icon associated with this enhancement. The Icon must be present in the <b>EnhancementImages</b> folder.</td>
+  </tr>
+  <tr>
+    <td valign="top">XPosition</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The X position of this enhancement on the tree. X positions start at 0 (far left) and can increase to a maximum of 5 for a Core item or 4 for a regular tree item.</td>
+  </tr>
+  <tr>
+    <td valign="top">YPosition</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The Y position of this enhancement on the tree. Y positions start at 0 (bottom Core items) and can increase to a maximum of 5 for a Tier 5 items.</td>
+  </tr>
+  <tr>
+    <td valign="top">CostPerRank</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">A vector of AP costs for each tier of this enhancement, (no enhancement currently goes beyond 3 tiers). If the vector only defines one value and the enhancement has multiple tiers, the cost of all following tiers are assumed to be the same as the first.</td>
+  </tr>
+  <tr>
+    <td valign="top">Ranks</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The number of Ranks this enhancement has.</td>
+  </tr>
+  <tr>
+    <td valign="top">MinSpent</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The minimum number of Action Points that must be spent in this tree for this enhancement to be a selectable option.</td>
+  </tr>
+  <tr>
+    <td valign="top">Clickie</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item is an Active (Square) icon item. If this flag is not present it is assumed to be a Passive (Octagonal) item.</td>
+  </tr>
+  <tr>
+    <td valign="top">ArrowLeft</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item has a left pointing arrow shown on its left side.</td>
+  </tr>
+  <tr>
+    <td valign="top">ArrowRight</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item has a right pointing arrow shown on its right side.</td>
+  </tr>
+  <tr>
+    <td valign="top">ArrowUp</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item has an up pointing arrow to the item immediately above it.</td>
+  </tr>
+  <tr>
+    <td valign="top">LongArrowUp</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item has an up pointing arrow to the item 2 tiers above it.</td>
+  </tr>
+  <tr>
+    <td valign="top">ExtraLongArrowUp</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item has an up pointing arrow to the item 3 tiers above it.</td>
+  </tr>
+  <tr>
+    <td valign="top">Tier5</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item is a tier 5 item, and should lock out other tier 5 items in other trees if selected.</td>
+  </tr>
+  <tr>
+    <td valign="top">Requirements</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A list of requirements that must be met for this item to be selectable in the UI beyond the minimum number of APs spent in this tree.</td>
+  </tr>
+  <tr>
+    <td valign="top">Selector</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">An optional item that can define a list of options that can be selected from for this enhancement item.</td>
+  </tr>
+  <tr>
+    <td valign="top">Stance</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Definition of a Stance object that will be displayed in the UI if this enhancement item is selected.</td>
+  </tr>
+  <tr>
+    <td valign="top">Effect</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Definition of an Effect object that will be applied for this enhancement.</td>
+  </tr>
+  <tr>
+    <td valign="top">DC</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Definition of a DC object that will be displayed in the UI if this enhancement item is selected.</td>
+  </tr>
+</table>
+<p>Items in the Selector field if its present have the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Name</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The name displayed in the UI for this Enhancement tree sub item. Note that during selection the actual text of this item is used as a Unique id along with the <b>EnhancementTreeItem</b>s <i>InternalName</i> as the unique selector details.</td>
+  </tr>
+  <tr>
+    <td valign="top">Description</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The description text for this item. Note that this field will be auto formatted to a max line length of 80 character if there are no specific line breaks in the text. If you want the text to appear a specific way, format it with line breaks.</td>
+  </tr>
+  <tr>
+    <td valign="top">Icon</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The name of the Icon associated with this enhancement. The Icon must be present in the <b>EnhancementImages</b> folder.</td>
+  </tr>
+  <tr>
+    <td valign="top">CostPerRank</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">A vector of AP costs for each tier of this enhancement, (no enhancement currently goes beyond 3 tiers). If the vector only defines one value and the enhancement has multiple tiers, the cost of all following tiers are assumed to be the same as the first. Note that these values can be different compared to the base costs of this item.</td>
+  </tr>
+  <tr>
+    <td valign="top">Ranks</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The number of Ranks this enhancement has.</td>
+  </tr>
+  <tr>
+    <td valign="top">MinSpent</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The minimum number of Action Points that must be spent in this tree for this enhancement to be a selectable option.</td>
+  </tr>
+  <tr>
+    <td valign="top">Clickie</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A flag that specifies whether this enhancement item is an Active (Square) icon item. If this flag is not present it is assumed to be a Passive (Octagonal) item.</td>
+  </tr>
+  <tr>
+    <td valign="top">Requirements</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A list of requirements that must be met for this item to be selectable in the UI beyond the minimum number of APs spent in this tree.</td>
+  </tr>
+  <tr>
+    <td valign="top">Stance</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Definition of a Stance object that will be displayed in the UI if this enhancement item is selected.</td>
+  </tr>
+  <tr>
+    <td valign="top">Effect</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Definition of an Effect object that will be applied for this enhancement.</td>
+  </tr>
+  <tr>
+    <td valign="top">DC</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Definition of a DC object that will be displayed in the UI if this enhancement item is selected.</td>
+  </tr>
+</table>
+<p>Note that when it comes to Effects, Stances and DCs, any of these defined at the EnhancementTreeItem level and at the Selector sub item level will be applied for any given enhancement. Thus common Effects/Stances/DCs can be defined only once and apply for all sub options in the selector list.</p>
+</HTML>

@@ -884,6 +884,15 @@ void CBuildsPane::SaveLifeToNewFile(DWORD itemData)
         CDDOBuilderDoc cTempDoc;
         Character cNew(&cTempDoc);
         cNew.AppendLife(life);
+        // need to also include any tomes, trained feats at the Character level
+        cNew.SetAbilityTome(Ability_Strength, m_pCharacter->StrTome());
+        cNew.SetAbilityTome(Ability_Dexterity, m_pCharacter->DexTome());
+        cNew.SetAbilityTome(Ability_Constitution, m_pCharacter->ConTome());
+        cNew.SetAbilityTome(Ability_Intelligence, m_pCharacter->IntTome());
+        cNew.SetAbilityTome(Ability_Wisdom, m_pCharacter->WisTome());
+        cNew.SetAbilityTome(Ability_Charisma, m_pCharacter->ChaTome());
+        cNew.SetSkillTomes(m_pCharacter->Tomes());
+        cNew.SetSpecialFeats(m_pCharacter->SpecialFeats());
         try
         {
             const XmlLib::SaxString f_saxElementName = L"DDOBuilderCharacterData"; // root element name to look for

@@ -4,14 +4,15 @@
 #include "Resource.h"
 #include <vector>
 #include <list>
+#include "character.h"
 
 class CDDOBuilderDoc;
-class Character;
 class Feat;
 class CFeatSelectionDialog;
 
 class CSpecialFeatPane :
-    public CFormView
+    public CFormView,
+    public CharacterObserver
 {
 public:
     CSpecialFeatPane();           // protected constructor used by dynamic creation
@@ -34,6 +35,11 @@ public:
 
     DECLARE_DYNCREATE(CSpecialFeatPane)
     DECLARE_MESSAGE_MAP()
+
+protected:
+    // CharacterObserver
+    virtual void UpdateActiveLifeChanged(Character*) override;
+    virtual void UpdateActiveBuildChanged(Character *) override;
 
 private:
     void CreateFeatWindows(

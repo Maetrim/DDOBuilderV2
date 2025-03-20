@@ -14,6 +14,9 @@ class AttackChain :
         void SetName(const std::string& newName);
         void SetAttacks(const std::list<std::string>& attacks);
 
+        void AddAttack(const std::string& attackName, size_t insertLoc);
+        void RemoveAttackAt(size_t loc);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

@@ -143,8 +143,10 @@ bool Item::CanEquipToSlot(InventorySlotType slot) const
         canEquipToSlot = m_Slots.HasWeapon2();
         break;
     case Inventory_CosmeticWeapon1:
+        canEquipToSlot = m_Slots.HasWeapon1();
+        break;
     case Inventory_CosmeticWeapon2:
-        //canEquipToSlot = m_Slots.HasCosmeticWeapon();
+        canEquipToSlot = m_Slots.HasWeapon2();
         break;
     }
     return canEquipToSlot;

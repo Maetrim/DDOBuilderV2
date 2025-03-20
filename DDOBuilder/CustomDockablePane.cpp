@@ -15,6 +15,7 @@ BEGIN_MESSAGE_MAP(CCustomDockablePane, CDockablePane)
     ON_WM_WINDOWPOSCHANGING()
     ON_WM_CONTEXTMENU()
     ON_WM_MOUSEACTIVATE()
+    ON_MESSAGE(WM_HELPHITTEST, &CCustomDockablePane::OnHelpHitTest)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -216,3 +217,9 @@ void CCustomDockablePane::OnWindowPosChanging(WINDOWPOS* pos)
     CDockablePane::OnWindowPosChanging(pos);
     PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
 }
+
+LRESULT CCustomDockablePane::OnHelpHitTest(WPARAM, LPARAM)
+{
+    return 0x10000 + m_viewId;
+}
+

@@ -66,6 +66,7 @@ enum WeaponType
     Weapon_RuneArm,
     Weapon_Collar,
     Weapon_Empty,
+    Weapon_CosmeticShield,
     Weapon_ReplacedDynamically,
     Weapon_Count,           // must be last entry
 };
@@ -123,6 +124,7 @@ const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
     {Weapon_RuneArm, L"Rune Arm"},
     {Weapon_Collar, L"Collar"},
     {Weapon_Empty, L"Empty"},
+    {Weapon_CosmeticShield, L"Cosmetic Shield"},
     {Weapon_ReplacedDynamically, L"ReplacedDynamically"},
 
     // additional entries to allow slightly different text translations

@@ -33,6 +33,8 @@ class CDPSPane :
         afx_msg void OnHoverAttackList(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnHoverAvailableAttackList(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnAddAttack();
+        afx_msg void OnRemoveAttack();
 
         DECLARE_DYNCREATE(CDPSPane)
         DECLARE_MESSAGE_MAP()
@@ -48,7 +50,7 @@ class CDPSPane :
         void PopulateAttackChainCombo();
         void PopulateAttackChain();
         Attack FindAttack(const std::string& name) const;
-        void SetBasicAttackCooldown();
+        double SetBasicAttackCooldown();
         BOOL EvaluateMoveUp(size_t sel);
         BOOL EvaluateMoveDown(size_t sel);
         void ShowTip(const Attack& attack, CRect itemRect);

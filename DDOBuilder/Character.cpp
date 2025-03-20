@@ -590,3 +590,13 @@ void Character::AddSpecialFeats(const FeatsListObject& featsToAdd)
     }
 }
 
+void Character::SetSkillTomes(const SkillTomes& tomes)
+{
+    Set_Tomes(tomes);
+}
+
+void Character::SetSpecialFeats(const FeatsListObject& feats)
+{
+    Set_SpecialFeats(feats);
+}
+

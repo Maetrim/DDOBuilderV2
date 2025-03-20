@@ -18,8 +18,9 @@ namespace
     enum Columns
     {
         CI_AttackName = 0,
-        CI_Cooldown,
-        CI_TimePoint
+        CI_DPSScore,
+        CI_TimePoint,
+        CI_Cooldown
     };
 }
 
@@ -53,11 +54,13 @@ BEGIN_MESSAGE_MAP(CDPSPane, CFormView)
     ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CDPSPane::OnTtnNeedText)
     ON_NOTIFY(HDN_ITEMCHANGED, IDC_COMBO_ATTACKCHAINS, &CDPSPane::OnEndtrackListAttackChain)
     ON_NOTIFY(HDN_ITEMCHANGED, IDC_AVAILABLE_LIST, &CDPSPane::OnEndtrackListAvailableAttacks)
-    ON_NOTIFY(LVN_ITEMCHANGED, IDC_ATTACK_LIST, OnAttackListSelectionChanged)
-    ON_NOTIFY(LVN_ITEMCHANGED, IDC_AVAILABLE_LIST, OnAvailableSelectionChanged)
-    ON_NOTIFY(NM_HOVER, IDC_ATTACK_LIST, OnHoverAttackList)
-    ON_NOTIFY(NM_HOVER, IDC_AVAILABLE_LIST, OnHoverAvailableAttackList)
-    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
+    ON_NOTIFY(LVN_ITEMCHANGED, IDC_ATTACK_LIST, &CDPSPane::OnAttackListSelectionChanged)
+    ON_NOTIFY(LVN_ITEMCHANGED, IDC_AVAILABLE_LIST, &CDPSPane::OnAvailableSelectionChanged)
+    ON_NOTIFY(NM_HOVER, IDC_ATTACK_LIST, &CDPSPane::OnHoverAttackList)
+    ON_NOTIFY(NM_HOVER, IDC_AVAILABLE_LIST, &CDPSPane::OnHoverAvailableAttackList)
+    ON_MESSAGE(WM_MOUSELEAVE, &CDPSPane::OnMouseLeave)
+    ON_BN_CLICKED(IDC_BUTTON_ADD, &CDPSPane::OnAddAttack)
+    ON_BN_CLICKED(IDC_BUTTON_REMOVE, &CDPSPane::OnRemoveAttack)
 END_MESSAGE_MAP()
 
 void CDPSPane::OnInitialUpdate()
@@ -69,12 +72,13 @@ void CDPSPane::OnInitialUpdate()
         m_tipCreated = true;
         m_bIgnoreChange = true;
         m_attackList.InsertColumn(0, "Attack Name", LVCFMT_LEFT, 300);
-        m_attackList.InsertColumn(1, "Cooldown", LVCFMT_LEFT, 40);
+        m_attackList.InsertColumn(1, "DPS Score", LVCFMT_LEFT, 40);
         m_attackList.InsertColumn(2, "Time Point", LVCFMT_LEFT, 40);
+        m_attackList.InsertColumn(3, "Cooldown", LVCFMT_LEFT, 40);
         m_availableList.InsertColumn(0, "Available Attacks", LVCFMT_LEFT, 300);
         m_availableList.InsertColumn(1, "Cooldown", LVCFMT_LEFT, 40);
         m_attackList.SetExtendedStyle(m_attackList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
-        m_availableList.SetExtendedStyle(m_availableList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
+        m_availableList.SetExtendedStyle(m_availableList.GetExtendedStyle()| LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
         // Images for the buttons
         m_buttonAddAttackChain.SetImage(IDB_BITMAP_ADD);
         m_buttonDeleteAttackChain.SetImage(IDB_BITMAP_REMOVE);
@@ -570,7 +574,7 @@ BOOL CDPSPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 
 void CDPSPane::PopulateAttackChain()
 {
-    SetBasicAttackCooldown();
+    double baCooldown = SetBasicAttackCooldown();
     // try and preserve the selection if there is one
     int sel = m_attackList.GetSelectionMark();
     m_attackList.DeleteAllItems();
@@ -602,9 +606,14 @@ void CDPSPane::PopulateAttackChain()
                 }
                 strTimePoint.Format("%.2f", timePoint);
                 m_attackList.SetItemText(index, CI_TimePoint, strTimePoint);
-                if (attack.HasCooldown())
+                if (attack.HasExecutionTime())
                 {
-                    timePoint += attack.Cooldown()[attack.Stacks()-1];
+                    timePoint += attack.ExecutionTime();
+                }
+                else
+                {
+                    // if no execution time, it takes the same time as a "Basic Attack"
+                    timePoint += baCooldown;
                 }
             }
             // finally add an entry for the total duration of the attack chain
@@ -656,7 +665,7 @@ void CDPSPane::OnEndtrackListAvailableAttacks(NMHDR* pNMHDR, LRESULT* pResult)
     }
 }
 
-void CDPSPane::SetBasicAttackCooldown()
+double CDPSPane::SetBasicAttackCooldown()
 {
     // The "Basic Attack" has a cooldown based on the attack style and BAB
     // of the build in question
@@ -670,6 +679,7 @@ void CDPSPane::SetBasicAttackCooldown()
             aaIt.SetCooldown(cooldown);
         }
     }
+    return cooldown;
 }
 
 void CDPSPane::OnAttackListSelectionChanged(NMHDR* pNMHDR, LRESULT* pResult)
@@ -853,4 +863,42 @@ LRESULT CDPSPane::OnMouseLeave(WPARAM wParam, LPARAM lParam)
         m_hoverItem = -1;
     }
     return 0;
+}
+
+void CDPSPane::OnAddAttack()
+{
+    int selAttack = m_availableList.GetSelectionMark();
+    int insertLoc = m_attackList.GetSelectionMark();
+    if (insertLoc == -1)
+    {
+        // insert at he end of the list if no selection
+        insertLoc = m_attackList.GetItemCount() - 1; // -1 due to total attack chain line
+    }
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
+    {
+        AttackChain ac = pBuild->GetActiveAttackChain();
+        std::list<Attack>::const_iterator it = m_availableAttacksWithStacks.begin();
+        std::advance(it, selAttack);
+        std::string attackToAdd = (*it).Name();
+        ac.AddAttack(attackToAdd, insertLoc);
+        pBuild->UpdateAttackChain(pBuild->ActiveAttackChain(), ac);
+        PopulateAttackChain();
+    }
+}
+
+void CDPSPane::OnRemoveAttack()
+{
+    int delLoc = m_attackList.GetSelectionMark();
+    if (delLoc >=0)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            AttackChain ac = pBuild->GetActiveAttackChain();
+            ac.RemoveAttackAt(delLoc);
+            pBuild->UpdateAttackChain(pBuild->ActiveAttackChain(), ac);
+            PopulateAttackChain();
+        }
+    }
 }

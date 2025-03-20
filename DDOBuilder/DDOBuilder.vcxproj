@@ -110,7 +110,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>Dwmapi.lib</AdditionalDependencies>
+      <AdditionalDependencies>Dwmapi.lib;htmlhelp.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -160,7 +160,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>Dwmapi.lib</AdditionalDependencies>
+      <AdditionalDependencies>Dwmapi.lib;htmlhelp.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -297,6 +297,9 @@ echo.
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Making help file...</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Making help file...</Message>
     </CustomBuild>
+    <None Include="hlp\developer_diary.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="hlp\hhcenter.css" />
     <None Include="hlp\hidr_doc1type.htm">
       <DeploymentContent>true</DeploymentContent>
@@ -391,6 +394,9 @@ echo.
     <None Include="hlp\hid_pane_dcs.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="hlp\hid_pane_dps.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="hlp\hid_pane_empty.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
@@ -419,6 +425,9 @@ echo.
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\hid_pane_reaperenhancements.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\hid_pane_selfandpartybuffs.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\hid_pane_skills.htm">
@@ -497,6 +506,12 @@ echo.
     <None Include="hlp\main_index.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
+    <None Include="hlp\main_pane.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_build.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="hlp\menu_development.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
@@ -504,6 +519,9 @@ echo.
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\menu_file.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="hlp\menu_forumexport.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\menu_gear.htm">
@@ -516,9 +534,6 @@ echo.
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\menu_view.htm">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="hlp\menu_window.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\scrollbars.htm">
@@ -681,6 +696,7 @@ echo.
     <ClInclude Include="GroupLine.h" />
     <ClInclude Include="GuildBuff.h" />
     <ClInclude Include="GuildBuffsFile.h" />
+    <ClInclude Include="hlp\HTMLDefines.h" />
     <ClInclude Include="IconButton.h" />
     <ClInclude Include="IgnoredListFile.h" />
     <ClInclude Include="InfoTip.h" />
@@ -790,6 +806,7 @@ echo.
 echo. &gt; "hlp\HTMLDefines.h"
 echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD2_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
 echo. &gt;&gt; "hlp\HTMLDefines.h"
 echo // Prompts (IDP_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h IDP_,HIDP_,0x30000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
@@ -797,8 +814,6 @@ echo. &gt;&gt; "hlp\HTMLDefines.h"
 echo // Resources (IDR_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h IDR_,HIDR_,0x20000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
 echo. &gt;&gt; "hlp\HTMLDefines.h"
-echo // Dialogs (IDD_*) &gt;&gt; "hlp\HTMLDefines.h"
-makehm /h IDD_,HIDD_,0x20000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
 echo. &gt;&gt; "hlp\HTMLDefines.h"
 echo // Frame Controls (IDW_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
@@ -807,6 +822,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
 echo. &gt; "hlp\HTMLDefines.h"
 echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD2_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
 echo. &gt;&gt; "hlp\HTMLDefines.h"
 echo // Prompts (IDP_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h IDP_,HIDP_,0x30000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
@@ -828,6 +844,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
 echo. &gt; "hlp\HTMLDefines.h"
 echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD2_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
 echo. &gt;&gt; "hlp\HTMLDefines.h"
 echo // Prompts (IDP_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h IDP_,HIDP_,0x30000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
@@ -845,6 +862,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
 echo. &gt; "hlp\HTMLDefines.h"
 echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD2_,0x10000 IDM_,HIDM_,0x10000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
 echo. &gt;&gt; "hlp\HTMLDefines.h"
 echo // Prompts (IDP_*) &gt;&gt; "hlp\HTMLDefines.h"
 makehm /h IDP_,HIDP_,0x30000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.h"
@@ -1381,6 +1399,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Image Include="hlp\Images\ButtonFileOpen.png" />
     <Image Include="hlp\Images\ButtonFileSave.png" />
     <Image Include="hlp\Images\ButtonIgnoreListsActive.png" />
+    <Image Include="hlp\Images\ButtonImportClipboardGearSet.png" />
     <Image Include="hlp\Images\ButtonImportGearSet.png" />
     <Image Include="hlp\Images\ButtonNewGearSet.png" />
     <Image Include="hlp\Images\ButtonPaneAutomaticFeats.png" />
@@ -1388,6 +1407,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Image Include="hlp\Images\ButtonPaneBuilds.png" />
     <Image Include="hlp\Images\ButtonPaneClassAndLevels.png" />
     <Image Include="hlp\Images\ButtonPaneDCs.png" />
+    <Image Include="hlp\Images\ButtonPaneDPSs.png" />
     <Image Include="hlp\Images\ButtonPaneEnhancements.png" />
     <Image Include="hlp\Images\ButtonPaneEpicDestinies.png" />
     <Image Include="hlp\Images\ButtonPaneGearAndFiligrees.png" />
@@ -1397,6 +1417,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Image Include="hlp\Images\ButtonPanePastLives.png" />
     <Image Include="hlp\Images\ButtonPaneQuestsAndFavor.png" />
     <Image Include="hlp\Images\ButtonPaneReaperEnhancements.png" />
+    <Image Include="hlp\Images\ButtonPaneSelfAndPartyBuffs.png" />
     <Image Include="hlp\Images\ButtonPaneSkills.png" />
     <Image Include="hlp\Images\ButtonPaneSpellsAndSLAs.png" />
     <Image Include="hlp\Images\ButtonPaneStances.png" />
@@ -1408,6 +1429,9 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(FullPath)" &gt;&gt; "hlp\HTMLDefines.
     <Image Include="hlp\Images\EnhancementsDropList.png" />
     <Image Include="hlp\Images\EnhancementsSelector.png" />
     <Image Include="hlp\Images\EnhancementTooltip.png" />
+    <Image Include="hlp\Images\PaneBreakdowns.png" />
+    <Image Include="hlp\Images\PaneSpellsAndSLAs.png" />
+    <Image Include="hlp\Images\PaneSpellSelection.png" />
     <Image Include="hlp\Images\RevokeEnhancement.png" />
     <Image Include="hlp\Images\SkillsPane.png" />
     <Image Include="hlp\Images\Tome.png" />

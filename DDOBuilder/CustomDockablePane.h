@@ -23,6 +23,7 @@ class CCustomDockablePane :
         virtual void DrawCaption(CDC* pDC, CRect rectCaption) override;
         virtual CTabbedPane* CreateTabbedPane() override;
         virtual void OnAfterChangeParent(CWnd* pWndOldParent) override;
+        afx_msg LRESULT OnHelpHitTest(WPARAM, LPARAM);
 
     public:
         // If derived classes have a contained view they can get free auto resize

@@ -81,6 +81,8 @@ class Character :
 
         // upgrade support
         void AddSpecialFeats(const FeatsListObject& featsToAdd);
+        void SetSkillTomes(const SkillTomes& tomes);
+        void SetSpecialFeats(const FeatsListObject& feats);
 
 protected:
         XmlLib::SaxContentElementInterface * StartElement(

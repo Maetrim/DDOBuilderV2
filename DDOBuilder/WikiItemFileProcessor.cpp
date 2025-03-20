@@ -925,6 +925,10 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
         {
             m_item.Set_Weapon(Weapon_Orb);
         }
+        else if (shieldType == "Cosmetic Shield")
+        {
+            m_item.Set_Weapon(Weapon_CosmeticShield);
+        }
         else
         {
             CString text;

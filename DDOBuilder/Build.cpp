@@ -6309,9 +6309,6 @@ void Build::UpdateAttackChain(const std::string& acName, const AttackChain& ac)
         {
             (*acit) = ac;
             bFound = true;
-            CString logEntry;
-            logEntry.Format("Attack chain \"%s\" updated.", acName.c_str());
-            GetLog().AddLogEntry(logEntry);
         }
     }
 }

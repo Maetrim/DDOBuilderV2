@@ -31,6 +31,7 @@
 #include "DDOBuilderView.h"
 #include "LocalSettingsStore.h"
 #include "LogPane.h"
+#include <HtmlHelp.h>
 
 // CDDOBuilderApp
 
@@ -56,6 +57,7 @@ END_MESSAGE_MAP()
 CDDOBuilderApp::CDDOBuilderApp() :
     m_nAppLook(0),
     m_bLoadComplete(false),
+    m_dwHtmlHelpCookie(NULL),
     m_bItemLoadThreadRunning(false),
     m_bKillItemLoadThread(false)
 {
@@ -132,11 +134,19 @@ BOOL CDDOBuilderApp::InitInstance()
     // Change extension for help file
     CString strHelpFile = m_pszHelpFilePath;
 #ifdef _DEBUG
-    strHelpFile.Replace("D.HLP", ".HLP"); // convert to non-debug help file name
+    strHelpFile.Replace("D.CHM", ".CHM"); // convert to non-debug help file name
 #endif
     strHelpFile.Replace(".HLP", ".chm");
     free((void*)m_pszHelpFilePath);
     m_pszHelpFilePath = _tcsdup(strHelpFile);
+
+    // initialise the COM library
+    HRESULT hr = CoInitialize(NULL);
+    if (FAILED(hr))
+    {
+        AfxMessageBox("Failed to initialise COM");
+        return FALSE;
+    }
 
     //InitContextMenuManager(); // we construct our own custom one
     InitShellManager();
@@ -191,6 +201,9 @@ BOOL CDDOBuilderApp::InitInstance()
     NotifyLoadComplete();
     GetLog().AddLogEntry("Ready");
 
+    m_dwHtmlHelpCookie = NULL;
+    ::HtmlHelp(NULL, NULL, HH_INITIALIZE, (DWORD)&m_dwHtmlHelpCookie); // Cookie returned by Hhctrl.ocx used to uninitialise
+
     return TRUE;
 }
 
@@ -203,6 +216,13 @@ int CDDOBuilderApp::ExitInstance()
         Sleep(5);
     }
     AfxOleTerm(FALSE);
+
+    // Close any open HTML Help windows
+    ::HtmlHelp(NULL, NULL, HH_CLOSE_ALL, 0);
+    ::HtmlHelp(NULL, NULL, HH_UNINITIALIZE, m_dwHtmlHelpCookie) ; // Pass in cookie from initialisation
+
+    // release the COM library
+    CoUninitialize();
 
     return CWinAppEx::ExitInstance();
 }

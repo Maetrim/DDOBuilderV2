@@ -254,10 +254,9 @@ void CDDOBuilderDoc::OnRevertToBackup()
         {
             std::string errorMessage = reader.ErrorMessage();
             // document has failed to load. Tell the user what we can about it
-            CString text;
             text.Format("The backup document %s\n"
                     "failed to load. The XML parser reported the following problem:\n"
-                    "\n", m_strBackupFilename);
+                    "\n", (LPCTSTR)m_strBackupFilename);
             text += errorMessage.c_str();
             AfxMessageBox(text, MB_ICONERROR);
         }

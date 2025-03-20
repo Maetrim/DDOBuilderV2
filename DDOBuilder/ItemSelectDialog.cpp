@@ -282,6 +282,9 @@ void CItemSelectDialog::PopulateAvailableItemList()
     const std::list<Item> & slotItems = ItemsForSlot(m_slot);
     m_availableItems.clear();
     std::list<Item>::const_iterator it = slotItems.begin();
+    InventorySlotType slot = m_slot;
+    if (m_slot == Inventory_CosmeticWeapon1) slot = Inventory_Weapon1;
+    if (m_slot == Inventory_CosmeticWeapon2) slot = Inventory_Weapon2;
     while (it != slotItems.end())
     {
         if (bIgnoreRaidItems && it->IsRaidItem())
@@ -298,7 +301,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
         }
         // may not qualify due to current level
         if ((*it).MinLevel() <= m_pBuild->Level()
-            && (*it).CanEquipToSlot(m_slot)
+            && (*it).CanEquipToSlot(slot)
             && (static_cast<int>((*it).MinLevel()) >= minItemLevel || (*it).MinLevel() == 0))
         {
             // if its armor or a weapon, we may need to filter items further
@@ -317,6 +320,14 @@ void CItemSelectDialog::PopulateAvailableItemList()
                         canSelect = false;
                     }
                 }
+                break;
+            case Inventory_CosmeticWeapon1:
+                canSelect = (m_weaponType == Weapon_Unknown)
+                        || (m_weaponType == Weapon_All)
+                        || (m_weaponType == (*it).Weapon());
+                break;
+            case Inventory_CosmeticWeapon2:
+                canSelect = (m_weaponType == Weapon_CosmeticShield);
                 break;
             case Inventory_Weapon1:
             case Inventory_Weapon2:

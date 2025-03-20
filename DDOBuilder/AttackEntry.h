@@ -5,13 +5,19 @@
 #pragma once
 #include "Dice.h"
 
+#include "BreakdownTypes.h"
+
 class AttackEntry
 {
     public:
         AttackEntry(void);
         ~AttackEntry();
 
+        void Initialise();
+
     private:
+        double GetBreakdownValue(BreakdownType type);
+
         // weapon specific
         Dice m_weaponDice;
         double m_weaponW;

@@ -192,6 +192,7 @@ void CWeaponImageDialog::PopulateAvailableIcons()
     case Weapon_Orb:                    directory = "Orbs\\"; break;
     case Weapon_RuneArm:                directory = "Weapon_RuneArm\\"; break;
     case Weapon_Collar:                 directory = "Collar\\"; break;
+    case Weapon_CosmeticShield:         directory = "Shields\\"; break;
     }
     m_images.DeleteImageList();
     m_imagesMap.clear();

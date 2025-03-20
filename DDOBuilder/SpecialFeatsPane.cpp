@@ -224,12 +224,16 @@ LRESULT CSpecialFeatPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     Character * pCharacter = (Character *)(lParam);
     m_pDoc = pDoc;
     m_pCharacter = pCharacter;
-    UpdateDocumentPointers(m_heroicSelectionViews);
-    UpdateDocumentPointers(m_racialSelectionViews);
-    UpdateDocumentPointers(m_iconicSelectionViews);
-    UpdateDocumentPointers(m_epicSelectionViews);
-    UpdateDocumentPointers(m_specialSelectionViews);
-    UpdateDocumentPointers(m_favorSelectionViews);
+    if (m_pCharacter != NULL)
+    {
+        m_pCharacter->AttachObserver(this);
+        UpdateDocumentPointers(m_heroicSelectionViews);
+        UpdateDocumentPointers(m_racialSelectionViews);
+        UpdateDocumentPointers(m_iconicSelectionViews);
+        UpdateDocumentPointers(m_epicSelectionViews);
+        UpdateDocumentPointers(m_specialSelectionViews);
+        UpdateDocumentPointers(m_favorSelectionViews);
+    }
     return 0L;
 }
 
@@ -238,7 +242,7 @@ BOOL CSpecialFeatPane::OnEraseBkgnd(CDC* pDC)
     std::vector<int> controlsNotToBeErased;
     //static int controlsNotToBeErased[] =
     //{
-    controlsNotToBeErased.push_back(IDC_STATIC_HEROIC);
+        controlsNotToBeErased.push_back(IDC_STATIC_HEROIC);
         controlsNotToBeErased.push_back(IDC_STATIC_RACIAL);
         controlsNotToBeErased.push_back(IDC_STATIC_ICONIC);
         controlsNotToBeErased.push_back(IDC_STATIC_EPIC);
@@ -384,5 +388,26 @@ void CSpecialFeatPane::RevokeAllFeats(std::vector<CFeatSelectionDialog*>& feats)
     {
         feats[i]->DoRightClickAction();
     }
+}
+
+
+void CSpecialFeatPane::UpdateActiveLifeChanged(Character*)
+{
+    UpdateDocumentPointers(m_heroicSelectionViews);
+    UpdateDocumentPointers(m_racialSelectionViews);
+    UpdateDocumentPointers(m_iconicSelectionViews);
+    UpdateDocumentPointers(m_epicSelectionViews);
+    UpdateDocumentPointers(m_specialSelectionViews);
+    UpdateDocumentPointers(m_favorSelectionViews);
+}
+
+void CSpecialFeatPane::UpdateActiveBuildChanged(Character *)
+{
+    UpdateDocumentPointers(m_heroicSelectionViews);
+    UpdateDocumentPointers(m_racialSelectionViews);
+    UpdateDocumentPointers(m_iconicSelectionViews);
+    UpdateDocumentPointers(m_epicSelectionViews);
+    UpdateDocumentPointers(m_specialSelectionViews);
+    UpdateDocumentPointers(m_favorSelectionViews);
 }
 

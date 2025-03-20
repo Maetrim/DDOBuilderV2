@@ -179,6 +179,7 @@ private:
     std::map<std::string, int> m_spellImagesMap;
     bool m_bLoadComplete;
     CString m_iniFileFilename;
+    DWORD m_dwHtmlHelpCookie; // HtmlHelp initialisation cookie
 
     // threaded item load variables
     bool m_bItemLoadThreadRunning;

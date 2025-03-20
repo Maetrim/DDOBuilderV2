@@ -183,8 +183,41 @@
 #define HID_LIFE_IMPORTLIVESFROMOTHER           0x18056
 #define HID_DEVELOPMENT_CRAWLSPECIFICWIKILINK   0x18057
 #define HID_VIEW_RESETSCREENLAYOUT              0x1805E
-#define HID_BUTTON32863                         0x1805F
 #define HID_FILE_REVERTTOBACKUP                 0x18060
+#define HIDD2_ABOUTBOX                          0x10064
+#define HIDD2_DDOBUILDER_FORM                   0x10065
+#define HIDD2_BUILDS_PANE                       0x10066
+#define HIDD2_CLASS_AND_FEAT_PANE               0x10067
+#define HIDD2_LOG_PANE                          0x10068
+#define HIDD2_SKILLS_PANE                       0x10069
+#define HIDD2_SPECIAL_FEATS_PANE                0x1006A
+#define HIDD2_ENHANCEMENTS_PANE                 0x1006B
+#define HIDD2_ENHANCEMENT_SELECTION             0x1006C
+#define HIDD2_SELECTION_SELECT_DIALOG           0x1006D
+#define HIDD2_BREAKDOWNS_PANE                   0x1006E
+#define HIDD2_STANCES_PANE                      0x1006F
+#define HIDD2_FEAT_SELECTION                    0x10070
+#define HIDD2_DESTINY_PANE                      0x10071
+#define HIDD2_AUTOMATIC_FEATS_PANE              0x10072
+#define HIDD2_GRANTED_FEATS_PANE                0x10073
+#define HIDD2_REAPER_ENHANCEMENTS_PANE          0x10074
+#define HIDD2_DC_PANE                           0x10075
+#define HIDD2_EQUIPMENT_PANE                    0x10076
+#define HIDD2_INVENTORY_SELECTION               0x1007F
+#define HIDD2_NAME_GEAR_SET                     0x10083
+#define HIDD2_SPELLS_PANE                       0x1008B
+#define HIDD2_SPELLS_PAGE                       0x1008C
+#define HIDD2_SLA_PAGE                          0x1008E
+#define HIDD2_FORUM_EXPORT_DIALOG               0x1008F
+#define HIDD2_FIND_GEAR_DIALOG                  0x10090
+#define HIDD2_ITEM_SELECT                       0x100DC
+#define HIDD2_NOTES_PANE                        0x10143
+#define HIDD2_SELFANDPARTYBUFFS_PANE            0x1014F
+#define HIDD2_DIALOG_WIKILINK                   0x10150
+#define HIDD2_DPS_PANE                          0x10151
+#define HIDD2_DIALOG_SETITEMIMAGES              0x101A4
+#define HIDD2_FAVOR_PANE                        0x101A5
+#define HIDD2_NAME_ATTACKCHAIN                  0x101A6
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064
@@ -216,7 +249,6 @@
 #define HIDD_STANCES_PANE                       0x2006F
 #define HIDD_FEAT_SELECTION                     0x20070
 #define HIDD_DESTINY_PANE                       0x20071
-#define HIDD_BREAKDOWNS_PANE1                   0x20072
 #define HIDD_AUTOMATIC_FEATS_PANE               0x20072
 #define HIDD_GRANTED_FEATS_PANE                 0x20073
 #define HIDD_REAPER_ENHANCEMENTS_PANE           0x20074
@@ -236,7 +268,6 @@
 #define HIDD_DPS_PANE                           0x20151
 #define HIDD_DIALOG_SETITEMIMAGES               0x201A4
 #define HIDD_FAVOR_PANE                         0x201A5
-#define HIDD_NAME_GEAR_SET1                     0x201A6
 #define HIDD_NAME_ATTACKCHAIN                   0x201A6
  
 // Frame Controls (IDW_*) 

@@ -32,6 +32,7 @@ class Attack :
                 DL_STRING(_, Description) \
                 DL_STRING(_, Icon) \
                 DL_OPTIONAL_VECTOR(_, double, Cooldown) \
+                DL_OPTIONAL_SIMPLE(_, double, ExecutionTime, 0.0) \
                 DL_OPTIONAL_OBJECT(_, AttackBonus, ThisAttack) \
                 DL_OPTIONAL_OBJECT(_, AttackBonus, FollowOn)
 
