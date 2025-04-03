@@ -627,6 +627,7 @@ void CDPSPane::PopulateAttackChain()
             m_attackList.SetItemState(sel, LVIS_SELECTED, LVIS_SELECTED);
             m_attackList.EnsureVisible(sel, FALSE);
         }
+        CalculateAttackChainDPS();
     }
 }
 
@@ -899,6 +900,61 @@ void CDPSPane::OnRemoveAttack()
             ac.RemoveAttackAt(delLoc);
             pBuild->UpdateAttackChain(pBuild->ActiveAttackChain(), ac);
             PopulateAttackChain();
+        }
+    }
+}
+
+void CDPSPane::CalculateAttackChainDPS()
+{
+    if (m_pCharacter != NULL)
+    {
+        int ai = 0;
+        CString text;
+        double totalDPS = 0.0;
+        const Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            std::list<AttackBuff> buffs;
+            const AttackChain& ac = pBuild->GetActiveAttackChain();
+            double timePoint = 0.0;
+            for (auto&& acit: ac.Attacks())
+            {
+                Attack attack = FindAttack(acit);
+                double attackDPS = EvaluateAttack(attack, buffs, timePoint);
+                text.Format("%d", (int)attackDPS);
+                m_attackList.SetItemText(ai, CI_DPSScore, text);
+                totalDPS += attackDPS;
+                timePoint += attack.ExecutionTime();
+                DropTimedOutBuffs(&buffs, timePoint);
+                ai++;
+            }
+        }
+    }
+}
+
+double CDPSPane::EvaluateAttack(
+    const Attack& attack,
+    const std::list<AttackBuff>& buffs,
+    double timePoint)
+{
+    double dps = 0.0;
+    return dps;
+}
+
+void CDPSPane::DropTimedOutBuffs(
+    std::list<AttackBuff> * buffs,
+    double timePoint)
+{
+    std::list<AttackBuff>::iterator it = buffs->begin();
+    while (it != buffs->end())
+    {
+        if ((*it).Expired(timePoint))
+        {
+            it = buffs->erase(it);
+        }
+        else
+        {
+            ++it;
         }
     }
 }

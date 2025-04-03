@@ -63,27 +63,32 @@ void BreakdownItemDestinyAps::CreateOtherEffects()
         if (pBuild != NULL)
         {
             size_t level = pBuild->Level();
-            if (level > MAX_CLASS_LEVEL)
+            if (level >= MAX_CLASS_LEVEL)
             {
                 level -= MAX_CLASS_LEVEL;
-                size_t epicLevels = min(level, 10);
-                size_t legendarylevels = level - epicLevels;
+                size_t epicLevels = min(level + 1, 10);
                 if (epicLevels > 0)
                 {
                     Effect elBonus(
                         Effect_DestinyAPBonus,
                         "Epic Levels",
-                        "Class",
+                        "Epic",
                         epicLevels * 4);
                     AddOtherEffect(elBonus);
                 }
-                if (legendarylevels > 0)
+                if (level >= MAX_EPIC_LEVEL)
                 {
+                    level -= MAX_EPIC_LEVEL;
+                    level = min(level + 1, 10);
+                    if (pBuild->Level() == BUILD_START_LEVEL)
+                    {
+                        level = BUILD_START_LEVEL - MAX_CLASS_LEVEL - MAX_EPIC_LEVEL;
+                    }
                     Effect llBonus(
                         Effect_DestinyAPBonus,
                         "Legendary Levels",
-                        "Class",
-                        legendarylevels * 4);
+                        "Legendary",
+                        level * 4);
                     AddOtherEffect(llBonus);
                 }
             }

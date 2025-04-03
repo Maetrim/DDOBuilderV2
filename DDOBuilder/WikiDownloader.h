@@ -24,5 +24,7 @@ class WikiDownloader
         std::map<std::string, int> m_knownUrls;
         std::deque<std::string> m_pagesToProcess;
         char m_path[_MAX_PATH];
+        bool m_bLimitedParse;
+        size_t m_parseDepth;
 };
 

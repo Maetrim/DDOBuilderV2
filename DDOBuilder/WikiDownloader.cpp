@@ -5,7 +5,9 @@
 #include "MainFrm.h"
 
 WikiDownloader::WikiDownloader() :
-    m_pageIndex(0)
+    m_pageIndex(0),
+    m_bLimitedParse(false),
+    m_parseDepth(0)
 {
     // get the path location for wget
     char fullPath[MAX_PATH];
@@ -26,6 +28,7 @@ void WikiDownloader::Start(CString link)
 {
     m_knownUrls[(LPCTSTR)link] = m_pageIndex++;
     m_pagesToProcess.push_back((LPCTSTR)link);
+    m_bLimitedParse = true;
     Start();
 }
 
@@ -69,7 +72,11 @@ void WikiDownloader::Start()
         }
         else
         {
-            ParseDownloadedFile(url, "page/Item"); // ignore talk pages also , "page/Item_talk");
+            if (!m_bLimitedParse || m_parseDepth == 0)
+            {
+                ParseDownloadedFile(url, "page/Item"); // ignore talk pages also , "page/Item_talk");
+                ++m_parseDepth;
+            }
         }
         // allow UI to function
         MSG msg;
@@ -195,15 +202,18 @@ void WikiDownloader::ParseFile(
             if (url.find(goodUrlContent) != std::string::npos
                     && url.find("page/Item_talk") == std::string::npos)
             {
-                // we want this url
-                std::string fullUrl("https://www.ddowiki.com");
-                fullUrl += url;
-                // only add it if its not a duplicate page we already know about
-                if (m_knownUrls.find(fullUrl) == m_knownUrls.end())
+                if (!m_bLimitedParse || url != "/page/Items")
                 {
-                    // its a new url
-                    m_knownUrls[fullUrl] = m_pageIndex++;
-                    m_pagesToProcess.push_back(fullUrl);
+                    // we want this url
+                    std::string fullUrl("https://www.ddowiki.com");
+                    fullUrl += url;
+                    // only add it if its not a duplicate page we already know about
+                    if (m_knownUrls.find(fullUrl) == m_knownUrls.end())
+                    {
+                        // its a new url
+                        m_knownUrls[fullUrl] = m_pageIndex++;
+                        m_pagesToProcess.push_back(fullUrl);
+                    }
                 }
             }
         }

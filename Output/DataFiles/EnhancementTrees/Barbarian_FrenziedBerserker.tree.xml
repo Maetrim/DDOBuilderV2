@@ -11,7 +11,7 @@
     </Requirements>
     <Background>BarbarianBackground</Background>
     <Icon>Barbarian</Icon>
-     <!--Core Items-->
+    <!--Core Items-->
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Die Hard</Name>
       <InternalName>FBCore1</InternalName>
@@ -75,7 +75,7 @@
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Frenzy</Name>
       <InternalName>FBCore3</InternalName>
-         <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+      <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
 This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.
 Passive: +5 Melee Power
 Activation Cost: 10 Hit Points.
@@ -101,11 +101,11 @@ Note: Imbue only works with Melee weapons.</Description>
         </Requirement>
       </Requirements>
       <Stance>
-         <Name>Frenzy</Name>
-         <Icon>FBFrenzy</Icon>
-         <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+        <Name>Frenzy</Name>
+        <Icon>FBFrenzy</Icon>
+        <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
 This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.</Description>
-         <Group>Imbue</Group>
+        <Group>Imbue</Group>
       </Stance>
       <Effect>
         <Type>MeleePower</Type>
@@ -176,7 +176,7 @@ This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Death Frenzy</Name>
       <InternalName>FBCore5</InternalName>
-         <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
+      <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
 +6 strength, +1 critical damage multiplier on rolls of 19-20. 
 Your melee weapons gain 'Greater Vicious'. +4d6 damage to your attacks.
 This damage scales with 100% Melee Power.
@@ -204,9 +204,9 @@ Cooldown: 30 seconds.</Description>
         </Requirement>
       </Requirements>
       <Stance>
-         <Name>Death Frenzy</Name>
-         <Icon>FBDeathFrenzy</Icon>
-         <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
+        <Name>Death Frenzy</Name>
+        <Icon>FBDeathFrenzy</Icon>
+        <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
 +6 strength, +1 critical damage multiplier on rolls of 19-20. 
 Your melee weapons gain 'Greater Vicious'. +4d6 damage to your attacks.
 This damage scales with 100% Melee Power.</Description>
@@ -261,30 +261,30 @@ This damage scales with 100% Melee Power.</Description>
           </Requirement>
         </Requirements>
       </Effect>
-       <Effect>
-          <Type>ImbueDice</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">3</Amount>
-          <Requirements>
-             <Requirement>
-                <Type>Stance</Type>
-                <Item>Death Frenzy</Item>
-             </Requirement>
-          </Requirements>
-       </Effect>
-    <Effect>
-      <DisplayName>Frenzied Berserker - 3 Piece bonus</DisplayName>
-      <Type>AbilityBonus</Type>
-      <Type>AbilityBonus</Type>
-      <Type>AbilityBonus</Type>
-      <Bonus>Stacking</Bonus>
-      <Item>Strength</Item>
-      <Item>Constitution</Item>
-      <AType>Stacks</AType>
-      <Amount size="8">0 0 0 0 0 2 2 2</Amount>
-      <ApplyAsItemEffect/>
-    </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Death Frenzy</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>Frenzied Berserker - 3 Piece bonus</DisplayName>
+        <Type>AbilityBonus</Type>
+        <Type>AbilityBonus</Type>
+        <Type>AbilityBonus</Type>
+        <Bonus>Stacking</Bonus>
+        <Item>Strength</Item>
+        <Item>Constitution</Item>
+        <AType>Stacks</AType>
+        <Amount size="8">0 0 0 0 0 2 2 2</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Storm's Eye</Name>
@@ -319,13 +319,13 @@ Cooldown: 2.5 minutes.</Description>
           <Item>Capstone Enhancement</Item>
         </Requirement>
       </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>FBCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>FBCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
       <Effect>
         <Type>CreateSlider</Type>
         <Bonus>Enhancement</Bonus>
@@ -356,7 +356,7 @@ Cooldown: 2.5 minutes.</Description>
         <Item>Constitution</Item>
       </Effect>
     </EnhancementTreeItem>
-     <!--Tier 1-->
+    <!--Tier 1-->
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Extra Rage</Name>
       <InternalName>FBExtraRage</InternalName>
@@ -453,19 +453,19 @@ This can only trigger once every five minutes</Description>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
         <Requirements>
-            <RequiresOneOf>
-                <Requirement>
-                    <Type>Stance</Type>
-                    <Item>Rage</Item>
-                </Requirement>
-                <Requirement>
-                    <Type>Stance</Type>
-                    <Item>Beasthide Shifter: Shifted Form</Item>
-                </Requirement>
-                <Requirement>
-                    <Type>Stance</Type>
-                    <Item>Razorclaw Shifter: Shifted Form</Item>
-                </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Beasthide Shifter: Shifted Form</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Razorclaw Shifter: Shifted Form</Item>
+            </Requirement>
           </RequiresOneOf>
         </Requirements>
       </Effect>
@@ -499,7 +499,7 @@ speed for 20 seconds.</Description>
         <Amount size="3">1 2 3</Amount>
       </Effect>
     </EnhancementTreeItem>
-     <!--Tier 2-->
+    <!--Tier 2-->
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Angry Arms</Name>
       <InternalName>FBAngryArms</InternalName>
@@ -517,10 +517,10 @@ speed for 20 seconds.</Description>
           <Item>Barbarian</Item>
           <Value>2</Value>
         </Requirement>
-         <Requirement>
-            <Type>Feat</Type>
-            <Item>Two Handed Fighting</Item>
-         </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>Strikethrough</Type>
@@ -565,14 +565,14 @@ constitution until you rest or die. (Cooldown: 3 seconds)</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-       <Requirements>
-          <Requirement>
-             <Type>ClassMinLevel</Type>
-             <Item>Barbarian</Item>
-             <Value>2</Value>
-          </Requirement>
-       </Requirements>
-       <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Clickie />
       <ArrowUp />
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -585,14 +585,14 @@ constitution until you rest or die. (Cooldown: 3 seconds)</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-       <Requirements>
-          <Requirement>
-             <Type>ClassMinLevel</Type>
-             <Item>Barbarian</Item>
-             <Value>2</Value>
-          </Requirement>
-       </Requirements>
-       <Effect>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
         <Type>ExtraActionBoost</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
@@ -611,15 +611,15 @@ Cooldown: 30 seconds.</Description>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
-       <Requirements>
-          <Requirement>
-             <Type>ClassMinLevel</Type>
-             <Item>Barbarian</Item>
-             <Value>2</Value>
-          </Requirement>
-       </Requirements>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
     </EnhancementTreeItem>
-     <!--Tier 3-->
+    <!--Tier 3-->
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Mad Munitions</Name>
       <InternalName>FBMadMunitions</InternalName>
@@ -641,10 +641,10 @@ Cooldown: 30 seconds.</Description>
           <Type>Enhancement</Type>
           <Item>FBAngryArms</Item>
         </Requirement>
-         <Requirement>
-            <Type>Feat</Type>
-            <Item>Greater Two Handed Fighting</Item>
-         </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Greater Two Handed Fighting</Item>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>Strikethrough</Type>
@@ -724,7 +724,7 @@ Cooldown: [9/6/3] seconds</Description>
         <Amount size="1">1</Amount>
       </Effect>
     </EnhancementTreeItem>
-     <!--Tier 4-->
+    <!--Tier 4-->
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Crazy Strike</Name>
       <InternalName>FBCrazyStrike</InternalName>
@@ -760,14 +760,14 @@ Cooldown: 20 seconds</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>20</MinSpent>
-       <Requirements>
-          <Requirement>
-             <Type>ClassMinLevel</Type>
-             <Item>Barbarian</Item>
-             <Value>4</Value>
-          </Requirement>
-       </Requirements>
-       <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Clickie />
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Wade In</Name>
@@ -781,12 +781,12 @@ per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds.</Description>
       <Ranks>3</Ranks>
       <MinSpent>20</MinSpent>
       <Requirements>
-         <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Barbarian</Item>
-            <Value>4</Value>
-         </Requirement>
-         <Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
           <Type>Enhancement</Type>
           <Item>FBSupremeCleave</Item>
         </Requirement>
@@ -803,12 +803,12 @@ per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds.</Description>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <Requirements>
-         <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Barbarian</Item>
-            <Value>4</Value>
-         </Requirement>
-         <Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
           <Type>Enhancement</Type>
           <Item>FBConstitution</Item>
         </Requirement>
@@ -821,12 +821,12 @@ per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds.</Description>
         <Amount size="1">1</Amount>
       </Effect>
     </EnhancementTreeItem>
-     <!--Tier 5-->
+    <!--Tier 5-->
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Focus Wide</Name>
       <InternalName>FBFocusWide</InternalName>
-       <Description>When you score a vorpal hit, you gain +50% Strikethrough for 12 seconds.</Description>
-       <Icon>FBFocusWide</Icon>
+      <Description>When you score a vorpal hit, you gain +50% Strikethrough for 12 seconds.</Description>
+      <Icon>FBFocusWide</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -834,16 +834,16 @@ per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds.</Description>
       <MinSpent>30</MinSpent>
       <Tier5 />
       <Requirements>
-         <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Barbarian</Item>
-            <Value>5</Value>
-         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
-         <Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
           <Type>Enhancement</Type>
           <Item>FBMadMunitions</Item>
         </Requirement>
@@ -866,10 +866,10 @@ per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds.</Description>
           <Item>Barbarian</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>Weapon_CriticalMultiplier</Type>
@@ -882,7 +882,7 @@ per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds.</Description>
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Lash Out</Name>
       <InternalName>FBLashOut</InternalName>
-         <Description>Supreme Cleave has a [50/75/82]% chance to bleed damaged enemies, inflicting up
+      <Description>Supreme Cleave has a [50/75/82]% chance to bleed damaged enemies, inflicting up
 to [1/2/3] stacks. This can stack up to 5 times. Your Supreme Cleave also reduces
 the AC of enemies by [1/2/3] for six seconds. This stacks up to five times.</Description>
       <Icon>FBLashOut</Icon>
@@ -898,10 +898,10 @@ the AC of enemies by [1/2/3] for six seconds. This stacks up to five times.</Des
           <Item>Barbarian</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -916,20 +916,20 @@ the AC of enemies by [1/2/3] for six seconds. This stacks up to five times.</Des
       <MinSpent>30</MinSpent>
       <Tier5 />
       <Requirements>
-         <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Barbarian</Item>
-            <Value>5</Value>
-         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Selector>
         <EnhancementSelection>
           <Name>Accelerated Metabolism</Name>
-               <Description>While Barbarian raging, you gain 20 healing amplification and heal 3d6 hit
+          <Description>While Barbarian raging, you gain 20 healing amplification and heal 3d6 hit
 points every 4 seconds. This healing scales with 100% Melee Power.
 +25% Competence bonus to Maximum Hit Points.</Description>
           <Icon>FBAcceleratedMetabolism</Icon>
@@ -940,24 +940,24 @@ points every 4 seconds. This healing scales with 100% Melee Power.
             <AType>Simple</AType>
             <Amount size="1">20</Amount>
             <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Rage</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Beasthide Shifter: Shifted Form</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Wildhunt Shifter: Shifted Form</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Razorclaw Shifter: Shifted Form</Item>
-                  </Requirement>
-               </RequiresOneOf>
+              <RequiresOneOf>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Rage</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Beasthide Shifter: Shifted Form</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wildhunt Shifter: Shifted Form</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Razorclaw Shifter: Shifted Form</Item>
+                </Requirement>
+              </RequiresOneOf>
             </Requirements>
           </Effect>
         </EnhancementSelection>
@@ -973,24 +973,24 @@ points every 4 seconds. This healing scales with 100% Melee Power.
             <AType>Simple</AType>
             <Amount size="1">5</Amount>
             <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Rage</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Beasthide Shifter: Shifted Form</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Wildhunt Shifter: Shifted Form</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Razorclaw Shifter: Shifted Form</Item>
-                  </Requirement>
-               </RequiresOneOf>
+              <RequiresOneOf>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Rage</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Beasthide Shifter: Shifted Form</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wildhunt Shifter: Shifted Form</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Razorclaw Shifter: Shifted Form</Item>
+                </Requirement>
+              </RequiresOneOf>
             </Requirements>
           </Effect>
           <Effect>
@@ -999,64 +999,64 @@ points every 4 seconds. This healing scales with 100% Melee Power.
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
             <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Rage</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Beasthide Shifter: Shifted Form</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Wildhunt Shifter: Shifted Form</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Razorclaw Shifter: Shifted Form</Item>
-                  </Requirement>
-               </RequiresOneOf>
+              <RequiresOneOf>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Rage</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Beasthide Shifter: Shifted Form</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Wildhunt Shifter: Shifted Form</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Razorclaw Shifter: Shifted Form</Item>
+                </Requirement>
+              </RequiresOneOf>
             </Requirements>
-      <Item>Bastard Sword</Item>
-      <Item>Battle Axe</Item>
-      <Item>Club</Item>
-      <Item>Dagger</Item>
-      <Item>Dwarven Axe</Item>
-      <Item>Falchion</Item>
-      <Item>Great Axe</Item>
-      <Item>Great Club</Item>
-      <Item>Great Sword</Item>
-      <Item>Hand Axe</Item>
-      <Item>Handwraps</Item>
-      <Item>Heavy Mace</Item>
-      <Item>Heavy Pick</Item>
-      <Item>Kama</Item>
-      <Item>Khopesh</Item>
-      <Item>Kukri</Item>
-      <Item>Light Hammer</Item>
-      <Item>Light Mace</Item>
-      <Item>Light Pick</Item>
-      <Item>Longsword</Item>
-      <Item>Maul</Item>
-      <Item>Morningstar</Item>
-      <Item>Quarterstaff</Item>
-      <Item>Rapier</Item>
-      <Item>Scimitar</Item>
-      <Item>Shortsword</Item>
-      <Item>Sickle</Item>
-      <Item>Warhammer</Item>
+            <Item>Bastard Sword</Item>
+            <Item>Battle Axe</Item>
+            <Item>Club</Item>
+            <Item>Dagger</Item>
+            <Item>Dwarven Axe</Item>
+            <Item>Falchion</Item>
+            <Item>Great Axe</Item>
+            <Item>Great Club</Item>
+            <Item>Great Sword</Item>
+            <Item>Hand Axe</Item>
+            <Item>Handwraps</Item>
+            <Item>Heavy Mace</Item>
+            <Item>Heavy Pick</Item>
+            <Item>Kama</Item>
+            <Item>Khopesh</Item>
+            <Item>Kukri</Item>
+            <Item>Light Hammer</Item>
+            <Item>Light Mace</Item>
+            <Item>Light Pick</Item>
+            <Item>Longsword</Item>
+            <Item>Maul</Item>
+            <Item>Morningstar</Item>
+            <Item>Quarterstaff</Item>
+            <Item>Rapier</Item>
+            <Item>Scimitar</Item>
+            <Item>Shortsword</Item>
+            <Item>Sickle</Item>
+            <Item>Warhammer</Item>
           </Effect>
         </EnhancementSelection>
       </Selector>
-       <Effect>
-          <Type>Hitpoints</Type>
-          <Bonus>Competence</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">25</Amount>
-          <Percent/>
-          <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Percent />
+        <ApplyAsItemEffect />
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Tantrum</Name>
@@ -1078,12 +1078,12 @@ Cooldown: 30 seconds</Description>
       <Tier5 />
       <Clickie />
       <Requirements>
-         <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Barbarian</Item>
-            <Value>5</Value>
-         </Requirement>
-         <Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
           <Type>Level</Type>
           <Value>12</Value>
         </Requirement>

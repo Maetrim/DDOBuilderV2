@@ -465,7 +465,7 @@ void CForumExportDlg::AddFeats(
             if (first)
             {
                 forumExport << heading << "\r\n";
-                forumExport << "------------------------------------------------------------------------------------------\r\n";
+                forumExport << "[HR][/HR]\r\n";
                 first = false;
             }
             // add this one to the export
@@ -647,7 +647,7 @@ void CForumExportDlg::AddGrantedFeats(std::stringstream& forumExport)
         if (grantedFeats.size() > 0)
         {
             forumExport << "Granted Feats\r\n";
-            forumExport << "------------------------------------------------------------------------------------------\r\n";
+            forumExport << "[HR][/HR]\r\n";
             std::list<Effect>::const_iterator it = grantedFeats.begin();
             while (it != grantedFeats.end())
             {
@@ -659,7 +659,7 @@ void CForumExportDlg::AddGrantedFeats(std::stringstream& forumExport)
                 }
                 ++it;
             }
-            forumExport << "------------------------------------------------------------------------------------------\r\n";
+            forumExport << "[HR][/HR]\r\n";
         }
         // blank line after
         forumExport << "\r\n";
@@ -822,7 +822,7 @@ void CForumExportDlg::AddActiveStances(std::stringstream& forumExport)
     if (pStancePane != NULL)
     {
         forumExport << "Active Stances\r\n";
-        forumExport << "------------------------------------------------------------------------------------------\r\n";
+        forumExport << "[HR][/HR]\r\n";
         const std::list<StanceGroup*>& groups = pStancePane->Groups();
         for (auto&& git: groups)
         {
@@ -837,7 +837,7 @@ void CForumExportDlg::AddActiveStances(std::stringstream& forumExport)
                 }
             }
         }
-        forumExport << "------------------------------------------------------------------------------------------\r\n";
+        forumExport << "[HR][/HR]\r\n";
         forumExport << "\r\n";
     }
 }
@@ -846,7 +846,7 @@ void CForumExportDlg::AddSelfAndPartyBuffs(std::stringstream& forumExport)
 {
     UNREFERENCED_PARAMETER(forumExport);
     forumExport << "Self and Party Buffs\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "[HR][/HR]\r\n";
     const std::list<std::string>& buffs = m_pBuild->GetLife()->SelfAndPartyBuffs();
     std::list<std::string>::const_iterator it = buffs.begin();
     while (it != buffs.end())
@@ -1126,7 +1126,7 @@ void CForumExportDlg::AddEnhancements(std::stringstream& forumExport)
         forumExport << m_pBuild->BonusUniversalActionPoints();
     }
     forumExport << "[/SIZE][/COLOR]\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "[HR][/HR]\r\n";
     const Enhancement_SelectedTrees& trees = m_pBuild->EnhancementSelectedTrees();
     for (size_t ti = 0; ti < MAX_ENHANCEMENT_TREES; ++ti)
     {
@@ -1157,7 +1157,7 @@ void CForumExportDlg::AddEpicDestinyTree(
     forumExport << "[COLOR=rgb(184, 49, 47)][SIZE=6]";
     forumExport << "Epic Destinies: " << permanentDestinyPoints << " Destiny Points";
     forumExport << "[/SIZE][/COLOR]\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "[HR][/HR]\r\n";
     const Destiny_SelectedTrees& trees = m_pBuild->DestinySelectedTrees();
     for (size_t ti = 0; ti < MAX_DESTINY_TREES; ++ti)
     {
@@ -1249,7 +1249,7 @@ void CForumExportDlg::AddEnhancementTree(
         }
         ++it;
     }
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "[HR][/HR]\r\n";
 }
 
 void CForumExportDlg::AddEpicDestinyTree(
@@ -1298,7 +1298,7 @@ void CForumExportDlg::AddEpicDestinyTree(
         }
         ++it;
     }
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "[HR][/HR]\r\n";
 }
 
 void CForumExportDlg::AddReaperTree(
@@ -1343,7 +1343,7 @@ void CForumExportDlg::AddReaperTree(
         }
         ++it;
     }
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "[HR][/HR]\r\n";
     forumExport << "\r\n";
 }
 
@@ -1558,7 +1558,7 @@ void CForumExportDlg::AddSLAs(std::stringstream& forumExport)
             if (first)
             {
                 forumExport << "Spell Like / Special Abilities\r\n";
-                forumExport << "------------------------------------------------------------------------------------------\r\n";
+                forumExport << "[HR][/HR]\r\n";
                 first = false;
             }
             forumExport.width(44);
@@ -1569,7 +1569,7 @@ void CForumExportDlg::AddSLAs(std::stringstream& forumExport)
     }
     if (!first)
     {
-        forumExport << "------------------------------------------------------------------------------------------\r\n";
+        forumExport << "[HR][/HR]\r\n";
         forumExport << "\r\n";
     }
 }
@@ -1577,7 +1577,7 @@ void CForumExportDlg::AddSLAs(std::stringstream& forumExport)
 void CForumExportDlg::AddWeaponDamage(std::stringstream& forumExport)
 {
     forumExport << "Weapon Damage\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "[HR][/HR]\r\n";
     BreakdownItem* pBI = FindBreakdown(Breakdown_MeleePower);
     forumExport << "Melee Power:  " << pBI->Total() << "\r\n";
     AddBreakdown(forumExport, "Doublestrike: ", 1, Breakdown_DoubleStrike);

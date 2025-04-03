@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "Character.h"
 #include "Attack.h"
+#include "AttackBuff.h"
 #include "InfoTip.h"
 
 class CDPSPane :
@@ -56,6 +57,10 @@ class CDPSPane :
         void ShowTip(const Attack& attack, CRect itemRect);
         void HideTip();
         void SetTooltipText(const Attack& attack, CPoint tipTopLeft, CPoint tipAlternate);
+
+        void CalculateAttackChainDPS();
+        double EvaluateAttack(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        void DropTimedOutBuffs(std::list<AttackBuff> * buffs, double timePoint);
 
         CMFCButton m_buttonAddAttackChain;
         CComboBox m_comboAttackChains;

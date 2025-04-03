@@ -40,6 +40,8 @@ class TrainedEnhancement :
         DL_DECLARE_ACCESS(TrainedEnhancement_PROPERTIES)
         DL_DECLARE_VARIABLES(TrainedEnhancement_PROPERTIES)
 
+        void UpgradeSelections();
+
         std::vector<size_t> m_cost;      // cached only as may change on enhancements update
         size_t m_requiredAps;
 

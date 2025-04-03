@@ -3081,7 +3081,9 @@ void Build::TrainSpecialFeat(const std::string& featName)
             GetLog().AddLogEntry(ss.str().c_str());
             SetModifiedFlag(TRUE);
         }
-        else
+        else if (feat.Acquire() == FeatAcquisition_Special
+                || feat.Acquire() == FeatAcquisition_UniversalTree
+                || feat.Acquire() == FeatAcquisition_EpicDestinyTree)
         {
             m_pLife->TrainSpecialFeat(featName);
         }
@@ -3142,7 +3144,9 @@ void Build::RevokeSpecialFeat(const std::string& featName, bool bOverride)
             m_pLife->RevokeSpecialFeat(featName);
         }
     }
-    else
+    else if (feat.Acquire() == FeatAcquisition_Special
+            || feat.Acquire() == FeatAcquisition_UniversalTree
+            || feat.Acquire() == FeatAcquisition_EpicDestinyTree)
     {
         m_pLife->RevokeSpecialFeat(featName);
     }

@@ -15,7 +15,6 @@ by just modifying data or adding new files loaded by the DDOBuilder which can be
 the <b>DataFiles</b> folder.</p>
 <p>In this section of the Help I will go into detail on how to update these external 
 files to add and expand the software assuming I am no longer here to do it.</p>
-</BODY>
 
 <h2>Classes</h2>
 <p>All current classes supported by DDOBuilder are stored as external .xml files 
@@ -124,7 +123,7 @@ order.</p>
     <td valign="top">CastingStat</td>
     <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">The name of the ability that spell cast DCs are based on (e.g. Charisma for Bards). If this field repeats, the highest stat value from those in the list are used for that Class (see Favored Souls).</b></td>
+    <td valign="top">The name of the ability that spell cast DCs are based on (e.g. Charisma for Bards). If this field repeats, the highest stat value from those in the list are used for that Class (see Favored Souls).</td>
   </tr>
   <tr>
     <td valign="top">AutoBuySkill</td>
@@ -148,7 +147,7 @@ order.</p>
     <td valign="top">BAB</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">The BAB progression for this Class. 21 entires, first entry always 0, all other entries an increase of the basic BAB for this Class (Typically 0.5, 0.75 or 1).</td>
+    <td valign="top">The BAB progression for this Class. 21 entries, first entry always 0, all other entries an increase of the basic BAB for this Class (Typically 0.5, 0.75 or 1).</td>
   </tr>
   <tr>
     <td valign="top">ClassSpell</td>
@@ -549,4 +548,319 @@ that a carry over of AP spends in the older trees cannot be converted.</td>
   </tr>
 </table>
 <p>Note that when it comes to Effects, Stances and DCs, any of these defined at the EnhancementTreeItem level and at the Selector sub item level will be applied for any given enhancement. Thus common Effects/Stances/DCs can be defined only once and apply for all sub options in the selector list.</p>
+<h2>Requirements</h2>
+<p>Requirements are objects that set what conditions must be met for a given object to be active. They can be found in Feats, Enhancement Trees, Effects and other object types. 
+All these Requirement objects work the same. A Requirements object can have the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Requirement</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">A single requirement that must be met for this object to be active.</td>
+  </tr>
+  <tr>
+    <td valign="top">RequiresOneOf</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">An object that contains a sub list of Requirement objects. One<sup>1</sup> of which must be active for the whole requirement to be met.</td>
+  </tr>
+  <tr>
+    <td valign="top">RequiresNoneOf</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">An object that contains a sub list of Requirement objects. None of which must be active for the whole requirement to be met.</td>
+  </tr>
+</table>
+<p>A RequiresOneOf has the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Requirement</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Yes</td>
+    <td valign="top">A single requirement that may be met for this object to be active.</td>
+  </tr>
+  <tr>
+    <td valign="top">DisplayDescription</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">An alternate description to display in the UI for this optional requirement. For example, if a requirement was setup to require any Improved Critical: [Variant] feat, where a list of the 5 Improved Critical feats would be incredibly long in the UI, you can switch that auto-generated description to a fixed string such as "Any Improved Critical Feat" to shorten the UI description.</td>
+  </tr>
+  <tr>
+    <td valign="top">Count</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">By default a RequiresOneOf only needs 1 Requirement to be met for it to count as active, place a Count field in the object and you can specify how a minimum of how many must be met before the RequiresOneOf is met.</td>
+  </tr>
+</table>
+<p>A RequiresNoneOf has the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">Requirement</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">A single requirement that must not be met for this object to be active.</td>
+  </tr>
+  <tr>
+    <td valign="top">DisplayDescription</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">An alternate description to display in the UI for this anti-requirement. For example, if a requirement was setup to not require any of a list of specific Feats, you can switch that auto-generated description to a fixed string such as "My special description" to shorten the UI description.</td>
+  </tr>
+</table>
+<h2>Effects</h2>
+<p>A Effect object specifies values etc that will apply to a given tracked item in the software, such as an Ability Value or PRR etc. 
+    An Effect can apply in multiple ways and get its values from various sources. A typical effect can have the following fields:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Field Entry</b></td>
+    <td valign="top"><b>Required?</b></td>
+    <td valign="top"><b>Repeat?</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">DisplayName</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">This optional field is the text representation of this effect in the UI. By default if this field is not present, the effects gets the name of the object it is contained within. 
+                     All Effect objects when applied Stack by name, thus if you have Effects from multiple sources that must stack, you can specify the same DisplayName for each to get them to Stack correctly.</td>
+  </tr>
+  <tr>
+    <td valign="top">Type</td>
+    <td valign="top">Yes</td>
+    <td valign="top">Yes</td>
+    <td valign="top">A list of what Effect type this Effect should cause to be modified. There is a very large list of things that can be affected. The full list can be found in the source file "Effect.h". Note that the text in the &lt;Type&gt; field must match the Effect name exactly.</td>
+  </tr>
+  <tr>
+    <td valign="top">Bonus</td>
+    <td valign="top">Yes</td>
+    <td valign="top">No</td>
+    <td valign="top">The Bonus type of the Effect. Bonus types are defined in the BonusTypes.xml file. New bonus types can be added there using the existing file format.</td>
+  </tr>
+  <tr>
+    <td valign="top">Item</td>
+    <td valign="top">No</td>
+    <td valign="top">Yes</td>
+    <td valign="top">A list of sub-items this effect applies to within the context of the Effect type. e.g. For a SpellDC, Items in the list will include School names such as "Necromancy", for Weapon effects, names of weapons etc.</td>
+  </tr>
+  <tr>
+    <td valign="top">AType</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">The source of the Amount applied to the Effect. See later for a list of these and how they interact with other Effect fields.</td>
+  </tr>
+  <tr>
+    <td valign="top">Amount</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A vector of values that work with the AType field to get the actual value used for an effect.</td>
+  </tr>
+  <tr>
+    <td valign="top">Value</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">StackSource</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">IsItemSpecific</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">Percent</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">The final value determined for this effect is applied as a Percentage increase to the current total of the parameter affected. E.g. a 25% Competence bonus to Hitpoints.</td>
+  </tr>
+  <tr>
+    <td valign="top">Weapon1</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">Weapon2</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">ApplyAsItemEffect</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">By default all effects defined in Feat/Enhancement etc are assumed to always stack. If a given effect needs to be in the effect list (such as item effects) where stacking rules need to apply, then this flag will cause this effect to go into the Item list of effects where stacking rules apply.</td>
+  </tr>
+  <tr>
+    <td valign="top">UpdateAutomaticEffect</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">Rare</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">Requirements</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">A Requirements object as defined above for this specific Effect to be active. (E.g. a specific weapon type must be equipped).</td>
+  </tr>
+  <tr>
+    <td valign="top">Rank</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">Used by multiple rank enhancements, this field when present specifies for which rank only this effect should be applied/revoked.</td>
+  </tr>
+  <tr>
+    <td valign="top">Dice</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+  <tr>
+    <td valign="top">DamageType</td>
+    <td valign="top">No</td>
+    <td valign="top">No</td>
+    <td valign="top">????</td>
+  </tr>
+</table>
+<p>Note that the easiest way to work out how to setup an Effect object would be to do a search of the existing data files for
+    an existing Effect that does something the same or very similar to what you are trying to add.</p>
+<hr/>
+<p>The AType field configures how the value for a given effect is determined:</p>
+<table border="0">
+  <tr>
+    <td valign="top"><b>Value</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">NotNeeded</td>
+    <td valign="top">The Amount source field is not required.</td>
+  </tr>
+  <tr>
+    <td valign="top">Simple</td>
+    <td valign="top">The Amount field defined as &lt;Amount size="1"&gt;[Value]&lt;/Amount&gt; where [Value] is the value of a single stack of this enhancement. If multiple stacks are present you get #stacks * [Amount] as the final value.</td>
+  </tr>
+  <tr>
+    <td valign="top">Stacks</td>
+    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is used as lookup into the Amount vector to get the final effect value. </td>
+  </tr>
+  <tr>
+    <td valign="top">TotalLevel</td>
+    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters total level used as lookup into the Amount vector to get the final effect value. </td>
+  </tr>
+  <tr>
+    <td valign="top">BaseClassLevel</td>
+    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters Base Class level (i.e. the master class for a class and any of its archetypes) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Base Class name.</td>
+  </tr>
+  <tr>
+    <td valign="top">ClassLevel</td>
+    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters Class level (i.e. a specific class name) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Class name.</td>
+  </tr>
+  <tr>
+    <td valign="top">ClassCasterLevel</td>
+    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters Class level (i.e. a specific class name) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Class name.</td>
+  </tr>
+  <tr>
+    <td valign="top">APCount</td>
+    <td valign="top">The number of Action Points spent in the specified tree. The Item field is the Tree name.</td>
+  </tr>
+  <tr>
+    <td valign="top">AbilityValue</td>
+    <td valign="top">The total ability value is to be used. The Item field is the full Ability name (e.g. "Charisma").</td>
+  </tr>
+  <tr>
+    <td valign="top">AbilityMode</td>
+    <td valign="top">The mod ability value is to be used ((Ability Value - 10) / 2 rounded down). The Item field is the full Ability name (e.g. "Charisma").</td>
+  </tr>
+  <tr>
+    <td valign="top">HalfAbilityMod</td>
+    <td valign="top">The mod ability value /2 is to be used ((Ability Value - 10) / 2 rounded down). The Item field is the full Ability name (e.g. "Charisma").</td>
+  </tr>
+  <tr>
+    <td valign="top">ThirdAbilityMod</td>
+    <td valign="top">The mod ability value /3 is to be used ((Ability Value - 10) / 2 rounded down). The Item field is the full Ability name (e.g. "Charisma").</td>
+  </tr>
+  <tr>
+    <td valign="top">Slider</td>
+    <td valign="top">The effect is defining a Slider that should appear in the UI. The Item field will be the slider name and the &lt;Amount size="3"&gt;[Min] [Max] [Value]&lt;/Amount&gt; vector defines the Minimum, Maximum and start value for the slider UI elements.</td>
+  </tr>
+  <tr>
+    <td valign="top">SliderValue</td>
+    <td valign="top">The effect uses the slider value from the UI. The Item field specifies which slider value to use.</td>
+  </tr>
+  <tr>
+    <td valign="top">SliderValueLookup</td>
+    <td valign="top">???</td>
+  </tr>
+  <tr>
+    <td valign="top">FeatCount</td>
+    <td valign="top">The value is the number of times this Feat has been trained. The Item field is the Feat name.</td>
+  </tr>
+  <tr>
+    <td valign="top">SetBonusCount</td>
+    <td valign="top">The value is the number of times Set Bonus appears on equipped items. The Item field is the Set Bonus name.</td>
+  </tr>
+  <tr>
+    <td valign="top">SLA</td>
+    <td valign="top">???</td>
+  </tr>
+  <tr>
+    <td valign="top">SpellInfo</td>
+    <td valign="top">???</td>
+  </tr>
+  <tr>
+    <td valign="top">Dice</td>
+    <td valign="top">???</td>
+  </tr>
+  <tr>
+    <td valign="top">CriticalDice</td>
+    <td valign="top">???</td>
+  </tr>
+  <tr>
+    <td valign="top">BAB</td>
+    <td valign="top">The Amount field is the value of the characters BAB.</td>
+  </tr>
+</table>
+<hr/>
+<h2>Effect Stacking</h2>
+<p>Effect stacking can be tricky depending on the sources for a given values. 
+A typical tricky example are bonuses to SpellPower depending of which of several 
+enhancement options have been selected. For example The Draconic Incarnation tree 
+adds spell power to the Spell Power associated with the select Dragon type. To avoid 
+difficult setups I have in the past used odd/even stack counts to get values to resolve 
+    correctly. By default the UI will now list an effect if it resolves to a 0 value 
+    (there is a development option in th UI to force it to list them). To get values to 
+    apply only to a specific spell power, effects for all spell powers are present which 
+    always give 2 stacks when applied, thus an enhancement which gives a single stack only 
+    will push the stacking onto odd numbering stacks vs even. If the <font color="#DC143C">&lt;Amount size="x"&gt;[valueEven] [ValueOdd]...[ValueEven] [ValueOdd]&lt;/Amount&gt;</font> vector has 0 values for every [ValueEven] field it has no effect, while the [ValueOdd] fields specify the correct value for the selected Odd enhancement.</p>
+    <p>Note that all the effects my have the same <b>DisplayName</b> field to cause them to stack.</p>
+</BODY>
 </HTML>

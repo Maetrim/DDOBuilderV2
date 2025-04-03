@@ -622,20 +622,19 @@ const FeatsListObject& Life::SpecialFeats() const
 
 void Life::ApplyFeatEffects(const Feat& feat)
 {
-    // this feats effects need to be applied to all builds
-    for (auto&& bit: m_Builds)
+    Build *pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
     {
-        Build *pBuild = &bit;
         pBuild->ApplyFeatEffects(feat);
     }
 }
 
 void Life::RevokeFeatEffects(const Feat& feat)
 {
-    // this feats effects need to be revoked from all builds
-    for (auto&& bit: m_Builds)
+    Build *pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
     {
-        bit.RevokeFeatEffects(feat);
+        pBuild->RevokeFeatEffects(feat);
     }
 }
 

@@ -1215,6 +1215,7 @@ void CEnhancementTreeDialog::UpdateEnhancementRevoked(
         const EnhancementItemParams&)
 {
     Invalidate();
+    ValidateTreeSelections();
 }
 
 void CEnhancementTreeDialog::UpdateActionPointsChanged(Build* pBuild)

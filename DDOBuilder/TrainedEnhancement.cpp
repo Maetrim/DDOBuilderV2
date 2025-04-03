@@ -42,6 +42,7 @@ void TrainedEnhancement::EndElement()
     SaxContentElement::EndElement();
     DL_END(TrainedEnhancement_PROPERTIES)
     m_EnhancementName = ReplaceAll(m_EnhancementName, "PaleCore", "PMCore");
+    UpgradeSelections();
 }
 
 void TrainedEnhancement::Write(XmlLib::SaxWriter * writer) const
@@ -133,4 +134,28 @@ bool TrainedEnhancement::HasRequirementOf(
 bool TrainedEnhancement::operator<(const TrainedEnhancement & other) const
 {
     return (RequiredAps() < other.RequiredAps());
+}
+
+void TrainedEnhancement::UpgradeSelections()
+{
+    // check any selections that may have changed and need to be upgraded to their new names
+    static std::string oldToNew[] =
+    {
+        "Light: Enlightening Philosophy",       "Disciple of Philosophy: Light",
+        "Dark: Forbidden Philosophy",           "Disciple of Philosophy: Dark"
+    };
+    size_t count = sizeof(oldToNew) / sizeof(std::string);
+    if (count % 2 != 0) throw "Must be an even number";
+
+    if (HasSelection())
+    {
+        for (size_t i = 0; i < count; i += 2)
+        {
+            if (Selection() == oldToNew[i])
+            {
+                Set_Selection(oldToNew[i+1]);
+                break;  // no need to check the rest
+            }
+        }
+    }
 }

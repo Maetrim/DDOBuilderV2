@@ -3116,6 +3116,11 @@ resist, but increasing their spell point cost by 5 per level raised.</Descriptio
           <Value>3</Value>
         </Requirement>
         <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Druid</Item>
           <Value>3</Value>
@@ -3684,6 +3689,11 @@ chance by 1%. Stacks with Mental Toughness.</Description>
           <Type>BaseClassMinLevel</Type>
           <Item>Cleric</Item>
           <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
+          <Value>10</Value>
         </Requirement>
         <Requirement>
           <Type>BaseClassMinLevel</Type>
@@ -5774,6 +5784,11 @@ penalties are decreased by 1.</Description>
           <Value>3</Value>
         </Requirement>
         <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Dragon Disciple</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
           <Type>BaseClassMinLevel</Type>
           <Item>Druid</Item>
           <Value>3</Value>
@@ -6876,6 +6891,19 @@ equal to your Dexterity.)</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ShurikenExpertise</Icon>
+    <Effect>
+      <Type>Doubleshot</Type>
+      <Bonus>Feat</Bonus>
+      <AType>AbilityValue</AType>
+      <StackSource>Dexterity</StackSource>
+      <ApplyAsItemEffect />
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Shuriken</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
   </Feat>
   <Feat>
     <Name>Simple Weapon Proficiency: Club</Name>
@@ -12855,10 +12883,24 @@ to your Dexterity.</Description>
       <StackSource>Dexterity</StackSource>
       <ApplyAsItemEffect />
       <Requirements>
-        <Requirement>
-          <Type>Stance</Type>
-          <Item>Thrown Weapon</Item>
-        </Requirement>
+         <RequiresOneOf>
+           <Requirement>
+             <Type>Stance</Type>
+             <Item>Dart</Item>
+           </Requirement>
+           <Requirement>
+             <Type>Stance</Type>
+             <Item>Throwing Axe</Item>
+           </Requirement>
+           <Requirement>
+             <Type>Stance</Type>
+             <Item>Throwing Dagger</Item>
+           </Requirement>
+           <Requirement>
+             <Type>Stance</Type>
+             <Item>Throwing Hammer</Item>
+           </Requirement>
+         </RequiresOneOf>
       </Requirements>
     </Effect>
   </Feat>
