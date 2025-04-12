@@ -3083,7 +3083,11 @@ void Build::TrainSpecialFeat(const std::string& featName)
         }
         else if (feat.Acquire() == FeatAcquisition_Special
                 || feat.Acquire() == FeatAcquisition_UniversalTree
-                || feat.Acquire() == FeatAcquisition_EpicDestinyTree)
+                || feat.Acquire() == FeatAcquisition_EpicDestinyTree
+                || feat.Acquire() == FeatAcquisition_HeroicPastLife
+                || feat.Acquire() == FeatAcquisition_RacialPastLife
+                || feat.Acquire() == FeatAcquisition_IconicPastLife
+                || feat.Acquire() == FeatAcquisition_EpicPastLife)
         {
             m_pLife->TrainSpecialFeat(featName);
         }
@@ -3146,7 +3150,11 @@ void Build::RevokeSpecialFeat(const std::string& featName, bool bOverride)
     }
     else if (feat.Acquire() == FeatAcquisition_Special
             || feat.Acquire() == FeatAcquisition_UniversalTree
-            || feat.Acquire() == FeatAcquisition_EpicDestinyTree)
+                || feat.Acquire() == FeatAcquisition_EpicDestinyTree
+                || feat.Acquire() == FeatAcquisition_HeroicPastLife
+                || feat.Acquire() == FeatAcquisition_RacialPastLife
+                || feat.Acquire() == FeatAcquisition_IconicPastLife
+                || feat.Acquire() == FeatAcquisition_EpicPastLife)
     {
         m_pLife->RevokeSpecialFeat(featName);
     }
