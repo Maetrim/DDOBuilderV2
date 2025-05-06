@@ -42,6 +42,9 @@ class Spell :
         void SetIconIndex(size_t index);
         size_t IconIndex() const;
 
+        void SetMaxCasterLevel(int mcl);
+        void SetCooldown(double cooldown);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -70,7 +73,8 @@ class Spell :
                 DL_FLAG(_, Intensify) \
                 DL_FLAG(_, Maximize) \
                 DL_FLAG(_, Quicken) \
-                DL_OPTIONAL_SIMPLE(_, int, MaxCasterLevel, 0)
+                DL_OPTIONAL_SIMPLE(_, int, MaxCasterLevel, 0) \
+                DL_OPTIONAL_SIMPLE(_, double, Cooldown, 0.0)
 
         DL_DECLARE_ACCESS(Spell_PROPERTIES)
         DL_DECLARE_VARIABLES(Spell_PROPERTIES)

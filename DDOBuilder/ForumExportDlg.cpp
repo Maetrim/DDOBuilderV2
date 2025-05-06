@@ -735,7 +735,14 @@ void CForumExportDlg::AddConsolidatedFeats(std::stringstream& forumExport)
             bool requiresHeartOfWood = race.HasIconicClass() ? race.IconicClass() != expectedClass : false;
             if (requiresHeartOfWood)
             {
-                forumExport << "[TD][COLOR=rgb(184, 49, 47)]Requires a +1 Heart of Wood to switch out of Iconic Class[/COLOR][/TD]\r\n";
+                if (c.HasBaseClass() && c.BaseClass() == race.IconicClass())
+                {
+                    forumExport << "[TD][COLOR=rgb(184, 49, 47)]Requires a Lesser Reincarnation to switch from Iconic class to Archetype class[/COLOR][/TD]\r\n";
+                }
+                else
+                {
+                    forumExport << "[TD][COLOR=rgb(184, 49, 47)]Requires a +1 Heart of Wood to switch out of Iconic Class[/COLOR][/TD]\r\n";
+                }
                 bFirst = false;
             }
         }
@@ -1889,11 +1896,19 @@ std::list<std::string> CForumExportDlg::GetLevelEntries(
     {
         const LevelTraining& levelData = m_pBuild->LevelData(level);
         std::string expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
+        const Class& c = FindClass(expectedClass);
         const Race& race = FindRace(m_pBuild->Race());
         bool requiresHeartOfWood = race.HasIconicClass() ? race.IconicClass() != expectedClass : false;
         if (requiresHeartOfWood)
         {
-            lines.push_back("[COLOR=rgb(184, 49, 47)]Requires a +1 Heart of Wood to switch out of Iconic Class[/COLOR]");
+            if (c.HasBaseClass() && c.BaseClass() == race.IconicClass())
+            {
+                lines.push_back("[COLOR=rgb(184, 49, 47)]Requires a Lesser Reincarnation to switch from Iconic class to Archetype class[/COLOR]");
+            }
+            else
+            {
+                lines.push_back("[COLOR=rgb(184, 49, 47)]Requires a +1 Heart of Wood to switch out of Iconic Class[/COLOR]");
+            }
         }
     }
     // now add the trainable feat types and their selections

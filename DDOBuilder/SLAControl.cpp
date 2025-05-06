@@ -323,6 +323,9 @@ void CSLAControl::SetTooltipText(
     slaName = (*si).Name();
     // now we have the spell name, look it up
     Spell spell = FindSpellByName(slaName);
+    spell.SetCost((*si).Cost());
+    spell.SetMaxCasterLevel((*si).MCL());
+    spell.SetCooldown((*si).Cooldown());
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetSpell(
             *m_pCharacter->ActiveBuild(),
@@ -330,7 +333,7 @@ void CSLAControl::SetTooltipText(
     m_tooltip.Show();
 }
 
-void CSLAControl::AddSLA(const std::string & slaName, size_t stacks)
+void CSLAControl::AddSLA(const std::string & slaName, size_t stacks, const std::vector<double> & amountVector)
 {
     // add the spell at the relevant level if not exist already
     bool found = false;
@@ -346,7 +349,7 @@ void CSLAControl::AddSLA(const std::string & slaName, size_t stacks)
     }
     if (!found)
     {
-        SLA spell(slaName, stacks);
+        SLA spell(slaName, stacks, amountVector);
         m_SLAs.push_back(spell);
         if (IsWindow(GetSafeHwnd()))
         {

@@ -150,6 +150,7 @@ void Spell::UpdateSpell(const ClassSpell& cs, const std::string& ct, int spellLe
     Set_Level(cs.Level());
     if (cs.HasCost()) Set_Cost(cs.Cost()); else Set_Cost(5 * spellLevel);
     if (cs.HasMaxCasterLevel()) Set_MaxCasterLevel(cs.MaxCasterLevel());
+    if (cs.HasCooldown()) Set_Cooldown(cs.Cooldown());
 }
 
 void Spell::UpdateSpell(const FixedSpell& fs, const std::string& ct)
@@ -439,3 +440,14 @@ size_t Spell::IconIndex() const
 {
     return m_iconIndex;
 }
+
+void Spell::SetMaxCasterLevel(int mcl)
+{
+    Set_MaxCasterLevel(mcl);
+}
+
+void Spell::SetCooldown(double cooldown)
+{
+    Set_Cooldown(cooldown);
+}
+

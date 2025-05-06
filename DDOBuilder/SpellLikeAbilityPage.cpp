@@ -110,7 +110,7 @@ void CSpellLikeAbilityPage::UpdateFeatEffectApplied(
     // only interested in Effect_SpellLikeAbility
     if (effect.IsType(Effect_SpellLikeAbility))
     {
-        m_slas.AddSLA(effect.Item().front(), 1);
+        m_slas.AddSLA(effect.Item().front(), 1, effect.Amount());
     }
 }
 
@@ -130,7 +130,7 @@ void CSpellLikeAbilityPage::UpdateItemEffectApplied(
 {
     if (effect.IsType(Effect_SpellLikeAbility))
     {
-        m_slas.AddSLA(effect.Item().front(), 1);
+        m_slas.AddSLA(effect.Item().front(), 1, effect.Amount());
     }
 }
 
@@ -150,7 +150,7 @@ void CSpellLikeAbilityPage::UpdateEnhancementEffectApplied(
 {
     if (effect.IsType(Effect_SpellLikeAbility))
     {
-        m_slas.AddSLA(effect.Item().front(), 1);
+        m_slas.AddSLA(effect.Item().front(), 1, effect.Amount());
     }
 }
 

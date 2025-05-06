@@ -724,6 +724,22 @@ BreakdownItem * BreakdownItemWeaponEffects::GetWeaponBreakdown(bool bMainhand, B
     return pBI;
 }
 
+BasicDice BreakdownItemWeaponEffects::WeaponDice(bool bMainHand) const
+{
+    BasicDice dice(L"");
+    if (bMainHand
+            && m_pMainHandWeapon != NULL)
+    {
+        dice = m_pMainHandWeapon->WeaponDice();
+    }
+    if (!bMainHand
+            && m_pOffHandWeapon != NULL)
+    {
+        dice = m_pOffHandWeapon->WeaponDice();
+    }
+    return dice;
+}
+
 void BreakdownItemWeaponEffects::BuildChanged(Character* charData)
 {
     // clear any effects on a character change

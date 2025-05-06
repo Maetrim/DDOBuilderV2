@@ -2930,17 +2930,18 @@ bool WikiItemFileProcessor::ProcessSkill(const std::string& line, const std::str
         CString skill = EnumEntryText((SkillType)si, skillTypeMap);
         if (bonus != "Competence")
         {
-            searchText.Format("%s %s", bonus.c_str(), (LPCSTR)skill);
+            searchText.Format("%s %s ", bonus.c_str(), (LPCSTR)skill);
             bProcessed = AddCommonEffect(line, "SkillBonus", (LPCSTR)searchText, bonus, (LPCTSTR)skill);
         }
         else
         {
             searchText = skill;
+            searchText += " ";
             bProcessed = AddCommonEffect(line, "SkillBonus", (LPCSTR)searchText, bonus, (LPCTSTR)skill);
         }
         if (!bProcessed)
         {
-            searchText.Format("Enhanced %s", (LPCSTR)skill);
+            searchText.Format("Enhanced %s ", (LPCSTR)skill);
             bProcessed = AddCommonEffect(line, "SkillBonus", (LPCSTR)searchText, "Enhancement", (LPCTSTR)skill);
         }
     }

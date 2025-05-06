@@ -11,7 +11,7 @@ class ClassSpell :
 {
     public:
         ClassSpell(void);
-        ClassSpell(int level, size_t cost, size_t mcl);
+        ClassSpell(int level, size_t cost, size_t mcl, size_t cooldown);
         void Write(XmlLib::SaxWriter * writer) const;
 
     protected:
@@ -25,7 +25,8 @@ class ClassSpell :
                 DL_STRING(_, Name) \
                 DL_SIMPLE(_, int, Level, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, Cost, 0) \
-                DL_OPTIONAL_SIMPLE(_, size_t, MaxCasterLevel, 0)
+                DL_OPTIONAL_SIMPLE(_, size_t, MaxCasterLevel, 0) \
+                DL_OPTIONAL_SIMPLE(_, size_t, Cooldown, 0)
 
         DL_DECLARE_ACCESS(ClassSpell_PROPERTIES)
         DL_DECLARE_VARIABLES(ClassSpell_PROPERTIES)

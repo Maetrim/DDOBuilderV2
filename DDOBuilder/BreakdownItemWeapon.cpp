@@ -792,3 +792,8 @@ void BreakdownItemWeapon::LinkUp()
     m_ghostTouch.CreateOtherEffects();
     m_trueSeeing.CreateOtherEffects();
 }
+
+BasicDice BreakdownItemWeapon::WeaponDice() const
+{
+    return m_damageDice;
+}

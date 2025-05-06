@@ -20,7 +20,7 @@ ClassSpell::ClassSpell() :
     DL_INIT(ClassSpell_PROPERTIES)
 }
 
-ClassSpell::ClassSpell(int level, size_t cost, size_t mcl) :
+ClassSpell::ClassSpell(int level, size_t cost, size_t mcl, size_t cooldown) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
 {
     DL_INIT(ClassSpell_PROPERTIES)
@@ -30,6 +30,8 @@ ClassSpell::ClassSpell(int level, size_t cost, size_t mcl) :
     m_hasCost = true;
     m_MaxCasterLevel = mcl;
     m_hasMaxCasterLevel = true;
+    m_Cooldown = cooldown;
+    m_hasCooldown = true;
 }
 
 DL_DEFINE_ACCESS(ClassSpell_PROPERTIES)

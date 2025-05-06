@@ -40,6 +40,7 @@ class BreakdownItemWeaponEffects :
         void PopulateStartValues();
 
         BreakdownItem * GetWeaponBreakdown(bool bMainhand, BreakdownType bt);
+        BasicDice WeaponDice(bool bMainHand) const;
 
         // EffectCallbackItem
         virtual void FeatTrained(Build*, const std::string&) override;

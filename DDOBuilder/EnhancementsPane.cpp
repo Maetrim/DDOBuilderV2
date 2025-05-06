@@ -545,6 +545,7 @@ void CEnhancementsPane::UpdateBuildLevelChanged(Build*)
 {
     UpdateEnhancementWindows();
     UpdateWindowTitle();
+    UpdateClassChanged(NULL, "", "", 0);
 }
 
 void CEnhancementsPane::UpdateClassChanged(

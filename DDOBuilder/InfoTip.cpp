@@ -271,7 +271,8 @@ void CInfoTip::SetEnhancementTreeItem(
                 ClassSpell cs(
                     static_cast<int>(eit.Amount()[0]),
                     static_cast<size_t>(eit.Amount()[1]),
-                    static_cast<size_t>(eit.Amount()[2]));
+                    static_cast<size_t>(eit.Amount()[2]),
+                    0);         // granted spells have no cooldown
                 spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[spellName] = 1; // value doesn't matter
@@ -279,15 +280,22 @@ void CInfoTip::SetEnhancementTreeItem(
         }
         if (eit.IsType(Effect_SpellLikeAbility))
         {
+            const TrainedEnhancement * te = build.IsTrained(pItem->InternalName(), selection);
+            size_t offset = 0;
+            if (te != NULL)
+            {
+                offset = te->Ranks() * 4 - 4;
+            }
             std::string slaName = eit.Item().front();
             if (addedSpells.count(slaName) == 0)
             {
                 Spell spell = FindSpellByName(slaName);
                 ClassSpell cs(
-                    static_cast<int>(eit.Amount()[0]),
-                    static_cast<size_t>(eit.Amount()[1]),
-                    static_cast<size_t>(eit.Amount()[2]));
-                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
+                    static_cast<int>(eit.Amount()[offset]),
+                    static_cast<size_t>(eit.Amount()[offset + 1]),
+                    static_cast<size_t>(eit.Amount()[offset + 2]),
+                    static_cast<size_t>(eit.Amount()[offset + 3]));
+                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[offset])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[slaName] = 1; // value doesn't matter
             }
@@ -360,7 +368,8 @@ void CInfoTip::SetEnhancementSelectionItem(
                 ClassSpell cs(
                     static_cast<int>(eit.Amount()[0]),
                     static_cast<size_t>(eit.Amount()[1]),
-                    static_cast<size_t>(eit.Amount()[2]));
+                    static_cast<size_t>(eit.Amount()[2]),
+                    0);         // granted spells have no cooldown
                 spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[spellName] = 1; // value doesn't matter
@@ -368,15 +377,22 @@ void CInfoTip::SetEnhancementSelectionItem(
         }
         if (eit.IsType(Effect_SpellLikeAbility))
         {
+            const TrainedEnhancement * te = build.IsTrained(pItem->InternalName(), pSelection->Name());
+            size_t offset = 0;
+            if (te != NULL)
+            {
+                offset = te->Ranks() * 4 - 4;
+            }
             std::string slaName = eit.Item().front();
             if (addedSpells.count(slaName) == 0)
             {
                 Spell spell = FindSpellByName(slaName);
                 ClassSpell cs(
-                    static_cast<int>(eit.Amount()[0]),
-                    static_cast<size_t>(eit.Amount()[1]),
-                    static_cast<size_t>(eit.Amount()[2]));
-                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
+                    static_cast<int>(eit.Amount()[offset]),
+                    static_cast<size_t>(eit.Amount()[offset + 1]),
+                    static_cast<size_t>(eit.Amount()[offset + 2]),
+                    static_cast<size_t>(eit.Amount()[offset + 3]));
+                spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[offset])); // 2nd item is class
                 AppendSpellItem(build, spell);
                 addedSpells[slaName] = 1; // value doesn't matter
             }
@@ -1040,7 +1056,16 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
     if (spell.HasCost())
     {
         CString cost;
-        cost.Format("SP Cost: %d", spell.TotalCost(build));
+        if (spell.HasCooldown())
+        {
+            cost.Format("SP Cost: %d, Cooldown: %.1f s", spell.TotalCost(build), spell.Cooldown());
+            cost.Replace(".0", "");
+            cost.Replace("SP Cost: 0, ", "");
+        }
+        else
+        {
+            cost.Format("SP Cost: %d", spell.TotalCost(build));
+        }
         pHeader->SetCost(cost);
     }
     m_tipItems.push_back(pHeader);
@@ -1163,8 +1188,18 @@ void CInfoTip::SetLevelItem(
     if (level == 0
         && ct != expectedClass)
     {
-        text.Format("Requires a +1 Heart of Wood to switch from Iconic class of ");
-        text += expectedClass.c_str();
+        const ::Class & c = FindClass(ct);
+        if (c.HasBaseClass() && c.BaseClass() == expectedClass)
+        {
+            text.Format("Requires a Lesser Reincarnation to switch from Iconic class of ");
+            text += expectedClass.c_str();
+            text += " to Archetype class";
+        }
+        else
+        {
+            text.Format("Requires a +1 Heart of Wood to switch from Iconic class of ");
+            text += expectedClass.c_str();
+        }
         pRequirements->AddRequirement(text, false);
         pRequirements->AddRequirement("", true);    // blank line
     }

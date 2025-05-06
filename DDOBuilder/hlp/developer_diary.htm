@@ -3,23 +3,23 @@
 <HEAD>
     <meta name="GENERATOR" content="Microsoft FrontPage 6.0">
     <link rel="stylesheet" type="text/css" href="hhcenter.css">
-    <TITLE>Developer Diary - How to Maintain the Builder</TITLE>
+    <TITLE>Developer Diary - How to Maintain DDOBuilder</TITLE>
 </HEAD>
 
 <BODY>
 <h1>Developer Diary</h1>
 <p>Hi peeps, this topic is here assuming I got hit by a bus! Poor me!</p>
 <p>Anyway, assuming nothing in the code base is completely broken, it is 
-possible to update and maintain the builder (except possibly for items - see later) 
-by just modifying data or adding new files loaded by the DDOBuilder which can be found in 
-the <b>DataFiles</b> folder.</p>
+possible to update and maintain the DDOBuilder (except possibly for items - see later) 
+by just modifying data or adding new files loaded by the DDOBuilder which can 
+be found in the <b>DataFiles</b> folder.</p>
 <p>In this section of the Help I will go into detail on how to update these external 
 files to add and expand the software assuming I am no longer here to do it.</p>
 
 <h2>Classes</h2>
 <p>All current classes supported by DDOBuilder are stored as external .xml files 
 that can be found in the <b>DataFiles\Classes</b> folder. All classes have 
-filenames formatted as &lt;class name&gt;.Class.xml. These filenames must pass the 
+filenames formatted as &lt;class name&gt;.class.xml. These filenames must pass the 
 load filter of "*.class.xml" on program startup to be loaded.</p>
 <p>You can edit existing Class files in a text or xml editor to update them, or 
 if you are adding a new Class, I recommend that you copy an existing Class file 
@@ -28,7 +28,7 @@ not sensitive to the order of items in the file, so things can be added in any
 order.</p>
 <p>A Class can/will contain some or all of the following fields:</p>
 
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -51,7 +51,7 @@ order.</p>
     <td valign="top">Description</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">A text field that describes the Class. This text is shown in tooltips.</td>
+    <td valign="top">A text field that describes the Class. This text is shown in tool tips.</td>
   </tr>
   <tr>
     <td valign="top">ClassSpecificFeatType</td>
@@ -81,13 +81,13 @@ order.</p>
     <td valign="top">HitPoints</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">The number of base Hitpoints the Class gives per level trained.</td>
+    <td valign="top">The number of base Hit Points the Class gives per level trained.</td>
   </tr>
   <tr>
     <td valign="top">ClassSkill</td>
     <td valign="top">Yes</td>
     <td valign="top">Yes</td>
-    <td valign="top">One entry for each Skill that is a <b>Class Skill</b> for this Class. The text for the skill must match the internal string used for that skill in the software.</td>
+    <td valign="top">One entry for each Skill that is a <b>Class Skill</b> for this Class. The text for the Skill must match the internal string used for that Skill in the software.</td>
   </tr>
   <tr>
     <td valign="top">Alignment</td>
@@ -117,13 +117,13 @@ order.</p>
     <td valign="top">SpellPointsPerLevel</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">A vector of 21 values for the awarded Spell points at the given Class level, 0 based (i.e. first entry is when you have 0 levels of this Class). Must be declared as <b>&lt;SpellPointsPerLevel size="21"&gt;0 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525&lt;/SpellPointsPerLevel&gt;</b>. This would be a list of 21 0's if the Class does not get spell points.</td>
+    <td valign="top">A vector of 21 values for the awarded Spell points at the given Class level, 0 based (i.e. first entry is when you have 0 levels of this Class). Must be declared as <font color="#DC143C"><b>&lt;SpellPointsPerLevel size="21"&gt;0 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525&lt;/SpellPointsPerLevel&gt;</b></font>. This would be a list of 21 0's if the Class does not get spell points.</td>
   </tr>
   <tr>
     <td valign="top">CastingStat</td>
     <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">The name of the ability that spell cast DCs are based on (e.g. Charisma for Bards). If this field repeats, the highest stat value from those in the list are used for that Class (see Favored Souls).</td>
+    <td valign="top">The name of the Ability that spell cast DCs are based on (e.g. Charisma for Bards). If this field repeats, the highest stat value from those in the list are used for that Class (currently only Favored Souls do this).</b></td>
   </tr>
   <tr>
     <td valign="top">AutoBuySkill</td>
@@ -141,25 +141,25 @@ order.</p>
     <td valign="top"><b>Level1</b>..<b>Level20</b></td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">An entry for each Class level that specifies the number of trainable spells for this Class at that level. A typical entry may look like: &lt;Level7 size="6"&gt;4 4 2 0 0 0&lt;/Level7&gt;. This is for a Class that has a max spell level or 6, and can only train 4 level 1 spells, 4 level 2 spells, 2 level 3 spells, and no spells of other levels at Class level 7.</td>
+    <td valign="top">An entry for each Class level that specifies the number of trainable spells for this Class at that level. A typical entry may look like: <font color="#DC143C">&lt;Level7 size="6"&gt;4 4 2 0 0 0&lt;/Level7&gt;</font>. This is for a Class that has a max spell level of 6, and can only train 4 level 1 spells, 4 level 2 spells, 2 level 3 spells, and no spells of other levels at Class level 7.</td>
   </tr>
   <tr>
     <td valign="top">BAB</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">The BAB progression for this Class. 21 entries, first entry always 0, all other entries an increase of the basic BAB for this Class (Typically 0.5, 0.75 or 1).</td>
+    <td valign="top">The BAB progression for this Class. 21 entries, first entry always 0, all other entries an increase of the basic BAB for this Class (Typically 0.5, 0.75 or 1). Example of <font color="#DC143C">&lt;BAB size="21"&gt;0 0.75 1.50 2.25 3.00 3.75 4.50 5.25 6.00 6.75 7.50 8.25 9.0 9.75 10.50 11.25 12.00 12.75 13.50 14.25 15.00&lt;/BAB&gt;</font> for a class that has a BAB of 0.75 per level.</td>
   </tr>
   <tr>
     <td valign="top">ClassSpell</td>
     <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">One entry for each spell that Class can select from. Each Class spell specifies a spell <b>Name</b> (this must match an entry in the Spells.xml file), an optional spell point <b>Cost</b> and a required spell <b>Level</b>. Note that a spell level can be negative to say a spell it an auto acquired spell at the positive value of the level field, (e.g. Clerics get the Cure spells automatically and thus the Cure spell entries in the Cleric Class for these spells use negative values).</td>
+    <td valign="top">One entry for each spell that Class can select from. Each <i>ClassSpell</i> specifies a spell <b>Name</b> (this must match an entry in the Spells.xml file), an optional spell point <b>Cost</b> and a required spell <b>Level</b>. Note that a spell level can be negative to say a spell it an auto acquired spell at the positive value of the level field, (e.g. Clerics get the Cure spells automatically and thus the Cure spell entries in the Cleric Class for these spells use negative values).</td>
   </tr>
   <tr>
     <td valign="top">AutomaticFeats</td>
     <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">One entry for each Level where Automatic feats should be awarded to a Class. This contains a <b>Level</b> field, and a list of <b>Feats</b> that should be awarded at that specific Class level. Note that Feat names must match a Feat defines in either a Class file, the Feats.xml file or a Races .xml file.</td>
+    <td valign="top">One entry for each Level where Automatic feats should be awarded to a Class. This contains a <b>Level</b> field, and a list of <b>Feats</b> that should be awarded at that specific Class level. Note that Feat names must match a Feat defined in either a Class file, the Feats.xml file or a Races .xml file.</td>
   </tr>
   <tr>
     <td valign="top">FeatSlot</td>
@@ -174,11 +174,12 @@ order.</p>
     <td valign="top">One entry for each feat that must be defined for this specific Class.</td>
   </tr>
 </table>
+<p>As Classes are added, the <i>Completionist</i> feat requirements are updated automatically.</p>
 
 <h2>Races</h2>
-<p>Races are also stored as external files and can be found in the <b>DataFiles\Races</b> folder. To be loaded the Race file must follow the format of &lt;Race Name&gt;.Race.xml and pass the file filter *.race.xml to be loaded.</p>
+<p>Races are also stored as external files and can be found in the <b>DataFiles\Races</b> folder. To be loaded the Race file must follow the format of &lt;Race Name&gt;.race.xml and pass the file filter *.race.xml to be loaded.</p>
 <p>A Race can/will contain some or all of the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -195,19 +196,19 @@ order.</p>
     <td valign="top">ShortName</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">The short Race name that appears in the UI.</td>
+    <td valign="top">The short Race name that appears in the UI. (e.g. Aasimar Scourge has a short name of "Scourge")</td>
   </tr>
   <tr>
     <td valign="top">Description</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">A text field that describes the Race. This text is shown in tooltips.</td>
+    <td valign="top">A text field that describes the Race. This text is shown in tool tips.</td>
   </tr>
   <tr>
     <td valign="top">IsConstruct</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">A flag that if present specifies that this Race is Construct in nature such as Warforged.</td>
+    <td valign="top">A flag that if present specifies that this Race is Construct in nature such as Warforged. (This controls whether you select from Armor or Docents when selecting <A HREF="hid_pane_gearandfiligrees.htm">Gear</A>)</td>
   </tr>
   <tr>
     <td valign="top">StartingWorld</td>
@@ -219,25 +220,25 @@ order.</p>
     <td valign="top">NoPastLife</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">Specifies whether this Race should <b>NOT</b> be listed as a requirement for the <b>Racial Completionist</b> feat if present.</td>
+    <td valign="top">Specifies whether this Race should <b>NOT</b> be listed as a requirement for the <b>Racial Completionist</b> feat. The requirements for this feat are updated dynamically based on the loaded .race.xml files.</td>
   </tr>
   <tr>
     <td valign="top">BuildPoints</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">A vector of 4 values that specify the number of Build Points a character of this Race will have depending on their number of past lives. (Typically 28, 32, 34, 36, except for Drow).</td>
+    <td valign="top">A vector of 4 values that specify the number of Build Points a character of this Race will have depending on their number of past lives. (Typically <font color="#DC143C">&lt;BuildPoints size="4"&gt;28 32 34 36&lt;/BuildPoints&gt;</font> except for Drow (so far)).</td>
   </tr>
   <tr>
     <td valign="top">IconicClass</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">Not present for non-iconic races. This is the class that the builder will warn for if it is not level 1.</td>
+    <td valign="top">Not present for non-iconic races. This is the Class that DDOBuilder will warn for if it is not set for level 1.</td>
   </tr>
   <tr>
     <td valign="top">&lt;Ability Name&gt;</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">The racial modifier value for this ability for this Race. Only present if it is non-zero for a given Ability for that Race.</td>
+    <td valign="top">The racial modifier value for this ability for this Race. Only present if it is non-zero for a given Ability for that Race. Use th full Ability name, such as Strength, Dexterity,...,Charisma.</td>
   </tr>
   <tr>
     <td valign="top">AutoBuySkill</td>
@@ -261,8 +262,10 @@ order.</p>
 
 <h2>Enhancement Trees</h2>
 <p>Enhancement Trees are also stored as external files and can be found in the <b>DataFiles\EnhancementTrees</b> folder. To be loaded the Tree file must follow the format of &lt;Tree Name&gt;.tree.xml and pass the file filter *.tree.xml to be loaded.</p>
+<p>The AP costs of tree items can be changed and the total AP spend in the tree is automatically recalculated on file load. Note that this could make 
+the number of available APs go negative when costs increase for previously selected items. These "overspends" have to be corrected by the user.</p>
 <p>A Tree can/will contain some or all of the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -279,7 +282,7 @@ order.</p>
     <td valign="top">Version</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">The internal version number of the tree. This version number is saved with
+    <td valign="top">The internal version number of the tree. This version number is saved with 
 any builds that use this tree. If the version in any loaded file does not match 
 this number, all tree spend items in that tree are automatically revoked on 
 loading the file. (i.e. it forces the user to re-spend their points). This 
@@ -327,7 +330,7 @@ that a carry over of AP spends in the older trees cannot be converted.</td>
     <td valign="top">Background</td>
     <td valign="top">Yes</td>
     <td valign="top">No</td>
-    <td valign="top">The name of the background picture used for this tree. The background must be present in the UIImages solder and be a size of 299 (x) by 466 (y) pixels. typically you can pick an existing background image for these.</td>
+    <td valign="top">The name of the background image used for this tree. The background must be present in the <b>DataFiles\UIImages</b> folder and be a size of 299 (x) by 466 (y) pixels. Typically you can pick an existing background image for these. I do not have an easy way of harvesting these images, as I originally got mine from Rons Character planner.</td>
   </tr>
   <tr>
     <td valign="top">EnhancementTreeItem</td>
@@ -336,9 +339,38 @@ that a carry over of AP spends in the older trees cannot be converted.</td>
     <td valign="top">An object that contains a list of all the Enhancement tree items that appear in the tree.</td>
   </tr>
 </table>
-<p>Updating a tree can be done by just editing the existing x.tree.xml file. However creating a new tree from scratch is a touch more difficult. A set of Blank trees are present in the software, in the <b>Blank Trees</b> folder. If you copy this and rename it in the <b>EnhancementTrees</b> folder you can then update and create the tree. </p>
+<p>Updating a tree can be done by just editing the existing &lt;filename&gt;.tree.xml file. However creating a new tree from scratch is a touch more difficult. 
+A set of Blank trees are present in the software, in the <b>DataFiles\Blank Trees</b> folder. If you copy a base file from here and rename it in the <b>EnhancementTrees</b> 
+folder you can then update and create the tree.</p>
+<p>I typically create a new enhancement tree using the following steps:</p>
+<ul>
+    <li>Copy the Blank Tree of the type of tree I am about to create.</li>
+    <li>Place the file in the EnhancementTree folder.</li>
+    <li>Rename the file</li>
+    <li>Open the file in a text editor</li>
+    <li>Enter the name of the tree.</li>
+    <li>Set the Icon used by the tree. You may need to harvest and create a new icon at this step</li>
+    <li>Set the background image name for this tree</li>
+    <li>Set the <b>Requirements</b> for the tree</li>
+    <li>Do a file scope Find and Replace for the text <b>&lt;InternalName&gt;</b> and replace with <b>&lt;InternalName&gt;Moniker</b>, where Moniker is a short abbreviation for the tree (e.g. <b>MDD</b> used for <b>M</b>onk <b>D</b>ragon <b>D</b>isciple, this moniker needs to be unique across all trees)</li>
+    <li>Update all <b>Core</b> requirements to have the correct Enhancement dependency, (e.g. Change Core<b>x</b> to MDDCore<b>x</b> for Monk Dragon Disciple). Note that items in tiers1..5 can have enhancement requirements (arrows on the tree) set by running DDOBuilder and using options in the <A HREF="hid_pane_enhancements.htm">Enhancements</A> view.</li>
+    <li>For each Enhancement item</li>
+    <ul>
+        <li>If it's not a core item, give it a unique <b>InternalName</b> based on the tree Moniker and what the enhancement does. Note that choosing a good name before the tree goes live helps, as the InternalName is used internally to identify this enhancement item.</li>
+        <li>Enter the <b>Name</b> of the enhancement. Typically at this level the Name is prepended with the <b>Tree Name: </b></li>
+        <li>Enter the <b>Description</b> text for the item. Ideally you want to format the text here how you want it to appear in the UI. Typically a max line length of 80 characters.</li>
+        <li>Harvest and set the Icon filename. If it is an existing Icon its pretty easy, if not, place the new Icon file in the <b>DataFiles\EnhancementImages</b> folder. You may also need to set the correct transparency for the image. This can be done when DDOBuilder is running, see <A HREF="hid_pane_enhancements.htm">Enhancements</A> for details on how to do this.</li>
+        <li>Set the <b>CostPerRank</b> and the number of <b>Rank</b>s</li>
+        <li>Set any specific <b>Requirements</b> that the enhancement has.</li>
+        <li>Add any specific <b>Effect</b> objects required.</li>
+        <li>Add any specific <b>Stance</b> objects required.</li>
+        <li>Add any specific <b>DC</b> objects required.</li>
+        <li>If there a Selection option for this enhancement, then copy and paste a <b>Selector</b> from a different tree and then put each <b>EnhancementSelection</b> item in. Note that the EnhancementSelection Name field is used as a sub-identifier for this selection item.</li>
+    </ul>
+    <li>I typically add 1-5 items at a time and run DDOBuilder to do some tests on the tree as I am filling it out.</li>
+</ul>
 <p>An EnhancementTreeItem can contain the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -473,7 +505,7 @@ that a carry over of AP spends in the older trees cannot be converted.</td>
   </tr>
 </table>
 <p>Items in the Selector field if its present have the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -547,11 +579,13 @@ that a carry over of AP spends in the older trees cannot be converted.</td>
     <td valign="top">Definition of a DC object that will be displayed in the UI if this enhancement item is selected.</td>
   </tr>
 </table>
-<p>Note that when it comes to Effects, Stances and DCs, any of these defined at the EnhancementTreeItem level and at the Selector sub item level will be applied for any given enhancement. Thus common Effects/Stances/DCs can be defined only once and apply for all sub options in the selector list.</p>
+<p>Note that when it comes to Effects, Stances and DCs, any of these defined at the EnhancementTreeItem level and at the Selector sub item level will be applied for any given enhancement. 
+Thus common Effects/Stances/DCs can be defined only once and apply for all sub options in the selector list.</p>
 <h2>Requirements</h2>
-<p>Requirements are objects that set what conditions must be met for a given object to be active. They can be found in Feats, Enhancement Trees, Effects and other object types. 
+<p>Requirements are objects that set what conditions must be met for a given object to be active. 
+They can be found in Feats, Enhancement Trees, Effects and other object types. 
 All these Requirement objects work the same. A Requirements object can have the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -562,13 +596,13 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">Requirement</td>
     <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">A single requirement that must be met for this object to be active.</td>
+    <td valign="top">A single requirement that must be met for this object to be active. Any repeats in this section means that All requirements must be met.</td>
   </tr>
   <tr>
     <td valign="top">RequiresOneOf</td>
     <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">An object that contains a sub list of Requirement objects. One<sup>1</sup> of which must be active for the whole requirement to be met.</td>
+    <td valign="top">An object that contains a sub list of Requirement objects. One of which must be active for the whole requirement to be met.</td>
   </tr>
   <tr>
     <td valign="top">RequiresNoneOf</td>
@@ -578,7 +612,7 @@ All these Requirement objects work the same. A Requirements object can have the 
   </tr>
 </table>
 <p>A RequiresOneOf has the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -587,9 +621,9 @@ All these Requirement objects work the same. A Requirements object can have the 
   </tr>
   <tr>
     <td valign="top">Requirement</td>
+    <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">Yes</td>
-    <td valign="top">A single requirement that may be met for this object to be active.</td>
+    <td valign="top">A single requirement that may be met for this object to be active. List one requirement for each option in the OneOf list...</td>
   </tr>
   <tr>
     <td valign="top">DisplayDescription</td>
@@ -601,11 +635,11 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">Count</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">By default a RequiresOneOf only needs 1 Requirement to be met for it to count as active, place a Count field in the object and you can specify how a minimum of how many must be met before the RequiresOneOf is met.</td>
+    <td valign="top">By default a RequiresOneOf only needs 1 Requirement to be met for it to count as active, place a Count field in the object and you can specify a minimum of how many must be met before the RequiresOneOf is met.</variant></td>
   </tr>
 </table>
 <p>A RequiresNoneOf has the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -616,7 +650,7 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">Requirement</td>
     <td valign="top">No</td>
     <td valign="top">Yes</td>
-    <td valign="top">A single requirement that must not be met for this object to be active.</td>
+    <td valign="top">A single requirement that must not be met for this object to be active. You can add as many Requirements that must not be met here.</td>
   </tr>
   <tr>
     <td valign="top">DisplayDescription</td>
@@ -628,7 +662,7 @@ All these Requirement objects work the same. A Requirements object can have the 
 <h2>Effects</h2>
 <p>A Effect object specifies values etc that will apply to a given tracked item in the software, such as an Ability Value or PRR etc. 
     An Effect can apply in multiple ways and get its values from various sources. A typical effect can have the following fields:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Field Entry</b></td>
     <td valign="top"><b>Required?</b></td>
@@ -639,14 +673,18 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">DisplayName</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">This optional field is the text representation of this effect in the UI. By default if this field is not present, the effects gets the name of the object it is contained within. 
-                     All Effect objects when applied Stack by name, thus if you have Effects from multiple sources that must stack, you can specify the same DisplayName for each to get them to Stack correctly.</td>
+    <td valign="top">This optional field is the text representation of this effect in the UI. 
+By default if this field is not present, the effects gets the name of the object it is contained within. 
+All Effect objects when applied Stack by name, thus if you have Effects from multiple sources that must 
+stack, you can specify the same DisplayName for each to get them to Stack correctly.</td>
   </tr>
   <tr>
     <td valign="top">Type</td>
     <td valign="top">Yes</td>
     <td valign="top">Yes</td>
-    <td valign="top">A list of what Effect type this Effect should cause to be modified. There is a very large list of things that can be affected. The full list can be found in the source file "Effect.h". Note that the text in the &lt;Type&gt; field must match the Effect name exactly.</td>
+    <td valign="top">A list of what Effect type this Effect should cause to be modified. 
+There is a very large list of things that can be affected. The full list can be found in the source file 
+"Effect.h". Note that the text in the &lt;Type&gt; field must match the Effect name exactly.</td>
   </tr>
   <tr>
     <td valign="top">Bonus</td>
@@ -694,7 +732,8 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">Percent</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">The final value determined for this effect is applied as a Percentage increase to the current total of the parameter affected. E.g. a 25% Competence bonus to Hitpoints.</td>
+    <td valign="top">The final value determined for this effect is applied as a Percentage increase to the current total of the parameter affected. 
+E.g. a 25% Competence bonus to Hit Points.</td>
   </tr>
   <tr>
     <td valign="top">Weapon1</td>
@@ -712,7 +751,8 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">ApplyAsItemEffect</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">By default all effects defined in Feat/Enhancement etc are assumed to always stack. If a given effect needs to be in the effect list (such as item effects) where stacking rules need to apply, then this flag will cause this effect to go into the Item list of effects where stacking rules apply.</td>
+    <td valign="top">By default all effects defined in Feat/Enhancement etc are assumed to always stack. If a given effect needs to be in the effect list 
+(such as Item effects) where stacking rules need to apply, then this flag will cause this effect to go into the Item list of effects where stacking rules apply.</td>
   </tr>
   <tr>
     <td valign="top">UpdateAutomaticEffect</td>
@@ -724,7 +764,7 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">Rare</td>
     <td valign="top">No</td>
     <td valign="top">No</td>
-    <td valign="top">????</td>
+    <td valign="top">Used in Filigree effects only, specifies that this effect is for the Rare version of that Filigree.</td>
   </tr>
   <tr>
     <td valign="top">Requirements</td>
@@ -755,7 +795,7 @@ All these Requirement objects work the same. A Requirements object can have the 
     an existing Effect that does something the same or very similar to what you are trying to add.</p>
 <hr/>
 <p>The AType field configures how the value for a given effect is determined:</p>
-<table border="0">
+<table border="1">
   <tr>
     <td valign="top"><b>Value</b></td>
     <td valign="top"><b>Description</b></td>
@@ -766,27 +806,27 @@ All these Requirement objects work the same. A Requirements object can have the 
   </tr>
   <tr>
     <td valign="top">Simple</td>
-    <td valign="top">The Amount field defined as &lt;Amount size="1"&gt;[Value]&lt;/Amount&gt; where [Value] is the value of a single stack of this enhancement. If multiple stacks are present you get #stacks * [Amount] as the final value.</td>
+    <td valign="top">The Amount field defined as <font color="#DC143C">&lt;Amount size="1"&gt;[Value]&lt;/Amount&gt;</font> where [Value] is the value of a single stack of this enhancement. If multiple stacks are present you get #stacks * [Amount] as the final value.</td>
   </tr>
   <tr>
     <td valign="top">Stacks</td>
-    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is used as lookup into the Amount vector to get the final effect value. </td>
+    <td valign="top">The Amount field defined as <font color="#DC143C">&lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt;</font> where the number of stacks is used as lookup into the Amount vector to get the final effect value. </td>
   </tr>
   <tr>
     <td valign="top">TotalLevel</td>
-    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters total level used as lookup into the Amount vector to get the final effect value. </td>
+    <td valign="top">The Amount field defined as <font color="#DC143C">&lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt;</font> where the number of stacks is the characters total level used as lookup into the Amount vector to get the final effect value. </td>
   </tr>
   <tr>
     <td valign="top">BaseClassLevel</td>
-    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters Base Class level (i.e. the master class for a class and any of its archetypes) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Base Class name.</td>
+    <td valign="top">The Amount field defined as <font color="#DC143C">&lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt;</font> where the number of stacks is the characters Base Class level (i.e. the master class for a class and any of its archetypes) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Base Class name.</td>
   </tr>
   <tr>
     <td valign="top">ClassLevel</td>
-    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters Class level (i.e. a specific class name) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Class name.</td>
+    <td valign="top">The Amount field defined as <font color="#DC143C">&lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt;</font> where the number of stacks is the characters Class level (i.e. a specific class name) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Class name.</td>
   </tr>
   <tr>
     <td valign="top">ClassCasterLevel</td>
-    <td valign="top">The Amount field defined as &lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt; where the number of stacks is the characters Class level (i.e. a specific class name) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Class name.</td>
+    <td valign="top">The Amount field defined as <font color="#DC143C">&lt;Amount size="x"&gt;[Value 1] [Value 2] .. [Value x]&lt;/Amount&gt;</font> where the number of stacks is the characters Class level (i.e. a specific class name) used as lookup into the Amount vector to get the final effect value. Note that the Item field is the Class name.</td>
   </tr>
   <tr>
     <td valign="top">APCount</td>
@@ -797,7 +837,7 @@ All these Requirement objects work the same. A Requirements object can have the 
     <td valign="top">The total ability value is to be used. The Item field is the full Ability name (e.g. "Charisma").</td>
   </tr>
   <tr>
-    <td valign="top">AbilityMode</td>
+    <td valign="top">AbilityMod</td>
     <td valign="top">The mod ability value is to be used ((Ability Value - 10) / 2 rounded down). The Item field is the full Ability name (e.g. "Charisma").</td>
   </tr>
   <tr>
@@ -810,7 +850,7 @@ All these Requirement objects work the same. A Requirements object can have the 
   </tr>
   <tr>
     <td valign="top">Slider</td>
-    <td valign="top">The effect is defining a Slider that should appear in the UI. The Item field will be the slider name and the &lt;Amount size="3"&gt;[Min] [Max] [Value]&lt;/Amount&gt; vector defines the Minimum, Maximum and start value for the slider UI elements.</td>
+    <td valign="top">The effect is defining a Slider that should appear in the UI. The Item field will be the slider name and the <font color="#DC143C">&lt;Amount size="3"&gt;[Min] [Max] [Value]&lt;/Amount&gt;</font> vector defines the Minimum, Maximum and start value for the slider UI elements.</td>
   </tr>
   <tr>
     <td valign="top">SliderValue</td>
@@ -851,16 +891,36 @@ All these Requirement objects work the same. A Requirements object can have the 
 </table>
 <hr/>
 <h2>Effect Stacking</h2>
-<p>Effect stacking can be tricky depending on the sources for a given values. 
+<p>Effect stacking can be tricky depending on the sources for a given value. 
 A typical tricky example are bonuses to SpellPower depending of which of several 
 enhancement options have been selected. For example The Draconic Incarnation tree 
-adds spell power to the Spell Power associated with the select Dragon type. To avoid 
+adds spell power to the Spell Power associated with the selected Dragon type. To avoid 
 difficult setups I have in the past used odd/even stack counts to get values to resolve 
-    correctly. By default the UI will now list an effect if it resolves to a 0 value 
-    (there is a development option in th UI to force it to list them). To get values to 
-    apply only to a specific spell power, effects for all spell powers are present which 
-    always give 2 stacks when applied, thus an enhancement which gives a single stack only 
-    will push the stacking onto odd numbering stacks vs even. If the <font color="#DC143C">&lt;Amount size="x"&gt;[valueEven] [ValueOdd]...[ValueEven] [ValueOdd]&lt;/Amount&gt;</font> vector has 0 values for every [ValueEven] field it has no effect, while the [ValueOdd] fields specify the correct value for the selected Odd enhancement.</p>
-    <p>Note that all the effects my have the same <b>DisplayName</b> field to cause them to stack.</p>
+correctly. By default the UI will not list an effect if it resolves to a 0 value 
+(there is a development option in th UI to force it to list them). To get values to 
+apply only to a specific spell power, effects for all spell powers are present which 
+always give 2 stacks when applied, thus an enhancement which gives a single stack only 
+will push the stacking onto odd numbering stacks vs even. If the <font color="#DC143C">&lt;Amount size="x"&gt;[valueEven] [ValueOdd]...[ValueEven] [ValueOdd]&lt;/Amount&gt;</font> vector has 0 values for every [ValueEven] field it has no effect, while the [ValueOdd] fields specify the correct value for the selected Odd enhancement.</p>
+<p>Note that all the effects must have the same <b>DisplayName</b> and other fields match to cause them to stack.</p>
+<p>Effects with multiple <font color="#DC143C">&lt;Type&gt;</font> fields will have the Effect applied with just that <b>Type</b> present, i.e. each type is applied/revoked separately.</p>
+<p>Effects which apply to weapons are applied once for each weapon type it applies to.</p>
 </BODY>
+<h2>Updating Items</h2>
+<p>DDOBuilder has a series of commands in the <A HREF="menu_development.htm">Development menu</A> to help with the update and
+maintenance of Items.</p>
+<p>Typically on a game update, I wait for the Wiki to have been updated with the list of the new items, and I then use a <b>Specific</b> url 
+to get a download of all the new items. This download produces a series of text files which are then parsed to make items used by DDOBuilder.
+A typical specific download code be the location <b>https://ddowiki.com/page/Category:Update_73_named_items</b>, which would limit the
+download done to all Item links in that Wiki topic. However you can also use the option to download the entire list of Wiki
+items. This is typically not recommended as its stresses the Wiki and can take several hours.</p>
+<p>Once an Item Topic text file have been downloaded once, DDOBuilder will just parse the local copy when creating items rather than 
+download the file again. You may need to clear your local Wiki item cache to get updates to files.</p>
+<p>It can be problematic to just download and parse the entire Wiki. Certain items can break when this is done (See the multi-slot Slavers crafted items)</p>
+<p>Also, if new effect types or augment slot types the current parser does not recognise you end up with an error list where you have to go and manually
+fix each item. Once an item has been manually fixed you can put in the flag <font color="#DC143C">&lt;NoAutoUpdate&gt;</font> to stop the item parser
+reworking the items .item file (This can still break multi-slot items, damn those slavers items).</p>
+<p>If new item effects need to be added, you add a field in the ItemBuffs.xml file for the new item effect and its description. Have a look at other item effects on how to setup these.</p>
+<p>If you have access to Development tools such as Visual Studio, you can update the actual code base to parse for new item effect and augment types. See the file <font color="#DC143C">WikiItemFileProcessor.cpp</font></p>
+<p>Once all new items have been downloaded and parsed, you can set the images used by each Item in the UI. These can be set individually 
+based on item or weapon type. You may need to harvest new Item/Weapon images and place these in the relevant sub folder of <b>DataFiles/ItemsImages</b>. All Item images are 32 by 32 pixels in size.</p>
 </HTML>

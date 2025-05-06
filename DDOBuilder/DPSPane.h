@@ -5,6 +5,17 @@
 #include "AttackBuff.h"
 #include "InfoTip.h"
 
+enum AttackType
+{
+    AT_Unknown = 0,
+    AT_TWF,
+    AT_THF,
+    AT_SWF,
+    AT_Ranged,
+    AT_Handwraps,
+    AT_SwordAndBoard
+};
+
 class CDPSPane :
     public CFormView,
     public CharacterObserver,
@@ -59,7 +70,13 @@ class CDPSPane :
         void SetTooltipText(const Attack& attack, CPoint tipTopLeft, CPoint tipAlternate);
 
         void CalculateAttackChainDPS();
-        double EvaluateAttack(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        double EvaluateAttack(AttackType at, const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        double EvaluateTWF(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        double EvaluateTHF(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        double EvaluateSWF(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        double EvaluateRanged(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        double EvaluateHandwraps(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
+        double EvaluateSwordAndBoard(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
         void DropTimedOutBuffs(std::list<AttackBuff> * buffs, double timePoint);
 
         CMFCButton m_buttonAddAttackChain;

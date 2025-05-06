@@ -43,6 +43,7 @@ class BreakdownItemWeapon :
         BreakdownItem * GetWeaponBreakdown(BreakdownType bt);
         void PopulateStartValues();
         void LinkUp();
+        BasicDice WeaponDice() const;
 
         // required overrides
         virtual CString Title() const override;

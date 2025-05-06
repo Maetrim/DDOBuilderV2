@@ -117,6 +117,7 @@ class Build :
         // alignment
         AlignmentType Alignment() const;
         void SetAlignment(AlignmentType alignment);
+        void CheckClasses();
 
         // class selection
         void SetClass1(const std::string& ct);

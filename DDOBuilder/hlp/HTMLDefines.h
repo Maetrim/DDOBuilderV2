@@ -234,41 +234,6 @@
 #define HIDR_SELECT_FAVOR_MENU                  0x2014E
 #define HIDR_POPUP_MENUS                        0x201A3
  
-// Dialogs (IDD_*) 
-#define HIDD_ABOUTBOX                           0x20064
-#define HIDD_DDOBUILDER_FORM                    0x20065
-#define HIDD_BUILDS_PANE                        0x20066
-#define HIDD_CLASS_AND_FEAT_PANE                0x20067
-#define HIDD_LOG_PANE                           0x20068
-#define HIDD_SKILLS_PANE                        0x20069
-#define HIDD_SPECIAL_FEATS_PANE                 0x2006A
-#define HIDD_ENHANCEMENTS_PANE                  0x2006B
-#define HIDD_ENHANCEMENT_SELECTION              0x2006C
-#define HIDD_SELECTION_SELECT_DIALOG            0x2006D
-#define HIDD_BREAKDOWNS_PANE                    0x2006E
-#define HIDD_STANCES_PANE                       0x2006F
-#define HIDD_FEAT_SELECTION                     0x20070
-#define HIDD_DESTINY_PANE                       0x20071
-#define HIDD_AUTOMATIC_FEATS_PANE               0x20072
-#define HIDD_GRANTED_FEATS_PANE                 0x20073
-#define HIDD_REAPER_ENHANCEMENTS_PANE           0x20074
-#define HIDD_DC_PANE                            0x20075
-#define HIDD_EQUIPMENT_PANE                     0x20076
-#define HIDD_INVENTORY_SELECTION                0x2007F
-#define HIDD_NAME_GEAR_SET                      0x20083
-#define HIDD_SPELLS_PANE                        0x2008B
-#define HIDD_SPELLS_PAGE                        0x2008C
-#define HIDD_SLA_PAGE                           0x2008E
-#define HIDD_FORUM_EXPORT_DIALOG                0x2008F
-#define HIDD_FIND_GEAR_DIALOG                   0x20090
-#define HIDD_ITEM_SELECT                        0x200DC
-#define HIDD_NOTES_PANE                         0x20143
-#define HIDD_SELFANDPARTYBUFFS_PANE             0x2014F
-#define HIDD_DIALOG_WIKILINK                    0x20150
-#define HIDD_DPS_PANE                           0x20151
-#define HIDD_DIALOG_SETITEMIMAGES               0x201A4
-#define HIDD_FAVOR_PANE                         0x201A5
-#define HIDD_NAME_ATTACKCHAIN                   0x201A6
  
 // Frame Controls (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.

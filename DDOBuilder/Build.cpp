@@ -6337,3 +6337,62 @@ const AttackChain& Build::GetActiveAttackChain() const
     }
     return empty;
 }
+
+void Build::CheckClasses()
+{
+    bool classChoiceChange = false;
+    // an alignment change may invalidate current class selections
+    bool bRetry = true;
+    while (bRetry)
+    {
+        const ::Class & c = FindClass(Class1());
+        if (!c.CanTrainClass(Alignment())
+                && Class1() != Class_Unknown)
+        {
+            // class 1 is now no longer valid, bump it from all levels
+            RevokeClass(Class1());
+            Set_Class1(Class2());
+            Set_Class2(Class3());
+            Set_Class3(Class_Unknown);
+            classChoiceChange = true;
+        }
+        else
+        {
+            bRetry = false;
+        }
+    }
+    bRetry = true;
+    while (bRetry)
+    {
+        const ::Class & c2 = FindClass(Class2());
+        // do the same for class 2 and class 3
+        if (!c2.CanTrainClass(Alignment())
+            && Class2() != Class_Unknown)
+        {
+            // class 2 is now no longer valid, bump it from all levels
+            RevokeClass(Class2());
+            Set_Class2(Class3());
+            Set_Class3(Class_Unknown);
+            classChoiceChange = true;
+        }
+        else
+        {
+            bRetry = false;
+        }
+    }
+    // do the same for class 3
+    const ::Class & c3 = FindClass(Class3());
+    while (!c3.CanTrainClass(Alignment())
+            && Class3() != Class_Unknown)
+    {
+        // class 3 is now no longer valid, bump it from all levels
+        RevokeClass(Class3());
+        Set_Class3(Class_Unknown);
+        classChoiceChange = true;
+    }
+    if (classChoiceChange)
+    {
+        NotifyClassChoiceChanged();
+        NotifyBuildLevelChanged();  // it hasn;t actually changed, but this gets all the right updates to happen
+    }
+}

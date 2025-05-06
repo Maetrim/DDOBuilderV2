@@ -317,6 +317,9 @@ BOOL CDDOBuilderView::OnEraseBkgnd(CDC* pDC)
         IDC_COMBO_LEVEL20_ABILITY,
         IDC_COMBO_LEVEL24_ABILITY,
         IDC_COMBO_LEVEL28_ABILITY,
+        IDC_COMBO_LEVEL32_ABILITY,
+        IDC_COMBO_LEVEL36_ABILITY,
+        IDC_COMBO_LEVEL40_ABILITY,
         0 // end marker
     };
 
@@ -1546,6 +1549,9 @@ BOOL CDDOBuilderView::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
     case IDC_COMBO_LEVEL20_ABILITY:
     case IDC_COMBO_LEVEL24_ABILITY:
     case IDC_COMBO_LEVEL28_ABILITY:
+    case IDC_COMBO_LEVEL32_ABILITY:
+    case IDC_COMBO_LEVEL36_ABILITY:
+    case IDC_COMBO_LEVEL40_ABILITY:
         m_tipText = "Select the ability that gains 1 additional point at this level.\r\n"
                 "To set all level ups at the same time, select the \"all\" option in the Level 4\r\n"
                 "ability option.";

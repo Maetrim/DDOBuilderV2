@@ -565,6 +565,10 @@ void Life::SetAlignment(AlignmentType alignment)
 {
     Set_Alignment(alignment);
     NotifyAlignmentChanged(alignment);
+    for (auto&& bit: m_Builds)
+    {
+        bit.CheckClasses();
+    }
 }
 
 size_t Life::GetSpecialFeatTrainedCount(

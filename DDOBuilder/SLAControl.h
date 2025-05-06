@@ -35,9 +35,10 @@ class SLAHitBox
 class SLA
 {
     public:
-        SLA(const std::string & name, size_t count) :
+        SLA(const std::string & name, size_t count, const std::vector<double> & amountVector) :
                 m_slaName(name),
-                m_count(count)
+                m_count(count),
+                m_vector(amountVector)
         {
         };
         ~SLA() {};
@@ -64,9 +65,22 @@ class SLA
         {
             m_count--;
         }
+        int Cost() const
+        {
+            return static_cast<int>(m_vector[(m_count - 1) * 4 + 1]);
+        }
+        int MCL() const
+        {
+            return static_cast<int>(m_vector[(m_count - 1) * 4 + 2]);
+        }
+        double Cooldown() const
+        {
+            return m_vector[(m_count - 1) * 4 + 3];
+        }
     private:
         std::string m_slaName;
         size_t m_count;
+        std::vector<double> m_vector;
 };
 
 class CSLAControl :
@@ -79,7 +93,7 @@ class CSLAControl :
         void ClearSLAs();
 
         void SetCharacter(Character * pCharacter);
-        void AddSLA(const std::string & slaName, size_t stacks);
+        void AddSLA(const std::string & slaName, size_t stacks, const std::vector<double> & amountVector);
         void RevokeSLA(const std::string & slaName);
         const std::list<SLA> & SLAs() const;
 

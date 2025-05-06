@@ -765,6 +765,9 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                             Invalidate();
                         }
                     }
+                    // cause tooltip to update
+                    m_pTooltipItem = NULL;
+                    PostMessage(WM_MOUSEMOVE, nFlags, (LPARAM)MAKELONG(point.x, point.y));
                 }
                 else
                 {
@@ -900,6 +903,9 @@ void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
                 break;
             }
             Invalidate();   // redraw
+            // cause tooltip to update
+            m_pTooltipItem = NULL;
+            PostMessage(WM_MOUSEMOVE, nFlags, (LPARAM)MAKELONG(point.x, point.y));
         }
     }
 }

@@ -6,6 +6,7 @@
 #include "EnhancementTree.h"
 #include "AttackChainNameDialog.h"
 #include "MouseHook.h"
+#include "WeaponData.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,11 +73,11 @@ void CDPSPane::OnInitialUpdate()
         m_tipCreated = true;
         m_bIgnoreChange = true;
         m_attackList.InsertColumn(0, "Attack Name", LVCFMT_LEFT, 300);
-        m_attackList.InsertColumn(1, "DPS Score", LVCFMT_LEFT, 40);
-        m_attackList.InsertColumn(2, "Time Point", LVCFMT_LEFT, 40);
-        m_attackList.InsertColumn(3, "Cooldown", LVCFMT_LEFT, 40);
+        m_attackList.InsertColumn(1, "DPS Score", LVCFMT_RIGHT, 40);
+        m_attackList.InsertColumn(2, "Time Point", LVCFMT_RIGHT, 40);
+        m_attackList.InsertColumn(3, "Cooldown", LVCFMT_RIGHT, 40);
         m_availableList.InsertColumn(0, "Available Attacks", LVCFMT_LEFT, 300);
-        m_availableList.InsertColumn(1, "Cooldown", LVCFMT_LEFT, 40);
+        m_availableList.InsertColumn(1, "Cooldown", LVCFMT_RIGHT, 40);
         m_attackList.SetExtendedStyle(m_attackList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
         m_availableList.SetExtendedStyle(m_availableList.GetExtendedStyle()| LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
         // Images for the buttons
@@ -393,7 +394,6 @@ void CDPSPane::UpdateNewAttack(Build* , const Attack& attack)
         m_availableAttacksWithStacks.back().AddStack();
     }
     UpdateAvailableList();
-    PopulateAttackChain();
 }
 
 void CDPSPane::UpdateRevokeAttack(Build* , const Attack& attack)
@@ -914,13 +914,42 @@ void CDPSPane::CalculateAttackChainDPS()
         const Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
+            // extract basic weapon data from breakdowns
+            WeaponData mainHand(Inventory_Weapon1);
+            WeaponData offHand(Inventory_Weapon2);
+            // determine the type of attacks of this attack chain
+            AttackType at = AT_Unknown;
+            if (pBuild->IsStanceActive("Two Weapon Fighting"))
+            {
+                at = AT_TWF;
+            }
+            else if (pBuild->IsStanceActive("Two Handed Fighting"))
+            {
+                at = AT_THF;
+            }
+            else if (pBuild->IsStanceActive("Single Weapon Fighting"))
+            {
+                at = AT_SWF;
+            }
+            else if (pBuild->IsStanceActive("Ranged Combat"))
+            {
+                at = AT_Ranged;
+            }
+            else if (pBuild->IsStanceActive("Unarmed"))
+            {
+                at = AT_Handwraps;
+            }
+            else if (pBuild->IsStanceActive("Sword and Board"))
+            {
+                at = AT_SwordAndBoard;
+            }
             std::list<AttackBuff> buffs;
             const AttackChain& ac = pBuild->GetActiveAttackChain();
             double timePoint = 0.0;
             for (auto&& acit: ac.Attacks())
             {
                 Attack attack = FindAttack(acit);
-                double attackDPS = EvaluateAttack(attack, buffs, timePoint);
+                double attackDPS = EvaluateAttack(at, attack, buffs, timePoint);
                 text.Format("%d", (int)attackDPS);
                 m_attackList.SetItemText(ai, CI_DPSScore, text);
                 totalDPS += attackDPS;
@@ -928,11 +957,78 @@ void CDPSPane::CalculateAttackChainDPS()
                 DropTimedOutBuffs(&buffs, timePoint);
                 ai++;
             }
+            text.Format("%d", (int)totalDPS);
+            m_attackList.SetItemText(m_attackList.GetItemCount()-1, CI_DPSScore, text);
         }
     }
 }
 
 double CDPSPane::EvaluateAttack(
+    AttackType at,
+    const Attack& attack,
+    const std::list<AttackBuff>& buffs,
+    double timePoint)
+{
+    double dps = 0.0;
+    switch (at)
+    {
+        case AT_Unknown:        break;
+        case AT_TWF:            dps = EvaluateTWF(attack, buffs, timePoint); break;
+        case AT_THF:            dps = EvaluateTHF(attack, buffs, timePoint); break;
+        case AT_SWF:            dps = EvaluateSWF(attack, buffs, timePoint); break;
+        case AT_Ranged:         dps = EvaluateRanged(attack, buffs, timePoint); break;
+        case AT_Handwraps:      dps = EvaluateHandwraps(attack, buffs, timePoint); break;
+        case AT_SwordAndBoard:  dps = EvaluateSwordAndBoard(attack, buffs, timePoint); break;
+    }
+    return dps;
+}
+
+double CDPSPane::EvaluateTWF(
+    const Attack& attack,
+    const std::list<AttackBuff>& buffs,
+    double timePoint)
+{
+    double dps = 0.0;
+    return dps;
+}
+
+double CDPSPane::EvaluateTHF(
+    const Attack& attack,
+    const std::list<AttackBuff>& buffs,
+    double timePoint)
+{
+    double dps = 0.0;
+    return dps;
+}
+
+double CDPSPane::EvaluateSWF(
+    const Attack& attack,
+    const std::list<AttackBuff>& buffs,
+    double timePoint)
+{
+    double dps = 0.0;
+    return dps;
+}
+
+double CDPSPane::EvaluateRanged(
+    const Attack& attack,
+    const std::list<AttackBuff>& buffs,
+    double timePoint)
+{
+    double dps = 0.0;
+    return dps;
+}
+
+double CDPSPane::EvaluateHandwraps(
+    const Attack& attack,
+    const std::list<AttackBuff>& buffs,
+    double timePoint)
+{
+    double dps = 0.0;
+    return dps;
+}
+
+double CDPSPane::EvaluateSwordAndBoard(
     const Attack& attack,
     const std::list<AttackBuff>& buffs,
     double timePoint)

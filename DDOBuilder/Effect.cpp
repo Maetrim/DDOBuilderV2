@@ -584,7 +584,6 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 }
                 break;
             case Effect_GrantSpell:
-            case Effect_SpellLikeAbility:
                 requiredAmountSize = 3;     // we expect 3 amounts: Level, Cost, MCL
                 // Look up the spell entry and ensure it exists
                 if (m_Item.size() != 2)
@@ -611,6 +610,47 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                         (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect references unknown class\n";
                         ok = false;
                     }
+                }
+                break;
+            case Effect_SpellLikeAbility:
+                // each multiple it values for a different stack
+                // Look up the spell entry and ensure it exists
+                if (m_Item.size() != 2)
+                {
+                    (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect missing/extra Item fields\n";
+                    ok = false;
+                }
+                else
+                {
+                    Spell spell = FindSpellByName(m_Item.front(), true);
+                    if (spell.Name() != m_Item.front())
+                    {
+                        spell = FindItemClickieByName(m_Item.front(), true);
+                        if (spell.Name() != m_Item.front())
+                        {
+                            (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect references unknown spell\n";
+                            ok = false;
+                        }
+                    }
+                    const ::Class& c = FindClass(m_Item.back());
+                    if (c.Name() == ""
+                            && m_Item.back() != "None")
+                    {
+                        (*ss) << (LPCTSTR)EnumEntryText(eit, effectTypeMap) << " effect references unknown class\n";
+                        ok = false;
+                    }
+                }
+                if (HasAmount())
+                {
+                    // realize the vector to catch size/data mismatches
+                    std::vector<double> d = m_Amount;
+                    size_t size = static_cast<int>(d.size());
+                    if ((size % 4) != 0 || size < 3)
+                    {
+                        (*ss) << "SpellLikeAbility has incorrect Amount field size\n";
+                        ok = false;
+                    }
+                    bRequiresAmountField = false;
                 }
                 break;
             case Effect_Immunity:
@@ -666,7 +706,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         }
         else
         {
-            if (HasAmount())
+            if (HasAmount() && eit != Effect_SpellLikeAbility)
             {
                 (*ss) << "Effect has erroneous Amount field\n";
                 ok = false;
