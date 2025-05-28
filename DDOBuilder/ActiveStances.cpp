@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "ActiveStances.h"
 #include "XmlLib\SaxWriter.h"
+#include "DDOBuilder.h"
 
 #define DL_ELEMENT ActiveStances
 
@@ -59,6 +60,15 @@ bool ActiveStances::IsStanceActive(const std::string& name) const
             break;      // found
         }
         ++it;
+    }
+    if (name == "LamanniaMode")
+    {
+        CWinApp* pApp = AfxGetApp();
+        CDDOBuilderApp* pOurApp = dynamic_cast<CDDOBuilderApp*>(pApp);
+        if (pOurApp != NULL)
+        {
+            isActive = pOurApp->LamanniaMode();
+        }
     }
     return isActive;
 }

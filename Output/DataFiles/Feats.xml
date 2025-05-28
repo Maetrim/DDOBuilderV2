@@ -5989,7 +5989,8 @@ weapons deal +1[W]. (A weapon that deals 1d6 damage per hit will deal 2d6 damage
 per hit instead, while a weapon that deals 2d8 damage per hit will deal 4d8 damage
 instead. This affects the base dice associated with a weapon any time they are
 rolled, including critical hits.) While wielding Longbows and Shortbows,
-you gain +1 Critical Threat Range.</Description>
+you gain +1 Critical Threat Range.
+LAMANNIA MODE: Longbows and Shortbows gain a 50% bonus to base ability damage.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
@@ -6032,6 +6033,28 @@ you gain +1 Critical Threat Range.</Description>
       <Amount size="1">1</Amount>
       <Item>Shortbow</Item>
       <Item>Longbow</Item>
+    </Effect>
+    <Effect>
+      <Type>DamageAbilityMultiplier</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+      <Requirements>
+         <RequiresOneOf>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Shortbow</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Longbow</Item>
+            </Requirement>
+         </RequiresOneOf>
+         <Requirement>
+            <Type>Stance</Type>
+            <Item>LamanniaMode</Item>
+         </Requirement>
+      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -6888,7 +6911,7 @@ equal to your Dexterity.)</Description>
     <Effect>
       <Type>Doubleshot</Type>
       <Bonus>Feat</Bonus>
-      <AType>AbilityValue</AType>
+      <AType>AbilityTotal</AType>
       <StackSource>Dexterity</StackSource>
       <ApplyAsItemEffect />
       <Requirements>
@@ -12853,6 +12876,44 @@ Shares a cooldown with Manyshot.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>MultitudeOfMissiles</Icon>
+   <Stance>
+      <Name>Multitude of Missiles</Name>
+      <Icon>MultitudeOfMissiles</Icon>
+      <Description>For the next 20 seconds, while wielding a Simple Thrown Weapon add 100 to your
+Doubleshot and 2x your Base Attack Bonus to Ranged Power.</Description>
+   </Stance>
+   <Effect>
+      <Type>Doubleshot</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">100</Amount>
+      <Requirements>
+         <Requirement>
+            <Type>Stance</Type>
+            <Item>Multitude of Missiles</Item>
+         </Requirement>
+         <Requirement>
+            <Type>Stance</Type>
+            <Item>Thrown Weapon</Item>
+         </Requirement>
+      </Requirements>
+   </Effect>
+   <Effect>
+      <Type>RangedPower</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>BAB</AType>
+      <Amount size="1">2</Amount>
+      <Requirements>
+         <Requirement>
+            <Type>Stance</Type>
+            <Item>Multitude of Missiles</Item>
+         </Requirement>
+         <Requirement>
+            <Type>Stance</Type>
+            <Item>Thrown Weapon</Item>
+         </Requirement>
+      </Requirements>
+   </Effect>
   </Feat>
   <Feat>
     <Name>Simple Thrown Weapon Expertise</Name>
@@ -12873,28 +12934,14 @@ to your Dexterity.</Description>
     <Effect>
       <Type>Doubleshot</Type>
       <Bonus>Feat</Bonus>
-      <AType>AbilityValue</AType>
+      <AType>AbilityTotal</AType>
       <StackSource>Dexterity</StackSource>
       <ApplyAsItemEffect />
       <Requirements>
-         <RequiresOneOf>
-           <Requirement>
-             <Type>Stance</Type>
-             <Item>Dart</Item>
-           </Requirement>
-           <Requirement>
-             <Type>Stance</Type>
-             <Item>Throwing Axe</Item>
-           </Requirement>
-           <Requirement>
-             <Type>Stance</Type>
-             <Item>Throwing Dagger</Item>
-           </Requirement>
-           <Requirement>
-             <Type>Stance</Type>
-             <Item>Throwing Hammer</Item>
-           </Requirement>
-         </RequiresOneOf>
+         <Requirement>
+            <Type>Stance</Type>
+            <Item>Thrown Weapon</Item>
+         </Requirement>
       </Requirements>
     </Effect>
   </Feat>

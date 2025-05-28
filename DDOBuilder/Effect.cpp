@@ -738,6 +738,7 @@ bool Effect::CheckAType(
         *requiredAmountElements = 1;        // single element
         break;
     case Amount_AbilityValue:       // all handled the same for checking
+    case Amount_AbilityTotal:       // all handled the same for checking
     case Amount_AbilityMod:         // all handled the same for checking
     case Amount_HalfAbilityMod:     // all handled the same for checking
     case Amount_ThirdAbilityMod:    // all handled the same for checking
@@ -1062,7 +1063,18 @@ std::string Effect::StacksAsString() const
         }
         break;
     case Amount_AbilityValue:
+    case Amount_AbilityTotal:
+        ss << StackSource();
+        break;
     case Amount_AbilityMod:
+        ss << StackSource() << " Mod";
+        break;
+    case Amount_HalfAbilityMod:
+        ss << StackSource() << " Mod / 2";
+        break;
+    case Amount_ThirdAbilityMod:
+        ss << StackSource() << " Mod / 3";
+        break;
     case Amount_Slider:
     case Amount_SliderValue:
     case Amount_SliderValueLookup:
@@ -1078,7 +1090,7 @@ std::string Effect::StacksAsString() const
             {
                 int bab = static_cast<int>(pBI->Total());
                 bab = min(bab, MAX_BAB);
-                ss << bab << " " << StackSource() << " BAB";
+                ss << "BAB " << bab << " * " << Amount()[0];
             }
             else
             {
@@ -1272,6 +1284,18 @@ double Effect::TotalAmount(bool allowTruncate) const
                 total = m_Amount[0] * aps;
                 break;
             }
+        case Amount_AbilityTotal:
+            // stack source is the ability value
+            {
+                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap, false);
+                if (ability != Ability_Unknown)
+                {
+                    total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
+                    BreakdownType bt = StatToBreakdown(ability);
+                    total = FindBreakdown(bt)->Total();
+                }
+                break;
+            }
         case Amount_AbilityValue:
             // stack source is the ability value
             {
@@ -1416,6 +1440,7 @@ bool Effect::UpdateAbilityEffects(AbilityType at)
 {
     bool bUpdate = false;
     if (m_AType == Amount_AbilityValue
+            || m_AType == Amount_AbilityTotal
             || m_AType == Amount_AbilityMod
             || m_AType == Amount_HalfAbilityMod
             || m_AType == Amount_ThirdAbilityMod)

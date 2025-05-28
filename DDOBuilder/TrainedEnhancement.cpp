@@ -77,10 +77,14 @@ void TrainedEnhancement::SetCost(const std::vector<size_t>& cost)
 
 size_t TrainedEnhancement::Cost(size_t rank) const
 {
-    size_t cost = m_cost[0];
-    if (rank < m_cost.size())
+    size_t cost = 1;    // assume
+    if (m_cost.size() > 0)
     {
-        cost = m_cost[rank];
+        cost = m_cost[0];
+        if (rank < m_cost.size())
+        {
+            cost = m_cost[rank];
+        }
     }
     return cost;
 }

@@ -10,7 +10,7 @@ class FeatsListObject :
 {
     public:
         FeatsListObject(const XmlLib::SaxString & objectName);
-        FeatsListObject(const XmlLib::SaxString& objectName, const std::list<TrainedFeat> & feats);
+        FeatsListObject(const XmlLib::SaxString& objectName, const std::list<TrainedFeat>& feats);
         void Write(XmlLib::SaxWriter * writer) const;
 
         void Add(const TrainedFeat& feat);
@@ -28,10 +28,12 @@ class FeatsListObject :
         void RevokeAllFeats(const std::string& type);
         std::string FeatName(const std::string& type) const;
 
+        FeatsListObject operator+(const FeatsListObject& other) const;
+
     protected:
-        XmlLib::SaxContentElementInterface * StartElement(
-                const XmlLib::SaxString & name,
-                const XmlLib::SaxAttributes & attributes);
+        XmlLib::SaxContentElementInterface* StartElement(
+                const XmlLib::SaxString& name,
+                const XmlLib::SaxAttributes& attributes);
 
         virtual void EndElement();
 
@@ -40,4 +42,7 @@ class FeatsListObject :
 
         DL_DECLARE_ACCESS(FeatsListObject_PROPERTIES)
         DL_DECLARE_VARIABLES(FeatsListObject_PROPERTIES)
+
+        friend class Character;
+        friend class Life;
 };

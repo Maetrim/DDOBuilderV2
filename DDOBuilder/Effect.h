@@ -494,7 +494,8 @@ enum AmountType
     Amount_ClassLevel,          // index into vector based on class level (0 based)
     Amount_ClassCasterLevel,    // index into vector based on class caster level (0 based)
     Amount_APCount,             // stacks based on AP spent in tree "Item"
-    Amount_AbilityValue,        // Stacks are equal to the specific abilities total value
+    Amount_AbilityValue,        // Stacks are equal to the specific abilities total inherent value (RACE + Buy + Inherent + Level ups)
+    Amount_AbilityTotal,        // Stacks are equal to the specific abilities total value
     Amount_AbilityMod,          // Stacks are equal to the specific abilities mod value
     Amount_HalfAbilityMod,      // Stacks are equal to the specific abilities mod value / 2
     Amount_ThirdAbilityMod,     // Stacks are equal to the specific abilities mod value / 3
@@ -521,12 +522,13 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_ClassCasterLevel, L"ClassCasterLevel"}, // Item is the class name
     {Amount_APCount, L"APCount"},           // Item is the tree name
     {Amount_AbilityValue, L"AbilityValue"}, // Item is the ability name
+    {Amount_AbilityTotal, L"AbilityTotal"}, // Item is the ability name
     {Amount_AbilityMod, L"AbilityMod"},     // Item is the ability name
     {Amount_HalfAbilityMod, L"HalfAbilityMod"},     // Item is the ability name
     {Amount_ThirdAbilityMod, L"ThirdAbilityMod"},     // Item is the ability name
     {Amount_Slider, L"Slider"},             // Item is the Slider name
     {Amount_SliderValue, L"SliderValue"},   // Item is the Slider name
-    {Amount_SliderValueLookup, L"SliderValueLookup"},   // Item is a Slider name, and StackSource used to looup the value used
+    {Amount_SliderValueLookup, L"SliderValueLookup"},   // Item is a Slider name, and StackSource used to lookup the value used
     {Amount_FeatCount, L"FeatCount"},       // Item is the Feat name
     {Amount_SetBonusCount, L"SetBonusCount"},   // Item is the set bonus name
     {Amount_SLA, L"SLA"},                   // item is the SLA name

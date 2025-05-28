@@ -21,7 +21,7 @@ EnhancementTree::EnhancementTree() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
 {
     DL_INIT(EnhancementTree_PROPERTIES)
-        m_Icon = "NoIcon";  // default to a blank icon
+    m_Icon = "NoIcon";  // default to a blank icon
     m_Background = "NoTreeBackground";
 }
 
@@ -45,6 +45,12 @@ void EnhancementTree::EndElement()
     // now check out our object
     SaxContentElement::EndElement();
     DL_END(EnhancementTree_PROPERTIES)
+
+    // rename enhancement items for a legacy tree
+    if (HasLegacy())
+    {
+        UpdateLegacyInfo();
+    }
 }
 
 void EnhancementTree::Write(XmlLib::SaxWriter* writer) const
@@ -84,6 +90,12 @@ void EnhancementTree::Write(XmlLib::SaxWriter* writer) const
         }
     }
     writer->EndElement();
+}
+
+bool EnhancementTree::operator<(const EnhancementTree & other) const
+{
+    bool bBefore =  (Name() < other.Name());
+    return bBefore;
 }
 
 bool EnhancementTree::operator==(const EnhancementTree & other) const
@@ -237,4 +249,24 @@ std::list<Effect> EnhancementTree::GetEnhancementEffects(
         effects = pItem->GetEffects(selection, rank);
     }
     return effects;
+}
+
+void EnhancementTree::UpdateLegacyInfo()
+{
+    // all enhancement need to also be renamed so no clashes
+    std::stringstream ss;
+    ss << "V" << Version();
+    std::string prepend = ss.str();
+    for (auto&& it : m_Items)
+    {
+        std::stringstream si;
+        si << prepend << it.InternalName();
+        it.Set_InternalName(si.str());
+        // we also need to update any requirements for enhancements that require enhancements
+        if (it.HasRequirementsToTrain())
+        {
+            it.m_RequirementsToTrain.UpdateEnhancementRequirements(prepend);
+        }
+        it.UpdateLegacyInfo(prepend, this);
+    }
 }

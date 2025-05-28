@@ -59,6 +59,8 @@ class Requirement :
         bool VerifyObject(
                 std::stringstream * ss) const;
 
+        void UpdateEnhancementRequirements(const std::string& prepend);
+
     private:
         bool EvaluateAbility(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateAbilityGreaterCondition(const Build& build, size_t level, bool includeTomes) const;

@@ -167,6 +167,7 @@ class Build :
         void UpdateSkillPoints(size_t level);
 
         // Enhancements
+        void UpdateLegacyTrees();
         void Enhancement_ResetEnhancementTree(std::string treeName);
         void Enhancement_SetSelectedTrees(const Enhancement_SelectedTrees& trees);
         void Enhancement_SetSelectedTrees(const LegacyEnhancementSelectedTrees& trees);

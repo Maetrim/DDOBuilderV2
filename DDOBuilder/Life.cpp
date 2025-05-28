@@ -46,14 +46,6 @@ XmlLib::SaxContentElementInterface * Life::StartElement(
 
     DL_START(Life_PROPERTIES)
 
-    // backwards compatibility
-    if (subHandler == NULL && !wasFlag)
-    {
-        if (m_SpecialFeats.SaxElementIsSelf(name, attributes))
-        {
-            subHandler = &m_SpecialFeats;
-        }
-    }
     if (subHandler == NULL && !wasFlag && name == L"StrTome")
     {
         subHandler = HandleSimpleElement(&m_StrTome);
@@ -92,6 +84,7 @@ XmlLib::SaxContentElementInterface * Life::StartElement(
 void Life::EndElement()
 {
     SaxContentElement::EndElement();
+    m_hasSpecialFeats = true;
     DL_END(Life_PROPERTIES)
 }
 
@@ -189,9 +182,25 @@ void Life::LoadComplete()
     // level to the Character level
     if (m_SpecialFeats.Feats().size() > 0)
     {
+        // all special feats move except for FeatAqusiition_UniversalTree
         // need to move these loaded feats up to the character level
-        m_pCharacter->AddSpecialFeats(m_SpecialFeats);
-        m_SpecialFeats = FeatsListObject(L"SpecialFeats");
+        std::list<TrainedFeat> feats = m_SpecialFeats.Feats();
+        std::list<TrainedFeat>::iterator tfit = feats.begin();
+        while (tfit != feats.end())
+        {
+            const Feat& feat = FindFeat(tfit->FeatName());
+            if (feat.Acquire() != FeatAcquisition_UniversalTree)
+            {
+                // needs to be moved to Character
+                tfit = feats.erase(tfit);   // remove from our list
+                m_pCharacter->TrainSpecialFeat(feat.Name());
+            }
+            else
+            {
+                ++tfit;
+            }
+        }
+        m_SpecialFeats.Set_Feats(feats);
     }
     if (m_pCharacter->AbilityTomeValue(Ability_Strength) < m_StrTome)
     {
@@ -574,39 +583,92 @@ void Life::SetAlignment(AlignmentType alignment)
 size_t Life::GetSpecialFeatTrainedCount(
         const std::string& featName) const
 {
-    return m_pCharacter->GetSpecialFeatTrainedCount(featName);
+    size_t count = m_pCharacter->GetSpecialFeatTrainedCount(featName);
+    const std::list<TrainedFeat>& specialFeats = SpecialFeats().Feats();
+    for (auto&& sfit: specialFeats)
+    {
+        if (sfit.FeatName() == featName)
+        {
+            ++count;    // it is present, count it
+        }
+    }
+    return count;
 }
 
 void Life::TrainSpecialFeat(
-        const std::string& featName)
+        const std::string& featName,
+        bool bApplyEffects)
 {
-    m_pCharacter->TrainSpecialFeat(featName);
-
     const Feat& feat = FindFeat(featName);
-    // notify about the feat effects
-    ApplyFeatEffects(feat);
+    if (feat.Acquire() == FeatAcquisition_UniversalTree)
+    {
+        // these are stored at the life level
+        // just add a copy of the feat name to the current list
+        TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
+        m_SpecialFeats.Add(tf);
+        m_hasSpecialFeats = true;
+    }
+    else
+    {
+        // all other special feats are at the Character level
+        m_pCharacter->TrainSpecialFeat(featName);
+    }
 
-    NotifyLifeFeatTrained(featName);
-    m_pCharacter->SetModifiedFlag(TRUE);
+    if (bApplyEffects)
+    {
+        // notify about the feat effects
+        ApplyFeatEffects(feat);
 
-    // add log entry
-    std::stringstream ss;
-    ss << "Trained the special feat \"" << featName.c_str() << "\"";
-    GetLog().AddLogEntry(ss.str().c_str());
+        NotifyLifeFeatTrained(featName);
+        m_pCharacter->SetModifiedFlag(TRUE);
 
-    // special feats may change the number of action points available
-    CountBonusRacialAP();
-    CountBonusUniversalAP();
+        // add log entry
+        std::stringstream ss;
+        ss << "Trained the special feat \"" << featName.c_str() << "\"";
+        GetLog().AddLogEntry(ss.str().c_str());
+
+        // special feats may change the number of action points available
+        CountBonusRacialAP();
+        CountBonusUniversalAP();
+    }
 }
 
 void Life::RevokeSpecialFeat(
         const std::string& featName)
 {
-    bool found = m_pCharacter->RevokeSpecialFeat(featName);
+    bool found = false;
+    const Feat & feat = FindFeat(featName);
+    if (feat.Acquire() == FeatAcquisition_UniversalTree)
+    {
+        // just remove the first copy of the feat name from the current list
+        std::list<TrainedFeat> trainedFeats = SpecialFeats().Feats();
+        std::list<TrainedFeat>::iterator it = trainedFeats.begin();
+        while (!found && it != trainedFeats.end())
+        {
+            if ((*it).FeatName() == featName)
+            {
+                // this is the first occurrence, remove it
+                it = trainedFeats.erase(it);
+                found = true;
+            }
+            else
+            {
+                ++it;
+            }
+        }
+        if (found)
+        {
+            FeatsListObject flo(L"SpecialFeats", trainedFeats);
+            Set_SpecialFeats(flo);
+        }
+    }
+    else
+    {
+        found = m_pCharacter->RevokeSpecialFeat(featName);
+    }
     if (found)
     {
         // notify about the feat effects
-        const Feat & feat = FindFeat(featName);
         RevokeFeatEffects(feat);
         NotifyLifeFeatRevoked(featName);
         // add log entry
@@ -619,9 +681,12 @@ void Life::RevokeSpecialFeat(
     }
 }
 
-const FeatsListObject& Life::SpecialFeats() const
+FeatsListObject Life::AllSpecialFeats() const
 {
-    return m_pCharacter->SpecialFeats();
+    FeatsListObject asf(L"SpecialFeats");
+    asf = SpecialFeats();   // our special feats
+    asf = asf + m_pCharacter->SpecialFeats();    // add those at character level also
+    return asf;
 }
 
 void Life::ApplyFeatEffects(const Feat& feat)
@@ -807,6 +872,14 @@ void Life::UpdateBuildLifePointers(Character* pCharacter)
     for (auto&& it: m_Builds)
     {
         it.SetLifePointer(this);
+    }
+}
+
+void Life::UpdateLegacyTrees()
+{
+    for (auto&& bit : m_Builds)
+    {
+        bit.UpdateLegacyTrees();
     }
 }
 

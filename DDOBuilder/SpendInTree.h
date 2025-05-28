@@ -9,6 +9,9 @@ class SpendInTree :
     public XmlLib::SaxContentElement
 {
     public:
+        static void ResetUpgradeSelection();
+        static bool SupportLegacyTrees();
+
         SpendInTree(const XmlLib::SaxString & elementName, TreeType type);
         SpendInTree(const XmlLib::SaxString & elementName, const std::string& treeName, TreeType type, size_t version);
         void Write(XmlLib::SaxWriter * writer) const;

@@ -34,6 +34,8 @@ class Life :
         void Write(XmlLib::SaxWriter* writer) const;
         void LoadComplete();
 
+        void UpdateLegacyTrees();
+
         CString UIDescription(size_t index) const;
         void SetName(const std::string& name);
 
@@ -73,9 +75,9 @@ class Life :
 
         // special feats
         size_t GetSpecialFeatTrainedCount(const std::string& featName) const;
-        void TrainSpecialFeat(const std::string& featName);
+        void TrainSpecialFeat(const std::string& featName, bool bApplyEffects);
         void RevokeSpecialFeat(const std::string& featName);
-        const FeatsListObject& SpecialFeats() const;
+        FeatsListObject AllSpecialFeats() const;
 
         // guild buffs
         bool ApplyGuildBuffs() const;
@@ -109,6 +111,7 @@ class Life :
                 DL_OPTIONAL_ENUM(_, AbilityType, Level32, Ability_Strength, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Level36, Ability_Strength, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Level40, Ability_Strength, abilityTypeMap) \
+                DL_OBJECT(_, FeatsListObject, SpecialFeats) \
                 DL_THIS_OBJECT_LIST(_, Build, Builds) \
                 DL_STRING_LIST(_, SelfAndPartyBuffs) \
                 DL_FLAG(_, TreeCollapsed)
@@ -134,8 +137,6 @@ class Life :
         int m_bonusRacialActionPoints;
         int m_bonusUniversalActionPoints;
         int m_bonusDestinyActionPoints;
-        // backwards compatibility (moved to Character from Life)
-        FeatsListObject m_SpecialFeats;
         size_t m_StrTome;
         size_t m_DexTome;
         size_t m_ConTome;

@@ -34,6 +34,7 @@ class EnhancementSelection :
 
         bool VerifyObject(
                 std::stringstream * ss) const;
+        void UpdateLegacyInfo(const std::string& prepend);
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

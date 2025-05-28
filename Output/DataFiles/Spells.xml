@@ -9675,6 +9675,7 @@ chasms that make normal adventurers balk.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <Cost>75</Cost>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -9693,6 +9694,7 @@ chasms that make normal adventurers balk.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <Cost>150</Cost>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -10535,12 +10537,12 @@ Cooldown: 20 seconds</Description>
     <Name>Celestial Bombardment</Name>
     <Description>Divine wrath falls from the heavens to smite your foes.
 This spell calls down three stars at your target, dealing a total
-of 3d6 Fire damage per character level, split into three hits. This damage is
+of 1d6+9 Fire damage per character level, split into three hits. This damage is
 affected by Fire spell power and may critically hit. In addition, enemies must
 succeed at three consecutive Reflex saving throws versus a DC of
-20+Wisdom mod+Evocation spell DC modifier or be knocked prone.
+20+Wisdom mod+Evocation spell DC modifier or be knocked prone for 4 seconds.
 Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minutes.</Description>
-    <Icon>MassConfusion</Icon>
+    <Icon>CelestialBombardment</Icon>
     <School>Evocation</School>
     <MaxCasterLevel>40</MaxCasterLevel>
     <Embolden />
@@ -10552,8 +10554,9 @@ Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minu
     <SpellDamage>
       <SpellDice>
         <BonusDice>
-          <Number>3</Number>
+          <Number>1</Number>
           <Sides>6</Sides>
+          <Bonus>9</Bonus>
         </BonusDice>
       </SpellDice>
       <Damage>Fire</Damage>
@@ -11061,6 +11064,12 @@ A successful Fortitude save reduces the damage by half.</Description>
     <Maximize />
     <Quicken />
     <MaxCasterLevel>10</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -11091,6 +11100,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Maximize />
     <Quicken />
     <MaxCasterLevel>10</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -11121,6 +11136,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Maximize />
     <Quicken />
     <MaxCasterLevel>10</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -11151,6 +11172,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Maximize />
     <Quicken />
     <MaxCasterLevel>10</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -11181,6 +11208,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Maximize />
     <Quicken />
     <MaxCasterLevel>10</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -11211,6 +11244,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Maximize />
     <Quicken />
     <MaxCasterLevel>10</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -11247,6 +11286,12 @@ balance check to get up every 2 seconds, at the same DC as the initial save.</De
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Trip</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Sleep Powder</Name>
@@ -11261,6 +11306,12 @@ not need to breathe or sleep.</Description>
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Sleep</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Stiffen Skin</Name>
@@ -11507,6 +11558,12 @@ living allies and enemy undead.</Description>
     <Intensify />
     <Maximize />
     <MaxCasterLevel>5</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -11560,6 +11617,12 @@ Reflex saves reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <PerCasterLevels>1</PerCasterLevels>
@@ -11590,6 +11653,12 @@ Reflex saves reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <PerCasterLevels>1</PerCasterLevels>
@@ -11620,6 +11689,12 @@ Reflex saves reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <PerCasterLevels>1</PerCasterLevels>
@@ -11650,6 +11725,12 @@ Reflex saves reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <PerCasterLevels>1</PerCasterLevels>
@@ -11680,6 +11761,12 @@ Reflex saves reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <PerCasterLevels>1</PerCasterLevels>
@@ -11725,6 +11812,12 @@ An enemy at touch range must make a Fortitude save or be Stunned for 3 seconds.<
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Stun</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <!---Alchemist Spells Level 2-->
   <Spell>
@@ -11795,6 +11888,12 @@ Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <PerCasterLevels>1</PerCasterLevels>
@@ -11828,6 +11927,12 @@ Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <PerCasterLevels>1</PerCasterLevels>
@@ -11856,6 +11961,12 @@ undead.</Description>
     <EmpowerHealing />
     <Intensify />
     <Maximize />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -11905,6 +12016,18 @@ Lasts for 15 seconds + 1 per level</Description>
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Recurring Strength</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Greater Venom Vial</Name>
@@ -11925,6 +12048,12 @@ A successful Fortitude save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12021,6 +12150,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12055,6 +12190,12 @@ and any damage will remove the salt.</Description>
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Venom Concentration</Name>
@@ -12077,6 +12218,12 @@ A successful Fortitude save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -12112,6 +12259,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12145,6 +12298,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -12167,7 +12326,7 @@ Throw a bottle at a single foe, causing a huge spike of Cold damage. Deals 7 to 
 Cold damage per caster level, max caster level 15, to a single target.
 
 DND Dice: Deals 1d6+6 Cold damage, max 15d6+90.
-A successful Reflex save reduces the damage by half.</Description>
+A successful Fortitude save reduces the damage by half.</Description>
     <Icon>BitterFrostBurst</Icon>
     <School>Conjuration</School>
     <MaxCasterLevel>15</MaxCasterLevel>
@@ -12178,6 +12337,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12221,6 +12386,12 @@ A successful Reflex save reduces damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12248,6 +12419,12 @@ are immune to this effect.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Curative Admixture: Inflict Serious Wounds</Name>
@@ -12264,6 +12441,12 @@ living allies and enemy undead.</Description>
     <EmpowerHealing />
     <Intensify />
     <Maximize />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -12444,6 +12627,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -12469,6 +12658,12 @@ fail a Fortitude save are stunned and helpless for 6 seconds per Caster Level.</
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Frost Concentration</Name>
@@ -12490,6 +12685,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -12557,6 +12758,23 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
+    <SpellDamage>
+      <SpellDice>
+        <BaseDice>
+          <Number>1</Number>
+          <Sides>6</Sides>
+          <Bonus>3</Bonus>
+        </BaseDice>
+      </SpellDice>
+      <Damage>Poison</Damage>
+      <SpellPower>Poison</SpellPower>
+    </SpellDamage>
   </Spell>
   <Spell>
     <Name>Invisibility Potion</Name>
@@ -12583,6 +12801,12 @@ Corporeal for 6 seconds, plus 1 second per Caster Level</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Melt Lock</Name>
@@ -12613,6 +12837,12 @@ DND Dice: Deals 1d6+3 Fire damage per caster level, max 15d6+45</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12657,6 +12887,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -12694,6 +12930,12 @@ damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12748,6 +12990,18 @@ A successful Reflex save reduces the damage by half and negates the debuff</Desc
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
+    <SpellDC>
+      <DCType>Negates PRR Debuff</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12778,6 +13032,12 @@ A successful Reflex save reduces the damage by half and negates the blind</Descr
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage, negate Blind</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12808,6 +13068,12 @@ A successful Reflex save reduces the damage by half</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -12835,6 +13101,12 @@ living allies and enemy undead.</Description>
     <EmpowerHealing />
     <Intensify />
     <Maximize />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BaseDice>
@@ -12863,6 +13135,12 @@ but the target has a chance to remake its Fortitude save every 24 seconds.</Desc
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Heartseeker Poison Imbue</Name>
@@ -12889,6 +13167,12 @@ for 15 seconds +2 per Caster Level.</Description>
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Ice Chill Poison Imbue</Name>
@@ -12970,6 +13254,18 @@ A successful Reflex save reduces the damage by half and negates the debuff.</Des
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
+    <SpellDC>
+      <DCType>Negates Frozen</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13012,6 +13308,18 @@ A successful Reflex save reduces the damage by half and negates the debuff.</Des
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
+    <SpellDC>
+      <DCType>Negates MRR Debuff</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13047,6 +13355,12 @@ or be blinded. If they fail this save and are already blinded, they instead will
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Flesh to Gold, Mass</Name>
@@ -13061,6 +13375,12 @@ per caster level, but the target has a chance to remake its Fortitude save every
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Greater Elemental Weapons</Name>
@@ -13231,6 +13551,12 @@ other Multivial spells.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13261,6 +13587,12 @@ other Multivial spells.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13291,6 +13623,12 @@ other Multivial spells.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13321,6 +13659,12 @@ other Multivial spells.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13351,6 +13695,12 @@ other Multivial spells.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13380,6 +13730,12 @@ A successful Fortitude save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13403,6 +13759,12 @@ turned into a frog.</Description>
     <Embolden />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <!---Alchemist Spells Level 6-->
   <Spell>
@@ -13425,6 +13787,12 @@ This spell receives reduced benefit from spell power.</Description>
     <Intensify />
     <Maximize />
     <MaxCasterLevel>15</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13455,6 +13823,12 @@ This spell receives reduced benefit from spell power.</Description>
     <Intensify />
     <Maximize />
     <MaxCasterLevel>15</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
     <SpellDamage>
       <SpellDice>
         <BonusDice>
@@ -13478,6 +13852,12 @@ Caster Level, and enemies make a recurring save once every 24 seconds.</Descript
     <Extend />
     <Heighten />
     <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Will</DCVersus>
+      <School>Transmutation</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Elemental Combination</Name>
@@ -13497,6 +13877,12 @@ A successful Reflex save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Reflex</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
   </Spell>
   <Spell>
     <Name>Gold Breath</Name>
@@ -13514,6 +13900,34 @@ A successful Fortitude save reduces the damage by half.</Description>
     <Intensify />
     <Maximize />
     <Quicken />
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Conjuration</School>
+      <CastingStatMod />
+    </SpellDC>
+    <SpellDamage>
+      <SpellDice>
+        <BaseDice>
+          <Number>1</Number>
+          <Sides>6</Sides>
+          <Bonus>3</Bonus>
+        </BaseDice>
+      </SpellDice>
+      <Damage>Fire</Damage>
+      <SpellPower>Fire</SpellPower>
+    </SpellDamage>
+    <SpellDamage>
+      <SpellDice>
+        <BaseDice>
+          <Number>1</Number>
+          <Sides>6</Sides>
+          <Bonus>3</Bonus>
+        </BaseDice>
+      </SpellDice>
+      <Damage>Bludgeon</Damage>
+      <SpellPower>Force</SpellPower>
+    </SpellDamage>
   </Spell>
   <Spell>
     <Name>Goldskin Potion</Name>

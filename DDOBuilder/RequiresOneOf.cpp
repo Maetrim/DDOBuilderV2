@@ -263,3 +263,11 @@ bool RequiresOneOf::VerifyObject(
     }
     return ok;
 }
+
+void RequiresOneOf::UpdateEnhancementRequirements(const std::string& prepend)
+{
+    for (auto && rit : m_Requirements)
+    {
+        rit.UpdateEnhancementRequirements(prepend);
+    }
+}

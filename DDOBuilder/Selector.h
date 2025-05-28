@@ -35,6 +35,8 @@ class Selector :
         bool VerifyObject(
                 std::stringstream * ss,
                 const std::list<EnhancementTree> & trees) const;
+        void UpdateLegacyInfo(const std::string& prepend, EnhancementTree* pTree);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

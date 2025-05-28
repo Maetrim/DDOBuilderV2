@@ -107,7 +107,7 @@ class CEnhancementTreeDialog :
         void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);
         bool CanSwapTree() const;
         void ValidateTreeSelections();
-        void ApplyArrowToItem();
+        void ApplyArrowToItem(bool bUpArrows);
 
         const EnhancementTree * m_pTree;
         TreeType m_type;

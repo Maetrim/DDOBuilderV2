@@ -1225,16 +1225,16 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateBaseClass(build, level, includeTomes);
             description.Format(
-                    "Requires: Base Class %s",
-                    m_Item.front().c_str());
+                    "Requires: Base Class %s(%d)",
+                    m_Item.front().c_str(), Value());
             break;
         }
     case Requirement_Class:
         {
             met = EvaluateClass(build, level, includeTomes);
             description.Format(
-                    "Requires: Class %s",
-                    m_Item.front().c_str());
+                    "Requires: Class %s(%d)",
+                    m_Item.front().c_str(), Value());
             break;
         }
     case Requirement_Enhancement:
@@ -1371,3 +1371,17 @@ bool Requirement::operator==(const Requirement& other) const
             && (m_Value == other.m_Value);
 }
 
+void Requirement::UpdateEnhancementRequirements(const std::string& prepend)
+{
+    if (m_Type == Requirement_Enhancement)
+    {
+        if (m_Item.size() > 0)
+        {
+            std::stringstream ss;
+            ss << prepend;
+            ss << m_Item.front();
+            std::list<std::string>::iterator it = m_Item.begin();
+            (*it) = ss.str();
+        }
+    }
+}

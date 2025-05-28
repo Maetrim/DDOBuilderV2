@@ -25,8 +25,9 @@ Character::Character(CDDOBuilderDoc * pDoc) :
     m_pDocument(pDoc),
     m_uiActiveLifeIndex(10000), // large number that will never occur naturally
     m_uiActiveBuildIndex(10000),// large number that will never occur naturally
-    m_bShowEpicOnly(true),
-    m_bShowUnavailableFeats(false)
+    m_bShowEpicOnly(false),
+    m_bShowUnavailableFeats(false),
+    m_bSupportLegacyTrees(false)
 {
     DL_INIT(Character_PROPERTIES)
 }
@@ -57,6 +58,7 @@ void Character::EndElement()
     m_hasSpecialFeats = true;
     m_hasTomes = true;
     DL_END(Character_PROPERTIES)
+    MoveSpecialFeatsIfRequired();
 }
 
 void Character::Write(XmlLib::SaxWriter * writer) const
@@ -81,6 +83,23 @@ void Character::LoadComplete()
     {
         lit.LoadComplete();
     }
+}
+
+void Character::SetSupportLegacyTrees(bool bSupport)
+{
+    m_bSupportLegacyTrees = bSupport;
+    if (m_bSupportLegacyTrees)
+    {
+        for (auto && lit : m_Lives)
+        {
+            lit.UpdateLegacyTrees();
+        }
+    }
+}
+
+bool Character::SupportLegacyTrees() const
+{
+    return m_bSupportLegacyTrees;
 }
 
 bool Character::ShowUnavailable() const
@@ -598,5 +617,30 @@ void Character::SetSkillTomes(const SkillTomes& tomes)
 void Character::SetSpecialFeats(const FeatsListObject& feats)
 {
     Set_SpecialFeats(feats);
+}
+
+void Character::MoveSpecialFeatsIfRequired()
+{
+    // Special feats of the type FeatAcquisition_UniversalTree have moved from the Character level to the Life level
+    std::list<TrainedFeat> feats = m_SpecialFeats.Feats();
+    std::list<TrainedFeat>::iterator tfit = feats.begin();
+    while (tfit != feats.end())
+    {
+        const Feat& feat = FindFeat(tfit->FeatName());
+        if (feat.Acquire() == FeatAcquisition_UniversalTree)
+        {
+            // copy needs to be moved to every Life that we have and removed from Character
+            tfit = feats.erase(tfit);   // remove from our list
+            for (auto&& lit : m_Lives)
+            {
+                lit.TrainSpecialFeat(feat.Name(), false);   // don't apply effects etc
+            }
+        }
+        else
+        {
+            ++tfit;
+        }
+    }
+    m_SpecialFeats.Set_Feats(feats);
 }
 

@@ -248,3 +248,12 @@ bool RequiresNoneOf::VerifyObject(
     }
     return ok;
 }
+
+
+void RequiresNoneOf::UpdateEnhancementRequirements(const std::string& prepend)
+{
+    for (auto && rit : m_Requirements)
+    {
+        rit.UpdateEnhancementRequirements(prepend);
+    }
+}

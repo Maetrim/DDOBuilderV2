@@ -49,8 +49,10 @@ BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     ON_UPDATE_COMMAND_UI(ID_FILE_IMPORT, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_VERIFYLOADEDDATA, &CDDOBuilderApp::OnUpdateDisabledDuringLoadSpecial)
     ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_LAST, &CDDOBuilderApp::OnUpdateDisabledDuringLoad)
-    ON_COMMAND(ID_DEVELOPMENT_VERIFYLOADEDDATA, OnVerifyLoadedData)
-    ON_COMMAND(ID_FILE_IMPORT, OnFileImport)
+    ON_COMMAND(ID_DEVELOPMENT_VERIFYLOADEDDATA, &CDDOBuilderApp::OnVerifyLoadedData)
+    ON_COMMAND(ID_FILE_IMPORT, &CDDOBuilderApp::OnFileImport)
+    ON_UPDATE_COMMAND_UI(ID_LAMANNIA_MODE, &CDDOBuilderApp::OnUpdateLamanniaMode)
+    ON_COMMAND(ID_LAMANNIA_MODE, &CDDOBuilderApp::OnLamanniaMode)
 END_MESSAGE_MAP()
 
 // CDDOBuilderApp construction
@@ -59,7 +61,8 @@ CDDOBuilderApp::CDDOBuilderApp() :
     m_bLoadComplete(false),
     m_dwHtmlHelpCookie(NULL),
     m_bItemLoadThreadRunning(false),
-    m_bKillItemLoadThread(false)
+    m_bKillItemLoadThread(false),
+    m_bLamanniaMode(false)
 {
     EnableHtmlHelp();
 
@@ -819,6 +822,7 @@ void CDDOBuilderApp::LoadEnhancements(const std::string& path)
     GetLog().AddLogEntry("Loading Enhancement Trees...");
     file.ReadFiles("");
     m_enhancementTrees = file.LoadedObjects();
+    m_enhancementTrees.sort();
     // update log after load action
     CString strUpdate;
     strUpdate.Format("Loading Enhancement Trees...%d", m_enhancementTrees.size());
@@ -1813,5 +1817,41 @@ void CDDOBuilderApp::ConvertToNewDataStructure(LegacyCharacter& importedCharacte
         //pBuild->BuildNowActive();
         //pBuildsPane->PopulateBuildsList();
         pBuildsPane->ReselectCurrentItem();
+    }
+}
+
+bool CDDOBuilderApp::LamanniaMode() const
+{
+    return m_bLamanniaMode;
+}
+
+void CDDOBuilderApp::OnUpdateLamanniaMode(CCmdUI* pCmdUI)
+{
+    pCmdUI->SetCheck(m_bLamanniaMode);
+}
+
+void CDDOBuilderApp::OnLamanniaMode()
+{
+    m_bLamanniaMode = !m_bLamanniaMode;
+    // notify toggle change to current build
+    POSITION pos = m_pDocManager->GetFirstDocTemplatePosition();
+    CDocTemplate* pTemplate = m_pDocManager->GetNextDocTemplate(pos);
+    pos = pTemplate->GetFirstDocPosition();
+    CDocument* pDoc = pTemplate->GetNextDoc(pos);
+    CDDOBuilderDoc* pDDODoc = dynamic_cast<CDDOBuilderDoc*>(pDoc);
+    if (pDDODoc != NULL)
+    {
+        Build* pBuild = pDDODoc->GetCharacter()->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            if (m_bLamanniaMode)
+            {
+                pBuild->NotifyStanceActivated("LamanniaMode");
+            }
+            else
+            {
+                pBuild->NotifyStanceDeactivated("LamanniaMode");
+            }
+        }
     }
 }

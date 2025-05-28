@@ -195,3 +195,11 @@ int EnhancementSelection::AddImage(const std::string& icon)
     return imageIndex1;
 }
 
+void EnhancementSelection::UpdateLegacyInfo(const std::string& prepend)
+{
+    if (m_hasRequirementsToTrain)
+    {
+        m_RequirementsToTrain.UpdateEnhancementRequirements(prepend);
+    }
+}
+

@@ -343,3 +343,19 @@ bool RequirementsBase::VerifyObject(
     return ok;
 }
 
+void RequirementsBase::UpdateEnhancementRequirements(const std::string& prepend)
+{
+    for (auto && rit : m_Requires)
+    {
+        rit.UpdateEnhancementRequirements(prepend);
+    }
+    for (auto && oorit : m_OneOf)
+    {
+        oorit.UpdateEnhancementRequirements(prepend);
+    }
+    for (auto && norit : m_NoneOf)
+    {
+        norit.UpdateEnhancementRequirements(prepend);
+    }
+}
+

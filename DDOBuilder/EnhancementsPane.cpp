@@ -285,7 +285,8 @@ std::list<EnhancementTree> CEnhancementsPane::DetermineTrees()
             // get all the trees that are compatible with the race/class setup
             if ((*it).MeetRequirements(*pBuild, pBuild->Level()-1)  // 0 based for level needed
                     && !(*it).HasIsReaperTree()         // no reaper trees in enhancements please!
-                    && !(*it).HasIsEpicDestiny())       // no epic destiny trees in enhancements please!
+                    && !(*it).HasIsEpicDestiny()        // no epic destiny trees in enhancements please!
+                    && (!(*it).HasLegacy() || m_pCharacter->SupportLegacyTrees())) // no legacy trees unless requested by user
             {
                 // yes this is one of our tree's add it
                 trees.push_back((*it));
@@ -812,23 +813,36 @@ void CEnhancementsPane::OnUniversalTree(UINT nID)
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
+            bool doit = false;
             bool trained = (pBuild->GetSpecialFeatTrainedCount((LPCTSTR)name) > 0);
             if (trained)
             {
-                pBuild->RevokeSpecialFeat((LPCTSTR)name);
+                int ret = AfxMessageBox("Are you sure you want to revoke access to this tree?\r\n"
+                    "Any points spent in this tree will be revoked.\r\n"
+                    "\r\n"
+                    "(Note you may still have access via Favor reward ranks)", MB_ICONQUESTION | MB_YESNO);
+                if (ret == IDYES)
+                {
+                    pBuild->RevokeSpecialFeat((LPCTSTR)name);
+                    doit = true;
+                }
             }
             else
             {
                 pBuild->TrainSpecialFeat((LPCTSTR)name);
+                doit = true;
             }
-            m_universalTrees[id].SetSelected(!trained);
-            // ensure displayed trees are shown
-            std::list<EnhancementTree> trees = DetermineTrees();
-            if (trees != m_availableTrees)
+            if (doit)
             {
-                // yup, they have changed
-                m_availableTrees = trees;
-                UpdateEnhancementWindows();
+                m_universalTrees[id].SetSelected(!trained);
+                // ensure displayed trees are shown
+                std::list<EnhancementTree> trees = DetermineTrees();
+                if (trees != m_availableTrees)
+                {
+                    // yup, they have changed
+                    m_availableTrees = trees;
+                    UpdateEnhancementWindows();
+                }
             }
         }
     }

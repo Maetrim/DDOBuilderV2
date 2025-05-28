@@ -63,6 +63,7 @@ BOOL CDDOBuilderDoc::OnNewDocument()
 
 BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
 {
+    SpendInTree::ResetUpgradeSelection();
     // default to a new empty character
     m_character = Character(this);
     m_character.AboutToLoad();
@@ -95,6 +96,7 @@ BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
         text += errorMessage.c_str();
         AfxMessageBox(text, MB_ICONERROR);
     }
+    m_character.SetSupportLegacyTrees(SpendInTree::SupportLegacyTrees());
     m_character.LoadComplete(); // does file format upgrades etc
     CWnd* pWnd = AfxGetApp()->m_pMainWnd;
     CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);

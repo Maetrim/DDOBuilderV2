@@ -146,3 +146,10 @@ std::string FeatsListObject::FeatName(const std::string& type) const
     return "";
 }
 
+FeatsListObject FeatsListObject::operator+(const FeatsListObject& other) const
+{
+    std::list<TrainedFeat> all = m_Feats;
+    all.insert(all.end(), other.m_Feats.begin(), other.m_Feats.end());
+    FeatsListObject newList(ElementName(), all);
+    return newList;
+}

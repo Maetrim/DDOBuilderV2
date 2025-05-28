@@ -317,6 +317,14 @@ void CEnhancementTreeDialog::OnPaint()
         VERIFY(smallFont.CreateFontIndirect(&lf) != 0);
         CFont * pOldFont = memoryDc.SelectObject(&smallFont);
 
+        // show the tree version number in the lower left corner
+        text.Format("V%d", m_pTree->Version());
+        textSize = memoryDc.GetTextExtent(text);
+        memoryDc.TextOut(
+                c_controlSpacing,
+                c_sizeY - 2 - textSize.cy,
+                text);
+
         m_bCreateHitBoxes = (m_hitBoxes.size() == 0);
         // now add all the tree enhancements and their states
         const std::list<EnhancementTreeItem> & items = m_pTree->Items();
@@ -667,7 +675,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
         if (GetKeyState(VK_SHIFT) < 0
             && GetKeyState(VK_CONTROL) < 0)
         {
-            ApplyArrowToItem();
+            ApplyArrowToItem(true); // up arrows
         }
         else
         {
@@ -879,33 +887,41 @@ void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
 void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnRButtonDown(nFlags, point);
-    // revoke the last enhancement trained in this tree
-    Build* pBuild = m_pCharacter->ActiveBuild();
-    if (pBuild != NULL)
+    if (GetKeyState(VK_SHIFT) < 0
+        && GetKeyState(VK_CONTROL) < 0)
     {
-        // determine which enhancement has been clicked on
-        const EnhancementTreeItem * item = FindByPoint();
-        if (item != NULL
-                && item->CanRevoke(pBuild->FindSpendInTree(m_pTree->Name())))
+        ApplyArrowToItem(false);    // left right arrows
+    }
+    else
+    {
+        // revoke the last enhancement trained in this tree
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
         {
-            switch (m_type)
+            // determine which enhancement has been clicked on
+            const EnhancementTreeItem * item = FindByPoint();
+            if (item != NULL
+                    && item->CanRevoke(pBuild->FindSpendInTree(m_pTree->Name())))
             {
-            case TT_universal:
-            case TT_racial:
-            case TT_enhancement:
-                pBuild->Enhancement_RevokeEnhancement(m_pTree->Name(), item->InternalName());
-                break;
-            case TT_epicDestiny:
-                pBuild->Destiny_RevokeEnhancement(m_pTree->Name(), item->InternalName());
-                break;
-            case TT_reaper:
-                pBuild->Reaper_RevokeEnhancement(m_pTree->Name(), item->InternalName());
-                break;
+                switch (m_type)
+                {
+                case TT_universal:
+                case TT_racial:
+                case TT_enhancement:
+                    pBuild->Enhancement_RevokeEnhancement(m_pTree->Name(), item->InternalName());
+                    break;
+                case TT_epicDestiny:
+                    pBuild->Destiny_RevokeEnhancement(m_pTree->Name(), item->InternalName());
+                    break;
+                case TT_reaper:
+                    pBuild->Reaper_RevokeEnhancement(m_pTree->Name(), item->InternalName());
+                    break;
+                }
+                Invalidate();   // redraw
+                // cause tooltip to update
+                m_pTooltipItem = NULL;
+                PostMessage(WM_MOUSEMOVE, nFlags, (LPARAM)MAKELONG(point.x, point.y));
             }
-            Invalidate();   // redraw
-            // cause tooltip to update
-            m_pTooltipItem = NULL;
-            PostMessage(WM_MOUSEMOVE, nFlags, (LPARAM)MAKELONG(point.x, point.y));
         }
     }
 }
@@ -1369,7 +1385,7 @@ void CEnhancementTreeDialog::OnMButtonDown(UINT nFlags, CPoint point)
     }
 }
 
-void CEnhancementTreeDialog::ApplyArrowToItem()
+void CEnhancementTreeDialog::ApplyArrowToItem(bool bUpArrows)
 {
     const EnhancementTreeItem* pConstItem = FindByPoint();
     if (pConstItem != NULL)
@@ -1378,51 +1394,96 @@ void CEnhancementTreeDialog::ApplyArrowToItem()
         // can only set arrows on non core items
         if (item->YPosition() > 0)
         {
-            int ret = AfxMessageBox("What type of arrows to add?\r\n"
-                "\r\n"
-                "YES    <- Small Arrow Up\r\n"
-                "NO     <-- Medium Arrow Up\r\n"
-                "CANCEL <--- Long Arrow Up\r\n", MB_YESNOCANCEL);
-            size_t offset = 0;
-            switch (ret)
+            if (bUpArrows)
             {
-                case IDYES:     offset = 1; break;
-                case IDNO:      offset = 2; break;
-                case IDCANCEL:  offset = 3; break;
-            }
-            EnhancementTreeItem* pTarget = m_pTree->FindItemByPosition(item->XPosition(), item->YPosition() + offset);
-            if (pTarget != NULL)
-            {
-                CString text;
-                text.Format("Are you sure you want to add an arrow to item:\r\n"
-                        "%s\r\n"
-                        "and a dependency on that item to item:\r\n"
-                        "%s?", item->Name().c_str(), pTarget->Name().c_str());
-                ret = AfxMessageBox(text, MB_YESNO);
-                if (ret == IDYES)
+                int ret = AfxMessageBox("What type of arrows to add?\r\n"
+                    "\r\n"
+                    "YES    <- Small Arrow Up\r\n"
+                    "NO     <-- Medium Arrow Up\r\n"
+                    "CANCEL <--- Long Arrow Up\r\n", MB_YESNOCANCEL);
+                size_t offset = 0;
+                switch (ret)
                 {
-                    switch (offset)
+                    case IDYES:     offset = 1; break;
+                    case IDNO:      offset = 2; break;
+                    case IDCANCEL:  offset = 3; break;
+                }
+                EnhancementTreeItem* pTarget = m_pTree->FindItemByPosition(item->XPosition(), item->YPosition() + offset);
+                if (pTarget != NULL)
+                {
+                    CString text;
+                    text.Format("Are you sure you want to add an arrow to item:\r\n"
+                            "%s\r\n"
+                            "and a dependency on that item to item:\r\n"
+                            "%s?", item->Name().c_str(), pTarget->Name().c_str());
+                    ret = AfxMessageBox(text, MB_YESNO);
+                    if (ret == IDYES)
                     {
-                        case 1: item->Set_ArrowUp(); break;
-                        case 2: item->Set_LongArrowUp(); break;
-                        case 3: item->Set_ExtraLongArrowUp(); break;
+                        switch (offset)
+                        {
+                            case 1: item->Set_ArrowUp(); break;
+                            case 2: item->Set_LongArrowUp(); break;
+                            case 3: item->Set_ExtraLongArrowUp(); break;
+                        }
+                        // add a requirement to target item
+                        Requirements requirements = pTarget->HasRequirementsToTrain() ? pTarget->RequirementsToTrain() : Requirements();
+                        std::list<Requirement> reqs = requirements.Requires();
+                        Requirement r(Requirement_Enhancement, item->InternalName());
+                        reqs.push_back(r);
+                        requirements.AddRequirement(r);
+                        pTarget->Set_RequirementsToTrain(requirements);
+                        m_pTree->Save();
+                        // visually show changes
+                        Invalidate();
                     }
-                    // add a requirement to target item
-                    Requirements requirements = pTarget->HasRequirementsToTrain() ? pTarget->RequirementsToTrain() : Requirements();
-                    std::list<Requirement> reqs = requirements.Requires();
-                    Requirement r(Requirement_Enhancement, item->InternalName());
-                    reqs.push_back(r);
-                    requirements.AddRequirement(r);
-                    pTarget->Set_RequirementsToTrain(requirements);
-                    m_pTree->Save();
-                    // visually show changes
-                    Invalidate();
                 }
             }
             else
             {
-                AfxMessageBox("No arrow applied as no target item", MB_ICONERROR);
+                // left right arrows
+                int ret = AfxMessageBox("What type of arrows to add?\r\n"
+                    "\r\n"
+                    "YES    <- Left Arrow\r\n"
+                    "NO     <-- Right Arrow\r\n", MB_YESNOCANCEL);
+                int offset = 0;
+                switch (ret)
+                {
+                    case IDYES:     offset = -1; break;
+                    case IDNO:      offset = +1; break;
+                }
+                EnhancementTreeItem* pTarget = m_pTree->FindItemByPosition(item->XPosition() + offset, item->YPosition());
+                if (pTarget != NULL)
+                {
+                    CString text;
+                    text.Format("Are you sure you want to add an arrow to item:\r\n"
+                            "%s\r\n"
+                            "and a dependency on that item to item:\r\n"
+                            "%s?", item->Name().c_str(), pTarget->Name().c_str());
+                    ret = AfxMessageBox(text, MB_YESNO);
+                    if (ret == IDYES)
+                    {
+                        switch (offset)
+                        {
+                            case -1: item->Set_ArrowLeft(); break;
+                            case +1: item->Set_ArrowRight(); break;
+                        }
+                        // add a requirement to target item
+                        Requirements requirements = pTarget->HasRequirementsToTrain() ? pTarget->RequirementsToTrain() : Requirements();
+                        std::list<Requirement> reqs = requirements.Requires();
+                        Requirement r(Requirement_Enhancement, item->InternalName());
+                        reqs.push_back(r);
+                        requirements.AddRequirement(r);
+                        pTarget->Set_RequirementsToTrain(requirements);
+                        m_pTree->Save();
+                        // visually show changes
+                        Invalidate();
+                    }
+                }
             }
+        }
+        else
+        {
+            AfxMessageBox("No arrow applied as no target item", MB_ICONERROR);
         }
     }
 }

@@ -1077,7 +1077,8 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
         m_tipItems.push_back(pMeta);
     }
 
-    if (spell.HasMaxCasterLevel())
+    if (spell.HasMaxCasterLevel()
+        && (spell.ActualCasterLevel(build) != 0 || spell.ActualMaxCasterLevel(build) != 0))
     {
         CString casterLevel;
         casterLevel.Format("Caster Level: %d (Max %d)", spell.ActualCasterLevel(build), spell.ActualMaxCasterLevel(build));
@@ -1085,7 +1086,7 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
         pRequirements->AddRequirement(casterLevel, false);  // red highlighted line
         m_tipItems.push_back(pRequirements);
     }
-    else
+    else if (spell.ActualCasterLevel(build) != 0)
     {
         CString casterLevel;
         casterLevel.Format("Caster Level: %d", spell.ActualCasterLevel(build));
@@ -1150,9 +1151,13 @@ void CInfoTip::AppendSpellDamageEffect(
     int castLevel = min(spell.ActualMaxCasterLevel(build), spell.ActualCasterLevel(build));
     CString tsd = sd.SpellDamageText(build, castLevel);
 
-    CString tipText = mcl;
-    tipText += "\r\n";
-    tipText += cl;
+    CString tipText;
+    if (castLevel > 0)
+    {
+        tipText = mcl;
+        tipText += "\r\n";
+        tipText += cl;
+    }
     tipText += tsd;
 
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
@@ -1188,7 +1193,6 @@ void CInfoTip::SetLevelItem(
     if (level == 0
         && ct != expectedClass)
     {
-        const ::Class & c = FindClass(ct);
         if (c.HasBaseClass() && c.BaseClass() == expectedClass)
         {
             text.Format("Requires a Lesser Reincarnation to switch from Iconic class of ");

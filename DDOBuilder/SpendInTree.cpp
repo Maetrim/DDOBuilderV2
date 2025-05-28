@@ -23,6 +23,18 @@ namespace
     }
 }
 
+int g_globalUpgradeSelection = IDCANCEL;
+
+void SpendInTree::ResetUpgradeSelection()
+{
+    g_globalUpgradeSelection = IDCANCEL;
+}
+
+bool SpendInTree::SupportLegacyTrees()
+{
+    return (g_globalUpgradeSelection == IDYES);
+}
+
 SpendInTree::SpendInTree(const XmlLib::SaxString & elementName, TreeType type) :
     XmlLib::SaxContentElement(elementName, f_verCurrent),
     m_pointsSpent(0),
@@ -65,21 +77,50 @@ void SpendInTree::EndElement()
     DL_END(SpendInTree_PROPERTIES)
     TranslateNamesFromV1();
 
+    bool bUpdateCosts = true;
     const EnhancementTree & tree = GetEnhancementTree(TreeName());
     size_t spendVersion = TreeVersion();
     if (spendVersion != tree.Version())
     {
-        // looks like this tree is now out of date, have to revoke all these
-        // enhancements in this tree (i.e. just delete it)
-        std::stringstream ss;
-        ss << "All enhancements in tree \""
-            << TreeName()
-            << "\" were revoked as the tree has since been superseded";
-        GetLog().AddLogEntry(ss.str().c_str());
-        m_Enhancements.clear();
-        Set_TreeVersion(tree.Version());    // update
+        if (g_globalUpgradeSelection == IDCANCEL)
+        {
+            std::stringstream ss;
+            ss << "The enhancement tree \"" << TreeName() << "\" is now out of date.\r\n"
+                    "Do you want to open the file using the old version of the tree?\r\n"
+                    "(This selection will be applied to all builds in this file where appropriate)";
+            g_globalUpgradeSelection = AfxMessageBox(ss.str().c_str(), MB_ICONQUESTION | MB_YESNO);
+        }
+        if (g_globalUpgradeSelection == IDYES)
+        {
+            std::stringstream st;
+            st << " " << TreeName() << " V" << spendVersion;
+            m_TreeName = st.str();      // use old name of legacy tree
+            std::stringstream ss;
+            ss << "Keeping backwards compatibility with older tree \"" << TreeName() << "\"";
+            GetLog().AddLogEntry(ss.str().c_str());
+            // all spent enhancement need to also be renamed so no clashes
+            for (auto&& it : m_Enhancements)
+            {
+                std::stringstream se;
+                se << "V" << spendVersion << it.EnhancementName();
+                it.Set_EnhancementName(se.str());
+            }
+        }
+        else
+        {
+            // looks like this tree is now out of date, have to revoke all these
+            // enhancements in this tree (i.e. just delete it)
+            std::stringstream ss;
+            ss << "All enhancements in tree \""
+                << TreeName()
+                << "\" were revoked as the tree has since been superseded";
+            GetLog().AddLogEntry(ss.str().c_str());
+            m_Enhancements.clear();
+            Set_TreeVersion(tree.Version());    // update
+            bUpdateCosts = false;
+        }
     }
-    else
+    if (bUpdateCosts)
     {
         // also make sure every loaded TrainedEnhancement has the correct
         // cached cost values for the enhancements it references

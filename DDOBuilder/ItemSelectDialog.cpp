@@ -750,13 +750,16 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
             if (!augments[augmentIndex].HasSelectedLevelIndex())
             {
                 // default to the highest selectable option if not selected
-                const std::vector<int>& levels = augment.Levels();
                 size_t index = 0;
-                for (size_t i = 0; i < levels.size(); ++i)
+                if (augment.HasLevels())
                 {
-                    if (levels[i] < static_cast<int>(m_pBuild->Level()))
+                    const std::vector<int>& levels = augment.Levels();
+                    for (size_t i = 0; i < levels.size(); ++i)
                     {
-                        index = i;
+                        if (levels[i] < static_cast<int>(m_pBuild->Level()))
+                        {
+                            index = i;
+                        }
                     }
                 }
                 augments[augmentIndex].SetSelectedLevelIndex(index);

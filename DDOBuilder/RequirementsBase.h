@@ -52,6 +52,7 @@ class RequirementsBase :
         void AddRequirement(const Requirement& req);
         void AddRequiresOneOf(const RequiresOneOf& roo);
         void AddRequiresNoneOf(const RequiresNoneOf& rno);
+        void UpdateEnhancementRequirements(const std::string& prepend);
 
         bool operator==(const RequirementsBase& other) const;
 

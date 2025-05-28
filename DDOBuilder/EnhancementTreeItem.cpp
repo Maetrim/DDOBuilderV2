@@ -671,3 +671,11 @@ int EnhancementTreeItem::AddImage(const std::string& icon)
     return imageIndex1;
 }
 
+void EnhancementTreeItem::UpdateLegacyInfo(const std::string& prepend, EnhancementTree* pTree)
+{
+    if (HasSelections())
+    {
+        m_Selections.UpdateLegacyInfo(prepend, pTree);
+    }
+}
+

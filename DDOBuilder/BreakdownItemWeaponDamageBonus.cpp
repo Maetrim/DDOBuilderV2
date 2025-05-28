@@ -66,6 +66,7 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                 else
                 {
                     pBI = FindBreakdown(Breakdown_DamageAbilityMultiplier);
+                    pBI->AttachObserver(this);
                     multiplier = pBI->Total();
                 }
                 if (bonus != 0) // only add to list if non zero

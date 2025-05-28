@@ -43,6 +43,8 @@ public:
     UINT  m_nAppLook;
     BOOL  m_bHiColorIcons;
 
+    bool LamanniaMode() const;
+
     const std::list<Bonus>& BonusTypes() const;
     const std::list<Race>& Races() const;
     const std::list<Class>& Classes() const;
@@ -96,6 +98,8 @@ public:
     afx_msg void OnUpdateDisabledDuringLoad(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDisabledDuringLoadSpecial(CCmdUI* pCmdUI);
     afx_msg void OnFileImport();
+    afx_msg void OnUpdateLamanniaMode(CCmdUI* pCmdUI);
+    afx_msg void OnLamanniaMode();
     DECLARE_MESSAGE_MAP()
 private:
     void LoadData();
@@ -184,6 +188,8 @@ private:
     // threaded item load variables
     bool m_bItemLoadThreadRunning;
     bool m_bKillItemLoadThread;
+
+    bool m_bLamanniaMode;
 
     friend class Item;
     friend class EquippedGear;

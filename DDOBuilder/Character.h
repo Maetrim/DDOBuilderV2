@@ -27,6 +27,9 @@ class Character :
         void AboutToLoad();
         void LoadComplete();
 
+        void SetSupportLegacyTrees(bool bSupport);
+        bool SupportLegacyTrees() const;
+
         bool ShowUnavailable() const;
         bool ShowEpicOnly() const;
         void ToggleShowEpicOnly();
@@ -110,11 +113,13 @@ protected:
         DL_DECLARE_VARIABLES(Character_PROPERTIES)
     private:
         void NotifyActiveLifeChanged();
+        void MoveSpecialFeatsIfRequired();
 
         CDDOBuilderDoc* m_pDocument;
         size_t m_uiActiveLifeIndex;
         size_t m_uiActiveBuildIndex;
         bool m_bShowEpicOnly;
         bool m_bShowUnavailableFeats;
+        bool m_bSupportLegacyTrees;
         friend class CDDOBuilderApp;
 };

@@ -71,6 +71,7 @@ class EnhancementTreeItem :
                 std::stringstream * ss,
                 const std::list<EnhancementTree> & trees) const;
 
+        void UpdateLegacyInfo(const std::string& prepend, EnhancementTree* pTree);
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -115,4 +116,5 @@ class EnhancementTreeItem :
         static CImageList sm_disabledEnhancementImages;
 
         friend class CEnhancementTreeDialog;
+        friend class EnhancementTree;
 };

@@ -3180,12 +3180,13 @@ void CBreakdownsPane::UpdateTotalChanged(
         case Breakdown_Charisma:        at = Ability_Charisma; break;
     }
     // need to notify all breakdowns
+    Build* pBuild = m_pCharacter->ActiveBuild();
     for (auto&& bcit: m_mapBuildCallbacks)
     {
         std::list<EffectCallbackItem*> callbacks = bcit.second;
         for (auto&& cit : callbacks)
         {
-            cit->AbilityTotalChanged(m_pCharacter->ActiveBuild(), at);
+            cit->AbilityTotalChanged(pBuild, at);
         }
     }
 }

@@ -5,6 +5,7 @@
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
 #include "Build.h"
+#include "EnhancementTree.h"
 
 #define DL_ELEMENT Selector
 
@@ -324,3 +325,22 @@ bool Selector::HasTrainableOption(
     }
     return bHasTrainableOption;
 }
+
+void Selector::UpdateLegacyInfo(const std::string& prepend, EnhancementTree* pTree)
+{
+    for (auto&& it : m_Selections)
+    {
+        it.UpdateLegacyInfo(prepend);
+    }
+    for (auto&& it : m_Exclusions)
+    {
+        std::stringstream ss;
+        ss << prepend << it;
+        std::string internalName = ss.str();
+        if (pTree->FindEnhancementItem(internalName) != NULL)
+        {
+            it = internalName;
+        }
+    }
+}
+

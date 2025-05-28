@@ -323,7 +323,10 @@ void CSLAControl::SetTooltipText(
     slaName = (*si).Name();
     // now we have the spell name, look it up
     Spell spell = FindSpellByName(slaName);
-    spell.SetCost((*si).Cost());
+    if (!spell.HasCost())
+    {
+        spell.SetCost((*si).Cost());
+    }
     spell.SetMaxCasterLevel((*si).MCL());
     spell.SetCooldown((*si).Cooldown());
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);

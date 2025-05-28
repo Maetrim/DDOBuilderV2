@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Races>
+  <Race>
+    <Name>Dhampir</Name>
+    <ShortName>Dhampir</ShortName>
+    <Description></Description>
+    <StartingWorld>Eberron</StartingWorld>
+    <BuildPoints size="4">28 32 34 36</BuildPoints>
+    <Strength>+2</Strength>
+     <!--TBD: Currently as its not yet live-->
+    <NoPastLife />
+    <GrantedFeat>Dhampir Traits</GrantedFeat>
+    <GrantedFeat>Vampiric Bite</GrantedFeat>
+    <Feat>
+      <Name>Dhampir Traits</Name>
+      <Description>You do not need to breathe underwater.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>DhampirTraits</Icon>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Item>Drowning</Item>
+    </Effect>
+    </Feat>
+    <Feat>
+      <Name>Vampiric Bite</Name>
+      <Description>Single Target Action: You bite target creature at touch range, dealing 1d4 Piercing
+Damage per Character Level. This scales with 200% Melee or Ranged Power
+(though is not a weapon attack and cannot critical).
+If that creature is a living and corporeal creature, you heal for
+10 + (Heroic Character Level x Constitution Modifier) number of Hit Points
+from Positive energy. You may use this twice per Rest. (6 second cooldown).</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>VampiricBite</Icon>
+    </Feat>
+    <Feat>
+      <Name>Past Life: Dhampir</Name>
+      <Description>You were an Dhampir in a previous life
+Tier1: +1 Hide
+Tier2: +1 Strength
+Tier3: +1 Racial Tree Action point</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeDhampir</Icon>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Hide</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 1 1</Amount>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Strength</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">0 1 1</Amount>
+      </Effect>
+      <Effect>
+        <Type>RAPBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 0 1</Amount>
+      </Effect>
+    </Feat>
+  </Race>
+</Races>

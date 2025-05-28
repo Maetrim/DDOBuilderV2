@@ -1426,7 +1426,7 @@ bool Build::IsFeatTrainable(
 
 std::list<TrainedFeat> Build::SpecialFeats() const
 {
-    std::list<TrainedFeat> allSpecialFeats = m_pLife->SpecialFeats().Feats();
+    std::list<TrainedFeat> allSpecialFeats = m_pLife->AllSpecialFeats().Feats();
     std::list<TrainedFeat> allFavorFeats = FavorFeats().Feats();
     allSpecialFeats.insert(allSpecialFeats.end(), allFavorFeats.begin(), allFavorFeats.end());
     return allSpecialFeats;
@@ -3089,7 +3089,7 @@ void Build::TrainSpecialFeat(const std::string& featName)
                 || feat.Acquire() == FeatAcquisition_IconicPastLife
                 || feat.Acquire() == FeatAcquisition_EpicPastLife)
         {
-            m_pLife->TrainSpecialFeat(featName);
+            m_pLife->TrainSpecialFeat(featName, true);
         }
         if (feat.Acquire() == FeatAcquisition_RacialPastLife
             || feat.Acquire() == FeatAcquisition_HeroicPastLife)
@@ -6393,6 +6393,42 @@ void Build::CheckClasses()
     if (classChoiceChange)
     {
         NotifyClassChoiceChanged();
-        NotifyBuildLevelChanged();  // it hasn;t actually changed, but this gets all the right updates to happen
+        NotifyBuildLevelChanged();  // it hasn't actually changed, but this gets all the right updates to happen
     }
 }
+
+void Build::UpdateLegacyTrees()
+{
+    // check each SpendInTree object and look for its name in the EnhancementSelectedTrees
+    // update if its not present
+    for (auto&& esit : m_EnhancementTreeSpend)
+    {
+        std::string treeName = esit.TreeName();
+        const EnhancementTree & tree = GetEnhancementTree(treeName);
+        if (tree.HasLegacy())
+        {
+            // ok, its a legacy tree, we need to update the name in our m_EnhancementSelectedTrees
+            std::vector<std::string> treeNames = m_EnhancementSelectedTrees.TreeName();
+            size_t index = 0;
+            for (auto&& tnit : treeNames)
+            {
+                bool bFound = (treeName.find(tnit.c_str()) != std::string::npos);
+                if (bFound)
+                {
+                    tnit = treeName;
+                    m_EnhancementSelectedTrees.SetTree(index, treeName);
+                }
+                ++index;
+            }
+            if (m_EnhancementSelectedTrees.HasTier5Tree())
+            {
+                bool bFound = (treeName.find(m_EnhancementSelectedTrees.Tier5Tree()) != std::string::npos);
+                if (bFound)
+                {
+                    m_EnhancementSelectedTrees.SetTier5Tree(treeName);
+                }
+            }
+        }
+    }
+}
+

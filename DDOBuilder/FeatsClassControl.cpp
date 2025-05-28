@@ -846,16 +846,47 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
         DoClass3();
         break;
     case HT_LevelClass1:
-        // set the class for this level if its not already this class
-        SetClassLevel(m_pCharacter->ActiveBuild()->Class(0), ht.Level());
+        if (m_pCharacter->ActiveBuild()->Class(0) == Class_Unknown)
+        {
+            DoClass1();
+        }
+        else
+        {
+            // set the class for this level if its not already this class
+            SetClassLevel(m_pCharacter->ActiveBuild()->Class(0), ht.Level());
+        }
         break;
     case HT_LevelClass2:
-        // set the class for this level if its not already this class
-        SetClassLevel(m_pCharacter->ActiveBuild()->Class(1), ht.Level());
+        if (m_pCharacter->ActiveBuild()->Class(1) == Class_Unknown)
+        {
+            DoClass2();
+            if (m_pCharacter->ActiveBuild()->Class(1) != Class_Unknown)
+            {
+                // set the class for this level if its not already this class
+                SetClassLevel(m_pCharacter->ActiveBuild()->Class(1), ht.Level());
+            }
+        }
+        else
+        {
+            // set the class for this level if its not already this class
+            SetClassLevel(m_pCharacter->ActiveBuild()->Class(1), ht.Level());
+        }
         break;
     case HT_LevelClass3:
-        // set the class for this level if its not already this class
-        SetClassLevel(m_pCharacter->ActiveBuild()->Class(2), ht.Level());
+        if (m_pCharacter->ActiveBuild()->Class(2) == Class_Unknown)
+        {
+            DoClass3();
+            if (m_pCharacter->ActiveBuild()->Class(2) != Class_Unknown)
+            {
+                // set the class for this level if its not already this class
+                SetClassLevel(m_pCharacter->ActiveBuild()->Class(2), ht.Level());
+            }
+        }
+        else
+        {
+            // set the class for this level if its not already this class
+            SetClassLevel(m_pCharacter->ActiveBuild()->Class(2), ht.Level());
+        }
         break;
     case HT_Feat:
         {

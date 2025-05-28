@@ -46,6 +46,8 @@ class RequiresOneOf :
         bool VerifyObject(
                 std::stringstream * ss) const;
 
+        void UpdateEnhancementRequirements(const std::string& prepend);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
