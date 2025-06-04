@@ -95,6 +95,15 @@ bool Selector::VerifyObject(
     {
         ok &= it.VerifyObject(ss);
     }
+    for (auto&& sl : m_Exclusions)
+    {
+        const EnhancementTreeItem* pItem = FindEnhancement(sl);
+        if (pItem == NULL)
+        {
+            (*ss) << "Selector has bad Exclusion of " << sl << "\"\n";
+            ok = false;
+        }
+    }
     return ok;
 }
 

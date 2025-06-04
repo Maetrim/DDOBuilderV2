@@ -553,7 +553,7 @@ class Effect :
 
         bool IsType(EffectType type) const;
         bool HasSpellPower(SpellPowerType type) const;
-        bool HasSpellSchool(SpellSchoolType type) const;
+        bool HasSpellSchool(SpellSchoolType type, bool bSpecificDCOnly) const;
         bool HasTacticalType(TacticalType type) const;
         void SetDisplayName(const std::string displayName);
         bool VerifyObject(std::stringstream * ss) const;

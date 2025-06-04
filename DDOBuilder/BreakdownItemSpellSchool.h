@@ -17,7 +17,8 @@ class BreakdownItemSpellSchool :
                 SpellSchoolType ssType,
                 const CString & Title,
                 MfcControls::CTreeListCtrl * treeList,
-                HTREEITEM hItem);
+                HTREEITEM hItem,
+                bool bSpecificDCOnly);
         virtual ~BreakdownItemSpellSchool();
 
         // required overrides
@@ -29,4 +30,5 @@ class BreakdownItemSpellSchool :
         CString m_title;
         EffectType m_effect;
         SpellSchoolType m_spellSchoolType;
+        bool m_bSpecificDCOnly;
 };

@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
   <EnhancementTree>
     <Name>Dhampir</Name>
@@ -8,15 +9,15 @@
         <Item>Dhampir</Item>
       </Requirement>
     </Requirements>
-    <IsRacialTree/>
+    <IsRacialTree />
     <Icon>Dhampir</Icon>
     <Background>DhampirBackground</Background>
     <!--Core Items-->
     <EnhancementTreeItem>
-      <Name>Dhampir: Vampirism I</Name>
+      <Name>Dhampir: Dark Past</Name>
       <InternalName>DhampirCore1</InternalName>
-      <Description>+1 use of Vampiric Bite per rest.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>+1 to Attack while performing Sneak Attacks.</Description>
+      <Icon>DarkFuture</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -28,12 +29,18 @@
           <Value>1</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dhampir: Ability I</Name>
       <InternalName>DhampirCore2</InternalName>
       <Description>Choose between Strength, Constitution, or Charisma</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>Strength</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -122,10 +129,10 @@
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Dhampir: Vampirism II</Name>
+      <Name>Dhampir: Dark Present</Name>
       <InternalName>DhampirCore3</InternalName>
-      <Description>+1 use of Vampiric Bite per rest.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>+2 to Attack while performing Sneak Attacks, +1 Sneak Attack Die, +20 Negative Amplification.</Description>
+      <Icon>DarkFutureII</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -141,12 +148,30 @@
           <Value>7</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dhampir: Ability II</Name>
       <InternalName>DhampirCore4</InternalName>
       <Description>Choose between Strength, Constitution, or Charisma</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>Strength</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -235,10 +260,10 @@
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Dhampir: Vampirism III</Name>
+      <Name>Dhampir: Dark Future</Name>
       <InternalName>DhampirCore5</InternalName>
-      <Description>+1 use of Vampiric Bite per rest.</Description>
-      <Icon>PassiveStub</Icon>
+      <Description>+3 to Attack while performing Sneak Attacks, +2 Sneak Attack Die, +20 Negative Amplification.</Description>
+      <Icon>DarkFutureIII</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -254,6 +279,24 @@
           <Value>16</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <!--Tier 1-->
     <EnhancementTreeItem>
@@ -261,7 +304,7 @@
       <InternalName>DhampirDrainingBite</InternalName>
       <Description>Your Vampiric Bite now applies 1 Negative Level.
 This increases by 1 for every 5 Character Levels you have.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DrainingBite</Icon>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -272,7 +315,7 @@ This increases by 1 for every 5 Character Levels you have.</Description>
       <Name>Dhampir: Skills</Name>
       <InternalName>DhampirSkills</InternalName>
       <Description>+[1/2/3] to Hide, Move Silently and Jump</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirSkills</Icon>
       <XPosition>1</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -292,7 +335,7 @@ This increases by 1 for every 5 Character Levels you have.</Description>
       <Name>Dhampir: Drink in Life</Name>
       <InternalName>DhampirDrinkInLife</InternalName>
       <Description>How do you get your energy?</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DrinkInLife</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -302,7 +345,7 @@ This increases by 1 for every 5 Character Levels you have.</Description>
         <EnhancementSelection>
           <Name>Drink in Death</Name>
           <Description>+20 Negative Healing Amplification</Description>
-          <Icon>PassiveStub</Icon>
+          <Icon>DrinkInDeath</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Effect>
             <Type>NegativeHealingAmplification</Type>
@@ -314,7 +357,7 @@ This increases by 1 for every 5 Character Levels you have.</Description>
         <EnhancementSelection>
           <Name>Drink in Life</Name>
           <Description>+20 Positive Healing Amplification</Description>
-          <Icon>PassiveStub</Icon>
+          <Icon>DrinkInLife</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Effect>
             <Type>HealingAmplification</Type>
@@ -329,8 +372,8 @@ This increases by 1 for every 5 Character Levels you have.</Description>
       <Name>Dhampir: Tenuous Relationship With Death</Name>
       <InternalName>DhampirTenuousRelationshipWithDeath</InternalName>
       <Description>Your range of unconsciousness extends by +[5/10/20] Hit Points.
-Rank 3: You automatically stabilize when Unconscious (like Warforged do).</Description>
-      <Icon>PassiveStub</Icon>
+Rank 3: You automatically stabilize when Unconscious.</Description>
+      <Icon>TenuousRelationshipWithDeath</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -354,7 +397,7 @@ Rank 3: You automatically stabilize when Unconscious (like Warforged do).</Descr
       <Name>Dhampir: Innate Protection</Name>
       <InternalName>DhampirInnateProtection</InternalName>
       <Description> +[1/2/3] to Saves vs Spells.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirInnateProtection</Icon>
       <XPosition>4</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -363,7 +406,7 @@ Rank 3: You automatically stabilize when Unconscious (like Warforged do).</Descr
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Spells</Item>
+        <Item>Spell</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
       </Effect>
@@ -374,12 +417,17 @@ Rank 3: You automatically stabilize when Unconscious (like Warforged do).</Descr
       <InternalName>DhampirLifeblood</InternalName>
       <Description>When you successfully use your Vampiric Bite on a living target in corporeal form,
 you gain +[1/2/3] to all Ability Scores for 60 seconds.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirLifeblood</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
+      <Stance>
+        <Name>Vampiric Bite</Name>
+        <Icon>VampiricBite</Icon>
+        <Description>You have successfully bitten a corporeal living enemy.</Description>
+      </Stance>
       <Effect>
         <Type>AbilityBonus</Type>
         <Bonus>Stacking</Bonus>
@@ -397,20 +445,23 @@ you gain +[1/2/3] to all Ability Scores for 60 seconds.</Description>
     <EnhancementTreeItem>
       <Name>Dhampir: Dominate Animal</Name>
       <InternalName>DhampirDominateAnimal</InternalName>
-      <Description>Dominate Animal SLA: As per the spell.
-Cooldown: 18 seconds
-DC (15 + Highest of INT/WIS/CHA Mod + Enchantment Bonuses)</Description>
-      <Icon>ActiveStub</Icon>
+      <Description>Dominate Animal SLA: Telepathically control the actions of an Animal, Magical Beast,
+or Vermin, causing it to change sides. Dominate acts like Charm, with additional
+Will saves every 15 to 30 seconds, but the creature will follow you throughout
+the dungeon. Mindless targets cannot save, but the duration is halved.
+DC (15 + Highest of INT/WIS/CHA Mod + Enchantment Bonuses)
+Cooldown: 18 seconds</Description>
+      <Icon>DhampirDominateAnimal</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie/>
+      <Clickie />
       <Effect>
         <Type>SpellLikeAbility</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Dominate Animal</Item>
+        <Item>Dominate Animal </Item>
         <Item>Dhampir</Item>
         <AType>SpellInfo</AType>
         <Amount size="4">0 0 0 18</Amount>
@@ -426,18 +477,18 @@ vulnerability to Light). You are considered Undead rather than your original
 type for the purposes of most effects. You gain +2 Intelligence, +2 Charisma,
 +2 Wisdom, and +3 Perform. Your melee attacks have a 10% chance to heal you
 for 1d3 with Negative Energy per Character level (max 20).
-This is a Major Form, and counts as Vampire Form for the purpose of Pale Master.
+This is a Major Form, and counts as a Shroud for the purpose of Pale Master.
 Cooldown: 30 seconds</Description>
-      <Icon>ActiveStub</Icon>
+      <Icon>DhampirEmbraceDeath</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie/>
+      <Clickie />
       <Stance>
         <Name>Embrace Death</Name>
-        <Icon>ActiveStub</Icon>
+        <Icon>DhampirEmbraceDeath</Icon>
         <Description>Toggle: While Embrace Death is active, you gain 100% critical hit
 resistance and are able to be healed by Negative Energy. You take 50% healing
 from Positive, and double damage from Light. (This replaces your natural
@@ -445,7 +496,7 @@ vulnerability to Light). You are considered Undead rather than your original
 type for the purposes of most effects. You gain +2 Intelligence, +2 Charisma,
 +2 Wisdom, and +3 Perform. Your melee attacks have a 10% chance to heal you
 for 1d3 with Negative Energy per Character level (max 20).
-This is a Major Form, and counts as Vampire Form for the purpose of Pale Master.</Description>
+This is a Major Form, and counts as a Shroud for the purpose of Pale Master.</Description>
         <Group>Major Form</Group>
       </Stance>
       <Effect>
@@ -494,21 +545,20 @@ This is a Major Form, and counts as Vampire Form for the purpose of Pale Master.
       <InternalName>DhampirRushOfBats</InternalName>
       <Description>Turn into a swarm of bats and rush to target foe's position.
 [24/18/12] second cooldown.</Description>
-      <Icon>ActiveStub</Icon>
+      <Icon>DhampirRushOfBats</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie/>
-      <ArrowUp/>
+      <Clickie />
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dhampir: Cloak of Undeath</Name>
       <InternalName>DhampirCloakOfUndeath</InternalName>
       <Description>+[2/4/6] MRR.
 Rank 3: +6 MRR Cap.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirCloakOfUndeath</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -531,24 +581,41 @@ Rank 3: +6 MRR Cap.</Description>
     <EnhancementTreeItem>
       <Name>Dhampir: Fearsome Countenance</Name>
       <InternalName>DhampirFearsomeCountenance</InternalName>
-      <Description>Target enemy in Melee range must save or be Cowered
+      <Description>Target enemy must make a Will Saving Throw
 (Will save vs. DC 10 + Highest of STR/CON/CHA Mod + Stunning bonuses + Enchantment DC Bonuses)
-for 6 seconds. This is considered a Fear effect.
+or be Cowered for 6 seconds. This is considered a Fear effect.
 On Save: -10% Movement and Attack Speed for 6 seconds.
 Cooldown: 12 seconds</Description>
-      <Icon>ActiveStub</Icon>
+      <Icon>DhampirFearsomeCountenance</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <Clickie/>
+      <Clickie />
+      <DC>
+        <Name>Dhampir: Fearsome Countenance</Name>
+        <Description>Target enemy must make a Will Saving Throw
+(Will save vs. DC 10 + Highest of STR/CON/CHA Mod + Stunning bonuses + Enchantment DC Bonuses)
+or be Cowered for 6 seconds. This is considered a Fear effect.
+On Save: -10% Movement and Attack Speed for 6 seconds.
+Cooldown: 12 seconds</Description>
+        <Icon>DhampirFearsomeCountenance</Icon>
+        <DCType>Negate</DCType>
+        <DCVersus>Will</DCVersus>
+        <Amount size="1">10</Amount>
+        <ModAbility>Strength</ModAbility>
+        <ModAbility>Constitution</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <Tactical>Stun</Tactical>
+        <School>Enchantment</School>
+      </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dhampir: Stunning Visage</Name>
       <InternalName>DhampirStunningVisage</InternalName>
       <Description>+[2/3/4] to Stun DCs.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirStunningVisage</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -567,7 +634,7 @@ Cooldown: 12 seconds</Description>
       <InternalName>DhampirDeathlyBite</InternalName>
       <Description>When you are considered Undead (via Embrace Death or any other source),
 your Vampiric Bite heals you for Negative energy instead of Positive.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirDeathlyBite</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -579,19 +646,12 @@ your Vampiric Bite heals you for Negative energy instead of Positive.</Descripti
       <InternalName>DhampirHarryingSwarm</InternalName>
       <Description>Enemies in a small area around where you finish your Rush of Bats take -5% Dodge
 and -5 Attack for 12 seconds.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirHarryingSwarm</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>DhampirRushOfBats</Item>
-        </Requirement>
-      </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dhampir: Improved Dodge</Name>
@@ -630,18 +690,34 @@ and -5 Attack for 12 seconds.</Description>
 If the target of your Vampiric Bite is Cowered, living and corporeal they must
 make a Fortitude Saving Throw (DC 16 + Highest of STR/CON/CHA Mod + Stunning
 Bonuses + Enchantment Bonuses) or die.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirAscendantBite</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
+      <DC>
+        <Name>Dhampir: Ascendant Bite</Name>
+        <Description>Your Vampiric Bite now applies 5 stacks of Vulnerability and deals double the Piercing damage.
+If the target of your Vampiric Bite is Cowered, living and corporeal they must
+make a Fortitude Saving Throw (DC 16 + Highest of STR/CON/CHA Mod + Stunning
+Bonuses + Enchantment Bonuses) or die.</Description>
+        <Icon>DhampirAscendantBite</Icon>
+        <DCType>Avoid Death</DCType>
+        <DCVersus>Fortitude</DCVersus>
+        <Amount size="1">16</Amount>
+        <ModAbility>Strength</ModAbility>
+        <ModAbility>Constitution</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <Tactical>Stun</Tactical>
+        <School>Enchantment</School>
+      </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dhampir: Vampiric Persuasion</Name>
       <InternalName>DhampirVampiricPersuasion</InternalName>
       <Description>+[1/2/3] Enchantment DCs</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirVampiricPersuasion</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -656,22 +732,22 @@ Bonuses + Enchantment Bonuses) or die.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Dhampir: Dominate Person SLA</Name>
-      <InternalName>DhampirSominatePerson</InternalName>
+      <Name>Dhampir: Dominate Person</Name>
+      <InternalName>DhampirDominatePerson</InternalName>
       <Description>Spell-Like Ability: Dominates one target humanoid, causing it to change sides.
 DC: 15 + Highest of INT/WIS/CHA Mod + Enchantment Bonuses
 Cooldown: 18 seconds</Description>
-      <Icon>ActiveStub</Icon>
+      <Icon>DhampirDominatePerson</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
-      <Clickie/>
+      <Clickie />
       <Effect>
         <Type>SpellLikeAbility</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Dominate Person</Item>
+        <Item>Dominate Person </Item>
         <Item>Dhampir</Item>
         <AType>SpellInfo</AType>
         <Amount size="4">0 0 0 18</Amount>
@@ -681,20 +757,14 @@ Cooldown: 18 seconds</Description>
       <Name>Dhampir: Biting Swarm</Name>
       <InternalName>DhampirBitingSwarm</InternalName>
       <Description>Living, corporeal enemies in a small area around where you finish your Rush of Bats
-are bitten by the bats, causing them to bleed, taking 1d6 damage per Character
+are bitten by the bats, causing them to bleed, taking 1d12 damage per Character
 Level every 2 seconds for 12 seconds. This damage scales with 200% Melee Power.</Description>
-      <Icon>PassiveStub</Icon>
+      <Icon>DhampirBitingSwarm</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>DhampirHarryingSwarm</Item>
-        </Requirement>
-      </Requirements>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

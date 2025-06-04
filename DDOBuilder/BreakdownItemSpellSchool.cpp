@@ -11,11 +11,13 @@ BreakdownItemSpellSchool::BreakdownItemSpellSchool(
         SpellSchoolType ssType,
         const CString & title,
         MfcControls::CTreeListCtrl * treeList,
-        HTREEITEM hItem) :
+        HTREEITEM hItem,
+        bool bSpecificDCOnly) :
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_effect(effect),
-    m_spellSchoolType(ssType)
+    m_spellSchoolType(ssType),
+    m_bSpecificDCOnly(bSpecificDCOnly)
 {
     // register ourselves for effects that affect us
     pPane->RegisterBuildCallbackEffect(effect, this);
@@ -48,7 +50,7 @@ void BreakdownItemSpellSchool::CreateOtherEffects()
 bool BreakdownItemSpellSchool::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
-    if (effect.HasSpellSchool(m_spellSchoolType))
+    if (effect.HasSpellSchool(m_spellSchoolType, m_bSpecificDCOnly))
     {
         isUs = true;
     }

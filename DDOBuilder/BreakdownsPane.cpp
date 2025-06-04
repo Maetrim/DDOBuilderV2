@@ -1828,17 +1828,17 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
                 hParent,
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
-        AddSpellSchool(Breakdown_SpellSchoolAbjuration, SpellSchool_Abjuration, "Abjuration DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolConjuration, SpellSchool_Conjuration, "Conjuration DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolDivination, SpellSchool_Divination, "Divination DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolEnchantment, SpellSchool_Enchantment, "Enchantment DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolEvocation, SpellSchool_Evocation, "Evocation DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolIllusion, SpellSchool_Illusion, "Illusion DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolNecromancy, SpellSchool_Necromancy, "Necromancy DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolTransmutation, SpellSchool_Transmutation, "Transmutation DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolFear, SpellSchool_Fear, "Fear DC", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem);
-        AddSpellSchool(Breakdown_SpellSchoolRuneArm, SpellSchool_RuneArm, "Rune Arm DC Bonus", hItem);
+        AddSpellSchool(Breakdown_SpellSchoolAbjuration, SpellSchool_Abjuration, "Abjuration DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolConjuration, SpellSchool_Conjuration, "Conjuration DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolDivination, SpellSchool_Divination, "Divination DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolEnchantment, SpellSchool_Enchantment, "Enchantment DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolEvocation, SpellSchool_Evocation, "Evocation DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolIllusion, SpellSchool_Illusion, "Illusion DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolNecromancy, SpellSchool_Necromancy, "Necromancy DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolTransmutation, SpellSchool_Transmutation, "Transmutation DC", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolFear, SpellSchool_Fear, "Fear DC", hItem, true);
+        AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem, false);
+        AddSpellSchool(Breakdown_SpellSchoolRuneArm, SpellSchool_RuneArm, "Rune Arm DC Bonus", hItem, true);
     }
 }
 
@@ -2848,7 +2848,8 @@ void CBreakdownsPane::AddSpellSchool(
         BreakdownType bt,
         SpellSchoolType type,
         const std::string& name,
-        HTREEITEM hParent)
+        HTREEITEM hParent,
+        bool bSpecificDCOnly)
 {
     HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
             name.c_str(),
@@ -2861,7 +2862,8 @@ void CBreakdownsPane::AddSpellSchool(
             type,
             name.c_str(),
             &m_itemBreakdownTree,
-            hItem);
+            hItem,
+            bSpecificDCOnly);
     m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSSItem);
     m_items.push_back(pSSItem);
 }

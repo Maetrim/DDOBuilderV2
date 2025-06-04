@@ -15167,4 +15167,176 @@ movement speed reduced by 90% for 6 seconds.</Description>
     <School>Breath Weapon</School>
     <MaxCasterLevel>30</MaxCasterLevel>
   </Spell>
+  <Spell>
+    <Name>Greater Death Aura</Name>
+    <Description>Target: Self
+Cooldown: ??? seconds
+Envelops the caster in a sickly aura of negative energy. Living enemies stepping
+inside the aura take 3 to 12 negative energy damage plus 1 additional point per
+caster level (max 10) every three seconds as long as they remain within it.
+A successful Fortitude save reduces the damage by half.
+Undead are instead healed by the aura.
+
+This can be cast simultaneously with Lesser Death Aura and Death Aura.
+Effects that increase caster or maximum caster level only increase duration.
+
+This spell is supposed to receive +10 maximum caster level from the Master of
+the Dead epic feat, but is currently bugged and is not receiving a bonus.</Description>
+    <Icon>GreaterDeathAura</Icon>
+    <School>Necromancy</School>
+    <MaxCasterLevel>10</MaxCasterLevel>
+    <Embolden />
+    <Extend />
+    <Heighten />
+    <Quicken />
+    <SpellDamage>
+      <SpellDice>
+        <BonusDice>
+          <Number>3</Number>
+          <Sides>4</Sides>
+          <Bonus>1</Bonus>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Negative</Damage>
+      <SpellPower>Negative</SpellPower>
+    </SpellDamage>
+    <SpellDC>
+      <DCType>Half Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <ModAbility>Intelligence</ModAbility>
+      <School>Necromancy</School>
+      <CastingStatMod />
+    </SpellDC>
+  </Spell>
+  <Spell>
+    <Name>Dread Mist</Name>
+    <Description>Target: Foe, Positional, Breakable
+Cooldown: 20 seconds
+Create a small area of Mist that lasts for 20 seconds. Enemies inside the mist
+have their movement slowed by 20%, -2 to Will Saving Throws, and take 1d2 Evil
+Damage per caster level every 2 seconds.</Description>
+    <Icon>DreadMist</Icon>
+    <School>Conjuration</School>
+    <MaxCasterLevel>20</MaxCasterLevel>
+    <Empower/>
+    <Maximize/>
+    <Quicken />
+    <Intensify/>
+    <SpellDamage>
+      <SpellDice>
+        <BonusDice>
+          <Number>1</Number>
+          <Sides>2</Sides>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Evil</Damage>
+      <SpellPower>Negative</SpellPower>
+    </SpellDamage>
+  </Spell>
+  <Spell>
+    <Name>Dust to Dust</Name>
+    <Description>Target: Foe, Positional, Breakable
+Cooldown: 5 seconds
+A sickly green ray emanates forth, doing 8 to 12 damage per caster level to the
+target (up to a max of 160 to 240 damage at caster level 20). Anything reduced
+to 0 hit points is disintegrated. A successful Fortitude save reduces this damage
+to 18 to 30. As a ray this spell has double normal range.</Description>
+    <Icon>Disintegrate</Icon>
+    <School>Necromancy</School>
+    <Embolden />
+    <Empower />
+    <Heighten />
+    <Intensify />
+    <Maximize />
+    <Quicken />
+    <MaxCasterLevel>20</MaxCasterLevel>
+    <SpellDamage>
+      <SpellDice>
+        <BonusDice>
+          <Number>2</Number>
+          <Sides>3</Sides>
+          <Bonus>6</Bonus>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Untyped</Damage>
+      <SpellPower>Untyped</SpellPower>
+    </SpellDamage>
+    <SpellDC>
+      <DCType>Reduced Damage</DCType>
+      <DCVersus>Fortitude</DCVersus>
+      <School>Necromancy</School>
+      <CastingStatMod />
+    </SpellDC>
+  </Spell>
+  <Spell>
+    <Name>Dominate Animal </Name>
+    <Description>Telepathically control the actions of an Animal, Magical Beast, or Vermin, causing it
+to change sides. Dominate acts like Charm, with additional Will saves every 15
+to 30 seconds, but the creature will follow you throughout the dungeon.
+Mindless targets cannot save, but the duration is halved.
+DC (15 + Highest of INT/WIS/CHA Mod + Enchantment Bonuses)
+Cooldown: 18 seconds</Description>
+    <Icon>DominateAnimal</Icon>
+    <School>Enchantment</School>
+    <Enlarge />
+    <Heighten />
+    <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Will</DCVersus>
+      <Amount>15</Amount>
+      <School>Enchantment</School>
+      <ModAbility>Intelligence</ModAbility>
+      <ModAbility>Wisdom</ModAbility>
+      <ModAbility>Charisma</ModAbility>
+    </SpellDC>
+  </Spell>
+  <Spell>
+    <Name>Dominate Person </Name>
+    <Description>You can control the actions of any humanoid creature that fails its Will save through
+a telepathic link that you establish with the subjects mind. Dominate acts
+like Charm Person, with additional Will saves every 15 to 30 seconds, but the
+creature will follow you throughout the dungeon.</Description>
+    <Icon>DominatePerson</Icon>
+    <School>Enchantment</School>
+    <Enlarge />
+    <Extend />
+    <Heighten />
+    <Quicken />
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Will</DCVersus>
+      <Amount>15</Amount>
+      <ModAbility>Intelligence</ModAbility>
+      <ModAbility>Wisdom</ModAbility>
+      <ModAbility>Charisma</ModAbility>
+      <School>Enchantment</School>
+    </SpellDC>
+  </Spell>
+  <Spell>
+    <Name>Prey on Fear</Name>
+    <Description>Target enemy at touch range takes 1d6+2 Evil Damage per Caster Level.
+Additionally, if the target is inside a Dread Mist zone it deals 1d4 Evil Damage
+for each stack of Growing Dread that creature has. Will save for damage on each effect.
+Cooldown: 6 PreyOnFear</Description>
+    <Icon>PreyOnFear</Icon>
+    <School>Necromancy</School>
+    <Embolden />
+    <Empower />
+    <Heighten />
+    <Intensify />
+    <Maximize />
+    <Quicken />
+    <SpellDamage>
+      <SpellDice>
+        <BonusDice>
+          <Number>1</Number>
+          <Sides>6</Sides>
+          <Bonus>2</Bonus>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Evil</Damage>
+      <SpellPower>Negative</SpellPower>
+    </SpellDamage>
+  </Spell>
 </Spells>

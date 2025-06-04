@@ -163,6 +163,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Warsaga, "
         "YoureNotDead, "
         "ydufraisse, "
+        "Yndrofian, "
         "zenith90210, "
         "zilgabex, "
         "Zoe Kestral");

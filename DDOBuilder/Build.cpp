@@ -534,6 +534,32 @@ void Build::NotifyFeatEffectApplied(
     {
         AddSpellMaxCasterLevelEffect(effect);
     }
+    // handle exclusive feat items
+    if (effect.IsType(Effect_ExclusionGroup))
+    {
+        if (IsExclusiveEnhancement(effect.Item().front(), effect.Item().back()))
+        {
+            // need to add a stack
+            auto it = m_exclusiveEnhancements.begin();
+            bool found = false;
+            while (it != m_exclusiveEnhancements.end())
+            {
+                if ((*it).Name() == effect.Item().back())
+                {
+                    (*it).AddStack();
+                    found = true;
+                }
+                it++;
+            }
+            if (!found)
+            {
+                // group does not currently exist. add it
+                ExclusionGroup eg(effect.Item().back(), effect.Item().front());
+                eg.AddStack();
+                m_exclusiveEnhancements.push_back(eg);
+            }
+        }
+    }
     NotifyAll(&BuildObserver::UpdateFeatEffectApplied, this, effect);
 }
 
@@ -555,6 +581,28 @@ void Build::NotifyFeatEffectRevoked(
     if (effect.IsType(Effect_MaxCasterLevelSpell))
     {
         RemoveSpellMaxCasterLevelEffect(effect);
+    }
+    // handle exclusive feat items
+    if (effect.IsType(Effect_ExclusionGroup))
+    {
+        if (IsExclusiveEnhancement(effect.Item().front(), effect.Item().back()))
+        {
+            // need to remove a stack
+            auto it = m_exclusiveEnhancements.begin();
+            while (it != m_exclusiveEnhancements.end())
+            {
+                if ((*it).Name() == effect.Item().back())
+                {
+                    bool last = (*it).RevokeStack();
+                    if (last)
+                    {
+                        it = m_exclusiveEnhancements.erase(it);
+                    }
+                    break;
+                }
+                it++;
+            }
+        }
     }
     NotifyAll(&BuildObserver::UpdateFeatEffectRevoked, this, effect);
 }

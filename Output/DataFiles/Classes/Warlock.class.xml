@@ -609,7 +609,7 @@ in the DDO store.</Description>
       <FeatType>Pact Save Bonus</FeatType>
       <AutoPopulate />
     </FeatSlot>
-    <!--Feats-->
+    <!--Warlock Pact Ability Feats-->
     <Feat>
       <Name>Warlock: Dark Delirium</Name>
       <Description>Plunge one enemy's mind into an illusory realm. that enemy is dazed
@@ -741,6 +741,7 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
         <Amount size="1">10</Amount>
       </Effect>
     </Feat>
+    <!--Warlock Automatic Feats-->
     <Feat>
       <Name>Warlock: Deceive Item</Name>
       <Description>+5 Use Magic Device</Description>
@@ -1402,7 +1403,7 @@ This damage is halved on a successful Fortitude saving throw.</Description>
       <Acquire>Train</Acquire>
       <Icon>CreateThrall</Icon>
     </Feat>
-    <!--Warlock pact spells-->
+    <!--Warlock pact level 5 spells-->
     <Feat>
       <Name>Pact Magic: Blindness</Name>
       <Description>Renders an enemy blinded. A successful Fortitude save negates this effect.</Description>
@@ -1563,6 +1564,7 @@ pick the lock.</Description>
         <Item>Warlock</Item>
       </Effect>
     </Feat>
+    <!--Warlock pact level 9 spells-->
     <Feat>
       <Name>Pact Magic: Slow</Name>
       <Description>One target moves at 50% run speed, attacks at a 30% slowed
@@ -1731,6 +1733,7 @@ save disbelieves the spell and negates ill effects.</Description>
         <Item>Warlock</Item>
       </Effect>
     </Feat>
+    <!--Warlock pact level 14 spells-->
     <Feat>
       <Name>Pact Magic: Greater Dispel Magic</Name>
       <Description>Removes ongoing spells that have been cast on a target. You must
@@ -1850,10 +1853,16 @@ mind. Dominate acts like Charm Person, with additional Will saves every 15 to
       <Description>This spell is added to your Warlock spell book.</Description>
       <Group>Pact Spell</Group>
       <Requirements>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Pact: The Abyss</Item>
-        </Requirement>
+        <RequiresOneOf>
+           <Requirement>
+             <Type>Feat</Type>
+             <Item>Pact: The Abyss</Item>
+           </Requirement>
+           <Requirement>
+             <Type>Feat</Type>
+             <Item>Pact: The Dark Powers</Item>
+           </Requirement>
+        </RequiresOneOf>
         <Requirement>
           <Type>Class</Type>
           <Item>Warlock</Item>
@@ -1897,7 +1906,8 @@ mind. Dominate acts like Charm Person, with additional Will saves every 15 to
         <Item>Warlock</Item>
       </Effect>
     </Feat>
-    <Feat>
+    <!--Warlock pact level 17 spells-->
+     <Feat>
       <Name>Pact Magic: Otto's Sphere of Dancing</Name>
       <Description>A magical sphere that compels all enemies who enter it to dance.
 A successful Will save negates this effect.</Description>
@@ -2060,6 +2070,7 @@ this effect.</Description>
         <Item>Warlock</Item>
       </Effect>
     </Feat>
+    <!--Warlock pact level 19 spells-->
     <Feat>
       <Name>Pact Magic: Otto's Irresistible Dance</Name>
       <Description>This spell makes it impossible for the enemy to do anything
@@ -2355,6 +2366,7 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
         <Amount size="1">1</Amount>
       </Effect>
     </Feat>
+    <!--Warlock Resistance bonus's-->
     <Feat>
       <Name>Fey Resistance</Name>
       <Description>+5 Sonic Resistance</Description>

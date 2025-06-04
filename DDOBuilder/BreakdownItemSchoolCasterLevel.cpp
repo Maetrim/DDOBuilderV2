@@ -51,7 +51,7 @@ bool BreakdownItemSchoolCasterLevel::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
     // see if this effect applies to us
-    if (effect.HasSpellSchool(m_school))
+    if (effect.HasSpellSchool(m_school, false))
     {
         // it is a caster level school bonus
         isUs = true;

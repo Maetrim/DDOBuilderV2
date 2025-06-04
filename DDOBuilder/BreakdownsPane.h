@@ -107,7 +107,7 @@ class CBreakdownsPane :
         void AddSpellPower(BreakdownType bt, SpellPowerType type, const std::string& name, HTREEITEM hParent);
         void AddSpellCriticalChance(BreakdownType bt, SpellPowerType type, const std::string& name, HTREEITEM hParent);
         void AddSpellCriticalMultiplier(BreakdownType bt, SpellPowerType type, const std::string& name, HTREEITEM hParent);
-        void AddSpellSchool(BreakdownType bt, SpellSchoolType type, const std::string& name, HTREEITEM hParent);
+        void AddSpellSchool(BreakdownType bt, SpellSchoolType type, const std::string& name, HTREEITEM hParent, bool bSpecificDCOnly);
         void AddEnergyResistance(BreakdownType bt, EnergyType type, const std::string& name, HTREEITEM hParent);
         void AddEnergyAbsorption(BreakdownType bt, EnergyType type, const std::string& name, HTREEITEM hParent);
         void CalculatePercent(CPoint point);

@@ -914,14 +914,14 @@ bool Effect::HasSpellPower(SpellPowerType type) const
     return is;
 }
 
-bool Effect::HasSpellSchool(SpellSchoolType type) const
+bool Effect::HasSpellSchool(SpellSchoolType type, bool bSpecificDCOnly) const
 {
     bool is = false;
     for (auto&& it : m_Item)
     {
         SpellSchoolType st = TextToEnumEntry(it, spellSchoolTypeMap, false);
         is |= ((st == type)
-            || (st == SpellSchool_All));
+            || (st == SpellSchool_All && bSpecificDCOnly == false));
     }
     return is;
 }
