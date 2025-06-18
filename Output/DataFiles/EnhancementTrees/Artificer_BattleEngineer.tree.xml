@@ -783,7 +783,7 @@ up to five times. (Cooldown: [12/8/4] seconds): </Description>
       <Selector>
         <EnhancementSelection>
           <Name>Melee Wrack Construct</Name>
-          <Description>Deals +10% Damage
+          <Description>Deals +[10/20/30]% Damage
 Melee Attack: On Damage: Deals [3/6/9]d6 extra damage to constructs and living
 constructs, and applies Wracked: This construct or living construct's fortification
 is reduced and loses its inherent immunity to sneak attack. This effect stacks
@@ -796,7 +796,7 @@ Damage scales with 200% Melee Power.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Ranged Wrack Construct</Name>
-          <Description>Deals +10% Damage
+          <Description>Deals +[10/20/30]% Damage
 Ranged Attack: On Damage: Deals [3/6/9]d6 extra damage to constructs and living
 constructs, and applies Wracked: This construct or living construct's fortification
 is reduced and loses its inherent immunity to sneak attack. This effect stacks
@@ -831,7 +831,7 @@ Damage scales with 200% Ranged Power.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Caustic Shot</Name>
-          <Description>Deals +10% Damage
+          <Description>Deals +[10/20/30]% Damage
 Cooldown: 6 seconds
 Ranged Crossbow Attack: On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
 
@@ -842,7 +842,7 @@ Damage scales with 200% Ranged Power.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Caustic Strike</Name>
-          <Description>Deals +10% Damage
+          <Description>Deals +[10/20/30]% Damage
 Cooldown: 6 seconds
 Melee Attack: On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
 
@@ -1055,7 +1055,7 @@ by it will extend the duration. Cooldown: 25 seconds</Description>
           <Name>Shatter Defenses (Crossbow)</Name>
           <Description>Deals +[10/30/50]% Damage
 Cooldown: 10 seconds
-Tactical Ranges Crossbow Attack: On Hit: Reduce the target's Armor Class by 5
+AOE Tactical Ranges Crossbow Attack: On Hit: Reduce the target's Armor Class by 5
 and lowers fortification by 10%. A successful Fortitude save negates this effect.
 (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
 Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
@@ -1066,7 +1066,7 @@ This ability shares a cooldown with sunder.</Description>
           <Clickie />
           <DC>
             <Name>Battle Engineer: Shatter Defenses (Crossbow)</Name>
-            <Description>Tactical Ranges Crossbow Attack: On Hit: Reduce the target's Armor Class by 5
+            <Description>AOE Tactical Ranges Crossbow Attack: On Hit: Reduce the target's Armor Class by 5
 and lowers fortification by 10%. A successful Fortitude save negates this effect.
 (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
 Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
@@ -1116,8 +1116,8 @@ This ability shares a cooldown with sunder.</Description>
     <EnhancementTreeItem>
       <Name>Battle Engineer: Thundershock Imbue</Name>
       <InternalName>BEImbue</InternalName>
-      <Description>Imbue Toggle: Your weapons hum with Electricity, dealing an extra 1d6 Electric
-damage on each hit, scaling with Electric Spell Power.</Description>
+      <Description>Imbue Toggle: Your weapons hum with Electricity, dealing an extra 1d6 Electric damage on each hit,
+scaling with Electric Spell Power.</Description>
       <Icon>BEThundershock</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
@@ -1342,22 +1342,21 @@ Cooldown: 30 seconds.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Haste Boost</Name>
-          <Description>Activate this ability to receive a 30% Action Boost attack speed
-bonus for 20 seconds.
+          <Description>Activate this ability to receive a 30% Action Boost attack speed bonus for 20 seconds.
 Cooldown: 30 seconds.</Description>
           <Icon>BEHasteBoost</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Clickie />
-         <Attack>
+          <Attack>
             <Name>Battle Engineer: Battle Mastery</Name>
             <Description>Activate to gain +30% Action Boost bonus to attack speed for 20 seconds.</Description>
             <Icon>KenseiHasteBoost</Icon>
             <Cooldown size="1">30</Cooldown>
             <FollowOn>
-               <Duration size="1">20</Duration>
-               <BonusAlacrity size="1">30</BonusAlacrity>
+              <Duration size="1">20</Duration>
+              <BonusAlacrity size="1">30</BonusAlacrity>
             </FollowOn>
-         </Attack>
+          </Attack>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -1555,9 +1554,8 @@ You gain a +20% Competence bonus to Maximum Hit Points.</Description>
     <EnhancementTreeItem>
       <Name>Battle Engineer: Weapon Attachment</Name>
       <InternalName>BEWeaponAttachment</InternalName>
-      <Description>Activate to attach your currently equipped weapons to yourself, giving you
-superior control over them. Until you unequip these items or rest, they
-deal +0.5[W] damage.
+      <Description>Activate to attach your currently equipped weapons to yourself, giving you superior control over them.
+Until you unequip these items or rest, they deal +0.5[W] damage.
 Cooldown: 15 seconds
 Note: Selecting this locks out Warforged/Bladeforged Weapon Attachment.</Description>
       <Icon>BEWeaponAttachment</Icon>
@@ -1642,7 +1640,7 @@ electric damage.</Description>
           <Name>Thunder-Shock Weapon (Crossbow)</Name>
           <Description>Deals +50% Damage
 Cooldown: 12 seconds
-Tactical Ranged Crossbow Attack: On Damage: Deals 6d6 extra Electric damage that
+AOE Tactical Ranged Crossbow Attack: On Damage: Deals 6d6 extra Electric damage that
 scales with 200% Ranged Power, and Trips the target. A successful Strength check
 negates the Trip effect.
 (DC 14 + 1/2 Artificer Level + INT mod + Sunder bonuses)</Description>
@@ -1651,7 +1649,7 @@ negates the Trip effect.
           <Clickie />
           <DC>
             <Name>Battle Engineer: Thunder-Shock Weapon (Crossbow)</Name>
-            <Description>Tactical Ranged Crossbow Attack: On Damage: Deals 6d6 extra Electric damage that
+            <Description>AOE Tactical Ranged Crossbow Attack: On Damage: Deals 6d6 extra Electric damage that
 scales with 200% Ranged Power, and Trips the target. A successful Strength check
 negates the Trip effect.</Description>
             <Icon>BEthunderShockWeaponCrossbow</Icon>
@@ -1665,7 +1663,7 @@ negates the Trip effect.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Thunder-Shock Weapon (Melee)</Name>
-          <Description>Deals +50% Damage
+          <Description>Deals +30% Damage
 Cooldown: 12 seconds
 Tactical Melee Attack: On Damage: Deals 6d6 extra Electric damage that scales
 with 200% Melee Power, and Trips the target. A successful Strength check negates

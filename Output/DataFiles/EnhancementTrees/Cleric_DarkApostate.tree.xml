@@ -121,18 +121,6 @@ only take 50% healing from Positive Energy and take 100% more damage from Light.
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
         <Item>Wisdom</Item>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Shadow Shrouding</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
-      <Effect>
-        <Type>AbilityBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">2</Amount>
         <Item>Constitution</Item>
         <Requirements>
           <Requirement>
@@ -590,8 +578,8 @@ Rank 3: +1 Will saving throws.</Description>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Apostate's Curse</Name>
       <InternalName>DAApostatesCurse</InternalName>
-      <Description>Toggle: Your Favored Weapons channel the dark energies within you,
-twisting them into evil versions of themselves - they deal an additional 1d8 Evil
+      <Description>Imbue Toggle: Your Favored Weapons channel the dark energies within you,
+twisting them into evil versions of themselves - they deal an additional 1d6 Evil
 Damage per Imbue dice on hit (scaling with 100% evil spell power).</Description>
       <Icon>DAApostatesCurse</Icon>
       <XPosition>3</XPosition>
@@ -612,7 +600,7 @@ Damage per Imbue dice on hit (scaling with 100% evil spell power).</Description>
         <Name>Apostate's Curse</Name>
         <Icon>DAApostatesCurse</Icon>
         <Description>Your Favored Weapons channel the dark energies within you,
-twisting them into evil versions of themselves - they deal an additional 1d8 Evil
+twisting them into evil versions of themselves - they deal an additional 1d6 Evil
 Damage on hit (scaling with 100% evil spell power).</Description>
         <Group>Imbue</Group>
       </Stance>
@@ -660,7 +648,7 @@ Damage on hit (scaling with 100% evil spell power).</Description>
       <Description>Gives special favor to you and any allies near you, giving a +1 Luck bonus
 to allies and a -1 penalty to enemies attack rolls, weapon damage, saves, and skill
 checks, with this buff and debuff increasing in magnitude by 1 every 5 caster levels
-- max total of 5 at caster level 20.</Description>
+- max total of 5 at caster level 20. Cooldown: 10 seconds.</Description>
       <Icon>DAPrayer</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -798,7 +786,7 @@ gain +[3/6/10] Sacred Temporary Spell Points.</Description>
       <Name>Dark Apostate: Pray for Mercy</Name>
       <InternalName>DAPrayForMercy</InternalName>
       <Description>Your Prayer-like spells (Bless, Bane, Prayer) now resonate with Evil
-energies, dealing 1d6 Evil damage per Caster Level to all enemies. This damage
+energies, dealing 1d4 Evil damage per Caster Level to all enemies. This damage
 is doubled against enemies that are Cursed.</Description>
       <Icon>PrayForMercy</Icon>
       <XPosition>0</XPosition>
@@ -1067,7 +1055,7 @@ On critical, you apply the effects of the Curse spell.</Description>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Benediction</Name>
       <InternalName>DABenediction</InternalName>
-      <Description>The Harm spell now benefits from 2x Spell power scaling and may now kill enemies.</Description>
+      <Description>The Harm spell now benefits from 200% Spell power scaling and may now kill enemies.</Description>
       <Icon>Benediction</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
@@ -1091,8 +1079,9 @@ On critical, you apply the effects of the Curse spell.</Description>
       <Name>Dark Apostate: Ward of Shadow</Name>
       <InternalName>DAWardOfShadow</InternalName>
       <Description>Grants temporary immunity to multiple targets to all forms of alignment-based
-energy for 1 minute per caster level or until 12 points of energy per caster
-level (max 120) for each energy type has been absorbed.</Description>
+energy (good, evil, law, chaos, and light) for 1 minute per caster level or
+until 12 points of energy per caster level (max 120) for each energy type has
+been absorbed.</Description>
       <Icon>WardOfShadow</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
@@ -1147,7 +1136,7 @@ level (max 120) for each energy type has been absorbed.</Description>
       <Name>Dark Apostate: Ultimate Heresy</Name>
       <InternalName>DAUltimateHeresy</InternalName>
       <Description>You gain +2 Imbue Dice.
-On critical, you apply 1d3 stacks of Vulnerability.</Description>
+Your Apostate's Curse gains: On critical, you apply 1d3 stacks of Vulnerability.</Description>
       <Icon>UltimateHeresy</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
@@ -1180,7 +1169,8 @@ On critical, you apply 1d3 stacks of Vulnerability.</Description>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Shadows of Death</Name>
       <InternalName>DAShadowsOfDeath</InternalName>
-      <Description>You gain +5% Negative, Light, and Alignment Spell Critical Chance.</Description>
+      <Description>You gain +5% Negative, Light, and Alignment Spell Critical Chance.
+Pray for Mercy is upgraded to dealing 1d6 Evil damage per caster level.</Description>
       <Icon>ShadowsOfDeath</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>

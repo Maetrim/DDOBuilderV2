@@ -146,7 +146,8 @@ void TrainedEnhancement::UpgradeSelections()
     static std::string oldToNew[] =
     {
         "Light: Enlightening Philosophy",       "Disciple of Philosophy: Light",
-        "Dark: Forbidden Philosophy",           "Disciple of Philosophy: Dark"
+        "Dark: Forbidden Philosophy",           "Disciple of Philosophy: Dark",
+        "Expeditious Chant",                    "Fleeting Footsteps"
     };
     size_t count = sizeof(oldToNew) / sizeof(std::string);
     if (count % 2 != 0) throw "Must be an even number";

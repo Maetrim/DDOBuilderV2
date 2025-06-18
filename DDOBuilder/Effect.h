@@ -100,6 +100,7 @@ enum EffectType
     Effect_KiPassive,
     Effect_LOHRegenRate,
     Effect_MaxCasterLevel,
+    Effect_MaxCasterLevelSchool,
     Effect_MaxCasterLevelSpell,
     Effect_MaxDexBonus,
     Effect_MaxDexBonusTowerShield,
@@ -336,6 +337,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_KiPassive, L"KiPassive"},
     {Effect_LOHRegenRate, L"LOHRegenRate"},
     {Effect_MaxCasterLevel, L"MaxCasterLevel"},
+    {Effect_MaxCasterLevelSchool, L"MaxCasterLevelSchool"},
     {Effect_MaxCasterLevelSpell, L"MaxCasterLevelSpell"},
     {Effect_MaxDexBonus, L"MaxDexBonus"},
     {Effect_MaxDexBonusTowerShield, L"MaxDexBonusTowerShield"},
@@ -554,6 +556,7 @@ class Effect :
         bool IsType(EffectType type) const;
         bool HasSpellPower(SpellPowerType type) const;
         bool HasSpellSchool(SpellSchoolType type, bool bSpecificDCOnly) const;
+        bool HasPrimer(PrimerType type) const;
         bool HasTacticalType(TacticalType type) const;
         void SetDisplayName(const std::string displayName);
         bool VerifyObject(std::stringstream * ss) const;

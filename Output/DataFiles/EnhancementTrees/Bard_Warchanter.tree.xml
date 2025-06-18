@@ -48,9 +48,9 @@
                <Name>Skaldic Rage</Name>
                <Description>Expend a Song to fly into Rage, granting you a +4 Rage bonus to Strength
 and -4 penalty to AC. When Skaldic Rage ends you become Fatigued. Requires 4
-trained ranks in Perform to use. Skaldic Rage lasts for 3 minutes initially.
-Duration increases with effects that increase Song durations.
-(Rage bonuses do not stack with Barbarian Rage.)</Description>
+trained ranks in Perform to use. Skaldic Rage lasts 1 minute per bard level.
+(Rage bonuses don't stack with Barbarian Rage.)
+Note: Does not prevent spellcasting.</Description>
                <Icon>WCSkaldicRage</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -176,12 +176,11 @@ and -4 penalty to AC.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Song of Heroism</Name>
          <InternalName>WCCore3</InternalName>
-         <Description>Adds the Song of Heroism to your Ballad.
+         <Description>Adds the Song of Heroism to your Ballad, and +1 Imbue Dice.
 Inspire Courage grants an additional +1 damage.
 Requires 4 trained Ranks in Perform to use.
 Greater Heroism: +4 Morale bonus to Attack, all saving throws and skill checks,
-as well as immunity to fear and some temporary hit points.
-+1 Imbue Dice</Description>
+as well as immunity to fear and some temporary hit points.</Description>
          <Icon>WCSongOfHeroism</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -236,9 +235,10 @@ as well as immunity to fear and some temporary hit points.
       <EnhancementTreeItem>
          <Name>Warchanter: Fighting Spirit</Name>
          <InternalName>WCCore4</InternalName>
-         <Description>+10 hit points
-Your Inspire Greatness now uses your Charisma score for its Temporary hit points, doubled in Epic levels.
-+1 Imbue Dice</Description>
+         <Description>+10 hit points and +1 Imbue Dice.
+Inspire Courage now grants an additional +1 damage.
+Your Inspire Greatness now uses your Charisma score for its Temporary hit points,
+doubled in Epic levels.</Description>
          <Icon>WCFightingSpirit</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -269,13 +269,19 @@ Your Inspire Greatness now uses your Charisma score for its Temporary hit points
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
          </Effect>
+         <Effect>
+            <Type>SongDamageBonus</Type>
+            <Bonus>Music</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Victory Song</Name>
          <InternalName>WCCore5</InternalName>
-         <Description>The range of your Bardic Aria is doubled.
-You have +20 hit points, and a Base Attack Bonus equal to your character level.
-+1 Imbue Dice</Description>
+         <Description>You have +20 hit points and +1 Imbue Dice.
+You have a Base Attack Bonus equal to your character level.
+The range of your Bardic Aria is doubled.</Description>
          <Icon>WCVictorySong</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -322,9 +328,9 @@ You have +20 hit points, and a Base Attack Bonus equal to your character level.
 Activate this ability to scream the songs of your frozen ancestors,
 expending a Bard Song to force enemies in an area to make a Fortitude saving
 throw versus being frozen solid in frigid ice for 6 seconds.
-(DC 14 + Max[Dex/Cha] Mod + Bard Level + Stunning Modifiers).
+(DC 14 + Max[Str/Dex/Cha] Mod + Bard Level + Stunning Modifiers).
 Even if they make the save, they take 20d20 Cold Damage and are significantly
-slowed for 6 seconds.</Description>
+slowed for 6 seconds. Cooldown: 2 minutes.</Description>
          <Icon>WCWarmaster</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -384,6 +390,8 @@ throw versus being frozen solid in frigid ice for 6 seconds.</Description>
             <DCVersus>Fortitude</DCVersus>
             <Amount size="1">14</Amount>
             <HalfBaseClassLevel>Bard</HalfBaseClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
             <ModAbility>Charisma</ModAbility>
             <Tactical>Stun</Tactical>
          </DC>
@@ -633,8 +641,7 @@ Fire, and Sonic damage</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Iced Edges</Name>
          <InternalName>WCIcedEdges</InternalName>
-         <Description>Imbue Toggle: You deal an additional 1d8 cold damage with attacks, scaling with
-75% Cold Spell Power.</Description>
+         <Description>Imbue Toggle: You deal an additional 1d6 Cold damage with attacks, scaling with Cold Spell Power.</Description>
          <Icon>WCIcedEdges</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -651,15 +658,14 @@ Fire, and Sonic damage</Description>
          <Stance>
             <Name>Iced Edges</Name>
             <Icon>WCIcedEdges</Icon>
-            <Description>Imbue Toggle: You deal an additional 1d8 cold damage with attacks, scaling with
-75% Cold Spell Power.</Description>
+            <Description>Imbue Toggle: You deal an additional 1d6 Cold damage with attacks, scaling with Cold Spell Power.</Description>
             <Group>Imbue</Group>
          </Stance>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter Action Boost: Sprint</Name>
          <InternalName>WCActionBoostSprint</InternalName>
-         <Description>+[35/40/50]% Action Boost bonus to movement speed for 20 seconds.</Description>
+         <Description>+[30/40/50]% Action Boost bonus to movement speed for 20 seconds.</Description>
          <Icon>WCActionBoostSprint</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
@@ -860,11 +866,13 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
          <Name>Warchanter: Frozen Fury</Name>
          <InternalName>WCTheFrozenFury</InternalName>
          <Description>Deals +[10/20/30]% Damage
-Melee attack: Affected enemies must make a Fortitude save (10 + Max[Str/Dex/Cha]
+Melee attack: Affected enemies must make a Fortitude save (10/12/14 + Max[Str/Dex/Cha]
 modifier + [0/½/full] Bard Level + stunning modifiers) or become frozen solid
 for a number of seconds equal to your Bard level.
+Cooldown: [12/9/6] seconds
 
-Bosses cannot be frozen.</Description>
+Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
+(Note: If you have Strikethrough, this attack can freeze multiple enemies.)</Description>
          <Icon>WCTheFrozenFury</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -1081,7 +1089,7 @@ Bosses cannot be frozen.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Movement Booster</Name>
          <InternalName>WCMovementBooster</InternalName>
-         <Description>Choose between Expeditious Chant and Rallying Cry:</Description>
+         <Description>Choose between Fleeting Footsteps and Rallying Cry:</Description>
          <Icon>WCMovementBooster</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1103,7 +1111,7 @@ Bosses cannot be frozen.</Description>
          </Requirements>
          <Selector>
             <EnhancementSelection>
-               <Name>Expeditious Chant</Name>
+               <Name>Fleeting Footsteps</Name>
                <Description>You and nearby allies gain +[5/10/15]% Action Boost bonus to movement speed.</Description>
                <Icon>WCExpeditiousChant</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -1220,7 +1228,7 @@ ranged damage, and spell critical chance.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>Weapon_CriticalMultiplier</Type>
+            <Type>Weapon_CriticalMultiplier19To20</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
@@ -1238,7 +1246,7 @@ ranged damage, and spell critical chance.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Spinning Ice</Name>
          <InternalName>WCSpinningIce</InternalName>
-         <Description>Deals +[30/40/50]% Damage
+         <Description>Deals +40% Damage
 Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save
 ([10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/1] Bard Level + Stunning modifiers)
 for a number of seconds equal to your half your Bard level.

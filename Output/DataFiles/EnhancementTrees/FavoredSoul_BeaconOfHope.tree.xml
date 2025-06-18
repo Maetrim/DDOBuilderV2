@@ -14,7 +14,8 @@
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Pleasant Disposition</Name>
          <InternalName>BoHCore1</InternalName>
-         <Description>For each Core ability you gain, +1% Positive Spell Critical Chance, +10 Healing Amp, and +5 Positive Spell Power.</Description>
+         <Description>For each Core ability you gain, +1% Positive Spell Critical Chance, +10 Healing
+Amplification, and +5 Positive Spell Power.</Description>
          <Icon>BoHPleasantDisposition</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -110,10 +111,10 @@ Cooldown: 6 seconds</Description>
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Shining Light</Name>
          <InternalName>BoHCore3</InternalName>
-         <Description>Whenever you cast one of your Beacons or use Flight of Glory,
-you and affected allies gain a Sacred bonus to Healing Amplification equal to
-your Favored Soul level for 12 seconds. Enemies in the zone of effect are dazzled
-and take a -1 penalty to attack, spot, and search.
+         <Description>Whenever you cast one of your Beacons or use Flight of Glory, you and affected
+allies gain a Sacred bonus to Healing Amplification equal to your Favored Soul
+level for 12 seconds. Enemies in the zone of effect are dazzled and take a -1
+penalty to attack, spot, and search.
 Targets are illuminated by Shining Light, dispelling stealth, invisibility, blur
 and displacement, for 10 seconds, and giving a -40 penalty to hide.
 Sightless enemies are immune to the dazzle effect.</Description>
@@ -209,9 +210,9 @@ Cooldown: 30 seconds</Description>
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Flight of Glory</Name>
          <InternalName>BoHCore5</InternalName>
-         <Description>When you use your Leap of Faith, nearby allies gain Temporary
-Hit Points equal to triple your character level, plus an additional
-50 Hit Points. Cost 10 Spell Points. </Description>
+         <Description>When you use your Leap of Faith, nearby allies gain Temporary Hit Points equal
+to triple your character level, plus an additional 50 Hit Points.
+Cost 10 Spell Points.</Description>
          <Icon>BoHFlightOfGlory</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -291,7 +292,10 @@ Passive: Choose either Wisdom or Charisma</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Wisdom</Name>
-               <Description>You gain +3 Maximum Caster Level with all Positive spells.
+               <Description>You gain True Resurrection as a Spell Like Ability
+Spell Point Cost: 25 SP
+Cooldown: 10 seconds
+You gain +3 Maximum Caster Level with all Positive spells.
 Your Hope and Beacon abilities that scale with Favored Soul level now add Epic Levels as well.
 Passive: +4 Wisdom.</Description>
                <Icon>BoHTrueResurrection</Icon>
@@ -307,7 +311,10 @@ Passive: +4 Wisdom.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Charisma</Name>
-               <Description>You gain +3 Maximum Caster Level with all Positive spells.
+               <Description>You gain True Resurrection as a Spell Like Ability
+Spell Point Cost: 25 SP
+Cooldown: 10 seconds
+You gain +3 Maximum Caster Level with all Positive spells.
 Your Hope and Beacon abilities that scale with Favored Soul level now add Epic Levels as well.
 Passive: +4 Charisma.</Description>
                <Icon>BoHTrueResurrectionCharisma</Icon>
@@ -350,13 +357,31 @@ Passive: +4 Charisma.</Description>
             <Amount size="1">5</Amount>
             <Item>Positive</Item>
          </Effect>
+         <Effect>
+            <Type>MaxCasterLevelSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+            <Item>Cure Light Wounds</Item>
+            <Item>Close Wounds</Item>
+            <Item>Cure Moderate Wounds</Item>
+            <Item>Cure Serious Wounds</Item>
+            <Item>Cure Critical Wounds</Item>
+            <Item>Panacea</Item>
+            <Item>Cure Light Wounds, Mass</Item>
+            <Item>Cure Moderate Wounds, Mass</Item>
+            <Item>Heal</Item>
+            <Item>Cure Serious Wounds, Mass</Item>
+            <Item>Cure Critical Wounds, Mass</Item>
+            <Item>Heal, Mass</Item>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 1-->
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Good Hope</Name>
          <InternalName>BoHGoodHope</InternalName>
          <Description>Spell-Like Ability: This area of effect spell instills powerful hope to the recipients,
-granting a +2 morale bonus to attack rolls, saving throws, skill checks and
+granting a +2 Morale bonus to attack rolls, saving throws, skill checks and
 weapon damage rolls. Good Hope counters and dispels Crushing Despair.
 Spell Point Cost: [10/5/2] SP.
 Cooldown: 3 seconds</Description>
@@ -497,14 +522,12 @@ Rank 3: You also gain +10 Positive Energy Spell Power.</Description>
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Close Wounds</Name>
          <InternalName>BoHCloseWounds</InternalName>
-         <Description>Spell Like A Ability: Positive energy is quickly channeled
-to heal light wounds of your target or damage undead for [2/2/3] to 4 hit points plus
-an additional [1/2/3] for every caster level up to caster level 5. This spell has
-faster than normal casting speed and minimal cooldown.
+         <Description>Spell Like Ability: Positive energy is quickly channeled to heal light wounds
+of your target or damage undead for 2 to 4 hit points plus an additional 1 for
+every caster level up to caster level 5.
+This spell has faster than normal casting speed and minimal cooldown.
 Spell Point Cost: [6/4/2] Spell Points
-Cooldown: [3/2/1] seconds
-
-D&amp;D Dices: Heals [1/2/3]d3+[1/2/3] per caster level (max 5).</Description>
+Cooldown: [3/2/1] seconds</Description>
          <Icon>BoHCloseWounds</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -532,7 +555,7 @@ D&amp;D Dices: Heals [1/2/3]d3+[1/2/3] per caster level (max 5).</Description>
          <Name>Beacon of Hope: Hope for Inspiration</Name>
          <InternalName>BoHHopeOfInspiration</InternalName>
          <Description>Target ally gains a Sacred bonus to all Skills equal to 1 + 1/4 your
-Favored Soul level for 18 seconds. 6 second cooldown.</Description>
+Favored Soul level for 20 seconds. 6 second cooldown.</Description>
          <Icon>BoHHopeForInspiration</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -576,7 +599,7 @@ Favored Soul level for 18 seconds. 6 second cooldown.</Description>
          <Name>Beacon of Hope: Spell Critical Chance II</Name>
          <InternalName>BoHSpellCriticalII</InternalName>
          <Description>Your Positive Healing spells have an additional 2% chance to critically hit.</Description>
-         <Icon>BoHSpellCritical</Icon>
+         <Icon>BoHSpellCritical2</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">2</CostPerRank>
@@ -636,16 +659,16 @@ Favored Soul level for 18 seconds. 6 second cooldown.</Description>
          </Requirements>
          <Selector>
             <EnhancementSelection>
-               <Name>Might's Reward: Charisma</Name>
-               <Description>You gain an Sacred bonus to Positive Spell Power equal to 5 + your Charisma modifier for [30/60/120] seconds.</Description>
-               <Icon>BoHMightsRewardCharisma</Icon>
+               <Name>Might's Reward: Strength</Name>
+               <Description>You gain an Sacred bonus to Positive Spell Power equal to 5 + your Strength modifier for [30/60/120] seconds.</Description>
+               <Icon>BoHMightsRewardStrength</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
-               <Name>Might's Reward: Strength</Name>
-               <Description>You gain an Sacred bonus to Positive Spell Power equal to 5 + your Strength modifier for [30/60/120] seconds.</Description>
-               <Icon>BoHMightsRewardStrength</Icon>
+               <Name>Might's Reward: Charisma</Name>
+               <Description>You gain an Sacred bonus to Positive Spell Power equal to 5 + your Charisma modifier for [30/60/120] seconds.</Description>
+               <Icon>BoHMightsRewardCharisma</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
@@ -662,8 +685,8 @@ Favored Soul level for 18 seconds. 6 second cooldown.</Description>
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Hope for Protection</Name>
          <InternalName>BoHHopeForProtection</InternalName>
-         <Description>Target ally gains a Sacred bonus to PRR and MRR equal to 3 + Favored Soul
-level for 20 seconds. 6 Second cooldown.</Description>
+         <Description>Target ally gains a Sacred bonus to Physical and Magical Resistance Rating
+equal to 3 + Favored Soul level for 20 seconds. 6 Second cooldown.</Description>
          <Icon>BoHHopeForProtection</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -711,7 +734,7 @@ level for 20 seconds. 6 Second cooldown.</Description>
          <Name>Beacon of Hope: Spell Critical Chance III</Name>
          <InternalName>BoHSpellCriticalIII</InternalName>
          <Description>Your Positive Healing spells have an additional 2% chance to critically hit.</Description>
-         <Icon>BoHSpellCritical</Icon>
+         <Icon>BoHSpellCritical3</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
          <CostPerRank size="1">2</CostPerRank>
@@ -822,9 +845,9 @@ Cooldown: 4 seconds</Description>
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Hope for Victory</Name>
          <InternalName>BoHHopeForVictory</InternalName>
-         <Description>Target ally gains a Sacred Bonus to Melee and Ranged power equal
-to 3 + half your Favored Soul level, and Universal Spell Power equal to
-6 + your Favored Soul level. This lasts for 18 seconds, 6 second cooldown.</Description>
+         <Description>Target ally gains a Sacred Bonus to Melee and Ranged power equal to 3 + half
+your Favored Soul level, and Universal Spell Power equal to 6 + your Favored
+Soul level. This lasts for 20 seconds, 6 second cooldown.</Description>
          <Icon>BoHHopeForVictory</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -886,7 +909,7 @@ fade once every 12 seconds. Hope for Success grants 3 stacks.</Description>
          <Name>Beacon of Hope: Spell Critical Chance IV</Name>
          <InternalName>BoHSpellCriticalIV</InternalName>
          <Description>Your Positive Healing spells have an additional 2% chance to critically hit.</Description>
-         <Icon>BoHSpellCritical</Icon>
+         <Icon>BoHSpellCritical4</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
          <CostPerRank size="1">2</CostPerRank>

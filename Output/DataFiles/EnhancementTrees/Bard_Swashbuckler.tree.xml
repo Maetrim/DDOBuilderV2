@@ -15,8 +15,8 @@
       <EnhancementTreeItem>
          <Name>Swashbuckler: Confidence</Name>
          <InternalName>SBCore1</InternalName>
-         <Description>Passive: +1% Dodge, +1 Reflex Save, and +1 to the Max Dex Bonus of your
-Armor per Swashbuckler Core Ability you have.</Description>
+         <Description>Passive: +1% Dodge, +1 Reflex Save, and +1 to the Max Dex Bonus of your Armor
+per Swashbuckler Core Ability you have.</Description>
          <Icon>SBConfidence</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -557,6 +557,7 @@ and +1 Attack and Damage</Description>
                   <Item>Swashbuckling</Item>
                </Requirement>
             </Requirements>
+            <ApplyAsItemEffect/>
          </Effect>
          <Effect>
             <Type>Weapon_AttackAndDamage</Type>
@@ -735,7 +736,7 @@ Enhancement bonus.</Description>
                <Name>Blow By Blow</Name>
                <Description>+[1/2/3] Critical Threat Range
 Melee attack: On Damage: [1/2/3]d6 extra Sonic damage, and reduces your threat with
-nearby enemies by [100/200/300].
+nearby enemies by [100/200/300]. This Sonic damage scales with spell power.
 Cooldown: 12 seconds</Description>
                <Icon>SBBlowByBlow</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -745,7 +746,7 @@ Cooldown: 12 seconds</Description>
                <Name>Blow By Blow (Ranged)</Name>
                <Description>+[1/2/3] Critical Threat Range
 Ranged attack: On Damage: [1/2/3]d6 extra Sonic damage, and reduces your threat with
-nearby enemies by [100/200/300].
+nearby enemies by [100/200/300]. This Sonic damage scales with spell power.
 Cooldown: 12 seconds</Description>
                <Icon>SBBlowByBlowRanged</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -873,9 +874,8 @@ Rank 3: When you Tumble, you gain +3 to saves against traps for 6 seconds.
          <Name>Swashbuckler: En Pointe</Name>
          <InternalName>SBEnPointe</InternalName>
          <Description>Deals +[10/20/30]% Damage
-+[4/8/12] Critical Threat Range
-Melee Attack: Make two attacks -1 Critical Multiplier. Costs 10 Spell Points to
-activate.
+Melee Attack: Make two attacks with +[4/8/12] Critical Threat Range, but -1 Critical
+Multiplier. Costs 10 Spell Points to activate.
 Cooldown: 12 seconds</Description>
          <Icon>SBEnPointe</Icon>
          <XPosition>0</XPosition>
@@ -1149,8 +1149,7 @@ Fighting line of feats.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Resonant Arms</Name>
          <InternalName>SBResonantArms</InternalName>
-         <Description>Imbue Toggle: While Swashbuckling, the Finesseable or thrown Weapon in your main
-hand deals an additional 1d6 Sonic Damage. This Sonic damage scales with Spell Power.</Description>
+         <Description>Imbue Toggle: While Swashbuckling, gain imbue: 1d6 Sonic damage that scales with Spell Power.</Description>
          <Icon>SBResonantArms</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -1167,8 +1166,7 @@ hand deals an additional 1d6 Sonic Damage. This Sonic damage scales with Spell P
          <Clickie/>
          <Stance>
             <Name>Swashbuckler: Resonant Arms</Name>
-         <Description>Imbue Toggle: While Swashbuckling, the Finesseable or thrown Weapon in your main
-hand deals an additional 1d6 Sonic Damage. This Sonic damage scales with Spell Power.</Description>
+            <Description>Imbue Toggle: While Swashbuckling, gain imbue: 1d6 Sonic damage that scales with Spell Power.</Description>
             <Icon>SBResonantArms</Icon>
             <Group>Imbue</Group>
          </Stance>
@@ -1194,7 +1192,7 @@ when single weapon fighting:</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Smooth Flourishes</Name>
-               <Description>You get Charisma to Damage with weapon attacks while Single Weapon Fighting</Description>
+               <Description>You get Charisma to Damage with weapon attacks while Swashbuckling.</Description>
                <Icon>SBSmoothFlourishes</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Effect>
@@ -1203,7 +1201,7 @@ when single weapon fighting:</Description>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
-                        <Item>Single Weapon Fighting</Item>
+                        <Item>Swashbuckling</Item>
                      </Requirement>
                   </Requirements>
                   <Item>Charisma</Item>
@@ -1213,7 +1211,7 @@ when single weapon fighting:</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Swift Strikes</Name>
-               <Description>You get Dexterity to Damage with weapon attacks while Single Weapon Fighting.</Description>
+               <Description>You get Dexterity to Damage with weapon attacks while Swashbuckling.</Description>
                <Icon>SBSwiftStrikes</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Effect>
@@ -1222,7 +1220,7 @@ when single weapon fighting:</Description>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
-                        <Item>Single Weapon Fighting</Item>
+                        <Item>Swashbuckling</Item>
                      </Requirement>
                   </Requirements>
                   <Item>Dexterity</Item>
@@ -1232,7 +1230,7 @@ when single weapon fighting:</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Two Steps Ahead</Name>
-               <Description>You get Intelligence to Damage with weapon attacks Single Weapon Fighting</Description>
+               <Description>You get Intelligence to Damage with weapon attacks Swashbuckling.</Description>
                <Icon>SBTwoStepsAhead</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Effect>
@@ -1241,7 +1239,7 @@ when single weapon fighting:</Description>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
-                        <Item>Single Weapon Fighting</Item>
+                        <Item>Swashbuckling</Item>
                      </Requirement>
                   </Requirements>
                   <Item>Intelligence</Item>
@@ -1384,20 +1382,14 @@ Knockdown). Costs 10 Spell Points. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Music Box</Name>
-               <Description>Passive: While Swashbuckling with a Rune Arm in your off hand, your Rune
-Arm Weapon Imbue deals an additional 1d6 Sonic damage. </Description>
+               <Description>Passive: While Swashbuckling with a Rune Arm in your off hand, gain +1 Imbue Dice.</Description>
                <Icon>SBMusicBox</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
-                  <Type>WeaponOtherDamageBonusCritical</Type>
-                  <Type>WeaponOtherDamageBonusCritical</Type>
-                  <AType>NotNeeded</AType>
+                  <Type>ImbueDice</Type>
+                  <AType>Simple</AType>
                   <Bonus>Enhancement</Bonus>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">6</Sides>
-                     <Damage>Sonic</Damage>
-                  </Dice>
+                  <Amount size="1">1</Amount>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
@@ -1408,7 +1400,6 @@ Arm Weapon Imbue deals an additional 1d6 Sonic damage. </Description>
                         <Item>Rune Arm</Item>
                      </Requirement>
                   </Requirements>
-                  <Item>All</Item>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -1613,7 +1604,7 @@ Cooldown: 20 seconds</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Second Skin</Name>
          <InternalName>SBSecondSkin</InternalName>
-         <Description>While Swashbuckling, +[1/2/3] to your Reflex Saves and +[2/4/6] to the Max Dex Bonus of your Armor.
+         <Description>While Swashbuckling, +[2/4/6] to your Reflex Saves and +[2/4/6] to the Max Dex Bonus of your Armor.
 Rank 3: +20% competence bonus to hit points.</Description>
          <Icon>SBSecondSkin</Icon>
          <XPosition>2</XPosition>
@@ -1638,7 +1629,7 @@ Rank 3: +20% competence bonus to hit points.</Description>
             <Bonus>Enhancement</Bonus>
             <Item>Reflex</Item>
             <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
+            <Amount size="3">2 4 6</Amount>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>

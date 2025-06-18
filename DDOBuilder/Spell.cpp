@@ -191,6 +191,7 @@ int Spell::ActualCasterLevel(const Build& build) const
         }
     }
     int bonus = build.BonusCasterLevels(Name());
+    bonus += build.BonusCasterLevelsSchool(Name());
     classCasterLevel += bonus;
     return classCasterLevel;
 }
@@ -220,6 +221,7 @@ int Spell::ActualMaxCasterLevel(const Build& build) const
             }
         }
         int bonus = build.BonusMaxCasterLevels(Name());
+        bonus += build.BonusMaxCasterLevelsSchool(Name());
         maxCasterLevel += bonus;
     }
     return maxCasterLevel;
@@ -257,6 +259,13 @@ CString Spell::ActualCasterLevelText(const Build& build) const
     if (bonus != 0)
     {
         t.Format(" + Spell Specific Bonus(%+d)", bonus);
+        totalText += t;
+        classCasterLevel += bonus;
+    }
+    bonus = build.BonusCasterLevelsSchool(Name());
+    if (bonus != 0)
+    {
+        t.Format(" + School Specific Bonus(%+d)", bonus);
         totalText += t;
         classCasterLevel += bonus;
     }
@@ -320,6 +329,13 @@ CString Spell::ActualMaxCasterLevelText(const Build& build) const
         if (bonus != 0)
         {
             t.Format(" + Spell Specific Bonus(%+d)", bonus);
+            mcl += t;
+            maxCasterLevel += bonus;
+        }
+        bonus = build.BonusMaxCasterLevelsSchool(Name());
+        if (bonus != 0)
+        {
+            t.Format(" + School Specific Bonus(%+d)", bonus);
             mcl += t;
             maxCasterLevel += bonus;
         }

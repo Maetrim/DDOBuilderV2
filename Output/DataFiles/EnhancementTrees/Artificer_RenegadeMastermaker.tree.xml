@@ -11,7 +11,7 @@
     </Requirements>
     <Icon>Artificer</Icon>
     <Background>ArtificerBackground</Background>
-     <!--Core items-->
+    <!--Core items-->
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Renegade Defender</Name>
       <InternalName>RMCore1</InternalName>
@@ -45,7 +45,7 @@ Power and +5 Repair Spell Power.</Description>
         <Amount size="1">5</Amount>
         <Item>Positive</Item>
         <Item>Repair</Item>
-      <Item>Rust</Item>
+        <Item>Rust</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -85,7 +85,7 @@ you a +4 Alchemical bonus to AC and immunity to Magic Missiles.</Description>
         <Amount size="1">5</Amount>
         <Item>Positive</Item>
         <Item>Repair</Item>
-      <Item>Rust</Item>
+        <Item>Rust</Item>
       </Effect>
       <Effect>
         <Type>ACBonus</Type>
@@ -169,7 +169,7 @@ Passive: Your Admixture spells gain +4 to their Maximum Caster Level.</Descripti
         <Amount size="1">5</Amount>
         <Item>Positive</Item>
         <Item>Repair</Item>
-      <Item>Rust</Item>
+        <Item>Rust</Item>
       </Effect>
       <Effect>
         <Type>SpellLikeAbility</Type>
@@ -179,13 +179,27 @@ Passive: Your Admixture spells gain +4 to their Maximum Caster Level.</Descripti
         <Amount size="4">0 4 10 8</Amount>
         <Item>Artificer</Item>
       </Effect>
-       <Effect>
-          <Type>MaxCasterLevel</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">4</Amount>
-          <Item>Admixture</Item>
-       </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Curative Admixture: Cure Light Wounds</Item>
+        <Item>Curative Admixture: Cure Moderate Wounds</Item>
+        <Item>Curative Admixture: Cure Serious Wounds</Item>
+        <Item>Curative Admixture: Cure Critical Wounds</Item>
+        <Item>Palliative Admixture</Item>
+        <Item>Curative Admixture: Remove Disease</Item>
+        <Item>Curative Admixture: Remove Poison</Item>
+        <Item>Curative Admixture: Remove Curse</Item>
+        <Item>Curative Admixture: Remove Paralysis</Item>
+        <Item>Curative Admixture: Inflict Light Wounds</Item>
+        <Item>Curative Admixture: Inflict Moderate Wounds</Item>
+        <Item>Curative Admixture: Inflict Serious Wounds</Item>
+        <Item>Curative Admixture: Inflict Critical Wounds</Item>
+        <Item>Curative Admixture: Harm</Item>
+        <Item>Curative Admixture: Heal</Item>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Constructive Conduit</Name>
@@ -225,7 +239,7 @@ Maximum Caster Level.</Description>
         <Amount size="1">5</Amount>
         <Item>Positive</Item>
         <Item>Repair</Item>
-      <Item>Rust</Item>
+        <Item>Rust</Item>
       </Effect>
       <Effect>
         <Type>Hitpoints</Type>
@@ -257,13 +271,13 @@ Maximum Caster Level.</Description>
         <AType>Simple</AType>
         <Amount size="1">30</Amount>
       </Effect>
-       <Effect>
-          <Type>MaxCasterLevel</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">6</Amount>
-          <Item>Admixture</Item>
-       </Effect>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Item>Admixture</Item>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Radiant Forcefield</Name>
@@ -306,7 +320,7 @@ Cooldown: 3 minutes</Description>
         <Amount size="1">5</Amount>
         <Item>Positive</Item>
         <Item>Repair</Item>
-      <Item>Rust</Item>
+        <Item>Rust</Item>
       </Effect>
       <Effect>
         <Type>SpellLikeAbility</Type>
@@ -351,13 +365,13 @@ While in Medium Armor, Heavy Armor, or Adamantine Body, +3 to Max Dex Bonus.</De
           <Item>Capstone Enhancement</Item>
         </Requirement>
       </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>RMCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>RMCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
       <Effect>
         <DisplayName>Renegade Mastermaker: +10hp per core enhancement</DisplayName>
         <Type>Hitpoints</Type>
@@ -372,7 +386,7 @@ While in Medium Armor, Heavy Armor, or Adamantine Body, +3 to Max Dex Bonus.</De
         <Amount size="1">5</Amount>
         <Item>Positive</Item>
         <Item>Repair</Item>
-      <Item>Rust</Item>
+        <Item>Rust</Item>
       </Effect>
       <Effect>
         <Type>SpellLikeAbility</Type>
@@ -388,12 +402,12 @@ While in Medium Armor, Heavy Armor, or Adamantine Body, +3 to Max Dex Bonus.</De
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
         <Item>Constitution</Item>
-         <Item>Intelligence</Item>
+        <Item>Intelligence</Item>
       </Effect>
       <Effect>
         <Type>PRR</Type>
-         <Type>MRR</Type>
-         <Bonus>Enhancement</Bonus>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
       </Effect>
@@ -416,7 +430,7 @@ While in Medium Armor, Heavy Armor, or Adamantine Body, +3 to Max Dex Bonus.</De
         </Requirements>
       </Effect>
     </EnhancementTreeItem>
-     <!--Tier 1-->
+    <!--Tier 1-->
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Curative Admixture: Cure Light Wounds</Name>
       <InternalName>RMCurativeAdmixtureCLW</InternalName>
@@ -569,7 +583,7 @@ Cooldown: [12/8/4] seconds</Description>
         <Amount size="3">5 10 15</Amount>
       </Effect>
     </EnhancementTreeItem>
-     <!--Tier 2-->
+    <!--Tier 2-->
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Kinetic Discharge</Name>
       <InternalName>RMKineticDischarge</InternalName>
@@ -619,7 +633,7 @@ Must have a Rune Arm equipped to use.</Description>
       </Requirements>
       <DC>
         <Name>Renegade Mastermaker: Mighty Slam</Name>
-      <Description>Deals +[10/20/30]% Damage
+        <Description>Deals +[10/20/30]% Damage
 Melee Attack. Stuns your target for 6 seconds. Stunned creatures are considered
 helpless. A successful Fortitude save negates this effect.</Description>
         <Icon>RMMightySlam</Icon>
@@ -650,8 +664,8 @@ helpless. A successful Fortitude save negates this effect.</Description>
       </Requirements>
       <Effect>
         <Type>ACBonus</Type>
-         <Type>MaxDexBonus</Type>
-         <Bonus>Enhancement</Bonus>
+        <Type>MaxDexBonus</Type>
+        <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
       </Effect>
@@ -728,7 +742,7 @@ Natural 1.</Description>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
-     <!--Tier 3-->
+    <!--Tier 3-->
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Battlefist</Name>
       <InternalName>RMBattlefist</InternalName>
@@ -798,7 +812,7 @@ Cooldown: 1 minute</Description>
       <Icon>RMShieldingConstruct</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
+      <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie />
@@ -865,7 +879,7 @@ Cooldown: 1 minute</Description>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
-     <!--Tier 4-->
+    <!--Tier 4-->
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Kinetic Charge</Name>
       <InternalName>RMKineticCharge</InternalName>
@@ -893,23 +907,23 @@ for 10 seconds.</Description>
           <Value>4</Value>
         </Requirement>
       </Requirements>
-       <!--effect created before slider to get correct initialization-->
-       <Effect>
-          <Type>ACBonus</Type>
-          <Bonus>Shield</Bonus>
-          <Amount size="21">0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7</Amount>
-          <AType>SliderValueLookup</AType>
-          <StackSource>Artificer</StackSource>
-          <Item>Kinetic Charge</Item>
-          <ApplyAsItemEffect/>
-       </Effect>
-       <Effect>
-          <Type>CreateSlider</Type>
-          <Bonus>Enhancement</Bonus>
-          <Item>Kinetic Charge</Item>
-          <AType>Slider</AType>
-          <Amount size="3">0 0 5</Amount>
-       </Effect>
+      <!--effect created before slider to get correct initialization-->
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Shield</Bonus>
+        <Amount size="21">0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7</Amount>
+        <AType>SliderValueLookup</AType>
+        <StackSource>Artificer</StackSource>
+        <Item>Kinetic Charge</Item>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Kinetic Charge</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 5</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Reconstruct</Name>
@@ -947,7 +961,7 @@ Cooldown: [30/15/6] seconds</Description>
       <Name>Renegade Mastermaker: Embed Component</Name>
       <InternalName>RMEmbedComponent</InternalName>
       <Description>+[5/10/15] Magical Resistance Rating and +[2/4/6] Constitution. You can no longer
-use Evasion, Druid Wild Shape feats.</Description>
+use Evasion, Druid Wild Shape feats, or Primal Avatar's Tree form</Description>
       <Icon>RMEmbedComponent</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
@@ -1072,7 +1086,7 @@ Cooldown: 1 minute</Description>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
-     <!--Tier 5-->
+    <!--Tier 5-->
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Curative Admixture: Cure Critical Wounds</Name>
       <InternalName>RMCurativeAdmixtureCCW</InternalName>
@@ -1098,10 +1112,10 @@ Cooldown: 12 seconds</Description>
           <Item>Artificer</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>SpellLikeAbility</Type>
@@ -1130,10 +1144,10 @@ Cooldown: 12 seconds</Description>
           <Item>Artificer</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Selector>
         <EnhancementSelection>
@@ -1167,7 +1181,7 @@ Cooldown: 3 minutes</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Paragon Body</Name>
       <InternalName>RMParagonBody</InternalName>
-         <Description>You no longer suffer Arcane Spell Failure from armor. You gain +4 to Fortitude
+      <Description>You no longer suffer Arcane Spell Failure from armor. You gain +4 to Fortitude
 Saves and +10% Quality bonus to maximum hit points.</Description>
       <Icon>RMParagonBody</Icon>
       <XPosition>2</XPosition>
@@ -1182,10 +1196,10 @@ Saves and +10% Quality bonus to maximum hit points.</Description>
           <Item>Artificer</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
         <Requirement>
           <Type>Enhancement</Type>
           <Item>RMEmbedComponent</Item>
@@ -1210,6 +1224,7 @@ Saves and +10% Quality bonus to maximum hit points.</Description>
         <Percent />
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
+        <ApplyAsItemEffect />
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1236,10 +1251,10 @@ Cooldown: 1 minute</Description>
           <Item>Artificer</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>SpellLikeAbility</Type>
@@ -1253,7 +1268,7 @@ Cooldown: 1 minute</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Mastermaker</Name>
       <InternalName>RMMastermaker</InternalName>
-         <Description>Your Repair Wounds spells have no maximum caster level and you gain a 20%
+      <Description>Your Repair Wounds spells have no maximum caster level and you gain a +20%
 Competence bonus to Maximum Hit Points.</Description>
       <Icon>RMMastermaker</Icon>
       <XPosition>4</XPosition>
@@ -1268,26 +1283,33 @@ Competence bonus to Maximum Hit Points.</Description>
           <Item>Artificer</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
-       <Effect>
-          <Type>MaxCasterLevel</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">999</Amount>
-          <Item>Repair</Item>
-       </Effect>
-       <Effect>
-          <Type>Hitpoints</Type>
-          <Bonus>Competence</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">20</Amount>
-          <Percent/>
-          <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+        <Type>MaxCasterLevelSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">999</Amount>
+        <Item>Repair Light Damage</Item>
+        <Item>Repair Moderate Damage</Item>
+        <Item>Repair Serious Damage</Item>
+        <Item>Repair Critical Damage</Item>
+        <Item>Repair Light Damage, Mass</Item>
+        <Item>Repair Moderate Damage, Mass</Item>
+        <Item>Repair Serious Damage, Mass</Item>
+        <Item>Repair Critical Damage, Mass</Item>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Percent />
+        <ApplyAsItemEffect />
+      </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

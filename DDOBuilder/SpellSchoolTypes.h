@@ -46,3 +46,20 @@ const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
     {SpellSchool_BreathWeapon,  L"Breath Weapon"},
     {SpellSchoolType(0), NULL}
 };
+
+enum PrimerType
+{
+    Primer_Unknown = 0,
+    Primer_Ceruleite,
+    Primer_Crimsonite,
+    Primer_Gildleaf,
+    Primer_Count
+};
+const XmlLib::enumMapEntry<PrimerType> primerTypeMap[] =
+{
+    {Primer_Unknown,        L"Unknown"},
+    {Primer_Ceruleite,      L"Ceruleite"},
+    {Primer_Crimsonite,     L"Crimsonite"},
+    {Primer_Gildleaf,       L"Gildleaf"},
+    {PrimerType(0), NULL}
+};

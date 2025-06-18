@@ -52,8 +52,7 @@ Inspiration as if you had 1 additional Bard level.</Description>
       <InternalName>SSCore2</InternalName>
       <Description>Your Fascinate gains the power to mesmerize Oozes.
 They stop acting and behave like they have been fascinated.
-Unlike truly fascinated creatures, however, they are not susceptible
-to suggestion.
+Unlike truly fascinated creatures, however, they are not susceptible to suggestion.
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
 +1 Diplomacy, Listen, Perform and Use Magic Device.
 +2% critical chance with Sonic and Positive spells.</Description>
@@ -114,11 +113,10 @@ Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
       <InternalName>SSCore3</InternalName>
       <Description>Your Fascinate gains the power to mesmerize Undead.
 They stop acting and behave like they have been fascinated.
-Unlike truly fascinated creatures, however, they are not susceptible
-to suggestion.
+Unlike truly fascinated creatures, however, they are not susceptible to suggestion.
 Your Sustaining Song melody now works on Undead Allies, providing them with a
-Negative heal over time. Your Inspire Greatness now provides a +10 Music
-bonus to Negative Healing Amplification.
+Negative heal over time. Your Inspire Greatness now provides a +10 Music bonus to
+Negative Healing Amplification.
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
 +1 Diplomacy, Listen, Perform and Use Magic Device.
 +2% critical chance with Sonic and Positive spells.</Description>
@@ -185,11 +183,9 @@ Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
       <InternalName>SSCore4</InternalName>
       <Description>Your Fascinate gains the power to mesmerize Constructs.
 They stop acting and behave like they have been fascinated.
-Unlike truly fascinated creatures, however, they are not susceptible
-to suggestion.
+Unlike truly fascinated creatures, however, they are not susceptible to suggestion.
 Your Sustaining Song melody now works on Construct and Living Construct Allies,
-such as Warforged and Artificer Iron Defenders, providing them with a Repair
-over time.
+such as Warforged and Artificer Iron Defenders, providing them with a Repair over time.
 Your Inspire Greatness now provides a +10 Music bonus to Repair Amplification.
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
 +1 Diplomacy, Listen, Perform and Use Magic Device.
@@ -255,7 +251,7 @@ Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
     <EnhancementTreeItem>
       <Name>Spellsinger: Virtuoso</Name>
       <InternalName>SSCore5</InternalName>
-      <Description>You regenerate 1 Song every 5 minutes.
+      <Description>You regenerate 1 Song every 5 minutes. (Stacks with anthem)
 +2 Songs per rest. You sing your Bardic Inspiration as if you had two more Bard
 levels (for a total of 3 for this enhancement)
 Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
@@ -506,7 +502,7 @@ Rank 3: You gain the Magical Training feat.</Description>
     <EnhancementTreeItem>
       <Name>Spellsinger: Spell Like Ability I</Name>
       <InternalName>SSSonicBlast</InternalName>
-      <Description>Choose either Sonic Blast or Sure Light Wounds:
+      <Description>Choose either Sonic Blast or Cure Light Wounds:
 Metamagic Feats can be used at no additional cost.</Description>
       <Icon>SSSonicBlast</Icon>
       <XPosition>3</XPosition>
@@ -849,7 +845,8 @@ that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
 Enthralled enemies stop what they are doing and have a chance of breaking free
 when damaged. Enthralled enemies suffer a -2 penalty to attack rolls and Will
 saves for 24 seconds plus 6 seconds per bard level, even after being disrupted
-from their reverie. This ability uses a Perform check as Will save DC.</Description>
+from their reverie. This ability uses a Perform check as Will save DC.
+Cooldown: 10 seconds</Description>
       <Icon>SSEnthrallment</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
@@ -946,18 +943,18 @@ Metamagic Feats can be used at no additional cost.</Description>
           <Icon>SSShout</Icon>
           <Clickie />
           <CostPerRank size="1">1</CostPerRank>
-            <Requirements>
-              <Requirement>
-                <Type>BaseClassMinLevel</Type>
-                <Item>Bard</Item>
-                <Value>3</Value>
-              </Requirement>
-              <Requirement>
-                <Type>Exclusive</Type>
-                <Item>SSShout</Item>
-                <Item>Shout</Item>
-              </Requirement>
-            </Requirements>
+          <Requirements>
+            <Requirement>
+              <Type>BaseClassMinLevel</Type>
+              <Item>Bard</Item>
+              <Value>3</Value>
+            </Requirement>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>SSShout</Item>
+              <Item>Shout</Item>
+            </Requirement>
+          </Requirements>
           <Effect>
             <Type>ExclusionGroup</Type>
             <Bonus>Enhancement</Bonus>
@@ -1052,6 +1049,9 @@ Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</D
       <InternalName>SSSustainingSong</InternalName>
       <Description>Inspiration Melody: When you use you Bardic Inspiration, you apply a temporary
 fast-healing effect to your target for the duration of your song.
+Heals for 2d3 every 2 seconds. Does not critical.
+Affected by your positive/negative/repair spell power.
+Spell power is *not* locked in when you sing, but is rechecked for every tick.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
       <Icon>SSSustainingSong</Icon>
       <XPosition>0</XPosition>
@@ -1094,8 +1094,8 @@ Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</D
       <Selector>
         <EnhancementSelection>
           <Name>Arcane Aid</Name>
-          <Description>When you Inspire Competence on an ally, they gain +[1/2/3] Spell
-Penetration for the duration of your song.
+          <Description>Inspiration Melody: When you use your Bardic Inspiration, your target gains
+a +[1/2/3] Music Bonus to Spell Penetration for the duration of your song.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
           <Icon>SSArcaneAid</Icon>
           <CostPerRank size="1">1</CostPerRank>
@@ -1107,7 +1107,7 @@ Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</D
           </Effect>
           <Effect>
             <Type>SongSpellPenetration</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Music</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
           </Effect>
@@ -1297,7 +1297,7 @@ The spell Hold Monster, Mass is added to your Bard Spell book at level 5.</Descr
 +[1/2/2] Spell Penetration
 +[1/2/2] to DCs of your Enchantment spells
 Rank 3: Inspiration Melody: When you use your Bardic Inspiration, your target
-gains a moderate amount of temporary spell points.
+gains a moderate amount (10) of temporary spell points.
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
       <Icon>SSProdigy</Icon>
       <XPosition>2</XPosition>
@@ -1350,7 +1350,7 @@ Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</D
       <InternalName>SSSpellSongVigor</InternalName>
       <Description>Inspiration Melody: When you use your Bardic Inspiration, you apply
 an effect to your target that restores spell points over time for the duration
-of your song.
+of your song. (2 spell points every 2 seconds)
 Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
       <Icon>SSSpellSongVigor</Icon>
       <XPosition>3</XPosition>

@@ -45,7 +45,8 @@
       <InternalName>StormCore2</InternalName>
       <Description>Your Sonic and Cold spells have a 20% chance to cause a massive Lightning Strike
 whenever they hit an enemy. This lightning strike deals an extra 1d6 Electric
-damage per caster level.</Description>
+damage per caster level. (This damage uses your electric spell power and lore,
+and the originating spell's metamagics and max caster level)</Description>
       <Icon>BSLightningStrike</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
@@ -170,18 +171,43 @@ The damage is upgraded to 1d6+4.</Description>
       <Effect>
         <Type>CasterLevel</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-        <Item>Electric</Item>
-         <Item>Sonic</Item>
-      </Effect>
-      <Effect>
         <Type>MaxCasterLevel</Type>
-        <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>Electric</Item>
-        <Item>Sonic</Item>
+        <!--Electric spells-->
+        <Item>Ball Lightning</Item>
+        <Item>Blast Rod</Item>
+        <Item>Call Lightning</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Electric Loop</Item>
+        <Item>Elemental Combination</Item>
+        <Item>Elemental Prod</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Greater Glyph of Warding</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Static Shock</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Xiaobo's Shock Dust</Item>
+        <!--Sonic spells-->
+        <Item>Forced Escape</Item>
+        <Item>Greater Shout</Item>
+        <Item>Shout</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Reverberate</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -212,13 +238,13 @@ Caster Level with Sonic and Electric spells.</Description>
           <Item>Capstone Enhancement</Item>
         </Requirement>
       </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>StormCore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>StormCore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
       <Effect>
         <Type>SpellPower</Type>
         <Bonus>Enhancement</Bonus>
@@ -245,18 +271,43 @@ Caster Level with Sonic and Electric spells.</Description>
       <Effect>
         <Type>CasterLevel</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-        <Item>Electric</Item>
-        <Item>Sonic</Item>
-      </Effect>
-      <Effect>
         <Type>MaxCasterLevel</Type>
-        <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>Electric</Item>
-        <Item>Sonic</Item>
+        <!--Electric spells-->
+        <Item>Ball Lightning</Item>
+        <Item>Blast Rod</Item>
+        <Item>Call Lightning</Item>
+        <Item>Chain Lightning</Item>
+        <Item>Eladar's Electric Surge</Item>
+        <Item>Electric Loop</Item>
+        <Item>Elemental Combination</Item>
+        <Item>Elemental Prod</Item>
+        <Item>Glyph of Warding</Item>
+        <Item>Greater Glyph of Warding</Item>
+        <Item>Lightning Bolt</Item>
+        <Item>Lightning Motes</Item>
+        <Item>Lightning Sphere</Item>
+        <Item>Multivial of Sparks</Item>
+        <Item>Shocking Bolt</Item>
+        <Item>Shocking Grasp</Item>
+        <Item>Sparks Concentration</Item>
+        <Item>Static Shock</Item>
+        <Item>Storm of Vengeance</Item>
+        <Item>Thunderstroke</Item>
+        <Item>Vial of Sparks</Item>
+        <Item>Vial Smash: Electric</Item>
+        <Item>Voltaic Backlash</Item>
+        <Item>Voltaic Burst</Item>
+        <Item>Voltaic Induction</Item>
+        <Item>Xiaobo's Shock Dust</Item>
+        <!--Sonic spells-->
+        <Item>Forced Escape</Item>
+        <Item>Greater Shout</Item>
+        <Item>Shout</Item>
+        <Item>Sonic Blast</Item>
+        <Item>Soundburst</Item>
+        <Item>Reverberate</Item>
       </Effect>
     </EnhancementTreeItem>
     <!--Tier 1-->
@@ -289,9 +340,9 @@ Caster Level with Sonic and Electric spells.</Description>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Niac's Cold Ray</Item>
-             <AType>SpellInfo</AType>
-             <Amount size="4">0 4 0 2</Amount>
-             <Item>Stormsinger</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 4 0 2</Amount>
+            <Item>Stormsinger</Item>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -300,27 +351,27 @@ Caster Level with Sonic and Electric spells.</Description>
           <Icon>BSSpellLikeAbilityI</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Clickie />
-           <Requirements>
-              <Requirement>
-                 <Type>Exclusive</Type>
-                 <Item>BSSpellLikeAbilityI</Item>
-                 <Item>Sonic Blast</Item>
-              </Requirement>
-           </Requirements>
-           <Effect>
-              <Type>ExclusionGroup</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>NotNeeded</AType>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
               <Item>BSSpellLikeAbilityI</Item>
               <Item>Sonic Blast</Item>
-           </Effect>
-           <Effect>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>BSSpellLikeAbilityI</Item>
+            <Item>Sonic Blast</Item>
+          </Effect>
+          <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Sonic Blast</Item>
-             <AType>SpellInfo</AType>
-             <Amount size="4">0 4 0 2.5</Amount>
-             <Item>Stormsinger</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 4 0 2.5</Amount>
+            <Item>Stormsinger</Item>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -455,9 +506,9 @@ Cooldown: 9 seconds.</Description>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Niac's Biting Cold</Item>
-             <AType>SpellInfo</AType>
-             <Amount size="12">0 20 0 9 0 15 0 9 0 10 0 9</Amount>
-             <Item>Stormsinger</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="12">0 20 0 9 0 15 0 9 0 10 0 9</Amount>
+            <Item>Stormsinger</Item>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -471,27 +522,27 @@ Cooldown: 9 seconds.</Description>
           <Icon>SSReverberate</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Clickie />
-           <Requirements>
-              <Requirement>
-                 <Type>Exclusive</Type>
-                 <Item>BSSpellLikeAbilityII</Item>
-                 <Item>Reverberate</Item>
-              </Requirement>
-           </Requirements>
-           <Effect>
-              <Type>ExclusionGroup</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>NotNeeded</AType>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
               <Item>BSSpellLikeAbilityII</Item>
               <Item>Reverberate</Item>
-           </Effect>
-           <Effect>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>BSSpellLikeAbilityII</Item>
+            <Item>Reverberate</Item>
+          </Effect>
+          <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Reverberate</Item>
-             <AType>SpellInfo</AType>
-             <Amount size="12">0 20 0 9 0 15 0 9 0 10 0 9</Amount>
-             <Item>Stormsinger</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="12">0 20 0 9 0 15 0 9 0 10 0 9</Amount>
+            <Item>Stormsinger</Item>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -521,24 +572,24 @@ Cooldown: 9 seconds.</Description>
           <Icon>EfficientEmpower</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
-               <Requirement>
-                  <Type>Exclusive</Type>
-                  <Item>BSEfficientMetamagicI</Item>
-                  <Item>Efficient Empower Spell</Item>
-               </Requirement>
-             <Requirement>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BSEfficientMetamagicI</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
               <Type>Feat</Type>
               <Item>Empower Spell</Item>
             </Requirement>
           </Requirements>
-           <Effect>
-              <Type>ExclusionGroup</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>NotNeeded</AType>
-              <Item>BSEfficientMetamagicI</Item>
-              <Item>Efficient Empower Spell</Item>
-           </Effect>
-           <Effect>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>BSEfficientMetamagicI</Item>
+            <Item>Efficient Empower Spell</Item>
+          </Effect>
+          <Effect>
             <Type>MetamagicCostEmpower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
@@ -551,24 +602,24 @@ Cooldown: 9 seconds.</Description>
           <Icon>EfficientMaximize</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
-             <Requirement>
-                <Type>Exclusive</Type>
-                <Item>BSEfficientMetamagicI</Item>
-                <Item>Efficient Maximize Spell</Item>
-             </Requirement>
-             <Requirement>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BSEfficientMetamagicI</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
               <Type>Feat</Type>
               <Item>Maximize Spell</Item>
             </Requirement>
           </Requirements>
-           <Effect>
-              <Type>ExclusionGroup</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>NotNeeded</AType>
-              <Item>BSEfficientMetamagicI</Item>
-              <Item>Efficient Maximize Spell</Item>
-           </Effect>
-           <Effect>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>BSEfficientMetamagicI</Item>
+            <Item>Efficient Maximize Spell</Item>
+          </Effect>
+          <Effect>
             <Type>MetamagicCostMaximize</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
@@ -630,7 +681,7 @@ of your target's resistance to those damage types, if any.</Description>
     <EnhancementTreeItem>
       <Name>Stormsinger: Fast Movement</Name>
       <InternalName>BSFastMovement</InternalName>
-      <Description>You run 1% faster for each of your Stormsinger levels.</Description>
+      <Description>You run 1% faster for each of your Bard levels.</Description>
       <Icon>BSFastMovement</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
@@ -647,9 +698,9 @@ of your target's resistance to those damage types, if any.</Description>
       <Effect>
         <Type>MovementSpeed</Type>
         <Bonus>Class</Bonus>
-         <AType>ClassLevel</AType>
-         <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
-         <StackSource>Stormsinger</StackSource>
+        <AType>ClassLevel</AType>
+        <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+        <StackSource>Stormsinger</StackSource>
       </Effect>
     </EnhancementTreeItem>
     <!--Tier 3-->
@@ -681,27 +732,27 @@ Metamagic Feats can be used at no additional cost.</Description>
           <Icon>SSShout</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Clickie />
-           <Requirements>
-              <Requirement>
-                 <Type>Exclusive</Type>
-                 <Item>BSSpellLikeAbilityIII</Item>
-                 <Item>Shout</Item>
-              </Requirement>
-           </Requirements>
-           <Effect>
-              <Type>ExclusionGroup</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>NotNeeded</AType>
+          <Requirements>
+            <Requirement>
+              <Type>Exclusive</Type>
               <Item>BSSpellLikeAbilityIII</Item>
               <Item>Shout</Item>
-           </Effect>
-           <Effect>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>BSSpellLikeAbilityIII</Item>
+            <Item>Shout</Item>
+          </Effect>
+          <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Shout</Item>
-             <AType>SpellInfo</AType>
-             <Amount size="12">0 15 0 12 0 12 0 9 0 9 0 6</Amount>
-             <Item>Stormsinger</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="12">0 15 0 12 0 12 0 9 0 9 0 6</Amount>
+            <Item>Stormsinger</Item>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -717,9 +768,9 @@ Metamagic Feats can be used at no additional cost.</Description>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Snowball Swarm</Item>
-             <AType>SpellInfo</AType>
-             <Amount size="12">0 15 0 12 0 12 0 9 0 9 0 6</Amount>
-             <Item>Stormsinger</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="12">0 15 0 12 0 12 0 9 0 9 0 6</Amount>
+            <Item>Stormsinger</Item>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -752,24 +803,24 @@ Metamagic Feats can be used at no additional cost.</Description>
           <Icon>EfficientEmpower</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
-             <Requirement>
-                <Type>Exclusive</Type>
-                <Item>BSEfficientMetamagicII</Item>
-                <Item>Efficient Empower Spell</Item>
-             </Requirement>
-             <Requirement>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BSEfficientMetamagicII</Item>
+              <Item>Efficient Empower Spell</Item>
+            </Requirement>
+            <Requirement>
               <Type>Feat</Type>
               <Item>Empower Spell</Item>
             </Requirement>
           </Requirements>
-           <Effect>
-              <Type>ExclusionGroup</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>NotNeeded</AType>
-              <Item>BSEfficientMetamagicII</Item>
-              <Item>Efficient Empower Spell</Item>
-           </Effect>
-           <Effect>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>BSEfficientMetamagicII</Item>
+            <Item>Efficient Empower Spell</Item>
+          </Effect>
+          <Effect>
             <Type>MetamagicCostEmpower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
@@ -782,24 +833,24 @@ Metamagic Feats can be used at no additional cost.</Description>
           <Icon>EfficientMaximize</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
-             <Requirement>
-                <Type>Exclusive</Type>
-                <Item>BSEfficientMetamagicII</Item>
-                <Item>Efficient Maximize Spell</Item>
-             </Requirement>
-             <Requirement>
+            <Requirement>
+              <Type>Exclusive</Type>
+              <Item>BSEfficientMetamagicII</Item>
+              <Item>Efficient Maximize Spell</Item>
+            </Requirement>
+            <Requirement>
               <Type>Feat</Type>
               <Item>Maximize Spell</Item>
             </Requirement>
           </Requirements>
-           <Effect>
-              <Type>ExclusionGroup</Type>
-              <Bonus>Enhancement</Bonus>
-              <AType>NotNeeded</AType>
-              <Item>BSEfficientMetamagicII</Item>
-              <Item>Efficient Maximize Spell</Item>
-           </Effect>
-           <Effect>
+          <Effect>
+            <Type>ExclusionGroup</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>NotNeeded</AType>
+            <Item>BSEfficientMetamagicII</Item>
+            <Item>Efficient Maximize Spell</Item>
+          </Effect>
+          <Effect>
             <Type>MetamagicCostMaximize</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
@@ -888,7 +939,10 @@ Metamagic Feats can be used at no additional cost.</Description>
       <Name>Stormsinger: Stormsinger's Inspiration</Name>
       <InternalName>BSStormsingersInspiration</InternalName>
       <Description>Your Bardic Inspiration now grants allies a chance to have your Lightning Strike
-when they make a melee or ranged attack.</Description>
+when they make a melee or ranged attack. This seems to have about a 2% proc chance.
+Also works when cast on self. It scales independently with each player's Electric
+Spell Power and Caster Level. It does not crit and is not affected by active
+Metamagic feats.</Description>
       <Icon>BSStormsingersInspiration</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
@@ -1015,10 +1069,10 @@ Max caster level: 25. Affects liches. </Description>
           <Item>Stormsinger</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>SpellLikeAbility</Type>
@@ -1047,10 +1101,10 @@ any Sleet storm spells, you gain an additional Lightning Strike proc chance.</De
           <Item>Stormsinger</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1070,11 +1124,11 @@ any Sleet storm spells, you gain an additional Lightning Strike proc chance.</De
           <Item>Stormsinger</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
-         <Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
           <Type>Enhancement</Type>
           <Item>BSStormsongIV</Item>
         </Requirement>
@@ -1106,10 +1160,10 @@ Rank 3: The spell Iceberg is added to your Spell book at level 6.</Description>
           <Item>Stormsinger</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>SpellPower</Type>
@@ -1120,15 +1174,15 @@ Rank 3: The spell Iceberg is added to your Spell book at level 6.</Description>
         <Item>Electric</Item>
         <Item>Sonic</Item>
       </Effect>
-       <Effect>
-          <Type>GrantSpell</Type>
-          <Bonus>Enhancement</Bonus>
-          <Item>Iceberg</Item>
-          <AType>SpellInfo</AType>
-          <Rank>3</Rank>
-          <Amount size="3">6 40 15</Amount>
-          <Item>Stormsinger</Item>
-       </Effect>
+      <Effect>
+        <Type>GrantSpell</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Iceberg</Item>
+        <AType>SpellInfo</AType>
+        <Rank>3</Rank>
+        <Amount size="3">6 40 15</Amount>
+        <Item>Stormsinger</Item>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Stormsinger: Storm Studies</Name>
@@ -1147,10 +1201,10 @@ Rank 3: The spell Iceberg is added to your Spell book at level 6.</Description>
           <Item>Stormsinger</Item>
           <Value>5</Value>
         </Requirement>
-         <Requirement>
-            <Type>Level</Type>
-            <Value>12</Value>
-         </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
       </Requirements>
       <Effect>
         <Type>SpellDC</Type>

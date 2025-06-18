@@ -34,8 +34,8 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Smite Foe (Melee)</Name>
-               <Description>Melee Attack: Smite your enemy with a melee attack that deals an
-additional 2[W] damage. Cooldown: 12 seconds.
+               <Description>Melee Attack: Deals +20% Damage. Smite your enemy with a melee attack.
+Cooldown: 12 seconds
 Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                <Icon>WPSmiteFoe</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -43,8 +43,8 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Smite Foe (Ranged)</Name>
-               <Description>Ranged Attack: Smite your enemy with a ranged attack that deals an
-additional 2[W] damage. Cooldown: 12 seconds.
+               <Description>Ranged Attack: Deals +20% Damage. Smite your enemy with a ranged attack.
+Cooldown: 12 seconds
 Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                <Icon>WPSmiteFoeRanged</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -308,7 +308,7 @@ Passive:
          </Effect>
          <Effect>
             <Type>Weapon_CriticalRange</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Competence</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
             <Item>All</Item>
@@ -318,12 +318,14 @@ Passive:
                   <Item>Favored Weapon</Item>
                </Requirement>
             </Requirements>
+            <ApplyAsItemEffect/>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Soul: Implacable Foe</Name>
          <InternalName>WarSoulCore6</InternalName>
-         <Description>Choose between Strength, Wisdom and Charisma variants.</Description>
+         <Description>Choose between Strength, Wisdom, and Charisma variants of a temporary buff that
+grants temporary hitpoints and additional damage.</Description>
          <Icon>WPImplacableFoe</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -426,13 +428,6 @@ Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 2
                </Effect>
             </EnhancementSelection>
          </Selector>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Item>Constitution</Item>
-         </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -613,7 +608,8 @@ feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.</Description
       <EnhancementTreeItem>
          <Name>War Soul: Righteous Weapons I</Name>
          <InternalName>WSRighteousWeaponsI</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage and +3 Universal Spell Power</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -657,8 +653,8 @@ feats equal to 1/2 of your Wisdom modifier for [30/60/120] seconds.</Description
       <EnhancementTreeItem>
          <Name>War Soul: Sacred Touch</Name>
          <InternalName>WSSacredTouch</InternalName>
-         <Description>When you heal allies (with positive energy damage spells) they gain
-+[1/2/3] AC and +[1/2/3] PRR for 12 seconds.</Description>
+         <Description>When you heal allies (with positive energy damage spells) they gain +[1/2/3] AC
+and +[1/2/3] PRR for 12 seconds.</Description>
          <Icon>WPSacredTouch</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -757,7 +753,8 @@ stacks up to 20 times, and loses one stack on expiration.)</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Righteous Weapons II</Name>
          <InternalName>WSRighteousWeaponsII</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage, and +3 Universal Spell Power.</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -805,8 +802,7 @@ stacks up to 20 times, and loses one stack on expiration.)</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Inflame</Name>
          <InternalName>WSInflame</InternalName>
-         <Description>You and your nearby allies gain a +[2/3/4] bonus to Armor Class,
-Attack Rolls, and Damage Rolls.
+         <Description>You and your nearby allies gain a +[2/3/4] bonus to Armor Class, Attack Rolls, and Damage Rolls.
 Duration: 30 seconds.
 Cooldown: 90 seconds minute</Description>
          <Icon>WPInflame</Icon>
@@ -910,7 +906,8 @@ Non-boss enemies have a small chance to be blinded with no save.
       <EnhancementTreeItem>
          <Name>War Soul: Righteous Weapons III</Name>
          <InternalName>WSRighteousWeaponsIII</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage, and +3 Universal Spell Power.</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -958,8 +955,8 @@ Non-boss enemies have a small chance to be blinded with no save.
       <EnhancementTreeItem>
          <Name>War Soul: Greater Inflame</Name>
          <InternalName>WSGreaterInflame</InternalName>
-         <Description>Your Inflame now also grants a +[2/3/4] bonus to Saving Throws
-and a +[5/10/15]% bonus to Acid, Cold, Electric, Fire, and Sonic Energy Absorption.</Description>
+         <Description>Your Inflame now also grants a +[2/3/4] bonus to Saving Throws and a +[5/10/15]%
+bonus to Acid, Cold, Electric, Fire, and Sonic Energy Absorption.</Description>
          <Icon>WPGreaterInflame</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -988,7 +985,6 @@ and a +[5/10/15]% bonus to Acid, Cold, Electric, Fire, and Sonic Energy Absorpti
          <CostPerRank size="1">2</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
-         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Type>ClassMinLevel</Type>
@@ -1064,8 +1060,8 @@ this skill.</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Fires of Fury</Name>
          <InternalName>WSFiresOfFury</InternalName>
-         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d8 Fire Damage, scaling
-with 75% of your Fire Spell Power.</Description>
+         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+with your Fire Spell Power.</Description>
          <Icon>WSFiresOfFury</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -1082,8 +1078,8 @@ with 75% of your Fire Spell Power.</Description>
          </Requirements>
          <Stance>
             <Name>War Soul: Fires of Fury</Name>
-            <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d8 Fire Damage, scaling
-with 75% of your Fire Spell Power.</Description>
+         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+with your Fire Spell Power.</Description>
             <Icon>WSFiresOfFury</Icon>
             <Group>Imbue</Group>
          </Stance>
@@ -1091,7 +1087,8 @@ with 75% of your Fire Spell Power.</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Righteous Weapons IV</Name>
          <InternalName>WSRighteousWeaponsIV</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage, and +3 Universal Spell Power.</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1196,10 +1193,6 @@ with 75% of your Fire Spell Power.</Description>
                <Item>Favored Soul</Item>
                <Value>4</Value>
             </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>WarSoulAbilityScoreI</Item>
-            </Requirement>
          </Requirements>
          <Selector>
             <EnhancementSelection>
@@ -1274,6 +1267,7 @@ and a base attack bonus equal to a fighter of the same level.</Description>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
             <Item>All</Item>
+            <ApplyAsItemEffect/>
          </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
@@ -1292,11 +1286,7 @@ and a base attack bonus equal to a fighter of the same level.</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Divine Vessel</Name>
          <InternalName>WSDivineVessel</InternalName>
-         <Description>Choose between a Melee or Ranged attack that does +30% damage.
-Each affected enemy is hit by a meteor, taking 1 to  4 Fire and 1 to 4 Light
-damage per character level. (Damage from the meteor is affected by Fire and Light
-Spell Power).
-
+         <Description>Choose between Melee and Ranged attacks.
 Shares its cooldown with the Great Cleave feat.</Description>
          <Icon>WPDivineVessel</Icon>
          <XPosition>1</XPosition>
@@ -1333,8 +1323,8 @@ Shares its cooldown with the Great Cleave feat.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Divine Vessel (Ranged Attack)</Name>
-               <Description>Deals: +30% Damage
-Ranged Favored Weapon Cleave Attack: Each affected enemy is hit by a meteor,
+               <Description>Deals: +20% Damage
+AOE Ranged Favored Weapon Cleave Attack: Each affected enemy is hit by a meteor,
 taking 1 to  4 Fire and 1 to 4 Light damage per character level. (Damage from
 the meteor is affected by Fire and Light Spell Power).
 
@@ -1349,7 +1339,10 @@ Shares its cooldown with the Great Cleave feat.</Description>
          <Name>War Soul: Wrathful Weapons</Name>
          <InternalName>WSWrathfulWeapons</InternalName>
          <Description>When wielding your religion's favored weapon in your main hand, you gain
-+3 to hit and damage, and +9 Universal Spell Power. +3 imbue Dice.</Description>
++3 to hit and damage, and +9 Universal Spell Power. When you score a Vorpal Hit
+with your religion's favored weapon, you gain +3 bonus Imbue dice for the next
+12 seconds, and your Fires of Fury Imbue Toggle changes its damage type from
+Fire to Light.</Description>
          <Icon>WPWrathfulWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1402,6 +1395,12 @@ Shares its cooldown with the Great Cleave feat.</Description>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Critical Hit</Item>
+               </Requirement>
+            </Requirements>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

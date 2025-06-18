@@ -178,8 +178,6 @@ This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.
       <InternalName>FBCore5</InternalName>
       <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
 +6 strength, +1 critical damage multiplier on rolls of 19-20. 
-Your melee weapons gain 'Greater Vicious'. +4d6 damage to your attacks.
-This damage scales with 100% Melee Power.
 +3 Imbue Dice when Death Frenzy is active.
 Passive: +10 Melee Power
 Activation Cost: 20 Hit Points.
@@ -207,9 +205,7 @@ Cooldown: 30 seconds.</Description>
         <Name>Death Frenzy</Name>
         <Icon>FBDeathFrenzy</Icon>
         <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
-+6 strength, +1 critical damage multiplier on rolls of 19-20. 
-Your melee weapons gain 'Greater Vicious'. +4d6 damage to your attacks.
-This damage scales with 100% Melee Power.</Description>
++6 strength, +1 critical damage multiplier on rolls of 19-20.</Description>
       </Stance>
       <Effect>
         <Type>MeleePower</Type>
@@ -244,24 +240,6 @@ This damage scales with 100% Melee Power.</Description>
         <Item>Melee</Item>
       </Effect>
       <Effect>
-        <Type>WeaponOtherDamageBonusClass</Type>
-        <Type>WeaponOtherDamageBonusCriticalClass</Type>
-        <AType>NotNeeded</AType>
-        <Bonus>Enhancement</Bonus>
-        <Dice>
-          <Number size="1">4</Number>
-          <Sides size="1">6</Sides>
-          <ScalesWithMeleePower />
-        </Dice>
-        <Item>Melee</Item>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Death Frenzy</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
-      <Effect>
         <Type>ImbueDice</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
@@ -290,7 +268,7 @@ This damage scales with 100% Melee Power.</Description>
       <Name>Frenzied Berserker: Storm's Eye</Name>
       <InternalName>FBCore6</InternalName>
       <Description>Activate: You gain 25 stacks of Storm's Eye. 
-Storm's Eye: +1 melee damage. One stack fades away every three seconds. 
+Storm's Eye: +1 damage. One stack fades away every three seconds. 
 Passive: +4 Constitution, +10 Melee Power.
 When raging your melee attacks have a 5% chance to deal 400 bludgeoning damage.
 This damage scales with 100% Melee Power.
@@ -334,11 +312,10 @@ Cooldown: 2.5 minutes.</Description>
         <Amount size="3">25 0 25</Amount>
       </Effect>
       <Effect>
-        <Type>WeaponDamageBonusClass</Type>
-        <Type>WeaponDamageBonusCriticalClass</Type>
+        <Type>Weapon_DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount size="1">1</Amount>
-        <Item>Melee</Item>
+        <Item>All</Item>
         <AType>SliderValue</AType>
         <StackSource>Storm's Eye</StackSource>
       </Effect>
@@ -602,7 +579,7 @@ constitution until you rest or die. (Cooldown: 3 seconds)</Description>
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Sprint Boost</Name>
       <InternalName>FBSprintBoost</InternalName>
-      <Description>+[35/40/50]% Action Boost bonus to movement speed for 20 seconds.
+      <Description>+[30/40/50]% Action Boost bonus to movement speed for 20 seconds.
 Cooldown: 30 seconds.</Description>
       <Icon>FBSprintBoost</Icon>
       <XPosition>4</XPosition>
@@ -728,7 +705,7 @@ Cooldown: [9/6/3] seconds</Description>
     <EnhancementTreeItem>
       <Name>Frenzied Berserker: Crazy Strike</Name>
       <InternalName>FBCrazyStrike</InternalName>
-      <Description>When you hit with Cracking Attack, for 12 seconds you gain +[0.5/1/2][W]
+      <Description>When you hit with Cracking Attack, for 12 seconds you gain +[½/1/2][W]
 damage and +[1/2/3] Melee Power.</Description>
       <Icon>FBCrazyStrike</Icon>
       <XPosition>1</XPosition>
@@ -877,6 +854,7 @@ per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds.</Description>
         <AType>Stacks</AType>
         <Amount size="2">1 2</Amount>
         <Item>All</Item>
+        <ApplyAsItemEffect />
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>

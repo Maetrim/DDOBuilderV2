@@ -52,7 +52,7 @@ CSpellsControl::CSpellsControl() :
     m_bHVisible(false),
     m_bVVisible(false)
 {
-    //m_comboSpellSelect.SetCanRemoveItems();
+    m_comboSpellSelect.SetCanRemoveItems();
     InitialiseStaticImages();
 }
 
@@ -569,6 +569,7 @@ void CSpellsControl::UpdateSpells(size_t /*oldCasterLevel*/)
 
 void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
 {
+    bool bShowUnavailable = m_pCharacter->ShowUnavailable();
     CStatic::OnLButtonDown(nFlags, point);
     if (m_hitBoxes.size() > 0)
     {
@@ -609,12 +610,15 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                     if (it.Name() == currentSelection
                             || !pBuild->IsSpellTrained(m_class, it.Name()))
                     {
-                        size_t pos = m_comboSpellSelect.AddString(it.Name().c_str());
-                        m_comboSpellSelect.SetItemData(pos, it.IconIndex());
-                        if (it.Name() == currentSelection)
+                        if (!IsInIgnoreList(it.Name()) || g_bShowIgnoredItems || bShowUnavailable)
                         {
-                            // this is the default selection in the combo
-                            sel = pos;
+                            size_t pos = m_comboSpellSelect.AddString(it.Name().c_str());
+                            m_comboSpellSelect.SetItemData(pos, it.IconIndex());
+                            if (it.Name() == currentSelection)
+                            {
+                                // this is the default selection in the combo
+                                sel = pos;
+                            }
                         }
                     }
                 }
@@ -967,25 +971,25 @@ void CSpellsControl::ProcessScrollBars(int cx, int cy)
     m_scrollVertical.MoveWindow(rctVert);
 }
 
-LRESULT CSpellsControl::OnToggleSpellIgnore(WPARAM /*wParam*/, LPARAM /*lParam*/)
+LRESULT CSpellsControl::OnToggleSpellIgnore(WPARAM wParam, LPARAM lParam)
 {
     // wParam = index of clicked item
     // lParam = (CString*)name of spell
-    //int selection = static_cast<int>(wParam);
-    //CString* pFeatName = static_cast<CString*>((void*)lParam);
-    //std::string featName = (LPCTSTR)(*pFeatName);
-    //if (!m_pCharacter->ShowIgnoredItems())
-    //{
-    //    m_comboSpellSelect.DeleteString(selection);
-    //}
-    //if (m_pCharacter->IsInIgnoreList(featName))
-    //{
-    //    m_pCharacter->RemoveFromIgnoreList(featName);
-    //}
-    //else
-    //{
-    //    m_pCharacter->AddToIgnoreList(featName);
-    //}
+    int selection = static_cast<int>(wParam);
+    CString* pSpellName = static_cast<CString*>((void*)lParam);
+    std::string spellName = (LPCTSTR)(*pSpellName);
+    if (!g_bShowIgnoredItems && !IsInIgnoreList(spellName))
+    {
+        m_comboSpellSelect.DeleteString(selection);
+    }
+    if (IsInIgnoreList(spellName))
+    {
+        RemoveFromIgnoreList(spellName);
+    }
+    else
+    {
+        AddToIgnoreList(spellName);
+    }
     return 0;
 }
 

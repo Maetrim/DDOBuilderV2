@@ -41,8 +41,8 @@ first grants +5 Physical Resistance Rating.</Description>
     <EnhancementTreeItem>
       <Name>Vile Chemist: Poisoned Coating</Name>
       <InternalName>VileCore2</InternalName>
-      <Description>Imbue Toggle: While active, simple weapons deal an additional 1d8 Poison damage on hit.
-This damage scales with 75% of your Spell Power.
+      <Description>Imbue Toggle: While active, simple weapons deal an additional 1d6 Poison damage on hit.
+This damage scales with Spell Power.
 
 You also gain an +1 bonus Imbue Dice every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
 
@@ -69,9 +69,9 @@ and 2% Dodge Cap.</Description>
       <Stance>
         <Name>Poisoned Coating</Name>
         <Icon>VilePoisonedCoating</Icon>
-        <Description>While active, deal an additional 1d8 Poison damage on hit.
+        <Description>While active, deal an additional 1d6 Poison damage on hit.
 You also gain an +1 bonus Imbue Dice every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
-This damage scales with 75% of your Spell Power.</Description>
+This damage scales with your Spell Power.</Description>
         <Group>Imbue</Group>
       </Stance>
       <Effect>
@@ -115,7 +115,7 @@ This damage scales with 75% of your Spell Power.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Hidden Blades</Name>
+      <Name>Vile Chemist: Hidden Blades I</Name>
       <InternalName>VileCore3</InternalName>
       <Description>+5 Universal Spell Power, +3% Doublestrike and Doubleshot, +1 Bonus Imbue Dice.
 
@@ -267,12 +267,12 @@ While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
       </Effect>
-         <Effect>
-            <Type>OverrideBAB</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
+      <Effect>
+        <Type>OverrideBAB</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Vile Chemist: Hidden Blades III</Name>
@@ -375,6 +375,30 @@ While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>WeaponCriticalMultiplierClass</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Simple</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Orb</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rune Arm</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Empty Offhand</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -583,7 +607,7 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
         </Requirement>
       </Requirements>
       <Effect>
-         <Type>Weapon_Attack</Type>
+        <Type>Weapon_Attack</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
@@ -843,6 +867,7 @@ You can only have one Alchemist's Stone Toggle active at a time.</Description>
       </Stance>
       <Effect>
         <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
@@ -858,12 +883,22 @@ You can only have one Alchemist's Stone Toggle active at a time.</Description>
         </Requirements>
       </Effect>
       <Effect>
-        <Type>Doubleshot</Type>
+        <Type>Displacement</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">5</Amount>
+        <Amount size="1">20</Amount>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Stone of the Subliminal</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Orb</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
-      <!---Blur-->
     </EnhancementTreeItem>
     <!--Tier 3 Enhancements-->
     <EnhancementTreeItem>
@@ -978,9 +1013,9 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
     <EnhancementTreeItem>
       <Name>Vile Chemist: Toxic Augmentation</Name>
       <InternalName>VileEnvenomTheHeart</InternalName>
-      <Description>Your strikes against Contaminated enemies reduce their Fortitude saves by -1
-for 6 seconds. This effect stacks up to 4 times.</Description>
-      <Icon>VileEnvenomTheHeart</Icon>
+      <Description>Your strikes against Contaminated enemies reduce their Fortitude saves by -1 for 6 seconds.
+This effect stacks up to 4 times.</Description>
+      <Icon>VileToxicAugmentation</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -1528,17 +1563,17 @@ holding a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Descriptio
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-      <Item>Club</Item>
-      <Item>Dagger</Item>
-      <Item>Quarterstaff</Item>
-      <Item>Light Mace</Item>
-      <Item>Heavy Mace</Item>
-      <Item>Morningstar</Item>
-      <Item>Sickle</Item>
-      <Item>Light Crossbow</Item>
-      <Item>Heavy Crossbow</Item>
-      <Item>Throwing Dagger</Item>
-      <Item>Dart</Item>
+            <Item>Club</Item>
+            <Item>Dagger</Item>
+            <Item>Quarterstaff</Item>
+            <Item>Light Mace</Item>
+            <Item>Heavy Mace</Item>
+            <Item>Morningstar</Item>
+            <Item>Sickle</Item>
+            <Item>Light Crossbow</Item>
+            <Item>Heavy Crossbow</Item>
+            <Item>Throwing Dagger</Item>
+            <Item>Dart</Item>
           </Effect>
           <Effect>
             <Type>Weapon_Alacrity</Type>

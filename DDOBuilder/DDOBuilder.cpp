@@ -1828,6 +1828,7 @@ bool CDDOBuilderApp::LamanniaMode() const
 void CDDOBuilderApp::OnUpdateLamanniaMode(CCmdUI* pCmdUI)
 {
     pCmdUI->SetCheck(m_bLamanniaMode);
+    pCmdUI->Enable(FALSE);  // Comment this line when Lamannia mode features are present
 }
 
 void CDDOBuilderApp::OnLamanniaMode()

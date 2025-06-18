@@ -262,6 +262,8 @@ class Build :
         void AppendSpellListAdditions(std::list<Spell>& spells, const std::string& ct, int spellLevel);
         int BonusCasterLevels(const std::string& spellName) const;
         int BonusMaxCasterLevels(const std::string& spellName) const;
+        int BonusCasterLevelsSchool(const std::string& spellName) const;
+        int BonusMaxCasterLevelsSchool(const std::string& spellName) const;
 
         void SetModifiedFlag(BOOL modified);
         void ApplyFeatEffects(const Feat& feat);
@@ -475,6 +477,10 @@ class Build :
         void AddSpellMaxCasterLevelEffect(const Effect& effect);
         void RemoveSpellCasterLevelEffect(const Effect& effect);
         void RemoveSpellMaxCasterLevelEffect(const Effect& effect);
+        void AddSchoolCasterLevelEffect(const Effect& effect);
+        void AddSchoolMaxCasterLevelEffect(const Effect& effect);
+        void RemoveSchoolCasterLevelEffect(const Effect& effect);
+        void RemoveSchoolMaxCasterLevelEffect(const Effect& effect);
         void AddEffectToList(std::list<Effect>& list, const Effect& effect);
         void RemoveEffectFromList(std::list<Effect>& list, const Effect& effect);
         void UpdateGreensteelStances();
@@ -497,6 +503,8 @@ class Build :
         std::map<std::string, int> m_cachedClassLevels[MAX_GAME_LEVEL]; // each entry has a max of 5 entries, "class name" and count
         std::list<Effect> m_spellCasterLevels;
         std::list<Effect> m_spellMaxCasterLevels;
+        std::list<Effect> m_spellCasterLevelsSchool;
+        std::list<Effect> m_spellMaxCasterLevelsSchool;
         bool m_bSwitchingBuildsOrGear;
 
         friend class CStancesPane;

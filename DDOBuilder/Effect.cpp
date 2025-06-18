@@ -926,6 +926,17 @@ bool Effect::HasSpellSchool(SpellSchoolType type, bool bSpecificDCOnly) const
     return is;
 }
 
+bool Effect::HasPrimer(PrimerType type) const
+{
+    bool is = false;
+    for (auto&& it : m_Item)
+    {
+        PrimerType pt = TextToEnumEntry(it, primerTypeMap, false);
+        is |= (pt == type);
+    }
+    return is;
+}
+
 bool Effect::HasTacticalType(TacticalType type) const
 {
     bool is = false;

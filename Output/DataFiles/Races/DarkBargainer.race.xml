@@ -10,11 +10,18 @@
     <Intelligence>+1</Intelligence>
     <Charisma>+1</Charisma>
     <GrantedFeat>Dhampir Traits</GrantedFeat>
+    <GrantedFeat>Dark Bargainer</GrantedFeat>
     <GrantedFeat>Vampiric Bite</GrantedFeat>
     <FeatSlot>
       <Level>1</Level>
       <FeatType>Dark Gift</FeatType>
     </FeatSlot>
+    <Feat>
+      <Name>Dark Bargainer</Name>
+      <Description>You are a Dhampir Dark Bargainer.</Description>
+      <Acquire>Automatic</Acquire>
+      <Icon>DhampirTraits</Icon>
+    </Feat>
     <!--Dark Gift Feats-->
     <Feat>
       <Name>Echoing Soul</Name>
@@ -46,7 +53,7 @@ seconds with no save. Immunities to these conditions do not apply to this effect
     <Feat>
       <Name>Form of Pain</Name>
       <Description>Your body is cursed to be prone to all manner of damage, but with the ability to
-withstand it.
+withstand it. Passively grants +5 PRR/MRR.
 
 When you take damage your body changes and you gain the Form of Pain effect
 which grants +2 PRR/MRR but also reduces movement speed and increases spell
@@ -61,6 +68,13 @@ being removed every 5 seconds.</Description>
         <Item>Form of Pain</Item>
         <AType>Slider</AType>
         <Amount size="3">0 0 10</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
       </Effect>
       <Effect>
         <DisplayName>Form of Pain: Stacks from being hit</DisplayName>
@@ -83,7 +97,7 @@ being removed every 5 seconds.</Description>
     <Feat>
       <Name>Living Shadow</Name>
       <Description>Your Shadow extends your reach, acting out your dark impulse, nearly doubling your
-range with melee weapons.
+range with melee weapon attacks in the front arc.
 
 Yet, there is a small change when you critical hit a target that the shadow drains
 you briefly, reducing your damage by 15% for 6 seconds. This can only occur once
@@ -142,8 +156,8 @@ Critical Damage for every 2 Character Levels you have for 12 seconds.</Descripti
     </Feat>
     <Feat>
       <Name>Mist Walker</Name>
-      <Description>Cooldown: 2 minutes
-Target: Self
+      <Description>Cooldown: 15 seconds
+Target: Self, Directional
 
 You have learned how to navigate the Mists with time and a little luck.
 Trigger this ability to leap forward, and briefly gain a +5 bonus to Reflex
@@ -484,17 +498,54 @@ throw (DC 15 + [Int/Cha] mod + Necromancy Bonuses) or die, being consumed by the
     <!--Past Life Feat-->
     <Feat>
       <Name>Past Life: Dark Bargainer</Name>
-      <Description>Iconic Past Life Stance: Unknown
-Passive Bonus: Unknown. This feat can be stacked up to three times.</Description>
+      <Description>Iconic Past Life Stance: +1 to Necromancy DCs and +5 Negative Spell Power per
+stack of this Past Life.
+Passive Bonus: +1 Saving Throw vs. Enchantments per stack of this Past Life.
+This feat can be stacked up to three times.</Description>
       <Stance>
         <Name>Dark Bargainer </Name>
         <Icon>DarkBargainer</Icon>
-        <Description>Iconic Past Life Stance: Unknown</Description>
+        <Description>Iconic Past Life Stance: +1 to Necromancy DCs and +5 Negative Spell Power per
+stack of this Past Life.
+Passive Bonus: +1 Saving Throw vs. Enchantments per stack of this Past Life.</Description>
         <Group>Iconic</Group>
       </Stance>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Acquire>IconicPastLife</Acquire>
       <Icon>DarkBargainer</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Enchantment</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Necromancy</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Dark Bargainer </Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Negative</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Dark Bargainer </Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
     </Feat>
   </Race>
 </Races>

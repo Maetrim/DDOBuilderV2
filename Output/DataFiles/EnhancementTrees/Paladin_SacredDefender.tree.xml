@@ -61,7 +61,9 @@ you spend in this tree. Each Sacred Defender Core Ability you possess grants
          <InternalName>SacredCore2</InternalName>
          <Description>Defensive Combat Stance: +10 Physical and Magical Resistance Rating.
 +150% bonus to threat generation
-Cannot become raged while Sacred Defense is active</Description>
+Cannot become raged while Sacred Defense is active.
+Note: The enhancements which require wearing Medium/Heavy Armor or Shields,
+also work for Sacred Fist as long as they are centered.</Description>
          <Icon>SDSacredDefense</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -124,7 +126,8 @@ Cannot become raged while Sacred Defense is active</Description>
          <Name>Sacred Defender: Divine Righteousness</Name>
          <InternalName>SacredCore3</InternalName>
          <Description>Channel Divinity: You gain temporary hit points equal your Charisma score and a
-200% Sacred bonus to threat generation for 60 seconds.</Description>
+200% Sacred bonus to threat generation for 60 seconds.
+Activation Cost: 1 use of Turn Undead. Cooldown: 6 seconds</Description>
          <Icon>SDDivineRighteousness</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -150,17 +153,6 @@ Cannot become raged while Sacred Defense is active</Description>
             <AType>Simple</AType>
             <Amount size="1">2</Amount>
          </Effect>
-         <!--3 stacks to get correct stacking with gear-->
-    <Effect>
-      <DisplayName>Defender of Siberys - 3 Piece bonus</DisplayName>
-      <Type>ACBonus</Type>
-      <Type>ACBonus</Type>
-      <Type>ACBonus</Type>
-      <Bonus>Stacking</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="8">0 0 0 0 0 2 2 2</Amount>
-      <ApplyAsItemEffect/>
-    </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Redemption</Name>
@@ -302,6 +294,17 @@ Passive: You gain +5 to Physical and Magical Resistance Rating.</Description>
             <AType>Simple</AType>
             <Amount size="1">5</Amount>
          </Effect>
+         <!--3 stacks to get correct stacking with gear-->
+    <Effect>
+      <DisplayName>Defender of Siberys - 3 Piece bonus</DisplayName>
+      <Type>ACBonus</Type>
+      <Type>ACBonus</Type>
+      <Type>ACBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="8">0 0 0 0 0 2 2 2</Amount>
+      <ApplyAsItemEffect/>
+    </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Eternal Defender</Name>
@@ -446,7 +449,7 @@ and you receive a reactive heal for 250 points of Positive Energy healing.</Desc
                <Effect>
                   <Type>PRR</Type>
                   <Type>MRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AType>Stacks</AType>
                   <Amount size="3">5 10 15</Amount>
                   <Requirements>
@@ -464,7 +467,7 @@ and you receive a reactive heal for 250 points of Positive Energy healing.</Desc
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>ThreatBonusMelee</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AType>Stacks</AType>
                   <Amount size="3">150 300 450</Amount>
                   <Requirements>
@@ -482,7 +485,7 @@ and you receive a reactive heal for 250 points of Positive Energy healing.</Desc
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>SaveBonus</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <Item>All</Item>
                   <AType>Stacks</AType>
                   <Amount size="3">1 2 3</Amount>
@@ -641,7 +644,7 @@ and Magical Resistance Rating. </Description>
                <Effect>
                   <Type>PRR</Type>
                   <Type>MRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AType>Stacks</AType>
                   <Amount size="3">5 10 15</Amount>
                   <Requirements>
@@ -816,7 +819,7 @@ Magical Resistance Rating. </Description>
                <Effect>
                   <Type>PRR</Type>
                   <Type>MRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AType>Stacks</AType>
                   <Amount size="3">5 10 15</Amount>
                   <Requirements>
@@ -1192,7 +1195,7 @@ Note: This stacks with Reinforced Defense from Stalwart Defender.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Swift Defense</Name>
          <InternalName>SacredSwiftDefense</InternalName>
-         <Description>Sacred Defense grants a 10% Action Boost bonus to movement speed.</Description>
+         <Description>Sacred Defense grants a 10% Action Boost bonus to your movement speed.</Description>
          <Icon>SDSwiftDefense</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>

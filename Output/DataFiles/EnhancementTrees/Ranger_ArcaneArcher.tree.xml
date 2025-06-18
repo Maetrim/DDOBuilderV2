@@ -17,8 +17,8 @@
       <Name>Arcane Archer</Name>
       <InternalName>AACore1</InternalName>
       <Description>Equipped bows gain a +1 Enhancement bonus for each Arcane Archer core ability
-you possess. (This does not stack with the bow's existing Enhancement bonus.)
-All bows are treated as Implements in your hands, granting Spell Power.</Description>
+you possess (stacks with everything). All bows are treated as Implements in
+your hands, granting Spell Power.</Description>
       <Icon>AAArcaneArcher</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
@@ -431,7 +431,7 @@ Activation cost: 2 spell points. Cooldown: 3 seconds</Description>
       <Icon>AATrueStrike</Icon>
       <XPosition>1</XPosition>
       <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
+      <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie />
@@ -508,8 +508,8 @@ Passive: +5 Universal Spell Power</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Corrosive Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
           <Icon>AACorrosiveArrows</Icon>
           <CostPerRank size="1">2</CostPerRank>
@@ -517,16 +517,16 @@ Passive: +5 Universal Spell Power</Description>
           <Stance>
             <Name>Corrosive Arrows</Name>
             <Icon>AACorrosiveArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Flaming Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
           <Icon>AAFlamingArrows</Icon>
           <CostPerRank size="1">2</CostPerRank>
@@ -534,16 +534,16 @@ Passive: +5 Universal Spell Power</Description>
           <Stance>
             <Name>Flaming Arrows</Name>
             <Icon>AAFlamingArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Frost Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
           <Icon>AAFrostArrows</Icon>
           <CostPerRank size="1">2</CostPerRank>
@@ -551,16 +551,16 @@ Passive: +5 Universal Spell Power</Description>
           <Stance>
             <Name>Frost Arrows</Name>
             <Icon>AAFrostArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Shock Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
           <Icon>AAShockArrows</Icon>
           <CostPerRank size="1">2</CostPerRank>
@@ -568,8 +568,8 @@ Passive: +5 Universal Spell Power</Description>
           <Stance>
             <Name>Shock Arrows</Name>
             <Icon>AAShockArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -644,9 +644,9 @@ from your target.</Description>
       <Name>Arcane Archer: Force Arrows</Name>
       <InternalName>AAForceArrows</InternalName>
       <Description>Imbue Toggle: You imbue your arrows with magical force.
-Your arrows gain On Hit: 1d8 force damage, Force Burst (On Critical: 1d10 to 3d10
-force damage based on weapon critical multiplier), and the Ghost Touch ability.
-This damage scales with 75% of your Spell Power.</Description>
+Your arrows gain On Hit: 1d6 force damage and the Ghost Touch ability.
+This damage scales with Spell Power.
+Activation Cost: 20 spell points. Cooldown: 10 seconds</Description>
       <Icon>AAForceArrows</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
@@ -665,9 +665,9 @@ This damage scales with 75% of your Spell Power.</Description>
         <Name>Force Arrows</Name>
         <Icon>AAForceArrows</Icon>
         <Description>Imbue Toggle: You imbue your arrows with magical force.
-Your arrows gain On Hit: 1d8 force damage, Force Burst (On Critical: 1d10 to 3d10
-force damage based on weapon critical multiplier), and the Ghost Touch ability.
-This damage scales with 75% of your Spell Power.</Description>
+Your arrows gain On Hit: 1d6 force damage and the Ghost Touch ability.
+This damage scales with Spell Power.
+Activation Cost: 20 spell points. Cooldown: 10 seconds</Description>
         <Group>Imbue</Group>
       </Stance>
       <Effect>
@@ -688,12 +688,15 @@ This damage scales with 75% of your Spell Power.</Description>
     <EnhancementTreeItem>
       <Name>Arcane Archer: Elemental Inferno</Name>
       <InternalName>AAInfernoShot</InternalName>
-      <Description>Deals +30% Damage.
-Activation cost: 6 SP.
-Cooldown 3 seconds
-Ranged Archery Attack: On Hit: Target gain 1 stack of Elemental Inferno (target
-takes 1d6 fire damage (or the damage of your enabled imbue type) every 2 seconds
-for 6 seconds. This effect can stack 20 times, and loses one stack on expiration.).</Description>
+       <Description>Elemental Inferno: AOE Ranged Archery Attack: Fire a single shot with +10% Damage,
+hitting every enemy in an area around where the shot hits with magical flames
+that can change their element. Affected enemies take 1 stack of Elemental Inferno.
+(Target takes 1d6 damage every 2 second for 6 seconds. This is Fire damage,
+unless you have Corrosive, Frost, Shock or Force Arrows active, in which case
+the damage type is the type of your Imbue. Elemental Inferno's damage scales with
+the relevant Spell Power. This effect can stack 20 times, and loses one stack on
+expiration.)
+Activation cost: 6 SP. Cooldown 3 seconds</Description>
       <Icon>AAInfernoShot</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
@@ -737,8 +740,8 @@ Passive: +5 Universal Spell Power</Description>
         <Exclusions>AAElementalArrowsI</Exclusions>
         <EnhancementSelection>
           <Name>Corrosive Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AACorrosiveArrows</Icon>
@@ -747,8 +750,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Corrosive Arrows</Name>
             <Icon>AACorrosiveArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -761,8 +764,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Flaming Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAFlamingArrows</Icon>
@@ -771,8 +774,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Flaming Arrows</Name>
             <Icon>AAFlamingArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -785,8 +788,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Frost Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAFrostArrows</Icon>
@@ -795,8 +798,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Frost Arrows</Name>
             <Icon>AAFrostArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -809,8 +812,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Shock Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAShockArrows</Icon>
@@ -819,8 +822,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Shock Arrows</Name>
             <Icon>AAShockArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1037,8 +1040,8 @@ or +1 Imbue Dice. Passive: +5 Universal Spell Power</Description>
         <Exclusions>AAElementalArrowsII</Exclusions>
         <EnhancementSelection>
           <Name>Corrosive Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AACorrosiveArrows</Icon>
@@ -1047,8 +1050,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Corrosive Arrows</Name>
             <Icon>AACorrosiveArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1061,8 +1064,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Flaming Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAFlamingArrows</Icon>
@@ -1071,8 +1074,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Flaming Arrows</Name>
             <Icon>AAFlamingArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1085,8 +1088,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Frost Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAFrostArrows</Icon>
@@ -1095,8 +1098,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Frost Arrows</Name>
             <Icon>AAFrostArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1109,8 +1112,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Shock Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAShockArrows</Icon>
@@ -1119,8 +1122,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Shock Arrows</Name>
             <Icon>AAShockArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1392,8 +1395,8 @@ or +1 imbue Dice. Passive: +5 Universal Spell Power</Description>
         <Exclusions>AAElementalArrowsIII</Exclusions>
         <EnhancementSelection>
           <Name>Corrosive Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AACorrosiveArrows</Icon>
@@ -1402,8 +1405,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Corrosive Arrows</Name>
             <Icon>AACorrosiveArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1416,8 +1419,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Flaming Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAFlamingArrows</Icon>
@@ -1426,8 +1429,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Flaming Arrows</Name>
             <Icon>AAFlamingArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1440,8 +1443,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Frost Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAFrostArrows</Icon>
@@ -1450,8 +1453,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Frost Arrows</Name>
             <Icon>AAFrostArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
-scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1464,8 +1467,8 @@ Passive: +5 Universal Spell Power</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Shock Arrows</Name>
-          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+          <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power
 +1 bonus Imbue Dice</Description>
           <Icon>AAShockArrows</Icon>
@@ -1474,8 +1477,8 @@ Passive: +5 Universal Spell Power
           <Stance>
             <Name>Shock Arrows</Name>
             <Icon>AAShockArrows</Icon>
-            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
-hit, scaling with 75% of your Spell Power.
+            <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
 Passive: +5 Universal Spell Power</Description>
             <Group>Imbue</Group>
           </Stance>
@@ -1619,9 +1622,10 @@ Cooldown: 20 seconds.</Description>
     <EnhancementTreeItem>
       <Name>Arcane Archer: Opening Volley</Name>
       <InternalName>AAFinalStrike</InternalName>
-      <Description>Ranged Archery Attack: The first enemy hit triggers an area attack that inflicts
-Vulnerability and deals damage that scales with Ranged Power. More injured enemies
-receive increased damage.</Description>
+      <Description>AOE Ranged Archery Attack: Fire a single shot with +20% Damage, hitting every
+enemy in an area around where this shot hits. Enemies hit take 7 stacks of
+Vulnerability.
+Cost: 5 spell points. Cooldown: 18 seconds.</Description>
       <Icon>AAFinalStrike</Icon>
       <XPosition>2</XPosition>
       <YPosition>5</YPosition>
@@ -1718,7 +1722,7 @@ and loses one stack on expiration.)</Description>
       <Name>Arcane Archer: Runebow</Name>
       <InternalName>AARunebow</InternalName>
       <Description>Bows you wield gain an additional +2 Enhancement bonus.
-This is considered a Magic Weapon effect.</Description>
+This is considered a Magic Weapon effect. (Does not stack with the spell Enchant Weapons.)</Description>
       <Icon>AARunebow</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>

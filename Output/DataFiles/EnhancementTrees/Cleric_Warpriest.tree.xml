@@ -34,8 +34,7 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Smite Foe (Melee)</Name>
-               <Description>Melee Attack: Smite your enemy with a melee attack that deals an
-additional 2[W] damage. Cooldown: 12 seconds.
+               <Description>Melee Attack: Smite your enemy with a melee attack that deals +20% damage. Cooldown: 12 seconds.
 Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                <Icon>WPSmiteFoe</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -43,8 +42,7 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Smite Foe (Ranged)</Name>
-               <Description>Ranged Attack: Smite your enemy with a ranged attack that deals an
-additional 2[W] damage. Cooldown: 12 seconds.
+               <Description>Ranged Attack: Smite your enemy with a ranged attack that deals +20% damage. Cooldown: 12 seconds.
 Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                <Icon>WPSmiteFoeRanged</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -73,8 +71,8 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Resilience of Battle</Name>
          <InternalName>WPCore2</InternalName>
-         <Description>Passive: Damage Reduction 5/-, +2 Armor Class, +5 Fire Spell Power,
-+5 Light Spell Power. +1 Imbue Dice</Description>
+         <Description>Passive: Damage Reduction 5/-, +2 Armor Class, +5 Fire Spell Power, +5 Light Spell
+Power. +1 Imbue Dice</Description>
          <Icon>WPResilienceOfBattle</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -391,12 +389,6 @@ Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 2
                   <AType>Simple</AType>
                   <Amount size="1">2</Amount>
                   <Item>Strength</Item>
-               </Effect>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">2</Amount>
                   <Item>Constitution</Item>
                </Effect>
             </EnhancementSelection>
@@ -421,12 +413,6 @@ Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 2
                   <AType>Simple</AType>
                   <Amount size="1">2</Amount>
                   <Item>Wisdom</Item>
-               </Effect>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">2</Amount>
                   <Item>Constitution</Item>
                </Effect>
             </EnhancementSelection>
@@ -530,7 +516,7 @@ abilities.</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Toughness</Name>
          <InternalName>WPToughness</InternalName>
-         <Description>+[5/10/15] maximum hp.</Description>
+         <Description>+[5/10/15] Maximum HP.</Description>
          <Icon>Toughness</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -554,7 +540,8 @@ abilities.</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Righteous Weapons I</Name>
          <InternalName>WPRighteousWeaponsI</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to hit
+and damage and +3 Universal Spell Power</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -583,11 +570,10 @@ abilities.</Description>
             </Requirements>
          </Effect>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
-            <Item>All</Item>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -699,7 +685,8 @@ stacks up to 20 times, and loses one stack on expiration.)</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Righteous Weapons II</Name>
          <InternalName>WPRighteousWeaponsII</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to hit
+and damage and +3 Universal Spell Power</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -732,11 +719,10 @@ stacks up to 20 times, and loses one stack on expiration.)</Description>
             </Requirements>
          </Effect>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
-            <Item>All</Item>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -748,7 +734,7 @@ stacks up to 20 times, and loses one stack on expiration.)</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Inflame</Name>
          <InternalName>WPInflame</InternalName>
-         <Description>You and your nearby allies gain a +[2/3/4] bonus to Armor Class,
+         <Description>You and your nearby allies gain a +[2/3/4] Action Boost bonus to Armor Class,
 Attack Rolls, and Damage Rolls.
 Duration: 30 seconds.
 Cooldown: 90 seconds minute</Description>
@@ -853,7 +839,8 @@ Non-boss enemies have a small chance to be blinded with no save.
       <EnhancementTreeItem>
          <Name>Warpriest: Righteous Weapons III</Name>
          <InternalName>WPRighteousWeaponsIII</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to hit
+and damage and +3 Universal Spell Power</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -886,11 +873,10 @@ Non-boss enemies have a small chance to be blinded with no save.
             </Requirements>
          </Effect>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
-            <Item>All</Item>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -902,8 +888,8 @@ Non-boss enemies have a small chance to be blinded with no save.
       <EnhancementTreeItem>
          <Name>War Priest: Greater Inflame</Name>
          <InternalName>WPGreaterInflame</InternalName>
-         <Description>Your Inflame now also grants a +[2/3/4] bonus to Saving Throws
-and a +[5/10/15]% bonus to Acid, Cold, Electric, Fire, and Sonic
+         <Description>Your Inflame now also grants a +2 Action Boost bonus to Saving Throws and a
++[5/10/15]% Action Boost bonus to Acid, Cold, Electric, Fire, and Sonic
 Energy Absorption.</Description>
          <Icon>WPGreaterInflame</Icon>
          <XPosition>3</XPosition>
@@ -988,9 +974,10 @@ Energy Absorption.</Description>
          <Name>Warpriest: Ameliorating Strike</Name>
          <InternalName>WPAmelioratingStrike</InternalName>
          <Description>When you strike an enemy with Smite Foe, you and your nearby allies are
-healed by 1d2 per character level, and benefit from the effects of the Lesser
+healed by 1d3 per character level, and benefit from the effects of the Lesser
 Restoration spell. (The heal from Ameliorating Strike is affected by your
-Positive Spell Power)</Description>
+Positive Spell Power). You may only perform this AOE heal once per time you use
+this skill.</Description>
          <Icon>WPAmelioratingStrike</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -1008,8 +995,8 @@ Positive Spell Power)</Description>
       <EnhancementTreeItem>
          <Name>War Priest: Fires of Fury</Name>
          <InternalName>WPFiresOfFury</InternalName>
-         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d8 Fire Damage, scaling
-with 75% of your Fire Spell Power.</Description>
+         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+with Fire Spell Power.</Description>
          <Icon>WSFiresOfFury</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -1026,8 +1013,8 @@ with 75% of your Fire Spell Power.</Description>
          </Requirements>
          <Stance>
             <Name>War Priest: Fires of Fury</Name>
-            <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d8 Fire Damage, scaling
-with 75% of your Fire Spell Power.</Description>
+         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+with Fire Spell Power.</Description>
             <Icon>WSFiresOfFury</Icon>
             <Group>Imbue</Group>
          </Stance>
@@ -1035,7 +1022,8 @@ with 75% of your Fire Spell Power.</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Righteous Weapons IV</Name>
          <InternalName>WPRighteousWeaponsIV</InternalName>
-         <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +1 to hit
+and damage and +3 Universal Spell Power</Description>
          <Icon>WPRighteousWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1068,11 +1056,10 @@ with 75% of your Fire Spell Power.</Description>
             </Requirements>
          </Effect>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
-            <Item>All</Item>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -1229,12 +1216,10 @@ bonus to Strength, and a base attack bonus equal to a fighter of the same level.
       <EnhancementTreeItem>
          <Name>Warpriest: Divine Vessel</Name>
          <InternalName>WPDivineVessel</InternalName>
-         <Description>Choose between a Melee or Ranged attack that does +5[W] damage.
-Each affected enemy is hit by a meteor, taking 1 to  4 Fire and 1 to 4 Light
-damage per character level. (Damage from the meteor is affected by Fire and Light
-Spell Power).
-
-Shares its cooldown with the Great Cleave feat.</Description>
+         <Description>Choose between a Melee or Ranged attack.
+Each affected enemy is hit by a meteor, taking 1 to 4 Fire and 1 to 4 Light Damage
+per character level. Damage from the meteor is affected by Fire and Light Spell
+power. Cooldown: 5 seconds. Shares its cooldown with the Great Cleave feat.</Description>
          <Icon>WPDivineVessel</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1285,8 +1270,10 @@ Shares its cooldown with the Great Cleave feat.</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Wrathful Weapons</Name>
          <InternalName>WPWrathfulWeapons</InternalName>
-         <Description>When wielding your religion's favored weapon, it gains an additional +1
-to its Enhancement Bonus. +3 Imbue Dice</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +3 to hit
+and damage, and +9 Universal Spell Power. When you score a Vorpal Hit with your
+religion's favored weapon, you gain +3 bonus Imbue dice for the next 12 seconds,
+and your Fires of Fury Imbue Toggle changes its damage type from Fire to Light.</Description>
          <Icon>WPWrathfulWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1310,11 +1297,23 @@ to its Enhancement Bonus. +3 Imbue Dice</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>Weapon_Enchantment</Type>
+            <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
-            <Amount size="1">1</Amount>
+            <Amount size="1">3</Amount>
             <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Favored Weapon</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">9</Amount>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -1327,13 +1326,18 @@ to its Enhancement Bonus. +3 Imbue Dice</Description>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Critical Hit</Item>
+               </Requirement>
+            </Requirements>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Priest: Divine Bastion</Name>
          <InternalName>WPDivineBastion</InternalName>
-         <Description>While wearing Heavy armor (or in Adamantine body feat), you gain +10 PRR,
-+10 MRR, +10 AC.
+         <Description>While wearing Heavy armor (or in Adamantine body feat), you gain +10 PRR, +10 MRR, +10 AC.
 Passive: +20% Competence bonus to Maximum Hitpoints regardless of Armor Type.</Description>
          <Icon>WPDivineBastion</Icon>
          <XPosition>3</XPosition>

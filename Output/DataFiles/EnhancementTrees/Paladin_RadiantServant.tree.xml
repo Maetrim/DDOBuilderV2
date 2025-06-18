@@ -170,7 +170,7 @@ instead of +75.</Description>
       <Description>You gain +1% Positive Energy Spell Critical Chance.
 Channel Divinity: Your living ally receives temporary hit points equal to your
 Heal skill. While these hit points remain, your target receives a +20 Sacred
-bonus to Healing Amplification.</Description>
+bonus to Healing Amplification. (Cooldown: 30 seconds)</Description>
       <Icon>PRSPositiveEnergyShield</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -559,13 +559,24 @@ If they are immune to instant death, they will be affected as a normal Turn atte
           <Value>3</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>CasterLevel</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">1 2 3</Amount>
-        <Item>Positive</Item>
-      </Effect>
+         <Effect>
+            <Type>CasterLevelSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Cure Light Wounds</Item>
+            <Item>Close Wounds</Item>
+            <Item>Cure Moderate Wounds</Item>
+            <Item>Cure Serious Wounds</Item>
+            <Item>Cure Critical Wounds</Item>
+            <Item>Panacea</Item>
+            <Item>Cure Light Wounds, Mass</Item>
+            <Item>Cure Moderate Wounds, Mass</Item>
+            <Item>Heal</Item>
+            <Item>Cure Serious Wounds, Mass</Item>
+            <Item>Cure Critical Wounds, Mass</Item>
+            <Item>Heal, Mass</Item>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Radiant Servant: Unyielding Sovereignty</Name>
@@ -716,13 +727,24 @@ This ability toggles off on death.</Description>
           <Item>PRSLIntenseHealing</Item>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>MaxCasterLevel</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">1 2 3</Amount>
-        <Item>Positive</Item>
-      </Effect>
+         <Effect>
+            <Type>MaxCasterLevelSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+            <Item>Cure Light Wounds</Item>
+            <Item>Close Wounds</Item>
+            <Item>Cure Moderate Wounds</Item>
+            <Item>Cure Serious Wounds</Item>
+            <Item>Cure Critical Wounds</Item>
+            <Item>Panacea</Item>
+            <Item>Cure Light Wounds, Mass</Item>
+            <Item>Cure Moderate Wounds, Mass</Item>
+            <Item>Heal</Item>
+            <Item>Cure Serious Wounds, Mass</Item>
+            <Item>Cure Critical Wounds, Mass</Item>
+            <Item>Heal, Mass</Item>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Radiant Servant: Divine Health</Name>
@@ -884,13 +906,20 @@ they remain within it. Undead enemies are damaged for the same amount.
           <Item>PRSLIncredibleHealing</Item>
         </Requirement>
       </Requirements>
-       <Effect>
-          <Type>MaxCasterLevel</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>Simple</AType>
-          <Amount size="1">999</Amount>
-          <Item>Cure Wounds</Item>
-       </Effect>
+         <Effect>
+            <Type>MaxCasterLevelSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">999</Amount>
+            <Item>Cure Light Wounds</Item>
+            <Item>Cure Moderate Wounds</Item>
+            <Item>Cure Serious Wounds</Item>
+            <Item>Cure Critical Wounds</Item>
+            <Item>Cure Light Wounds, Mass</Item>
+            <Item>Cure Moderate Wounds, Mass</Item>
+            <Item>Cure Serious Wounds, Mass</Item>
+            <Item>Cure Critical Wounds, Mass</Item>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Radiant Servant: Radiance</Name>

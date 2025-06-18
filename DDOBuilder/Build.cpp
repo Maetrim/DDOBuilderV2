@@ -279,6 +279,8 @@ void Build::BuildNowActive()
     m_additionalSpells.clear();
     m_spellCasterLevels.clear();
     m_spellMaxCasterLevels.clear();
+    m_spellCasterLevelsSchool.clear();
+    m_spellMaxCasterLevelsSchool.clear();
     for (auto&& tit : m_EnhancementTreeSpend)
     {
         const EnhancementTree& eTree = EnhancementTree::GetTree(tit.TreeName());
@@ -530,9 +532,17 @@ void Build::NotifyFeatEffectApplied(
     {
         AddSpellCasterLevelEffect(effect);
     }
+    if (effect.IsType(Effect_CasterLevelSchool))
+    {
+        AddSchoolCasterLevelEffect(effect);
+    }
     if (effect.IsType(Effect_MaxCasterLevelSpell))
     {
         AddSpellMaxCasterLevelEffect(effect);
+    }
+    if (effect.IsType(Effect_MaxCasterLevelSchool))
+    {
+        AddSchoolMaxCasterLevelEffect(effect);
     }
     // handle exclusive feat items
     if (effect.IsType(Effect_ExclusionGroup))
@@ -578,9 +588,17 @@ void Build::NotifyFeatEffectRevoked(
     {
         RemoveSpellCasterLevelEffect(effect);
     }
+    if (effect.IsType(Effect_CasterLevelSchool))
+    {
+        RemoveSchoolCasterLevelEffect(effect);
+    }
     if (effect.IsType(Effect_MaxCasterLevelSpell))
     {
         RemoveSpellMaxCasterLevelEffect(effect);
+    }
+    if (effect.IsType(Effect_MaxCasterLevelSchool))
+    {
+        RemoveSchoolMaxCasterLevelEffect(effect);
     }
     // handle exclusive feat items
     if (effect.IsType(Effect_ExclusionGroup))
@@ -633,9 +651,17 @@ void Build::NotifyItemEffect(const std::string& itemName, Effect effect, Invento
     {
         AddSpellCasterLevelEffect(effect);
     }
+    if (effect.IsType(Effect_CasterLevelSchool))
+    {
+        AddSchoolCasterLevelEffect(effect);
+    }
     if (effect.IsType(Effect_MaxCasterLevelSpell))
     {
         AddSpellMaxCasterLevelEffect(effect);
+    }
+    if (effect.IsType(Effect_MaxCasterLevelSchool))
+    {
+        AddSchoolMaxCasterLevelEffect(effect);
     }
     NotifyAll(&BuildObserver::UpdateItemEffectApplied, this, effect);
 }
@@ -666,9 +692,17 @@ void Build::NotifyItemEffectRevoked(const std::string& itemName, Effect effect, 
     {
         RemoveSpellCasterLevelEffect(effect);
     }
+    if (effect.IsType(Effect_CasterLevelSchool))
+    {
+        RemoveSchoolCasterLevelEffect(effect);
+    }
     if (effect.IsType(Effect_MaxCasterLevelSpell))
     {
         RemoveSpellMaxCasterLevelEffect(effect);
+    }
+    if (effect.IsType(Effect_MaxCasterLevelSchool))
+    {
+        RemoveSchoolMaxCasterLevelEffect(effect);
     }
     NotifyAll(&BuildObserver::UpdateItemEffectRevoked, this, effect);
 }
@@ -1310,6 +1344,7 @@ std::vector<Feat> Build::TrainableFeats(
         size_t level,
         const std::string& includeThisFeat) const
 {
+    bool bShowUnavailable = m_pLife->m_pCharacter->ShowUnavailable();
     std::vector<Feat> trainable;
     // need to know which feats have already been trained by this point
     // include any feats also trained at the current level
@@ -1327,6 +1362,7 @@ std::vector<Feat> Build::TrainableFeats(
             // unless it is in the ignore list
             if (fit.first == includeThisFeat
                 || g_bShowIgnoredItems
+                || bShowUnavailable
                 || !IsInIgnoreList(fit.first))
             {
                 trainable.push_back(fit.second);
@@ -2767,9 +2803,17 @@ void Build::NotifyEnhancementEffectApplied(
     {
         AddSpellCasterLevelEffect(effect);
     }
+    if (effect.IsType(Effect_CasterLevelSchool))
+    {
+        AddSchoolCasterLevelEffect(effect);
+    }
     if (effect.IsType(Effect_MaxCasterLevelSpell))
     {
         AddSpellMaxCasterLevelEffect(effect);
+    }
+    if (effect.IsType(Effect_MaxCasterLevelSchool))
+    {
+        AddSchoolMaxCasterLevelEffect(effect);
     }
     NotifyAll(&BuildObserver::UpdateEnhancementEffectApplied, this, effect);
 }
@@ -2785,9 +2829,17 @@ void Build::NotifyEnhancementEffectRevoked(
     {
         RemoveSpellCasterLevelEffect(effect);
     }
+    if (effect.IsType(Effect_CasterLevelSchool))
+    {
+        RemoveSchoolCasterLevelEffect(effect);
+    }
     if (effect.IsType(Effect_MaxCasterLevelSpell))
     {
         RemoveSpellMaxCasterLevelEffect(effect);
+    }
+    if (effect.IsType(Effect_MaxCasterLevelSchool))
+    {
+        RemoveSchoolMaxCasterLevelEffect(effect);
     }
     NotifyAll(&BuildObserver::UpdateEnhancementEffectRevoked, this, effect);
 }
@@ -6150,6 +6202,66 @@ int Build::BonusMaxCasterLevels(const std::string& spellName) const
     return bonus;
 }
 
+int Build::BonusCasterLevelsSchool(const std::string& spellName) const
+{
+    int bonus = 0;
+    for (auto&& eit: m_spellCasterLevelsSchool)
+    {
+        if (!eit.HasRequirementsToBeActive()
+            || eit.RequirementsToBeActive().Met(*this, Level(), true, Inventory_Unknown, MainHandWeapon(), OffhandWeapon()))
+        {
+            // does this effect include this spell?
+            bool bAffectsSpell = false;
+            Spell spell = FindSpellByName(spellName, true);
+            for (auto&& ssit : spell.School())
+            {
+                if (eit.HasSpellSchool(ssit, true))
+                {
+                    bAffectsSpell = true;
+                }
+            }
+            if (spell.HasPrimer())
+            {
+                if (eit.HasPrimer(spell.Primer()))
+                {
+                    bAffectsSpell = true;
+                }
+            }
+            if (bAffectsSpell)
+            {
+                bonus += static_cast<int>(eit.TotalAmount(true));
+            }
+        }
+    }
+    return bonus;
+}
+
+int Build::BonusMaxCasterLevelsSchool(const std::string& spellName) const
+{
+    int bonus = 0;
+    for (auto&& eit: m_spellMaxCasterLevelsSchool)
+    {
+        if (!eit.HasRequirementsToBeActive()
+            || eit.RequirementsToBeActive().Met(*this, Level(), true, Inventory_Unknown, MainHandWeapon(), OffhandWeapon()))
+        {
+            // does this effect include this spell?
+            bool bAffectsSpell = false;
+            for (auto&& it: eit.Item())
+            {
+                if (it == spellName)
+                {
+                    bAffectsSpell = true;
+                }
+            }
+            if (bAffectsSpell)
+            {
+                bonus += static_cast<int>(eit.TotalAmount(true));
+            }
+        }
+    }
+    return bonus;
+}
+
 void Build::UpdateCachedClassLevels()
 {
     std::map<std::string, int> cacheAtCurrentLevel;
@@ -6229,6 +6341,28 @@ void Build::RemoveSpellCasterLevelEffect(const Effect& effect)
 void Build::RemoveSpellMaxCasterLevelEffect(const Effect& effect)
 {
     RemoveEffectFromList(m_spellMaxCasterLevels, effect);
+}
+
+void Build::AddSchoolCasterLevelEffect(const Effect& effect)
+{
+    // add the entry if the does not currently exist
+    AddEffectToList(m_spellCasterLevelsSchool, effect);
+}
+
+void Build::AddSchoolMaxCasterLevelEffect(const Effect& effect)
+{
+    // add the entry if the does not currently exist
+    AddEffectToList(m_spellMaxCasterLevelsSchool, effect);
+}
+
+void Build::RemoveSchoolCasterLevelEffect(const Effect& effect)
+{
+    RemoveEffectFromList(m_spellCasterLevelsSchool, effect);
+}
+
+void Build::RemoveSchoolMaxCasterLevelEffect(const Effect& effect)
+{
+    RemoveEffectFromList(m_spellMaxCasterLevelsSchool, effect);
 }
 
 void Build::AddEffectToList(std::list<Effect>& list, const Effect& effect)

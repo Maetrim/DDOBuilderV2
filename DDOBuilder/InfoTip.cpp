@@ -1036,7 +1036,8 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.HasIcon() ? spell.Icon() : "", true);
     pHeader->SetTitle(spell.Name().c_str());
-    if (spell.School().size() > 0)
+    if (spell.School().size() > 0
+        || spell.HasPrimer())
     {
         bool bFirst = true;
         CString schools("School: ");
@@ -1050,6 +1051,17 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
             }
             bFirst = false;
             schools += school;
+        }
+        if (spell.HasPrimer())
+        {
+            CString primer;
+            primer = EnumEntryText(spell.Primer(), primerTypeMap);
+            if (!bFirst)
+            {
+                schools += ", ";
+            }
+            bFirst = false;
+            schools += primer;
         }
         pHeader->SetRank(schools);
     }
@@ -1070,6 +1082,12 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
     }
     m_tipItems.push_back(pHeader);
 
+    if (IsInIgnoreList(spell.Name()))
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement("This Spell is in your ignore list (Right click to restore it).", false);
+        m_tipItems.push_back(pRequirements);
+    }
     if (spell.MetamagicCount() > 0)
     {
         InfoTipItem_Metamagics* pMeta = new InfoTipItem_Metamagics;

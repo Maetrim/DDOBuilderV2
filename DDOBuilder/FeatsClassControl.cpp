@@ -1494,7 +1494,7 @@ LRESULT CFeatsClassControl::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
     int selection = static_cast<int>(wParam);
     CString* pFeatName = static_cast<CString*>((void*)lParam);
     std::string featName = (LPCTSTR)(*pFeatName);
-    if (!g_bShowIgnoredItems)
+    if (!g_bShowIgnoredItems && !IsInIgnoreList(featName))
     {
         m_featSelector.DeleteString(selection);
     }

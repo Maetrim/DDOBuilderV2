@@ -1198,7 +1198,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateClassAtLevel(build, level, includeTomes);
             description.Format(
-                    "Requires: Class %s(%d)",
+                    "Requires: %s(%d)",
                     m_Item.front().c_str(),
                     Value());
         break;
@@ -1207,7 +1207,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateBaseClassMinLevel(build, level, includeTomes);
             description.Format(
-                    "Requires: Base Class %s(%d)",
+                    "Requires: %s(%d)",
                     m_Item.front().c_str(),
                     Value());
             break;
@@ -1216,7 +1216,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateClassMinLevel(build, level, includeTomes);
             description.Format(
-                "Requires: Class %s(%d)",
+                "Requires: %s(%d)",
                 m_Item.front().c_str(),
                 Value());
             break;
@@ -1225,7 +1225,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateBaseClass(build, level, includeTomes);
             description.Format(
-                    "Requires: Base Class %s(%d)",
+                    "Requires: %s(%d)",
                     m_Item.front().c_str(), Value());
             break;
         }
@@ -1233,7 +1233,7 @@ void Requirement::CreateRequirementStrings(
         {
             met = EvaluateClass(build, level, includeTomes);
             description.Format(
-                    "Requires: Class %s(%d)",
+                    "Requires: %s(%d)",
                     m_Item.front().c_str(), Value());
             break;
         }
