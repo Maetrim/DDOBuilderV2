@@ -73,10 +73,7 @@ increases the chance to produce off hand attacks when fighting with two weapons
       <Name>Tempest: Tempest</Name>
       <InternalName>TempestCore2</InternalName>
       <Description>+10% Offhand Strike Chance (the chance to make off-hand attacks when Dual Wielding
-Melee weapons).
-
-You now treat Scimitars as if they were light melee weapons.
-
+Melee weapons). You now treat Scimitars as if they were light melee weapons.
 While you are Dual Wielding light Melee weapons, you can use your dexterity modifier
 to hit.</Description>
       <Icon>Tempest</Icon>
@@ -253,9 +250,7 @@ knocking aside one incoming projectile that would have struck you every 6 second
       <Name>Tempest: Whirlwind</Name>
       <InternalName>TempestCore5</InternalName>
       <Description>+5%  Doublestrike when Dual Wielding Melee weapons.
-
-+5% Incorporeality (stacking),
-+10% Offhand Strike Chance.</Description>
++5% Incorporeality (stacking), +10% Offhand Strike Chance.</Description>
       <Icon>TempestWhirlwind</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -402,18 +397,18 @@ While wearing Medium, Light or No Armor:
           </RequiresOneOf>
         </Requirements>
       </Effect>
-    <!--3 stacks in enhancements to get correct stacking-->
-    <Effect>
-      <DisplayName>Tempest Set - 3 Piece bonus</DisplayName>
+      <!--3 stacks in enhancements to get correct stacking-->
+      <Effect>
+        <DisplayName>Tempest Set - 3 Piece bonus</DisplayName>
         <Type>Weapon_Attack</Type>
         <Type>Weapon_Attack</Type>
         <Type>Weapon_Attack</Type>
-      <Bonus>Stacking</Bonus>
-      <AType>Stacks</AType>
-      <Amount size="8">0 0 0 0 0 3 3 3</Amount>
-      <Item>All</Item>
-      <ApplyAsItemEffect/>
-    </Effect>
+        <Bonus>Stacking</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="8">0 0 0 0 0 3 3 3</Amount>
+        <Item>All</Item>
+        <ApplyAsItemEffect />
+      </Effect>
     </EnhancementTreeItem>
     <!--Tier 1-->
     <EnhancementTreeItem>
@@ -677,16 +672,16 @@ effect can stack up to 5 times.
           <Icon>TempestHasteBoost</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Clickie />
-                <Attack>
-                   <Name>Tempest: Haste Boost</Name>
-                   <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
-                   <Icon>KenseiHasteBoost</Icon>
-                   <Cooldown size="3">30 30 30</Cooldown>
-                   <FollowOn>
-                     <Duration size="3">20 20 20</Duration>
-                     <BonusAlacrity size="3">10 20 30</BonusAlacrity>
-                   </FollowOn>
-                </Attack>
+          <Attack>
+            <Name>Tempest: Haste Boost</Name>
+            <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+            <Icon>KenseiHasteBoost</Icon>
+            <Cooldown size="3">30 30 30</Cooldown>
+            <FollowOn>
+              <Duration size="3">20 20 20</Duration>
+              <BonusAlacrity size="3">10 20 30</BonusAlacrity>
+            </FollowOn>
+          </Attack>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Sprint Boost</Name>
@@ -1173,7 +1168,7 @@ attack that normally deals half damage on a successful save, you only take
       <Selector>
         <EnhancementSelection>
           <Name>Tempest: A Thousand Cuts</Name>
-          <Description>Deals +10% Damage
+          <Description>Deals +[10/20/30]% Damage
 Cooldown: 90 seconds.
 Melee Dual Wielding Attack: You gain +[10/20/30] Melee Doublestrike and
 +[10/20/30] Melee Power for 15 seconds.</Description>
@@ -1243,7 +1238,14 @@ Melee Dual Wielding Attack: You gain +[10/20/30] Melee Doublestrike and
 Strikethrough: +[0/100/200]%
 Cooldown: 15 seconds
 Melee Dual Wielding Attack: On Hit: For 10 seconds, you gain the ability to
-Strikethrough regardless of Combat Style for the duration.</Description>
+Strikethrough regardless of Combat Style for the duration.
+
+Note: the initial attack only works if dual wielding weapons. However, the
+Strikethrough ability and bonus persist through weapon swaps to other styles,
+such as Sword and Board or SWF with weapons like longsword or dagger, as
+described. The bonus appears to apply whether or not the attack hits anything.
+However, once buff fades strike through on your character will be turned off,
+even for THF, until activated again or until you swap weapons.</Description>
       <Icon>TempestDanceOfDeath</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>

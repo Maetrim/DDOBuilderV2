@@ -16,8 +16,9 @@
          <Name>Enlightened Spirit: Eldritch Aura</Name>
          <InternalName>WESCore1</InternalName>
          <Description>Eldritch Blast Shape: Your Eldritch Blast changes into an aura. It deals the same
-damage as your Eldritch Blast to all foes in range every 5 seconds. You cannot fire Eldritch Blasts
-while in this stance, but may attack normally with weapons and cast spells.
+damage as your Eldritch Blast to all foes in range every 5 seconds. You cannot
+fire Eldritch Blasts while in this stance, but may attack normally with weapons
+and cast spells.
 Cooldown: 8 seconds.</Description>
          <Icon>WESEldritchAura</Icon>
          <XPosition>0</XPosition>
@@ -697,7 +698,7 @@ Shield: Grants a +4 Shield bonus to Armor Class and protection from magic missil
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Action Boost: Defense</Name>
          <InternalName>WESActionBoostDefense</InternalName>
-         <Description>Activate to gain a +[5/10/15] second Action Boost Bonus to AC and Physical
+         <Description>Activate to gain a +[5/10/15] Action Boost Bonus to AC and Physical
 Resistance Rating for 20 seconds.
 Cooldown: 30 seconds.</Description>
          <Icon>WESActionBoostDefense</Icon>
@@ -722,7 +723,7 @@ Cooldown: 30 seconds.</Description>
          <Description>Fire your Eldritch Blast in an AOE centered on you.
 All enemies caught in the burst take 1d6 Light Damage, plus any other effects
 and damage your Eldritch Blasts produce. This ability shares a cooldown with
-Cleave, and the damage scales with 100% spell power.
+Cleave, and the damage scales with 100% spell power. Affected by ASF.
 Cooldown: [8/6/5] seconds.
 Metamagic: Empower, Maximize, Quicken, Intensify. Spell Resistance: No.</Description>
          <Icon>WESEldritchBurst</Icon>
@@ -871,7 +872,6 @@ Resistance Rating.</Description>
          <CostPerRank size="1">2</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
-         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Type>ClassMinLevel</Type>
@@ -980,9 +980,9 @@ spells cast by all classes)</Description>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Brilliance</Name>
          <InternalName>WESBrilliance</InternalName>
-         <Description>Your Aura provides you and nearby allies with a Determination bonus to Temporary
-Hit points equal to your Constitution score. If you are level 20 or higher this
-effect is doubled.</Description>
+         <Description>Your Eldritch Aura provides you and nearby allies with a Determination bonus to
+Temporary Hit points equal to your Constitution score. If you are level 20 or
+higher this effect is doubled.</Description>
          <Icon>WESBrilliance</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1045,10 +1045,6 @@ and Universal Spell Power.</Description>
                <Item>Warlock</Item>
                <Value>4</Value>
             </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>WESAbilityScoreI</Item>
-            </Requirement>
          </Requirements>
          <Selector>
             <EnhancementSelection>
@@ -1086,7 +1082,7 @@ and Universal Spell Power.</Description>
          <Description>Fire your Eldritch Blast in an AOE centered on you.
 All enemies caught in the burst take 4d6 Light Damage, plus any other effects
 and damage your Eldritch Blasts produce. This ability shares a cooldown with
-Great Cleave, and the damage scales with 100% spell power.
+Great Cleave, and the damage scales with 100% spell power. Affected by ASF.
 Cooldown [8/6/5] seconds.
 Metamagic: Empower, Maximize, Quicken, Intensify. Spell Resistance: No.</Description>
          <Icon>WESSpiritBlast</Icon>
@@ -1161,9 +1157,12 @@ Amplification.</Description>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Shining Through</Name>
          <InternalName>WESShiningThrough</InternalName>
-         <Description>Gain a Sacred bonus to Temporary Hit points equal to 8x your Constitution Score
-that lasts for up to 10 minutes. For 20 seconds, you gain +25 Sacred bonus to
-Healing Amplification.
+         <Description>Gain a Sacred bonus to Temporary Hitpoints equal to 8x your Constitution Score
+that lasts for up to 10 minutes, which also stacks with Feigned Health and is
+affected by all damage reduction abilities such as MRR or the Resist Energies
+spell. The two health barriers are "layered" on top of each other; the first
+one to get drained is the last one to have been cast.
+For 20 seconds, you gain +25 Sacred bonus to Healing Amplification.
 Cooldown: 30 seconds
 Cost: 8 spell points</Description>
          <Icon>WESShiningThrough</Icon>

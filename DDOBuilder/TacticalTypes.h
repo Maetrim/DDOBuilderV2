@@ -11,6 +11,7 @@ enum TacticalType
 {
     Tactical_Unknown = 0,
     Tactical_Assassinate,
+    Tactical_Trap,
     Tactical_Trip,
     Tactical_Stun,
     Tactical_Sunder,
@@ -27,6 +28,7 @@ const XmlLib::enumMapEntry<TacticalType> tacticalTypeMap[] =
 {
     {Tactical_Unknown,        L"Unknown"},
     {Tactical_Assassinate,    L"Assassinate"},
+    {Tactical_Trap,           L"Trap"},
     {Tactical_Trip,           L"Trip"},
     {Tactical_Stun,           L"Stun"},
     {Tactical_Sunder,         L"Sunder"},

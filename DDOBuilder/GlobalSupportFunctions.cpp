@@ -1181,6 +1181,9 @@ BreakdownType TacticalToBreakdown(TacticalType tactical)
         case Tactical_Assassinate:
             bt = Breakdown_TacticalAssassinate;
             break;
+        case Tactical_Trap:
+            bt = Breakdown_TacticalTrap;
+            break;
         case Tactical_Trip:
             bt = Breakdown_TacticalTrip;
             break;

@@ -92,6 +92,11 @@ void Life::LoadComplete()
 {
     // handle file upgrades here after load completes
 
+    if (m_Race == "Dark Bargainer")
+    {
+        m_Race = "Dhampir Dark Bargainer";
+    }
+
     // after load if we have any level up options, this is an older file
     // format and these items need to move down into the Build objects
     if (HasLevel4())

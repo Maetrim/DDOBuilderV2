@@ -162,4 +162,16 @@ void SelectedTrees::TranslateNamesFromV1()
             }
         }
     }
+    // also translate any tier 5 tree selection
+    if (HasTier5Tree())
+    {
+        for (size_t i = 0; i < count; i += 2)
+        {
+            if (m_Tier5Tree == nameTranslations[i])
+            {
+                m_Tier5Tree = nameTranslations[i + 1];
+                break;
+            }
+        }
+    }
 }

@@ -50,7 +50,8 @@ LRESULT CSkillsPane::OnLoadComplete(WPARAM, LPARAM)
 
 void CSkillsPane::OnSize(UINT nType, int cx, int cy)
 {
-    if (IsWindow(m_skillCtrl.GetSafeHwnd()))
+    if (IsWindow(m_skillCtrl.GetSafeHwnd())
+            && IsWindowVisible())
     {
         CSize requiredSize = m_skillCtrl.RequiredSize();
         if (requiredSize == CSize(0, 0))

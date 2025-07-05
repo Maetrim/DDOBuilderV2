@@ -160,7 +160,8 @@ void CEquipmentPane::OnInitialUpdate()
 void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    if (m_inventoryView != NULL)
+    if (m_inventoryView != NULL
+            && IsWindowVisible())
     {
         // position all the windows
         // +------------------------------------------------------------------------+

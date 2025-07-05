@@ -161,6 +161,18 @@ void Build::LoadComplete()
     // handle file upgrades here after load completes
 
     // clear away any bad TrainedSpell objects we may have
+
+    // ensure any Tier5 tree selection is correct
+    if (m_EnhancementSelectedTrees.HasTier5Tree())
+    {
+        // check it is present in the selected list
+        if (!m_EnhancementSelectedTrees.IsTreePresent(m_EnhancementSelectedTrees.Tier5Tree()))
+        {
+            m_EnhancementSelectedTrees.ClearTier5Tree();
+        }
+    }
+    // ensure renamed races are correct
+
 }
 
 void Build::SetLifePointer(Life* pLife)

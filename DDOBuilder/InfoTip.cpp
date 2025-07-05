@@ -213,7 +213,8 @@ void CInfoTip::SetEnhancementTreeItem(
         const Build& build,
         const EnhancementTreeItem* pItem,
         const std::string& selection,
-        size_t spentInTree)
+        size_t spentInTree,
+        size_t ranksTrained)
 {
     ClearOldTipItems();
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
@@ -304,7 +305,12 @@ void CInfoTip::SetEnhancementTreeItem(
     // check to see if any DCs are being defined
     for (auto&& dcit : pItem->GetDCs(""))
     {
-        AppendDCInfo(build, dcit);
+        DC copyDC = dcit;
+        for (size_t i = 1; i < ranksTrained; ++i)
+        {
+            copyDC.AddStack();
+        }
+        AppendDCInfo(build, copyDC);
     }
 }
 
@@ -1358,7 +1364,12 @@ void CInfoTip::SetDCItem(
     {
         text.Format("DC: %d", pDC->CalculateDC(&build));
     }
-    pHeader->SetRank(text);
+    pHeader->SetCost(text);
+    if (pDC->NumStacks() > 1)
+    {
+        text.Format("Stacks: %d", pDC->NumStacks());
+        pHeader->SetRank(text);
+    }
     m_tipItems.push_back(pHeader);
 
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;

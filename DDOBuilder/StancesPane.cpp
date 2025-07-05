@@ -96,7 +96,8 @@ void CStancesPane::PositionWindow(
 
 void CStancesPane::OnSize(UINT nType, int cx, int cy)
 {
-    if (!BreakdownItem::GetLockState())
+    if (!BreakdownItem::GetLockState()
+            && IsWindowVisible())
     {
         SetScrollPos(SB_VERT, 0, FALSE);
         CWnd::OnSize(nType, cx, cy);

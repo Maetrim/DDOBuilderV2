@@ -65,8 +65,8 @@ class BreakdownItem :
         virtual void FeatTrained(Build*, const std::string&) override;
         virtual void FeatRevoked(Build*, const std::string&) override;
         virtual void RaceChanged(Life*, const std::string&) override {};
-        virtual void SkillTomeChanged(Life*, SkillType) override {};
-        virtual void SkillSpendChanged(Build*, size_t, SkillType) override {};
+        virtual void SkillTomeChanged(Life*, SkillType) override;
+        virtual void SkillSpendChanged(Build*, size_t, SkillType) override;
 
         virtual void FeatEffectApplied(Build*, const Effect& effect) override;
         virtual void FeatEffectRevoked(Build*, const Effect& effect) override;

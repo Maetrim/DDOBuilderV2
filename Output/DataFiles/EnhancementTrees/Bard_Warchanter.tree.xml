@@ -866,9 +866,9 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
          <Name>Warchanter: Frozen Fury</Name>
          <InternalName>WCTheFrozenFury</InternalName>
          <Description>Deals +[10/20/30]% Damage
-Melee attack: Affected enemies must make a Fortitude save (10/12/14 + Max[Str/Dex/Cha]
-modifier + [0/½/full] Bard Level + stunning modifiers) or become frozen solid
-for a number of seconds equal to your Bard level.
+Melee attack: Affected enemies must make a Fortitude save DC
+[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + stunning modifiers
+or become frozen solid for a number of seconds equal to your Bard level.
 Cooldown: [12/9/6] seconds
 
 Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
@@ -888,6 +888,25 @@ Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
                <Value>3</Value>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Frozen Fury</Name>
+            <Description>Deals +[10/20/30]% Damage
+Melee attack: Affected enemies must make a Fortitude save DC
+[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + stunning modifiers
+or become frozen solid for a number of seconds equal to your Bard level.
+Cooldown: [12/9/6] seconds
+DC Value is assuming full Bard level</Description>
+            <Icon>WCTheFrozenFury</Icon>
+            <DCType>Frozen</DCType>
+            <DCVersus>Fortitude</DCVersus>
+            <Amount size="3">10 12 14</Amount>
+            <ClassMultiplier size="3">0 0.5 1</ClassMultiplier>
+            <BaseClassLevel>Bard</BaseClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Ability I</Name>
@@ -1247,8 +1266,8 @@ ranged damage, and spell critical chance.</Description>
          <Name>Warchanter: Spinning Ice</Name>
          <InternalName>WCSpinningIce</InternalName>
          <Description>Deals +40% Damage
-Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save
-([10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/1] Bard Level + Stunning modifiers)
+Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save DC
+[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + Stunning modifiers
 for a number of seconds equal to your half your Bard level.
 
 Bosses cannot be frozen.
@@ -1277,6 +1296,26 @@ Cooldown [45/35/25] seconds.</Description>
                <Item>WCNorthwind</Item>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Spinning Ice</Name>
+            <Description>Deals +40% Damage
+Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save DC
+[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + Stunning modifiers
+for a number of seconds equal to your half your Bard level.
+Activation cost: [6/4/2] SP.
+Cooldown [45/35/25] seconds.
+DC Value is assuming full Bard level</Description>
+            <Icon>WCSpinningIce</Icon>
+            <DCType>Frozen</DCType>
+            <DCVersus>Fortitude</DCVersus>
+            <Amount size="3">10 12 14</Amount>
+            <ClassMultiplier size="3">0 0.5 1</ClassMultiplier>
+            <BaseClassLevel>Bard</BaseClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+            <Tactical>Stun</Tactical>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Kingly Recovery</Name>

@@ -86,7 +86,8 @@ void CSpellsPane::OnInitialUpdate()
 void CSpellsPane::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    if (IsWindow(m_spellsSheet.GetSafeHwnd()))
+    if (IsWindow(m_spellsSheet.GetSafeHwnd())
+            && IsWindowVisible())
     {
         // takes up the entire space
         CRect rctSheet(0, 0, cx, cy);

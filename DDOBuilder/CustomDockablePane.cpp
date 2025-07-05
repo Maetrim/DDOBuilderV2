@@ -16,6 +16,7 @@ BEGIN_MESSAGE_MAP(CCustomDockablePane, CDockablePane)
     ON_WM_CONTEXTMENU()
     ON_WM_MOUSEACTIVATE()
     ON_MESSAGE(WM_HELPHITTEST, &CCustomDockablePane::OnHelpHitTest)
+    ON_WM_SHOWWINDOW()
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -221,5 +222,17 @@ void CCustomDockablePane::OnWindowPosChanging(WINDOWPOS* pos)
 LRESULT CCustomDockablePane::OnHelpHitTest(WPARAM, LPARAM)
 {
     return 0x10000 + m_viewId;
+}
+
+void CCustomDockablePane::OnShowWindow(BOOL bShow, UINT nStatus)
+{
+    CDockablePane::OnShowWindow(bShow, nStatus);
+    if (TRUE == bShow)
+    {
+        CRect rctWindow;
+        GetClientRect(&rctWindow);
+        m_view->PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rctWindow.Width(), rctWindow.Height()));
+        m_view->Invalidate();
+    }
 }
 

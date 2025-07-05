@@ -119,7 +119,8 @@ void CSelfAndPartyBuffsPane::DoDataExchange(CDataExchange* pDX)
 void CSelfAndPartyBuffsPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_listBuffs.GetSafeHwnd()))
+    if (IsWindow(m_listBuffs.GetSafeHwnd())
+            && IsWindowVisible())
     {
         // control uses full window size
         m_listBuffs.MoveWindow(0, 0, cx, cy);

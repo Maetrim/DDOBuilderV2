@@ -38,7 +38,8 @@ class CInfoTip :
                 const Build& build,
                 const EnhancementTreeItem* pItem,
                 const std::string& selection,
-                size_t spentInTree);
+                size_t spentInTree,
+                size_t ranksTrained);
         void SetEnhancementSelectionItem(
                 const Build& build,
                 const EnhancementTreeItem* pItem,

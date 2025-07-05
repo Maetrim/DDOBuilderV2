@@ -116,7 +116,8 @@ void CDPSPane::DoDataExchange(CDataExchange* pDX)
 void CDPSPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_attackList.GetSafeHwnd()))
+    if (IsWindow(m_attackList.GetSafeHwnd())
+            && IsWindowVisible())
     {
         // position all the windows
         // +-----------------------------------------------+

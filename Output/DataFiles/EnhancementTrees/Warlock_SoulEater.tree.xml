@@ -321,7 +321,8 @@ makes a Will saving throw.</Description>
          <Description>Ranged Magical Attack. Your magics consume bits of your opponent's form,
 disintegrating bits of them for 2d10 Chaotic damage every 2 seconds for a duration
 of 16 seconds. The damage scales with 125% spell power. The effect can stack up
-to 3 times. Your enemy is also marked with the Consumed trait.
+to 3 times. Your enemy is also marked with the Consumed trait. The shot is
+unguided with a slower flight speed, so enemies at long range may avoid it.
 Cooldown 10 seconds</Description>
          <Icon>SEConsume</Icon>
          <XPosition>0</XPosition>
@@ -469,9 +470,11 @@ Rank 3: +1 Will saving throw.</Description>
          <Description>Ranged Magical Attack. You cause [4/8/12]d6 Chaotic damage and reduce the Healing
 Amplification of the opponent by [40/80/120] for 12 seconds.
 The reduction is negated by a Fortitude saving throw with a DC of
-[10/14/18] + Warlock level + the higher of Intelligence or Charisma modifier.
+18 + Warlock level + Max[Int/Cha] modifier.
 The damage scales with 125% Spell Power. Your enemy is also marked with the
-Strickened trait. Cooldown: 10 seconds.</Description>
+Strickened trait.  The shot is unguided with a slower flight speed, so enemies
+at long range may avoid it.
+Cooldown: 10 seconds.</Description>
          <Icon>SEStricken</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -494,7 +497,7 @@ the Healing Amplification of the opponent by [40/80/120] for 12 seconds.</Descri
             <Icon>SEStricken</Icon>
             <DCType>Stricken</DCType>
             <DCVersus>Fortitude</DCVersus>
-            <Amount size="3">10 14 18</Amount>
+            <Amount size="3">18 18 18</Amount>
             <BaseClassLevel>Warlock</BaseClassLevel>
             <ModAbility>Intelligence</ModAbility>
             <ModAbility>Charisma</ModAbility>
@@ -734,8 +737,10 @@ No initial tic, then 4 tics of damage.</Description>
       <EnhancementTreeItem>
          <Name>Soul Eater: Eldritch Blast Shape: Cone</Name>
          <InternalName>SEEldritchBlastShapeCone</InternalName>
-         <Description>Eldritch Blast Shape: Transform you Eldritch Blast into a magical cone of Force
-dealing damage to all enemies in its area. While active you have -1 Pact damage die</Description>
+         <Description>Eldritch Blast Shape: Cone: Eldritch Blast Shape Stance: toggle on to turn your
+automatic attack into a ranged magical cone dealing 1d6 force damage.
+While active you have -1 Pact damage die, and this spell scales with 100% Spell
+power. This cone attack has standard range for cone spells.</Description>
          <Icon>SEEldritchBlastShapeCone</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -753,8 +758,10 @@ dealing damage to all enemies in its area. While active you have -1 Pact damage 
          <Stance>
             <Name>Cone</Name>
             <Icon>SEEldritchBlastShapeCone</Icon>
-            <Description>Eldritch Blast Shape: Transform you Eldritch Blast into a magical cone of Force
-dealing damage to all enemies in its area. While active you have -1d6 Pact damage die</Description>
+            <Description>Eldritch Blast Shape: Cone: Eldritch Blast Shape Stance: toggle on to turn your
+automatic attack into a ranged magical cone dealing 1d6 force damage.
+While active you have -1 Pact damage die, and this spell scales with 100% Spell
+power. This cone attack has standard range for cone spells.</Description>
             <Group>Blast Shape</Group>
          </Stance>
          <Effect>
@@ -780,7 +787,6 @@ dealing damage to all enemies in its area. While active you have -1d6 Pact damag
          <CostPerRank size="1">2</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
-         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Type>BaseClassMinLevel</Type>
@@ -935,10 +941,6 @@ good chance of hitting long-range targets.</Description>
                <Type>BaseClassMinLevel</Type>
                <Item>Warlock</Item>
                <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>SEAbilityScoreI</Item>
             </Requirement>
          </Requirements>
          <Selector>

@@ -2300,6 +2300,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyGreatClub", "Proficiency: Greatclub", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyKhopesh", "Proficiency : Khopesh", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyLongbow", "Feat : Proficiency: Longbow", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyRapier", "Proficiency: Rapier", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "ProficiencyShortbow", "Feat : Proficiency: Shortbow", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatQuickDraw", "Feat : Quick Draw", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "FeatMobility", "Feat : Mobility", "Enhancement", "");

@@ -123,7 +123,7 @@ int DC::CalculateDC(const Build * build) const
     }
     value += fullAbilityBonus;
     // use the largest of any ModAbility values
-    int modAbilityBonus = 0;
+    int modAbilityBonus = -5;
     std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
     while (mait != m_ModAbility.end())
     {
@@ -171,28 +171,36 @@ int DC::CalculateDC(const Build * build) const
         ++sit;
     }
     // add any class level bonus
+    double multiplier = 1;
+    if (HasClassMultiplier())
+    {
+        if (m_stacks < m_ClassMultiplier.size() + 1)
+        {
+            multiplier = m_ClassMultiplier[m_stacks-1];    // 0 based
+        }
+    }
     if (m_hasClassLevel)
     {
         int classLevels = build->ClassLevels(m_ClassLevel, build->Level()-1);
-        value += classLevels;
+        value += (int)(classLevels * multiplier);
     }
     // add any half class level bonus
     if (m_hasHalfClassLevel)
     {
         int classLevels = build->ClassLevels(m_HalfClassLevel, build->Level()-1);
-        value += (int)(classLevels / 2); // round down
+        value += (int)((classLevels * multiplier) / 2); // round down
     }
     // add any base class level bonus
     if (m_hasBaseClassLevel)
     {
         int baseClassLevels = build->BaseClassLevels(m_BaseClassLevel, build->Level() - 1);
-        value += baseClassLevels;
+        value += (int)(baseClassLevels * multiplier);
     }
     // add any half base class level bonus
     if (m_hasHalfClassLevel)
     {
         int baseClassLevels = build->BaseClassLevels(m_HalfBaseClassLevel, build->Level() - 1);
-        value += (int)(baseClassLevels / 2); // round down
+        value += (int)((baseClassLevels * multiplier) / 2); // round down
     }
     return value;
 }
@@ -371,70 +379,99 @@ std::string DC::DCBreakdown(const Build * build) const
         ++sit;
     }
     // add any class level bonus
-    if (m_hasClassLevel)
+    double multiplier = 1;
+    if (HasClassMultiplier())
     {
-        if (!first)
+        if (m_stacks < m_ClassMultiplier.size() + 1)
         {
-            ss << " + ";
+            multiplier = m_ClassMultiplier[m_stacks-1];    // 0 based
         }
-        first = false;
-        std::string name = m_ClassLevel;
-        int classLevels = build->ClassLevels(m_ClassLevel, build->Level()-1);
-        if (m_ClassLevel == "All")
-        {
-            name = "Character Level";
-        }
-        ss << name << "(" << classLevels << ")";
     }
-    // add any half class level bonus
-    if (m_hasHalfClassLevel)
+    if (multiplier > 0)
     {
-        if (!first)
+        // add any class level bonus
+        if (m_hasClassLevel)
         {
-            ss << " + ";
+            if (!first)
+            {
+                ss << " + ";
+            }
+            first = false;
+            std::string name = m_ClassLevel;
+            int classLevels = build->ClassLevels(m_ClassLevel, build->Level()-1);
+            if (multiplier != 1)
+            {
+                ss << multiplier << " ";
+            }
+            if (m_ClassLevel == "All")
+            {
+                name = "Character Level";
+            }
+            ss << name << "(" << (int)(classLevels * multiplier) << ")";
         }
-        first = false;
-        int classLevels = (int)(build->ClassLevels(m_HalfClassLevel, build->Level()-1) / 2);
-        std::string name = m_HalfClassLevel;
-        if (name == "All")
+        // add any half class level bonus
+        if (m_hasHalfClassLevel)
         {
-            name = "Character Level";
+            if (!first)
+            {
+                ss << " + ";
+            }
+            first = false;
+            int classLevels = (int)(build->ClassLevels(m_HalfClassLevel, build->Level()-1) / 2);
+            std::string name = m_HalfClassLevel;
+            if (multiplier != 1)
+            {
+                ss << multiplier << " ";
+            }
+            if (name == "All")
+            {
+                name = "Character Level";
+            }
+            ss << name << "/2(" << (int)(classLevels * multiplier) << ")";
         }
-        ss << name << "/2(" << classLevels << ")";
-    }
-    // add any base class level bonus
-    if (m_hasBaseClassLevel)
-    {
-        if (!first)
+        // add any base class level bonus
+        if (m_hasBaseClassLevel)
         {
-            ss << " + ";
+            if (!first)
+            {
+                ss << " + ";
+            }
+            first = false;
+            std::string name = m_BaseClassLevel;
+            int classLevels = build->BaseClassLevels(m_BaseClassLevel, build->Level() - 1);
+            if (multiplier != 1)
+            {
+                ss << multiplier << " ";
+            }
+            if (m_BaseClassLevel == "All")
+            {
+                name = "Character Level";
+            }
+            ss << name << "(" << (int)(classLevels * multiplier) << ")";
         }
-        first = false;
-        std::string name = m_BaseClassLevel;
-        int classLevels = build->BaseClassLevels(m_BaseClassLevel, build->Level() - 1);
-        if (m_BaseClassLevel == "All")
+        // add any half base class level bonus
+        if (m_hasHalfBaseClassLevel)
         {
-            name = "Character Level";
+            if (!first)
+            {
+                ss << " + ";
+            }
+            first = false;
+            int classLevels = (int)(build->BaseClassLevels(m_HalfBaseClassLevel, build->Level() - 1) / 2);
+            std::string name = m_HalfBaseClassLevel;
+            if (multiplier != 1)
+            {
+                ss << multiplier << " ";
+            }
+            if (name == "All")
+            {
+                name = "Character Level";
+            }
+            ss << name << "/2(" << (int)(classLevels * multiplier) << ")";
         }
-        ss << name << "(" << classLevels << ")";
-    }
-    // add any half base class level bonus
-    if (m_hasHalfBaseClassLevel)
-    {
-        if (!first)
-        {
-            ss << " + ";
-        }
-        first = false;
-        int classLevels = (int)(build->BaseClassLevels(m_HalfBaseClassLevel, build->Level() - 1) / 2);
-        std::string name = m_HalfBaseClassLevel;
-        if (name == "All")
-        {
-            name = "Character Level";
-        }
-        ss << name << "/2(" << classLevels << ")";
     }
     std::string description = ss.str();
+    description = ReplaceAll(description, "0.5", "½");
     return description;
 }
 
@@ -448,3 +485,19 @@ void DC::SetClass(const std::string& ct)
 {
     m_class = ct;
 }
+
+void DC::AddStack()
+{
+    m_stacks++;
+}
+
+void DC::RevokeStack()
+{
+    m_stacks--;
+}
+
+size_t DC::NumStacks() const
+{
+    return m_stacks;
+}
+

@@ -1017,6 +1017,18 @@ void BreakdownItem::FeatRevoked(Build*, const std::string&)
     Populate();
 }
 
+void BreakdownItem::SkillTomeChanged(Life*, SkillType)
+{
+    // skill changes can affect some enhancement items being enabled/disabled
+    Populate();
+}
+
+void BreakdownItem::SkillSpendChanged(Build*, size_t, SkillType)
+{
+    // skill changes can affect some enhancement items being enabled/disabled
+    Populate();
+}
+
 void BreakdownItem::FeatEffectApplied(
         Build*,
         const Effect & effect)

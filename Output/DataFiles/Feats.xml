@@ -459,6 +459,62 @@ attack repeatedly until your target is defeated, or activated once by right-clic
           <!--No special entries as its just standard damage-->
        </ThisAttack>
     </Attack>
+     <!--tumble charges-->
+      <Effect>
+        <DisplayName>Tumble Base Charges</DisplayName>
+        <Type>TumbleCharge</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>10 Skill Ranks in Tumble</DisplayName>
+        <Type>TumbleCharge</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Skill</Type>
+               <Item>Tumble</Item>
+               <Value>10</Value>
+            </Requirement>
+            <RequiresOneOf>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Cloth Armor</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Light Armor</Item>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
+      </Effect>
+      <Effect>
+        <DisplayName>20 Skill Ranks in Tumble</DisplayName>
+        <Type>TumbleCharge</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+         <Requirements>
+            <Requirement>
+               <Type>Skill</Type>
+               <Item>Tumble</Item>
+               <Value>20</Value>
+            </Requirement>
+            <RequiresOneOf>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Cloth Armor</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Light Armor</Item>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
+      </Effect>
     <!--As this is a feat all characters gain, its used as a placeholder for adding some special effects and stances-->
     <Effect>
       <DisplayName>Standard Death at</DisplayName>
@@ -5826,7 +5882,7 @@ penalties are decreased by 1.</Description>
     <Name>Mobility</Name>
     <Description>Increases the maximum dexterity bonus permitted by armor and tower shields
 by 2 and adds a +4 bonus to Armor Class while tumbling. You will also gain a
-2% Dodge bonus.</Description>
+2% Dodge bonus and +1 Max Tumble Charge.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -5855,6 +5911,12 @@ by 2 and adds a +4 bonus to Armor Class while tumbling. You will also gain a
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
     </Effect>
+      <Effect>
+        <Type>TumbleCharge</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
   </Feat>
   <Feat>
     <Name>Negotiator</Name>

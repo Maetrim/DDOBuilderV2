@@ -152,11 +152,13 @@ LRESULT CGrantedFeatsPane::OnLoadComplete(WPARAM, LPARAM)
 void CGrantedFeatsPane::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    if (IsWindow(m_listGrantedFeats.GetSafeHwnd()))
+    if (IsWindow(m_listGrantedFeats.GetSafeHwnd())
+            && IsWindowVisible())
     {
         CSize requiredSize = m_listGrantedFeats.RequiredSize();
         if (requiredSize.cy > cy)
         {
+            // make room for the vertical scroll bar
             cx -= (GetSystemMetrics(SM_CXVSCROLL) + 1);
         }
         int scrollY = GetScrollPos(SB_VERT);

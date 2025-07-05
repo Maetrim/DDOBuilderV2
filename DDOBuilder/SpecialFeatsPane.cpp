@@ -164,7 +164,8 @@ void CSpecialFeatPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
     // move all our feat windows to be as many across as we can, then start the next row
-    if (IsWindow(m_staticHeroic.GetSafeHwnd()))
+    if (IsWindow(m_staticHeroic.GetSafeHwnd())
+            && IsWindowVisible())
     {
         // position the created windows left to right until they don't fit
         // then move them down a row and start again

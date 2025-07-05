@@ -124,8 +124,11 @@ LRESULT CFavorPane::OnLoadComplete(WPARAM, LPARAM)
     m_comboPatron.AddString("<No Filtering>");
     for (auto&& pit : patrons)
     {
-        CString patronName = EnumEntryText(pit.Name(), patronTypeMap);
-        m_comboPatron.AddString(patronName);
+        if (pit.Name() < Patron_TotalFavor)
+        {
+            CString patronName = EnumEntryText(pit.Name(), patronTypeMap);
+            m_comboPatron.AddString(patronName);
+        }
     }
     m_comboPatron.SetCurSel(0);
     CRect rect;
@@ -164,7 +167,8 @@ void CFavorPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
     CRect rectPatronItem(0, 0, 10, 10);
-    if (IsWindow(m_listQuests.GetSafeHwnd()))
+    if (IsWindow(m_listQuests.GetSafeHwnd())
+            && IsWindowVisible())
     {
         m_favorItems[0].GetWindowRect(&rectPatronItem);
         rectPatronItem -= rectPatronItem.TopLeft();

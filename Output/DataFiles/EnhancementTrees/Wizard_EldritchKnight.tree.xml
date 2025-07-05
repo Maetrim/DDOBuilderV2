@@ -71,19 +71,15 @@ tree, including this one, grants +10 Maximum Hit Points.</Description>
       <EnhancementTreeItem>
          <Name>Eldritch Knight: Spellsword</Name>
          <InternalName>EKWizCore2</InternalName>
-         <Description>Spellsword: Gain access to four Imbue Toggles that modify the damage of your
-attacks and Eldritch Strike. Charge your equipped weapons and shields with
-magical (Acid, Cold, Fire, or Electric), causing them to deal an additional
-1d8 (element) damage on hit and granting them Ghost Touch.
-This damage scales with (element) Spell Power.
-
-You also gain +1 bonus Imbue Dice every 3 Wizard levels (at 3, 6, 9, 12, 15, and 18).
-
-While active, your Eldritch Strike deals 1-2 additional (element) damage per
-Character Level which scales with (element) Spell Power.
-
-Passive: +2% Doublestrike, +10 Universal Spell Power.
-You also gain proficiency in Light Armor and Martial weapons.</Description>
+      <Description>You gain four elemental toggles that each imbue your weapon with elemental power.
+Only one may be active at a time, causing them to deal an additional 1d6 (element)
+damage on hit. You gain an additional Imbue Dice every 3 Sorcerer levels
+(at 3, 6, 9, 12, 15 and 18). This damage scales with Spell Power. While active,
+your Eldritch Strike deals 1-2 additional (element) damage per Character Level
+which scales with Spell Power. While this is enabled, your weapon and shield
+attacks have Ghost Touch.
+Passive: +2% Doublestrike, +10 Universal Spell Power. You also gain proficiency
+in Light Armor and Martial weapons.</Description>
          <Icon>EKSpellsword</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -356,11 +352,8 @@ You gain +1 Imbue Dice
       <EnhancementTreeItem>
          <Name>Eldritch Knight: Subtle Force II</Name>
          <InternalName>EKWizCore5</InternalName>
-         <Description>+5% Stacking Incorporeality.
-Your Deflect Arrows now triggers every 2 seconds.
-You gain +1 Imbue Dice
-+2% Doublestrike.
-+10 Universal Spell Power.</Description>
+      <Description>+5% Stacking Incorporeality. Your Deflect Arrows now triggers every 2 seconds.
+You gain +1 Imbue Dice. +2% Doublestrike. +10 Universal Spell Power.</Description>
          <Icon>EKSubtleForceII</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -413,14 +406,11 @@ You gain +1 Imbue Dice
       <EnhancementTreeItem>
          <Name>Eldritch Knight: Eldritch Blade</Name>
          <InternalName>EKWizCore6</InternalName>
-         <Description>Your Eldritch Strike now grants you a Power Charge. When you have 5 Power Charges,
-they are removed, and you gain Eldritch Power.
-Eldritch Power: +10% to your damage with weapon attacks, +4 Imbue Dice,
-+25 Universal spell power. Duration: 30 seconds.
-Passive:
-You gain +2 Imbue Dice
-+2 Intelligence, +2 Constitution
-+2% Doublestrike
+      <Description>Your Eldritch Strike now grants you a Power Charge. When you have 5 Power Charges,
+they are removed, and you gain Eldritch Power. Eldritch Power: +10% to your
+damage with weapon attacks, +4 Imbue Dice, +25 Universal spell power.
+Duration: 30 seconds.
+Passive: You gain +2 Imbue Dice, +2 Charisma, +2 Constitution, +2% Doublestrike,
 +10 Universal Spell Power</Description>
          <Icon>EKEldritchBlade</Icon>
          <XPosition>5</XPosition>
@@ -1068,8 +1058,9 @@ Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shield Striking</Name>
-               <Description>On Hit: +[5/10/15]% chance to proc an immediate Shield Bash attack with an
-equipped shield.</Description>
+               <Description>On Hit: +[5/10/15]% chance to proc an immediate Shield Bash attack with an equipped shield.
+ Passive: Every six seconds while you have a shield equipped, you gain Temporary
+ Hit Points equal to the enhancement bonus of your equipped shield.</Description>
                <Icon>EKOffhandDefenses</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1245,8 +1236,8 @@ Spell Failure from Light Armor, Medium Armor or Mithral Body.</Description>
          <Description>While Knight's transformation is active you gain a +1 Competence bonus to your
 weapons critical multiplier. When your Eldritch Strike hits you gain the
 additional bonuses to your Knight's Strike of +3 to Hit, Damage and 3% doublestrike.
-Passive Bonus: You gain 15% Competence bonus to Max Hit Points (regardless if
-the toggle is on or not)</Description>
+Passive Bonus: You gain 15% competence bonus to Max Hit Points
+(regardless if the toggle is on or not)</Description>
          <Icon>EKImprovedKnightsTransformation</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1433,6 +1424,7 @@ Chance for 12 seconds.</Description>
                </Requirement>
             </Requirements>
             <Item>All</Item>
+            <ApplyAsItemEffect />
          </Effect>
          <Effect>
             <Type>SpellLore</Type>

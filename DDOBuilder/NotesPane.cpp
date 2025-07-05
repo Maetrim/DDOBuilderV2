@@ -74,7 +74,8 @@ void CNotesPane::DoDataExchange(CDataExchange* pDX)
 void CNotesPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_editNotes.GetSafeHwnd()))
+    if (IsWindow(m_editNotes.GetSafeHwnd())
+            && IsWindowVisible())
     {
         m_editNotes.MoveWindow(0, 0, cx, cy, TRUE);
     }

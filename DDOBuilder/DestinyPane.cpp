@@ -108,7 +108,8 @@ void CDestinyPane::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
     if (m_treeViews.size() > 0
-            && IsWindow(m_treeViews[0]->GetSafeHwnd()))
+            && IsWindow(m_treeViews[0]->GetSafeHwnd())
+            && IsWindowVisible())
     {
         // we can position and show all the visible enhancement windows
         // with scrolls bars as required

@@ -120,7 +120,8 @@ void CBuildsPane::DoDataExchange(CDataExchange* pDX)
 void CBuildsPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_treeBuilds.GetSafeHwnd()))
+    if (IsWindow(m_treeBuilds.GetSafeHwnd())
+            && IsWindowVisible())
     {
         // [Add][Del][Add][Del]
         // +------------------+

@@ -1,1165 +1,1162 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Thief-Acrobat</Name>
-      <Version>1</Version>
+  <EnhancementTree>
+    <Name>Thief-Acrobat</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Rogue</Item>
+      </Requirement>
+    </Requirements>
+    <Background>RogueBackground</Background>
+    <Icon>Rogue</Icon>
+    <!--Cores-->
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Staff Control</Name>
+      <InternalName>TACore1</InternalName>
+      <Description>You can also use your Dexterity modifier to hit with Quarterstaves.</Description>
+      <Icon>TAStaffControl</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight />
       <Requirements>
-         <Requirement>
-            <Type>Class</Type>
-            <Item>Rogue</Item>
-         </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>1</Value>
+        </Requirement>
       </Requirements>
-      <Background>RogueBackground</Background>
-      <Icon>Rogue</Icon>
-      <!--Cores-->
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Staff Control</Name>
-         <InternalName>TACore1</InternalName>
-         <Description>You can also use your Dexterity modifier to hit with Quarterstaves.</Description>
-         <Icon>TAStaffControl</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_AttackAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
-            <Item>Quarterstaff</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Stick Fighting</Name>
-         <InternalName>TACore2</InternalName>
-         <Description>You can now use your Dexterity modifier for damage with Quarterstaves.
+      <Effect>
+        <Type>Weapon_AttackAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <Item>Quarterstaff</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Stick Fighting</Name>
+      <InternalName>TACore2</InternalName>
+      <Description>You can now use your Dexterity modifier for damage with Quarterstaves.
 You have the 'Swords to Plowshares' feat without needing to meet the prerequisites,
 which grants a +1 Morale bonus to the Critical Threat Range to Quarterstaves, Sickles,
 and Kama.</Description>
-         <Icon>TAStickFighting</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TACore1</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_DamageAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Dexterity</Item>
+      <Icon>TAStickFighting</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TACore1</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_DamageAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <Item>Quarterstaff</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Swords to Plowshares</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Tumbler</Name>
+      <InternalName>TACore3</InternalName>
+      <Description>You can pass through enemies when you tumble. +2% maximum dodge. +1 tumble charge.</Description>
+      <Icon>TATumbler</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TACore2</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>6</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>TumbleCharge</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Kip Up</Name>
+      <InternalName>TACore4</InternalName>
+      <Description>You are immune to most knockdown effects and slippery surfaces.
++2% to maximum dodge.</Description>
+      <Icon>TAKipUp</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TACore3</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Stacking</Bonus>
+        <Item>Most Knockdown Effects</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Stacking</Bonus>
+        <Item>Slippery Surfaces</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Cartwheel Charge</Name>
+      <InternalName>TACore5</InternalName>
+      <Description>After tumbling, you gain a +2 Morale bonus to Strength and Dexterity for 12 seconds.
+Passively provides: +2% to maximum dodge, and +20% Doublestrike while using staves.</Description>
+      <Icon>TACartwheelCharge</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TACore4</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>18</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Morale</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Strength</Item>
+        <Item>Dexterity</Item>
+        <ApplyAsItemEffect />
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tumble</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
             <Item>Quarterstaff</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>GrantFeat</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Swords to Plowshares</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Tumbler</Name>
-         <InternalName>TACore3</InternalName>
-         <Description>+2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
-You can pass through enemies when you tumble. </Description>
-         <Icon>TATumbler</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TACore2</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>6</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>MaxDexBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Light Armor</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Kip Up</Name>
-         <InternalName>TACore4</InternalName>
-         <Description>+2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
-You are immune to most knockdown effects and slippery surfaces.</Description>
-         <Icon>TAKipUp</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TACore3</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>MaxDexBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Light Armor</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Stacking</Bonus>
-            <Item>Most Knockdown Effects</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Stacking</Bonus>
-            <Item>Slippery Surfaces</Item>
-            <AType>NotNeeded</AType>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Cartwheel Charge</Name>
-         <InternalName>TACore5</InternalName>
-         <Description>+2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
-+20% Double Strike while using staves. After tumbling, you gain a +2 Morale bonus
-to Strength and Dexterity for 12 seconds.</Description>
-         <Icon>TACartwheelCharge</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TACore4</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>18</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>MaxDexBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Light Armor</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>Doublestrike</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">20</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Quarterstaff</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Follow Through</Name>
-         <InternalName>TACore6</InternalName>
-         <Description>For 12 seconds after tumbling, you gain +50% Strikethrough Chance and
-gain On Vorpal: Your target is knocked down.
-As a master thief-acrobat, you also gain the following passive benefits:
-+2 Strength and Dexterity
-+1 to hit and +2 damage with quarterstaves
-+5% attack speed with quarterstaves
-+2 critical hit damage with all weapons
-+2 Balance, Jump, and Tumble
-+2 Sneak Attack dice and +2 to hit when performing Sneak Attacks.</Description>
-         <Icon>TAFollowthrough</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TACore5</Item>
-            </Requirement>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>20</Value>
-            </Requirement>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Followthrough</Name>
+      <InternalName>TACore6</InternalName>
+      <Description>You gain +2 Strength and Dexterity, +1 to hit and +2 damage with quarterstaves,
++5% attack speed with quarterstaves, +2 critical hit damage with all weapons,
++2 Balance, Jump, and Tumble, +2 Sneak Attack dice and +2 to hit when performing
+Sneak Attacks.
+After tumbling with a staff equipped, for 12 seconds gain +50% strikethrough
+chance and gain On Vorpal: Your target is knocked down.</Description>
+      <Icon>TAFollowthrough</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TACore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>20</Value>
+        </Requirement>
         <Requirement>
           <Type>Exclusive</Type>
           <Item>TACore6</Item>
           <Item>Capstone Enhancement</Item>
         </Requirement>
-         </Requirements>
-       <Effect>
-          <Type>ExclusionGroup</Type>
-          <Bonus>Enhancement</Bonus>
-          <AType>NotNeeded</AType>
-          <Item>TACore6</Item>
-          <Item>Capstone Enhancement</Item>
-       </Effect>
-         <Effect>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>TACore6</Item>
+        <Item>Capstone Enhancement</Item>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Strength</Item>
+        <Item>Dexterity</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Alacrity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_DamageCritical</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Balance</Item>
+        <Item>Jump</Item>
+        <Item>Tumble</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Type>SneakAttackAttack</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>Strikethrough</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">50</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tumble</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Quarterstaff</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Acrobat Staff Training I</Name>
+      <InternalName>TAAcrobatStaffTrainingI</InternalName>
+      <Description>+1 to hit and +2 damage with quarterstaves.</Description>
+      <Icon>TAAcrobatStaffTraining</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Thief Acrobatics</Name>
+      <InternalName>TAThiefAcrobatics</InternalName>
+      <Description>+[1/2/3] Balance, Jump, and Tumble, +[5/10/15]% attack speed with quarterstaves.</Description>
+      <Icon>TAThiefAcrobatics</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>TAThiefAcrobatics</Item>
+          <Item>Quarterstaff Alacrity</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Balance</Item>
+        <Item>Jump</Item>
+        <Item>Tumble</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Alacrity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+      </Effect>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>TAThiefAcrobatics</Item>
+        <Item>Quarterstaff Alacrity</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Charming</Name>
+      <InternalName>TACharming</InternalName>
+      <Description>+[1/2/3] Bluff, Diplomacy, Haggle, and Intimidate.</Description>
+      <Icon>TACharming</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Bluff</Item>
+        <Item>Diplomacy</Item>
+        <Item>Haggle</Item>
+        <Item>Intimidate</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Sly Flourish</Name>
+      <InternalName>TASlyFlourish</InternalName>
+      <Description>Deals: +[10/20/30]% Damage
+Melee Attack: With +[1/2/3] critical threat range. On Sneak Attack: Intelligent
+target also gains a -1 penalty to Balance, Reflex, and Will saves for 20 seconds.
+(Stacks 5 times.) Cooldown: 8 seconds
+Passively provides: [5/10/15]% melee threat reduction.</Description>
+      <Icon>TASlyFlourish</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ThreatBonusMelee</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-5 -10 -15</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Fast Movement</Name>
+      <InternalName>TAFastMovement</InternalName>
+      <Description>While wearing light or cloth armor you run 1% faster for each of your Rogue levels.</Description>
+      <Icon>TAFastMovement</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Class</Bonus>
+        <AType>ClassLevel</AType>
+        <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
+        <StackSource>Rogue</StackSource>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Cloth Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Acrobat Staff Training II</Name>
+      <InternalName>TAAcrobatStaffTrainingII</InternalName>
+      <Description>+1 to hit and +2 damage with quarterstaves.</Description>
+      <Icon>TAAcrobatStaffTrainingII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TAAcrobatStaffTrainingI</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Trip Focus</Name>
+      <InternalName>TATripFocus</InternalName>
+      <Description>+[1/2/3] to the save DC's of Trip Attacks</Description>
+      <Icon>TATripFocus</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Trip</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Subtlety</Name>
+      <InternalName>TASubtlety</InternalName>
+      <Description>-[20/30/40]% threat generation with melee attacks.
+(This enhancement cannot be combined with other Subtlety enhancements.)</Description>
+      <Icon>TASubtlety</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>TASubtlety</Item>
+          <Item>Melee Subtlety</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>TASubtlety</Item>
+        <Item>Melee Subtlety</Item>
+      </Effect>
+      <Effect>
+        <Type>ThreatBonusMelee</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-20 -30 -40</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Quick Strike</Name>
+      <InternalName>TAQuickStrike</InternalName>
+      <Description>Deals: +[10/20/30]5 Damage
+Melee Quarterstaff Attack: You gain a [5/15/25]% Morale bonus to melee doublestrike
+for 10 seconds. Cooldown: [18/15/12] seconds.</Description>
+      <Icon>TAQuickStrike</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Haste Boost</Name>
+      <InternalName>TAHasteBoost</InternalName>
+      <Description>Activate to gain a [10/20/30]% Action Boost bonus to attack speed for 20 seconds.
+(Cooldown: 30 seconds)</Description>
+      <Icon>TAHasteBoost</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Attack>
+        <Name>Thief-Acrobat: Haste Boost</Name>
+        <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+        <Icon>KenseiHasteBoost</Icon>
+        <Cooldown size="3">30 30 30</Cooldown>
+        <FollowOn>
+          <Duration size="3">20 20 20</Duration>
+          <BonusAlacrity size="3">10 20 30</BonusAlacrity>
+        </FollowOn>
+      </Attack>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Acrobat Staff Training III</Name>
+      <InternalName>TAAcrobatStaffTrainingIII</InternalName>
+      <Description>+1 to hit and +2 damage with quarterstaves.</Description>
+      <Icon>TAAcrobatStaffTrainingIII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TAAcrobatStaffTrainingII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Improved Second Strikes</Name>
+      <InternalName>TAImprovedGlancingBlows</InternalName>
+      <Description>+[5/10/20]% Strikethrough chance.</Description>
+      <Icon>TAImprovedGlancingBlows</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Strikethrough</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 20</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Shadow Dodge</Name>
+      <InternalName>TAShadowDodge</InternalName>
+      <Description>+[1/2/3] Dodge, and Dexterity. +[1/2/3] Maximum Dexterity bonus while wearing
+light armor.</Description>
+      <Icon>TAShadowDodge</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Dexterity</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>MaxDexBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Sweeping Strikes</Name>
+      <InternalName>TASweepingStrikes</InternalName>
+      <Description>Deals: +[10/20/30]% Damage
+Melee Quarterstaff Trip Attack: Trips all nearby enemies.
+Listed DC: Balance DC 10 + Rogue Level + Dexterity Modifier Negates trip
+(Actual DC is a Strength save for 10 + Rogue Level + Dexterity Modifier + Trip Bonuses).
+Cooldown: [30/25/20] seconds.
+Despite saying "all nearby enemies", the attack hits enemies in a 180 degree arc.</Description>
+      <Icon>TASweepingStrikes</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TAQuickStrike</Item>
+        </Requirement>
+      </Requirements>
+      <DC>
+        <Name>Thief-Acrobat: Sweeping Strikes</Name>
+        <Description>Deals: +[10/20/30]% Damage
+Melee Quarterstaff Trip Attack: Trips all nearby enemies.
+Listed DC: Balance DC 10 + Rogue Level + Dexterity Modifier Negates trip</Description>
+        <Icon>TASweepingStrikes</Icon>
+        <DCType>Trip</DCType>
+        <DCVersus>Balance</DCVersus>
+        <Amount size="1">10</Amount>
+        <ClassLevel>Rogue</ClassLevel>
+        <ModAbility>Dexterity</ModAbility>
+      </DC>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief Acrobat: Ability I</Name>
+      <InternalName>TAAbilityScoreI</InternalName>
+      <Description>Choose either Strength or Dexterity</Description>
+      <Icon>StrDex</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Strength</Item>
-            <Item>Dexterity</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Attack</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Alacrity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_DamageCritical</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>All</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Balance</Item>
-            <Item>Jump</Item>
-            <Item>Tumble</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Type>SneakAttackAttack</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1-->
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Acrobat Staff Training I</Name>
-         <InternalName>TAAcrobatStaffTrainingI</InternalName>
-         <Description>+1 to hit and +2 damage with quarterstaves.</Description>
-         <Icon>TAAcrobatStaffTraining</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_Attack</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Thief Acrobatics</Name>
-         <InternalName>TAThiefAcrobatics</InternalName>
-         <Description>+[1/2/3] Balance, Jump, and Tumble, +[5/10/15]% attack speed with quarterstaves.</Description>
-         <Icon>TAThiefAcrobatics</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>1</Value>
-            </Requirement>
-		    <Requirement>
-			   <Type>Exclusive</Type>
-			   <Item>TAThiefAcrobatics</Item>
-			   <Item>Quarterstaff Alacrity</Item>
-		    </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Balance</Item>
-            <Item>Jump</Item>
-            <Item>Tumble</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Alacrity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">5 10 15</Amount>
-         </Effect>
-		 <Effect>
-		 	<Type>ExclusionGroup</Type>
-		 	<Bonus>Enhancement</Bonus>
-			<AType>NotNeeded</AType>
-			<Item>TAThiefAcrobatics</Item>
-			<Item>Quarterstaff Alacrity</Item>
-		 </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Charming</Name>
-         <InternalName>TACharming</InternalName>
-         <Description>+[1/2/3] Bluff, Diplomacy, Haggle, and Intimidate.</Description>
-         <Icon>TACharming</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Bluff</Item>
-            <Item>Diplomacy</Item>
-            <Item>Haggle</Item>
-            <Item>Intimidate</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Sly Flourish</Name>
-         <InternalName>TASlyFlourish</InternalName>
-         <Description>Melee Attack: Deals +[1/2/3][W] with +[1/2/3] critical threat range,
-and reduces your threat with nearby enemies by [100/200/300] whether or not you
-deal damage. On Sneak Attack: Intelligent target also gains a -1 penalty to Balance,
-Reflex, and Will saves for 20 seconds. (Stacks 5 times.) (Cooldown: 8 seconds)
-Passive: Reduces the threat of all attacks by [5/10/15]%.</Description>
-         <Icon>TASlyFlourish</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ThreatBonusMelee</Type>
-            <Type>ThreatBonusRanged</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">-5 -10 -15</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Fast Movement</Name>
-         <InternalName>TAFastMovement</InternalName>
-         <Description>While wearing light or cloth armor you run 1% faster for each of your Rogue levels.</Description>
-         <Icon>TAFastMovement</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>1</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>MovementSpeed</Type>
-            <Bonus>Class</Bonus>
-            <AType>ClassLevel</AType>
-            <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
-            <StackSource>Rogue</StackSource>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Cloth Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 2-->
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Acrobat Staff Training II</Name>
-         <InternalName>TAAcrobatStaffTrainingII</InternalName>
-         <Description>+1 to hit and +2 damage with quarterstaves.</Description>
-         <Icon>TAAcrobatStaffTrainingII</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TAAcrobatStaffTrainingI</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_Attack</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Trip Focus</Name>
-         <InternalName>TATripFocus</InternalName>
-         <Description>+[1/2/3] to the save DC's of Trip Attacks</Description>
-         <Icon>TATripFocus</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>TacticalDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Trip</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Subtlety</Name>
-         <InternalName>TASubtlety</InternalName>
-         <Description>-[20/30/40]% threat generation with melee attacks.
-(This enhancement cannot be combined with other Subtlety enhancements.)</Description>
-         <Icon>TASubtlety</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>2</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Exclusive</Type>
-               <Item>TASubtlety</Item>
-               <Item>Melee Subtlety</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExclusionGroup</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>NotNeeded</AType>
-            <Item>TASubtlety</Item>
-            <Item>Melee Subtlety</Item>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusMelee</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">-20 -30 -40</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Quick Strike</Name>
-         <InternalName>TAQuickStrike</InternalName>
-         <Description>Melee Quarterstaff Attack: Deals +[1/2/3][W] damage.
-You gain a [5/15/25]% Morale bonus to melee doublestrike for 10 seconds.
-(Cooldown: [18/15/12] seconds)</Description>
-         <Icon>TAQuickStrike</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Haste Boost</Name>
-         <InternalName>TAHasteBoost</InternalName>
-         <Description>Activate to gain a [10/20/30]% Action Boost bonus to attack speed for 20 seconds.
-(Cooldown: 30 seconds)</Description>
-         <Icon>TAHasteBoost</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>2</Value>
-            </Requirement>
-         </Requirements>
-                <Attack>
-                   <Name>Thief-Acrobat: Haste Boost</Name>
-                   <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
-                   <Icon>KenseiHasteBoost</Icon>
-                   <Cooldown size="3">30 30 30</Cooldown>
-                   <FollowOn>
-                     <Duration size="3">20 20 20</Duration>
-                     <BonusAlacrity size="3">10 20 30</BonusAlacrity>
-                   </FollowOn>
-                </Attack>
-      </EnhancementTreeItem>
-      <!--Tier 3-->
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Acrobat Staff Training III</Name>
-         <InternalName>TAAcrobatStaffTrainingIII</InternalName>
-         <Description>+1 to hit and +2 damage with quarterstaves.</Description>
-         <Icon>TAAcrobatStaffTrainingIII</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TAAcrobatStaffTrainingII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_Attack</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Improved Second Strikes</Name>
-         <InternalName>TAImprovedGlancingBlows</InternalName>
-         <Description>+[5/10/20]% Strikethrough</Description>
-         <Icon>TAImprovedGlancingBlows</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Strikethrough</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">5 10 20</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Shadow Dodge</Name>
-         <InternalName>TAShadowDodge</InternalName>
-         <Description>+[1/2/3] Dodge, Dexterity. +[1/2/3] Maximum Dexterity while wearing light armor.</Description>
-         <Icon>TAShadowDodge</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-         <Effect>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Dexterity</Item>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-         </Effect>
-         <Effect>
-            <Type>MaxDexBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">1 2 3</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Light Armor</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Sweeping Strikes</Name>
-         <InternalName>TASweepingStrikes</InternalName>
-         <Description>Melee Quarterstaff Trip Attack: +[1/2/3][W] to all nearby enemies and trips them.
-Balance DC 10 + Rogue Level + Dexterity Modifier Negates trip.
-Cooldown: [30/25/20] seconds.</Description>
-         <Icon>TASweepingStrikes</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>3</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TAQuickStrike</Item>
-            </Requirement>
-         </Requirements>
-         <DC>
-            <Name>Thief-Acrobat: Sweeping Strikes</Name>
-            <Description>Melee Quarterstaff Trip Attack: +[1/2/3][W] to all nearby enemies and trips them.</Description>
-            <Icon>TASweepingStrikes</Icon>
-            <DCType>Trip</DCType>
-            <DCVersus>Balance</DCVersus>
-            <Amount size="1">10</Amount>
-            <ClassLevel>Rogue</ClassLevel>
-            <ModAbility>Dexterity</ModAbility>
-         </DC>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief Acrobat: Ability I</Name>
-         <InternalName>TAAbilityScoreI</InternalName>
-         <Description>Choose either Strength or Dexterity</Description>
-         <Icon>StrDex</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>3</Value>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Strength</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 4-->
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Acrobat Staff Training IV</Name>
-         <InternalName>TAAcrobatStaffTrainingIV</InternalName>
-         <Description>+1 to hit and +2 damage with quarterstaves.</Description>
-         <Icon>TAAcrobatStaffTrainingIV</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TAAcrobatStaffTrainingIII</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_Attack</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_Damage</Type>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Acrobat Staff Training IV</Name>
+      <InternalName>TAAcrobatStaffTrainingIV</InternalName>
+      <Description>+1 to hit and +2 damage with quarterstaves.</Description>
+      <Icon>TAAcrobatStaffTrainingIV</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TAAcrobatStaffTrainingIII</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Improved Defensive Roll</Name>
+      <InternalName>TAImprovedDefensiveRoll</InternalName>
+      <Description>Defensive Roll now triggers at [30/40/50]% health or below.</Description>
+      <Icon>TAImprovedDefensiveRoll</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Defensive Roll</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: No Mercy</Name>
+      <InternalName>TANoMercy</InternalName>
+      <Description>You deal [10/20/30]% additional damage to helpless opponents.</Description>
+      <Icon>TANoMercy</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>HelplessDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">10 20 30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Staff Lunge</Name>
+      <InternalName>TAStaffLunge</InternalName>
+      <Description>Deals: +[20/40/60]% Damage
+Melee Quarterstaff Attack: Whirl through enemies in a line.
+Cooldown: [30/25/20] seconds</Description>
+      <Icon>TAStaffLunge</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TASweepingStrikes</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief Acrobat: Ability II</Name>
+      <InternalName>TAAbilityScoreII</InternalName>
+      <Description>Choose either Strength or Dexterity</Description>
+      <Icon>StrDex</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
+            <Item>Strength</Item>
             <AType>Simple</AType>
-            <Amount size="1">2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Improved Defensive Roll</Name>
-         <InternalName>TAImprovedDefensiveRoll</InternalName>
-         <Description>Defensive Roll now triggers at [30/40/50]% health or below.</Description>
-         <Icon>TAImprovedDefensiveRoll</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Feat</Type>
-               <Item>Defensive Roll</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: No Mercy</Name>
-         <InternalName>TANoMercy</InternalName>
-         <Description>You deal [10/20/30]% additional damage to helpless opponents.</Description>
-         <Icon>TANoMercy</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>4</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>HelplessDamage</Type>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">10 20 30</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Staff Lunge</Name>
-         <InternalName>TAStaffLunge</InternalName>
-         <Description>Melee Quarterstaff Attack: Deals +[2/4/6][W] damage as you whirl through enemies
-in a line. Cooldown: [30/25/20] seconds</Description>
-         <Icon>TAStaffLunge</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TASweepingStrikes</Item>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief Acrobat: Ability II</Name>
-         <InternalName>TAAbilityScoreII</InternalName>
-         <Description>Choose either Strength or Dexterity</Description>
-         <Icon>StrDex</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>4</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TAAbilityScoreI</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Strength</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Dexterity</Name>
-               <Description>+1 Dexterity</Description>
-               <Icon>Dexterity</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 5-->
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Acrobat Staff Training V</Name>
-         <InternalName>TAAcrobatStaffTrainingV</InternalName>
-         <Description>+10 Melee Power, +3 to hit and +3 damage with quarterstaves.</Description>
-         <Icon>TAAcrobatStaffTrainingV</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TAAcrobatStaffTrainingIV</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
+            <Item>Dexterity</Item>
             <AType>Simple</AType>
-            <Amount size="1">10</Amount>
-         </Effect>
-         <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">3</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Staff Specialization</Name>
-         <InternalName>TAStaffSpecialization</InternalName>
-         <Description>You gain a +1 Competence bonus to Critical Damage Multiplier and
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Acrobat Staff Training V</Name>
+      <InternalName>TAAcrobatStaffTrainingV</InternalName>
+      <Description>+10 Melee Power, +3 to hit and +3 damage with quarterstaves.</Description>
+      <Icon>TAAcrobatStaffTrainingV</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TAAcrobatStaffTrainingIV</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Staff Specialization</Name>
+      <InternalName>TAStaffSpecialization</InternalName>
+      <Description>You gain a +1 Competence bonus to Critical Damage Multiplier and
 Threat Range with Quarterstaves. +25% Competence bonus to Maximum Hit Points.</Description>
-         <Icon>TAStaffSpecialization</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Weapon_CriticalMultiplier</Type>
-            <Type>Weapon_CriticalRange</Type>
-            <Bonus>Competence</Bonus>
-            <ApplyAsItemEffect/>
-            <Item>Quarterstaff</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Hitpoints</Type>
-            <Bonus>Competence</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">25</Amount>
-            <Percent/>
-            <ApplyAsItemEffect/>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Spinning Staff Wall</Name>
-         <InternalName>TASpinningStaffWall</InternalName>
-         <Description>Activate to gain 50 PRR for 20 seconds. Cooldown: 90 seconds.
+      <Icon>TAStaffSpecialization</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Type>Weapon_CriticalRange</Type>
+        <Bonus>Competence</Bonus>
+        <ApplyAsItemEffect />
+        <Item>Quarterstaff</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">25</Amount>
+        <Percent />
+        <ApplyAsItemEffect />
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Spinning Staff Wall</Name>
+      <InternalName>TASpinningStaffWall</InternalName>
+      <Description>Activate to gain 50 PRR for 20 seconds. Cooldown: 90 seconds.
 Passive: While wearing cloth or light armor, gain 5% Dodge, 5% Maximum Dodge,
 and 5 Maximum Dexterity Bonus with Light Armor.</Description>
-         <Icon>TASpinningStaffWall</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
+      <Icon>TASpinningStaffWall</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Type>DodgeCapBonus</Type>
+        <Type>MaxDexBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Requirements>
+          <RequiresOneOf>
             <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>5</Value>
+              <Type>Stance</Type>
+              <Item>Cloth Armor</Item>
             </Requirement>
             <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
             </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Type>DodgeCapBonus</Type>
-            <Type>MaxDexBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">5</Amount>
-            <Requirements>
-               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Cloth Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
-               </RequiresOneOf>
-            </Requirements>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Thief-Acrobat: Vault</Name>
-         <InternalName>TAVault</InternalName>
-         <Description>Quarterstaff Action: Use your quarterstaff to propel yourself forward at great speed.
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Thief-Acrobat: Vault</Name>
+      <InternalName>TAVault</InternalName>
+      <Description>Quarterstaff Action: Use your quarterstaff to propel yourself forward at great speed.
 Requires you to have a quarterstaff equipped. (Cooldown: 15 seconds)</Description>
-         <Icon>TAVault</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Type>ClassMinLevel</Type>
-               <Item>Rogue</Item>
-               <Value>5</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Level</Type>
-               <Value>12</Value>
-            </Requirement>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>TAStaffLunge</Item>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Vault</Item>
-            <AType>SpellInfo</AType>
-            <Amount size="4">0 0 0 15</Amount>
-            <Item>None</Item>
-         </Effect>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+      <Icon>TAVault</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Rogue</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>TAStaffLunge</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Vault</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="4">0 0 0 15</Amount>
+        <Item>None</Item>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

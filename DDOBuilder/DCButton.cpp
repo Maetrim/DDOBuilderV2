@@ -94,11 +94,13 @@ const DC & CDCButton::GetDCItem() const
 void CDCButton::AddStack()
 {
     ++m_stacks;
+    if (m_stacks != 1) m_dc.AddStack();
 }
 
 void CDCButton::RevokeStack()
 {
     --m_stacks;
+    if (m_stacks != 1) m_dc.RevokeStack();
 }
 
 size_t CDCButton::NumStacks() const

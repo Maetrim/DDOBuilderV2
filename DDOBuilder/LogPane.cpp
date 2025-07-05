@@ -45,7 +45,8 @@ void CLogPane::DoDataExchange(CDataExchange* pDX)
 void CLogPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_wndOutputLog.GetSafeHwnd()))
+    if (IsWindow(m_wndOutputLog.GetSafeHwnd())
+            && IsWindowVisible())
     {
         m_wndOutputLog.MoveWindow(0, 0, cx, cy, TRUE);
     }

@@ -234,7 +234,8 @@ LRESULT CBreakdownsPane::OnLoadComplete(WPARAM, LPARAM)
 void CBreakdownsPane::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    if (IsWindow(m_itemBreakdownList.GetSafeHwnd()))
+    if (IsWindow(m_itemBreakdownList.GetSafeHwnd())
+            && IsWindowVisible())
     {
         // +---------------------------------+  ^
         // |                                 |  |
@@ -1504,6 +1505,7 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
     AddTacticalItem(Breakdown_TacticalAssassinate, Tactical_Assassinate, "Assassinate", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalStunning, Tactical_Stun, "Stun", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalSunder, Tactical_Sunder, "Sunder", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalTrap, Tactical_Trap, "Trap", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalTrip, Tactical_Trip, "Trip", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalGeneral, Tactical_General, "General", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalStunningShield, Tactical_StunningShield, "Stunning Shield", hTacticalParent);
@@ -2580,6 +2582,21 @@ void CBreakdownsPane::CreateChargesBreakdowns()
             hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRC);
         m_items.push_back(pRC);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            "Tumble Charges",
+            hParent,
+            TVI_LAST);
+        BreakdownItem* pTC = new BreakdownItemSimple(
+            this,
+            Breakdown_TumbleCharges,
+            Effect_TumbleCharge,
+            "Tumble Charges",
+            &m_itemBreakdownTree,
+            hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pTC);
+        m_items.push_back(pTC);
     }
 }
 

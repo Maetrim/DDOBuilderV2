@@ -846,7 +846,7 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
         DoClass3();
         break;
     case HT_LevelClass1:
-        if (m_pCharacter->ActiveBuild()->Class(0) == Class_Unknown)
+        if (m_pCharacter->ActiveBuild()->Class(0) == Class_Unknown && ht.Level() < MAX_CLASS_LEVEL)
         {
             DoClass1();
         }
@@ -857,7 +857,7 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
         }
         break;
     case HT_LevelClass2:
-        if (m_pCharacter->ActiveBuild()->Class(1) == Class_Unknown)
+        if (m_pCharacter->ActiveBuild()->Class(1) == Class_Unknown && ht.Level() < MAX_CLASS_LEVEL)
         {
             DoClass2();
             if (m_pCharacter->ActiveBuild()->Class(1) != Class_Unknown)
@@ -873,7 +873,7 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
         }
         break;
     case HT_LevelClass3:
-        if (m_pCharacter->ActiveBuild()->Class(2) == Class_Unknown)
+        if (m_pCharacter->ActiveBuild()->Class(2) == Class_Unknown && ht.Level() < MAX_CLASS_LEVEL)
         {
             DoClass3();
             if (m_pCharacter->ActiveBuild()->Class(2) != Class_Unknown)

@@ -73,7 +73,8 @@ void CClassAndFeatPane::OnSize(UINT nType, int cx, int cy)
 {
     static CSize s_lastSize = CSize(0, 0);
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_featsAndClasses.GetSafeHwnd()))
+    if (IsWindow(m_featsAndClasses.GetSafeHwnd())
+            && IsWindowVisible())
     {
         CSize requiredSize = m_featsAndClasses.RequiredSize();
         if (requiredSize == CSize(0, 0))

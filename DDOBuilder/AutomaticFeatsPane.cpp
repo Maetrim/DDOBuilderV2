@@ -106,7 +106,8 @@ LRESULT CAutomaticFeatsPane::OnLoadComplete(WPARAM, LPARAM)
 void CAutomaticFeatsPane::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    if (IsWindow(m_automaticFeats.GetSafeHwnd()))
+    if (IsWindow(m_automaticFeats.GetSafeHwnd())
+            && IsWindowVisible())
     {
         CSize requiredSize = m_automaticFeats.RequiredSize();
         int scrollY = GetScrollPos(SB_VERT);

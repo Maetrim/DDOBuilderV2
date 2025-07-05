@@ -71,6 +71,7 @@ enum BreakdownType
     Breakdown_TacticalAssassinate,
     Breakdown_TacticalStunning,
     Breakdown_TacticalSunder,
+    Breakdown_TacticalTrap,
     Breakdown_TacticalTrip,
     Breakdown_TacticalStunningShield,
     Breakdown_TacticalGeneral,
@@ -286,6 +287,7 @@ enum BreakdownType
     // Enhancements with charges
     Breakdown_LayOnHands,
     Breakdown_Rages,
+    Breakdown_TumbleCharges,
     // others
     Breakdown_LOHRegenerationRate,
     // hirelings

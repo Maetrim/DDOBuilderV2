@@ -1057,6 +1057,7 @@ void CEnhancementTreeDialog::SetTooltipText(
     // if its trained, we need to show the selected sub-item tooltip
     Build* pBuild = m_pCharacter->ActiveBuild();
     const TrainedEnhancement * te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
+    size_t ranksTrained = te != NULL ? te->Ranks() : 0;
     const EnhancementSelection * es = NULL;
     std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
@@ -1097,7 +1098,8 @@ void CEnhancementTreeDialog::SetTooltipText(
                 *pBuild,
                 &item,
                 selection,
-                pBuild->APSpentInTree(m_pTree->Name()));
+                pBuild->APSpentInTree(m_pTree->Name()),
+                ranksTrained);
     }
     m_tooltip.Show();
 }
