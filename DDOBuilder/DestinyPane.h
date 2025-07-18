@@ -54,7 +54,7 @@ class CDestinyPane :
         virtual void UpdateFeatEffectRevoked(Build*, const Effect & effect) override;
         virtual void UpdateEnhancementEffectApplied(Build*, const Effect & effect) override;
         virtual void UpdateEnhancementEffectRevoked(Build*, const Effect & effect) override;
-        virtual void UpdateEnhancementTreeOrderChanged(Build*) override;
+        virtual void UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt) override;
 
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;

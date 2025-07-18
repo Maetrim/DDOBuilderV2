@@ -1098,3 +1098,17 @@ void CMainFrame::OnResetScreenLayout()
         pAppEx->SaveState(this, "Workspace");
     }
 }
+
+void CMainFrame::ResizeWindows()
+{
+    for (auto&& pane: m_dockablePanes)
+    {
+        if (pane->IsWindowVisible())
+        {
+            CRect rect;
+            pane->GetWindowRect(rect);
+            pane->GetView()->PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rect.Width(), rect.Height()));
+        }
+    }
+}
+

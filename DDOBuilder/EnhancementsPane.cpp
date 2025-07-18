@@ -643,10 +643,13 @@ void CEnhancementsPane::UpdateEnhancementEffectRevoked(
      }
 }
 
-void CEnhancementsPane::UpdateEnhancementTreeOrderChanged(Build*)
+void CEnhancementsPane::UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt)
 {
-    DestroyEnhancementWindows();
-    CreateEnhancementWindows();
+    if (tt == TT_enhancement || tt == TT_universal)
+    {
+        DestroyEnhancementWindows();
+        CreateEnhancementWindows();
+    }
 }
 
 void CEnhancementsPane::UpdateActionPointsChanged(Build*)

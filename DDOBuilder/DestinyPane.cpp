@@ -592,10 +592,13 @@ void CDestinyPane::UpdateEnhancementEffectRevoked(
     }
 }
 
-void CDestinyPane::UpdateEnhancementTreeOrderChanged(Build*)
+void CDestinyPane::UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt)
 {
-    DestroyEnhancementWindows();
-    CreateEnhancementWindows();
+    if (tt == TT_epicDestiny)
+    {
+        DestroyEnhancementWindows();
+        CreateEnhancementWindows();
+    }
 }
 
 LRESULT CDestinyPane::OnUpdateTrees(WPARAM wParam, LPARAM lParam)

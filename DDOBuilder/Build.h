@@ -69,7 +69,7 @@ class BuildObserver :
         virtual void UpdateEnhancementRevoked(Build*, const EnhancementItemParams& item) {UNREFERENCED_PARAMETER(item);};
         virtual void UpdateEnhancementEffectApplied(Build*, const Effect& effect) {UNREFERENCED_PARAMETER(effect);};
         virtual void UpdateEnhancementEffectRevoked(Build*, const Effect& effect) {UNREFERENCED_PARAMETER(effect);};
-        virtual void UpdateEnhancementTreeOrderChanged(Build*) {};
+        virtual void UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt) {UNREFERENCED_PARAMETER(tt);};
         virtual void UpdateActionPointsChanged(Build*) {};
         virtual void UpdateNewStance(Build*, const Stance& stance) {UNREFERENCED_PARAMETER (stance);};
         virtual void UpdateRevokeStance(Build*, const Stance& stance) {UNREFERENCED_PARAMETER(stance);};
@@ -420,7 +420,7 @@ class Build :
         void NotifyEnhancementRevoked(const EnhancementItemParams& item);
         void NotifyEnhancementEffectApplied(const Effect& effect);
         void NotifyEnhancementEffectRevoked(const Effect& effect);
-        void NotifyEnhancementTreeOrderChanged();
+        void NotifyEnhancementTreeOrderChanged(enum TreeType tt);
         void NotifyActionPointsChanged();
         void NotifyNewStance(const Stance& stance);
         void NotifyRevokeStance(const Stance& stance);

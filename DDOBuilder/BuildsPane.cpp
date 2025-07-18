@@ -321,6 +321,10 @@ void CBuildsPane::PopulateBuildsList()
     NMHDR hdrNotUsed;
     LRESULT lNotUsed;
     OnSelchangedTreeBuilds(&hdrNotUsed, &lNotUsed);
+    //ensure controls placed correctly
+    CRect rctParent;
+    GetParent()->GetClientRect(&rctParent);
+    PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rctParent.Width(), rctParent.Height()));
 }
 
 void CBuildsPane::OnButtonNewLife()

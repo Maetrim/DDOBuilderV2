@@ -167,17 +167,14 @@ std::vector<EnhancementTree> CReaperEnhancementsPane::DetermineTrees()
 {
     // the three standard reaper trees are always the ones available
     std::vector<EnhancementTree> trees;
-    const std::list<EnhancementTree> & allTrees = EnhancementTrees();
-    std::list<EnhancementTree>::const_iterator it = allTrees.begin();
-    while (it != allTrees.end())
+    Build *pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
     {
-        // get all the trees that are compatible with the race/class setup
-        if ((*it).HasIsReaperTree())
+        Reaper_SelectedTrees selTrees = pBuild->ReaperSelectedTrees(); // take a copy
+        for (size_t i = 0.; i < MST_Number; ++i)
         {
-            // yes this is one of our tree's add it
-            trees.push_back((*it));
+            trees.push_back(GetEnhancementTree(selTrees.Tree(i)));
         }
-        ++it;
     }
     return trees;
 }
@@ -273,6 +270,16 @@ void CReaperEnhancementsPane::UpdateEnhancementRevoked(
         const EnhancementItemParams&)
 {
     UpdateWindowTitle();
+}
+
+void CReaperEnhancementsPane::UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt)
+{
+    if (tt == TT_reaper)
+    {
+        DestroyEnhancementWindows();
+        m_availableTrees = DetermineTrees();
+        CreateEnhancementWindows();
+    }
 }
 
 void CReaperEnhancementsPane::UpdateActiveLifeChanged(Character*)

@@ -36,6 +36,7 @@ public:
     void LoadComplete();
     BreakdownItem* FindBreakdown(BreakdownType type);
     CFormView* GetPaneView(const CRuntimeClass* c);
+    void ResizeWindows();
 
     void BeginProgress(CString fixedText);
     void SetProgress(int nProg);

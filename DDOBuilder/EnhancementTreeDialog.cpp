@@ -8,6 +8,7 @@
 #include "SelectionSelectDialog.h"
 #include "MouseHook.h"
 #include "Character.h"
+#include "DDOBuilder.h"
 
 namespace
 {
@@ -129,7 +130,7 @@ CEnhancementTreeDialog::CEnhancementTreeDialog(
         CWnd* pParent,
         Character* pCharacter,
         const EnhancementTree & tree,
-        TreeType type) :
+        enum TreeType type) :
     CDialog(CEnhancementTreeDialog::IDD, pParent),
     m_pTree(&tree),
     m_type(type),
@@ -187,10 +188,15 @@ void CEnhancementTreeDialog::ChangeTree(const EnhancementTree& tree)
     }
 }
 
-void CEnhancementTreeDialog::SetTreeType(TreeType tt)
+void CEnhancementTreeDialog::SetTreeType(enum TreeType tt)
 {
     // only called when being changed to a preview tree
     m_type = tt;
+}
+
+TreeType CEnhancementTreeDialog::TreeType() const
+{
+    return m_type;
 }
 
 void CEnhancementTreeDialog::DoDataExchange(CDataExchange* pDX)
@@ -696,16 +702,8 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     if (item->HasSelections()
                             && te == NULL)
                     {
-                        // need to show the selection dialog
-                        CSelectionSelectDialog dlg(
-                                this,
-                                *pBuild,
-                                *item,
-                                m_pTree->Name(),
-                                m_type);
-                        // no tooltips while a dialog is displayed
-                        GetMouseHook()->SaveState();
-                        if (dlg.DoModal() == IDOK)
+                        std::string selection = GetSelection(*item);
+                        if (selection != "")
                         {
                             // they made a valid selection
                             switch (m_type)
@@ -716,27 +714,26 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                 pBuild->Enhancement_TrainEnhancement(
                                         m_pTree->Name(),
                                         item->InternalName(),
-                                        dlg.Selection(),
-                                        item->ItemCosts(dlg.Selection()));
+                                        selection,
+                                        item->ItemCosts(selection));
                                 break;
                             case TT_epicDestiny:
                                 pBuild->Destiny_TrainEnhancement(
                                         m_pTree->Name(),
                                         item->InternalName(),
-                                        dlg.Selection(),
-                                        item->ItemCosts(dlg.Selection()));
+                                        selection,
+                                        item->ItemCosts(selection));
                                 break;
                             case TT_reaper:
                                 pBuild->Reaper_TrainEnhancement(
                                         m_pTree->Name(),
                                         item->InternalName(),
-                                        dlg.Selection(),
-                                        item->ItemCosts(dlg.Selection()));
+                                        selection,
+                                        item->ItemCosts(selection));
                                 break;
                             }
                             Invalidate();
                         }
-                        GetMouseHook()->RestoreState();
                     }
                     else
                     {
@@ -833,8 +830,6 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
             }
             // optional tree drag and reposition option
             if (!m_pTree->HasIsRacialTree()
-                    && !m_pTree->HasIsReaperTree()
-                    && !m_pTree->HasIsEpicDestiny()
                     && m_pTree->Items().size() > 0)
             {
                 CPoint mouse;
@@ -873,12 +868,24 @@ void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
                 && pTarget != NULL
                 && pTarget != this)
         {
-            if (pTarget->CanSwapTree())
+            if (pTarget->CanSwapTree(TreeType()))
             {
                 // get the names of the two trees to swap
                 std::string tree1 = m_pTree->Name();
                 std::string tree2 = pTarget->m_pTree->Name();
-                pBuild->Enhancement_SwapTrees(tree1, tree2);
+                switch (TreeType())
+                {
+                    case TT_universal:
+                    case TT_enhancement:
+                        pBuild->Enhancement_SwapTrees(tree1, tree2);
+                        break;
+                    case TT_epicDestiny:
+                        pBuild->Destiny_SwapTrees(tree1, tree2);
+                        break;
+                    case TT_reaper:
+                        pBuild->Reaper_SwapTrees(tree1, tree2);
+                        break;
+                }
             }
         }
     }
@@ -988,7 +995,7 @@ void CEnhancementTreeDialog::OnMouseMove(UINT nFlags, CPoint point)
                 && pTarget != this)
         {
             // has to be a valid target tree that is not us
-            if (pTarget->CanSwapTree())
+            if (pTarget->CanSwapTree(TreeType()))
             {
                 SetCursor(LoadCursor(NULL, IDC_UPARROW));
             }
@@ -1261,8 +1268,7 @@ BOOL CEnhancementTreeDialog::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message
     BOOL retVal = FALSE;
 
     if (!m_pTree->HasIsRacialTree()
-            && !m_pTree->HasIsReaperTree()
-            && !m_pTree->HasIsEpicDestiny()
+            && TreeType() != TT_preview
             && m_pTree->Items().size() > 0)
     {
         CPoint mouse;
@@ -1287,16 +1293,20 @@ BOOL CEnhancementTreeDialog::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message
     return retVal;
 }
 
-bool CEnhancementTreeDialog::CanSwapTree() const
+bool CEnhancementTreeDialog::CanSwapTree(enum TreeType tt) const
 {
     bool canSwap = false;
     // can we accept this drop request?
-    if (!m_pTree->HasIsRacialTree()
-            && !m_pTree->HasIsReaperTree()
-            && !m_pTree->HasIsEpicDestiny()
-            && m_pTree->Items().size() > 0)
+    if (tt == TreeType())
     {
         canSwap = true;
+    }
+    else
+    {
+        // special case where enhancement and universal trees can be swapped
+        bool oursE_or_U = (TreeType() == TT_enhancement || TreeType() == TT_universal);
+        bool theirsE_or_U = (tt == TT_enhancement || tt == TT_universal);
+        canSwap = (oursE_or_U && theirsE_or_U);
     }
     return canSwap;
 }
@@ -1488,4 +1498,102 @@ void CEnhancementTreeDialog::ApplyArrowToItem(bool bUpArrows)
             AfxMessageBox("No arrow applied as no target item", MB_ICONERROR);
         }
     }
+}
+
+std::string CEnhancementTreeDialog::GetSelection(const EnhancementTreeItem & item)
+{
+    std::string selection;
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    bool bAutoSelectSingleoptionEnhancements = false;
+    CWinApp* pApp = AfxGetApp();
+    CDDOBuilderApp* pOurApp = dynamic_cast<CDDOBuilderApp*>(pApp);
+    if (pOurApp != NULL)
+    {
+        bAutoSelectSingleoptionEnhancements = pOurApp->AutoSelectSingleOptionEnhancements();
+    }
+    if (bAutoSelectSingleoptionEnhancements)
+    {
+        selection = GetAutoSelection(item);
+    }
+    if (selection == "")
+    {
+        // need to show the selection dialog
+        CSelectionSelectDialog dlg(
+                this,
+                *pBuild,
+                item,
+                m_pTree->Name(),
+                m_type);
+        // no tooltips while a dialog is displayed
+        GetMouseHook()->SaveState();
+        if (dlg.DoModal() == IDOK)
+        {
+            selection = dlg.Selection();
+        }
+        GetMouseHook()->RestoreState();
+    }
+    return selection;
+}
+
+std::string CEnhancementTreeDialog::GetAutoSelection(const EnhancementTreeItem & item)
+{
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    size_t selectable = 0;
+    std::string selection;
+    const Selector & selector = item.Selections();
+    const std::list<EnhancementSelection> & selections = selector.Selections();
+    std::list<EnhancementSelection>::const_iterator it = selections.begin();
+    size_t spentInTree = pBuild->APSpentInTree(m_pTree->Name());
+    while (it != selections.end())
+    {
+        bool excluded = false;
+        const std::list<std::string> & exclusions = selector.Exclusions();
+        // check all the exclusions
+        std::list<std::string>::const_iterator eit = exclusions.begin();
+        while (eit != exclusions.end())
+        {
+            const TrainedEnhancement * te = pBuild->IsTrained((*eit), "");
+            if (te != NULL)
+            {
+                // this previous enhancement is trained, see what was selected
+                if (te->HasSelection()
+                        && te->Selection() == (*it).Name())
+                {
+                    // previously trained
+                    excluded = true;
+                }
+            }
+            ++eit;
+        }
+        bool canTrain = true;
+        if ((*it).HasMinSpent())
+        {
+            canTrain &= ((*it).MinSpent() <= spentInTree);
+        }
+        if ((*it).HasRequirementsToTrain())
+        {
+            std::vector<size_t> classLevels = pBuild->ClassLevels(pBuild->Level()-1);
+            std::list<TrainedFeat> trainedFeats = pBuild->CurrentFeats(pBuild->Level() - 1);
+            canTrain &= (*it).RequirementsToTrain().Met(
+                    *pBuild,
+                    pBuild->Level()-1,
+                    true,          // do include tomes
+                    Inventory_Unknown,
+                    Weapon_Unknown,
+                    Weapon_Unknown);
+        }
+        bool enoughAP = (pBuild->AvailableActionPoints(pBuild->Level(),  m_type) >= (int)(*it).Cost(0));
+        bool requiredAPSpent = (spentInTree >= item.MinSpent());
+        if (!excluded && canTrain && enoughAP && requiredAPSpent)
+        {
+            ++selectable;
+            selection = (*it).Name().c_str();
+        }
+        ++it;
+    }
+    if (selectable != 1)
+    {
+        selection = ""; // cannot auto select
+    }
+    return selection;
 }

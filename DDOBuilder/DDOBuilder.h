@@ -44,6 +44,7 @@ public:
     BOOL  m_bHiColorIcons;
 
     bool LamanniaMode() const;
+    bool AutoSelectSingleOptionEnhancements() const;
 
     const std::list<Bonus>& BonusTypes() const;
     const std::list<Race>& Races() const;
@@ -100,6 +101,8 @@ public:
     afx_msg void OnFileImport();
     afx_msg void OnUpdateLamanniaMode(CCmdUI* pCmdUI);
     afx_msg void OnLamanniaMode();
+    afx_msg void OnUpdateSingleOptionEnhancements(CCmdUI* pCmdUI);
+    afx_msg void OnSingleOptionEnhancements();
     DECLARE_MESSAGE_MAP()
 private:
     void LoadData();
@@ -190,6 +193,7 @@ private:
     bool m_bKillItemLoadThread;
 
     bool m_bLamanniaMode;
+    bool m_bAutoSelectSingleOptionEnhancements;
 
     friend class Item;
     friend class EquippedGear;

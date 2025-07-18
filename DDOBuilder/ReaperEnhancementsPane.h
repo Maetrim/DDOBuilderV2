@@ -41,6 +41,7 @@ private:
     // Build Observer overrides
     virtual void UpdateEnhancementTrained(Build*, const EnhancementItemParams& item) override;
     virtual void UpdateEnhancementRevoked(Build*, const EnhancementItemParams& item) override;
+    virtual void UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt) override;
 
     std::vector<EnhancementTree> DetermineTrees();
     void CreateEnhancementWindows();

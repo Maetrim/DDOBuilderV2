@@ -53,6 +53,8 @@ BEGIN_MESSAGE_MAP(CDDOBuilderApp, CWinAppEx)
     ON_COMMAND(ID_FILE_IMPORT, &CDDOBuilderApp::OnFileImport)
     ON_UPDATE_COMMAND_UI(ID_LAMANNIA_MODE, &CDDOBuilderApp::OnUpdateLamanniaMode)
     ON_COMMAND(ID_LAMANNIA_MODE, &CDDOBuilderApp::OnLamanniaMode)
+    ON_UPDATE_COMMAND_UI(ID_SETTINGS_AUTOSELECTSINGLEOPTIONENHANCEMENTS, &CDDOBuilderApp::OnUpdateSingleOptionEnhancements)
+    ON_COMMAND(ID_SETTINGS_AUTOSELECTSINGLEOPTIONENHANCEMENTS, &CDDOBuilderApp::OnSingleOptionEnhancements)
 END_MESSAGE_MAP()
 
 // CDDOBuilderApp construction
@@ -62,7 +64,8 @@ CDDOBuilderApp::CDDOBuilderApp() :
     m_dwHtmlHelpCookie(NULL),
     m_bItemLoadThreadRunning(false),
     m_bKillItemLoadThread(false),
-    m_bLamanniaMode(false)
+    m_bLamanniaMode(false),
+    m_bAutoSelectSingleOptionEnhancements(false)
 {
     EnableHtmlHelp();
 
@@ -151,6 +154,7 @@ BOOL CDDOBuilderApp::InitInstance()
         return FALSE;
     }
 
+    m_bAutoSelectSingleOptionEnhancements = (GetProfileInt("SEttings", "AutoSelectSingleOptionEnhancements",0) != 0);
     //InitContextMenuManager(); // we construct our own custom one
     InitShellManager();
 
@@ -197,6 +201,8 @@ BOOL CDDOBuilderApp::InitInstance()
     //  In an SDI app, this should occur after ProcessShellCommand
     // Enable drag/drop open
     m_pMainWnd->DragAcceptFiles();
+    CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(m_pMainWnd);
+    pMainWnd->ResizeWindows();    // ensure dock windows show content
 
     OnIdle(0);  // get UI to update
     LoadData();
@@ -1831,6 +1837,11 @@ void CDDOBuilderApp::OnUpdateLamanniaMode(CCmdUI* pCmdUI)
     pCmdUI->Enable(FALSE);  // Comment this line when Lamannia mode features are present
 }
 
+bool CDDOBuilderApp::AutoSelectSingleOptionEnhancements() const
+{
+    return m_bAutoSelectSingleOptionEnhancements;
+}
+
 void CDDOBuilderApp::OnLamanniaMode()
 {
     m_bLamanniaMode = !m_bLamanniaMode;
@@ -1856,3 +1867,15 @@ void CDDOBuilderApp::OnLamanniaMode()
         }
     }
 }
+
+void CDDOBuilderApp::OnUpdateSingleOptionEnhancements(CCmdUI* pCmdUI)
+{
+    pCmdUI->SetCheck(m_bAutoSelectSingleOptionEnhancements ? 1 : 0);
+}
+
+void CDDOBuilderApp::OnSingleOptionEnhancements()
+{
+    m_bAutoSelectSingleOptionEnhancements = !m_bAutoSelectSingleOptionEnhancements;
+    WriteProfileInt("SEttings", "AutoSelectSingleOptionEnhancements", m_bAutoSelectSingleOptionEnhancements ? 1 : 0);
+}
+

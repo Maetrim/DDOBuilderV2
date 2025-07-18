@@ -10,4 +10,8 @@ namespace
 Reaper_SelectedTrees::Reaper_SelectedTrees() :
     SelectedTrees(f_saxElementName, MAX_REAPER_TREES)
 {
+    // setup the default tree selections
+    SetTree(0, "Dire Thaumaturge");
+    SetTree(1, "Dread Adversary");
+    SetTree(2, "Grim Barricade");
 }

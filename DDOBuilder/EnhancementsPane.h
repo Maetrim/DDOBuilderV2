@@ -59,7 +59,7 @@ private:
     virtual void UpdateFeatEffectRevoked(Build*, const Effect & effect) override;
     virtual void UpdateEnhancementEffectApplied(Build*, const Effect & effect) override;
     virtual void UpdateEnhancementEffectRevoked(Build*, const Effect & effect) override;
-    virtual void UpdateEnhancementTreeOrderChanged(Build*) override;
+    virtual void UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt) override;
     virtual void UpdateActionPointsChanged(Build*) override;
 
     std::list<EnhancementTree> DetermineTrees();

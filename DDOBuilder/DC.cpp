@@ -123,20 +123,23 @@ int DC::CalculateDC(const Build * build) const
     }
     value += fullAbilityBonus;
     // use the largest of any ModAbility values
-    int modAbilityBonus = -5;
-    std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
-    while (mait != m_ModAbility.end())
+    if (m_ModAbility.size() > 0)
     {
-        BreakdownType bt = StatToBreakdown(*mait);
-        BreakdownItem * pBI = FindBreakdown(bt);
-        int abilityBonus = BaseStatToBonus(pBI->Total());
-        if (abilityBonus > modAbilityBonus)
+        int modAbilityBonus = -5;
+        std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
+        while (mait != m_ModAbility.end())
         {
-            modAbilityBonus = abilityBonus;
+            BreakdownType bt = StatToBreakdown(*mait);
+            BreakdownItem * pBI = FindBreakdown(bt);
+            int abilityBonus = BaseStatToBonus(pBI->Total());
+            if (abilityBonus > modAbilityBonus)
+            {
+                modAbilityBonus = abilityBonus;
+            }
+            ++mait;
         }
-        ++mait;
+        value += modAbilityBonus;
     }
-    value += modAbilityBonus;
     // add any skill breakdown bonus
     if (m_hasSkill)
     {

@@ -185,6 +185,7 @@
 #define HID_VIEW_RESETSCREENLAYOUT              0x1805E
 #define HID_FILE_REVERTTOBACKUP                 0x18060
 #define HID_LAMANNIA_MODE                       0x18061
+#define HID_SETTINGS_AUTOSELECTSINGLEOPTIONENHANCEMENTS	0x18062
 #define HIDD2_ABOUTBOX                          0x10064
 #define HIDD2_DDOBUILDER_FORM                   0x10065
 #define HIDD2_BUILDS_PANE                       0x10066

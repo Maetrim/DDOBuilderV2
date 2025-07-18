@@ -183,11 +183,6 @@ void CDCButton::UpdateEnhancementEffectRevoked(Build*, const Effect&)
     Invalidate(TRUE);
 }
 
-void CDCButton::UpdateEnhancementTreeOrderChanged(Build*)
-{
-    Invalidate(TRUE);
-}
-
 void CDCButton::UpdateItemEffectApplied(Build*, const Effect&)
 {
     Invalidate(TRUE);

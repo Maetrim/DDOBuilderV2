@@ -61,72 +61,79 @@ void CComboBoxTooltip::SetImageList(CImageList* il)
 
 void CComboBoxTooltip::DrawItem(LPDRAWITEMSTRUCT lpDis)
 {
-    bool bDarkMode = DarkModeEnabled();
-    bool isDropped = (GetDroppedState() != 0);
-    if (!m_bSubclassedListbox)
+    if (NULL != lpDis && (lpDis->CtlType == ODT_LISTBOX || lpDis->CtlType == ODT_COMBOBOX))
     {
-        COMBOBOXINFO cbInfo;
-        memset(&cbInfo, 0, sizeof(COMBOBOXINFO));
-        cbInfo.cbSize = sizeof(COMBOBOXINFO);
-        GetComboBoxInfo(&cbInfo);
-        m_delayedListBox.SetOwner(this);
-        m_delayedListBox.SubclassWindow(cbInfo.hwndList);
-        m_bSubclassedListbox = true;
-    }
-    if (lpDis->itemID != CB_ERR)
-    {
-        CDC* pDC = CDC::FromHandle(lpDis->hDC);
-        CRect rcItem = lpDis->rcItem;
-        int nState = lpDis->itemState;
-        int nItem = lpDis->itemID;
-        int nIndexDC = pDC->SaveDC();
-
-        // highlight the background if selected.
-        if (nState & ODS_SELECTED)
+        bool bDarkMode = DarkModeEnabled();
+        bool isDropped = (GetDroppedState() != 0);
+        if (!m_bSubclassedListbox)
         {
-            pDC->FillSolidRect(rcItem, f_selectedColour);
-            pDC->SetTextColor(f_white);
-            if (isDropped
-                && lpDis->itemID != static_cast<UINT>(m_selection)
-                && lpDis->itemAction == ODA_SELECT
-                && (nState & 0x1000) == 0)  // Cancel operation
+            COMBOBOXINFO cbInfo;
+            memset(&cbInfo, 0, sizeof(COMBOBOXINFO));
+            cbInfo.cbSize = sizeof(COMBOBOXINFO);
+            GetComboBoxInfo(&cbInfo);
+            m_delayedListBox.SetOwner(this);
+            m_delayedListBox.SubclassWindow(cbInfo.hwndList);
+            m_bSubclassedListbox = true;
+        }
+        if (lpDis->itemID != CB_ERR)
+        {
+            CDC* pDC = CDC::FromHandle(lpDis->hDC);
+            CRect rcItem = lpDis->rcItem;
+            int nState = lpDis->itemState;
+            int nItem = lpDis->itemID;
+            int nIndexDC = pDC->SaveDC();
+
+            // highlight the background if selected.
+            if (nState & ODS_SELECTED)
             {
-                m_selection = lpDis->itemID;
-                // this is the item we need to notify a hover about
-                ::SendMessage(
-                    GetParent()->GetSafeHwnd(),
-                    WM_MOUSEHOVER,
-                    lpDis->itemID,
-                    GetDlgCtrlID());
+                pDC->FillSolidRect(rcItem, f_selectedColour);
+                pDC->SetTextColor(f_white);
+                if (isDropped
+                    && lpDis->itemID != static_cast<UINT>(m_selection)
+                    && lpDis->itemAction == ODA_SELECT
+                    && (nState & 0x1000) == 0)  // Cancel operation
+                {
+                    m_selection = lpDis->itemID;
+                    // this is the item we need to notify a hover about
+                    ::SendMessage(
+                        GetParent()->GetSafeHwnd(),
+                        WM_MOUSEHOVER,
+                        lpDis->itemID,
+                        GetDlgCtrlID());
+                }
             }
-        }
-        else
-        {
-            // white background, black text
-            pDC->FillSolidRect(rcItem, bDarkMode ? f_backgroundColourDark  : f_white);
-            pDC->SetTextColor(bDarkMode ? f_white : f_black);
-        }
+            else
+            {
+                // white background, black text
+                pDC->FillSolidRect(rcItem, bDarkMode ? f_backgroundColourDark  : f_white);
+                pDC->SetTextColor(bDarkMode ? f_white : f_black);
+            }
 
-        // draw image if it has one
-        CRect rcText(lpDis->rcItem);
-        if (m_bHasImageList)
-        {
-            IMAGEINFO imageInfo;
-            m_imageList.GetImageInfo(0, &imageInfo);
-            CRect iconRect(imageInfo.rcImage);
-            // ensure text is drawn to the right of the image
-            rcText.left += rcItem.Height() + 2;
-            m_imageList.Draw(pDC, lpDis->itemData, rcItem.TopLeft(), ILD_NORMAL);
+            // draw image if it has one
+            CRect rcText(lpDis->rcItem);
+            if (m_bHasImageList)
+            {
+                IMAGEINFO imageInfo;
+                m_imageList.GetImageInfo(0, &imageInfo);
+                CRect iconRect(imageInfo.rcImage);
+                // ensure text is drawn to the right of the image
+                rcText.left += rcItem.Height() + 2;
+                m_imageList.Draw(pDC, lpDis->itemData, rcItem.TopLeft(), ILD_NORMAL);
+            }
+
+            pDC->SetBkMode(TRANSPARENT);    // draw text in transparent mode
+            // Draw the text item.
+            CString strFontName;
+            GetLBText(nItem, strFontName);
+            pDC->DrawText(strFontName, rcText, DT_VCENTER | DT_SINGLELINE);
+
+            // Restore the original device context.
+            pDC->RestoreDC(nIndexDC);
         }
-
-        pDC->SetBkMode(TRANSPARENT);    // draw text in transparent mode
-        // Draw the text item.
-        CString strFontName;
-        GetLBText(nItem, strFontName);
-        pDC->DrawText(strFontName, rcText, DT_VCENTER | DT_SINGLELINE);
-
-        // Restore the original device context.
-        pDC->RestoreDC(nIndexDC);
+    }
+    else
+    {
+        ::OutputDebugString("Bad combo item\n");
     }
 }
 

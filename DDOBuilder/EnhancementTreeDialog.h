@@ -61,6 +61,7 @@ class CEnhancementTreeDialog :
         const std::string& CurrentTree() const;
         void ChangeTree(const EnhancementTree & tree);
         void SetTreeType(TreeType tt);
+        TreeType TreeType() const;
 
     protected:
         //{{AFX_VIRTUAL(CEnhancementTreeDialog)
@@ -105,12 +106,15 @@ class CEnhancementTreeDialog :
         void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);
-        bool CanSwapTree() const;
+        bool CanSwapTree(enum TreeType tt) const;
         void ValidateTreeSelections();
         void ApplyArrowToItem(bool bUpArrows);
 
+        std::string GetSelection(const EnhancementTreeItem & item);
+        std::string GetAutoSelection(const EnhancementTreeItem & item);
+
         const EnhancementTree * m_pTree;
-        TreeType m_type;
+        enum TreeType m_type;
         Character * m_pCharacter;
         CSize m_bitmapSize;
         CBitmap m_cachedDisplay;

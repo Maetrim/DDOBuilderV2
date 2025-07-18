@@ -22,6 +22,7 @@ namespace
     COLORREF f_backgroundColourDark = RGB(83, 83, 83);
     COLORREF f_white = RGB(255, 255, 255);                      // white
     COLORREF f_black = RGB(0, 0, 0);                            // black
+    const int c_NumComboItems = 28;                             // seems to show 27 items at this setting
 }
 
 IMPLEMENT_DYNAMIC(CFeatsClassControl, CWnd)
@@ -939,7 +940,25 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
             m_featSelector.SetCanRemoveItems();
             // position the drop list combo over the feat selection position
             CRect comboRect(ht.Rect());
-            comboRect.bottom = comboRect.top + 960;   // 20 items visible in drop list
+            comboRect.bottom = ht.Rect().bottom + (32 * c_NumComboItems) + ::GetSystemMetrics(SM_CYBORDER) * 4;   // 20 items visible in drop list (32 pixels each)
+            HMONITOR hMonitor = MonitorFromPoint(comboRect.TopLeft(), MONITOR_DEFAULTTONEAREST);
+            MONITORINFOEX monitorInfo;
+            memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
+            monitorInfo.cbSize = sizeof(MONITORINFOEX);
+            GetMonitorInfo(hMonitor, &monitorInfo);
+            CRect monitorSize(monitorInfo.rcWork);
+            if (monitorSize.bottom - comboRect.bottom < 0)
+            {
+                // combo drop list will be placed above the main control
+                // make sure that the drop list size will fit above us
+                int multipleAbove = (comboRect.top - ::GetSystemMetrics(SM_CYBORDER) * 2) / 32 - 2;
+                int multipleBelow = (monitorSize.bottom - ht.Rect().bottom - ::GetSystemMetrics(SM_CYBORDER) * 4) / 32 - 2;
+                int multipleMax = max(multipleAbove, multipleBelow);
+                if (multipleMax < c_NumComboItems)
+                {
+                    comboRect.bottom = ht.Rect().bottom + (32 * multipleMax) + ::GetSystemMetrics(SM_CYBORDER) * 4;
+                }
+            }
             m_featSelector.MoveWindow(comboRect);
             m_featSelector.SetCurSel(sel);
             m_featSelector.SetDroppedWidth(350); // wider to show extra text

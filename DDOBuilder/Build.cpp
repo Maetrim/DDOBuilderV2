@@ -1626,7 +1626,7 @@ void Build::Enhancement_SwapTrees(
         const std::string& tree2)
 {
     m_EnhancementSelectedTrees.SwapTrees(tree1, tree2);
-    NotifyEnhancementTreeOrderChanged();
+    NotifyEnhancementTreeOrderChanged(TT_enhancement);
 }
 
 void Build::Destiny_SwapTrees(
@@ -1634,7 +1634,7 @@ void Build::Destiny_SwapTrees(
         const std::string& tree2)
 {
     m_DestinySelectedTrees.SwapTrees(tree1, tree2);
-    NotifyEnhancementTreeOrderChanged();
+    NotifyEnhancementTreeOrderChanged(TT_epicDestiny);
 }
 
 void Build::Reaper_SwapTrees(
@@ -1642,7 +1642,7 @@ void Build::Reaper_SwapTrees(
         const std::string& tree2)
 {
     m_ReaperSelectedTrees.SwapTrees(tree1, tree2);
-    NotifyEnhancementTreeOrderChanged();
+    NotifyEnhancementTreeOrderChanged(TT_reaper);
 }
 
 int Build::AvailableActionPoints(
@@ -2856,9 +2856,9 @@ void Build::NotifyEnhancementEffectRevoked(
     NotifyAll(&BuildObserver::UpdateEnhancementEffectRevoked, this, effect);
 }
 
-void Build::NotifyEnhancementTreeOrderChanged()
+void Build::NotifyEnhancementTreeOrderChanged(enum TreeType tt)
 {
-    NotifyAll(&BuildObserver::UpdateEnhancementTreeOrderChanged, this);
+    NotifyAll(&BuildObserver::UpdateEnhancementTreeOrderChanged, this, tt);
 }
 
 void Build::NotifyActionPointsChanged()

@@ -45,17 +45,11 @@ void CLogPane::DoDataExchange(CDataExchange* pDX)
 void CLogPane::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_wndOutputLog.GetSafeHwnd())
-            && IsWindowVisible())
+    if (IsWindow(m_wndOutputLog.GetSafeHwnd()))
     {
         m_wndOutputLog.MoveWindow(0, 0, cx, cy, TRUE);
     }
     SetScaleToFitSize(CSize(cx, cy));
-    CWnd *pWnd = this;
-    while (pWnd != NULL)
-    {
-        pWnd = pWnd->GetParent();
-    }
 }
 
 void CLogPane::UpdateFonts()

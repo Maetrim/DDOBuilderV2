@@ -54,7 +54,6 @@ class CDCButton :
         virtual void UpdateEnhancementRevoked(Build*, const EnhancementItemParams& item) override;
         virtual void UpdateEnhancementEffectApplied(Build*, const Effect& effect) override;
         virtual void UpdateEnhancementEffectRevoked(Build*, const Effect& effect) override;
-        virtual void UpdateEnhancementTreeOrderChanged(Build*) override;
         virtual void UpdateItemEffectApplied(Build*, const Effect& effect) override;
         virtual void UpdateItemEffectRevoked(Build*, const Effect& effect) override;
         //{{AFX_MSG(CDCButton)
