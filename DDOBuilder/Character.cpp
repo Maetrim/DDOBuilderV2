@@ -404,10 +404,17 @@ void Character::TrainSpecialFeat(
         const std::string& featName)
 {
     const Feat& feat = FindFeat(featName);
-    // just add a copy of the feat name to the current list
-    TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
-    m_SpecialFeats.Add(tf);
-    m_hasSpecialFeats = true;
+    // old files had some feats in lives, if we load a file with multiple lives
+    // we get told about lots of extra versions of the same feats, Make sure
+    // we limit to the maximum acquired for the given feat
+    size_t trainedCount = GetSpecialFeatTrainedCount(featName);
+    if (trainedCount < feat.MaxTimesAcquire())
+    {
+        // just add a copy of the feat name to the current list
+        TrainedFeat tf(featName, (LPCTSTR)EnumEntryText(feat.Acquire(), featAcquisitionMap), 0);
+        m_SpecialFeats.Add(tf);
+        m_hasSpecialFeats = true;
+    }
 }
 
 bool Character::RevokeSpecialFeat(

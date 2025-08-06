@@ -1040,6 +1040,12 @@ std::vector<FeatSlot> Build::TrainableFeatTypeAtLevel(size_t level) const
             tft.push_back(standardFeat);
         }
     }
+    // you have to be level 8 to go into the Lamordia zone where this feat can be acquired
+    if (level == 8)
+    {
+        FeatSlot alterDarkGiftFeat(level, "Alter Dark Gift", false, false);
+        tft.push_back(alterDarkGiftFeat);
+    }
 
     // all other bonus feat types depend on class level
     // determine which class this level is
@@ -4271,7 +4277,7 @@ void Build::SetGearSetSnapshot(const std::string& setName)
 int Build::SnapshotAbilityValue(AbilityType at) const
 {
     int total = 0;
-    if (HasGearSetSnapshot())
+    if (HasGearSetSnapshot() && DoesGearSetExist(GearSetSnapshot()))
     {
         EquippedGear gear = GetGearSet(GearSetSnapshot());
         switch (at)

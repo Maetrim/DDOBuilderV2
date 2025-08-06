@@ -8,4 +8,5 @@ class Reaper_SelectedTrees :
 {
     public:
         Reaper_SelectedTrees();
+        virtual void EndElement();
 };

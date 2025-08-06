@@ -171,7 +171,7 @@ std::vector<EnhancementTree> CReaperEnhancementsPane::DetermineTrees()
     if (pBuild != NULL)
     {
         Reaper_SelectedTrees selTrees = pBuild->ReaperSelectedTrees(); // take a copy
-        for (size_t i = 0.; i < MST_Number; ++i)
+        for (size_t i = 0.; i < static_cast<size_t>(MST_Number); ++i)
         {
             trees.push_back(GetEnhancementTree(selTrees.Tree(i)));
         }
