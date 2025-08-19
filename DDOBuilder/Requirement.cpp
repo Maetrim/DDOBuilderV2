@@ -253,13 +253,10 @@ bool Requirement::VerifyObject(
                     ok = false;
                 }
                 it++;
-                for (auto&& iit : m_Item)
+                const ::WeaponType& wt = TextToEnumEntry((*it), weaponTypeMap);
+                if (wt == Weapon_Unknown)
                 {
-                    const ::Race& r = FindRace(iit);
-                    if (r.Name() == "")
-                    {
-                        (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad Race item field\n";
-                    }
+                    (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad WeaponType item field\n";
                 }
             }
             break;

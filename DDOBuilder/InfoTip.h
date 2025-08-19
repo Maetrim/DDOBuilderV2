@@ -17,7 +17,6 @@ class ItemAugment;
 class InfoTipItem;
 class Patron;
 class Requirements;
-class SetBonus;
 class Stance;
 class Spell;
 class SpellDamage;
@@ -55,7 +54,7 @@ class CInfoTip :
         void SetStanceItem(
                 const Stance& item);
         void SetSetBonusItem(
-                const SetBonus& item,
+                const std::string& item,
                 size_t numStacks,
                 bool bSuppressed,
                 const Build* pBuild);

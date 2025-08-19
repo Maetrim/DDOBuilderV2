@@ -1040,12 +1040,6 @@ std::vector<FeatSlot> Build::TrainableFeatTypeAtLevel(size_t level) const
             tft.push_back(standardFeat);
         }
     }
-    // you have to be level 8 to go into the Lamordia zone where this feat can be acquired
-    if (level == 8)
-    {
-        FeatSlot alterDarkGiftFeat(level, "Alter Dark Gift", false, false);
-        tft.push_back(alterDarkGiftFeat);
-    }
 
     // all other bonus feat types depend on class level
     // determine which class this level is
@@ -1058,6 +1052,13 @@ std::vector<FeatSlot> Build::TrainableFeatTypeAtLevel(size_t level) const
     // now look at what class is being trained and see if any bonus feats
     // apply at this class level
     FindClass(ctName).AddFeatSlots(*this, classLevel, &tft, level);
+
+    // you have to be level 4 to go into the Lamordia zone where this feat can be acquired
+    if (level == 3)
+    {
+        FeatSlot alterDarkGiftFeat(level, "Alter Dark Gift", false, false);
+        tft.push_back(alterDarkGiftFeat);
+    }
     return tft;
 }
 

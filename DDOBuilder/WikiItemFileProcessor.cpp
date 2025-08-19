@@ -306,6 +306,7 @@ void WikiItemFileProcessor::RemoveLinks(std::string& field)
         "<li",                  ">",
         "<img",                 ">",
         "<div",                 ">",
+        "<style",               ">",
         "Mythic Armor Boost",   ")",
         "Mythic Armor Boost",   "\n",
         "Mythic Weapon Boost",  ")",
@@ -336,7 +337,17 @@ void WikiItemFileProcessor::RemoveLinks(std::string& field)
         "6 Pieces",             "\n",
         "7 Pieces",             "\n",
         "8 Pieces",             "\n",
-        "9 Pieces",             "\n"
+        "9 Pieces",             "\n",
+        ".mw-parser-output span.augment.orange{background-color:#F4A460", "}",
+        ".mw-parser-output span.augment.purple{background-color:#DDA0DD", "}",
+        ".mw-parser-output span.augment.green{background-color:#90EE90", "}",
+        ".mw-parser-output span.augment.yellow{background-color:#EEE8AA", "}",
+        ".mw-parser-output span.augment.blue{background-color:#87CEFA", "}",
+        ".mw-parser-output span.augment.red{background-color:#FA8072", "}",
+        ".mw-parser-output span.augment.colorless{background-color:#F8F8FF", "}",
+        ".mw-parser-output span.augment>a{color:#3366CC", "}",
+        ".mw-parser-output span.augment>a:visited{color:#6a60b0}</style", ">",
+        "a:visited{color:#6a60b0}</style", ">"
     };
     size_t count = sizeof(badFields) / sizeof(std::string);
     if (count % 2 != 0)
@@ -682,12 +693,6 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
             bRealItem = true;
             m_item.Set_MinLevel(0);
         }
-        else
-        {
-            CString text;
-            text.Format("...Slot type \"%s\" not recognised", slotType.c_str());
-            GetLog().AddLogEntry(text);
-        }
     }
     else if (itemFields.find("Weapon Type") != itemFields.end())
     {
@@ -791,6 +796,7 @@ bool WikiItemFileProcessor::SetItemSlot(const std::map<std::string, std::string>
         {
             std::string armorType = itemFields.at("Armor Type");
             if (armorType == "Clothing"
+                || armorType == "Cloth"
                 || armorType == "Outfit"
                 || armorType == "Rags"
                 || armorType == "Starter Rags"
@@ -1198,6 +1204,8 @@ void WikiItemFileProcessor::AddItemEffects(const std::map<std::string, std::stri
             }
             std::string line = enchantments.substr(last, 5000); // rest is last line
             enchantmentLines.push_back(line);
+            ::OutputDebugString(line.c_str());
+            ::OutputDebugString("\r\n");
         }
         else
         {
@@ -1222,6 +1230,15 @@ void WikiItemFileProcessor::AddItemEffects(const std::map<std::string, std::stri
                     text.Format("...Line \"%s\" not processed.", it.c_str());
                     GetLog().AddLogEntry(text);
                 }
+            }
+            else
+            {
+                //if (!bProcessed)
+                //{
+                //    CString text;
+                //    text.Format("...Augment/SetBonus Line \"%s\" not processed.", it.c_str());
+                //    GetLog().AddLogEntry(text);
+                //}
             }
         }
     }
@@ -1426,6 +1443,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Embodiment of Law", "Embodiment of Law Embodiment of Law", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Eternal Holy Burst", "Eternal Holy Burst", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Overwhelming Despair", "Overwhelming Despair Overwhelming Despair", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Jet Propulsion", "Jet Propulsion Jet Propulsion", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Paragon Evil Guard", "Paragon Evil Guard Paragon", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Paragon Good Guard", "Paragon Good Guard Paragon", "", "", 5);
@@ -2461,6 +2479,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Vile Grip of the Hidden", "Vile Grip of the Hidden", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Vile Grip of the Hidden Hand", "Legendary Vile Grip of the Hidden", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Equipped Healing Amplification", "Equipped Healing Amplification", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Sound and Silence", "Sound and Silence Sound and Silence", "", "", 5);
     if (!bRecognised) bRecognised |= ProcessSpeed(line);
     if (!bRecognised) bRecognised |= AddFavoredWeapon(line);
 
@@ -2498,6 +2517,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= line.find("automatically hit your enemy with a Shield Bash attack") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("Passive: The DC of the saving throw to resist your Stunning Blow and Stunning Fist combat") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("Becomes Bound to Character on Acquire Bound to Character on Acquire") != std::string::npos;
+    if (!bRecognised) bRecognised |= line.find("1 use per 10 minutes (equivalent to Abundant Step /Leap of Faith /Wind Dance )") != std::string::npos;
 
     return bRecognised;
 }
@@ -2518,6 +2538,38 @@ bool WikiItemFileProcessor::AddAugmentSlots(const std::string& line)
     bRecognised |= AddAugmentSlot(line, "Sealed in Undeath", "Sealed in Undeath", "Sealed in Undeath");
     bRecognised |= AddAugmentSlot(line, "Sealed in Gloom", "Sealed in Gloom", "Sealed in Gloom");
     bRecognised |= AddAugmentSlot(line, "Sealed in Mist", "Sealed in Mist", "Sealed in Mist");
+
+    if (m_item.MinLevel() > MAX_CLASS_LEVEL)
+    {
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Melancholic Slot (Armor)", "Melancholic Slot (Armor)", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Dolorous Slot (Armor)", "Dolorous Slot (Armor)", "");
+
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Melancholic Slot (Accessory)", "Melancholic Slot (Accessory)", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Dolorous Slot (Accessory)", "Dolorous Slot (Accessory)", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Miserable Slot (Accessory)", "Miserable Slot (Accessory)", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Woeful Slot (Accessory)", "Woeful Slot (Accessory)", "");
+
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Melancholic Slot (Weapon)", "Melancholic Slot (Weapon)", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Dolorous Slot (Weapon)", "Dolorous Slot (Weapon)", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Miserable Slot (Weapon)", "Miserable Slot (Weapon)", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Woeful Slot (Weapon)", "Woeful Slot (Weapon)", "");
+    }
+    else
+    {
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Melancholic Slot (Armor)", "Melancholic Slot (Armor) ", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Dolorous Slot (Armor)", "Dolorous Slot (Armor) ", "");
+
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Melancholic Slot (Accessory)", "Melancholic Slot (Accessory) ", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Dolorous Slot (Accessory)", "Dolorous Slot (Accessory) ", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Miserable Slot (Accessory)", "Miserable Slot (Accessory) ", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Woeful Slot (Accessory)", "Woeful Slot (Accessory) ", "");
+
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Melancholic Slot (Weapon)", "Melancholic Slot (Weapon) ", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Dolorous Slot (Weapon)", "Dolorous Slot (Weapon) ", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Miserable Slot (Weapon)", "Miserable Slot (Weapon) ", "");
+        bRecognised |= AddAugmentSlot(line, "Lamordia: Woeful Slot (Weapon)", "Woeful Slot (Weapon) ", "");
+    }
+
     return bRecognised;
 }
 

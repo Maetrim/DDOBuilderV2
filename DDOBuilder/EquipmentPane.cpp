@@ -101,6 +101,7 @@ BEGIN_MESSAGE_MAP(CEquipmentPane, CFormView)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CEquipmentPane::OnTtnNeedText)
+    ON_UPDATE_COMMAND_UI_RANGE(c_trueItemIndexOffset, c_trueItemIndexOffset + c_maxFiligreeCount, &CEquipmentPane::OnUpdateFiligreeSelect)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -1103,7 +1104,7 @@ void CEquipmentPane::SetTooltipText(
         CPoint tipAlternate)
 {
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-    m_tooltip.SetSetBonusItem(item.GetSetBonus(), item.NumStacks(), false, m_pCharacter->ActiveBuild());
+    m_tooltip.SetSetBonusItem(item.GetSetBonus().Type(), item.NumStacks(), false, m_pCharacter->ActiveBuild());
     m_tooltip.Show();
 }
 
@@ -1252,3 +1253,9 @@ void CEquipmentPane::OnGearSetSnapshotSelEndOk()
         m_pCharacter->ActiveBuild()->SetGearSetSnapshot((LPCTSTR)entry);
     }
 }
+
+void CEquipmentPane::OnUpdateFiligreeSelect(CCmdUI * pCmdUi)
+{
+    m_inventoryView->OnUpdateFiligreeSelect(pCmdUi->m_nID);
+}
+

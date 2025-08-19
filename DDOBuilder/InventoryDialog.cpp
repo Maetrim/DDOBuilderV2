@@ -10,6 +10,7 @@
 #include "MainFrm.h"
 #include "Filigree.h"
 #include "Gem.h"
+#include "SetBonus.h"
 #include <algorithm>
 
 namespace
@@ -27,7 +28,6 @@ namespace
     const int c_sentientGem = -1;
     const int c_noMenuSelection = 0;
     const int c_clearMenuOption = 1;
-    const int c_trueItemIndexOffset = 7000;
 }
 
 #pragma warning(push)
@@ -50,12 +50,14 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_bitmapSize(CSize(0, 0)),
     m_showingItemTip(false),
     m_showingFiligreeTip(false),
+    m_bShowingMenuTooltip(false),
     m_showingAugmentTip(false),
     m_tipCreated(false),
     m_tooltipItem(Inventory_Unknown),
     m_filigreeIndex(0),
     m_bIsArtifactFiligree(false),
-    m_tooltipFiligree(c_noFiligreeSelection)
+    m_tooltipFiligree(c_noFiligreeSelection),
+    m_menuPoint(0, 0)
 {
     //{{AFX_DATA_INIT(CInventoryDialog)
     //}}AFX_DATA_INIT
@@ -506,23 +508,21 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     if (clickedFiligree.empty()
                             || !isRareSection)
                     {
-                        CString txt;
-                        txt.Format("sMenuCount = %d\r\n", sMenuCount);
-                        ::OutputDebugString((LPCTSTR)txt);
                         CreateFiligreeMenu(filigreeIndex, isArtifactFiligree, clickedFiligree.empty());
                         ClientToScreen(&itemRect);
                         CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
                         ++sMenuCount;
+                        m_menuPoint = itemRect.TopLeft();
                         UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
                                 m_filigreeMenu.GetSafeHmenu(),
                                 itemRect.left,
                                 itemRect.top,
-                                this);
-                        ::OutputDebugString("Complete\r\n");
+                                GetParent());
+                        HideTip();
+                        m_lastSetbonus = "";
                         if (sel > c_noMenuSelection && !bJustSetFiligree)    // sel is 0 if menu is canceled
                         {
                             --sMenuCount;
-                            ::OutputDebugString("Selection\r\n");
                             bJustSetFiligree = (sMenuCount > 0);
                             if (sel == c_clearMenuOption)   // clear augment option
                             {
@@ -843,6 +843,20 @@ void CInventoryDialog::ShowTip(const Filigree& filigree, CRect itemRect)
     _TrackMouseEvent(&tme);
 }
 
+void CInventoryDialog::ShowTip(const Filigree& filigree, CPoint itemPoint)
+{
+    HideTip();
+    SetTooltipText(filigree, itemPoint, itemPoint, true);
+    m_showingFiligreeTip = true;
+}
+
+void CInventoryDialog::ShowSetBonusTip(const std::string& setBonus, CPoint topRight)
+{
+    HideTip();
+    SetTooltipText(setBonus, topRight, topRight, true);
+    m_showingFiligreeTip = true;
+}
+
 void CInventoryDialog::ShowTip(const Gem& gem, CRect itemRect)
 {
     HideTip();
@@ -863,12 +877,13 @@ void CInventoryDialog::ShowTip(const Gem& gem, CRect itemRect)
 void CInventoryDialog::HideTip()
 {
     // tip not shown if not over a gear slot
-    if (m_tipCreated && (m_showingItemTip || m_showingFiligreeTip || m_showingAugmentTip))
+    if (m_tipCreated && (m_showingItemTip || m_showingFiligreeTip || m_showingAugmentTip || m_bShowingMenuTooltip))
     {
         m_tooltip.Hide();
         m_showingItemTip = false;
         m_showingFiligreeTip = false;
         m_showingAugmentTip = false;
+        m_bShowingMenuTooltip = false;
         m_tooltipItem = Inventory_Unknown;
         m_tooltipFiligree = c_noFiligreeSelection;
     }
@@ -892,6 +907,17 @@ void CInventoryDialog::SetTooltipText(
 {
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
     m_tooltip.SetFiligree(&filigree, *m_pBuild);
+    m_tooltip.Show();
+}
+
+void CInventoryDialog::SetTooltipText(
+        const std::string& setBonus,
+        CPoint tipTopLeft,
+        CPoint tipAlternate,
+        bool rightAlign)
+{
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
+    m_tooltip.SetSetBonusItem(setBonus, 0, false, m_pBuild);
     m_tooltip.Show();
 }
 
@@ -1059,5 +1085,40 @@ void CInventoryDialog::CreateFiligreeMenu(int filigreeIndex, bool bArtifact, boo
         }
         AddMenuItem(m_filigreeMenu.GetSafeHmenu(), fullName, iItemIndex, bEnabled);
         iItemIndex++;
+    }
+}
+
+void CInventoryDialog::OnUpdateFiligreeSelect(UINT uID)
+{
+    // find the name of the Filigree set that this filigree is a member of
+    unsigned int iItemIndex = c_trueItemIndexOffset;
+    const std::list<Filigree>& filigrees = Filigrees();
+    CString setBonus;
+    for (auto&& fit: filigrees)
+    {
+        setBonus = fit.Name().c_str();
+        if (iItemIndex == uID)
+        {
+            int pos = setBonus.Find(':', 0);
+            if (pos >= 0)
+            {
+                setBonus = setBonus.Left(setBonus.Find(':', 0));
+            }
+            break;  // this is the one we are looking for
+        }
+        iItemIndex++;
+    }
+    if (m_lastSetbonus != (LPCTSTR)setBonus)
+    {
+        m_lastSetbonus = setBonus;
+        const SetBonus& setBonusObject = FindSetBonus(m_lastSetbonus);
+        if (setBonusObject.Type() != "")
+        {
+            ShowSetBonusTip(m_lastSetbonus, m_menuPoint);
+        }
+        else
+        {
+            HideTip();
+        }
     }
 }

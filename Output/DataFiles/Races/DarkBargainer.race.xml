@@ -23,6 +23,8 @@
          <Icon>DhampirTraits</Icon>
       </Feat>
       <!--Dark Gift Feats-->
+      <!--Note that there are two versions of each of these so we can get the upgrade feats to only work with those granted by the shrine-->
+      <!--The Shrine granted versions have a space cha5acter at the end of their names-->
       <Feat>
          <Name>Echoing Soul</Name>
          <Description>Your soul is fractured, shifted, or connected to another in some way.
@@ -33,7 +35,6 @@ When you get hit in Melee or Ranged attacks, there is a very small chance your
 Echoing Soul will cause you to become Afraid, Blinded, or Immobilized for six
 seconds with no save. Immunities to these conditions do not apply to this effect.</Description>
          <Group>Dark Gift</Group>
-         <Group>Alter Dark Gift</Group>
          <Acquire>Train</Acquire>
          <Icon>EchoingSoul</Icon>
          <Effect>
@@ -61,7 +62,6 @@ which grants +2 PRR/MRR but also reduces movement speed and increases spell
 costs by 1% as the pain distracts you. This can stack 10 times, with one stack
 being removed every 5 seconds.</Description>
          <Group>Dark Gift</Group>
-         <Group>Alter Dark Gift</Group>
          <Acquire>Train</Acquire>
          <Icon>FormOfPain</Icon>
          <Effect>
@@ -105,7 +105,6 @@ Yet, there is a small change when you critical hit a target that the shadow drai
 you briefly, reducing your damage by 15% for 6 seconds. This can only occur once
 every 30 seconds.</Description>
          <Group>Dark Gift</Group>
-         <Group>Alter Dark Gift</Group>
          <Acquire>Train</Acquire>
          <Icon>LivingShadow</Icon>
       </Feat>
@@ -122,7 +121,6 @@ When you use this ability, there is a chance the Eldritch Being you reach out
 to will grow tired of your petitions and decide to punish you instead.
 This chance increases each time you use this ability between rests.</Description>
          <Group>Dark Gift</Group>
-         <Group>Alter Dark Gift</Group>
          <Acquire>Train</Acquire>
          <Icon>MinionOfTheEldritch</Icon>
          <Stance>
@@ -173,7 +171,6 @@ and you will become Exhausted for 6 seconds, -50% penalty to movement speed,
 -6 to Strength and Dexterity, cannot tumble. Normal immunities or remedies to
 exhaustion will not protect against this.</Description>
          <Group>Dark Gift</Group>
-         <Group>Alter Dark Gift</Group>
          <Acquire>Train</Acquire>
          <Icon>MistWalker</Icon>
          <Effect>
@@ -208,7 +205,6 @@ exhaustion will not protect against this.</Description>
 Gain +3 Negative Spell power and Negative Healing Amplification per Character Level.
 Lose 5 Positive Spell Power and Healing Amplification per Character Level.</Description>
          <Group>Dark Gift</Group>
-         <Group>Alter Dark Gift</Group>
          <Acquire>Train</Acquire>
          <Icon>TouchOfDeath</Icon>
          <Effect>
@@ -249,9 +245,287 @@ When you get hit with Melee or Ranged attacks, there is a small chance the webs
 turn on you, applying a weakened slow effect which lasts 6 seconds but can
 stack 3 times. Spells/Immunities like Freedom of Movement do not prevent this.</Description>
          <Group>Dark Gift</Group>
+         <Acquire>Train</Acquire>
+         <Icon>WebtouchedWretch</Icon>
+      </Feat>
+      <Feat>
+         <Name>Echoing Soul </Name>
+         <Description>Your soul is fractured, shifted, or connected to another in some way.
+Gain +3 to all Skills plus an additional +1 for every 2 Character Levels.
+Gain +1 to all Saving Throws plus an additional +1 every 3 Character Levels.
+
+When you get hit in Melee or Ranged attacks, there is a very small chance your
+Echoing Soul will cause you to become Afraid, Blinded, or Immobilized for six
+seconds with no save. Immunities to these conditions do not apply to this effect.</Description>
+         <Group>Alter Dark Gift</Group>
+         <Acquire>Train</Acquire>
+         <Icon>EchoingSoul</Icon>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Echoing Soul</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23</Amount>
+            <Item>All</Item>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 8 8 8 9 9 9 10 10 10 11 11 11 12 12 12 13 13 13 14 14</Amount>
+            <Item>All</Item>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Form of Pain </Name>
+         <Description>Your body is cursed to be prone to all manner of damage, but with the ability to
+withstand it. Passively grants +5 PRR/MRR.
+
+When you take damage your body changes and you gain the Form of Pain effect
+which grants +2 PRR/MRR but also reduces movement speed and increases spell
+costs by 1% as the pain distracts you. This can stack 10 times, with one stack
+being removed every 5 seconds.</Description>
+         <Group>Alter Dark Gift</Group>
+         <Acquire>Train</Acquire>
+         <Icon>FormOfPain</Icon>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Form of Pain</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Form of Pain</Item>
+            <AType>Slider</AType>
+            <Amount size="3">0 0 10</Amount>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Feat</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Form of Pain: Stacks from being hit</DisplayName>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
+            <Bonus>Feat</Bonus>
+            <AType>SliderValue</AType>
+            <StackSource>Form of Pain</StackSource>
+            <Amount size="1">2</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Form of Pain: Spell Point cost</DisplayName>
+            <Type>SpellCostReduction</Type>
+            <Bonus>Feat</Bonus>
+            <AType>SliderValue</AType>
+            <StackSource>Form of Pain</StackSource>
+            <Amount size="1">1</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Living Shadow </Name>
+         <Description>Your Shadow extends your reach, acting out your dark impulse, nearly doubling your
+range with melee weapon attacks in the front arc.
+
+Yet, there is a small change when you critical hit a target that the shadow drains
+you briefly, reducing your damage by 15% for 6 seconds. This can only occur once
+every 30 seconds.</Description>
+         <Group>Alter Dark Gift</Group>
+         <Acquire>Train</Acquire>
+         <Icon>LivingShadow</Icon>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Living Shadow</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+      </Feat>
+      <Feat>
+         <Name>Minion of the Eldritch </Name>
+         <Description>Cooldown: 2 minutes
+Target: Self
+
+Your soul has touched something beyond the planes, and a connection has formed
+there. Activate: You gain +5 Spell Power per Character Level, and +1% Spell
+Critical Damage for every 2 Character Levels you have for 12 seconds.
+
+When you use this ability, there is a chance the Eldritch Being you reach out
+to will grow tired of your petitions and decide to punish you instead.
+This chance increases each time you use this ability between rests.</Description>
+         <Group>Alter Dark Gift</Group>
+         <Acquire>Train</Acquire>
+         <Icon>MinionOfTheEldritch</Icon>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Minion of the Eldritch</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Stance>
+            <Name>Minion of the Eldritch</Name>
+            <Icon>MinionOfTheEldritch</Icon>
+            <Description>YYour soul has touched something beyond the planes, and a connection has formed
+there. Activate: You gain +5 Spell Power per Character Level, and +1% Spell
+Critical Damage for every 2 Character Levels you have for 12 seconds.</Description>
+         </Stance>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 105 110 115 120 125 130 135 140 145 150 155 160 165 170 175 180 185 190 195 200</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Minion of the Eldritch</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
+            <Item>All</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Minion of the Eldritch</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Mist Walker </Name>
+         <Description>Cooldown: 15 seconds
+Target: Self, Directional
+
+You have learned how to navigate the Mists with time and a little luck.
+Trigger this ability to leap forward, and briefly gain a +5 bonus to Reflex
+Saves and a stacking 20% bonus to Incorporeality defense. This feat shares a
+cooldown with Abundant Step.
+
+When using this ability there is a small chance the mists will nearly catch up
+and you will become Exhausted for 6 seconds, -50% penalty to movement speed,
+-6 to Strength and Dexterity, cannot tumble. Normal immunities or remedies to
+exhaustion will not protect against this.</Description>
+         <Group>Alter Dark Gift</Group>
+         <Acquire>Train</Acquire>
+         <Icon>MistWalker</Icon>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Mist Walker</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Reflex</Item>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mist Walker</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>Incorporeality</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Mist Walker</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Touch of Death </Name>
+         <Description>Every touch causes life to wilt, but you can use this power if you know the way...
+Gain +3 Negative Spell power and Negative Healing Amplification per Character Level.
+Lose 5 Positive Spell Power and Healing Amplification per Character Level.</Description>
+         <Group>Alter Dark Gift</Group>
+         <Acquire>Train</Acquire>
+         <Icon>TouchOfDeath</Icon>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Touch of Death</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">3 6 9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60 63 66 69 72 75 78 81 84 87 90 93 96 99 102 105 108 111 114 117 120</Amount>
+            <Item>Negative</Item>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">3 6 9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60 63 66 69 72 75 78 81 84 87 90 93 96 99 102 105 108 111 114 117 120</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">-5 -10 -15 -20 -25 -30 -35 -40 -45 -50 -55 -60 -65 -70 -75 -80 -85 -90 -95 -100 -105 -110 -115 -120 -125 -130 -135 -140 -145 -150 -155 -160 -165 -170 -175 -180 -185 -190 -195 -200</Amount>
+            <Item>Positive</Item>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Feat</Bonus>
+            <AType>TotalLevel</AType>
+            <Amount size="40">-5 -10 -15 -20 -25 -30 -35 -40 -45 -50 -55 -60 -65 -70 -75 -80 -85 -90 -95 -100 -105 -110 -115 -120 -125 -130 -135 -140 -145 -150 -155 -160 -165 -170 -175 -180 -185 -190 -195 -200</Amount>
+         </Effect>
+      </Feat>
+      <Feat>
+         <Name>Webtouched Wretch </Name>
+         <Description>You've become entwined with a great cosmic web, which occasionally becomes coterminous
+with reality. Your offensive spells, melee and ranged attacks occasionally cause
+strange spectral webs to coat your enemies either slowing them or entangling
+them for up to 6 seconds with no save.
+
+When you get hit with Melee or Ranged attacks, there is a small chance the webs
+turn on you, applying a weakened slow effect which lasts 6 seconds but can
+stack 3 times. Spells/Immunities like Freedom of Movement do not prevent this.</Description>
          <Group>Alter Dark Gift</Group>
          <Acquire>Train</Acquire>
          <Icon>WebtouchedWretch</Icon>
+         <Requirements>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Type>Feat</Type>
+                  <Item>Webtouched Wretch</Item>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
       </Feat>
       <!--Enhanced Dark Gift Feats Level 30+-->
       <Feat>
@@ -268,7 +542,7 @@ Echoing Souls the duration only lasts 3 seconds instead of 6.</Description>
             </Requirement>
             <Requirement>
                <Type>Feat</Type>
-               <Item>Echoing Soul</Item>
+               <Item>Echoing Soul </Item>
             </Requirement>
          </Requirements>
       </Feat>
@@ -285,7 +559,7 @@ Echoing Souls the duration only lasts 3 seconds instead of 6.</Description>
             </Requirement>
             <Requirement>
                <Type>Feat</Type>
-               <Item>Form of Pain</Item>
+               <Item>Form of Pain </Item>
             </Requirement>
          </Requirements>
          <Effect>
@@ -311,7 +585,7 @@ for 6 seconds. This can only occur once every 30 seconds.</Description>
             </Requirement>
             <Requirement>
                <Type>Feat</Type>
-               <Item>Living Shadow</Item>
+               <Item>Living Shadow </Item>
             </Requirement>
          </Requirements>
       </Feat>
@@ -329,7 +603,7 @@ Passive: You gain 5 Universal spell power.</Description>
             </Requirement>
             <Requirement>
                <Type>Feat</Type>
-               <Item>Minion of the Eldritch</Item>
+               <Item>Minion of the Eldritch </Item>
             </Requirement>
          </Requirements>
          <Effect>
@@ -354,7 +628,7 @@ assuming the mists don't catch you.</Description>
             </Requirement>
             <Requirement>
                <Type>Feat</Type>
-               <Item>Mist Walker</Item>
+               <Item>Mist Walker </Item>
             </Requirement>
          </Requirements>
          <Effect>
@@ -396,7 +670,7 @@ assuming the mists don't catch you.</Description>
             </Requirement>
             <Requirement>
                <Type>Feat</Type>
-               <Item>Touch of Death</Item>
+               <Item>Touch of Death </Item>
             </Requirement>
          </Requirements>
          <Effect>
@@ -420,7 +694,7 @@ assuming the mists don't catch you.</Description>
             </Requirement>
             <Requirement>
                <Type>Feat</Type>
-               <Item>Webtouched Wretch</Item>
+               <Item>Webtouched Wretch </Item>
             </Requirement>
          </Requirements>
          <Effect>

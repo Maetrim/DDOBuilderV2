@@ -79,6 +79,7 @@ class CInventoryDialog :
 
         void SetGearSet(Build* pBuild, const EquippedGear & gear);
         void HighlightSetBonusItems(const std::string& setBonusName);
+        void OnUpdateFiligreeSelect(UINT uID);
 
     ///////////////////////////////////////////////////////////////////
     // MFC
@@ -114,10 +115,13 @@ class CInventoryDialog :
                 CRect * pRect = NULL) const;
         void ShowTip(const Item & item, CRect itemRect);
         void ShowTip(const Filigree& filigree, CRect itemRect);
+        void ShowTip(const Filigree& filigree, CPoint itemPoint);
+        void ShowSetBonusTip(const std::string& setBonus, CPoint topRight);
         void ShowTip(const Gem& gem, CRect itemRect);
         void HideTip();
         void SetTooltipText(const Item& item, CPoint tipTopLeft, CPoint tipAlternate);
         void SetTooltipText(const Filigree& filigree, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
+        void SetTooltipText(const std::string& setBonus, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
         void SetTooltipText(const Gem& gem, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
         CRect GetItemRect(InventorySlotType slot) const;
         void NotifySlotLeftClicked(InventorySlotType slot);
@@ -144,6 +148,7 @@ class CInventoryDialog :
         CInfoTip m_tooltip;
         bool m_showingItemTip;
         bool m_showingFiligreeTip;
+        bool m_bShowingMenuTooltip;
         bool m_showingAugmentTip;
         bool m_tipCreated;
         InventorySlotType m_tooltipItem;
@@ -154,6 +159,8 @@ class CInventoryDialog :
         CMenu m_personalityMenu;
         int m_tooltipFiligree;
         std::string m_setBonusName;
+        CPoint m_menuPoint;
+        std::string m_lastSetbonus;
 };
 
 //{{AFX_INSERT_LOCATION}}

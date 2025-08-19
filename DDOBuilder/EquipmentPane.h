@@ -51,6 +51,7 @@ class CEquipmentPane :
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnGearSetSnapshotSelEndOk();
+        afx_msg void OnUpdateFiligreeSelect(CCmdUI * pCmdUi);
         DECLARE_MESSAGE_MAP()
 
         // InventoryObserver overrides

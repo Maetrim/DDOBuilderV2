@@ -510,13 +510,13 @@ void CInfoTip::SetStanceItem(const Stance& item)
 }
 
 void CInfoTip::SetSetBonusItem(
-    const SetBonus& item,
+    const std::string& item,
     size_t numStacks,
     bool bSuppressed,
     const Build* pBuild)
 {
     ClearOldTipItems();
-    AppendSetBonusDescription(item.Type(), numStacks, bSuppressed, pBuild);
+    AppendSetBonusDescription(item, numStacks, bSuppressed, pBuild);
 }
 
 void CInfoTip::SetItem(
