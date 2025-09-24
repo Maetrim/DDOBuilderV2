@@ -239,6 +239,8 @@ void BreakdownItemSave::FeatEffectApplied(Build* pBuild, const Effect& effect)
                 if (at != Ability_Unknown)
                 {
                     AddAbility(at);
+                    CreateOtherEffects();
+                    Populate();
                 }
             }
         }
@@ -261,6 +263,8 @@ void BreakdownItemSave::FeatEffectRevoked(Build* pBuild, const Effect& effect)
                 if (at != Ability_Unknown)
                 {
                     RemoveFirstAbility(at);
+                    CreateOtherEffects();
+                    Populate();
                 }
             }
         }

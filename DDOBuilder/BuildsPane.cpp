@@ -754,11 +754,18 @@ void CBuildsPane::OnUpdateBuildLevel(CCmdUI* pCmdUI)
     }
     else
     {
-        int buildLevel = m_pCharacter->ActiveBuild()->Level();
-        int menuItemLevel = (pCmdUI->m_nID - ID_LEVELSELECT_1) + 1;
-        pCmdUI->SetCheck(menuItemLevel == buildLevel);
-        // disable item for levels not yet supported in game
-        pCmdUI->Enable(menuItemLevel <= MAX_GAME_LEVEL);
+        if (m_pCharacter->ActiveBuild() != NULL)
+        {
+            int buildLevel = m_pCharacter->ActiveBuild()->Level();
+            int menuItemLevel = (pCmdUI->m_nID - ID_LEVELSELECT_1) + 1;
+            pCmdUI->SetCheck(menuItemLevel == buildLevel);
+            // disable item for levels not yet supported in game
+            pCmdUI->Enable(menuItemLevel <= MAX_GAME_LEVEL);
+        }
+        else
+        {
+            pCmdUI->Enable(FALSE);
+        }
     }
 }
 

@@ -47,7 +47,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     text.Format("Enhancement Tree Count: %d", count);
     SetDlgItemText(IDC_STATIC_TREECOUNT, text);
 
-    count = -6;//OptionalBuffs().size();
+    count = OptionalBuffs().size();
     text.Format("Self and Party Buff Count: %d", count);
     SetDlgItemText(IDC_STATIC_PARTYBUFF_COUNT, text);
 
@@ -56,6 +56,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "\r\n"
         "Aaumini, "
         "Arcanaverse, "
+        "Attlanttizz, "
         "Baldur9, "
         "Belenian, "
         "Bizmarkie, "
@@ -87,6 +88,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Duncanthrax, "
         "Dvinesword, "
         "ericcater, "
+        "EmmaHarper, "
         "Eunostos, "
         "fitzabir, "
         "funifulv, "
@@ -133,6 +135,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "nb756, "
         "Nectmar, "
         "NickJam, "
+        "nonamenoredacted, "
         "Novatron, "
         "Ntoukis, "
         "Nyreb, "
@@ -150,6 +153,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Rehmlah, "
         "rosstracy, "
         "Rudebasilisk, "
+        "Sarandra, "
         "Seppi Pearlsmith, "
         "SlaapKous, "
         "Sneakywink, "
@@ -169,6 +173,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "VSversus, "
         "Vyder, "
         "Warsaga, "
+        "WestonChan, "
         "xDTungTungTungSahur, "
         "YoureNotDead, "
         "ydufraisse, "

@@ -607,6 +607,7 @@ void CStancesPane::OnLButtonDown(UINT nFlags, CPoint point)
                 }
                 m_pDocument->SetModifiedFlag(TRUE);
             }
+            UpdateStanceStates(); // some stances may require other stances
         }
         else
         {
