@@ -657,10 +657,18 @@ void CSpellsControl::OnRButtonDown(UINT nFlags, CPoint point)
                 m_editSpellIndex = item->SpellIndex();
                 std::list<TrainedSpell> trainedSpells =
                         m_pCharacter->ActiveBuild()->TrainedSpells(m_class, m_editSpellLevel);
-                auto sit = trainedSpells.begin();
-                std::advance(sit, m_editSpellIndex);
-                m_pCharacter->ActiveBuild()->RevokeSpell(m_class, m_editSpellLevel, (*sit).SpellName(), false);
-                Invalidate(TRUE);
+                if (m_editSpellIndex < trainedSpells.size())
+                {
+                    auto sit = trainedSpells.begin();
+                    std::advance(sit, m_editSpellIndex);
+                    m_pCharacter->ActiveBuild()->RevokeSpell(m_class, m_editSpellLevel, (*sit).SpellName(), false);
+                    Invalidate(TRUE);
+                }
+                else
+                {
+                    // cannot revoke an empty spell slot
+                    MessageBeep(MB_ICONEXCLAMATION);
+                }
             }
         }
     }

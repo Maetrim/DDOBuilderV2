@@ -3587,6 +3587,23 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Bottled Heart</Type>
+    <DisplayText>Bottled Heart: +33% Legendary Bonus to Melee Threat Generation and +6 Legendary Bonus to Intimidate.</DisplayText>
+    <Effect>
+      <Type>ThreatBonusMelee</Type>
+      <Bonus>Legendary</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">33</Amount>
+    </Effect>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Legendary</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>Intimidate</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Boreal</Type>
     <DisplayText>Boreal: This weapon is sheathed in frigid cold. A boreal weapon deals an extra 2 to 12 points of cold damage on a successful hit.</DisplayText>
     <Effect>
@@ -15275,8 +15292,54 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Memory of Animated Objects</Type>
+    <DisplayText>Memory of Animated Objects: You recall bringing life to lifeless forms, and the control you had over the inanimate. +(Above 159) Equipment Bonus to Rust and Repair Spell Power. +(Above 23) Enhancement Bonus to Rust and Repair Spell Critical Damage.</DisplayText>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">159</Amount>
+      <Item>Rust</Item>
+      <Item>Repair</Item>
+    </Effect>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">23</Amount>
+      <Item>Rust</Item>
+      <Item>Repair</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Memory of Binding</Type>
+    <DisplayText>Memory of Binding: You recall holding your foes in a dreadful, unbreakable bond. On weapon hit, you have a chance of paralyzing your enemies. Struck enemies must made a DC 120 Fortitude save or be paralyzed.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Memory of Butchery</Type>
+    <DisplayText>Memory of Butchery: You have a lingering voice in your mind, reminding you of the weak points in every body. On an attack roll of 20 which is confirmed as a critical hit, the weapon severs an opponent's limb from its body. Some opponents, including many aberrations and all oozes, have no limbs. Others, such as golems and undead creatures, are not affected by the loss of their limbs. Most other creatures, however, have their movement slowed by 75% and attacks slowed by 50% when a limb is cut off.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Memory of Chains Broken</Type>
     <DisplayText>Memory of Chains Broken: Your hits have a 5% chance to Paralyze enemies for 5 seconds.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Memory of Shattered Life</Type>
+    <DisplayText>Memory of Shattered Life: You remember the horror of the life you loved lying broken, and the power it brought you. Increases the wearer's caster level when casting all ninth level or lower spells by two.</DisplayText>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Sorcerer</Item>
+    </Effect>
+    <Effect>
+      <Type>CasterLevel</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Wizard</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Metal Fatigue</Type>
@@ -15591,6 +15654,206 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Item>Physical</Item>
       <Item>Untyped</Item>
       <Item>Poison</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Murderous Edge</Type>
+    <DisplayText>Murderous Edge: On hit: 16d6 Slashing Damage. This item is considered Metalline, bypassing all kinds of material damage resistance.</DisplayText>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Adamantine</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Silver</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Byeshk</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Cold Iron</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Mithral</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Slash</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Murderous Point</Type>
+    <DisplayText>Murderous Point: On hit: 16d6 Piercing Damage. This item is considered Metalline, bypassing all kinds of material damage resistance.</DisplayText>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Adamantine</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Silver</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Byeshk</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Cold Iron</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Mithral</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Murderous Spikes</Type>
+    <DisplayText>Murderous Spikes: On hit: 16d6 Piercing Damage. This item is considered Metalline, bypassing all kinds of material damage resistance.</DisplayText>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Adamantine</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Silver</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Byeshk</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Cold Iron</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Mithral</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Murderous Swing</Type>
+    <DisplayText>Murderous Swing: On hit: 16d6 Bludgeoning Damage. This item is considered Metalline, bypassing all kinds of material damage resistance.</DisplayText>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Adamantine</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Silver</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Byeshk</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Cold Iron</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Mithral</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bludgeon</Damage>
+      </Dice>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -17680,6 +17943,68 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>Returning</Type>
     <DisplayText>Returning: This missile will return to you.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Revel in Blood (Bludgeoning)</Type>
+    <DisplayText>Revel in Blood (Bludgeoning): Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Bludgeoning Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bludgeon</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Revel in Blood (Magic)</Type>
+    <DisplayText>Revel in Blood (Magic): Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On offensive spellcast: 2d6 Force Damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Revel in Blood (Piercing)</Type>
+    <DisplayText>Revel in Blood (Piercing): Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Piercing Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Pierce</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Revel in Blood (Shield)</Type>
+    <DisplayText>Revel in Blood (Shield) : Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. +24% Enhancement Bonus to Shield Bashing.</DisplayText>
+    <Effect>
+      <Type>SecondaryShieldBash</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">24</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Revel in Blood (Slashing)</Type>
+    <DisplayText>Revel in Blood (Slashing) : Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Slashing Damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">16</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Slash</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Reverberating 2</Type>

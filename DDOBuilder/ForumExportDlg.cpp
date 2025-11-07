@@ -1717,7 +1717,7 @@ void CForumExportDlg::ExportGear(
             }
             // show any augment slots also
             bool bSetBonusSuppressed = false;
-            std::vector<ItemAugment> augments = item.Augments();
+            const std::vector<ItemAugment>& augments = item.Augments();
             for (size_t i = 0; i < augments.size(); ++i)
             {
                 if (augments[i].HasSelectedAugment())
@@ -1733,7 +1733,12 @@ void CForumExportDlg::ExportGear(
                         forumExport << (LPCTSTR)text;
                     }
                     forumExport << augments[i].SelectedAugment();
-                    const Augment& augment = FindAugmentByName(augments[i].SelectedAugment(),&item);
+                    const Augment& augment = FindAugmentByName(augments[i].SelectedAugment(), &item);
+                    if (augment.HasLevels())
+                    {
+                        int value = static_cast<int>(augment.LevelValue()[augments[i].SelectedLevelIndex()]);
+                        forumExport << " +" << value;
+                    }
                     bSetBonusSuppressed |= augment.HasSuppressSetBonus();
                     forumExport << "[/TD][TD][/TD][/TR]\r\n";
                 }

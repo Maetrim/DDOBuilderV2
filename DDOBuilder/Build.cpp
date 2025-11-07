@@ -3787,14 +3787,14 @@ bool Build::IsStanceActive(const std::string& name, WeaponType wt) const
     if (name == "FavoredWeapon")
     {
         ret = m_Stances.IsStanceActive("Favored Weapon");   // check the weapon group
-        // must also have at least 10 favored soul levels for this to apply
+        // must also have at least 10 favored soul levels for this to apply (at level 20+)
         // for Grace/Knowledge of battle
-        //??
-        //if (ClassLevels(Class_FavoredSoul) < 10)
-        //{
-        //    // not enough heroic levels for this to apply
-        //    ret = false;
-        //}
+        size_t halfClassLevel = min(MAX_CLASS_LEVEL, Level()) / 2;
+        if (ClassLevels("Favored Soul", Level()) < halfClassLevel)
+        {
+            // not enough heroic levels for this to apply
+            ret = false;
+        }
     }
     return ret;
 }

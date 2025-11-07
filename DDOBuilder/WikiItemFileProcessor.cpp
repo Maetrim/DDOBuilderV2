@@ -1276,6 +1276,20 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dragontouched", "Dragontouched", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "UniversalSpellPower", "Exceptional Universal Spell Power", "Exceptional", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shadow Striker", "Shadow Striker Shadow Striker", "Profane", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bottled Heart", "Bottled Heart Bottled Heart", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Revel in Blood (Bludgeoning)", "Revel in Blood (Bludgeoning) Revel in Blood (Bludgeoning)", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Revel in Blood (Magic)", "Revel in Blood (Magic) Revel in Blood (Magic)", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Revel in Blood (Piercing)", "Revel in Blood (Piercing) Revel in Blood (Piercing)", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Revel in Blood (Shield)", "Revel in Blood (Shield) Revel in Blood (Shield)", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Revel in Blood (Slashing)", "Revel in Blood (Slashing) Revel in Blood (Slashing)", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Memory of Animated Objects", "Memory of Animated Objects Memory of Animated Objects", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Memory of Binding", "Memory of Binding Memory of Binding", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Memory of Butchery", "Memory of Butchery Memory of Butchery", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Memory of Shattered Life", "Memory of Shattered Life Memory of Shattered Life", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Murderous Edge", "Murderous Edge Murderous Edge", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Murderous Point", "Murderous Point Murderous Point", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Murderous Spikes", "Murderous Spikes Murderous Spikes", "", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Murderous Swing", "Murderous Swing Murderous Swing", "", "");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MinorActionBoostEnhancement", "Minor Action Boost Enhancement", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserActionBoostEnhancement", "Lesser Action Boost Enhancement", "Equipment", "");

@@ -1107,15 +1107,20 @@ You cannot use wands or scrolls while in animal form.</Description>
       <Name>Wild Shape: Thorne Knight</Name>
       <Description>Plant Form: You become a full Thorn Knight.
 
-Gain +3 to caster level and max caster level of all Thorn and Poison spells.
+You gain +3 bonus to the caster level and maximum caster level of all Thorn
+and Poison spells.
 
-10% Exceptional bonus to Armor Class and 100% Fortification.
+You take 15% more damage from fire.
 
-You gain 10% Absorption against Piercing attacks and 5% Absorption against
-Bludgeon attacks.
+You are a Plant, instead of your previous race.
 
-You become 15% more Vulnerable to Fire and are now have immunity to most Sleep,
-Stun, Paralysis, Poison, and Mind-affecting spells and abilities.</Description>
+As a Plant, you have +100% fortification, immunity to sleep, stun, paralysis,
+poison and mind-affecting abilities.
+
+You have a +10% exceptional bonus to AC and 100% fortification and 10%
+piercing and 5% bludgeoning absorption.
+The two sources of fortification stack, for a total of +200%.
+You gain +2 Imbue dice.</Description>
       <Group>Wild Shape</Group>
       <Requirements>
         <Requirement>
@@ -1183,6 +1188,18 @@ Stun, Paralysis, Poison, and Mind-affecting spells and abilities.</Description>
       </Effect>
       <Effect>
         <Type>Fortification</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Thorne Knight</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Fortification</Type>
         <Bonus>Exceptional</Bonus>
         <AType>Simple</AType>
         <Amount size="1">100</Amount>
@@ -1241,6 +1258,18 @@ Stun, Paralysis, Poison, and Mind-affecting spells and abilities.</Description>
         <AType>Simple</AType>
         <Amount size="1">-15</Amount>
         <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Thorn-Kin</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>

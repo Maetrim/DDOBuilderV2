@@ -1130,9 +1130,17 @@ can only apply to each monster once per 60 seconds.</Description>
         <EnhancementSelection>
           <Name>Meld into Darkness</Name>
           <Description>When you activate your Shadowdancer Epic Strike, you 10% Dodge that is not
-affected by your Dodge Cap for 10 seconds.</Description>
+affected by your Dodge Cap for 10 seconds.
+Also adds +2% Doublestrike and Doubleshot (hidden feature)</Description>
           <Icon>ShadowdancerEpicStrikeUpgrade</Icon>
           <CostPerRank size="1">2</CostPerRank>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Destiny</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Paranoia</Name>
@@ -1150,7 +1158,7 @@ apply to each monster once per 60 seconds.</Description>
     <EnhancementTreeItem>
       <Name>Shadowdancer: Pierce the Gloom</Name>
       <InternalName>U51ShadowdancerPierceTheGloom</InternalName>
-      <Description>+[1/2/3] to hit for Sneak attacks, and to-hit while Flanking.
+      <Description>+[1/2/3] to hit and for Sneak attacks, and to-hit while Flanking.
 Rank 3: You gain Immunity to Silence, Quell, and Blindness.</Description>
       <Icon>U51PierceTheGloom</Icon>
       <XPosition>0</XPosition>
@@ -1164,6 +1172,13 @@ Rank 3: You gain Immunity to Silence, Quell, and Blindness.</Description>
           <Value>26</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>Weapon_Attack</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Item>All</Item>
+      </Effect>
       <Effect>
         <Type>SneakAttackAttack</Type>
         <Bonus>Destiny</Bonus>
@@ -1254,6 +1269,8 @@ in shadow, applying a stack of Darkness.
 If you have the feat First Blood, the trigger of First Blood, it now triggers off
 of your harmful spellcasts, and when it procs, it also applies a stack of Darkness.
 
++1 Sneak Attack Dice (Hidden feature)
+
 Darkness debuff: You are vulnerable to Sneak Attacks. -3 Spell Resistance,
 -3 Physical Resistance Rating and -3 Magical Resistance Rating per stack.
 Lasts 12 seconds, stacks drop 1 at a time. Max 3 stacks.</Description>
@@ -1269,6 +1286,12 @@ Lasts 12 seconds, stacks drop 1 at a time. Max 3 stacks.</Description>
           <Value>26</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Destiny</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Shadowdancer: Epic Strike Upgrade II</Name>
