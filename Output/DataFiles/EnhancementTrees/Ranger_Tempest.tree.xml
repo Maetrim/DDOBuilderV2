@@ -73,9 +73,9 @@ increases the chance to produce off hand attacks when fighting with two weapons
       <Name>Tempest: Tempest</Name>
       <InternalName>TempestCore2</InternalName>
       <Description>+10% Offhand Strike Chance (the chance to make off-hand attacks when Dual Wielding
-Melee weapons). You now treat Scimitars as if they were light melee weapons.
-While you are Dual Wielding light Melee weapons, you can use your dexterity modifier
-to hit.</Description>
+Melee weapons). You can use your Dexterity modifier to hit with all One Handed melee weapons.
+Antirequisite: This enhancement cannot be taken at the same time as Tempest
+in the Half-Elf tree.</Description>
       <Icon>Tempest</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
@@ -93,47 +93,26 @@ to hit.</Description>
           <Type>Enhancement</Type>
           <Item>TempestCore1</Item>
         </Requirement>
+         <RequiresNoneOf>
+           <Requirement>
+             <Type>Enhancement</Type>
+             <Item>HalfElfDilettanteSpecialAbilityII</Item>
+             <Item>Tempest</Item>
+           </Requirement>
+         </RequiresNoneOf>
       </Requirements>
-      <Effect>
-        <Type>AddGroupWeapon</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Light</Item>
-        <Item>Scimitar</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
       <Effect>
         <Type>WeaponAttackAbilityClass</Type>
         <Bonus>Enhancement</Bonus>
         <Item>Dexterity</Item>
-        <Item>Light</Item>
+        <Item>One Handed</Item>
         <AType>NotNeeded</AType>
-      </Effect>
-      <Effect>
-        <Type>OffHandAttackBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-      </Effect>
-      <Effect>
-        <Type>ACBonus</Type>
-        <Type>PRR</Type>
-        <Type>MRR</Type>
-        <Bonus>Shield</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Two Weapon Fighting</Item>
-          </Requirement>
-        </Requirements>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Tempest: Graceful Death</Name>
       <InternalName>TempestCore3</InternalName>
-      <Description>While you are Dual Wielding light Melee weapons, you can use your Dexterity modifier
-for damage.</Description>
+      <Description>You can use your Dexterity modifier on One Handed melee weapons.</Description>
       <Icon>TempestGracefulDeath</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
@@ -153,24 +132,10 @@ for damage.</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>ACBonus</Type>
-        <Type>PRR</Type>
-        <Type>MRR</Type>
-        <Bonus>Shield</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Two Weapon Fighting</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
-      <Effect>
         <Type>WeaponDamageAbilityClass</Type>
         <Bonus>Enhancement</Bonus>
         <Item>Dexterity</Item>
-        <Item>Light</Item>
+        <Item>One Handed</Item>
         <AType>NotNeeded</AType>
       </Effect>
     </EnhancementTreeItem>

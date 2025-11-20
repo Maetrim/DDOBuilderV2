@@ -828,8 +828,8 @@ strike harder. You add your Strength modifier to bow damage.</Description>
   </Feat>
   <Feat>
     <Name>Brutal Throw</Name>
-    <Description>You can use your Strength bonus instead of Dexterity bonus to determine
-bonus to attack with thrown weapons if it is higher.</Description>
+    <Description>Grants you a +1 bonus to damage for every 8 points of strength you have when using
+throwing axes or hammers.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -846,11 +846,14 @@ bonus to attack with thrown weapons if it is higher.</Description>
     <Acquire>Train</Acquire>
     <Icon>BrutalThrow</Icon>
     <Effect>
-      <Type>WeaponAttackAbilityClass</Type>
+      <DisplayName>Brutal Throw: +1 damage per 8 strength</DisplayName>
+      <Type>Weapon_Damage</Type>
       <Bonus>Feat</Bonus>
-      <AType>NotNeeded</AType>
-      <Item>Strength</Item>
-      <Item>Thrown</Item>
+      <AType>AbilityTotal</AType>
+      <StackSource>Strength</StackSource>
+      <Amount size ="176">0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 20 20 20 20 20 20 20 20 21 21 21 21 21 21 21 21 22</Amount>
+      <Item>Throwing Axe</Item>
+      <Item>Throwing Hammer</Item>
     </Effect>
   </Feat>
   <Feat>
@@ -878,10 +881,12 @@ a +1 to Will saves and a +2 bonus on Intimidate checks.</Description>
   </Feat>
   <Feat>
     <Name>Cleave</Name>
-    <Description>This attack deals +20% damage.
-Activate this feat to attack one or more enemies in an arc in front of you.
-Cleave counts a full attack, dealing full special effect damage to all targets
-hit. This attack can doublestrike and is affected by your Attack Speed.</Description>
+    <Description>Deals: +20% damage.
++1 Critical Threat Range
++1 Critical Multiplier
+Tactical Melee Cleave: Activate this ability to attack one or more enemies in
+an arc in front of you.
+Cooldown: 5 seconds</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -894,12 +899,15 @@ hit. This attack can doublestrike and is affected by your Attack Speed.</Descrip
     <Icon>Cleave</Icon>
     <Attack>
        <Name>Cleave</Name>
-       <Description>Activate this feat to attack one or more enemies in an arc in front of you. This attack deals +20% damage.
-This attack can doublestrike and is affected by your Attack Speed.</Description>
+       <Description>This attack deals +20% damage.
++1 Critical Threat Range
++1 Critical Multiplier</Description>
        <Icon>Cleave</Icon>
        <Cooldown size="1">5</Cooldown>
        <ThisAttack>
           <BonusDamagePercent size="1">20</BonusDamagePercent>
+          <BonusThreatRange size="1">1</BonusThreatRange>
+          <BonusCriticalMultiplier size="1">1</BonusCriticalMultiplier>
        </ThisAttack>
     </Attack>
   </Feat>
@@ -2563,13 +2571,12 @@ at the cost of -2 Constitution.</Description>
   </Feat>
   <Feat>
     <Name>Great Cleave</Name>
-    <Description>This attack deals +40% damage.
-This feat attacks enemies in a wider arc than Cleave. Great Cleave has a
-greater chance to hit more enemies than Cleave.
-This feat has a cooldown of 5 seconds.
-Like Cleave, Great Cleave also counts a full attack, dealing full special
-effect damage to all targets hit. This attack can doublestrike and is affected
-by your Attack Speed.</Description>
+    <Description>Deals: +40% damage.
++1 Critical Threat Range
++2 Critical Multiplier
+Tactical Melee Cleave: Activate this ability to attack one or more enemies in
+a wide arc in front of you.
+Cooldown: 5 seconds</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -2586,11 +2593,15 @@ by your Attack Speed.</Description>
     <Icon>GreatCleave</Icon>
     <Attack>
        <Name>Great Cleave</Name>
-       <Description>This attack deals +40% damage.</Description>
+       <Description>This attack deals +40% damage.
++1 Critical Threat Range
++2 Critical Multiplier</Description>
        <Icon>GreatCleave</Icon>
        <Cooldown size="1">5</Cooldown>
        <ThisAttack>
           <BonusDamagePercent size="1">40</BonusDamagePercent>
+          <BonusThreatRange size="1">1</BonusThreatRange>
+          <BonusCriticalMultiplier size="1">2</BonusCriticalMultiplier>
        </ThisAttack>
     </Attack>
   </Feat>
@@ -3098,9 +3109,11 @@ two weapons (or as an unarmed Monk) by an additional 20% to 80%.</Description>
   </Feat>
   <Feat>
     <Name>Hamstring</Name>
-    <Description>Tactical Melee Attack: Using this attack, you may reduce the target's
+    <Description>Deals: +50% damage
+Tactical Melee Attack: Using this attack, you may reduce the target's
 movement rate by half for 12 seconds. Some creatures may be immune to the
-hamstring effect.</Description>
+hamstring effect.
+Cooldown: 6 seconds</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -3805,15 +3818,18 @@ chance by 1%. Stacks with Mental Toughness.</Description>
   </Feat>
   <Feat>
     <Name>Improved Precise Shot</Name>
-    <Description>Your ranged attacks will now pass through friends and foes to damage
-all foes in your path, until they strike your intended target.
-Also reduces Ranged Damage by 20% while active.</Description>
+    <Description>Offensive Ranged Stance: Your missile attacks may pass through friends ans foes to
+strike your target. Foes between you and your target might be hit. You deal 20%
+less damage with ranged attacks while in this stance.
+
+Passive: While using a Longbow or Shortbow, your Ability Score modifier bonus
+to damage improves by a further 50%, for a total of +100%.</Description>
     <Stance>
       <Name>Improved Precise Shot</Name>
       <Icon>ImprovedPreciseShot</Icon>
-      <Description>Your ranged attacks will now pass through friends and foes to damage
-all foes in your path, until they strike your intended target.
-Also reduces Ranged Damage by 20% while active.</Description>
+      <Description>Offensive Ranged Stance: Your missile attacks may pass through friends ans foes to
+strike your target. Foes between you and your target might be hit. You deal 20%
+less damage with ranged attacks while in this stance.</Description>
       <Group>Ranged Stance</Group>
     </Stance>
     <Group>Standard</Group>
@@ -3839,6 +3855,24 @@ Also reduces Ranged Damage by 20% while active.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>ImprovedPreciseShot</Icon>
+    <Effect>
+      <Type>DamageAbilityMultiplier</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+      <Requirements>
+         <RequiresOneOf>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Longbow</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Shortbow</Item>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+    </Effect>
   </Feat>
   <Feat>
     <Name>Improved Shield Bash</Name>
@@ -4037,9 +4071,10 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
   </Feat>
   <Feat>
     <Name>Improved Sunder</Name>
-    <Description>Tactical Melee Attack: Using this attack, you may reduce the target's Armor Class
-by 10% and Fortification by 25% for 12 seconds. Some creatures may be immune
-to the sunder effect. (DC 10 + STR Mod + Sunder Bonuses).
+    <Description>Deals: +60% damage
+Tactical Melee Attack: (+20 on attack roll) Using this attack, you may reduce
+the target's Armor Class by 10% and Fortification by 25% for 12 seconds.
+Some creatures may be immune to the sunder effect. (DC 10 + STR Mod + Sunder Bonuses).
 Regardless of saving throw result, enemies will suffer the Trauma effect,
 which is a -3 penalty to Fortitude saving throws.
 Stacks 5 times. Lasts 24 seconds. Cooldown: 10 seconds.
@@ -6235,7 +6270,10 @@ hit damage (before multipliers are applied).</Description>
 to strike their target. This feat also grants you the Offensive Ranged Stance
 'Archer's Focus', which lets you deal progressively more damage with ranged
 attacks while standing still. +5 Ranged Power per stack, Max stacks: 15
-or 25 with Deepwood Stalker enhancement</Description>
+or 25 with Deepwood Stalker enhancement.
+
+Passive: In addition, While using a Longbow or a Shortbow, your Ability Score
+Modifier bonus to damage improves by 50%.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -6268,6 +6306,24 @@ or 25 with Deepwood Stalker enhancement</Description>
       <Amount size="1">5</Amount>
       <AType>SliderValue</AType>
       <StackSource>Archer's Focus </StackSource>
+    </Effect>
+    <Effect>
+      <Type>DamageAbilityMultiplier</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+      <Requirements>
+         <RequiresOneOf>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Longbow</Item>
+            </Requirement>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Shortbow</Item>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
     </Effect>
   </Feat>
   <Feat>
@@ -6580,13 +6636,13 @@ Spells have three times their normal cooldown when this mode is active.</Descrip
   </Feat>
   <Feat>
     <Name>Sap</Name>
-    <Description>Tactical Melee Attack: When activated, a melee special attack is made.
-If it hits, the victim is dazed for 18 seconds normally or 30 seconds from
-a successful sneak attack. (Whether or not your character can normally perform
-sneak attacks) or until they are damaged. Unlike Trip and Stunning Blow,
-no save is made against this effect
-
-Creatures who cannot be sneak attacked will not be affected.</Description>
+    <Description>Tactical Melee Attack: Using this attack, you may render the target briefly senseless,
+though it will become active if damaged again. Some creatures, such as those
+without intelligence or those immune to stun effects, may be immune to or resist
+the Sap effect, and Sap is more effective when performed as a successful sneak
+attack. (whether or not your character can normally perform sneak attacks.)
+Successful saps last up to 18 seconds, or up to 30 seconds off a sneak attack.
+Cooldown: 10 seconds</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
@@ -7515,11 +7571,13 @@ Note that the jump skill hits an in game max of 40 total ranks.</Description>
   </Feat>
   <Feat>
     <Name>Slicing Blow</Name>
-    <Description>Tactical Melee Attack: Using this attack, you deal one point of Constitution damage
-to your target, and deal 1 to 6 additional damage every 2 seconds for 18 seconds.
-The target suffers an additional 1 to 6 damage per tick for every three Character
-Levels. This damage scales with 100% Melee Power, and can stack up to three times.
-Some creatures may be immune to the bleeding or wounding effect.</Description>
+    <Description>Deals: +40% damage.
+Tactical Melee Attack: Using this attack, you deal one point of Constitution damage
+to your target, and deal 1 to 6 additional damage 2 seconds later as the target
+bleeds for 18 seconds. The target suffers an additional 1 to 6 damage per tick
+for every three Character Levels. This damage scales with 100% Melee Power, and
+can stack up to three times. Some creatures may be immune to the bleeding or
+wounding effect.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Acquire>Train</Acquire>
@@ -8233,10 +8291,9 @@ saves against spell effects.</Description>
   </Feat>
   <Feat>
     <Name>Spring Attack</Name>
-    <Description>You leap forward striking a target enemy and all those around them.
-Requires a visible target and that you are holding a melee weapon.
-You suffer no penalty to your attack roll when moving and attacking.
-You will also gain a 2% Dodge bonus.</Description>
+    <Description>Deals: +20% damage.
+You leap forward striking a target enemy and all those around them.
+Requires a visible target and that you are holding a melee weapon.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -8260,12 +8317,6 @@ You will also gain a 2% Dodge bonus.</Description>
     </Requirements>
     <Acquire>Train</Acquire>
     <Icon>SpringAttack</Icon>
-    <Effect>
-      <Type>DodgeBonus</Type>
-      <Bonus>Feat</Bonus>
-      <AType>Simple</AType>
-      <Amount size="1">2</Amount>
-    </Effect>
   </Feat>
   <Feat>
     <Name>Stealthy</Name>
@@ -8307,9 +8358,10 @@ negates this effect.</Description>
   </Feat>
   <Feat>
     <Name>Sunder</Name>
-    <Description>Tactical Melee Attack: Using this attack, you may reduce the target's Armor Class
-by 10% and Fortification by 25% for six seconds. Some creatures may be immune
-to the Sunder effect. A successful Fortitude saving throw negates this effect.
+    <Description>Tactical Melee Attack: Using this attack with +10 to hit, you may reduce the
+target's Armor Class by 10% and Fortification by 25% for six seconds.
+Some creatures may be immune to the Sunder effect. A successful Fortitude saving
+throw negates this effect.
 (DC 10 + STR mod + Sunder bonuses). Cooldown: 10 seconds.</Description>
     <Acquire>Automatic</Acquire>
     <AutomaticAcquisition>
@@ -8322,8 +8374,9 @@ to the Sunder effect. A successful Fortitude saving throw negates this effect.
     <Icon>Sunder</Icon>
     <DC>
       <Name>Sunder</Name>
-      <Description>Tactical Melee Attack: Using this attack, you may reduce the target's Armor Class
-by 10% and Fortification by 25% for six seconds. A successful Fortitude saving
+      <Description>Tactical Melee Attack: Using this attack with +10 to hit, you may reduce the
+target's Armor Class by 10% and Fortification by 25% for six seconds.
+Some creatures may be immune to the Sunder effect. A successful Fortitude saving
 throw negates this effect.</Description>
       <Icon>Sunder</Icon>
       <DCType>Sunder</DCType>
@@ -8602,13 +8655,9 @@ you. Also grants you a +1 bonus to your AC and +5 Physical Resistance as well as
   </Feat>
   <Feat>
     <Name>Two Weapon Fighting</Name>
-    <Description>Reduces the to-hit penalty when using two weapons at the same time.
-The penalty for your primary hand lessens by 2 and the one for your off-hand
-lessens by 6, resulting in -4/-4 (instead of -6/-10 without this feat).
-If the off-hand weapon is light, both penalties decrease by another 2 points,
-down to -2/-2 (instead of -4/-8 without this feat).
-Two Weapon Fighting also increases the chance to proc an off-hand attack by
-20% (applies to unarmed Monk), bringing the total chance to 40%.</Description>
+    <Description>Reduces the penalty for fighting with two weapons, and increases the chance to
+produce off hand attacks when fighting with two weapons (or handwraps) by 20% to 40%.
+Does not function in animal forms.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -8680,10 +8729,10 @@ until you return to your Warforged form.</Description>
   </Feat>
   <Feat>
     <Name>Weapon Finesse</Name>
-    <Description>You use your Dexterity bonus instead of Strength bonus to determine bonus
-to attack with certain weapons if it is higher.
-This feat applies to attacks made by a Dagger, Handaxe, Kama, Kukri, Light Hammer,
-Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while unarmed or in a Druid animal form.</Description>
+    <Description>Provides a +2 bonus on attack rolls and +10% Fortification bypass.
+This feat applies to the following weapons: Dagger, Handaxe, Handwraps, Kama,
+Kukri, Light Hammer, Light Mace, Light Pick, Rapier, Scimitar, Short Sword,
+Sickle, or while unarmed or in a Druid animal form.</Description>
     <Group>Standard</Group>
     <Group>Epic Feat</Group>
     <Requirements>
@@ -8700,18 +8749,29 @@ Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while unarmed or in a Dr
     <Acquire>Train</Acquire>
     <Icon>WeaponFinesse</Icon>
     <Effect>
-      <Type>WeaponAttackAbilityClass</Type>
+      <Type>Weapon_Attack</Type>
       <Bonus>Feat</Bonus>
-      <Item>Dexterity</Item>
-      <Item>Light</Item>
-      <AType>NotNeeded</AType>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>Dagger</Item>
+      <Item>Handaxe</Item>
+      <Item>Handwraps</Item>
+      <Item>Kama</Item>
+      <Item>Kukri</Item>
+      <Item>Light Hammer</Item>
+      <Item>Light Mace</Item>
+      <Item>Light Pick</Item>
+      <Item>Rapier</Item>
+      <Item>Scimitar</Item>
+      <Item>Shortsword</Item>
+      <Item>Sickle</Item>
+      <Item>Unarmed</Item>
     </Effect>
     <Effect>
-      <Type>Weapon_AttackAbility</Type>
+      <Type>FortificationBypass</Type>
       <Bonus>Feat</Bonus>
-      <Item>Dexterity</Item>
-      <Item>Rapier</Item>
-      <AType>NotNeeded</AType>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
     </Effect>
   </Feat>
   <Feat>

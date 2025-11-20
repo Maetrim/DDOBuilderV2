@@ -638,9 +638,7 @@ Cooldown: 6 seconds</Description>
     <EnhancementTreeItem>
       <Name>Deepwood Stalker: Improved Weapon Finesse</Name>
       <InternalName>DSImprovedWeaponFinesse</InternalName>
-      <Description>You can use your Dexterity modifier for damage when wielding thrown weapons, and
-melee weapons with which you can use your Dexterity modifier to hit.
-(Longbows and Shortbows use your Dexterity modifier by default).</Description>
+      <Description>You gain +3 To Hit and +15% Fortification Bypass.</Description>
       <Icon>DSImprovedWeaponFinesse</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
@@ -654,27 +652,19 @@ melee weapons with which you can use your Dexterity modifier to hit.
           <Value>2</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>WeaponDamageAbilityClass</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Thrown</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
-      <Effect>
-        <Type>WeaponDamageAbilityClass</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Bows</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
-      <Effect>
-        <Type>WeaponDamageAbilityClass</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Finesseable</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
+    <Effect>
+      <Type>Weapon_Attack</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>FortificationBypass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+    </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Deepwood Stalker: Action Boost</Name>

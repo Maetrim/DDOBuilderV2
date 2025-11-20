@@ -2,7 +2,7 @@
 <Enhancements>
   <EnhancementTree>
     <Name>Tabaxi</Name>
-    <Version>1</Version>
+    <Version>2</Version>
     <Requirements>
       <Requirement>
         <Type>Race</Type>
@@ -16,10 +16,7 @@
     <EnhancementTreeItem>
       <Name>Tabaxi: Nimble Cat I</Name>
       <InternalName>TabCore1</InternalName>
-      <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor.
-You gain Dexterity to Hit with Dagger, Handaxe, Handwraps, Kama, Light Hammer,
-Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while Unarmed or in a
-Druid animal form.</Description>
+      <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor.</Description>
       <Icon>TabNimbleCat</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
@@ -43,23 +40,6 @@ Druid animal form.</Description>
             <Item>Light Armor</Item>
           </Requirement>
         </Requirements>
-      </Effect>
-      <Effect>
-        <Type>Weapon_AttackAbility</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Dagger</Item>
-        <Item>Hand Axe</Item>
-        <Item>Handwraps</Item>
-        <Item>Kama</Item>
-        <Item>Kukri</Item>
-        <Item>Light Hammer</Item>
-        <Item>Light Mace</Item>
-        <Item>Light Pick</Item>
-        <Item>Rapier</Item>
-        <Item>Shortsword</Item>
-        <Item>Sickle</Item>
-        <AType>NotNeeded</AType>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -262,7 +242,8 @@ Druid animal form.</Description>
     <EnhancementTreeItem>
       <Name>Tabaxi: Cat Scratch</Name>
       <InternalName>TabCatScratch</InternalName>
-      <Description>Active: +2[W] Melee Attack: Strike all nearby foes in front of you.
+      <Description>Deals: +20% Damage
+Melee Attack: Strike all nearby foes in front of you for +20% damage.
 6 second cooldown.</Description>
       <Icon>TabCatScratch</Icon>
       <XPosition>1</XPosition>
@@ -395,7 +376,7 @@ Hit Confirmation, +2 Critical Hit Damage, and +25% Armor Piercing for 20 seconds
       <MinSpent>5</MinSpent>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Tabaxi: Honed reflexes</Name>
+      <Name>Tabaxi: Deflect Arrows</Name>
       <InternalName>TabHonedReflexes</InternalName>
       <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
 projectile that would have struck you every 6 seconds.</Description>
@@ -441,11 +422,29 @@ Rank 3: You gain +1 to Reflex Saves.</Description>
     </EnhancementTreeItem>
     <!--Tier 3-->
     <EnhancementTreeItem>
+      <Name>Tabaxi: Sharp Claws II</Name>
+      <InternalName>TabSharpClawsII</InternalName>
+      <Description>+[1/2/3] to Damage.</Description>
+      <Icon>TabSharpClawsII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
       <Name>Tabaxi: Corner</Name>
       <InternalName>TabCorner</InternalName>
       <Description>+[1/2/3]% Dodge Bypass</Description>
       <Icon>TabCorner</Icon>
-      <XPosition>0</XPosition>
+      <XPosition>1</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="3">1 1 1</CostPerRank>
       <Ranks>3</Ranks>
@@ -455,55 +454,6 @@ Rank 3: You gain +1 to Reflex Saves.</Description>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Tabaxi: Sharp Claws II</Name>
-      <InternalName>TabSharpClawsII</InternalName>
-      <Description>+[1/2/3] to Melee Damage.</Description>
-      <Icon>TabSharpClawsII</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <Effect>
-        <Type>WeaponDamageBonusClass</Type>
-        <Type>WeaponDamageBonusCriticalClass</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Melee</Item>
-        <AType>Stacks</AType>
-        <Amount size="3">1 2 3</Amount>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Tabaxi: Improved Nimble Cat</Name>
-      <InternalName>TabImprovedNimbleCat</InternalName>
-      <Description>You gain Dexterity to Damage with Dagger, Handaxe, Handwraps, Kama, Kukri,
-Light Hammer, Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while
-Unarmed or in a Druid animal form.</Description>
-      <Icon>TabStealthy</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <Effect>
-        <Type>Weapon_DamageAbility</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Dagger</Item>
-        <Item>Hand Axe</Item>
-        <Item>Handwraps</Item>
-        <Item>Kama</Item>
-        <Item>Kukri</Item>
-        <Item>Light Hammer</Item>
-        <Item>Light Mace</Item>
-        <Item>Light Pick</Item>
-        <Item>Rapier</Item>
-        <Item>Shortsword</Item>
-        <Item>Sickle</Item>
-        <AType>NotNeeded</AType>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -538,7 +488,7 @@ and lasts for 9 seconds.</Description>
     </EnhancementTreeItem>
     <!--Tier 4-->
     <EnhancementTreeItem>
-      <Name>Tabaxi: Lash Out</Name>
+      <Name>Tabaxi: Feline Versatility</Name>
       <InternalName>TabLashOut</InternalName>
       <Description>Choose an ability.</Description>
       <Icon>TabLashOut</Icon>
@@ -632,8 +582,8 @@ and lasts for 9 seconds.</Description>
       <Name>Tabaxi: Deep Scratches</Name>
       <InternalName>TabDeepScratches</InternalName>
       <Description>Your Cat Scratch now deals Bane damage to targets it hits that are vulnerable
-to Bleed. This damage is equal to 1d8 damage +1 damage per Character Level,
-and scales with Melee Power.</Description>
+to Bleed. This damage is equal to 1d4 per Character Level, and scales with
+Melee Power.</Description>
       <Icon>TabDeepScratches</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>

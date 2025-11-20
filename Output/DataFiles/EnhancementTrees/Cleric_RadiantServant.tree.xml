@@ -172,8 +172,9 @@ The Empower Healing Spell metamagic now grants +100 Positive Energy Spell Power 
          <Name>Radiant Servant: Positive Energy Shield</Name>
          <InternalName>RSCore5</InternalName>
          <Description>You gain +1% Positive Energy Spell Critical Chance.
-Channel Divinity: Your living ally receives temporary hit points equal to your Heal skill.
-While these hit points remain, your target receives +20 Sacred bonus to
+Channel Divinity: Your living ally receives temporary hit points equal to twice
+your Heal skill or four times if your target is above level 20.
+While these hit points remain, your target receives a +20 Sacred bonus to
 Healing Amplification. (Cooldown: 30 seconds)</Description>
          <Icon>RSPositiveEnergyShield</Icon>
          <XPosition>4</XPosition>
@@ -395,7 +396,7 @@ cost [1/2/4] fewer spell points.</Description>
          <Icon>EfficientEmpowerHealing</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements>
@@ -444,7 +445,8 @@ cost [1/2/4] fewer spell points.</Description>
          <Name>Radiant Servant: Divine Healing</Name>
          <InternalName>RSDivineHealing</InternalName>
          <Description>Channel Divinity: Your target heals [1/2/4]d4 hp every 2 seconds for 2
-seconds per point of Heal skill you possess. (Cooldown: 2 seconds)
+seconds per point of Heal skill you possess and is affected by 50% Positive spell power.
+Cooldown: 2 seconds
 Note: Rank 1 ticks every 2 seconds, while Ranks 2 and 3 both tick every second.</Description>
          <Icon>RSDivineHealing</Icon>
          <XPosition>2</XPosition>
@@ -956,7 +958,7 @@ Activation Cost: 30 Spell Points. Cooldown: 1 minute.</Description>
          <Description>Channel Divinity: The next time your target falls below half hit points,
 they receive 250 positive energy healing. A target can only benefit from a
 Reactive Heal once every 3 minutes (reset by resting). This healing effect is
-unaffected by spell power. (Cooldown: 6 seconds)</Description>
+affected by spell power. (Cooldown: 6 seconds)</Description>
          <Icon>RSReactiveHeal</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>

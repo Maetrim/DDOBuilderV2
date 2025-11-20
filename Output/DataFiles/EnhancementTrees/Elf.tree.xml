@@ -694,53 +694,21 @@ draining its life force, applying 2d4 negative levels.</Description>
       <EnhancementTreeItem>
          <Name>Elf: Grace</Name>
          <InternalName>ElfGrace</InternalName>
-         <Description>You may use Dexterity modifier to determine the damage you deal with your chosen
-set of weapons.</Description>
+         <Description>You may use Dexterity modifier to determine To Hit and Damage on all weapons.</Description>
          <Icon>ElfGrace</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>15</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Type>Enhancement</Type>
-               <Item>ElfElvenWeaponTrainingIV</Item>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Aerenal Grace</Name>
-               <Description>You may use Dexterity to determine the damage you deal with Longswords,
-Rapiers. (Longbows and Shortbows use your Dexterity modifier by default).</Description>
-               <Icon>ElfAerenalGrace</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>Weapon_DamageAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <Item>Longsword</Item>
-                  <Item>Rapier</Item>
-                  <Item>Longbow</Item>
-                  <AType>NotNeeded</AType>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Valenar Grace</Name>
-               <Description>You may use Dexterity to determine the damage you deal with Scimitars and
-Falchions. (Longbows and Shortbows use your Dexterity modifier by default).</Description>
-               <Icon>ElfValenarGrace</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Effect>
-                  <Type>Weapon_DamageAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Item>Dexterity</Item>
-                  <Item>Scimitar</Item>
-                  <Item>Falchion</Item>
-                  <AType>NotNeeded</AType>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
+         <Effect>
+            <Type>Weapon_AttackAbility</Type>
+            <Type>Weapon_DamageAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dexterity</Item>
+            <Item>All</Item>
+            <AType>NotNeeded</AType>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Elf: Elven Weapon Training IV</Name>
@@ -752,7 +720,6 @@ Falchions. (Longbows and Shortbows use your Dexterity modifier by default).</Des
          <CostPerRank size="1">2</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>15</MinSpent>
-         <ArrowLeft/>
          <ArrowRight/>
          <Requirements>
             <Requirement>

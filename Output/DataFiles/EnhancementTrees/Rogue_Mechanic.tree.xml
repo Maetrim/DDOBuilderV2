@@ -52,9 +52,9 @@ You also gain proficiency with great crossbows.</Description>
       <InternalName>MechCore2</InternalName>
       <Description>Alchemical Trap Activate: Throws a flask of caustic liquid at your enemy,
 which explodes into a sticky mess. Enemies caught within by the goo puddle take:
-4d6 Acid damage every 2 seconds (Damage scales with 200% Ranged Power, Reflex DC
-10 + Rogue Level + Intelligence Modifier for half damage)
-Slow (Reflex DC 10 + Rogue Level + Intelligence Modifier negates).
+4d6 +1 per Sneak Attack Die in Acid damage every 2 seconds (Damage scales with
+200% Ranged Power, Reflex DC 10 equal to Disable Device Skill +1d20 for half
+damage and negate Slow.
 Anti-requisite: This enhancement cannot be taken at the same time as Tanglefoot
 in the Half-Elf tree.
 Cooldown: 30 seconds. Spell Resistance: No</Description>
@@ -76,6 +76,13 @@ Cooldown: 30 seconds. Spell Resistance: No</Description>
           <Item>Rogue</Item>
           <Value>3</Value>
         </Requirement>
+         <RequiresNoneOf>
+           <Requirement>
+             <Type>Enhancement</Type>
+             <Item>HalfElfDilettanteSpecialAbilityII</Item>
+             <Item>Tanglefoot</Item>
+           </Requirement>
+         </RequiresNoneOf>
       </Requirements>
       <Effect>
         <Type>SneakAttackRange</Type>
@@ -87,14 +94,14 @@ Cooldown: 30 seconds. Spell Resistance: No</Description>
       <DC>
         <Name>Mechanic: Tanglefoot</Name>
         <Description>Alchemical Trap Activate: Throws a flask of caustic liquid at your enemy,
-which explodes into a sticky mess. Enemies caught within by the goo puddle take
-4d6 acid damage every 2 seconds.</Description>
+which explodes into a sticky mess. Enemies caught within by the goo puddle take:
+4d6 +1 per Sneak Attack Die in Acid damage every 2 seconds (Damage scales with
+200% Ranged Power)</Description>
         <Icon>MechTanglefoot</Icon>
         <DCType>Slow</DCType>
         <DCVersus>Reflex</DCVersus>
-        <Amount size="1">10</Amount>
-        <ClassLevel>Rogue</ClassLevel>
-        <ModAbility>Intelligence</ModAbility>
+        <Other>1d20</Other>
+        <Skill>Disable Device</Skill>
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -217,13 +224,12 @@ and 1 extra Sneak Attack die with bows, crossbows, and thrown weapons.</Descript
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Mechanic: Expert Builder</Name>
+      <Name>Mechanic: Sniper</Name>
       <InternalName>MechCore5</InternalName>
-      <Description>You gain a +1 Competence Bonus to Critical Multiplier with bows,
-crossbows, and thrown weapons. Great Crossbows instead gain +2 Competence Bonus
-to Critical Multiplier.
-Cooldowns of Alchemical Trap attacks are reduced by 20%.</Description>
-      <Icon>MechExpertBuilder</Icon>
+      <Description>+1d6 Sneak Attack die with bows, repeating crossbows, and thrown weapons.
+Non-repeating crossbows instead gain +3d6 extra sneak attack damage dice and +2[W].
+Great Crossbows now vorpal on a 19-20</Description>
+      <Icon>MechSniper</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -249,28 +255,88 @@ Cooldowns of Alchemical Trap attacks are reduced by 20%.</Description>
         <Amount size="1">5</Amount>
       </Effect>
       <Effect>
-        <Type>WeaponCriticalMultiplierClass</Type>
-        <Bonus>Competence</Bonus>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>Crossbow</Item>
-        <ApplyAsItemEffect />
+         <Requirements>
+            <RequiresOneOf>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Shortbow</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>longbow</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Repeating Light Crossbow</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Repeating Heavy Crossbow</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Dart</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Shuriken</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Throwing Axe</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Throwing Dagger</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Throwing Hammer</Item>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
       </Effect>
       <Effect>
-        <Type>WeaponCriticalMultiplierClass</Type>
-        <Bonus>Competence</Bonus>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-        <Item>Bows</Item>
-        <ApplyAsItemEffect />
+        <Amount size="1">3</Amount>
+         <Requirements>
+            <RequiresOneOf>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Light Crossbow</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Heavy Crossbow</Item>
+               </Requirement>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Great Crossbow</Item>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
       </Effect>
       <Effect>
-        <Type>Weapon_CriticalMultiplier</Type>
-        <Bonus>Competence</Bonus>
+        <Type>Weapon_BaseDamage</Type>
+        <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
+        <Item>Light Crossbow</Item>
+        <Item>Heavy Crossbow</Item>
         <Item>Great Crossbow</Item>
-        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>Weapon_VorpalRange</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Great Crossbow</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -465,8 +531,8 @@ with 200% Melee Power.</Description>
       <Name>Mechanic: Thunderstone</Name>
       <InternalName>MechThunderstone</InternalName>
       <Description>Alchemical Trap Attack: Throws an alchemical charge at your enemy.
-Deals [4/6/8]d6 sonic damage and dazes in area.
-Fort DC ([12/16/20] + Rogue Level + Intelligence Modifier) Negates daze.
+Deals 4d6 +1d[4/6/8] per Sneak Attack Die in sonic damage and dazes in area.
+Fort DC (Disable Device skill) Negates daze.
 The damage scales with 200% Ranged Power
 Cooldown: 12 seconds. Spell Resistance: No </Description>
       <Icon>MechThunderstone</Icon>
@@ -487,14 +553,12 @@ Cooldown: 12 seconds. Spell Resistance: No </Description>
       <DC>
         <Name>Mechanic: Thunderstone</Name>
         <Description>Alchemical Trap Attack: Throws an alchemical charge at your enemy.
-Deals [4/6/8]d6 damage and dazes in area.
+Deals 4d6 +1d[4/6/8] per Sneak Attack Die in sonic damage and dazes in area.
 The damage scales with 200% Ranged Power</Description>
         <Icon>MechThunderstone</Icon>
         <DCType>Daze</DCType>
         <DCVersus>Fortitude</DCVersus>
-        <Amount size="3">12 16 20</Amount>
-        <ClassLevel>Rogue</ClassLevel>
-        <ModAbility>Intelligence</ModAbility>
+        <Skill>Disable Device</Skill>
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -643,7 +707,7 @@ if you are not dual shooting.</Description>
     <EnhancementTreeItem>
       <Name>Mechanic: Improved Traps</Name>
       <InternalName>MechImprovedTraps</InternalName>
-      <Description>+[1/2/3] to the save DC's of Alchemical Trap Attacks and Magical Traps.
+      <Description>+[1/2/3] to Disable Device skill.
 Elemental Traps that you place now have a DC equal to [65/80/100]% of your
 Disable Device Skill instead of 50%. </Description>
       <Icon>MechImprovedTraps</Icon>
@@ -660,9 +724,9 @@ Disable Device Skill instead of 50%. </Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>TacticalDC</Type>
+        <Type>SkillBonus</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Trap</Item>
+        <Item>Disable Device</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
       </Effect>
@@ -807,10 +871,9 @@ if you are not dual shooting.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Mechanic: Wrack Construct</Name>
+      <Name>Mechanic: Wracking Strike</Name>
       <InternalName>MechWrackConstruct</InternalName>
-      <Description>Perform melee or ranged attacks that hinder constructs and living constructs.
-Choose one (Cooldown: [12/8/4] seconds):</Description>
+      <Description>Perform melee or ranged attacks that hinder constructs and living constructs.</Description>
       <Icon>MechWrackConstruct</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
@@ -828,19 +891,6 @@ Choose one (Cooldown: [12/8/4] seconds):</Description>
       </Requirements>
       <Selector>
         <EnhancementSelection>
-          <Name>Wracking Strike</Name>
-          <Description>Deals: +10% Damage
-Melee Attack: On Damage: Deals [3/6/9]d6 extra damage to constructs and living
-constructs, and applies Wracked: This construct or living construct's fortification
-is reduced by -10% and loses its inherent immunity to sneak attack. This effect
-stacks up to five times.
-
-Damage scales with 200% melee power. Duration: 20 seconds.</Description>
-          <Icon>MechWrackingStrike</Icon>
-          <CostPerRank size="1">1</CostPerRank>
-          <Clickie />
-        </EnhancementSelection>
-        <EnhancementSelection>
           <Name>Wracking Shot</Name>
           <Description>Deals: +10% Damage
 Ranged Attack: On Damage: Deals [3/6/9]d6 extra damage to constructs and living
@@ -853,6 +903,19 @@ Damage scales with 200% ranged power. Duration: 20 seconds.</Description>
           <CostPerRank size="1">1</CostPerRank>
           <Clickie />
         </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wracking Strike</Name>
+          <Description>Deals: +10% Damage
+Melee Attack: On Damage: Deals [3/6/9]d6 extra damage to constructs and living
+constructs, and applies Wracked: This construct or living construct's fortification
+is reduced by -10% and loses its inherent immunity to sneak attack. This effect
+stacks up to five times.
+
+Damage scales with 200% melee power. Duration: 20 seconds.</Description>
+          <Icon>MechWrackingStrike</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -860,9 +923,9 @@ Damage scales with 200% ranged power. Duration: 20 seconds.</Description>
       <InternalName>MechOozeFlask</InternalName>
       <Description>Alchemical Trap Attack: You throw a flask at your enemy that contains
 concentrated gray ooze secretions.
-Deals [4/8/12]d8 acid damage (scales with 200% Melee Power), no save, and reduces
-the Armor Class and PRR of your opponent by [2/4/8] for 30 seconds,
-Fort DC 10 + Rogue Level + Intelligence Modifier negates. 
+Deals 4d6 +1d[6/8/12] per Sneak Attack Die in acid damage and reduces the Armor Class
+and PRR of your opponent by 2 for 30 seconds.
+Fort DC equal to Disable Device +1d20 for half damage and to negate sunder effect.
 Cooldown: 12 seconds. Spell Resistance: No </Description>
       <Icon>MechOozeFlask</Icon>
       <XPosition>2</XPosition>
@@ -886,14 +949,13 @@ Cooldown: 12 seconds. Spell Resistance: No </Description>
         <Name>Mechanic: Ooze Flask</Name>
         <Description>Alchemical Trap Attack: You throw a flask at your enemy that contains
 concentrated gray ooze secretions.
-Deals [4/8/12]d8 acid damage (scales with 200% Melee Power), no save, and reduces
-the Armor Class and PRR of your opponent by [2/4/8] for 30 seconds</Description>
+Deals 4d6 +1d[6/8/12] per Sneak Attack Die in acid damage and reduces the Armor Class
+and PRR of your opponent by 2 for 30 seconds.</Description>
         <Icon>MechOozeFlask</Icon>
         <DCType>Negate</DCType>
         <DCVersus>Fortitude</DCVersus>
-        <Amount size="1">10</Amount>
-        <ClassLevel>Rogue</ClassLevel>
-        <ModAbility>Intelligence</ModAbility>
+        <Other>1d20</Other>
+        <Skill>Disable Device</Skill>
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1101,11 +1163,11 @@ bolts, and throwing weapons. +[3/6/10] Ranged Power and your ammunition gains a
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Mechanic: Leg Shot</Name>
+      <Name>Mechanic: Line up and Sit Down</Name>
       <InternalName>MechLegShot</InternalName>
-      <Description>Deals: +20% Damage
-Ranged Attack: On Damage: Slow your enemy's movement by 50% for 10 seconds.
-(Cooldown: 10 seconds)</Description>
+      <Description>Deals: +250% Damage
+Ranged Attack: On Damage: knocks your enemy down for 2 seconds, no save.
+Cooldown: 6 seconds</Description>
       <Icon>MechLegShot</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
@@ -1317,9 +1379,8 @@ produce extra shots.</Description>
       <InternalName>MechTimeBomb</InternalName>
       <Description>Alchemical Trap Attack: Creates an alchemical charge at your feet.
 Deals [10/25/50] Sonic and [10/25/50] Fire damage per Rogue level to all nearby
-enemies after 2 seconds, and knocks them to the ground.
-Reflex (DC [10/14/18] + Rogue Level + Intelligence Modifier) for half damage.
-Balance DC 10 + Rogue Level + Intelligence Modifier to Negate knockdown. 
+enemies after 2 seconds, and knocks them to the ground. Scaled with 200% Range Power.
+Reflex (DC 10 + Disable Device Skill +1d20 for half damage and Negate knockdown. 
 Cooldown: 20 seconds. Spell Resistance: No </Description>
       <Icon>MechTimeBomb</Icon>
       <XPosition>2</XPosition>
@@ -1348,19 +1409,19 @@ enemies after 2 seconds, and knocks them to the ground.</Description>
         <Icon>MechTimeBomb</Icon>
         <DCType>Knockdown</DCType>
         <DCVersus>Balance</DCVersus>
-        <Amount size="3">10 14 18</Amount>
-        <ClassLevel>Rogue</ClassLevel>
-        <ModAbility>Intelligence</ModAbility>
+        <Amount size="3">10 10 10</Amount>
+        <Other>1d20</Other>
         <Skill>Disable Device</Skill>
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Mechanic: Sniper</Name>
+      <Name>Mechanic: Expert Builder</Name>
       <InternalName>MechSniper</InternalName>
-      <Description>+1d6 Sneak Attack die with bows, repeating crossbows, and thrown weapons.
-Non-repeating crossbows instead gain +3d6 extra sneak attack damage and +2[W].
-Great Crossbows now vorpal on a 19-20.</Description>
-      <Icon>MechSniper</Icon>
+      <Description>You gain a +1 Competence Bonus to Critical Multiplier with bows,
+crossbows, and thrown weapons. Great Crossbows instead gain +2 Competence Bonus
+to Critical Multiplier.
+Cooldowns of Alchemical Trap attacks are reduced by 20%.</Description>
+      <Icon>MechExpertBuilder</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -1379,64 +1440,28 @@ Great Crossbows now vorpal on a 19-20.</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>Weapon_VorpalRange</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Great Crossbow</Item>
+        <Type>WeaponCriticalMultiplierClass</Type>
+        <Bonus>Competence</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
+        <Item>Crossbow</Item>
+        <ApplyAsItemEffect />
       </Effect>
       <Effect>
-        <Type>SneakAttackDice</Type>
-        <Bonus>Enhancement</Bonus>
+        <Type>WeaponCriticalMultiplierClass</Type>
+        <Bonus>Competence</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Bow</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Repeating Crossbow</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Thrown Weapon</Item>
-            </Requirement>
-          </RequiresOneOf>
-        </Requirements>
+        <Item>Bows</Item>
+        <ApplyAsItemEffect />
       </Effect>
       <Effect>
-        <Type>SneakAttackDice</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">3</Amount>
-        <Requirements>
-          <RequiresOneOf>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Light Crossbow</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Heavy Crossbow</Item>
-            </Requirement>
-            <Requirement>
-              <Type>Stance</Type>
-              <Item>Great Crossbow</Item>
-            </Requirement>
-          </RequiresOneOf>
-        </Requirements>
-      </Effect>
-      <Effect>
-        <Type>Weapon_BaseDamage</Type>
-        <Bonus>Enhancement</Bonus>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
-        <Item>Light Crossbow</Item>
-        <Item>Heavy Crossbow</Item>
         <Item>Great Crossbow</Item>
+        <ApplyAsItemEffect />
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>

@@ -15,8 +15,7 @@
     <EnhancementTreeItem>
       <Name>Assassin: Knife in the Darkness</Name>
       <InternalName>AssCore1</InternalName>
-      <Description>You gain proficiency with Kukris. You can also use your Dexterity modifier to hit
-with Daggers and Kukris</Description>
+      <Description>You gain proficiency with Kukris.</Description>
       <Icon>AssKnifeInTheDarkness</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
@@ -38,22 +37,11 @@ with Daggers and Kukris</Description>
         <Item>Kukri</Item>
         <AType>NotNeeded</AType>
       </Effect>
-      <Effect>
-        <Type>Weapon_AttackAbility</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Dagger</Item>
-        <Item>Kukri</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Assassin: Dagger in the Back</Name>
       <InternalName>AssCore2</InternalName>
-      <Description>You can now use your Dexterity for damage with Daggers and Kukris.
-If you possess the Weapon Finesse feat, this also applies to melee weapons with
-which you can use your Dexterity modifier to hit.
-This enhancement does not work with handwraps or unarmed attacks.</Description>
+      <Description>You gain +1 damage and +10% Fortification Bypass.</Description>
       <Icon>AssDaggerInTheBack</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
@@ -72,27 +60,19 @@ This enhancement does not work with handwraps or unarmed attacks.</Description>
           <Value>3</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>Weapon_DamageAbility</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Dagger</Item>
-        <Item>Kukri</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
-      <Effect>
-        <Type>WeaponDamageAbilityClass</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Finesseable</Item>
-        <AType>NotNeeded</AType>
-        <Requirements>
-          <Requirement>
-            <Type>Feat</Type>
-            <Item>Weapon Finesse</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
+    <Effect>
+      <Type>Weapon_Damage</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>FortificationBypass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+    </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Assassin: Assassin's Trick</Name>

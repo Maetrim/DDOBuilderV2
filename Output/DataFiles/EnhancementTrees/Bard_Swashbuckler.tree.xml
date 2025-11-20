@@ -56,7 +56,7 @@ per Swashbuckler Core Ability you have.</Description>
          <InternalName>SBCore2</InternalName>
          <Description>Swashbuckling: Stance: You gain 1% Doublestrike and Doubleshot as well as
 +1 to the Enhancement Bonus of the weapon in your main hand. Swashbuckling
-requires wielding a Finesseable or Thrown weapon in your main hand, wielding
+requires wielding a Light or Thrown weapon in your main hand, wielding
 a Buckler or nothing in your off hand, and wearing Light Armor or no armor.
 (Druids cannot Swashbuckle while in animal forms.) (For Warforged and Bladeforged,
 you must be using either the Composite Plating or Mithral Body feats).
@@ -318,7 +318,7 @@ Light Pick: +1 Range</Description>
          <InternalName>SBCore3</InternalName>
          <Description>Uncanny Dodge: You gain the Uncanny Dodge feat.
 Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
-+1 Attack and Damage.</Description>
++1 Damage.</Description>
          <Icon>SBUncannyDodge</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -375,7 +375,7 @@ Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
             </Requirements>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
+            <Type>Weapon_Damage</Type>
             <Bonus>Enhancement</Bonus>
             <Item>All</Item>
             <AType>Simple</AType>
@@ -392,8 +392,8 @@ Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
          <Name>Swashbuckler: Panache</Name>
          <InternalName>SBCore4</InternalName>
          <Description>Panache: While Swashbuckling, you have an additional 1% Doublestrike,
-1% Doubleshot, +1 Attack Damage, +1 Reflex Saving Throw, and the weapon in your
-main hand gains an additional +1 to its Enhancement bonus.</Description>
+1% Doubleshot, +1 Damage, and the weapon in your main hand gains an additional
++1 to its Enhancement bonus.</Description>
          <Icon>SBPanache</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -458,22 +458,9 @@ main hand gains an additional +1 to its Enhancement bonus.</Description>
             </Requirements>
          </Effect>
          <Effect>
-            <Type>Weapon_Attack</Type>
+            <Type>Weapon_Damage</Type>
             <Bonus>Enhancement</Bonus>
             <Item>All</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Swashbuckling</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Reflex</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
             <Requirements>
@@ -487,9 +474,8 @@ main hand gains an additional +1 to its Enhancement bonus.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Roll with the Punches</Name>
          <InternalName>SBCore5</InternalName>
-         <Description>Roll with the Punches: While Swashbuckling, you gain +5 Insight Bonus to
-Character Dodge Cap, the Slippery Mind feat, +1% Doublestrike, 1% Doubleshot
-and +1 Attack and Damage</Description>
+         <Description>While Swashbuckling, gain an additional +1% Doublestrike, 1% Doubleshot,
++1 Damage, +5 Dodge Cap, and the Slippery Mind feat.</Description>
          <Icon>SBRollWithThePunches</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -548,7 +534,7 @@ and +1 Attack and Damage</Description>
          </Effect>
          <Effect>
             <Type>DodgeCapBonus</Type>
-            <Bonus>Insightful</Bonus>
+            <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">5</Amount>
             <Requirements>
@@ -557,10 +543,9 @@ and +1 Attack and Damage</Description>
                   <Item>Swashbuckling</Item>
                </Requirement>
             </Requirements>
-            <ApplyAsItemEffect/>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
+            <Type>Weapon_Damage</Type>
             <Bonus>Enhancement</Bonus>
             <Item>All</Item>
             <AType>Simple</AType>
@@ -576,10 +561,10 @@ and +1 Attack and Damage</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Evasive Maneuvers</Name>
          <InternalName>SBCore6</InternalName>
-         <Description>Evasive Maneuvers: +2 Charisma, +2 Dexterity.
-While Swashbuckling, you gain the Evasion feat, +1% Doublestrike, 1% Doubleshot,
-+1 Attack Damage, and the weapon in your main hand gains an additional +1 to its
-Enhancement bonus.</Description>
+         <Description>+2 Charisma, +2 Dexterity.
+While Swashbuckling, you gain the Evasion feat, an additional +1% Doublestrike,
+1% Doubleshot, +1 Damage, and the weapon in your main hand gains an additional
++1 to its Enhancement bonus.</Description>
          <Icon>SBEvasiveManeuvers</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -650,7 +635,7 @@ Enhancement bonus.</Description>
             </Requirements>
          </Effect>
          <Effect>
-            <Type>Weapon_AttackAndDamage</Type>
+            <Type>Weapon_Damage</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
@@ -1175,7 +1160,7 @@ Fighting line of feats.</Description>
          <Name>Swashbuckler: Different Tack</Name>
          <InternalName>SBDifferentTack</InternalName>
          <Description>Choose to use either Charisma, Dexterity or Intelligence modifier for damage
-when single weapon fighting:</Description>
+with weapon attacks.</Description>
          <Icon>SBDifferentTack</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>

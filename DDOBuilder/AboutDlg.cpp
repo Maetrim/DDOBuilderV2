@@ -54,6 +54,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     m_bugReporters.SetWindowText(
         "In alphabetical order:\r\n"
         "\r\n"
+        "aarondev42, "
         "Aaumini, "
         "Arcanaverse, "
         "Attlanttizz, "
@@ -178,9 +179,10 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Warsaga, "
         "WestonChan, "
         "xDTungTungTungSahur, "
-        "YoureNotDead, "
         "ydufraisse, "
         "Yndrofian, "
+        "YoureNotDead, "
+        "yugodealer, "
         "zenith90210, "
         "zilgabex, "
         "Zoe Kestral");

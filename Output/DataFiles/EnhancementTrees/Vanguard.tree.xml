@@ -497,10 +497,11 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
     <EnhancementTreeItem>
       <Name>Vanguard: Shield Smash</Name>
       <InternalName>VanguardShieldSmash</InternalName>
-      <Description>Deals +[10/20/30]% Damage
+      <Description>Deals +[25/50/75]% Damage
 Cooldown: [12/9/6] seconds
-Shield Attack: On damage, your Physical and Magical Resistance Rating are
-increased by [2/4/6] points for [3/6/12] seconds.</Description>
+Shield Attack: On damage you gain 1 stack of Battle Guard.
+Battle Guard: +10 PRR/MRR for 12 seconds, stacks 5 times. Each stack lasts 12 seconds.
+Blocking for more than 3 seconds removes all stacks.</Description>
       <Icon>VanguardShieldSmash</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
@@ -522,6 +523,21 @@ increased by [2/4/6] points for [3/6/12] seconds.</Description>
           </Requirement>
         </RequiresOneOf>
       </Requirements>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Shield Smash</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 5</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">10</Amount>
+        <AType>SliderValue</AType>
+        <StackSource>Shield Smash</StackSource>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Vanguard: Unbalancing Shove</Name>
@@ -868,7 +884,7 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
       <InternalName>VanguardFollowUp</InternalName>
       <Description>When you hit an enemy with an activated attack with certain stunning abilities
 (such as Stunning Blow or Stunning Shield), your Melee Power is increased by
-[3/6/9] points for 12 seconds whether the stun works or not.</Description>
+[5/10/15] points for 30 seconds whether the stun works or not.</Description>
       <Icon>VanguardFollowUp</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
@@ -893,7 +909,7 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
         <Type>MeleePower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
-        <Amount size="3">3 6 9</Amount>
+        <Amount size="3">5 10 15</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1112,8 +1128,8 @@ to your attacker. Scales with Melee Power.</Description>
       <Description>Deals +[10/20/30]% Damage
 Cooldown: [36/24/12] seconds
 Shield Attack: Rush forward up to 30 feet to your selected opponent and deliver
-a shield attack that hits enemies around you.
-(Note: also greatly slows the movement speed of enemies struck for ~2 seconds.)</Description>
+a shield attack that hits enemies around you. Enemies can be knocked down.
+DC: 10 + Max[Str,Dex,Con,Int,Wis,Cha] Modifier + character level + trip bonuses.</Description>
       <Icon>VanguardShieldCharge</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
@@ -1135,6 +1151,23 @@ a shield attack that hits enemies around you.
           </Requirement>
         </RequiresOneOf>
       </Requirements>
+      <DC>
+        <Name>Vanguard: Shield Charge</Name>
+        <Description>Shield Attack: Rush forward up to 30 feet to your selected opponent and deliver
+a shield attack that hits enemies around you. Enemies can be knocked down.</Description>
+        <Icon>VanguardShieldCharge</Icon>
+        <DCType>Knock down</DCType>
+        <DCVersus>Will</DCVersus>
+        <Amount size="1">10</Amount>
+        <ModAbility>Strength</ModAbility>
+        <ModAbility>Dexterity</ModAbility>
+        <ModAbility>Constitution</ModAbility>
+        <ModAbility>Intelligence</ModAbility>
+        <ModAbility>Wisdom</ModAbility>
+        <ModAbility>Charisma</ModAbility>
+        <ClassLevel>All</ClassLevel>
+        <Tactical>Trip</Tactical>
+      </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Vanguard: Myrmidon's Edge</Name>
@@ -1374,7 +1407,7 @@ bonus to trip attacks).</Description>
     <EnhancementTreeItem>
       <Name>Vanguard: Armored Strength</Name>
       <InternalName>VanguardArmoredStrength</InternalName>
-      <Description>+10 to Melee Power, +10% chance to make a Secondary Shield Bash.</Description>
+      <Description>+15 to Melee Power, +10% chance to make a Secondary Shield Bash.</Description>
       <Icon>VanguardArmoredStrength</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
@@ -1405,7 +1438,7 @@ bonus to trip attacks).</Description>
         <Type>SecondaryShieldBash</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">10</Amount>
+        <Amount size="1">15</Amount>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>

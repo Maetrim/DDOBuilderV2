@@ -189,7 +189,7 @@
       <Name>Halfling: Stealthy</Name>
       <InternalName>HalflingStealthy</InternalName>
       <Description>+[1/2/3] Hide and Move Silently.
-Rank 3: Throw attacks you perform while sneaking deal +1[W] damage.</Description>
+Rank 3: Thrown attacks you perform while sneaking deal +1[W] damage.</Description>
       <Icon>HalflingStealthy</Icon>
       <XPosition>1</XPosition>
       <YPosition>1</YPosition>
@@ -404,7 +404,7 @@ This ability shares a counter with Lesser Dragonmark of Healing.</Description>
       <Name>Halfling: Heroic Companion</Name>
       <InternalName>HalflingHeroicCompanion</InternalName>
       <Description>Action Boost: Grants an ally +[¼/½/1][W],
-+[2/4/6] to hit and saving throws, +[0/2/4]% Dodge and +[0/0/10] Physical Resistance Rating.
++[2/4/6] to hit and saving throws, +[0/2/4]% Dodge and +[0/0/10] PRR.
 (Cooldown: 30 seconds)</Description>
       <Icon>HalflingHeroicCompanion</Icon>
       <XPosition>4</XPosition>
@@ -444,7 +444,7 @@ This ability shares a counter with Lesser Dragonmark of Healing.</Description>
     <EnhancementTreeItem>
       <Name>Halfling: Skillful Thrower</Name>
       <InternalName>HalflingSkillfulThrower</InternalName>
-      <Description>You can use your Dexterity modifier for damage with returning thrown weapons.</Description>
+      <Description>You gain +2 to hit and damage while using a throwing weapons.</Description>
       <Icon>HalflingSkillfulThrower</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
@@ -453,11 +453,16 @@ This ability shares a counter with Lesser Dragonmark of Healing.</Description>
       <MinSpent>10</MinSpent>
       <ArrowUp />
       <Effect>
-        <Type>WeaponDamageAbilityClass</Type>
+        <Type>Weapon_Attack</Type>
+        <Type>Weapon_Damage</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Dexterity</Item>
-        <Item>Thrown</Item>
-        <AType>NotNeeded</AType>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Dart</Item>
+        <Item>Shuriken</Item>
+        <Item>Throwing Axe</Item>
+        <Item>Throwing Dagger</Item>
+        <Item>Throwing Hammer</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
