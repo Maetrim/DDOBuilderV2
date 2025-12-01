@@ -901,8 +901,13 @@ Note: This enhancement does not grant exotic proficiency.</Description>
       <InternalName>KenseiReedInTheWind</InternalName>
       <Name>Kensei: Reed In The Wind</Name>
       <Description>Deals +[20/40/60]% Damage
-Focus Melee Attack: If you successfully damage your target you gain a +[3/6/9]% Insight bonus to
-Dodge for 6 seconds. (Cooldown: 8 seconds.)</Description>
+Gain a stack of Battle Guard per target hit.
+Cooldown: 8 seconds.
+
+Battle Guard: +10 PRR/MRR per stack, lasts 12 seconds, effect ends early if
+you block for more than 3 seconds continuously. Hitting multiple enemies via
+Strikethrough or Two Weapon Fighting will lead to multiple stacks of Battle
+Guard being applied.</Description>
       <Icon>KenseiReedInTheWind</Icon>
       <XPosition>4</XPosition>
       <YPosition>1</YPosition>
@@ -916,14 +921,25 @@ Dodge for 6 seconds. (Cooldown: 8 seconds.)</Description>
           <Item>Fighter</Item>
           <Value>1</Value>
         </Requirement>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Dodge</Item>
-        </Requirement>
       </Requirements>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Battle Guard</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 5</Amount>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount size="1">10</Amount>
+        <AType>SliderValue</AType>
+        <StackSource>Battle Guard</StackSource>
+      </Effect>
       <Attack>
         <Name>Kensei: Reed In The Wind</Name>
-        <Description>Deals +[10/20/30]% Damage</Description>
+        <Description>Deals +[20/40/60]% Damage</Description>
         <Icon>KenseiReedInTheWind</Icon>
         <Cooldown size="3">8 8 8</Cooldown>
         <ThisAttack>
@@ -1667,7 +1683,19 @@ Rank 3: Your passive Ki regeneration is increased by 1.</Description>
           <Item>Fighter</Item>
           <Value>3</Value>
         </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>KenseiCriticalMastery</Item>
+          <Item>Critical Mastery</Item>
+        </Requirement>
       </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>KenseiCriticalMastery</Item>
+        <Item>Critical Mastery</Item>
+      </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamageCritical</Type>
         <Bonus>Enhancement</Bonus>

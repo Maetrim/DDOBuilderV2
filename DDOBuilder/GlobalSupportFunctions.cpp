@@ -171,6 +171,11 @@ const std::list<Quest>& Quests()
     return theApp.Quests();
 }
 
+const std::list<std::string>& AdventurePacks()
+{
+    return theApp.AdventurePacks();
+}
+
 const std::list<Patron>& Patrons()
 {
     return theApp.Patrons();

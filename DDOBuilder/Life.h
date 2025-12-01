@@ -33,6 +33,7 @@ class Life :
         Life(Character* pCharacter);
         void Write(XmlLib::SaxWriter* writer) const;
         void LoadComplete();
+        Character* CharacterPointer() const;
 
         void UpdateLegacyTrees();
 

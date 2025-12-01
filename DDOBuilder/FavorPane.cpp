@@ -300,6 +300,8 @@ void CFavorPane::PopulateQuestList()
     quests.sort();
     for (auto&& qit : quests)
     {
+        if (qit.HasDoNotShow()) continue;       // skip showing this one
+
         // level filtering
         if (selMinLevel <= qit.Levels()[0]
             && selMaxLevel >= qit.Levels()[0])

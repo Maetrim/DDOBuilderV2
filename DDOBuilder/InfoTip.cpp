@@ -550,6 +550,16 @@ void CInfoTip::SetItem(
         pRequirements->AddRequirement(dropLoc, false);  // red highlighted line
         m_tipItems.push_back(pRequirements);
     }
+    if (pItem->AdventurePack() != "")
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        CString pack;
+        pack.Format("From Adventure Pack: %s", pItem->AdventurePack().c_str());
+        BreakUpLongLines(pack);
+        pRequirements->AddRequirement(pack, true);  // active highlighted line
+        pRequirements->SetColour(RGB(255, 0, 0), RGB(147, 101, 184));
+        m_tipItems.push_back(pRequirements);
+    }
     if (pItem->HasRestrictedSlots())
     {
         InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;

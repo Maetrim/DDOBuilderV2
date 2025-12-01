@@ -57,7 +57,7 @@
 #define HID_DOCK_NOTES                          0x10BC8
 #define HID_DOCK_SELFANDPARTYBUFFS              0x10BC9
 #define HID_DOCK_DPS                            0x10BCA
-#define HID_DOCK_UNUSED18                       0x10BCB
+#define HID_DOCK_CONTENT                        0x10BCB
 #define HID_DOCK_UNUSED19                       0x10BCC
 #define HID_DOCK_UNUSED20                       0x10BCD
 #define HID_DOCK_UNUSED21                       0x10BCE
@@ -220,6 +220,7 @@
 #define HIDD2_DIALOG_SETITEMIMAGES              0x101A4
 #define HIDD2_FAVOR_PANE                        0x101A5
 #define HIDD2_NAME_ATTACKCHAIN                  0x101A6
+#define HIDD2_CONTENT_PANE                      0x101A7
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30064
@@ -271,6 +272,7 @@
 #define HIDD_DIALOG_SETITEMIMAGES               0x201A4
 #define HIDD_FAVOR_PANE                         0x201A5
 #define HIDD_NAME_ATTACKCHAIN                   0x201A6
+#define HIDD_CONTENT_PANE                       0x201A7
  
 // Frame Controls (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.

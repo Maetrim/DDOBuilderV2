@@ -264,6 +264,12 @@ void Character::SetGuildLevel(size_t level)
     }
 }
 
+void Character::SetContentIDontOwn(
+    const std::list<std::string>& content)
+{
+    Set_ContentIDontOwn(content);
+}
+
 void Character::SetActiveBuild(size_t lifeIndex, size_t buildIndex, bool bOverride)
 {
     if (m_uiActiveLifeIndex != lifeIndex

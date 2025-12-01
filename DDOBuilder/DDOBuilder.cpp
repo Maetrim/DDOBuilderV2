@@ -710,6 +710,11 @@ const std::list<Quest>& CDDOBuilderApp::Quests() const
     return m_quests;
 }
 
+const std::list<std::string>& CDDOBuilderApp::AdventurePacks() const
+{
+    return m_adventurePacks;
+}
+
 CImageList& CDDOBuilderApp::ItemImageList()
 {
     return m_itemImages;
@@ -1156,6 +1161,16 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
     CString strUpdate;
     strUpdate.Format("Loading Quests...%d", m_quests.size());
     GetLog().UpdateLastLogEntry(strUpdate);
+
+    // from the quest list, extract the names of all the adventure packs
+    for (auto&& qit: quests)
+    {
+        std::string pack = qit.AdventurePack();
+        if (std::find(m_adventurePacks.begin(), m_adventurePacks.end(), pack) == m_adventurePacks.end())
+        {
+            m_adventurePacks.push_back(pack);
+        }
+    }
 }
 
 void CDDOBuilderApp::LoadGuildBuffs(const std::string& path)
@@ -1575,6 +1590,32 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
                         isRaidItem = true;
                         break;
                     }
+                }
+                // determine which adventure pack this item drops from
+                std::string questName = iit.DropLocation();
+                std::string::iterator opit = std::find(questName.begin(), questName.end(),',');
+                if (opit != questName.end())
+                {
+                    questName = std::string(questName.begin(), opit);
+                }
+                // also replace all " (quest)" with ""
+                size_t pos = questName.find(" (quest)");
+                if (pos != std::string::npos)
+                {
+                    questName.replace(pos, 8, "");
+                }
+                std::string pack;
+                for (auto&& qit : quests)
+                {
+                    const std::string& name = qit.Name();
+                    if (name.find(questName) != std::string::npos)
+                    {
+                        pack = qit.AdventurePack();
+                    }
+                }
+                if (!pack.empty())
+                {
+                    iit.SetAdventurePack(pack);
                 }
             }
             iit.SetIsRaidItem(isRaidItem);

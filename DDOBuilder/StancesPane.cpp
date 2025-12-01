@@ -233,6 +233,14 @@ LRESULT CStancesPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
         m_pCharacter->DetachObserver(this);
     }
 
+    // clear any sliders on a new document
+    for (auto&& sit : m_sliders)
+    {
+        // does exist, just revoke
+        sit.m_label->DestroyWindow();
+        sit.m_slider->DestroyWindow();
+    }
+    m_sliders.clear();
     // wParam is the document pointer
     CDocument* pDoc = (CDocument*)(wParam);
     m_pDocument = pDoc;

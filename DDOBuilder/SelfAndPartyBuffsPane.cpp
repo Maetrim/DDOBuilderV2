@@ -68,7 +68,6 @@ void CSelfAndPartyBuffsPane::OnInitialUpdate()
 
 LRESULT CSelfAndPartyBuffsPane::OnLoadComplete(WPARAM, LPARAM)
 {
-
     m_bPopulating = true;
     // add the items to the list
     const std::list<OptionalBuff>& buffs = OptionalBuffs();

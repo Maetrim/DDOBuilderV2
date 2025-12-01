@@ -241,6 +241,11 @@ void Life::LoadComplete()
     }
 }
 
+Character* Life::CharacterPointer() const
+{
+    return m_pCharacter;
+}
+
 void Life::Write(XmlLib::SaxWriter * writer) const
 {
     writer->StartElement(ElementName(), VersionAttributes());

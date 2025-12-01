@@ -74,6 +74,9 @@ class Character :
         void ToggleApplyGuildBuffs();
         void SetGuildLevel(size_t level);
 
+        // adventure packs
+        void SetContentIDontOwn(const std::list<std::string>& content);
+
         void SetModifiedFlag(BOOL modified);
 
         void NotifyActiveBuildChanged();
@@ -107,7 +110,8 @@ protected:
                 DL_OPTIONAL_SIMPLE(_, size_t, GuildLevel, 0) \
                 DL_OPTIONAL_SIMPLE(_, bool, ApplyGuildBuffs, 0) \
                 DL_SIMPLE(_, size_t, ActiveLifeIndex, 0) \
-                DL_SIMPLE(_, size_t, ActiveBuildIndex, 0)
+                DL_SIMPLE(_, size_t, ActiveBuildIndex, 0) \
+                DL_STRING_LIST(_, ContentIDontOwn)
 
         DL_DECLARE_ACCESS(Character_PROPERTIES)
         DL_DECLARE_VARIABLES(Character_PROPERTIES)

@@ -49,6 +49,9 @@ class Item :
         void SetAugments(const std::vector<ItemAugment>& augments);
         bool IsRaidItem() const;
         void SetIsRaidItem(bool bIsRaidItem);
+
+        const std::string& AdventurePack() const;
+        void SetAdventurePack(const std::string& pack);
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -99,6 +102,7 @@ class Item :
 
         size_t m_iconIndex;
         std::string m_filename;
+        std::string m_adventurePack;
         bool m_bIsRaindItem;
 
         friend class WikiItemFileProcessor;

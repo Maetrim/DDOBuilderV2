@@ -64,6 +64,7 @@ const std::list<Spell>& Spells();
 const std::list<Item>& Items();
 const std::list<Item>& ItemsForSlot(InventorySlotType ist);
 const std::list<Quest>& Quests();
+const std::list<std::string>& AdventurePacks();
 const std::list<Patron>& Patrons();
 const std::list<GuildBuff>& GuildBuffs();
 CImageList& ItemsImages();

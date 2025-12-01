@@ -547,3 +547,13 @@ bool Item::HasSetBonus(
     return bHasSetBonus;
 }
 
+const std::string& Item::AdventurePack() const
+{
+    return m_adventurePack;
+}
+
+void Item::SetAdventurePack(const std::string& pack)
+{
+    m_adventurePack = pack;
+}
+

@@ -16,6 +16,7 @@
 #include "BreakdownsPane.h"
 #include "BuildsPane.h"
 #include "ClassAndFeatPane.h"
+#include "ContentPane.h"
 #include "DCPane.h"
 #include "DestinyPane.h"
 #include "DPSPane.h"
@@ -368,6 +369,13 @@ BOOL CMainFrame::CreateDockingWindows()
             RUNTIME_CLASS(CDPSPane),
             ID_DOCK_DPS);
     pDPSPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    CCustomDockablePane* pContentPane = CreateDockablePane(
+            "Content I Own",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CContentPane),
+            ID_DOCK_CONTENT);
+    pContentPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // Builds pane must be created last, so that panes are initialised
     // correctly in order after a file load event
@@ -751,7 +759,7 @@ CCustomDockablePane* CMainFrame::GetPane(UINT nID)
         case ID_DOCK_NOTES:             pRTC = RUNTIME_CLASS(CNotesPane); break;
         case ID_DOCK_SELFANDPARTYBUFFS: pRTC = RUNTIME_CLASS(CSelfAndPartyBuffsPane); break;
         case ID_DOCK_DPS:               pRTC = RUNTIME_CLASS(CDPSPane); break;
-        case ID_DOCK_UNUSED18:
+        case ID_DOCK_CONTENT:           pRTC = RUNTIME_CLASS(CContentPane); break;
         case ID_DOCK_UNUSED19:
         case ID_DOCK_UNUSED20:          break;
     }

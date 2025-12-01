@@ -641,9 +641,9 @@ void Build::NotifyItemEffect(const std::string& itemName, Effect effect, Invento
 {
     if (!effect.HasDisplayName())
     {
-        if (ist == Inventory_Ring2)
+        if (ist == Inventory_Ring2 || ist == Inventory_Weapon2)
         {
-            // stop duplicate effects from 2 of the same ring stacking
+            // stop duplicate effects from 2 of the same ring/weapon stacking
             effect.SetDisplayName(itemName + " ");
         }
         else
@@ -1610,7 +1610,6 @@ void Build::TrainFeat(
                     << "\" at level  " << level + 1;
         }
 
-        NotifyFeatTrained(featName);
         // some automatic feats may have changed due to the trained feat
         UpdateFeats(true);
         // a feat change can invalidate a feat selection at a later level
@@ -2130,7 +2129,6 @@ void Build::VerifyTrainedFeats()
     {
         const Feat& feat = FindFeat((*fit).FeatName());
         RevokeFeatEffects(feat);
-        NotifyFeatRevoked(feat.Name());
         // add log entry
         std::stringstream ss;
         ss << "Revoked the feat \"" << feat.Name().c_str()

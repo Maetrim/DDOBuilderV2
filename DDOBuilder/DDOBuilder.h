@@ -77,6 +77,7 @@ public:
     const std::list<Quest>& Quests() const;
     const std::list<std::string>& IgnoreList() const;
     const std::list<GuildBuff>& GuildBuffs() const;
+    const std::list<std::string>& AdventurePacks() const;
     void UpdateIgnoreList(const std::list<std::string>& itemList);
 
     virtual BOOL InitInstance();
@@ -180,6 +181,7 @@ private:
     std::list<Patron> m_patrons;
     std::list<std::string> m_ignoreList;
     std::list<Item> m_itemsForSlot[Inventory_FinalDrawnItem];
+    std::list<std::string> m_adventurePacks;
     CImageList m_itemImages;
     CImageList m_spellImages;
     std::map<std::string, int> m_itemImagesMap;

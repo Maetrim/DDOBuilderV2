@@ -355,6 +355,12 @@ void InfoTipItem_Requirements::CreateRequirementsStrings(
             &m_bRequirementMet);
 }
 
+void InfoTipItem_Requirements::SetColour(COLORREF inactive, COLORREF active)
+{
+    m_inactiveColour = inactive;
+    m_activeColour = active;
+}
+
 void InfoTipItem_Requirements::CreateSetBonusStrings(
         const SetBonus& setBonus,
         size_t numStacks)
@@ -406,7 +412,7 @@ void InfoTipItem_Requirements::Draw(CDC* pDC, const CRect& rect)
     {
         CString text = m_requirements[ri];
         // text drawn in green or red depending on whether the requirement is met or not
-        pDC->SetTextColor(m_bRequirementMet[ri] ? RGB(0, 128, 0) : RGB(255, 0, 0));
+        pDC->SetTextColor(m_bRequirementMet[ri] ? m_activeColour : m_inactiveColour);
         CString copy(text);
         copy += "A";            // ensure blank lines are correct height
         CRect rctRequirement;

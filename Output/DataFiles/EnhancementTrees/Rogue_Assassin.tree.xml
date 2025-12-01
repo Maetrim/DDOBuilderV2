@@ -409,18 +409,6 @@ Bluff duration is 1 second plus 1 second per four Rogue levels.</Description>
           <Value>1</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>ThreatBonusMelee</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">-5 -10 -15</Amount>
-      </Effect>
-      <Effect>
-        <Type>ThreatBonusRanged</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">-5 -10 -15</Amount>
-      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Assassin: Sneak Attack Training I</Name>
@@ -798,7 +786,19 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
           <Item>Rogue</Item>
           <Value>3</Value>
         </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>AssCriticalMastery</Item>
+          <Item>Critical Mastery</Item>
+        </Requirement>
       </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>AssCriticalMastery</Item>
+        <Item>Critical Mastery</Item>
+      </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamageCritical</Type>
         <Bonus>Enhancement</Bonus>

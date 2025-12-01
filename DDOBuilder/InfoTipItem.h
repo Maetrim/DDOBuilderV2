@@ -73,7 +73,7 @@ class InfoTipItem_Requirements :
     public InfoTipItem
 {
 public:
-    InfoTipItem_Requirements() {};
+    InfoTipItem_Requirements() : m_activeColour(RGB(0, 128, 0) ), m_inactiveColour(RGB(255, 0, 0)){};
     virtual ~InfoTipItem_Requirements() {};
 
     void AddRequirement(const CString& text, bool bMet);
@@ -88,6 +88,8 @@ public:
             const EnhancementSelection* pSelection,
             size_t spentInTree);
 
+    void SetColour(COLORREF inactive, COLORREF active);
+
     void CreateRequirementsStrings(const Build& build, const Requirements& req);
 
     void CreateSetBonusStrings(const SetBonus& setBonus, size_t numStacks);
@@ -97,6 +99,8 @@ public:
 private:
     std::vector<CString> m_requirements;
     std::vector<bool> m_bRequirementMet;
+    COLORREF m_activeColour;
+    COLORREF m_inactiveColour;
 };
 
 class InfoTipItem_MultilineText :

@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "FindGearDialog.h"
 #include "Build.h"
+#include "Life.h"
+#include "Character.h"
 #include "GlobalSupportFunctions.h"
 #include "MouseHook.h"
 #include "EnableBuddyButton.h"
@@ -197,6 +199,7 @@ void CFindGearDialog::PopulateAvailableItemList()
 {
     CWaitCursor longOperation;
 
+    const std::list<std::string>& packsIDontOwn = m_pBuild->GetLife()->CharacterPointer()->ContentIDontOwn();
     CString searchText;
     m_editSearchText.GetWindowText(searchText);
     searchText.MakeLower(); // case less text match
@@ -219,6 +222,14 @@ void CFindGearDialog::PopulateAvailableItemList()
         if (bIgnoreMinorArtifacts && it->HasMinorArtifact())
         {
             // ignore this minor artifact
+            ++it;
+            continue;
+        }
+        // may not qualify as they do not won this adventure pack
+        auto pit = std::find(packsIDontOwn.begin(), packsIDontOwn.end(), (*it).AdventurePack());
+        if (pit != packsIDontOwn.end())
+        {
+            // this item is from a pack this character does not own
             ++it;
             continue;
         }

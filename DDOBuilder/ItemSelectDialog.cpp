@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "ItemSelectDialog.h"
 #include "Build.h"
+#include "Life.h"
+#include "Character.h"
 #include "GlobalSupportFunctions.h"
 #include "MouseHook.h"
 #include "Race.h"
@@ -264,6 +266,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
     m_availableItemsCtrl.LockWindowUpdate();
     m_availableItemsCtrl.DeleteAllItems();
 
+    const std::list<std::string>& packsIDontOwn = m_pBuild->GetLife()->CharacterPointer()->ContentIDontOwn();
     CString searchText;
     m_editSearchText.GetWindowText(searchText);
     searchText.MakeLower(); // case less text match
@@ -304,6 +307,14 @@ void CItemSelectDialog::PopulateAvailableItemList()
             && (*it).CanEquipToSlot(slot)
             && (static_cast<int>((*it).MinLevel()) >= minItemLevel || (*it).MinLevel() == 0))
         {
+            // may not qualify as they do not won this adventure pack
+            auto pit = std::find(packsIDontOwn.begin(), packsIDontOwn.end(), (*it).AdventurePack());
+            if (pit != packsIDontOwn.end())
+            {
+                // this item is from a pack this character does not own
+                ++it;
+                continue;
+            }
             // if its armor or a weapon, we may need to filter items further
             bool canSelect = true;  // assume
             switch (m_slot)

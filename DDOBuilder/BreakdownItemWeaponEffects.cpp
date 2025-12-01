@@ -648,6 +648,23 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
                 m_pCharacter->ActiveBuild(),
                 e2);
     }
+    bool bIsLightWeapon = m_pCharacter->ActiveBuild()->IsWeaponInGroup("Light", item.Weapon());
+    if (bIsLightWeapon)
+    {
+        Effect e1(Effect_Weapon_AttackAbility, "", "Weapon Enchantment", 1);
+        std::list<std::string> items;
+        items.push_back("Dexterity");
+        items.push_back((LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap));
+        e1.SetItem(items);
+        pWeaponBreakdown->ItemEffectApplied(
+                m_pCharacter->ActiveBuild(),
+                e1);
+        Effect e2(Effect_Weapon_DamageAbility, "", "Weapon Enchantment", 1);
+        e2.SetItem(items);
+        pWeaponBreakdown->ItemEffectApplied(
+                m_pCharacter->ActiveBuild(),
+                e2);
+    }
     bool bThrowingAxe = item.Weapon() == Weapon_ThrowingAxe;
     bool bThrowingHammer = item.Weapon() == Weapon_ThrowingHammer;
     if (bThrowingAxe || bThrowingHammer)

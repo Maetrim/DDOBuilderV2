@@ -818,7 +818,10 @@ void BreakdownItem::AddEffect(
             if (pStancesPane != NULL)
             {
                 const SliderItem* pSlider = pStancesPane->GetSlider(effect.StackSource());
-                effectCopy.SetEffectStacks(pSlider->m_position);
+                if (pSlider != NULL)
+                {
+                    effectCopy.SetEffectStacks(pSlider->m_position);
+                }
             }
             effectList->push_back(effectCopy);
         }
