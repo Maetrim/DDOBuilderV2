@@ -107,7 +107,7 @@ class BreakdownItem :
         void SetWeapon(WeaponType wt, size_t weaponCriticalMultiplier);
         WeaponType Weapon() const;
 
-        double GetEffectValue(const std::string& bonusType) const;
+        double GetEffectValue(const std::string& bonusType, bool bItemEffectsOnly) const;
     protected:
         void SetInventorySlotType(InventorySlotType ist);
         void AddOtherEffect(const Effect & effect);

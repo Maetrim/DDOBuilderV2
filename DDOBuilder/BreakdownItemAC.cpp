@@ -117,8 +117,8 @@ void BreakdownItemAC::CreateOtherEffects()
             {
                 pBI->AttachObserver(this);      // need to know about changes
                 double percentBonus = pBI->Total();
-                double valueArmor = GetEffectValue("Armor");
-                double valueEnhancement = GetEffectValue("Armor Enhancement");
+                double valueArmor = GetEffectValue("Armor", false);
+                double valueEnhancement = GetEffectValue("Armor Enhancement", false);
                 int amount = static_cast<int>(((valueArmor + valueEnhancement) * percentBonus) / 100.0 + 0.5); // round up also
                 std::stringstream ss;
                 ss << "Armor " << percentBonus << "% Bonus of " << (valueArmor + valueEnhancement) << " (Armor(" << valueArmor << ") + Enhancement(" << valueEnhancement << "))";
@@ -141,7 +141,7 @@ void BreakdownItemAC::CreateOtherEffects()
                     double percentBonus = pBI->Total();
                     if (percentBonus > 0)
                     {
-                        double valueShield = GetEffectValue("Shield");
+                        double valueShield = GetEffectValue("Shield", false);
                         double valueEnhancement = 0;
                         pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
                         BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);

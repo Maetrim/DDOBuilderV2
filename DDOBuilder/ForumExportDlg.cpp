@@ -19,6 +19,25 @@
 #include "StancesPane.h"
 #include <numeric>
 
+namespace
+{
+    enum Columns    // must match order items added to control later
+    {
+        CI_Name = 0,
+        CI_Enhancement,
+        CI_Insightful,
+        CI_Artifact,
+        CI_Quality,
+        CI_Profane,
+        CI_Equipment,
+        CI_Competence,
+        CI_Exceptional,
+        CI_Festive,
+        CI_Fortune,
+        CI_Columns
+    };
+};
+
 CForumExportDlg::CForumExportDlg(Build* pBuild) :
     CDialogEx(CForumExportDlg::IDD),
     m_pBuild(pBuild),
@@ -209,6 +228,9 @@ void CForumExportDlg::PopulateExport()
                 break;
             case FES_Skills:
                 AddSkills(forumExport);
+                break;
+            case FES_Bonuses:
+                AddBonuses(forumExport);
                 break;
             case FES_ActiveStances:
                 AddActiveStances(forumExport);
@@ -1066,6 +1088,80 @@ void CForumExportDlg::AddSkillsAtLevel(size_t level, std::stringstream& forumExp
     {
         forumExport << "\r\n";
     }
+}
+
+void CForumExportDlg::AddBonuses(std::stringstream& forumExport)
+{
+    // +----------+------------+---+
+    // | Statistic| Enhancement|...|
+    // +----------+------------+---+
+    // | Bonus    |  Value     |...|
+    // +----------+------------+---+
+    // etc
+    forumExport << "[TABLE]";
+    forumExport << "[TR][TD]Statistic[/TD][TD]Enhancement[/TD][TD]Insightful[/TD][TD]Artifact[/TD][TD]Quality[/TD][TD]Profane[/TD][TD]Equipment[/TD][TD]Competence[/TD][TD]Exceptional[/TD][TD]Festive[/TD][TD]Fortune[/TD][/TR]\r\n";
+    Life* pLife = m_pBuild->GetLife();
+    const std::list<std::string>& bonuses = pLife->MonitoredBonuses();
+    for (auto&& it: bonuses)
+    {
+        BreakdownType bt = TextToEnumEntry(it, breakdownNameMap);
+        if (bt != Breakdown_Unknown)
+        {
+            forumExport << "[TR]";
+            BreakdownItem* pBItem = FindBreakdown(bt);
+            forumExport << "[TD]" << it.c_str() << "[/TD]";
+            double value = 0;
+            for (size_t i = CI_Name + 1; i < CI_Columns; ++i)
+            {
+                switch (i)
+                {
+                    case CI_Enhancement:
+                        value = pBItem->GetEffectValue("Enhancement", true);
+                        break;
+                    case CI_Insightful:
+                        value = pBItem->GetEffectValue("Insightful", true);
+                        break;
+                    case CI_Artifact:
+                        value = pBItem->GetEffectValue("Artifact", true);
+                        break;
+                    case CI_Quality:
+                        value = pBItem->GetEffectValue("Quality", true);
+                        break;
+                    case CI_Profane:
+                        value = pBItem->GetEffectValue("Profane", true);
+                        break;
+                    case CI_Equipment:
+                        value = pBItem->GetEffectValue("Equipment", true);
+                        break;
+                    case CI_Competence:
+                        value = pBItem->GetEffectValue("Competence", true);
+                        break;
+                    case CI_Exceptional:
+                        value = pBItem->GetEffectValue("Exceptional", true);
+                        break;
+                    case CI_Festive:
+                        value = pBItem->GetEffectValue("Festive", true);
+                        break;
+                    case CI_Fortune:
+                        value = pBItem->GetEffectValue("Fortune", true);
+                        break;
+                }
+                // no value shown if total is 0
+                if (value != 0)
+                {
+                    CString valueAsText;
+                    valueAsText.Format("%+1d", (int)value);
+                    forumExport << "[TD]" << (LPCTSTR)valueAsText << "[/TD]";
+                }
+                else
+                {
+                    forumExport << "[TD][/TD]";
+                }
+            }
+            forumExport << "[/TR]\r\n";
+        }
+    }
+    forumExport << "[/TABLE]\r\n";
 }
 
 void CForumExportDlg::AddEnergyResistances(std::stringstream& forumExport)

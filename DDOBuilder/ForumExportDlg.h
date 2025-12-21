@@ -24,6 +24,7 @@ enum ForumExportSections
     FES_AutomaticFeats,
     FES_ConsolidatedFeats,
     FES_Skills,
+    FES_Bonuses,
     FES_SelfAndPartyBuffs,
     FES_ActiveStances,
     FES_EnhancementTrees,
@@ -53,6 +54,7 @@ const XmlLib::enumMapEntry<ForumExportSections> forumExportSectionsMap[] =
     {FES_AutomaticFeats, L"Automatic Feats"},
     {FES_ConsolidatedFeats, L"Consolidated Feats"},
     {FES_Skills, L"Skill Point Spend"},
+    {FES_Bonuses, L"Bonuses"},
     {FES_SelfAndPartyBuffs, L"Self and Party Buffs"},
     {FES_ActiveStances, L"Active Stances"},
     {FES_EnhancementTrees, L"Enhancement Trees"},
@@ -125,10 +127,10 @@ class CForumExportDlg : public CDialogEx
         void AddActiveStances(std::stringstream& forumExport);
         void AddSkills(std::stringstream& forumExport);
         void AddSkillsAtLevel(size_t level, std::stringstream& forumExport);
+        void AddBonuses(std::stringstream& forumExport);
         void AddEnergyResistances(std::stringstream& forumExport);
         void AddEnergyResistances(std::stringstream& forumExport, const std::string& name, BreakdownType bt1, BreakdownType bt2);
         void AddEnhancements(std::stringstream& forumExport);
-        void AddEnhancementTree(std::stringstream& forumExport);
         void AddEpicDestinyTree(std::stringstream& forumExport);
         void AddReaperTrees(std::stringstream& forumExport);
         void AddSpellPowers(std::stringstream& forumExport);

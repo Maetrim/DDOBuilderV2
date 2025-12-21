@@ -1483,6 +1483,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Linguistics 10%", "Linguistics 10%", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Linguistics 15%", "Linguistics 15%", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Manslayer", "Manslayer Manslayer", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Manslayer", "Legendary Manslayer", "", "", 15);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Deathblock IX", "Deathblock IX", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Deathblock VIII", "Deathblock VIII", "", "", 5);
@@ -2185,6 +2186,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bludgeoning 4", "Bludgeoning 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bludgeoning 5", "Bludgeoning 5", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bludgeoning 6", "Bludgeoning 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bludgeoning 7", "Bludgeoning 7", "Enhancement", "All");
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Slicing", "Slicing Slicing", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Wailing", "Wailing Wailing", "Enhancement", "All");

@@ -682,7 +682,7 @@ void Build::NotifyItemEffectRevoked(const std::string& itemName, Effect effect, 
 {
     if (!effect.HasDisplayName())
     {
-        if (ist == Inventory_Ring2)
+        if (ist == Inventory_Ring2 || ist == Inventory_Weapon2)
         {
             // stop duplicate effects from 2 of the same ring stacking
             effect.SetDisplayName(itemName + " ");

@@ -893,3 +893,71 @@ void Life::UpdateLegacyTrees()
     }
 }
 
+void Life::AddMonitoredBreakdown(const std::string& name)
+{
+    m_MonitoredBonuses.push_back(name);
+    std::stringstream ss;
+    ss << "Breakdown of \""  << name.c_str() << "\" added to the monitor list.";
+    GetLog().AddLogEntry(ss.str().c_str());
+    m_pCharacter->SetModifiedFlag(TRUE);
+}
+
+void Life::RemoveMonitoredBreakdown(const std::string& name)
+{
+    auto it = m_MonitoredBonuses.begin();
+    while (it != m_MonitoredBonuses.end())
+    {
+        if ((*it) == name)
+        {
+            m_MonitoredBonuses.erase(it);
+            break;      // were done
+        }
+        ++it;
+    }
+    std::stringstream ss;
+    ss << "Breakdown of \""  << name.c_str() << "\" removed from the monitor list.";
+    GetLog().AddLogEntry(ss.str().c_str());
+    m_pCharacter->SetModifiedFlag(TRUE);
+}
+
+void Life::MoveUpMonitoredBreakdown(const std::string& name)
+{
+    std::list<std::string>::iterator it = m_MonitoredBonuses.begin();
+    while ((*it) != name && it != m_MonitoredBonuses.end())
+    {
+        ++it;
+    }
+    if (it != m_MonitoredBonuses.end())
+    {
+        // found it, move it up in the list
+        it = m_MonitoredBonuses.erase(it);
+        --it;
+        m_MonitoredBonuses.insert(it, name);
+        std::stringstream ss;
+        ss << "Breakdown of \""  << name.c_str() << "\" moved up in the monitor list.";
+        GetLog().AddLogEntry(ss.str().c_str());
+        m_pCharacter->SetModifiedFlag(TRUE);
+    }
+}
+
+void Life::MoveDownMonitoredBreakdown(const std::string& name)
+{
+    std::list<std::string>::iterator it = m_MonitoredBonuses.begin();
+    while ((*it) != name && it != m_MonitoredBonuses.end())
+    {
+        ++it;
+    }
+    if (it != m_MonitoredBonuses.end())
+    {
+        // found it, move it up in the list
+        it = m_MonitoredBonuses.erase(it);
+        ++it;
+        m_MonitoredBonuses.insert(it, name);
+        std::stringstream ss;
+        ss << "Breakdown of \""  << name.c_str() << "\" moved down in the monitor list.";
+        GetLog().AddLogEntry(ss.str().c_str());
+        m_pCharacter->SetModifiedFlag(TRUE);
+    }
+}
+
+

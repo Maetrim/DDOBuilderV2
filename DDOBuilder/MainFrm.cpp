@@ -13,6 +13,7 @@
 #include "WikiItemFileProcessor.h"
 
 #include "AutomaticFeatsPane.h"
+#include "BonusesPane.h"
 #include "BreakdownsPane.h"
 #include "BuildsPane.h"
 #include "ClassAndFeatPane.h"
@@ -376,6 +377,13 @@ BOOL CMainFrame::CreateDockingWindows()
             RUNTIME_CLASS(CContentPane),
             ID_DOCK_CONTENT);
     pContentPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    CCustomDockablePane* pBonusesPane = CreateDockablePane(
+            "Bonuses",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CBonusesPane),
+            ID_DOCK_BONUSES);
+    pBonusesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // Builds pane must be created last, so that panes are initialised
     // correctly in order after a file load event
@@ -760,7 +768,7 @@ CCustomDockablePane* CMainFrame::GetPane(UINT nID)
         case ID_DOCK_SELFANDPARTYBUFFS: pRTC = RUNTIME_CLASS(CSelfAndPartyBuffsPane); break;
         case ID_DOCK_DPS:               pRTC = RUNTIME_CLASS(CDPSPane); break;
         case ID_DOCK_CONTENT:           pRTC = RUNTIME_CLASS(CContentPane); break;
-        case ID_DOCK_UNUSED19:
+        case ID_DOCK_BONUSES:           pRTC = RUNTIME_CLASS(CBonusesPane); break;
         case ID_DOCK_UNUSED20:          break;
     }
     CCustomDockablePane* pPane = NULL;

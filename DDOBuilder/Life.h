@@ -91,6 +91,11 @@ class Life :
         void UpdateBuildLifePointers(Character* pCharacter);
 
         void NotifyActiveBuildChanged();
+
+        void AddMonitoredBreakdown(const std::string& name);
+        void RemoveMonitoredBreakdown(const std::string& name);
+        void MoveUpMonitoredBreakdown(const std::string& name);
+        void MoveDownMonitoredBreakdown(const std::string& name);
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -115,6 +120,7 @@ class Life :
                 DL_OBJECT(_, FeatsListObject, SpecialFeats) \
                 DL_THIS_OBJECT_LIST(_, Build, Builds) \
                 DL_STRING_LIST(_, SelfAndPartyBuffs) \
+                DL_STRING_LIST(_, MonitoredBonuses) \
                 DL_FLAG(_, TreeCollapsed)
 
         DL_DECLARE_ACCESS(Life_PROPERTIES)
