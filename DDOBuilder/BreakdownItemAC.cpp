@@ -119,7 +119,7 @@ void BreakdownItemAC::CreateOtherEffects()
                 double percentBonus = pBI->Total();
                 double valueArmor = GetEffectValue("Armor", false);
                 double valueEnhancement = GetEffectValue("Armor Enhancement", false);
-                int amount = static_cast<int>(((valueArmor + valueEnhancement) * percentBonus) / 100.0 + 0.5); // round up also
+                int amount = static_cast<int>(((valueArmor + valueEnhancement) * percentBonus) / 100.0);
                 std::stringstream ss;
                 ss << "Armor " << percentBonus << "% Bonus of " << (valueArmor + valueEnhancement) << " (Armor(" << valueArmor << ") + Enhancement(" << valueEnhancement << "))";
                     // now add a percentage of that
@@ -142,31 +142,10 @@ void BreakdownItemAC::CreateOtherEffects()
                     if (percentBonus > 0)
                     {
                         double valueShield = GetEffectValue("Shield", false);
-                        double valueEnhancement = 0;
-                        pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
-                        BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
-                        if (pBIW != NULL)
-                        {
-                            BreakdownItem* pBWE = pBIW->GetWeaponBreakdown(false, Breakdown_WeaponEnchantment);
-                            if (pBWE != NULL)
-                            {
-                                valueEnhancement = pBWE->Total();
-                            }
-                            // need to also subtract the shield base enhancement value to stop
-                            // bonus counting twice
-                            Item item = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon2);
-                            for (auto&& ibit : item.Buffs())
-                            {
-                                if (ibit.Type() == "ShieldEnchantment")
-                                {
-                                    valueEnhancement -= static_cast<int>(ibit.Value1());
-                                }
-                            }
-                        }
-                        int amount = static_cast<int>(((valueShield + valueEnhancement) * percentBonus) / 100.0 + 0.5); // round up also
+                        int amount = static_cast<int>((valueShield * percentBonus) / 100.0);
                         std::stringstream ss;
-                        ss << "Shield " << percentBonus << "% Bonus of " << (valueShield + valueEnhancement) << " (Shield(" << valueShield << ") + Enhancement(" << valueEnhancement << "))";
-                            // now add a percentage of that
+                        ss << "Shield " << percentBonus << "% Bonus of " << valueShield;
+                        // now add a percentage of that
                         Effect feat(
                                 Effect_Unknown,
                                 ss.str(),

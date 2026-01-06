@@ -5528,14 +5528,6 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
             effect.SetIsItemSpecific();
             NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
         }
-        Effect effect(
-            Effect_MaxDexBonus,
-            "Shield Max Dex",
-            "Base",
-            item.MaximumDexterityBonus());
-        effect.AddItem(wt);
-        effect.SetIsItemSpecific();
-        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
     }
     for (auto&& itDr: item.DRBypass())
     {

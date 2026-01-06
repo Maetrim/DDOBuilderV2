@@ -460,16 +460,16 @@ double BreakdownItem::DoPercentageEffects(
                 // the amount is a percentage of the current total that
                 // needs to be added.
                 double percent = it.TotalAmount(false);
-                double amount = (total * percent / 100.0);
-                // round it to a whole number
-                if (amount > 0)
-                {
-                    amount = (double)(int)(amount + 0.5);   // round up
-                }
-                else
-                {
-                    amount = (double)(int)(amount - 0.5);   // round up
-                }
+                double amount = static_cast<int>(total * percent / 100.0);
+                //// round it to a whole number
+                //if (amount > 0)
+                //{
+                //    amount = (double)(int)(amount + 0.5);   // round up
+                //}
+                //else
+                //{
+                //    amount = (double)(int)(amount - 0.5);   // round up
+                //}
                 amountAdded += amount;
                 it.SetPercentValue(amount);   // so it can display its amount
             }

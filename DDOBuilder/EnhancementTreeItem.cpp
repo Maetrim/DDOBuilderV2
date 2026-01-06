@@ -272,7 +272,12 @@ bool EnhancementTreeItem::CanTrain(
     // verify any enhancements we are dependent on have enough trained ranks also
     if (HasRequirementsToTrain())
     {
-        canTrain &= m_RequirementsToTrain.MetEnhancements(build, trainedRanks);
+        canTrain &= m_RequirementsToTrain.Met(build,
+                level,
+                false,
+                Inventory_Unknown,
+                Weapon_Unknown,
+                Weapon_Unknown);
     }
     // must have enough action points to buy it
     int availableAP = build.AvailableActionPoints(level+1, type);

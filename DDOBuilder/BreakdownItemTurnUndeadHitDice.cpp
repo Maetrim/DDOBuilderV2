@@ -53,12 +53,17 @@ void BreakdownItemTurnUndeadHitDice::CreateOtherEffects()
             // effective cleric level or effective paladin level - 3
             // get the caster level breakdowns for cleric and paladin
             BreakdownType cbt = static_cast<BreakdownType>(Breakdown_CasterLevel_First + FindClass("Cleric").Index());
+            BreakdownType dabt = static_cast<BreakdownType>(Breakdown_CasterLevel_First + FindClass("Dark Apostate").Index());
             BreakdownType pbt = static_cast<BreakdownType>(Breakdown_CasterLevel_First + FindClass("Paladin").Index());
             BreakdownItem * pCB = FindBreakdown(cbt);
             pCB->AttachObserver(this);
+            BreakdownItem * pDAB = FindBreakdown(dabt);
+            pDAB->AttachObserver(this);
             BreakdownItem * pPB = FindBreakdown(pbt);
             pPB->AttachObserver(this);
             double clericLevels = pCB->Total();
+            double darkApostateLevels = pDAB->Total();
+            clericLevels = max(clericLevels, darkApostateLevels);
             double paladinLevels = pPB->Total() - 3;
             if (clericLevels >= paladinLevels)
             {
