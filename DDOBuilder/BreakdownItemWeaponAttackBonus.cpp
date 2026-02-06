@@ -91,7 +91,7 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
                         Effect_Unknown,
                         "Negative Levels",
                         "Negative Levels",
-                        -1 * negLevels);          // -1 per neg level
+                        -1.0 * negLevels);          // -1 per neg level
                     AddOtherEffect(negLevelsEffect);
                 }
             }

@@ -157,7 +157,7 @@ double BreakdownItemSpellPoints::Multiplier() const
     {
         size_t fvsLevels = pBuild->ClassLevels("Favored Soul", pBuild->Level()-1);
         size_t sorcLevels = pBuild->ClassLevels("Sorcerer", pBuild->Level()-1);
-        factor = 1.0 + (double)(fvsLevels + sorcLevels) / min((double)pBuild->Level(), MAX_CLASS_LEVEL);
+        factor = 1.0 + (double)(fvsLevels + sorcLevels) / min((double)pBuild->Level(), static_cast<double>(MAX_CLASS_LEVEL));
     }
     return factor;
 }

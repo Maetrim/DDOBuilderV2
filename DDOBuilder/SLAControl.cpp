@@ -332,7 +332,8 @@ void CSLAControl::SetTooltipText(
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetSpell(
             *m_pCharacter->ActiveBuild(),
-            &spell);
+            &spell,
+            true);
     m_tooltip.Show();
 }
 

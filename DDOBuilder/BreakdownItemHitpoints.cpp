@@ -68,7 +68,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                             Effect_Unknown,
                             className,
                             className,
-                            static_cast<double>(classLevels[ci] * c.HitPoints()));
+                            static_cast<double>(classLevels[ci]) * c.HitPoints());
                     AddOtherEffect(classBonus);
                     if (c.Name() != "Epic" && c.Name() != "Legendary")
                     {
@@ -97,7 +97,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                             Effect_Unknown,
                             "Fate Points bonus",
                             "Fate Points bonus",
-                            static_cast<double>(2 * fatePoints));          // 2hp per fate point
+                            static_cast<double>(2.0 * fatePoints));          // 2hp per fate point
                         AddOtherEffect(fateBonus);
                     }
                 }
@@ -115,7 +115,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                         Effect_Unknown,
                         "Negative Levels",
                         "Negative Levels",
-                        static_cast<double>(-5 * negLevels));          // -5hp per neg level
+                        static_cast<double>(-5.0 * negLevels));          // -5hp per neg level
                     AddOtherEffect(negLevelsEffect);
                 }
             }

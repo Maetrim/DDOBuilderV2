@@ -18,6 +18,7 @@ CDCPane::CDCPane() :
     m_pDocument(NULL),
     m_tipCreated(false),
     m_pTooltipItem(NULL),
+    m_showingTip(false),
     m_nextDcId(IDC_SPECIALFEAT_0)
 {
 }

@@ -1,0 +1,1656 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Arcane Trickster</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Arcane Trickster</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Rogue</Icon>
+    <Background>RogueBackground</Background>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Trained in Trickery</Name>
+      <InternalName>ArcaneTricksterCore1</InternalName>
+      <Description>Each core grants 5 Universal Spell Power and a +2% bonus to Doublestrike and
+Doubleshot, including this one.</Description>
+      <Icon>ATTrainedInTrickery</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Stolen Spell I</Name>
+      <InternalName>ArcaneTricksterCore2</InternalName>
+      <Description>Choose a stolen spell</Description>
+      <Icon>ATStolenSpell</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ArcaneTricksterCore1</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Conjure Bolts</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATConjureBolts</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Conjure Bolts</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 2 20 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Cure Light Wounds</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>CureLightWounds</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Cure Light Wounds</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 2 5 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Fine Dust</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATFineDust</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fine Dust</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 3 5 15</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Magic Missile</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATMagicMissile</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Magic Missile</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 2 5 4</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Shillelagh</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATShillelagh</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Shillelagh</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 2 5 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Sonic Blast</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>SSSonicBlast</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Sonic Blast</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 2 5 4</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Stolen Spell II</Name>
+      <InternalName>ArcaneTricksterCore3</InternalName>
+      <Description>Choose a stolen spell</Description>
+      <Icon>ATStolenSpell</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>6</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ArcaneTricksterCore2</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Chain Missile</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATChainMissile</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Chain Missiles</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Cure Moderate Wounds</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>CureModerateWounds</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Cure Moderate Wounds</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 4 20 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Personal Augmentation Insightful Damage</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATInsightfulDamage</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Insightful Damage</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Salt Crystals</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATSaltCrystals</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Salt Crystals</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 20</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Salt Ray</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATSaltRay</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Salt Ray</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 20</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Sound Burst</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATSoundBurst</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Soundburst</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 20</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Stolen Spell III</Name>
+      <InternalName>ArcaneTricksterCore4</InternalName>
+      <Description>Choose a stolen spell</Description>
+      <Icon>ATStolenSpell</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ArcaneTricksterCore3</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Cure Serious Wounds</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATCureSeriousWounds</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Cure Serious Wounds</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 6 20 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Flash Freeze</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATFlashFreeze</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Flash Freeze</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 30</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Force Missile</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATForceMissiles</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force Missiles</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 6 20 6</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Greater Heroism</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATGreaterHeroism</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Greater Heroism</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Neutralize Poison</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATNeutralizePoison</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Neutralize Poison</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 10 20 10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Radiant Force Field</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATRadiantForcefield</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Radiant Forcefield</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 20 20 180</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Stolen Spell IV</Name>
+      <InternalName>ArcaneTricksterCore5</InternalName>
+      <Description>Choose a stolen spell</Description>
+      <Icon>ATStolenSpell</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>18</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ArcaneTricksterCore4</Item>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Disintegrate</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATDisintegrate</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Disintegrate</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 8 20 10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Fire Seeds</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATFireSeeds</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Fire Seeds</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 10 20 10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Greater Evolution</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>ATGreaterEvolution</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Greater Evolution</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 25 20 10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Greater Shout</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>GreaterShout</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Greater Shout</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 15 20 10</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Heal</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>Heal</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Heal</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 20 20 15</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stolen Spell - Tenser's Transformation</Name>
+          <Description>This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill.</Description>
+          <Icon>EKTensersTransformation</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Tenser's Transformation</Item>
+            <Item>Arcane Trickster</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 15 20 30</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Master of Trickery</Name>
+      <InternalName>ArcaneTricksterCore6</InternalName>
+      <Description>Magical Ambush force dice are upgraded to d6s. Spell Thief now steals 50%
+more spell points. You gain +2 to all stats and +2 Imbue Dice.</Description>
+      <Icon>ATTrainedInTrickery</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>20</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ArcaneTricksterCore5</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Exclusive</Type>
+          <Item>ArcaneTricksterCore6</Item>
+          <Item>Capstone Enhancement</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExclusionGroup</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>ArcaneTricksterCore6</Item>
+        <Item>Capstone Enhancement</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Mage Hand: Eye Poke</Name>
+      <InternalName>ATEyePoke</InternalName>
+      <Description>Target takes 1d2 Force damage per 2 character levels, scales with spell power.
+Max caster level 20. Target must make a Reflex save against your disable device
+skill +1d20, if they fail they become blind for 8 seconds with a recurring save
+every 2 seconds.
+
+Passive: Gain 30 Spell Points.</Description>
+      <Icon>ATEyePoke</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Eye Poke</Item>
+        <Item>Arcane Trickster</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="4">0 2 20 10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Magic Fingers</Name>
+      <InternalName>ATMagicFingers</InternalName>
+      <Description>Gain +[1/2/3] bonus to Open Locks, Disable Device and Concentration.</Description>
+      <Icon>ATMagicFingers</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Open Lock</Item>
+        <Item>Disable Device</Item>
+        <Item>Concentration</Item>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Keep it Flexible</Name>
+      <InternalName>ATKeepItFlexible</InternalName>
+      <Description>Gain a [5/10/15]% reduction to arcane spell failure while wearing armor.</Description>
+      <Icon>ATKeepItFlexible</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ArcaneSpellFailure</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-5 -10 -15</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: My Favorite Bauble</Name>
+      <InternalName>ATMyFavoriteBauble</InternalName>
+      <Description>Gain 10 Universal Spell POwer when using a staff or an orb.</Description>
+      <Icon>ATMyFavoriteBauble</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Quarterstaff</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Orb</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: I Prefer Subtlety</Name>
+      <InternalName>ATIPreferSubtlety</InternalName>
+      <Description>Reduce threat from your missile and spell attacks by [10/20/30]%</Description>
+      <Icon>ATIPreferSubtlety</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ThreatBonusSpell</Type>
+        <Type>ThreatBonusRanged</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-10 -20 -30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Mage Hand: Slap</Name>
+      <InternalName>ATMageHandSlap</InternalName>
+      <Description>Target takes 1d4 Force damage per 2 character levels, scales with spell power.
+Max caster level 20. They must make a Fortitude save against your Disable Device
+Skill + 1d20 or become stunned for 6 seconds with recurring saves every 2 seconds.
+
+Passive: Gain 30 Spell Points.</Description>
+      <Icon>ATEyePoke</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATEyePoke</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Slap</Item>
+        <Item>Arcane Trickster</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="4">0 2 20 10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Protective Gear</Name>
+      <InternalName>ATProtectiveGear</InternalName>
+      <Description>Gain a +[2/4/6] to Magical Resistance Rating and Magical Resistance Rating Cap.</Description>
+      <Icon>ATProtectiveGear</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MRR</Type>
+        <Type>MRRCap</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">2 4 6</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster:Three Handed Casting</Name>
+      <InternalName>ATThreeHandedCasting</InternalName>
+      <Description>Your Quicken Spell Feat costs [1/2/4] Spell Points less. Stacks with Efficient
+Quicken from other trees.</Description>
+      <Icon>ATThreeHandedCasting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>2</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Quicken Spell</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MetamagicCostQuicken</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">-1 -2 -4</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Catcher Glove</Name>
+      <InternalName>ATCatcherGlove</InternalName>
+      <Description>Your mage hand will deflect incoming projectiles occasionally granting the
+deflect arrow feat.
+
+Passive: You also gain a +2% bonus to dodge.</Description>
+      <Icon>ATCatcherGlove</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Deflect Arrows</Item>
+        <AType>NotNeeded</AType>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Illusory Escape</Name>
+      <InternalName>ATIllusoryEscape</InternalName>
+      <Description>When you tumble, you will phase out of reality briefly, passing through enemies
+as you do so.</Description>
+      <Icon>ATIllusoryEscape</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Mage Hand: Meddle with Reality</Name>
+      <InternalName>ATMeddleWithReality</InternalName>
+      <Description>Any creature you target with mage hand Slap or Eye Poke undergoes Meddled Reality.
+Creatures under this effect are no longer immune to sneak attacks, their
+Fortification is reduced by 25%, Will saves are reduced by 4 and the creature
+type changes to Fey for 30 seconds. This can apply to bosses.
+
+Passive: Gain 30 Spell Points.</Description>
+      <Icon>ATMeddleWithReality</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>3</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATMageHandSlap</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Improved Second Strikes</Name>
+      <InternalName>ATImprovedSecondStrikes</InternalName>
+      <Description>Choose an option.</Description>
+      <Icon>ATImprovedSecondStrikes</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Mixed Magics</Name>
+          <Description>Your caster level with spells is now equal to your Character Level instead of
+individual class levels (max 20). This does not change the caster level of
+Rune Arms, Wands, Scrolls, or other Items.</Description>
+          <Icon>ATImprovedSecondStrikes</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Quick Silver</Name>
+          <Description>You gain the Quick Draw feat and 5 Universal Spell Power.</Description>
+          <Icon>ATQuickSilver</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Quick Draw</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Tricks on Tricks</Name>
+      <InternalName>ATTricksOnTricks</InternalName>
+      <Description>Your weapon attacks and offensive evocation spells have a chance of granting
+you a stack of Tricks on Tricks, which gives a +1 to Illusion and Enchantment
+DCs. This stacks up to 4 times. The stacks decay at a rate of 1 every 30 seconds.</Description>
+      <Icon>ATTricksOnTricks</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">1</Amount>
+        <StackSource>Tricks on Tricks</StackSource>
+        <Item>Enchantment</Item>
+        <Item>Illusion</Item>
+      </Effect>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Tricks on Tricks</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 4</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Sweeping Strikes</Name>
+      <InternalName>ATSweepingStrikes</InternalName>
+      <Description>Choice of how your Weapon Imbue will scale...</Description>
+      <Icon>ATSweepingStrikes</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Trickster's Blade</Name>
+          <Description>Imbue Toggle: Your weapon attacks do 1d4+1 Force damage. Scales with 200% melee power.</Description>
+          <Icon>ATSweepingStrikes</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Stance>
+            <Name>Trickster's Blade</Name>
+            <Icon>ATSweepingStrikes</Icon>
+            <Description>Your weapon attacks do 1d4+1 Force damage. Scales with 200% melee power.</Description>
+            <Group>Imbue</Group>
+          </Stance>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Trickster's Bolt</Name>
+          <Description>Imbue Toggle: Your weapon attacks do 1d4+1 Force damage. Scales with 200% ranged power.</Description>
+          <Icon>ATSweepingStrikes</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Stance>
+            <Name>Trickster's Bolt</Name>
+            <Icon>ATSweepingStrikes</Icon>
+            <Description>Your weapon attacks do 1d4+1 Force damage. Scales with 200% ranged power.</Description>
+            <Group>Imbue</Group>
+          </Stance>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Trickster's Trick</Name>
+          <Description>Imbue Toggle: Your weapon attacks do 1d4+1 Force damage. Scales with spell power.</Description>
+          <Icon>ATSweepingStrikes</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Stance>
+            <Name>Trickster's Trick</Name>
+            <Icon>ATSweepingStrikes</Icon>
+            <Description>Your weapon attacks do 1d4+1 Force damage. Scales with spell power.</Description>
+            <Group>Imbue</Group>
+          </Stance>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Ability I</Name>
+      <InternalName>ATAbilityI</InternalName>
+      <Description>Choose between +1 Dexterity, Intelligence or Charisma</Description>
+      <Icon>DexIntCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>3</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Intelligence</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Charisma</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Mage Hand: Helping Hand</Name>
+      <InternalName>ATHelpingHand</InternalName>
+      <Description>Removed most crowd control effects from a target, heals them for 50% of their
+max Hit points and applies a restoration effect to the target. If your
+incapacitated for more than 6 seconds and have 5 spell points you will receive
+the helping hand effect. This cannot occur again until you are out of combat.
+Cooldown: 1 minute.
+
+Passive: Gain 30 Spell Points.</Description>
+      <Icon>ATEyePoke</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATMeddleWithReality</Item>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Slippery Magic</Name>
+      <InternalName>ATSlipperyMagic</InternalName>
+      <Description>Gain a +5% uncapped bonus to dodge and +1 Reflex saves whenever you land an
+offensive spell on a target. This can stack up to 3 times.
+1 stack drops every 30 seconds.
+
+Passive: +3% bonus to dodge.</Description>
+      <Icon>ATSlipperyMagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">5</Amount>
+        <StackSource>Slippery Magic</StackSource>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Reflex</Item>
+        <AType>SliderValue</AType>
+        <Amount size="1">1</Amount>
+        <StackSource>Slippery Magic</StackSource>
+      </Effect>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Slippery Magic</Item>
+        <AType>Slider</AType>
+        <Amount size="3">0 0 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Pin Point</Name>
+      <InternalName>ATPinPoint</InternalName>
+      <Description>Game +[1/2/3] Spell Penetration and [3/6/10]% Fortification Bypass.
+Rank 3: Your mage hand spells now automatically dispel Night Shield and Shield
+spell effect on the target.</Description>
+      <Icon>ATPinPoint</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+      </Effect>
+      <Effect>
+        <Type>FortificationBypass</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">3 6 10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Applied Force</Name>
+      <InternalName>ATAppliedForce</InternalName>
+      <Description>Gain +1 imbue die per 3 rogue levels and +10% to critical damage with Force spells.</Description>
+      <Icon>ATAppliedForce</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>4</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATSweepingStrikes</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>ClassLevel</AType>
+        <Amount size="21">0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7</Amount>
+        <StackSource>Arcane Trickster</StackSource>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Force</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Ability II</Name>
+      <InternalName>ATAbilityII</InternalName>
+      <Description>Choose between +1 Dexterity, Intelligence or Charisma</Description>
+      <Icon>DexIntCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dexterity</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Intelligence</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Charisma</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Presto</Name>
+      <InternalName>ATPresto</InternalName>
+      <Description>Mage hand snaps it's fingers over a none boss target to make them disappear.
+We don't know where they go, it's magic! Target get a Will save to negate the
+effect with a DC equal to your disable device skill.
+PAssive: Gain 80 Spell Points.</Description>
+      <Icon>ATEyePoke</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>ATHelpingHand</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Presto</Item>
+        <Item>Arcane Trickster</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="4">0 10 20 30</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">80</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Extra Hand</Name>
+      <InternalName>ATExtraHand</InternalName>
+      <Description>All meta magics are reduced in cost by 2.
+
+An extra mage hand sometimes manifests when a monster strikes you with a spell
+and knocks them down.</Description>
+      <Icon>ATExtraHand</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MetamagicCostAccelerate</Type>
+        <Type>MetamagicCostEschewMaterials</Type>
+        <Type>MetamagicCostEmbolden</Type>
+        <Type>MetamagicCostEmpower</Type>
+        <Type>MetamagicCostEmpowerHealing</Type>
+        <Type>MetamagicCostEnlarge</Type>
+        <Type>MetamagicCostExtend</Type>
+        <Type>MetamagicCostHeighten</Type>
+        <Type>MetamagicCostIntensify</Type>
+        <Type>MetamagicCostMaximize</Type>
+        <Type>MetamagicCostQuicken</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-2 </Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Magic is a Tricky Business</Name>
+      <InternalName>ATTrickyBusiness</InternalName>
+      <Description>You gain a +[1/2] bonus to Illusion and Enchantment DCs.
+Rank 2: Passive - Tricks on Tricks now also increase to hit and damage with
+weapons by 1 per stack.</Description>
+      <Icon>ATTrickyBusiness</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Item>Enchantment</Item>
+        <Item>Illusion</Item>
+        <AType>Stacks</AType>
+        <Amount size="2">1 2</Amount>
+      </Effect>
+      <Effect>
+        <Rank>2</Rank>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>SliderValue</AType>
+        <Amount size="1">1</Amount>
+        <StackSource>Tricks on Tricks</StackSource>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Good with my Hands</Name>
+      <InternalName>ATGoodWithMyHands</InternalName>
+      <Description>Gain a +[3/6/10] bonus to Melee and Ranged Power.
+
+Rank 3: Passive - Your Magic Resistance Rating Cap is increased by 8.</Description>
+      <Icon>ATGoodWithMyHands</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">3 6 10</Amount>
+      </Effect>
+      <Effect>
+        <Type>MRRCap</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">0 0 8</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcane Trickster: Not Half Bad...</Name>
+      <InternalName>ATNotHalfBad</InternalName>
+      <Description>Choose what your not half bad at...</Description>
+      <Icon>ATNotHalfBad</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Arcane Trickster</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Not that Bad with a Blade</Name>
+          <Description>+1 Competence bonus to critical threat range and damage multiplier with melee
+weapons and 15% Competence bonus to Max Hit Points.</Description>
+          <Icon>ATNotHalfBad</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+          </Effect>
+          <Effect>
+            <Type>WeaponCriticalRangeClass</Type>
+            <Type>WeaponCriticalMultiplierClass</Type>
+            <Bonus>Competence</Bonus>
+            <Item>Melee</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect/>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Not that Bad with a Bow</Name>
+          <Description>+1 Competence bonus to critical threat range and damage multiplier with ranged
+weapons and 10% bonus to Dodge Bypass.</Description>
+          <Icon>ATNotHalfBad</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>DodgeBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
+          <Effect>
+            <Type>WeaponCriticalRangeClass</Type>
+            <Type>WeaponCriticalMultiplierClass</Type>
+            <Bonus>Competence</Bonus>
+            <Item>Ranged</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect/>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Not that Bad with a Spell</Name>
+          <Description>Gain +20 Universal Spell Power, +2 Spell Penetration and +5% Critical chance
+with all spells.</Description>
+          <Icon>ATNotHalfBadSpell</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">20</Amount>
+          </Effect>
+          <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>All</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

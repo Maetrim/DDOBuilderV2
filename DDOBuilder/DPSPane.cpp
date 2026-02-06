@@ -34,6 +34,7 @@ CDPSPane::CDPSPane() :
     m_pDocument(NULL),
     m_bHadInitialUpdate(false),
     m_bIgnoreChange(true),
+    m_showingTip(false),
     m_hoverItem(-1),
     m_hoverHandle(0)
 {

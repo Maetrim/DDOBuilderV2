@@ -542,15 +542,18 @@ void CEquipmentPane::UpdateSlotRightClicked(
     }
     else
     {
-        // option to clear the gear item from the selected slot
-        EquippedGear gear = pBuild->GetGearSet(SelectedGearSet());
-        if (gear.HasItemInSlot(slot))
+        if (pBuild != NULL)
         {
-            int sel = AfxMessageBox("Clear the equipped item from this slot?", MB_YESNO);
-            if (sel == IDYES)
+            // option to clear the gear item from the selected slot
+            EquippedGear gear = pBuild->GetGearSet(SelectedGearSet());
+            if (gear.HasItemInSlot(slot))
             {
-                pBuild->ClearGearInSlot(SelectedGearSet(), slot);
-                m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());
+                int sel = AfxMessageBox("Clear the equipped item from this slot?", MB_YESNO);
+                if (sel == IDYES)
+                {
+                    pBuild->ClearGearInSlot(SelectedGearSet(), slot);
+                    m_inventoryView->SetGearSet(pBuild, pBuild->ActiveGearSet());
+                }
             }
         }
     }

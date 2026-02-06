@@ -73,7 +73,7 @@ void BreakdownItemDestinyAps::CreateOtherEffects()
                         Effect_DestinyAPBonus,
                         "Epic Levels",
                         "Epic",
-                        epicLevels * 4);
+                        static_cast<double>(epicLevels) * 4);
                     AddOtherEffect(elBonus);
                 }
                 if (level >= MAX_EPIC_LEVEL)
@@ -88,7 +88,7 @@ void BreakdownItemDestinyAps::CreateOtherEffects()
                         Effect_DestinyAPBonus,
                         "Legendary Levels",
                         "Legendary",
-                        level * 4);
+                        static_cast<double>(level) * 4);
                     AddOtherEffect(llBonus);
                 }
             }

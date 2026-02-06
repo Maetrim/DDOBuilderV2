@@ -92,6 +92,7 @@ namespace XmlLib
         public SaxContentElementInterface
     {
         public:
+            SaxSimpleElement<std::string>() : m_t(NULL) {};
             static SaxSimpleElement<std::string> * Handle(std::string * t);
 
             void Characters(const SaxString & chars);
@@ -111,6 +112,7 @@ namespace XmlLib
         public SaxContentElementInterface
     {
         public:
+            SaxSimpleElement<std::wstring>() : m_t(NULL) {};
             static SaxSimpleElement<std::wstring> * Handle(std::wstring * t);
 
             void Characters(const SaxString & chars);

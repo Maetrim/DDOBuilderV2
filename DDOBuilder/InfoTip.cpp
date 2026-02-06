@@ -275,7 +275,7 @@ void CInfoTip::SetEnhancementTreeItem(
                     static_cast<size_t>(eit.Amount()[2]),
                     0);         // granted spells have no cooldown
                 spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
-                AppendSpellItem(build, spell);
+                AppendSpellItem(build, spell, true);
                 addedSpells[spellName] = 1; // value doesn't matter
             }
         }
@@ -297,7 +297,7 @@ void CInfoTip::SetEnhancementTreeItem(
                     static_cast<size_t>(eit.Amount()[offset + 2]),
                     static_cast<size_t>(eit.Amount()[offset + 3]));
                 spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[offset])); // 2nd item is class
-                AppendSpellItem(build, spell);
+                AppendSpellItem(build, spell, true);
                 addedSpells[slaName] = 1; // value doesn't matter
             }
         }
@@ -377,7 +377,7 @@ void CInfoTip::SetEnhancementSelectionItem(
                     static_cast<size_t>(eit.Amount()[2]),
                     0);         // granted spells have no cooldown
                 spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[0])); // 2nd item is class
-                AppendSpellItem(build, spell);
+                AppendSpellItem(build, spell, true);
                 addedSpells[spellName] = 1; // value doesn't matter
             }
         }
@@ -399,7 +399,7 @@ void CInfoTip::SetEnhancementSelectionItem(
                     static_cast<size_t>(eit.Amount()[offset + 2]),
                     static_cast<size_t>(eit.Amount()[offset + 3]));
                 spell.UpdateSpell(cs, eit.Item().back(), static_cast<int>(eit.Amount()[offset])); // 2nd item is class
-                AppendSpellItem(build, spell);
+                AppendSpellItem(build, spell, true);
                 addedSpells[slaName] = 1; // value doesn't matter
             }
         }
@@ -992,10 +992,11 @@ void CInfoTip::SetSentientGem(
 
 void CInfoTip::SetSpell(
     const Build& build,
-    const Spell* pSpell)
+    const Spell* pSpell,
+    bool bAutogranted)
 {
     ClearOldTipItems();
-    AppendSpellItem(build, *pSpell);
+    AppendSpellItem(build, *pSpell, bAutogranted);
 }
 
 void CInfoTip::SetFavorItem(
@@ -1047,7 +1048,7 @@ void CInfoTip::SetAttack(const Attack& attack)
     m_tipItems.push_back(pHeader);
 }
 
-void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
+void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell, bool bAutogranted)
 {
     InfoTipItem_Header* pHeader = new InfoTipItem_Header;
     pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.HasIcon() ? spell.Icon() : "", true);
@@ -1098,6 +1099,12 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell)
     }
     m_tipItems.push_back(pHeader);
 
+    if (bAutogranted)
+    {
+        InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+        pRequirements->AddRequirement("This is an auto-granted spell.", false);
+        m_tipItems.push_back(pRequirements);
+    }
     if (IsInIgnoreList(spell.Name()))
     {
         InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;

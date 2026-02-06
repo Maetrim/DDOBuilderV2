@@ -87,7 +87,7 @@ bool XmlLib::VectorToString(const std::vector<double> & v, size_t precision, std
 {
     bool ok = true;
     const int maxAddSize = 30;
-    wchar_t format[10];
+    wchar_t format[30];
     swprintf(format, sizeof(format), L"%%.%ug", precision);
     size_t size = 0;
     out->resize(size);

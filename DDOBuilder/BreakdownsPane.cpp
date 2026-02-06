@@ -3095,6 +3095,7 @@ void CBreakdownsPane::OnButtonClipboardCopy()
             {
                 HDITEM item;
                 char itemText[100];
+                memset(itemText, 0, sizeof(itemText));
                 item.mask = HDI_TEXT;
                 item.pszText = itemText;
                 item.cchTextMax = 100;

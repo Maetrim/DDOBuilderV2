@@ -1590,7 +1590,7 @@ void CTlcTree::OnPaint()
 void CTlcTree::OnLButtonDown(UINT nFlags, CPoint point)
 {
     CTreeCtrl::OnLButtonDown(nFlags, point);
-    UINT flags;
+    UINT flags = 0;
     m_selectedItem = HitTest(point, &flags);
 
     if((flags & TVHT_ONITEMRIGHT) || (flags & TVHT_ONITEMINDENT) ||
@@ -2437,6 +2437,7 @@ void CTreeListCtrl::LoadColumnWidthsByName(UINT resourceStringId)
 
             HDITEM item;
             char itemText[256];
+            memset(itemText, 0, sizeof(itemText));
             item.mask = HDI_TEXT;
             item.pszText = itemText;
             item.cchTextMax = sizeof(itemText);
@@ -2470,6 +2471,7 @@ void CTreeListCtrl::SaveColumnWidthsByName(UINT resourceStringId)
 
             HDITEM item;
             char itemText[256];
+            memset(itemText, 0, sizeof(itemText));
             item.mask = HDI_TEXT;
             item.pszText = itemText;
             item.cchTextMax = sizeof(itemText);

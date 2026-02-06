@@ -73,7 +73,7 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
                             Effect_Weapon_Enchantment,
                             "Conduit + Quarterstaff",
                             "Destiny",
-                            weaponPlus * 3);
+                            static_cast<double>(weaponPlus) * 3.0);
                         AddOtherEffect(implementBonusDoubling);
                     }
                 }

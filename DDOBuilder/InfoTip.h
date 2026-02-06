@@ -78,7 +78,8 @@ class CInfoTip :
                 const std::string&  expectedClass);
         void SetSpell(
                 const Build& build,
-                const Spell* pSpell);
+                const Spell* pSpell,
+                bool bAutogranted);
         void SetFavorItem(
                 const Patron& patron,
                 int favorTier);
@@ -106,7 +107,7 @@ class CInfoTip :
         void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks, bool bSuppressed, const Build* pBuild);
         void AppendDCInfo(const Build& build, const DC& dc);
         void AppendDCInfo(const Build& build, const Spell& spell, const SpellDC& dc);
-        void AppendSpellItem(const Build& build, const Spell& spell);
+        void AppendSpellItem(const Build& build, const Spell& spell, bool bAutogranted);
         void AppendSpellDamageEffect(const Build& build, const Spell& spell, const SpellDamage& sd);
         void AppendSLA(const Spell& spell, int nSpellLevel, int nCharges, int nRecharge);
         void AppendAugment(const Augment* pAugment, const Build& build);

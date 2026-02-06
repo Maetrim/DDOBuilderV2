@@ -13,7 +13,8 @@ IMPLEMENT_DYNAMIC(CTreeListHeaderCtrl, CHeaderCtrl);
 
 const UINT UWM_AUTO_RESIZE_COL = ::RegisterWindowMessage(UWM_AUTO_RESIZE_COLUMN);
 
-CTreeListHeaderCtrl::CTreeListHeaderCtrl()
+CTreeListHeaderCtrl::CTreeListHeaderCtrl() :
+    m_bAutofit(FALSE)
 {
     //initialise variables
     m_pImageList = NULL;

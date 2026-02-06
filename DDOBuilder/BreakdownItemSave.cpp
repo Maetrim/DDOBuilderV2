@@ -125,7 +125,7 @@ void BreakdownItemSave::CreateOtherEffects()
                                 Effect_Unknown,
                                 "Negative Levels",
                                 "Negative Levels",
-                                static_cast<double>(-1 * negLevels));          // -1 per neg level
+                                static_cast<double>(-1.0 * negLevels));          // -1 per neg level
                             AddOtherEffect(negLevelsEffect);
                         }
                     }

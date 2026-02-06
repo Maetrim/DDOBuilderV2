@@ -118,7 +118,6 @@ bool CGrantedFeatsPane::IsGrantedFeat(const std::string& featName) const
             for (auto&& gfit : m_grantedFeats)
             {
                 Feat feat = FindFeat(gfit.Item().front());
-                // make sure the feat has the requirements for its granted state
                 if (gfit.HasRequirementsToBeActive())
                 {
                     feat.SetRequirements(gfit.RequirementsToBeActive());

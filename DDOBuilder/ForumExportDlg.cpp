@@ -2167,6 +2167,8 @@ void CForumExportDlg::ConvertToPlainText(std::string& content)
     content = ReplaceAll(content, "[SIZE=4]", "");
     content = ReplaceAll(content, "[SIZE=3]", "");
     content = ReplaceAll(content, "[/SIZE]", "");
+    content = ReplaceAll(content, "[HR]", "");
+    content = ReplaceAll(content, "[/HR]", "");
     // now we need to convert any tables present
     std::string tableText = ExtractBlock(content, "[TABLE]", "[/TABLE]");
     while (tableText != "")
@@ -2191,7 +2193,7 @@ std::string CForumExportDlg::ConvertTable(std::string tableText)
         TableData data;
         ExtractTableRowData(rowText,&data);
         rowData.push_back(data);
-        tableText = ReplaceAll(tableText, rowText, "");
+        tableText = ReplaceFirst(tableText, rowText, "");
         // intialise for next loop
         rowText = ExtractBlock(tableText, "[TR]", "[/TR]");
     }

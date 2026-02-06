@@ -15427,7 +15427,7 @@ creature will follow you throughout the dungeon.</Description>
     <Description>Target enemy at touch range takes 1d6+2 Evil Damage per Caster Level.
 Additionally, if the target is inside a Dread Mist zone it deals 1d4 Evil Damage
 for each stack of Growing Dread that creature has. Will save for damage on each effect.
-Cooldown: 6 PreyOnFear</Description>
+Cooldown: 6 seconds</Description>
     <Icon>PreyOnFear</Icon>
     <School>Necromancy</School>
     <Embolden/>
@@ -15448,5 +15448,66 @@ Cooldown: 6 PreyOnFear</Description>
       <Damage>Evil</Damage>
       <SpellPower>Negative</SpellPower>
     </SpellDamage>
+  </Spell>
+  <Spell>
+    <Name>Eye Poke</Name>
+    <Description>Target takes 1d2 Force damage per 2 character levels, scales with spell power.
+Max caster level 20. Target must make a Reflex save against your disable device
+skill +1d20, if they fail they become blind for 8 seconds with a recurring save
+every 2 seconds.</Description>
+    <Icon>EyePoke</Icon>
+    <School>Conjuration</School>
+    <Empower/>
+    <Intensify/>
+    <Maximize/>
+    <Quicken/>
+    <MaxCasterLevel>20</MaxCasterLevel>
+    <SpellDamage>
+      <SpellDice>
+        <BonusDice>
+          <Number>1</Number>
+          <Sides>2</Sides>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Force</Damage>
+      <SpellPower>Force</SpellPower>
+    </SpellDamage>
+  </Spell>
+  <Spell>
+    <Name>Slap</Name>
+    <Description>Target takes 1d4 Force damage per 2 character levels, scales with spell power.
+Max caster level 20. Target must make a Fortitude save against your Disable Device
+Skill +1d20 or become stunned for 6 seconds with a recurring save every 2 seconds.</Description>
+    <Icon>EyePoke</Icon>
+    <School>Conjuration</School>
+    <Empower/>
+    <Intensify/>
+    <Maximize/>
+    <Quicken/>
+    <MaxCasterLevel>20</MaxCasterLevel>
+    <SpellDamage>
+      <SpellDice>
+        <BonusDice>
+          <Number>1</Number>
+          <Sides>4</Sides>
+        </BonusDice>
+      </SpellDice>
+      <Damage>Force</Damage>
+      <SpellPower>Force</SpellPower>
+    </SpellDamage>
+  </Spell>
+  <Spell>
+    <Name>Presto</Name>
+    <Description>Mage hand snaps it's fingers over a none boss target to make them disappear.
+We don't know where they go, it's magic! Target get a Will save to negate the
+effect with a DC equal to your disable device skill.</Description>
+    <Icon>EyePoke</Icon>
+    <School>Conjuration</School>
+    <MaxCasterLevel>20</MaxCasterLevel>
+    <SpellDC>
+      <DCType>Negates</DCType>
+      <DCVersus>Will</DCVersus>
+      <Skill>Disable Device</Skill>
+    </SpellDC>
   </Spell>
 </Spells>

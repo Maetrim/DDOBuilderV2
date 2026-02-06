@@ -452,7 +452,8 @@ LRESULT CSpellsControl::OnHoverComboBox(WPARAM wParam, LPARAM)
             m_tooltip.SetOrigin(tipTopLeft, tipAlternate, true);
             m_tooltip.SetSpell(
                     *m_pCharacter->ActiveBuild(),
-                    &spell);
+                    &spell,
+                    false);
             m_tooltip.Show();
             m_showingTip = true;
         }
@@ -498,7 +499,7 @@ void CSpellsControl::SetTooltipText(
 {
     Spell spell;
     size_t spellLevel = 1;
-    //size_t maxSpellLevel = 1;
+    bool bFixedSpell = false;
     // find the spell to show info about
     std::string spellName;
     if (item.SpellIndex() >= 0)
@@ -535,12 +536,14 @@ void CSpellsControl::SetTooltipText(
         //maxSpellLevel = c.SpellSlotsForClass(m_pCharacter->ActiveBuild()->ClassLevels(m_class)).size();
         spell = FindSpellByName(spellName);
         spell.UpdateSpell((*si), m_class);
+        bFixedSpell = true;
     }
     // now we have the spell name, look it up
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetSpell(
             *m_pCharacter->ActiveBuild(),
-            &spell);
+            &spell,
+            bFixedSpell);
     m_tooltip.Show();
 }
 
