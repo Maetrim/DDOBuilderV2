@@ -1304,6 +1304,10 @@ double Effect::TotalAmount(bool allowTruncate) const
                     total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
                     BreakdownType bt = StatToBreakdown(ability);
                     total = FindBreakdown(bt)->Total();
+                    if (HasCap())
+                    {
+                        total = min(total, Cap());
+                    }
                 }
                 break;
             }

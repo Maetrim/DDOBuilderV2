@@ -49,6 +49,9 @@ class CBreakdownsPane :
         afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
         afx_msg void OnEndtrackBreakdownList(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnButtonClipboardCopy();
+        afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnDpsExportFile();
+        afx_msg void OnDpsExportClipboard();
         DECLARE_MESSAGE_MAP()
     private:
         // LifeObserver overrides
@@ -111,10 +114,15 @@ class CBreakdownsPane :
         void AddEnergyResistance(BreakdownType bt, EnergyType type, const std::string& name, HTREEITEM hParent);
         void AddEnergyAbsorption(BreakdownType bt, EnergyType type, const std::string& name, HTREEITEM hParent);
         void CalculatePercent(CPoint point);
+        void GetBreakdownsAsText(CString& breakdownText);
+        void AddBreakdownItems(CString& breakdownText, HTREEITEM hItem);
+
         Character * m_pCharacter;
 
         std::vector<BreakdownItem *> m_items;
         MfcControls::CTreeListCtrl m_itemBreakdownTree;
+        CMFCButton m_buttonDpsFile;
+        CMFCButton m_buttonDpsClipboard;
         MfcControls::CGroupLine m_divider;
         CMFCButton m_buttonClipboard;
         CListCtrl m_itemBreakdownList;
@@ -125,4 +133,5 @@ class CBreakdownsPane :
         bool m_bUpdateBreakdowns;
         std::map<EffectType, std::list<EffectCallbackItem*> > m_mapBuildCallbacks;
         bool m_bHadInitialUpdate;
+        CString m_tipText;
 };

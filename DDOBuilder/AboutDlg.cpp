@@ -19,6 +19,12 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     text.Format("DDOBuilder, Version %s", BUILDINFO_VERSION);
     m_staticVersion.SetWindowText(text);
 
+    text.Format("Class Count: %d", Classes().size()-2); // ignore Epic/Legendary
+    SetDlgItemText(IDC_STATIC_CLASSCOUNT, text);
+
+    text.Format("Race Count: %d", Races().size());
+    SetDlgItemText(IDC_STATIC_RACECOUNT, text);
+
     int count = StandardFeats().size()
                 + HeroicPastLifeFeats().size()
                 + RacialPastLifeFeats().size()
@@ -57,6 +63,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "aarondev42, "
         "Aaumini, "
         "AmericanCarioca, "
+        "Anty, "
         "Arcanaverse, "
         "Arthol, "
         "Attlanttizz, "
@@ -107,6 +114,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "ghouleater, "
         "GillianGroks, "
         "Graceana, "
+        "Griglok, "
         "Guntharm, "
         "Gus, "
         "Habreno, "
@@ -144,6 +152,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Mummykiller, "
         "nadia72295, "
         "nb756, "
+        "neain, "
         "Nectmar, "
         "NickJam, "
         "nonamenoredacted, "

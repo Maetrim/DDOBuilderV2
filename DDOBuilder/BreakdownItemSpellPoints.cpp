@@ -78,7 +78,7 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
                 {
                     const ::Class& c = ClassFromIndex(ci);
                     //?? should this be based of the breakdown for this class caster level?
-                    size_t classSpellPoints = c.SpellPointsAtLevel(classLevels[ci]-1);
+                    size_t classSpellPoints = c.SpellPointsAtLevel(classLevels[ci]);
                     if (classSpellPoints > 0)
                     {
                         CString bonusName;

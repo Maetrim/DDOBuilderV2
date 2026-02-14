@@ -14,7 +14,7 @@
     <Background>DhampirBackground</Background>
     <!--Core Items-->
     <EnhancementTreeItem>
-      <Name>Dhampir: Dark Past</Name>
+      <Name>Dhampir: Dark Future I</Name>
       <InternalName>DhampirCore1</InternalName>
       <Description>+1 to Attack while performing Sneak Attacks.</Description>
       <Icon>DarkFuture</Icon>
@@ -40,7 +40,7 @@
       <Name>Dhampir: Ability I</Name>
       <InternalName>DhampirCore2</InternalName>
       <Description>Choose between Strength, Constitution, or Charisma</Description>
-      <Icon>Strength</Icon>
+      <Icon>StrConCha</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -129,7 +129,7 @@
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Dhampir: Dark Present</Name>
+      <Name>Dhampir: Dark Future II</Name>
       <InternalName>DhampirCore3</InternalName>
       <Description>+2 to Attack while performing Sneak Attacks, +1 Sneak Attack Die, +20 Negative Amplification.</Description>
       <Icon>DarkFutureII</Icon>
@@ -171,7 +171,7 @@
       <Name>Dhampir: Ability II</Name>
       <InternalName>DhampirCore4</InternalName>
       <Description>Choose between Strength, Constitution, or Charisma</Description>
-      <Icon>Strength</Icon>
+      <Icon>StrConCha</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -260,7 +260,7 @@
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Dhampir: Dark Future</Name>
+      <Name>Dhampir: Dark Future III</Name>
       <InternalName>DhampirCore5</InternalName>
       <Description>+3 to Attack while performing Sneak Attacks, +2 Sneak Attack Die, +20 Negative Amplification.</Description>
       <Icon>DarkFutureIII</Icon>
@@ -332,7 +332,7 @@ This increases by 1 for every 5 Character Levels you have.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Dhampir: Drink in Life</Name>
+      <Name>Dhampir: Drink in</Name>
       <InternalName>DhampirDrinkInLife</InternalName>
       <Description>How do you get your energy?</Description>
       <Icon>DrinkInLife</Icon>
@@ -582,7 +582,7 @@ Rank 3: +6 MRR Cap.</Description>
       <Name>Dhampir: Fearsome Countenance</Name>
       <InternalName>DhampirFearsomeCountenance</InternalName>
       <Description>Target enemy must make a Will Saving Throw
-(Will save vs. DC 10 + Highest of STR/CON/CHA Mod + Stunning bonuses + Enchantment DC Bonuses)
+(Will save vs. DC 10 + [Str/Con/Cha] Mod + Stunning bonuses + Enchantment DC Bonuses)
 or be Cowered for 6 seconds. This is considered a Fear effect.
 On Save: -10% Movement and Attack Speed for 6 seconds.
 Cooldown: 12 seconds</Description>
@@ -596,7 +596,7 @@ Cooldown: 12 seconds</Description>
       <DC>
         <Name>Dhampir: Fearsome Countenance</Name>
         <Description>Target enemy must make a Will Saving Throw
-(Will save vs. DC 10 + Highest of STR/CON/CHA Mod + Stunning bonuses + Enchantment DC Bonuses)
+(Will save vs. DC 10 + [Str/Con/Cha] Mod + Stunning bonuses + Enchantment DC Bonuses)
 or be Cowered for 6 seconds. This is considered a Fear effect.
 On Save: -10% Movement and Attack Speed for 6 seconds.
 Cooldown: 12 seconds</Description>
@@ -689,7 +689,7 @@ gain 5% Incorporeality and +2 Stunning DCs for 6 seconds.</Description>
       <InternalName>DhampirAscendantBite</InternalName>
       <Description>Your Vampiric Bite now applies 5 stacks of Vulnerability and deals double the Piercing damage.
 If the target of your Vampiric Bite is Cowered, living and corporeal they must
-make a Fortitude Saving Throw (DC 16 + Highest of STR/CON/CHA Mod + Stunning
+make a Fortitude Saving Throw (DC 16 + [Str/Con/Int/Cha] Mod + Stunning
 Bonuses + Enchantment Bonuses) or die.</Description>
       <Icon>DhampirAscendantBite</Icon>
       <XPosition>0</XPosition>
@@ -701,7 +701,7 @@ Bonuses + Enchantment Bonuses) or die.</Description>
         <Name>Dhampir: Ascendant Bite</Name>
         <Description>Your Vampiric Bite now applies 5 stacks of Vulnerability and deals double the Piercing damage.
 If the target of your Vampiric Bite is Cowered, living and corporeal they must
-make a Fortitude Saving Throw (DC 16 + Highest of STR/CON/CHA Mod + Stunning
+make a Fortitude Saving Throw (DC 16 + [Str/Con/Int/Cha] Mod + Stunning
 Bonuses + Enchantment Bonuses) or die.</Description>
         <Icon>DhampirAscendantBite</Icon>
         <DCType>Avoid Death</DCType>
@@ -709,6 +709,7 @@ Bonuses + Enchantment Bonuses) or die.</Description>
         <Amount size="1">16</Amount>
         <ModAbility>Strength</ModAbility>
         <ModAbility>Constitution</ModAbility>
+        <ModAbility>Intelligence</ModAbility>
         <ModAbility>Charisma</ModAbility>
         <Tactical>Stun</Tactical>
         <School>Enchantment</School>
@@ -736,7 +737,7 @@ Bonuses + Enchantment Bonuses) or die.</Description>
       <Name>Dhampir: Dominate Person</Name>
       <InternalName>DhampirDominatePerson</InternalName>
       <Description>Spell-Like Ability: Dominates one target humanoid, causing it to change sides.
-DC: 15 + Highest of INT/WIS/CHA Mod + Enchantment Bonuses
+DC: 15 + [Int/Wis/Cha] Mod + Enchantment Bonuses
 Cooldown: 18 seconds</Description>
       <Icon>DhampirDominatePerson</Icon>
       <XPosition>2</XPosition>

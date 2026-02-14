@@ -95,7 +95,7 @@ void BreakdownItemPRR::CreateOtherEffects()
                         Effect_Unknown,
                         "Medium Armor PRR (BAB * 1.5)",
                         "Medium Armor PRR (BAB * 1.5)",
-                        (int)(amount * 1.5));       // drop fractions
+                        (int)((amount * 1.5) + 0.5));       // round up
                 AddOtherEffect(prr);
             }
             if (pBuild->IsStanceActive("Heavy Armor")

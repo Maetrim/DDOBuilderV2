@@ -33,7 +33,7 @@ class Buff :
                 DL_FLAG(_, ApplyToWeaponOnly) \
                 DL_FLAG(_, NegativeValues) \
                 DL_STRING_LIST(_, DisplayText) \
-                DL_OPTIONAL_STRING(_, Ignore) \
+                DL_STRING_LIST(_, Ignore) \
                 DL_OPTIONAL_SIMPLE(_, double, Value1, 0.0) \
                 DL_OPTIONAL_SIMPLE(_, double, Value2, 0.0) \
                 DL_OPTIONAL_STRING(_, BonusType) \

@@ -36,6 +36,9 @@ class CDestinyPane :
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnSaveTree(UINT nID);
+        afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnLoadTree();
         DECLARE_DYNCREATE(CDestinyPane)
         DECLARE_MESSAGE_MAP()
 
@@ -55,6 +58,7 @@ class CDestinyPane :
         virtual void UpdateEnhancementEffectApplied(Build*, const Effect & effect) override;
         virtual void UpdateEnhancementEffectRevoked(Build*, const Effect & effect) override;
         virtual void UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt) override;
+        virtual void UpdateActionPointsChanged(Build*) override;
 
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
@@ -71,12 +75,15 @@ class CDestinyPane :
         void ShowTip(const CIconButton & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const CIconButton & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void EnableDisableTreeSaveLoad();
         enum MaxSupportTrees
         {
             // +1 as we have the preview tree slot
             MST_Number = MAX_DESTINY_TREES + 1
         };
         std::list<EnhancementTree> m_availableTrees;
+        CMFCButton m_buttonLoad;
+        CMFCButton m_buttonSave[MAX_DESTINY_TREES];
         CComboBox m_comboTreeSelect[MST_Number];
         CIconButton m_destinyTrees[16];
         CStatic m_staticPreview;
@@ -87,6 +94,7 @@ class CDestinyPane :
         bool m_showingTip;
         bool m_tipCreated;
         const CIconButton * m_pTooltipItem;
+        CString m_tipText;
 
         CDDOBuilderDoc*  m_pDoc;
         Character * m_pCharacter;

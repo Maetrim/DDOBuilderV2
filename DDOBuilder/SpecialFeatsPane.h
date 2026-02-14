@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include "character.h"
+#include "Build.h"
 
 class CDDOBuilderDoc;
 class Feat;
@@ -12,7 +13,8 @@ class CFeatSelectionDialog;
 
 class CSpecialFeatPane :
     public CFormView,
-    public CharacterObserver
+    public CharacterObserver,
+    public BuildObserver
 {
 public:
     CSpecialFeatPane();           // protected constructor used by dynamic creation
@@ -41,6 +43,9 @@ protected:
     virtual void UpdateActiveLifeChanged(Character*) override;
     virtual void UpdateActiveBuildChanged(Character *) override;
 
+    virtual void UpdateFeatTrained(Build*, const std::string& featName) override;
+    virtual void UpdateFeatRevoked(Build*, const std::string& featName) override;
+
 private:
     void CreateFeatWindows(
             CStatic * groupWindow,
@@ -56,6 +61,7 @@ private:
     void CleanUp(std::vector<CFeatSelectionDialog*> & vWindows);
     void TrainAllFeats(std::vector<CFeatSelectionDialog*>& feats);
     void RevokeAllFeats(std::vector<CFeatSelectionDialog*>& feats);
+    void UpdateFeatTrainedCounts(FeatAcquisitionType fat);
 
     std::vector<CFeatSelectionDialog *> m_heroicSelectionViews;
     std::vector<CFeatSelectionDialog *> m_racialSelectionViews;

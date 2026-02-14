@@ -9,6 +9,7 @@
 #include "GlobalSupportFunctions.h"
 
 #include "EnhancementTreeDialog.h"
+#include "XmlLib\SaxReader.h"
 
 namespace
 {
@@ -42,6 +43,14 @@ CEnhancementsPane::~CEnhancementsPane()
 void CEnhancementsPane::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_BUTTON_LOADTREE, m_buttonLoad);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE1, m_buttonSave[0]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE2, m_buttonSave[1]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE3, m_buttonSave[2]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE4, m_buttonSave[3]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE5, m_buttonSave[4]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE6, m_buttonSave[5]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE7, m_buttonSave[6]);
     // no IDC_TREE_SELECT1 as that is the racial tree which cannot be swapped out
     DDX_Control(pDX, IDC_TREE_SELECT2, m_comboTreeSelect[0]);
     DDX_Control(pDX, IDC_TREE_SELECT3, m_comboTreeSelect[1]);
@@ -77,9 +86,12 @@ BEGIN_MESSAGE_MAP(CEnhancementsPane, CFormView)
     ON_REGISTERED_MESSAGE(UWM_UPDATE_TREES, OnUpdateTrees)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT2, IDC_TREE_SELECT7, OnTreeSelect)
     ON_CONTROL_RANGE(BN_CLICKED, IDC_BUTTON_UNIVERSAL_TREE1, IDC_BUTTON_UNIVERSAL_TREE16, OnUniversalTree)
+    ON_CONTROL_RANGE(BN_CLICKED, IDC_BUTTON_SAVETREE1, IDC_BUTTON_SAVETREE7, OnSaveTree)
     ON_WM_LBUTTONDOWN()
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
+    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CEnhancementsPane::OnTtnNeedText)
+    ON_COMMAND(IDC_BUTTON_LOADTREE, OnLoadTree)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -91,6 +103,13 @@ void CEnhancementsPane::OnInitialUpdate()
         CFormView::OnInitialUpdate();
         m_tooltip.Create(this);
         m_tipCreated = true;
+        m_buttonLoad.SetImage(IDB_BITMAP_LOAD);
+        for (size_t i = 0; i < MST_Number; ++i)
+        {
+            m_buttonSave[i].SetImage(IDB_BITMAP_SAVE);
+            m_buttonSave[i].EnableWindow(FALSE);
+        }
+        EnableToolTips(TRUE);
     }
 }
 
@@ -126,17 +145,31 @@ void CEnhancementsPane::OnSize(UINT nType, int cx, int cy)
         int scrollY = GetScrollPos(SB_VERT);
         itemRect -= CPoint(scrollX, scrollY);
 
+        CRect rctButton;
         ASSERT(m_treeViews.size() == MST_Number);
         for (size_t ti = 0; ti < m_visibleTrees.size(); ++ti)
         {
             size_t index = m_visibleTrees[ti];
             ASSERT(index >= 0 && index < MST_Number);
+            m_buttonSave[ti].GetWindowRect(&rctButton);
+            rctButton -= rctButton.TopLeft();
+            rctButton += CPoint(itemRect.left, itemRect.bottom);
+            m_buttonSave[ti].MoveWindow(rctButton);
+            m_buttonSave[ti].ShowWindow(SW_SHOW);        // ensure visible
+            if (ti == 0)
+            {
+                m_buttonLoad.GetWindowRect(&rctButton);
+                rctButton -= rctButton.TopLeft();
+                rctButton += CPoint(itemRect.left + rctButton.Width() + c_controlSpacing, itemRect.bottom);
+                m_buttonLoad.MoveWindow(rctButton);
+                m_buttonLoad.ShowWindow(SW_SHOW);        // ensure visible
+            }
             // move the window to the correct location
             m_treeViews[index]->MoveWindow(itemRect, false);
             m_treeViews[index]->ShowWindow(SW_SHOW);        // ensure visible
             if (ti > 0 && ti < MST_Number)
             {
-                CRect rctCombo(itemRect.left, itemRect.bottom, itemRect.right, itemRect.bottom + 300);
+                CRect rctCombo(rctButton.right + c_controlSpacing, itemRect.bottom, itemRect.right, itemRect.bottom + 300);
                 m_comboTreeSelect[ti-1].MoveWindow(rctCombo);
                 m_comboTreeSelect[ti-1].ShowWindow(SW_SHOW);
             }
@@ -196,6 +229,14 @@ BOOL CEnhancementsPane::OnEraseBkgnd(CDC* pDC)
 {
     static int controlsNotToBeErased[] =
     {
+        IDC_BUTTON_LOADTREE,
+        IDC_BUTTON_SAVETREE1,
+        IDC_BUTTON_SAVETREE2,
+        IDC_BUTTON_SAVETREE3,
+        IDC_BUTTON_SAVETREE4,
+        IDC_BUTTON_SAVETREE5,
+        IDC_BUTTON_SAVETREE6,
+        IDC_BUTTON_SAVETREE7,
         IDC_TREE_SELECT2,
         IDC_TREE_SELECT3,
         IDC_TREE_SELECT4,
@@ -655,6 +696,7 @@ void CEnhancementsPane::UpdateEnhancementTreeOrderChanged(Build*, enum TreeType 
 void CEnhancementsPane::UpdateActionPointsChanged(Build*)
 {
     UpdateWindowTitle();
+    EnableDisableTreeSaveLoad();
     EnableDisableComboboxes();
 }
 
@@ -665,6 +707,7 @@ LRESULT CEnhancementsPane::OnUpdateTrees(WPARAM wParam, LPARAM lParam)
     // received a delayed tree update message, do the work
     UpdateTrees();
     UpdateWindowTitle();
+    EnableDisableTreeSaveLoad();
     EnableDisableComboboxes();
     return 0;
 }
@@ -739,6 +782,29 @@ void CEnhancementsPane::OnTreeSelect(UINT nID)
     }
 }
 
+void CEnhancementsPane::EnableDisableTreeSaveLoad()
+{
+    for (size_t i = 0; i < MST_Number; ++i)
+    {
+        m_buttonSave[i].EnableWindow(FALSE);
+    }
+    if (m_pCharacter != NULL)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            const Destiny_SelectedTrees& selTrees = pBuild->DestinySelectedTrees();
+            for (size_t i = 0; i < MST_Number; ++i)
+            {
+                const std::string& treeName = selTrees.Tree(i);
+                // can only save this tree if points spent in this one
+                bool bEnableSave = (pBuild->APSpentInTree(treeName) > 0);
+                m_buttonSave[i].EnableWindow(bEnableSave);
+            }
+        }
+    }
+}
+
 void CEnhancementsPane::EnableDisableComboboxes()
 {
     bool bDisable = true;
@@ -747,7 +813,7 @@ void CEnhancementsPane::EnableDisableComboboxes()
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
-            const Enhancement_SelectedTrees & selTrees = pBuild->EnhancementSelectedTrees();
+            const Enhancement_SelectedTrees& selTrees = pBuild->EnhancementSelectedTrees();
             for (size_t i = 1; i < MST_Number; ++i)
             {
                 std::string treeName = selTrees.Tree(i);
@@ -767,6 +833,7 @@ void CEnhancementsPane::EnableDisableComboboxes()
                 m_universalTrees[i].SetSelected(trained);
             }
             bDisable = false;
+            m_buttonLoad.EnableWindow(TRUE);
         }
     }
     if (bDisable)
@@ -785,6 +852,7 @@ void CEnhancementsPane::EnableDisableComboboxes()
         }
         Invalidate(TRUE);
         GetParent()->Invalidate(TRUE);
+        m_buttonLoad.EnableWindow(FALSE);
     }
 }
 
@@ -846,6 +914,68 @@ void CEnhancementsPane::OnUniversalTree(UINT nID)
                     // yup, they have changed
                     m_availableTrees = trees;
                     UpdateEnhancementWindows();
+                }
+            }
+        }
+    }
+}
+
+void CEnhancementsPane::OnSaveTree(UINT nID)
+{
+    UINT id = nID - IDC_BUTTON_SAVETREE1;
+    if (m_pCharacter != NULL)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            const Enhancement_SelectedTrees& selTrees = pBuild->EnhancementSelectedTrees();
+            CString treeName = selTrees.Tree(id).c_str();
+            CFileDialog filedlg(
+                FALSE,
+                NULL,
+                (LPCTSTR)treeName,
+                OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+                "DDOBuilder Tree Files (*.DDOTree)|*.DDOTree||",
+                this);
+            if (filedlg.DoModal() == IDOK)
+            {
+                const std::list<EnhancementSpendInTree>& treeSpends = pBuild->EnhancementTreeSpend();
+                EnhancementSpendInTree spend;
+                for (auto&& tsit : treeSpends)
+                {
+                    if (tsit.TreeName() == (LPCTSTR)treeName)
+                    {
+                        spend = tsit;
+                    }
+                }
+
+                std::string filename = (LPCTSTR)filedlg.GetPathName();
+                if (filename.find(".DDOETree") == std::string::npos)
+                {
+                    filename += ".DDOETree";
+                }
+                try
+                {
+                    const XmlLib::SaxString f_saxElementName = L"DDOBuilderTree"; // root element name to look for
+                    XmlLib::SaxWriter writer;
+                    writer.Open(filename);
+                    writer.StartDocument(f_saxElementName);
+                    spend.Write(&writer);
+                    writer.EndDocument();
+                    std::stringstream ss;
+                    ss << "Enhancement Tree " << treeName << " exported to file \"" << filename << "\"";
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                catch (const std::exception& e)
+                {
+                    std::string errorMessage = e.what();
+                    // document has failed to save. Tell the user what we can about it
+                    CString text;
+                    text.Format("The document %s\n"
+                        "failed to save. The XML parser reported the following problem:\n"
+                        "\n", filename.c_str());
+                    text += errorMessage.c_str();
+                    AfxMessageBox(text, MB_ICONERROR);
                 }
             }
         }
@@ -978,5 +1108,210 @@ void CEnhancementsPane::SetTooltipText(
         m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
         m_tooltip.SetFeatItem(*pBuild, &feat, false, pBuild->Level(), false);
         m_tooltip.Show();
+    }
+}
+
+BOOL CEnhancementsPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
+{
+    UNREFERENCED_PARAMETER(id);
+    UNREFERENCED_PARAMETER(pResult);
+
+    UINT_PTR nID = pNMHDR->idFrom;
+    nID = ::GetDlgCtrlID((HWND)nID);
+
+    switch (nID)
+    {
+        case IDC_BUTTON_UNIVERSAL_TREE1:
+        case IDC_BUTTON_UNIVERSAL_TREE2:
+        case IDC_BUTTON_UNIVERSAL_TREE3:
+        case IDC_BUTTON_UNIVERSAL_TREE4:
+        case IDC_BUTTON_UNIVERSAL_TREE5:
+        case IDC_BUTTON_UNIVERSAL_TREE6:
+        case IDC_BUTTON_UNIVERSAL_TREE7:
+        case IDC_BUTTON_UNIVERSAL_TREE8:
+        case IDC_BUTTON_UNIVERSAL_TREE9:
+        case IDC_BUTTON_UNIVERSAL_TREE10:
+        case IDC_BUTTON_UNIVERSAL_TREE11:
+        case IDC_BUTTON_UNIVERSAL_TREE12:
+        case IDC_BUTTON_UNIVERSAL_TREE13:
+        case IDC_BUTTON_UNIVERSAL_TREE14:
+        case IDC_BUTTON_UNIVERSAL_TREE15:
+        case IDC_BUTTON_UNIVERSAL_TREE16:
+            m_tipText = "You have access to this universal tree";
+            break;
+        case IDC_BUTTON_SAVETREE1:
+        case IDC_BUTTON_SAVETREE2:
+        case IDC_BUTTON_SAVETREE3:
+        case IDC_BUTTON_SAVETREE4:
+        case IDC_BUTTON_SAVETREE5:
+        case IDC_BUTTON_SAVETREE6:
+        case IDC_BUTTON_SAVETREE7:
+            m_tipText = "Save this enhancement tree layout to a file";
+            break;
+        case IDC_BUTTON_LOADTREE:
+            m_tipText = "Load in a previously saved enhancement tree layout";
+            break;
+        default:
+            m_tipText = "";
+            break;
+    }
+    // ensure multi line tooltips
+    ::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 800);
+    TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+    pTTTA->lpszText = m_tipText.GetBuffer();
+    return TRUE;
+}
+
+void CEnhancementsPane::OnLoadTree()
+{
+    // display the file select dialog
+    CFileDialog filedlg(
+            TRUE,
+            NULL,
+            NULL,
+            OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_HIDEREADONLY,
+            "DDOBuilder Tree Files (*.DDOTree)|*.DDOTree||",
+            this);
+    if (filedlg.DoModal() == IDOK)
+    {
+        bool bSuccess = false;
+        EnhancementSpendInTree loadedTree;
+        CString filename = filedlg.GetPathName();
+        try
+        {
+            XmlLib::SaxReader reader(&loadedTree, L"DDOBuilderTree");
+            // read in the xml from a file (fully qualified path)
+            bool ok = reader.Open((LPCTSTR)filename);
+            if (ok)
+            {
+                std::stringstream ss;
+                ss << "DDOBuilder enhancement tree Document \"" << (LPCTSTR)filename << "\" loaded.";
+                GetLog().AddLogEntry(ss.str().c_str());
+                bSuccess = true;
+            }
+            else
+            {
+                std::string errorMessage = reader.ErrorMessage();
+                // document has failed to load. Tell the user what we can about it
+                CString text;
+                text.Format("The document %s\n"
+                    "failed to load. The XML parser reported the following problem:\n"
+                    "\n", (LPCTSTR)filename);
+                text += errorMessage.c_str();
+                AfxMessageBox(text, MB_ICONERROR);
+            }
+        }
+        catch (const std::exception& e)
+        {
+            std::string errorMessage = e.what();
+            // document has failed to save. Tell the user what we can about it
+            CString text;
+            text.Format("The document %s\n"
+                "failed to save. The XML parser reported the following problem:\n"
+                "\n", (LPCTSTR)filename);
+            text += errorMessage.c_str();
+            AfxMessageBox(text, MB_ICONERROR);
+        }
+        if (bSuccess)
+        {
+            // things to check first for the loaded tree
+            // 1: It matches one of the available trees for the current build setup
+            // 2: It is the same version number as the tree
+            // 3: The tree is already selected or can go in an unselected tree slot
+            if (m_pCharacter != NULL)
+            {
+                Build* pBuild = m_pCharacter->ActiveBuild();
+                if (pBuild != NULL)
+                {
+                    Enhancement_SelectedTrees selTrees = pBuild->EnhancementSelectedTrees();
+                    // is it an available tree?
+                    bool bAvailable = false;
+                    for (auto&& atit: m_availableTrees)
+                    {
+                        if (atit.Name() == loadedTree.TreeName())
+                        {
+                            bAvailable = true;
+                            break;
+                        }
+                    }
+                    if (bAvailable)
+                    {
+                        bool bHas = false;
+                        // if the tree has already been spent in then it needs to be revoked and replaced by the imported tree
+                        bool bTreeHasSpent = (pBuild->APSpentInTree(loadedTree.TreeName()) > 0);
+                        if (bTreeHasSpent)
+                        {
+                            pBuild->Enhancement_ResetEnhancementTree(loadedTree.TreeName());
+                            bHas = true;
+                        }
+                        else
+                        {
+                            // need to find a slot of this tree, does it already have one?
+                            for (auto&& stit: selTrees.TreeName())
+                            {
+                                if (stit == loadedTree.TreeName())
+                                {
+                                    bHas = true;
+                                }
+                            }
+                            if (!bHas)
+                            {
+                                // if we can find an empty tree slot (No Selection) assign it to this tree
+                                size_t index = 0;
+                                for (auto&& stit: selTrees.TreeName())
+                                {
+                                    if (stit == c_noTreeSelection)
+                                    {
+                                        // we can use this tree slot
+                                        selTrees.SetTree(index, loadedTree.TreeName());   // modify
+                                        pBuild->Enhancement_SetSelectedTrees(selTrees);   // update
+                                        // update our state
+                                        UpdateEnhancementWindows();
+                                        bHas = true;
+                                        break;
+                                    }
+                                    ++index;
+                                }
+                            }
+                        }
+                        if (!bHas)
+                        {
+                            // the tree was not already present or we could not assign a tree slot to it
+                            AfxMessageBox("No available tree slot available to apply this tree. Clear an existing tree slot and try a reload.", MB_ICONERROR);
+                        }
+                        else
+                        {
+                            // now apply each trained enhancement in order
+                            for (auto&& ltit: loadedTree.Enhancements())
+                            {
+                                const EnhancementTreeItem* pItem = FindEnhancement(loadedTree.TreeName(), ltit.EnhancementName());
+                                if (pItem != NULL)
+                                {
+                                    for (size_t rank = 0; rank < ltit.Ranks(); ++rank)
+                                    {
+                                        pBuild->Enhancement_TrainEnhancement(
+                                            loadedTree.TreeName(),
+                                            ltit.EnhancementName(),
+                                            ltit.HasSelection() ? ltit.Selection() : "",
+                                            pItem->CostPerRank());
+                                    }
+                                }
+                                else
+                                {
+                                    AfxMessageBox("Enhancement item not found during apply action. Aborting", MB_ICONERROR);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        CString text;
+                        text.Format("The tree data loaded for tree type \"%s\" is not a tree that can be selected by this build.", loadedTree.TreeName().c_str());
+                        AfxMessageBox(text, MB_ICONERROR);
+                    }
+                }
+            }
+        }
     }
 }

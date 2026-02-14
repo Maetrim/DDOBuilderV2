@@ -18,7 +18,8 @@ namespace
         QLC_level,
         QLC_favor,
         QLC_runAt,
-        QLC_patron
+        QLC_patron,
+        QLC_pack
     };
 }
 
@@ -98,6 +99,7 @@ LRESULT CFavorPane::OnLoadComplete(WPARAM, LPARAM)
     m_listQuests.InsertColumn(2, "Favor", LVCFMT_LEFT, 40);
     m_listQuests.InsertColumn(3, "Run@", LVCFMT_LEFT, 60);
     m_listQuests.InsertColumn(4, "Patron", LVCFMT_LEFT, 140);
+    m_listQuests.InsertColumn(5, "Pack", LVCFMT_LEFT, 140);
     m_listQuests.SetExtendedStyle(m_listQuests.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
     m_sortHeader.SetSortArrow(1, TRUE);     // sort by level (increasing) by default
 
@@ -312,7 +314,8 @@ void CFavorPane::PopulateQuestList()
                 || qit.Patron() == selectedPatron)
             {
                 if (strSearchText == ""
-                        || SearchForText(qit.Name(), strFindText))
+                        || SearchForText(qit.Name(), strFindText)
+                        || SearchForText(qit.AdventurePack(), strFindText))
                 {
                     // add one list entry for every Levels entry this quest has
                     CString questName = qit.Name().c_str();
@@ -323,6 +326,8 @@ void CFavorPane::PopulateQuestList()
                     text.Format("%d", qit.Favor());
                     m_listQuests.SetItemText(iIndex, QLC_favor, text);
                     m_listQuests.SetItemText(iIndex, QLC_patron, patron);
+                    text = qit.AdventurePack().c_str();
+                    m_listQuests.SetItemText(iIndex, QLC_pack, text);
                     QuestDifficulty diff = QD_notRun;
                     for (auto&& rqi : m_runQuests)
                     {

@@ -623,6 +623,7 @@ class Effect :
                 DL_FLAG(_, Rare) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToBeActive) \
                 DL_OPTIONAL_SIMPLE(_, size_t, Rank, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, Cap, 0) \
                 DL_OPTIONAL_OBJECT(_, Dice, DamageDice) \
                 DL_OPTIONAL_ENUM(_, DamageType, Damage, Damage_Unknown, damageTypeMap)
 

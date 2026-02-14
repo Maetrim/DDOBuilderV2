@@ -33,9 +33,12 @@ public:
     afx_msg void OnTreeSelect(UINT nID);
     afx_msg LRESULT OnUpdateTrees(WPARAM wParam, LPARAM lParam);
     afx_msg void OnUniversalTree(UINT nID);
+    afx_msg void OnSaveTree(UINT nID);
     afx_msg void OnMouseMove(UINT nFlags, CPoint point);
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
     afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+    afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnLoadTree();
 
     DECLARE_DYNCREATE(CEnhancementsPane)
     DECLARE_MESSAGE_MAP()
@@ -68,6 +71,7 @@ private:
     void UpdateEnhancementWindows();
     void UpdateWindowTitle();
     void PopulateTreeCombo(CComboBox * combo, const std::string& selectedTree);
+    void EnableDisableTreeSaveLoad();
     void EnableDisableComboboxes();
     void UpdateTrees();
     void AddCustomButtons();
@@ -80,6 +84,8 @@ private:
         MST_UniversalTrees = 16
     };
     std::list<EnhancementTree> m_availableTrees;
+    CMFCButton m_buttonLoad;
+    CMFCButton m_buttonSave[MST_Number];
     CComboBox m_comboTreeSelect[MST_Number-1];  // 1st tree type is always fixed
     CIconButton m_universalTrees[MST_UniversalTrees];
     std::vector<CEnhancementTreeDialog *> m_treeViews;
@@ -89,6 +95,7 @@ private:
     bool m_showingTip;
     bool m_tipCreated;
     const CIconButton * m_pTooltipItem;
+    CString m_tipText;
 
     CDDOBuilderDoc* m_pDoc;
     Character* m_pCharacter;

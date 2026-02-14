@@ -137,13 +137,16 @@ CString Buff::MakeDescription() const
         {
             str.Replace("%i1", Item().c_str());
         }
-        if (HasIgnore())
+        if (Ignore().size() >0)
         {
             // only remove the ignore if it is at the start of the description
-            int pos = str.Find(Ignore().c_str());
-            if (pos == 0)
+            for (auto && iit: Ignore())
             {
-                str = str.Right(str.GetLength() - (Ignore().size() + 1));
+                int pos = str.Find(iit.c_str());
+                if (pos == 0)
+                {
+                    str = str.Right(str.GetLength() - (iit.size() + 1));
+                }
             }
         }
         BreakUpLongLines(str);

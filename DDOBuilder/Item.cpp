@@ -364,7 +364,7 @@ std::vector<CString> Item::BuffDescriptions(const Build* pBuild) const
         // when in the Buff list only
         Buff buff = FindBuff(it.Type());
         if (it.HasBonusType()) buff.Set_BonusType(it.BonusType());
-        if (it.HasIgnore()) buff.Set_Ignore(it.Ignore());
+        if (it.Ignore().size() > 0) buff.Set_Ignore(it.Ignore());
         if (it.HasValue1()) buff.Set_Value1(it.Value1());
         if (it.HasValue2()) buff.Set_Value2(it.Value2());
         if (it.HasItem()) buff.Set_Item(it.Item());

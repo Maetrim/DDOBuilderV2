@@ -116,6 +116,11 @@ LRESULT CSpecialFeatPane::OnLoadComplete(WPARAM, LPARAM)
     UpdateDocumentPointers(m_specialSelectionViews);
     UpdateDocumentPointers(m_favorSelectionViews);
 
+    UpdateFeatTrainedCounts(FeatAcquisition_HeroicPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_RacialPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_IconicPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_EpicPastLife);
+
     // cause a resize after all sub windows have updated
     CRect rect;
     GetClientRect(&rect);
@@ -219,6 +224,10 @@ size_t CSpecialFeatPane::PositionWindows(
 
 LRESULT CSpecialFeatPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
+    m_staticHeroic.SetWindowText("Heroic");
+    m_staticRacial.SetWindowText("Racial");
+    m_staticIconic.SetWindowText("Iconic");
+    m_staticEpic.SetWindowText("Epic");
     // wParam is the document pointer
     CDDOBuilderDoc * pDoc = (CDDOBuilderDoc*)(wParam);
     // lParam is the character pointer
@@ -235,6 +244,10 @@ LRESULT CSpecialFeatPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
         UpdateDocumentPointers(m_specialSelectionViews);
         UpdateDocumentPointers(m_favorSelectionViews);
     }
+    UpdateFeatTrainedCounts(FeatAcquisition_HeroicPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_RacialPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_IconicPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_EpicPastLife);
     return 0L;
 }
 
@@ -404,11 +417,94 @@ void CSpecialFeatPane::UpdateActiveLifeChanged(Character*)
 
 void CSpecialFeatPane::UpdateActiveBuildChanged(Character *)
 {
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    if (pBuild != NULL)
+    {
+        pBuild->AttachObserver(this);
+    }
     UpdateDocumentPointers(m_heroicSelectionViews);
     UpdateDocumentPointers(m_racialSelectionViews);
     UpdateDocumentPointers(m_iconicSelectionViews);
     UpdateDocumentPointers(m_epicSelectionViews);
     UpdateDocumentPointers(m_specialSelectionViews);
     UpdateDocumentPointers(m_favorSelectionViews);
+    UpdateFeatTrainedCounts(FeatAcquisition_HeroicPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_RacialPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_IconicPastLife);
+    UpdateFeatTrainedCounts(FeatAcquisition_EpicPastLife);
+}
+
+void CSpecialFeatPane::UpdateFeatTrained(
+    Build*,
+    const std::string& featName)
+{
+    const Feat& feat = FindFeat(featName);
+    UpdateFeatTrainedCounts(feat.Acquire());
+}
+
+void CSpecialFeatPane::UpdateFeatRevoked(
+    Build*,
+    const std::string& featName)
+{
+    const Feat& feat = FindFeat(featName);
+    UpdateFeatTrainedCounts(feat.Acquire());
+}
+
+void CSpecialFeatPane::UpdateFeatTrainedCounts(
+    FeatAcquisitionType fat)
+{
+    if (m_pCharacter != NULL
+        && m_pCharacter->ActiveBuild() != NULL)
+    {
+        switch (fat)
+        {
+            case FeatAcquisition_HeroicPastLife:
+            case FeatAcquisition_RacialPastLife:
+            case FeatAcquisition_IconicPastLife:
+            case FeatAcquisition_EpicPastLife:
+                break;
+            default:
+                return; // no changes for other feat types
+        }
+        // count the number of feats trained of this type
+        size_t numPastLifeFeats = 0;
+        const std::list<TrainedFeat>& feats = m_pCharacter->ActiveBuild()->SpecialFeats();
+        std::list<TrainedFeat>::const_iterator it = feats.begin();
+        while (it != feats.end())
+        {
+            const Feat& trainedFeat = FindFeat((*it).FeatName());
+            if (trainedFeat.Acquire() == fat)
+            {
+                // this is a match for this type, count it
+                ++numPastLifeFeats;
+            }
+            ++it;
+        }
+        int maxCount = 0;
+        CString newText;
+        switch (fat)
+        {
+            case FeatAcquisition_HeroicPastLife:
+                maxCount = HeroicPastLifeFeats().size() * 3;
+                newText.Format("Heroic\r\n%d/%d", numPastLifeFeats, maxCount);
+                m_staticHeroic.SetWindowText(newText);
+                break;
+            case FeatAcquisition_RacialPastLife:
+                maxCount = RacialPastLifeFeats().size() * 3;
+                newText.Format("Racial\r\n%d/%d", numPastLifeFeats, maxCount);
+                m_staticRacial.SetWindowText(newText);
+                break;
+            case FeatAcquisition_IconicPastLife:
+                maxCount = IconicPastLifeFeats().size() * 3;
+                newText.Format("Iconic\r\n%d/%d", numPastLifeFeats, maxCount);
+                m_staticIconic.SetWindowText(newText);
+                break;
+            case FeatAcquisition_EpicPastLife:
+                maxCount = EpicPastLifeFeats().size() * 3;
+                newText.Format("Epic\r\n%d/%d", numPastLifeFeats, maxCount);
+                m_staticEpic.SetWindowText(newText);
+                break;
+        }
+    }
 }
 

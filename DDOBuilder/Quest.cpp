@@ -198,6 +198,17 @@ bool Quest::operator<(const Quest& other) const
                 bRet = Levels()[0] < other.Levels()[0];
             }
             break;
+        case 5: // adventure pack
+            if (AdventurePack() != other.AdventurePack())
+            {
+                bRet = AdventurePack() < other.AdventurePack();
+            }
+            else
+            {
+                // sort by level
+                bRet = Levels()[0] < other.Levels()[0];
+            }
+            break;
     }
     if (!gm_bAscending)
     {

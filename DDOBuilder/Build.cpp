@@ -172,7 +172,6 @@ void Build::LoadComplete()
         }
     }
     // ensure renamed races are correct
-
 }
 
 void Build::SetLifePointer(Life* pLife)

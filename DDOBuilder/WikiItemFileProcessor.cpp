@@ -1275,7 +1275,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Unnatural", "Unnatural Unnatural", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dragontouched", "Dragontouched", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "UniversalSpellPower", "Exceptional Universal Spell Power", "Exceptional", "");
-    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shadow Striker", "Shadow Striker Shadow Striker", "Profane", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Shadow Striker", "Shadow Striker Shadow Striker", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Bottled Heart", "Bottled Heart Bottled Heart", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Revel in Blood (Bludgeoning)", "Revel in Blood (Bludgeoning) Revel in Blood (Bludgeoning)", "", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Revel in Blood (Magic)", "Revel in Blood (Magic) Revel in Blood (Magic)", "", "");

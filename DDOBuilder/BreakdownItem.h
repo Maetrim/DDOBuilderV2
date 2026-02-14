@@ -109,6 +109,7 @@ class BreakdownItem :
 
         double GetEffectValue(const std::string& bonusType, bool bItemEffectsOnly) const;
     protected:
+        void DoAllPercentsAtOnce();
         void SetInventorySlotType(InventorySlotType ist);
         void AddOtherEffect(const Effect & effect);
         void AddFeatEffect(const Effect & effect);
@@ -140,7 +141,7 @@ class BreakdownItem :
         std::list<Effect> AllActiveEffects() const;
 
         AbilityType LargestStatBonus();
-        double DoPercentageEffects(const std::list<Effect>& effects, double total) const;
+        double DoPercentageEffects(const std::list<Effect>& effects, double total, double& discrepancy) const;
         void RemoveInactive(std::list<Effect>* effects, std::list<Effect>* inactiveEffects) const;
         void RemoveNonStacking(std::list<Effect>* effects, std::list<Effect>* nonStackingEffects) const;
         void RemoveTemporary(std::list<Effect>* effects, std::list<Effect>* temporaryEffects) const;
@@ -187,6 +188,8 @@ class BreakdownItem :
 
         static bool s_bUpdatesLocked;
         double m_dCachedTotal;
+        bool m_bAllPercentsAtOnce;
+        mutable double m_discrepancy;
 
         friend class BreakdownItemWeapon;
 };

@@ -76,6 +76,8 @@ void CBreakdownsPane::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_ITEM_BREAKDOWN, m_itemBreakdownList);
+    DDX_Control(pDX, IDC_BUTTON_DPS_EXPORT_FILE, m_buttonDpsFile);
+    DDX_Control(pDX, IDC_BUTTON_DPS_EXPORT_CLIPBOARD, m_buttonDpsClipboard);
     DDX_Control(pDX, IDC_DIVIDER, m_divider);
     DDX_Control(pDX, IDC_BUTTON_CLIPBOARD, m_buttonClipboard);
 }
@@ -93,6 +95,9 @@ BEGIN_MESSAGE_MAP(CBreakdownsPane, CFormView)
     ON_WM_LBUTTONUP()
     ON_NOTIFY(HDN_ITEMCHANGED, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
     ON_BN_CLICKED(IDC_BUTTON_CLIPBOARD, OnButtonClipboardCopy)
+    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CBreakdownsPane::OnTtnNeedText)
+    ON_BN_CLICKED(IDC_BUTTON_DPS_EXPORT_FILE, OnDpsExportFile)
+    ON_BN_CLICKED(IDC_BUTTON_DPS_EXPORT_CLIPBOARD, OnDpsExportClipboard)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -143,6 +148,8 @@ LRESULT CBreakdownsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
                 // just empty the control
                 m_itemBreakdownList.DeleteAllItems();
                 // no specific item selected, therefore for clipboard copy
+                m_buttonDpsFile.EnableWindow(FALSE);
+                m_buttonDpsClipboard.EnableWindow(FALSE);
                 m_buttonClipboard.EnableWindow(FALSE);
             }
         }
@@ -221,7 +228,10 @@ void CBreakdownsPane::OnInitialUpdate()
         m_itemBreakdownList.SetExtendedStyle(m_itemBreakdownList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
         LoadColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
         // Image for copy to clipboard button
+        m_buttonDpsFile.SetImage(IDB_BITMAP_SAVE);
+        m_buttonDpsClipboard.SetImage(IDB_BITMAP_COPYTOCLIPBOARD);
         m_buttonClipboard.SetImage(IDB_BITMAP_COPYTOCLIPBOARD);
+        EnableToolTips(TRUE);
     }
 }
 
@@ -245,7 +255,7 @@ void CBreakdownsPane::OnSize(UINT nType, int cx, int cy)
         // |                                 |  |
         // |                                 |  |
         // +---------------------------------+  v
-        // [-- -------Drag divider--------][c]
+        // [s][c][------Drag divider------][c]
         // +---------------------------------+
         // |   Selected Item breakdown List  |
         // |                                 |
@@ -253,21 +263,32 @@ void CBreakdownsPane::OnSize(UINT nType, int cx, int cy)
         // +---------------------------------+
         // control area configured by the m_treeSizePercent variable which is a percentage
         CRect rctDivider;
+        CRect rctButtonDpsSave;
+        CRect rctButtonDpsClipboard;
         CRect rctButtonClipboard;
+        m_buttonDpsFile.GetWindowRect(rctButtonDpsSave);
+        m_buttonDpsClipboard.GetWindowRect(rctButtonDpsClipboard);
         m_divider.GetWindowRect(rctDivider);
         m_buttonClipboard.GetWindowRect(rctButtonClipboard);
-        // position the divider at its percentage location
-        rctDivider -= rctDivider.TopLeft();
-        rctDivider.left = c_controlSpacing;
-        rctDivider.right = cx - c_controlSpacing - rctButtonClipboard.Width() - c_controlSpacing;
+
+        // position the divider and buttons at its percentage location
         int verticalSpace = cy - (c_controlSpacing * 4) - rctDivider.Height();
-        rctDivider += CPoint (0, c_controlSpacing * 2 + (verticalSpace * m_treeSizePercent) / 100);
+        rctButtonDpsSave -= rctButtonDpsSave.TopLeft();
+        rctButtonDpsClipboard -= rctButtonDpsClipboard.TopLeft();
+        rctButtonDpsSave += CPoint(0, c_controlSpacing * 2 + (verticalSpace * m_treeSizePercent) / 100);
+        rctButtonDpsClipboard += CPoint(rctButtonDpsSave.right + c_controlSpacing, rctButtonDpsSave.top);
+        rctDivider -= rctDivider.TopLeft();
+        rctDivider.left = rctButtonDpsClipboard.right + c_controlSpacing;
+        rctDivider.right = cx - c_controlSpacing - rctButtonClipboard.Width() - c_controlSpacing;
+        rctDivider += CPoint(0, c_controlSpacing * 2 + (verticalSpace * m_treeSizePercent) / 100);
         rctButtonClipboard -= rctButtonClipboard.TopLeft();
         rctButtonClipboard += CPoint(cx - rctButtonClipboard.Width() - c_controlSpacing,c_controlSpacing * 2 + (verticalSpace * m_treeSizePercent) / 100);
         // all other items placed relative to the divider
         CRect rctTree(c_controlSpacing, c_controlSpacing, cx - c_controlSpacing, rctDivider.top - c_controlSpacing);
         CRect rctList(c_controlSpacing, rctDivider.bottom + c_controlSpacing, cx - c_controlSpacing, cy - c_controlSpacing);
         m_itemBreakdownTree.MoveWindow(rctTree);
+        m_buttonDpsFile.MoveWindow(rctButtonDpsSave);
+        m_buttonDpsClipboard.MoveWindow(rctButtonDpsClipboard);
         m_divider.MoveWindow(rctDivider);
         m_buttonClipboard.MoveWindow(rctButtonClipboard);
         m_itemBreakdownList.MoveWindow(rctList);
@@ -3631,5 +3652,111 @@ void CBreakdownsPane::UpdateSliderChanged(Build* pBuild, const std::string& slid
         it->SliderChanged(pBuild, sliderName, newValue);
     }
     m_pWeaponEffects->SliderChanged(pBuild, sliderName, newValue);
+}
+
+BOOL CBreakdownsPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
+{
+    UNREFERENCED_PARAMETER(id);
+    UNREFERENCED_PARAMETER(pResult);
+
+    UINT_PTR nID = pNMHDR->idFrom;
+    nID = ::GetDlgCtrlID((HWND)nID);
+
+    switch (nID)
+    {
+        case IDC_ITEM_BREAKDOWN:
+            m_tipText = "All the breakdowns you can check";
+            break;
+        case IDC_BUTTON_DPS_EXPORT_FILE:
+            m_tipText = "Export all breakdown values to a file for import into Griglok's DPS Calculator.";
+            break;
+        case IDC_BUTTON_DPS_EXPORT_CLIPBOARD:
+            m_tipText = "Export all breakdown values to the clipboard for import into Griglok's DPS Calculator.";
+            break;
+        case IDC_DIVIDER:
+            m_tipText = "Use the mouse to allocate space by dragging this up/down.";
+            break;
+        case IDC_BUTTON_CLIPBOARD:
+            m_tipText = "Copy the currently selected breakdown items to the clipboard.";
+            break;
+        default:
+            m_tipText = "";
+            break;
+    }
+    // ensure multi line tooltips
+    ::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 800);
+    TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+    pTTTA->lpszText = m_tipText.GetBuffer();
+    return TRUE;
+}
+
+void CBreakdownsPane::OnDpsExportFile()
+{
+    CString text;
+    GetBreakdownsAsText(text);
+}
+
+void CBreakdownsPane::OnDpsExportClipboard()
+{
+    CString clipboardText;
+    GetBreakdownsAsText(clipboardText);
+    if (OpenClipboard())
+    {
+        HGLOBAL clipbuffer = GlobalAlloc(GMEM_DDESHARE, clipboardText.GetLength()+1);
+        ASSERT(clipbuffer != NULL);
+        char *buffer = (char*)GlobalLock(clipbuffer);
+        strcpy_s(buffer, clipboardText.GetLength()+1, clipboardText);
+        GlobalUnlock(clipbuffer);
+        EmptyClipboard();
+        SetClipboardData(CF_TEXT, clipbuffer);
+        CloseClipboard();
+    }
+}
+
+void CBreakdownsPane::GetBreakdownsAsText(CString& breakdownText)
+{
+    // iterate the tree and add an entry for each breakdown that has a value
+    HTREEITEM hItem = m_itemBreakdownTree.GetRootItem();
+    AddBreakdownItems(breakdownText, hItem);
+    CFileDialog filedlg(
+        FALSE,
+        "csv",
+        "ExportForDpsCalculator",
+        OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+        "Griglok's DPS Calculator export (*.csv)|*.csv||",
+        this);
+    if (filedlg.DoModal() == IDOK)
+    {
+        CString filename = filedlg.GetPathName();
+        CFile file;
+        file.Open(filename, CFile::modeCreate | CFile::modeWrite);
+        file.Write((LPCTSTR)breakdownText, breakdownText.GetLength());
+        file.Close();
+    }
+}
+
+void CBreakdownsPane::AddBreakdownItems(CString& breakdownText, HTREEITEM hItem)
+{
+    // note that this is a recursive function
+    while (hItem != NULL)
+    {
+        if (m_itemBreakdownTree.GetItemData(hItem) != NULL)
+        {
+            CString name;
+            CString total;
+            name = m_itemBreakdownTree.GetItemText(hItem, 0);
+            total = m_itemBreakdownTree.GetItemText(hItem, 1);
+            breakdownText += name;
+            breakdownText += ",";
+            breakdownText += total;
+            breakdownText += "\r\n";
+        }
+        if (TRUE == m_itemBreakdownTree.ItemHasChildren(hItem))
+        {
+             HTREEITEM hChildItem = m_itemBreakdownTree.GetNextItem(hItem, TVGN_CHILD);
+             AddBreakdownItems(breakdownText, hChildItem);
+        }
+        hItem = m_itemBreakdownTree.GetNextItem(hItem, TVGN_NEXT);
+    }
 }
 

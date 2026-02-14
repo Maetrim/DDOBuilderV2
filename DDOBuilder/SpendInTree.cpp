@@ -67,6 +67,14 @@ XmlLib::SaxContentElementInterface * SpendInTree::StartElement(
             SaxContentElement::StartElement(name, attributes);
 
     DL_START(SpendInTree_PROPERTIES)
+    // special case for this object saved into a DDOTree file type.
+    if (subHandler == NULL)
+    {
+        if (SaxElementIsSelf(name, attributes))
+        {
+            subHandler = this;
+        }
+    }
 
     return subHandler;
 }

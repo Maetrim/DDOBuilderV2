@@ -19,6 +19,7 @@ BreakdownItemHitpoints::BreakdownItemHitpoints(
     pPane->RegisterBuildCallbackEffect(Effect_Hitpoints, this);
     // need to know when total constitution changes
     m_pConstitutionBreakdown->AttachObserver(this);
+    DoAllPercentsAtOnce();
 }
 
 BreakdownItemHitpoints::~BreakdownItemHitpoints()

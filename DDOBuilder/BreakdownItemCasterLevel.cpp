@@ -86,7 +86,7 @@ void BreakdownItemClassCasterLevel::CreateOtherEffects()
                             maxLevel - classLevels);
                         AddOtherEffect(wmlevels);
                     }
-                    if (pBuild->IsEnhancementTrained("ATImprovedSecondStrikes", "Mixed Magics", TT_enhancement))
+                    if (pBuild->IsEnhancementTrained("ATMoreMagicMoreFun", "Mixed Magics", TT_enhancement))
                     {
                         size_t maxLevel = min(MAX_CLASS_LEVEL, pBuild->Level());
                         text.Format("Arcane Trickster: Mixed Magics(%d)",

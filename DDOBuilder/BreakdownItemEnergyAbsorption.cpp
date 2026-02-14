@@ -86,11 +86,12 @@ double BreakdownItemEnergyAbsorption::Total() const
         // now apply percentage effects. Note percentage effects do not stack.
         // a test on live shows two percentage bonus's to hp adds two lots
         // of the base total (before percentages) to the total
-        total += DoPercentageEffects(m_otherEffects, baseTotal);
-        total += DoPercentageEffects(m_effects, baseTotal);
+        double notUsed = 0;
+        total += DoPercentageEffects(m_otherEffects, baseTotal, notUsed);
+        total += DoPercentageEffects(m_effects, baseTotal, notUsed);
         // make sure we update listed items
-        DoPercentageEffects(m_itemEffects, baseTotal);
-        total += DoPercentageEffects(itemEffects, baseTotal);
+        DoPercentageEffects(m_itemEffects, baseTotal, notUsed);
+        total += DoPercentageEffects(itemEffects, baseTotal, notUsed);
 
         // and finally invert to actual percentage
         total = 100.0 - total;

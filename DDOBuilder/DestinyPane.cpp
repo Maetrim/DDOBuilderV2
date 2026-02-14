@@ -9,6 +9,7 @@
 #include "GlobalSupportFunctions.h"
 
 #include "EnhancementTreeDialog.h"
+#include "XmlLib\SaxReader.h"
 
 namespace
 {
@@ -42,6 +43,10 @@ CDestinyPane::~CDestinyPane()
 void CDestinyPane::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_BUTTON_LOADTREE, m_buttonLoad);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE1, m_buttonSave[0]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE2, m_buttonSave[1]);
+    DDX_Control(pDX, IDC_BUTTON_SAVETREE3, m_buttonSave[2]);
     DDX_Control(pDX, IDC_TREE_SELECT1, m_comboTreeSelect[0]);
     DDX_Control(pDX, IDC_TREE_SELECT2, m_comboTreeSelect[1]);
     DDX_Control(pDX, IDC_TREE_SELECT3, m_comboTreeSelect[2]);
@@ -78,6 +83,9 @@ BEGIN_MESSAGE_MAP(CDestinyPane, CFormView)
     ON_WM_LBUTTONDOWN()
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
+    ON_CONTROL_RANGE(BN_CLICKED, IDC_BUTTON_SAVETREE1, IDC_BUTTON_SAVETREE3, OnSaveTree)
+    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CDestinyPane::OnTtnNeedText)
+    ON_COMMAND(IDC_BUTTON_LOADTREE, OnLoadTree)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -89,6 +97,13 @@ void CDestinyPane::OnInitialUpdate()
         CFormView::OnInitialUpdate();
         m_tooltip.Create(this);
         m_tipCreated = true;
+        m_buttonLoad.SetImage(IDB_BITMAP_LOAD);
+        for (size_t i = 0; i < MAX_DESTINY_TREES; ++i)
+        {
+            m_buttonSave[i].SetImage(IDB_BITMAP_SAVE);
+            m_buttonSave[i].EnableWindow(FALSE);
+        }
+        EnableToolTips(TRUE);
     }
 }
 
@@ -128,15 +143,36 @@ void CDestinyPane::OnSize(UINT nType, int cx, int cy)
         m_staticPreview.GetWindowRect(&rctStaticPreview);
         rctStaticPreview -= rctStaticPreview.TopLeft();
 
+        CRect rctButton;
         ASSERT(m_treeViews.size() == MST_Number);
         for (size_t ti = 0; ti < m_visibleTrees.size(); ++ti)
         {
             size_t index = m_visibleTrees[ti];
             ASSERT(index >= 0 && index < MST_Number);
+            if (ti < MAX_DESTINY_TREES)
+            {
+                m_buttonSave[ti].GetWindowRect(&rctButton);
+                rctButton -= rctButton.TopLeft();
+                rctButton += CPoint(itemRect.left, itemRect.bottom);
+                m_buttonSave[ti].MoveWindow(rctButton);
+                m_buttonSave[ti].ShowWindow(SW_SHOW);        // ensure visible
+                if (ti == 0)
+                {
+                    m_buttonLoad.GetWindowRect(&rctButton);
+                    rctButton -= rctButton.TopLeft();
+                    rctButton += CPoint(itemRect.left + rctButton.Width() + c_controlSpacing, itemRect.bottom);
+                    m_buttonLoad.MoveWindow(rctButton);
+                    m_buttonLoad.ShowWindow(SW_SHOW);        // ensure visible
+                }
+            }
+            else
+            {
+                rctButton.right = itemRect.left - c_controlSpacing;
+            }
             // move the window to the correct location
             m_treeViews[index]->MoveWindow(itemRect, false);
             m_treeViews[index]->ShowWindow(SW_SHOW);        // ensure visible
-            CRect rctCombo(itemRect.left, itemRect.bottom, itemRect.right, itemRect.bottom + 300);
+            CRect rctCombo(rctButton.right + c_controlSpacing, itemRect.bottom, itemRect.right, itemRect.bottom + 300);
             m_comboTreeSelect[ti].MoveWindow(rctCombo);
             m_comboTreeSelect[ti].ShowWindow(SW_SHOW);
             // if this is the preview tree, place the preview text under the combo box
@@ -203,6 +239,10 @@ BOOL CDestinyPane::OnEraseBkgnd(CDC* pDC)
 {
     static int controlsNotToBeErased[] =
     {
+        IDC_BUTTON_LOADTREE,
+        IDC_BUTTON_SAVETREE1,
+        IDC_BUTTON_SAVETREE2,
+        IDC_BUTTON_SAVETREE3,
         IDC_TREE_SELECT1,
         IDC_TREE_SELECT2,
         IDC_TREE_SELECT3,
@@ -530,6 +570,7 @@ void CDestinyPane::UpdateEnhancementTrained(
     Build*,
     const EnhancementItemParams&)
 {
+    EnableDisableTreeSaveLoad();
     UpdateWindowTitle();
 }
 
@@ -537,6 +578,7 @@ void CDestinyPane::UpdateEnhancementRevoked(
     Build*,
     const EnhancementItemParams&)
 {
+    EnableDisableTreeSaveLoad();
     UpdateWindowTitle();
 }
 
@@ -601,6 +643,13 @@ void CDestinyPane::UpdateEnhancementTreeOrderChanged(Build*, enum TreeType tt)
     }
 }
 
+void CDestinyPane::UpdateActionPointsChanged(Build*)
+{
+    UpdateWindowTitle();
+    EnableDisableTreeSaveLoad();
+    EnableDisableComboboxes();
+}
+
 LRESULT CDestinyPane::OnUpdateTrees(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
@@ -608,6 +657,7 @@ LRESULT CDestinyPane::OnUpdateTrees(WPARAM wParam, LPARAM lParam)
     // received a delayed tree update message, do the work
     UpdateTrees();
     UpdateWindowTitle();
+    EnableDisableTreeSaveLoad();
     EnableDisableComboboxes();
     return 0;
 }
@@ -626,6 +676,7 @@ void CDestinyPane::UpdateTrees()
 
 void CDestinyPane::UpdateActionPointsChanged(Life*)
 {
+    EnableDisableTreeSaveLoad();
     UpdateWindowTitle();
 }
 
@@ -677,6 +728,29 @@ void CDestinyPane::OnTreeSelect(UINT nID)
     }
 }
 
+void CDestinyPane::EnableDisableTreeSaveLoad()
+{
+    for (size_t i = 0; i < MAX_DESTINY_TREES; ++i)
+    {
+        m_buttonSave[i].EnableWindow(FALSE);
+    }
+    if (m_pCharacter != NULL)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            const Destiny_SelectedTrees& selTrees = pBuild->DestinySelectedTrees();
+            for (size_t i = 0; i < MST_Number; ++i)
+            {
+                const std::string& treeName = selTrees.Tree(i);
+                // can only save this tree if points spent in this one
+                bool bEnableSave = (pBuild->APSpentInTree(treeName) > 0);
+                m_buttonSave[i].EnableWindow(bEnableSave);
+            }
+        }
+    }
+}
+
 void CDestinyPane::EnableDisableComboboxes()
 {
     bool bDisable = true;
@@ -706,6 +780,7 @@ void CDestinyPane::EnableDisableComboboxes()
             }
             m_staticPreview.ShowWindow(SW_SHOW);
             bDisable = false;
+            m_buttonLoad.EnableWindow(TRUE);
         }
     }
     if (bDisable)
@@ -725,6 +800,7 @@ void CDestinyPane::EnableDisableComboboxes()
         m_staticPreview.ShowWindow(SW_HIDE);
         Invalidate(TRUE);
         GetParent()->Invalidate(TRUE);
+        m_buttonLoad.EnableWindow(FALSE);
     }
 }
 
@@ -902,4 +978,248 @@ void CDestinyPane::UpdateTotalChanged(
     UNREFERENCED_PARAMETER(item);
     UNREFERENCED_PARAMETER(type);
     UpdateWindowTitle();
+}
+
+void CDestinyPane::OnSaveTree(UINT nID)
+{
+    UINT id = nID - IDC_BUTTON_SAVETREE1;
+    if (m_pCharacter != NULL)
+    {
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        if (pBuild != NULL)
+        {
+            const Destiny_SelectedTrees& selTrees = pBuild->DestinySelectedTrees();
+            CString treeName = selTrees.Tree(id).c_str();
+            CFileDialog filedlg(
+                FALSE,
+                NULL,
+                (LPCTSTR)treeName,
+                OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+                "DDOBuilder Tree Files (*.DDODestinyTree)|*.DDODestinyTree||",
+                this);
+            if (filedlg.DoModal() == IDOK)
+            {
+                const std::list<DestinySpendInTree>& treeSpends = pBuild->DestinyTreeSpend();
+                DestinySpendInTree spend;
+                for (auto&& tsit : treeSpends)
+                {
+                    if (tsit.TreeName() == (LPCTSTR)treeName)
+                    {
+                        spend = tsit;
+                    }
+                }
+                std::string filename = (LPCTSTR)filedlg.GetPathName();
+                if (filename.find(".DDODTree") == std::string::npos)
+                {
+                    filename += ".DDODTree";
+                }
+                try
+                {
+                    const XmlLib::SaxString f_saxElementName = L"DDOBuilderDestinyTree"; // root element name to look for
+                    XmlLib::SaxWriter writer;
+                    writer.Open(filename);
+                    writer.StartDocument(f_saxElementName);
+                    spend.Write(&writer);
+                    writer.EndDocument();
+                    std::stringstream ss;
+                    ss << "Destiny Tree " << treeName << " exported to file \"" << filename << "\"";
+                    GetLog().AddLogEntry(ss.str().c_str());
+                }
+                catch (const std::exception& e)
+                {
+                    std::string errorMessage = e.what();
+                    // document has failed to save. Tell the user what we can about it
+                    CString text;
+                    text.Format("The document %s\n"
+                        "failed to save. The XML parser reported the following problem:\n"
+                        "\n", filename.c_str());
+                    text += errorMessage.c_str();
+                    AfxMessageBox(text, MB_ICONERROR);
+                }
+            }
+        }
+    }
+}
+
+BOOL CDestinyPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
+{
+    UNREFERENCED_PARAMETER(id);
+    UNREFERENCED_PARAMETER(pResult);
+
+    UINT_PTR nID = pNMHDR->idFrom;
+    nID = ::GetDlgCtrlID((HWND)nID);
+
+    switch (nID)
+    {
+        case IDC_BUTTON_SAVETREE1:
+        case IDC_BUTTON_SAVETREE2:
+        case IDC_BUTTON_SAVETREE3:
+            m_tipText = "Save this destiny tree layout to a file";
+            break;
+        case IDC_BUTTON_LOADTREE:
+            m_tipText = "Load in a previously saved destiny tree layout";
+            break;
+        default:
+            m_tipText = "";
+            break;
+    }
+    // ensure multi line tooltips
+    ::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 800);
+    TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+    pTTTA->lpszText = m_tipText.GetBuffer();
+    return TRUE;
+}
+
+void CDestinyPane::OnLoadTree()
+{
+    // display the file select dialog
+    CFileDialog filedlg(
+            TRUE,
+            NULL,
+            NULL,
+            OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_HIDEREADONLY,
+            "DDOBuilder Tree Files (*.DDODestinyTree)|*.DDODestinyTree||",
+            this);
+    if (filedlg.DoModal() == IDOK)
+    {
+        bool bSuccess = false;
+        DestinySpendInTree loadedTree;
+        CString filename = filedlg.GetPathName();
+        try
+        {
+            XmlLib::SaxReader reader(&loadedTree, L"DDOBuilderDestinyTree");
+            // read in the xml from a file (fully qualified path)
+            bool ok = reader.Open((LPCTSTR)filename);
+            if (ok)
+            {
+                std::stringstream ss;
+                ss << "DDOBuilder destiny tree Document \"" << (LPCTSTR)filename << "\" loaded.";
+                GetLog().AddLogEntry(ss.str().c_str());
+                bSuccess = true;
+            }
+            else
+            {
+                std::string errorMessage = reader.ErrorMessage();
+                // document has failed to load. Tell the user what we can about it
+                CString text;
+                text.Format("The document %s\n"
+                    "failed to load. The XML parser reported the following problem:\n"
+                    "\n", (LPCTSTR)filename);
+                text += errorMessage.c_str();
+                AfxMessageBox(text, MB_ICONERROR);
+            }
+        }
+        catch (const std::exception& e)
+        {
+            std::string errorMessage = e.what();
+            // document has failed to save. Tell the user what we can about it
+            CString text;
+            text.Format("The document %s\n"
+                "failed to save. The XML parser reported the following problem:\n"
+                "\n", (LPCTSTR)filename);
+            text += errorMessage.c_str();
+            AfxMessageBox(text, MB_ICONERROR);
+        }
+        if (bSuccess)
+        {
+            // things to check first for the loaded tree
+            // 1: It matches one of the available trees for the current build setup
+            // 2: It is the same version number as the tree
+            // 3: The tree is already selected or can go in an unselected tree slot
+            if (m_pCharacter != NULL)
+            {
+                Build* pBuild = m_pCharacter->ActiveBuild();
+                if (pBuild != NULL)
+                {
+                    Destiny_SelectedTrees selTrees = pBuild->DestinySelectedTrees();
+                    // is it an available tree?
+                    bool bAvailable = false;
+                    for (auto&& atit: m_availableTrees)
+                    {
+                        if (atit.Name() == loadedTree.TreeName())
+                        {
+                            bAvailable = true;
+                            break;
+                        }
+                    }
+                    if (bAvailable)
+                    {
+                        bool bHas = false;
+                        // if the tree has already been spent in then it needs to be revoked and replaced by the imported tree
+                        bool bTreeHasSpent = (pBuild->APSpentInTree(loadedTree.TreeName()) > 0);
+                        if (bTreeHasSpent)
+                        {
+                            pBuild->Enhancement_ResetEnhancementTree(loadedTree.TreeName());
+                            bHas = true;
+                        }
+                        else
+                        {
+                            // need to find a slot of this tree, does it already have one?
+                            for (auto&& stit: selTrees.TreeName())
+                            {
+                                if (stit == loadedTree.TreeName())
+                                {
+                                    bHas = true;
+                                }
+                            }
+                            if (!bHas)
+                            {
+                                // if we can find an empty tree slot (No Selection) assign it to this tree
+                                size_t index = 0;
+                                for (auto&& stit: selTrees.TreeName())
+                                {
+                                    if (stit == c_noTreeSelection)
+                                    {
+                                        // we can use this tree slot
+                                        selTrees.SetTree(index, loadedTree.TreeName());   // modify
+                                        pBuild->Destiny_SetSelectedTrees(selTrees);   // update
+                                        // update our state
+                                        UpdateEnhancementWindows();
+                                        bHas = true;
+                                        break;
+                                    }
+                                    ++index;
+                                }
+                            }
+                        }
+                        if (!bHas)
+                        {
+                            // the tree was not already present or we could not assign a tree slot to it
+                            AfxMessageBox("No available tree slot available to apply this tree. Clear an existing tree slot and try a reload.", MB_ICONERROR);
+                        }
+                        else
+                        {
+                            // now apply each trained enhancement in order
+                            for (auto&& ltit: loadedTree.Enhancements())
+                            {
+                                const EnhancementTreeItem* pItem = FindEnhancement(loadedTree.TreeName(), ltit.EnhancementName());
+                                if (pItem != NULL)
+                                {
+                                    for (size_t rank = 0; rank < ltit.Ranks(); ++rank)
+                                    {
+                                        pBuild->Destiny_TrainEnhancement(
+                                            loadedTree.TreeName(),
+                                            ltit.EnhancementName(),
+                                            ltit.HasSelection() ? ltit.Selection() : "",
+                                            pItem->CostPerRank());
+                                    }
+                                }
+                                else
+                                {
+                                    AfxMessageBox("Enhancement item not found during apply action. Aborting", MB_ICONERROR);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        CString text;
+                        text.Format("The tree data loaded for tree type \"%s\" is not a tree that can be selected by this build.", loadedTree.TreeName().c_str());
+                        AfxMessageBox(text, MB_ICONERROR);
+                    }
+                }
+            }
+        }
+    }
 }
