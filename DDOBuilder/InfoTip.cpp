@@ -583,7 +583,24 @@ void CInfoTip::SetItem(
         pRequirements->AddRequirement(material, true);
         m_tipItems.push_back(pRequirements);
     }
-
+    if (pItem->HasArmor())
+    {
+        int acp = pItem->ArmorCheckPenalty();
+        InfoTipItem_Requirements* pACP = new InfoTipItem_Requirements;
+        CString text;
+        text.Format("Armor Check Penalty: %d", acp);
+        pACP->AddRequirement(text, false);  // red highlighted line
+        m_tipItems.push_back(pACP);
+    }
+    if (pItem->HasShieldBonus())
+    {
+        int acp = pItem->ArmorCheckPenalty();
+        InfoTipItem_Requirements* pACP = new InfoTipItem_Requirements;
+        CString text;
+        text.Format("Shield Check Penalty: %d", acp);
+        pACP->AddRequirement(text, false);  // red highlighted line
+        m_tipItems.push_back(pACP);
+    }
     if (pItem->HasWeapon()
             && pItem->HasDamageDice())
     {

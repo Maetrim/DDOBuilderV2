@@ -48,6 +48,11 @@ public:
 
     void SetCharacter(Character * pCharacter);
     CSize RequiredSize();
+    void ToggleSpell();
+    bool HasToggleSpell();
+    void MenuSelect(UINT uID);
+    void OnMoveClassDown(CCmdUI* pCmdUI);
+    void OnMoveClassUp(CCmdUI* pCmdUI);
 
 protected:
     afx_msg void OnPaint();
@@ -112,10 +117,11 @@ private:
     CRect m_levelRect;
     CRect m_classRects[3];
     CRect m_featRects[3];
-    CRect m_statRects[7];
+    CRect m_statRects[MAX_SPELL_LEVEL]; // 7 for abilities 9 for spells
     bool m_bUpdatePending;
     size_t m_highlightedLevelLine;
     size_t m_lastNotifiedLevelLine;
+    size_t m_alternateHighlightedLevelLine;
     CRect m_levelRects[MAX_GAME_LEVEL];
     // feat tooltip
     CInfoTip m_tooltip;
@@ -126,6 +132,7 @@ private:
     HitCheckItem m_featSelectItem;
     CComboBoxTooltip m_featSelector;
     bool m_bAlternateFeat;
+    bool m_bToggleSpell;
 };
 
 

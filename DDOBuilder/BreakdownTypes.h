@@ -32,6 +32,7 @@ enum BreakdownType
     Breakdown_SaveCurse,
     // physical
     Breakdown_ArmorCheckPenalty,
+    Breakdown_ArmorCheckPenaltyShield,
     Breakdown_BAB,
     Breakdown_MovementSpeed,
     Breakdown_Hitpoints,

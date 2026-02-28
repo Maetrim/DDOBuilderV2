@@ -739,6 +739,7 @@ bool Effect::CheckAType(
         break;
     case Amount_AbilityValue:       // all handled the same for checking
     case Amount_AbilityTotal:       // all handled the same for checking
+    case Amount_AbilityTotalIndex:       // all handled the same for checking
     case Amount_AbilityMod:         // all handled the same for checking
     case Amount_HalfAbilityMod:     // all handled the same for checking
     case Amount_ThirdAbilityMod:    // all handled the same for checking
@@ -1075,6 +1076,7 @@ std::string Effect::StacksAsString() const
         break;
     case Amount_AbilityValue:
     case Amount_AbilityTotal:
+    case Amount_AbilityTotalIndex:
         ss << StackSource();
         break;
     case Amount_AbilityMod:
@@ -1304,6 +1306,25 @@ double Effect::TotalAmount(bool allowTruncate) const
                     total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
                     BreakdownType bt = StatToBreakdown(ability);
                     total = FindBreakdown(bt)->Total();
+                    if (HasCap())
+                    {
+                        total = min(total, Cap());
+                    }
+                }
+                break;
+            }
+        case Amount_AbilityTotalIndex:
+            // stack source is the ability value
+            {
+                AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap, false);
+                if (ability != Ability_Unknown)
+                {
+                    total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
+                    BreakdownType bt = StatToBreakdown(ability);
+                    total = FindBreakdown(bt)->Total();
+                    size_t index = static_cast<size_t>(total);
+                    index = min(index, Amount().size());
+                    total = Amount()[index];
                     if (HasCap())
                     {
                         total = min(total, Cap());

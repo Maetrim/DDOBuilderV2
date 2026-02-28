@@ -9,7 +9,7 @@
 class SLAHitBox
 {
     public:
-        SLAHitBox(int slaIndex, const CRect & rect) :
+        SLAHitBox(int slaIndex, const CRect& rect) :
                 m_slaIndex(slaIndex), m_rect(rect)
         {
         };
@@ -35,20 +35,26 @@ class SLAHitBox
 class SLA
 {
     public:
-        SLA(const std::string & name, size_t count, const std::vector<double> & amountVector) :
+        SLA(const std::string& name, const std::string& ct, size_t count, const std::vector<double>& amountVector) :
                 m_slaName(name),
+                m_class(ct),
                 m_count(count),
                 m_vector(amountVector)
         {
         };
         ~SLA() {};
 
-        const std::string & Name() const
+        const std::string& Name() const
         {
             return m_slaName;
         }
 
-        bool operator==(const SLA & other) const
+        const std::string& Class() const
+        {
+            return m_class;
+        }
+
+        bool operator==(const SLA& other) const
         {
             return (m_slaName == other.m_slaName);
         }
@@ -79,6 +85,7 @@ class SLA
         }
     private:
         std::string m_slaName;
+        std::string m_class;
         size_t m_count;
         std::vector<double> m_vector;
 };
@@ -93,9 +100,9 @@ class CSLAControl :
         void ClearSLAs();
 
         void SetCharacter(Character * pCharacter);
-        void AddSLA(const std::string & slaName, size_t stacks, const std::vector<double> & amountVector);
-        void RevokeSLA(const std::string & slaName);
-        const std::list<SLA> & SLAs() const;
+        void AddSLA(const std::string& slaName, const std::string& className, size_t stacks, const std::vector<double>& amountVector);
+        void RevokeSLA(const std::string& slaName);
+        const std::list<SLA>& SLAs() const;
 
     protected:
         //{{AFX_VIRTUAL(CSLAControl)
@@ -112,12 +119,12 @@ class CSLAControl :
 
     private:
         static void InitialiseStaticImages();
-        const SLAHitBox * FindByPoint(CRect * pRect = NULL) const;
-        void ShowTip(const SLAHitBox & item, CRect itemRect);
+        const SLAHitBox* FindByPoint(CRect * pRect = NULL) const;
+        void ShowTip(const SLAHitBox& item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const SLAHitBox & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetTooltipText(const SLAHitBox& item, CPoint tipTopLeft, CPoint tipAlternate);
 
-        Character * m_pCharacter;
+        Character* m_pCharacter;
         CSize m_bitmapSize;
         CBitmap m_cachedDisplay;
         std::list<SLAHitBox> m_hitBoxes;
@@ -125,7 +132,7 @@ class CSLAControl :
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
-        const SLAHitBox * m_pTooltipItem;
+        const SLAHitBox* m_pTooltipItem;
         std::list<SLA> m_SLAs;
 };
 

@@ -500,6 +500,7 @@ enum AmountType
     Amount_APCount,             // stacks based on AP spent in tree "Item"
     Amount_AbilityValue,        // Stacks are equal to the specific abilities total inherent value (RACE + Buy + Inherent + Level ups)
     Amount_AbilityTotal,        // Stacks are equal to the specific abilities total value
+    Amount_AbilityTotalIndex,   // Stacks are equal to the specific abilities total value
     Amount_AbilityMod,          // Stacks are equal to the specific abilities mod value
     Amount_HalfAbilityMod,      // Stacks are equal to the specific abilities mod value / 2
     Amount_ThirdAbilityMod,     // Stacks are equal to the specific abilities mod value / 3
@@ -527,6 +528,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_APCount, L"APCount"},           // Item is the tree name
     {Amount_AbilityValue, L"AbilityValue"}, // Item is the ability name
     {Amount_AbilityTotal, L"AbilityTotal"}, // Item is the ability name
+    {Amount_AbilityTotalIndex, L"AbilityTotalIndex"}, // Item is the ability name
     {Amount_AbilityMod, L"AbilityMod"},     // Item is the ability name
     {Amount_HalfAbilityMod, L"HalfAbilityMod"},     // Item is the ability name
     {Amount_ThirdAbilityMod, L"ThirdAbilityMod"},     // Item is the ability name

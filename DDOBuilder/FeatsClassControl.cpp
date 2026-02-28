@@ -35,11 +35,13 @@ CFeatsClassControl::CFeatsClassControl() :
     m_bUpdatePending(false),
     m_highlightedLevelLine(c_dudLevel),   // starts invalid
     m_lastNotifiedLevelLine(c_dudLevel),   // starts invalid
+    m_alternateHighlightedLevelLine(c_dudLevel), // starts invalid
     m_showingTip(false),
     m_tipCreated(false),
     m_tooltipItem(HT_None, CRect(0, 0, 0, 0), 0, 0),
     m_featSelectItem(HT_None, CRect(0, 0, 0, 0), 0, 0),
-    m_bAlternateFeat(false)
+    m_bAlternateFeat(false),
+    m_bToggleSpell(false)
 {
 }
 
@@ -356,33 +358,58 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
         pos.x += rctItem.Width();
         m_featRects[fc] = rctItem;      // copy for later use
     }
-    // additional columns for stats [str][dex][con][int][wis][cha][bab]
-    for (size_t stats = Ability_Unknown; stats < Ability_Count; ++stats)
+    if (!m_bToggleSpell)
     {
-        CString strText;
-        if (stats != Ability_Unknown)
+        // additional columns for stats [bab][str][dex][con][int][wis][cha][bab]
+        for (size_t stats = Ability_Unknown; stats < Ability_Count; ++stats)
         {
-            strText.Format(" %3.3s ",
-                    (LPCTSTR)EnumEntryText((AbilityType)stats, abilityTypeMap));
+            CString strText;
+            if (stats != Ability_Unknown)
+            {
+                strText.Format(" %3.3s ",
+                        (LPCTSTR)EnumEntryText((AbilityType)stats, abilityTypeMap));
+            }
+            else
+            {
+                strText = " BAB ";
+            }
+            strText = " " + strText + " ";
+            CSize csText = pDC->GetTextExtent(strText);
+            rctItem.left = rctItem.right + 1;
+            rctItem.right = rctItem.left + csText.cx;
+            pDC->Draw3dRect(
+                    rctItem,
+                    bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                    bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
+            pDC->TextOut(
+                    rctItem.left,
+                    rctItem.top + (rctItem.Height() - csText.cy) / 2,
+                    strText);
+            pos.x += rctItem.Width();
+            m_statRects[stats] = rctItem;      // copy for later use
         }
-        else
+    }
+    else
+    {
+        // additional columns for number of spells [1][2][3][4][5][6][7][8][9]
+        for (size_t spellLevel = 0; spellLevel < MAX_SPELL_LEVEL; ++spellLevel)
         {
-            strText = " BAB ";
+            CString strText;
+            strText.Format(" %d ", spellLevel + 1);
+            CSize csText = pDC->GetTextExtent(strText);
+            rctItem.left = rctItem.right + 1;
+            rctItem.right = rctItem.left + csText.cx;
+            pDC->Draw3dRect(
+                    rctItem,
+                    bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                    bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
+            pDC->TextOut(
+                    rctItem.left,
+                    rctItem.top + (rctItem.Height() - csText.cy) / 2,
+                    strText);
+            pos.x += rctItem.Width();
+            m_statRects[spellLevel] = rctItem;      // copy for later use
         }
-        strText = " " + strText + " ";
-        CSize csText = pDC->GetTextExtent(strText);
-        rctItem.left = rctItem.right + 1;
-        rctItem.right = rctItem.left + csText.cx;
-        pDC->Draw3dRect(
-                rctItem,
-                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
-        pDC->TextOut(
-                rctItem.left,
-                rctItem.top + (rctItem.Height() - csText.cy) / 2,
-                strText);
-        pos.x += rctItem.Width();
-        m_statRects[stats] = rctItem;      // copy for later use
     }
     return levelCol.cy + 1;
 }
@@ -402,6 +429,11 @@ size_t CFeatsClassControl::DrawLevelLine(
             pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
             fillBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
         }
+        else if (level == m_alternateHighlightedLevelLine)
+        {
+            pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
+            fillBrush.CreateSolidBrush(RGB(0xFF, 0xB6, 0xC1)); // light pink
+        }
         else
         {
             pDC->SetTextColor(f_white);  // white text
@@ -414,6 +446,11 @@ size_t CFeatsClassControl::DrawLevelLine(
         {
             pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
             fillBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
+        }
+        else if (level == m_alternateHighlightedLevelLine)
+        {
+            pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
+            fillBrush.CreateSolidBrush(RGB(0xFF, 0xB6, 0xC1)); // light pink
         }
         else
         {
@@ -514,36 +551,73 @@ size_t CFeatsClassControl::DrawLevelLine(
         pDC->FillRect(rctFill, &fillBrush);
         DrawFeat(pDC, rctItem, fc, level);
     }
-    // additional columns for stats [str][dex][con][int][wis][cha][bab]
-    for (size_t stats = Ability_Unknown; stats < Ability_Count; ++stats)
+    if (!m_bToggleSpell)
     {
-        rctItem.left = m_statRects[stats].left;
-        rctItem.right = m_statRects[stats].right;
-        pDC->Draw3dRect(
-                rctItem,
-                bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
-                bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
-        CRect rctFill(rctItem);
-        rctFill.DeflateRect(1, 1, 1, 1);
-        pDC->FillRect(rctFill, &fillBrush);
-        CString strText;
-        size_t value = 0;
-        switch (stats)
+        // additional columns for stats [str][dex][con][int][wis][cha][bab]
+        for (size_t stats = Ability_Unknown; stats < Ability_Count; ++stats)
         {
-        case Ability_Unknown:       value = m_pCharacter->ActiveBuild()->BaseAttackBonus(level); break;
-        case Ability_Strength:      value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Strength, level, true); break;
-        case Ability_Dexterity:     value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Dexterity, level, true); break;
-        case Ability_Constitution:  value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Constitution, level, true); break;
-        case Ability_Intelligence:  value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Intelligence, level, true); break;
-        case Ability_Wisdom:        value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Wisdom, level, true); break;
-        case Ability_Charisma:      value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Charisma, level, true); break;
+            rctItem.left = m_statRects[stats].left;
+            rctItem.right = m_statRects[stats].right;
+            pDC->Draw3dRect(
+                    rctItem,
+                    bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                    bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
+            CRect rctFill(rctItem);
+            rctFill.DeflateRect(1, 1, 1, 1);
+            pDC->FillRect(rctFill, &fillBrush);
+            CString strText;
+            size_t value = 0;
+            switch (stats)
+            {
+            case Ability_Unknown:       value = m_pCharacter->ActiveBuild()->BaseAttackBonus(level); break;
+            case Ability_Strength:      value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Strength, level, true); break;
+            case Ability_Dexterity:     value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Dexterity, level, true); break;
+            case Ability_Constitution:  value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Constitution, level, true); break;
+            case Ability_Intelligence:  value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Intelligence, level, true); break;
+            case Ability_Wisdom:        value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Wisdom, level, true); break;
+            case Ability_Charisma:      value = m_pCharacter->ActiveBuild()->AbilityAtLevel(Ability_Charisma, level, true); break;
+            }
+            strText.Format("%d", value);
+            csText = pDC->GetTextExtent(strText);
+            pDC->TextOut(
+                    rctItem.left + (rctItem.Width() - csText.cx) / 2,
+                    rctItem.top + (rctItem.Height() - csText.cy) / 2,
+                    strText);
         }
-        strText.Format("%d", value);
-        csText = pDC->GetTextExtent(strText);
-        pDC->TextOut(
-                rctItem.left + (rctItem.Width() - csText.cx) / 2,
-                rctItem.top + (rctItem.Height() - csText.cy) / 2,
-                strText);
+    }
+    else
+    {
+        // additional columns for number of spells [1][2][3][4][5][6][7][8][9]
+        for (size_t spellLevel = 0; spellLevel < MAX_SPELL_LEVEL; ++spellLevel)
+        {
+            rctItem.left = m_statRects[spellLevel].left;
+            rctItem.right = m_statRects[spellLevel].right;
+            pDC->Draw3dRect(
+                    rctItem,
+                    bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
+                    bDarkMode ? ::GetSysColor(COLOR_BTNHIGHLIGHT) : ::GetSysColor(COLOR_BTNSHADOW));
+            CRect rctFill(rctItem);
+            rctFill.DeflateRect(1, 1, 1, 1);
+            pDC->FillRect(rctFill, &fillBrush);
+            std::string strClass = m_pCharacter->ActiveBuild()->ClassAtLevel(level);
+            size_t classLevels = m_pCharacter->ActiveBuild()->ClassLevels(strClass, level);
+            const Class& c = FindClass(strClass);
+            std::vector<size_t> numSpells = c.SpellSlotsAtLevel(classLevels);
+            if (spellLevel < numSpells.size())
+            {
+                CString strText;
+                size_t value = numSpells[spellLevel];
+                if (value != 0)
+                {
+                    strText.Format("%d", value);
+                    csText = pDC->GetTextExtent(strText);
+                    pDC->TextOut(
+                            rctItem.left + (rctItem.Width() - csText.cx) / 2,
+                            rctItem.top + (rctItem.Height() - csText.cy) / 2,
+                            strText);
+                }
+            }
+        }
     }
     // set top of next item
     top = rctItem.bottom + 1;
@@ -1049,7 +1123,49 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
     GetCursorPos(&point);
     ScreenToClient(&point);
     HitCheckItem ht = HitCheck(point);
-    if (ht.Type() == HT_Feat)
+    if (ht.Level() >= 0
+            && ht.Level() < MAX_CLASS_LEVEL
+            && ht.Type() != HT_None
+            && ht.Type() != HT_Feat)
+    {
+        // yes, we can display a pop up menu
+        m_bMenuDisplayed = true;
+        ClientToScreen(&point);
+        CMenu menu;
+        menu.LoadMenu(IDR_POPUP_MOVECLASS);
+        CMenu *pMenu = menu.GetSubMenu(0);
+        Build* pBuild = m_pCharacter->ActiveBuild();
+        // enable / disable move up/down for multiple steps
+        std::string c1 = pBuild->LevelData(ht.Level()).HasClass()
+                ? pBuild->LevelData(ht.Level()).Class()
+                : Class_Unknown;
+        m_highlightedLevelLine = ht.Level();    // keep original line highlighted
+        m_alternateHighlightedLevelLine = c_dudLevel;
+        Invalidate();
+        CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+        UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
+                pMenu->GetSafeHmenu(),
+                point.x,
+                point.y,
+                AfxGetMainWnd());
+        m_bMenuDisplayed = false;
+        if (sel != 0)
+        {
+            if (sel >= ID_MOVECLASS_UP1 && sel <= ID_MOVECLASS_UP19)
+            {
+                int targetLevel = ht.Level() - (sel - ID_MOVECLASS_UP1 + 1);
+                pBuild->SwapClasses(targetLevel, ht.Level());
+            }
+            else if (sel >= ID_MOVECLASS_DOWN1 && sel <= ID_MOVECLASS_DOWN19)
+            {
+                size_t targetLevel = ht.Level() + (sel - ID_MOVECLASS_DOWN1 + 1);
+                pBuild->SwapClasses(targetLevel, ht.Level());
+            }
+            m_alternateHighlightedLevelLine = c_dudLevel;
+            SetupControl();
+        }
+    }
+    else if (ht.Type() == HT_Feat)
     {
         std::vector<FeatSlot> tfts = m_availableFeats[ht.Level()];
         TrainedFeat tf = m_pCharacter->ActiveBuild()->GetTrainedFeat(
@@ -1526,4 +1642,75 @@ LRESULT CFeatsClassControl::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
         AddToIgnoreList(featName);
     }
     return 0;
+}
+
+void CFeatsClassControl::ToggleSpell()
+{
+    m_bToggleSpell = !m_bToggleSpell;
+    Invalidate(); // displayed columns have changed
+}
+
+bool CFeatsClassControl::HasToggleSpell()
+{
+    return m_bToggleSpell;
+}
+
+void CFeatsClassControl::MenuSelect(UINT uID)
+{
+    if (uID >= ID_MOVECLASS_DOWN1 && uID <= ID_MOVECLASS_DOWN19)
+    {
+        UINT change = uID - ID_MOVECLASS_DOWN1 + 1;
+        m_alternateHighlightedLevelLine = m_highlightedLevelLine + change;
+        Invalidate(); // display highlight has changed
+    }
+    else if (uID >= ID_MOVECLASS_UP1 && uID <= ID_MOVECLASS_UP19)
+    {
+        UINT change = uID - ID_MOVECLASS_UP1 + 1;
+        m_alternateHighlightedLevelLine = m_highlightedLevelLine - change;
+        Invalidate(); // display highlight has changed
+    }
+    else
+    {
+        m_alternateHighlightedLevelLine = c_dudLevel;
+    }
+}
+
+void CFeatsClassControl::OnMoveClassDown(CCmdUI* pCmdUI)
+{
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    size_t i = pCmdUI->m_nID;
+    bool enable = false;
+    size_t targetLevel = m_highlightedLevelLine + (i - ID_MOVECLASS_DOWN1 + 1);
+    if (targetLevel < MAX_CLASS_LEVEL)
+    {
+        std::string c1 = pBuild->LevelData(m_highlightedLevelLine).HasClass()
+                ? pBuild->LevelData(m_highlightedLevelLine).Class()
+                : Class_Unknown;
+        std::string c2 = pBuild->LevelData(targetLevel).HasClass()
+                ? pBuild->LevelData(targetLevel).Class()
+                : Class_Unknown;
+        enable = (c1 != c2);
+    }
+    pCmdUI->Enable(enable);
+}
+
+void CFeatsClassControl::OnMoveClassUp(CCmdUI* pCmdUI)
+{
+    Build* pBuild = m_pCharacter->ActiveBuild();
+    size_t i = pCmdUI->m_nID;
+    bool enable = false;
+    int targetLevel = m_highlightedLevelLine - (i - ID_MOVECLASS_UP1 + 1);
+    if (targetLevel >= 0
+            && m_highlightedLevelLine > (size_t)targetLevel)
+    {
+        // this is a possible move
+        std::string c1 = pBuild->LevelData(m_highlightedLevelLine).HasClass()
+                ? pBuild->LevelData(m_highlightedLevelLine).Class()
+                : Class_Unknown;
+        std::string c2 = pBuild->LevelData(targetLevel).HasClass()
+                ? pBuild->LevelData(targetLevel).Class()
+                : Class_Unknown;
+        enable = (c1 != c2);
+    }
+    pCmdUI->Enable(enable);
 }

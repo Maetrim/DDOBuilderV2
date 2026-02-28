@@ -87,6 +87,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_REGISTERED_MESSAGE(UWM_ENDPROGRESS, OnEndProgress)
     ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
     ON_REGISTERED_MESSAGE(UWM_LOG_MESSAGE, OnLogMessage)
+    ON_WM_MENUSELECT()
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -207,7 +208,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
             CMFCToolBar::SetUserImages(&m_UserImages);
         }
     }
-
+    CMFCPopupMenu::SetSendMenuSelectMsg(TRUE);
     return 0;
 }
 
@@ -522,7 +523,6 @@ void CMainFrame::OnApplicationLook(UINT id)
         CView* pView = m_dockablePanes[i]->GetView();
         pView->SendMessage(UWM_THEME_CHANGED, bDark, 0L);
     }
-    
 
     RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW | RDW_FRAME | RDW_ERASE);
 
@@ -1125,6 +1125,16 @@ void CMainFrame::ResizeWindows()
             pane->GetWindowRect(rect);
             pane->GetView()->PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rect.Width(), rect.Height()));
         }
+    }
+}
+
+void CMainFrame::OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu)
+{
+    CFrameWndEx::OnMenuSelect(nItemID, nFlags, hSysMenu);
+    for (size_t i = 0; i < m_dockablePanes.size(); ++i)
+    {
+        CView* pView = m_dockablePanes[i]->GetView();
+        pView->PostMessage(UWM_MENUSELECT, nItemID, nFlags);
     }
 }
 

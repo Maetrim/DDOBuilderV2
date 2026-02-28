@@ -3,7 +3,11 @@
   <Class>
     <Name>Arcane Trickster</Name>
     <BaseClass>Rogue</BaseClass>
-    <Description></Description>
+    <Description>The Arcane Trickster is a Rogue class Archetype who dabbles in their own kind
+of magic to augment their abilities. Arcane Tricksters have modest skill in
+Enchantment and Illusion magic, but they can also “steal” spells from other
+classes. This archetype also summons a magical Mage Hand to cause mischief,
+aid in battle, and disable traps from a distance! </Description>
     <SmallIcon>Rogue_Small</SmallIcon>
     <LargeIcon>Rogue</LargeIcon>
     <ClassSpecificFeatType>Bonus Magical Feat</ClassSpecificFeatType>
@@ -320,9 +324,12 @@
         <Feats>Sneak Attack</Feats>
      </AutomaticFeats>
      <AutomaticFeats>
+        <Level>16</Level>
+        <Feats>Spell Thief</Feats>
+     </AutomaticFeats>
+     <AutomaticFeats>
         <Level>17</Level>
         <Feats>Sneak Attack</Feats>
-        <Feats>Spell Thief</Feats>
      </AutomaticFeats>
      <AutomaticFeats>
         <Level>19</Level>
@@ -374,8 +381,11 @@ Duration: 8 seconds.</Description>
     </Feat>
     <Feat>
       <Name>Magical Ambush</Name>
-      <Description>Your offensive instantaneous damaging spells deal additional 1d3 Force damage
-equal to your sneak attack dice. Scales with spell power.</Description>
+      <Description>Your offensive instantaneous damaging spells deal additional 1d6 force damage
+equal to your sneak attack dice. Scales with 50% of force spell power.
+This proc has no cool down so it works very well with multi missile spells
+like magic missile. The sneak dice will not function on DOTS, Pale Master
+Aura, Wall of Fire, etc.</Description>
       <Acquire>Automatic</Acquire>
       <Icon>MagicalAmbush</Icon>
     </Feat>

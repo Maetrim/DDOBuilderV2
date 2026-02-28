@@ -132,6 +132,7 @@ class Build :
         size_t ClassLevels(const std::string& ct, size_t level) const;
         std::string ClassAtLevel(size_t level) const;
         std::string BaseClassAtLevel(size_t level) const;
+        void SwapClasses(size_t level1, size_t level2);
 
         // ability tome support
         void SetAbilityTome(AbilityType ability, size_t value);
@@ -257,6 +258,8 @@ class Build :
         bool IsSpellTrained(const std::string& ct, const std::string& spellName) const;
         void ApplySpellEffects();
         void ApplySpellEffects(const TrainedSpell& ts);
+        void ApplySpellEffects(const Spell& s);
+
         void RevokeSpellEffects(const TrainedSpell& ts);
         Spell AdditionalClassSpell(const std::string& className, const std::string& spellName) const;
         void AppendSpellListAdditions(std::list<Spell>& spells, const std::string& ct, int spellLevel);

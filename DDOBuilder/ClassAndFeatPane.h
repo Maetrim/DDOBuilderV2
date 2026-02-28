@@ -35,8 +35,12 @@ class CClassAndFeatPane :
         afx_msg void OnHScroll(UINT, UINT, CScrollBar*);
         afx_msg void OnVScroll(UINT, UINT, CScrollBar*);
         afx_msg void OnComboBuildLevelSelect();
+        afx_msg void OnButtonSpellToggle();
+        afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg LRESULT OnMenuSelect(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnMoveClassDown(CCmdUI* pCmdUI);
+        afx_msg void OnMoveClassUp(CCmdUI* pCmdUI);
         DECLARE_MESSAGE_MAP()
-
 
         // CharacterObserver overrides
         virtual void UpdateActiveBuildChanged(Character*) override;
@@ -47,8 +51,10 @@ class CClassAndFeatPane :
         CDocument * m_pDocument;
         Character * m_pCharacter;
         CComboBox m_comboBuildLevel;
+        CMFCButton m_buttonSpellToggle;
         CFeatsClassControl m_featsAndClasses;
         bool m_bHadInitialise;
         bool m_bDone1stResize;
         int m_nOffset;
+        CString m_tipText;
 };

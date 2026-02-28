@@ -750,6 +750,21 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pACP);
         m_items.push_back(pACP);
     }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Armor Check Penalty (Shield)",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pACPS = new BreakdownItemSimple(
+                this,
+                Breakdown_ArmorCheckPenaltyShield,
+                Effect_ArmorCheckPenaltyShield,
+                "Armor Check penalty (Shield)",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pACPS);
+        m_items.push_back(pACPS);
+    }
     // defensive physical items
     // defensive items are:
     //      AC
@@ -3694,6 +3709,21 @@ void CBreakdownsPane::OnDpsExportFile()
 {
     CString text;
     GetBreakdownsAsText(text);
+    CFileDialog filedlg(
+        FALSE,
+        "csv",
+        "ExportForDpsCalculator",
+        OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+        "Griglok's DPS Calculator export (*.csv)|*.csv||",
+        this);
+    if (filedlg.DoModal() == IDOK)
+    {
+        CString filename = filedlg.GetPathName();
+        CFile file;
+        file.Open(filename, CFile::modeCreate | CFile::modeWrite);
+        file.Write((LPCTSTR)text, text.GetLength());
+        file.Close();
+    }
 }
 
 void CBreakdownsPane::OnDpsExportClipboard()
@@ -3718,21 +3748,6 @@ void CBreakdownsPane::GetBreakdownsAsText(CString& breakdownText)
     // iterate the tree and add an entry for each breakdown that has a value
     HTREEITEM hItem = m_itemBreakdownTree.GetRootItem();
     AddBreakdownItems(breakdownText, hItem);
-    CFileDialog filedlg(
-        FALSE,
-        "csv",
-        "ExportForDpsCalculator",
-        OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-        "Griglok's DPS Calculator export (*.csv)|*.csv||",
-        this);
-    if (filedlg.DoModal() == IDOK)
-    {
-        CString filename = filedlg.GetPathName();
-        CFile file;
-        file.Open(filename, CFile::modeCreate | CFile::modeWrite);
-        file.Write((LPCTSTR)breakdownText, breakdownText.GetLength());
-        file.Close();
-    }
 }
 
 void CBreakdownsPane::AddBreakdownItems(CString& breakdownText, HTREEITEM hItem)

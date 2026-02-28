@@ -87,7 +87,7 @@ dexterity bonus.</Description>
       <Type>ArmorCheckPenalty</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">5</Amount>
+      <Amount size="1">-5</Amount>
     </Effect>
     <Effect>
       <Type>MaxDexBonus</Type>
@@ -853,9 +853,9 @@ throwing axes or hammers.</Description>
       <DisplayName>Brutal Throw: +1 damage per 8 strength</DisplayName>
       <Type>Weapon_Damage</Type>
       <Bonus>Feat</Bonus>
-      <AType>AbilityTotal</AType>
+      <AType>AbilityTotalIndex</AType>
       <StackSource>Strength</StackSource>
-      <Amount size ="176">0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 20 20 20 20 20 20 20 20 21 21 21 21 21 21 21 21 22</Amount>
+      <Amount size ="177">0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 20 20 20 20 20 20 20 20 21 21 21 21 21 21 21 21 22</Amount>
       <Item>Throwing Axe</Item>
       <Item>Throwing Hammer</Item>
     </Effect>
@@ -5928,7 +5928,7 @@ penalties are decreased by 1.</Description>
       <Type>ArmorCheckPenalty</Type>
       <Bonus>Feat</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">-1</Amount>
+      <Amount size="1">1</Amount>
     </Effect>
   </Feat>
   <Feat>
@@ -7077,6 +7077,10 @@ only an orb, runearm, or nothing in your off hand.</Description>
           <Type>Feat</Type>
           <Item>Two Weapon Fighting</Item>
         </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
       </RequiresNoneOf>
     </Requirements>
     <Acquire>Train</Acquire>
@@ -7412,6 +7416,11 @@ or when attacking from an animal form.</Description>
         </Requirement>
         <Requirement>
           <Type>ClassMinLevel</Type>
+          <Item>Dark Hunter</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
           <Item>Rogue</Item>
           <Value>1</Value>
         </Requirement>
@@ -8683,6 +8692,10 @@ Druid Animal Forms), your Ability Score bonus to damage improves by 25%.</Descri
           <Type>Feat</Type>
           <Item>Single Weapon Fighting</Item>
         </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Two Weapon Fighting</Item>
+        </Requirement>
       </RequiresNoneOf>
     </Requirements>
     <Acquire>Train</Acquire>
@@ -8805,6 +8818,10 @@ Does not function in animal forms.</Description>
         <Requirement>
           <Type>Feat</Type>
           <Item>Single Weapon Fighting</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Two Handed Fighting</Item>
         </Requirement>
       </RequiresNoneOf>
     </Requirements>

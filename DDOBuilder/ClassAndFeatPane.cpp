@@ -25,6 +25,7 @@ void CClassAndFeatPane::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_COMBO_BUILD_LEVEL, m_comboBuildLevel);
+    DDX_Control(pDX, IDC_BUTTON_SPELL_TOGGLE, m_buttonSpellToggle);
     DDX_Control(pDX, IDC_CLASS_AND_FEAT_LIST, m_featsAndClasses);
 }
 
@@ -37,6 +38,11 @@ BEGIN_MESSAGE_MAP(CClassAndFeatPane, CFormView)
     ON_WM_VSCROLL()
     ON_WM_HSCROLL()
     ON_CBN_SELENDOK(IDC_COMBO_BUILD_LEVEL, &CClassAndFeatPane::OnComboBuildLevelSelect)
+    ON_BN_CLICKED(IDC_BUTTON_SPELL_TOGGLE, &CClassAndFeatPane::OnButtonSpellToggle)
+    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CClassAndFeatPane::OnTtnNeedText)
+    ON_REGISTERED_MESSAGE(UWM_MENUSELECT, &CClassAndFeatPane::OnMenuSelect)
+    ON_UPDATE_COMMAND_UI_RANGE(ID_MOVECLASS_DOWN1, ID_MOVECLASS_DOWN19, &CClassAndFeatPane::OnMoveClassDown)
+    ON_UPDATE_COMMAND_UI_RANGE(ID_MOVECLASS_UP1, ID_MOVECLASS_UP9, &CClassAndFeatPane::OnMoveClassUp)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -66,6 +72,8 @@ void CClassAndFeatPane::OnInitialUpdate()
             strLevel.Format("%d", level);
             m_comboBuildLevel.AddString(strLevel);
         }
+        m_buttonSpellToggle.SetImage(IDB_BITMAP_SPELL_TOGGLE);
+        EnableToolTips(TRUE);
     }
 }
 
@@ -94,6 +102,11 @@ void CClassAndFeatPane::OnSize(UINT nType, int cx, int cy)
             rctCombo -= rctCombo.TopLeft();
             rctCombo += CPoint(rctStatic.right + c_controlSpacing, c_controlSpacing);
             m_comboBuildLevel.MoveWindow(rctCombo);
+            CRect rctButton;
+            m_buttonSpellToggle.GetWindowRect(rctButton);
+            rctButton -= rctButton.TopLeft();
+            rctButton += CPoint(rctCombo.right + c_controlSpacing, rctCombo.top);
+            m_buttonSpellToggle.MoveWindow(rctButton);
             m_nOffset = rctStatic.bottom + c_controlSpacing;
             CRect rctControl(0, m_nOffset, requiredSize.cx, m_nOffset + requiredSize.cy);
             m_featsAndClasses.MoveWindow(rctControl, TRUE);
@@ -145,6 +158,7 @@ BOOL CClassAndFeatPane::OnEraseBkgnd(CDC* pDC)
     {
         IDC_STATIC_BUILD_LEVEL,
         IDC_COMBO_BUILD_LEVEL,
+        IDC_BUTTON_SPELL_TOGGLE,
         IDC_CLASS_AND_FEAT_LIST,
         0 // end marker
     };
@@ -197,3 +211,54 @@ void CClassAndFeatPane::OnComboBuildLevelSelect()
         m_pCharacter->ActiveBuild()->SetLevel(level);
     }
 }
+
+void CClassAndFeatPane::OnButtonSpellToggle()
+{
+    m_featsAndClasses.ToggleSpell();
+    m_buttonSpellToggle.SetCheck(m_featsAndClasses.HasToggleSpell() ? BST_CHECKED: BST_UNCHECKED);
+}
+
+BOOL CClassAndFeatPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
+{
+    UNREFERENCED_PARAMETER(id);
+    UNREFERENCED_PARAMETER(pResult);
+
+    UINT_PTR nID = pNMHDR->idFrom;
+    nID = ::GetDlgCtrlID((HWND)nID);
+
+    switch (nID)
+    {
+    case IDC_COMBO_BUILD_LEVEL:
+        m_tipText = "Set the total build level to plan to.";
+        break;
+    case IDC_BUTTON_SPELL_TOGGLE:
+        m_tipText = "Toggle display of BAB and Attributes or Number of spell slots.";
+        break;
+    case IDC_CLASS_AND_FEAT_LIST:
+    default:
+        m_tipText = "";
+        break;
+    }
+    // ensure multi line tooltips
+    ::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 800);
+    TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+    pTTTA->lpszText = m_tipText.GetBuffer();
+    return TRUE;
+}
+
+LRESULT CClassAndFeatPane::OnMenuSelect(WPARAM wParam, LPARAM lParam)
+{
+    m_featsAndClasses.MenuSelect(wParam);
+    return 0;
+}
+
+void CClassAndFeatPane::OnMoveClassDown(CCmdUI* pCmdUI)
+{
+    m_featsAndClasses.OnMoveClassDown(pCmdUI);
+}
+
+void CClassAndFeatPane::OnMoveClassUp(CCmdUI* pCmdUI)
+{
+    m_featsAndClasses.OnMoveClassUp(pCmdUI);
+}
+

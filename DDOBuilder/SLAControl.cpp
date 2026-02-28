@@ -143,7 +143,7 @@ void CSLAControl::OnPaint()
             // show the fixed SLA icon
             std::list<SLA>::iterator it = m_SLAs.begin();
             std::advance(it, fs);
-            const Spell & spell = FindSpellByName((*it).Name());
+            const Spell& spell = FindSpellByName((*it).Name());
             CImage spellImage;
             HRESULT result = spell.HasIcon() ? LoadImageFile(
                     "DataFiles\\SpellImages\\",
@@ -204,13 +204,13 @@ BOOL CSLAControl::OnEraseBkgnd(CDC* /*pDC*/)
     return TRUE;
 }
 
-const SLAHitBox * CSLAControl::FindByPoint(CRect * pRect) const
+const SLAHitBox* CSLAControl::FindByPoint(CRect* pRect) const
 {
     CPoint point;
     GetCursorPos(&point);
     ScreenToClient(&point);
     // see if we need to highlight the item under the cursor
-    const SLAHitBox * item = NULL;
+    const SLAHitBox* item = NULL;
     std::list<SLAHitBox>::const_iterator it = m_hitBoxes.begin();
     while (item == NULL && it != m_hitBoxes.end())
     {
@@ -232,7 +232,7 @@ void CSLAControl::OnMouseMove(UINT /*nFlags*/, CPoint /*point*/)
 {
     // determine which SLA the mouse may be over
     CRect itemRect;
-    const SLAHitBox * item = FindByPoint(&itemRect);
+    const SLAHitBox* item = FindByPoint(&itemRect);
     if (item != NULL
             && item != m_pTooltipItem)
     {
@@ -264,7 +264,7 @@ void CSLAControl::ClearSLAs()
     m_hitBoxes.clear();
 }
 
-void CSLAControl::SetCharacter(Character * pCharacter)
+void CSLAControl::SetCharacter(Character* pCharacter)
 {
     m_pCharacter = pCharacter;
     m_SLAs.clear();
@@ -280,7 +280,7 @@ void CSLAControl::SetCharacter(Character * pCharacter)
     }
 }
 
-void CSLAControl::ShowTip(const SLAHitBox & item, CRect itemRect)
+void CSLAControl::ShowTip(const SLAHitBox& item, CRect itemRect)
 {
     if (m_showingTip)
     {
@@ -312,7 +312,7 @@ void CSLAControl::HideTip()
 }
 
 void CSLAControl::SetTooltipText(
-        const SLAHitBox & item,
+        const SLAHitBox& item,
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
@@ -323,6 +323,7 @@ void CSLAControl::SetTooltipText(
     slaName = (*si).Name();
     // now we have the spell name, look it up
     Spell spell = FindSpellByName(slaName);
+    spell.SetClass((*si).Class());
     if (!spell.HasCost())
     {
         spell.SetCost((*si).Cost());
@@ -337,7 +338,7 @@ void CSLAControl::SetTooltipText(
     m_tooltip.Show();
 }
 
-void CSLAControl::AddSLA(const std::string & slaName, size_t stacks, const std::vector<double> & amountVector)
+void CSLAControl::AddSLA(const std::string& slaName, const std::string& className, size_t stacks, const std::vector<double>& amountVector)
 {
     // add the spell at the relevant level if not exist already
     bool found = false;
@@ -353,8 +354,11 @@ void CSLAControl::AddSLA(const std::string & slaName, size_t stacks, const std::
     }
     if (!found)
     {
-        SLA spell(slaName, stacks, amountVector);
+        SLA spell(slaName, className, stacks, amountVector);
+        Spell s = FindSpellByName(slaName);
+        s.SetClass(className);
         m_SLAs.push_back(spell);
+        m_pCharacter->ActiveBuild()->ApplySpellEffects(s);
         if (IsWindow(GetSafeHwnd()))
         {
             m_bCreateHitBoxes = true;
@@ -363,7 +367,7 @@ void CSLAControl::AddSLA(const std::string & slaName, size_t stacks, const std::
     }
 }
 
-void CSLAControl::RevokeSLA(const std::string & slaName)
+void CSLAControl::RevokeSLA(const std::string& slaName)
 {
     // remove the named spell from the relevant level
     std::list<SLA>::iterator it = m_SLAs.begin();
@@ -371,6 +375,8 @@ void CSLAControl::RevokeSLA(const std::string & slaName)
     {
         if ((*it).Name() == slaName)
         {
+            TrainedSpell ts("", 0, slaName);
+            m_pCharacter->ActiveBuild()->RevokeSpellEffects(ts);
             (*it).DecrementCount();
             if ((*it).Count() == 0)
             {
@@ -388,7 +394,7 @@ void CSLAControl::RevokeSLA(const std::string & slaName)
     }
 }
 
-const std::list<SLA> & CSLAControl::SLAs() const
+const std::list<SLA>& CSLAControl::SLAs() const
 {
     return m_SLAs;
 }

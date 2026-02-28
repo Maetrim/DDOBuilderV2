@@ -1222,6 +1222,47 @@ std::string Build::BaseClassAtLevel(size_t level) const
     return c;
 }
 
+void Build::SwapClasses(size_t level1, size_t level2)
+{
+    // swap the class names, skill points and feats trained
+    std::string c1 = LevelData(level1).HasClass()
+            ? LevelData(level1).Class()
+            : Class_Unknown;
+    std::list<TrainedSkill> ts1 = LevelData(level1).TrainedSkills();
+    std::list<TrainedFeat> tf1 = LevelData(level1).TrainedFeats();
+    std::string c2 = LevelData(level2).HasClass()
+            ? LevelData(level2).Class()
+            : Class_Unknown;
+    std::list<TrainedSkill> ts2 = LevelData(level2).TrainedSkills();
+    std::list<TrainedFeat> tf2 = LevelData(level2).TrainedFeats();
+    std::list<LevelTraining>::iterator it = m_Levels.begin();
+    std::advance(it, level1);
+    (*it).Set_Class(c2);
+    (*it).Set_TrainedSkills(ts2);
+    (*it).Set_TrainedFeats(tf2);
+    UpdateSkillPoints(level1);
+
+    it = m_Levels.begin();
+    std::advance(it, level2);
+    (*it).Set_Class(c1);
+    (*it).Set_TrainedSkills(ts1);
+    (*it).Set_TrainedFeats(tf1);
+    UpdateSkillPoints(level2);
+
+    UpdateCachedClassLevels();
+
+    SetModifiedFlag(TRUE);
+    UpdateSpells();
+    UpdateFeats(true);
+    VerifyTrainedFeats();
+    AutoTrainSingleSelectionFeats();
+    VerifyGear();
+    // add the log entry
+    std::stringstream ss;
+    ss << "Class at level " << level1+1 << "("<<c1<<") swapped with class at level "<<level2+1 << "(" << c2 <<")";
+    GetLog().AddLogEntry(ss.str().c_str());
+}
+
 int Build::LevelUpsAtLevel(AbilityType ability, size_t level) const
 {
     size_t levelUps = 0;
@@ -2306,25 +2347,30 @@ void Build::ApplySpellEffects(const TrainedSpell& ts)
     if (slots.size() >= ts.Level()
             && slots[ts.Level()-1] > 0)
     {
-        for (auto&& seit: spell.Effects())
+        ApplySpellEffects(spell);
+    }
+}
+
+void Build::ApplySpellEffects(const Spell& s)
+{
+    for (auto&& seit: s.Effects())
+    {
+        Effect copy = seit;
+        if (copy.AType() == Amount_ClassLevel
+                || copy.AType() == Amount_ClassCasterLevel)
         {
-            Effect copy = seit;
-            if (copy.AType() == Amount_ClassLevel
-                    || copy.AType() == Amount_ClassCasterLevel)
-            {
-                copy.SetStackSource(ts.Class());
-            }
-            if (!copy.HasDisplayName())
-            {
-                copy.SetDisplayName(std::string("Spell: ") + ts.SpellName());
-            }
-            copy.SetApplyAsItemEffect();
-            NotifyEnhancementEffectApplied(copy);
+            copy.SetStackSource(s.Class());
         }
-        for (auto&& ssit: spell.Stances())
+        if (!copy.HasDisplayName())
         {
-            NotifyNewStance(ssit);
+            copy.SetDisplayName(std::string("Spell: ") + s.Name());
         }
+        copy.SetApplyAsItemEffect();
+        NotifyEnhancementEffectApplied(copy);
+    }
+    for (auto&& ssit: s.Stances())
+    {
+        NotifyNewStance(ssit);
     }
 }
 
@@ -5528,6 +5574,18 @@ void Build::ApplyWeaponEffects(const Item& item, InventorySlotType ist)
             NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
         }
     }
+    if (item.HasArmorCheckPenalty())
+    {
+        int acp = item.ArmorCheckPenalty();
+        Effect effect(
+            Effect_ArmorCheckPenaltyShield,
+            "Equipped Shield",
+            "Base",
+            acp);
+        effect.AddItem(wt);
+        effect.SetIsItemSpecific();
+        NotifyItemWeaponEffect(item.Name(), effect, item.Weapon(), ist);
+    }
     for (auto&& itDr: item.DRBypass())
     {
         Effect effect(
@@ -5627,6 +5685,18 @@ void Build::RevokeWeaponEffects(const Item& item, InventorySlotType ist)
             "Shield Max Dex",
             "Base",
             item.MaximumDexterityBonus());
+        effect.AddItem(wt);
+        effect.SetIsItemSpecific();
+        NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);
+    }
+    if (item.HasArmorCheckPenalty())
+    {
+        int acp = item.ArmorCheckPenalty();
+        Effect effect(
+            Effect_ArmorCheckPenaltyShield,
+            "Equipped Shield",
+            "Base",
+            acp);
         effect.AddItem(wt);
         effect.SetIsItemSpecific();
         NotifyItemWeaponEffectRevoked(item.Name(), effect, item.Weapon(), ist);

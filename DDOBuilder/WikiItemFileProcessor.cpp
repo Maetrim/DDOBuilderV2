@@ -1405,6 +1405,8 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Banishing", "Banishing Banishing", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Druidic Survival Mastery", "Druidic Survival Mastery", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Exceptional Nimble Skills", "Exceptional Nimble Skills Bonus", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Fascination Guard", "Fascination Guard Fascination Guard", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dampened", "Dampened Dampened", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Suppressed Power", "Suppressed Power Suppressed Power", "", "", 5);
