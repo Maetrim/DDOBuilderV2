@@ -43,6 +43,12 @@ protected:
     afx_msg void OnUpdateFavorReaper8(CCmdUI* pCmdUi);
     afx_msg void OnUpdateFavorReaper9(CCmdUI* pCmdUi);
     afx_msg void OnUpdateFavorReaper10(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavor1Star(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavor2Star(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavor3Star(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavor4Star(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavor5Star(CCmdUI* pCmdUi);
+    afx_msg void OnUpdateFavor6Star(CCmdUI* pCmdUi);
     afx_msg void OnSelendokMinLevel();
     afx_msg void OnSelendokMaxLevel();
     afx_msg void OnSelendokPatron();

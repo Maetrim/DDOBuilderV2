@@ -2218,6 +2218,7 @@ The spell's duration is 60 + 6 seconds per caster level.</Description>
 for 30+2 seconds per caster level. A successful Will save negates this effect.</Description>
     <Icon>Suggestion</Icon>
     <School>Enchantment</School>
+    <Embolden/>
     <Enlarge/>
     <Heighten/>
     <Quicken/>
@@ -2427,6 +2428,7 @@ monsters get additional saves every 3d6+12 seconds. A successful Will save
 negates this effect.</Description>
     <Icon>CharmMonster</Icon>
     <School>Enchantment</School>
+    <Embolden/>
     <Enlarge/>
     <Heighten/>
     <Quicken/>
@@ -2879,6 +2881,7 @@ by you, allowing you to suggest that they fight as your allies for 6 seconds
 per caster level. A successful Will save negates this effect.</Description>
     <Icon>SuggestionMass</Icon>
     <School>Enchantment</School>
+    <Embolden/>
     <Enlarge/>
     <Heighten/>
     <Quicken/>
@@ -2993,6 +2996,7 @@ Charmed monsters get additional saves every 3d6+12 seconds. A successful Will
 save negates this effect.</Description>
     <Icon>CharmMonsterMass</Icon>
     <School>Enchantment</School>
+    <Embolden/>
     <Enlarge/>
     <Extend/>
     <Heighten/>
@@ -7113,7 +7117,7 @@ Points 20.) to an ally.</Description>
       <Type>MRR</Type>
       <Bonus>Racial</Bonus>
       <AType>ClassCasterLevel</AType>
-      <StackSource>Unknown</StackSource>
+      <StackSource>TBD</StackSource>
       <Amount size="41">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
     </Effect>
   </Spell>
@@ -7129,7 +7133,7 @@ Points 20.) to an ally.</Description>
       <Type>RangedPower</Type>
       <Bonus>Morale</Bonus>
       <AType>ClassCasterLevel</AType>
-      <StackSource>Unknown</StackSource>
+      <StackSource>TBD</StackSource>
       <Amount size="41">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15</Amount>
     </Effect>
   </Spell>
@@ -7779,9 +7783,10 @@ save reduces the damage by half.</Description>
   </Spell>
   <Spell>
     <Name>Scorching Ray</Name>
-    <Description>Blasts a target with fiery rays, each doing 1d6+6 Fire damage on impact per 2 caster levels.
-You may Fire 1 ray, plus 1 additional ray for every 4 caster levels beyond 3rd.
-(Maximum rays 3.)</Description>
+    <Description>Blasts a target with fiery rays, each doing 1d6+6 Fire damage on impact per
+2 caster levels on impact. The number of rays increases by 1 ray for every 4
+levels beyond 3rd, to a maximum of 3 rays at 11th level.
+Ray spells have double range.</Description>
     <Icon>ScorchingRay</Icon>
     <School>Evocation</School>
     <Empower/>
@@ -8088,9 +8093,12 @@ damage, to targets around it. A successful Reflex save reduces the damage by hal
   </Spell>
   <Spell>
     <Name>Frost Lance</Name>
-    <Description>Freezing lances each strike a target for 1d8+8 Cold damage per 2 caster levels.
-A Fortitude save reduces the damage by half.
-1st lance at 3rd level, a 2nd lance at 7th level, and a 3rd lance at 11th.</Description>
+    <Description>Shoots a target with a freezing energy spear, dealing 1d8 + 8 of Cold damage
+per 2 caster levels on impact. The number of lances increases by 1 for every
+4 levels beyond 3rd, to a maximum of 3 at 11th level. Each lances damage also
+increases by 1 every 2 caster levels.
+A successful Fortitude saves reduces the damage by half.
+As a Ray this spell has double range.</Description>
     <Icon>FrostLance</Icon>
     <School>Evocation</School>
     <Embolden/>
@@ -8201,8 +8209,8 @@ Damage rolls. Enemies in the cloud suffers a -5 penalty to their Reflex save.</D
   <Spell>
     <Name>Force Missiles</Name>
     <Description>A powerful missile of magical force darts from your fingertips and unerringly strikes
-its target, inflicting 2d3+8 points of force damage. You gain one additional
-missile for every four caster levels.</Description>
+its target, inflicting 1d4+1 points of force damage per 2 caster levels.
+You gain one additional missile at levels 4, 8, and 12 for a maximum of 4 missiles.</Description>
     <Icon>ForceMissiles</Icon>
     <School>Evocation</School>
     <Empower/>
@@ -8212,17 +8220,12 @@ missile for every four caster levels.</Description>
     <MaxCasterLevel>12</MaxCasterLevel>
     <SpellDamage>
       <SpellDice>
+        <PerCasterLevels>2</PerCasterLevels>
         <BaseDice>
-          <Number>2</Number>
-          <Sides>3</Sides>
-          <Bonus>8</Bonus>
+          <Number>1</Number>
+          <Sides>4</Sides>
+          <Bonus>1</Bonus>
         </BaseDice>
-        <PerCasterLevels>4</PerCasterLevels>
-        <BonusDice>
-          <Number>2</Number>
-          <Sides>3</Sides>
-          <Bonus>8</Bonus>
-        </BonusDice>
       </SpellDice>
       <Damage>Force</Damage>
       <SpellPower>Force</SpellPower>
@@ -11563,8 +11566,10 @@ living allies and enemy undead.</Description>
     <School>Conjuration</School>
     <Primer>Gildleaf</Primer>
     <Accelerate/>
+    <Embolden/>
     <Empower/>
     <EmpowerHealing/>
+    <Heighten/>
     <Intensify/>
     <Maximize/>
     <MaxCasterLevel>5</MaxCasterLevel>
@@ -11983,8 +11988,10 @@ undead.</Description>
     <Primer>Gildleaf</Primer>
     <MaxCasterLevel>10</MaxCasterLevel>
     <Accelerate/>
+    <Embolden/>
     <Empower/>
     <EmpowerHealing/>
+    <Heighten/>
     <Intensify/>
     <Maximize/>
     <SpellDC>
@@ -12483,8 +12490,10 @@ living allies and enemy undead.</Description>
     <Primer>Gildleaf</Primer>
     <MaxCasterLevel>15</MaxCasterLevel>
     <Accelerate/>
+    <Embolden/>
     <Empower/>
     <EmpowerHealing/>
+    <Heighten/>
     <Intensify/>
     <Maximize/>
     <SpellDC>
@@ -13165,8 +13174,10 @@ living allies and enemy undead.</Description>
     <Primer>Gildleaf</Primer>
     <MaxCasterLevel>20</MaxCasterLevel>
     <Accelerate/>
+    <Embolden/>
     <Empower/>
     <EmpowerHealing/>
+    <Heighten/>
     <Intensify/>
     <Maximize/>
     <SpellDC>

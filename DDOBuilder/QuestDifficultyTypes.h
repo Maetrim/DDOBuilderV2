@@ -27,6 +27,13 @@ enum QuestDifficulty
     QD_reaper9,
     QD_reaper10,
 
+    QD_1Star,
+    QD_2Star,
+    QD_3Star,
+    QD_4Star,
+    QD_5Star,
+    QD_6Star,
+
     QD_Count,
     QD_Unknown
 };
@@ -49,6 +56,12 @@ const XmlLib::enumMapEntry<QuestDifficulty> questDifficultyTypeMap[] =
     {QD_reaper8,            L"R8"},
     {QD_reaper9,            L"R9"},
     {QD_reaper10,           L"R10"},
+    {QD_1Star,              L"1 Star"},
+    {QD_2Star,              L"2 Star"},
+    {QD_3Star,              L"3 Star"},
+    {QD_4Star,              L"4 Star"},
+    {QD_5Star,              L"5 Star"},
+    {QD_6Star,              L"6 Star"},
     {QD_Unknown,            L"Unknown"},
     {QuestDifficulty(0),    NULL}
 };

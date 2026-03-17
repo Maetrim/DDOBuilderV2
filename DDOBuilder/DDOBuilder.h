@@ -5,6 +5,7 @@
 #include "Augment.h"
 #include "Bonus.h"
 #include "Buff.h"
+#include "Challenge.h"
 #include "Class.h"
 #include "EnhancementTree.h"
 #include "Feat.h"
@@ -75,6 +76,7 @@ public:
     const std::list<OptionalBuff>& OptionalBuffs() const;
     const std::list<Patron>& Patrons() const;
     const std::list<Quest>& Quests() const;
+    const std::list<Challenge>& Challenges() const;
     const std::list<std::string>& IgnoreList() const;
     const std::list<GuildBuff>& GuildBuffs() const;
     const std::list<std::string>& AdventurePacks() const;
@@ -122,6 +124,7 @@ private:
     void LoadSpellImages(const std::string& path);
     void LoadPatrons(const std::string& path);
     void LoadQuests(const std::string& path);
+    void LoadChallenges(const std::string& path);
     void LoadSentientGems(const std::string& path);
     void LoadWeaponGroups(const std::string& path);
     void LoadItemBuffs(const std::string& path);
@@ -144,6 +147,7 @@ private:
     void VerifyWeaponGroups();
     void VerifyItemClickies();
     void VerifyQuests();
+    void VerifyChallenges();
     void NotifyLoadComplete();
     static void LoadItemImage(CDDOBuilderApp* pApp, const std::string& localPath, std::string filename);
     void LoadSpellImage(std::string filename);
@@ -178,6 +182,7 @@ private:
     std::list<Spell> m_itemClickies;
     std::list<OptionalBuff> m_selfAndPartyBuffs;
     std::list<Quest> m_quests;
+    std::list<Challenge> m_challenges;
     std::list<Patron> m_patrons;
     std::list<std::string> m_ignoreList;
     std::list<Item> m_itemsForSlot[Inventory_FinalDrawnItem];

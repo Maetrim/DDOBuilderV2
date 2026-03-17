@@ -6,6 +6,7 @@
 #include "GlobalSupportFunctions.h"
 #include "DDOBuilderDoc.h"
 #include "LogPane.h"
+#include "Challenge.h"
 #include "Quest.h"
 #include "Patron.h"
 
@@ -48,6 +49,12 @@ BEGIN_MESSAGE_MAP(CFavorPane, CFormView)
     ON_UPDATE_COMMAND_UI(ID_REAPER_REAPER8, OnUpdateFavorReaper8)
     ON_UPDATE_COMMAND_UI(ID_REAPER_REAPER9, OnUpdateFavorReaper9)
     ON_UPDATE_COMMAND_UI(ID_REAPER_REAPER10, OnUpdateFavorReaper10)
+    ON_UPDATE_COMMAND_UI(ID_SETFAVOR_1_STAR, OnUpdateFavor1Star)
+    ON_UPDATE_COMMAND_UI(ID_SETFAVOR_2_STAR, OnUpdateFavor2Star)
+    ON_UPDATE_COMMAND_UI(ID_SETFAVOR_3_STAR, OnUpdateFavor3Star)
+    ON_UPDATE_COMMAND_UI(ID_SETFAVOR_4_STAR, OnUpdateFavor4Star)
+    ON_UPDATE_COMMAND_UI(ID_SETFAVOR_5_STAR, OnUpdateFavor5Star)
+    ON_UPDATE_COMMAND_UI(ID_SETFAVOR_6_STAR, OnUpdateFavor6Star)
     ON_CBN_SELENDOK(IDC_COMBO_MINLEVEL, OnSelendokMinLevel)
     ON_CBN_SELENDOK(IDC_COMBO_MAXLEVEL, OnSelendokMaxLevel)
     ON_CBN_SELENDOK(IDC_COMBO_PATRON, OnSelendokPatron)
@@ -294,6 +301,8 @@ void CFavorPane::PopulateQuestList()
     int topIndex = m_listQuests.GetTopIndex();
     m_listQuests.LockWindowUpdate();
     m_listQuests.DeleteAllItems();
+
+    // first add the quests
     std::list<Quest> quests = Quests();
     int column = 0;
     bool bAscending = false;
@@ -343,6 +352,60 @@ void CFavorPane::PopulateQuestList()
             }
         }
     }
+
+    // now add the challenges
+    bool bAddedSeparator = false;
+    std::list<Challenge> challenges = Challenges();
+    Challenge::SetSortInfo(column, bAscending);
+    challenges.sort();
+    for (auto&& cit : challenges)
+    {
+        // level filtering
+        if (selMinLevel <= cit.LevelRange()[0]
+            && selMaxLevel >= cit.LevelRange()[0]
+            && selMinLevel <= cit.LevelRange()[1]
+            && selMaxLevel >= cit.LevelRange()[1])
+        {
+            CString patron = EnumEntryText(cit.Patron(), patronTypeMap);
+            // do we have patron filtering?
+            if (selPatron == 0          // no filtering
+                || cit.Patron() == selectedPatron)
+            {
+                if (strSearchText == ""
+                        || SearchForText(cit.Name(), strFindText)
+                        || SearchForText(cit.AdventurePack(), strFindText))
+                {
+                    if (!bAddedSeparator)
+                    {
+                        bAddedSeparator = true;
+                        m_listQuests.InsertItem(m_listQuests.GetItemCount(), "");  // separator
+                    }
+                    // add one list entry for this challenge
+                    CString name = cit.Name().c_str();
+                    int iIndex = m_listQuests.InsertItem(m_listQuests.GetItemCount(), name);
+                    CString text;
+                    text.Format("%d - %d", cit.LevelRange()[0], cit.LevelRange()[1]);
+                    m_listQuests.SetItemText(iIndex, QLC_level, text);
+                    text.Format("%d", cit.MaxFavor());
+                    m_listQuests.SetItemText(iIndex, QLC_favor, text);
+                    m_listQuests.SetItemText(iIndex, QLC_patron, patron);
+                    text = cit.AdventurePack().c_str();
+                    m_listQuests.SetItemText(iIndex, QLC_pack, text);
+                    QuestDifficulty diff = QD_notRun;
+                    for (auto&& rqi : m_runQuests)
+                    {
+                        if (rqi.Name() == cit.Name())   // all names are unique
+                        {
+                            diff = max(diff, rqi.Difficulty());
+                        }
+                    }
+                    CString difficulty = EnumEntryText(diff, questDifficultyTypeMap);
+                    m_listQuests.SetItemText(iIndex, QLC_runAt, difficulty);
+                }
+            }
+        }
+    }
+
     // now sum the total favor per patron from all quests that have a run@
     std::vector<size_t> favorPerPatron(MAX_FAVOR_ITEMS, 0);
     // now add the favor to the total for this patron
@@ -351,10 +414,21 @@ void CFavorPane::PopulateQuestList()
     for (auto&& fqit : favorQs)
     {
         const Quest& quest = FindQuest(fqit.Name());
-        PatronType pt = quest.Patron();
-        int favor = quest.Favor(fqit.Difficulty());
-        favorPerPatron[static_cast<size_t>(pt)] += favor;
-        favorPerPatron[Patron_TotalFavor] += favor;
+        if (quest.Name() != "Bad Quest")
+        {
+            PatronType pt = quest.Patron();
+            int favor = quest.Favor(fqit.Difficulty());
+            favorPerPatron[static_cast<size_t>(pt)] += favor;
+            favorPerPatron[Patron_TotalFavor] += favor;
+        }
+        const Challenge& challenge = FindChallenge(fqit.Name());
+        if (challenge.Name() != "Bad Challenge")
+        {
+            PatronType pt = challenge.Patron();
+            int favor = challenge.Favor(fqit.Difficulty());
+            favorPerPatron[static_cast<size_t>(pt)] += favor;
+            favorPerPatron[Patron_TotalFavor] += favor;
+        }
     }
     for (size_t i = 0; i < MAX_FAVOR_ITEMS; ++i)
     {
@@ -463,6 +537,12 @@ void CFavorPane::OnRightClickListQuests(NMHDR* /*pNMHDR*/, LRESULT* pResult)
                 case ID_REAPER_REAPER8:     qd = QD_reaper8; break;
                 case ID_REAPER_REAPER9:     qd = QD_reaper9; break;
                 case ID_REAPER_REAPER10:    qd = QD_reaper10; break;
+                case ID_SETFAVOR_1_STAR:    qd = QD_1Star; break;
+                case ID_SETFAVOR_2_STAR:    qd = QD_2Star; break;
+                case ID_SETFAVOR_3_STAR:    qd = QD_3Star; break;
+                case ID_SETFAVOR_4_STAR:    qd = QD_4Star; break;
+                case ID_SETFAVOR_5_STAR:    qd = QD_5Star; break;
+                case ID_SETFAVOR_6_STAR:    qd = QD_6Star; break;
             }
             std::list<CompletedQuest> selectedQs = GetSelectedQuests();
             std::list<CompletedQuest>::iterator qit = selectedQs.begin();
@@ -624,6 +704,54 @@ void CFavorPane::OnUpdateFavorReaper10(CCmdUI * pCmdUi)
     pCmdUi->Enable(bEnabledState);
 }
 
+void CFavorPane::OnUpdateFavor1Star(CCmdUI* pCmdUi)
+{
+    unsigned int checkedState = GetCheckedState(Favor_1Star);
+    pCmdUi->SetCheck(checkedState);
+    bool bEnabledState = GetEnabledState(Favor_1Star);
+    pCmdUi->Enable(bEnabledState);
+}
+
+void CFavorPane::OnUpdateFavor2Star(CCmdUI* pCmdUi)
+{
+    unsigned int checkedState = GetCheckedState(Favor_2Star);
+    pCmdUi->SetCheck(checkedState);
+    bool bEnabledState = GetEnabledState(Favor_2Star);
+    pCmdUi->Enable(bEnabledState);
+}
+
+void CFavorPane::OnUpdateFavor3Star(CCmdUI* pCmdUi)
+{
+    unsigned int checkedState = GetCheckedState(Favor_3Star);
+    pCmdUi->SetCheck(checkedState);
+    bool bEnabledState = GetEnabledState(Favor_3Star);
+    pCmdUi->Enable(bEnabledState);
+}
+
+void CFavorPane::OnUpdateFavor4Star(CCmdUI* pCmdUi)
+{
+    unsigned int checkedState = GetCheckedState(Favor_4Star);
+    pCmdUi->SetCheck(checkedState);
+    bool bEnabledState = GetEnabledState(Favor_4Star);
+    pCmdUi->Enable(bEnabledState);
+}
+
+void CFavorPane::OnUpdateFavor5Star(CCmdUI* pCmdUi)
+{
+    unsigned int checkedState = GetCheckedState(Favor_5Star);
+    pCmdUi->SetCheck(checkedState);
+    bool bEnabledState = GetEnabledState(Favor_5Star);
+    pCmdUi->Enable(bEnabledState);
+}
+
+void CFavorPane::OnUpdateFavor6Star(CCmdUI* pCmdUi)
+{
+    unsigned int checkedState = GetCheckedState(Favor_6Star);
+    pCmdUi->SetCheck(checkedState);
+    bool bEnabledState = GetEnabledState(Favor_6Star);
+    pCmdUi->Enable(bEnabledState);
+}
+
 unsigned int CFavorPane::GetCheckedState(FavorType)
 {
     // look for the highest difficulty this quests has been run at (could
@@ -646,33 +774,43 @@ bool CFavorPane::GetEnabledState(FavorType ft)
     // at least one of the selected quests must support the given favor
     // tier for it to be enabled.
     bool bSupported = false;
-    //if (quests.size() < 15)
+    for (auto&& qit : quests)
     {
-        // don't allow more than 15 quests at a time to be set
-        for (auto&& qit : quests)
+        const Quest& q = FindQuest(qit.Name());
+        switch (ft)
         {
-            const Quest& q = FindQuest(qit.Name());
+            case Favor_None:    bSupported = true; break;
+            case Favor_Solo:    bSupported = q.HasSolo(); break;
+            case Favor_Casual:  bSupported = q.HasCasual(); break;
+            case Favor_Normal:  bSupported = q.HasNormal(); break;
+            case Favor_Hard:    bSupported = q.HasHard(); break;
+            case Favor_Elite:   bSupported = q.HasElite(); break;
+            case Favor_Reaper1:
+            case Favor_Reaper2:
+            case Favor_Reaper3:
+            case Favor_Reaper4:
+            case Favor_Reaper5:
+            case Favor_Reaper6:
+            case Favor_Reaper7:
+            case Favor_Reaper8:
+            case Favor_Reaper9:
+            case Favor_Reaper10:    bSupported = q.HasReaper(); break;
+        }
+        const Challenge& c = FindChallenge(qit.Name());
+        if (c.Name() != "Bad Challenge")
+        {
             switch (ft)
             {
-                case Favor_None:    bSupported = true; break;
-                case Favor_Solo:    bSupported = q.HasSolo(); break;
-                case Favor_Casual:  bSupported = q.HasCasual(); break;
-                case Favor_Normal:  bSupported = q.HasNormal(); break;
-                case Favor_Hard:    bSupported = q.HasHard(); break;
-                case Favor_Elite:   bSupported = q.HasElite(); break;
-                case Favor_Reaper1:
-                case Favor_Reaper2:
-                case Favor_Reaper3:
-                case Favor_Reaper4:
-                case Favor_Reaper5:
-                case Favor_Reaper6:
-                case Favor_Reaper7:
-                case Favor_Reaper8:
-                case Favor_Reaper9:
-                case Favor_Reaper10:    bSupported = q.HasReaper(); break;
+                case Favor_1Star:
+                case Favor_2Star:
+                case Favor_3Star:
+                case Favor_4Star:
+                case Favor_5Star:
+                case Favor_6Star:   bSupported = true; // all challenges support 1-6 stars
+                                    break;
             }
-            if (bSupported) break;
         }
+        if (bSupported) break;
     }
     return bSupported;
 }

@@ -171,6 +171,11 @@ const std::list<Quest>& Quests()
     return theApp.Quests();
 }
 
+const std::list<Challenge>& Challenges()
+{
+    return theApp.Challenges();
+}
+
 const std::list<std::string>& AdventurePacks()
 {
     return theApp.AdventurePacks();
@@ -390,8 +395,24 @@ const Quest& FindQuest(const std::string& questName)
             return it;
         }
     }
-    static Quest badQuest(std::string("Bad Patron"));
+    static Quest badQuest(std::string("Bad Quest"));
     return badQuest;
+}
+
+const Challenge& FindChallenge(const std::string& challengeName)
+{
+    const std::list<Challenge>& challenges = Challenges();
+    for (auto&& it : challenges)
+    {
+        std::string name = it.Name();
+        if (name == challengeName)
+        {
+            // this is the challenge we are looking for
+            return it;
+        }
+    }
+    static Challenge badChallenge(std::string("Bad Challenge"));
+    return badChallenge;
 }
 
 const OptionalBuff& FindOptionalBuff(const std::string& name)

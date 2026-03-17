@@ -22,6 +22,7 @@ namespace
     COLORREF f_backgroundColourDark = RGB(83, 83, 83);
     COLORREF f_white = RGB(255, 255, 255);                      // white
     COLORREF f_black = RGB(0, 0, 0);                            // black
+    const int c_autoSpellOffset = 10;                           // in pixels
 }
 
 // global image data used for drawing all enhancements trees.
@@ -246,6 +247,10 @@ void CSpellsControl::OnPaint()
                         top,
                         left + c_spellSlotImageSize,
                         top + c_spellSlotImageSize);
+                if (m_fixedSpells[spellLevel].size() > 0)
+                {
+                    spellRect += CPoint(c_autoSpellOffset, 0);
+                }
                 s_staticImages[SI_SpellSlotTrainable].SetTransparentColor(c_transparentColour);
                 s_staticImages[SI_SpellSlotTrainable].TransparentBlt(
                         memoryDc.GetSafeHdc(),

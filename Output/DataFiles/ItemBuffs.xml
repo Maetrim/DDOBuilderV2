@@ -19674,9 +19674,18 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>ShieldEnchantment</Type>
-    <DisplayText>%v1 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a %v1 Enhancement bonus to AC.</DisplayText>
+    <DisplayText>%v1 Enhancement Bonus: Weapons and Shields: %v1 Enhancement bonus to Attack and Damage rolls. Armor and Shields: %v1 Enhancement bonus to Armor Class.</DisplayText>
     <Ignore>Enhancement</Ignore>
-     <!--Note that Shield Enhancement bonus does nothing-->
+    <Effect>
+      <Type>ShieldEnchantment</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Buckler</Item>
+      <Item>Small Shield</Item>
+      <Item>Large Shield</Item>
+      <Item>Tower Shield</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>Shield of Greater Sunburst</Type>

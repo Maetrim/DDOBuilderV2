@@ -850,7 +850,7 @@ void CMainFrame::LoadComplete()
         POSITION pos = pDoc->GetFirstViewPosition();
         while (pos != NULL)
         {
-            CView * pView = pDoc->GetNextView(pos);
+            CView* pView = pDoc->GetNextView(pos);
             pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
         }
     }
@@ -858,7 +858,8 @@ void CMainFrame::LoadComplete()
     // Except the Inventory Pane which is done after the Item load step completes
     for (size_t i = 0; i < m_dockablePanes.size(); ++i)
     {
-        CView * pView = m_dockablePanes[i]->GetView();
+        CView* pView = m_dockablePanes[i]->GetView();
+        pDoc->AddView(pView);
         if (RUNTIME_CLASS(CEquipmentPane) != pView->GetRuntimeClass())
         {
             pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
@@ -1137,4 +1138,3 @@ void CMainFrame::OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu)
         pView->PostMessage(UWM_MENUSELECT, nItemID, nFlags);
     }
 }
-

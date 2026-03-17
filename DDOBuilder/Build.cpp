@@ -2339,7 +2339,7 @@ void Build::ApplySpellEffects()
 
 void Build::ApplySpellEffects(const TrainedSpell& ts)
 {
-    const Spell& spell = FindSpellByName(ts.SpellName());
+    Spell spell = FindSpellByName(ts.SpellName());
     // we need to ignore this spell if it is a carry over from a class change
     const ::Class& c = FindClass(ts.Class());
     size_t classLevels = ClassLevels(ts.Class(), min(MAX_CLASS_LEVEL, Level()));
@@ -2347,6 +2347,7 @@ void Build::ApplySpellEffects(const TrainedSpell& ts)
     if (slots.size() >= ts.Level()
             && slots[ts.Level()-1] > 0)
     {
+        spell.SetClass(ts.Class());
         ApplySpellEffects(spell);
     }
 }
@@ -2377,7 +2378,8 @@ void Build::ApplySpellEffects(const Spell& s)
 void Build::RevokeSpellEffects(const TrainedSpell& ts)
 {
     // ok to notify about things that don't exist, they just get ignored
-    const Spell& spell = FindSpellByName(ts.SpellName());
+    Spell spell = FindSpellByName(ts.SpellName());
+    spell.SetClass(ts.Class());
     for (auto&& seit : spell.Effects())
     {
         Effect copy = seit;

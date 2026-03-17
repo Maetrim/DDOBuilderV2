@@ -4,6 +4,7 @@
 #include "CompletedQuest.h"
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
+#include "Challenge.h"
 #include "Quest.h"
 
 #define DL_ELEMENT CompletedQuest
@@ -82,6 +83,22 @@ bool CompletedQuest::Supports(QuestDifficulty qd) const
         case QD_reaper8:
         case QD_reaper9:
         case QD_reaper10:   bSupported = q.HasReaper(); break;
+    }
+    const Challenge& c = FindChallenge(Name());
+    if (c.Name() != "Bad Challenge")
+    {
+        switch (qd)
+        {
+            case QD_notRun:// always
+            case QD_1Star:
+            case QD_2Star:
+            case QD_3Star:
+            case QD_4Star:
+            case QD_5Star:
+            case QD_6Star:
+                bSupported = true;
+                break;
+        }
     }
     return bSupported;
 }

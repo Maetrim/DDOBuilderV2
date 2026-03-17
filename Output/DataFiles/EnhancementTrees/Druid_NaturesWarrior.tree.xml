@@ -1273,7 +1273,7 @@ Passive: +[5/10] Positive Spell power.</Description>
     <EnhancementTreeItem>
       <Name>Nature's Warrior: Fatal Harrier</Name>
       <InternalName>NWFatalHarrier</InternalName>
-      <Description>Killing an enemy grants you a 5% enchantment bonus to attack speed for 20 seconds.
+      <Description>Killing an enemy grants you a 5% Enchantment bonus to attack speed for 20 seconds.
 You also gain a +1 bonus to Reflex saves. This stacks [1/3/5] times.
 
 Enemies your own level or higher have a 100% chance of inspiring your Ferocity
@@ -1314,11 +1314,16 @@ A monster two levels below you only has a 60% chance of creating this effect.</D
       </Effect>
       <Effect>
         <Type>Weapon_Alacrity</Type>
-        <Bonus>Stacking</Bonus>
-        <Amount size="1">5</Amount>
+        <Bonus>Enchantment</Bonus>
+        <Amount size="3">5 5 5</Amount>
+        <AType>Stacks</AType>
         <Item>All</Item>
-        <AType>SliderValue</AType>
-        <StackSource>Fatal Harrier</StackSource>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Enemy Kill</Item>
+            </Requirement>
+         </Requirements>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1696,7 +1701,7 @@ to 30%.</Description>
         <AType>Simple</AType>
         <Amount size="1">15</Amount>
         <Item>All</Item>
-        <ApplyAsItemEffect />
+        <ApplyAsItemEffect/>
         <Requirements>
           <RequiresOneOf>
             <Requirement>
@@ -1716,7 +1721,7 @@ to 30%.</Description>
         <AType>Simple</AType>
         <Amount size="1">25</Amount>
         <Item>All</Item>
-        <ApplyAsItemEffect />
+        <ApplyAsItemEffect/>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1730,7 +1735,7 @@ to 30%.</Description>
         <AType>Simple</AType>
         <Amount size="1">30</Amount>
         <Item>All</Item>
-        <ApplyAsItemEffect />
+        <ApplyAsItemEffect/>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>

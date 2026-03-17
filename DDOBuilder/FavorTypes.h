@@ -26,6 +26,12 @@ enum FavorType
     Favor_Reaper8,
     Favor_Reaper9,
     Favor_Reaper10,
+    Favor_1Star,
+    Favor_2Star,
+    Favor_3Star,
+    Favor_4Star,
+    Favor_5Star,
+    Favor_6Star,
 
     Favor_Count
 };
@@ -49,6 +55,12 @@ const XmlLib::enumMapEntry<FavorType> favorTypeMap[] =
     {Favor_Reaper8,     L"Reaper 8"},
     {Favor_Reaper9,     L"Reaper 9"},
     {Favor_Reaper10,    L"Reaper 10"},
+    {Favor_1Star,       L"1 Star"},
+    {Favor_2Star,       L"2 Star"},
+    {Favor_3Star,       L"3 Star"},
+    {Favor_4Star,       L"4 Star"},
+    {Favor_5Star,       L"5 Star"},
+    {Favor_6Star,       L"6 Star"},
     {FavorType(0),      NULL}
 };
 

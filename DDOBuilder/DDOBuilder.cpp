@@ -13,6 +13,7 @@
 
 #include "BonusTypesFile.h"
 #include "BuffFile.h"
+#include "ChallengesFile.h"
 #include "FeatsFile.h"
 #include "GuildBuffsFile.h"
 #include "LegacyCharacter.h"
@@ -378,6 +379,7 @@ void CDDOBuilderApp::LoadData()
     LoadOptionalBuffs(folderPath);
     LoadPatrons(folderPath);
     LoadQuests(folderPath);
+    LoadChallenges(folderPath);
     LoadGuildBuffs(folderPath);
     LoadIgnoreList(folderPath);
     // done last as not thread safe
@@ -708,6 +710,11 @@ const std::list<Patron>& CDDOBuilderApp::Patrons() const
 const std::list<Quest>& CDDOBuilderApp::Quests() const
 {
     return m_quests;
+}
+
+const std::list<Challenge>& CDDOBuilderApp::Challenges() const
+{
+    return m_challenges;
 }
 
 const std::list<std::string>& CDDOBuilderApp::AdventurePacks() const
@@ -1173,6 +1180,51 @@ void CDDOBuilderApp::LoadQuests(const std::string& path)
     }
 }
 
+void CDDOBuilderApp::LoadChallenges(const std::string& path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "Challenges.xml";
+
+    GetLog().AddLogEntry("Loading Challenges List...");
+    ChallengesFile file(filename);
+    file.Read();
+    m_challenges = file.Challenges();
+
+    // update the loaded patrons with the max favor for each
+    int totalFavor = 0;
+    int patronMaxFavor[Patron_Count];
+    memset(patronMaxFavor, 0, sizeof(patronMaxFavor[0]) * Patron_Count);
+    for (auto&& cit: m_challenges)
+    {
+        PatronType ePatron = cit.Patron();
+        patronMaxFavor[ePatron] += cit.MaxFavor();
+        totalFavor += cit.MaxFavor();
+    }
+    patronMaxFavor[Patron_TotalFavor] = totalFavor;
+    std::list<Patron>::iterator pit = m_patrons.begin();
+    for (size_t i = 0; i < Patron_Count; ++i)
+    {
+        int nCurrentFavor = pit->MaxFavor();
+        pit->SetMaxFavor(nCurrentFavor + patronMaxFavor[i]);
+        ++pit;
+    }
+    // update log after load action
+    CString strUpdate;
+    strUpdate.Format("Loading Challenges...%d", m_challenges.size());
+    GetLog().UpdateLastLogEntry(strUpdate);
+
+    // from the challenges list, extract the names of all the adventure packs
+    for (auto&& cit: m_challenges)
+    {
+        std::string pack = cit.AdventurePack();
+        if (std::find(m_adventurePacks.begin(), m_adventurePacks.end(), pack) == m_adventurePacks.end())
+        {
+            m_adventurePacks.push_back(pack);
+        }
+    }
+}
+
 void CDDOBuilderApp::LoadGuildBuffs(const std::string& path)
 {
     // create the filename to load from
@@ -1362,6 +1414,14 @@ void CDDOBuilderApp::VerifyQuests()
     for (auto&& qit : m_quests)
     {
         qit.VerifyObject();
+    }
+}
+
+void CDDOBuilderApp::VerifyChallenges()
+{
+    for (auto&& cit : m_challenges)
+    {
+        cit.VerifyObject();
     }
 }
 

@@ -224,6 +224,12 @@
 #define HID_FILE_REVERTTOBACKUP                 0x18060
 #define HID_LAMANNIA_MODE                       0x18061
 #define HID_SETTINGS_AUTOSELECTSINGLEOPTIONENHANCEMENTS	0x18062
+#define HID_SETFAVOR_1_STAR                     0x18063
+#define HID_SETFAVOR_2_STAR                     0x18064
+#define HID_SETFAVOR_3_STAR                     0x18065
+#define HID_SETFAVOR_4_STAR                     0x18066
+#define HID_SETFAVOR_5_STAR                     0x18067
+#define HID_SETFAVOR_6_STAR                     0x18068
 #define HIDD2_ABOUTBOX                          0x10064
 #define HIDD2_DDOBUILDER_FORM                   0x10065
 #define HIDD2_BUILDS_PANE                       0x10066

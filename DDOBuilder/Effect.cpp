@@ -20,6 +20,8 @@
 #include "WeaponClassTypes.h"
 #include "WeaponDamageTypes.h"
 #include "WeaponTypes.h"
+#include "StancesPane.h"
+#include "MainFrm.h"
 
 #include "LogPane.h"
 
@@ -1091,7 +1093,21 @@ std::string Effect::StacksAsString() const
     case Amount_Slider:
     case Amount_SliderValue:
     case Amount_SliderValueLookup:
-        ss << m_stacks;
+        {
+            size_t stacks = m_stacks;
+            CWnd* pWnd = AfxGetMainWnd();
+            CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+            const CStancesPane* pStancesPane = dynamic_cast<const CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
+            if (pStancesPane != NULL)
+            {
+                const SliderItem* pSlider = pStancesPane->GetSlider(StackSource());
+                if (pSlider != NULL)
+                {
+                    stacks = pSlider->m_position;
+                }
+            }
+            ss << stacks;
+        }
         break;
     case Amount_SetBonusCount:
         ss << m_pBuild->SetBonusCount(StackSource()) << " Set Bonus Count";
@@ -1413,7 +1429,21 @@ double Effect::TotalAmount(bool allowTruncate) const
             }
         case Amount_Slider:
         case Amount_SliderValue:
-            total = m_Amount[0] * m_stacks;
+            {
+                size_t stacks = m_stacks;
+                CWnd* pWnd = AfxGetMainWnd();
+                CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+                const CStancesPane* pStancesPane = dynamic_cast<const CStancesPane*>(pMainWnd->GetPaneView(RUNTIME_CLASS(CStancesPane)));
+                if (pStancesPane != NULL)
+                {
+                    const SliderItem* pSlider = pStancesPane->GetSlider(StackSource());
+                    if (pSlider != NULL)
+                    {
+                        stacks = pSlider->m_position;
+                    }
+                }
+                total = m_Amount[0] * stacks;
+            }
             break;
         case Amount_SliderValueLookup:
             {
