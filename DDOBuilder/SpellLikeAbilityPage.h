@@ -15,7 +15,7 @@ class CSpellLikeAbilityPage :
         CSpellLikeAbilityPage();
         ~CSpellLikeAbilityPage();
 
-        void SetCharacter(Character * pCharacter);
+        void SetCharacter(Character * pCharacter, bool bClearSpellsCount);
         CSLAControl* Control();
 
     protected:

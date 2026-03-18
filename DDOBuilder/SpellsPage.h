@@ -14,8 +14,8 @@ class CSpellsPage :
         CSpellsPage(const std::string& ct, AbilityType ability);
         ~CSpellsPage();
 
-        void SetCharacter(Character * pCharacter);
-        void SetTrainableSpells(const std::vector<size_t> & spellsPerLevel);
+        void SetCharacter(Character* pCharacter, bool bClearSpellsCount);
+        void SetTrainableSpells(const std::vector<size_t>& spellsPerLevel);
 
         CSpellsControl * SpellsControl();
         bool IsClassType(const std::string& ct) const;
@@ -47,7 +47,7 @@ class CSpellsPage :
         CSpellsControl m_spells;
         //}}AFX_DATA
 
-        Character * m_pCharacter;
+        Character* m_pCharacter;
         std::string m_classType;
         AbilityType m_abilityType;
 };

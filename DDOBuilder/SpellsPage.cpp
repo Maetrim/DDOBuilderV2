@@ -71,10 +71,10 @@ BOOL CSpellsPage::OnEraseBkgnd(CDC* pDC)
     return OnEraseBackground(this, pDC, controlsNotToBeErased);
 }
 
-void CSpellsPage::SetCharacter(Character * pCharacter)
+void CSpellsPage::SetCharacter(Character * pCharacter, bool bClearSpellsCount)
 {
     m_pCharacter = pCharacter;
-    m_spells.SetCharacter(pCharacter, m_classType);
+    m_spells.SetCharacter(pCharacter, m_classType, bClearSpellsCount);
     if (m_pCharacter != NULL)
     {
         if (m_pCharacter->ActiveBuild() != NULL)
@@ -82,23 +82,18 @@ void CSpellsPage::SetCharacter(Character * pCharacter)
             m_pCharacter->ActiveBuild()->AttachObserver(this);
         }
     }
+    if (IsWindow(GetSafeHwnd()))
+    {
+        CRect rect;
+        GetClientRect(rect);
+        OnSize(SIZE_RESTORED, rect.Width(), rect.Height());
+    }
 }
 
 void CSpellsPage::SetTrainableSpells(const std::vector<size_t> & spellsPerLevel)
 {
     m_spells.SetTrainableSpells(spellsPerLevel);
 }
-
-//void CSpellsPage::UpdateSpellTrained(
-//        Character * charData,
-//        const TrainedSpell & spell)
-//{
-//    if (spell.Class() == m_classType)
-//    {
-//        // this spell is for us, update our control
-//        m_spells.UpdateSpells(CasterLevel(charData, m_classType));
-//    }
-//}
 
 CSpellsControl * CSpellsPage::SpellsControl()
 {
@@ -110,17 +105,6 @@ bool CSpellsPage::IsClassType(const std::string& ct) const
     return (ct == m_classType);
 }
 
-//void CSpellsPage::UpdateSpellRevoked(
-//        Character * charData,
-//        const TrainedSpell & spell)
-//{
-//    if (spell.Class() == m_classType)
-//    {
-//        // this spell is for us, update our control
-//        m_spells.UpdateSpells(CasterLevel(charData, m_classType));
-//    }
-//}
-//
 void CSpellsPage::UpdateFeatEffectApplied(
         Build*,
         const Effect& effect)
@@ -133,7 +117,7 @@ void CSpellsPage::UpdateFeatEffectApplied(
                 effect.Item().front(),
                 (int)effect.Amount()[0],         // level
                 (int)effect.Amount()[1],         // sp cost
-                (int)effect.Amount()[2]);        // max catsre level
+                (int)effect.Amount()[2]);        // max caster level
     }
 }
 
@@ -148,7 +132,7 @@ void CSpellsPage::UpdateFeatEffectRevoked(
                 effect.Item().front(),
                 (int)effect.Amount()[0],         // level
                 (int)effect.Amount()[1],         // sp cost
-                (int)effect.Amount()[2]);        // max catsre level
+                (int)effect.Amount()[2]);        // max caster level
     }
 }
 
@@ -164,7 +148,7 @@ void CSpellsPage::UpdateEnhancementEffectApplied(
                 effect.Item().front(),
                 (int)effect.Amount()[0],         // level
                 (int)effect.Amount()[1],         // sp cost
-                (int)effect.Amount()[2]);        // max catsre level
+                (int)effect.Amount()[2]);        // max caster level
     }
 }
 
@@ -179,7 +163,7 @@ void CSpellsPage::UpdateEnhancementEffectRevoked(
                 effect.Item().front(),
                 (int)effect.Amount()[0],         // level
                 (int)effect.Amount()[1],         // sp cost
-                (int)effect.Amount()[2]);        // max catsre level
+                (int)effect.Amount()[2]);        // max caster level
     }
 }
 
@@ -195,7 +179,7 @@ void CSpellsPage::UpdateItemEffectApplied(
                 effect.Item().front(),
                 (int)effect.Amount()[0],         // level
                 (int)effect.Amount()[1],         // sp cost
-                (int)effect.Amount()[2]);        // max catsre level
+                (int)effect.Amount()[2]);        // max caster level
     }
 }
 
@@ -210,6 +194,6 @@ void CSpellsPage::UpdateItemEffectRevoked(
                 effect.Item().front(),
                 (int)effect.Amount()[0],         // level
                 (int)effect.Amount()[1],         // sp cost
-                (int)effect.Amount()[2]);        // max catsre level
+                (int)effect.Amount()[2]);        // max caster level
     }
 }

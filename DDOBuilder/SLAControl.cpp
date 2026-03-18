@@ -264,18 +264,21 @@ void CSLAControl::ClearSLAs()
     m_hitBoxes.clear();
 }
 
-void CSLAControl::SetCharacter(Character* pCharacter)
+void CSLAControl::SetCharacter(Character* pCharacter, bool bClearSpellsCount)
 {
     m_pCharacter = pCharacter;
-    m_SLAs.clear();
-    m_hitBoxes.clear();
-    if (m_pCharacter == NULL)
+    if (bClearSpellsCount)
     {
-        // no character == no SLAs to display
-        m_bCreateHitBoxes = true;
-        if (IsWindow(GetSafeHwnd()))
+        m_SLAs.clear();
+        m_hitBoxes.clear();
+        if (m_pCharacter == NULL)
         {
-            Invalidate(TRUE);
+            // no character == no SLAs to display
+            m_bCreateHitBoxes = true;
+            if (IsWindow(GetSafeHwnd()))
+            {
+                Invalidate(TRUE);
+            }
         }
     }
 }

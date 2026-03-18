@@ -46,7 +46,7 @@ class CSpellsControl :
         CSpellsControl();
         virtual ~CSpellsControl();
 
-        void SetCharacter(Character * pCharacter, const std::string& ct);
+        void SetCharacter(Character * pCharacter, const std::string& ct, bool bClearSpellsCount);
         void SetTrainableSpells(const std::vector<size_t> & spellsPerLevel);
         void UpdateSpells(size_t oldCasterLevel);
         void AddFixedSpell(const std::string & spellName, size_t level, size_t cost, int mcl);

@@ -387,7 +387,7 @@ LRESULT CSpellsControl::OnMouseLeave(WPARAM, LPARAM)
     return 0;
 }
 
-void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct)
+void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct, bool bClearSpellsCount)
 {
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
@@ -412,11 +412,13 @@ void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct)
             }
         }
         UpdateSpells(0);
-        // no character == no spells to display
-        m_spellsPerLevel.clear();
-        if (IsWindow(GetSafeHwnd()))
+        if (bClearSpellsCount)
         {
-            Invalidate(TRUE);
+            m_spellsPerLevel.clear();
+            if (IsWindow(GetSafeHwnd()))
+            {
+                Invalidate(TRUE);
+            }
         }
     }
 }
@@ -817,6 +819,10 @@ CSize CSpellsControl::RequiredSize()
             size.cy = max(size.cy, (int)(top + c_spellSlotImageSize));
 
             cx += (c_spellSlotImageSize + c_controlSpacing) * m_fixedSpells[spellLevel].size();
+            if (m_fixedSpells[spellLevel].size() > 0)
+            {
+                cx += c_autoSpellOffset;
+            }
             cx += (c_spellSlotImageSize + c_controlSpacing) * count;
         }
         size.cx = max(size.cx, labelSize.cx + cx);

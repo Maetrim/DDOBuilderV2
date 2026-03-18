@@ -796,9 +796,13 @@ void CEnhancementsPane::EnableDisableTreeSaveLoad()
             const Destiny_SelectedTrees& selTrees = pBuild->DestinySelectedTrees();
             for (size_t i = 0; i < MST_Number; ++i)
             {
-                const std::string& treeName = selTrees.Tree(i);
-                // can only save this tree if points spent in this one
-                bool bEnableSave = (pBuild->APSpentInTree(treeName) > 0);
+                bool bEnableSave = false;
+                if (selTrees.TreeName().size() > i)
+                {
+                    const std::string& treeName = selTrees.Tree(i);
+                    // can only save this tree if points spent in this one
+                    bEnableSave = (pBuild->APSpentInTree(treeName) > 0);
+                }
                 m_buttonSave[i].EnableWindow(bEnableSave);
             }
         }
@@ -816,9 +820,13 @@ void CEnhancementsPane::EnableDisableComboboxes()
             const Enhancement_SelectedTrees& selTrees = pBuild->EnhancementSelectedTrees();
             for (size_t i = 1; i < MST_Number; ++i)
             {
-                std::string treeName = selTrees.Tree(i);
-                // can only select a different tree if no points spent in this one
-                bool enable = (pBuild->APSpentInTree(treeName) == 0);
+                bool enable = false;
+                if (selTrees.TreeName().size() > i)
+                {
+                    std::string treeName = selTrees.Tree(i);
+                    // can only select a different tree if no points spent in this one
+                    enable = (pBuild->APSpentInTree(treeName) == 0);
+                }
                 m_comboTreeSelect[i-1].EnableWindow(enable);
             }
             // also set the states of the universal tree buttons
