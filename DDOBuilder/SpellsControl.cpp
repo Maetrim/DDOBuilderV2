@@ -387,7 +387,7 @@ LRESULT CSpellsControl::OnMouseLeave(WPARAM, LPARAM)
     return 0;
 }
 
-void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct, bool bClearSpellsCount)
+void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct)
 {
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
@@ -412,13 +412,11 @@ void CSpellsControl::SetCharacter(Character * pCharacter, const std::string& ct,
             }
         }
         UpdateSpells(0);
-        if (bClearSpellsCount)
+        // no character == no spells to display
+        m_spellsPerLevel.clear();
+        if (IsWindow(GetSafeHwnd()))
         {
-            m_spellsPerLevel.clear();
-            if (IsWindow(GetSafeHwnd()))
-            {
-                Invalidate(TRUE);
-            }
+            Invalidate(TRUE);
         }
     }
 }

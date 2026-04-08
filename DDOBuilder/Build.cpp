@@ -27,6 +27,8 @@
 #include "LegacyDestinySelectedTrees.h"
 #include "SpellsPane.h"
 #include "SpellsPage.h"
+#include "Quest.h"
+#include "Challenge.h"
 
 #define DL_ELEMENT Build
 
@@ -133,6 +135,37 @@ void Build::EndElement()
     m_hasActiveAttackChain = true;  // "Blank name is fine"
     SaxContentElement::EndElement();
     DL_END(Build_PROPERTIES)
+
+    auto it = m_CompletedQuests.begin();
+    while (it != m_CompletedQuests.end())
+    {
+        bool found = false;
+        const std::string& qName = it->Name();
+        const Quest& quest = FindQuest(qName);
+        if (quest.Name() != "Bad Quest")
+        {
+            found = true;
+        }
+        else
+        {
+            const Challenge& challenge = FindChallenge(qName);
+            if (challenge.Name() != "Bad Challenge")
+            {
+                found = true;
+            }
+        }
+        if (found)
+        {
+            ++it;
+        }
+        else
+        {
+            CString logEntry;
+            logEntry.Format("Removed bad Quest/Challenge favor entry of \"%s\"", qName.c_str());
+            GetLog().AddLogEntry(logEntry);
+            it = m_CompletedQuests.erase(it);
+        }
+    }
     // as a build has a default number of LevelTraining objects setup in the constructor
     // we need to make sure at the end of the load procedure that only Level()
     // number of them still exists as the loaded ones were appended to the original

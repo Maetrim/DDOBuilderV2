@@ -69,7 +69,7 @@ BOOL CSpellLikeAbilityPage::OnEraseBkgnd(CDC* pDC)
     return OnEraseBackground(this, pDC, controlsNotToBeErased);
 }
 
-void CSpellLikeAbilityPage::SetCharacter(Character * pCharacter, bool bClearSpellsCount)
+void CSpellLikeAbilityPage::SetCharacter(Character * pCharacter)
 {
     if (m_pCharacter != NULL)
     {
@@ -81,7 +81,7 @@ void CSpellLikeAbilityPage::SetCharacter(Character * pCharacter, bool bClearSpel
         m_pCharacter->DetachObserver(this);
     }
     m_pCharacter = pCharacter;
-    m_slas.SetCharacter(pCharacter, bClearSpellsCount);
+    m_slas.SetCharacter(pCharacter);
     if (m_pCharacter != NULL)
     {
         Build* pBuild = m_pCharacter->ActiveBuild();

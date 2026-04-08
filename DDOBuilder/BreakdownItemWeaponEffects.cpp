@@ -624,12 +624,14 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
     pWeaponBreakdown->SetWeaponTypes(wtMain, wtOffhand);
 
     // finesseable weapons use highest of strength or dexterity
-    // shuriken/dart and throwing dagger get highest of strength or dexterity
+    // any thrown weapon gets highest of strength or dexterity for attack/damage
     bool bFinesseable = m_pCharacter->ActiveBuild()->IsWeaponInGroup("Finesseable", item.Weapon());
     bool bIsShuriken = item.Weapon() == Weapon_Shuriken;
     bool bIsDart = item.Weapon() == Weapon_Dart;
     bool bIsThrowingDagger = item.Weapon() == Weapon_ThrowingDagger;
-    if (bFinesseable || bIsShuriken || bIsDart || bIsThrowingDagger)
+    bool bThrowingAxe = item.Weapon() == Weapon_ThrowingAxe;
+    bool bThrowingHammer = item.Weapon() == Weapon_ThrowingHammer;
+    if (bFinesseable || bIsShuriken || bIsDart || bIsThrowingDagger || bThrowingAxe || bThrowingHammer)
     {
         Effect e1(Effect_Weapon_AttackAbility, "", "Weapon Enchantment", 1);
         std::list<std::string> items;
@@ -648,30 +650,31 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
                 m_pCharacter->ActiveBuild(),
                 e2);
     }
-    bool bIsLightWeapon = m_pCharacter->ActiveBuild()->IsWeaponInGroup("Light", item.Weapon());
-    if (bIsLightWeapon)
+    if (bIsShuriken || bIsDart || bIsThrowingDagger || bThrowingAxe || bThrowingHammer)
     {
-        Effect e1(Effect_Weapon_AttackAbility, "", "Weapon Enchantment", 1);
+        Effect e1(Effect_Weapon_DamageAbility, "", "Weapon Enchantment", 1);
         std::list<std::string> items;
-        items.push_back("Dexterity");
+        items.push_back("Strength");
         items.push_back((LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap));
         e1.SetItem(items);
         pWeaponBreakdown->ItemEffectApplied(
                 m_pCharacter->ActiveBuild(),
                 e1);
         Effect e2(Effect_Weapon_DamageAbility, "", "Weapon Enchantment", 1);
-        e2.SetItem(items);
+        std::list<std::string> items2;
+        items2.push_back("Dexterity");
+        items2.push_back((LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap));
+        e2.SetItem(items2);
         pWeaponBreakdown->ItemEffectApplied(
                 m_pCharacter->ActiveBuild(),
                 e2);
     }
-    bool bThrowingAxe = item.Weapon() == Weapon_ThrowingAxe;
-    bool bThrowingHammer = item.Weapon() == Weapon_ThrowingHammer;
-    if (bThrowingAxe || bThrowingHammer)
+    bool bIsLightWeapon = m_pCharacter->ActiveBuild()->IsWeaponInGroup("Light", item.Weapon());
+    if (bIsLightWeapon)
     {
         Effect e1(Effect_Weapon_AttackAbility, "", "Weapon Enchantment", 1);
         std::list<std::string> items;
-        items.push_back("Strength");
+        items.push_back("Dexterity");
         items.push_back((LPCTSTR)EnumEntryText(item.Weapon(), weaponTypeMap));
         e1.SetItem(items);
         pWeaponBreakdown->ItemEffectApplied(

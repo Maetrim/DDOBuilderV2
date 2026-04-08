@@ -153,6 +153,8 @@ void TrainedFeat::TranslateOldFeatNames()
     static std::string nameTranslations[] =
     {
         // old feat name                        new feat name
+        "Purity of Heart",                      "Purity of Spirit",
+
         "Air Domain Tier I",                    "Domain of Air",
         "Air Domain Tier II",                   "Improved Domain of Air",
         "Air Domain Tier III",                  "Greater Domain of Air",

@@ -14,7 +14,7 @@ class CSpellsPage :
         CSpellsPage(const std::string& ct, AbilityType ability);
         ~CSpellsPage();
 
-        void SetCharacter(Character* pCharacter, bool bClearSpellsCount);
+        void SetCharacter(Character* pCharacter);
         void SetTrainableSpells(const std::vector<size_t>& spellsPerLevel);
 
         CSpellsControl * SpellsControl();

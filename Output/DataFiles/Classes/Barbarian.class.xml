@@ -339,8 +339,9 @@ regular Rage. Enhances the regular Barbarian Rage feat.
     <Feat>
       <Name>Indomitable Will</Name>
       <Description>While in a rage, the Barbarian receives a +4 bonus on Will saves to
-resist enchantment spells. This bonus stacks with all other modifiers, including
-the morale bonus on Will saves he also receives during his rage.</Description>
+resist enchantment spells (bugged affects all Will saves). This bonus stacks
+with all other modifiers, including the morale bonus on Will saves he also
+receives during his rage.</Description>
       <Acquire>Automatic</Acquire>
       <Icon>IndomitableWill</Icon>
       <Effect>
@@ -368,6 +369,19 @@ the morale bonus on Will saves he also receives during his rage.</Description>
               <Item>Razorclaw Shifter: Shifted Form</Item>
             </Requirement>
           </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Will</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Requirements>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Rage</Item>
+            </Requirement>
         </Requirements>
       </Effect>
     </Feat>

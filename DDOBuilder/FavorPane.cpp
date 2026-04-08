@@ -421,13 +421,16 @@ void CFavorPane::PopulateQuestList()
             favorPerPatron[static_cast<size_t>(pt)] += favor;
             favorPerPatron[Patron_TotalFavor] += favor;
         }
-        const Challenge& challenge = FindChallenge(fqit.Name());
-        if (challenge.Name() != "Bad Challenge")
+        else
         {
-            PatronType pt = challenge.Patron();
-            int favor = challenge.Favor(fqit.Difficulty());
-            favorPerPatron[static_cast<size_t>(pt)] += favor;
-            favorPerPatron[Patron_TotalFavor] += favor;
+            const Challenge& challenge = FindChallenge(fqit.Name());
+            if (challenge.Name() != "Bad Challenge")
+            {
+                PatronType pt = challenge.Patron();
+                int favor = challenge.Favor(fqit.Difficulty());
+                favorPerPatron[static_cast<size_t>(pt)] += favor;
+                favorPerPatron[Patron_TotalFavor] += favor;
+            }
         }
     }
     for (size_t i = 0; i < MAX_FAVOR_ITEMS; ++i)
@@ -564,9 +567,9 @@ void CFavorPane::OnRightClickListQuests(NMHDR* /*pNMHDR*/, LRESULT* pResult)
             {
                 pBuild->SetQuestsCompletions(selectedQs);
             }
+            // update the display and total favor etc
+            PopulateQuestList();
         }
-        // update the display and total favor etc
-        PopulateQuestList();
     }
     *pResult = 0;
 }
@@ -847,23 +850,27 @@ void CFavorPane::RemoveQuestDuplicates(std::list<CompletedQuest>& favorQs)
         std::list<CompletedQuest>::iterator it = favorQs.begin();
         while (it != favorQs.end())
         {
-            std::list<CompletedQuest>::iterator nit = it;
-            const Quest& itq = FindQuest(it->Name());
-            nit++;
-            while (nit != favorQs.end())
+            const Challenge& c = FindChallenge(it->Name());
+            if (c.Name() == "Bad Challenge")
             {
-                const Quest& nitq = FindQuest(nit->Name());
-                if (itq.Name() == nitq.Name())
+                std::list<CompletedQuest>::iterator nit = it;
+                const Quest& itq = FindQuest(it->Name());
+                nit++;
+                while (nit != favorQs.end())
                 {
-                    QuestDifficulty qd1 = it->Difficulty();
-                    QuestDifficulty qd2 = nit->Difficulty();
-                    QuestDifficulty nqd = max(qd1, qd2);
-                    it->Set_Difficulty(nqd);
-                    nit = favorQs.erase(nit);
-                }
-                else
-                {
-                    ++nit;
+                    const Quest& nitq = FindQuest(nit->Name());
+                    if (itq.Name() == nitq.Name())
+                    {
+                        QuestDifficulty qd1 = it->Difficulty();
+                        QuestDifficulty qd2 = nit->Difficulty();
+                        QuestDifficulty nqd = max(qd1, qd2);
+                        it->Set_Difficulty(nqd);
+                        nit = favorQs.erase(nit);
+                    }
+                    else
+                    {
+                        ++nit;
+                    }
                 }
             }
             ++it;

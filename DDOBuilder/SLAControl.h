@@ -99,7 +99,7 @@ class CSLAControl :
 
         void ClearSLAs();
 
-        void SetCharacter(Character * pCharacter, bool bClearSpellsCount);
+        void SetCharacter(Character * pCharacter);
         void AddSLA(const std::string& slaName, const std::string& className, size_t stacks, const std::vector<double>& amountVector);
         void RevokeSLA(const std::string& slaName);
         const std::list<SLA>& SLAs() const;

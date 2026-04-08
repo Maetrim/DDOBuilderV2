@@ -71,10 +71,10 @@ BOOL CSpellsPage::OnEraseBkgnd(CDC* pDC)
     return OnEraseBackground(this, pDC, controlsNotToBeErased);
 }
 
-void CSpellsPage::SetCharacter(Character * pCharacter, bool bClearSpellsCount)
+void CSpellsPage::SetCharacter(Character * pCharacter)
 {
     m_pCharacter = pCharacter;
-    m_spells.SetCharacter(pCharacter, m_classType, bClearSpellsCount);
+    m_spells.SetCharacter(pCharacter, m_classType);
     if (m_pCharacter != NULL)
     {
         if (m_pCharacter->ActiveBuild() != NULL)

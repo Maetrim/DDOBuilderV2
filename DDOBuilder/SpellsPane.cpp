@@ -125,12 +125,12 @@ LRESULT CSpellsPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
             CSpellLikeAbilityPage * pSLAPage = dynamic_cast<CSpellLikeAbilityPage*>(m_pagePointers[i]);
             if (pSLAPage != NULL)
             {
-                pSLAPage->SetCharacter(m_pCharacter, false);
+                pSLAPage->SetCharacter(m_pCharacter);
             }
             CSpellsPage * pSpellPage = dynamic_cast<CSpellsPage*>(m_pagePointers[i]);
             if (pSpellPage != NULL)
             {
-                pSpellPage->SetCharacter(m_pCharacter, false);
+                pSpellPage->SetCharacter(m_pCharacter);
             }
         }
     }
@@ -270,7 +270,7 @@ void CSpellsPane::DetermineSpellViews()
                             tcItem.pszText = text.GetBuffer();
                             tcItem.mask = TCIF_TEXT;
                             pTabCtrl->SetItem(pTabCtrl->GetItemCount() - 1, &tcItem);
-                            page->SetCharacter(m_pCharacter, true);
+                            page->SetCharacter(m_pCharacter);
                             page->SetTrainableSpells(spellSlots);
                         }
                     }
@@ -280,7 +280,7 @@ void CSpellsPane::DetermineSpellViews()
                         CSpellsPage * page = dynamic_cast<CSpellsPage *>(m_pagePointers[ci+1]);
                         if (page != NULL)
                         {
-                            page->SetCharacter(m_pCharacter, true);   // clears old fixed spells
+                            page->SetCharacter(m_pCharacter);   // clears old fixed spells
                             page->SetTrainableSpells(spellSlots);
                         }
                     }
@@ -311,7 +311,7 @@ void CSpellsPane::DetermineSpellViews()
         else
         {
             CSpellLikeAbilityPage* page = dynamic_cast<CSpellLikeAbilityPage*>(m_pagePointers[0]);
-            page->SetCharacter(m_pCharacter, true);   // clears old SLAs
+            page->SetCharacter(m_pCharacter);   // clears old SLAs
             // no build means no spell pages
             for (size_t pi = 1; pi < m_pagePointers.size(); ++pi)
             {

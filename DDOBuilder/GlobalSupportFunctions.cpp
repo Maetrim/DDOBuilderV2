@@ -382,7 +382,7 @@ const Quest& FindQuest(const std::string& questName)
     const std::list<Quest>& quests = Quests();
     for (auto&& it : quests)
     {
-        std::string name = it.Name();
+        const std::string& name = it.Name();
         if (name == questName)
         {
             // this is the quest we are looking for
@@ -404,7 +404,7 @@ const Challenge& FindChallenge(const std::string& challengeName)
     const std::list<Challenge>& challenges = Challenges();
     for (auto&& it : challenges)
     {
-        std::string name = it.Name();
+        const std::string& name = it.Name();
         if (name == challengeName)
         {
             // this is the challenge we are looking for

@@ -518,11 +518,6 @@ void CMainFrame::OnApplicationLook(UINT id)
             pView->SendMessage(UWM_THEME_CHANGED, bDark, 0L);
         }
     }
-    for (size_t i = 0; i < m_dockablePanes.size(); ++i)
-    {
-        CView* pView = m_dockablePanes[i]->GetView();
-        pView->SendMessage(UWM_THEME_CHANGED, bDark, 0L);
-    }
 
     RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW | RDW_FRAME | RDW_ERASE);
 
@@ -588,10 +583,6 @@ void CMainFrame::NewDocument(CDDOBuilderDoc * pDoc)
             pView->SendMessage(UWM_NEW_DOCUMENT, (WPARAM)pDoc, (LPARAM)pDoc->GetCharacter());
         }
     }
-    for (size_t x = 0; x < m_dockablePanes.size(); x++)
-    {
-        m_dockablePanes[x]->SetDocumentAndCharacter(pDoc, pDoc->GetCharacter());
-    }
 }
 
 CCustomDockablePane* CMainFrame::CreateDockablePane(
@@ -639,39 +630,21 @@ BOOL CMainFrame::OnCmdMsg(
 {
     BOOL bReturn = FALSE;
 
-    // see if a child pane can handle it
-    if (FALSE == bReturn)
+    // offer the message to any views for the active open document
+    POSITION pos = AfxGetApp()->m_pDocManager->GetFirstDocTemplatePosition();
+    CDocTemplate * pTemplate = AfxGetApp()->m_pDocManager->GetNextDocTemplate(pos);
+    pos = pTemplate->GetFirstDocPosition();
+    CDocument * pDoc = pTemplate->GetNextDoc(pos);
+
+    if (pDoc != NULL)
     {
-        // Offer command to child views by looking in each docking window which
-        // holds a view until we get the 1st view that handles the message.
-        for (size_t x = 0; bReturn == FALSE && x < m_dockablePanes.size(); x++)
+        pos = pDoc->GetFirstViewPosition();
+        while (pos != NULL && bReturn == FALSE)
         {
-            CView * pView = m_dockablePanes[x]->GetView();
+            CView * pView = pDoc->GetNextView(pos);
             if (pView != NULL)
             {
                 bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
-            }
-        }
-    }
-
-    if (FALSE == bReturn)
-    {
-        // also offer the message to any views for the active open document
-        POSITION pos = AfxGetApp()->m_pDocManager->GetFirstDocTemplatePosition();
-        CDocTemplate * pTemplate = AfxGetApp()->m_pDocManager->GetNextDocTemplate(pos);
-        pos = pTemplate->GetFirstDocPosition();
-        CDocument * pDoc = pTemplate->GetNextDoc(pos);
-
-        if (pDoc != NULL)
-        {
-            pos = pDoc->GetFirstViewPosition();
-            while (pos != NULL && bReturn == FALSE)
-            {
-                CView * pView = pDoc->GetNextView(pos);
-                if (pView != NULL)
-                {
-                    bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
-                }
             }
         }
     }
@@ -866,7 +839,8 @@ void CMainFrame::LoadComplete()
         }
     }
     m_bLoadComplete = true;
-    //m_menuToolbar.LoadToolBar(IDR_MENUICONS_TOOLBAR);
+    CDDOBuilderDoc* pDDODoc = dynamic_cast<CDDOBuilderDoc*>(pDoc);
+    NewDocument(pDDODoc);   // ensure all views have the doc pointers etc
 }
 
 MouseHook* CMainFrame::GetMouseHook()

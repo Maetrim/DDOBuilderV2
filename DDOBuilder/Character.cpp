@@ -651,7 +651,14 @@ void Character::MoveSpecialFeatsIfRequired()
         }
         else
         {
-            ++tfit;
+            if (feat.Name() == "Feat not found")
+            {
+                tfit = feats.erase(tfit);   // remove from our list
+            }
+            else
+            {
+                ++tfit;
+            }
         }
     }
     m_SpecialFeats.Set_Feats(feats);
