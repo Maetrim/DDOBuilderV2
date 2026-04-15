@@ -7,7 +7,7 @@
 // CMFCButtonMMRelay
 static const COLORREF clrDefault = (COLORREF) -1;
 
-IMPLEMENT_DYNAMIC(CMFCButtonMMRelay, CMFCButton)
+IMPLEMENT_DYNAMIC(CMFCButtonMMRelay, CMFCButtonEx)
 
 CMFCButtonMMRelay::CMFCButtonMMRelay()
 {
@@ -17,7 +17,7 @@ CMFCButtonMMRelay::~CMFCButtonMMRelay()
 {
 }
 
-BEGIN_MESSAGE_MAP(CMFCButtonMMRelay, CMFCButton)
+BEGIN_MESSAGE_MAP(CMFCButtonMMRelay, CMFCButtonEx)
     ON_WM_MOUSEMOVE()
     ON_WM_RBUTTONUP()
     ON_WM_MBUTTONDOWN()
@@ -36,7 +36,7 @@ void CMFCButtonMMRelay::SetTransparent()
 
 void CMFCButtonMMRelay::OnMouseMove(UINT nFlags, CPoint point)
 {
-    CMFCButton::OnMouseMove(nFlags, point);
+    CMFCButtonEx::OnMouseMove(nFlags, point);
     // also let our parent know about the mouse move event
     ClientToScreen(&point);
     GetParent()->ScreenToClient(&point);

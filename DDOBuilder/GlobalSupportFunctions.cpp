@@ -12,12 +12,15 @@
 #include "Spell.h"
 #include "IgnoredListFile.h"
 #include <algorithm>
+#include <shellscalingapi.h> // GetDpiForMonitor
+#pragma comment(lib, "Shcore.lib")
 
 namespace
 {
     const int f_noWidthSetup = -1;
     const char f_registrySection[] = "ColumnWidths";
     const int c_textFieldSize = 256;
+    const unsigned int c_defaultDPI = 96; //dots per inch
 
     void f_RemoveInvalidKeyCharacters(CString* key)
     {
@@ -2418,5 +2421,43 @@ bool IsShield(WeaponType wt)
             break;
     }
     return isShield;
+}
+
+double GetDPIMultiplier(HWND hwnd)
+{
+    UINT dpiX = c_defaultDPI;
+    UINT dpiY = c_defaultDPI;
+    HMONITOR hMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+    HMODULE hShcore = LoadLibrary(_T("Shcore.dll"));
+    //MSDN claims dpiX and dpiY are always identical
+    GetDpiForMonitor(hMonitor, MDT_EFFECTIVE_DPI, &dpiX, &dpiY);
+    FreeLibrary(hShcore);
+    return (static_cast<double>(dpiY) / c_defaultDPI);
+}
+
+void DefaultFont(CFont& font)
+{
+    NONCLIENTMETRICS ncm = { 0 };
+    ncm.cbSize = sizeof(NONCLIENTMETRICS);
+    SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
+    font.CreateFontIndirect(&(ncm.lfMessageFont));
+}
+
+void ExtractImage(CImageList& il, int imageIndex, CDC* pDC, CBitmap& bitmap)
+{
+    IMAGEINFO ii;
+    il.GetImageInfo(imageIndex, &ii);
+    CDC memoryDc;
+    VERIFY(memoryDc.CreateCompatibleDC(pDC) != 0);
+    int memDcSaveIndex = memoryDc.SaveDC();
+    // double buffer drawing to avoid flickering
+    bitmap.CreateCompatibleBitmap(
+            pDC,
+            32,
+            32);
+    memoryDc.SelectObject(bitmap);
+    il.Draw(&memoryDc, imageIndex, CPoint(0, 0), ILD_TRANSPARENT); //ILD_NORMAL
+    VERIFY(memoryDc.RestoreDC(memDcSaveIndex) != 0);
+    VERIFY(memoryDc.DeleteDC() != 0);
 }
 

@@ -66,6 +66,7 @@ void CReaperEnhancementsPane::OnSize(UINT nType, int cx, int cy)
             && IsWindow(m_treeViews[0]->GetSafeHwnd())
             && IsWindowVisible())
     {
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
         // we can position and show all the visible enhancement windows
         // with scrolls bars as required
 
@@ -73,8 +74,8 @@ void CReaperEnhancementsPane::OnSize(UINT nType, int cx, int cy)
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_sizeX + c_controlSpacing,
-                c_sizeY + c_controlSpacing);
+                static_cast<LONG>(c_sizeX * dScaleFactor) + c_controlSpacing,
+                static_cast<LONG>(c_sizeY * dScaleFactor) + c_controlSpacing);
 
         ASSERT(m_treeViews.size() == MST_Number);
         std::vector<bool> isShown(MST_Number, false);  // gets set to true when displayed

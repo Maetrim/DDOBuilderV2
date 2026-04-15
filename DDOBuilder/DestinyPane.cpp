@@ -126,6 +126,7 @@ void CDestinyPane::OnSize(UINT nType, int cx, int cy)
             && IsWindow(m_treeViews[0]->GetSafeHwnd())
             && IsWindowVisible())
     {
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
         // we can position and show all the visible enhancement windows
         // with scrolls bars as required
 
@@ -133,8 +134,8 @@ void CDestinyPane::OnSize(UINT nType, int cx, int cy)
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_sizeX + c_controlSpacing,
-                c_sizeY + c_controlSpacing);
+                static_cast<LONG>(c_sizeX * dScaleFactor) + c_controlSpacing,
+                static_cast<LONG>(c_sizeY * dScaleFactor) + c_controlSpacing);
         int scrollX = GetScrollPos(SB_HORZ);
         int scrollY = GetScrollPos(SB_VERT);
         itemRect -= CPoint(scrollX, scrollY);

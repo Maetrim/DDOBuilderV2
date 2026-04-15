@@ -4,6 +4,7 @@
 #include "Resource.h"
 #include "Character.h"
 #include "BreakdownItem.h"
+#include "CMFCButtonEx.h"
 
 class CBonusesPane :
     public CFormView,
@@ -49,9 +50,9 @@ private:
     bool m_bHadInitialUpdate;
     bool m_bPopulating;
     CListCtrl m_listBonuses;
-    CMFCButton m_buttonAdd;
-    CMFCButton m_buttonRemove;
-    CMFCButton m_buttonMoveUp;
-    CMFCButton m_buttonMoveDown;
+    CMFCButtonEx m_buttonAdd;
+    CMFCButtonEx m_buttonRemove;
+    CMFCButtonEx m_buttonMoveUp;
+    CMFCButtonEx m_buttonMoveDown;
 };
 

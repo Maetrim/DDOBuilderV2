@@ -57,71 +57,14 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_filigreeIndex(0),
     m_bIsArtifactFiligree(false),
     m_tooltipFiligree(c_noFiligreeSelection),
-    m_menuPoint(0, 0)
+    m_menuPoint(0, 0),
+    m_lastDpiScaling(1.0)       // assumed
 {
     //{{AFX_DATA_INIT(CInventoryDialog)
     //}}AFX_DATA_INIT
     // there are a fixed list of hit boxes which are hard coded here
     // order is important as used for drawing items (declare in same order as enum InventorySlotType)
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Helmet, CRect(72, 24, 104, 56)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Necklace, CRect(117, 24, 149, 56)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Count, CRect(0, 0, 0, 0)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticArmor, CRect(93, 294, 125, 326)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticCloak, CRect(133, 294, 155, 326)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticHelm, CRect(53, 294, 85, 326)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticWeapon1, CRect(73, 332, 105, 354)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticWeapon2, CRect(113, 332, 145, 354)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_FindItems, CRect(99, 96, 128, 124)));
-
-    // fixed hit boxes for Filigree items
-    m_hitBoxesFiligrees.push_back(FiligreeHitBox(c_sentientGem, CRect(c_jewelX, c_jewelY, c_jewelX + 34, c_jewelY + 34)));
-    CRect filigreeLocation(c_filigreeX, c_filigreeY, c_filigreeX + 34, c_filigreeY + 48);
-    for (size_t i = 0; i < MAX_FILIGREE; ++i)
-    {
-        m_hitBoxesFiligrees.push_back(FiligreeHitBox(i, filigreeLocation));
-        // move location for next filigree
-        if ((i % 5) == 4)
-        {
-            // start of next row
-            filigreeLocation += CPoint(c_filigreeXOffset * -4, c_filigreeYOffset);
-        }
-        else
-        {
-            // move across one
-            filigreeLocation += CPoint(c_filigreeXOffset, 0);
-        }
-    }
-    // now add the artifact filigree hit locations
-    filigreeLocation = CRect(c_filigreeX, c_filigreeArtifactY, c_filigreeX + 34, c_filigreeArtifactY + 48);
-    for (size_t i = 0; i < MAX_ARTIFACT_FILIGREE; ++i)
-    {
-        m_hitBoxesArtifactFiligrees.push_back(FiligreeHitBox(i, filigreeLocation));
-        // move location for next filigree
-        if ((i % 5) == 4)
-        {
-            // start of next row
-            filigreeLocation += CPoint(c_filigreeXOffset * -4, c_filigreeYOffset);
-        }
-        else
-        {
-            // move across one
-            filigreeLocation += CPoint(c_filigreeXOffset, 0);
-        }
-    }
+    InitialiseHitBoxes();
     // load images used
     LoadImageFile("DataFiles\\UIImages\\", "Inventory", &m_imageBackground, CSize(418, 385), true);
     LoadImageFile("DataFiles\\UIImages\\", "Inventory", &m_imageBackgroundDisabled, CSize(418, 385), true);
@@ -132,6 +75,72 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     LoadImageFile("DataFiles\\UIImages\\", "CoreClickieHighlight", &m_imagesItemHighlight, CSize(40, 40), true);
     LoadImageFile("DataFiles\\UIImages\\", "FiligreeHighlight", &m_imagesFiligreeHighlight, CSize(38, 52), true);
     MakeGrayScale(&m_imageBackgroundDisabled, c_transparentColour);
+}
+
+void CInventoryDialog::InitialiseHitBoxes()
+{
+    m_hitBoxesInventory.clear();
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Helmet, CRect(72, 24, 104, 56), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Necklace, CRect(117, 24, 149, 56), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Count, CRect(0, 0, 0, 0), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticArmor, CRect(93, 294, 125, 326), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticCloak, CRect(133, 294, 155, 326), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticHelm, CRect(53, 294, 85, 326), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticWeapon1, CRect(73, 332, 105, 354), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_CosmeticWeapon2, CRect(113, 332, 145, 354), m_lastDpiScaling));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_FindItems, CRect(99, 96, 128, 124), m_lastDpiScaling));
+
+    m_hitBoxesFiligrees.clear();
+    // fixed hit boxes for Filigree items
+    m_hitBoxesFiligrees.push_back(FiligreeHitBox(c_sentientGem, CRect(c_jewelX, c_jewelY, c_jewelX + 34, c_jewelY + 34), m_lastDpiScaling));
+    CRect filigreeLocation(c_filigreeX, c_filigreeY, c_filigreeX + 34, c_filigreeY + 48);
+    for (size_t i = 0; i < MAX_FILIGREE; ++i)
+    {
+        m_hitBoxesFiligrees.push_back(FiligreeHitBox(i, filigreeLocation, m_lastDpiScaling));
+        // move location for next filigree
+        if ((i % 5) == 4)
+        {
+            // start of next row
+            filigreeLocation += CPoint(c_filigreeXOffset * -4, c_filigreeYOffset);
+        }
+        else
+        {
+            // move across one
+            filigreeLocation += CPoint(c_filigreeXOffset, 0);
+        }
+    }
+    m_hitBoxesArtifactFiligrees.clear();
+    // now add the artifact filigree hit locations
+    filigreeLocation = CRect(c_filigreeX, c_filigreeArtifactY, c_filigreeX + 34, c_filigreeArtifactY + 48);
+    for (size_t i = 0; i < MAX_ARTIFACT_FILIGREE; ++i)
+    {
+        m_hitBoxesArtifactFiligrees.push_back(FiligreeHitBox(i, filigreeLocation, m_lastDpiScaling));
+        // move location for next filigree
+        if ((i % 5) == 4)
+        {
+            // start of next row
+            filigreeLocation += CPoint(c_filigreeXOffset * -4, c_filigreeYOffset);
+        }
+        else
+        {
+            // move across one
+            filigreeLocation += CPoint(c_filigreeXOffset, 0);
+        }
+    }
 }
 
 void CInventoryDialog::DoDataExchange(CDataExchange* pDX)
@@ -178,6 +187,12 @@ BOOL CInventoryDialog::OnEraseBkgnd(CDC* pDC)
 
 void CInventoryDialog::OnPaint()
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
+    if (dScaleFactor != m_lastDpiScaling)
+    {
+        m_lastDpiScaling = dScaleFactor;
+        InitialiseHitBoxes();
+    }
     CPaintDC pdc(this); // validates the client area on destruction
     pdc.SaveDC();
     // ensure we have a background bitmap
@@ -221,7 +236,7 @@ void CInventoryDialog::OnPaint()
     {
         if (m_gearSet.IsSlotRestricted((InventorySlotType)i, m_pBuild))
         {
-            CRect itemRect = m_hitBoxesInventory[i - 1].Rect();
+            CRect itemRect = m_hitBoxesInventory[i - 1].UnscaledRect();
             m_imagesCannotEquip.TransparentBlt(
                     memoryDc.GetSafeHdc(),
                     itemRect.left,
@@ -231,7 +246,7 @@ void CInventoryDialog::OnPaint()
         }
         else if (m_gearSet.HasItemInSlot((InventorySlotType)i))
         {
-            CRect itemRect = m_hitBoxesInventory[i - 1].Rect();
+            CRect itemRect = m_hitBoxesInventory[i - 1].UnscaledRect();
             POINT p;
             p.x = itemRect.left;
             p.y = itemRect.top;
@@ -415,7 +430,7 @@ void CInventoryDialog::OnPaint()
                             filigreeLocation.cy+1,
                             32,
                             32);
-                // if this item has this set bonus, we need to highlight the item
+                    // if this item has this set bonus, we need to highlight the item
                     if (filigree.HasSetBonus(m_setBonusName))
                     {
                         m_imagesFiligreeHighlight.TransparentBlt(
@@ -452,15 +467,17 @@ void CInventoryDialog::OnPaint()
         }
     }
     // now draw to display
-    pdc.BitBlt(
+    VERIFY(pdc.StretchBlt(
+            0,
+            0,
+            static_cast<LONG>(m_bitmapSize.cx * dScaleFactor),
+            static_cast<LONG>(m_bitmapSize.cy * dScaleFactor),
+            &memoryDc,
             0,
             0,
             m_bitmapSize.cx,
             m_bitmapSize.cy,
-            &memoryDc,
-            0,
-            0,
-            SRCCOPY);
+            SRCCOPY) != 0);
     memoryDc.RestoreDC(-1);
     memoryDc.DeleteDC();
     pdc.RestoreDC(-1);

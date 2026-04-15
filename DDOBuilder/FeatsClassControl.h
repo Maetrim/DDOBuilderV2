@@ -133,6 +133,7 @@ private:
     CComboBoxTooltip m_featSelector;
     bool m_bAlternateFeat;
     bool m_bToggleSpell;
+    CFont m_defaultFont;
 };
 
 

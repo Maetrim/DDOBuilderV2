@@ -139,7 +139,8 @@ CEnhancementTreeDialog::CEnhancementTreeDialog(
     m_bCreateHitBoxes(false),
     m_tipCreated(false),
     m_pTooltipItem(NULL),
-    m_bDraggingTree(false)
+    m_bDraggingTree(false),
+    m_lastDpiScaling(1.0)       // assumed
 {
     InitialiseStaticImages();
     //{{AFX_DATA_INIT(CEnhancementTreeDialog)
@@ -224,6 +225,12 @@ BOOL CEnhancementTreeDialog::OnEraseBkgnd(CDC* pDC)
 
 void CEnhancementTreeDialog::OnPaint()
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
+    if (dScaleFactor != m_lastDpiScaling)
+    {
+        m_lastDpiScaling = dScaleFactor;
+        m_hitBoxes.clear(); // scale has changed, force new hit boxes
+    }
     CPaintDC pdc(this); // validates the client area on destruction
     int dcSaveIndex = pdc.SaveDC();
     ASSERT(dcSaveIndex != 0);
@@ -248,7 +255,14 @@ void CEnhancementTreeDialog::OnPaint()
     int memDcSaveIndex = memoryDc.SaveDC();
     ASSERT(memDcSaveIndex != 0);
     VERIFY(memoryDc.SelectObject(&m_cachedDisplay) != NULL);
-    VERIFY(memoryDc.SelectStockObject(DEFAULT_GUI_FONT) != NULL);
+    // use a smaller font for drawing any x/y when items are rendered
+    LOGFONT lf;
+    ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
+    strcpy_s(lf.lfFaceName, "Calibri");
+    lf.lfHeight = 17;
+    CFont uiFont;
+    VERIFY(uiFont.CreateFontIndirect(&lf) != 0);
+    VERIFY(memoryDc.SelectObject(&uiFont) != 0);
 
     // first render the tree background
     VERIFY(m_imageBackground.BitBlt(
@@ -315,7 +329,6 @@ void CEnhancementTreeDialog::OnPaint()
                     24) != 0);
         }
         // use a smaller font for drawing any x/y when items are rendered
-        LOGFONT lf;
         ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
         strcpy_s(lf.lfFaceName, "Consolas");
         lf.lfHeight = 11;
@@ -343,14 +356,16 @@ void CEnhancementTreeDialog::OnPaint()
         VERIFY(memoryDc.SelectObject(pOldFont) == &smallFont);
     }
     // now draw to display
-    VERIFY(pdc.BitBlt(
+    VERIFY(pdc.StretchBlt(
+            0,
+            0,
+            static_cast<LONG>(m_bitmapSize.cx * dScaleFactor),
+            static_cast<LONG>(m_bitmapSize.cy * dScaleFactor),
+            &memoryDc,
             0,
             0,
             m_bitmapSize.cx,
             m_bitmapSize.cy,
-            &memoryDc,
-            0,
-            0,
             SRCCOPY) != 0);
     VERIFY(memoryDc.RestoreDC(memDcSaveIndex) != 0);
     VERIFY(memoryDc.DeleteDC() != 0);
@@ -536,7 +551,12 @@ void CEnhancementTreeDialog::RenderItemCore(
 
     if (m_bCreateHitBoxes)
     {
-        EnhancementHitBox hitBox(item, itemRect);
+        CRect scaledRect(itemRect);
+        scaledRect.left = static_cast<int>(scaledRect.left * m_lastDpiScaling);
+        scaledRect.right = static_cast<int>(scaledRect.right * m_lastDpiScaling);
+        scaledRect.top = static_cast<int>(scaledRect.top * m_lastDpiScaling);
+        scaledRect.bottom = static_cast<int>(scaledRect.bottom * m_lastDpiScaling);
+        EnhancementHitBox hitBox(item, scaledRect);
         m_hitBoxes.push_back(hitBox);
     }
 
@@ -585,7 +605,12 @@ void CEnhancementTreeDialog::RenderItemClickie(
 
     if (m_bCreateHitBoxes)
     {
-        EnhancementHitBox hitBox(item, itemRect);
+        CRect scaledRect(itemRect);
+        scaledRect.left = static_cast<int>(scaledRect.left * m_lastDpiScaling);
+        scaledRect.right = static_cast<int>(scaledRect.right * m_lastDpiScaling);
+        scaledRect.top = static_cast<int>(scaledRect.top * m_lastDpiScaling);
+        scaledRect.bottom = static_cast<int>(scaledRect.bottom * m_lastDpiScaling);
+        EnhancementHitBox hitBox(item, scaledRect);
         m_hitBoxes.push_back(hitBox);
     }
 }
@@ -614,7 +639,12 @@ void CEnhancementTreeDialog::RenderItemPassive(
 
     if (m_bCreateHitBoxes)
     {
-        EnhancementHitBox hitBox(item, itemRect);
+        CRect scaledRect(itemRect);
+        scaledRect.left = static_cast<int>(scaledRect.left * m_lastDpiScaling);
+        scaledRect.right = static_cast<int>(scaledRect.right * m_lastDpiScaling);
+        scaledRect.top = static_cast<int>(scaledRect.top * m_lastDpiScaling);
+        scaledRect.bottom = static_cast<int>(scaledRect.bottom * m_lastDpiScaling);
+        EnhancementHitBox hitBox(item, scaledRect);
         m_hitBoxes.push_back(hitBox);
     }
 }

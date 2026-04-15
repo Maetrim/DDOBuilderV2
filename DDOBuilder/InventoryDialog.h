@@ -12,9 +12,13 @@
 class InventoryHitBox
 {
     public:
-        InventoryHitBox(InventorySlotType slot, const CRect & rect) :
-                m_slot(slot), m_rect(rect)
+        InventoryHitBox(InventorySlotType slot, const CRect & rect, double dpiScaling) :
+                m_slot(slot), m_rect(rect), m_unscaledRect(rect)
         {
+            m_rect.left = static_cast<LONG>(m_rect.left * dpiScaling);
+            m_rect.right = static_cast<LONG>(m_rect.right * dpiScaling);
+            m_rect.top = static_cast<LONG>(m_rect.top * dpiScaling);
+            m_rect.bottom = static_cast<LONG>(m_rect.bottom * dpiScaling);
         };
         ~InventoryHitBox() {};
 
@@ -30,16 +34,25 @@ class InventoryHitBox
         {
             return m_rect;
         };
+        CRect UnscaledRect() const
+        {
+            return m_unscaledRect;
+        };
     private:
         InventorySlotType m_slot;
         CRect m_rect;
+        CRect m_unscaledRect;
 };
 class FiligreeHitBox
 {
     public:
-        FiligreeHitBox(int slot, const CRect & rect) :
-                m_slot(slot), m_rect(rect)
+        FiligreeHitBox(int slot, const CRect & rect, double dpiScaling) :
+                m_slot(slot), m_rect(rect), m_unscaledRect(rect)
         {
+            m_rect.left = static_cast<LONG>(m_rect.left * dpiScaling);
+            m_rect.right = static_cast<LONG>(m_rect.right * dpiScaling);
+            m_rect.top = static_cast<LONG>(m_rect.top * dpiScaling);
+            m_rect.bottom = static_cast<LONG>(m_rect.bottom * dpiScaling);
         };
         ~FiligreeHitBox() {};
 
@@ -55,9 +68,14 @@ class FiligreeHitBox
         {
             return m_rect;
         };
+        CRect UnscaledRect() const
+        {
+            return m_unscaledRect;
+        };
     private:
         int m_slot;      // -1 for jewel
         CRect m_rect;
+        CRect m_unscaledRect;
 };
 class CInventoryDialog;
 
@@ -107,6 +125,7 @@ class CInventoryDialog :
         DECLARE_MESSAGE_MAP()
 
     private:
+        void InitialiseHitBoxes();
         InventorySlotType FindItemByPoint(CRect * pRect = NULL) const;
         bool FindFiligreeByPoint(
                 int * filigree,
@@ -161,6 +180,7 @@ class CInventoryDialog :
         std::string m_setBonusName;
         CPoint m_menuPoint;
         std::string m_lastSetbonus;
+        double m_lastDpiScaling;
 };
 
 //{{AFX_INSERT_LOCATION}}

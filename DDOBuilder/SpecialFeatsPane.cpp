@@ -139,11 +139,12 @@ void CSpecialFeatPane::CreateFeatWindows(
     groupWindow->GetWindowRect(wndRect);
     ScreenToClient(&wndRect);
 
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     CRect itemRect(
             c_controlSpacing,
             c_controlSpacing,
-            c_windowSizeX + c_controlSpacing,
-            c_windowSizeY + c_controlSpacing);
+            static_cast<LONG>(c_windowSizeX * dScaleFactor) + c_controlSpacing,
+            static_cast<LONG>(c_windowSizeY * dScaleFactor) + c_controlSpacing);
     itemRect += CPoint(0, wndRect.bottom);
     std::list<Feat>::const_iterator li = featList.begin();
     for (size_t fi = 0; fi < featList.size(); ++fi)
@@ -197,17 +198,18 @@ size_t CSpecialFeatPane::PositionWindows(
         int * maxX,
         int * yPos)
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     // first position the group control
     CRect rctGroup;
     groupWindow->GetWindowRect(&rctGroup);
     rctGroup -= rctGroup.TopLeft();
-    rctGroup.bottom = rctGroup.top + c_windowSizeY;
+    rctGroup.bottom = rctGroup.top + static_cast<LONG>(c_windowSizeY * dScaleFactor);
     rctGroup += CPoint(c_controlSpacing, *yPos);
     // position the group control
     groupWindow->MoveWindow(rctGroup);
 
     // now position the group windows immediately to the right
-    CRect itemRect(c_controlSpacing, *yPos, c_windowSizeX, c_windowSizeY + *yPos);
+    CRect itemRect(c_controlSpacing, *yPos, static_cast<LONG>(c_windowSizeX * dScaleFactor) , static_cast<LONG>(c_windowSizeY * dScaleFactor) + *yPos);
     itemRect += CPoint(rctGroup.Width() + c_windowSpacing + c_windowSpacing, 0);
     for (size_t fi = 0; fi < dialogs.size(); ++fi)
     {

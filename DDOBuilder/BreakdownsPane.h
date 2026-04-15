@@ -14,6 +14,7 @@
 #include "TreeListCtrl.h"
 #include "GroupLine.h"
 #include <map>
+#include "CMFCButtonEx.h"
 
 class BreakdownItemWeaponEffects;
 
@@ -121,10 +122,10 @@ class CBreakdownsPane :
 
         std::vector<BreakdownItem *> m_items;
         MfcControls::CTreeListCtrl m_itemBreakdownTree;
-        CMFCButton m_buttonDpsFile;
-        CMFCButton m_buttonDpsClipboard;
+        CMFCButtonEx m_buttonDpsFile;
+        CMFCButtonEx m_buttonDpsClipboard;
         MfcControls::CGroupLine m_divider;
-        CMFCButton m_buttonClipboard;
+        CMFCButtonEx m_buttonClipboard;
         CListCtrl m_itemBreakdownList;
         bool m_bDraggingDivider;
         int m_treeSizePercent;             // percentage of space used

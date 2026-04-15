@@ -1,8 +1,9 @@
 // CMFCButtonMMRelay
 
 #pragma once
+#include "CMFCButtonEx.h"
 
-class CMFCButtonMMRelay : public CMFCButton
+class CMFCButtonMMRelay : public CMFCButtonEx
 {
     DECLARE_DYNAMIC(CMFCButtonMMRelay)
 

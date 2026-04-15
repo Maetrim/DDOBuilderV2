@@ -4,6 +4,7 @@
 #include "Resource.h"
 #include "Character.h"
 #include "FeatsClassControl.h"
+#include "CMFCButtonEx.h"
 
 class CClassAndFeatPane :
     public CFormView,
@@ -51,7 +52,7 @@ class CClassAndFeatPane :
         CDocument * m_pDocument;
         Character * m_pCharacter;
         CComboBox m_comboBuildLevel;
-        CMFCButton m_buttonSpellToggle;
+        CMFCButtonEx m_buttonSpellToggle;
         CFeatsClassControl m_featsAndClasses;
         bool m_bHadInitialise;
         bool m_bDone1stResize;

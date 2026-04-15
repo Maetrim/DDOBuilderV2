@@ -7,6 +7,7 @@
 #include "IconButton.h"
 #include "InfoTip.h"
 #include "BreakdownItem.h"
+#include "CMFCButtonEx.h"
 
 class EnhancementTree;
 class CEnhancementTreeDialog;
@@ -82,8 +83,8 @@ class CDestinyPane :
             MST_Number = MAX_DESTINY_TREES + 1
         };
         std::list<EnhancementTree> m_availableTrees;
-        CMFCButton m_buttonLoad;
-        CMFCButton m_buttonSave[MAX_DESTINY_TREES];
+        CMFCButtonEx m_buttonLoad;
+        CMFCButtonEx m_buttonSave[MAX_DESTINY_TREES];
         CComboBox m_comboTreeSelect[MST_Number];
         CIconButton m_destinyTrees[16];
         CStatic m_staticPreview;

@@ -15,11 +15,13 @@ CFont InfoTipItem::s_boldFont;
 CFont InfoTipItem::s_smallFont;
 
 // Base class
-InfoTipItem::InfoTipItem() :
+InfoTipItem::InfoTipItem(HWND hwnd) :
+    m_hwnd(hwnd),
     m_requiredSize(0, 0)
 {
     if (!s_bFontsCreated)
     {
+        double dScaleFactor = GetDPIMultiplier(m_hwnd);
         // create the fonts used
         LOGFONT lf;
         ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
@@ -34,7 +36,7 @@ InfoTipItem::InfoTipItem() :
         LOGFONT lfs;
         ZeroMemory((PVOID)&lfs, sizeof(LOGFONT));
         strcpy_s(lfs.lfFaceName, "Consolas");
-        lfs.lfHeight = 11;
+        lfs.lfHeight = static_cast<LONG>(11 * dScaleFactor);
         VERIFY(s_smallFont.CreateFontIndirect(&lfs) != 0);
         s_bFontsCreated = true;
     }
@@ -133,6 +135,7 @@ void InfoTipItem_Header::SetRank(const CString& strRank)
 
 CSize InfoTipItem_Header::Measure(CDC* pDC)
 {
+    double dScaleFactor = GetDPIMultiplier(m_hwnd);
     // +---------------------------------------------------+
     // | +----+ Title Line 1                        Cost x |
     // | |icon| Title Line 2                       Ranks n |
@@ -148,7 +151,7 @@ CSize InfoTipItem_Header::Measure(CDC* pDC)
     CRect rctTitle2;
     pDC->DrawText(m_title, &rctTitle, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
     pDC->DrawText(m_title2, &rctTitle2, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-    rctRequiredSize.bottom += max(rctTitle.Height() * 2, 32);      // 2 lines or icon height
+    rctRequiredSize.bottom += max(rctTitle.Height() * 2, static_cast<LONG>(32 * dScaleFactor));      // 2 lines or icon height
     rctRequiredSize.bottom += c_controlSpacing;                    // also needs a border
     // cost and ranks could be empty (optional)
     CRect rctCost;
@@ -176,18 +179,21 @@ CSize InfoTipItem_Header::Measure(CDC* pDC)
 
 void InfoTipItem_Header::Draw(CDC* pDC, const CRect& rect)
 {
+    double dScaleFactor = GetDPIMultiplier(m_hwnd);
     // note that Rect is the area this item needs to draw into
     // the background has already been erased
     // draw the icon
+    long size = static_cast<LONG>(32 * dScaleFactor);
     m_image.TransparentBlt(
             pDC->GetSafeHdc(),
-            CRect(rect.left + c_controlSpacing, rect.top + c_controlSpacing, rect.left + c_controlSpacing + 32, rect.top + c_controlSpacing + 32),
+            CRect(rect.left + c_controlSpacing, rect.top + c_controlSpacing,
+                  rect.left + c_controlSpacing + size, rect.top + c_controlSpacing + size),
             CRect(0, 0, 32, 32));
 
     // render the title in bold
     pDC->SaveDC();
     pDC->SelectObject(s_boldFont);
-    CRect rcTitle(rect.left + c_controlSpacing + 32 + c_controlSpacing, rect.top + c_controlSpacing, rect.right, rect.bottom);
+    CRect rcTitle(rect.left + c_controlSpacing + size + c_controlSpacing, rect.top + c_controlSpacing, rect.right, rect.bottom);
     pDC->DrawText(m_title, rcTitle, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
     CSize sizeTitle = pDC->GetTextExtent(m_title);
     rcTitle += CPoint(0, sizeTitle.cy);
@@ -531,76 +537,78 @@ CSize InfoTipItem_Metamagics::Measure(CDC* pDC)
     // |     Metamagics     |
     // | [][][][][][][][][] | each [] is a metamgic icon which is 32*32
     // +--------------------+
+    double dScaleFactor = GetDPIMultiplier(m_hwnd);
     pDC->SaveDC();
     pDC->SelectObject(s_smallFont);
     CSize text = pDC->GetTextExtent("Metamagics");
     pDC->RestoreDC(-1);
 
     CSize size(0, 0);
-    size.cy = text.cy + 36;     // 2 pixels between items vertically
+    size.cy = text.cy + static_cast<LONG>(32 * dScaleFactor) + 4;     // 2 pixels between items vertically
     size_t metaCount = m_spell.MetamagicCount();
-    size.cx = (32 * metaCount) + (2 * (metaCount + 1));
+    size.cx = (static_cast<LONG>(32 * dScaleFactor) * metaCount) + (2 * (metaCount + 1));
     m_requiredSize = size;
     return m_requiredSize;
 }
 
 void InfoTipItem_Metamagics::Draw(CDC* pDC, const CRect& rect)
 {
+    double dScaleFactor = GetDPIMultiplier(m_hwnd);
     pDC->SaveDC();
     pDC->SelectObject(s_smallFont);
     CSize text = pDC->GetTextExtent("Metamagics");
     pDC->TextOut(rect.left + 2, rect.top, "Metamagics");
     // rect for each icon
-    CRect iconRect(rect.left + 2, rect.top + text.cy + 2, rect.left + 34, rect.top + text.cy + 34);
+    CRect iconRect(rect.left + 2, rect.top + text.cy + 2, rect.left + static_cast<LONG>(32 * dScaleFactor) + 2, rect.top + text.cy + static_cast<LONG>(32 * dScaleFactor) + 2);
     if (m_spell.HasAccelerate())
     {
         DrawIcon(pDC, iconRect, "AccelerateSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasEmbolden())
     {
         DrawIcon(pDC, iconRect, "EmboldenSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasEmpower())
     {
         DrawIcon(pDC, iconRect, "EmpowerSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasEmpowerHealing())
     {
         DrawIcon(pDC, iconRect, "EmpowerHealingSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasEnlarge())
     {
         DrawIcon(pDC, iconRect, "EnlargeSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasExtend())
     {
         DrawIcon(pDC, iconRect, "ExtendSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasHeighten())
     {
         DrawIcon(pDC, iconRect, "HeightenSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasIntensify())
     {
         DrawIcon(pDC, iconRect, "IntensifySpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasMaximize())
     {
         DrawIcon(pDC, iconRect, "MaximizeSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
     if (m_spell.HasQuicken())
     {
         DrawIcon(pDC, iconRect, "QuickenSpell");
-        iconRect += CSize(34, 0);
+        iconRect += CSize(static_cast<LONG>(32 * dScaleFactor) + 2, 0);
     }
 
     pDC->RestoreDC(-1);

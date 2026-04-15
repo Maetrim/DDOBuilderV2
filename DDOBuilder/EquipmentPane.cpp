@@ -164,6 +164,7 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
     if (m_inventoryView != NULL
             && IsWindowVisible())
     {
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
         // position all the windows
         // +------------------------------------------------------------------------+
         // | [Drop List Combo] [N][C][P][D][I][I] [Num Filigrees][List]  +-+ +-+ +-+|
@@ -232,8 +233,8 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
         CRect rctInventory(
                 c_controlSpacing,
                 rctDelete.bottom + c_controlSpacing,
-                c_controlSpacing + 418,
-                rctDelete.bottom + c_controlSpacing + 385);
+                static_cast<LONG>(c_controlSpacing + (418 * dScaleFactor)),
+                static_cast<LONG>(rctDelete.bottom + c_controlSpacing + (385 * dScaleFactor)));
 
         rctStaticSnapshot += CPoint(c_controlSpacing, rctInventory.bottom + c_controlSpacing);
         rctSnapshotCombo += CPoint(rctStaticSnapshot.right + c_controlSpacing, rctInventory.bottom + c_controlSpacing);
@@ -253,8 +254,9 @@ void CEquipmentPane::OnSize(UINT nType, int cx, int cy)
 
         if (m_setbuttons.size() > 0)
         {
+            dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
             CRect itemRect(rctInventory.right + c_controlSpacing, rctInventory.top,
-                rctInventory.right + c_controlSpacing + c_windowSizeX, rctInventory.top + c_controlSpacing + c_windowSizeY);
+                rctInventory.right + c_controlSpacing + static_cast<LONG>(c_windowSizeX * dScaleFactor), rctInventory.top + c_controlSpacing + static_cast<LONG>(c_windowSizeY * dScaleFactor));
             // Sets are always shown if they exist
             for (size_t i = 0; i < m_setbuttons.size(); ++i)
             {
@@ -956,6 +958,7 @@ void CEquipmentPane::AddSetBonusStack(const SetBonus& setBonus)
     }
     if (!found)
     {
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
         // position the created windows left to right until
         // they don't fit then move them down a row and start again
         // each stance window is c_windowSize * c_windowSize pixels
@@ -964,8 +967,8 @@ void CEquipmentPane::AddSetBonusStack(const SetBonus& setBonus)
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_windowSizeX + c_controlSpacing,
-                c_windowSizeY + c_controlSpacing);
+                static_cast<LONG>((c_windowSizeX * dScaleFactor)) + c_controlSpacing,
+                static_cast<LONG>((c_windowSizeY * dScaleFactor)) + c_controlSpacing);
 
         // now create the new auto stance control
         m_setbuttons.push_back(new CSetBonusButton(m_pCharacter, setBonus));

@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "IconButton.h"
 #include "InfoTip.h"
+#include "CMFCButtonEx.h"
 
 class CDDOBuilderDoc;
 class Character;
@@ -84,8 +85,8 @@ private:
         MST_UniversalTrees = 16
     };
     std::list<EnhancementTree> m_availableTrees;
-    CMFCButton m_buttonLoad;
-    CMFCButton m_buttonSave[MST_Number];
+    CMFCButtonEx m_buttonLoad;
+    CMFCButtonEx m_buttonSave[MST_Number];
     CComboBox m_comboTreeSelect[MST_Number-1];  // 1st tree type is always fixed
     CIconButton m_universalTrees[MST_UniversalTrees];
     std::vector<CEnhancementTreeDialog *> m_treeViews;

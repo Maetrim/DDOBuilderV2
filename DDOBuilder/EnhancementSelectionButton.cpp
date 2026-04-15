@@ -37,6 +37,7 @@ BOOL CEnhancementSelectionButton::OnEraseBkgnd(CDC* pDC)
 
 void CEnhancementSelectionButton::OnPaint()
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     if (!IsWindowEnabled())
     {
         if (!m_bMadeGray)
@@ -72,10 +73,10 @@ void CEnhancementSelectionButton::OnPaint()
     }
     m_image.TransparentBlt(
             pdc.GetSafeHdc(),
-            (rect.Width() - 32) / 2,
-            (rect.Height() - 32) / 2,
-            32,
-            32);
+            3,
+            3,
+            static_cast<LONG>(32 * dScaleFactor),
+            static_cast<LONG>(32 * dScaleFactor));
     pdc.RestoreDC(-1);
 }
 

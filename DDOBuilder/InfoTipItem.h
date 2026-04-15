@@ -13,13 +13,14 @@ class SetBonus;
 class InfoTipItem
 {
 public:
-    InfoTipItem();
+    InfoTipItem(HWND hwnd);
     virtual ~InfoTipItem();
 
     virtual CSize Measure(CDC* pDC) = 0;
     virtual void Draw(CDC* pDC, const CRect& rect) = 0;
     CSize Size() const;
 protected:
+    HWND m_hwnd;
     CSize m_requiredSize;
     static bool s_bFontsCreated;
     static CFont s_standardFont;
@@ -31,7 +32,7 @@ class InfoTipItem_Header :
     public InfoTipItem
 {
 public:
-    InfoTipItem_Header() {};
+    InfoTipItem_Header(HWND hwnd) : InfoTipItem(hwnd) {};
     virtual ~InfoTipItem_Header() {};
 
     bool LoadIcon(const std::string& path, const std::string& filename, bool bReportError);
@@ -56,6 +57,7 @@ class InfoTipItem_SLAHeader :
 {
 public:
     InfoTipItem_SLAHeader(int nCasterLevel, int nCharges, int nRecharge) :
+            InfoTipItem(NULL),
             m_nCasterLevel(nCasterLevel),
             m_nCharges(nCharges),
             m_nRecharge(nRecharge) {};
@@ -73,7 +75,10 @@ class InfoTipItem_Requirements :
     public InfoTipItem
 {
 public:
-    InfoTipItem_Requirements() : m_activeColour(RGB(0, 128, 0) ), m_inactiveColour(RGB(255, 0, 0)){};
+    InfoTipItem_Requirements() :
+            InfoTipItem(NULL),
+            m_activeColour(RGB(0, 128, 0) ),
+            m_inactiveColour(RGB(255, 0, 0)){};
     virtual ~InfoTipItem_Requirements() {};
 
     void AddRequirement(const CString& text, bool bMet);
@@ -107,7 +112,7 @@ class InfoTipItem_MultilineText :
     public InfoTipItem
 {
 public:
-    InfoTipItem_MultilineText() {};
+    InfoTipItem_MultilineText() : InfoTipItem(NULL) {};
     virtual ~InfoTipItem_MultilineText() {};
 
     void SetText(const CString& text);
@@ -122,7 +127,7 @@ class InfoTipItem_BuffDescription :
     public InfoTipItem
 {
 public:
-    InfoTipItem_BuffDescription(const CString& text) : m_text(text) {};
+    InfoTipItem_BuffDescription(const CString& text) : InfoTipItem(NULL), m_text(text) {};
     virtual ~InfoTipItem_BuffDescription() {};
 
     virtual CSize Measure(CDC* pDC) override;
@@ -135,7 +140,7 @@ class InfoTipItem_DC :
     public InfoTipItem
 {
 public:
-    InfoTipItem_DC() {};
+    InfoTipItem_DC() : InfoTipItem(NULL) {};
     virtual ~InfoTipItem_DC() {};
 
     void SetText(const CString& text);
@@ -150,7 +155,7 @@ class InfoTipItem_Metamagics :
     public InfoTipItem
 {
 public:
-    InfoTipItem_Metamagics() {};
+    InfoTipItem_Metamagics(HWND hwnd) : InfoTipItem(hwnd) {};
     virtual ~InfoTipItem_Metamagics() {};
 
     void SetSpell(const Spell& spell);

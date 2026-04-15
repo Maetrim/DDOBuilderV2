@@ -43,6 +43,7 @@ CFeatsClassControl::CFeatsClassControl() :
     m_bAlternateFeat(false),
     m_bToggleSpell(false)
 {
+    DefaultFont(m_defaultFont);
 }
 
 CFeatsClassControl::~CFeatsClassControl()
@@ -102,6 +103,7 @@ void CFeatsClassControl::OnSize(UINT nType, int cx, int cy)
 
 CSize CFeatsClassControl::RequiredSize()
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     CSize requiredSize(0, 0);
     if (m_pCharacter != NULL)
     {
@@ -110,22 +112,22 @@ CSize CFeatsClassControl::RequiredSize()
         CDC screenDC;
         screenDC.Attach(::GetDC(NULL));
         screenDC.SaveDC();
-        screenDC.SelectStockObject(DEFAULT_GUI_FONT);
+        screenDC.SelectObject(m_defaultFont);
 
         // calculate the width of the control required
         CSize levelCol = screenDC.GetTextExtent(" 30 ");
-        levelCol.cy = max(20, levelCol.cy); // min height required for icon + border
+        levelCol.cy = max(static_cast<LONG>(16 * dScaleFactor) + 4, levelCol.cy); // min height required for icon + border
         // blank item in top left
         CRect rctItem(0, 0, levelCol.cx, levelCol.cy);
         m_levelRect = rctItem;
         int width = m_levelRect.Width();
         for (size_t i = 0; i < m_numClassColumns; ++i)
         {
-            width += 36;  // 36 pixels per class rect
+            width += static_cast<LONG>(32 * dScaleFactor) + 4;  // 36 pixels per class rect
         }
         for (size_t i = 0; i < m_maxRequiredFeats; ++i)
         {
-            width += c_FeatColumnWidth;
+            width += static_cast<int>(c_FeatColumnWidth * dScaleFactor);
         }
         // additional columns for stats [bab][str][dex][con][int][wis][cha]
         for (size_t stats = Ability_Unknown; stats < Ability_Count; ++stats)
@@ -154,11 +156,12 @@ CSize CFeatsClassControl::RequiredSize()
             if (bFeatsAvailable)
             {
                 // 36 pixels for height for this item
-                height += 36;
+                height += static_cast<LONG>(32 * dScaleFactor) + 4;
             }
             else
             {
-                height += 21;
+                // 20 pixels for height for this item
+                height += m_levelRect.Height() + 2;
             }
         }
         requiredSize.cx = width;
@@ -185,9 +188,7 @@ void CFeatsClassControl::SetupControl()
                 CRect(77,36,119,250),
                 this,
                 IDC_COMBO_FEATSELECT);
-        CFont* pDefaultGUIFont = CFont::FromHandle(
-                (HFONT)GetStockObject(DEFAULT_GUI_FONT));
-        m_featSelector.SetFont(pDefaultGUIFont, TRUE);
+        m_featSelector.SetFont(&m_defaultFont, TRUE);
     }
     m_availableFeats.clear();
     m_maxRequiredFeats = 0;
@@ -254,9 +255,11 @@ void CFeatsClassControl::OnPaint()
     memoryDc.CreateCompatibleDC(&dc);
     memoryDc.SaveDC();
     memoryDc.SelectObject(&bitmap);
-    memoryDc.SelectStockObject(DEFAULT_GUI_FONT);
+    memoryDc.SelectObject(m_defaultFont);
     memoryDc.SetBkMode(TRANSPARENT);
 
+    CDC cdc;
+    cdc.CreateCompatibleDC(&memoryDc);
     CBrush selectedBackgroundBrush;
     CBrush normalBackgroundBrush;
     selectedBackgroundBrush.CreateSolidBrush(f_selectedColour);
@@ -300,10 +303,12 @@ void CFeatsClassControl::OnPaint()
             SRCCOPY);
     memoryDc.RestoreDC(-1);
     memoryDc.DeleteDC();
+    cdc.DeleteDC();
 }
 
 size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     bool bDarkMode = DarkModeEnabled();
     m_hitChecks.clear();
 
@@ -315,7 +320,7 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
     // [][class1^][class2^][class3^][Feat1    ][Feat2    ][Feat3    ][str][dex][con][int][wis][cha][BAB]
     // level column, get its max width
     CSize levelCol = pDC->GetTextExtent(" 30 ");
-    levelCol.cy = max(20, levelCol.cy); // min height required for icon + border
+    levelCol.cy = max(static_cast<LONG>(16 * dScaleFactor) + 4, levelCol.cy); // min height required for icon + border
     // blank item in top left
     CRect rctItem(0, 0, levelCol.cx, levelCol.cy);
     m_levelRect = rctItem;
@@ -324,7 +329,7 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
     for (size_t cc = 0; cc < m_numClassColumns; ++cc)
     {
         rctItem.left = rctItem.right + 1;
-        rctItem.right = rctItem.left + 35;
+        rctItem.right = rctItem.left + static_cast<LONG>(32 * dScaleFactor) + 3;
         pDC->Draw3dRect(
                 rctItem,
                 bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
@@ -332,9 +337,17 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
         const std::string& ct = (m_pCharacter->ActiveBuild() != NULL)
                 ? m_pCharacter->ActiveBuild()->Class(cc)
                 : "Unknown";
-        Class::SmallClassImageList().Draw(pDC, ClassIndex(ct), pos, ILD_TRANSPARENT);
-        CRect rctDropArrow(pos.x, pos.y, pos.x + 12, pos.y + 12);
-        rctDropArrow += CPoint(18, 2);
+        CBitmap bitmap;
+        ExtractImage(Class::SmallClassImageList(), ClassIndex(ct), pDC, bitmap);
+        CDC cdc;
+        cdc.CreateCompatibleDC(pDC);
+        cdc.SelectObject(bitmap);
+        int cdcSave = cdc.SaveDC();
+        pDC->StretchBlt(pos.x, pos.y, static_cast<LONG>(16 * dScaleFactor), static_cast<LONG>(15 * dScaleFactor), &cdc, 0, 0, 16, 15, SRCCOPY);
+        cdc.RestoreDC(cdcSave);
+        cdc.DeleteDC();
+        CRect rctDropArrow(pos.x - 1, pos.y - 2, pos.x + static_cast<LONG>(16 * dScaleFactor) - 2, pos.y + static_cast<LONG>(16 * dScaleFactor) - 2);
+        rctDropArrow += CPoint(static_cast<LONG>(16 * dScaleFactor) + 2, 2);
         pDC->DrawFrameControl(rctDropArrow, DFC_SCROLL, DFCS_SCROLLDOWN);
         HitCheckItem classDropArrow((HitType)(HT_Class1 + cc), rctItem, 0, 0);
         m_hitChecks.push_back(classDropArrow);
@@ -345,7 +358,7 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
     for (size_t fc = 0; fc < m_maxRequiredFeats; ++fc)
     {
         rctItem.left = rctItem.right + 1;
-        rctItem.right = rctItem.left + c_FeatColumnWidth;
+        rctItem.right = rctItem.left + static_cast<int>(c_FeatColumnWidth * dScaleFactor);
         pDC->Draw3dRect(
                 rctItem,
                 bDarkMode ? ::GetSysColor(COLOR_BTNSHADOW) : ::GetSysColor(COLOR_BTNHIGHLIGHT),
@@ -420,6 +433,7 @@ size_t CFeatsClassControl::DrawLevelLine(
         size_t level)
 {
     // switch the fill colour and text colour if this is the highlighted line
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     CBrush fillBrush;
     bool bDarkMode = DarkModeEnabled();
     if (true == bDarkMode)
@@ -464,7 +478,9 @@ size_t CFeatsClassControl::DrawLevelLine(
     if (bFeatsAvailable)
     {
         // 36 pixels for height for this item
-        rctItem.bottom = top + 35;
+        int height2 = static_cast<LONG>(32 * dScaleFactor) + 4;
+        height2 = max(36, height2);
+        rctItem.bottom = top + height2;
     }
     else
     {
@@ -508,30 +524,35 @@ size_t CFeatsClassControl::DrawLevelLine(
                 || (classSelection == Class_Epic && cc == 0)
                 || (classSelection == Class_Legendary && cc == 0))
         {
+            CDC cdc;
+            cdc.CreateCompatibleDC(pDC);
+            int cdcSave = cdc.SaveDC();
             if (bFeatsAvailable)
             {
+                int imageSize = static_cast<LONG>(32 * dScaleFactor);
                 // draw the class using the large icon
                 CPoint pos = rctItem.TopLeft();
-                pos.x += (rctItem.Width() - 32) / 2;    // centre it
-                pos.y += (rctItem.Height() - 32) / 2;    // centre it
-                Class::LargeClassImageList().Draw(
-                        pDC,
-                        ClassIndex(classSelection),
-                        pos,
-                        ILD_TRANSPARENT);
+                pos.x += (rctItem.Width() - imageSize) / 2;    // centre it
+                pos.y += (rctItem.Height() - imageSize) / 2;    // centre it
+                CBitmap bitmap;
+                ExtractImage(Class::LargeClassImageList(), ClassIndex(classSelection), pDC, bitmap);
+                cdc.SelectObject(bitmap);
+                pDC->StretchBlt(pos.x, pos.y, imageSize, imageSize, &cdc, 0, 0, 32, 32, SRCCOPY);
+                cdc.RestoreDC(cdcSave);
             }
             else
             {
                 // draw class using the small icon
                 CPoint pos = rctItem.TopLeft();
-                pos.x += (rctItem.Width() - 16) / 2;    // centre it
-                pos.y += (rctItem.Height() - 15) / 2;    // centre it
-                Class::SmallClassImageList().Draw(
-                        pDC,
-                        ClassIndex(classSelection),
-                        pos,
-                        ILD_TRANSPARENT);
+                pos.x += (rctItem.Width() - static_cast<LONG>(16 * dScaleFactor)) / 2;    // centre it
+                pos.y += (rctItem.Height() - static_cast<LONG>(15 * dScaleFactor)) / 2;    // centre it
+                CBitmap bitmap;
+                ExtractImage(Class::SmallClassImageList(), ClassIndex(classSelection), pDC, bitmap);
+                cdc.SelectObject(bitmap);
+                pDC->StretchBlt(pos.x, pos.y, static_cast<LONG>(16 * dScaleFactor), static_cast<LONG>(15 * dScaleFactor), &cdc, 0, 0, 16, 15, SRCCOPY);
+                cdc.RestoreDC(cdcSave);
             }
+            cdc.DeleteDC();
         }
         // add the hit check for this item
         HitCheckItem classSelect((HitType)(HT_LevelClass1 + cc), rctItem, level, 0);
@@ -631,9 +652,15 @@ void CFeatsClassControl::DrawFeat(
         size_t level)
 {
     // if there an actual feat in this slot?
+    // if there an actual feat in this slot?
     std::vector<FeatSlot> tfts = m_availableFeats[level];
     if (tfts.size() > featIndex)
     {
+        CDC cdc;
+        cdc.CreateCompatibleDC(pDC);
+        int cdcSave = cdc.SaveDC();
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
+        int imageSize = static_cast<int>(32 * dScaleFactor);
         // add the hit check location for this feat
         HitCheckItem featLocation(HT_Feat, rctItem, level, featIndex);
         m_hitChecks.push_back(featLocation);
@@ -651,25 +678,27 @@ void CFeatsClassControl::DrawFeat(
                 // draw the alternate and the main feat item
                 const Feat& altFoundFeat = FindFeat(tf.AlternateFeatName());
                 int imageIndex = altFoundFeat.FeatImageIndex();
+                CBitmap bitmap;
+                ExtractImage(Feat::FeatImageList(), imageIndex, pDC, bitmap);
                 CPoint pos = rctItem.TopLeft();
                 pos.x += 2;
-                pos.y += 1;
-                Feat::FeatImageList().Draw(
-                    pDC,
-                    imageIndex,
-                    pos,
-                    ILD_TRANSPARENT);
+                pos.y += (rctItem.Height() - imageSize) / 2;    // centre it
+                cdc.SelectObject(bitmap);
+                pDC->StretchBlt(pos.x, pos.y, imageSize, imageSize, &cdc, 0, 0, 32, 32, SRCCOPY);
+                cdc.RestoreDC(cdcSave);
+
                 // now draw the main feat icon
                 const Feat& feat = FindFeat(tf.FeatName());
                 imageIndex = feat.FeatImageIndex();
                 pos = rctItem.TopLeft();
-                pos.x += 18;        // half way across previous icon
-                pos.y += 1;
-                Feat::FeatImageList().Draw(
-                    pDC,
-                    imageIndex,
-                    pos,
-                    ILD_TRANSPARENT);
+                pos.x += (2 + imageSize / 2);        // half way across previous icon
+                pos.y += (rctItem.Height() - imageSize) / 2;    // centre it
+                CBitmap bitmap2;
+                ExtractImage(Feat::FeatImageList(), imageIndex, pDC, bitmap2);
+                cdc.SelectObject(bitmap2);
+                pDC->StretchBlt(pos.x, pos.y, imageSize, imageSize, &cdc, 0, 0, 32, 32, SRCCOPY);
+                cdc.RestoreDC(cdcSave);
+
                 CString text = tfts[featIndex].FeatType().c_str();
                 CString displayText = feat.Name().c_str();
                 displayText += "\r\n";
@@ -677,7 +706,7 @@ void CFeatsClassControl::DrawFeat(
                 displayText += " Alternate: ";
                 displayText += altFoundFeat.Name().c_str();
                 // show the feat name
-                rctItem.left += 54; // space away from the icon
+                rctItem.left += (imageSize * 3 / 2) + 4; // space away from the icon
                 CRect rctDummy(rctItem);
                 int height = pDC->DrawText(displayText, rctDummy, DT_END_ELLIPSIS | DT_CALCRECT);
                 rctItem.top += (rctItem.Height() - height) / 2; // center vertically
@@ -689,19 +718,20 @@ void CFeatsClassControl::DrawFeat(
                 // first draw its icon
                 const Feat& foundFeat = FindFeat(tf.FeatName());
                 int imageIndex = foundFeat.FeatImageIndex();
+                CBitmap bitmap;
+                ExtractImage(Feat::FeatImageList(), imageIndex, pDC, bitmap);
                 CPoint pos = rctItem.TopLeft();
                 pos.x += 2;
-                pos.y += 1;
-                Feat::FeatImageList().Draw(
-                        pDC,
-                        imageIndex,
-                        pos,
-                        ILD_TRANSPARENT);
+                pos.y += (rctItem.Height() - imageSize) / 2;    // centre it
+                cdc.SelectObject(bitmap);
+                pDC->StretchBlt(pos.x, pos.y, imageSize, imageSize, &cdc, 0, 0, 32, 32, SRCCOPY);
+                cdc.RestoreDC(cdcSave);
+
                 CString displayText = tf.FeatName().c_str();
                 displayText += "\r\n";
                 displayText += tfts[featIndex].FeatType().c_str();
                 // show the feat name
-                rctItem.left += 36; // space away from the icon
+                rctItem.left += imageSize + 4; // space away from the icon
                 CRect rctDummy(rctItem);
                 int height = pDC->DrawText(displayText, rctDummy, DT_END_ELLIPSIS | DT_CALCRECT);
                 rctItem.top += (rctItem.Height() - height) / 2; // center vertically
@@ -712,23 +742,25 @@ void CFeatsClassControl::DrawFeat(
         {
             // draw a feat that needs to be selected.
             // we can re-use the class [?] unknown icon
+            CBitmap bitmap;
+            ExtractImage(Class::LargeClassImageList(), ClassIndex(Class_Unknown), pDC, bitmap);
             CPoint pos = rctItem.TopLeft();
             pos.x += 2;
-            pos.y += 1;
-            Class::LargeClassImageList().Draw(
-                    pDC,
-                    ClassIndex(Class_Unknown),
-                    pos,
-                    ILD_TRANSPARENT);
+            pos.y += (rctItem.Height() - imageSize) / 2;    // centre it
+            cdc.SelectObject(bitmap);
+            pDC->StretchBlt(pos.x, pos.y, imageSize, imageSize, &cdc, 0, 0, 32, 32, SRCCOPY);
+            cdc.RestoreDC(cdcSave);
+
             CString displayText = "Click to select a feat\r\n";
             displayText += tfts[featIndex].FeatType().c_str();
             // show the feat name
-            rctItem.left += 36; // space away from the icon
+            rctItem.left += imageSize + 4; // space away from the icon
             CRect rctDummy(rctItem);
             int height = pDC->DrawText(displayText, rctDummy, DT_END_ELLIPSIS | DT_CALCRECT);
             rctItem.top += (rctItem.Height() - height) / 2; // center vertically
             pDC->DrawText(displayText, rctItem, DT_END_ELLIPSIS);
         }
+        cdc.DeleteDC();
     }
     else
     {
@@ -757,142 +789,144 @@ LRESULT CFeatsClassControl::OnMouseLeave(WPARAM, LPARAM)
 void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
 {
     // determine which row the mouse is over, and change highlight if required
-    size_t overLevel = c_dudLevel;
-    size_t maxLevel = (m_pCharacter->ActiveBuild() != NULL)
-            ? m_pCharacter->ActiveBuild()->Level()
-            : 0;
-    for (size_t level = 0; level < maxLevel; ++level)
+    if (m_pCharacter != NULL)
     {
-        if (m_levelRects[level].PtInRect(point))
+        size_t overLevel = c_dudLevel;
+        size_t maxLevel = (m_pCharacter->ActiveBuild() != NULL)
+                ? m_pCharacter->ActiveBuild()->Level()
+                : 0;
+        for (size_t level = 0; level < maxLevel; ++level)
         {
-            overLevel = level;
-            break;
-        }
-    }
-    if (overLevel != m_highlightedLevelLine)
-    {
-        m_highlightedLevelLine = overLevel;
-        Invalidate();
-        if (m_highlightedLevelLine >= 0 && m_highlightedLevelLine < MAX_GAME_LEVEL)
-        {
-            m_lastNotifiedLevelLine = m_highlightedLevelLine;
-            // let the automatic feats view know about the selection change
-            CWnd* pWnd = AfxGetApp()->m_pMainWnd;
-            CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-            CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
-                    pMainWnd->GetPaneView(RUNTIME_CLASS(CAutomaticFeatsPane)));
-            pPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
-        }
-    }
-    // hit check the mouse location and display feat tooltips if required
-    if (m_pCharacter->ActiveBuild() != NULL)
-    {
-        HitCheckItem ht = HitCheck(point);
-        if (ht.Type() == HT_Feat)
-        {
-            // mouse is over a feat, display tooltip if its a trained feat
-            if (m_showingTip
-                    && ht.Type() == m_tooltipItem.Type()
-                    && ht.Level() == m_tooltipItem.Level()
-                    && ht.Data() == m_tooltipItem.Data())
+            if (m_levelRects[level].PtInRect(point))
             {
-                // already showing the right tip, do nothing
+                overLevel = level;
+                break;
+            }
+        }
+        if (overLevel != m_highlightedLevelLine)
+        {
+            m_highlightedLevelLine = overLevel;
+            Invalidate();
+            if (m_highlightedLevelLine >= 0 && m_highlightedLevelLine < MAX_GAME_LEVEL)
+            {
+                m_lastNotifiedLevelLine = m_highlightedLevelLine;
+                // let the automatic feats view know about the selection change
+                CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+                CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+                CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
+                        pMainWnd->GetPaneView(RUNTIME_CLASS(CAutomaticFeatsPane)));
+                pPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
+            }
+        }
+        // hit check the mouse location and display feat tooltips if required
+        if (m_pCharacter->ActiveBuild() != NULL)
+        {
+            HitCheckItem ht = HitCheck(point);
+            if (ht.Type() == HT_Feat)
+            {
+                // mouse is over a feat, display tooltip if its a trained feat
+                if (m_showingTip
+                        && ht.Type() == m_tooltipItem.Type()
+                        && ht.Level() == m_tooltipItem.Level()
+                        && ht.Data() == m_tooltipItem.Data())
+                {
+                    // already showing the right tip, do nothing
+                }
+                else
+                {
+                    HideTip();
+                    m_tooltipItem = HitCheckItem(HT_None, CRect(0, 0, 0, 0), 0, 0);
+                    // get the selected feat name (if there is one)
+                    std::vector<FeatSlot> tfts = m_availableFeats[ht.Level()];
+                    if (tfts.size() > ht.Data())
+                    {
+                        // if we have an actual trained feat, draw it
+                        TrainedFeat tf = m_pCharacter->ActiveBuild()->GetTrainedFeat(
+                                ht.Level(),
+                                tfts[ht.Data()].FeatType());
+                        std::string featName = tf.FeatName();
+                        if (featName != "")
+                        {
+                            const Feat & feat = FindFeat(tf.FeatName());
+                            // determine whether there is a feat swap warning if training at level 1
+                            bool warn = false;
+                            if (ht.Level() == 0
+                                    && tfts[ht.Data()].FeatType() != Feat_Automatic
+                                    && tfts[ht.Data()].FeatType() != Feat_Granted
+                                    && featName != " No Selection")
+                            {
+                                warn = !m_pCharacter->ActiveBuild()->IsFeatTrainable(
+                                        ht.Level(),
+                                        tfts[ht.Data()].FeatType(),
+                                        feat,
+                                        false,
+                                        true);
+                            }
+                            CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
+                            CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
+                            ClientToScreen(&tipTopLeft);
+                            ClientToScreen(&tipAlternate);
+                            m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+                            m_tooltip.SetFeatItem(*m_pCharacter->ActiveBuild(), &feat, warn, ht.Level(), false);
+                            m_tooltip.Show();
+                            m_showingTip = true;
+                            m_tooltipItem = ht;
+                            if (tf.HasAlternateFeatName())
+                            {
+                                CDC* pDC = GetDC();
+                                CSize windowSize;
+                                m_tooltip.GetWindowSize(pDC, &windowSize);
+                                ReleaseDC(pDC);
+                                const Feat& altfeat = FindFeat(tf.AlternateFeatName());
+                                tipTopLeft += CPoint(0, windowSize.cy + 5);
+                                tipAlternate -= CPoint(0, windowSize.cy + 5);
+                                m_tooltip2.SetOrigin(tipTopLeft, tipAlternate, false);
+                                m_tooltip2.SetFeatItem(*m_pCharacter->ActiveBuild(), &altfeat, false, ht.Level(), false);
+                                m_tooltip2.Show();
+                            }
+                        }
+                    }
+                }
+            }
+            else if (ht.Type() == HT_LevelClass1
+                    || ht.Type() == HT_LevelClass2
+                    || ht.Type() == HT_LevelClass3)
+            {
+                // look up the selected class
+                const LevelTraining & levelData = m_pCharacter->ActiveBuild()->LevelData(ht.Level());
+                std::string expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
+                if (ht.Level() == 0)
+                {
+                    ::Race race = FindRace(m_pCharacter->ActiveBuild()->Race());
+                    if (race.HasIconicClass())
+                    {
+                        expectedClass = race.IconicClass();
+                    }
+                }
+                CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
+                CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
+                ClientToScreen(&tipTopLeft);
+                ClientToScreen(&tipAlternate);
+                m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+                m_tooltip.SetLevelItem(*m_pCharacter->ActiveBuild(), ht.Level(), &levelData, expectedClass);
+                m_tooltip.Show();
+                m_showingTip = true;
+                m_tooltipItem = ht;
             }
             else
             {
                 HideTip();
                 m_tooltipItem = HitCheckItem(HT_None, CRect(0, 0, 0, 0), 0, 0);
-                // get the selected feat name (if there is one)
-                std::vector<FeatSlot> tfts = m_availableFeats[ht.Level()];
-                if (tfts.size() > ht.Data())
-                {
-                    // if we have an actual trained feat, draw it
-                    TrainedFeat tf = m_pCharacter->ActiveBuild()->GetTrainedFeat(
-                            ht.Level(),
-                            tfts[ht.Data()].FeatType());
-                    std::string featName = tf.FeatName();
-                    if (featName != "")
-                    {
-                        const Feat & feat = FindFeat(tf.FeatName());
-                        // determine whether there is a feat swap warning if training at level 1
-                        bool warn = false;
-                        if (ht.Level() == 0
-                                && tfts[ht.Data()].FeatType() != Feat_Automatic
-                                && tfts[ht.Data()].FeatType() != Feat_Granted
-                                && featName != " No Selection")
-                        {
-                            warn = !m_pCharacter->ActiveBuild()->IsFeatTrainable(
-                                    ht.Level(),
-                                    tfts[ht.Data()].FeatType(),
-                                    feat,
-                                    false,
-                                    true);
-                        }
-                        CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
-                        CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
-                        ClientToScreen(&tipTopLeft);
-                        ClientToScreen(&tipAlternate);
-                        m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-                        m_tooltip.SetFeatItem(*m_pCharacter->ActiveBuild(), &feat, warn, ht.Level(), false);
-                        m_tooltip.Show();
-                        m_showingTip = true;
-                        m_tooltipItem = ht;
-                        if (tf.HasAlternateFeatName())
-                        {
-                            CDC* pDC = GetDC();
-                            CSize windowSize;
-                            m_tooltip.GetWindowSize(pDC, &windowSize);
-                            ReleaseDC(pDC);
-                            const Feat& altfeat = FindFeat(tf.AlternateFeatName());
-                            tipTopLeft += CPoint(0, windowSize.cy + 5);
-                            tipAlternate -= CPoint(0, windowSize.cy + 5);
-                            m_tooltip2.SetOrigin(tipTopLeft, tipAlternate, false);
-                            m_tooltip2.SetFeatItem(*m_pCharacter->ActiveBuild(), &altfeat, false, ht.Level(), false);
-                            m_tooltip2.Show();
-                        }
-                    }
-                }
             }
         }
-        else if (ht.Type() == HT_LevelClass1
-                || ht.Type() == HT_LevelClass2
-                || ht.Type() == HT_LevelClass3)
-        {
-            // look up the selected class
-            const LevelTraining & levelData = m_pCharacter->ActiveBuild()->LevelData(ht.Level());
-            std::string expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
-            if (ht.Level() == 0)
-            {
-                ::Race race = FindRace(m_pCharacter->ActiveBuild()->Race());
-                if (race.HasIconicClass())
-                {
-                    expectedClass = race.IconicClass();
-                }
-            }
-            CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
-            CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
-            ClientToScreen(&tipTopLeft);
-            ClientToScreen(&tipAlternate);
-            m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-            m_tooltip.SetLevelItem(*m_pCharacter->ActiveBuild(), ht.Level(), &levelData, expectedClass);
-            m_tooltip.Show();
-            m_showingTip = true;
-            m_tooltipItem = ht;
-        }
-        else
-        {
-            HideTip();
-            m_tooltipItem = HitCheckItem(HT_None, CRect(0, 0, 0, 0), 0, 0);
-        }
+        // track the mouse so we know when it leaves our window
+        TRACKMOUSEEVENT tme;
+        tme.cbSize = sizeof(tme);
+        tme.hwndTrack = m_hWnd;
+        tme.dwFlags = TME_LEAVE;
+        tme.dwHoverTime = 1;
+        _TrackMouseEvent(&tme);
     }
-    // track the mouse so we know when it leaves our window
-    TRACKMOUSEEVENT tme;
-    tme.cbSize = sizeof(tme);
-    tme.hwndTrack = m_hWnd;
-    tme.dwFlags = TME_LEAVE;
-    tme.dwHoverTime = 1;
-    _TrackMouseEvent(&tme);
-
     __super::OnMouseMove(nFlags, point);
 }
 

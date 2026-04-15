@@ -716,11 +716,13 @@ void CDPSPane::OnAvailableSelectionChanged(NMHDR* pNMHDR, LRESULT* pResult)
 
 BOOL CDPSPane::EvaluateMoveUp(size_t sel)
 {
+    UNREFERENCED_PARAMETER(sel);
     return TRUE; // TBD
 }
 
 BOOL CDPSPane::EvaluateMoveDown(size_t sel)
 {
+    UNREFERENCED_PARAMETER(sel);
     return TRUE;    //TBD
 }
 
@@ -990,6 +992,9 @@ double CDPSPane::EvaluateTWF(
     const std::list<AttackBuff>& buffs,
     double timePoint)
 {
+    UNREFERENCED_PARAMETER(attack);
+    UNREFERENCED_PARAMETER(buffs);
+    UNREFERENCED_PARAMETER(timePoint);
     double dps = 0.0;
     return dps;
 }
@@ -999,6 +1004,9 @@ double CDPSPane::EvaluateTHF(
     const std::list<AttackBuff>& buffs,
     double timePoint)
 {
+    UNREFERENCED_PARAMETER(attack);
+    UNREFERENCED_PARAMETER(buffs);
+    UNREFERENCED_PARAMETER(timePoint);
     double dps = 0.0;
     return dps;
 }
@@ -1008,6 +1016,9 @@ double CDPSPane::EvaluateSWF(
     const std::list<AttackBuff>& buffs,
     double timePoint)
 {
+    UNREFERENCED_PARAMETER(attack);
+    UNREFERENCED_PARAMETER(buffs);
+    UNREFERENCED_PARAMETER(timePoint);
     double dps = 0.0;
     return dps;
 }
@@ -1017,6 +1028,9 @@ double CDPSPane::EvaluateRanged(
     const std::list<AttackBuff>& buffs,
     double timePoint)
 {
+    UNREFERENCED_PARAMETER(attack);
+    UNREFERENCED_PARAMETER(buffs);
+    UNREFERENCED_PARAMETER(timePoint);
     double dps = 0.0;
     return dps;
 }
@@ -1026,6 +1040,9 @@ double CDPSPane::EvaluateHandwraps(
     const std::list<AttackBuff>& buffs,
     double timePoint)
 {
+    UNREFERENCED_PARAMETER(attack);
+    UNREFERENCED_PARAMETER(buffs);
+    UNREFERENCED_PARAMETER(timePoint);
     double dps = 0.0;
     return dps;
 }
@@ -1035,6 +1052,9 @@ double CDPSPane::EvaluateSwordAndBoard(
     const std::list<AttackBuff>& buffs,
     double timePoint)
 {
+    UNREFERENCED_PARAMETER(attack);
+    UNREFERENCED_PARAMETER(buffs);
+    UNREFERENCED_PARAMETER(timePoint);
     double dps = 0.0;
     return dps;
 }

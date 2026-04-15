@@ -248,6 +248,8 @@ BOOL CClassAndFeatPane::OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 
 LRESULT CClassAndFeatPane::OnMenuSelect(WPARAM wParam, LPARAM lParam)
 {
+    UNREFERENCED_PARAMETER(wParam);
+    UNREFERENCED_PARAMETER(lParam);
     m_featsAndClasses.MenuSelect(wParam);
     return 0;
 }

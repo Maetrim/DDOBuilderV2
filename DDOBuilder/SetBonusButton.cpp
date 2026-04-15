@@ -49,6 +49,7 @@ BOOL CSetBonusButton::OnEraseBkgnd(CDC* pDC)
 
 void CSetBonusButton::OnPaint()
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     CPaintDC pdc(this); // validates the client area on destruction
     pdc.SaveDC();
 
@@ -62,15 +63,15 @@ void CSetBonusButton::OnPaint()
             pdc.GetSafeHdc(),
             3,
             3,
-            32,
-            32);
+            static_cast<LONG>(32 * dScaleFactor),
+            static_cast<LONG>(32 * dScaleFactor));
     pdc.RestoreDC(-1);
 
     // shown in a small font
     LOGFONT lf;
     ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
     strcpy_s(lf.lfFaceName, "Consolas");
-    lf.lfHeight = 11;
+    lf.lfHeight = static_cast<LONG>(11 * dScaleFactor);
     CFont smallFont;
     smallFont.CreateFontIndirect(&lf);
     pdc.SelectObject(&smallFont);
@@ -83,7 +84,7 @@ void CSetBonusButton::OnPaint()
     pdc.SetBkMode(TRANSPARENT); // don't erase the text background
     pdc.TextOut(
             rect.left + (rect.Width() - textSize.cx) / 2,
-            rect.bottom - 12,
+            rect.bottom - static_cast<LONG>(12 * dScaleFactor),
             stacks);
     pdc.RestoreDC(-1);
 }

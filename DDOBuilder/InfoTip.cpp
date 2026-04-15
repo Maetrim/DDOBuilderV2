@@ -217,7 +217,7 @@ void CInfoTip::SetEnhancementTreeItem(
         size_t ranksTrained)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\EnhancementImages\\", pItem->Icon(), true);
     pHeader->SetTitle(pItem->Name().c_str());
     CString str;
@@ -322,7 +322,7 @@ void CInfoTip::SetEnhancementSelectionItem(
         size_t /*ranks*/)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\EnhancementImages\\", pSelection->Icon(), true);
     pHeader->SetTitle(pSelection->Name().c_str());
     CString str;
@@ -419,7 +419,7 @@ void CInfoTip::SetFeatItem(
         bool /*grantedFeat*/)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\FeatImages\\", pItem->Icon(), true);
     pHeader->SetTitle(pItem->Name().c_str());
     if (pItem->MaxTimesAcquire() != 1)
@@ -477,7 +477,7 @@ void CInfoTip::SetFeatItem(
 
 void CInfoTip::AppendSubItem(const SubItem& item)
 {
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\FeatImages\\", item.Icon(), true);
     pHeader->SetTitle(item.Name().c_str());
     m_tipItems.push_back(pHeader);
@@ -490,7 +490,7 @@ void CInfoTip::AppendSubItem(const SubItem& item)
 void CInfoTip::SetStanceItem(const Stance& item)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\FeatImages\\", item.Icon(), false))
     {
         if (!pHeader->LoadIcon("DataFiles\\EnhancementImages\\", item.Icon(), false))
@@ -524,7 +524,7 @@ void CInfoTip::SetItem(
         const Build* pBuild)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->IconFromImageList(ItemsImages(), pItem->IconIndex());
     pHeader->SetTitle(pItem->Name().c_str());
     CString str;
@@ -792,7 +792,7 @@ void CInfoTip::SetSelfBuff(const std::string& name)
 {
     ClearOldTipItems();
     const OptionalBuff& opBuff = FindOptionalBuff(name);
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\SpellImages\\", opBuff.Icon(), false))
     {
         if (!pHeader->LoadIcon("DataFiles\\AugmentImages\\", opBuff.Icon(), false))
@@ -813,7 +813,7 @@ void CInfoTip::SetFiligree(
         const Build& build)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", pFiligree->Icon(), false))
     {
         pHeader->LoadIcon("DataFiles\\AugmentImages\\", pFiligree->Icon(), true);
@@ -851,7 +851,7 @@ void CInfoTip::AppendFilledAugment(
     {
         minLevel = pAugment->MinLevel();
     }
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
     {
         if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
@@ -944,7 +944,7 @@ void CInfoTip::AppendAugment(
     const Augment* pAugment,
     const Build& build)
 {
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
     {
         if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", pAugment->HasIcon() ? pAugment->Icon() : "", false))
@@ -997,7 +997,7 @@ void CInfoTip::SetSentientGem(
     const Gem* pGem)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\SentientGemImages\\", pGem->Icon(), true);
     pHeader->SetTitle(pGem->Name().c_str());
     m_tipItems.push_back(pHeader);
@@ -1023,7 +1023,7 @@ void CInfoTip::SetFavorItem(
     UNREFERENCED_PARAMETER(favorTier);
     ClearOldTipItems();
     const Feat& feat = FindFeat(patron.AssociatedFavorFeat());
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\FeatImages\\", feat.Icon(), true);
     pHeader->SetTitle(feat.Name().c_str());
     CString maxFavor;
@@ -1041,7 +1041,7 @@ void CInfoTip::SetFavorItem(
 void CInfoTip::SetAttack(const Attack& attack)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\FeatImages\\", attack.Icon(), false))
     {
         pHeader->LoadIcon("DataFiles\\EnhancementImages\\", attack.Icon(), true);
@@ -1067,7 +1067,7 @@ void CInfoTip::SetAttack(const Attack& attack)
 
 void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell, bool bAutogranted)
 {
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.HasIcon() ? spell.Icon() : "", true);
     pHeader->SetTitle(spell.Name().c_str());
     if (spell.School().size() > 0
@@ -1130,7 +1130,7 @@ void CInfoTip::AppendSpellItem(const Build& build, const Spell& spell, bool bAut
     }
     if (spell.MetamagicCount() > 0)
     {
-        InfoTipItem_Metamagics* pMeta = new InfoTipItem_Metamagics;
+        InfoTipItem_Metamagics* pMeta = new InfoTipItem_Metamagics(GetSafeHwnd());
         pMeta->SetSpell(spell);
         m_tipItems.push_back(pMeta);
     }
@@ -1173,7 +1173,7 @@ void CInfoTip::AppendSLA(const Spell& spell, int nCasterLevel, int nCharges, int
 {
     if (spell.HasIcon())
     {
-        InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+        InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
         pHeader->LoadIcon("DataFiles\\SpellImages\\", spell.Icon(), true);
         CString name = spell.Name().c_str();
         name.Replace(" SLA", "");
@@ -1232,7 +1232,7 @@ void CInfoTip::SetLevelItem(
     ClearOldTipItems();
 
     // icon is the class level
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     std::string ct = levelData->HasClass() ? levelData->Class() : Class_Unknown;
     const ::Class& c = FindClass(ct);
     size_t classLevels = build.ClassLevels(ct, level);
@@ -1374,7 +1374,7 @@ void CInfoTip::SetDCItem(
         const DC* pDC)
 {
     ClearOldTipItems();
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\FeatImages\\", pDC->Icon(), false))
     {
         if (!pHeader->LoadIcon("DataFiles\\EnhancementImages\\", pDC->Icon(), false))
@@ -1421,7 +1421,7 @@ void CInfoTip::AppendSetBonusDescription(
     const Build* pBuild)
 {
     const SetBonus& setBonus = FindSetBonus(setBonusName);
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     if (!pHeader->LoadIcon("DataFiles\\SetBonusImages\\", setBonus.Icon(), false))
     {
         if (!pHeader->LoadIcon("DataFiles\\FiligreeImages\\", setBonus.Icon(), false))
@@ -1461,7 +1461,7 @@ void CInfoTip::AppendFeatInfo(
         const Requirements& req)
 {
     const Feat& feat = FindFeat(featName);
-    InfoTipItem_Header* pHeader = new InfoTipItem_Header;
+    InfoTipItem_Header* pHeader = new InfoTipItem_Header(GetSafeHwnd());
     pHeader->LoadIcon("DataFiles\\FeatImages\\", feat.Icon(), true);
     pHeader->SetTitle(feat.Name().c_str());
     m_tipItems.push_back(pHeader);

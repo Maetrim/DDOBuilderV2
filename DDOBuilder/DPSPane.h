@@ -4,6 +4,7 @@
 #include "Attack.h"
 #include "AttackBuff.h"
 #include "InfoTip.h"
+#include "CMFCButtonEx.h"
 
 enum AttackType
 {
@@ -79,15 +80,15 @@ class CDPSPane :
         double EvaluateSwordAndBoard(const Attack& attack, const std::list<AttackBuff>& buffs, double timePoint);
         void DropTimedOutBuffs(std::list<AttackBuff> * buffs, double timePoint);
 
-        CMFCButton m_buttonAddAttackChain;
+        CMFCButtonEx m_buttonAddAttackChain;
         CComboBox m_comboAttackChains;
-        CMFCButton m_buttonDeleteAttackChain;
+        CMFCButtonEx m_buttonDeleteAttackChain;
         CListCtrl m_attackList;
         CListCtrl m_availableList;
-        CMFCButton m_buttonRemove;
-        CMFCButton m_buttonMoveUp;
-        CMFCButton m_buttonMoveDown;
-        CMFCButton m_buttonAdd;
+        CMFCButtonEx m_buttonRemove;
+        CMFCButtonEx m_buttonMoveUp;
+        CMFCButtonEx m_buttonMoveDown;
+        CMFCButtonEx m_buttonAdd;
 
         CDDOBuilderDoc* m_pDocument;
         Character* m_pCharacter;

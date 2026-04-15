@@ -127,6 +127,7 @@ class CEnhancementTreeDialog :
         bool m_tipCreated;
         const EnhancementTreeItem * m_pTooltipItem;
         bool m_bDraggingTree;
+        double m_lastDpiScaling;
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -5,6 +5,7 @@
 #include "Character.h"
 #include "InventoryDialog.h"
 #include "SetBonusButton.h"
+#include "CMFCButtonEx.h"
 
 class CEquipmentPane :
     public CFormView,
@@ -85,12 +86,12 @@ class CEquipmentPane :
         void PopulateSnapshotGearset();
 
         CComboBox m_comboGearSelections;
-        CMFCButton m_buttonNew;
-        CMFCButton m_buttonCopy;
-        CMFCButton m_buttonPaste;
-        CMFCButton m_buttonDelete;
-        CMFCButton m_buttonImportFile;
-        CMFCButton m_buttonImportClipboard;
+        CMFCButtonEx m_buttonNew;
+        CMFCButtonEx m_buttonCopy;
+        CMFCButtonEx m_buttonPaste;
+        CMFCButtonEx m_buttonDelete;
+        CMFCButtonEx m_buttonImportFile;
+        CMFCButtonEx m_buttonImportClipboard;
         CStatic m_staticNumFiligrees;
         CComboBox m_comboNumFiligrees;
         CStatic m_staticSnapshot;

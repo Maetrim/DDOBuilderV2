@@ -77,14 +77,15 @@ BOOL CSelectionSelectDialog::OnInitDialog()
     std::list<EnhancementSelection>::const_iterator it = selections.begin();
     size_t index = 0;
     size_t spentInTree = m_build.APSpentInTree(m_treeName);
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     while (it != selections.end())
     {
         // ensure buttons are correct size
         CRect rctButton;
         m_buttonOption[index].GetWindowRect(&rctButton);
         ScreenToClient(&rctButton);
-        rctButton.right = rctButton.left + 38;
-        rctButton.bottom = rctButton.top + 38;
+        rctButton.right = rctButton.left + static_cast<LONG>(32 * dScaleFactor) + 6;
+        rctButton.bottom = rctButton.top + static_cast<LONG>(32 * dScaleFactor) + 6;
         m_buttonOption[index].MoveWindow(&rctButton);
         m_buttonOption[index].SetImage((*it).Icon());
         m_buttonOption[index].SetWindowText((*it).Name().c_str());
