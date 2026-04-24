@@ -192,3 +192,37 @@ void Augment::VerifyObject() const
         GetLog().AddLogEntry(ss.str().c_str());
     }
 }
+
+bool Augment::operator==(const Augment& other) const
+{
+    bool bSame = (Name() == other.Name())
+            && (Description() == other.Description())
+            && (HasMinLevel() == other.HasMinLevel())
+            && (m_MinLevel == other.m_MinLevel)
+            && (HasIcon() == other.HasIcon())
+            && (m_Icon == other.m_Icon)
+            && (Type() == other.Type())
+            && (AddAugment() == other.AddAugment())
+            && (HasGrantAugment() == other.HasGrantAugment())
+            && (m_GrantAugment == other.m_GrantAugment)
+            && (HasGrantConditionalAugment() == other.HasGrantConditionalAugment())
+            && (m_GrantConditionalAugment == other.m_GrantConditionalAugment)
+            && (HasWeaponClass() == other.HasWeaponClass())
+            && (m_WeaponClass == other.m_WeaponClass)
+            && (HasDualValues() == other.HasDualValues())
+            && (HasEnterValue() == other.HasEnterValue())
+            && (HasChooseLevel() == other.HasChooseLevel())
+            && (HasLevels() == other.HasLevels())
+            && (m_Levels == other.m_Levels)
+            && (HasLevelValue() == other.HasLevelValue())
+            && (m_LevelValue == other.m_LevelValue)
+            && (HasLevelValue2() == other.HasLevelValue2())
+            && (m_LevelValue2 == other.m_LevelValue2)
+            && (SetBonus() == other.SetBonus())
+            && (HasSuppressSetBonus() == other.HasSuppressSetBonus())
+            && (StanceData() == other.StanceData())
+            && (EffectDescription() == other.EffectDescription())
+            && (Effects() == other.Effects());
+    return bSame;
+}
+

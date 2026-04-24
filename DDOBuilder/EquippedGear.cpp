@@ -143,9 +143,9 @@ bool EquippedGear::HasItemInSlot(InventorySlotType slot) const
     return false;
 }
 
-Item EquippedGear::ItemInSlot(InventorySlotType slot) const
+const Item& EquippedGear::ItemInSlot(InventorySlotType slot) const
 {
-    Item noItem;
+    static Item noItem;
     switch (slot)
     {
     case Inventory_Arrows:

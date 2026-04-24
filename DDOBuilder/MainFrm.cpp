@@ -88,6 +88,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
     ON_REGISTERED_MESSAGE(UWM_LOG_MESSAGE, OnLogMessage)
     ON_WM_MENUSELECT()
+    ON_UPDATE_COMMAND_UI(ID_SETTINGS_ALLOWDPISCALING, &CMainFrame::OnUpdateEnableDPIScaling)
+    ON_COMMAND(ID_SETTINGS_ALLOWDPISCALING, &CMainFrame::OnEnableDPIScaling)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -757,7 +759,6 @@ CCustomDockablePane* CMainFrame::GetPane(UINT nID)
     return pPane;
 }
 
-
 void CMainFrame::CopyDefaultIniToDDOBuilderIni()
 {
     // before any settings are read from the ini file, we need to check to see if it
@@ -1112,3 +1113,25 @@ void CMainFrame::OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu)
         pView->PostMessage(UWM_MENUSELECT, nItemID, nFlags);
     }
 }
+
+void CMainFrame::OnUpdateEnableDPIScaling(CCmdUI* pCmdUI)
+{
+    pCmdUI->SetCheck(g_bAllowDPIScaling ? TRUE : FALSE);
+    pCmdUI->Enable(m_bLoadComplete);
+}
+
+void CMainFrame::OnEnableDPIScaling()
+{
+    g_bAllowDPIScaling = !g_bAllowDPIScaling;
+    AfxGetApp()->WriteProfileInt("Settings", "DPIScalingEnabled", g_bAllowDPIScaling ? TRUE : FALSE);
+    // once changed, send an OnSize to every dock window
+    for (auto&& it: m_dockablePanes)
+    {
+        CRect rct;
+        CView* pView = it->GetView();
+        pView->GetClientRect(&rct);
+        pView->PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rct.Width(), rct.Height()));
+        pView->Invalidate();    // and force a redraw
+    }
+}
+

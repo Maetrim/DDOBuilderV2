@@ -89,6 +89,7 @@ const std::string Race_All = "All";
 const std::string c_noTreeSelection = "No selection";
 extern bool g_bShowIgnoredItems;
 extern bool g_bShowZeroBreakdown;
+extern bool g_bAllowDPIScaling;
 const int c_noSelection = -1;
 const int c_noFiligreeSelection = -2;
 const int c_trueItemIndexOffset = 7000;

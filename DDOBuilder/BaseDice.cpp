@@ -18,3 +18,9 @@ BaseDice::BaseDice(
     BasicDice(f_saxElementName, version)
 {
 }
+
+bool BaseDice::operator==(const BasicDice& other) const
+{
+    return BasicDice::operator==(other);
+}
+

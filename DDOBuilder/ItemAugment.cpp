@@ -117,3 +117,19 @@ void ItemAugment::SetValue2(double value)
 {
     Set_Value2(value);
 }
+
+bool ItemAugment::operator==(const ItemAugment& other) const
+{
+    bool bSame = (Type() == other.Type())
+            && (HasSelectedAugment() == other.HasSelectedAugment())
+            && (m_SelectedAugment == other.m_SelectedAugment)
+            && (HasSelectedLevelIndex() == other.HasSelectedLevelIndex())
+            && (m_SelectedLevelIndex == other.m_SelectedLevelIndex)
+            && (HasValue() == other.HasValue())
+            && (m_Value == other.m_Value)
+            && (HasValue2() == other.HasValue2())
+            && (m_Value2 == other.m_Value2)
+            && (ItemSpecificAugments() == other.ItemSpecificAugments());
+    return bSame;
+}
+

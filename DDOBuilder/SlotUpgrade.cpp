@@ -59,3 +59,11 @@ bool SlotUpgrade::HasSlotType(const std::string& type) const
     }
     return bHas;
 }
+
+bool SlotUpgrade::operator==(const SlotUpgrade& other) const
+{
+    bool bSame = (Type() == other.Type())
+            && (UpgradeType() == other.UpgradeType());
+    return bSame;
+}
+

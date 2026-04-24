@@ -33,7 +33,7 @@ CGrantedFeatListControl::~CGrantedFeatListControl()
 {
 }
 
-void CGrantedFeatListControl::SetCharacter(Character * pCharacter)
+void CGrantedFeatListControl::SetCharacter(Character* pCharacter)
 {
     m_pCharacter = pCharacter;
     SetupControl();
@@ -185,7 +185,7 @@ size_t CGrantedFeatListControl::DrawSection(CDC* pDC, size_t iSection, size_t to
 
     pDC->SetTextColor(bDarkMode ? f_white : f_black);
     // now draw all the items in this section
-    CImageList & il = Feat::FeatImageList();
+    CImageList& il = Feat::FeatImageList();
     const std::list<Feat>& feats = m_sections[iSection].feats;
     size_t iItemIndex = 0;
     for (auto&& fit: feats)

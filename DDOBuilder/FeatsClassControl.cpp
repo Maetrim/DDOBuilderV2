@@ -43,14 +43,13 @@ CFeatsClassControl::CFeatsClassControl() :
     m_bAlternateFeat(false),
     m_bToggleSpell(false)
 {
-    DefaultFont(m_defaultFont);
 }
 
 CFeatsClassControl::~CFeatsClassControl()
 {
 }
 
-void CFeatsClassControl::SetCharacter(Character * pCharacter)
+void CFeatsClassControl::SetCharacter(Character* pCharacter)
 {
     m_hitChecks.clear();
     if (m_pCharacter != NULL)
@@ -68,12 +67,14 @@ void CFeatsClassControl::SetCharacter(Character * pCharacter)
             pLife->AttachObserver(this);
         }
         // also need to know about any build changes
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             pBuild->AttachObserver(this);
         }
     }
+    m_defaultFont.DeleteObject();
+    DefaultFont(m_defaultFont);
     SetupControl();
 }
 
@@ -98,6 +99,8 @@ END_MESSAGE_MAP()
 // CFeatsClassControl message handlers
 void CFeatsClassControl::OnSize(UINT nType, int cx, int cy)
 {
+    m_defaultFont.DeleteObject();
+    DefaultFont(m_defaultFont);
     CWnd::OnSize(nType, cx, cy);
 }
 
@@ -164,6 +167,7 @@ CSize CFeatsClassControl::RequiredSize()
                 height += m_levelRect.Height() + 2;
             }
         }
+        height += 2;    // border
         requiredSize.cx = width;
         requiredSize.cy = height;
         screenDC.RestoreDC(-1);
@@ -195,7 +199,7 @@ void CFeatsClassControl::SetupControl()
     m_numClassColumns = 0;
     if (m_pCharacter != NULL)
     {
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             // work out how many class select columns we need
@@ -306,7 +310,7 @@ void CFeatsClassControl::OnPaint()
     cdc.DeleteDC();
 }
 
-size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
+size_t CFeatsClassControl::DrawTopLine(CDC* pDC)
 {
     double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     bool bDarkMode = DarkModeEnabled();
@@ -428,7 +432,7 @@ size_t CFeatsClassControl::DrawTopLine(CDC * pDC)
 }
 
 size_t CFeatsClassControl::DrawLevelLine(
-        CDC * pDC,
+        CDC* pDC,
         size_t top,
         size_t level)
 {
@@ -646,7 +650,7 @@ size_t CFeatsClassControl::DrawLevelLine(
 }
 
 void CFeatsClassControl::DrawFeat(
-        CDC * pDC,
+        CDC* pDC,
         CRect rctItem,
         size_t featIndex,
         size_t level)
@@ -847,7 +851,7 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
                         std::string featName = tf.FeatName();
                         if (featName != "")
                         {
-                            const Feat & feat = FindFeat(tf.FeatName());
+                            const Feat& feat = FindFeat(tf.FeatName());
                             // determine whether there is a feat swap warning if training at level 1
                             bool warn = false;
                             if (ht.Level() == 0
@@ -893,7 +897,7 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
                     || ht.Type() == HT_LevelClass3)
             {
                 // look up the selected class
-                const LevelTraining & levelData = m_pCharacter->ActiveBuild()->LevelData(ht.Level());
+                const LevelTraining& levelData = m_pCharacter->ActiveBuild()->LevelData(ht.Level());
                 std::string expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
                 if (ht.Level() == 0)
                 {
@@ -1167,7 +1171,7 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
         ClientToScreen(&point);
         CMenu menu;
         menu.LoadMenu(IDR_POPUP_MOVECLASS);
-        CMenu *pMenu = menu.GetSubMenu(0);
+        CMenu* pMenu = menu.GetSubMenu(0);
         Build* pBuild = m_pCharacter->ActiveBuild();
         // enable / disable move up/down for multiple steps
         std::string c1 = pBuild->LevelData(ht.Level()).HasClass()
@@ -1176,7 +1180,7 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
         m_highlightedLevelLine = ht.Level();    // keep original line highlighted
         m_alternateHighlightedLevelLine = c_dudLevel;
         Invalidate();
-        CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+        CWinAppEx* pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
         UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
                 pMenu->GetSafeHmenu(),
                 point.x,
@@ -1245,7 +1249,7 @@ void CFeatsClassControl::DoClass1()
                 type3);
         if (sel >= 0)
         {
-            const std::list<Class> & classes = Classes();
+            const std::list<Class>& classes = Classes();
             std::list<Class>::const_iterator cci = classes.begin();
             std::advance(cci, sel);
             std::string ct = (*cci).Name();
@@ -1273,7 +1277,7 @@ void CFeatsClassControl::DoClass2()
                 type3);
         if (sel >= 0)
         {
-            const std::list<Class> & classes = Classes();
+            const std::list<Class>& classes = Classes();
             std::list<Class>::const_iterator cci = classes.begin();
             std::advance(cci, sel);
             std::string ct = (*cci).Name();
@@ -1301,7 +1305,7 @@ void CFeatsClassControl::DoClass3()
                 type2);
         if (sel >= 0)
         {
-            const std::list<Class> & classes = Classes();
+            const std::list<Class>& classes = Classes();
             std::list<Class>::const_iterator cci = classes.begin();
             std::advance(cci, sel);
             std::string ct = (*cci).Name();
@@ -1322,7 +1326,7 @@ int CFeatsClassControl::DoClassContextMenu(
 {
     CMenu menu;
     menu.CreatePopupMenu();
-    const std::list<Class> & classes = Classes();
+    const std::list<Class>& classes = Classes();
     std::string baseClass1 = FindClass(exclude1).GetBaseClass();
     std::string baseClass2 = FindClass(exclude2).GetBaseClass();
     std::list<Class>::const_iterator cci = classes.begin();
@@ -1397,7 +1401,7 @@ int CFeatsClassControl::DoClassContextMenu(
         }
     }
     ClientToScreen(&menuPos);
-    CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+    CWinAppEx* pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
     int sel = pApp->GetContextMenuManager()->TrackPopupMenu(
             menu.GetSafeHmenu(),
             menuPos.x,
@@ -1414,7 +1418,7 @@ int CFeatsClassControl::DoClassContextMenu(
     return sel;
 }
 
-//void CFeatsClassControl::UpdateClassChoiceChanged(Character * charData)
+//void CFeatsClassControl::UpdateClassChoiceChanged(Character* charData)
 //{
 //    if (!m_bUpdatePending)
 //    {
@@ -1424,7 +1428,7 @@ int CFeatsClassControl::DoClassContextMenu(
 //}
 
 //void CFeatsClassControl::UpdateClassChanged(
-//        Character * charData,
+//        Character* charData,
 //        ClassType classFrom,
 //        ClassType classTo,
 //        size_t level)
@@ -1437,14 +1441,14 @@ int CFeatsClassControl::DoClassContextMenu(
 //}
 
 void CFeatsClassControl::UpdateFeatTrained(
-        Build *,
+        Build*,
         const std::string&)
 {
     Invalidate();
 }
 
 void CFeatsClassControl::UpdateFeatRevoked(
-        Build *,
+        Build*,
         const std::string&)
 {
     Invalidate();
@@ -1586,7 +1590,7 @@ LRESULT CFeatsClassControl::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
             rctWindow.right = rctWindow.left + m_featSelector.GetDroppedWidth();
             std::vector<FeatSlot> tfts = m_availableFeats[m_featSelectItem.Level()];
             // tip is shown to the left or the right of the combo box
-            const Feat & feat = FindFeat((LPCTSTR)featName);
+            const Feat& feat = FindFeat((LPCTSTR)featName);
             CPoint tipTopLeft(rctWindow.left, rctWindow.top);
             CPoint tipAlternate(rctWindow.right, rctWindow.top);
             bool warn = false;
@@ -1627,7 +1631,7 @@ void CFeatsClassControl::HideTip()
     }
 }
 
-void CFeatsClassControl::UpdateActiveBuildChanged(Character * pCharacter)
+void CFeatsClassControl::UpdateActiveBuildChanged(Character* pCharacter)
 {
     SetCharacter(pCharacter);
 }
@@ -1642,13 +1646,13 @@ void CFeatsClassControl::UpdateRaceChanged(Life*, const std::string&)
     SetupControl();
 }
 
-void CFeatsClassControl::UpdateBuildLevelChanged(Build *)
+void CFeatsClassControl::UpdateBuildLevelChanged(Build*)
 {
     SetupControl();
 }
 
 void CFeatsClassControl::UpdateClassChanged(
-        Build *,
+        Build*,
         const std::string&,
         const std::string&,
         size_t)

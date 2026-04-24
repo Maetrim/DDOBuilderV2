@@ -89,7 +89,7 @@ void CEnhancementSelectionButton::SetImage(const std::string& imageName)
             CSize(32, 32));
     if (result != S_OK)
     {
-        // load unknown image imstead
+        // load unknown image instead
         result = LoadImageFile(
             "DataFiles\\FeatImages\\",
             "Unknown",

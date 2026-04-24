@@ -21,7 +21,7 @@ class EquippedGear :
         void UpdateImages();
 
         bool HasItemInSlot(InventorySlotType slot) const;
-        Item ItemInSlot(InventorySlotType slot) const;
+        const Item& ItemInSlot(InventorySlotType slot) const;
         bool IsSlotRestricted(InventorySlotType slot, Build* pBuild) const;
         std::list<Item> SetItem(InventorySlotType slot,
                 Build* pBuild,

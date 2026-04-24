@@ -2613,7 +2613,7 @@ void Build::AutoTrainSingleSelectionFeats()
 
 void Build::VerifyGear()
 {
-    EquippedGear gear = ActiveGearSet();
+    const EquippedGear& gear = ActiveGearSet();
     bool revokeOccurred = false;
     // need to know how many levels and of what classes they have trained
     std::vector<size_t> classLevels = ClassLevels(Level()-1);
@@ -2625,7 +2625,7 @@ void Build::VerifyGear()
     {
         if (gear.HasItemInSlot((InventorySlotType)i))
         {
-            Item item = gear.ItemInSlot((InventorySlotType)i);
+            const Item& item = gear.ItemInSlot((InventorySlotType)i);
             bool bRemoveItem = (item.MinLevel() > Level());
             if (item.HasRequirementsToUse())
             {
@@ -4214,6 +4214,7 @@ void Build::AddGearSet(const EquippedGear& gear)
 void Build::DeleteGearSet(const std::string& name)
 {
     m_bSwitchingBuildsOrGear = true;
+    BreakdownItem::SetLockState(true);
     RevokeGearEffects();        // always for active gear (one being deleted)
     std::stringstream ss;
     ss << "Gear set \"" << name << "\" deleted.";
@@ -4243,6 +4244,7 @@ void Build::DeleteGearSet(const std::string& name)
     }
     ApplyGearEffects();         // always for active gear
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
+    BreakdownItem::SetLockState(false);
     m_bSwitchingBuildsOrGear = false;
     UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
     UpdateTotalChanged(NULL, Breakdown_Intelligence);
@@ -4269,17 +4271,16 @@ bool Build::DoesGearSetExist(const std::string& name) const
     return found;
 }
 
-EquippedGear Build::GetGearSet(const std::string& name) const
+const EquippedGear& Build::GetGearSet(const std::string& name) const
 {
-    EquippedGear gear;
+    static EquippedGear gear;
     std::list<EquippedGear>::const_iterator it = m_GearSetups.begin();
     bool found = false;
     while (!found && it != m_GearSetups.end())
     {
         if ((*it).Name() == name)
         {
-            gear = (*it);
-            found = true;
+            return *it;
         }
         ++it;
     }
@@ -4289,11 +4290,13 @@ EquippedGear Build::GetGearSet(const std::string& name) const
 void Build::SetActiveGearSet(const std::string& name)
 {
     m_bSwitchingBuildsOrGear = true;
+    BreakdownItem::SetLockState(true);
     RevokeGearEffects();        // always for active gear
     Set_ActiveGear(name);
     ApplyGearEffects();         // always for active gear
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
     SetModifiedFlag(TRUE);
+    BreakdownItem::SetLockState(false);
     m_bSwitchingBuildsOrGear = false;
     UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
     UpdateTotalChanged(NULL, Breakdown_Intelligence);
@@ -4303,7 +4306,7 @@ void Build::SetActiveGearSet(const std::string& name)
     UpdateTotalChanged(NULL, Breakdown_Charisma);
 }
 
-EquippedGear Build::ActiveGearSet() const
+const EquippedGear& Build::ActiveGearSet() const
 {
     return GetGearSet(ActiveGear());
 }
@@ -4311,6 +4314,7 @@ EquippedGear Build::ActiveGearSet() const
 void Build::SetNumFiligrees(size_t count)
 {
     m_bSwitchingBuildsOrGear = true;
+    BreakdownItem::SetLockState(true);
     // first revoke all gear effects as the gear is about to change
     RevokeGearEffects();        // always for active gear
     // update the gear
@@ -4328,6 +4332,7 @@ void Build::SetNumFiligrees(size_t count)
     // now apply the gear effects if its the active gear set
     ApplyGearEffects();         // always for active gear
     SetModifiedFlag(TRUE);
+    BreakdownItem::SetLockState(false);
     m_bSwitchingBuildsOrGear = false;
     UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
     UpdateTotalChanged(NULL, Breakdown_Intelligence);
@@ -4615,7 +4620,7 @@ Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original)
 void Build::UpdateActiveGearSet(const EquippedGear& newGear)
 {
     m_bSwitchingBuildsOrGear = true;
-    // first revoke all gear effects as the gear is about to change
+    BreakdownItem::SetLockState(true);
     RevokeGearEffects();        // always for active gear
     // update the gear
     std::list<EquippedGear>::iterator it = m_GearSetups.begin();
@@ -4632,6 +4637,7 @@ void Build::UpdateActiveGearSet(const EquippedGear& newGear)
     // now apply the gear effects if its the active gear set
     ApplyGearEffects();         // always for active gear
     SetModifiedFlag(TRUE);
+    BreakdownItem::SetLockState(false);
     m_bSwitchingBuildsOrGear = false;
     UpdateTotalChanged(NULL, Breakdown_Strength);       // ensure snapshots are current
     UpdateTotalChanged(NULL, Breakdown_Intelligence);
@@ -4748,7 +4754,7 @@ void Build::RevokeGearEffects()
         InventorySlotType ist = (InventorySlotType)i;
         if (gear.HasItemInSlot(ist))
         {
-            Item item = gear.ItemInSlot(ist);
+            const Item& item = gear.ItemInSlot(ist);
             RevokeItem(item, ist);
         }
     }
@@ -4824,7 +4830,7 @@ void Build::ApplyGearEffects()
         InventorySlotType ist = (InventorySlotType)i;
         if (gear.HasItemInSlot(ist))
         {
-            Item item = gear.ItemInSlot(ist);
+            const Item& item = gear.ItemInSlot(ist);
             ApplyItem(item, ist);
         }
     }

@@ -14,6 +14,7 @@ class EquipmentSlot :
         void Write(XmlLib::SaxWriter * writer) const;
 
         bool HasSlot(InventorySlotType slot) const;
+        bool operator==(const EquipmentSlot& other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

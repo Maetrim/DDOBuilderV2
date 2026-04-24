@@ -120,6 +120,7 @@ BOOL CStanceButton::OnEraseBkgnd(CDC* pDC)
 
 void CStanceButton::OnPaint()
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     CPaintDC pdc(this); // validates the client area on destruction
     pdc.SaveDC();
 
@@ -140,17 +141,14 @@ void CStanceButton::OnPaint()
     {
         pdc.FillSolidRect(rect, GetSysColor(COLOR_BTNFACE));
     }
-    m_image.TransparentBlt(
+    long size = static_cast<LONG>(32 * dScaleFactor);
+    m_image.Draw(
             pdc.GetSafeHdc(),
-            (rect.Width() - 32) / 2,
-            (rect.Height() - 32) / 2,
-            32,
-            32);
+            (rect.Width() - size) / 2,
+            (rect.Height() - size) / 2,
+            size,
+            size);
     pdc.RestoreDC(-1);
-    //// stances debug
-    //CString stacks;
-    //stacks.Format("%d", m_stacks);
-    //pdc.TextOut(0, 0, stacks);
 }
 
 void CStanceButton::SetSelected(bool selected)

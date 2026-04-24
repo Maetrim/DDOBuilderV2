@@ -151,6 +151,8 @@ CSize CSkillSpendControl::RequiredSize()
     CSize requiredSize(0, 0);
     if (m_pCharacter != NULL)
     {
+        CFont font;
+        DefaultFont(font, true);
         size_t level = MAX_CLASS_LEVEL;
         if (m_pCharacter->ActiveBuild() != NULL)
         {
@@ -162,7 +164,7 @@ CSize CSkillSpendControl::RequiredSize()
         CDC screenDC;
         screenDC.Attach(::GetDC(NULL));
         screenDC.SaveDC();
-        screenDC.SelectStockObject(DEFAULT_GUI_FONT);
+        screenDC.SelectObject(font);
 
         // calculate the width of the control required
         m_skillColumnSize = screenDC.GetTextExtent("  30  ");

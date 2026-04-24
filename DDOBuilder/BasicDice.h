@@ -18,6 +18,7 @@ class BasicDice :
         double AverageDamage() const;
 
         void Set(int number, int sides, int bonus);
+        bool operator==(const BasicDice& other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

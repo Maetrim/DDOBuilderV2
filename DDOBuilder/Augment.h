@@ -23,6 +23,7 @@ class Augment :
         void VerifyObject() const;
 
         void SetFilename(const std::string&) {}; // dummy
+        bool operator==(const Augment& other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

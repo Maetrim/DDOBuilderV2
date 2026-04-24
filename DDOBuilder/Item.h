@@ -52,6 +52,8 @@ class Item :
 
         const std::string& AdventurePack() const;
         void SetAdventurePack(const std::string& pack);
+        bool operator==(const Item& other) const;
+        bool operator!=(const Item& other) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -103,7 +105,7 @@ class Item :
         size_t m_iconIndex;
         std::string m_filename;
         std::string m_adventurePack;
-        bool m_bIsRaindItem;
+        bool m_bIsRaidItem;
 
         friend class WikiItemFileProcessor;
         friend class CItemSelectDialog;

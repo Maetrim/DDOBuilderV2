@@ -307,14 +307,14 @@ class Build :
         // gear support
         void UpdateGearToLatestVersions();
         Item GetLatestVersionOfItem(InventorySlotType slot, Item original);
-        Item Build::GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original);
+        Item GetLatestVersionOfItem(InventorySlotType slot, LegacyItem original);
         void VerifyGear();
         void AddGearSet(const EquippedGear& gear);
         void DeleteGearSet(const std::string& name);
         bool DoesGearSetExist(const std::string& name) const;
         void SetActiveGearSet(const std::string& name);
-        EquippedGear GetGearSet(const std::string& name) const;
-        EquippedGear ActiveGearSet() const;
+        const EquippedGear& GetGearSet(const std::string& name) const;
+        const EquippedGear& ActiveGearSet() const;
         void UpdateActiveGearSet(const EquippedGear& newGear);
         void SetGear(const std::string& name, InventorySlotType slot, const Item& item);
         void ClearGearInSlot(const std::string& name, InventorySlotType slot);

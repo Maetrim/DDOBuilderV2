@@ -135,3 +135,15 @@ void BasicDice::Set(int number, int sides, int bonus)
         m_hasBonus = false;
     }
 }
+
+bool BasicDice::operator==(const BasicDice& other) const
+{
+    bool bSame = (HasNumber() == other.HasNumber())
+            && (Number() == other.Number())
+            && (HasSides() == other.HasSides())
+            && (Sides() == other.Sides())
+            && (HasBonus() == other.HasBonus())
+            && (Bonus() == other.Bonus());
+    return bSame;
+}
+

@@ -49,8 +49,8 @@ BOOL CDDOBuilderDoc::OnNewDocument()
     m_character = Character(this);
 
     // (SDI documents will reuse this document)
-    CWnd * pWnd = AfxGetApp()->m_pMainWnd;
-    CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
+    CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+    CMainFrame* pMF = dynamic_cast<CMainFrame*>(pWnd);
     pMF->NewDocument(this);
     if (m_strBackupFilename != "")
     {
@@ -99,7 +99,7 @@ BOOL CDDOBuilderDoc::OnOpenDocument(LPCTSTR lpszPathName)
     m_character.SetSupportLegacyTrees(SpendInTree::SupportLegacyTrees());
     m_character.LoadComplete(); // does file format upgrades etc
     CWnd* pWnd = AfxGetApp()->m_pMainWnd;
-    CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
+    CMainFrame* pMF = dynamic_cast<CMainFrame*>(pWnd);
     pMF->NewDocument(this);
     // just opened the file, its unmodified!
     SetModifiedFlag(FALSE);
@@ -178,7 +178,7 @@ BOOL CDDOBuilderDoc::OnSaveDocument(LPCTSTR lpszPathName)
             GetLog().AddLogEntry(strLog);
         }
     }
-    catch (const std::exception & e)
+    catch (const std::exception& e)
     {
         std::string errorMessage = e.what();
         // document has failed to save. Tell the user what we can about it
@@ -196,17 +196,17 @@ BOOL CDDOBuilderDoc::OnSaveDocument(LPCTSTR lpszPathName)
 }
 
 // CDDOBuilderDoc serialization
-void CDDOBuilderDoc::Serialize(CArchive &)
+void CDDOBuilderDoc::Serialize(CArchive&)
 {
     // not used
     throw;
 }
 
-XmlLib::SaxContentElementInterface * CDDOBuilderDoc::StartElement(
-        const XmlLib::SaxString & name,
-        const XmlLib::SaxAttributes & attributes)
+XmlLib::SaxContentElementInterface* CDDOBuilderDoc::StartElement(
+        const XmlLib::SaxString& name,
+        const XmlLib::SaxAttributes& attributes)
 {
-    XmlLib::SaxContentElementInterface * subHandler =
+    XmlLib::SaxContentElementInterface* subHandler =
             SaxContentElement::StartElement(name, attributes);
     if (subHandler == NULL)
     {
@@ -264,7 +264,7 @@ void CDDOBuilderDoc::OnRevertToBackup()
         }
         m_character.LoadComplete(); // does file format upgrades etc
         CWnd* pWnd = AfxGetApp()->m_pMainWnd;
-        CMainFrame * pMF = dynamic_cast<CMainFrame*>(pWnd);
+        CMainFrame* pMF = dynamic_cast<CMainFrame*>(pWnd);
         pMF->NewDocument(this);
         // just opened the file, its unmodified!
         SetPathName(oldFilename); // ensure we are not using the backup filename

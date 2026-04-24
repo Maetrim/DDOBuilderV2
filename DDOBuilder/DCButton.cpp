@@ -16,7 +16,7 @@ BEGIN_MESSAGE_MAP(CDCButton, CStatic)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
-CDCButton::CDCButton(Character * charData, const DC & dc) :
+CDCButton::CDCButton(Character* charData, const DC& dc) :
     m_pCharacter(charData),
     m_dc(dc),
     m_stacks(0)         // stack count updated later
@@ -45,6 +45,7 @@ BOOL CDCButton::OnEraseBkgnd(CDC*)
 
 void CDCButton::OnPaint()
 {
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
     CPaintDC pdc(this); // validates the client area on destruction
     pdc.SaveDC();
 
@@ -54,12 +55,7 @@ void CDCButton::OnPaint()
 
     // fill the background
     pdc.FillSolidRect(rect, GetSysColor(COLOR_BTNFACE));
-    m_image.TransparentBlt(
-            pdc.GetSafeHdc(),
-            3,
-            3,
-            32,
-            32);
+    m_image.Draw(pdc.GetSafeHdc(), 3, 3, static_cast<LONG>(32 * dScaleFactor), static_cast<LONG>(32 * dScaleFactor));
     // also show the current DC value under the icon
     int dc = m_dc.CalculateDC(m_pCharacter->ActiveBuild());
     CString text;
@@ -69,7 +65,7 @@ void CDCButton::OnPaint()
     LOGFONT lf;
     ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
     strcpy_s(lf.lfFaceName, "Consolas");
-    lf.lfHeight = 11;
+    lf.lfHeight = static_cast<LONG>(11 * dScaleFactor);
     CFont smallFont;
     smallFont.CreateFontIndirect(&lf);
     pdc.SelectObject(&smallFont);
@@ -79,14 +75,14 @@ void CDCButton::OnPaint()
     pdc.SetBkMode(TRANSPARENT); // don't erase the text background
     pdc.TextOut(
             rect.left + (rect.Width() - textSize.cx) / 2,
-            rect.bottom - 12,
+            rect.bottom - static_cast<LONG>(12 * dScaleFactor),
             text);
     // were done, restore the dc to pristine condition
     pdc.RestoreDC(-1);
     // font resource destroyed automatically by destructor
 }
 
-const DC & CDCButton::GetDCItem() const
+const DC& CDCButton::GetDCItem() const
 {
     return m_dc;
 }
@@ -108,7 +104,7 @@ size_t CDCButton::NumStacks() const
     return m_stacks;
 }
 
-bool CDCButton::IsYou(const DC & dc)
+bool CDCButton::IsYou(const DC& dc)
 {
     return (dc == m_dc);
 }

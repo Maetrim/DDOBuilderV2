@@ -25,7 +25,7 @@ Item::Item() :
     m_Slots(L"EquipmentSlot"),
     m_RestrictedSlots(L"RestrictedSlots"),
     m_iconIndex(0),         // defaults to no image
-    m_bIsRaindItem(false)
+    m_bIsRaidItem(false)
 {
     DL_INIT(Item_PROPERTIES)
 }
@@ -35,7 +35,7 @@ Item::Item(const XmlLib::SaxString & objectName) :
     m_Slots(L"EquipmentSlot"),
     m_RestrictedSlots(L"RestrictedSlots"),
     m_iconIndex(0),         // defaults to no image
-    m_bIsRaindItem(false)
+    m_bIsRaidItem(false)
 {
     DL_INIT(Item_PROPERTIES)
 }
@@ -429,12 +429,12 @@ void Item::SetAugments(const std::vector<ItemAugment>& augments)
 
 bool Item::IsRaidItem() const
 {
-    return m_bIsRaindItem;
+    return m_bIsRaidItem;
 }
 
 void Item::SetIsRaidItem(bool bIsRaidItem)
 {
-    m_bIsRaindItem = bIsRaidItem;
+    m_bIsRaidItem = bIsRaidItem;
 }
 
 size_t Item::RealCriticalThreatRange() const
@@ -557,3 +557,67 @@ void Item::SetAdventurePack(const std::string& pack)
     m_adventurePack = pack;
 }
 
+bool Item::operator==(const Item& other) const
+{
+    bool bSame = (HasUserSetsLevel() == other.HasUserSetsLevel())
+            && (Name() == other.Name())
+            && (HasIcon() == other.HasIcon())
+            && (m_Icon == other.m_Icon)
+            && (Description() == other.Description())
+            && (HasDropLocation() == other.HasDropLocation())
+            && (m_DropLocation == other.m_DropLocation)
+            && (MinLevel() == other.MinLevel())
+            && (Slots() == other.Slots())
+            && (HasRestrictedSlots() == other.HasRestrictedSlots())
+            && (m_RestrictedSlots == other.m_RestrictedSlots)
+            && (HasRequirementsToUse() == other.HasRequirementsToUse())
+            && (m_RequirementsToUse == other.m_RequirementsToUse)
+            && (HasWeapon() == other.HasWeapon())
+            && (m_Weapon == other.m_Weapon)
+            && (HasArmor() == other.HasArmor())
+            && (m_Armor == other.m_Armor)
+            && (AttackModifier() == other.AttackModifier())
+            && (DamageModifier() == other.DamageModifier())
+            && (DRBypass() == other.DRBypass())
+            && (HasWeaponDamage() == other.HasWeaponDamage())
+            && (m_WeaponDamage == other.m_WeaponDamage)
+            && (HasDamageDice() == other.HasDamageDice())
+            && (m_DamageDice == other.m_DamageDice)
+            && (HasCriticalMultiplier() == other.HasCriticalMultiplier())
+            && (m_CriticalMultiplier == other.m_CriticalMultiplier)
+            && (HasCriticalThreatRange() == other.HasCriticalThreatRange())
+            && (m_CriticalThreatRange == other.m_CriticalThreatRange)
+            && (HasArmorBonus() == other.HasArmorBonus())
+            && (m_ArmorBonus == other.m_ArmorBonus)
+            && (HasMithralBody() == other.HasMithralBody())
+            && (m_MithralBody == other.m_MithralBody)
+            && (HasAdamantineBody() == other.HasAdamantineBody())
+            && (m_AdamantineBody == other.m_AdamantineBody)
+            && (HasMaximumDexterityBonus() == other.HasMaximumDexterityBonus())
+            && (m_MaximumDexterityBonus == other.m_MaximumDexterityBonus)
+            && (HasArmorCheckPenalty() == other.HasArmorCheckPenalty())
+            && (m_ArmorCheckPenalty == other.m_ArmorCheckPenalty)
+            && (HasArcaneSpellFailure() == other.HasArcaneSpellFailure())
+            && (m_ArcaneSpellFailure == other.m_ArcaneSpellFailure)
+            && (HasShieldBonus() == other.HasShieldBonus())
+            && (m_ShieldBonus == other.m_ShieldBonus)
+            && (HasDamageReduction() == other.HasDamageReduction())
+            && (m_DamageReduction == other.m_DamageReduction)
+            && (HasMaterial() == other.HasMaterial())
+            && (m_Material == other.m_Material)
+            && (Effects() == other.Effects())
+            && (Buffs() == other.Buffs())
+            && (SetBonus() == other.SetBonus())
+            && (Augments() == other.Augments())
+            && (SlotUpgrades() == other.SlotUpgrades())
+            && (HasIsAcceptsSentience() == other.HasIsAcceptsSentience())
+            && (HasIsGreensteel() == other.HasIsGreensteel())
+            && (HasMinorArtifact() == other.HasMinorArtifact());
+
+    return bSame;
+}
+
+bool Item::operator!=(const Item& other) const
+{
+    return !operator==(other);
+}

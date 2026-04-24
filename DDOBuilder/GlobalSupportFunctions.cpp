@@ -39,42 +39,42 @@ const std::list<Bonus>& BonusTypes()
     return theApp.BonusTypes();
 }
 
-const std::list<Race> & Races()
+const std::list<Race>& Races()
 {
     return theApp.Races();
 }
 
-const std::list<Class> & Classes()
+const std::list<Class>& Classes()
 {
     return theApp.Classes();
 }
 
-const std::map<std::string, Feat> & StandardFeats()
+const std::map<std::string, Feat>& StandardFeats()
 {
     return theApp.AllFeats();
 }
 
-const std::list<Feat> & HeroicPastLifeFeats()
+const std::list<Feat>& HeroicPastLifeFeats()
 {
     return theApp.HeroicPastLifeFeats();
 }
 
-const std::list<Feat> & RacialPastLifeFeats()
+const std::list<Feat>& RacialPastLifeFeats()
 {
     return theApp.RacialPastLifeFeats();
 }
 
-const std::list<Feat> & IconicPastLifeFeats()
+const std::list<Feat>& IconicPastLifeFeats()
 {
     return theApp.IconicPastLifeFeats();
 }
 
-const std::list<Feat> & EpicPastLifeFeats()
+const std::list<Feat>& EpicPastLifeFeats()
 {
     return theApp.EpicPastLifeFeats();
 }
 
-const std::list<Feat> & SpecialFeats()
+const std::list<Feat>& SpecialFeats()
 {
     return theApp.SpecialFeats();
 }
@@ -89,12 +89,12 @@ const std::list<Feat>& DestinyTreeFeats()
     return theApp.DestinyTreeFeats();
 }
 
-const std::list<Feat> & FavorFeats()
+const std::list<Feat>& FavorFeats()
 {
     return theApp.FavorFeats();
 }
 
-const std::list<EnhancementTree> & EnhancementTrees()
+const std::list<EnhancementTree>& EnhancementTrees()
 {
     return theApp.EnhancementTrees();
 }
@@ -214,7 +214,7 @@ const Bonus& FindBonus(const std::string& bonus)
 {
     // find the information about a specific feat from the feat list
     static Bonus bonusNotFound;
-    const std::list<Bonus> & allBonus = BonusTypes();
+    const std::list<Bonus>& allBonus = BonusTypes();
     auto it = allBonus.begin();
     while (it != allBonus.end())
     {
@@ -305,7 +305,7 @@ const Race& FindRace(const std::string& raceName)
     static Race badRace;
 
     bool bFound = false;
-    const std::list<Race> & races = Races();
+    const std::list<Race>& races = Races();
     std::list<Race>::const_iterator rit = races.begin();
     while (!bFound && rit != races.end())
     {
@@ -330,7 +330,7 @@ const Class& FindClass(const std::string& className)
     static Class badClass;
 
     bool bFound = false;
-    const std::list<Class> & classes = Classes();
+    const std::list<Class>& classes = Classes();
     std::list<Class>::const_iterator cit = classes.begin();
     while (!bFound && cit != classes.end())
     {
@@ -433,12 +433,12 @@ const OptionalBuff& FindOptionalBuff(const std::string& name)
     return badBuff;
 }
 
-const EnhancementTreeItem * FindEnhancement(
+const EnhancementTreeItem* FindEnhancement(
         const std::string& internalName,
-        std::string * treeName) // can be NULL
+        std::string* treeName) // can be NULL
 {
-    const EnhancementTreeItem * item = NULL;
-    const std::list<EnhancementTree> & trees = EnhancementTrees();
+    const EnhancementTreeItem* item = NULL;
+    const std::list<EnhancementTree>& trees = EnhancementTrees();
     bool found = false;
     std::list<EnhancementTree>::const_iterator tit = trees.begin();
     while (!found && tit != trees.end())
@@ -457,7 +457,7 @@ const EnhancementTreeItem * FindEnhancement(
 const EnhancementTree& GetEnhancementTree(const std::string& treeName)
 {
     static EnhancementTree emptyTree;
-    const std::list<EnhancementTree> & allTrees = EnhancementTrees();
+    const std::list<EnhancementTree>& allTrees = EnhancementTrees();
     std::list<EnhancementTree>::const_iterator it = allTrees.begin();
     while (it != allTrees.end())
     {
@@ -475,7 +475,7 @@ const EnhancementTree& GetEnhancementTree(const std::string& treeName)
 size_t ClassIndex(const std::string& className)
 {
     size_t ci = 0;
-    const std::list<Class> & classes = Classes();
+    const std::list<Class>& classes = Classes();
     std::list<Class>::const_iterator cit = classes.begin();
     while (cit != classes.end())
     {
@@ -489,9 +489,9 @@ size_t ClassIndex(const std::string& className)
     return ci;
 }
 
-const Class & ClassFromIndex(size_t index)
+const Class& ClassFromIndex(size_t index)
 {
-    const std::list<Class> & classes = Classes();
+    const std::list<Class>& classes = Classes();
     std::list<Class>::const_iterator cit = classes.begin();
     std::advance(cit, index);
     return (*cit);
@@ -515,17 +515,17 @@ int BaseStatToBonus(double ability)
 }
 
 BOOL OnEraseBackground(
-        CWnd * pWnd,
-        CDC * pDC,
+        CWnd* pWnd,
+        CDC* pDC,
         const int controlsNotToBeErased[])
 {
     pDC->SaveDC();
 
-    const int * pId = controlsNotToBeErased;
+    const int* pId = controlsNotToBeErased;
     while (*pId != 0)
     {
         // Get rectangle of the control.
-        CWnd * pControl = pWnd->GetDlgItem(*pId);
+        CWnd* pControl = pWnd->GetDlgItem(*pId);
         if (pControl && pControl->IsWindowVisible())
         {
             CRect controlClip;
@@ -539,10 +539,10 @@ BOOL OnEraseBackground(
                         + GetSystemMetrics(SM_CYHSCROLL)
                         + GetSystemMetrics(SM_CYEDGE) * 2;
                 // special case for combo boxes with image lists
-                CComboBoxEx * pCombo = dynamic_cast<CComboBoxEx*>(pControl);
+                CComboBoxEx* pCombo = dynamic_cast<CComboBoxEx*>(pControl);
                 if (pCombo != NULL)
                 {
-                    CImageList * pImage = pCombo->GetImageList();
+                    CImageList* pImage = pCombo->GetImageList();
                     if (pImage != NULL)
                     {
                         IMAGEINFO info;
@@ -566,7 +566,7 @@ BOOL OnEraseBackground(
     pWnd->ScreenToClient(&rctClient);
 
     // use the selected theme in use for the background colour selection
-    CMFCVisualManager * manager = CMFCVisualManager::GetInstance();
+    CMFCVisualManager* manager = CMFCVisualManager::GetInstance();
     if (manager != NULL)
     {
         manager->OnFillPopupWindowBackground(pDC, rctClient);
@@ -625,18 +625,18 @@ HTREEITEM GetNextTreeItem(const CTreeCtrl& treeCtrl, HTREEITEM hItem)
     }
 }
 
-CLogPane & GetLog()
+CLogPane& GetLog()
 {
     CWnd* pWnd = AfxGetApp()->m_pMainWnd;
-    CMainFrame * pMainFrame = dynamic_cast<CMainFrame*>(pWnd);
+    CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(pWnd);
     return pMainFrame->GetLog();
 }
 
 HRESULT LoadImageFile(
         const std::string& folder,
         const std::string& filename,
-        CImage * pImage,
-        const CSize & expectedImageSize,
+        CImage* pImage,
+        const CSize& expectedImageSize,
         bool bReportIssue)
 {
     // load the specified image and check its valid
@@ -728,14 +728,14 @@ bool ImageFileExists(
 }
 
 // CImage convert to GrayScale by changing the CImage color table
-void MakeGrayScale(CImage * pImage, COLORREF transparent)
+void MakeGrayScale(CImage* pImage, COLORREF transparent)
 {
     if (pImage->IsIndexed())
     {
         // if the image is indexed, we can change all the colors by manipulating the
         // color table in use by the bitmap
         size_t numColors = pImage->GetMaxColorTableEntries();
-        RGBQUAD * pColors = new RGBQUAD[numColors];
+        RGBQUAD* pColors = new RGBQUAD[numColors];
         memset(pColors, 0, sizeof(RGBQUAD) * numColors);
         pImage->GetColorTable(0, numColors, pColors);
         // now change each entry to it's gray scale equivalent unless
@@ -792,7 +792,7 @@ void MakeGrayScale(CImage * pImage, COLORREF transparent)
 }
 
 size_t TrainedCount(
-        const std::list<TrainedFeat> & currentFeats,
+        const std::list<TrainedFeat>& currentFeats,
         const std::string& featName)
 {
     // look through the list of all feats trained and count how many times the
@@ -810,7 +810,7 @@ size_t TrainedCount(
     return count;
 }
 
-const EnhancementTreeItem * FindEnhancement(
+const EnhancementTreeItem* FindEnhancement(
         const std::string& internalName)
 {
     const EnhancementTreeItem* item = NULL;
@@ -825,11 +825,11 @@ const EnhancementTreeItem * FindEnhancement(
     return item;
 }
 
-const EnhancementTreeItem * FindEnhancement(
+const EnhancementTreeItem* FindEnhancement(
         const std::string& treeName,
         const std::string& internalName)
 {
-    const EnhancementTree & tree = EnhancementTree::GetTree(treeName);
+    const EnhancementTree& tree = EnhancementTree::GetTree(treeName);
     const EnhancementTreeItem* item = tree.FindEnhancementItem(internalName);
     return item;
 }
@@ -910,7 +910,7 @@ Spell FindItemClickieByName(const std::string& ct, bool bSuppressError)
 
 void SelectComboboxEntry(
         size_t itemData,
-        CComboBox * pCombo)
+        CComboBox* pCombo)
 {
     // select a combo box entry via its item data
     int sel = CB_ERR;           // assume select no item
@@ -930,12 +930,12 @@ void SelectComboboxEntry(
 
 void SelectComboboxEntry(
         const std::string& strItem,
-        CComboBox * pCombo)
+        CComboBox* pCombo)
 {
     pCombo->SelectString(-1, strItem.c_str());
 }
 
-size_t GetComboboxSelection(CComboBox * pCombo)
+size_t GetComboboxSelection(CComboBox* pCombo)
 {
     size_t selectedItem = 0;        // translates to enum Type_Unknown
     int sel = pCombo->GetCurSel();
@@ -1456,7 +1456,7 @@ const Augment& FindAugmentByName(const std::string& name, const Item* pItem)
         }
     }
     // if its not an item specific augment, look through the general augment list
-    const std::list<Augment> & augments = Augments();
+    const std::list<Augment>& augments = Augments();
     std::list<Augment>::const_iterator it = augments.begin();
     while (it != augments.end())
     {
@@ -1541,7 +1541,7 @@ const Gem& FindSentientGemByName(const std::string& name)
 const SetBonus& FindSetBonus(const std::string& name)
 {
     static SetBonus badSetBonus;
-    const std::list<SetBonus> & sets = SetBonuses();
+    const std::list<SetBonus>& sets = SetBonuses();
     std::list<SetBonus>::const_iterator it = sets.begin();
     while (it != sets.end())
     {
@@ -2277,7 +2277,7 @@ bool SearchForText(std::string source, const std::string& find)
     return bTextPresent;
 }
 
-std::vector<Spell> FilterSpells(Build *pBuild, std::string& ct, int level)
+std::vector<Spell> FilterSpells(Build* pBuild, std::string& ct, int level)
 {
     std::vector<Spell> availableSpells;
     // return the list of spells for this class at this level
@@ -2423,24 +2423,44 @@ bool IsShield(WeaponType wt)
     return isShield;
 }
 
-double GetDPIMultiplier(HWND hwnd)
+double GetDPIMultiplier(HWND hwnd, bool bAlwaysApplyScaling)
 {
-    UINT dpiX = c_defaultDPI;
-    UINT dpiY = c_defaultDPI;
-    HMONITOR hMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
-    HMODULE hShcore = LoadLibrary(_T("Shcore.dll"));
-    //MSDN claims dpiX and dpiY are always identical
-    GetDpiForMonitor(hMonitor, MDT_EFFECTIVE_DPI, &dpiX, &dpiY);
-    FreeLibrary(hShcore);
-    return (static_cast<double>(dpiY) / c_defaultDPI);
+    if (g_bAllowDPIScaling || bAlwaysApplyScaling)
+    {
+        UINT dpiX = c_defaultDPI;
+        UINT dpiY = c_defaultDPI;
+        HMONITOR hMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+        HMODULE hShcore = NULL;
+        if (NULL == hShcore)
+        {
+            hShcore = LoadLibrary(_T("Shcore.dll"));
+        }
+        //MSDN claims dpiX and dpiY are always identical
+        GetDpiForMonitor(hMonitor, MDT_EFFECTIVE_DPI, &dpiX, &dpiY);
+        //FreeLibrary(hShcore); // we don't free it, but it gets freed when app closes
+        return (static_cast<double>(dpiY) / c_defaultDPI);
+    }
+    // dpi scaling is off, return default
+    return 1.0;
 }
 
-void DefaultFont(CFont& font)
+void DefaultFont(CFont& font, bool bAlwaysApplyScaling)
 {
-    NONCLIENTMETRICS ncm = { 0 };
-    ncm.cbSize = sizeof(NONCLIENTMETRICS);
-    SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
-    font.CreateFontIndirect(&(ncm.lfMessageFont));
+    if (g_bAllowDPIScaling || bAlwaysApplyScaling)
+    {
+        NONCLIENTMETRICS ncm = { 0 };
+        ncm.cbSize = sizeof(NONCLIENTMETRICS);
+        SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
+        font.CreateFontIndirect(&(ncm.lfMessageFont));
+    }
+    else
+    {
+        LOGFONT lf;
+        ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
+        strcpy_s(lf.lfFaceName, "Calibri");
+        lf.lfHeight = 17;
+        VERIFY(font.CreateFontIndirect(&lf) != 0);
+    }
 }
 
 void ExtractImage(CImageList& il, int imageIndex, CDC* pDC, CBitmap& bitmap)

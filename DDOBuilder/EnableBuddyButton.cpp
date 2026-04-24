@@ -18,8 +18,8 @@ static LRESULT CALLBACK SubClassedProc(
     WPARAM wParam,
     LPARAM lParam)
 {
-    WNDPROC	WndProc = reinterpret_cast< WNDPROC>(::GetProp(hwnd, g_szOldProc));
-    CData *pData = reinterpret_cast< CData * >(::GetProp(hwnd, g_szData));
+    WNDPROC WndProc = reinterpret_cast<WNDPROC>(::GetProp(hwnd, g_szOldProc));
+    CData* pData = reinterpret_cast<CData*>(::GetProp(hwnd, g_szData));
     ASSERT(WndProc);
 
     switch(message)
@@ -108,7 +108,7 @@ BOOL EnableBuddyButton(
             VERIFY(::SetProp(hwndEdit, g_szOldProc, reinterpret_cast<HANDLE>(lpfnWndProc)));
 
             // Create our data object. We later give this to our subclassed edit control so we can 
-            CData *pData = new CData;
+            CData* pData = new CData;
             pData->m_uStyle = uStyle;
 
             CRect rcButton;
@@ -153,8 +153,8 @@ static LRESULT CALLBACK SubClassedProc2(
     WPARAM wParam,
     LPARAM lParam)
 {
-    WNDPROC	WndProc = reinterpret_cast< WNDPROC>(::GetProp(hwnd, g_szOldProc));
-    CData2 *pData = reinterpret_cast< CData2 * >(::GetProp(hwnd, g_szData));
+    WNDPROC WndProc = reinterpret_cast<WNDPROC>(::GetProp(hwnd, g_szOldProc));
+    CData2* pData = reinterpret_cast<CData2*>(::GetProp(hwnd, g_szData));
     ASSERT(WndProc);
 
     switch(message)
@@ -236,7 +236,7 @@ BOOL EnableBuddyButton2(
         VERIFY(::SetProp(hwndEdit, g_szOldProc, reinterpret_cast<HANDLE>(lpfnWndProc)));
 
         // Create our data object. We later give this to our subclassed edit control so we can 
-        CData2 *pData = new CData2;
+        CData2* pData = new CData2;
 
         CRect rcButton;
         ::GetWindowRect(hwndButtonLeft, rcButton);

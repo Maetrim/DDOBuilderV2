@@ -213,7 +213,6 @@
 #define HID_DEVELOPMENT_SHOW0VALUEBREAKDOWNENTRIES	0x1804D
 #define HID_EDIT_FORUMEXPORT                    0x1804F
 #define HID_NOT_SELECTABLE                      0x18050
-#define HID_DOCK_SELF                           0x18051
 #define HID_LIFE_EXPORTTONEWFILE                0x18052
 #define HID_LIFE_COPYTOCLIPBOARD                0x18053
 #define HID_LIFE_PASTEFROMCLIPBOARD             0x18054
@@ -230,6 +229,7 @@
 #define HID_SETFAVOR_4_STAR                     0x18066
 #define HID_SETFAVOR_5_STAR                     0x18067
 #define HID_SETFAVOR_6_STAR                     0x18068
+#define HID_SETTINGS_ALLOWDPISCALING            0x18069
 #define HIDD2_ABOUTBOX                          0x10064
 #define HIDD2_DDOBUILDER_FORM                   0x10065
 #define HIDD2_BUILDS_PANE                       0x10066

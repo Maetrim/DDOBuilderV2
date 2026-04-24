@@ -208,7 +208,7 @@ void CFindGearDialog::PopulateAvailableItemList()
     bool bIgnoreRaidItems = (m_buttonIgnoreRaidItems.GetCheck() == BST_CHECKED);
     bool bIgnoreMinorArtifacts = (m_buttonIgnoreMinorArtifacts.GetCheck() == BST_CHECKED);
 
-    const std::list<Item> & allItems = Items();
+    const std::list<Item>& allItems = Items();
     m_availableItems.clear();
     std::list<Item>::const_iterator it = allItems.begin();
     while (it != allItems.end())
@@ -354,13 +354,13 @@ void CFindGearDialog::EnableControls()
     // disable OK button if we have multiple augments with set suppression
     // (max one per item)
     size_t count = 0;
-    const std::vector<ItemAugment> & itemAugments = m_item.Augments();
+    const std::vector<ItemAugment>& itemAugments = m_item.Augments();
     std::vector<ItemAugment>::const_iterator it = itemAugments.begin();
     while (it != itemAugments.end())
     {
         if ((*it).HasSelectedAugment())
         {
-            const Augment & augment = FindAugmentByName((*it).SelectedAugment(), &m_item);
+            const Augment& augment = FindAugmentByName((*it).SelectedAugment(), &m_item);
             if (augment.HasSuppressSetBonus())
             {
                 ++count;
@@ -698,7 +698,7 @@ void CFindGearDialog::OnAugmentLevelCancel(UINT nID)
 
 void CFindGearDialog::PopulateSlotUpgradeList(
         size_t controlIndex,
-        const SlotUpgrade & upgrade)
+        const SlotUpgrade& upgrade)
 {
     // set the text of the display item
     m_upgradeType[controlIndex].SetWindowText(upgrade.Type().c_str());
@@ -860,8 +860,8 @@ int CFindGearDialog::SortCompareFunction(
         LPARAM lParamSort)
 {
     // this is a static function so we need to make our own this pointer
-    CWnd * pWnd = CWnd::FromHandle((HWND)lParamSort);
-    CFindGearDialog * pThis = static_cast<CFindGearDialog*>(pWnd);
+    CWnd* pWnd = CWnd::FromHandle((HWND)lParamSort);
+    CFindGearDialog* pThis = static_cast<CFindGearDialog*>(pWnd);
 
     int sortResult = 0;
     size_t index1 = lParam1; // item data index
@@ -977,7 +977,7 @@ LRESULT CFindGearDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void CFindGearDialog::ShowTip(const Item & item, CRect itemRect)
+void CFindGearDialog::ShowTip(const Item& item, CRect itemRect)
 {
     if (m_showingTip)
     {
@@ -1001,7 +1001,7 @@ void CFindGearDialog::HideTip()
 }
 
 void CFindGearDialog::SetTooltipText(
-        const Item & item,
+        const Item& item,
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
@@ -1012,7 +1012,7 @@ void CFindGearDialog::SetTooltipText(
 }
 
 void CFindGearDialog::SetTooltipText(
-        const Augment & augment,
+        const Augment& augment,
         CPoint tipTopLeft,
         CPoint tipAlternate,
         bool rightAlign)
@@ -1038,8 +1038,8 @@ LRESULT CFindGearDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
         {
             // we have a selection, get the filigree name
             CString augmentName;
-            CWnd * pWnd = GetDlgItem(lParam);
-            CComboBox * pCombo =  dynamic_cast<CComboBox*>(pWnd);
+            CWnd* pWnd = GetDlgItem(lParam);
+            CComboBox* pCombo =  dynamic_cast<CComboBox*>(pWnd);
             pCombo->GetLBText(wParam, augmentName);
             if (!augmentName.IsEmpty())
             {
@@ -1090,7 +1090,7 @@ LRESULT CFindGearDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void CFindGearDialog::OnWindowPosChanging(WINDOWPOS * pos)
+void CFindGearDialog::OnWindowPosChanging(WINDOWPOS* pos)
 {
     // ensure tooltip locations are correct on window move
     CDialog::OnWindowPosChanging(pos);
@@ -1098,8 +1098,8 @@ void CFindGearDialog::OnWindowPosChanging(WINDOWPOS * pos)
 }
 
 void CFindGearDialog::AddAugment(
-        std::vector<ItemAugment> * augments,
-        const std::string & name,
+        std::vector<ItemAugment>* augments,
+        const std::string& name,
         bool atEnd)
 {
     // only add if it is not already present
@@ -1143,8 +1143,8 @@ void CFindGearDialog::AddAugment(
 }
 
 void CFindGearDialog::RemoveAugment(
-        std::vector<ItemAugment> * augments,
-        const std::string & name)
+        std::vector<ItemAugment>* augments,
+        const std::string& name)
 {
     for (size_t i = 0; i < augments->size(); ++i)
     {
@@ -1237,7 +1237,7 @@ void CFindGearDialog::OnButtonEquipIt()
     }
 }
 
-InventorySlotType CFindGearDialog::SelectTargetSlot(const std::vector<InventorySlotType> & slots)
+InventorySlotType CFindGearDialog::SelectTargetSlot(const std::vector<InventorySlotType>& slots)
 {
     // build a menu of the available slot names and let user select it
     CMenu cMenu;
@@ -1258,7 +1258,7 @@ InventorySlotType CFindGearDialog::SelectTargetSlot(const std::vector<InventoryS
     }
     CPoint p;
     GetCursorPos(&p);
-    CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+    CWinAppEx* pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
     UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
             cMenu.GetSafeHmenu(),
             p.x,

@@ -74,13 +74,14 @@ void CDCPane::OnSize(UINT nType, int cx, int cy)
     int lastY = 0;
    if (m_dcButtons.size() > 0)
     {
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
         CRect wndClient;
         GetClientRect(&wndClient);
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_windowSizeX + c_controlSpacing,
-                c_windowSizeY + c_controlSpacing);
+                static_cast<LONG>(c_windowSizeX * dScaleFactor) + c_controlSpacing,
+                static_cast<LONG>(c_windowSizeY * dScaleFactor) + c_controlSpacing);
         // move each DC button
         for (size_t i = 0; i < m_dcButtons.size(); ++i)
         {
@@ -151,16 +152,17 @@ void CDCPane::AddDC(const DC & dc)
     }
     if (!found)
     {
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
         // position the created windows left to right until
         // they don't fit then move them down a row and start again
-        // each stance window is c_windowSizeX * c_windowSizeY pixels
+        // each DC window is c_windowSizeX * c_windowSizeY pixels
         CRect wndClient;
         GetClientRect(&wndClient);
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_windowSizeX + c_controlSpacing,
-                c_windowSizeY + c_controlSpacing);
+                static_cast<LONG>(c_windowSizeX * dScaleFactor) + c_controlSpacing,
+                static_cast<LONG>(c_windowSizeY * dScaleFactor) + c_controlSpacing);
 
         // now create the new user DC control
         m_dcButtons.push_back(new CDCButton(m_pCharacter, dc));

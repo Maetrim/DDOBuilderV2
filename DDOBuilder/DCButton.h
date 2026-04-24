@@ -15,14 +15,14 @@ class CDCButton :
     public BuildObserver
 {
     public:
-        CDCButton(Character * charData, const DC & dc);
+        CDCButton(Character * charData, const DC& dc);
 
-        const DC & GetDCItem() const;
+        const DC& GetDCItem() const;
 
         void AddStack();
         void RevokeStack();
         size_t NumStacks() const;
-        bool IsYou(const DC & dc);
+        bool IsYou(const DC& dc);
 
     ///////////////////////////////////////////////////////////////////
     // MFC

@@ -6,3 +6,4 @@
 #include "stdafx.h"
 bool g_bShowIgnoredItems = false;
 bool g_bShowZeroBreakdown = false;
+bool g_bAllowDPIScaling = true;

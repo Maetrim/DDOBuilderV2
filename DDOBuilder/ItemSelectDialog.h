@@ -15,7 +15,7 @@ class CItemSelectDialog : public CDialog
         CItemSelectDialog(
                 CWnd* pParent,
                 InventorySlotType slot,
-                const Item & item,
+                const Item& item,
                 Build* pBuild);   // standard constructor
         virtual ~CItemSelectDialog();
 
@@ -46,7 +46,7 @@ class CItemSelectDialog : public CDialog
         afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
-        afx_msg void OnWindowPosChanging(WINDOWPOS * pos);
+        afx_msg void OnWindowPosChanging(WINDOWPOS* pos);
         afx_msg void OnSearchTextKillFocus();
         afx_msg void OnItemLevelSelect();
         afx_msg void OnSelEndLevelRange();
@@ -62,20 +62,20 @@ class CItemSelectDialog : public CDialog
         void PopulateAvailableItemList();
         void EnableControls();
         void PopulateAugmentList(
-                CComboBox * combo,
-                CEdit * edit1,
-                CEdit * edit2,
+                CComboBox* combo,
+                CEdit* edit1,
+                CEdit* edit2,
                 CComboBox* comboLevel,
-                const ItemAugment & augment);
-        void PopulateSlotUpgradeList(size_t controlIndex, const SlotUpgrade & upgrade);
-        void PopulateDropList(size_t controlIndex, const std::list<std::string> & types);
+                const ItemAugment& augment);
+        void PopulateSlotUpgradeList(size_t controlIndex, const SlotUpgrade& upgrade);
+        void PopulateDropList(size_t controlIndex, const std::list<std::string>& types);
 
-        void ShowTip(const Item & item, CRect itemRect);
+        void ShowTip(const Item& item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
-        void SetTooltipText(const Augment & augment, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
+        void SetTooltipText(const Item& item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetTooltipText(const Augment& augment, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
         void SetupFilterCombobox();
-        void RemoveAugment(std::vector<ItemAugment> * augments, const std::string & name);
+        void RemoveAugment(std::vector<ItemAugment>* augments, const std::string& name);
         void SetupItemLevel(size_t maxLevel, size_t currentLevel, bool bSelectable);
 
         InventorySlotType m_slot;

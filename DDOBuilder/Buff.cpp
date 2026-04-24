@@ -247,3 +247,30 @@ void Buff::UpdatedEffects(std::list<Effect>* effects, bool bNegativeValues) cons
         }
     }
 }
+
+bool Buff::operator==(const Buff& other) const
+{
+    bool bSame = (Type() == other.Type())
+            && (HasApplyToWeaponOnly() == other.HasApplyToWeaponOnly())
+            && (HasNegativeValues() == other.HasNegativeValues())
+            && (DisplayText() == other.DisplayText())
+            && (Ignore() == other.Ignore())
+            && (HasValue1() == other.HasValue1())
+            && (m_Value1 == other.m_Value1)
+            && (HasValue2() == other.HasValue2())
+            && (m_Value2 == other.m_Value2)
+            && (HasBonusType() == other.HasBonusType())
+            && (m_BonusType == other.m_BonusType)
+            && (HasDescription1() == other.HasDescription1())
+            && (m_Description1 == other.m_Description1)
+            && (HasItem() == other.HasItem())
+            && (m_Item == other.m_Item)
+            && (HasItem2() == other.HasItem2())
+            && (m_Item2 == other.m_Item2)
+            && (Effects() == other.Effects())
+            && (Stances() == other.Stances())
+            && (HasRequirementsToUse() == other.HasRequirementsToUse())
+            && (m_RequirementsToUse == other.m_RequirementsToUse);
+    return bSame;
+}
+

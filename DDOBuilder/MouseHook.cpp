@@ -3,7 +3,7 @@
 #include "StdAfx.h"
 #include "MouseHook.h"
 
-MouseHook * MouseHook::theHook = NULL;
+MouseHook* MouseHook::theHook = NULL;
 
 MouseHook::MouseHook() :
     m_nextHandle(1)
@@ -48,7 +48,7 @@ void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
     {
         // look through each item and see if its in/out state has changed.
         // If it has post a message to the relevant window
-        MOUSEHOOKSTRUCT * pMHS = (MOUSEHOOKSTRUCT*)(lParam);
+        MOUSEHOOKSTRUCT* pMHS = (MOUSEHOOKSTRUCT*)(lParam);
         CPoint mouse = pMHS->pt;        // mouse location in screen coordinates
         // notify all leave areas before any enter areas
         // this stops an enter notification being cancelled for a leave from
@@ -98,7 +98,7 @@ void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
 
 UINT MouseHook::AddRectangleToMonitor(
         HWND hNotify,
-        const CRect & rect,
+        const CRect& rect,
         UINT nIDEnterNotification,
         UINT nExitNotification,
         bool bStartsInside)
@@ -131,7 +131,7 @@ void MouseHook::DeleteRectangleToMonitor(UINT handle)
     ASSERT(found);
 }
 
-bool MouseHook::UpdateRectangle(UINT handle, const CRect & rect)
+bool MouseHook::UpdateRectangle(UINT handle, const CRect& rect)
 {
     bool found = false;
     // update the rectangle for this area of interest
@@ -159,7 +159,7 @@ void MouseHook::RestoreState()
     m_areasOfInterest = m_savedState;
 }
 
-BOOL MouseHook::IsUnderMouse(const CPoint & mouse, HWND hwnd) const
+BOOL MouseHook::IsUnderMouse(const CPoint& mouse, HWND hwnd) const
 {
     HWND ptWnd = WindowFromPoint(mouse);
     while (ptWnd != NULL)

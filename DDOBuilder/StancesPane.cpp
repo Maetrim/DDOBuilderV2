@@ -103,6 +103,7 @@ void CStancesPane::OnSize(UINT nType, int cx, int cy)
         CWnd::OnSize(nType, cx, cy);
         if (m_stanceGroups.size() > 0)
         {
+        double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
             // [Slider Label][Slider Control.........]
             // [User] [][][][][][][][][][][][][][][][]
             // [Auto] [][][][][][][][][][][][][][][][]
@@ -135,16 +136,16 @@ void CStancesPane::OnSize(UINT nType, int cx, int cy)
             CRect groupRect(
                 c_controlSpacing,
                 sliderBottom,
-                c_windowSizeGroupX + c_controlSpacing,
-                sliderBottom + c_windowSize);
+                static_cast<LONG>(c_windowSizeGroupX * dScaleFactor) + c_controlSpacing,
+                sliderBottom + static_cast<LONG>(c_windowSize * dScaleFactor));
             CRect itemRect(
                 c_controlSpacing,
                 sliderBottom,
-                c_windowSize + c_controlSpacing,
-                sliderBottom + c_windowSize);
+                static_cast<LONG>(c_windowSize * dScaleFactor) + c_controlSpacing,
+                sliderBottom + static_cast<LONG>(c_windowSize * dScaleFactor));
             for (auto&& sgi : m_stanceGroups)
             {
-                PositionStanceGroup(*sgi,&groupRect,&itemRect, cx);
+                PositionStanceGroup(*sgi, &groupRect, &itemRect, cx);
             }
             // show scroll bars if required
             SetScrollSizes(
@@ -853,7 +854,7 @@ std::list<SliderItem>::iterator CStancesPane::GetSlider(
                 CRect(0, 0, 10, 10),        // updates on OnSize
                 this,
                 (*it).m_sliderControlId);
-        CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
+        CFont* pDefaultGUIFont = CFont::FromHandle((HFONT)GetStockObject(DEFAULT_GUI_FONT));
         (*it).m_label->SetFont(pDefaultGUIFont, TRUE);
         (*it).m_slider->SetFont(pDefaultGUIFont, TRUE);
         (*it).m_slider->SetRange((*it).m_sliderMin, (*it).m_sliderMax);

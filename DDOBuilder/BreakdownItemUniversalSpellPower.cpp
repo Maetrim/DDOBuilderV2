@@ -35,23 +35,18 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
             if (!IsBonusTypePresent(m_itemEffects, "Implement"))
             {
                 // we do need to list an implement bonus for our main hands weapon
-                // based on its weapon plus
-                // get the main hand weapon breakdown
-                BreakdownItem* pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
-                BreakdownItemWeaponEffects* pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
-                if (pBIW != NULL)
+                // based on its minimum level
+                // get the main hand weapon
+                if (true == pBuild->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
                 {
-                    pBI = pBIW->GetWeaponBreakdown(true, Breakdown_WeaponEnchantment);
-                    if (pBI != NULL)
-                    {
-                        int weaponPlus = static_cast<int>(pBI->Total());
-                        Effect implementBonusEffect(
+                    const Item& item = pBuild->ActiveGearSet().ItemInSlot(Inventory_Weapon1);
+                    int weaponLevel = item.MinLevel();
+                    Effect implementBonusEffect(
                             Effect_Weapon_Enchantment,
                             "Implement in your hands",
                             "Implement",
-                            weaponPlus);    // not 3*, see https://ddowiki.com/page/Implement_bonus
-                        AddOtherEffect(implementBonusEffect);
-                    }
+                            weaponLevel);    // not 3*, see https://ddowiki.com/page/Implement_bonus
+                    AddOtherEffect(implementBonusEffect);
                 }
             }
         }
@@ -87,8 +82,9 @@ void BreakdownItemUniversalSpellPower::UpdateTotalChanged(
         BreakdownType type)
 {
     // call base class also
-    BreakdownItemSimple::UpdateTotalChanged(item, type);
     CreateOtherEffects();
+    BreakdownItemSimple::UpdateTotalChanged(item, type);
+    Populate();
 }
 
 void BreakdownItemUniversalSpellPower::EnhancementTrained(
@@ -97,6 +93,7 @@ void BreakdownItemUniversalSpellPower::EnhancementTrained(
 {
     CreateOtherEffects();
     BreakdownItemSimple::EnhancementTrained(pBuild, item);
+    Populate();
 }
 
 void BreakdownItemUniversalSpellPower::EnhancementRevoked(
@@ -105,6 +102,7 @@ void BreakdownItemUniversalSpellPower::EnhancementRevoked(
 {
     CreateOtherEffects();
     BreakdownItemSimple::EnhancementRevoked(pBuild, item);
+    Populate();
 }
 
 void BreakdownItemUniversalSpellPower::StanceActivated(
@@ -113,6 +111,7 @@ void BreakdownItemUniversalSpellPower::StanceActivated(
 {
     CreateOtherEffects();
     BreakdownItemSimple::StanceActivated(pBuild, stanceName);
+    Populate();
 }
 
 void BreakdownItemUniversalSpellPower::StanceDeactivated(
@@ -121,6 +120,7 @@ void BreakdownItemUniversalSpellPower::StanceDeactivated(
 {
     CreateOtherEffects();
     BreakdownItemSimple::StanceDeactivated(pBuild, stanceName);
+    Populate();
 }
 
 void BreakdownItemUniversalSpellPower::GearChanged(
@@ -129,4 +129,5 @@ void BreakdownItemUniversalSpellPower::GearChanged(
 {
     CreateOtherEffects();
     BreakdownItemSimple::GearChanged(pBuild, slot);
+    Populate();
 }

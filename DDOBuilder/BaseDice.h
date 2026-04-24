@@ -10,4 +10,6 @@ class BaseDice :
     public:
         BaseDice();
         BaseDice(size_t version);
+
+        bool operator==(const BasicDice& other) const;
 };

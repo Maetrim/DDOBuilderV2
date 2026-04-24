@@ -23,7 +23,7 @@ END_MESSAGE_MAP()
 
 void CMFCButtonEx::OnDraw(CDC* pDC, const CRect& rect, UINT uiState)
 {
-    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
+    double dScaleFactor = GetDPIMultiplier(GetSafeHwnd(), true);
     CRect rectText = rect;
     CRect rectImage = rect;
 

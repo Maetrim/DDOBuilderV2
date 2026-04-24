@@ -129,7 +129,7 @@ END_MESSAGE_MAP()
 CEnhancementTreeDialog::CEnhancementTreeDialog(
         CWnd* pParent,
         Character* pCharacter,
-        const EnhancementTree & tree,
+        const EnhancementTree& tree,
         enum TreeType type) :
     CDialog(CEnhancementTreeDialog::IDD, pParent),
     m_pTree(&tree),
@@ -334,7 +334,7 @@ void CEnhancementTreeDialog::OnPaint()
         lf.lfHeight = 11;
         CFont smallFont;
         VERIFY(smallFont.CreateFontIndirect(&lf) != 0);
-        CFont * pOldFont = memoryDc.SelectObject(&smallFont);
+        CFont* pOldFont = memoryDc.SelectObject(&smallFont);
 
         // show the tree version number in the lower left corner
         text.Format("V%d", m_pTree->Version());
@@ -346,7 +346,7 @@ void CEnhancementTreeDialog::OnPaint()
 
         m_bCreateHitBoxes = (m_hitBoxes.size() == 0);
         // now add all the tree enhancements and their states
-        const std::list<EnhancementTreeItem> & items = m_pTree->Items();
+        const std::list<EnhancementTreeItem>& items = m_pTree->Items();
         std::list<EnhancementTreeItem>::const_iterator it = items.begin();
         while (it != items.end())
         {
@@ -373,8 +373,8 @@ void CEnhancementTreeDialog::OnPaint()
 }
 
 void CEnhancementTreeDialog::RenderTreeItem(
-        const EnhancementTreeItem & item,
-        CDC * pDC)
+        const EnhancementTreeItem& item,
+        CDC* pDC)
 {
     bool isCore = (item.YPosition() == 0);
 
@@ -393,7 +393,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
 
         // clickie item state may be overridden by item selection
         Build* pBuild = m_pCharacter->ActiveBuild();
-        const TrainedEnhancement * te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
+        const TrainedEnhancement* te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
         bool clickie = item.HasClickie();
         std::string selection;
         if (te != NULL)
@@ -488,8 +488,8 @@ void CEnhancementTreeDialog::RenderTreeItem(
 }
 
 void CEnhancementTreeDialog::RenderItemCore(
-        const EnhancementTreeItem & item,
-        CDC * pDC)
+        const EnhancementTreeItem& item,
+        CDC* pDC)
 {
     // core items are rendered across the bottom section of the bitmap
     CRect itemRect(0, 0, 38, 38);
@@ -501,7 +501,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     // now apply the item position to the rectangle
     itemRect += CPoint(c_leftOffsetCore + c_xItemSpacingCore * item.XPosition(), c_topCore);
     // clickie item state may be overridden by item selection
-    const TrainedEnhancement * te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
+    const TrainedEnhancement* te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
     bool clickie = item.HasClickie();
     std::string selection;
     if (te != NULL)
@@ -583,8 +583,8 @@ void CEnhancementTreeDialog::RenderItemCore(
 }
 
 void CEnhancementTreeDialog::RenderItemClickie(
-        const EnhancementTreeItem & item,
-        CDC * pDC,
+        const EnhancementTreeItem& item,
+        CDC* pDC,
         CRect itemRect)
 {
     // it has a square active border
@@ -616,8 +616,8 @@ void CEnhancementTreeDialog::RenderItemClickie(
 }
 
 void CEnhancementTreeDialog::RenderItemPassive(
-        const EnhancementTreeItem & item,
-        CDC * pDC,
+        const EnhancementTreeItem& item,
+        CDC* pDC,
         CRect itemRect)
 {
     // it has a passive hexagonal border
@@ -650,8 +650,8 @@ void CEnhancementTreeDialog::RenderItemPassive(
 }
 
 void CEnhancementTreeDialog::RenderItemState(
-        const EnhancementTreeItem & item,
-        CDC * pDC,
+        const EnhancementTreeItem& item,
+        CDC* pDC,
         CRect itemRect)
 {
     Build* pBuild = m_pCharacter->ActiveBuild();
@@ -691,9 +691,9 @@ void CEnhancementTreeDialog::RenderItemState(
 }
 
 void CEnhancementTreeDialog::RenderItemSelection(
-        const EnhancementTreeItem & item,
-        CDC * pDC,
-        const CRect & itemRect)
+        const EnhancementTreeItem& item,
+        CDC* pDC,
+        const CRect& itemRect)
 {
     // first determine the items icon
     Build* pBuild = m_pCharacter->ActiveBuild();
@@ -716,13 +716,13 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
         else
         {
             // determine which enhancement has been clicked on
-            const EnhancementTreeItem * item = FindByPoint();
+            const EnhancementTreeItem* item = FindByPoint();
             if (item != NULL)
             {
                 // an item has been clicked, see if we can train a rank in it
                 Build* pBuild = m_pCharacter->ActiveBuild();
                 size_t spentInTree = pBuild->APSpentInTree(m_pTree->Name());
-                const TrainedEnhancement * te = pBuild->IsTrained(item->InternalName(), "");//, m_type);
+                const TrainedEnhancement* te = pBuild->IsTrained(item->InternalName(), "");//, m_type);
                 bool isAllowed = item->MeetRequirements(*pBuild, "", m_pTree->Name(), pBuild->Level()-1, spentInTree);
                 bool isTrainable = item->CanTrain(*pBuild, spentInTree, m_type, pBuild->Level()-1);
                 if (isAllowed && isTrainable)
@@ -890,9 +890,9 @@ void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
         // get the tree drag info
         CPoint mouse;
         GetCursorPos(&mouse);
-        CWnd * pWnd = WindowFromPoint(mouse);
-        // see if it can be converted to a CEnhancementTreeDialog *
-        CEnhancementTreeDialog * pTarget = dynamic_cast<CEnhancementTreeDialog*>(pWnd);
+        CWnd* pWnd = WindowFromPoint(mouse);
+        // see if it can be converted to a CEnhancementTreeDialog*
+        CEnhancementTreeDialog* pTarget = dynamic_cast<CEnhancementTreeDialog*>(pWnd);
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL
                 && pTarget != NULL
@@ -936,7 +936,7 @@ void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
         if (pBuild != NULL)
         {
             // determine which enhancement has been clicked on
-            const EnhancementTreeItem * item = FindByPoint();
+            const EnhancementTreeItem* item = FindByPoint();
             if (item != NULL
                     && item->CanRevoke(pBuild->FindSpendInTree(m_pTree->Name())))
             {
@@ -963,13 +963,13 @@ void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
     }
 }
 
-const EnhancementTreeItem * CEnhancementTreeDialog::FindByPoint(CRect * pRect) const
+const EnhancementTreeItem* CEnhancementTreeDialog::FindByPoint(CRect* pRect) const
 {
     CPoint point;
     GetCursorPos(&point);
     ScreenToClient(&point);
     // identify the item under the cursor
-    const EnhancementTreeItem * item = NULL;
+    const EnhancementTreeItem* item = NULL;
     std::list<EnhancementHitBox>::const_iterator it = m_hitBoxes.begin();
     while (item == NULL && it != m_hitBoxes.end())
     {
@@ -995,7 +995,7 @@ void CEnhancementTreeDialog::OnMouseMove(UINT nFlags, CPoint point)
     {
         // determine which enhancement the mouse may be over
         CRect itemRect;
-        const EnhancementTreeItem * item = FindByPoint(&itemRect);
+        const EnhancementTreeItem* item = FindByPoint(&itemRect);
         if (item != NULL
                 && item != m_pTooltipItem)
         {
@@ -1018,9 +1018,9 @@ void CEnhancementTreeDialog::OnMouseMove(UINT nFlags, CPoint point)
         // ask the target window if it can accept this drop action
         CPoint mouse;
         GetCursorPos(&mouse);
-        CWnd * pWnd = WindowFromPoint(mouse);
-        // see if it can be converted to a CEnhancementTreeDialog *
-        CEnhancementTreeDialog * pTarget = dynamic_cast<CEnhancementTreeDialog*>(pWnd);
+        CWnd* pWnd = WindowFromPoint(mouse);
+        // see if it can be converted to a CEnhancementTreeDialog*
+        CEnhancementTreeDialog* pTarget = dynamic_cast<CEnhancementTreeDialog*>(pWnd);
         if (pTarget != NULL
                 && pTarget != this)
         {
@@ -1051,7 +1051,7 @@ LRESULT CEnhancementTreeDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void CEnhancementTreeDialog::ShowTip(const EnhancementTreeItem & item, CRect itemRect)
+void CEnhancementTreeDialog::ShowTip(const EnhancementTreeItem& item, CRect itemRect)
 {
     if (m_showingTip)
     {
@@ -1083,7 +1083,7 @@ void CEnhancementTreeDialog::HideTip()
 }
 
 void CEnhancementTreeDialog::SetTooltipText(
-        const EnhancementTreeItem & item,
+        const EnhancementTreeItem& item,
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
@@ -1093,9 +1093,9 @@ void CEnhancementTreeDialog::SetTooltipText(
     // different tooltip if the item is trained or not
     // if its trained, we need to show the selected sub-item tooltip
     Build* pBuild = m_pCharacter->ActiveBuild();
-    const TrainedEnhancement * te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
+    const TrainedEnhancement* te = pBuild->IsTrained(item.InternalName(), "");//, m_type);
     size_t ranksTrained = te != NULL ? te->Ranks() : 0;
-    const EnhancementSelection * es = NULL;
+    const EnhancementSelection* es = NULL;
     std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     if (te != NULL)
@@ -1104,8 +1104,8 @@ void CEnhancementTreeDialog::SetTooltipText(
         if (te->HasSelection())
         {
             selection = te->Selection();
-            const Selector & selector = item.Selections();
-            const std::list<EnhancementSelection> & selections = selector.Selections();
+            const Selector& selector = item.Selections();
+            const std::list<EnhancementSelection>& selections = selector.Selections();
             // find the selected item
             std::list<EnhancementSelection>::const_iterator it = selections.begin();
             while (it != selections.end())
@@ -1174,7 +1174,7 @@ void CEnhancementTreeDialog::UpdateFeatTrained(
 }
 
 void CEnhancementTreeDialog::UpdateFeatRevoked(
-        Build * pBuild,
+        Build* pBuild,
         const std::string& featName)
 {
     UNREFERENCED_PARAMETER(pBuild);
@@ -1196,7 +1196,7 @@ void CEnhancementTreeDialog::ValidateTreeSelections()
     {
         bTreeHasInvalidItems = false;
         Build* pBuild = m_pCharacter->ActiveBuild();
-        SpendInTree * esit = pBuild->FindSpendInTree(treeName);
+        SpendInTree* esit = pBuild->FindSpendInTree(treeName);
         size_t spentInTree = pBuild->APSpentInTree(treeName);
         const EnhancementTreeItem* pBadItem = NULL;
         if (esit != NULL)
@@ -1357,7 +1357,7 @@ void CEnhancementTreeDialog::OnMButtonDown(UINT nFlags, CPoint point)
     UNREFERENCED_PARAMETER(point);
     if (GetKeyState(VK_SHIFT) < 0)
     {
-        const EnhancementTreeItem * item = FindByPoint();
+        const EnhancementTreeItem* item = FindByPoint();
         if (item != NULL)
         {
             // may be trying to set for a sub item (if trained)
@@ -1432,7 +1432,7 @@ void CEnhancementTreeDialog::ApplyArrowToItem(bool bUpArrows)
     const EnhancementTreeItem* pConstItem = FindByPoint();
     if (pConstItem != NULL)
     {
-        EnhancementTreeItem *item = const_cast<EnhancementTreeItem*>(pConstItem);
+        EnhancementTreeItem*item = const_cast<EnhancementTreeItem*>(pConstItem);
         // can only set arrows on non core items
         if (item->YPosition() > 0)
         {
@@ -1530,7 +1530,7 @@ void CEnhancementTreeDialog::ApplyArrowToItem(bool bUpArrows)
     }
 }
 
-std::string CEnhancementTreeDialog::GetSelection(const EnhancementTreeItem & item)
+std::string CEnhancementTreeDialog::GetSelection(const EnhancementTreeItem& item)
 {
     std::string selection;
     Build* pBuild = m_pCharacter->ActiveBuild();
@@ -1565,24 +1565,24 @@ std::string CEnhancementTreeDialog::GetSelection(const EnhancementTreeItem & ite
     return selection;
 }
 
-std::string CEnhancementTreeDialog::GetAutoSelection(const EnhancementTreeItem & item)
+std::string CEnhancementTreeDialog::GetAutoSelection(const EnhancementTreeItem& item)
 {
     Build* pBuild = m_pCharacter->ActiveBuild();
     size_t selectable = 0;
     std::string selection;
-    const Selector & selector = item.Selections();
-    const std::list<EnhancementSelection> & selections = selector.Selections();
+    const Selector& selector = item.Selections();
+    const std::list<EnhancementSelection>& selections = selector.Selections();
     std::list<EnhancementSelection>::const_iterator it = selections.begin();
     size_t spentInTree = pBuild->APSpentInTree(m_pTree->Name());
     while (it != selections.end())
     {
         bool excluded = false;
-        const std::list<std::string> & exclusions = selector.Exclusions();
+        const std::list<std::string>& exclusions = selector.Exclusions();
         // check all the exclusions
         std::list<std::string>::const_iterator eit = exclusions.begin();
         while (eit != exclusions.end())
         {
-            const TrainedEnhancement * te = pBuild->IsTrained((*eit), "");
+            const TrainedEnhancement* te = pBuild->IsTrained((*eit), "");
             if (te != NULL)
             {
                 // this previous enhancement is trained, see what was selected

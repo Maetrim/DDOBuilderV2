@@ -14,7 +14,7 @@ class Character;
 class EnhancementHitBox
 {
     public:
-        EnhancementHitBox(const EnhancementTreeItem & item, const CRect & rect) :
+        EnhancementHitBox(const EnhancementTreeItem& item, const CRect& rect) :
                 m_item(item), m_rect(rect)
         {
         };
@@ -24,7 +24,7 @@ class EnhancementHitBox
         {
             return (m_rect.PtInRect(point) != 0);
         };
-        const EnhancementTreeItem & Item() const
+        const EnhancementTreeItem& Item() const
         {
             return m_item;
         };
@@ -33,7 +33,7 @@ class EnhancementHitBox
             return m_rect;
         };
     private:
-        const EnhancementTreeItem & m_item;
+        const EnhancementTreeItem& m_item;
         CRect m_rect;
 };
 
@@ -47,7 +47,7 @@ class CEnhancementTreeDialog :
         CEnhancementTreeDialog(
                 CWnd* pParent,
                 Character* pCharacter,
-                const EnhancementTree & tree,
+                const EnhancementTree& tree,
                 TreeType type);
 
     ///////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ class CEnhancementTreeDialog :
         //}}AFX_DATA
 
         const std::string& CurrentTree() const;
-        void ChangeTree(const EnhancementTree & tree);
+        void ChangeTree(const EnhancementTree& tree);
         void SetTreeType(TreeType tt);
         TreeType TreeType() const;
 
@@ -89,33 +89,33 @@ class CEnhancementTreeDialog :
 
         // Build Observer overrides
         virtual void UpdateBuildLevelChanged(Build*) override;
-        virtual void UpdateFeatTrained(Build *, const std::string& featName) override;
-        virtual void UpdateFeatRevoked(Build *, const std::string& featName) override;
+        virtual void UpdateFeatTrained(Build*, const std::string& featName) override;
+        virtual void UpdateFeatRevoked(Build*, const std::string& featName) override;
         virtual void UpdateEnhancementTrained(Build*, const EnhancementItemParams& item) override;
         virtual void UpdateEnhancementRevoked(Build*, const EnhancementItemParams& item) override;
         virtual void UpdateActionPointsChanged(Build*) override;
 
         static void InitialiseStaticImages();
-        void RenderTreeItem(const EnhancementTreeItem & item, CDC * pDC);
-        void RenderItemCore(const EnhancementTreeItem & item, CDC * pDC);
-        void RenderItemClickie(const EnhancementTreeItem & item, CDC * pDC, CRect itemRect);
-        void RenderItemPassive(const EnhancementTreeItem & item, CDC * pDC, CRect itemRect);
-        void RenderItemState(const EnhancementTreeItem & item, CDC * pDC, CRect itemRect);
-        void RenderItemSelection(const EnhancementTreeItem & item, CDC * pDC, const CRect & itemRect);
-        const EnhancementTreeItem * FindByPoint(CRect * pRect = NULL) const;
-        void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
+        void RenderTreeItem(const EnhancementTreeItem& item, CDC* pDC);
+        void RenderItemCore(const EnhancementTreeItem& item, CDC* pDC);
+        void RenderItemClickie(const EnhancementTreeItem& item, CDC* pDC, CRect itemRect);
+        void RenderItemPassive(const EnhancementTreeItem& item, CDC* pDC, CRect itemRect);
+        void RenderItemState(const EnhancementTreeItem& item, CDC* pDC, CRect itemRect);
+        void RenderItemSelection(const EnhancementTreeItem& item, CDC* pDC, const CRect& itemRect);
+        const EnhancementTreeItem* FindByPoint(CRect* pRect = NULL) const;
+        void ShowTip(const EnhancementTreeItem& item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetTooltipText(const EnhancementTreeItem& item, CPoint tipTopLeft, CPoint tipAlternate);
         bool CanSwapTree(enum TreeType tt) const;
         void ValidateTreeSelections();
         void ApplyArrowToItem(bool bUpArrows);
 
-        std::string GetSelection(const EnhancementTreeItem & item);
-        std::string GetAutoSelection(const EnhancementTreeItem & item);
+        std::string GetSelection(const EnhancementTreeItem& item);
+        std::string GetAutoSelection(const EnhancementTreeItem& item);
 
-        const EnhancementTree * m_pTree;
+        const EnhancementTree* m_pTree;
         enum TreeType m_type;
-        Character * m_pCharacter;
+        Character* m_pCharacter;
         CSize m_bitmapSize;
         CBitmap m_cachedDisplay;
         CImage m_imageBackground;
@@ -125,7 +125,7 @@ class CEnhancementTreeDialog :
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
-        const EnhancementTreeItem * m_pTooltipItem;
+        const EnhancementTreeItem* m_pTooltipItem;
         bool m_bDraggingTree;
         double m_lastDpiScaling;
 };

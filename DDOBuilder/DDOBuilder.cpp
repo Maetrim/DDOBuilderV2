@@ -156,6 +156,7 @@ BOOL CDDOBuilderApp::InitInstance()
     }
 
     m_bAutoSelectSingleOptionEnhancements = (GetProfileInt("SEttings", "AutoSelectSingleOptionEnhancements",0) != 0);
+    g_bAllowDPIScaling = GetProfileInt("Settings", "DPIScalingEnabled", TRUE) != 0;
     //InitContextMenuManager(); // we construct our own custom one
     InitShellManager();
 
@@ -632,52 +633,52 @@ void CDDOBuilderApp::SeparateFeats()
     m_favorFeats.sort();
 }
 
-const std::map<std::string, Feat> & CDDOBuilderApp::AllFeats() const
+const std::map<std::string, Feat>& CDDOBuilderApp::AllFeats() const
 {
     return m_allFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::HeroicPastLifeFeats() const
+const std::list<Feat>& CDDOBuilderApp::HeroicPastLifeFeats() const
 {
     return m_heroicPastLifeFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::RacialPastLifeFeats() const
+const std::list<Feat>& CDDOBuilderApp::RacialPastLifeFeats() const
 {
     return m_racialPastLifeFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::IconicPastLifeFeats() const
+const std::list<Feat>& CDDOBuilderApp::IconicPastLifeFeats() const
 {
     return m_iconicPastLifeFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::EpicPastLifeFeats() const
+const std::list<Feat>& CDDOBuilderApp::EpicPastLifeFeats() const
 {
     return m_epicPastLifeFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::SpecialFeats() const
+const std::list<Feat>& CDDOBuilderApp::SpecialFeats() const
 {
     return m_specialFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::UniversalTreeFeats() const
+const std::list<Feat>& CDDOBuilderApp::UniversalTreeFeats() const
 {
     return m_universalTreeFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::DestinyTreeFeats() const
+const std::list<Feat>& CDDOBuilderApp::DestinyTreeFeats() const
 {
     return m_destinyTreeFeats;
 }
 
-const std::list<Feat> & CDDOBuilderApp::FavorFeats() const
+const std::list<Feat>& CDDOBuilderApp::FavorFeats() const
 {
     return m_favorFeats;
 }
 
-const std::list<EnhancementTree> & CDDOBuilderApp::EnhancementTrees() const
+const std::list<EnhancementTree>& CDDOBuilderApp::EnhancementTrees() const
 {
     return m_enhancementTrees;
 }
@@ -1429,7 +1430,7 @@ void CDDOBuilderApp::NotifyLoadComplete()
 {
     // let all dock views and open documents know that the load of program data
     // has completed, so they can initialise correctly
-    CMainFrame * pMainFrame = dynamic_cast<CMainFrame*>(m_pMainWnd);
+    CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(m_pMainWnd);
     pMainFrame->LoadComplete();
     m_bLoadComplete = true;
     // create a default life

@@ -24,7 +24,7 @@ END_MESSAGE_MAP()
 
 CFeatSelectionDialog::CFeatSelectionDialog(
         CWnd* pParent,
-        const Feat & feat) :
+        const Feat& feat) :
     CDialog(CFeatSelectionDialog::IDD, pParent),
     m_feat(feat),
     m_pCharacter(NULL),
@@ -79,11 +79,11 @@ BOOL CFeatSelectionDialog::OnInitDialog()
 LRESULT CFeatSelectionDialog::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
     // wParam is the document pointer
-    CDocument * pDoc = (CDocument*)(wParam);
+    CDocument* pDoc = (CDocument*)(wParam);
     UNREFERENCED_PARAMETER(pDoc);
     //m_pDocument = pDoc;
     // lParam is the character pointer
-    Character * pCharacter = (Character *)(lParam);
+    Character* pCharacter = (Character*)(lParam);
     if (pCharacter != m_pCharacter)
     {
         if (m_pCharacter != NULL)
@@ -167,8 +167,8 @@ void CFeatSelectionDialog::OnFeatButtonLeftClick()
 }
 
 void CFeatSelectionDialog::OnFeatButtonRightClick(
-        NMHDR * pNotifyStruct,
-        LRESULT * result)
+        NMHDR* pNotifyStruct,
+        LRESULT* result)
 {
     UNREFERENCED_PARAMETER(pNotifyStruct);
     UNREFERENCED_PARAMETER(result);
@@ -205,7 +205,7 @@ void CFeatSelectionDialog::OnMouseMove(UINT nFlags, CPoint point)
 {
     UNREFERENCED_PARAMETER(nFlags);
     // determine whether the mouse is over the feat icon
-    CWnd * pWnd = ChildWindowFromPoint(point);
+    CWnd* pWnd = ChildWindowFromPoint(point);
     if (pWnd == &m_featButton)
     {
         if (!m_showingTip)
@@ -305,14 +305,14 @@ void CFeatSelectionDialog::OnCancel()
     // do nothing to stop dialog being dismissed
 }
 
-void CFeatSelectionDialog::UpdateActiveBuildChanged(Character *)
+void CFeatSelectionDialog::UpdateActiveBuildChanged(Character*)
 {
     // if the build selection has changed, then the life selection could also
     // have changed. This may change how many of this feat we have
     SetupControls();
 }
 
-void CFeatSelectionDialog::OnFeatButtonMiddleClick(NMHDR * pNotifyStruct, LRESULT * result)
+void CFeatSelectionDialog::OnFeatButtonMiddleClick(NMHDR* pNotifyStruct, LRESULT* result)
 {
     UNREFERENCED_PARAMETER(pNotifyStruct);
     UNREFERENCED_PARAMETER(result);

@@ -77,6 +77,8 @@ protected:
     afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
     afx_msg LRESULT OnLogMessage(WPARAM, LPARAM);
     afx_msg void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
+    afx_msg void OnUpdateEnableDPIScaling(CCmdUI* pCmdUI);
+    afx_msg void OnEnableDPIScaling();
     DECLARE_MESSAGE_MAP()
 
     BOOL CreateDockingWindows();

@@ -20,7 +20,6 @@ CDelayedListBox::~CDelayedListBox()
 {
 }
 
-
 BEGIN_MESSAGE_MAP(CDelayedListBox, CListBox)
     ON_WM_LBUTTONUP()
     ON_WM_SHOWWINDOW()
@@ -29,7 +28,7 @@ END_MESSAGE_MAP()
 
 // CDelayedListBox message handlers
 
-void CDelayedListBox::SetOwner(CComboBoxTooltip * pOwner)
+void CDelayedListBox::SetOwner(CComboBoxTooltip* pOwner)
 {
     m_pOwner = pOwner;
 }

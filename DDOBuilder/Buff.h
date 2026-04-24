@@ -20,6 +20,7 @@ class Buff :
 
         void VerifyObject() const;
         bool VerifyObject(std::stringstream* ss) const;
+        bool operator==(const Buff& other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

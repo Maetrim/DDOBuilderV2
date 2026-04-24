@@ -14,6 +14,7 @@ class SlotUpgrade :
 
         bool HasSlotType(const std::string& type) const;
 
+        bool operator==(const SlotUpgrade& other) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

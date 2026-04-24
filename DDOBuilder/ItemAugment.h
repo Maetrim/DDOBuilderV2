@@ -25,6 +25,8 @@ class ItemAugment :
         void SetValue(double value);
         void SetValue2(double value);
 
+        bool operator==(const ItemAugment& other) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

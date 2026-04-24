@@ -4,6 +4,7 @@
 #include "StanceGroup.h"
 #include "Build.h"
 #include "Character.h"
+#include "GlobalSupportFunctions.h"
 
 CFont StanceGroup::sm_smallFont;
 
@@ -16,15 +17,6 @@ StanceGroup::StanceGroup(
     if (groupName == "Metamagics")
     {
         m_bSingleSelection = false;
-    }
-    if (NULL == (HFONT)sm_smallFont)
-    {
-        // shown in a small font
-        LOGFONT lf;
-        ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
-        strcpy_s(lf.lfFaceName, "Consolas");
-        lf.lfHeight = 11;
-        sm_smallFont.CreateFontIndirect(&lf);
     }
 }
 
@@ -71,6 +63,16 @@ void StanceGroup::CreateWindows(
             CRect(0, 0, 10, 10),        // gets sized later
             pParent,
             nextControlId++);
+    if (NULL == (HFONT)sm_smallFont)
+    {
+        double dScaleFactor = GetDPIMultiplier(m_groupLabel.GetSafeHwnd());
+        // shown in a small font
+        LOGFONT lf;
+        ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
+        strcpy_s(lf.lfFaceName, "Consolas");
+        lf.lfHeight = static_cast<LONG>(11 * dScaleFactor);
+        sm_smallFont.CreateFontIndirect(&lf);
+    }
     // set the correct font
     m_groupLabel.SetFont(&sm_smallFont);
 }

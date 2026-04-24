@@ -72,3 +72,29 @@ bool EquipmentSlot::HasSlot(InventorySlotType slot) const
     }
     return bHas;
 }
+
+bool EquipmentSlot::operator==(const EquipmentSlot& other) const
+{
+    bool bSame = (HasArmor() == other.HasArmor())
+            && (HasArrow() == other.HasArrow())
+            && (HasBelt() == other.HasBelt())
+            && (HasBoots() == other.HasBoots())
+            && (HasBracers() == other.HasBracers())
+            && (HasCloak() == other.HasCloak())
+            && (HasGloves() == other.HasGloves())
+            && (HasGoggles() == other.HasGoggles())
+            && (HasHelmet() == other.HasHelmet())
+            && (HasNecklace() == other.HasNecklace())
+            && (HasQuiver() == other.HasQuiver())
+            && (HasRing() == other.HasRing())
+            && (HasTrinket() == other.HasTrinket())
+            && (HasWeapon1() == other.HasWeapon1())
+            && (HasWeapon2() == other.HasWeapon2())
+            && (HasCosmeticWeapon1() == other.HasCosmeticWeapon1())
+            && (HasCosmeticWeapon2() == other.HasCosmeticWeapon2())
+            && (HasCosmeticArmor() == other.HasCosmeticArmor())
+            && (HasCosmeticCloak() == other.HasCosmeticCloak())
+            && (HasCosmeticHelm() == other.HasCosmeticHelm());
+    return bSame;
+}
+

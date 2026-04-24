@@ -28,6 +28,7 @@ namespace
         CI_Exceptional,
         CI_Festive,
         CI_Fortune,
+        CI_Legendary,
         CI_Columns
     };
 };
@@ -87,6 +88,7 @@ LRESULT CBonusesPane::OnLoadComplete(WPARAM, LPARAM)
     m_listBonuses.InsertColumn(CI_Exceptional, "Exceptional", LVCFMT_CENTER, 65);
     m_listBonuses.InsertColumn(CI_Festive, "Festive", LVCFMT_CENTER, 65);
     m_listBonuses.InsertColumn(CI_Fortune, "Fortune", LVCFMT_CENTER, 65);
+    m_listBonuses.InsertColumn(CI_Legendary, "Legendary", LVCFMT_CENTER, 65);
     m_listBonuses.SetExtendedStyle(m_listBonuses.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
     m_bPopulating = false;
     return 0;

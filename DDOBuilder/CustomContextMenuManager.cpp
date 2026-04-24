@@ -16,7 +16,7 @@ UINT CCustomContextMenuManager::TrackPopupMenu(
         HMENU hmenuPopup,
         int x,
         int y,
-        CWnd * pWndOwner,
+        CWnd* pWndOwner,
         BOOL bRightAlign)
 {
     m_bPopupShown = true;

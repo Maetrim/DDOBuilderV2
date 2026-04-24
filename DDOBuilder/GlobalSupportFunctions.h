@@ -219,6 +219,6 @@ std::vector<Spell> FilterSpells(Build* pBuild, std::string& ct, int level);
 size_t WeaponBaseCriticalRange(WeaponType wt);
 std::list<Augment> CompatibleAugments(const ItemAugment& aug, size_t level, const std::string& selectedAugment);
 bool IsShield(WeaponType wt);
-double GetDPIMultiplier(HWND hwnd);
-void DefaultFont(CFont& font);
+double GetDPIMultiplier(HWND hwnd, bool bAlwaysApplyScaling = false);
+void DefaultFont(CFont& font, bool bAlwaysApplyScaling = false);
 void ExtractImage(CImageList& il, int imageIndex, CDC* pDC, CBitmap& bitmap);
