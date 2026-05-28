@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Races>
+  <Race>
+    <Name>Duergar Mindcleaver</Name>
+    <ShortName>Duergar Mindcleaver</ShortName>
+    <Description>Duergar are...</Description>
+    <StartingWorld>Forgotten Realms</StartingWorld>
+    <BuildPoints size="4">28 32 34 36</BuildPoints>
+    <IconicClass>Fighter</IconicClass>
+    <Strength>+1</Strength>
+    <Intelligence>+1</Intelligence>
+    <GrantedFeat>Spell Save Bonus</GrantedFeat>
+    <GrantedFeat>Dwarven Stability</GrantedFeat>
+    <GrantedFeat>Dwarven Stonecutting</GrantedFeat>
+    <GrantedFeat>Orc and Goblin Bonus</GrantedFeat>
+    <GrantedFeat>Poison Save Bonus</GrantedFeat>
+    <GrantedFeat>Enlarge Self</GrantedFeat>
+    <GrantedFeat>Reduce Self</GrantedFeat>
+    <Feat>
+      <Name>Past Life: Duergar Mindcleaver</Name>
+      <Description>Iconic Past Life Stance: +2% Force Absorption per stack of this Past Life.
+Passive Bonus: +1 Saving Throw vs. Illusions per stack of this Past Life</Description>
+      <Stance>
+        <Name>Duergar Mindcleaver </Name>
+        <Icon>IconicPastLifeDuergar</Icon>
+        <Description>Iconic Past Life Stance: +2% Force Absorption per stack of this Past Life.</Description>
+        <Group>Iconic</Group>
+      </Stance>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>IconicPastLifeDuergar</Icon>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Illusion</Item>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Force</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Duergar Mindcleaver </Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
+  </Race>
+</Races>

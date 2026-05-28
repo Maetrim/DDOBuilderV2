@@ -174,7 +174,10 @@
       <EnhancementTreeItem>
          <Name>Dwarf: Iron Stomach</Name>
          <InternalName>DwarfIronStomach</InternalName>
-         <Description>When you drink you gain a Remove Poison/Remove Disease/Heroism effect for 2 Minutes.</Description>
+         <Description>When you drink, you gain the following effects for 2 minutes:
+Rank 1: Neutralize Poison
+Rank 2: Remove Disease
+Rank 3: Heroism</Description>
          <Icon>DwarfIronStomach</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -293,7 +296,7 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
          <Name>Dwarf: Lesser Dragonmark of Warding</Name>
          <InternalName>DwarfLesserDragonmarkOfWarding</InternalName>
          <Description>Lesser Dragonmark Spell: Spell Resistance.
-No spell point cost.
+Wards an ally with Spell Resistance of 12 plus 1 per caster level.
 Cooldown: 10 seconds.</Description>
          <Icon>DwarfLesserDragonmarkOfWarding</Icon>
          <XPosition>0</XPosition>
@@ -347,7 +350,7 @@ Rank 3: +5% Quality bonus to Maximum Hitpoints</Description>
          <Icon>DwarfChildOfTheMountain</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <ArrowUp/>
@@ -486,7 +489,6 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
          <Description>Greater Dragonmark Spell: Radiant Forcefield.
 Your target is surrounded in a sphere of magical force that reduces all damage
 (Except for untyped damage) they take by 25% for a short period of time.
-No spell point cost.
 Cooldown: 1 minute.</Description>
          <Icon>DwarfGreaterDragonmarkOfWarding</Icon>
          <XPosition>0</XPosition>
@@ -533,8 +535,9 @@ Cooldown: 1 minute.</Description>
          <Name>Dwarf: Stand Like Stone</Name>
          <InternalName>DwarfStandLikeStone</InternalName>
          <Description>Action Boost: For [12/15/20] seconds you gain +[10/20/30] Balance,
-Physical Resistance Rating, and stacking Energy Resistance, but have a 50% penalty
-to movement speed, sink in water, and cannot fly. (Cooldown: 3 minutes.)</Description>
+Physical Resistance Rating, and stacking Energy Resistance, but have a 20% penalty
+to movement speed, sink in water, and cannot fly.
+Cooldown: 3 minutes.</Description>
          <Icon>DwarfStandLikeStone</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -640,13 +643,86 @@ as a Favored Weapon.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>DwarfFavoredEnemies</InternalName>
+      <Name>Duergar: Favored Enemies</Name>
+      <Description>Select a Favored Enemy of Dwarves.</Description>
+      <Icon>DuergarFavoredEnemies</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Giant</Name>
+          <Description>You deal extra damage to giants</Description>
+          <Icon>FavoredEnemyGiant</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>Feat</Type>
+                <Item>Favored Enemy: Giant</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Favored Enemy: Giant</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Monstrous Humanoid</Name>
+          <Description>You deal extra damage to monstrous humanoids</Description>
+          <Icon>FavoredEnemyMonstrousHumanoid</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>Feat</Type>
+                <Item>Favored Enemy: Monstrous Humanoid</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Favored Enemy: Monstrous Humanoid</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Vermin</Name>
+          <Description>You deal extra damage to vermin</Description>
+          <Icon>FavoredEnemyVermin</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>Feat</Type>
+                <Item>Favored Enemy: Vermin</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Favored Enemy: Vermin</Item>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
        <!--Tier 4-->
       <EnhancementTreeItem>
          <Name>Dwarf: Hands of Stone</Name>
          <InternalName>DwarfHandsOfStone</InternalName>
          <Description>Greater Dragonmark Spell: Earthgrab
 Target corporeal creature is grabbed by earthen hands and rendered helpless.
-(Reflex DC 10 + Level + Constitution Modifier + Transmutation Bonuses Negates.)</Description>
+(Reflex DC 14 + Level + Constitution Modifier + Transmutation Bonuses Negates.)</Description>
          <Icon>DwarfHandsOfStone</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -675,7 +751,7 @@ Target corporeal creature is grabbed by earthen hands and rendered helpless.</De
             <Icon>DwarfHandsOfStone</Icon>
             <DCType>Earthgrab</DCType>
             <DCVersus>Reflex</DCVersus>
-            <Amount size="1">10</Amount>
+            <Amount size="1">14</Amount>
             <ClassLevel>All</ClassLevel>
             <ModAbility>Constitution</ModAbility>
             <School>Transmutation</School>
@@ -685,7 +761,8 @@ Target corporeal creature is grabbed by earthen hands and rendered helpless.</De
          <Name>Dwarf Fortress</Name>
          <InternalName>DwarfFortress</InternalName>
          <Description>While wearing full plate and using a shield, you gain +[1/2/3] Armor Class,
-Intimidate, and Will saving throws vs. Fear, and you deal +[3/5/7]% additional weapon damage. </Description>
+Intimidate, and Will saving throws vs. Fear, and you gain +[3/5/7] Melee and
+Ranged Power.</Description>
          <Icon>DwarfFortress</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -749,9 +826,9 @@ Intimidate, and Will saving throws vs. Fear, and you deal +[3/5/7]% additional w
             </Requirements>
          </Effect>
          <Effect>
-            <Type>Weapon_Damage</Type>
+            <Type>MeleePower</Type>
+            <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
-            <Percent/>
             <AType>Stacks</AType>
             <Amount size="3">3 5 7</Amount>
             <Item>All</Item>
@@ -787,8 +864,10 @@ Intimidate, and Will saving throws vs. Fear, and you deal +[3/5/7]% additional w
          <Selector>
             <EnhancementSelection>
                <Name>Axe Training</Name>
-               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
-and greataxes. While using dwarven waraxe, +10% Strikethrough</Description>
+               <Description>+1 to hit and damage with battle axes, hand axes ans throwing axes.
++1 to hit and +2 damage with dwarven waraxes and greataxes.
+While using a dwarven waraxe, +1 Competence Bonus to Critical Threat Range
+and +10% Strikethrough Chance.</Description>
                <Icon>DwarfAxeTraining</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Requirements>
@@ -804,10 +883,32 @@ and greataxes. While using dwarven waraxe, +10% Strikethrough</Description>
                   <AType>Simple</AType>
                   <Amount size="1">1</Amount>
                   <Item>Battle Axe</Item>
-                  <Item>Dwarven Axe</Item>
                   <Item>Hand Axe</Item>
-                  <Item>Great Axe</Item>
                   <Item>Throwing Axe</Item>
+               </Effect>
+               <Effect>
+                  <Type>Weapon_Attack</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dwarven Axe</Item>
+                  <Item>Great Axe</Item>
+               </Effect>
+               <Effect>
+                  <Type>Weapon_Damage</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">2</Amount>
+                  <Item>Dwarven Axe</Item>
+                  <Item>Great Axe</Item>
+               </Effect>
+               <Effect>
+                  <Type>Weapon_CriticalRange</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Dwarven Axe</Item>
+                  <ApplyAsItemEffect/>
                </Effect>
                <Effect>
                   <Type>Strikethrough</Type>
@@ -824,7 +925,9 @@ and greataxes. While using dwarven waraxe, +10% Strikethrough</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Pick and Hammer Training</Name>
-               <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers. +1 to hit and +2 damage with Mauls.</Description>
+               <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers.
++1 to hit and +2 damage with Mauls.
+While using a Heavy Pick or Warhammer, +1 Competence Bonus to Critical Threat Range.</Description>
                <Icon>DwarfPickAndHammerTraining</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Requirements>
@@ -842,9 +945,31 @@ and greataxes. While using dwarven waraxe, +10% Strikethrough</Description>
                   <Item>Heavy Pick</Item>
                   <Item>Light Hammer</Item>
                   <Item>Light Pick</Item>
-                  <Item>Maul</Item>
                   <Item>Throwing Hammer</Item>
                   <Item>Warhammer</Item>
+               </Effect>
+               <Effect>
+                  <Type>Weapon_Attack</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Maul</Item>
+               </Effect>
+               <Effect>
+                  <Type>Weapon_Damage</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">2</Amount>
+                  <Item>Maul</Item>
+               </Effect>
+               <Effect>
+                  <Type>Weapon_CriticalRange</Type>
+                  <Bonus>Competence</Bonus>
+                  <AType>Simple</AType>
+                  <Amount size="1">1</Amount>
+                  <Item>Heavy Pick</Item>
+                  <Item>Warhammer</Item>
+                  <ApplyAsItemEffect/>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -852,7 +977,7 @@ and greataxes. While using dwarven waraxe, +10% Strikethrough</Description>
       <EnhancementTreeItem>
          <Name>Dwarf: Throw Your Weight Around</Name>
          <InternalName>DwarfThrowYourWeightAround</InternalName>
-         <Description>Choose the same Weapon Type from Dwarven Weapon Training, Tier 4</Description>
+         <Description>Put your Dwarven mass behind your weapon of choice.</Description>
          <Icon>DwarfThrowYourWeightAround</Icon>
          <XPosition>4</XPosition>
          <YPosition>4</YPosition>
@@ -869,7 +994,7 @@ and greataxes. While using dwarven waraxe, +10% Strikethrough</Description>
             <EnhancementSelection>
                <Name>Axes</Name>
                <Description>You may use your Constitution modifier to determine the damage you deal
-with Battle Axes, Dwarven Waraxes, Hand Axes, Greataxes and Throwing Axes. </Description>
+with Battle Axes, Dwarven Waraxes, Hand Axes, Greataxes and Throwing Axes.</Description>
                <Icon>DwarfAxes</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Requirements>

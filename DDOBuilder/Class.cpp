@@ -534,7 +534,13 @@ size_t Class::MaxSpellLevel(size_t classLevel) const
 {
     classLevel = min(classLevel, MAX_CLASS_LEVEL);
     std::vector<size_t> spells = SpellSlotsAtLevel(classLevel);
-    return spells.size();
+    // look for the first non-zero value in reverse
+    size_t maxSpellLevel = spells.size()-1;
+    while (maxSpellLevel > 0 && spells[maxSpellLevel] == 0)
+    {
+        maxSpellLevel--;
+    }
+    return maxSpellLevel + 1;
 }
 
 const std::list<std::string>& Class::GetAutoFeats(size_t level) const
