@@ -1,0 +1,28 @@
+^D:\MAETRIM\DDOBUILDERV2\DDOBUILDER\HLP\DDOBUILDER.HHP
+start /wait hhc "hlp\DDOBuilder.hhp"
+if not exist "hlp\DDOBuilder.chm" goto :HelpError
+copy "hlp\DDOBuilder.chm" "D:\Maetrim\DDOBuilderV2\Output\DDOBuilder.chm"
+goto :HelpDone
+:HelpError
+echo hlp\DDOBuilder.hhp(1) : error:Problem encountered creating help file
+echo.
+:HelpDone
+echo.
+^D:\MAETRIM\DDOBUILDERV2\DDOBUILDER\RESOURCE.H
+echo // Generated Help Map file.  Used by DDOBuilder.HHP. > "hlp\HTMLDefines.h"
+echo. > "hlp\HTMLDefines.h"
+echo // Commands (ID_* and IDM_*) >> "hlp\HTMLDefines.h"
+makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "D:\Maetrim\DDOBuilderV2\DDOBuilder\Resource.h" >> "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD2_,0x10000 IDM_,HIDM_,0x10000 "D:\Maetrim\DDOBuilderV2\DDOBuilder\Resource.h" >> "hlp\HTMLDefines.h"
+echo. >> "hlp\HTMLDefines.h"
+echo // Prompts (IDP_*) >> "hlp\HTMLDefines.h"
+makehm /h IDP_,HIDP_,0x30000 "D:\Maetrim\DDOBuilderV2\DDOBuilder\Resource.h" >> "hlp\HTMLDefines.h"
+echo. >> "hlp\HTMLDefines.h"
+echo // Resources (IDR_*) >> "hlp\HTMLDefines.h"
+makehm /h IDR_,HIDR_,0x20000 "D:\Maetrim\DDOBuilderV2\DDOBuilder\Resource.h" >> "hlp\HTMLDefines.h"
+echo. >> "hlp\HTMLDefines.h"
+echo // Dialogs (IDD_*) >> "hlp\HTMLDefines.h"
+makehm /h IDD_,HIDD_,0x20000 "D:\Maetrim\DDOBuilderV2\DDOBuilder\Resource.h" >> "hlp\HTMLDefines.h"
+echo. >> "hlp\HTMLDefines.h"
+echo // Frame Controls (IDW_*) >> "hlp\HTMLDefines.h"
+makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "D:\Maetrim\DDOBuilderV2\DDOBuilder\Resource.h" >> "hlp\HTMLDefines.h"
