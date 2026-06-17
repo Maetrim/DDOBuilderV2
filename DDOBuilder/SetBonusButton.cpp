@@ -21,7 +21,7 @@ BEGIN_MESSAGE_MAP(CSetBonusButton, CStatic)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
-CSetBonusButton::CSetBonusButton(Character * charData, const SetBonus& setBonus) :
+CSetBonusButton::CSetBonusButton(Character* charData, const SetBonus& setBonus) :
     m_pCharacter(charData),
     m_setBonus(setBonus),
     m_stacks(0)         // stack count updated later

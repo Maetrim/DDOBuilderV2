@@ -53,7 +53,7 @@ void CAttackChainNameDialog::OnOK()
     }
     else
     {
-        const std::list<AttackChain> & setups = m_pCharacter->ActiveBuild()->AttackChains();
+        const std::list<AttackChain>& setups = m_pCharacter->ActiveBuild()->AttackChains();
         bool unique = true;
         std::list<AttackChain>::const_iterator it = setups.begin();
         while (unique && it != setups.end())

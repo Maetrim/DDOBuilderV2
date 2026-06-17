@@ -97,7 +97,8 @@ class CInventoryDialog :
 
         void SetGearSet(Build* pBuild, const EquippedGear & gear);
         void HighlightSetBonusItems(const std::string& setBonusName);
-        void OnUpdateFiligreeSelect(UINT uID);
+        void OnUpdateFiligree(CCmdUI * pCmdUi);
+        void OnFiligreeSelect(UINT id);
 
     ///////////////////////////////////////////////////////////////////
     // MFC
@@ -135,7 +136,6 @@ class CInventoryDialog :
         void ShowTip(const Item & item, CRect itemRect);
         void ShowTip(const Filigree& filigree, CRect itemRect);
         void ShowTip(const Filigree& filigree, CPoint itemPoint);
-        void ShowSetBonusTip(const std::string& setBonus, CPoint topRight);
         void ShowTip(const Gem& gem, CRect itemRect);
         void HideTip();
         void SetTooltipText(const Item& item, CPoint tipTopLeft, CPoint tipAlternate);
@@ -173,7 +173,8 @@ class CInventoryDialog :
         InventorySlotType m_tooltipItem;
         EquippedGear m_gearSet;
         int m_filigreeIndex;        // index of filigree being edited
-        bool m_bIsArtifactFiligree;
+        bool m_bArtifactFiligree;
+        bool m_bEmptyFiligreeSlot;
         CMenu m_filigreeMenu;
         CMenu m_personalityMenu;
         int m_tooltipFiligree;

@@ -69,7 +69,7 @@ BOOL CSpellLikeAbilityPage::OnEraseBkgnd(CDC* pDC)
     return OnEraseBackground(this, pDC, controlsNotToBeErased);
 }
 
-void CSpellLikeAbilityPage::SetCharacter(Character * pCharacter)
+void CSpellLikeAbilityPage::SetCharacter(Character* pCharacter)
 {
     if (m_pCharacter != NULL)
     {

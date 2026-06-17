@@ -51,6 +51,8 @@ const UINT uiFirstUserToolBarId = AFX_IDW_CONTROLBAR_FIRST + 40;
 const UINT uiLastUserToolBarId = uiFirstUserToolBarId + iMaxUserToolbars - 1;
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
+    ON_UPDATE_COMMAND_UI_RANGE(IDC_FILIGREE_MENU_IDS_START_HERE, IDC_FILIGREE_MENU_IDS_START_HERE + c_maxFiligreeCount, &CMainFrame::OnUpdateFiligree)
+    ON_COMMAND_RANGE(IDC_FILIGREE_MENU_IDS_START_HERE, IDC_FILIGREE_MENU_IDS_START_HERE + c_maxFiligreeCount, &CMainFrame::OnFiligree)
     ON_WM_CREATE()
     ON_WM_SIZE()
     // Global help commands
@@ -246,7 +248,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 BOOL CMainFrame::CreateDockingWindows()
 {
     // create the floating views
-    CCustomDockablePane * pLogPane = CreateDockablePane(
+    CCustomDockablePane* pLogPane = CreateDockablePane(
             "Log",
             GetActiveDocument(),
             RUNTIME_CLASS(CLogPane),
@@ -269,21 +271,21 @@ BOOL CMainFrame::CreateDockingWindows()
             ID_DOCK_STANCES);
     pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    CCustomDockablePane * pClassAndLevel = CreateDockablePane(
+    CCustomDockablePane* pClassAndLevel = CreateDockablePane(
             "Class and Levels",
             GetActiveDocument(),
             RUNTIME_CLASS(CClassAndFeatPane),
             ID_DOCK_CLASSFEATS);
     pClassAndLevel->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    CCustomDockablePane * pSkills = CreateDockablePane(
+    CCustomDockablePane* pSkills = CreateDockablePane(
             "Skills",
             GetActiveDocument(),
             RUNTIME_CLASS(CSkillsPane),
             ID_DOCK_SKILLS);
     pSkills->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    CCustomDockablePane * pSpecialFeats = CreateDockablePane(
+    CCustomDockablePane* pSpecialFeats = CreateDockablePane(
             "Past Lives and Special Feats",
             GetActiveDocument(),
             RUNTIME_CLASS(CSpecialFeatPane),
@@ -567,12 +569,12 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
     // do the same for all docked windows also
     for (size_t i = 0; i < m_dockablePanes.size(); ++i)
     {
-        //CView * pView = m_dockablePanes[i]->GetView();
+        //CView* pView = m_dockablePanes[i]->GetView();
         //pView->SendMessage(WM_SETTINGCHANGE, uFlags, lpszSection);
     }
 }
 
-void CMainFrame::NewDocument(CDDOBuilderDoc * pDoc)
+void CMainFrame::NewDocument(CDDOBuilderDoc* pDoc)
 {
     // make sure all the windows know who is the active document
     // there is always a document as this is an SDI application
@@ -617,33 +619,33 @@ CCustomDockablePane* CMainFrame::CreateDockablePane(
     return pane;
 }
 
-CLogPane & CMainFrame::GetLog()
+CLogPane& CMainFrame::GetLog()
 {
-    CView * pView = m_dockablePanes[0]->GetView();
-    CLogPane * pLogPane = dynamic_cast<CLogPane*>(pView);
+    CView* pView = m_dockablePanes[0]->GetView();
+    CLogPane* pLogPane = dynamic_cast<CLogPane*>(pView);
     return *pLogPane;
 }
 
 BOOL CMainFrame::OnCmdMsg(
         UINT nID,
         int nCode,
-        void * pExtra,
-        AFX_CMDHANDLERINFO * pHandlerInfo)
+        void* pExtra,
+        AFX_CMDHANDLERINFO* pHandlerInfo)
 {
     BOOL bReturn = FALSE;
 
     // offer the message to any views for the active open document
     POSITION pos = AfxGetApp()->m_pDocManager->GetFirstDocTemplatePosition();
-    CDocTemplate * pTemplate = AfxGetApp()->m_pDocManager->GetNextDocTemplate(pos);
+    CDocTemplate* pTemplate = AfxGetApp()->m_pDocManager->GetNextDocTemplate(pos);
     pos = pTemplate->GetFirstDocPosition();
-    CDocument * pDoc = pTemplate->GetNextDoc(pos);
+    CDocument* pDoc = pTemplate->GetNextDoc(pos);
 
     if (pDoc != NULL)
     {
         pos = pDoc->GetFirstViewPosition();
         while (pos != NULL && bReturn == FALSE)
         {
-            CView * pView = pDoc->GetNextView(pos);
+            CView* pView = pDoc->GetNextView(pos);
             if (pView != NULL)
             {
                 bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
@@ -679,7 +681,7 @@ void CMainFrame::AddSmallClassImageMenuIcons()
     // as we add the class images dynamically later, we end up replacing the tool bar
     // menu commands images as they use the same index otherwise
     // TBD: Sort out the transparent background colour for these images
-    CMFCToolBarImages * toolbarImages = CMFCToolBar::GetMenuImages();
+    CMFCToolBarImages* toolbarImages = CMFCToolBar::GetMenuImages();
     {
         CBitmap bitmap;
         bitmap.LoadBitmap(IDR_MAINFRAME_256);
@@ -688,9 +690,9 @@ void CMainFrame::AddSmallClassImageMenuIcons()
 
     // add all the class images to the available tool bar toolbarImages
     // so they show correctly in drop menus
-    const std::list<Class> & classes = Classes();
+    const std::list<Class>& classes = Classes();
     // load all the small images for each class
-    CCommandManager * commandManager = GetCmdMgr(); 
+    CCommandManager* commandManager = GetCmdMgr(); 
     const CSize menuimgsize = CMFCToolBar::GetMenuImageSize(); 
     ASSERT(menuimgsize.cx == 16 && menuimgsize.cy == 15);
 
@@ -818,7 +820,7 @@ void CMainFrame::LoadComplete()
     AddSmallClassImageMenuIcons();
 
     // do the documents views (usually only 1)
-    CDocument * pDoc = GetActiveDocument();
+    CDocument* pDoc = GetActiveDocument();
     if (pDoc != NULL)
     {
         POSITION pos = pDoc->GetFirstViewPosition();
@@ -1080,8 +1082,8 @@ void CMainFrame::OnResetScreenLayout()
     // sides they need to be able to recover these. We need to do a layout reset
     // of all window locations. This is done by loading the layout profile
     // from "DefaultWorkspace" in the DDOBuilder.ini file
-    CWinApp * pApp = AfxGetApp();
-    CWinAppEx * pAppEx = dynamic_cast<CWinAppEx*>(pApp);
+    CWinApp* pApp = AfxGetApp();
+    CWinAppEx* pAppEx = dynamic_cast<CWinAppEx*>(pApp);
     if (pApp != NULL)
     {
         ShowWindow(SW_HIDE);    // hide windows while update occurs
@@ -1135,3 +1137,23 @@ void CMainFrame::OnEnableDPIScaling()
     }
 }
 
+void CMainFrame::OnUpdateFiligree(CCmdUI* pCmdUI)
+{
+    CEquipmentPane* pPane = dynamic_cast<CEquipmentPane*>(GetPaneView(RUNTIME_CLASS(CEquipmentPane)));
+    pPane->OnUpdateFiligree(pCmdUI);
+}
+
+void CMainFrame::OnFiligree(UINT id)
+{
+    CEquipmentPane* pPane = dynamic_cast<CEquipmentPane*>(GetPaneView(RUNTIME_CLASS(CEquipmentPane)));
+    pPane->OnFiligree(id);
+}
+
+void CMainFrame::GetMessageString(UINT nID, CString& rMessage) const
+{
+    rMessage = "";
+    CFrameWndEx::GetMessageString(nID, rMessage);
+    CMainFrame* pNonConst = const_cast<CMainFrame*>(this);
+    CEquipmentPane* pPane = dynamic_cast<CEquipmentPane*>(pNonConst->GetPaneView(RUNTIME_CLASS(CEquipmentPane)));
+    pPane->OnFiligreeSelect(nID);
+}

@@ -416,6 +416,9 @@ void CBonusesPane::PopulateItems()
                             case CI_Fortune:
                                 value = pBItem->GetEffectValue("Fortune", true);
                                 break;
+                            case CI_Legendary:
+                                value = pBItem->GetEffectValue("Legendary", true);
+                                break;
                         }
                         // no value shown if total is 0
                         if (value != 0)

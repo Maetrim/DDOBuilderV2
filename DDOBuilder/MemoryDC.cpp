@@ -7,7 +7,7 @@
 
 using MfcControls::MemoryDC;
 
-MemoryDC::MemoryDC(CDC* pDC, const CRect * pRect) :
+MemoryDC::MemoryDC(CDC* pDC, const CRect* pRect) :
     CDC(),
     m_bMemDC(FALSE),
     m_pDC(pDC),

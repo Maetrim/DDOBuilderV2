@@ -13,7 +13,7 @@ class CharacterObserver :
 {
     public:
         virtual void UpdateActiveLifeChanged(Character*) {};
-        virtual void UpdateActiveBuildChanged(Character *) {};
+        virtual void UpdateActiveBuildChanged(Character*) {};
         virtual void UpdateActiveBuildPositionChanged(Character*) {};
 };
 
@@ -91,9 +91,9 @@ class Character :
         void SetSpecialFeats(const FeatsListObject& feats);
 
 protected:
-        XmlLib::SaxContentElementInterface * StartElement(
-                const XmlLib::SaxString & name,
-                const XmlLib::SaxAttributes & attributes);
+        XmlLib::SaxContentElementInterface* StartElement(
+                const XmlLib::SaxString& name,
+                const XmlLib::SaxAttributes& attributes);
 
         virtual void EndElement();
 

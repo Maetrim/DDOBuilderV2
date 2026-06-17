@@ -19,6 +19,7 @@ public:
     void SetCharacter(Character * pCharacter);
     CSize RequiredSize();
     void LoadComplete();
+    void SetLevelHighlight(size_t level);
 
 protected:
     afx_msg void OnPaint();

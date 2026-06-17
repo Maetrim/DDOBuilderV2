@@ -75,10 +75,20 @@ that you use one of these weapons. (These are labeled 'Focus' abilities.)</Descr
             <Item>Dwarven Axe</Item>
             <AType>NotNeeded</AType>
             <Requirements>
-              <Requirement>
-                <Type>Race</Type>
-                <Item>Dwarf</Item>
-              </Requirement>
+              <RequiresOneOf>
+                <Requirement>
+                  <Type>Race</Type>
+                  <Item>Dwarf</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Race</Type>
+                  <Item>Duergar</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Race</Type>
+                  <Item>Duergar Mindcleaver</Item>
+                </Requirement>
+              </RequiresOneOf>
             </Requirements>
           </Effect>
         </EnhancementSelection>
@@ -302,7 +312,7 @@ to produce extra shots.</Description>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Item>All</Item>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Requirements>
           <Requirement>
             <Type>GroupMember</Type>
@@ -1548,16 +1558,16 @@ and +1 to hit and +3 damage with two handed picks and hammers.</Description>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
         <Requirements>
-           <RequiresOneOf>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Cloth Armor</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Light Armor</Item>
-               </Requirement>
-           </RequiresOneOf>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Cloth Armor</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Light Armor</Item>
+            </Requirement>
+          </RequiresOneOf>
         </Requirements>
       </Effect>
     </EnhancementTreeItem>
@@ -1603,18 +1613,18 @@ and +1 to hit and +3 damage with two handed picks and hammers.</Description>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
             <Amount size="3">1 2 3</Amount>
-           <Requirements>
+            <Requirements>
               <RequiresOneOf>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Cloth Armor</Item>
-                  </Requirement>
-                  <Requirement>
-                     <Type>Stance</Type>
-                     <Item>Light Armor</Item>
-                  </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Cloth Armor</Item>
+                </Requirement>
+                <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Light Armor</Item>
+                </Requirement>
               </RequiresOneOf>
-           </Requirements>
+            </Requirements>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -3320,7 +3330,7 @@ considered a critical threat.</Description>
       <Tier5 />
       <Requirements>
         <RequiresOneOf>
-           <DisplayDescription>Any Improved Critical Feat</DisplayDescription>
+          <DisplayDescription>Any Improved Critical Feat</DisplayDescription>
           <Requirement>
             <Type>Feat</Type>
             <Item>Improved Critical: Bludgeoning Weapons</Item>
@@ -3358,7 +3368,7 @@ considered a critical threat.</Description>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <Item>All</Item>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Requirements>
           <Requirement>
             <Type>GroupMember</Type>

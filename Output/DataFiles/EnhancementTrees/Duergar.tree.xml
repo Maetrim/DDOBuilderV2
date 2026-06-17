@@ -3,8 +3,6 @@
   <EnhancementTree>
     <Name>Duergar</Name>
     <Version>1</Version>
-    <Background>DwarfBackground</Background>
-    <Icon>Dwarf</Icon>
     <Requirements>
       <Requirement>
         <Type>Race</Type>
@@ -12,12 +10,14 @@
       </Requirement>
     </Requirements>
     <IsRacialTree />
-    <!--tree core items-->
+    <Icon>Dwarf</Icon>
+    <Background>DwarfBackground</Background>
+    <!--Core Items-->
     <EnhancementTreeItem>
-      <InternalName>DuergarCore1</InternalName>
       <Name>Duergar: Underdark Upbringing I</Name>
+      <InternalName>DuergarCore1</InternalName>
       <Description>+5 Maximum Hit Points, +6 Maximum Spell Points</Description>
-      <Icon>UnderdarkUpbringing</Icon>
+      <Icon>UnderdarkUpbringingI</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -43,8 +43,8 @@
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarCore2</InternalName>
       <Name>Duergar: Ability I</Name>
+      <InternalName>DuergarCore2</InternalName>
       <Description>Choose between Strength or Constitution</Description>
       <Icon>StrCon</Icon>
       <XPosition>1</XPosition>
@@ -71,9 +71,9 @@
           <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>Constitution</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Constitution</Item>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -84,18 +84,18 @@
           <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>Strength</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Strength</Item>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarCore3</InternalName>
       <Name>Duergar: Underdark Upbringing II</Name>
-      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points</Description>
-      <Icon>UnderdarkUpbringing</Icon>
+      <InternalName>DuergarCore3</InternalName>
+      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points, +1 to Attack and Damage</Description>
+      <Icon>UnderdarkUpbringingII</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -123,10 +123,17 @@
         <AType>Simple</AType>
         <Amount size="1">6</Amount>
       </Effect>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarCore4</InternalName>
       <Name>Duergar: Ability II</Name>
+      <InternalName>DuergarCore4</InternalName>
       <Description>Choose between Strength or Constitution</Description>
       <Icon>StrCon</Icon>
       <XPosition>3</XPosition>
@@ -153,9 +160,9 @@
           <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>Constitution</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Constitution</Item>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -166,18 +173,18 @@
           <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>Strength</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Strength</Item>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarCore5</InternalName>
       <Name>Duergar: Underdark Upbringing III</Name>
-      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points</Description>
-      <Icon>UnderdarkUpbringing</Icon>
+      <InternalName>DuergarCore5</InternalName>
+      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points, +1 to Attack and Damage</Description>
+      <Icon>UnderdarkUpbringingIII</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -205,11 +212,18 @@
         <AType>Simple</AType>
         <Amount size="1">6</Amount>
       </Effect>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
     </EnhancementTreeItem>
-    <!--Tier 1 Enhancements-->
+    <!--Tier 1-->
     <EnhancementTreeItem>
-      <InternalName>DuergarDwarvenWeaponTrainingI</InternalName>
       <Name>Duergar: Dwarven Weapon Training I</Name>
+      <InternalName>DuergarDwarvenWeaponTrainingI</InternalName>
       <Description>Choose one</Description>
       <Icon>DwarfAxeTraining</Icon>
       <XPosition>0</XPosition>
@@ -228,13 +242,13 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
             <Item>Battle Axe</Item>
             <Item>Dwarven Axe</Item>
             <Item>Hand Axe</Item>
             <Item>Great Axe</Item>
             <Item>Throwing Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -257,21 +271,21 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
             <Item>Heavy Pick</Item>
             <Item>Light Hammer</Item>
             <Item>Light Pick</Item>
             <Item>Maul</Item>
             <Item>Throwing Hammer</Item>
             <Item>Warhammer</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarShapeI</InternalName>
       <Name>Duergar: Shape I</Name>
+      <InternalName>DuergarShapeI</InternalName>
       <Description>While Enlarged, you gain a +3 Psionic Bonus to Attack.
 While Reduced, you gain +3 Psionic Bonus to Max Dodge and the Max Dex Bonus of your Armor.
 Your Enlarge and Reduce now last for two minutes.</Description>
@@ -281,9 +295,11 @@ Your Enlarge and Reduce now last for two minutes.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
+      <ArrowUp />
       <Effect>
         <Type>Weapon_Attack</Type>
         <Bonus>Psionic</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">3</Amount>
         <Requirements>
@@ -292,7 +308,6 @@ Your Enlarge and Reduce now last for two minutes.</Description>
             <Item>Enlarge Self</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>DodgeCapBonus</Type>
@@ -309,8 +324,8 @@ Your Enlarge and Reduce now last for two minutes.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarMentalFortitude</InternalName>
       <Name>Duergar: Mental Fortitude</Name>
+      <InternalName>DuergarMentalFortitude</InternalName>
       <Description>+[1/2/3] to Saving Throws vs. Enchantments.</Description>
       <Icon>DuergarMentalFortitude</Icon>
       <XPosition>2</XPosition>
@@ -321,14 +336,14 @@ Your Enlarge and Reduce now last for two minutes.</Description>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>Enchantment</Item>
         <AType>Stacks</AType>
         <Amount size="3">1 2 3</Amount>
-        <Item>Enchantment</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarArmorMastery</InternalName>
       <Name>Duergar: Armor Mastery</Name>
+      <InternalName>DuergarArmorMastery</InternalName>
       <Description>+[1/2/3] Armor Class and Armor Maximum Dexterity Bonus.</Description>
       <Icon>DwarfDwarvenArmorMastery</Icon>
       <XPosition>3</XPosition>
@@ -345,8 +360,8 @@ Your Enlarge and Reduce now last for two minutes.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarForgeApprentice</InternalName>
       <Name>Duergar: Forge Apprentice</Name>
+      <InternalName>DuergarForgeApprentice</InternalName>
       <Description>You gain proficiency with Handaxes, Light Picks, Light Hammers, Throwing Axes,
 and Throwing Hammers, and consider them Simple Weapons.</Description>
       <Icon>DuergarForgeApprentice</Icon>
@@ -358,30 +373,30 @@ and Throwing Hammers, and consider them Simple Weapons.</Description>
       <Effect>
         <Type>AddGroupWeapon</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>NotNeeded</AType>
         <Item>Proficiency</Item>
         <Item>Hand Axe</Item>
         <Item>Light Pick</Item>
         <Item>Light Hammer</Item>
         <Item>Throwing Axe</Item>
         <Item>Throwing Hammer</Item>
+        <AType>NotNeeded</AType>
       </Effect>
       <Effect>
         <Type>AddGroupWeapon</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>NotNeeded</AType>
         <Item>Simple</Item>
         <Item>Hand Axe</Item>
         <Item>Light Pick</Item>
         <Item>Light Hammer</Item>
         <Item>Throwing Axe</Item>
         <Item>Throwing Hammer</Item>
+        <AType>NotNeeded</AType>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 2 Enhancements-->
+    <!--Tier 2-->
     <EnhancementTreeItem>
-      <InternalName>DuergarDwarvenWeaponTrainingII</InternalName>
       <Name>Duergar: Weapon Training II</Name>
+      <InternalName>DuergarDwarvenWeaponTrainingII</InternalName>
       <Description>Choose the same Training from Dwarven Weapon Training, Tier 1.</Description>
       <Icon>DwarfAxeTraining</Icon>
       <XPosition>0</XPosition>
@@ -413,13 +428,13 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
             <Item>Battle Axe</Item>
             <Item>Dwarven Axe</Item>
             <Item>Hand Axe</Item>
             <Item>Great Axe</Item>
             <Item>Throwing Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -449,23 +464,23 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
             <Item>Heavy Pick</Item>
             <Item>Light Hammer</Item>
             <Item>Light Pick</Item>
             <Item>Maul</Item>
             <Item>Throwing Hammer</Item>
             <Item>Warhammer</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarShapeII</InternalName>
       <Name>Duergar: Shape II</Name>
+      <InternalName>DuergarShapeII</InternalName>
       <Description>While Enlarged, you gain a +3 Psionic Bonus to Damage.
-While Reduced, you gain +3 Psionic Bonus to Max Dodge.
+While Reduced, you gain +3% Psionic Bonus to Max Dodge.
 Your Enlarge and Reduce now last for three minutes.</Description>
       <Icon>DuergarShapeII</Icon>
       <XPosition>1</XPosition>
@@ -473,9 +488,17 @@ Your Enlarge and Reduce now last for three minutes.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DuergarShapeI</Item>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>Weapon_Damage</Type>
         <Bonus>Psionic</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">3</Amount>
         <Requirements>
@@ -484,7 +507,6 @@ Your Enlarge and Reduce now last for three minutes.</Description>
             <Item>Enlarge Self</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>DodgeCapBonus</Type>
@@ -500,8 +522,8 @@ Your Enlarge and Reduce now last for three minutes.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarChildOfTheMountain</InternalName>
       <Name>Duergar: Child of the Mountain</Name>
+      <InternalName>DuergarChildOfTheMountain</InternalName>
       <Description>+[1/2/3] Fortitude saves
 Rank 3: +5% Quality bonus to Maximum Hitpoints</Description>
       <Icon>DwarfChildOfTheMountain</Icon>
@@ -520,18 +542,18 @@ Rank 3: +5% Quality bonus to Maximum Hitpoints</Description>
       <Effect>
         <Type>Hitpoints</Type>
         <Bonus>Quality</Bonus>
-        <Percent />
-        <Rank>3</Rank>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
+        <Percent />
         <ApplyAsItemEffect />
+        <Rank>3</Rank>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarArcanum</InternalName>
       <Name>Duergar: Arcanum</Name>
+      <InternalName>DuergarArcanum</InternalName>
       <Description>+[25/50/100] Maximum Spell Points, +[1/2/3] Spell Penetration.</Description>
-      <Icon>DuergarArcanum</Icon>
+      <Icon>Arcanum</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -551,8 +573,8 @@ Rank 3: +5% Quality bonus to Maximum Hitpoints</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarForgeFamiliarity</InternalName>
       <Name>Duergar: Forge Familiarity</Name>
+      <InternalName>DuergarForgeFamiliarity</InternalName>
       <Description>Your Arcane Spell Failure chance from armor is decreased by 15%.</Description>
       <Icon>DuergarForgeFamiliarity</Icon>
       <XPosition>4</XPosition>
@@ -567,10 +589,10 @@ Rank 3: +5% Quality bonus to Maximum Hitpoints</Description>
         <Amount size="1">-15</Amount>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 3 Enhancements-->
+    <!--Tier 3-->
     <EnhancementTreeItem>
-      <InternalName>DuergarDwarvenWeaponTrainingIII</InternalName>
       <Name>Duergar: Weapon Training III</Name>
+      <InternalName>DuergarDwarvenWeaponTrainingIII</InternalName>
       <Description>Choose the same Training from Dwarven Weapon Training, Tier 2: </Description>
       <Icon>DwarfAxeTraining</Icon>
       <XPosition>0</XPosition>
@@ -603,13 +625,13 @@ as a Favored Weapon.</Description>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
             <Item>Battle Axe</Item>
             <Item>Dwarven Axe</Item>
             <Item>Hand Axe</Item>
             <Item>Great Axe</Item>
             <Item>Throwing Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -646,21 +668,21 @@ as a Favored Weapon.</Description>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
             <Item>Heavy Pick</Item>
             <Item>Light Hammer</Item>
             <Item>Light Pick</Item>
             <Item>Maul</Item>
             <Item>Throwing Hammer</Item>
             <Item>Warhammer</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarShapeIII</InternalName>
       <Name>Duergar: Shape III</Name>
+      <InternalName>DuergarShapeIII</InternalName>
       <Description>While Enlarged, you gain a +5% Psionic Bonus to Fortification Bypass.
 While Reduced, you gain +5 Psionic Bonus to Natural Armor.
 Your Enlarge and Reduce now last for five minutes.</Description>
@@ -670,9 +692,17 @@ Your Enlarge and Reduce now last for five minutes.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DuergarShapeII</Item>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>FortificationBypass</Type>
         <Bonus>Psionic</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
         <Requirements>
@@ -681,7 +711,6 @@ Your Enlarge and Reduce now last for five minutes.</Description>
             <Item>Enlarge Self</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>NaturalArmor</Type>
@@ -697,8 +726,8 @@ Your Enlarge and Reduce now last for five minutes.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarFavoredEnemies</InternalName>
       <Name>Duergar: Favored Enemies</Name>
+      <InternalName>DuergarFavoredEnemies</InternalName>
       <Description>Select a Favored Enemy of the Duergar.</Description>
       <Icon>DuergarFavoredEnemies</Icon>
       <XPosition>2</XPosition>
@@ -770,8 +799,8 @@ Your Enlarge and Reduce now last for five minutes.</Description>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarUnderdarkKnowledge</InternalName>
       <Name>Duergar: Underdark Knowledge</Name>
+      <InternalName>DuergarUnderdarkKnowledge</InternalName>
       <Description>You have knowledge of secret Underdark poisons, passed down through generations.
 +[10/20/30] Poison Spell Power.</Description>
       <Icon>DuergarUnderdarkKnowledge</Icon>
@@ -783,14 +812,14 @@ Your Enlarge and Reduce now last for five minutes.</Description>
       <Effect>
         <Type>SpellPower</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>Poison</Item>
         <AType>Stacks</AType>
         <Amount size="3">10 20 30</Amount>
-        <Item>Poison</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarForgemaster</InternalName>
       <Name>Duergar: Forgemaster</Name>
+      <InternalName>DuergarForgemaster</InternalName>
       <Description>Axes, Picks, and Hammers in your hands become Spellcasting Implements, and
 no longer take item damage.</Description>
       <Icon>Forgemaster</Icon>
@@ -802,8 +831,6 @@ no longer take item damage.</Description>
       <Effect>
         <Type>ImplementInYourHands</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
         <Item>Dwarven Axe</Item>
         <Item>Battle Axe</Item>
         <Item>Great Axe</Item>
@@ -814,12 +841,14 @@ no longer take item damage.</Description>
         <Item>Light Hammer</Item>
         <Item>Throwing Hammer</Item>
         <Item>Warhammer</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
       </Effect>
     </EnhancementTreeItem>
-    <!--Tier 4 Enhancements-->
+    <!--Tier 4-->
     <EnhancementTreeItem>
-      <InternalName>DuergarDwarvenWeaponTrainingIV</InternalName>
       <Name>Duergar: Weapon Training IV</Name>
+      <InternalName>DuergarDwarvenWeaponTrainingIV</InternalName>
       <Description>Choose the same Training from Dwarven Weapon Training, Tier 3</Description>
       <Icon>DwarfAxeTraining</Icon>
       <XPosition>0</XPosition>
@@ -834,121 +863,121 @@ no longer take item damage.</Description>
         </Requirement>
       </Requirements>
       <Selector>
-            <EnhancementSelection>
-               <Name>Axe Training</Name>
-               <Description>+1 to hit and damage with battle axes, hand axes ans throwing axes.
+        <EnhancementSelection>
+          <Name>Axe Training</Name>
+          <Description>+1 to hit and damage with battle axes, hand axes ans throwing axes.
 +1 to hit and +2 damage with dwarven waraxes and greataxes.
 While using a dwarven waraxe, +1 Competence Bonus to Critical Threat Range
 and +10% Strikethrough Chance.</Description>
-               <Icon>DwarfAxeTraining</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Enhancement</Type>
-                     <Item>DuergarDwarvenWeaponTrainingI</Item>
-                     <Item>Axe Training</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>Weapon_AttackAndDamage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Battle Axe</Item>
-                  <Item>Hand Axe</Item>
-                  <Item>Throwing Axe</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Attack</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Dwarven Axe</Item>
-                  <Item>Great Axe</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Damage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">2</Amount>
-                  <Item>Dwarven Axe</Item>
-                  <Item>Great Axe</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_CriticalRange</Type>
-                  <Bonus>Competence</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Dwarven Axe</Item>
-                  <ApplyAsItemEffect/>
-               </Effect>
-               <Effect>
-                  <Type>Strikethrough</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">10</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Dwarven Axe</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Pick and Hammer Training</Name>
-               <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers.
+          <Icon>DwarfAxeTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DuergarDwarvenWeaponTrainingI</Item>
+              <Item>Axe Training</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Battle Axe</Item>
+            <Item>Hand Axe</Item>
+            <Item>Throwing Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Attack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dwarven Axe</Item>
+            <Item>Great Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Damage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dwarven Axe</Item>
+            <Item>Great Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Item>Dwarven Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect />
+          </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Dwarven Axe</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Pick and Hammer Training</Name>
+          <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers.
 +1 to hit and +2 damage with Mauls.
 While using a Heavy Pick or Warhammer, +1 Competence Bonus to Critical Threat Range.</Description>
-               <Icon>DwarfPickAndHammerTraining</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Enhancement</Type>
-                     <Item>DuergarDwarvenWeaponTrainingI</Item>
-                     <Item>Pick and Hammer Training</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>Weapon_AttackAndDamage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Heavy Pick</Item>
-                  <Item>Light Hammer</Item>
-                  <Item>Light Pick</Item>
-                  <Item>Throwing Hammer</Item>
-                  <Item>Warhammer</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Attack</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Maul</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Damage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">2</Amount>
-                  <Item>Maul</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_CriticalRange</Type>
-                  <Bonus>Competence</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Heavy Pick</Item>
-                  <Item>Warhammer</Item>
-                  <ApplyAsItemEffect/>
-               </Effect>
-            </EnhancementSelection>
+          <Icon>DwarfPickAndHammerTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>DuergarDwarvenWeaponTrainingI</Item>
+              <Item>Pick and Hammer Training</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Heavy Pick</Item>
+            <Item>Light Hammer</Item>
+            <Item>Light Pick</Item>
+            <Item>Throwing Hammer</Item>
+            <Item>Warhammer</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Attack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Maul</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Damage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Maul</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Item>Heavy Pick</Item>
+            <Item>Warhammer</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect />
+          </Effect>
+        </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarShapeIV</InternalName>
       <Name>Duergar: Shape IV</Name>
+      <InternalName>DuergarShapeIV</InternalName>
       <Description>While Enlarged, you gain a +2 Psionic Bonus to Critical Confirmation and Damage.
 While Reduced, you gain +10 Psionic Bonus to MRR.
 Your Enlarge and Reduce now last until rest or death.</Description>
@@ -958,9 +987,17 @@ Your Enlarge and Reduce now last until rest or death.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
+      <ArrowRight />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DuergarShapeIII</Item>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>Weapon_AttackAndDamageCritical</Type>
         <Bonus>Psionic</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
         <Requirements>
@@ -969,7 +1006,6 @@ Your Enlarge and Reduce now last until rest or death.</Description>
             <Item>Enlarge Self</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>MRR</Type>
@@ -985,8 +1021,8 @@ Your Enlarge and Reduce now last until rest or death.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarSizeMastery</InternalName>
       <Name>Duergar: Size Mastery</Name>
+      <InternalName>DuergarSizeMastery</InternalName>
       <Description>While Enlarged, your melee attacks deal +20% damage to Helpless opponents.
 While Reduced, you gain 5% Incorporeality</Description>
       <Icon>SizeMastery</Icon>
@@ -995,9 +1031,16 @@ While Reduced, you gain 5% Incorporeality</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>DuergarShapeIV</Item>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>HelplessDamage</Type>
         <Bonus>Psionic</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">20</Amount>
         <Requirements>
@@ -1006,7 +1049,6 @@ While Reduced, you gain 5% Incorporeality</Description>
             <Item>Enlarge Self</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Incorporeality</Type>
@@ -1022,13 +1064,13 @@ While Reduced, you gain 5% Incorporeality</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarInvisibility</InternalName>
       <Name>Duergar: Invisibility</Name>
+      <InternalName>DuergarInvisibility</InternalName>
       <Description>Spell-Like Ability: An ally becomes invisible, vanishing from sight, even from
 darkvision. If he or she attacks a target, the effect is removed.
 Cost: 6 Spell Points
 Cooldown: 12 seconds</Description>
-      <Icon>DuergarInvisibility</Icon>
+      <Icon>Invisibility</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -1044,22 +1086,43 @@ Cooldown: 12 seconds</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>DuergarDeepMagicTransmutation</InternalName>
       <Name>Duergar: Deep Magic: Transmutation</Name>
-      <Description>+[1/2/3] Transmutation DCs</Description>
+      <InternalName>DuergarDeepMagicTransmutation</InternalName>
+      <Description>+[1/2/3] Transmutation or Conjuration DCs</Description>
       <Icon>DuergarDeepMagicTransmutation</Icon>
       <XPosition>4</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>15</MinSpent>
-      <Effect>
-        <Type>SpellDC</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">1 2 3</Amount>
-        <Item>Transmutation</Item>
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Conjuration DCs</Name>
+          <Description>+[1/2/3] Conjuration DCs</Description>
+          <Icon>DuergarDeepMagicTransmutation</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Conjuration</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Transmutation DCs</Name>
+          <Description>+[1/2/3] Transmutation DCs</Description>
+          <Icon>DuergarDeepMagicTransmutation</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Transmutation</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">1 2 3</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

@@ -71,7 +71,7 @@ BOOL CSpellsPage::OnEraseBkgnd(CDC* pDC)
     return OnEraseBackground(this, pDC, controlsNotToBeErased);
 }
 
-void CSpellsPage::SetCharacter(Character * pCharacter)
+void CSpellsPage::SetCharacter(Character* pCharacter)
 {
     m_pCharacter = pCharacter;
     m_spells.SetCharacter(pCharacter, m_classType);
@@ -90,12 +90,12 @@ void CSpellsPage::SetCharacter(Character * pCharacter)
     }
 }
 
-void CSpellsPage::SetTrainableSpells(const std::vector<size_t> & spellsPerLevel)
+void CSpellsPage::SetTrainableSpells(const std::vector<size_t>& spellsPerLevel)
 {
     m_spells.SetTrainableSpells(spellsPerLevel);
 }
 
-CSpellsControl * CSpellsPage::SpellsControl()
+CSpellsControl* CSpellsPage::SpellsControl()
 {
     return &m_spells;
 }

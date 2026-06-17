@@ -12,8 +12,8 @@ class BreakdownItemMRR :
         BreakdownItemMRR(
             CBreakdownsPane* pPane,
             BreakdownType type,
-                const CString & Title,
-                MfcControls::CTreeListCtrl * treeList,
+                const CString& Title,
+                MfcControls::CTreeListCtrl* treeList,
                 HTREEITEM hItem);
         virtual ~BreakdownItemMRR();
 
@@ -21,7 +21,9 @@ class BreakdownItemMRR :
         virtual CString Title() const override;
         virtual CString Value() const override;
         virtual void CreateOtherEffects() override;
-        virtual bool AffectsUs(const Effect & effect) const override;
+        virtual bool AffectsUs(const Effect& effect) const override;
     private:
+        // BreakdownObserver overrides
+        virtual void UpdateTotalChanged(BreakdownItem* item, BreakdownType type) override;
         CString m_title;
 };

@@ -6,6 +6,7 @@
 enum HitType
 {
     HT_None = 0,
+    HT_LevelNumber,
     HT_Class1,
     HT_Class2,
     HT_Class3,
@@ -18,11 +19,11 @@ enum HitType
 class HitCheckItem
 {
 public:
-    HitCheckItem(HitType type, const CRect & rect, size_t level, size_t data) :
+    HitCheckItem(HitType type, const CRect& rect, size_t level, size_t data) :
         m_type(type), m_rect(rect), m_level(level), m_data(data) {};
      ~HitCheckItem() {};
 
-     bool PointInRect(const CPoint & pt) const { return (m_rect.PtInRect(pt) != 0); }
+     bool PointInRect(const CPoint& pt) const { return (m_rect.PtInRect(pt) != 0); }
      CRect Rect() const { return m_rect; }
      HitType Type() const { return m_type; }
      size_t Level() const { return m_level; }
@@ -46,7 +47,7 @@ public:
     CFeatsClassControl();
     virtual ~CFeatsClassControl();
 
-    void SetCharacter(Character * pCharacter);
+    void SetCharacter(Character* pCharacter);
     CSize RequiredSize();
     void ToggleSpell();
     bool HasToggleSpell();
@@ -71,9 +72,9 @@ protected:
 
 private:
     void SetupControl();
-    size_t DrawTopLine(CDC * pDC);
-    size_t DrawLevelLine(CDC * pDC, size_t top, size_t level);
-    void DrawFeat(CDC * pDC, CRect rctItem, size_t featIndex, size_t level);
+    size_t DrawTopLine(CDC* pDC);
+    size_t DrawLevelLine(CDC* pDC, size_t top, size_t level);
+    void DrawFeat(CDC* pDC, CRect rctItem, size_t featIndex, size_t level);
     HitCheckItem HitCheck(CPoint mouse) const;
     void DoClass1();
     void DoClass2();
@@ -87,30 +88,30 @@ private:
             const std::string& exclude2);
 
     // Character observer
-    virtual void UpdateActiveBuildChanged(Character *) override;
+    virtual void UpdateActiveBuildChanged(Character*) override;
 
     // Life observer
     virtual void UpdateAbilityTomeChanged(Life*, AbilityType) override;
     virtual void UpdateRaceChanged(Life*, const std::string&) override;
 
     // Build Observer
-    virtual void UpdateBuildLevelChanged(Build *) override;
+    virtual void UpdateBuildLevelChanged(Build*) override;
     virtual void UpdateClassChanged(
-            Build *,
+            Build*,
             const std::string& classFrom,
             const std::string& classTo,
             size_t level) override;
-    virtual void UpdateFeatTrained(Build *, const std::string& featName) override;
-    virtual void UpdateFeatRevoked(Build *, const std::string& featName) override;
+    virtual void UpdateFeatTrained(Build*, const std::string& featName) override;
+    virtual void UpdateFeatRevoked(Build*, const std::string& featName) override;
     virtual void UpdateAbilityValueChanged(Build*, AbilityType ability) override;
     virtual void UpdateBuildAutomaticFeatsChanged(Build*, size_t level) override;
 
-    //void UpdateClassChoiceChanged(Character * charData) override;
-    //void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
+    //void UpdateClassChoiceChanged(Character* charData) override;
+    //void UpdateClassChanged(Character* charData, ClassType classFrom, ClassType classTo, size_t level) override;
 
-    Character * m_pCharacter;
+    Character* m_pCharacter;
     bool m_bMenuDisplayed;
-    std::vector<std::vector<FeatSlot> > m_availableFeats;
+    std::vector<std::vector<FeatSlot>> m_availableFeats;
     size_t m_maxRequiredFeats;
     size_t m_numClassColumns;
     std::vector<HitCheckItem> m_hitChecks;
@@ -122,6 +123,7 @@ private:
     size_t m_highlightedLevelLine;
     size_t m_lastNotifiedLevelLine;
     size_t m_alternateHighlightedLevelLine;
+    size_t m_selectedLevelLine;
     CRect m_levelRects[MAX_GAME_LEVEL];
     // feat tooltip
     CInfoTip m_tooltip;

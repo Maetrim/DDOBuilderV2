@@ -16,12 +16,12 @@ ObserverBase::~ObserverBase()
 }
 
 // a copied observer DOES observe all the original's subjects
-ObserverBase::ObserverBase(const ObserverBase & copy)
+ObserverBase::ObserverBase(const ObserverBase& copy)
 {
     AttachAll(copy);
 }
 
-ObserverBase & ObserverBase::operator =(const ObserverBase & copy)
+ObserverBase& ObserverBase::operator =(const ObserverBase& copy)
 {
     DetachAll();
     AttachAll(copy);
@@ -90,7 +90,7 @@ void ObserverBase::DetachAll()
 }
 
 
-void ObserverBase::AttachAll(const ObserverBase & copy)
+void ObserverBase::AttachAll(const ObserverBase& copy)
 {
     // stop any other thread messing with the subjects while we are messing
     CriticalSectionLock lock(&m_critsec);
@@ -118,13 +118,13 @@ SubjectBase::~SubjectBase()
 }
 
 // a copied subject does NOT notify the original's observers
-SubjectBase::SubjectBase(const SubjectBase & copy) :
+SubjectBase::SubjectBase(const SubjectBase& copy) :
     m_notificationLevel(0)
 {
     UNREFERENCED_PARAMETER(copy);
 }
 
-SubjectBase & SubjectBase::operator=(const SubjectBase & copy)
+SubjectBase& SubjectBase::operator=(const SubjectBase& copy)
 {
     UNREFERENCED_PARAMETER(copy);
     DetachAll(); // copy over drops all the original observers

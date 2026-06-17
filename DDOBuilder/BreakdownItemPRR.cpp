@@ -67,7 +67,16 @@ void BreakdownItemPRR::CreateOtherEffects()
             // note that the Mithral body and Adamantine body feats control the state
             // of the stances, so we only need to check them
 
-            if (pBuild->IsStanceActive("Light Armor")
+            if (pBuild->IsFeatTrained("Mithral Body"))
+            {
+                Effect prr(
+                        Effect_Unknown,
+                        "Mithral Body PRR (BAB * 1)",
+                        "Mithral Body PRR (BAB * 1)",
+                        amount);
+                AddOtherEffect(prr);
+            }
+            else if (pBuild->IsStanceActive("Light Armor")
                 && (pBuild->IsFeatTrained("Light Armor Proficiency")
                     || pBuild->IsGrantedFeat("Light Armor Proficiency")))
             {
@@ -75,15 +84,6 @@ void BreakdownItemPRR::CreateOtherEffects()
                         Effect_Unknown,
                         "Light Armor PRR (BAB * 1)",
                         "Light Armor PRR (BAB * 1)",
-                        amount);
-                AddOtherEffect(prr);
-            }
-            if (pBuild->IsFeatTrained("Mithral Body"))
-            {
-                Effect prr(
-                        Effect_Unknown,
-                        "Mithral Body PRR (BAB * 1)",
-                        "Mithral Body PRR (BAB * 1)",
                         amount);
                 AddOtherEffect(prr);
             }
@@ -98,7 +98,16 @@ void BreakdownItemPRR::CreateOtherEffects()
                         (int)((amount * 1.5) + 0.5));       // round up
                 AddOtherEffect(prr);
             }
-            if (pBuild->IsStanceActive("Heavy Armor")
+            if (pBuild->IsFeatTrained("Adamantine Body"))
+            {
+                Effect prr(
+                        Effect_Unknown,
+                        "Adamantine Body PRR (BAB * 2)",
+                        "Adamantine Body PRR (BAB * 2)",
+                        amount * 2.0);
+                AddOtherEffect(prr);
+            }
+            else if (pBuild->IsStanceActive("Heavy Armor")
                 && (pBuild->IsFeatTrained("Heavy Armor Proficiency")
                     || pBuild->IsGrantedFeat("Heavy Armor Proficiency")))
             {
@@ -106,15 +115,6 @@ void BreakdownItemPRR::CreateOtherEffects()
                         Effect_Unknown,
                         "Heavy Armor PRR (BAB * 2)",
                         "Heavy Armor PRR (BAB * 2)",
-                        amount * 2.0);
-                AddOtherEffect(prr);
-            }
-            if (pBuild->IsFeatTrained("Adamantine Body"))
-            {
-                Effect prr(
-                        Effect_Unknown,
-                        "Adamantine Body PRR (BAB * 2)",
-                        "Adamantine Body PRR (BAB * 2)",
                         amount * 2.0);
                 AddOtherEffect(prr);
             }

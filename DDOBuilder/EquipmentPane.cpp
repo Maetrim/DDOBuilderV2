@@ -101,7 +101,6 @@ BEGIN_MESSAGE_MAP(CEquipmentPane, CFormView)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &CEquipmentPane::OnTtnNeedText)
-    ON_UPDATE_COMMAND_UI_RANGE(c_trueItemIndexOffset, c_trueItemIndexOffset + c_maxFiligreeCount, &CEquipmentPane::OnUpdateFiligreeSelect)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -301,7 +300,7 @@ LRESULT CEquipmentPane::OnNewDocument(WPARAM wParam, LPARAM lParam)
     CDDOBuilderDoc* pDoc = (CDDOBuilderDoc*)(wParam);
     m_pDocument = pDoc;
     // lParam is the character pointer
-    Character * pCharacter = (Character *)(lParam);
+    Character* pCharacter = (Character*)(lParam);
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
@@ -378,7 +377,7 @@ void CEquipmentPane::PopulateCombobox()
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
-            const std::list<EquippedGear> & setups = pBuild->GearSetups();
+            const std::list<EquippedGear>& setups = pBuild->GearSetups();
             std::list<EquippedGear>::const_iterator it = setups.begin();
             size_t indexIntoList = 0;
             while (it != setups.end())
@@ -456,7 +455,7 @@ void CEquipmentPane::EnableControls()
     }
     else
     {
-        const std::list<EquippedGear> & setups = pBuild->GearSetups();
+        const std::list<EquippedGear>& setups = pBuild->GearSetups();
         m_comboGearSelections.EnableWindow(setups.size() > 1);
         m_inventoryView->EnableWindow(setups.size() > 0);
         m_buttonNew.EnableWindow(TRUE);     // always available
@@ -561,25 +560,20 @@ void CEquipmentPane::UpdateSlotRightClicked(
     }
 }
 
-//void CEquipmentPane::UpdateGearChanged(Character * charData, InventorySlotType slot)
-//{
-//    m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
-//}
-
-void CEquipmentPane::OnUpdateGearNew(CCmdUI * pCmdUi)
+void CEquipmentPane::OnUpdateGearNew(CCmdUI* pCmdUi)
 {
     // can always create a new gear set if a document is open and has a build
     Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
     pCmdUi->Enable(m_bLoadComplete && pBuild != NULL);
 }
 
-void CEquipmentPane::OnUpdateGearCopy(CCmdUI * pCmdUi)
+void CEquipmentPane::OnUpdateGearCopy(CCmdUI* pCmdUi)
 {
     Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
     if (pBuild != NULL)
     {
         // can copy a gear set if we have an active one
-        const std::list<EquippedGear> & setups = pBuild->GearSetups();
+        const std::list<EquippedGear>& setups = pBuild->GearSetups();
         pCmdUi->Enable(m_bLoadComplete && setups.size() > 0);
     }
     else
@@ -588,7 +582,7 @@ void CEquipmentPane::OnUpdateGearCopy(CCmdUI * pCmdUi)
     }
 }
 
-void CEquipmentPane::OnUpdateGearPaste(CCmdUI * pCmdUi)
+void CEquipmentPane::OnUpdateGearPaste(CCmdUI* pCmdUi)
 {
     // can paste if we have data of the correct format available on the clipboard
     Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
@@ -598,13 +592,13 @@ void CEquipmentPane::OnUpdateGearPaste(CCmdUI * pCmdUi)
     m_buttonPaste.EnableWindow(m_bLoadComplete && enable);
 }
 
-void CEquipmentPane::OnUpdateGearDelete(CCmdUI * pCmdUi)
+void CEquipmentPane::OnUpdateGearDelete(CCmdUI* pCmdUi)
 {
     Build* pBuild = (m_pCharacter == NULL) ? NULL : m_pCharacter->ActiveBuild();
     if (pBuild != NULL)
     {
         // can delete a gear set if we have an active one
-        const std::list<EquippedGear> & setups = pBuild->GearSetups();
+        const std::list<EquippedGear>& setups = pBuild->GearSetups();
         pCmdUi->Enable(m_bLoadComplete && setups.size() > 0);
     }
     else
@@ -688,7 +682,7 @@ void CEquipmentPane::OnGearCopy()
         hData = GlobalAlloc(GMEM_MOVEABLE, xmlText.size() + 1); // space for \0
         if (hData != NULL)
         {
-            char * buffer = (char *)GlobalLock(hData);
+            char* buffer = (char*)GlobalLock(hData);
             strcpy_s(buffer, xmlText.size() + 1, xmlText.data());
             GlobalUnlock(hData);
         }
@@ -721,7 +715,7 @@ void CEquipmentPane::OnGearPaste()
             {
                 // get the data as text from the clipboard
                 std::string xmlText;
-                char * buffer = (char *)::GlobalLock(hGlobal);
+                char* buffer = (char*)::GlobalLock(hGlobal);
                 xmlText = buffer;
                 GlobalUnlock(hGlobal);
                 ::CloseClipboard();
@@ -1012,7 +1006,7 @@ void CEquipmentPane::RevokeSetBonusStack(const SetBonus& setBonus)
         delete m_setbuttons[i];
         m_setbuttons[i] = NULL;
         // clear entries from the array
-        std::vector<CSetBonusButton *>::iterator it = m_setbuttons.begin() + i;
+        std::vector<CSetBonusButton*>::iterator it = m_setbuttons.begin() + i;
         m_setbuttons.erase(it);
         // now force an on size event
         CRect rctWnd;
@@ -1041,8 +1035,8 @@ void CEquipmentPane::UpdateRaceChanged(Life*, const std::string&)
 void CEquipmentPane::OnMouseMove(UINT, CPoint point)
 {
     // determine which stance the mouse may be over
-    CWnd * pWnd = ChildWindowFromPoint(point);
-    CSetBonusButton * pSetBonus = dynamic_cast<CSetBonusButton*>(pWnd);
+    CWnd* pWnd = ChildWindowFromPoint(point);
+    CSetBonusButton* pSetBonus = dynamic_cast<CSetBonusButton*>(pWnd);
     if (pSetBonus != NULL
             && pSetBonus != m_pTooltipItem)
     {
@@ -1116,8 +1110,8 @@ void CEquipmentPane::SetTooltipText(
 
 void CEquipmentPane::UpdateActiveLifeChanged(Character*)
 {
-    Life *pLife = m_pCharacter->ActiveLife();
-    Build *pBuild = m_pCharacter->ActiveBuild();
+    Life* pLife = m_pCharacter->ActiveLife();
+    Build* pBuild = m_pCharacter->ActiveBuild();
     if (pLife != NULL
             && pBuild != NULL)
     {
@@ -1135,8 +1129,8 @@ void CEquipmentPane::UpdateActiveBuildChanged(Character*)
     DestroyAllSets();
     if (m_pCharacter != NULL)
     {
-        Life *pLife = m_pCharacter->ActiveLife();
-        Build *pBuild = m_pCharacter->ActiveBuild();
+        Life* pLife = m_pCharacter->ActiveLife();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pLife != NULL
                 && pBuild != NULL)
         {
@@ -1260,8 +1254,16 @@ void CEquipmentPane::OnGearSetSnapshotSelEndOk()
     }
 }
 
-void CEquipmentPane::OnUpdateFiligreeSelect(CCmdUI * pCmdUi)
+void CEquipmentPane::OnUpdateFiligree(CCmdUI* pCmdUi)
 {
-    m_inventoryView->OnUpdateFiligreeSelect(pCmdUi->m_nID);
+    m_inventoryView->OnUpdateFiligree(pCmdUi);
 }
 
+void CEquipmentPane::OnFiligree(UINT /*id*/)
+{
+}
+
+void CEquipmentPane::OnFiligreeSelect(UINT id)
+{
+    m_inventoryView->OnFiligreeSelect(id);
+}

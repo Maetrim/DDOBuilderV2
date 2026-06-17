@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CSkillsPane, CFormView)
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_REGISTERED_MESSAGE(UWM_LOAD_COMPLETE, OnLoadComplete)
+    ON_REGISTERED_MESSAGE(UWM_UPDATE, OnUpdate)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -174,3 +175,10 @@ void CSkillsPane::UpdateAbilityValueChanged(Build*, AbilityType ability)
         m_skillCtrl.Invalidate(FALSE);
     }
 }
+
+LRESULT CSkillsPane::OnUpdate(WPARAM wParam, LPARAM)
+{
+    m_skillCtrl.SetLevelHighlight(wParam); // wParam is the level to show for
+    return 0L;
+}
+

@@ -437,7 +437,7 @@ void InfoTipItem_Requirements::Draw(CDC* pDC, const CRect& rect)
     pDC->RestoreDC(-1);
 }
 
-// multiline text item
+// multi-line text item
 void InfoTipItem_MultilineText::SetText(const CString& text)
 {
     m_text = text;
@@ -535,7 +535,7 @@ CSize InfoTipItem_Metamagics::Measure(CDC* pDC)
 {
     // +--------------------+
     // |     Metamagics     |
-    // | [][][][][][][][][] | each [] is a metamgic icon which is 32*32
+    // | [][][][][][][][][] | each [] is a metamagic icon which is 32*32
     // +--------------------+
     double dScaleFactor = GetDPIMultiplier(m_hwnd);
     pDC->SaveDC();

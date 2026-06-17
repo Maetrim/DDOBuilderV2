@@ -94,14 +94,6 @@ class CInfoTip :
         void Hide();
         BOOL GetWindowSize(CDC* pDC, CSize* size);
 
-    protected:
-        //{{AFX_MSG(CInfoTip)
-        afx_msg void OnPaint();
-        //}}AFX_MSG
-        DECLARE_MESSAGE_MAP()
-
-    private:
-        void ClearOldTipItems();
         void AppendSubItem(const SubItem& item);
         void AppendFeatInfo(const Build& build, const std::string& feat, const Requirements& req);
         void AppendSetBonusDescription(const std::string& setBonusName, size_t numStacks, bool bSuppressed, const Build* pBuild);
@@ -112,6 +104,15 @@ class CInfoTip :
         void AppendSLA(const Spell& spell, int nSpellLevel, int nCharges, int nRecharge);
         void AppendAugment(const Augment* pAugment, const Build& build);
         void AppendFilledAugment(int itemLevel, const ItemAugment& slot, const Augment* pAugment, const Build& build);
+
+    protected:
+        //{{AFX_MSG(CInfoTip)
+        afx_msg void OnPaint();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
+
+    private:
+        void ClearOldTipItems();
         CPoint m_origin;
         CPoint m_alternate;
         bool m_bRightAlign;

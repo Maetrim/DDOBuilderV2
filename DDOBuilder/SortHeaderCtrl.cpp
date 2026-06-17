@@ -51,8 +51,8 @@ void CSortHeaderCtrl::SetSortArrow(
 }
 
 void CSortHeaderCtrl::GetSortArrow(
-        int * column,
-        bool * bAscending)
+        int* column,
+        bool* bAscending)
 {
     ASSERT(column);
     ASSERT(bAscending);

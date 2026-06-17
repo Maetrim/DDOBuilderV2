@@ -92,7 +92,7 @@ extern bool g_bShowZeroBreakdown;
 extern bool g_bAllowDPIScaling;
 const int c_noSelection = -1;
 const int c_noFiligreeSelection = -2;
-const int c_trueItemIndexOffset = 7000;
+const int c_trueItemIndexOffset = 7001;
 const int c_maxFiligreeCount = 1000;
 
 enum TreeType

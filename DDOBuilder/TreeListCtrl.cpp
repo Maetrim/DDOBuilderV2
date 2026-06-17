@@ -476,7 +476,7 @@ COLORREF CTreeListCtrl::SetBkColor(COLORREF clr)
 
 void CTreeListCtrl::GetTreeHierarchy(
         HTREEITEM hTItem,
-        CString &cstrTreeHierarchy,
+        CString& cstrTreeHierarchy,
         const BOOL bTopToBottom)
 {
     m_Tree.GetTreeHierarchy(hTItem, cstrTreeHierarchy, bTopToBottom);
@@ -497,7 +497,7 @@ BOOL CTreeListCtrl::Expand(HTREEITEM hItem, UINT nCode)
     return m_Tree.Expand(hItem, nCode);
 }
 
-CString CTreeListCtrl::GetNextLine(CString &message)
+CString CTreeListCtrl::GetNextLine(CString& message)
 {
     return m_Tree.GetNextLine(message);
 }
@@ -1010,7 +1010,7 @@ CTLItem::CTLItem()
     m_Color = ::GetSysColor(COLOR_WINDOWTEXT);
 }
 
-CTLItem::CTLItem(CTLItem &copyItem)
+CTLItem::CTLItem(CTLItem& copyItem)
 {
     m_cEnding = copyItem.m_cEnding;
     m_itemString = copyItem.GetItemString();
@@ -1397,13 +1397,13 @@ void CTlcTree::OnPaint()
 
             CRect rcClip;
             CRect rcClient;
-            pDC->GetClipBox( &rcClip );
+            pDC->GetClipBox(&rcClip);
             // stop us drawing where the header control is
             GetClientRect(&rcClient);
 
             // Set clip region to be same as that in paint DC
             CRgn rgn;
-            rgn.CreateRectRgnIndirect( &rcClip );
+            rgn.CreateRectRgnIndirect(&rcClip);
             memDc.SelectClipRgn(&rgn);
             memDc.SetViewportOrg(m_nOffset, 0);
             memDc.SetTextColor(m_wndColor);
@@ -1441,13 +1441,13 @@ void CTlcTree::OnPaint()
             LOGFONT logfont;
 
             CFont *pFont = GetFont();
-            pFont->GetLogFont( &logfont );
+            pFont->GetLogFont(&logfont);
 
-            fontDC.CreateFontIndirect( &logfont );
-            pFontDC = memDc.SelectObject( &fontDC );
+            fontDC.CreateFontIndirect(&logfont);
+            pFontDC = memDc.SelectObject(&fontDC);
 
             logfont.lfWeight = 700;
-            boldFontDC.CreateFontIndirect( &logfont );
+            boldFontDC.CreateFontIndirect(&logfont);
 
             // and now let's get to the painting itself
             hItem = GetFirstVisibleItem();
@@ -1474,13 +1474,13 @@ void CTlcTree::OnPaint()
                     rect.right = m_nColumnsWidth;
 
 
-                    memDc.SetBkColor( m_wndColor );
+                    memDc.SetBkColor(m_wndColor);
 
-                    memDc.SetTextColor( pItem->Colour() );
+                    memDc.SetTextColor(pItem->Colour());
 
                     if(pItem->Bold())
                     {
-                        memDc.SelectObject( &boldFontDC );
+                        memDc.SelectObject(&boldFontDC);
                     }
 
                     DrawItemText(
@@ -1510,7 +1510,7 @@ void CTlcTree::OnPaint()
 
                     if(pItem->Bold())
                     {
-                        memDc.SelectObject( &fontDC );
+                        memDc.SelectObject(&fontDC);
                     }
                 }
                 else

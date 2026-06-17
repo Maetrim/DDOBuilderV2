@@ -41,6 +41,7 @@ public:
     void BeginProgress(CString fixedText);
     void SetProgress(int nProg);
     void EndProgress();
+    virtual void GetMessageString(UINT nID, CString& rMessage) const;
 
 protected:
     CMainFrame();
@@ -79,6 +80,8 @@ protected:
     afx_msg void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
     afx_msg void OnUpdateEnableDPIScaling(CCmdUI* pCmdUI);
     afx_msg void OnEnableDPIScaling();
+    afx_msg void OnUpdateFiligree(CCmdUI* pCmdUI);
+    afx_msg void OnFiligree(UINT id);
     DECLARE_MESSAGE_MAP()
 
     BOOL CreateDockingWindows();

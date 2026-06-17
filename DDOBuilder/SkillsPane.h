@@ -27,6 +27,7 @@ class CSkillsPane :
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnLoadComplete(WPARAM, LPARAM);
+        afx_msg LRESULT OnUpdate(WPARAM, LPARAM);
         DECLARE_MESSAGE_MAP()
 
         // CharacterObserver

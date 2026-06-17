@@ -42,7 +42,7 @@ namespace
         int m_weight;
     };
 
-    bool SortSkillDescending(const WeightedSkill & a, const WeightedSkill & b)
+    bool SortSkillDescending(const WeightedSkill& a, const WeightedSkill& b)
     {
         // sort on skill weighting
         return (a.Weight() > b.Weight());
@@ -88,7 +88,7 @@ CSkillSpendControl::~CSkillSpendControl()
 {
 }
 
-void CSkillSpendControl::SetCharacter(Character * pCharacter)
+void CSkillSpendControl::SetCharacter(Character* pCharacter)
 {
     if (m_pCharacter != NULL)
     {
@@ -105,7 +105,7 @@ void CSkillSpendControl::SetCharacter(Character * pCharacter)
             pLife->AttachObserver(this);
         }
         // also need to know about any build changes
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             pBuild->AttachObserver(this);
@@ -564,7 +564,7 @@ size_t CSkillSpendControl::DrawSkillLine(CDC* pDC, SkillType skill, size_t top)
         const Class& c = FindClass(cn);
 
         // get the number of skill points spent in all skills at this level
-        const std::list<TrainedSkill> & ts = lt.TrainedSkills();
+        const std::list<TrainedSkill>& ts = lt.TrainedSkills();
         std::vector<size_t> skillRanks(Skill_Count, 0);
         for (auto&& it: ts)
         {
@@ -901,7 +901,7 @@ void CSkillSpendControl::OnLButtonUp(UINT nFlags, CPoint point)
     // and whether its over a skill or tome
     if (m_pCharacter != NULL)
     {
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             if (m_selectedRow == c_noSelection
@@ -937,7 +937,7 @@ void CSkillSpendControl::OnLButtonUp(UINT nFlags, CPoint point)
                             && currentSkill < maxSkill)
                     {
                         // must have skill points left to spend
-                        const LevelTraining & levelData = pBuild->LevelData(level);
+                        const LevelTraining& levelData = pBuild->LevelData(level);
                         int available = levelData.SkillPointsAvailable();
                         int spent = levelData.SkillPointsSpent();
                         if (available > spent)
@@ -1003,7 +1003,7 @@ void CSkillSpendControl::OnRButtonUp(UINT nFlags, CPoint point)
     // and whether its over a skill or tome
     if (m_pCharacter != NULL)
     {
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             if (m_selectedRow == c_noSelection
@@ -1030,8 +1030,8 @@ void CSkillSpendControl::OnRButtonUp(UINT nFlags, CPoint point)
                 {
                     size_t level = m_selectedColumn;
                     // revoke a rank if they have trained ranks at this level
-                    const LevelTraining & levelData = pBuild->LevelData(level);
-                    const std::list<TrainedSkill> & trainedSkills = levelData.TrainedSkills();
+                    const LevelTraining& levelData = pBuild->LevelData(level);
+                    const std::list<TrainedSkill>& trainedSkills = levelData.TrainedSkills();
                     std::list<TrainedSkill>::const_iterator it = trainedSkills.begin();
                     bool hasTrainedRanks = false;
                     while (it != trainedSkills.end())
@@ -1073,7 +1073,7 @@ void CSkillSpendControl::OnRButtonUp(UINT nFlags, CPoint point)
     }
 }
 
-void CSkillSpendControl::UpdateActiveBuildChanged(Character * pCharacter)
+void CSkillSpendControl::UpdateActiveBuildChanged(Character* pCharacter)
 {
     SetCharacter(pCharacter);
 }
@@ -1088,13 +1088,13 @@ void CSkillSpendControl::UpdateRaceChanged(Life*, const std::string&)
     SetupControl();
 }
 
-void CSkillSpendControl::UpdateBuildLevelChanged(Build *)
+void CSkillSpendControl::UpdateBuildLevelChanged(Build*)
 {
     SetupControl();
 }
 
 void CSkillSpendControl::UpdateClassChanged(
-        Build *,
+        Build*,
         const std::string&,
         const std::string&,
         size_t)
@@ -1111,7 +1111,7 @@ void CSkillSpendControl::MaxThisSkill(SkillType skill)
 {
     if (m_pCharacter != NULL)
     {
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             for (size_t level = 0; level < pBuild->Level(); ++level)
@@ -1149,7 +1149,7 @@ void CSkillSpendControl::MaxThisSkill(SkillType skill)
                         else
                         {
                             // must have skill points left to spend
-                            const LevelTraining & levelData = pBuild->LevelData(level);
+                            const LevelTraining& levelData = pBuild->LevelData(level);
                             int available = levelData.SkillPointsAvailable();
                             int spentAtLevel = levelData.SkillPointsSpent();
                             if (available > spentAtLevel)
@@ -1178,19 +1178,19 @@ void CSkillSpendControl::ClearThisSkill(SkillType skill)
 {
     if (m_pCharacter != NULL)
     {
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             // clear any trained ranks for this skill at all class levels
             for (size_t level = 0; level < pBuild->Level(); ++level)
             {
-                const LevelTraining & levelData = pBuild->LevelData(level);
+                const LevelTraining& levelData = pBuild->LevelData(level);
                 bool rankRevoked = true;
                 while (rankRevoked)
                 {
                     rankRevoked = false;
                     // revoke a rank if they have trained ranks at this level
-                    const std::list<TrainedSkill> & trainedSkills = levelData.TrainedSkills();
+                    const std::list<TrainedSkill>& trainedSkills = levelData.TrainedSkills();
                     std::list<TrainedSkill>::const_iterator it = trainedSkills.begin();
                     while (it != trainedSkills.end())
                     {
@@ -1218,7 +1218,7 @@ void CSkillSpendControl::AutoBuySkills()
 {
     if (m_pCharacter != NULL)
     {
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             CWaitCursor wait;
@@ -1238,8 +1238,8 @@ void CSkillSpendControl::AutoBuySkills()
                 if (classLevels[ci] > 0)
                 {
                     // we have levels trained in this class
-                    const Class & c = ClassFromIndex(ci);
-                    const std::list<SkillType> & buySkills = c.AutoBuySkill();
+                    const Class& c = ClassFromIndex(ci);
+                    const std::list<SkillType>& buySkills = c.AutoBuySkill();
                     std::list<SkillType>::const_iterator it = buySkills.begin();
                     while (it != buySkills.end())
                     {
@@ -1249,8 +1249,8 @@ void CSkillSpendControl::AutoBuySkills()
                 }
             }
             // now also include weighting for any Race based skills
-            const Race & race = FindRace(pBuild->Race());
-            const std::list<SkillType> & buySkills = race.AutoBuySkill();
+            const Race& race = FindRace(pBuild->Race());
+            const std::list<SkillType>& buySkills = race.AutoBuySkill();
             std::list<SkillType>::const_iterator it = buySkills.begin();
             while (it != buySkills.end())
             {
@@ -1297,13 +1297,13 @@ void CSkillSpendControl::ClearAllSkills()
 {
     if (m_pCharacter != NULL)
     {
-        Build * pBuild = m_pCharacter->ActiveBuild();
+        Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
             // clear any trained ranks for all skills at all class levels
             for (size_t level = 0; level < pBuild->Level(); ++level)
             {
-                const LevelTraining & levelData = pBuild->LevelData(level);
+                const LevelTraining& levelData = pBuild->LevelData(level);
                 bool rankRevoked = true;
                 while (rankRevoked)
                 {
@@ -1324,3 +1324,10 @@ void CSkillSpendControl::ClearAllSkills()
         }
     }
 }
+
+void CSkillSpendControl::SetLevelHighlight(size_t level)
+{
+    m_highlightedColumn = level;
+    Invalidate();
+}
+

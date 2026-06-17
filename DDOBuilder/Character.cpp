@@ -19,7 +19,7 @@ namespace
     const unsigned f_verCurrent = 1;
 }
 
-Character::Character(CDDOBuilderDoc * pDoc) :
+Character::Character(CDDOBuilderDoc* pDoc) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_SpecialFeats(L"SpecialFeats"),
     m_pDocument(pDoc),
@@ -34,11 +34,11 @@ Character::Character(CDDOBuilderDoc * pDoc) :
 
 DL_DEFINE_ACCESS(Character_PROPERTIES)
 
-XmlLib::SaxContentElementInterface * Character::StartElement(
-        const XmlLib::SaxString & name,
-        const XmlLib::SaxAttributes & attributes)
+XmlLib::SaxContentElementInterface* Character::StartElement(
+        const XmlLib::SaxString& name,
+        const XmlLib::SaxAttributes& attributes)
 {
-    XmlLib::SaxContentElementInterface * subHandler =
+    XmlLib::SaxContentElementInterface* subHandler =
             SaxContentElement::StartElement(name, attributes);
 
     DL_START(Character_PROPERTIES)
@@ -61,7 +61,7 @@ void Character::EndElement()
     MoveSpecialFeatsIfRequired();
 }
 
-void Character::Write(XmlLib::SaxWriter * writer) const
+void Character::Write(XmlLib::SaxWriter* writer) const
 {
     writer->StartElement(ElementName(), VersionAttributes());
     DL_WRITE(Character_PROPERTIES)
@@ -90,7 +90,7 @@ void Character::SetSupportLegacyTrees(bool bSupport)
     m_bSupportLegacyTrees = bSupport;
     if (m_bSupportLegacyTrees)
     {
-        for (auto && lit : m_Lives)
+        for (auto&& lit : m_Lives)
         {
             lit.UpdateLegacyTrees();
         }
@@ -137,7 +137,7 @@ void Character::NotifyActiveBuildPositionChanged()
     NotifyAll(&CharacterObserver::UpdateActiveBuildPositionChanged, this);
 }
 
-const Life & Character::GetLife(size_t lifeIndex) const
+const Life& Character::GetLife(size_t lifeIndex) const
 {
     std::list<Life>::const_iterator lit = m_Lives.begin();
     std::advance(lit, lifeIndex);
@@ -156,10 +156,16 @@ void Character::SetLifeName(
 
 size_t Character::AddLife()
 {
+    Life* pActiveLife = ActiveLife();
     m_uiActiveLifeIndex = 10000;    // large number that will never occur naturally
     m_uiActiveBuildIndex = 10000;   // large number that will never occur naturally
     // all new lives start with a default build. they auto inherit Tomes and Special feats
     Life life(this);
+    if (pActiveLife != NULL)
+    {
+        const FeatsListObject& specialFeats =  pActiveLife->SpecialFeats();
+        life.Set_SpecialFeats(specialFeats);
+    }
     m_Lives.push_back(life);
     m_Lives.back().AddBuild(0);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -223,7 +229,7 @@ size_t Character::GetBuildLevel(
 {
     std::list<Life>::const_iterator clit = m_Lives.begin();
     std::advance(clit, lifeIndex);
-    const Build & build = (*clit).GetBuild(buildIndex);
+    const Build& build = (*clit).GetBuild(buildIndex);
     return build.Level();
 }
 
@@ -247,7 +253,7 @@ void Character::ToggleApplyGuildBuffs()
     {
         Set_ApplyGuildBuffs(true);
     }
-    Build *pBuild = ActiveBuild();
+    Build* pBuild = ActiveBuild();
     if (pBuild != NULL)
     {
         pBuild->ApplyGuildBuffs(ApplyGuildBuffs());
@@ -490,9 +496,9 @@ Life* Character::ActiveLife()
     return pLife;
 }
 
-Build * Character::ActiveBuild()
+Build* Character::ActiveBuild()
 {
-    Build * pBuild = NULL;
+    Build* pBuild = NULL;
     // find the active build
     if (m_uiActiveLifeIndex < m_Lives.size())
     {
@@ -516,9 +522,9 @@ const Life* Character::ActiveLife() const
     return pLife;
 }
 
-const Build * Character::ActiveBuild() const
+const Build* Character::ActiveBuild() const
 {
-    const Build * pBuild = NULL;
+    const Build* pBuild = NULL;
     // find the active build
     if (m_uiActiveLifeIndex < m_Lives.size())
     {

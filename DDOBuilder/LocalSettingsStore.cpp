@@ -59,7 +59,7 @@ BOOL CLocalSettingsStore::Write(LPCTSTR lpszValueName, LPBYTE pData, UINT nBytes
     return ret;
 }
 
-BOOL CLocalSettingsStore::Read(LPCTSTR lpszValueName, DWORD & dwValue)
+BOOL CLocalSettingsStore::Read(LPCTSTR lpszValueName, DWORD& dwValue)
 {
     char buffer[16364];
     BOOL ret = ::GetPrivateProfileString(

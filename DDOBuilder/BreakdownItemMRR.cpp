@@ -8,8 +8,8 @@
 BreakdownItemMRR::BreakdownItemMRR(
         CBreakdownsPane* pPane,
         BreakdownType type,
-        const CString & title,
-        MfcControls::CTreeListCtrl * treeList,
+        const CString& title,
+        MfcControls::CTreeListCtrl* treeList,
         HTREEITEM hItem) :
     BreakdownItem(type, treeList, hItem),
     m_title(title)
@@ -30,9 +30,10 @@ CString BreakdownItemMRR::Title() const
 
 CString BreakdownItemMRR::Value() const
 {
-    BreakdownItem * pBI = FindBreakdown(Breakdown_MRRCap);
+    BreakdownItem* pBI = FindBreakdown(Breakdown_MRRCap);
     double mrr = (int)Total();
     CString mrrCap = pBI->Value();
+    double mrrCappedFrom = mrr;
     bool capped = false;
     if (mrrCap != "None") // None if no cap in force
     {
@@ -52,7 +53,9 @@ CString BreakdownItemMRR::Value() const
             decrease);
     if (capped)
     {
-        value += " (Capped)";
+        CString str;
+        str.Format(" (Capped from %d)", static_cast<int>(mrrCappedFrom));
+        value += str;
     }
     return value;
 }
@@ -61,11 +64,20 @@ void BreakdownItemMRR::CreateOtherEffects()
 {
     m_otherEffects.clear();
     // we need to know when this breakdown value changes
-    BreakdownItem * pBI = FindBreakdown(Breakdown_MRRCap);
+    BreakdownItem* pBI = FindBreakdown(Breakdown_MRRCap);
     pBI->AttachObserver(this);
 }
 
-bool BreakdownItemMRR::AffectsUs(const Effect &) const
+bool BreakdownItemMRR::AffectsUs(const Effect&) const
 {
     return true;
+}
+
+void BreakdownItemMRR::UpdateTotalChanged(
+    BreakdownItem* item,
+    BreakdownType type)
+{
+    UNREFERENCED_PARAMETER(item);
+    UNREFERENCED_PARAMETER(type);
+    Populate();
 }

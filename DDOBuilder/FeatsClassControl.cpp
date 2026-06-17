@@ -10,6 +10,7 @@
 #include "Feat.h"
 #include "Race.h"
 #include "Resource.h"
+#include "SkillsPane.h"
 #include "MainFrm.h"
 
 // CFeatsClassControl
@@ -33,9 +34,10 @@ CFeatsClassControl::CFeatsClassControl() :
     m_maxRequiredFeats(0),
     m_numClassColumns(0),
     m_bUpdatePending(false),
-    m_highlightedLevelLine(c_dudLevel),   // starts invalid
-    m_lastNotifiedLevelLine(c_dudLevel),   // starts invalid
-    m_alternateHighlightedLevelLine(c_dudLevel), // starts invalid
+    m_highlightedLevelLine(c_dudLevel),         // starts invalid
+    m_lastNotifiedLevelLine(c_dudLevel),        // starts invalid
+    m_alternateHighlightedLevelLine(c_dudLevel),// starts invalid
+    m_selectedLevelLine(c_dudLevel),            // starts invalid
     m_showingTip(false),
     m_tipCreated(false),
     m_tooltipItem(HT_None, CRect(0, 0, 0, 0), 0, 0),
@@ -167,7 +169,7 @@ CSize CFeatsClassControl::RequiredSize()
                 height += m_levelRect.Height() + 2;
             }
         }
-        height += 2;    // border
+        height += 4;    // border
         requiredSize.cx = width;
         requiredSize.cy = height;
         screenDC.RestoreDC(-1);
@@ -442,7 +444,8 @@ size_t CFeatsClassControl::DrawLevelLine(
     bool bDarkMode = DarkModeEnabled();
     if (true == bDarkMode)
     {
-        if (level == m_highlightedLevelLine)
+        if (level == m_highlightedLevelLine
+            || level == m_selectedLevelLine)
         {
             pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
             fillBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
@@ -460,7 +463,8 @@ size_t CFeatsClassControl::DrawLevelLine(
     }
     else
     {
-        if (level == m_highlightedLevelLine)
+        if (level == m_highlightedLevelLine
+            || level == m_selectedLevelLine)
         {
             pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
             fillBrush.CreateSolidBrush(::GetSysColor(COLOR_HIGHLIGHT));
@@ -506,6 +510,8 @@ size_t CFeatsClassControl::DrawLevelLine(
             rctItem.left + (rctItem.Width() - csText.cx) / 2,
             rctItem.top + (rctItem.Height() - csText.cy) / 2,
             text);
+    HitCheckItem classLevelNumber(HT_LevelNumber, rctItem, level, 0);
+    m_hitChecks.push_back(classLevelNumber);
     // draw the selected class icon
     const std::string& classSelection = m_pCharacter->ActiveBuild()->LevelData(level).HasClass()
             ? m_pCharacter->ActiveBuild()->LevelData(level).Class()
@@ -676,7 +682,7 @@ void CFeatsClassControl::DrawFeat(
         // name is blank if no feat currently trained
         if (tf.FeatName() != "")
         {
-            // does this tf have an alternate?
+            // does this trained feat have an alternate?
             if (tf.HasAlternateFeatName())
             {
                 // draw the alternate and the main feat item
@@ -781,6 +787,15 @@ LRESULT CFeatsClassControl::OnMouseLeave(WPARAM, LPARAM)
         m_highlightedLevelLine = c_dudLevel;
         Invalidate();
     }
+    if (m_lastNotifiedLevelLine != c_dudLevel
+        && m_selectedLevelLine == c_dudLevel)
+    {
+        CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+        CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+        CSkillsPane* pSkillsPane = dynamic_cast<CSkillsPane*>(
+                pMainWnd->GetPaneView(RUNTIME_CLASS(CSkillsPane)));
+        pSkillsPane->PostMessage(UWM_UPDATE, c_dudLevel, 0L); // wParam is level to display for
+    }
     if (m_showingTip)
     {
         HideTip();
@@ -811,7 +826,20 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
         {
             m_highlightedLevelLine = overLevel;
             Invalidate();
-            if (m_highlightedLevelLine >= 0 && m_highlightedLevelLine < MAX_GAME_LEVEL)
+            if (m_selectedLevelLine >= 0 && m_selectedLevelLine < MAX_GAME_LEVEL)
+            {
+                m_lastNotifiedLevelLine = m_selectedLevelLine;
+                // let the automatic feats view know about the selection change
+                CWnd* pWnd = AfxGetApp()->m_pMainWnd;
+                CMainFrame* pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+                CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
+                        pMainWnd->GetPaneView(RUNTIME_CLASS(CAutomaticFeatsPane)));
+                pPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
+                CSkillsPane* pSkillsPane = dynamic_cast<CSkillsPane*>(
+                        pMainWnd->GetPaneView(RUNTIME_CLASS(CSkillsPane)));
+                pSkillsPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
+            }
+            else if (m_highlightedLevelLine >= 0 && m_highlightedLevelLine < MAX_GAME_LEVEL)
             {
                 m_lastNotifiedLevelLine = m_highlightedLevelLine;
                 // let the automatic feats view know about the selection change
@@ -820,6 +848,9 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
                 CAutomaticFeatsPane* pPane = dynamic_cast<CAutomaticFeatsPane*>(
                         pMainWnd->GetPaneView(RUNTIME_CLASS(CAutomaticFeatsPane)));
                 pPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
+                CSkillsPane* pSkillsPane = dynamic_cast<CSkillsPane*>(
+                        pMainWnd->GetPaneView(RUNTIME_CLASS(CSkillsPane)));
+                pSkillsPane->PostMessage(UWM_UPDATE, m_lastNotifiedLevelLine, 0L); // wParam is level to display for
             }
         }
         // hit check the mouse location and display feat tooltips if required
@@ -945,6 +976,19 @@ void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)
     {
     case HT_None:
         // not on anything that can be interacted with
+        break;
+    case HT_LevelNumber:
+        // set/toggle the class level selection
+        if (m_selectedLevelLine != ht.Level())
+        {
+            m_selectedLevelLine = ht.Level();
+        }
+        else
+        {
+            // untoggle
+            m_selectedLevelLine = c_dudLevel;
+        }
+        Invalidate();
         break;
     case HT_Class1:
         // show the class select drop list menu

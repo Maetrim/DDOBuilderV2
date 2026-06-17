@@ -97,9 +97,9 @@ class Life :
         void MoveUpMonitoredBreakdown(const std::string& name);
         void MoveDownMonitoredBreakdown(const std::string& name);
     protected:
-        XmlLib::SaxContentElementInterface * StartElement(
-                const XmlLib::SaxString & name,
-                const XmlLib::SaxAttributes & attributes);
+        XmlLib::SaxContentElementInterface* StartElement(
+                const XmlLib::SaxString& name,
+                const XmlLib::SaxAttributes& attributes);
 
         virtual void EndElement();
 
@@ -152,6 +152,7 @@ class Life :
         size_t m_ChaTome;
         SkillTomes m_SkillTomes;
 
+        friend class Character;
         friend class Build;
         friend class CDDOBuilderApp;
 };

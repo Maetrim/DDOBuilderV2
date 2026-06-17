@@ -29,7 +29,6 @@ class CDDOBuilderView :
         virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
         virtual void OnInitialUpdate(); // called first time after construct
 
-        afx_msg void OnFilePrintPreview();
         afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
         afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
         afx_msg LRESULT OnNewDocument(WPARAM, LPARAM);
@@ -74,30 +73,29 @@ class CDDOBuilderView :
         afx_msg void OnBnClickedRadio28pt();
         afx_msg void OnBnClickedRadio32pt();
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-        afx_msg void OnEditResetbuild();
-        afx_msg void OnEditFeatsUpdateEpicOnly(CCmdUI * pCmdUi);
-        afx_msg void OnEditFeatsUpdateShowUnavailable(CCmdUI * pCmdUi);
+        afx_msg void OnEditFeatsUpdateEpicOnly(CCmdUI* pCmdUi);
+        afx_msg void OnEditFeatsUpdateShowUnavailable(CCmdUI* pCmdUi);
         afx_msg void OnEditFeatsEpicOnly();
         afx_msg void OnEditFeatsShowUnavailable();
         afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnDumpWeaponGroups();
-        afx_msg void OnUpdateDumpWeaponGroups(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateDumpWeaponGroups(CCmdUI* pCmdUi);
         afx_msg void OnEditForumExport();
         afx_msg void OnUpdateEditForumExport(CCmdUI* pCmdUi);
         DECLARE_MESSAGE_MAP()
 
         // Character overrides
         virtual void UpdateActiveLifeChanged(Character* pCharacter) override;
-        virtual void UpdateActiveBuildChanged(Character * pCharacter) override;
+        virtual void UpdateActiveBuildChanged(Character* pCharacter) override;
 
         // Life overrides
         virtual void UpdateLifeFeatTrained(Life*, const std::string&) override;
         virtual void UpdateLifeFeatRevoked(Life*, const std::string&) override;
 
         // Build overrides
-        virtual void UpdateBuildLevelChanged(Build * pBuild) override;
+        virtual void UpdateBuildLevelChanged(Build* pBuild) override;
         virtual void UpdateClassChanged(
-                Build * pBuild,
+                Build* pBuild,
                 const std::string& classFrom,
                 const std::string& classTo,
                 size_t level) override;
@@ -105,15 +103,15 @@ class CDDOBuilderView :
         void PopulateComboboxes();
         void RestoreControls();
         void EnableButtons();
-        void DisplayAbilityValue(AbilityType ability, CEdit * control);
-        void DisplaySpendCost(AbilityType ability, CEdit * control);
+        void DisplayAbilityValue(AbilityType ability, CEdit* control);
+        void DisplaySpendCost(AbilityType ability, CEdit* control);
         void UpdateAvailableSpend();
         void UpdateBuildDescription();
         void UpdateRadioPoints();
         void DisableControls();
-        void ShowHidControls(size_t level, CComboBox * pCombo, UINT idStatic);
+        void ShowHidControls(size_t level, CComboBox* pCombo, UINT idStatic);
 
-        Character * m_pCharacter;
+        Character* m_pCharacter;
         CMFCStaticEx m_staticBuildDescription;
         CButton m_button28Pt;
         CButton m_button32Pt;

@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
   <EnhancementTree>
     <Name>Duergar Mindcleaver</Name>
@@ -8,7 +9,7 @@
         <Item>Duergar Mindcleaver</Item>
       </Requirement>
     </Requirements>
-    <IsRacialTree/>
+    <IsRacialTree />
     <Icon>Dwarf</Icon>
     <Background>DwarfBackground</Background>
     <!--Core Items-->
@@ -16,7 +17,7 @@
       <Name>Mindcleaver: Underdark Upbringing I</Name>
       <InternalName>MindcleaverCore1</InternalName>
       <Description>+5 Maximum Hit Points, +6 Maximum Spell Points</Description>
-      <Icon>UnderdarkUpbringing</Icon>
+      <Icon>UnderdarkUpbringingI</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -42,10 +43,10 @@
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Mindcleaver: Intelligence I</Name>
+      <Name>Mindcleaver: Ability I</Name>
       <InternalName>MindcleaverCore2</InternalName>
       <Description>+1 Intelligence</Description>
-      <Icon>Intelligence</Icon>
+      <Icon>ConInt</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -61,19 +62,40 @@
           <Value>4</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>AbilityBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Intelligence</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Constitution</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Intelligence</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Mindcleaver: Underdark Upbringing II</Name>
       <InternalName>MindcleaverCore3</InternalName>
-      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points</Description>
-      <Icon>UnderdarkUpbringing</Icon>
+      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points, +1 to Attack and Damage</Description>
+      <Icon>UnderdarkUpbringingII</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -101,12 +123,19 @@
         <AType>Simple</AType>
         <Amount size="1">6</Amount>
       </Effect>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Mindcleaver: Intelligence II</Name>
+      <Name>Mindcleaver: Ability II</Name>
       <InternalName>MindcleaverCore4</InternalName>
       <Description>+1 Intelligence</Description>
-      <Icon>Intelligence</Icon>
+      <Icon>ConInt</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">2</CostPerRank>
@@ -122,19 +151,40 @@
           <Value>11</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>AbilityBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Intelligence</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Constitution</Item>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>Intelligence</Item>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Mindcleaver: Underdark Upbringing III</Name>
       <InternalName>MindcleaverCore5</InternalName>
-      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points</Description>
-      <Icon>UnderdarkUpbringing</Icon>
+      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points, +1 to Attack and Damage</Description>
+      <Icon>UnderdarkUpbringingIII</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -162,6 +212,13 @@
         <AType>Simple</AType>
         <Amount size="1">6</Amount>
       </Effect>
+      <Effect>
+        <Type>Weapon_AttackAndDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
     </EnhancementTreeItem>
     <!--Tier 1-->
     <EnhancementTreeItem>
@@ -174,7 +231,7 @@
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
-      <ArrowUp/>
+      <ArrowUp />
       <Selector>
         <EnhancementSelection>
           <Name>Axe Training</Name>
@@ -232,12 +289,13 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
       <Description>While Enlarged, you gain a +3 Psionic Bonus to Attack.
 While Reduced, you gain +3 Psionic Bonus to Max Dodge and the Max Dex Bonus of your Armor.
 Your Enlarge and Reduce now last for two minutes.</Description>
-      <Icon>MindcleaverShapeI</Icon>
+      <Icon>DuergarShapeI</Icon>
       <XPosition>1</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
+      <ArrowUp />
       <Effect>
         <Type>Weapon_Attack</Type>
         <Bonus>Psionic</Bonus>
@@ -302,7 +360,7 @@ powerful.</Description>
       <InternalName>MindcleaverForgeApprentice</InternalName>
       <Description>You gain proficiency with Handaxes, Light Picks, Light Hammers, Throwing Axes,
 and Throwing Hammers, and consider them Simple Weapons.</Description>
-      <Icon>MindcleaverForgeApprentice</Icon>
+      <Icon>DuergarForgeApprentice</Icon>
       <XPosition>4</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -342,7 +400,7 @@ and Throwing Hammers, and consider them Simple Weapons.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <ArrowUp/>
+      <ArrowUp />
       <Requirements>
         <Requirement>
           <Type>Enhancement</Type>
@@ -418,14 +476,21 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
       <Name>Mindcleaver: Shape II</Name>
       <InternalName>MindcleaverShapeII</InternalName>
       <Description>While Enlarged, you gain a +3 Psionic Bonus to Damage.
-While Reduced, you gain +3 Psionic Bonus to Max Dodge.
+While Reduced, you gain +3% Psionic Bonus to Max Dodge.
 Your Enlarge and Reduce now last for three minutes.</Description>
-      <Icon>MindcleaverShapeII</Icon>
+      <Icon>DuergarShapeII</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>MindcleaverShapeI</Item>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>Weapon_Damage</Type>
         <Bonus>Psionic</Bonus>
@@ -492,24 +557,24 @@ Your Enlarge and Reduce now last for three minutes.</Description>
         <Bonus>Psionic</Bonus>
         <AType>Stacks</AType>
         <Amount size="3">2 4 6</Amount>
-        <Percent/>
+        <Percent />
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Mindcleaver: Forge Familiarity</Name>
       <InternalName>MindcleaverForgeFamiliarity</InternalName>
-      <Description>Your Arcane Spell Failure chance from armor is decreased by 15%.</Description>
-      <Icon>MindcleaverForgeFamiliarity</Icon>
+      <Description>Your Arcane Spell Failure chance from armor is decreased by [5/10/15]%.</Description>
+      <Icon>DuergarForgeFamiliarity</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
+      <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
       <Effect>
         <Type>ArcaneSpellFailure</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">-15</Amount>
+        <AType>Stacks</AType>
+        <Amount size="3">-5 -10 -15</Amount>
       </Effect>
     </EnhancementTreeItem>
     <!--Tier 3-->
@@ -523,7 +588,7 @@ Your Enlarge and Reduce now last for three minutes.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowUp/>
+      <ArrowUp />
       <Requirements>
         <Requirement>
           <Type>Enhancement</Type>
@@ -609,12 +674,19 @@ as a Favored Weapon.</Description>
       <Description>While Enlarged, you gain a +5% Psionic Bonus to Fortification Bypass.
 While Reduced, you gain +5 Psionic Bonus to Natural Armor.
 Your Enlarge and Reduce now last for five minutes.</Description>
-      <Icon>MindcleaverShapeIII</Icon>
+      <Icon>DuergarShapeIII</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>MindcleaverShapeII</Item>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>FortificationBypass</Type>
         <Bonus>Psionic</Bonus>
@@ -658,13 +730,13 @@ Cooldown: 15 seconds.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <Clickie/>
-      <ArrowUp/>
+      <Clickie />
+      <ArrowUp />
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Mindcleaver: Great Weapon Aptitude</Name>
       <InternalName>MindcleaverGreatWeaponAptitude</InternalName>
-      <Description>+[5/10/15]% Strikethrough</Description>
+      <Description>+[5/10/20]% Strikethrough</Description>
       <Icon>HalfOrcGreatWeaponAptitude</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
@@ -675,7 +747,7 @@ Cooldown: 15 seconds.</Description>
         <Type>Strikethrough</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
-        <Amount size="3">5 10 15</Amount>
+        <Amount size="3">5 10 20</Amount>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -724,116 +796,116 @@ no longer take item damage.</Description>
         </Requirement>
       </Requirements>
       <Selector>
-            <EnhancementSelection>
-               <Name>Axe Training</Name>
-               <Description>+1 to hit and damage with battle axes, hand axes ans throwing axes.
+        <EnhancementSelection>
+          <Name>Axe Training</Name>
+          <Description>+1 to hit and damage with battle axes, hand axes ans throwing axes.
 +1 to hit and +2 damage with dwarven waraxes and greataxes.
 While using a dwarven waraxe, +1 Competence Bonus to Critical Threat Range
 and +10% Strikethrough Chance.</Description>
-               <Icon>DwarfAxeTraining</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Enhancement</Type>
-                     <Item>MindcleaverDwarvenWeaponTrainingI</Item>
-                     <Item>Axe Training</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>Weapon_AttackAndDamage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Battle Axe</Item>
-                  <Item>Hand Axe</Item>
-                  <Item>Throwing Axe</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Attack</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Dwarven Axe</Item>
-                  <Item>Great Axe</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Damage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">2</Amount>
-                  <Item>Dwarven Axe</Item>
-                  <Item>Great Axe</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_CriticalRange</Type>
-                  <Bonus>Competence</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Dwarven Axe</Item>
-                  <ApplyAsItemEffect/>
-               </Effect>
-               <Effect>
-                  <Type>Strikethrough</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">10</Amount>
-                  <Requirements>
-                     <Requirement>
-                        <Type>Stance</Type>
-                        <Item>Dwarven Axe</Item>
-                     </Requirement>
-                  </Requirements>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Pick and Hammer Training</Name>
-               <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers.
+          <Icon>DwarfAxeTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>MindcleaverDwarvenWeaponTrainingI</Item>
+              <Item>Axe Training</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Battle Axe</Item>
+            <Item>Hand Axe</Item>
+            <Item>Throwing Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Attack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dwarven Axe</Item>
+            <Item>Great Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Damage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Dwarven Axe</Item>
+            <Item>Great Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Item>Dwarven Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect />
+          </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Dwarven Axe</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Pick and Hammer Training</Name>
+          <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers.
 +1 to hit and +2 damage with Mauls.
 While using a Heavy Pick or Warhammer, +1 Competence Bonus to Critical Threat Range.</Description>
-               <Icon>DwarfPickAndHammerTraining</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Type>Enhancement</Type>
-                     <Item>MindcleaverDwarvenWeaponTrainingI</Item>
-                     <Item>Pick and Hammer Training</Item>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>Weapon_AttackAndDamage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Heavy Pick</Item>
-                  <Item>Light Hammer</Item>
-                  <Item>Light Pick</Item>
-                  <Item>Throwing Hammer</Item>
-                  <Item>Warhammer</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Attack</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Maul</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_Damage</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">2</Amount>
-                  <Item>Maul</Item>
-               </Effect>
-               <Effect>
-                  <Type>Weapon_CriticalRange</Type>
-                  <Bonus>Competence</Bonus>
-                  <AType>Simple</AType>
-                  <Amount size="1">1</Amount>
-                  <Item>Heavy Pick</Item>
-                  <Item>Warhammer</Item>
-                  <ApplyAsItemEffect/>
-               </Effect>
-            </EnhancementSelection>
+          <Icon>DwarfPickAndHammerTraining</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Requirements>
+            <Requirement>
+              <Type>Enhancement</Type>
+              <Item>MindcleaverDwarvenWeaponTrainingI</Item>
+              <Item>Pick and Hammer Training</Item>
+            </Requirement>
+          </Requirements>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Heavy Pick</Item>
+            <Item>Light Hammer</Item>
+            <Item>Light Pick</Item>
+            <Item>Throwing Hammer</Item>
+            <Item>Warhammer</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Attack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Maul</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Damage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Maul</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Item>Heavy Pick</Item>
+            <Item>Warhammer</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect />
+          </Effect>
+        </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -842,12 +914,18 @@ While using a Heavy Pick or Warhammer, +1 Competence Bonus to Critical Threat Ra
       <Description>While Enlarged, you gain a +2 Psionic Bonus to Critical Confirmation and Damage.
 While Reduced, you gain +10 Psionic Bonus to MRR.
 Your Enlarge and Reduce now last until rest or death.</Description>
-      <Icon>MindcleaverShapeIV</Icon>
+      <Icon>DuergarShapeIV</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>MindcleaverShapeIII</Item>
+        </Requirement>
+      </Requirements>
       <Effect>
         <Type>Weapon_AttackAndDamageCritical</Type>
         <Bonus>Psionic</Bonus>
@@ -912,13 +990,13 @@ to become Shaken for 6 seconds. This can apply once every 2 seconds.</Descriptio
 darkvision. If he or she attacks a target, the effect is removed.
 Cost: 6 Spell Points
 Cooldown: 12 seconds</Description>
-      <Icon>DuergarInvisibility</Icon>
+      <Icon>Invisibility</Icon>
       <XPosition>4</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
-      <Clickie/>
+      <Clickie />
       <Effect>
         <Type>SpellLikeAbility</Type>
         <Bonus>Feat</Bonus>

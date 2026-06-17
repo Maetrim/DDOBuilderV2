@@ -17,7 +17,7 @@ namespace
     const unsigned f_verCurrent = 1;
 }
 
-Life::Life(Character * pCharacter) :
+Life::Life(Character* pCharacter) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_SpecialFeats(L"SpecialFeats"),
     m_pCharacter(pCharacter),
@@ -37,11 +37,11 @@ Life::Life(Character * pCharacter) :
 
 DL_DEFINE_ACCESS(Life_PROPERTIES)
 
-XmlLib::SaxContentElementInterface * Life::StartElement(
-        const XmlLib::SaxString & name,
-        const XmlLib::SaxAttributes & attributes)
+XmlLib::SaxContentElementInterface* Life::StartElement(
+        const XmlLib::SaxString& name,
+        const XmlLib::SaxAttributes& attributes)
 {
-    XmlLib::SaxContentElementInterface * subHandler =
+    XmlLib::SaxContentElementInterface* subHandler =
             SaxContentElement::StartElement(name, attributes);
 
     DL_START(Life_PROPERTIES)
@@ -194,15 +194,20 @@ void Life::LoadComplete()
         while (tfit != feats.end())
         {
             const Feat& feat = FindFeat(tfit->FeatName());
-            if (feat.Acquire() != FeatAcquisition_UniversalTree)
+            FeatAcquisitionType eType = feat.Acquire();
+            if (eType == FeatAcquisition_UniversalTree
+                    || eType == FeatAcquisition_HeroicPastLife
+                    || eType == FeatAcquisition_RacialPastLife
+                    || eType == FeatAcquisition_IconicPastLife
+                    || eType == FeatAcquisition_EpicPastLife)
+            {
+                ++tfit;
+            }
+            else
             {
                 // needs to be moved to Character
                 tfit = feats.erase(tfit);   // remove from our list
                 m_pCharacter->TrainSpecialFeat(feat.Name());
-            }
-            else
-            {
-                ++tfit;
             }
         }
         m_SpecialFeats.Set_Feats(feats);
@@ -246,7 +251,7 @@ Character* Life::CharacterPointer() const
     return m_pCharacter;
 }
 
-void Life::Write(XmlLib::SaxWriter * writer) const
+void Life::Write(XmlLib::SaxWriter* writer) const
 {
     writer->StartElement(ElementName(), VersionAttributes());
     DL_WRITE(Life_PROPERTIES)
@@ -272,7 +277,7 @@ void Life::SetName(const std::string& name)
     m_Name = name;
 }
 
-const Build & Life::GetBuild(size_t buildIndex) const
+const Build& Life::GetBuild(size_t buildIndex) const
 {
     static Build badBuild(const_cast<Life*>(this));
     if (buildIndex < m_Builds.size())
@@ -285,9 +290,9 @@ const Build & Life::GetBuild(size_t buildIndex) const
     return badBuild;
 }
 
-Build * Life::GetBuildPointer(size_t buildIndex)
+Build* Life::GetBuildPointer(size_t buildIndex)
 {
-    Build * pBuild = NULL;
+    Build* pBuild = NULL;
     if (buildIndex < m_Builds.size())
     {
         std::list<Build>::iterator bit = m_Builds.begin();
@@ -297,9 +302,9 @@ Build * Life::GetBuildPointer(size_t buildIndex)
     return pBuild;
 }
 
-const Build * Life::GetBuildPointer(size_t buildIndex) const
+const Build* Life::GetBuildPointer(size_t buildIndex) const
 {
-    const Build * pBuild = NULL;
+    const Build* pBuild = NULL;
     if (buildIndex < m_Builds.size())
     {
         std::list<Build>::const_iterator bit = m_Builds.begin();
@@ -610,7 +615,12 @@ void Life::TrainSpecialFeat(
         bool bApplyEffects)
 {
     const Feat& feat = FindFeat(featName);
-    if (feat.Acquire() == FeatAcquisition_UniversalTree)
+    FeatAcquisitionType eType = feat.Acquire();
+    if (eType == FeatAcquisition_UniversalTree
+            || eType == FeatAcquisition_HeroicPastLife
+            || eType == FeatAcquisition_RacialPastLife
+            || eType == FeatAcquisition_IconicPastLife
+            || eType == FeatAcquisition_EpicPastLife)
     {
         // these are stored at the life level
         // just add a copy of the feat name to the current list
@@ -647,8 +657,13 @@ void Life::RevokeSpecialFeat(
         const std::string& featName)
 {
     bool found = false;
-    const Feat & feat = FindFeat(featName);
-    if (feat.Acquire() == FeatAcquisition_UniversalTree)
+    const Feat& feat = FindFeat(featName);
+    FeatAcquisitionType eType = feat.Acquire();
+    if (eType == FeatAcquisition_UniversalTree
+            || eType == FeatAcquisition_HeroicPastLife
+            || eType == FeatAcquisition_RacialPastLife
+            || eType == FeatAcquisition_IconicPastLife
+            || eType == FeatAcquisition_EpicPastLife)
     {
         // just remove the first copy of the feat name from the current list
         std::list<TrainedFeat> trainedFeats = SpecialFeats().Feats();
@@ -701,7 +716,7 @@ FeatsListObject Life::AllSpecialFeats() const
 
 void Life::ApplyFeatEffects(const Feat& feat)
 {
-    Build *pBuild = m_pCharacter->ActiveBuild();
+    Build*pBuild = m_pCharacter->ActiveBuild();
     if (pBuild != NULL)
     {
         pBuild->ApplyFeatEffects(feat);
@@ -710,7 +725,7 @@ void Life::ApplyFeatEffects(const Feat& feat)
 
 void Life::RevokeFeatEffects(const Feat& feat)
 {
-    Build *pBuild = m_pCharacter->ActiveBuild();
+    Build* pBuild = m_pCharacter->ActiveBuild();
     if (pBuild != NULL)
     {
         pBuild->RevokeFeatEffects(feat);

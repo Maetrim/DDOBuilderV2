@@ -23,7 +23,7 @@ BEGIN_MESSAGE_MAP(CStanceButton, CStatic)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
-CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
+CStanceButton::CStanceButton(Character* charData, const Stance& stance) :
     m_pCharacter(charData),
     m_stance(stance),
     m_bSelected(false),
@@ -170,7 +170,7 @@ bool CStanceButton::IsDisabled() const
     return m_bDisabled;
 }
 
-const Stance & CStanceButton::GetStance() const
+const Stance& CStanceButton::GetStance() const
 {
     return m_stance;
 }
@@ -200,7 +200,7 @@ size_t CStanceButton::NumStacks() const
     return m_stacks;
 }
 
-bool CStanceButton::IsYou(const Stance & stance)
+bool CStanceButton::IsYou(const Stance& stance)
 {
     return (stance == m_stance);
 }

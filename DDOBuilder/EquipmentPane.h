@@ -25,6 +25,9 @@ class CEquipmentPane :
 #endif
 #endif
         virtual void OnInitialUpdate();
+        void OnUpdateFiligree(CCmdUI* pCmdUi);
+        void OnFiligree(UINT id);
+        void OnFiligreeSelect(UINT id);
     protected:
         CEquipmentPane();           // protected constructor used by dynamic creation
         virtual ~CEquipmentPane();
@@ -40,11 +43,11 @@ class CEquipmentPane :
         afx_msg void OnGearDelete();
         afx_msg void OnGearImportFile();
         afx_msg void OnGearImportClipboard();
-        afx_msg void OnUpdateGearNew(CCmdUI * pCmdUi);
-        afx_msg void OnUpdateGearCopy(CCmdUI * pCmdUi);
-        afx_msg void OnUpdateGearPaste(CCmdUI * pCmdUi);
-        afx_msg void OnUpdateGearDelete(CCmdUI * pCmdUi);
-        afx_msg void OnUpdateGearImportFile(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateGearNew(CCmdUI* pCmdUi);
+        afx_msg void OnUpdateGearCopy(CCmdUI* pCmdUi);
+        afx_msg void OnUpdateGearPaste(CCmdUI* pCmdUi);
+        afx_msg void OnUpdateGearDelete(CCmdUI* pCmdUi);
+        afx_msg void OnUpdateGearImportFile(CCmdUI* pCmdUi);
         afx_msg void OnUpdateGearImportClipboard(CCmdUI* pCmdUi);
         afx_msg void OnGearSelectionSelEndOk();
         afx_msg void OnGearNumFiligreesSelEndOk();
@@ -52,12 +55,11 @@ class CEquipmentPane :
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg BOOL OnTtnNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnGearSetSnapshotSelEndOk();
-        afx_msg void OnUpdateFiligreeSelect(CCmdUI * pCmdUi);
         DECLARE_MESSAGE_MAP()
 
         // InventoryObserver overrides
-        virtual void UpdateSlotLeftClicked(CInventoryDialog * dialog, InventorySlotType slot) override;
-        virtual void UpdateSlotRightClicked(CInventoryDialog * dialog, InventorySlotType slot) override;
+        virtual void UpdateSlotLeftClicked(CInventoryDialog* dialog, InventorySlotType slot) override;
+        virtual void UpdateSlotRightClicked(CInventoryDialog* dialog, InventorySlotType slot) override;
 
         // CharacterObserver overrides
         virtual void UpdateActiveLifeChanged(Character*) override;

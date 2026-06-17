@@ -75,7 +75,7 @@ BOOL CInfoTip::Create(CWnd* pParentWnd, bool bAlternate)
 
 void CInfoTip::Show()
 {
-    CDC * pDC = GetDC();
+    CDC* pDC = GetDC();
     CSize windowSize;
     GetWindowSize(pDC, &windowSize);
     ReleaseDC(pDC);
@@ -190,7 +190,7 @@ void CInfoTip::OnPaint()
     dc.RestoreDC(-1);
 }
 
-BOOL CInfoTip::GetWindowSize(CDC* pDC, CSize * size)
+BOOL CInfoTip::GetWindowSize(CDC* pDC, CSize* size)
 {
     pDC->SaveDC();
     // measure all the items
@@ -281,7 +281,7 @@ void CInfoTip::SetEnhancementTreeItem(
         }
         if (eit.IsType(Effect_SpellLikeAbility))
         {
-            const TrainedEnhancement * te = build.IsTrained(pItem->InternalName(), selection);
+            const TrainedEnhancement* te = build.IsTrained(pItem->InternalName(), selection);
             size_t offset = 0;
             if (te != NULL)
             {
@@ -383,7 +383,7 @@ void CInfoTip::SetEnhancementSelectionItem(
         }
         if (eit.IsType(Effect_SpellLikeAbility))
         {
-            const TrainedEnhancement * te = build.IsTrained(pItem->InternalName(), pSelection->Name());
+            const TrainedEnhancement* te = build.IsTrained(pItem->InternalName(), pSelection->Name());
             size_t offset = 0;
             if (te != NULL)
             {
@@ -520,7 +520,7 @@ void CInfoTip::SetSetBonusItem(
 }
 
 void CInfoTip::SetItem(
-        const Item * pItem,
+        const Item* pItem,
         const Build* pBuild)
 {
     ClearOldTipItems();
@@ -809,7 +809,7 @@ void CInfoTip::SetSelfBuff(const std::string& name)
 }
 
 void CInfoTip::SetFiligree(
-        const Filigree * pFiligree,
+        const Filigree* pFiligree,
         const Build& build)
 {
     ClearOldTipItems();
@@ -1224,9 +1224,9 @@ void CInfoTip::AppendSpellDamageEffect(
 }
 
 void CInfoTip::SetLevelItem(
-        const Build & build,
+        const Build& build,
         size_t level,
-        const LevelTraining * levelData,
+        const LevelTraining* levelData,
         const std::string& expectedClass)
 {
     ClearOldTipItems();
@@ -1324,7 +1324,7 @@ void CInfoTip::SetLevelItem(
 
         // show what skills (if any) points have been spent on
         // and whether they have been overspent on
-        const std::list<TrainedSkill> & ts = levelData->TrainedSkills();
+        const std::list<TrainedSkill>& ts = levelData->TrainedSkills();
         std::list<TrainedSkill>::const_iterator it = ts.begin();
         std::vector<size_t> skillRanks(Skill_Count, 0);
         while (it != ts.end())
