@@ -536,7 +536,7 @@ size_t Class::MaxSpellLevel(size_t classLevel) const
     std::vector<size_t> spells = SpellSlotsAtLevel(classLevel);
     // look for the first non-zero value in reverse
     size_t maxSpellLevel = spells.size()-1;
-    while (maxSpellLevel > 0 && spells[maxSpellLevel] == 0)
+    while (maxSpellLevel > 0 && maxSpellLevel < spells.size() && spells[maxSpellLevel] == 0)
     {
         maxSpellLevel--;
     }

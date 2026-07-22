@@ -16,14 +16,15 @@ class CSelectionSelectDialog :
 
     public:
         CSelectionSelectDialog(
-                CWnd * pParent,
-                Build & build,
-                const EnhancementTreeItem & item,
+                CWnd* pParent,
+                Build& build,
+                const EnhancementTreeItem& item,
                 const std::string& treeName,
-                TreeType type);
+                TreeType type,
+                const std::string& previousSelection = "");
         virtual ~CSelectionSelectDialog();
 
-        std::string Selection() const;
+        const std::string& Selection() const;
         size_t Cost() const;
 
         // Dialog Data
@@ -40,10 +41,10 @@ class CSelectionSelectDialog :
     private:
         void ShowTip(size_t index, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const EnhancementSelection & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetTooltipText(const EnhancementSelection& item, CPoint tipTopLeft, CPoint tipAlternate);
         enum {c_maxSelections = 16};
-        Build & m_build;
-        const EnhancementTreeItem & m_item;
+        Build& m_build;
+        const EnhancementTreeItem& m_item;
         const std::string& m_treeName;
         TreeType m_type;
         CEnhancementSelectionButton m_buttonOption[c_maxSelections];
@@ -54,5 +55,6 @@ class CSelectionSelectDialog :
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
-        const CWnd * m_pTooltipItem;
+        const CWnd* m_pTooltipItem;
+        std::string m_previousSelection;
 };

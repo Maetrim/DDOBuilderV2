@@ -1877,6 +1877,7 @@ void CBreakdownsPane::CreateMagicalBreakdowns()
         AddSpellSchool(Breakdown_SpellSchoolFear, SpellSchool_Fear, "Fear DC", hItem, true);
         AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem, false);
         AddSpellSchool(Breakdown_SpellSchoolRuneArm, SpellSchool_RuneArm, "Rune Arm DC Bonus", hItem, true);
+        AddTacticalItem(Breakdown_TacticalBreathWeapon, Tactical_BreathWeapon, "Breath Weapon", hItem);
     }
 }
 

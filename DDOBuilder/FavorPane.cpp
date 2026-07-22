@@ -142,7 +142,7 @@ LRESULT CFavorPane::OnLoadComplete(WPARAM, LPARAM)
     m_comboPatron.SetCurSel(0);
     CRect rect;
     GetClientRect(rect);
-    OnSize(SIZE_RESTORED, rect.Width(), rect.Height());
+    GetParent()->PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rect.Width(), rect.Height()));
     return 0;
 }
 

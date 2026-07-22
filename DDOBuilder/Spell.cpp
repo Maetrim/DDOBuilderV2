@@ -413,7 +413,7 @@ int Spell::TotalCost(const Build& build) const
             // Special: This is amount per spell level of heightening
             const ::Class& c = FindClass(Class());
             size_t maxLevel = c.MaxSpellLevel(build.Level());
-            size_t heightenedLevels = maxLevel - Level();
+            size_t heightenedLevels = maxLevel - (HasLevel() ? Level() : 0);
             if (heightenedLevels > 0)
             {
                 cost += (static_cast<int>(pBI->Total()) * heightenedLevels);

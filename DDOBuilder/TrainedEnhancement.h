@@ -46,4 +46,5 @@ class TrainedEnhancement :
         size_t m_requiredAps;
 
         friend class SpendInTree;
+        friend class CEnhancementTreeDialog;
 };

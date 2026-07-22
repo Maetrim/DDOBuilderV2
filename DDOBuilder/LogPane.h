@@ -39,8 +39,8 @@ public:
 
     void UpdateFonts();
 
-    void AddLogEntry(const CString & strText);
-    void UpdateLastLogEntry(const CString & strText);
+    void AddLogEntry(const CString& strText);
+    void UpdateLastLogEntry(const CString& strText);
 
 protected:
     virtual void DoDataExchange(CDataExchange* pDX) override;

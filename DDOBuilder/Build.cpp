@@ -419,6 +419,8 @@ void Build::BuildNowActive()
     UpdateTotalChanged(NULL, Breakdown_Dexterity);
     UpdateTotalChanged(NULL, Breakdown_Constitution);
     UpdateTotalChanged(NULL, Breakdown_Charisma);
+    SetModifiedFlag(FALSE);
+    VerifyTrainedFeats();
 }
 
 void Build::SetLevel(size_t level)

@@ -137,7 +137,7 @@ CString EnumEntryText(const T & t, const XmlLib::enumMapEntry<T> * m)
 }
 
 template <typename T>
-T TextToEnumEntry(const std::string& name, const XmlLib::enumMapEntry<T> * m, bool bThrowOnNotFound = true)
+T TextToEnumEntry(const std::string& name, const XmlLib::enumMapEntry<T> * m, bool bThrowOnNotFound = true, bool bLogIfNotFound = true)
 {
     const XmlLib::enumMapEntry<T> * p;
     for (p = m; p->name != NULL; ++p)
@@ -152,9 +152,12 @@ T TextToEnumEntry(const std::string& name, const XmlLib::enumMapEntry<T> * m, bo
     if (bThrowOnNotFound
             && p->name == NULL) // stopped at end of list
     {
-        std::stringstream ss;
-        ss << "TextToEnumEntry failed to find entry name " << name;
-        GetLog().AddLogEntry(name.c_str());
+        if (true == bLogIfNotFound)
+        {
+            std::stringstream ss;
+            ss << "TextToEnumEntry failed to find entry name " << name;
+            GetLog().AddLogEntry(name.c_str());
+        }
         return static_cast<T>(0);
     }
     else

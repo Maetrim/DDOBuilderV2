@@ -41,7 +41,7 @@ CString BreakdownItemTactical::Value() const
     CString value;
 
     value.Format(
-            "%4d",
+            "%3d",
             (int)Total());
     return value;
 }

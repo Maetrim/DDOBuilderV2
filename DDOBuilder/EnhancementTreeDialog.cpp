@@ -823,6 +823,83 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                         dlg.DoModal();
                         GetMouseHook()->RestoreState();
                     }
+                    else if (te != NULL)
+                    {
+                        // allow a selection replacement without having to revoke/re-train all
+                        CSelectionSelectDialog dlg(
+                                AfxGetApp()->m_pMainWnd->GetActiveWindow(),
+                                *pBuild,
+                                *item,
+                                m_pTree->Name(),
+                                m_type,
+                                te->Selection());
+                        // no tooltips while a dialog is displayed
+                        GetMouseHook()->SaveState();
+                        int ret = dlg.DoModal();
+                        GetMouseHook()->RestoreState();
+                        if (ret == IDOK && dlg.Selection() != te->Selection())
+                        {
+                            // first revoke all enhancement effects
+                            std::string enhancementName = te->EnhancementName();
+                            std::string oldSelection = te->Selection();
+                            std::string newSelection = dlg.Selection();
+                            size_t numRanks = te->Ranks();
+                            for (size_t i = 0; i < numRanks; ++i)
+                            {
+                                switch (m_type)
+                                {
+                                case TT_universal:
+                                case TT_racial:
+                                case TT_enhancement:
+                                    pBuild->Enhancement_RevokeEnhancement(
+                                            m_pTree->Name(),
+                                            item->InternalName());
+                                    break;
+                                case TT_epicDestiny:
+                                    pBuild->Destiny_RevokeEnhancement(
+                                            m_pTree->Name(),
+                                            item->InternalName());
+                                    break;
+                                case TT_reaper:
+                                    pBuild->Reaper_RevokeEnhancement(
+                                            m_pTree->Name(),
+                                            item->InternalName());
+                                    break;
+                                }
+                            }
+                            // now apply all the enhancement selections
+                            for (size_t i = 0; i < numRanks; ++i)
+                            {
+                                switch (m_type)
+                                {
+                                case TT_universal:
+                                case TT_racial:
+                                case TT_enhancement:
+                                    pBuild->Enhancement_TrainEnhancement(
+                                            m_pTree->Name(),
+                                            item->InternalName(),
+                                            newSelection,
+                                            item->ItemCosts(newSelection));
+                                    break;
+                                case TT_epicDestiny:
+                                    pBuild->Destiny_TrainEnhancement(
+                                            m_pTree->Name(),
+                                            item->InternalName(),
+                                            newSelection,
+                                            item->ItemCosts(newSelection));
+                                    break;
+                                case TT_reaper:
+                                    pBuild->Reaper_TrainEnhancement(
+                                            m_pTree->Name(),
+                                            item->InternalName(),
+                                            newSelection,
+                                            item->ItemCosts(newSelection));
+                                    break;
+                                }
+                            }
+                            Invalidate();
+                        }
+                    }
                 }
             }
             // check for a click of the reset tree button

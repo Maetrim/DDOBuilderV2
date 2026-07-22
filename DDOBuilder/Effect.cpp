@@ -836,7 +836,7 @@ bool Effect::CheckAType(
         else
         {
             const ::Class & c = FindClass(StackSource());
-            if (c.Name() == "")
+            if (c.Name() == "" && StackSource() != "TBD")
             {
                 (*ss) << "ClassCasterLevel effect has bad class StackSource field\n";
                 ok = false;

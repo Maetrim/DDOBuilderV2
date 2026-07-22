@@ -17,7 +17,8 @@ CSelectionSelectDialog::CSelectionSelectDialog(
         Build& build,
         const EnhancementTreeItem& item,
         const std::string& treeName,
-        TreeType type) :
+        TreeType type,
+        const std::string& previousSelection) :
     CDialog(CSelectionSelectDialog::IDD, pParent),
     m_build(build),
     m_item(item),
@@ -26,7 +27,8 @@ CSelectionSelectDialog::CSelectionSelectDialog(
     m_cost(0),
     m_showingTip(false),
     m_tipCreated(false),
-    m_pTooltipItem(NULL)
+    m_pTooltipItem(NULL),
+    m_previousSelection(previousSelection)
 {
     for (size_t i = 0; i < c_maxSelections; ++i)
     {
@@ -53,7 +55,7 @@ BEGIN_MESSAGE_MAP(CSelectionSelectDialog, CDialog)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
 END_MESSAGE_MAP()
 
-std::string CSelectionSelectDialog::Selection() const
+const std::string& CSelectionSelectDialog::Selection() const
 {
     return m_selection;
 }
@@ -78,6 +80,10 @@ BOOL CSelectionSelectDialog::OnInitDialog()
     size_t index = 0;
     size_t spentInTree = m_build.APSpentInTree(m_treeName);
     double dScaleFactor = GetDPIMultiplier(GetSafeHwnd());
+    if (m_previousSelection != "")
+    {
+        SetWindowText("Replace selection");
+    }
     while (it != selections.end())
     {
         // ensure buttons are correct size
@@ -91,6 +97,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
         m_buttonOption[index].SetWindowText((*it).Name().c_str());
         m_costs[index] = (*it).Cost(0); // always 1st rank cost
         m_selections[index] = (*it).Name();
+        m_buttonOption[index].SetSelected((*it).Name() == m_previousSelection);
         bool excluded = false;
         const std::list<std::string>& exclusions = selector.Exclusions();
         // check all the exclusions
@@ -127,9 +134,48 @@ BOOL CSelectionSelectDialog::OnInitDialog()
                     Weapon_Unknown,
                     Weapon_Unknown);
         }
-        bool enoughAP = (m_build.AvailableActionPoints(m_build.Level(),  m_type) >= (int)(*it).Cost(0));
-        bool requiredAPSpent = (spentInTree >= m_item.MinSpent());
-        m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP && requiredAPSpent);
+        if (m_previousSelection == "")
+        {
+            bool enoughAP = (m_build.AvailableActionPoints(m_build.Level(),  m_type) >= (int)(*it).Cost(0));
+            bool requiredAPSpent = (spentInTree >= m_item.MinSpent());
+            m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP && requiredAPSpent);
+        }
+        else
+        {
+            // we need to enable this one if the current selection has the same cost and number of ranks
+            if (canTrain)
+            {
+                // need to find the current selection
+                std::list<EnhancementSelection>::const_iterator fit = selections.begin();
+                while (fit != selections.end() && (*fit).Name() != m_previousSelection)
+                {
+                    ++fit;
+                }
+                if (fit != selections.end())
+                {
+                    // ok, we found it
+                    if ((*fit).HasRequirementsToTrain())
+                    {
+                        std::vector<size_t> classLevels = m_build.ClassLevels(m_build.Level()-1);
+                        std::list<TrainedFeat> trainedFeats = m_build.CurrentFeats(m_build.Level() - 1);
+                        canTrain &= (*it).RequirementsToTrain().Met(
+                                m_build,
+                                m_build.Level()-1,
+                                true,          // do include tomes
+                                Inventory_Unknown,
+                                Weapon_Unknown,
+                                Weapon_Unknown);
+                    }
+                    bool bSameCost = ((*it).Cost(0) == (*fit).Cost(0));
+                    bool bSameNumRanks = ((*it).Ranks() == (*fit).Ranks());
+                    m_buttonOption[index].EnableWindow(!excluded && canTrain && bSameCost && bSameNumRanks);
+                }
+            }
+            else
+            {
+                m_buttonOption[index].EnableWindow(false);
+            }
+        }
         ++it;
         ++index;
     }

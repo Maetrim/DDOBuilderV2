@@ -1783,7 +1783,7 @@ Duration 30 seconds, 3 minute cooldown</Description>
     <Feat>
       <Name>Bulwark of Defense</Name>
       <Description>Epic Feat: When in a defensive stance, you gain an additional +2 to
-all saving throws and +4 Armor Class.</Description>
+all saving throws and +5% Armor Class, and +10 Melee Power.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -1821,6 +1821,10 @@ all saving throws and +4 Armor Class.</Description>
               <Type>Stance</Type>
               <Item>Sacred Defense</Item>
             </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Nature's Defense</Item>
+            </Requirement>
           </RequiresOneOf>
         </Requirements>
       </Effect>
@@ -1828,7 +1832,8 @@ all saving throws and +4 Armor Class.</Description>
         <Type>ACBonus</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">4</Amount>
+        <Amount size="1">5</Amount>
+        <Percent/>
         <Requirements>
           <RequiresOneOf>
             <Requirement>
@@ -1853,7 +1858,41 @@ all saving throws and +4 Armor Class.</Description>
             </Requirement>
             <Requirement>
               <Type>Stance</Type>
-              <Item>Epic Defensive Fighting</Item>
+              <Item>Nature's Defense</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Defensive Fighting</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Combat Expertise</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Resilience</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Stalwart Defense</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Sacred Defense</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Nature's Defense</Item>
             </Requirement>
           </RequiresOneOf>
         </Requirements>
@@ -2552,75 +2591,44 @@ You also gain +5 Physical and Magical Resistance Rating.</Description>
       </Effect>
     </Feat>
     <Feat>
-      <Name>Epic Spell Focus: Abjuration</Name>
-      <Description>Your spells from the Abjuration school of magic are harder to resist,
-receiving an additional +1 bonus on save DCs.</Description>
+      <Name>Epic Spell Focus</Name>
+      <Description>You gain +2 to all Spell DCs.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
           <Value>21</Value>
         </Requirement>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Greater Spell Focus: Abjuration</Item>
-        </Requirement>
         <RequiresOneOf>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Arcane Trickster</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Artificer</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Bard</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Cleric</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Dragon Disciple</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Druid</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Favored Soul</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Sorcerer</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Wizard</Item>
-            <Value>11</Value>
-          </Requirement>
+            <DisplayDescription>Any Greater Spell Focus [School] feat.</DisplayDescription>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Greater Spell Focus: Abjuration</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Greater Spell Focus: Conjuration</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Greater Spell Focus: Enchantment</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Greater Spell Focus: Evocation</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Greater Spell Focus: Illusion</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Greater Spell Focus: Necromancy</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Feat</Type>
+              <Item>Greater Spell Focus: Transmutation</Item>
+            </Requirement>
         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -2628,507 +2636,39 @@ receiving an additional +1 bonus on save DCs.</Description>
       <Effect>
         <Type>SpellDC</Type>
         <Bonus>Feat</Bonus>
-        <Item>Abjuration</Item>
+        <Item>All</Item>
         <AType>Simple</AType>
-        <Amount size="1">1</Amount>
+        <Amount size="1">2</Amount>
       </Effect>
     </Feat>
     <Feat>
-      <Name>Epic Spell Focus: Conjuration</Name>
-      <Description>Your spells from the Conjuration school of magic are harder to resist,
-receiving an additional +1 bonus on save DCs.</Description>
+      <Name>Legendary Spell Focus</Name>
+      <Description>You gain +3 to all Spell DCs.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
-          <Value>21</Value>
+          <Value>30</Value>
         </Requirement>
         <Requirement>
-          <Type>Feat</Type>
-          <Item>Greater Spell Focus: Conjuration</Item>
+            <Type>Feat</Type>
+            <Item>Epic Spell Focus</Item>
         </Requirement>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Arcane Trickster</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Artificer</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Bard</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Cleric</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Dragon Disciple</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Druid</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Favored Soul</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Sorcerer</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Wizard</Item>
-            <Value>11</Value>
-          </Requirement>
-        </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>EpicSpellFocus</Icon>
+      <Icon>LegendarySpellFocus</Icon>
       <Effect>
         <Type>SpellDC</Type>
         <Bonus>Feat</Bonus>
-        <Item>Conjuration</Item>
+        <Item>All</Item>
         <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Epic Spell Focus: Enchantment</Name>
-      <Description>Your spells from the Enchantment school of magic are harder to resist,
-receiving an additional +1 bonus on save DCs.</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>21</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Greater Spell Focus: Enchantment</Item>
-        </Requirement>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Arcane Trickster</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Artificer</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Bard</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Cleric</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Dragon Disciple</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Druid</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Favored Soul</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Sorcerer</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Wizard</Item>
-            <Value>11</Value>
-          </Requirement>
-        </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>EpicSpellFocus</Icon>
-      <Effect>
-        <Type>SpellDC</Type>
-        <Bonus>Feat</Bonus>
-        <Item>Enchantment</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Epic Spell Focus: Evocation</Name>
-      <Description>Your spells from the Evocation school of magic are harder to resist,
-receiving an additional +1 bonus on save DCs.</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>21</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Greater Spell Focus: Evocation</Item>
-        </Requirement>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Arcane Trickster</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Artificer</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Bard</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Cleric</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Dragon Disciple</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Druid</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Favored Soul</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Sorcerer</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Wizard</Item>
-            <Value>11</Value>
-          </Requirement>
-        </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>EpicSpellFocus</Icon>
-      <Effect>
-        <Type>SpellDC</Type>
-        <Bonus>Feat</Bonus>
-        <Item>Evocation</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Epic Spell Focus: Illusion</Name>
-      <Description>Your spells from the Illusion school of magic are harder to resist,
-receiving an additional +1 bonus on save DCs.</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>21</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Greater Spell Focus: Illusion</Item>
-        </Requirement>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Arcane Trickster</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Artificer</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Bard</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Cleric</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Dragon Disciple</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Druid</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Favored Soul</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Sorcerer</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Wizard</Item>
-            <Value>11</Value>
-          </Requirement>
-        </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>EpicSpellFocus</Icon>
-      <Effect>
-        <Type>SpellDC</Type>
-        <Bonus>Feat</Bonus>
-        <Item>Illusion</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Epic Spell Focus: Necromancy</Name>
-      <Description>Your spells from the Necromancy school of magic are harder to resist,
-receiving an additional +1 bonus on save DCs.</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>21</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Greater Spell Focus: Necromancy</Item>
-        </Requirement>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Arcane Trickster</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Artificer</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Bard</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Cleric</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Dragon Disciple</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Druid</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Favored Soul</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Sorcerer</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Wizard</Item>
-            <Value>11</Value>
-          </Requirement>
-        </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>EpicSpellFocus</Icon>
-      <Effect>
-        <Type>SpellDC</Type>
-        <Bonus>Feat</Bonus>
-        <Item>Necromancy</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Epic Spell Focus: Transmutation</Name>
-      <Description>Your spells from the Transmutation school of magic are harder to resist,
-receiving an additional +1 bonus on save DCs.</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>21</Value>
-        </Requirement>
-        <Requirement>
-          <Type>Feat</Type>
-          <Item>Greater Spell Focus: Transmutation</Item>
-        </Requirement>
-        <RequiresOneOf>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Alchemist</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Arcane Trickster</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Artificer</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Bard</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Cleric</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Dragon Disciple</Item>
-            <Value>15</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Druid</Item>
-            <Value>11</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Favored Soul</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Sorcerer</Item>
-            <Value>12</Value>
-          </Requirement>
-          <Requirement>
-            <Type>BaseClassMinLevel</Type>
-            <Item>Warlock</Item>
-            <Value>16</Value>
-          </Requirement>
-          <Requirement>
-            <Type>ClassMinLevel</Type>
-            <Item>Wizard</Item>
-            <Value>11</Value>
-          </Requirement>
-        </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>EpicSpellFocus</Icon>
-      <Effect>
-        <Type>SpellDC</Type>
-        <Bonus>Feat</Bonus>
-        <Item>Transmutation</Item>
-        <AType>Simple</AType>
-        <Amount size="1">1</Amount>
+        <Amount size="1">3</Amount>
       </Effect>
     </Feat>
     <Feat>
       <Name>Epic Spell Penetration</Name>
-      <Description>Adds +4 to your caster level check for defeating spell resistance
-(in addition to the +4 from the Spell Penetration and Greater Spell Penetration feats).</Description>
+      <Description>Adds +6 to your caster level check for defeating spell resistance
+(in addition to the +6 from the Spell Penetration and Greater Spell Penetration feats).</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -3146,7 +2686,7 @@ receiving an additional +1 bonus on save DCs.</Description>
         <Type>SpellPenetrationBonus</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">4</Amount>
+        <Amount size="1">6</Amount>
       </Effect>
     </Feat>
     <Feat>

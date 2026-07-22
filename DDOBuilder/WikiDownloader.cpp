@@ -118,7 +118,7 @@ bool WikiDownloader::DownloadUrl(const std::string& url)
         // create a command prompt to download the file.
         // trying to run wget directly from CreateProcess can randomly fail.
         CString params;
-        params += "cmd /C wget.exe -random-wait \"";
+        params += "cmd /C wget.exe --load-cookies \"C:\\Users\\44776\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Network\\Cookies\" \"";
         params += url.c_str();
         params += "\"";
 

@@ -1285,6 +1285,9 @@ BreakdownType SchoolToBreakdown(SpellSchoolType school)
         case SpellSchool_GlobalDC:
             bt = Breakdown_SpellSchoolGlobalDC;
             break;
+        case SpellSchool_BreathWeapon:
+            bt = Breakdown_TacticalBreathWeapon;
+            break;
     }
     return bt;
 }

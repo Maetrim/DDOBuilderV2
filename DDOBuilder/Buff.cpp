@@ -64,6 +64,22 @@ bool Buff::VerifyObject(std::stringstream* ss) const
         (*ss) << "---Has missing Buff \"" << Type() << "\"\n";
         ok = false;
     }
+    if (buff.Type() == "SchoolFocusNumber")
+    {
+        if (!HasValue1())
+        {
+            (*ss) << "---Has missing Value1 field\n";
+            ok = false;
+        }
+    }
+    if (buff.Type() == "SchoolFocus")
+    {
+        if (!HasValue1())
+        {
+            (*ss) << "---Has missing Value1 field\n";
+            ok = false;
+        }
+    }
     for (auto&& eit: m_Effects)
     {
         ok &= eit.VerifyObject(ss);

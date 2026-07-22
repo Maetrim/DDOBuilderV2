@@ -253,10 +253,12 @@ bool Requirement::VerifyObject(
                     ok = false;
                 }
                 it++;
-                const ::WeaponType& wt = TextToEnumEntry((*it), weaponTypeMap);
-                if (wt == Weapon_Unknown)
+                const ::WeaponType& wt = TextToEnumEntry((*it), weaponTypeMap, false, false);
+                const ::ArmorType& at = TextToEnumEntry((*it), armorTypeMap, false, false);
+                if (wt == Weapon_Unknown && at == Armor_Unknown)
                 {
-                    (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad WeaponType item field\n";
+                    (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad WeaponType/ArmorType item field\n";
+                    ok = false;
                 }
             }
             break;
@@ -392,10 +394,11 @@ bool Requirement::VerifyObject(
             {
                 for (auto&& iit : m_Item)
                 {
-                    const ::WeaponType& wt = TextToEnumEntry(iit, weaponTypeMap);
-                    if (wt == Weapon_Unknown)
+                    const ::WeaponType& wt = TextToEnumEntry(iit, weaponTypeMap, false, false);
+                    if (wt == Weapon_Unknown && iit != "Thrown")
                     {
                         (*ss) << "Requirement:" << EnumEntryText(m_Type, requirementTypeMap) << " bad WeaponType item field\n";
+                        ok = false;
                     }
                 }
             }

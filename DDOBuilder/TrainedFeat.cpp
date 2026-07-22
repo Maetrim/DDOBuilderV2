@@ -101,6 +101,13 @@ void TrainedFeat::EndElement()
     if (m_Type == "WarlockPactSaveBonus") m_Type = "Pact Save Bonus";
     if (m_Type == "WarlockPactSpell") m_Type = "Pact Spell";
     if (m_Type == "WarlockPact") m_Type = "Warlock Pact";
+    if (m_FeatName == "Epic Spell Focus: Abjuration") m_FeatName = "Epic Spell Focus";
+    if (m_FeatName == "Epic Spell Focus: Conjuration") m_FeatName = "Epic Spell Focus";
+    if (m_FeatName == "Epic Spell Focus: Enchantment") m_FeatName = "Epic Spell Focus";
+    if (m_FeatName == "Epic Spell Focus: Evocation") m_FeatName = "Epic Spell Focus";
+    if (m_FeatName == "Epic Spell Focus: Illusion") m_FeatName = "Epic Spell Focus";
+    if (m_FeatName == "Epic Spell Focus: Necromancy") m_FeatName = "Epic Spell Focus";
+    if (m_FeatName == "Epic Spell Focus: Transmutation") m_FeatName = "Epic Spell Focus";
 
     // all Favored Enemy feats changed their name
     m_FeatName = ReplaceAll(m_FeatName, "Favored enemy", "Favored Enemy");

@@ -183,7 +183,7 @@
     <EnhancementTreeItem>
       <Name>Mindcleaver: Underdark Upbringing III</Name>
       <InternalName>MindcleaverCore5</InternalName>
-      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points, +1 to Attack and Damage</Description>
+      <Description>+5 Maximum Hit Points, +6 Maximum Spell Points, +2 to Attack and Damage</Description>
       <Icon>UnderdarkUpbringingIII</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -216,7 +216,7 @@
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">1</Amount>
+        <Amount size="1">2</Amount>
         <Item>All</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -236,7 +236,7 @@
         <EnhancementSelection>
           <Name>Axe Training</Name>
           <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
-and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
+and greataxes. While using dwarven waraxe, +5% Strikethrough Chance.</Description>
           <Icon>DwarfAxeTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -265,7 +265,8 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Pick and Hammer Training</Name>
-          <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Mauls, Throwing Hammers, and Warhammers.</Description>
+          <Description>+1 to hit and damage with heavy picks, light hammer, light picks, mauls,
+throwing hammers, and warhammers.</Description>
           <Icon>DwarfPickAndHammerTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -411,7 +412,8 @@ and Throwing Hammers, and consider them Simple Weapons.</Description>
         <EnhancementSelection>
           <Name>Axe Training</Name>
           <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
-and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
+and greataxes. +1 to hit and +2 damage with great axes.
+While using dwarven waraxe, +5% Strikethrough Chance.</Description>
           <Icon>DwarfAxeTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
@@ -427,10 +429,23 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
             <Item>Battle Axe</Item>
             <Item>Dwarven Axe</Item>
             <Item>Hand Axe</Item>
-            <Item>Great Axe</Item>
             <Item>Throwing Axe</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Attack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Great Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Damage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Great Axe</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -447,7 +462,9 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Pick and Hammer Training</Name>
-          <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers. +1 to hit and +2 damage with Mauls.</Description>
+          <Description>
++1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers,
+and Warhammers. +1 to hit and +2 damage with Mauls.</Description>
           <Icon>DwarfPickAndHammerTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
@@ -463,11 +480,24 @@ and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
             <Item>Heavy Pick</Item>
             <Item>Light Hammer</Item>
             <Item>Light Pick</Item>
-            <Item>Maul</Item>
             <Item>Throwing Hammer</Item>
             <Item>Warhammer</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Attack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Maul</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+          </Effect>
+          <Effect>
+            <Type>Weapon_Damage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Maul</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -563,18 +593,18 @@ Your Enlarge and Reduce now last for three minutes.</Description>
     <EnhancementTreeItem>
       <Name>Mindcleaver: Forge Familiarity</Name>
       <InternalName>MindcleaverForgeFamiliarity</InternalName>
-      <Description>Your Arcane Spell Failure chance from armor is decreased by [5/10/15]%.</Description>
+      <Description>Your Arcane Spell Failure chance from armor is decreased by 15%.</Description>
       <Icon>DuergarForgeFamiliarity</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Effect>
         <Type>ArcaneSpellFailure</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">-5 -10 -15</Amount>
+        <AType>Simple</AType>
+        <Amount size="1">-15</Amount>
       </Effect>
     </EnhancementTreeItem>
     <!--Tier 3-->
@@ -598,9 +628,9 @@ Your Enlarge and Reduce now last for three minutes.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Axe Training</Name>
-          <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
-and greataxes. While using dwarven waraxe, +5% Strikethrough. You gain Dwarven Axe
-as a Favored Weapon.</Description>
+          <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, great axes,
+and throwing axes. While using dwarven waraxe, +5% Strikethrough Chance.
+You gain Dwarven Axe as a Favored Weapon.</Description>
           <Icon>DwarfAxeTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
@@ -643,8 +673,9 @@ as a Favored Weapon.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Pick and Hammer Training</Name>
-          <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Mauls, Throwing Hammers, and Warhammers.</Description>
-          <Icon>MindcleaverPickAndHammerTraining</Icon>
+          <Description>+1 to hit and damage with heavy picks, light hammer, light picks, mauls,
+throwing hammers, and warhammers.</Description>
+          <Icon>DwarfPickAndHammerTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
             <Requirement>
@@ -716,7 +747,8 @@ Your Enlarge and Reduce now last for five minutes.</Description>
     <EnhancementTreeItem>
       <Name>Mindcleaver: Mind's Edge</Name>
       <InternalName>MindcleaverMindsEdge</InternalName>
-      <Description>Melee Sunder Attack: You conjure a Mindcleaver and send it hurtling at target foe,
+      <Description>+20% Damage
+Melee Sunder Attack: You conjure a Mindcleaver and send it hurtling at target foe,
 making an Attack roll on that target and dealing damage with your main hand Melee
 weapons if it hits, plus 1d4 Force Damage per Character Level to that target that
 scales with 100% Melee Power. In addition, the affected target must make a Will
@@ -859,9 +891,9 @@ and +10% Strikethrough Chance.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Pick and Hammer Training</Name>
-          <Description>+1 to hit and damage with Heavy Picks, Light Hammer, Light Picks, Throwing Hammers, and Warhammers.
-+1 to hit and +2 damage with Mauls.
-While using a Heavy Pick or Warhammer, +1 Competence Bonus to Critical Threat Range.</Description>
+          <Description>+1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers,
+and warhammers. +1 to hit and +2 damage with Mauls. While using a Heavy Pick or
+Warhammer, +1 Competence Bonus to Critical Threat Range.</Description>
           <Icon>DwarfPickAndHammerTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Requirements>
@@ -1003,6 +1035,7 @@ Cooldown: 12 seconds</Description>
         <Item>Invisibility</Item>
         <AType>SpellInfo</AType>
         <Amount size="4">0 6 0 12</Amount>
+        <Item>None</Item>
       </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>

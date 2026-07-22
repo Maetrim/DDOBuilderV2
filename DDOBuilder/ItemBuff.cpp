@@ -52,6 +52,7 @@ void ItemBuff::Write(XmlLib::SaxWriter * writer) const
     DL_WRITE(ItemBuff_PROPERTIES)
     writer->EndElement();
 }
+
 void ItemBuff::VerifyObject() const
 {
     bool ok = true;

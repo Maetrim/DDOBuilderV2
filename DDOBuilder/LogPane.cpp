@@ -57,8 +57,12 @@ void CLogPane::UpdateFonts()
     m_wndOutputLog.SetFont(&afxGlobalData.fontRegular);
 }
 
-void CLogPane::AddLogEntry(const CString & strText)
+void CLogPane::AddLogEntry(const CString& strText)
 {
+    if (strText == "Buckler")
+    {
+        CString x = strText;
+    }
     // break up any lines (this is incredibility crude and inefficient but should not be used much)
     int index = 0;
     CString logStr;
@@ -82,7 +86,7 @@ void CLogPane::AddLogEntry(const CString & strText)
     m_wndOutputLog.RedrawWindow();
 }
 
-void CLogPane::UpdateLastLogEntry(const CString & strText)
+void CLogPane::UpdateLastLogEntry(const CString& strText)
 {
     m_wndOutputLog.LockWindowUpdate();
     int index = m_wndOutputLog.GetCount();
