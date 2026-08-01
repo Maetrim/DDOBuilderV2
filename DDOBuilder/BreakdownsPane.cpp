@@ -660,6 +660,21 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pHP);
         m_items.push_back(pHP);
         {
+            HTREEITEM hHitpointPercentBonus = m_itemBreakdownTree.InsertItem(
+                    "Hitpoints % Bonus",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pHPB = new BreakdownItemSimple(
+                    this,
+                    Breakdown_HitpointsPercent,
+                    Effect_HitpointsPercent,
+                    "Hitpoints % Bonus",
+                    &m_itemBreakdownTree,
+                    hHitpointPercentBonus);
+            m_itemBreakdownTree.SetItemData(hHitpointPercentBonus, (DWORD)(void*)pHPB);
+            m_items.push_back(pHPB);
+        }
+        {
             HTREEITEM hStyleBonus = m_itemBreakdownTree.InsertItem(
                     "Style Bonus Feats",
                     hItem,
@@ -812,14 +827,14 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
         }
         {
             HTREEITEM hArmorItem = m_itemBreakdownTree.InsertItem(
-                    "Armor % Bonus",
+                    "Armor AC % Bonus",
                     hItem,
                     TVI_LAST);
             BreakdownItem * pArmorAC = new BreakdownItemSimple(
                     this,
                     Breakdown_BonusArmorAC,
                     Effect_ArmorACBonus,
-                    "Armor % Bonus",
+                    "Armor AC % Bonus",
                     &m_itemBreakdownTree,
                     hArmorItem);
             m_itemBreakdownTree.SetItemData(hArmorItem, (DWORD)(void*)pArmorAC);
@@ -839,6 +854,21 @@ void CBreakdownsPane::CreatePhysicalBreakdowns()
                     hShieldItem);
             m_itemBreakdownTree.SetItemData(hShieldItem, (DWORD)(void*)pShieldAC);
             m_items.push_back(pShieldAC);
+        }
+        {
+            HTREEITEM hTotalACItem = m_itemBreakdownTree.InsertItem(
+                    "Total AC % Bonus",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem* pTotalACPercent = new BreakdownItemSimple(
+                    this,
+                    Breakdown_TotalACPercent,
+                    Effect_ACPercent,
+                    "Total AC % Bonus",
+                    &m_itemBreakdownTree,
+                    hTotalACItem);
+            m_itemBreakdownTree.SetItemData(hTotalACItem, (DWORD)(void*)pTotalACPercent);
+            m_items.push_back(pTotalACPercent);
         }
     }
 

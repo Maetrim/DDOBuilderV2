@@ -119,7 +119,7 @@ void BreakdownItemAC::CreateOtherEffects()
                 double percentBonus = pBI->Total();
                 double valueArmor = GetEffectValue("Armor", false);
                 double valueEnhancement = GetEffectValue("Armor Enhancement", false);
-                int amount = static_cast<int>(((valueArmor + valueEnhancement) * percentBonus) / 100.0);
+                int amount = static_cast<int>(((valueArmor + valueEnhancement) * percentBonus) / 100.0 + 0.5); // rounded up
                 std::stringstream ss;
                 ss << "Armor " << percentBonus << "% Bonus of " << (valueArmor + valueEnhancement) << " (Armor(" << valueArmor << ") + Enhancement(" << valueEnhancement << "))";
                     // now add a percentage of that
@@ -142,7 +142,7 @@ void BreakdownItemAC::CreateOtherEffects()
                     if (percentBonus > 0)
                     {
                         double valueShield = GetEffectValue("Shield", false);
-                        int amount = static_cast<int>((valueShield * percentBonus) / 100.0);
+                        int amount = static_cast<int>((valueShield * percentBonus) / 100.0 + 0.5); // rounded up
                         std::stringstream ss;
                         ss << "Shield " << percentBonus << "% Bonus of " << valueShield;
                         // now add a percentage of that
@@ -166,6 +166,19 @@ void BreakdownItemAC::CreateOtherEffects()
                         "Natural Armor",
                         naturalArmor);
                 AddOtherEffect(na);
+            }
+            pBI = FindBreakdown(Breakdown_TotalACPercent);
+            if (pBI != NULL)
+            {
+                pBI->AttachObserver(this);      // need to know about changes
+                double acPercentBonus = pBI->Total();
+                Effect tacp(
+                        Effect_Unknown,
+                        "Total AC % Bonus",
+                        "Total AC % Bonus",
+                        acPercentBonus);
+                tacp.Set_Percent();
+                AddOtherEffect(tacp);
             }
         }
     }

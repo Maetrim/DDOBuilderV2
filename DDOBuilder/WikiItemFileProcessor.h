@@ -66,6 +66,7 @@ private:
     bool ProcessWizardryNumeric(const std::string& line, const std::string& bonus);
     bool ProcessWizardryRomanNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value);
     bool ProcessSpellFocusNumeric(const std::string& line, const std::string& bonus);
+    bool ProcessIntensity(const std::string& line, const std::string& bonus);
     bool ProcessSpellFocusRomanNumeral(const std::string& line, const std::string& numeral, const std::string& bonus, size_t value);
     bool ProcessSeeker(const std::string& line, const std::string& bonus);
     bool ProcessDodge(const std::string& line, const std::string& bonus);

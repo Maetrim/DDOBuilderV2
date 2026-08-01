@@ -20,6 +20,7 @@ enum EffectType
     Effect_AbilityBonus,
     Effect_ACBonus,
     Effect_ACBonusShield,
+    Effect_ACPercent,
     Effect_AddGroupWeapon,
     Effect_ArcaneSpellFailure,
     Effect_ArcaneSpellFailureShields,
@@ -86,6 +87,7 @@ enum EffectType
     Effect_HirelingSaveBonus,
     Effect_HirelingGrantFeat,
     Effect_Hitpoints,
+    Effect_HitpointsPercent,
     Effect_HitpointsReaper,
     Effect_HitpointsStyleBonus,
     Effect_ImbueDice,
@@ -256,6 +258,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_AbilityBonus, L"AbilityBonus"},
     {Effect_ACBonus, L"ACBonus"},
     {Effect_ACBonusShield, L"ACBonusShield"},
+    {Effect_ACPercent, L"ACPercent"},
     {Effect_AddGroupWeapon, L"AddGroupWeapon"},
     {Effect_ArcaneSpellFailure, L"ArcaneSpellFailure"},
     {Effect_ArcaneSpellFailureShields, L"ArcaneSpellFailureShields"},
@@ -322,6 +325,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_HirelingSaveBonus, L"HirelingSaveBonus"},
     {Effect_HirelingGrantFeat, L"HirelingGrantFeat"},
     {Effect_Hitpoints, L"Hitpoints"},
+    {Effect_HitpointsPercent, L"HitpointsPercent"},
     {Effect_HitpointsReaper, L"HitpointsReaper"},
     {Effect_HitpointsStyleBonus, L"HitpointsStyleBonus"},
     {Effect_ImbueDice, L"ImbueDice"},
@@ -638,4 +642,6 @@ class Effect :
         const Build * m_pBuild;
 
         friend class CBreakdownsPane;
+        friend class BreakdownItemAC;
+        friend class BreakdownItemHitpoints;
 };

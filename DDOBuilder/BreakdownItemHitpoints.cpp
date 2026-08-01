@@ -19,7 +19,6 @@ BreakdownItemHitpoints::BreakdownItemHitpoints(
     pPane->RegisterBuildCallbackEffect(Effect_Hitpoints, this);
     // need to know when total constitution changes
     m_pConstitutionBreakdown->AttachObserver(this);
-    DoAllPercentsAtOnce();
 }
 
 BreakdownItemHitpoints::~BreakdownItemHitpoints()
@@ -191,6 +190,20 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                 req.AddRequirement(reqStance);
                 reaperBonus.SetRequirements(req);
                 AddOtherEffect(reaperBonus);
+            }
+
+            pBreakdown = FindBreakdown(Breakdown_HitpointsPercent);
+            if (pBreakdown != NULL)
+            {
+                pBreakdown->AttachObserver(this);      // need to know about changes
+                double hpPercentBonus = pBreakdown->Total();
+                Effect thpp(
+                        Effect_Unknown,
+                        "Total Hitpoints % Bonus",
+                        "Total Hitpoints % Bonus",
+                        hpPercentBonus);
+                thpp.Set_Percent();
+                AddOtherEffect(thpp);
             }
         }
     }

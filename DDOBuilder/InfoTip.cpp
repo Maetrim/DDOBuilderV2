@@ -507,6 +507,17 @@ void CInfoTip::SetStanceItem(const Stance& item)
     InfoTipItem_MultilineText* pDescription = new InfoTipItem_MultilineText;
     pDescription->SetText(item.Description().c_str());
     m_tipItems.push_back(pDescription);
+    if (item.IncompatibleStance().size() > 0)
+    {
+        for (auto&& sit: item.IncompatibleStance())
+        {
+            InfoTipItem_Requirements* pRequirements = new InfoTipItem_Requirements;
+            CString text;
+            text.Format("Incompatible stance: %s", sit.c_str());
+            pRequirements->AddRequirement(text, false);
+            m_tipItems.push_back(pRequirements);
+        }
+    }
 }
 
 void CInfoTip::SetSetBonusItem(

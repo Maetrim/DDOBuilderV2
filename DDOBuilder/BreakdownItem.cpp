@@ -29,9 +29,7 @@ BreakdownItem::BreakdownItem(
     m_dCachedTotal(-999),
     m_wtMain(Weapon_Unknown),
     m_wtOffhand(Weapon_Unknown),
-    m_slot(Inventory_Unknown),
-    m_bAllPercentsAtOnce(false),
-    m_discrepancy(0)
+    m_slot(Inventory_Unknown)
 {
 }
 
@@ -96,17 +94,6 @@ void BreakdownItem::AddItems(CListCtrl * pControl)
     AddActivePercentageItems(effects, pControl);
     AddActivePercentageItems(itemEffects, pControl);
     AddActiveItems(temporaryEffects, pControl, false);
-
-    if (m_bAllPercentsAtOnce && m_discrepancy != 0)
-    {
-        size_t index = pControl->InsertItem(
-                pControl->GetItemCount(),
-                "Percentage Rounding Discrepancy",
-                0);
-        CString amount;
-        amount.Format("%d", static_cast<int>(m_discrepancy));
-        pControl->SetItemText(index, CO_Value, amount);
-    }
 
     int inactiveStart = pControl->GetItemCount();
     // also show inactive and non stack effects if we have any so user
@@ -222,18 +209,12 @@ double BreakdownItem::Total() const
         // a test on live shows two percentage bonus's to hp adds two lots
         // of the base total (before percentages) to the total
 
-        m_discrepancy = 0;
-        total += DoPercentageEffects(m_otherEffects, baseTotal, m_discrepancy);
-        total += DoPercentageEffects(m_effects, baseTotal, m_discrepancy);
+        total += DoPercentageEffects(m_otherEffects, baseTotal);
+        total += DoPercentageEffects(m_effects, baseTotal);
         // make sure we update listed items
-        double notUsed = 0;
-        DoPercentageEffects(m_itemEffects, baseTotal, notUsed);
-        total += DoPercentageEffects(itemEffects, baseTotal, m_discrepancy);
+        DoPercentageEffects(m_itemEffects, baseTotal);
+        total += DoPercentageEffects(itemEffects, baseTotal);
         total += SumItems(temporaryEffects, false);
-        if (m_bAllPercentsAtOnce && m_discrepancy != 0)
-        {
-            total += m_discrepancy;
-        }
     }
     return total;
 }
@@ -467,8 +448,7 @@ double BreakdownItem::SumItems(
 
 double BreakdownItem::DoPercentageEffects(
         const std::list<Effect> & effects,
-        double total,
-        double& discrepancy) const
+        double total) const
 {
     double amountAdded = 0;
     double totalPercent = 0;
@@ -483,15 +463,11 @@ double BreakdownItem::DoPercentageEffects(
                 // needs to be added.
                 double percent = it.TotalAmount(false);
                 totalPercent += percent;
-                double amount = static_cast<int>(total * percent / 100.0);
+                double amount = static_cast<int>((total * percent / 100.0) + 0.5);  // round up
                 amountAdded += amount;
                 it.SetPercentValue(amount);   // so it can display its amount
             }
         }
-    }
-    if (m_bAllPercentsAtOnce && totalPercent > 0)
-    {
-        discrepancy += (static_cast<int>(total * totalPercent / 100.0) - amountAdded);
     }
     return amountAdded;
 }
@@ -500,11 +476,6 @@ double BreakdownItem::Multiplier() const
 {
     // by default all items have a multiplier of 1
     return 1.0;
-}
-
-void BreakdownItem::DoAllPercentsAtOnce()
-{
-    m_bAllPercentsAtOnce = true;
 }
 
 void BreakdownItem::SetInventorySlotType(InventorySlotType ist)
