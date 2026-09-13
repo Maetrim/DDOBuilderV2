@@ -739,9 +739,10 @@ bool Effect::CheckAType(
         *bRequiresAmount = true;            // its a a direct number * stacks
         *requiredAmountElements = 1;        // single element
         break;
+    case Amount_AbilityTotalIndex:  // all handled the same for checking
+        *bRequiresAmount = true;
     case Amount_AbilityValue:       // all handled the same for checking
     case Amount_AbilityTotal:       // all handled the same for checking
-    case Amount_AbilityTotalIndex:       // all handled the same for checking
     case Amount_AbilityMod:         // all handled the same for checking
     case Amount_HalfAbilityMod:     // all handled the same for checking
     case Amount_ThirdAbilityMod:    // all handled the same for checking
@@ -808,7 +809,7 @@ bool Effect::CheckAType(
     case Amount_ClassLevel:
         // expect a single Item thats a class and 20 Amount Items
         *bRequiresAmount = true;                    // Amount specifies amount at each class level
-        *requiredAmountElements = MAX_CLASS_LEVEL + 1; // 20 elements expected
+        *requiredAmountElements = MAX_CLASS_LEVEL + 1; // 21 elements expected
         if (!HasStackSource())
         {
             (*ss) << "ClassLevel effect missing StackSource field\n";

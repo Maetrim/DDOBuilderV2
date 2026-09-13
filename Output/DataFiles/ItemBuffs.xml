@@ -183,6 +183,33 @@
     <DisplayText>Sovereign Acid Arrow: This bow coats your arrows in corrosive acid. A successful hit douses the target in acid causing an additional 20 to 50 damage after two seconds have passed. Each additional hit extends the duration of the acid damage by two seconds.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Acid Blast 3</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Acid Blast 3: This weapon is covered in a strong and deadly acid, dealing 3d6 Acid damage on a successful hit, and an additional 3d6 Acid damage on a critical hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">6</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Acid</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Acid Blast 7</Type>
     <ApplyToWeaponOnly />
     <DisplayText>Acid Blast 7: This weapon is covered in a strong and deadly acid, dealing 7d6 Acid damage on a successful hit, and an additional 7d6 Acid damage on a critical hit.</DisplayText>
@@ -212,6 +239,17 @@
   <Buff>
     <Type>Acid Guard +2</Type>
     <DisplayText>Acid Guard +2: Chance to deal 2d8 Acid damage when hit.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Acid Intensity</Type>
+    <DisplayText>Acid Intensity +%v1%: +%v1% %b1 bonus to critical damage with Acid spells.</DisplayText>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+    </Effect>
   </Buff>
   <Buff>
     <Type>AcidI</Type>
@@ -1075,7 +1113,7 @@
   <Buff>
     <Type>Anarchic Burst 6</Type>
     <ApplyToWeaponOnly />
-    <DisplayText>Anarchic Burst 6: This weapon is a chaotic conduit, dealing 6d6 Chaos damage on a successful hit to Lawful enemies, and 1d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
+    <DisplayText>Anarchic Burst 6: This weapon is a chaotic conduit, dealing 6d6 Chaos damage on a successful hit to Lawful enemies, and 12d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
     <Effect>
       <Type>WeaponOtherDamageBonus</Type>
       <Bonus>Stacking</Bonus>
@@ -1099,6 +1137,64 @@
       <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">12</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaos</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>DRBypass</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Value>Chaotic</Value>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <Type>NegativeLevel</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Anarchic Burst 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Anarchic Burst 7: This weapon is a chaotic conduit, dealing 7d6 Chaos damage on a successful hit to Lawful enemies, and 14d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Chaos</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>AlignmentType</Type>
+          <Item>Lawful</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">14</Number>
         <Sides size="1">6</Sides>
         <Damage>Chaos</Damage>
       </Dice>
@@ -1727,6 +1823,7 @@
       <Bonus>Equipment</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0.25</Amount>
+      <Item>All</Item>
     </Effect>
   </Buff>
   <Buff>
@@ -5583,6 +5680,14 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Destruction: On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every three seconds.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Destructive Acid 2</Type>
+    <DisplayText>Destructive Acid +2: Strikes with this weapon have a small chance to call forth a surge of incredibly corrosive acid, dealing 2d20+27 Acid damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Destructive Acid 7</Type>
+    <DisplayText>Destructive Acid +7: Strikes with this weapon have a small chance to call forth a surge of incredibly corrosive acid, dealing 7d20+75 Acid damage.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Devil's Blood</Type>
     <DisplayText>Devil's Blood: This artifact, while equipped, grants you some of the innate protections of a Horned Devil. You are warded against Curses, Poison, and Fear.</DisplayText>
     <Effect>
@@ -7685,6 +7790,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Bonus>Exceptional</Bonus>
       <AType>Simple</AType>
       <Amount size="1">2</Amount>
+      <Item>All</Item>
        <Requirement>
           <Type>Stance</Type>
           <Item>Two Handed Fighting</Item>
@@ -8615,7 +8721,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>FireIntensity</Type>
-    <DisplayText>%b1 Fire Intensity %v1%: %v1% %b1 bonus to critical damage with Fire spells</DisplayText>
+    <DisplayText>%b1 Fire Intensity %v1%: %v1% %b1 bonus to critical damage with Fire spells.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellCriticalDamage</Type>
@@ -11444,13 +11550,13 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>GreaterReinforcedFists</Type>
     <ApplyToWeaponOnly />
-    <DisplayText>Greater Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one die. DDO BUG: This affects all weapon types when character is centered.</DisplayText>
+    <DisplayText>Greater Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one die.</DisplayText>
     <Effect>
       <Type>Weapon_BaseDamage</Type>
       <Bonus>Implement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1</Amount>
-      <Item>All</Item>
+      <Item>Handwraps</Item>
       <Requirements>
         <Requirement>
           <Type>Stance</Type>
@@ -11747,7 +11853,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>HealingIntensity</Type>
-    <DisplayText>%b1 Healing Intensity %v1%: %v1% %b1 bonus to critical damage with Positive (Healing) spells</DisplayText>
+    <DisplayText>%b1 Healing Intensity %v1%: %v1% %b1 bonus to critical damage with Positive (Healing) spells.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellCriticalDamage</Type>
@@ -13236,7 +13342,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>IceIntensity</Type>
-    <DisplayText>%b1 Ice Intensity %v1%: %v1% %b1 bonus to critical damage with Cold spells</DisplayText>
+    <DisplayText>%b1 Ice Intensity %v1%: %v1% %b1 bonus to critical damage with Cold spells.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellCriticalDamage</Type>
@@ -14307,7 +14413,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>KineticIntensity</Type>
-    <DisplayText>%b1 Kinetic Intensity %v1%: %v1% %b1 bonus to critical damage with Force and Physical spells</DisplayText>
+    <DisplayText>%b1 Kinetic Intensity %v1%: %v1% %b1 bonus to critical damage with Force and Physical spells.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellCriticalDamage</Type>
@@ -14745,6 +14851,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Legendary Slicing Winds: This weapon whistles with the wind. On hit, this mysterious power has a chance of coming to the surface, slicing at the struck enemy for a significant amount of Slashing damage.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Slime</Type>
+    <DisplayText>Legendary Slime: Attacks and offensive spells reduce enemy PRR and MRR by 10 each. This debuff does not stack but refreshes on each hit.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Slowburst</Type>
     <DisplayText>Legendary Slowburst: This weapon has an image of a snail worked into its hilt or grip, and it feels cold to the touch. Whenever you score a critical hit with this weapon, the target is slowed for 30 seconds. A DC 100 Will save negates this effect.</DisplayText>
   </Buff>
@@ -14783,6 +14893,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Legendary Virulent Poison</Type>
     <DisplayText>Legendary Virulent Poison: This item carries a potent poison that is delivered with your attacks. On any strike, the Poison has a chance to be applied, dealing 5d6 Constitution damage if your enemy fails a DC100 Fortitude saving throw.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Virulent Poison Guard</Type>
+    <DisplayText>Legendary Virulent Poison Guard: This item carries a potent venom that is delivered when enemies strike you. When an enemy strikes you, the poison has a chance to be applied, dealing 5d6 Constitution damage if your enemy fails a DC100 Fortitude saving throw.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Warblade's Wrath</Type>
@@ -15391,7 +15505,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>LightningIntensity</Type>
-    <DisplayText>%b1 Lightning Intensity %v1%: %v1% %b1 bonus to critical damage with Electric spells</DisplayText>
+    <DisplayText>%b1 Lightning Intensity %v1%: %v1% %b1 bonus to critical damage with Electric spells.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellCriticalDamage</Type>
@@ -18523,6 +18637,22 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Radiant Glory: On Harmful Spellcast: Do an additional 2 to 12 Light damage. This effect scales with Light Spell Power. Cooldown: 1 second.</DisplayText>
   </Buff>
   <Buff>
+    <Type>RadianceIntensity</Type>
+    <DisplayText>%b1 Radiance Intensity %v1%: Your Light and Alignment spells gin a %v1% %b1 bonus to critical damage.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
+      <Item>Light/Alignment</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Radiant Servant</Type>
     <DisplayText>Radiant Servant: This item in one of two pieces of the Radiant Servant set. When both items are equipped you gain an additional Turn Undead attempts after resting, and an Exceptional bonus to effective Cleric level for Turning Undead.</DisplayText>
   </Buff>
@@ -18690,8 +18820,21 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>RepairIntensity</Type>
+    <DisplayText>%b1 Repair Intensity %v1%: Your Repair and Rust spells gin a %v1% %b1 bonus to critical damage.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Repair</Item>
+      <Item>Rust</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>RepairLore</Type>
-    <DisplayText>%b1 Repair Lore %v1: Passive: Your Repair and Rust spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <DisplayText>%b1 Repair Lore %v1%: Passive: Your Repair and Rust spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellLore</Type>
@@ -18803,13 +18946,13 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>ReinforcedFists</Type>
     <ApplyToWeaponOnly />
-    <DisplayText>Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one half die. DDO BUG: This affects all weapon types when character is centered.</DisplayText>
+    <DisplayText>Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one half die.</DisplayText>
     <Effect>
       <Type>Weapon_BaseDamage</Type>
       <Bonus>Implement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">0.5</Amount>
-      <Item>All</Item>
+      <Item>Handwraps</Item>
       <Requirements>
         <Requirement>
           <Type>Stance</Type>
@@ -19113,13 +19256,13 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Riik-zik, The Fire-Change</Type>
-    <DisplayText>Riik-zik, The Fire-Change: +1.5[W] Unarmed damage (does not stack with reinforced fists) DDO BUG: This affects all weapon types when character is centered.</DisplayText>
+    <DisplayText>Riik-zik, The Fire-Change: +1.5[W] Unarmed damage (does not stack with reinforced fists)</DisplayText>
     <Effect>
       <Type>Weapon_BaseDamage</Type>
       <Bonus>Implement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1.5</Amount>
-      <Item>All</Item>
+      <Item>Handwraps</Item>
       <Requirements>
         <Requirement>
           <Type>Stance</Type>
@@ -20608,6 +20751,18 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     </Effect>
   </Buff>
   <Buff>
+    <Type>Shield Spikes 2D6</Type>
+    <DisplayText>Shield Spikes: This effect causes this shield to do an extra 4d6 Piercing damage when it is used to shield bash.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Shield Spikes 4D6</Type>
+    <DisplayText>Shield Spikes: This effect causes this shield to do an extra 2d6 Piercing damage when it is used to shield bash.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Shield Spikes 5D6</Type>
+    <DisplayText>Shield Spikes: This effect causes this shield to do an extra 5d6 Piercing damage when it is used to shield bash.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Shield Spikes</Type>
     <DisplayText>Shield Spikes: This effect causes this shield to do an extra 6d6 Piercing damage when it is used to shield bash.</DisplayText>
   </Buff>
@@ -21509,6 +21664,10 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
     <DisplayText>Slicing Winds: This weapon stores the cyclonic might of a windstorm within. When this weapon is used, this power can come to the surface as a series of rushing, cutting winds that deal slashing damage to the target over several seconds.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Slime</Type>
+    <DisplayText>Slime: This weapon stores the corrosive, voracious power of the ooze deep within. When this weapon is used, this power can come to the surface, decreasing an opponent's AC. On-hit: 15% chance to cast Ooze Sunder: -5 AC, DC 40 Fortitude save.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Slowburst</Type>
     <DisplayText>Slowburst: This weapon has an image of a snail worked into its hilt or grip, and it feels cold to the touch. Whenever you score a critical hit with this weapon, the target is slowed for 30 seconds. A DC 15 Will save negates this effect.</DisplayText>
   </Buff>
@@ -22007,7 +22166,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>SonicIntensity</Type>
-    <DisplayText>%b1 Sonic Intensity %v1%: %v1% %b1 bonus to critical damage with Sonic spells</DisplayText>
+    <DisplayText>%b1 Sonic Intensity %v1%: %v1% %b1 bonus to critical damage with Sonic spells.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellCriticalDamage</Type>
@@ -23041,13 +23200,13 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   <Buff>
     <Type>SuperiorReinforcedFists</Type>
     <ApplyToWeaponOnly />
-    <DisplayText>Superior Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one and one half die. DDO BUG: This affects all weapon types when character is centered.</DisplayText>
+    <DisplayText>Superior Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one and one half die.</DisplayText>
     <Effect>
       <Type>Weapon_BaseDamage</Type>
       <Bonus>Implement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">1.5</Amount>
-      <Item>All</Item>
+      <Item>Handwraps</Item>
       <Requirements>
         <Requirement>
           <Type>Stance</Type>
@@ -24716,7 +24875,7 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>VoidIntensity</Type>
-    <DisplayText>%b1 Void Intensity %v1%: %v1% %b1 bonus to critical damage with Negative and Poison spells</DisplayText>
+    <DisplayText>%b1 Void Intensity %v1%: %v1% %b1 bonus to critical damage with Negative and Poison spells.</DisplayText>
     <Ignore>Equipment</Ignore>
     <Effect>
       <Type>SpellCriticalDamage</Type>
