@@ -73,15 +73,30 @@ class SLA
         }
         int Cost() const
         {
-            return static_cast<int>(m_vector[(m_count - 1) * 4 + 1]);
+            size_t index = (m_count - 1) * 4 + 1;
+            while (index > m_vector.size())
+            {
+                index -= 4;
+            }
+            return static_cast<int>(m_vector[index]);
         }
         int MCL() const
         {
-            return static_cast<int>(m_vector[(m_count - 1) * 4 + 2]);
+            size_t index = (m_count - 1) * 4 + 2;
+            while (index > m_vector.size())
+            {
+                index -= 4;
+            }
+            return static_cast<int>(m_vector[index]);
         }
         double Cooldown() const
         {
-            return m_vector[(m_count - 1) * 4 + 3];
+            size_t index = (m_count - 1) * 4 + 3;
+            while (index > m_vector.size())
+            {
+                index -= 4;
+            }
+            return m_vector[index];
         }
     private:
         std::string m_slaName;

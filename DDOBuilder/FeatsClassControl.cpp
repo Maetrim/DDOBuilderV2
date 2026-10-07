@@ -161,7 +161,7 @@ CSize CFeatsClassControl::RequiredSize()
             if (bFeatsAvailable)
             {
                 // 36 pixels for height for this item
-                height += static_cast<LONG>(32 * dScaleFactor) + 4;
+                height += static_cast<LONG>(32 * dScaleFactor) + 5;
             }
             else
             {

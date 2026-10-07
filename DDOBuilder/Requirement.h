@@ -76,6 +76,7 @@ class Requirement :
         bool EvaluateEnhancement(const Build& build) const;
         bool EvaluateExclusive(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateFeat(const Build& build, size_t level, bool includeTomes) const;
+        bool EvaluateFeatTrained(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateFeatAnySource(const Build& build, size_t level, bool includeTomes) const;
         bool EvaluateWeaponGroupMember(const Build& build, WeaponType wtMain, WeaponType wtOffhand, bool bMainhand) const;
         bool EvaluateWeaponTypesEquipped(const Build& build, WeaponType wtMain, WeaponType wtOffhand) const;

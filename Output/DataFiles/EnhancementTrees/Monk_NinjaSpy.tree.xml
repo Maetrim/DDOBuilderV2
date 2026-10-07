@@ -66,8 +66,8 @@ melee weapon, then those weapons will also get the benefit of Ninja Training.</D
       <Name>Ninja Spy: Advanced Ninja Training</Name>
       <InternalName>NSCore2</InternalName>
       <Description>While you are centered, you can use your Dexterity modifier for damage.
-You also gain Doubleshot equal to your Dexterity score while wielding a Shuriken
-(Caps at 100%).
+You also gain Doubleshot equal to half your Dexterity score while wielding a Shuriken
+(Caps at 50%).
 
 If another ability allows you to remain centered while wielding other types of
 melee weapon, then those weapons will also get the benefit of Advanced Ninja Training.</Description>
@@ -105,7 +105,7 @@ melee weapon, then those weapons will also get the benefit of Advanced Ninja Tra
       <Effect>
         <Type>Doubleshot</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>AbilityTotal</AType>
+        <AType>HalfAbilityTotal</AType>
         <StackSource>Dexterity</StackSource>
         <Requirements>
           <Requirement>
@@ -113,7 +113,7 @@ melee weapon, then those weapons will also get the benefit of Advanced Ninja Tra
             <Item>Shuriken</Item>
           </Requirement>
         </Requirements>
-        <Cap>100</Cap>
+        <Cap>50</Cap>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -653,8 +653,8 @@ Rank 3: While centered and Sneaking, your passive Ki regeneration is increased b
       <Icon>NSActionBoost</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <Requirements>
@@ -667,36 +667,36 @@ Rank 3: While centered and Sneaking, your passive Ki regeneration is increased b
       <Selector>
         <EnhancementSelection>
           <Name>Melee/Ranged Power</Name>
-          <Description>Activate to gain a +[10/20/30] Action Boost bonus to Melee/Ranged Power for 20 seconds.</Description>
+          <Description>Activate to gain a +30 Action Boost bonus to Melee/Ranged Power for 20 seconds.</Description>
           <Icon>NSActionBoost</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
                 <Attack>
                    <Name>Ninja Spy: Melee/Ranged Power</Name>
-                   <Description>Activate to gain +[10/20/30]% Action Boost bonus to Melee/Ranged power for 20 seconds.</Description>
+                   <Description>Activate to gain +30% Action Boost bonus to Melee/Ranged power for 20 seconds.</Description>
                    <Icon>KenseiHasteBoost</Icon>
-                   <Cooldown size="3">30 30 30</Cooldown>
+                   <Cooldown size="1">30</Cooldown>
                    <FollowOn>
-                     <Duration size="3">20 20 20</Duration>
-                     <BonusMeleePower size="3">10 20 30</BonusMeleePower>
-                     <BonusRangedPower size="3">10 20 30</BonusRangedPower>
+                     <Duration size="1">20</Duration>
+                     <BonusMeleePower size="1">30</BonusMeleePower>
+                     <BonusRangedPower size="1">30</BonusRangedPower>
                    </FollowOn>
                 </Attack>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Haste Boost</Name>
-          <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+          <Description>Activate to gain a +30% Action Boost bonus to attack speed for 20 seconds.</Description>
           <Icon>KenseiHasteBoost</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
                 <Attack>
                    <Name>Ninja Spy: Haste Boost</Name>
-                   <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+                   <Description>Activate to gain +30% Action Boost bonus to attack speed for 20 seconds.</Description>
                    <Icon>KenseiHasteBoost</Icon>
-                   <Cooldown size="3">30 30 30</Cooldown>
+                   <Cooldown size="1">30</Cooldown>
                    <FollowOn>
-                     <Duration size="3">20 20 20</Duration>
-                     <BonusAlacrity size="3">10 20 30</BonusAlacrity>
+                     <Duration size="1">20</Duration>
+                     <BonusAlacrity size="1">30</BonusAlacrity>
                    </FollowOn>
                 </Attack>
         </EnhancementSelection>
@@ -1483,7 +1483,7 @@ You gain a +25% Competence bonus to Max Hit Points.</Description>
       <Name>Ninja Spy: Shadow Double</Name>
       <InternalName>NSShadowDouble</InternalName>
       <Description>Activate: You gain +50% Doublestrike, +50% Doubleshot, and +5 Assassinate DCs
-for 12 seconds.
+for 12 seconds (Morale bonuses).
 Activation cost: 30 Ki
 Cooldown: 20 seconds.</Description>
       <Icon>NSShadowDouble</Icon>
@@ -1513,7 +1513,7 @@ Cooldown: 20 seconds.</Description>
       <Effect>
         <Type>Doublestrike</Type>
         <Type>Doubleshot</Type>
-        <Bonus>Enhancement</Bonus>
+        <Bonus>Morale</Bonus>
         <AType>Simple</AType>
         <Amount size="1">50</Amount>
         <Requirements>
@@ -1525,7 +1525,7 @@ Cooldown: 20 seconds.</Description>
       </Effect>
       <Effect>
         <Type>TacticalDC</Type>
-        <Bonus>Enhancement</Bonus>
+        <Bonus>Morale</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
         <Item>Assassinate</Item>

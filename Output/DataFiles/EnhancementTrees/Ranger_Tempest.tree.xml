@@ -573,7 +573,7 @@ Rank 3: +1 to Reflex Saving Throws.</Description>
     <EnhancementTreeItem>
       <Name>Tempest: Bleed Them Out</Name>
       <InternalName>TempestBleedThemOut</InternalName>
-      <Description>Deals +[10/20/30]% Damage
+      <Description>Deals +30% Damage
 Cooldown: 6 seconds.
 Melee attack: On successful damage causes your opponent to bleed. The bleed
 effect can stack up to 5 times.
@@ -582,8 +582,8 @@ effect can stack up to 5 times.
       <Icon>TempestBleedThemOut</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <Requirements>
@@ -606,6 +606,11 @@ effect can stack up to 5 times.
       <MinSpent>5</MinSpent>
       <ArrowUp />
       <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>2</Value>
+        </Requirement>
         <Requirement>
           <Type>Enhancement</Type>
           <Item>TempestWhirlingBladesI</Item>
@@ -632,33 +637,40 @@ effect can stack up to 5 times.
       <Icon>TempestActionBoost</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
       <Selector>
         <EnhancementSelection>
           <Name>Haste Boost</Name>
-          <Description>Activate to gain a +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+          <Description>Activate to gain a +30% Action Boost bonus to attack speed for 20 seconds.</Description>
           <Icon>TempestHasteBoost</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
           <Attack>
             <Name>Tempest: Haste Boost</Name>
-            <Description>Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds.</Description>
+            <Description>Activate to gain +30% Action Boost bonus to attack speed for 20 seconds.</Description>
             <Icon>KenseiHasteBoost</Icon>
-            <Cooldown size="3">30 30 30</Cooldown>
+            <Cooldown size="1">30</Cooldown>
             <FollowOn>
-              <Duration size="3">20 20 20</Duration>
-              <BonusAlacrity size="3">10 20 30</BonusAlacrity>
+              <Duration size="1">20</Duration>
+              <BonusAlacrity size="1">30</BonusAlacrity>
             </FollowOn>
           </Attack>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Sprint Boost</Name>
-          <Description>Activate to gain a +[30/40/50]% Action Boost bonus to movement speed for 20 seconds.</Description>
+          <Description>Activate to gain a +50% Action Boost bonus to movement speed for 20 seconds.</Description>
           <Icon>TempestSprintBoost</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
       </Selector>
@@ -924,17 +936,24 @@ This damage scales with 100% Melee Power.</Description>
     <EnhancementTreeItem>
       <Name>Tempest: Elaborate Parry</Name>
       <InternalName>TempestElaborateParry</InternalName>
-      <Description>Elaborate Parry: For the next [6/12/18] seconds, you gain Dodge, Maximum Dodge,
+      <Description>Elaborate Parry: For the next 18 seconds, you gain Dodge, Maximum Dodge,
 and Maximum Dexterity Bonus to light and medium armor, equal to your Dexterity Modifier.
 Cooldown: 90 seconds.</Description>
       <Icon>TempestElaborateParry</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <Clickie />
       <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Ranger</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Tempest: The Growing Storm</Name>
@@ -1127,8 +1146,8 @@ attack that normally deals half damage on a successful save, you only take
       <Icon>TempestCuts</Icon>
       <XPosition>2</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
       <Clickie />
@@ -1150,25 +1169,24 @@ attack that normally deals half damage on a successful save, you only take
       <Selector>
         <EnhancementSelection>
           <Name>Tempest: A Thousand Cuts</Name>
-          <Description>Deals +[10/20/30]% Damage
-Cooldown: 90 seconds.
-Melee Dual Wielding Attack: You gain +[10/20/30] Melee Doublestrike and
-+[10/20/30] Melee Power for 15 seconds.</Description>
+          <Description>Deals +30% Damage
+Cooldown: 60 seconds.
+Melee Dual Wielding Attack: You gain +30 Melee Doublestrike and +30 Melee Power for 15 seconds.</Description>
           <Icon>TempestAThousandCuts</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Tempest: Many Cuts</Name>
-          <Description>Passive: +[2/3/4]% Doublestrike, +[2/3/4] Melee Power.</Description>
+          <Description>Passive: +4% Doublestrike, +4 Melee Power.</Description>
           <Icon>TempestManyCuts</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Effect>
             <Type>Doublestrike</Type>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Stacks</AType>
-            <Amount size="3">2 3 4</Amount>
+            <Amount size="1">4</Amount>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -1216,8 +1234,8 @@ Melee Dual Wielding Attack: You gain +[10/20/30] Melee Doublestrike and
     <EnhancementTreeItem>
       <Name>Tempest: Dance of Death</Name>
       <InternalName>TempestDanceOfDeath</InternalName>
-      <Description>Deals +[10/30/50]% Damage
-Strikethrough: +[0/100/200]%
+      <Description>Deals +50% Damage
+Strikethrough: +200%
 Cooldown: 15 seconds
 Melee Dual Wielding Attack: On Hit: For 10 seconds, you gain the ability to
 Strikethrough regardless of Combat Style for the duration.
@@ -1231,8 +1249,8 @@ even for THF, until activated again or until you swap weapons.</Description>
       <Icon>TempestDanceOfDeath</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
       <Clickie />
@@ -1251,7 +1269,7 @@ even for THF, until activated again or until you swap weapons.</Description>
         <Type>Strikethrough</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
-        <Amount size="3">0 100 200</Amount>
+        <Amount size="1">200</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>

@@ -823,7 +823,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                         dlg.DoModal();
                         GetMouseHook()->RestoreState();
                     }
-                    else if (te != NULL)
+                    else if (item->HasSelections() && te != NULL)
                     {
                         // allow a selection replacement without having to revoke/re-train all
                         CSelectionSelectDialog dlg(
@@ -1622,7 +1622,7 @@ std::string CEnhancementTreeDialog::GetSelection(const EnhancementTreeItem& item
     {
         selection = GetAutoSelection(item);
     }
-    if (selection == "")
+    if (selection == "" && item.HasSelections())
     {
         // need to show the selection dialog
         CSelectionSelectDialog dlg(

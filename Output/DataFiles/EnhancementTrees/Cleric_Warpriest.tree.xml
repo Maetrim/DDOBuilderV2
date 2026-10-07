@@ -34,7 +34,8 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Smite Foe (Melee)</Name>
-               <Description>Melee Attack: Smite your enemy with a melee attack that deals +20% damage. Cooldown: 12 seconds.
+               <Description>On hit: you are healed for 1d3 per Character Level, which scales with Positive
+Spell Power. This healing can only trigger once per use of this ability.
 Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                <Icon>WPSmiteFoe</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -42,7 +43,8 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Smite Foe (Ranged)</Name>
-               <Description>Ranged Attack: Smite your enemy with a ranged attack that deals +20% damage. Cooldown: 12 seconds.
+               <Description>On hit: you are healed for 1d3 per Character Level, which scales with Positive
+Spell Power. This healing can only trigger once per use of this ability.
 Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                <Icon>WPSmiteFoeRanged</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -262,6 +264,7 @@ Passive:
          <InternalName>WPCore5</InternalName>
          <Description>Haste is added to your spell book as a level 3 spell.
 Passive:
++5 Melee and Ranged Power
 +1 Imbue Dice
 +2 Armor Class
 +5 Fire Spell Power
@@ -292,6 +295,13 @@ Passive:
             <AType>SpellInfo</AType>
             <Amount size="3">3 20 -1</Amount>
             <Item>Cleric</Item>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
          </Effect>
          <Effect>
             <Type>ImbueDice</Type>
@@ -334,7 +344,8 @@ Passive:
       <EnhancementTreeItem>
          <Name>Warpriest: Implacable Foe</Name>
          <InternalName>WPCore6</InternalName>
-         <Description>Choose between Strength and Wisdom variants.</Description>
+         <Description>Choose between Strength and Wisdom variants.
++10 Melee and Ranged Power.</Description>
          <Icon>WPImplacableFoe</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -374,6 +385,7 @@ will refresh every 3 seconds on you and each ally that remains in range.
 These effects will expire 5 seconds after they are no longer refreshed.
 Cooldown: 3 minutes
 Passive:
++10 Melee and Ranged Power
 Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 25.
 +2 Strength, +2 Constitution
 +2 Armor Class
@@ -398,6 +410,7 @@ attacks will deal 10% additional damage. For the next 18 seconds, these bonuses
 will refresh every 3 seconds on you and each ally that remains in range.
 These effects will expire 5 seconds after they are no longer refreshed. (Cooldown: 3 minutes)
 Passive:
++10 Melee and Ranged Power
 Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 25.
 +2 Constitution, +2 Wisdom
 +2 Armor Class
@@ -434,31 +447,26 @@ Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 2
             <Item>Good</Item>
             <Item>Lawful</Item>
          </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 1-->
       <EnhancementTreeItem>
          <Name>Warpriest: Divine Might</Name>
          <InternalName>WPDivineMight</InternalName>
-         <Description>Battle Trance: You gain an Insight bonus to Attack, Damage, and the DC
-of tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
-Anti-requisite: This ability can not be trained if you have any other Battle Trance
-abilities.</Description>
+         <Description>Choose your upgrade: Divine Might or Divine Will</Description>
          <Icon>WPDivineMight</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
-         <Stance>
-            <Name>Divine Might</Name>
-            <Icon>WPDivineMight</Icon>
-            <Description>Battle Trance: You gain an Insight bonus to Attack, Damage, and the DC
-of tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
-Anti-requisite: This ability can not be trained if you have any other Battle Trance
-abilities.</Description>
-            <Group>Battle Trance</Group>
-         </Stance>
          <Requirements>
             <Requirement>
                <Type>BaseClassMinLevel</Type>
@@ -478,39 +486,112 @@ abilities.</Description>
             <Item>WPDivineMight</Item>
             <Item>Battle Trance</Item>
          </Effect>
-         <Effect>
-            <DisplayName>Warpriest: Divine Might (Cha Mod / 2)</DisplayName>
-            <Type>TacticalDC</Type>
-            <Bonus>Insightful</Bonus>
-            <AType>HalfAbilityMod</AType>
-            <StackSource>SnapshotCharisma</StackSource>
-            <ApplyAsItemEffect/>
-            <Item>Trip</Item>
-            <Item>Sunder</Item>
-            <Item>Stun</Item>
-            <Item>General</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Divine Might</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
-         <Effect>
-            <DisplayName>Warpriest: Divine Might (Cha Mod / 2)</DisplayName>
-            <Type>Weapon_AttackAndDamage</Type>
-            <Bonus>Insightful</Bonus>
-            <AType>HalfAbilityMod</AType>
-            <StackSource>SnapshotCharisma</StackSource>
-            <ApplyAsItemEffect/>
-            <Item>All</Item>
-            <Requirements>
-               <Requirement>
-                  <Type>Stance</Type>
-                  <Item>Divine Might</Item>
-               </Requirement>
-            </Requirements>
-         </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Divine Might</Name>
+               <Description>Activate: You gain an Insight bonus to Attack, damage and the DC of tactical
+feats equal to 1/2 of your Charisma modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds</Description>
+               <Icon>WPDivineMight</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+               <Stance>
+                  <Name>Divine Might</Name>
+                  <Icon>WPDivineMight</Icon>
+                <Description>You gain an Insight bonus to Attack, damage and the DC of tactical feats equal to 1/2 of your
+Charisma modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds</Description>
+                  <Group>Battle Trance</Group>
+               </Stance>
+               <Effect>
+                  <DisplayName>Warpriest: Divine Might (Cha Mod / 2)</DisplayName>
+                  <Type>Weapon_AttackAndDamage</Type>
+                  <Bonus>Insightful</Bonus>
+                  <AType>HalfAbilityMod</AType>
+                  <StackSource>SnapshotCharisma</StackSource>
+                  <ApplyAsItemEffect/>
+                  <Item>All</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Divine Might</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+               <Effect>
+                  <DisplayName>Warpriest: Divine Might (Cha Mod / 2)</DisplayName>
+                  <Type>TacticalDC</Type>
+                  <Bonus>Insightful</Bonus>
+                  <AType>HalfAbilityMod</AType>
+                  <StackSource>SnapshotCharisma</StackSource>
+                  <ApplyAsItemEffect/>
+                  <Item>Trip</Item>
+                  <Item>Sunder</Item>
+                  <Item>Stun</Item>
+                  <Item>General</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Divine Will</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Divine Will</Name>
+                <Description>You gain an Insight bonus to Attack, damage and the DC of tactical feats equal to 1/2 of your
+Wisdom modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds</Description>
+               <Icon>WPDivineMight</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+               <Stance>
+                  <Name>Divine Will</Name>
+                  <Icon>WPDivineMight</Icon>
+                  <Description>You gain an Insight bonus to Attack, damage and the DC of tactical feats equal to 1/2 of your
+Wisdom modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds</Description>
+                  <Group>Battle Trance</Group>
+               </Stance>
+               <Effect>
+                  <DisplayName>Warpriest: Divine Will (Wis Mod / 2)</DisplayName>
+                  <Type>Weapon_AttackAndDamage</Type>
+                  <Bonus>Insightful</Bonus>
+                  <AType>HalfAbilityMod</AType>
+                  <StackSource>SnapshotWisdom</StackSource>
+                  <ApplyAsItemEffect/>
+                  <Item>All</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Divine Will</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+               <Effect>
+                  <DisplayName>Warpriest: Divine Will (Wis Mod / 2)</DisplayName>
+                  <Type>TacticalDC</Type>
+                  <Bonus>Insightful</Bonus>
+                  <AType>HalfAbilityMod</AType>
+                  <StackSource>SnapshotWisdom</StackSource>
+                  <ApplyAsItemEffect/>
+                  <Item>Trip</Item>
+                  <Item>Sunder</Item>
+                  <Item>Stun</Item>
+                  <Item>General</Item>
+                  <Requirements>
+                     <Requirement>
+                        <Type>Stance</Type>
+                        <Item>Divine Will</Item>
+                     </Requirement>
+                  </Requirements>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warpriest: Toughness</Name>
@@ -733,15 +814,15 @@ and damage and +3 Universal Spell Power</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Inflame</Name>
          <InternalName>WPInflame</InternalName>
-         <Description>You and your nearby allies gain a +[2/3/4] Action Boost bonus to Armor Class,
+         <Description>You and your nearby allies gain a +4 Action Boost bonus to Armor Class,
 Attack Rolls, and Damage Rolls.
 Duration: 30 seconds.
-Cooldown: 90 seconds minute</Description>
+Cooldown: 40 seconds minute</Description>
          <Icon>WPInflame</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <ArrowUp/>
@@ -756,12 +837,12 @@ Cooldown: 90 seconds minute</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Action Boost Power</Name>
          <InternalName>WPActionBoostPower</InternalName>
-         <Description>Activate to gain a +[10/20/30] Action Boost bonus to Melee and Ranged power for 20 seconds.</Description>
+         <Description>Activate to gain a +30 Action Boost bonus to Melee and Ranged power for 20 seconds.</Description>
          <Icon>WPActionBoostPower</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements>
@@ -799,8 +880,8 @@ will be knocked down. (Does not affect bosses.)</Description>
          <Icon>WPRadiantFlourish</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
          <Requirements>
@@ -813,24 +894,24 @@ will be knocked down. (Does not affect bosses.)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Radiant Flourish (Melee)</Name>
-               <Description>Deals: +[10/20/30]% Damage
-Favored Weapon Melee Attack: On Hit: Enemy takes [1/2/3]d6 Light Damage.
+               <Description>Deals: +30% Damage
+Favored Weapon Melee Attack: On Hit: Enemy takes 3d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
 Non-boss enemies have a small chance to be blinded with no save.
 6 Second cooldown.</Description>
                <Icon>WPRadiantFlourish</Icon>
-               <CostPerRank size="1">1</CostPerRank>
+               <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Radiant Flourish (Ranged)</Name>
-               <Description>Deals: +[10/20/30]% Damage
-Favored Weapon Ranged Attack: On Hit: Enemy takes [1/2/3]d6 Light Damage.
+               <Description>Deals: +30% Damage
+Favored Weapon Ranged Attack: On Hit: Enemy takes 3d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
 Non-boss enemies have a small chance to be blinded with no save.
 6 Second cooldown</Description>
                <Icon>WPRadiantFlourishRanged</Icon>
-               <CostPerRank size="1">1</CostPerRank>
+               <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
          </Selector>
@@ -994,8 +1075,8 @@ this skill.</Description>
       <EnhancementTreeItem>
          <Name>War Priest: Fires of Fury</Name>
          <InternalName>WPFiresOfFury</InternalName>
-         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
-with Fire Spell Power.</Description>
+         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire or Light Damage, scaling
+with Fire/Light Spell Power.</Description>
          <Icon>WSFiresOfFury</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -1010,13 +1091,36 @@ with Fire Spell Power.</Description>
                <Value>4</Value>
             </Requirement>
          </Requirements>
-         <Stance>
-            <Name>War Priest: Fires of Fury</Name>
-         <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+         <Selector>
+            <EnhancementSelection>
+               <Name>Fire</Name>
+               <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
 with Fire Spell Power.</Description>
-            <Icon>WSFiresOfFury</Icon>
-            <Group>Imbue</Group>
-         </Stance>
+               <Icon>WSFiresOfFury</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Stance>
+                  <Name>War Priest: Fires of Fury</Name>
+                  <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+with Fire Spell Power.</Description>
+                  <Icon>WSFiresOfFury</Icon>
+                  <Group>Imbue</Group>
+               </Stance>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Light</Name>
+               <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Light Damage, scaling
+with Light Spell Power.</Description>
+               <Icon>WSFiresOfFury</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Stance>
+                  <Name>War Priest: Fires of Fury (Light)</Name>
+                  <Description>Imbue Toggle: Your Favored Weapons deal an additional 1d6 Light Damage, scaling
+with Light Spell Power.</Description>
+                  <Icon>WSFiresOfFury</Icon>
+                  <Group>Imbue</Group>
+               </Stance>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warpriest: Righteous Weapons IV</Name>
@@ -1179,7 +1283,8 @@ and damage and +3 Universal Spell Power</Description>
          <Name>War Priest: Divine Power</Name>
          <InternalName>WPDivinePower</InternalName>
          <Description>Passive: Your god has imbued you with power and skill in combat, granting a +6 Sacred
-bonus to Strength, and a base attack bonus equal to a fighter of the same level.</Description>
+bonus to Strength, and a base attack bonus equal to a fighter of the same level.
++1 Competence bonus to Critical Multiplier.</Description>
          <Icon>WPDivinePower</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1210,6 +1315,14 @@ bonus to Strength, and a base attack bonus equal to a fighter of the same level.
             <Bonus>Enhancement</Bonus>
             <Amount size="1">1</Amount>
             <AType>Simple</AType>
+         </Effect>
+         <Effect>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Item>All</Item>
+            <ApplyAsItemEffect/>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1269,10 +1382,8 @@ Shares its cooldown with the Great Cleave feat.</Description>
       <EnhancementTreeItem>
          <Name>Warpriest: Wrathful Weapons</Name>
          <InternalName>WPWrathfulWeapons</InternalName>
-         <Description>When wielding your religion's favored weapon in your main hand, you gain +3 to hit
-and damage, and +9 Universal Spell Power. When you score a Vorpal Hit with your
-religion's favored weapon, you gain +3 bonus Imbue dice for the next 12 seconds,
-and your Fires of Fury Imbue Toggle changes its damage type from Fire to Light.</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain +3 to
+hit and damage, and +9 Universal Spell Power. +3 Imbue Dice.</Description>
          <Icon>WPWrathfulWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>

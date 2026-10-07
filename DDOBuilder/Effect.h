@@ -502,6 +502,7 @@ enum AmountType
     Amount_APCount,             // stacks based on AP spent in tree "Item"
     Amount_AbilityValue,        // Stacks are equal to the specific abilities total inherent value (RACE + Buy + Inherent + Level ups)
     Amount_AbilityTotal,        // Stacks are equal to the specific abilities total value
+    Amount_HalfAbilityTotal,    // Stacks are equal to the specific abilities total value / 2
     Amount_AbilityTotalIndex,   // Stacks are equal to the specific abilities total value
     Amount_AbilityMod,          // Stacks are equal to the specific abilities mod value
     Amount_HalfAbilityMod,      // Stacks are equal to the specific abilities mod value / 2
@@ -515,6 +516,7 @@ enum AmountType
     Amount_SpellInfo,           // 3 entries that specify spell level, cost and MCL
     Amount_Dice,                // Damage Dice are defined
     Amount_CriticialDice,       // Damage Dice are defined, look up based on crit multiplier
+    Amount_HalfStrikethrough,   // equal to half your strikethrough value
     Amount_BAB,                 // amount is multiplied by BAB value
 };
 const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
@@ -530,6 +532,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_APCount, L"APCount"},           // Item is the tree name
     {Amount_AbilityValue, L"AbilityValue"}, // Item is the ability name
     {Amount_AbilityTotal, L"AbilityTotal"}, // Item is the ability name
+    {Amount_HalfAbilityTotal, L"HalfAbilityTotal"}, // Item is the ability name
     {Amount_AbilityTotalIndex, L"AbilityTotalIndex"}, // Item is the ability name
     {Amount_AbilityMod, L"AbilityMod"},     // Item is the ability name
     {Amount_HalfAbilityMod, L"HalfAbilityMod"},     // Item is the ability name
@@ -543,6 +546,7 @@ const XmlLib::enumMapEntry<AmountType> amountTypeMap[] =
     {Amount_SpellInfo, L"SpellInfo"},      // item is spell name and then class
     {Amount_Dice, L"Dice"},
     {Amount_CriticialDice, L"CriticalDice"},
+    {Amount_HalfStrikethrough, L"HalfStrikethrough"},
     {Amount_BAB, L"BAB"},
     {AmountType(0), NULL}
 };

@@ -794,7 +794,7 @@ void CEnhancementsPane::EnableDisableTreeSaveLoad()
         Build* pBuild = m_pCharacter->ActiveBuild();
         if (pBuild != NULL)
         {
-            const Destiny_SelectedTrees& selTrees = pBuild->DestinySelectedTrees();
+            const Enhancement_SelectedTrees& selTrees = pBuild->EnhancementSelectedTrees();
             for (size_t i = 0; i < MST_Number; ++i)
             {
                 bool bEnableSave = false;

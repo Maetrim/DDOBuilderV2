@@ -26,6 +26,7 @@ enum RequirementType
     Requirement_Enhancement,                // must have the listed enhancement/selection/ranks
     Requirement_Exclusive,                  // must be the named exclusive item
     Requirement_Feat,                       // must have this feat trained (not granted)
+    Requirement_FeatTrained,                // must have this feat trained (not automatic)
     Requirement_FeatAnySource,              // must have this feat from any source (except equipment)
     Requirement_GroupMember,                // weapon has to be a member of this named group type (group does not have to exist)
     Requirement_GroupMember2,               // off hand weapon has to be a member of this named group type (group does not have to exist)
@@ -63,6 +64,7 @@ const XmlLib::enumMapEntry<RequirementType> requirementTypeMap[] =
     {Requirement_Enhancement,               L"Enhancement"},
     {Requirement_Exclusive,                 L"Exclusive"},
     {Requirement_Feat,                      L"Feat"},
+    {Requirement_FeatTrained,               L"FeatTrained"},
     {Requirement_FeatAnySource,             L"FeatAnySource"},
     {Requirement_GroupMember,               L"GroupMember"},
     {Requirement_GroupMember2,              L"GroupMember2"},

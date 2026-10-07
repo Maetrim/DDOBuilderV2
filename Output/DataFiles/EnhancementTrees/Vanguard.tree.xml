@@ -159,8 +159,8 @@ While you have a shield equipped, +5% Combat Style bonus to melee attack speed.<
       <Name>Vanguard: Shield Combat II</Name>
       <InternalName>VanguardCore4</InternalName>
       <Description>Additional +10% (total 30%) chance to make a secondary shield bash.
-While you have a shield equipped, +5% (total 10%) Combat style bonus to Melee
-Attack Speed.
+While you have a shield equipped, you gain a +1 Competence Bonus to Critical
+Multiplier and a +5% (total 10%) Combat style bonus to Melee Attack Speed.
 
 Your shield gains +1[W].</Description>
       <Icon>VanguardShieldCombatII</Icon>
@@ -212,6 +212,20 @@ Your shield gains +1[W].</Description>
             <Item>Sword and Board</Item>
           </Requirement>
         </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Shield</Item>
+            </Requirement>
+         </Requirements>
       </Effect>
       <Effect>
         <Type>Weapon_BaseDamage</Type>
@@ -497,8 +511,8 @@ DC(10 + 1/2 Character level + strength modifier + stun bonus)</Description>
     <EnhancementTreeItem>
       <Name>Vanguard: Shield Smash</Name>
       <InternalName>VanguardShieldSmash</InternalName>
-      <Description>Deals +[25/50/75]% Damage
-Cooldown: [12/9/6] seconds
+      <Description>Deals +75% Damage
+Cooldown: 6 seconds
 Shield Attack: On damage you gain 1 stack of Battle Guard.
 Battle Guard: +10 PRR/MRR for 12 seconds, stacks 5 times. Each stack lasts 12 seconds.
 Blocking for more than 3 seconds removes all stacks.</Description>
@@ -506,7 +520,7 @@ Blocking for more than 3 seconds removes all stacks.</Description>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie/>
       <Requirements>
@@ -526,7 +540,7 @@ Blocking for more than 3 seconds removes all stacks.</Description>
       <Effect>
         <Type>CreateSlider</Type>
         <Bonus>Enhancement</Bonus>
-        <Item>Shield Smash</Item>
+        <Item>Battle Guard</Item>
         <AType>Slider</AType>
         <Amount size="3">0 0 5</Amount>
       </Effect>
@@ -536,7 +550,7 @@ Blocking for more than 3 seconds removes all stacks.</Description>
         <Bonus>Enhancement</Bonus>
         <Amount size="1">10</Amount>
         <AType>SliderValue</AType>
-        <StackSource>Shield Smash</StackSource>
+        <StackSource>Battle Guard</StackSource>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -697,15 +711,15 @@ Reduces total penalty to skills from armor and shield by [1/2/3] points.</Descri
     <EnhancementTreeItem>
       <Name>Vanguard: Stunning Shield</Name>
       <InternalName>VanguardStunningShield</InternalName>
-      <Description>Deals +[10/20/30]% Damage
-Cooldown: [45/30/15] seconds
+      <Description>Deals +30% Damage
+Cooldown: 15 seconds
 Shield Attack: This attack stuns enemies unless they make a Fortitude save vs
 DC(10 + highest ability modifier + character level + stunning bonuses).</Description>
       <Icon>VanguardStunningShield</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie/>
       <Requirements>
@@ -724,7 +738,7 @@ DC(10 + highest ability modifier + character level + stunning bonuses).</Descrip
       </Requirements>
       <DC>
         <Name>Vanguard: Shield Champion</Name>
-        <Description>While shield equipped, Activate: Melee shield bash with shield for +[10/20/30]% Damage.</Description>
+        <Description>While shield equipped, Activate: Melee shield bash with shield for +30% Damage.</Description>
         <Icon>VanguardStunningShield</Icon>
         <DCType>Stun</DCType>
         <DCVersus>Fortitude</DCVersus>
@@ -781,19 +795,19 @@ seconds. Anti-requisite: Deflect Arrows.</Description>
     <EnhancementTreeItem>
       <Name>Vanguard: Action Boost Power</Name>
       <InternalName>VanguardActionBoostMeleePower</InternalName>
-      <Description>+[10/20/30] Action Boost bonus to Melee and Ranged Power for 20 seconds.
+      <Description>+30 Action Boost bonus to Melee and Ranged Power for 20 seconds.
 Usable 5 times per rest. Cooldown: 30 seconds</Description>
       <Icon>VanguardActionBoostMeleePower</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie/>
       <Stance>
         <Name>Vanguard: Power</Name>
         <Icon>VanguardActionBoostMeleePower</Icon>
-        <Description>+[10/20/30] Action Boost bonus to Melee and Ranged Power for 20 seconds</Description>
+        <Description>+30 Action Boost bonus to Melee and Ranged Power for 20 seconds</Description>
       </Stance>
       <Requirements>
         <RequiresOneOf>
@@ -814,7 +828,7 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
         <Type>RangedPower</Type>
         <Bonus>Enhancement</Bonus>
         <AType>Stacks</AType>
-        <Amount size="3">10 20 30</Amount>
+        <Amount size="1">30</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -1127,16 +1141,16 @@ Undocumented: Also provides the same bonus to Tower Shield MDB.</Description>
     <EnhancementTreeItem>
       <Name>Vanguard: Shield Charge</Name>
       <InternalName>VanguardShieldCharge</InternalName>
-      <Description>Deals +[10/20/30]% Damage
-Cooldown: [36/24/12] seconds
+      <Description>Deals +30% Damage
+Cooldown: 12 seconds
 Shield Attack: Rush forward up to 30 feet to your selected opponent and deliver
 a shield attack that hits enemies around you. Enemies can be knocked down.
 DC: 10 + Max[Str,Dex,Con,Int,Wis,Cha] Modifier + character level + trip bonuses.</Description>
       <Icon>VanguardShieldCharge</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <Clickie/>
       <Requirements>
@@ -1354,8 +1368,8 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
     <EnhancementTreeItem>
       <Name>Vanguard: Shield Rush</Name>
       <InternalName>VanguardShieldRush</InternalName>
-      <Description>Deals +[20/40/60]% Damage
-Cooldown: [40/30/20] seconds
+      <Description>Deals +60% Damage
+Cooldown: 20 seconds
 Shield Attack: Move forward in a line, delivering a shield bash attack to every
 creature hit. Each opponent is knocked down. The knockdown is negated on a
 Fortitude saving throw vs DC (20 + highest ability modifier + class level +
@@ -1363,8 +1377,8 @@ bonus to trip attacks).</Description>
       <Icon>VanguardShieldRush</Icon>
       <XPosition>2</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Clickie/>
       <Tier5/>
@@ -1446,7 +1460,7 @@ bonus to trip attacks).</Description>
     <EnhancementTreeItem>
       <Name>Vanguard: Brutal Impact</Name>
       <InternalName>VanguardBrutalImpact</InternalName>
-      <Description>+1 Critical Damage Multiplier on a roll of a 19-20.
+      <Description>While wielding a Shield, you gain a +1 Competence Bonus to Critical Threat Range.
 You gain a +25% Competence bonus to Maximum Hit Points.</Description>
       <Icon>VanguardBrutalImpact</Icon>
       <XPosition>4</XPosition>
@@ -1474,12 +1488,18 @@ You gain a +25% Competence bonus to Maximum Hit Points.</Description>
         </RequiresOneOf>
       </Requirements>
       <Effect>
-        <Type>Weapon_CriticalMultiplier19To20</Type>
+        <Type>Weapon_CriticalRange</Type>
         <Bonus>Competence</Bonus>
         <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
         <ApplyAsItemEffect/>
+         <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Shield</Item>
+            </Requirement>
+         </Requirements>
       </Effect>
       <Effect>
         <Type>HitpointsPercent</Type>

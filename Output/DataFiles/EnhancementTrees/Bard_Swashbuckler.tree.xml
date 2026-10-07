@@ -15,8 +15,8 @@
       <EnhancementTreeItem>
          <Name>Swashbuckler: Confidence</Name>
          <InternalName>SBCore1</InternalName>
-         <Description>Passive: +1% Dodge, +1 Reflex Save, and +1 to the Max Dex Bonus of your Armor
-per Swashbuckler Core Ability you have.</Description>
+         <Description>Passive: +1% Dodge, +1 Reflex Save, +5 Sonic Spell Power and +1 to the Max Dex
+Bonus of your Armor per Swashbuckler Core Ability you have.</Description>
          <Icon>SBConfidence</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -49,6 +49,13 @@ per Swashbuckler Core Ability you have.</Description>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Sonic</Item>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -108,6 +115,13 @@ Light Pick: +1 Range</Description>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Sonic</Item>
          </Effect>
          <Effect>
             <Type>Doublestrike</Type>
@@ -356,6 +370,13 @@ Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Uncanny Dodge</Item>
@@ -432,6 +453,13 @@ Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
             <Type>Doublestrike</Type>
             <Type>Doubleshot</Type>
             <Bonus>Enhancement</Bonus>
@@ -474,8 +502,8 @@ Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
       <EnhancementTreeItem>
          <Name>Swashbuckler: Roll with the Punches</Name>
          <InternalName>SBCore5</InternalName>
-         <Description>While Swashbuckling, gain an additional +1% Doublestrike, 1% Doubleshot,
-+1 Damage, +5 Dodge Cap, and the Slippery Mind feat.</Description>
+         <Description>While Swashbuckling, gain an additional +5 Melee and Ranged Power, +2 Imbue Dice,
++5% Doublestrike, 5% Doubleshot, +1 Damage, +5 Dodge Cap, and the Slippery Mind feat.</Description>
          <Icon>SBRollWithThePunches</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -514,11 +542,43 @@ Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
             <Type>Doublestrike</Type>
             <Type>Doubleshot</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
-            <Amount size="1">1</Amount>
+            <Amount size="1">5</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -562,9 +622,9 @@ Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
          <Name>Swashbuckler: Evasive Maneuvers</Name>
          <InternalName>SBCore6</InternalName>
          <Description>+2 Charisma, +2 Dexterity.
-While Swashbuckling, you gain the Evasion feat, an additional +1% Doublestrike,
-1% Doubleshot, +1 Damage, and the weapon in your main hand gains an additional
-+1 to its Enhancement bonus.</Description>
+While Swashbuckling, you gain the Improved Evasion feat, +10 Melee and Ranged
+Power, +2 Imbue Dice, an additional +5% Doublestrike, 5% Doubleshot, +1 Damage,
+and the weapon in your main hand gains an additional +1 to its Enhancement bonus.</Description>
          <Icon>SBEvasiveManeuvers</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -614,6 +674,13 @@ While Swashbuckling, you gain the Evasion feat, an additional +1% Doublestrike,
             <Amount size="1">1</Amount>
          </Effect>
          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+            <Item>Sonic</Item>
+         </Effect>
+         <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Item>Charisma</Item>
@@ -626,7 +693,32 @@ While Swashbuckling, you gain the Evasion feat, an additional +1% Doublestrike,
             <Type>Doubleshot</Type>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
-            <Amount size="1">1</Amount>
+            <Amount size="1">5</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+            <Requirements>
+               <Requirement>
+                  <Type>Stance</Type>
+                  <Item>Swashbuckling</Item>
+               </Requirement>
+            </Requirements>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
             <Requirements>
                <Requirement>
                   <Type>Stance</Type>
@@ -663,7 +755,7 @@ While Swashbuckling, you gain the Evasion feat, an additional +1% Doublestrike,
          <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
-            <Item>Evasion</Item>
+            <Item>Improved Evasion</Item>
             <AType>NotNeeded</AType>
             <Requirements>
                <Requirement>
@@ -706,7 +798,7 @@ While Swashbuckling, you gain the Evasion feat, an additional +1% Doublestrike,
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
          <Requirements>
@@ -719,9 +811,9 @@ While Swashbuckling, you gain the Evasion feat, an additional +1% Doublestrike,
          <Selector>
             <EnhancementSelection>
                <Name>Blow By Blow</Name>
-               <Description>+[1/2/3] Critical Threat Range
-Melee attack: On Damage: [1/2/3]d6 extra Sonic damage, and reduces your threat with
-nearby enemies by [100/200/300]. This Sonic damage scales with spell power.
+               <Description>+3 Critical Threat Range
+Melee attack: On Damage: 3d6 extra Sonic damage, and reduces your threat with
+nearby enemies by 300. This Sonic damage scales with spell power.
 Cooldown: 12 seconds</Description>
                <Icon>SBBlowByBlow</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -729,9 +821,9 @@ Cooldown: 12 seconds</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Blow By Blow (Ranged)</Name>
-               <Description>+[1/2/3] Critical Threat Range
-Ranged attack: On Damage: [1/2/3]d6 extra Sonic damage, and reduces your threat with
-nearby enemies by [100/200/300]. This Sonic damage scales with spell power.
+               <Description>+3 Critical Threat Range
+Ranged attack: On Damage: 3d6 extra Sonic damage, and reduces your threat with
+nearby enemies by 300. This Sonic damage scales with spell power.
 Cooldown: 12 seconds</Description>
                <Icon>SBBlowByBlowRanged</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -747,7 +839,7 @@ Cooldown: 12 seconds</Description>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
          <Requirements>
@@ -761,8 +853,8 @@ Cooldown: 12 seconds</Description>
             <EnhancementSelection>
                <Name>Appalling Diatribe</Name>
                <Description>Activate to reduce the Reflex saves of nearby enemies by 3.
-Costs: [16/12/8] SP
-Cooldown: [20/15/10] seconds</Description>
+Costs: 8 SP
+Cooldown: 10 seconds</Description>
                <Icon>SBAppallingDiatribe</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -770,8 +862,8 @@ Cooldown: [20/15/10] seconds</Description>
             <EnhancementSelection>
                <Name>Cutting Jibes</Name>
                <Description>Activate to reduce the Will saves of nearby enemies by 3.
-Costs: [16/12/8] SP
-Cooldown: [20/15/10] seconds</Description>
+Costs: 8 SP
+Cooldown: 10 seconds</Description>
                <Icon>SBCuttingJibes</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -779,8 +871,8 @@ Cooldown: [20/15/10] seconds</Description>
             <EnhancementSelection>
                <Name>Scathing Words</Name>
                <Description>Activate to reduce the Fortitude saves of nearby enemies by 3.
-Costs: [16/12/8] SP
-Cooldown: [20/15/10] seconds</Description>
+Costs: 8 SP
+Cooldown: 10 seconds</Description>
                <Icon>SBScathingWords</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -858,15 +950,15 @@ Rank 3: When you Tumble, you gain +3 to saves against traps for 6 seconds.
       <EnhancementTreeItem>
          <Name>Swashbuckler: En Pointe</Name>
          <InternalName>SBEnPointe</InternalName>
-         <Description>Deals +[10/20/30]% Damage
-Melee Attack: Make two attacks with +[4/8/12] Critical Threat Range, but -1 Critical
+         <Description>Deals +30% Damage
+Melee Attack: Make two attacks with +12 Critical Threat Range, but -1 Critical
 Multiplier. Costs 10 Spell Points to activate.
 Cooldown: 12 seconds</Description>
          <Icon>SBEnPointe</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements>
@@ -966,8 +1058,8 @@ Sonic Damage. This Sonic damage scales with spell power.</Description>
          <Icon>SBActionBoost</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements>
@@ -980,18 +1072,18 @@ Sonic Damage. This Sonic damage scales with spell power.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Doubleshot</Name>
-               <Description>Activate to gain +[10/20/30]% Action Boost bonus to Doubleshot for 20 seconds.
+               <Description>Activate to gain +30% Action Boost bonus to Doubleshot for 20 seconds.
 Usable 5 times per rest. </Description>
                <Icon>SBDoubleshotboost</Icon>
-               <CostPerRank size="1">1</CostPerRank>
+               <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Doublestrike</Name>
-               <Description>Activate to gain +[10/20/30]% Action Boost bonus to Doublestrike for 20 seconds.
+               <Description>Activate to gain +30% Action Boost bonus to Doublestrike for 20 seconds.
 Usable 5 times per rest.</Description>
                <Icon>SBDoublestrikeBoost</Icon>
-               <CostPerRank size="1">1</CostPerRank>
+               <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
          </Selector>
@@ -1038,8 +1130,7 @@ down with no save. Cooldown: 12 seconds.</Description>
             <EnhancementSelection>
                <Name>Arcane Marauder</Name>
                <Description>Passive: You can now Swashbuckle with an Orb in your off hand.
-(Does not count as a Buckler for Buckler-specific abilities).
-Requires Magical Training (or the Enhancement equivalent)</Description>
+(Does not count as a Buckler for Buckler-specific abilities).</Description>
                <Icon>SBArcaneMarauder</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Requirements>
@@ -1565,7 +1656,7 @@ Multi-selector, Melee or Ranged Attack: Make an attack with +30% damage.
 This instantly kills enemies that are Dancing, Dazed, Fascinated, Mesmerized,
 Paralyzed, Petrified, Sleeping, Stunned, or Tripped, unless they succeed a
 Fortitude save (d20 + your Perform skill).
-Cooldown: 20 seconds</Description>
+Cooldown: 12 seconds</Description>
          <Icon>SBCoupDeGrace</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1641,6 +1732,38 @@ Rank 3: +20% competence bonus to hit points.</Description>
             <Rank>3</Rank>
             <Amount size="1">20</Amount>
             <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swashbuckler: Improved Uncanny Dodge</Name>
+         <InternalName>SwashbucklerImprovedUncannyDodge</InternalName>
+         <Description>Activate this ability to gain a temporary 50% Dodge bonus and a +6 Reflex save bonus.
+This feat also grants you a 1% passive bonus to Dodge at levels 4, 6, 8, 12, 16 and 20.
+This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
+         <Icon>UncannyDodge</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Type>ClassMinLevel</Type>
+               <Item>Bard</Item>
+               <Value>5</Value>
+            </Requirement>
+            <Requirement>
+               <Type>Level</Type>
+               <Value>12</Value>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Improved Uncanny Dodge</Item>
+            <AType>NotNeeded</AType>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

@@ -3,7 +3,6 @@
   <EnhancementTree>
     <Name>Harper Agent</Name>
     <Version>1</Version>
-    <IsUniversalTree />
     <Requirements>
       <RequiresOneOf>
         <Requirement>
@@ -17,12 +16,13 @@
         </Requirement>
       </RequiresOneOf>
     </Requirements>
-    <Background>Universal</Background>
+    <IsUniversalTree />
     <Icon>Harper</Icon>
-    <!--Harper tree core items-->
+    <Background>Universal</Background>
+    <!--Core Items-->
     <EnhancementTreeItem>
-      <InternalName>HarperCore1</InternalName>
       <Name>Harper Agent: Agent of Good I</Name>
+      <InternalName>HarperCore1</InternalName>
       <Description>+1 to hit and damage, +1 to hit versus evil, +1 Universal Spell Power.</Description>
       <Icon>AgentOfGood</Icon>
       <XPosition>0</XPosition>
@@ -33,22 +33,22 @@
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Weapon_Attack</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
-         <Requirements>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Evil Opponent</Item>
-            </Requirement>
-         </Requirements>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Evil Opponent</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>UniversalSpellPower</Type>
@@ -58,8 +58,8 @@
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperCore2</InternalName>
       <Name>Harper Agent: Harper Training I</Name>
+      <InternalName>HarperCore2</InternalName>
       <Description>Select +1 to an ability score of your choice.</Description>
       <Icon>HarperTraining</Icon>
       <XPosition>1</XPosition>
@@ -120,8 +120,8 @@
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperCore3</InternalName>
       <Name>Harper Agent: Agent of Good II</Name>
+      <InternalName>HarperCore3</InternalName>
       <Description>+1 to hit and damage, +2 to hit and damage versus evil, and +5 Universal Spell Power.</Description>
       <Icon>AgentOfGood</Icon>
       <XPosition>2</XPosition>
@@ -142,22 +142,22 @@
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
-        <Item>All</Item>
-         <Requirements>
-            <Requirement>
-               <Type>Stance</Type>
-               <Item>Evil Opponent</Item>
-            </Requirement>
-         </Requirements>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Evil Opponent</Item>
+          </Requirement>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>UniversalSpellPower</Type>
@@ -167,8 +167,8 @@
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperCore4</InternalName>
       <Name>Harper Agent: Harper Training II</Name>
+      <InternalName>HarperCore4</InternalName>
       <Description>Select +1 to an ability score of your choice.</Description>
       <Icon>HarperTraining</Icon>
       <XPosition>3</XPosition>
@@ -229,8 +229,8 @@
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperCore5</InternalName>
       <Name>Harper Agent: Agent of Good III</Name>
+      <InternalName>HarperCore5</InternalName>
       <Description>+1 to hit and damage, +3 to hit and damage vs. Evil. +10 Universal Spell Power.</Description>
       <Icon>AgentOfGood</Icon>
       <XPosition>4</XPosition>
@@ -251,16 +251,16 @@
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">3</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -276,8 +276,8 @@
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperCore6</InternalName>
       <Name>Harper Agent: Harper's Freedom</Name>
+      <InternalName>HarperCore6</InternalName>
       <Description>Dispel most detrimental effects from you and add +10 to all saving throws for 20
 seconds. Cooldown: 5 minutes.
 Passive: +2 to all Ability scores, +1 hit and damage, +5 hit and damage vs evil,
@@ -307,30 +307,30 @@ and +20 Universal spell power.</Description>
       <Effect>
         <Type>ExclusionGroup</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>NotNeeded</AType>
         <Item>HarperCore6</Item>
         <Item>Capstone Enhancement</Item>
+        <AType>NotNeeded</AType>
       </Effect>
       <Effect>
         <Type>AbilityBonus</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">2</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>Weapon_AttackAndDamage</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
-        <Item>All</Item>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -345,10 +345,10 @@ and +20 Universal spell power.</Description>
         <Amount size="1">20</Amount>
       </Effect>
     </EnhancementTreeItem>
-    <!--Harper Tier 1 Enhancements-->
+    <!--Tier 1-->
     <EnhancementTreeItem>
-      <InternalName>HarperEnchantment</InternalName>
       <Name>Harper Agent: Harper Enchantment</Name>
+      <InternalName>HarperEnchantment</InternalName>
       <Description>Your main and off-hand weapons gains an additional +1 to their Enhancement bonus.
 (This does not affect shields). You gain +20 to your maximum Spell Points.</Description>
       <Icon>HarperEnchantment</Icon>
@@ -360,9 +360,9 @@ and +20 Universal spell power.</Description>
       <Effect>
         <Type>Weapon_Enchantment</Type>
         <Bonus>Enhancement</Bonus>
+        <Item>All</Item>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <Item>All</Item>
       </Effect>
       <Effect>
         <Type>SpellPoints</Type>
@@ -372,8 +372,8 @@ and +20 Universal spell power.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>WeatheredTraveler</InternalName>
       <Name>Harper Agent: Weathered Traveler</Name>
+      <InternalName>WeatheredTraveler</InternalName>
       <Description>+[2/4/6] Energy resistance.</Description>
       <Icon>WeatheredTraveler</Icon>
       <XPosition>1</XPosition>
@@ -394,8 +394,8 @@ and +20 Universal spell power.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>TravelersToughness</InternalName>
       <Name>Harper Agent: Traveller's Toughness</Name>
+      <InternalName>TravelersToughness</InternalName>
       <Description>+[5/10/15] maximum hit points.</Description>
       <Icon>Toughness</Icon>
       <XPosition>2</XPosition>
@@ -411,8 +411,8 @@ and +20 Universal spell power.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>StrategicCombatI</InternalName>
       <Name>Harper Agent: Strategic Combat I</Name>
+      <InternalName>StrategicCombatI</InternalName>
       <Description>You can use your Intelligence modifier to hit with Melee and Missile weapons.
 Note: This does not function with shields.</Description>
       <Icon>StrategicCombatI</Icon>
@@ -430,8 +430,8 @@ Note: This does not function with shields.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperAwareness</InternalName>
       <Name>Harper Agent: Awareness</Name>
+      <InternalName>HarperAwareness</InternalName>
       <Description>+[1/2/3] to Listen, Search, and Spot.
 Rank 3: +1 save vs. traps.</Description>
       <Icon>Awareness</Icon>
@@ -454,41 +454,82 @@ Rank 3: +1 save vs. traps.</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Traps</Item>
         <AType>Simple</AType>
-        <Rank>3</Rank>
         <Amount size="1">1</Amount>
+        <Rank>3</Rank>
       </Effect>
     </EnhancementTreeItem>
-    <!--Harper Tier 2 Enhancements-->
+    <!--Tier 2-->
     <EnhancementTreeItem>
-      <InternalName>HarperHeroicCompanion</InternalName>
-      <Name>Harper Agent: Heroic Companion</Name>
-      <Description>Action Boost: Grants an ally +[0.25/0.5/1][W], +[2/4/6] to hit and saving throws,
-+[0/2%/4]% Dodge and +[0/0/10] Physical Resistance Rating.
-Cooldown: 30 seconds
-Antireq: Cannot be taken with the Halfling racial enhancement.</Description>
-      <Icon>HeroicCompanion</Icon>
+      <Name>Harper Agent: Harper Lore I</Name>
+      <InternalName>HarperHarperLoreI</InternalName>
+      <Description>Pick between weapon training, magic training, and leadership.</Description>
+      <Icon>HarperLoreI</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <Clickie />
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
+      <ArrowUp />
       <Requirements>
         <Requirement>
           <Type>Level</Type>
           <Value>2</Value>
         </Requirement>
-        <RequiresNoneOf>
-          <Requirement>
-            <Type>Enhancement</Type>
-            <Item>HalflingHeroicCompanion</Item>
-          </Requirement>
-        </RequiresNoneOf>
       </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Harper Leadership I</Name>
+          <Description>Your hirelings, summoned, and charmed creatures gain +3 to all ability scores.</Description>
+          <Icon>HarperLeadershipI</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>HirelingAbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">3</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Harper Spell Training I</Name>
+          <Description>+2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells.</Description>
+          <Icon>HarperSpellTrainingI</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force</Item>
+            <Item>Physical</Item>
+            <Item>Sonic</Item>
+            <Item>Light</Item>
+            <Item>Good</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Harper Weapon Training I</Name>
+          <Description>+1 to Attack and Damage while Single Weapon Fighting.</Description>
+          <Icon>HarperWeaponTrainingI</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Single Weapon Fighting</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperMagicalEndurance</InternalName>
       <Name>Harper Agent: Magical Endurance</Name>
+      <InternalName>HarperMagicalEndurance</InternalName>
       <Description>+[30/60/100] maximum Spell Points.</Description>
       <Icon>MagicalEndurance</Icon>
       <XPosition>1</XPosition>
@@ -510,8 +551,8 @@ Antireq: Cannot be taken with the Halfling racial enhancement.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperVersatileAdeptI</InternalName>
       <Name>Harper Agent: Versatile Adept I</Name>
+      <InternalName>HarperVersatileAdeptI</InternalName>
       <Description>+[1/2/3] Melee Power, Ranged Power, and +[3/6/9] Universal Spell Power</Description>
       <Icon>VersatileAdept</Icon>
       <XPosition>2</XPosition>
@@ -540,18 +581,25 @@ Antireq: Cannot be taken with the Halfling racial enhancement.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperKnowTheAngles</InternalName>
       <Name>Harper Agent: Know the Angles</Name>
-      <Description>Activation cost: [45/30/15] spell points. Cooldown: 20 seconds.
+      <InternalName>HarperKnowTheAngles</InternalName>
+      <Description>Activation cost: 15 spell points. Cooldown: 20 seconds.
 You gain an Insight bonus to damage and the DC of tactical feats equal to 1/2
-of your Intelligence modifier for [30/60/120] seconds</Description>
+of your Intelligence modifier for 120 seconds</Description>
       <Icon>KnowTheAngles</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <Clickie />
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
+      <Clickie />
+      <Stance>
+        <Name>Know the Angles</Name>
+        <Icon>KnowTheAngles</Icon>
+        <Description>You gain an Insight bonus to damage and the DC of tactical feats equal
+to 1/2 of your Intelligence modifier for 120 seconds</Description>
+        <Group>Battle Trance</Group>
+      </Stance>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
@@ -566,102 +614,169 @@ of your Intelligence modifier for [30/60/120] seconds</Description>
       <Effect>
         <Type>ExclusionGroup</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>NotNeeded</AType>
         <Item>HarperKnowTheAngles</Item>
         <Item>Battle Trance</Item>
+        <AType>NotNeeded</AType>
       </Effect>
-      <Stance>
-        <Name>Know the Angles</Name>
-        <Icon>KnowTheAngles</Icon>
-        <Description>You gain an Insight bonus to damage and the DC of tactical feats equal
-to 1/2 of your Intelligence modifier for [30/60/120] seconds</Description>
-        <Group>Battle Trance</Group>
-      </Stance>
       <Effect>
         <DisplayName>Harper Agent: Know the Angles (Int Mod / 2)</DisplayName>
         <Type>TacticalDC</Type>
         <Bonus>Insightful</Bonus>
-        <StackSource>SnapshotIntelligence</StackSource>
-        <AType>HalfAbilityMod</AType>
         <Item>Trip</Item>
         <Item>Sunder</Item>
         <Item>Stun</Item>
         <Item>General</Item>
+        <AType>HalfAbilityMod</AType>
+        <StackSource>SnapshotIntelligence</StackSource>
+        <ApplyAsItemEffect />
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
             <Item>Know the Angles</Item>
           </Requirement>
         </Requirements>
-        <ApplyAsItemEffect/>
       </Effect>
       <Effect>
         <DisplayName>Harper Agent: Know the Angles (Int Mod / 2)</DisplayName>
         <Type>Weapon_Damage</Type>
         <Bonus>Insightful</Bonus>
-        <StackSource>SnapshotIntelligence</StackSource>
+        <Item>All</Item>
         <AType>HalfAbilityMod</AType>
+        <StackSource>SnapshotIntelligence</StackSource>
+        <ApplyAsItemEffect />
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
             <Item>Know the Angles</Item>
           </Requirement>
         </Requirements>
-        <Item>All</Item>
-        <ApplyAsItemEffect/>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperLeadership</InternalName>
-      <Name>Harper Agent: Harper Leadership</Name>
-      <Description>Your hirelings, summoned, and charmed creatures gain +[2/3/4] to all ability scores.</Description>
-      <Icon>HarperLeadership</Icon>
+      <Name>Harper Agent: Lead or Leadership</Name>
+      <InternalName>HarperSeizeTheMoment</InternalName>
+      <Description>Choose between a melee attack and empowering your followers.</Description>
+      <Icon>HarperLeadOrLeadership</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
+      <Clickie />
       <Requirements>
         <Requirement>
           <Type>Level</Type>
           <Value>2</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>HirelingAbilityBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">2 3 4</Amount>
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Heroic Companion</Name>
+          <Description>
+Action Boost: Grants an ally +1[W], +6 to hit and saving throws, +4% Dodge,
+and +10 Physical Resistance rating. Usable five times per rest.
+Cooldown: 12 seconds
+
+Antireq: Cannot be taken with the halfling Heroic Companion racial enhancement.</Description>
+          <Icon>HalflingHeroicCompanion</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie />
+          <Requirements>
+            <RequiresNoneOf>
+              <Requirement>
+                <Type>Enhancement</Type>
+                <Item>HalflingHeroicCompanion</Item>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Seize the Moment</Name>
+          <Description>Deals: +30% Damage
+Melee Attack: On Hit: You gain a 25% Morale bonus to Doublestrike for 10 seconds.
+Shares a cooldown with Monk and Rogue Quick Strike.
+Cooldown: 12 seconds.</Description>
+          <Icon>HarperLeadOrLeadership</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
-    <!--Harper Tier 3 Enhancements-->
+    <!--Tier 3-->
     <EnhancementTreeItem>
-      <InternalName>HarperHighlySkilled</InternalName>
-      <Name>Harper Agent: Highly Skilled</Name>
-      <Description>+[1/2/3] to all skills.</Description>
-      <Icon>HarperHighlySkilled</Icon>
+      <Name>Harper Agent: Harper Lore II</Name>
+      <InternalName>HarperHarperLoreII</InternalName>
+      <Description>Pick between weapon training, magic training, and leadership.</Description>
+      <Icon>HarperLoreI</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Requirements>
         <Requirement>
           <Type>Level</Type>
           <Value>3</Value>
         </Requirement>
+        <Requirement>
+          <Type>Enhancement</Type>
+          <Item>HarperHarperLoreI</Item>
+        </Requirement>
       </Requirements>
-      <Effect>
-        <Type>SkillBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>All</Item>
-        <AType>Stacks</AType>
-        <Amount size="3">1 2 3</Amount>
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Harper Leadership II</Name>
+          <Description>Your hirelings, summoned, and charmed creatures gain an additional +4 to all ability scores.</Description>
+          <Icon>HarperLeadershipI</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>HirelingAbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">4</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Harper Spell Training II</Name>
+          <Description>+2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells.</Description>
+          <Icon>HarperSpellTrainingII</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force</Item>
+            <Item>Physical</Item>
+            <Item>Sonic</Item>
+            <Item>Light</Item>
+            <Item>Good</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Harper Weapon Training II</Name>
+          <Description>+2 to Attack and Damage while Single Weapon Fighting.</Description>
+          <Icon>HarperWeaponTrainingI</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Weapon_AttackAndDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">2</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Single Weapon Fighting</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperKnowYourFoe</InternalName>
       <Name>Harper Agent: Know Your Foe</Name>
+      <InternalName>HarperKnowYourFoe</InternalName>
       <Description>You gain a new Favored Enemy feat, dealing extra damage against those enemies.
 Hidden effect: +20 Spell Points</Description>
       <Icon>KnowYourFoe</Icon>
@@ -763,15 +878,15 @@ Hidden effect: +20 Spell Points</Description>
         </EnhancementSelection>
       </Selector>
       <Effect>
-         <Type>SpellPoints</Type>
-         <Bonus>Enhancement</Bonus>
-         <AType>Simple</AType>
-         <Amount size="1">20</Amount>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperVersatileAdeptII</InternalName>
       <Name>Harper Agent: Versatile Adept II</Name>
+      <InternalName>HarperVersatileAdeptII</InternalName>
       <Description>+[1/2/3] Melee Power, Ranged Power, and +[3/6/9] Universal Spell Power</Description>
       <Icon>VersatileAdept</Icon>
       <XPosition>2</XPosition>
@@ -800,8 +915,8 @@ Hidden effect: +20 Spell Points</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>StrategicCombatII</InternalName>
       <Name>Harper Agent: Strategic Combat II</Name>
+      <InternalName>StrategicCombatII</InternalName>
       <Description>You can use your Intelligence modifier for damage with Melee and Missile weapons.
 Note: This does not function with shields.</Description>
       <Icon>StrategicCombatI</Icon>
@@ -819,14 +934,14 @@ Note: This does not function with shields.</Description>
       <Effect>
         <Type>Weapon_DamageAbility</Type>
         <Bonus>Enhancement</Bonus>
-        <AType>NotNeeded</AType>
         <Item>Intelligence</Item>
         <Item>All</Item>
+        <AType>NotNeeded</AType>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperAbilityScoreI</InternalName>
       <Name>Harper Agent: Ability I</Name>
+      <InternalName>HarperAbilityScoreI</InternalName>
       <Description>Select +1 to an ability score of your choice.</Description>
       <Icon>DexInt</Icon>
       <XPosition>4</XPosition>
@@ -869,39 +984,58 @@ Note: This does not function with shields.</Description>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
-    <!--Harper Tier 4 Enhancements-->
+    <!--Tier 4-->
     <EnhancementTreeItem>
-      <InternalName>HarperThroatDagger</InternalName>
       <Name>Harper Agent: Throat Dagger</Name>
-      <Description>Activation cost: [3/2/1] spell points. Cooldown: [60/30/15] seconds.
+      <InternalName>HarperThroatDagger</InternalName>
+      <Description>Activation cost: 1 spell points. Cooldown: 12 seconds.
 SLA: Damages an enemy from afar for 1d4+4 Piercing damage per character level.
 Damaged non-boss enemies cannot cast spells for 6 seconds.
 Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
       <Icon>ThroatDagger</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <Clickie />
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
+      <Clickie />
       <Requirements>
         <Requirement>
           <Type>Level</Type>
           <Value>4</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>SpellLikeAbility</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Throat Dagger</Item>
-        <AType>SpellInfo</AType>
-        <Amount size="12">0 3 0 60 0 2 0 30 0 1 0 15</Amount>
-        <Item>None</Item>
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Throat Dagger</Name>
+          <Description>Activation cost: 1 spell points. Cooldown: 12 seconds.
+SLA: Damages an enemy from afar for 1d4+4 Piercing damage per character level.
+Damaged non-boss enemies cannot cast spells for 6 seconds.
+Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
+          <Icon>Dexterity</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Throat Dagger</Item>
+            <Item>None</Item>
+            <AType>SpellInfo</AType>
+            <Amount size="4">0 1 0 12</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Silencing Strike</Name>
+          <Description>Melee Attack: +50% Damage
+Damaged non-boss enemies cannot cast spells for 6 seconds.
+Cooldown: 12 seconds.</Description>
+          <Icon>Intelligence</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperVigorOfLifeI</InternalName>
       <Name>Harper Agent: Vigor of Life I</Name>
+      <InternalName>HarperVigorOfLifeI</InternalName>
       <Description>+20 positive healing amplification. 10% less damage from negative energy</Description>
       <Icon>VigorOfLifeI</Icon>
       <XPosition>1</XPosition>
@@ -930,8 +1064,8 @@ Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperVersatileAdeptIII</InternalName>
       <Name>Harper Agent: Versatile Adept III</Name>
+      <InternalName>HarperVersatileAdeptIII</InternalName>
       <Description>+[1/2/3] Melee Power, Ranged Power, and +[3/6/9] Universal Spell Power</Description>
       <Icon>VersatileAdept</Icon>
       <XPosition>2</XPosition>
@@ -960,8 +1094,8 @@ Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperMusicOfAusterity</InternalName>
       <Name>Harper Agent: Music of Austerity</Name>
+      <InternalName>HarperMusicOfAusterity</InternalName>
       <Description>Like Eschew Materials, your spells no longer need common material components.
 This does not increase their Spell Point cost.</Description>
       <Icon>MusicOfAusterity</Icon>
@@ -978,8 +1112,8 @@ This does not increase their Spell Point cost.</Description>
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperAbilityScoreII</InternalName>
       <Name>Harper Agent: Ability II</Name>
+      <InternalName>HarperAbilityScoreII</InternalName>
       <Description>Select +1 to an ability score of your choice.</Description>
       <Icon>DexInt</Icon>
       <XPosition>4</XPosition>
@@ -1022,10 +1156,83 @@ This does not increase their Spell Point cost.</Description>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
-    <!--Harper Tier 5 Enhancements-->
+    <!--Tier 5-->
     <EnhancementTreeItem>
-      <InternalName>HarperWeaponEnchantment</InternalName>
+      <Name>Harper Agent: The Resolute Blade</Name>
+      <InternalName>HarperResoluteBlade</InternalName>
+      <Description />
+      <Icon>HarperResoluteBlade</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>2</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>The Harp's Magic</Name>
+          <Description>+2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells.
+Rank 2: An additional +2% Spell Crit Damage with Force/Physical, Sonic, Light,
+and Good spells</Description>
+          <Icon>HarperHarpsMagic</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Force</Item>
+            <Item>Physical</Item>
+            <Item>Sonic</Item>
+            <Item>Light</Item>
+            <Item>Good</Item>
+            <AType>Stacks</AType>
+            <Amount size="2">2 4</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>The Resolute Blade</Name>
+          <Description>+1 Competence Bonus to Critical Threat Range while Single Weapon Fighting.
+Rank 2: +1 Competence Bonus to Critical Multiplier while Single Weapon Fighting.</Description>
+          <Icon>HarperResoluteBlade</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Single Weapon Fighting</Item>
+              </Requirement>
+            </Requirements>
+          </Effect>
+          <Effect>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <Requirements>
+              <Requirement>
+                <Type>Stance</Type>
+                <Item>Single Weapon Fighting</Item>
+              </Requirement>
+            </Requirements>
+            <Rank>2</Rank>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
       <Name>Harper Agent: Enchant your weapon</Name>
+      <InternalName>HarperWeaponEnchantment</InternalName>
       <Description>Choose how you would like to enchant your weapon:
 +1 and Improved deception
 +10 Universal spell power
@@ -1052,9 +1259,9 @@ This does not increase their Spell Point cost.</Description>
           <Effect>
             <Type>Weapon_Enchantment</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>All</Item>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -1079,16 +1286,16 @@ is considered Good-aligned.</Description>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
             <AType>Simple</AType>
             <Amount size="1">3</Amount>
-            <Item>All</Item>
           </Effect>
           <Effect>
             <Type>Weapon_AttackAndDamage</Type>
             <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
             <AType>Simple</AType>
             <Amount size="1">2</Amount>
-            <Item>All</Item>
             <Requirements>
               <Requirement>
                 <Type>Stance</Type>
@@ -1099,16 +1306,16 @@ is considered Good-aligned.</Description>
           <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Value>Good</Value>
             <Item>All</Item>
             <AType>NotNeeded</AType>
+            <Value>Good</Value>
           </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperVersatileAdeptIV</InternalName>
       <Name>Harper Agent: Versatile Adept IV</Name>
+      <InternalName>HarperVersatileAdeptIV</InternalName>
       <Description>+[2/4/6] Melee Power, Ranged Power, and Universal Spell Power</Description>
       <Icon>VersatileAdept</Icon>
       <XPosition>2</XPosition>
@@ -1133,8 +1340,8 @@ is considered Good-aligned.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperMagicOfPatience</InternalName>
       <Name>Harper Agent: Magic of Patience</Name>
+      <InternalName>HarperMagicOfPatience</InternalName>
       <Description>Your spells benefit from the Extend Spell metamagic feat.
 This does not increase their Spell Point cost.
 (This does not stack with the actual Extend metamagic feat.)</Description>
@@ -1153,8 +1360,8 @@ This does not increase their Spell Point cost.
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <InternalName>HarperMomentOfClarity</InternalName>
       <Name>Harper Agent: Moment of Clarity</Name>
+      <InternalName>HarperMomentOfClarity</InternalName>
       <Description>Activate: For the next 10 seconds the DC of your spells and your tactical feats
 is increased by +10.
 Cooldown: 5 minutes.
@@ -1164,8 +1371,8 @@ Passive: +1 DC for your spells</Description>
       <YPosition>5</YPosition>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
-      <Clickie />
       <MinSpent>30</MinSpent>
+      <Clickie />
       <Tier5 />
       <Requirements>
         <Requirement>

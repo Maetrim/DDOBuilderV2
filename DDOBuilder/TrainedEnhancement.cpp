@@ -147,7 +147,8 @@ void TrainedEnhancement::UpgradeSelections()
     {
         "Light: Enlightening Philosophy",       "Disciple of Philosophy: Light",
         "Dark: Forbidden Philosophy",           "Disciple of Philosophy: Dark",
-        "Expeditious Chant",                    "Fleeting Footsteps"
+        "Expeditious Chant",                    "Fleeting Footsteps",
+        "Queen's Diplomacy",                    "Otto's Whistler"
     };
     size_t count = sizeof(oldToNew) / sizeof(std::string);
     if (count % 2 != 0) throw "Must be an even number";

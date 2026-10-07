@@ -98,6 +98,18 @@ void BreakdownItemClassCasterLevel::CreateOtherEffects()
                             maxLevel - classLevels);
                         AddOtherEffect(wmlevels);
                     }
+                    if (pBuild->IsEnhancementTrained("AMMixedMagics", "", TT_enhancement))
+                    {
+                        size_t maxLevel = min(MAX_CLASS_LEVEL, pBuild->Level());
+                        text.Format("Wizard: Mixed Magics(%d)",
+                            maxLevel - classLevels);
+                        Effect wmlevels(
+                            Effect_Unknown,
+                            (LPCTSTR)text,
+                            (LPCTSTR)text,
+                            maxLevel - classLevels);
+                        AddOtherEffect(wmlevels);
+                    }
                 }
             }
         }

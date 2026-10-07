@@ -1496,6 +1496,31 @@ std::list<TrainedFeat> Build::CurrentFeats(size_t level) const
     return currentFeats;
 }
 
+std::list<TrainedFeat> Build::CurrentFeatsTrained(size_t level) const
+{
+    // return a list of all the feats trained at the current level
+    std::list<TrainedFeat> currentFeats;
+
+    // first add any special feats (Past lives etc)
+    const std::list<TrainedFeat>& specialFeats = Build::SpecialFeats();
+    currentFeats.insert(currentFeats.end(), specialFeats.begin(), specialFeats.end());
+
+    // now add the automatic and the trained feats at each level up to the level wanted
+    size_t currentLevel = 0;
+    std::list<LevelTraining>::const_iterator ldit = m_Levels.begin();
+    while (currentLevel <= level && ldit != m_Levels.end())
+    {
+        const LevelTraining& levelData = (*ldit);
+        // add the trained feats for this level
+        const std::list<TrainedFeat>& trainedFeats = levelData.TrainedFeats();
+        currentFeats.insert(currentFeats.end(), trainedFeats.begin(), trainedFeats.end());
+
+        ++currentLevel;
+        ++ldit;
+    }
+    return currentFeats;
+}
+
 bool Build::IsFeatTrainable(
         size_t level,
         const std::string& type,

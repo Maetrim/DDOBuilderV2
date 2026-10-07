@@ -242,7 +242,7 @@
   </Buff>
   <Buff>
     <Type>Acid Intensity</Type>
-    <DisplayText>Acid Intensity +%v1%: +%v1% %b1 bonus to critical damage with Acid spells.</DisplayText>
+    <DisplayText>Acid Intensity %v1%: %v1% %b1 bonus to critical damage with Acid spells.</DisplayText>
     <Effect>
       <Type>SpellCriticalDamage</Type>
       <Bonus>Not Set</Bonus>
@@ -2896,6 +2896,19 @@
     <DisplayText>Banishing Weapons: While wearing this item, your melee and ranged weapons gain Vorpal Effect: In addition, on an attack roll of 20 which is confirmed as a critical hit this weapon will banish a creature from this plan of existence. Powerful creatures may resist the vorpal effect until sufficiently wounded.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Baphomet's Tactics</Type>
+    <DisplayText>Baphomet's Tactics: +13 Enhancement bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts. In addition, on hit with this weapon, you deal an extra 15d6 Bludgeoning Damage to Bosses and creatures who have been knocked down.</DisplayText>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">13</Amount>
+      <Item>Trip</Item>
+      <Item>Sunder</Item>
+      <Item>Stun</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Bashing</Type>
     <DisplayText>Bashing: This shield is exceptionally durable and dense, and does an additional 1d6 damage when used to shield bash.</DisplayText>
   </Buff>
@@ -4993,7 +5006,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
       <Type>HealingAmplification</Type>
       <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
-      <Amount size="1">10</Amount>
+      <Amount size="1">15</Amount>
     </Effect>
     <Effect>
       <Type>MeleePower</Type>
@@ -8320,7 +8333,7 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <Ignore>Enhancement</Ignore>
     <Effect>
       <Type>FalseLife</Type>
-      <Bonus>False Life</Bonus>
+      <Bonus>Enhancement</Bonus>
       <AType>Simple</AType>
       <Amount size="1">10</Amount>
     </Effect>
@@ -14574,11 +14587,15 @@ BLOOD BLOOD! GIVE ME BLOOD!
   </Buff>
   <Buff>
     <Type>Legendary Affirmation</Type>
-    <DisplayText>Legendary Affirmation : Your attacks and offensive spells have a chance to grant you 1,000 Temporary HP.</DisplayText>
+    <DisplayText>Legendary Affirmation: Your attacks and offensive spells have a chance to grant you 1,000 Temporary HP.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Air Guard</Type>
     <DisplayText>Legendary Air Guard: This weapon stores the incredible, dynamic power of the air deep within. When the user of this weapon is successfully attacked in melee, this power occasionally comes to the surface, knocking enemies over or speeding up the wearer with rushing winds.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Ash</Type>
+    <DisplayText>Legendary Ash: Your attacks and offensive spells have a chance to reduce enemy Magical Resistance Rating and Universal Spell Power.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Avalanche</Type>
@@ -14733,6 +14750,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
     <DisplayText>Legendary Disease Guard: This item carries the Maggot Plague disease, which deals 3d6 Constitution damage and may be contracted by enemies that hit you. A successful Fortitude Save (DC 100) will negate this effect.</DisplayText>
   </Buff>
   <Buff>
+    <Type>Legendary Dust</Type>
+    <DisplayText>Legendary Dust: Your attacks and offensive spells have a chance to reduce enemy Physical Resistance Rating and Positive Healing Amplification.</DisplayText>
+  </Buff>
+  <Buff>
     <Type>Legendary Earthgrab Guard</Type>
     <DisplayText>Legendary Earthgrab Guard: This item stores the implacable strength of the earth deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, calling on the earth to erupt from the ground and hold an enemy in place.</DisplayText>
   </Buff>
@@ -14885,6 +14906,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
   <Buff>
     <Type>Legendary Telekinetic</Type>
     <DisplayText>Legendary Telekinetic: On hit, this has a chance of knocking your enemies off their feet. Struck enemies must make a DC 100 Reflex save or be knocked down.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Legendary Vacuum</Type>
+    <DisplayText>Legendary Vacuum: Your Attacks and offensive spells have a chance to inflict multiple stacks of Vulnerable.</DisplayText>
   </Buff>
   <Buff>
     <Type>Legendary Vile Grip of the Hidden Hand</Type>
@@ -17167,6 +17192,10 @@ BLOOD BLOOD! GIVE ME BLOOD!
         </Requirement>
       </Requirements>
     </Effect>
+  </Buff>
+  <Buff>
+    <Type>Orcus' Magic: Nightmares</Type>
+    <DisplayText>Orcus' Magic: Nightmares: The tremendous power of the Wand sits within this Echo. When you hit an enemy with an offensive spell, there is a small chance this power rises to the surface. When it does, if your target has fewer than 3,420 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell if it fails a DC 122 Will saving throw. If your target has above 3,420 Hit Points, they take 15d20 Force damage.</DisplayText>
   </Buff>
   <Buff>
     <Type>Orlassk's Prison</Type>
@@ -20592,6 +20621,32 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>Simple</AType>
       <Amount size="1">0</Amount>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SerratedDagger</Type>
+    <DisplayText>Serrated: This weapon's edge is jagged and saw-toothed. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1.</DisplayText>
+    <Effect>
+      <DisplayName>Serrated</DisplayName>
+      <Type>Weapon_CriticalMultiplier19To20</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Dagger</Item>
+      <IsItemSpecific/>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SerratedDwarvenAxe</Type>
+    <DisplayText>Serrated: This weapon's edge is jagged and saw-toothed. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1.</DisplayText>
+    <Effect>
+      <DisplayName>Serrated</DisplayName>
+      <Type>Weapon_CriticalMultiplier19To20</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Dwarven Axe</Item>
+      <IsItemSpecific/>
     </Effect>
   </Buff>
   <Buff>
@@ -25319,6 +25374,17 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <StackSource>Religious Lore</StackSource>
       <Amount size="21">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Amount>
       <Item>All</Item>
+    </Effect>
+  </Buff>
+   <!--Y-->
+  <Buff>
+    <Type>Yeenoghu's Butchery</Type>
+    <DisplayText>Yeenoghu's Butchery: +18% Enhancement bonus to Doublestrike chance. In addition, on hit with this weapon, you deal an extra 15d6 Piercing Damage to Bosses and creatures who have been Paralyzed.</DisplayText>
+    <Effect>
+      <Type>Doublestrike</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">18</Amount>
     </Effect>
   </Buff>
 </Buffs>

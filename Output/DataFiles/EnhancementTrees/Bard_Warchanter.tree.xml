@@ -236,6 +236,7 @@ as well as immunity to fear and some temporary hit points.</Description>
          <Name>Warchanter: Fighting Spirit</Name>
          <InternalName>WCCore4</InternalName>
          <Description>+10 hit points and +1 Imbue Dice.
+You gain a +1 Competence Bonus to Critical Threat Range. This does not apply if Swashbuckling.
 Inspire Courage now grants an additional +1 damage.
 Your Inspire Greatness now uses your Charisma score for its Temporary hit points,
 doubled in Epic levels.</Description>
@@ -257,6 +258,22 @@ doubled in Epic levels.</Description>
                <Value>12</Value>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect/>
+            <Item>All</Item>
+            <Requirements>
+               <RequiresNoneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Swashbuckling</Item>
+                  </Requirement>
+               </RequiresNoneOf>
+            </Requirements>
+         </Effect>
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Enhancement</Bonus>
@@ -330,7 +347,7 @@ expending a Bard Song to force enemies in an area to make a Fortitude saving
 throw versus being frozen solid in frigid ice for 6 seconds.
 (DC 14 + Max[Str/Dex/Cha] Mod + Bard Level + Stunning Modifiers).
 Even if they make the save, they take 20d20 Cold Damage and are significantly
-slowed for 6 seconds. Cooldown: 2 minutes.</Description>
+slowed for 6 seconds. Cooldown: 30 seconds.</Description>
          <Icon>WCWarmaster</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -560,13 +577,13 @@ Rank 3: +1 Bard Song</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Boast</Name>
          <InternalName>WCBoast</InternalName>
-         <Description>Sing a Song to gain +[25/50/100] Temporary HP.
+         <Description>Sing a Song to gain +100 Temporary HP.
 Cooldown: 8 seconds.</Description>
          <Icon>WCBoast</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements>
@@ -608,15 +625,15 @@ Cooldown: 8 seconds.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Warchanter: Arcane Shield Chant</Name>
+         <Name>Warchanter: Ballad Melody: Arcane Shield</Name>
          <InternalName>WCArcaneShieldChant</InternalName>
-         <Description>You and nearby allies gain +[2/4/6] Music bonus to resist Acid, Cold, Electric,
-Fire, and Sonic damage</Description>
+         <Description>You and nearby allies gain a Music Bonus to Acid, Cold, Electric, Fire, and Sonic
+damage equal to your Bard, Epic, and Legendary Level</Description>
          <Icon>WCArcaneShieldChant</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements>
             <Requirement>
@@ -628,8 +645,8 @@ Fire, and Sonic damage</Description>
          <Effect>
             <Type>EnergyResistance</Type>
             <Bonus>Music</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">2 4 6</Amount>
+            <AType>TotalLevel</AType>
+            <Amount size="40">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40</Amount>
             <Item>Acid</Item>
             <Item>Cold</Item>
             <Item>Electric</Item>
@@ -665,12 +682,12 @@ Fire, and Sonic damage</Description>
       <EnhancementTreeItem>
          <Name>Warchanter Action Boost: Sprint</Name>
          <InternalName>WCActionBoostSprint</InternalName>
-         <Description>+[30/40/50]% Action Boost bonus to movement speed for 20 seconds.</Description>
+         <Description>+50% Action Boost bonus to movement speed for 20 seconds.</Description>
          <Icon>WCActionBoostSprint</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements>
@@ -685,13 +702,13 @@ Fire, and Sonic damage</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Ballad Melody: Ironskin</Name>
          <InternalName>WCIronskinChant</InternalName>
-         <Description>You and nearby allies gain DR [2/4/6]/- and [2/4/6] Music bonus to PRR.
-Requires 8 trained ranks of Perform to use.</Description>
+         <Description>You and nearby allies gain DR 6 and Inspire Greatness now grants a Music bonus
+to PRR and MRR equal to half your Bard, Epic, and Legendary level.</Description>
          <Icon>WCIronskinChant</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements>
             <Requirement>
@@ -708,15 +725,16 @@ Requires 8 trained ranks of Perform to use.</Description>
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">2 4 6</Amount>
+            <AType>Simple</AType>
+            <Amount size="1">6</Amount>
             <Item>-</Item>
          </Effect>
          <Effect>
-            <Type>SongPRR</Type>
+            <Type>PRR</Type>
+            <Type>MRR</Type>
             <Bonus>Music</Bonus>
-            <AType>Stacks</AType>
-            <Amount size="3">2 4 6</Amount>
+            <AType>TotalLevel</AType>
+            <Amount size="40">0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -865,19 +883,19 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
       <EnhancementTreeItem>
          <Name>Warchanter: Frozen Fury</Name>
          <InternalName>WCTheFrozenFury</InternalName>
-         <Description>Deals +[10/20/30]% Damage
+         <Description>Deals +30% Damage
 Melee attack: Affected enemies must make a Fortitude save DC
-[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + stunning modifiers
+14 + Max[Str/Dex/Cha] modifier + Bard Level + stunning modifiers
 or become frozen solid for a number of seconds equal to your Bard level.
-Cooldown: [12/9/6] seconds
+Cooldown: 6 seconds
 
 Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
 (Note: If you have Strikethrough, this attack can freeze multiple enemies.)</Description>
          <Icon>WCTheFrozenFury</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
          <ArrowUp/>
@@ -890,17 +908,17 @@ Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
          </Requirements>
          <DC>
             <Name>Frozen Fury</Name>
-            <Description>Deals +[10/20/30]% Damage
+            <Description>Deals +30% Damage
 Melee attack: Affected enemies must make a Fortitude save DC
-[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + stunning modifiers
+14 + Max[Str/Dex/Cha] modifier + Bard Level + stunning modifiers
 or become frozen solid for a number of seconds equal to your Bard level.
-Cooldown: [12/9/6] seconds
+Cooldown: 6 seconds
 DC Value is assuming full Bard level</Description>
             <Icon>WCTheFrozenFury</Icon>
             <DCType>Frozen</DCType>
             <DCVersus>Fortitude</DCVersus>
-            <Amount size="3">10 12 14</Amount>
-            <ClassMultiplier size="3">0 0.5 1</ClassMultiplier>
+            <Amount size="1">14</Amount>
+            <ClassMultiplier size="1">1</ClassMultiplier>
             <BaseClassLevel>Bard</BaseClassLevel>
             <ModAbility>Strength</ModAbility>
             <ModAbility>Dexterity</ModAbility>
@@ -1112,8 +1130,8 @@ Bosses cannot be frozen.</Description>
          <Icon>WCMovementBooster</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Clickie/>
          <Tier5/>
@@ -1131,14 +1149,14 @@ Bosses cannot be frozen.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Fleeting Footsteps</Name>
-               <Description>You and nearby allies gain +[5/10/15]% Action Boost bonus to movement speed.</Description>
+               <Description>You and nearby allies gain +15% Action Boost bonus to movement speed.</Description>
                <Icon>WCExpeditiousChant</Icon>
-               <CostPerRank size="1">1</CostPerRank>
+               <CostPerRank size="1">2</CostPerRank>
                <Effect>
                   <Type>MovementSpeed</Type>
                   <Bonus>Action Boost</Bonus>
                   <AType>Stacks</AType>
-                  <Amount size="3">5 10 15</Amount>
+                  <Amount size="1">15</Amount>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
@@ -1149,18 +1167,18 @@ Bosses cannot be frozen.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Rallying Cry</Name>
-               <Description>Action Boost: You and all allies within range of your songs gain +[10/15/20]%
+               <Description>Action Boost: You and all allies within range of your songs gain +20%
 Action Boost bonus to movement speed and +1 Action Boost bonus to Saving Throws
 for twenty seconds. This ability can be used while feared, and dispels Fear effects.
 (Cooldown: 30 seconds)</Description>
                <Icon>WCRallyingCry</Icon>
-               <CostPerRank size="1">1</CostPerRank>
+               <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
                <Effect>
                   <Type>MovementSpeed</Type>
                   <Bonus>Action Boost</Bonus>
                   <AType>Stacks</AType>
-                  <Amount size="3">10 15 20</Amount>
+                  <Amount size="1">20</Amount>
                   <Requirements>
                      <Requirement>
                         <Type>Stance</Type>
@@ -1172,7 +1190,7 @@ for twenty seconds. This ability can be used while feared, and dispels Fear effe
                   <Type>SaveBonus</Type>
                   <Bonus>Action Boost</Bonus>
                   <AType>Stacks</AType>
-                  <Amount size="3">1 1 1</Amount>
+                  <Amount size="1">1</Amount>
                   <Item>All</Item>
                   <Requirements>
                      <Requirement>
@@ -1226,8 +1244,9 @@ ranged damage, and spell critical chance.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Howl of the North</Name>
          <InternalName>WCHowlOfTheNorth</InternalName>
-         <Description>+1 Critical Damage Multiplier on attack rolls of 19-20.
-+20% Competence bonus to Maximum Hit Points.</Description>
+         <Description>You gain a +1 Competence Bonus to Critical Multiplier. This does not apply if Swashbuckling.
++1 Critical Damage Multiplier on attack rolls of 19-20. +20% Competence bonus
+to Maximum Hit Points.</Description>
          <Icon>WCHowlOfTheNorth</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1246,6 +1265,22 @@ ranged damage, and spell critical chance.</Description>
                <Value>12</Value>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Weapon_CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">1</Amount>
+            <ApplyAsItemEffect/>
+            <Item>All</Item>
+            <Requirements>
+               <RequiresNoneOf>
+                  <Requirement>
+                     <Type>Stance</Type>
+                     <Item>Swashbuckling</Item>
+                  </Requirement>
+               </RequiresNoneOf>
+            </Requirements>
+         </Effect>
          <Effect>
             <Type>Weapon_CriticalMultiplier19To20</Type>
             <Bonus>Enhancement</Bonus>
@@ -1266,17 +1301,17 @@ ranged damage, and spell critical chance.</Description>
          <InternalName>WCSpinningIce</InternalName>
          <Description>Deals +40% Damage
 Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save DC
-[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + Stunning modifiers
+14 + Max[Str/Dex/Cha] modifier + Bard Level + Stunning modifiers
 for a number of seconds equal to your half your Bard level.
 
 Bosses cannot be frozen.
-Activation cost: [6/4/2] SP.
-Cooldown [45/35/25] seconds.</Description>
+Activation cost: 2 SP.
+Cooldown 25 seconds.</Description>
          <Icon>WCSpinningIce</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Clickie/>
          <Tier5/>
@@ -1299,16 +1334,16 @@ Cooldown [45/35/25] seconds.</Description>
             <Name>Spinning Ice</Name>
             <Description>Deals +40% Damage
 Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save DC
-[10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/full] Bard Level + Stunning modifiers
+14 + Max[Str/Dex/Cha] modifier + Bard Level + Stunning modifiers
 for a number of seconds equal to your half your Bard level.
-Activation cost: [6/4/2] SP.
-Cooldown [45/35/25] seconds.
+Activation cost: 2 SP.
+Cooldown 25 seconds.
 DC Value is assuming full Bard level</Description>
             <Icon>WCSpinningIce</Icon>
             <DCType>Frozen</DCType>
             <DCVersus>Fortitude</DCVersus>
-            <Amount size="3">10 12 14</Amount>
-            <ClassMultiplier size="3">0 0.5 1</ClassMultiplier>
+            <Amount size="1">14</Amount>
+            <ClassMultiplier size="1">1</ClassMultiplier>
             <BaseClassLevel>Bard</BaseClassLevel>
             <ModAbility>Strength</ModAbility>
             <ModAbility>Dexterity</ModAbility>
@@ -1322,12 +1357,12 @@ DC Value is assuming full Bard level</Description>
          <Description>Target ally or self heal 10,000 HP.
 Removes ability score damage, death penalty effects, negative levels, and the
 conditions blinded, dazed, deafened, diseased, exhausted, fatigued, feebleminded,
-insanity, nauseated, poisoned, and stunned. [1/2/3] use(s) per rest.</Description>
+insanity, nauseated, poisoned, and stunned. 3 uses per rest.</Description>
          <Icon>WCKinglyRecovery</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Clickie/>
          <Tier5/>

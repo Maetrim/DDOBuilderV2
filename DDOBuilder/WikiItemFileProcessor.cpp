@@ -1305,6 +1305,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Undying", "Undying", "Enhancement", "");
 
     // rune arm charging
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Rune Arm Charge Rate", "Rune Arm Charge Rate:", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MaximumChargeTierV", "Maximum Charge Tier V", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MaximumChargeTierV", "Maximum Charge Tier : V", "Equipment", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "MaximumChargeTierV", "Maximum Charge Tier 5", "Equipment", "");
@@ -1395,6 +1396,10 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Conditioning", "Legendary Conditioning", "Legendary", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Negation", "Legendary Negation Legendary Negation", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Dust", "Legendary Dust Legendary Dust", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Ash", "Legendary Ash Legendary Ash", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Vacuum", "Legendary Vacuum Legendary Vacuum", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Legendary Demonic Curse", "Legendary Demonic Curse Legendary Demonic Curse", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Stormreaver's Thunderclap", "Stormreaver's Thunderclap", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "3rd Degree Burns", "3rd Degree Burns", "", "", 5);
@@ -1406,6 +1411,16 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Druidic Survival Mastery", "Druidic Survival Mastery", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Exceptional Nimble Skills", "Exceptional Nimble Skills Bonus", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Fascination Guard", "Fascination Guard Fascination Guard", "", "", 5);
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Serrated", "Serrated Serrated", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Power of the Frozen Thunderstorm", "Power of the Frozen Thunderstorm", "Equipment", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Lifeblood of the Undead Prince", "Lifeblood of the Undead Prince Lifeblood of the Undead Prince", "Equipment", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Power of the Moonlit Haunt", "Power of the Moonlit Haunt", "Equipment", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Moonlit Haunt Lore", "Moonlit Haunt Lore", "Equipment", "", 5);
+
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Baphomet's Tactics", "Baphomet's Tactics Baphomet's Tactics", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Orcus' Magic: Nightmares", "Orcus' Magic: Nightmares Orcus' Magic: Nightmares", "", "", 5);
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Yeenoghu's Butchery", "Yeenoghu's Butchery Yeenoghu's Butchery", "", "", 5);
 
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Dampened", "Dampened Dampened", "", "", 5);
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Suppressed Power", "Suppressed Power Suppressed Power", "", "", 5);
@@ -2613,6 +2628,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= line.find("Becomes Bound to Character on Acquire Bound to Character on Acquire") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("1 use per 10 minutes (equivalent to Abundant Step /Leap of Faith /Wind Dance )") != std::string::npos;
     if (!bRecognised) bRecognised |= line.find("On weapons: This Weapon stores the pitiless immovable power") != std::string::npos;
+    if (!bRecognised) bRecognised |= line.find("If your target has above 3,420 Hit Points") != std::string::npos;
 
     return bRecognised;
 }

@@ -743,6 +743,7 @@ bool Effect::CheckAType(
         *bRequiresAmount = true;
     case Amount_AbilityValue:       // all handled the same for checking
     case Amount_AbilityTotal:       // all handled the same for checking
+    case Amount_HalfAbilityTotal:   // all handled the same for checking
     case Amount_AbilityMod:         // all handled the same for checking
     case Amount_HalfAbilityMod:     // all handled the same for checking
     case Amount_ThirdAbilityMod:    // all handled the same for checking
@@ -888,6 +889,7 @@ bool Effect::CheckAType(
 
     case Amount_Dice:
     case Amount_CriticialDice:
+    case Amount_HalfStrikethrough:
         *bRequiresAmount = false;
         *requiredAmountElements = 0;
         break;
@@ -1079,6 +1081,7 @@ std::string Effect::StacksAsString() const
         break;
     case Amount_AbilityValue:
     case Amount_AbilityTotal:
+    case Amount_HalfAbilityTotal:
     case Amount_AbilityTotalIndex:
         ss << StackSource();
         break;
@@ -1127,6 +1130,9 @@ std::string Effect::StacksAsString() const
                 ss << "Not Found";
             }
         }
+        break;
+    case Amount_HalfStrikethrough:
+        ss << "Strikethrough / 2";
         break;
     }
     return ss.str();
@@ -1315,6 +1321,7 @@ double Effect::TotalAmount(bool allowTruncate) const
                 break;
             }
         case Amount_AbilityTotal:
+        case Amount_HalfAbilityTotal:
             // stack source is the ability value
             {
                 AbilityType ability = TextToEnumEntry(StackSource(), abilityTypeMap, false);
@@ -1323,6 +1330,10 @@ double Effect::TotalAmount(bool allowTruncate) const
                     total = m_pBuild->AbilityAtLevel(ability, m_pBuild->Level()-1, true);
                     BreakdownType bt = StatToBreakdown(ability);
                     total = FindBreakdown(bt)->Total();
+                    if (m_AType == Amount_HalfAbilityTotal)
+                    {
+                        total /= 2.0;
+                    }
                     if (HasCap())
                     {
                         total = min(total, Cap());
@@ -1489,6 +1500,12 @@ double Effect::TotalAmount(bool allowTruncate) const
                 GetLog().AddLogEntry(ss.str().c_str());
             }
             break;
+        case Amount_HalfStrikethrough:
+            {
+                BreakdownItem* pBreakdown = FindBreakdown(Breakdown_Strikethrough);
+                total = pBreakdown->Total() / 2;
+            }
+            break;
     }
     return total;
 }
@@ -1508,6 +1525,7 @@ bool Effect::UpdateAbilityEffects(AbilityType at)
     bool bUpdate = false;
     if (m_AType == Amount_AbilityValue
             || m_AType == Amount_AbilityTotal
+            || m_AType == Amount_HalfAbilityTotal
             || m_AType == Amount_AbilityMod
             || m_AType == Amount_HalfAbilityMod
             || m_AType == Amount_ThirdAbilityMod)

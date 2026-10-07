@@ -1026,9 +1026,9 @@ Passive: +1 Caster Level and Max Caster Level with all spells.</Description>
       <InternalName>AMCore6</InternalName>
       <Description>Through extensive training and countless hours of study, you have mastered the
 application of metamagic feats to your spells. You gain +4 Intelligence,
-+20 Universal Spell Power, +5 Spellcraft, and all metamagic feats cost 1 fewer
-spell point to use. (Heighten Spell costs 1 fewer spell point per level of
-heightening.)</Description>
++20 Universal Spell Power, +5 Spellcraft, +3 Spell Penetration and all metamagic
+feats cost 1 fewer spell point to use.
+(Heighten Spell costs 1 fewer spell point per level of heightening.)</Description>
       <Icon>AMMAsterOfMagic</Icon>
       <XPosition>5</XPosition>
       <YPosition>0</YPosition>
@@ -1064,6 +1064,12 @@ heightening.)</Description>
         <Item>Intelligence</Item>
         <AType>Simple</AType>
         <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
       </Effect>
       <Effect>
         <Type>UniversalSpellPower</Type>
@@ -1197,7 +1203,7 @@ making enemies less likely to attack you.</Description>
       <Name>Archmage: Spell Critical: Elemental and Force I</Name>
       <InternalName>AMSpellCriticalElementalAndForceI</InternalName>
       <Description>Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an additional
-1% chance to critically hit. Actually 3% Force.</Description>
+1% chance to critically hit.</Description>
       <Icon>AMSpellCriticalElementalAndForce</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
@@ -1221,15 +1227,9 @@ making enemies less likely to attack you.</Description>
         <Item>Cold</Item>
         <Item>Electric</Item>
         <Item>Fire</Item>
-      </Effect>
-      <Effect>
-        <Type>SpellLore</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">3</Amount>
-      <Item>Force</Item>
-      <Item>Physical</Item>
-      <Item>Untyped</Item>
+        <Item>Force</Item>
+        <Item>Physical</Item>
+        <Item>Untyped</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1737,16 +1737,41 @@ additional 1% chance to critically hit. Actually 3% Force.</Description>
         <Item>Cold</Item>
         <Item>Electric</Item>
         <Item>Fire</Item>
+        <Item>Force</Item>
+        <Item>Physical</Item>
+        <Item>Untyped</Item>
       </Effect>
-      <Effect>
-        <Type>SpellLore</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">3</Amount>
-      <Item>Force</Item>
-      <Item>Physical</Item>
-      <Item>Untyped</Item>
-      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Archmage: Spellcraft</Name>
+      <InternalName>AMSpellCraft</InternalName>
+      <Description>+[5/10/20] Spellcraft</Description>
+      <Icon>DeepGnomeSpellcraft</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Wizard</Item>
+          <Value>2</Value>
+        </Requirement>
+         <RequiresNoneOf>
+            <Requirement>
+               <Type>Enhancement</Type>
+               <Item>DeepGnomeSpellcraft</Item>
+            </Requirement>
+         </RequiresNoneOf>
+      </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>Spellcraft</Item>
+            <AType>Stacks</AType>
+            <Amount size="3">5 10 20</Amount>
+         </Effect>
     </EnhancementTreeItem>
      <!--Tier 3-->
     <EnhancementTreeItem>
@@ -1759,17 +1784,16 @@ reduces the damage by half. This ability counts as a level 2 Wizard spell, and
 benefits from the highest of your spell schools to determine its DC. Further
 points spent in this enhancement will reduce the cooldown and Spell Point cost
 of this Spell-Like Ability.
-Activation Cost: [8/6/4] Spell Points.
-Cooldown: [15/10/5] seconds
+Activation Cost: 4 Spell Points.
+Cooldown: 5 seconds
 Scale with 100% Spell Power.</Description>
       <Icon>AMArcaneBolt</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie />
-      <LongArrowUp />
       <Requirements>
         <Requirement>
           <Type>ClassMinLevel</Type>
@@ -1782,7 +1806,7 @@ Scale with 100% Spell Power.</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Arcane Bolt</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 8 0 15 0 6 0 10 0 4 0 5</Amount>
+        <Amount size="4">0 4 0 5</Amount>
         <Item>Wizard</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -1814,7 +1838,7 @@ Scale with 100% Spell Power.</Description>
       <Name>Archmage: Spell Critical: Elemental and Force III</Name>
       <InternalName>AMSpellCriticalElementalAndForceIII</InternalName>
       <Description>Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
-additional 2% chance to critically hit. Actually 4% Force.</Description>
+additional 2% chance to critically hit.</Description>
       <Icon>AMSpellCriticalElementalAndForce</Icon>
       <XPosition>3</XPosition>
       <YPosition>3</YPosition>
@@ -1842,15 +1866,9 @@ additional 2% chance to critically hit. Actually 4% Force.</Description>
         <Item>Cold</Item>
         <Item>Electric</Item>
         <Item>Fire</Item>
-      </Effect>
-      <Effect>
-        <Type>SpellLore</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">4</Amount>
-      <Item>Force</Item>
-      <Item>Physical</Item>
-      <Item>Untyped</Item>
+        <Item>Force</Item>
+        <Item>Physical</Item>
+        <Item>Untyped</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1880,6 +1898,27 @@ additional 2% chance to critically hit. Actually 4% Force.</Description>
       </Effect>
     </EnhancementTreeItem>
      <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Archmage: Mixed Magics</Name>
+      <InternalName>AMMixedMagics</InternalName>
+     <Description>Your Caster Level with spells is now equal to your Character Level instead of
+individual class levels (max 20). This does not change the caster level of Rune
+Arms, Wands, Scrolls, or other Items.</Description>
+      <Icon>WMMixedMagics</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Wizard</Item>
+          <Value>4</Value>
+        </Requirement>
+      </Requirements>
+      <!---effects handled in C++ code-->
+    </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Archmage: Efficient Heighten</Name>
       <InternalName>AMEfficientHeighten</InternalName>
@@ -2098,7 +2137,7 @@ your spell DCs of that school.</Description>
       <Name>Archmage: Spell Critical: Elemental and Force IV</Name>
       <InternalName>AMSpellCriticalElementalAndForceIV</InternalName>
       <Description>Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
-additional 2% chance to critically hit. Actually 4% Force.</Description>
+additional 2% chance to critically hit.</Description>
       <Icon>AMSpellCriticalElementalAndForce</Icon>
       <XPosition>3</XPosition>
       <YPosition>4</YPosition>
@@ -2125,15 +2164,9 @@ additional 2% chance to critically hit. Actually 4% Force.</Description>
         <Item>Cold</Item>
         <Item>Electric</Item>
         <Item>Fire</Item>
-      </Effect>
-      <Effect>
-        <Type>SpellLore</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">4</Amount>
-      <Item>Force</Item>
-      <Item>Physical</Item>
-      <Item>Untyped</Item>
+        <Item>Force</Item>
+        <Item>Physical</Item>
+        <Item>Untyped</Item>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -2177,13 +2210,13 @@ This ability counts as a level 4 Wizard spell, and benefits from the highest of
 your spell schools to determine its DC. Further points spent in this enhancement
 will reduce the cooldown and Spell Point cost of this Spell-Like Ability.
 Scale with 100% Spell Power.
-Activation Cost: [12/8/6] Spell Points.
-Cooldown: [18/12/6] seconds.</Description>
+Activation Cost: 6 Spell Points.
+Cooldown: 6 seconds.</Description>
       <Icon>AMArcaneBlast</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
       <Clickie />
@@ -2197,27 +2230,21 @@ Cooldown: [18/12/6] seconds.</Description>
             <Type>Level</Type>
             <Value>12</Value>
          </Requirement>
-         <Requirement>
-          <Type>Enhancement</Type>
-          <Item>AMArcaneBolt</Item>
-        </Requirement>
       </Requirements>
        <Effect>
           <Type>SpellLikeAbility</Type>
           <Bonus>Enhancement</Bonus>
           <Item>Arcane Blast</Item>
           <AType>SpellInfo</AType>
-          <Amount size="12">0 12 0 18 0 8 0 12 0 6 0 6</Amount>
+          <Amount size="4">0 6 0 6</Amount>
           <Item>Wizard</Item>
        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Archmage: Arcane Supremacy</Name>
       <InternalName>AMArcaneSupremacy</InternalName>
-      <Description>Your offensive spells gain a 10% chance to trigger Arcane Supremacy.
-Arcane Supremacy: +25% Spell Critical Chance, +100% Spell Critical Damage.
-12 seconds duration.
-This effect may trigger only once every 90 seconds.</Description>
+      <Description>Activate to gain a +25% Spell Critical Chance, +100% Spell Critical Damage. 12 seconds duration.
+Cooldown: 60 seconds.</Description>
       <Icon>AMArcaneSupremacy</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
@@ -2225,6 +2252,7 @@ This effect may trigger only once every 90 seconds.</Description>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
+      <Clickie/>
       <Requirements>
         <Requirement>
           <Type>ClassMinLevel</Type>
@@ -2249,7 +2277,6 @@ The DC of spells you cast from that school are increased by an additional 2.</De
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
-      <ArrowRight />
       <Requirements>
          <Requirement>
             <Type>ClassMinLevel</Type>
@@ -2416,10 +2443,9 @@ your spell DCs of that school.</Description>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Archmage: Secondary School Mastery</Name>
+      <Name>Archmage: Spell Mastery</Name>
       <InternalName>AMSecondarySchoolMastery</InternalName>
-      <Description>Select one of the spell schools you are not specialized in.
-The DC of spells you cast from that school are increased by 1.</Description>
+      <Description>+1 to all spell DCs</Description>
       <Icon>AMSecondarySchoolMastery</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
@@ -2437,174 +2463,45 @@ The DC of spells you cast from that school are increased by 1.</Description>
             <Type>Level</Type>
             <Value>12</Value>
          </Requirement>
-         <Requirement>
-          <Type>Enhancement</Type>
-          <Item>AMSchoolMasteryII</Item>
-        </Requirement>
       </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>Secondary Spell Focus: Abjuration</Name>
-          <Description>You have trained extensively in Abjuration magic, granting a +1 bonus to
-your spell DCs of that school.</Description>
-          <Icon>AMPrimarySpellFocusAbjuration</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>AMCore1</Item>
-                <Item>Abjuration I: Shield</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Abjuration</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Secondary Spell Focus: Conjuration</Name>
-          <Description>You have trained extensively in Conjuration magic, granting a +1 bonus to
-your spell DCs of that school.</Description>
-          <Icon>AMPrimarySpellFocusConjuration</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>AMCore1</Item>
-                <Item>Conjuration I: Grease</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Conjuration</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Secondary Spell Focus: Enchantment</Name>
-          <Description>You have trained extensively in Enchantment magic, granting a +1 bonus to
-your spell DCs of that school.</Description>
-          <Icon>AMPrimarySpellFocusEnchantment</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>AMCore1</Item>
-                <Item>Enchantment I: Hypnotism</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Enchantment</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Secondary Spell Focus: Evocation</Name>
-          <Description>You have trained extensively in Evocation magic, granting a +1 bonus to
-your spell DCs of that school.</Description>
-          <Icon>AMPrimarySpellFocusEvocation</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>AMCore1</Item>
-                <Item>Evocation I: Magic Missile</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Evocation</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Secondary Spell Focus: Illusion</Name>
-          <Description>You have trained extensively in Illusion magic, granting a +1 bonus to
-your spell DCs of that school.</Description>
-          <Icon>AMPrimarySpellFocusIllusion</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>AMCore1</Item>
-                <Item>Illusion I: Invisibility</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Illusion</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Secondary Spell Focus: Necromancy</Name>
-          <Description>You have trained extensively in Necromancy magic, granting a +1 bonus to
-your spell DCs of that school.</Description>
-          <Icon>AMPrimarySpellFocusNecromancy</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>AMCore1</Item>
-                <Item>Necromancy I: Chill Touch</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Necromancy</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Secondary Spell Focus: Transmutation</Name>
-          <Description>You have trained extensively in Transmutation magic, granting a +1 bonus to
-your spell DCs of that school.</Description>
-          <Icon>AMPrimarySpellFocusTransmutation</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Requirements>
-            <RequiresNoneOf>
-              <Requirement>
-                <Type>Enhancement</Type>
-                <Item>AMCore1</Item>
-                <Item>Transmutation I: Jump</Item>
-              </Requirement>
-            </RequiresNoneOf>
-          </Requirements>
-          <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Item>Transmutation</Item>
-            <AType>Simple</AType>
-            <Amount size="1">1</Amount>
-          </Effect>
-        </EnhancementSelection>
-      </Selector>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Enhancement</Bonus>
+         <Item>All</Item>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Archmage: Metamagic Mastery</Name>
+      <InternalName>AMMetamagicMastery</InternalName>
+      <Description>+2% Spell Critical Damage per Metamagic feat you own.</Description>
+      <Icon>Intensify</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Wizard</Item>
+          <Value>5</Value>
+        </Requirement>
+         <Requirement>
+            <Type>Level</Type>
+            <Value>12</Value>
+         </Requirement>
+      </Requirements>
+      <Effect>
+         <DisplayName>Archmage: Metamagic Mastery</DisplayName>
+         <Type>SpellCriticalDamage</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Stacks</AType>
+         <Amount size="25">0 0 2 0 4 0 6 0 8 0 10 0 12 0 14 0 16 0 18 0 20 0 22 0 24</Amount>
+         <Item>All</Item>
+      </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

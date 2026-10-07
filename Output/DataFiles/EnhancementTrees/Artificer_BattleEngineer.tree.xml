@@ -276,7 +276,7 @@ for a total of +32.</Description>
         <Bonus>Competence</Bonus>
         <AType>Simple</AType>
         <Amount size="1">1</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Item>Bastard Sword</Item>
         <Item>Dwarven Axe</Item>
         <Item>Light Hammer</Item>
@@ -343,30 +343,30 @@ it is charged to Charge Tier 5, for a total of +40.</Description>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
-         <Requirements>
-            <RequiresOneOf>
-               <Requirement>
-                  <Type>ItemTypeInSlot</Type>
-                  <Item>Armor</Item>
-                  <Item>Docent</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>ItemTypeInSlot</Type>
-                  <Item>Armor</Item>
-                  <Item>Light</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>ItemTypeInSlot</Type>
-                  <Item>Armor</Item>
-                  <Item>Medium</Item>
-               </Requirement>
-               <Requirement>
-                  <Type>ItemTypeInSlot</Type>
-                  <Item>Armor</Item>
-                  <Item>Heavy</Item>
-               </Requirement>
-            </RequiresOneOf>
-         </Requirements>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>ItemTypeInSlot</Type>
+              <Item>Armor</Item>
+              <Item>Docent</Item>
+            </Requirement>
+            <Requirement>
+              <Type>ItemTypeInSlot</Type>
+              <Item>Armor</Item>
+              <Item>Light</Item>
+            </Requirement>
+            <Requirement>
+              <Type>ItemTypeInSlot</Type>
+              <Item>Armor</Item>
+              <Item>Medium</Item>
+            </Requirement>
+            <Requirement>
+              <Type>ItemTypeInSlot</Type>
+              <Item>Armor</Item>
+              <Item>Heavy</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
       </Effect>
       <Effect>
         <Type>PRR</Type>
@@ -546,7 +546,8 @@ Gain bonuses to Attack and Damage Rolls with the selected weapon types.</Descrip
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Hammer and Morningstar Training I</Name>
-          <Description>+1 to attack and damage rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Description>+1 to attack and damage rolls with Light Hammers, Warhammers and Morningstars.
++5% Strikethrough</Description>
           <Icon>BEHammerAndMorningstar</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -558,11 +559,18 @@ Gain bonuses to Attack and Damage Rolls with the selected weapon types.</Descrip
             <Item>Warhammer</Item>
             <Item>Morningstar</Item>
           </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Hand and a Half Training I</Name>
-          <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
-+5% Strikethrough</Description>
+          <Name>Bastard Sword and Dwarven Waraxe Training I</Name>
+          <Description>+1 to attack and damage rolls with Hand and a Half Weapons.
++5% Strikethrough
+Hand and a Half Weapons: Bastard Swords, Dwarven Waraxes, Morningstars and Warhammers</Description>
           <Icon>BEHandAndAHalfTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -570,8 +578,13 @@ Gain bonuses to Attack and Damage Rolls with the selected weapon types.</Descrip
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Dwarven Axe</Item>
+            <Requirements>
+              <Requirement>
+                <Type>GroupMember</Type>
+                <Item>Hand and a Half</Item>
+              </Requirement>
+            </Requirements>
+            <Item>All</Item>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -756,7 +769,8 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Hammer and Morningstar Training</Name>
-          <Description>+1 to attack damage rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Description>+1 to attack damage rolls with Light Hammers, Warhammers and Morningstars.
++5% Strikethrough.</Description>
           <Icon>BEHammerAndMorningstar</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -768,11 +782,18 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
             <Item>Warhammer</Item>
             <Item>Morningstar</Item>
           </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Hand and a Half Training II</Name>
-          <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
-+5% Strikethrough</Description>
+          <Name>Bastard Sword and Dwarven Waraxe Training II</Name>
+          <Description>+1 to attack and damage rolls with Hand and a Half weapons.
++5% Strikethrough
+Hand and a Half Weapons: Bastard Swords, Dwarven Waraxes, Morningstars and Warhammers</Description>
           <Icon>BEHandAndAHalfTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -780,8 +801,13 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Dwarven Axe</Item>
+            <Requirements>
+              <Requirement>
+                <Type>GroupMember</Type>
+                <Item>Hand and a Half</Item>
+              </Requirement>
+            </Requirements>
+            <Item>All</Item>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -798,12 +824,13 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
       <Description>Melee or Ranged Attack: On Damage: Deals extra damage to constructs and living
 constructs, and applies Wracked: This construct or living construct's fortification
 is reduced and loses its inherent immunity to sneak attack. This effect stacks
-up to five times. (Cooldown: [12/8/4] seconds): </Description>
+up to five times.
+Cooldown: 4 seconds</Description>
       <Icon>BEWrackConstruct</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <Requirements>
@@ -816,28 +843,28 @@ up to five times. (Cooldown: [12/8/4] seconds): </Description>
       <Selector>
         <EnhancementSelection>
           <Name>Melee Wrack Construct</Name>
-          <Description>Deals +[10/20/30]% Damage
-Melee Attack: On Damage: Deals [3/6/9]d6 extra damage to constructs and living
+          <Description>Deals +30% Damage
+Melee Attack: On Damage: Deals 9d6 extra damage to constructs and living
 constructs, and applies Wracked: This construct or living construct's fortification
 is reduced and loses its inherent immunity to sneak attack. This effect stacks
 up to five times.
 
 Damage scales with 200% Melee Power.</Description>
           <Icon>BEWrackingStrike</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Ranged Wrack Construct</Name>
-          <Description>Deals +[10/20/30]% Damage
-Ranged Attack: On Damage: Deals [3/6/9]d6 extra damage to constructs and living
+          <Description>Deals +30% Damage
+Ranged Attack: On Damage: Deals 9d6 extra damage to constructs and living
 constructs, and applies Wracked: This construct or living construct's fortification
 is reduced and loses its inherent immunity to sneak attack. This effect stacks
 up to five times.
 
 Damage scales with 200% Ranged Power.</Description>
           <Icon>BEWrackingShot</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
       </Selector>
@@ -849,8 +876,8 @@ Damage scales with 200% Ranged Power.</Description>
       <Icon>BECausticShot</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <ArrowUp />
@@ -864,24 +891,24 @@ Damage scales with 200% Ranged Power.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Caustic Shot</Name>
-          <Description>Deals +[10/20/30]% Damage
+          <Description>Deals +30% Damage
 Cooldown: 6 seconds
 Ranged Crossbow Attack: On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
 
 Damage scales with 200% Ranged Power.</Description>
           <Icon>BECausticShot</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Caustic Strike</Name>
-          <Description>Deals +[10/20/30]% Damage
+          <Description>Deals +30% Damage
 Cooldown: 6 seconds
 Melee Attack: On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
 
 Damage scales with 200% Melee Power.</Description>
           <Icon>BECausticStrike</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
       </Selector>
@@ -911,8 +938,8 @@ Damage scales with 200% Melee Power.</Description>
       <Icon>BEDamageBoost</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <Requirements>
@@ -925,18 +952,26 @@ Damage scales with 200% Melee Power.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Action Boost: Power</Name>
-          <Description>Activate to gain a +[10/20/30] Action Boost bonus to Melee
+          <Description>Activate to gain a +30 Action Boost bonus to Melee
 and Ranged power for 20 seconds.</Description>
           <Icon>BEActionBoostPower</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Action Boost: Attack</Name>
-          <Description>Activate this ability to gain a +[4/6/8] Action Boost bonus
+          <Description>Activate this ability to gain a +8 Action Boost bonus
 to your attack rolls for 20 seconds.</Description>
           <Icon>BEActionBoostAttack</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Haste Boost</Name>
+          <Description>Activate this ability to receive a 30% Action Boost attack speed bonus for 20 seconds.
+Cooldown: 30 seconds.</Description>
+          <Icon>BEHasteBoost</Icon>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
       </Selector>
@@ -1003,7 +1038,8 @@ crossbows when non dual shooting.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Hammer and Morningstar Training III</Name>
-          <Description>+1 to attack and damage rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Description>+1 to attack and damage rolls with Light Hammers, Warhammers and Morningstars.
++5% Strikethrough.</Description>
           <Icon>BEHammerAndMorningstar</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -1015,11 +1051,18 @@ crossbows when non dual shooting.</Description>
             <Item>Warhammer</Item>
             <Item>Morningstar</Item>
           </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Hand and a Half Training III</Name>
-          <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
-+5% Strikethrough</Description>
+          <Name>Bastard Sword and Dwarven Waraxe Training III</Name>
+          <Description>+1 to attack and damage rolls with Hand and a Half weapons.
++5% Strikethrough
+Hand and a Half Weapons: Bastard Swords, Dwarven Waraxes, Morningstars and Warhammers</Description>
           <Icon>BEHandAndAHalfTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -1027,8 +1070,13 @@ crossbows when non dual shooting.</Description>
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Dwarven Axe</Item>
+            <Requirements>
+              <Requirement>
+                <Type>GroupMember</Type>
+                <Item>Hand and a Half</Item>
+              </Requirement>
+            </Requirements>
+            <Item>All</Item>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -1048,8 +1096,8 @@ by it will extend the duration. Cooldown: 25 seconds</Description>
       <Icon>BEDisableConstruct</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie />
       <Requirements>
@@ -1067,8 +1115,8 @@ by it will extend the duration. Cooldown: 25 seconds</Description>
       <Icon>BEShatterDefensesMelee</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie />
       <LongArrowUp />
@@ -1086,7 +1134,7 @@ by it will extend the duration. Cooldown: 25 seconds</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Shatter Defenses (Crossbow)</Name>
-          <Description>Deals +[10/30/50]% Damage
+          <Description>Deals +50% Damage
 Cooldown: 10 seconds
 AOE Tactical Ranges Crossbow Attack: On Hit: Reduce the target's Armor Class by 5
 and lowers fortification by 10%. A successful Fortitude save negates this effect.
@@ -1095,7 +1143,7 @@ Regardless of saving throw result target will suffer the Trauma effect, -3 penal
 to Fortitude saves due to shock, stacks 5 times. Lasts 24 seconds.
 This ability shares a cooldown with sunder.</Description>
           <Icon>BEShatterDefensesCrossbow</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
           <DC>
             <Name>Battle Engineer: Shatter Defenses (Crossbow)</Name>
@@ -1116,7 +1164,7 @@ This ability shares a cooldown with sunder.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Shatter Defenses (Melee)</Name>
-          <Description>Deals +[10/30/50]% Damage
+          <Description>Deals +50% Damage
 Cooldown: 10 seconds
 Tactical Melee Attack: On Hit: Reduce the target's Armor Class by 5 and lowers
 fortification by 10%. A successful Fortitude save negates this effect.
@@ -1125,7 +1173,7 @@ Regardless of saving throw result target will suffer the Trauma effect, -3 penal
 to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
 This ability shares a cooldown with sunder.</Description>
           <Icon>BEShatterDefensesMelee</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
           <DC>
             <Name>Battle Engineer: Shatter Defenses (Melee)</Name>
@@ -1245,7 +1293,6 @@ Gain bonuses to Attack and Damage Rolls with the selected weapon types.</Descrip
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <ArrowRight />
       <ArrowUp />
       <Requirements>
         <Requirement>
@@ -1304,7 +1351,8 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Hammer and Morningstar Training IV</Name>
-          <Description>+1 to attack and damage rolls with Light Hammers, Warhammers and Morningstars.</Description>
+          <Description>+1 to attack and damage rolls with Light Hammers, Warhammers and Morningstars.
++5% Strikethrough.</Description>
           <Icon>BEHammerAndMorningstar</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -1316,11 +1364,18 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
             <Item>Warhammer</Item>
             <Item>Morningstar</Item>
           </Effect>
+          <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Hand and a Half Training IV</Name>
-          <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
-+5% Strikethrough</Description>
+          <Name>Bastard Sword and Dwarven Waraxe Training IV</Name>
+          <Description>+1 to attack and damage rolls with Hand and a Half weapons.
++5% Strikethrough
+Hand and a Half Weapons: Bastard Swords, Dwarven Waraxes, Morningstars and Warhammers</Description>
           <Icon>BEHandAndAHalfTraining</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Effect>
@@ -1328,8 +1383,13 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
             <Bonus>Enhancement</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <Item>Bastard Sword</Item>
-            <Item>Dwarven Axe</Item>
+            <Requirements>
+              <Requirement>
+                <Type>GroupMember</Type>
+                <Item>Hand and a Half</Item>
+              </Requirement>
+            </Requirements>
+            <Item>All</Item>
           </Effect>
           <Effect>
             <Type>Strikethrough</Type>
@@ -1343,11 +1403,11 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
     <EnhancementTreeItem>
       <Name>Battle Engineer: Battle Mastery</Name>
       <InternalName>BEBattleMastery</InternalName>
-      <Description>Select either Action Boost: Haste or Endless Fusilade.</Description>
+      <Description>Select either a Melee or ranged attack.</Description>
       <Icon>BEBattleMastery</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
+      <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <Clickie />
@@ -1357,39 +1417,52 @@ crossbows, +2 to damage rolls with non-repeating crossbows when not dual shootin
           <Item>Artificer</Item>
           <Value>4</Value>
         </Requirement>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>BEWeaponTrainingIV</Item>
-        </Requirement>
       </Requirements>
       <Selector>
         <EnhancementSelection>
-          <Name>Endless Fusilade</Name>
-          <Description>Action Boost: You may activate this ability to enchant your Crossbow to
-instantly reload itself for 18 seconds. You must have a Crossbow equipped to
-activate this skill.
-Cooldown: 30 seconds.</Description>
-          <Icon>BEEndlessFusilade</Icon>
+          <Name>Engine Strike</Name>
+          <Description>Melee Attack: +100% Damage
++1 Critical Threat Range and Multiplier
+Cooldown: 6 seconds.
+Passive: +5 Melee Power, +10% Doublestrike</Description>
+          <Icon>BEBattleMastery</Icon>
           <CostPerRank size="1">2</CostPerRank>
           <Clickie />
+          <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Haste Boost</Name>
-          <Description>Activate this ability to receive a 30% Action Boost attack speed bonus for 20 seconds.
-Cooldown: 30 seconds.</Description>
-          <Icon>BEHasteBoost</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <Name>Engine Volley</Name>
+          <Description>Crossbow Ranged Attack: +400% Damage
++1 Critical Threat Range and Multiplier
+Cooldown: 6 seconds.
+Passive: +5 Ranged Power, +10% Doubleshot.
+Shares a cooldown with Inquisitive's Take 'Em Down and Rogue's Line Up and Sit Down.</Description>
+          <Icon>BEBattleMastery</Icon>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
-          <Attack>
-            <Name>Battle Engineer: Battle Mastery</Name>
-            <Description>Activate to gain +30% Action Boost bonus to attack speed for 20 seconds.</Description>
-            <Icon>KenseiHasteBoost</Icon>
-            <Cooldown size="1">30</Cooldown>
-            <FollowOn>
-              <Duration size="1">20</Duration>
-              <BonusAlacrity size="1">30</BonusAlacrity>
-            </FollowOn>
-          </Attack>
+          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+          <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">10</Amount>
+          </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -1540,7 +1613,7 @@ Cooldown: 30 seconds.</Description>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
             <Item>Crossbow</Item>
-            <ApplyAsItemEffect/>
+            <ApplyAsItemEffect />
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -1556,7 +1629,7 @@ You gain a +20% Competence bonus to Maximum Hit Points.</Description>
             <Bonus>Competence</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <ApplyAsItemEffect/>
+            <ApplyAsItemEffect />
             <Item>Light Hammer</Item>
             <Item>Warhammer</Item>
             <Item>Morningstar</Item>
@@ -1581,7 +1654,7 @@ You gain a +20% Competence bonus to Maximum Hit Points.</Description>
             <Bonus>Competence</Bonus>
             <AType>Simple</AType>
             <Amount size="1">1</Amount>
-            <ApplyAsItemEffect/>
+            <ApplyAsItemEffect />
             <Item>Bastard Sword</Item>
             <Item>Dwarven Axe</Item>
           </Effect>

@@ -216,6 +216,7 @@ class Build :
                 size_t level,
                 const std::string& includeThisFeat) const;
         std::list<TrainedFeat> CurrentFeats(size_t level) const;
+        std::list<TrainedFeat> CurrentFeatsTrained(size_t level) const;
         bool IsFeatTrainable(
                 size_t level,
                 const std::string& type,

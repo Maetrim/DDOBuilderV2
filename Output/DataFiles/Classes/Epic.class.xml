@@ -140,7 +140,7 @@ Cooldown: 3 Seconds</Description>
     </Feat>
     <Feat>
       <Name>Epic Pact Dice</Name>
-      <Description>+1d6 Pact dice, +1d6 per 2 Epic levels and Legendary levels.
+      <Description>+3d6 Pact dice, +1d6 per 2 Epic levels and Legendary levels.
 For example, a level 34 character receives +1d6 base increase, +5d6 from Epic
 levels, and +2d6 from Legendary levels.</Description>
       <Group>Epic Destiny Feat</Group>
@@ -160,7 +160,7 @@ levels, and +2d6 from Legendary levels.</Description>
       <Effect>
         <Type>EldritchBlastD6</Type>
         <Bonus>Feat</Bonus>
-        <Amount size="21">0 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</Amount>
+        <Amount size="21">0 0 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12</Amount>
         <AType>ClassLevel</AType>
         <StackSource>Epic</StackSource>
       </Effect>
@@ -1945,7 +1945,8 @@ Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
       <Name>Combat Archery</Name>
       <Description>Your ranged damage is increased by +1[W].
 You gain a 2% Dodge bonus while using a ranged weapon.
-In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.</Description>
+In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier
+and Critical Threat Range.</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -1995,6 +1996,7 @@ In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.
         <Item>Throwing Hammer</Item>
       </Effect>
       <Effect>
+        <Type>Weapon_CriticalRange</Type>
         <Type>Weapon_CriticalMultiplier</Type>
         <Bonus>Competence</Bonus>
         <AType>Simple</AType>
@@ -2117,6 +2119,16 @@ affected by Embolden Spell, but they consume 10 additional spell points.</Descri
         <AType>Stacks</AType>
         <Amount size="31">0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 0 8 0 9 0 10 0 11 0 12 0 13 0 14 0 15</Amount>
       </Effect>
+    <!--Two stacks in a metamagic feat, enhancement gives 1 stack-->
+   <Effect>
+      <DisplayName>Archmage: Metamagic Mastery</DisplayName>
+      <Type>SpellCriticalDamage</Type>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="25">0 0 2 0 4 0 6 0 8 0 10 0 12 0 14 0 16 0 18 0 20 0 22 0 24</Amount>
+      <Item>All</Item>
+   </Effect>
     </Feat>
     <Feat>
       <Name>Epic Damage Reduction</Name>
@@ -2135,38 +2147,6 @@ affected by Embolden Spell, but they consume 10 additional spell points.</Descri
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
         <Amount size="1">10</Amount>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Epic Eldritch Blast</Name>
-      <Description>+2d8 Eldritch Blast dice, +1 per 2 Epic/Legendary levels, max +9d8 dice at level 34.</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>21</Value>
-        </Requirement>
-        <Requirement>
-          <Type>BaseClassMinLevel</Type>
-          <Item>Warlock</Item>
-          <Value>12</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>EpicEldritchBlast</Icon>
-      <Effect>
-        <Type>EldritchBlastD8</Type>
-        <Bonus>Feat</Bonus>
-        <Amount size="21">0 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12</Amount>
-        <AType>ClassLevel</AType>
-        <StackSource>Epic</StackSource>
-      </Effect>
-      <Effect>
-        <Type>EldritchBlastD8</Type>
-        <Bonus>Feat</Bonus>
-        <Amount size="21">0 0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10</Amount>
-        <AType>ClassLevel</AType>
-        <StackSource>Legendary</StackSource>
       </Effect>
     </Feat>
     <Feat>
@@ -2199,7 +2179,8 @@ saving throws on a roll of 1.</Description>
     </Feat>
     <Feat>
       <Name>Epic Mental Toughness</Name>
-      <Description>Increases your maximum spell points by 200 and your spell critical chance by 1%</Description>
+      <Description>Increases your maximum spell points by 200 and your spell critical chance by 1%.
+Increases your Cantrip step die (e.g. 1d6->1d8).</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -3112,14 +3093,14 @@ skill to use.</Description>
     </Feat>
     <Feat>
       <Name>Intensify Spell</Name>
-      <Description>While this metamagic feat is active, you gain 75 Spell Power while casting
+      <Description>While this metamagic feat is active, you gain 125 Spell Power while casting
 spells affected by Intensify Spell, but they cost 15 additional spell points.
 This bonus stacks with Empower.
 Passive: +140 Maximum Spell Points</Description>
       <Stance>
         <Name>Intensify Spell</Name>
         <Icon>IntensifySpell</Icon>
-        <Description>While this metamagic feat is active, you gain 75 Spell Power while casting
+        <Description>While this metamagic feat is active, you gain 125 Spell Power while casting
 spells affected by Intensify Spell, but they cost 15 additional spell points.
 This bonus stacks with Empower.</Description>
         <Group>Metamagics</Group>
@@ -3137,7 +3118,7 @@ This bonus stacks with Empower.</Description>
         <Type>UniversalSpellPower</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">75</Amount>
+        <Amount size="1">125</Amount>
         <Requirements>
           <Requirement>
             <Type>Stance</Type>
@@ -3179,12 +3160,24 @@ This bonus stacks with Empower.</Description>
         <AType>Stacks</AType>
         <Amount size="31">0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 0 8 0 9 0 10 0 11 0 12 0 13 0 14 0 15</Amount>
       </Effect>
+    <!--Two stacks in a metamagic feat, enhancement gives 1 stack-->
+   <Effect>
+      <DisplayName>Archmage: Metamagic Mastery</DisplayName>
+      <Type>SpellCriticalDamage</Type>
+      <Type>SpellCriticalDamage</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Stacks</AType>
+      <Amount size="25">0 0 2 0 4 0 6 0 8 0 10 0 12 0 14 0 16 0 18 0 20 0 22 0 24</Amount>
+      <Item>All</Item>
+   </Effect>
     </Feat>
     <Feat>
-      <Name>Master of Air</Name>
-      <Description>Your Shocking Grasp, Electric Loop and Lightning Bolt spells gain +10 to their maximum
-caster level.
-Passive: +140 Maximum Spell Points</Description>
+      <Name>Master of the Storm</Name>
+      <Description>Your Direct Damage Electric spells do an additional 1d6+3 damage per Epic or
+Legendary level. This can only occur once cast. This does not apply to
+persistent spells like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -3199,23 +3192,16 @@ Passive: +140 Maximum Spell Points</Description>
         <Type>SpellPoints</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Shocking Grasp</Item>
-        <Item>Electric Loop</Item>
-        <Item>Lightning Bolt</Item>
+        <Amount size="1">150</Amount>
       </Effect>
     </Feat>
     <Feat>
       <Name>Master of Alignment</Name>
-      <Description>Your Holy Smite, Deific Vengeance, Unholy Blight, Chaos Hammer and Order's Wrath
-spells gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
+      <Description>Your Direct Damage Evil, Light, Law and Good spells do an additional 1d6+3 damage
+per Epic or Legendary level. This can only occur once cast. This does not apply
+to persistent spells like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -3229,113 +3215,16 @@ Passive: +140 Maximum Spell Points</Description>
         <Type>SpellPoints</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Holy Smite</Item>
-        <Item>Deific Vengeance</Item>
-        <Item>Unholy Blight</Item>
-        <Item>Chaos Hammer</Item>
-        <Item>Order's Wrath</Item>
+        <Amount size="1">150</Amount>
       </Effect>
     </Feat>
     <Feat>
-      <Name>Master of Artifice</Name>
-      <Description>Your Static Shock, Lightning Sphere, Blast Rod and Lightning Motes spells gain +10
-to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfArtifice</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Static Shock</Item>
-        <Item>Lightning Sphere</Item>
-        <Item>Blast Rod</Item>
-        <Item>Lightning Motes</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Chaos</Name>
-      <Description>Your Chaos Bolt, Chaos Sphere, and Wildstrike spells gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfChaos</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Chaos Bolt</Item>
-        <Item>Chaos Sphere</Item>
-        <Item>Wildstrike</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Earth</Name>
-      <Description>Your Acid Spray, Acid Arrow and Acid Blast spells gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfEarth</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Acid Spray</Item>
-        <Item>Melf's Acid Arrow</Item>
-        <Item>Acid Blast</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Fire</Name>
-      <Description>Your Burning Hands, Scorch and Fireball spells gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
+      <Name>Master of Fire and LIght</Name>
+      <Description>Your Direct Damage Fire spells do an additional 1d6+3 damage per Epic or Legendary
+level. This can only occur once cast. This does not apply to persistent spells
+like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -3349,7 +3238,7 @@ Passive: +140 Maximum Spell Points</Description>
         <Type>SpellPoints</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">140</Amount>
+        <Amount size="1">150</Amount>
       </Effect>
       <Effect>
         <Type>MaxCasterLevelSpell</Type>
@@ -3362,10 +3251,33 @@ Passive: +140 Maximum Spell Points</Description>
       </Effect>
     </Feat>
     <Feat>
+      <Name>Master of Force</Name>
+      <Description>Your Direct Damage Force or Physical spells do an additional 1d6+3 damage per Epic
+or Legendary level. This can only occur once cast. This does not apply to
+persistent spells like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points</Description>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>24</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfForce</Icon>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">150</Amount>
+      </Effect>
+    </Feat>
+    <Feat>
       <Name>Master of Knowledge</Name>
       <Description>Your Arcane Bolt and Arcane Blast spells now grant you one stack of Mental
-Honing (+3 Universal Spell Power, +2% Spell Critical Damage) when cast. This effect
-can stack up to 30 times. One stack is removed every 6 seconds.
+Honing (+6 Universal Spell Power, +4% Spell Critical Damage) when cast. This effect
+can stack up to 15 times. One stack is removed every 6 seconds.
 Passive: +140 Maximum Spell Points</Description>
       <Group>Epic Feat</Group>
       <Requirements>
@@ -3381,14 +3293,14 @@ Passive: +140 Maximum Spell Points</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Mental Honing</Item>
         <AType>Slider</AType>
-        <Amount size="3">0 0 30</Amount>
+        <Amount size="3">0 0 15</Amount>
       </Effect>
       <Effect>
         <DisplayName>Master of Knowledge: Mental Honing stacks</DisplayName>
         <Type>UniversalSpellPower</Type>
         <Bonus>Feat</Bonus>
         <AType>SliderValue</AType>
-        <Amount size="1">3</Amount>
+        <Amount size="1">6</Amount>
         <StackSource>Mental Honing</StackSource>
       </Effect>
       <Effect>
@@ -3396,7 +3308,7 @@ Passive: +140 Maximum Spell Points</Description>
         <Type>SpellCriticalDamage</Type>
         <Bonus>Feat</Bonus>
         <AType>SliderValue</AType>
-        <Amount size="1">2</Amount>
+        <Amount size="1">4</Amount>
         <StackSource>Mental Honing</StackSource>
         <Item>All</Item>
       </Effect>
@@ -3408,232 +3320,12 @@ Passive: +140 Maximum Spell Points</Description>
       </Effect>
     </Feat>
     <Feat>
-      <Name>Master of Light</Name>
-      <Description>Your Sun Bolt, Searing Light and Divine Punishment spells gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfLight</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Sun Bolt</Item>
-        <Item>Searing Light</Item>
-        <Item>Divine Punishment</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Music</Name>
-      <Description>Your Shout, Greater Shout, Sonic Blast and Reverberate gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfMusic</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Shout</Item>
-        <Item>Greater Shout</Item>
-        <Item>Sonic Blast</Item>
-        <Item>Reverberate</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Poisons</Name>
-      <Description>Your Wave of Poison and Greater Wave of Poison spells gain +10 to their maximum caster level.
+      <Name>Master of Decay</Name>
+      <Description>Your Direct Damage Negative Energy spells do an additional 1d6+3 damage per Epic or
+Legendary level. This can only occur once cast. This does not apply to persistent
+spells like clouds, walls or guardians.
 
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfPoisons</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Wave of Poison</Item>
-        <Item>Greater Wave of Poison</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Shadowblades</Name>
-      <Description>Your Shadowblade spells gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfShadowblades</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Shadowblade</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Spell Vials</Name>
-      <Description>Your Spell Vial, Multivial, and Elemental Obliteration spells gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfSpellvials</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Vial of Venom</Item>
-        <Item>Vial of Flame</Item>
-        <Item>Vial of Acid</Item>
-        <Item>Vial of Frost</Item>
-        <Item>Vial of Sparks</Item>
-        <Item>Vial Smash: Fire</Item>
-        <Item>Vial Smash: Cold</Item>
-        <Item>Vial Smash: Electric</Item>
-        <Item>Vial Smash: Acid</Item>
-        <Item>Vial Smash: Poison</Item>
-        <Item>Multivial of Acid</Item>
-        <Item>Multivial of Flame</Item>
-        <Item>Multivial of Frost</Item>
-        <Item>Multivial of Poison</Item>
-        <Item>Multivial of Sparks</Item>
-        <Item>Caustic Obliteration</Item>
-        <Item>Fiery Obliteration</Item>
-        <Item>Frost Obliteration</Item>
-        <Item>Poison Obliteration</Item>
-        <Item>Voltaic Obliteration</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Thorns</Name>
-      <Description>Your Thorn Strike, Splinter Bolt, and Thorn Bloom spells gain +10 to
-their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfThorns</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Thorn Strike</Item>
-        <Item>Splinter Bolt</Item>
-        <Item>Thorn Bloom</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of Water</Name>
-      <Description>Your Cold Ray, Snowball Swarm and Niac's Biting Cold spells gain +10 to
-their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfWater</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Cold Ray</Item>
-        <Item>Snowball Swarm</Item>
-        <Item>Niac's Biting Cold</Item>
-        <Item>Niac's Cold Ray</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of the Dead</Name>
-      <Description>Your Chill Touch, Death Aura and Negative Energy Burst spells gain +10 to
-their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
+Passive: +150 Maximum Spell Points</Description>
       <Group>Epic Feat</Group>
       <Requirements>
         <Requirement>
@@ -3647,49 +3339,7 @@ Passive: +140 Maximum Spell Points</Description>
         <Type>SpellPoints</Type>
         <Bonus>Feat</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Chill Touch</Item>
-        <Item>Death Aura</Item>
-        <Item>Negative Energy Burst</Item>
-        <Item>Greater Negative Energy Burst</Item>
-      </Effect>
-    </Feat>
-    <Feat>
-      <Name>Master of the Wilds</Name>
-      <Description>Your Produce Flame, Creeping Cold, Call Lightning and Word of Balance spells
-gain +10 to their maximum caster level.
-Passive: +140 Maximum Spell Points</Description>
-      <Group>Epic Feat</Group>
-      <Requirements>
-        <Requirement>
-          <Type>Level</Type>
-          <Value>24</Value>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>MasterOfTheWilds</Icon>
-      <Effect>
-        <Type>SpellPoints</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">140</Amount>
-      </Effect>
-      <Effect>
-        <Type>MaxCasterLevelSpell</Type>
-        <Bonus>Feat</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <Item>Produce Flame</Item>
-        <Item>Creeping Cold</Item>
-        <Item>Greater Creeping Cold</Item>
-        <Item>Call LIghtning</Item>
-        <Item>Word of Balance</Item>
+        <Amount size="1">150</Amount>
       </Effect>
     </Feat>
     <Feat>

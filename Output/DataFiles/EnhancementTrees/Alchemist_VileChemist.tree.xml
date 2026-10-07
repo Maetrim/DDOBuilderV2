@@ -71,7 +71,9 @@ and 2% Dodge Cap.</Description>
         <Icon>VilePoisonedCoating</Icon>
         <Description>While active, deal an additional 1d6 Poison damage on hit.
 You also gain an +1 bonus Imbue Dice every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
-This damage scales with your Spell Power.</Description>
+This damage scales with your Spell Power.
+You also gain Doubleshot equal to half your Dexterity score while wielding a Simple
+thrown weapon (Caps at 50%).</Description>
         <Group>Imbue</Group>
       </Stance>
       <Effect>
@@ -112,6 +114,19 @@ This damage scales with your Spell Power.</Description>
         <Bonus>Enhancement</Bonus>
         <AType>Simple</AType>
         <Amount size="1">5</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doubleshot</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>HalfAbilityTotal</AType>
+        <StackSource>Dexterity</StackSource>
+        <Requirements>
+            <Requirement>
+               <Type>Stance</Type>
+               <Item>Thrown Weapon</Item>
+            </Requirement>
+        </Requirements>
+        <Cap>50</Cap>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -492,8 +507,8 @@ While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
       <InternalName>VileStiffenSkin</InternalName>
       <Description>SLA: Stiffen Skin
 Metamagic: Extend, Quicken
-Spell Point Cost: [8/4/2]
-Cooldown [20/16/12] seconds
+Spell Point Cost: 2
+Cooldown 12 seconds
 Primer Element: Ceruleite
 
 This potion will mutate you and make your skin a little bit more resistant
@@ -503,7 +518,7 @@ levels, for 1 minute per caster level.</Description>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie />
       <Requirements>
@@ -518,7 +533,7 @@ levels, for 1 minute per caster level.</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Stiffen Skin</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 8 20 20 0 4 20 16 0 2 20 12</Amount>
+        <Amount size="4">0 2 20 12</Amount>
         <Item>Alchemist</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -770,8 +785,8 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
       <Icon>VilePoisonedAttack</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <Requirements>
@@ -784,22 +799,22 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
       <Selector>
         <EnhancementSelection>
           <Name>Poisoned Shot</Name>
-          <Description>+[10/20/30]% Damage
+          <Description>+30% Damage
 Ranged Attack:: On successful damage, your opponent is Contaminated.
 Using this attack acts as if you cast a Crimsonite spell.
-Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
+Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedShot</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Poisoned Strike</Name>
-          <Description>+[10/20/30]% Damage
+          <Description>+30% Damage
 Melee Attack: On successful damage, your opponent is Contaminated.
 Using this attack acts as if you cast a Crimsonite spell.
-Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
+Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedStrike</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
       </Selector>
@@ -907,20 +922,21 @@ You can only have one Alchemist's Stone Toggle active at a time.</Description>
       <InternalName>VileWaveOfPoison</InternalName>
       <Description>SLA: Wave of Poison
 Metamagic: Empower, Maximize, Quicken, Intensify
-Spell Point Cost: [8/6/4]
-Cooldown [12/10/6] seconds
+Spell Point Cost: 4
+Cooldown 6 seconds
 Primer Element: Ceruleite
 
 You infect enemies in a short cone with a deadly poison that eats away at them.
 Affected enemies take 2d4 Poison damage plus 1 Poison damage per 2 Caster
 Levels every 2 seconds for 12 seconds. This poison will leave enemies
 Contaminated. (Max Caster Level: 10)
-Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.
+Can stack up to 3 times.</Description>
       <Icon>VileWaveOfPoison</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie />
       <Requirements>
@@ -935,7 +951,7 @@ Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Descriptio
         <Bonus>Enhancement</Bonus>
         <Item>Wave of Poison</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 8 10 12 0 6 10 10 0 4 10 6</Amount>
+        <Amount size="4">0 4 10 6</Amount>
         <Item>Alchemist</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -1347,7 +1363,8 @@ You infect enemies in a short cone with a deadly poison that eats away at them.
 Affected enemies take 2d6 Poison damage plus 1 Poison damage per Caster Level
 every 2 seconds for 16 seconds. This poison will leave enemies Contaminated.
 (Max Caster Level: 20)
-Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.
+Can stack up to 3 times.</Description>
       <Icon>VileGreaterWaveOfPoison</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>

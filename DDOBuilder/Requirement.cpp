@@ -221,6 +221,7 @@ bool Requirement::VerifyObject(
             }
             break;
         case Requirement_Feat:
+        case Requirement_FeatTrained:
             // fall through
         case Requirement_FeatAnySource:
             if (m_Item.size() == 0)
@@ -471,6 +472,7 @@ bool Requirement::Met(
     case Requirement_Enhancement:       met = EvaluateEnhancement(build); break;
     case Requirement_Exclusive:         met = EvaluateExclusive(build, level, includeTomes); break;
     case Requirement_Feat:              met = EvaluateFeat(build, level, includeTomes); break;
+    case Requirement_FeatTrained:       met = EvaluateFeatTrained(build, level, includeTomes); break;
     case Requirement_FeatAnySource:     met = EvaluateFeatAnySource(build, level, includeTomes); break;
     case Requirement_GroupMember:       met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, true); break;
     case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, wtMainHand, wtOffHand, false); break;
@@ -517,6 +519,7 @@ bool Requirement::CanTrainEnhancement(
     case Requirement_Enhancement:       met = EvaluateEnhancement(build); break;
     case Requirement_Exclusive:         met = EvaluateExclusive(build, level, includeTomes); break;
     case Requirement_Feat:              met = EvaluateFeat(build, level, includeTomes); break;
+    case Requirement_FeatTrained:       met = EvaluateFeatTrained(build, level, includeTomes); break;
     case Requirement_FeatAnySource:     met = EvaluateFeatAnySource(build, level, includeTomes); break;
     case Requirement_GroupMember:       met = EvaluateWeaponGroupMember(build, Weapon_Unknown, Weapon_Unknown, true); break;
     case Requirement_GroupMember2:      met = EvaluateWeaponGroupMember(build, Weapon_Unknown, Weapon_Unknown, false); break;
@@ -557,6 +560,7 @@ bool Requirement::MetHardRequirements(
     //case Requirement_Enhancement:   met = EvaluateEnhancement(build); break;
     case Requirement_Exclusive:     met = EvaluateExclusive(build, level, includeTomes); break;
     case Requirement_Feat:          met = EvaluateFeat(build, level, includeTomes); break;
+    case Requirement_FeatTrained:       met = EvaluateFeatTrained(build, level, includeTomes); break;
     case Requirement_FeatAnySource: met = EvaluateFeatAnySource(build, level, includeTomes); break;
     //case Requirement_GroupMember:   met = false; break;
     //case Requirement_GroupMember2:  met = false; break;
@@ -878,6 +882,26 @@ bool Requirement::EvaluateFeat(
     UNREFERENCED_PARAMETER(includeTomes);
     std::string feat = m_Item.front();
     std::list<TrainedFeat> currentFeats = build.CurrentFeats(level);
+    size_t countNormal = TrainedCount(currentFeats, feat);
+    size_t countSpecial = build.GetSpecialFeatTrainedCount(feat);
+    size_t numNeeded = 1;
+    if (HasValue())
+    {
+        numNeeded = Value();
+    }
+    bool met = (countNormal >= numNeeded
+        || countSpecial >= numNeeded);
+    return met;
+}
+
+bool Requirement::EvaluateFeatTrained(
+    const Build& build,
+    size_t level,  // this is 0 based
+    bool includeTomes) const
+{
+    UNREFERENCED_PARAMETER(includeTomes);
+    std::string feat = m_Item.front();
+    std::list<TrainedFeat> currentFeats = build.CurrentFeatsTrained(level);
     size_t countNormal = TrainedCount(currentFeats, feat);
     size_t countSpecial = build.GetSpecialFeatTrainedCount(feat);
     size_t numNeeded = 1;
@@ -1289,6 +1313,19 @@ void Requirement::CreateRequirementStrings(
             else
             {
                 description.Format("Requires: %s", m_Item.front().c_str());
+            }
+            break;
+        }
+    case Requirement_FeatTrained:
+        {
+            met = EvaluateFeatTrained(build, level, includeTomes);
+            if (HasValue())
+            {
+                description.Format("Requires: %s(%d) (Trained)", m_Item.front().c_str(), Value());
+            }
+            else
+            {
+                description.Format("Requires: %s (Trained)", m_Item.front().c_str());
             }
             break;
         }

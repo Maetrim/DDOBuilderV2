@@ -223,7 +223,10 @@ void CFavorPane::OnSize(UINT nType, int cx, int cy)
         m_listQuests.MoveWindow(rectPatronItem.right + c_controlSpacing, rctSearchControls[0].bottom + c_controlSpacing,
                 cx - rectPatronItem.right - c_controlSpacing * 2, cy - c_controlSpacing * 3 - rctSearchControls[0].Height(), TRUE);
     }
-    SetScrollSizes(MM_TEXT, CSize(cx- GetSystemMetrics(SM_CYHSCROLL), rectPatronItem.top));
+    if (cx >  GetSystemMetrics(SM_CYHSCROLL))
+    {
+        SetScrollSizes(MM_TEXT, CSize(cx - GetSystemMetrics(SM_CYHSCROLL), rectPatronItem.top));
+    }
 }
 
 BOOL CFavorPane::OnEraseBkgnd(CDC* pDC)

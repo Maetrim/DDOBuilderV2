@@ -329,13 +329,13 @@ Reflex save reduces the damage by half. On a failed Reflex save, the target must
 then also make a Will save or be dazed for 1d6+6 seconds, or until they take
 damage.
 
-Cost: [4/3/2] spell points.
-Cooldown: [12/8/4] seconds</Description>
+Cost: 2 spell points.
+Cooldown: 4 seconds</Description>
       <Icon>ATStaticShock</Icon>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie />
       <LongArrowUp />
@@ -351,7 +351,7 @@ Cooldown: [12/8/4] seconds</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Static Shock</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 4 -1 12 0 3 -1 8 0 2 -1 4</Amount>
+        <Amount size="4">0 2 -1 4</Amount>
         <Item>Artificer</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -657,13 +657,13 @@ for a short period of time or until they take damage. A successful Fortitude sav
 reduces the damage by half and negates the daze. Unlike most other projectile
 spells, the caster can arc the orb if no target is selected.
 
-Activation Cost: [8/6/4] spell points.
-Cooldown: [15/10/5] seconds.</Description>
+Activation Cost: 4 spell points.
+Cooldown: 5 seconds.</Description>
       <Icon>ATLightningSphere</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie />
       <ArrowUp />
@@ -683,7 +683,7 @@ Cooldown: [15/10/5] seconds.</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Lightning Sphere</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 8 0 15 0 6 0 10 0 4 0 5</Amount>
+        <Amount size="4">0 4 0 5</Amount>
         <Item>Artificer</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -869,13 +869,13 @@ Blast Rod: A blast of electricity bursts from your outstretched hand, dealing
 1d6+3 electrical damage per caster level (up to a maximum of 10d6+30 damage at
 caster level 10) to targets in its path. A successful Reflex save reduces the
 damage by half.
-Activation Cost: [12/8/6] spell points.
-Cooldown: [18/12/6] seconds.</Description>
+Activation Cost: 6 spell points.
+Cooldown: 6 seconds.</Description>
       <Icon>ATBlastRod</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <Clickie />
       <ArrowUp />
@@ -895,7 +895,7 @@ Cooldown: [18/12/6] seconds.</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Blast Rod</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 12 0 18 0 8 0 12 0 6 0 6</Amount>
+        <Amount size="4">0 6 0 6</Amount>
         <Item>Artificer</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -1071,13 +1071,13 @@ damage per caster level up to a max of 10d6+20 damage at caster level 10).
 A successful Reflex save reduces the damage by half. Enemies hit by the cloud are
 also made temporarily more vulnerable to electric damage, taking 15% extra damage
 from any electric-based attacks.
-Activation Cost: [12/8/6] spell points.
-Cooldown: [18/12/6] seconds.</Description>
+Activation Cost: 6 spell points.
+Cooldown: 6 seconds.</Description>
       <Icon>ATLightningMotes</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Clickie />
       <Tier5 />
@@ -1101,7 +1101,7 @@ Cooldown: [18/12/6] seconds.</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Lightning Motes</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 12 0 18 0 8 0 12 0 6 0 6</Amount>
+        <Amount size="4">0 6 0 6</Amount>
         <Item>Artificer</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -1109,7 +1109,9 @@ Cooldown: [18/12/6] seconds.</Description>
       <Name>Arcanotechnician: Charged Recoil</Name>
       <InternalName>ATChargedRecoil</InternalName>
       <Description>Your Runearm shots now strip Electric Immunity from enemies, rendering them
-vulnerable to Electric spells if they were immune for 10 seconds.</Description>
+vulnerable to Electric spells if they were immune for 10 seconds.
+While wielding a Rune Arm, +[10/15/20] Electric Spell Power, +[5/10/15] Universal
+Spell Power.</Description>
       <Icon>ATChargedRecoil</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
@@ -1128,6 +1130,31 @@ vulnerable to Electric spells if they were immune for 10 seconds.</Description>
           <Value>12</Value>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">10 15 20</Amount>
+        <Item>Electric</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">5 10 15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Rune Arm</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Arcanotechnician: Master Defender</Name>
@@ -1198,17 +1225,24 @@ your spell DCs of that school.</Description>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Arcanotechnician: Arcane Mechanism</Name>
-      <InternalName>ATArcaneMechanism</InternalName>
-      <Description>While wielding a Rune Arm, +[10/15/20] Electric Spell Power, +[5/10/15] Universal
-Spell Power.</Description>
-      <Icon>ATArcaneMechanism</Icon>
+      <Name>Arcanotechnician: Shock Gauntlet</Name>
+      <InternalName>ATShockGauntlet</InternalName>
+      <Description>You may cast the spell Shock Gauntlet at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost.
+
+Shock Gauntlet: Target living, construct, or inanimate object foe at touch range
+must make an Evocation Saving Throw or die. If they succeed, they take 1d6+4
+Electric Damage per Caster Level (max 25d6+100).
+Cooldown: 20 seconds.
+Cost: 15 SP</Description>
+      <Icon>ATShockGauntlet</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
+      <Clickie />
       <Requirements>
         <Requirement>
           <Type>ClassMinLevel</Type>
@@ -1220,31 +1254,6 @@ Spell Power.</Description>
           <Value>12</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>SpellPower</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">10 15 20</Amount>
-        <Item>Electric</Item>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Rune Arm</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
-      <Effect>
-        <Type>UniversalSpellPower</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Stacks</AType>
-        <Amount size="3">5 10 15</Amount>
-        <Requirements>
-          <Requirement>
-            <Type>Stance</Type>
-            <Item>Rune Arm</Item>
-          </Requirement>
-        </Requirements>
-      </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

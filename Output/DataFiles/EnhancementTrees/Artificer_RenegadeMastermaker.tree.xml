@@ -206,7 +206,8 @@ Passive: Your Admixture spells gain +4 to their Maximum Caster Level.</Descripti
       <InternalName>RMCore4</InternalName>
       <Description>+30 Repair Amplification. +50 Maximum Hit Points. While in Medium Armor, Heavy Armor,
 or Adamantine Body, +2 Max Dex Bonus. Your Admixture spells gain +6 to their
-Maximum Caster Level.</Description>
+Maximum Caster Level. You no longer suffer Arcane Spell Failure from armor.
+You gain +4 to Fortitude Saves.</Description>
       <Icon>RMConstructiveConduit</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
@@ -278,6 +279,19 @@ Maximum Caster Level.</Description>
         <Amount size="1">6</Amount>
         <Item>Admixture</Item>
       </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailure</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-100</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>Fortitude</Item>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Radiant Forcefield</Name>
@@ -286,7 +300,8 @@ Maximum Caster Level.</Description>
 Your target is surrounded in a sphere of magical force that reduces all damage
 (except from untyped damage) they take by 25% for a short period of time.
 Activation Cost: 30 Spell Points
-Cooldown: 3 minutes</Description>
+Cooldown: 3 minutes
+Passive: You gain Curative Admixture: Heal as a 6th level Artificer spell.</Description>
       <Icon>RMRadiantForcefield</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -328,6 +343,14 @@ Cooldown: 3 minutes</Description>
         <Item>Radiant Forcefield</Item>
         <AType>SpellInfo</AType>
         <Amount size="4">0 30 0 180</Amount>
+        <Item>Artificer</Item>
+      </Effect>
+      <Effect>
+        <Type>GrantSpell</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Curative Admixture: Heal</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="3">6 30 -1</Amount>
         <Item>Artificer</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -441,13 +464,13 @@ potion explodes in a small AOE that deals 1d6+2 plus 1
 per caster level (maximum caster level 5) positive
 energy damage to nearby living allies and enemy undead.
 This infusion is affected by Artificer Knowledge: Potions.
-Activation Cost: [4/3/2] Spell Points.
-Cooldown: [12/8/4] seconds</Description>
+Activation Cost: 2 Spell Points.
+Cooldown: 4 seconds</Description>
       <Icon>RMCurativeAdmixtureCLW</Icon>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie />
       <Requirements>
@@ -462,7 +485,7 @@ Cooldown: [12/8/4] seconds</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Curative Admixture: Cure Light Wounds</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 4 0 12 0 3 0 8 0 2 0 4</Amount>
+        <Amount size="4">0 2 0 4</Amount>
         <Item>Artificer</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -587,15 +610,15 @@ Cooldown: [12/8/4] seconds</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Kinetic Discharge</Name>
       <InternalName>RMKineticDischarge</InternalName>
-      <Description>Deals +[10/20/30]% Damage
+      <Description>Deals +30% Damage
 Cooldown: 10 seconds
 Cleave Attack: On hit, deals 2d6 Force damage. This damage scales with 200%
 Melee Power.</Description>
       <Icon>RMKineticDischarge</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <Requirements>
@@ -609,7 +632,7 @@ Melee Power.</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Mighty Slam</Name>
       <InternalName>RMMightySlam</InternalName>
-      <Description>Deals +[10/20/30]% Damage
+      <Description>Deals +30% Damage
 Cooldown: 15 seconds
 Melee Attack. Stuns your target for 6 seconds. Stunned creatures are considered
 helpless. A successful Fortitude save negates this effect.
@@ -619,8 +642,8 @@ Must have a Rune Arm equipped to use.</Description>
       <Icon>RMMightySlam</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <ArrowUp />
@@ -633,7 +656,7 @@ Must have a Rune Arm equipped to use.</Description>
       </Requirements>
       <DC>
         <Name>Renegade Mastermaker: Mighty Slam</Name>
-        <Description>Deals +[10/20/30]% Damage
+        <Description>Deals +30% Damage
 Melee Attack. Stuns your target for 6 seconds. Stunned creatures are considered
 helpless. A successful Fortitude save negates this effect.</Description>
         <Icon>RMMightySlam</Icon>
@@ -709,8 +732,8 @@ Cooldown: 3 minutes.</Description>
       <Icon>RMActionBoost</Icon>
       <XPosition>4</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie />
       <Requirements>
@@ -723,21 +746,21 @@ Cooldown: 3 minutes.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Renegade Mastermaker: Action Boost: Defense</Name>
-          <Description>Activate to gain a +[5/10/15] Action boost bonus to
+          <Description>Activate to gain a +15 Action boost bonus to
 Armor Class and Physical Resistance Rating for 20 seconds.
 Cooldown: 30 Seconds.</Description>
           <Icon>RMActionBoost</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Renegade Mastermaker: Action Boost: Saving Throws</Name>
-          <Description>Activate to gain a +[2/4/6] Action boost bonus to
+          <Description>Activate to gain a +6 Action boost bonus to
 all Saving Throws for 20 seconds. While under this effect
 you do not automatically fail Saving Throws on a roll of a
 Natural 1.</Description>
           <Icon>RMActionBoostSaves</Icon>
-          <CostPerRank size="1">1</CostPerRank>
+          <CostPerRank size="1">2</CostPerRank>
           <Clickie />
         </EnhancementSelection>
       </Selector>
@@ -746,7 +769,7 @@ Natural 1.</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Battlefist</Name>
       <InternalName>RMBattlefist</InternalName>
-      <Description>Deals +30% Damage
+      <Description>Deals +50% Damage
 Cooldown: 15 seconds
 Melee Attack: You've attuned your Rune Arm to deal a devastating strike. If the
 target is under the effect of Mighty Slam, it takes 1d3 Sonic Damage per
@@ -932,13 +955,13 @@ for 10 seconds.</Description>
 Greatly repairs an ally construct, restoring 10 hit points per caster level
 (max 150hp), while simultaneously granting it an increase in attack speed for
 a short time.
-Activation Cost: [35/30/25] Spell Points.
-Cooldown: [30/15/6] seconds</Description>
+Activation Cost: 25 Spell Points.
+Cooldown: 6 seconds</Description>
       <Icon>RMReconstruct</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
       <CostPerRank size="1">2</CostPerRank>
-      <Ranks>3</Ranks>
+      <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <Clickie />
       <Requirements>
@@ -953,7 +976,7 @@ Cooldown: [30/15/6] seconds</Description>
         <Bonus>Enhancement</Bonus>
         <Item>Reconstruct</Item>
         <AType>SpellInfo</AType>
-        <Amount size="12">0 35 0 30 0 30 0 15 0 25 0 6</Amount>
+        <Amount size="4">0 25 0 6</Amount>
         <Item>Artificer</Item>
       </Effect>
     </EnhancementTreeItem>
@@ -968,7 +991,6 @@ use Evasion, Druid Wild Shape feats, or Primal Avatar's Tree form</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>20</MinSpent>
-      <ArrowUp />
       <Requirements>
         <Requirement>
           <Type>ClassMinLevel</Type>
@@ -1179,17 +1201,17 @@ Cooldown: 3 minutes</Description>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Renegade Mastermaker: Paragon Body</Name>
-      <InternalName>RMParagonBody</InternalName>
-      <Description>You no longer suffer Arcane Spell Failure from armor. You gain +4 to Fortitude
-Saves and +10% Quality bonus to maximum hit points.</Description>
-      <Icon>RMParagonBody</Icon>
+      <Name>Renegade Mastermaker: Powerful Engines</Name>
+      <InternalName>RMPowerfulEngines</InternalName>
+      <Description>Select between an aggressive and tactical strike.</Description>
+      <Icon>RMPowerfulEngines</Icon>
       <XPosition>2</XPosition>
       <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
+      <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5 />
+      <Clickie />
       <Requirements>
         <Requirement>
           <Type>ClassMinLevel</Type>
@@ -1200,31 +1222,46 @@ Saves and +10% Quality bonus to maximum hit points.</Description>
           <Type>Level</Type>
           <Value>12</Value>
         </Requirement>
-        <Requirement>
-          <Type>Enhancement</Type>
-          <Item>RMEmbedComponent</Item>
-        </Requirement>
       </Requirements>
-      <Effect>
-        <Type>ArcaneSpellFailure</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">-100</Amount>
-      </Effect>
-      <Effect>
-        <Type>SaveBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">4</Amount>
-        <Item>Fortitude</Item>
-      </Effect>
-      <Effect>
-        <Type>HitpointsPercent</Type>
-        <Bonus>Quality</Bonus>
-        <AType>Simple</AType>
-        <Amount size="1">10</Amount>
-        <ApplyAsItemEffect />
-      </Effect>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Aggression Engine</Name>
+          <Description>Melee Attack: +50% damage.
+On Hit: For the next 6 seconds, you gain +20 Melee Power, +40 Universal Spell
+Power, and +10% Spell Crit Damage. For the next 20 seconds, you gain a +450%
+Competence Bonus to Melee Threat and 900% Competence Bonus to Spell Threat.
+Cooldown: 12 seconds.
+Passive: +100% Melee and Spell Threat</Description>
+          <Icon>RMPowerfulEngines</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">100</Amount>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Tactical Engine</Name>
+          <Description>Melee Attack: +50% damage.
+On Hit: For the next 6 seconds, you gain +20 Melee Power, +40 Universal Spell
+Power, and +10% Spell Crit Damage. For the next 20 seconds, you gain +10%
+Doublestrike and a +4 Competence Bonus to Spell and Sunder DCs.
+Cooldown: 12 seconds.
+Passive: +5 Melee Power</Description>
+          <Icon>RMTacticalEngine</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+          <Clickie />
+          <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">5</Amount>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Regeneration Construct</Name>
@@ -1267,8 +1304,9 @@ Cooldown: 1 minute</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Mastermaker</Name>
       <InternalName>RMMastermaker</InternalName>
-      <Description>Your Repair Wounds spells have no maximum caster level and you gain a +20%
-Competence bonus to Maximum Hit Points.</Description>
+      <Description>Your Repair Wounds spells have no maximum caster level and you gain a +30%
+Competence bonus to Maximum Hit Points. +1 Competence Bonus to Critical Threat
+Range with Weapons</Description>
       <Icon>RMMastermaker</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>
@@ -1305,7 +1343,15 @@ Competence bonus to Maximum Hit Points.</Description>
         <Type>HitpointsPercent</Type>
         <Bonus>Competence</Bonus>
         <AType>Simple</AType>
-        <Amount size="1">20</Amount>
+        <Amount size="1">30</Amount>
+        <ApplyAsItemEffect />
+      </Effect>
+      <Effect>
+        <Type>Weapon_CriticalRange</Type>
+        <Bonus>Competence</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
         <ApplyAsItemEffect />
       </Effect>
     </EnhancementTreeItem>

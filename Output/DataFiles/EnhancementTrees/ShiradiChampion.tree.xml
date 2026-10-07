@@ -16,9 +16,7 @@
     <EnhancementTreeItem>
       <Name>Shiradi Champion: Fey Favor</Name>
       <InternalName>U51ShiradiChampionCore1</InternalName>
-      <Description>You gain the Magical Training Feat.
-
-Each core ability in this tree, including this one, grants the following:
+      <Description>Each core ability in this tree, including this one, grants the following:
 
 +1 Epic bonus to Spell DCs
 +15 Maximum Hit Points
@@ -37,12 +35,6 @@ Each core ability in this tree, including this one, grants the following:
           <Value>20</Value>
         </Requirement>
       </Requirements>
-      <Effect>
-        <Type>GrantFeat</Type>
-        <Bonus>Enhancement</Bonus>
-        <Item>Magical Training</Item>
-        <AType>NotNeeded</AType>
-      </Effect>
       <Effect>
         <DisplayName>Shiradi Champion: Epic Spell DCs</DisplayName>
         <Type>SpellDC</Type>
@@ -873,7 +865,7 @@ Oozes, who would normally be immune to such effects.</Description>
           <CostPerRank size="1">1</CostPerRank>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Queen's Diplomacy</Name>
+          <Name>Otto's Whistler</Name>
           <Description>Deals +30% Damage
 If enemies hit by Pin are not moving, they are Immobilized for 6 seconds. If enemies
 hit by Pin are moving, they Dance for 6 seconds.</Description>
@@ -1140,7 +1132,7 @@ and Armor Class by 1 and Fortification by 2%. Stacks 10 times.</Description>
     <EnhancementTreeItem>
       <Name>Shiradi Champion: Crooked Touch</Name>
       <InternalName>U51ShiradiChampionCrookedTouch</InternalName>
-      <Description>Choose between attack speed or Imbue dice.</Description>
+      <Description>Choose between critical damage/confirmation or Imbue dice.</Description>
       <Icon>U51WhirlingWrists</Icon>
       <XPosition>4</XPosition>
       <YPosition>4</YPosition>
@@ -1168,15 +1160,15 @@ and Armor Class by 1 and Fortification by 2%. Stacks 10 times.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Whirling Wrists</Name>
-          <Description>+[10/20/30]% Attack Speed with Thrown Weapons.</Description>
+          <Description>+[1/2/3] to Critical Confirmation and Damage with thrown weapons.</Description>
           <Icon>U51WhirlingWrists</Icon>
           <CostPerRank size="1">1</CostPerRank>
           <Effect>
-            <Type>Weapon_Alacrity</Type>
+            <Type>Weapon_AttackAndDamageCritical</Type>
             <Bonus>Enhancement</Bonus>
             <Item>All</Item>
             <AType>Stacks</AType>
-            <Amount size="3">10 20 30</Amount>
+            <Amount size="3">1 2 3</Amount>
             <ApplyAsItemEffect />
             <Requirements>
               <Requirement>
