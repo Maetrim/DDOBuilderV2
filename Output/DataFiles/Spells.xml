@@ -4062,8 +4062,8 @@ negated by a Fortitude save.</Description>
   </Spell>
   <Spell>
     <Name>Death Ward</Name>
-    <Description>Grants a friendly creature immunity to death spells and effects, Energy Drained,
-and negative energy effects.</Description>
+    <Description>Grants a friendly creature immunity to death spells and effects, energy drain,
+and 50% absorption against negative energy effects.</Description>
     <Icon>DeathWard</Icon>
     <School>Transmutation</School>
     <Enlarge/>
@@ -4080,6 +4080,13 @@ and negative energy effects.</Description>
       <Bonus>Stacking</Bonus>
       <Item>Level drain</Item>
       <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">50</Amount>
+      <Item>Negative</Item>
     </Effect>
   </Spell>
   <!--Cleric and Favored Soul level 5's-->
@@ -9364,11 +9371,16 @@ Reflex save reduces the damage by half.</Description>
   </Spell>
   <Spell>
     <Name>Mordenkainen's Disjunction</Name>
-    <Description>A powerful force disrupts magical effects on the target, removing ongoing spells that
-have been cast on a target. You must make a caster level check of 1d20+your
-caster level (No maximum.) versus 11+the spell's caster level to remove a spell
-effect, and your target must make a Will save for each equipped item or all
-magical properties on them are temporarily disabled. Very slow cast time.</Description>
+    <Description>A powerful force disrupts magical effects on the target, removing ongoing spells
+that have been cast on a target. You must make a caster level check of 1 to 20 +
+your caster level (no maximum) versus 11 + the spell's caster level to remove a
+spell effect, and magical healing being applied to the target is greatly reduced
+for 30 seconds.
+Your target must almost make a Will save for they will be unable to cast for the
+duration (excludes bosses). If the target is a construct or living construct they
+are destroyed on a failed save. If cast on a Spell Ward trap, this spell will
+reduce the level of the trap by 1 to 8. If the level of the trap is reduced to 0,
+the trap is disabled.</Description>
     <Icon>MordenkainensDisjunction</Icon>
     <School>Abjuration</School>
     <Embolden/>
@@ -14655,9 +14667,9 @@ that normally impedes movement, such as Entangled, Paralyzed, or Solid Fog.</Des
   </Spell>
   <Spell>
     <Name>Death Ward, Mass</Name>
-    <Description>Casts Death Ward on multiple friendly creatures, granting to
-each creature immunity to death spells and effects, Energy Drained
-and negative energy effects.</Description>
+    <Description>Casts Death Ward on multiple friendly creatures, granting to each creature immunity
+to death spells and effects, energy drain, and 50% absorption against negative
+energy effects.</Description>
     <Icon>DeathWardMass</Icon>
     <School>Transmutation</School>
     <Enlarge/>
@@ -14674,6 +14686,13 @@ and negative energy effects.</Description>
       <Bonus>Stacking</Bonus>
       <AType>NotNeeded</AType>
       <Item>Level drain</Item>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">50</Amount>
+      <Item>Negative</Item>
     </Effect>
   </Spell>
   <Spell>

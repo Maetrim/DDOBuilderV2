@@ -230,6 +230,7 @@
 #define HID_SETFAVOR_5_STAR                     0x18067
 #define HID_SETFAVOR_6_STAR                     0x18068
 #define HID_SETTINGS_ALLOWDPISCALING            0x18069
+#define HID_DEVELOPMENT_UPDATEFEATTRANSPARENCY  0x1806A
 #define HIDD2_ABOUTBOX                          0x10062
 #define HIDD2_DDOBUILDER_FORM                   0x10064
 #define HIDD2_BUILDS_PANE                       0x10065
@@ -266,6 +267,8 @@
 #define HIDD2_NAME_ATTACKCHAIN                  0x101A6
 #define HIDD2_CONTENT_PANE                      0x101A7
 #define HIDD2_BONUSES_PANE                      0x101A9
+#define HIDD2_DIALOG_SETITEMIMAGES1             0x101AA
+#define HIDD2_DIALOG_FEATIMAGES                 0x101AA
  
 // Prompts (IDP_*) 
 #define HIDP_OLE_INIT_FAILED                    0x30063
@@ -320,6 +323,8 @@
 #define HIDD_NAME_ATTACKCHAIN                   0x201A6
 #define HIDD_CONTENT_PANE                       0x201A7
 #define HIDD_BONUSES_PANE                       0x201A9
+#define HIDD_DIALOG_SETITEMIMAGES1              0x201AA
+#define HIDD_DIALOG_FEATIMAGES                  0x201AA
  
 // Frame Controls (IDW_*) 
 // This is a part of the Microsoft Foundation Classes C++ library.

@@ -37,6 +37,7 @@
 #include "CWeaponImageDialog.h"
 #include "CMFCVisualManagerOffice2007DarkMode.h"
 #include "WikiLinkDlg.h"
+#include "CFeatImageDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -74,6 +75,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_COMMAND(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnDevelopmentProcessSpecificWikiFile)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnDevelopmentUpdateItemImages)
     ON_COMMAND(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnDevelopmentUpdateWeaponImages)
+    ON_COMMAND(ID_DEVELOPMENT_UPDATEFEATTRANSPARENCY, &CMainFrame::OnDevelopmentUpdateFeatTransparency)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_SHOW0VALUEBREAKDOWNENTRIES, &CMainFrame::OnUpdateDevelopmentShow0ValueBreakdowns)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_RUNWIKIITEMCRAWLER, &CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_CRAWLSPECIFICWIKILINK, &CMainFrame::OnUpdateDevelopmentCrawlSpecificWikiLink)
@@ -81,6 +83,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_PROCESSSPECIFICWIKIFILE, &CMainFrame::OnUpdateDevelopmentProcessWikiFiles)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateItemImages)
     ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEWEAPONITEMIMAGES, &CMainFrame::OnUpdateDevelopmentUpdateWeaponImages)
+    ON_UPDATE_COMMAND_UI(ID_DEVELOPMENT_UPDATEFEATTRANSPARENCY, &CMainFrame::OnUpdateDevelopmentUpdateFeatTransparency)
     ON_COMMAND(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnEditIgnorelistActive)
     ON_UPDATE_COMMAND_UI(ID_EDIT_IGNORELIST_ACTIVE, &CMainFrame::OnUpdateEditIgnorelistActive)
     ON_COMMAND(ID_VIEW_RESETSCREENLAYOUT, OnResetScreenLayout)
@@ -939,6 +942,12 @@ void CMainFrame::OnDevelopmentUpdateWeaponImages()
     dlg.DoModal();
 }
 
+void CMainFrame::OnDevelopmentUpdateFeatTransparency()
+{
+    CFeatImageDialog dlg(this);
+    dlg.DoModal();
+}
+
 void CMainFrame::OnUpdateDevelopmentRunwWikiItemCrawler(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
@@ -960,6 +969,11 @@ void CMainFrame::OnUpdateDevelopmentUpdateItemImages(CCmdUI* pCmdUI)
 }
 
 void CMainFrame::OnUpdateDevelopmentUpdateWeaponImages(CCmdUI* pCmdUI)
+{
+    pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
+}
+
+void CMainFrame::OnUpdateDevelopmentUpdateFeatTransparency(CCmdUI* pCmdUI)
 {
     pCmdUI->Enable(m_bLoadComplete && !m_bWikiProcessing);
 }

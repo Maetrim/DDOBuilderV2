@@ -63,12 +63,14 @@ protected:
     afx_msg void OnDevelopmentProcessSpecificWikiFile();
     afx_msg void OnDevelopmentUpdateItemImages();
     afx_msg void OnDevelopmentUpdateWeaponImages();
+    afx_msg void OnDevelopmentUpdateFeatTransparency();
     afx_msg void OnUpdateDevelopmentShow0ValueBreakdowns(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentRunwWikiItemCrawler(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentCrawlSpecificWikiLink(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentProcessWikiFiles(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentUpdateItemImages(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDevelopmentUpdateWeaponImages(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateDevelopmentUpdateFeatTransparency(CCmdUI* pCmdUI);
     afx_msg void OnEditIgnorelistActive();
     afx_msg void OnUpdateEditIgnorelistActive(CCmdUI* pCmdUI);
     afx_msg void OnResetScreenLayout();
