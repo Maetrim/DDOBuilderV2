@@ -118,19 +118,19 @@ XmlLib::SaxContentElementInterface * Build::StartElement(
 
 void Build::EndElement()
 {
-    if (!m_hasLevel4)
-    {
-        m_hasLevel4 = true;
-        m_hasLevel8 = true;
-        m_hasLevel12 = true;
-        m_hasLevel16 = true;
-        m_hasLevel20 = true;
-        m_hasLevel24 = true;
-        m_hasLevel28 = true;
-        m_hasLevel32 = true;
-        m_hasLevel36 = true;
-        m_hasLevel40 = true;
-    }
+    // Level-up elements are filled in one by one: a file that has some of them but not all
+    // (e.g. written by another tool) used to fail with "Build was missing Level8 element".
+    // A missing level-up keeps its default (Strength), the same value used when all are absent.
+    m_hasLevel4 = true;
+    m_hasLevel8 = true;
+    m_hasLevel12 = true;
+    m_hasLevel16 = true;
+    m_hasLevel20 = true;
+    m_hasLevel24 = true;
+    m_hasLevel28 = true;
+    m_hasLevel32 = true;
+    m_hasLevel36 = true;
+    m_hasLevel40 = true;
     m_hasNotes = true;
     m_hasActiveAttackChain = true;  // "Blank name is fine"
     SaxContentElement::EndElement();
