@@ -190,6 +190,18 @@ BOOL CDDOBuilderApp::InitInstance()
     EnableShellOpen();
     RegisterShellFileTypes(TRUE);
 
+    // A file given on the command line (double-clicking a .DDOBuild) can't be opened yet: the class,
+    // feat and item data are only loaded by LoadData() below, and reading a build before then
+    // indexes class tables with an unknown class and crashes. Start with a new document instead
+    // and open the file once the load completes.
+    CString fileToOpen;
+    if (cmdInfo.m_nShellCommand == CCommandLineInfo::FileOpen)
+    {
+        fileToOpen = cmdInfo.m_strFileName;
+        cmdInfo.m_nShellCommand = CCommandLineInfo::FileNew;
+        cmdInfo.m_strFileName.Empty();
+    }
+
     // Dispatch commands specified on the command line.  Will return FALSE if
     // app was launched with /RegServer, /Register, /Unregserver or /Unregister.
     if (!ProcessShellCommand(cmdInfo))
@@ -210,6 +222,19 @@ BOOL CDDOBuilderApp::InitInstance()
     LoadData();
 
     NotifyLoadComplete();
+    if (!fileToOpen.IsEmpty())
+    {
+        // the default life created on load complete is not user work, don't prompt to save it
+        POSITION pos = m_pDocManager->GetFirstDocTemplatePosition();
+        CDocTemplate* pTemplate = m_pDocManager->GetNextDocTemplate(pos);
+        pos = pTemplate->GetFirstDocPosition();
+        CDocument* pDoc = (pos != NULL) ? pTemplate->GetNextDoc(pos) : NULL;
+        if (pDoc != NULL)
+        {
+            pDoc->SetModifiedFlag(FALSE);
+        }
+        OpenDocumentFile(fileToOpen);
+    }
     GetLog().AddLogEntry("Ready");
 
     m_dwHtmlHelpCookie = NULL;
