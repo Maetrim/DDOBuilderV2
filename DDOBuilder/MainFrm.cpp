@@ -1066,6 +1066,8 @@ LRESULT CMainFrame::OnLoadComplete(WPARAM, LPARAM)
     CCustomDockablePane* pPane = GetPane(ID_DOCK_EQUIPMENT);
     CView* pView = pPane->GetView();
     pView->SendMessage(UWM_LOAD_COMPLETE, 0, 0L);
+    // a file opened while the items were loading waits until now
+    theApp.OpenFileAfterItemLoad();
     return 0;
 }
 
