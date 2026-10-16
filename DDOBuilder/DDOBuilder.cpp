@@ -190,6 +190,15 @@ BOOL CDDOBuilderApp::InitInstance()
     EnableShellOpen();
     RegisterShellFileTypes(TRUE);
 
+    // data isn't loaded yet so opening a file here crashes, open it after LoadData instead
+    CString fileToOpen;
+    if (cmdInfo.m_nShellCommand == CCommandLineInfo::FileOpen)
+    {
+        fileToOpen = cmdInfo.m_strFileName;
+        cmdInfo.m_nShellCommand = CCommandLineInfo::FileNew;
+        cmdInfo.m_strFileName.Empty();
+    }
+
     // Dispatch commands specified on the command line.  Will return FALSE if
     // app was launched with /RegServer, /Register, /Unregserver or /Unregister.
     if (!ProcessShellCommand(cmdInfo))
@@ -210,6 +219,19 @@ BOOL CDDOBuilderApp::InitInstance()
     LoadData();
 
     NotifyLoadComplete();
+    if (!fileToOpen.IsEmpty())
+    {
+        // don't ask to save the default life
+        POSITION pos = m_pDocManager->GetFirstDocTemplatePosition();
+        CDocTemplate* pTemplate = m_pDocManager->GetNextDocTemplate(pos);
+        pos = pTemplate->GetFirstDocPosition();
+        CDocument* pDoc = (pos != NULL) ? pTemplate->GetNextDoc(pos) : NULL;
+        if (pDoc != NULL)
+        {
+            pDoc->SetModifiedFlag(FALSE);
+        }
+        OpenDocumentFile(fileToOpen);
+    }
     GetLog().AddLogEntry("Ready");
 
     m_dwHtmlHelpCookie = NULL;
