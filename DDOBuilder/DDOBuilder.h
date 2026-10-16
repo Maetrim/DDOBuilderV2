@@ -39,6 +39,8 @@ class CDDOBuilderApp :
     public CWinAppEx
 {
 public:
+    void OpenFileAfterItemLoad();   // opens a file asked for during the item load once items and their images are loaded
+    virtual CDocument* OpenDocumentFile(LPCTSTR lpszFileName) override;
     CDDOBuilderApp();
 
     UINT  m_nAppLook;
@@ -198,6 +200,9 @@ private:
     // threaded item load variables
     bool m_bItemLoadThreadRunning;
     bool m_bKillItemLoadThread;
+    bool m_bItemsLoaded;
+    CString m_fileToOpenAfterItemLoad;
+    bool m_bPendingOpenFromStartup;
 
     bool m_bLamanniaMode;
     bool m_bAutoSelectSingleOptionEnhancements;
