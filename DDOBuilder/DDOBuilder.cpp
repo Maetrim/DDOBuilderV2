@@ -65,6 +65,8 @@ CDDOBuilderApp::CDDOBuilderApp() :
     m_dwHtmlHelpCookie(NULL),
     m_bItemLoadThreadRunning(false),
     m_bKillItemLoadThread(false),
+    m_bItemsLoaded(false),
+    m_bPendingOpenFromStartup(false),
     m_bLamanniaMode(false),
     m_bAutoSelectSingleOptionEnhancements(false)
 {
@@ -190,6 +192,15 @@ BOOL CDDOBuilderApp::InitInstance()
     EnableShellOpen();
     RegisterShellFileTypes(TRUE);
 
+    // data isn't loaded yet so opening a file here crashes, open it after LoadData instead
+    CString fileToOpen;
+    if (cmdInfo.m_nShellCommand == CCommandLineInfo::FileOpen)
+    {
+        fileToOpen = cmdInfo.m_strFileName;
+        cmdInfo.m_nShellCommand = CCommandLineInfo::FileNew;
+        cmdInfo.m_strFileName.Empty();
+    }
+
     // Dispatch commands specified on the command line.  Will return FALSE if
     // app was launched with /RegServer, /Register, /Unregserver or /Unregister.
     if (!ProcessShellCommand(cmdInfo))
@@ -210,12 +221,58 @@ BOOL CDDOBuilderApp::InitInstance()
     LoadData();
 
     NotifyLoadComplete();
+    // items and their images are still loading on a thread, gear would have no icons yet. open it when that finishes
+    if (!fileToOpen.IsEmpty())
+    {
+        m_fileToOpenAfterItemLoad = fileToOpen;
+        m_bPendingOpenFromStartup = true;
+        if (m_bItemsLoaded)
+        {
+            OpenFileAfterItemLoad();
+        }
+    }
     GetLog().AddLogEntry("Ready");
 
     m_dwHtmlHelpCookie = NULL;
     ::HtmlHelp(NULL, NULL, HH_INITIALIZE, (DWORD)&m_dwHtmlHelpCookie); // Cookie returned by Hhctrl.ocx used to uninitialise
 
     return TRUE;
+}
+
+void CDDOBuilderApp::OpenFileAfterItemLoad()
+{
+    if (m_fileToOpenAfterItemLoad.IsEmpty())
+    {
+        return;
+    }
+    CString fileToOpen = m_fileToOpenAfterItemLoad;
+    m_fileToOpenAfterItemLoad.Empty();
+    if (m_bPendingOpenFromStartup)
+    {
+        // don't ask to save the default life created at startup
+        m_bPendingOpenFromStartup = false;
+        POSITION pos = m_pDocManager->GetFirstDocTemplatePosition();
+        CDocTemplate* pTemplate = m_pDocManager->GetNextDocTemplate(pos);
+        pos = pTemplate->GetFirstDocPosition();
+        CDocument* pDoc = (pos != NULL) ? pTemplate->GetNextDoc(pos) : NULL;
+        if (pDoc != NULL)
+        {
+            pDoc->SetModifiedFlag(FALSE);
+        }
+    }
+    CWinAppEx::OpenDocumentFile(fileToOpen);
+}
+
+CDocument* CDDOBuilderApp::OpenDocumentFile(LPCTSTR lpszFileName)
+{
+    if (!m_bItemsLoaded)
+    {
+        // every open comes through here (command line, double-click while running, drag and drop, recent files).
+        // a build opened before the item load finishes has gear with no icons, so keep the request and open it after
+        m_fileToOpenAfterItemLoad = lpszFileName;
+        return NULL;
+    }
+    return CWinAppEx::OpenDocumentFile(lpszFileName);
 }
 
 int CDDOBuilderApp::ExitInstance()
@@ -1700,6 +1757,7 @@ UINT CDDOBuilderApp::ThreadedItemLoad(LPVOID pParam)
         }
     }
     CoUninitialize();
+    pApp->m_bItemsLoaded = true;
     pApp->m_bItemLoadThreadRunning = false;
     ::SendMessage(hwndMainFrame, UWM_LOAD_COMPLETE, 0, 0L);
     return 0;
