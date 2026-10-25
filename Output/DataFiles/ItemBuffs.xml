@@ -10559,6 +10559,35 @@ BLOOD BLOOD! GIVE ME BLOOD!
     </Effect>
   </Buff>
   <Buff>
+    <Type>Ghostbane7</Type>
+    <DisplayText>Ghostbane 7: This weapon is attuned specifically to hunt the risen dead, dealing an additional 7d10 bane damage vs. Undead monsters. Passive: Attacks from this weapon bypass the miss chance of incorporeal creatures, such as ghosts, shadows, and wraiths.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>GhostTouch</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
     <Type>Giant Bane 2</Type>
     <DisplayText>Giant Bane 2: This weapon is attuned specifically to hunt a larger foe, dealing an additional 2d10 bane damage vs. Giants.</DisplayText>
     <Effect>
@@ -24271,6 +24300,29 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <AType>NotNeeded</AType>
       <Dice>
         <Number size="1">6</Number>
+        <Sides size="1">10</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Undead</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>UndeadBane 7</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Undead Bane 7: Those that have died must return, and this weapon is attuned specifically to lay them to rest. This weapon deals an additional 7d10 bane damage vs. Undead.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
         <Sides size="1">10</Sides>
         <Damage>Bane</Damage>
       </Dice>

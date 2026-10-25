@@ -1867,6 +1867,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "UndeadBane 4", "Undead Bane 4", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "UndeadBane 5", "Undead Bane 5", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "UndeadBane 6", "Undead Bane 6", "Enhancement", "All");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "UndeadBane 7", "Undead Bane 7", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "LesserUndeadBane", "Lesser Undead Bane", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "GreaterUndeadBane", "Greater Undead Bane", "Enhancement", "All");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "GreaterElfBane", "Greater Elf Bane", "Enhancement", "All");
@@ -1918,6 +1919,7 @@ bool WikiItemFileProcessor::ProcessEnchantmentLine(const std::string& line)
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impactful3", "Impactful 3", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impactful2", "Impactful 2", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Impactful1", "Impactful 1", "Enhancement", "");
+    if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ghostbane7", "Ghostbane 7", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ghostbane6", "Ghostbane 6", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ghostbane5", "Ghostbane 5", "Enhancement", "");
     if (!bRecognised) bRecognised |= AddCommonEffect(line, "Ghostbane4", "Ghostbane 4", "Enhancement", "");

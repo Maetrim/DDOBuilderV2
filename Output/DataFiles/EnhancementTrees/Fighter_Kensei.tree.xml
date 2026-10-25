@@ -922,7 +922,7 @@ Guard being applied.</Description>
       <Icon>KenseiReedInTheWind</Icon>
       <XPosition>4</XPosition>
       <YPosition>1</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
+      <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie />
@@ -1571,6 +1571,65 @@ and +1 to hit and +3 damage with two handed picks and hammers.</Description>
           </RequiresOneOf>
         </Requirements>
       </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <InternalName>KenseiWeaponVariations</InternalName>
+      <Name>Kensei: Weapon Variations</Name>
+      <Description>Select a way to modify your weapons.</Description>
+      <Icon>KenseiWeaponVariations</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Fighter</Item>
+          <Value>2</Value>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Blunted Edges</Name>
+          <Description>Your weapons are considered to be Bludgeoning in addition to their normal damage types.</Description>
+          <Icon>KenseiWeaponVariationsBlunted</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <Value>Bludgeon</Value>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Precision Thrusts</Name>
+          <Description>Your weapons are considered to be Piercing in addition to their normal damage types.</Description>
+          <Icon>KenseiWeaponVariationsPiercing</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <Value>Pierce</Value>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Serrated Blades</Name>
+          <Description>Your weapons are considered to be Slashing in addition to their normal damage types.</Description>
+          <Icon>KenseiWeaponVariationsSlashing</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Item>All</Item>
+            <Value>Slash</Value>
+            <AType>NotNeeded</AType>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <InternalName>KenseiAsceticTraining</InternalName>
