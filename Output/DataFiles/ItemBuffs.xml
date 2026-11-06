@@ -25439,4 +25439,27 @@ On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage.</DisplayText>
       <Amount size="1">18</Amount>
     </Effect>
   </Buff>
+  <Buff>
+    <Type>Banishing 117</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Banishing 117: On Hit: 7d6 Bane damage to Outsiders. On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 hit points, it takes 7d20 damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">7</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>EnemyType</Type>
+          <Item>Outsider</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
 </Buffs>
