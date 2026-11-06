@@ -396,7 +396,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
         ++aiit;
     }
 
-    m_availableItemsCtrl.SortItems(
+    m_availableItemsCtrl.SortItemsEx(
             CItemSelectDialog::SortCompareFunction,
             (long)GetSafeHwnd());
 
@@ -973,7 +973,7 @@ void CItemSelectDialog::OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult)
         column = columnToSort;
     }
     m_sortHeader.SetSortArrow(column, bAscending);
-    m_availableItemsCtrl.SortItems(CItemSelectDialog::SortCompareFunction, (long)GetSafeHwnd());
+    m_availableItemsCtrl.SortItemsEx(CItemSelectDialog::SortCompareFunction, (long)GetSafeHwnd());
 
     *pResult = 0;
 }
@@ -988,13 +988,10 @@ int CItemSelectDialog::SortCompareFunction(
     CItemSelectDialog* pThis = static_cast<CItemSelectDialog*>(pWnd);
 
     int sortResult = 0;
-    size_t index1 = lParam1; // item data index
-    size_t index2 = lParam2; // item data index
-
-    // need to find the actual current entry in the list control to compare the
-    // text content
-    index1 = FindItemIndexByItemData(&pThis->m_availableItemsCtrl, index1);
-    index2 = FindItemIndexByItemData(&pThis->m_availableItemsCtrl, index2);
+    // SortItemsEx passes the current list control index of each item, so there
+    // is no need to search the control for the item data on every comparison
+    size_t index1 = lParam1;
+    size_t index2 = lParam2;
 
     // get the current sort settings
     int column;
